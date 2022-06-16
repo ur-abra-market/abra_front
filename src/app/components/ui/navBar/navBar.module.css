@@ -1,0 +1,10 @@
+.navbar {
+  display: flex;
+  justify-content: space-around;
+}
+.nav_item {
+  list-style-type: none;
+}
+.nav_link {
+  text-decoration: none;
+}
