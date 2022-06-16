@@ -18,7 +18,7 @@ root.render(
       <NavBar />
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path=":type" element={<Login />}></Route>
+        <Route path="login" element={<Login />}></Route>
         <Route path="help" element={<p>Help</p>} />
       </Routes>
     </BrowserRouter>
