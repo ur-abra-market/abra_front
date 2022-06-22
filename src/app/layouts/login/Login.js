@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import TextField from "../../components/commonComponents/textField";
 
 const Login = () => {
   const [formType, setFormType] = useState("register");
@@ -30,16 +31,21 @@ const Login = () => {
           <h3>Вход</h3>
           
           <form action="">
-            <div>
-                <label htmlFor="email">Email</label>
-                <input type="text" id="email" value={data.email} name="email" onChange={handleChange}/>
-            </div>
-            <div>
-                <label htmlFor="password">Пароль</label>
-                <input type="password" id="password" value={data.password} name="password" onChange={handleChange}/>
-            </div>
+            <TextField 
+              label="Email" 
+              name="email" 
+              value={data.email} 
+              onChange={handleChange}
+            />
+            <TextField 
+              label="Password" 
+              type="password" 
+              name="password" 
+              value={data.password} 
+              onChange={handleChange}
+            />
           </form>
-          
+
           <p>
             У Вас нет аккаунта?{" "}
             <button onClick={toggleFormType}>Создать</button>
