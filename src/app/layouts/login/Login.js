@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import LoginForm from "../../components/ui/loginForm/loginForm";
 
+
+
 const Login = () => {
   const [formType, setFormType] = useState("register");
 
@@ -10,6 +12,8 @@ const Login = () => {
       prevState === "register" ? "login" : "register"
     );
   };
+
+
 
   return (
     <div>
@@ -25,7 +29,9 @@ const Login = () => {
         <>
           <h3>Вход</h3>
 
-          {<LoginForm />}        
+          {<LoginForm />}
+          
+
 
           <p>
             У Вас нет аккаунта?{" "}

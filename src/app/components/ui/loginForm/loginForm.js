@@ -4,7 +4,7 @@ import { validator } from "../../../utils/validator";
 
 const LoginForm = () => {
     const [data, setData]=useState({email:"", password:""});
-    const [errors, setErrors]=useState()
+    const [errors, setErrors]=useState({})
 
     const handleChange = ({target}) => {
       setData((prevState) => ({
@@ -20,9 +20,9 @@ const LoginForm = () => {
     useEffect(()=>{validate();},[data]);
 
     const validate = () => {
-    const errors=validator(data, validetorConfig);
-    setErrors(errors);
-    return Object.keys(errors).length === 0
+        const errors=validator(data, validetorConfig);
+        setErrors(errors);
+        return Object.keys(errors).length === 0
     };
 
     const handSubmit = (e) => {
@@ -39,7 +39,7 @@ const LoginForm = () => {
                 name="email" 
                 value={data.email} 
                 onChange={handleChange}
-                // error={errors[email]}
+                error={errors.password}
             />
             <TextField 
                 label="Password" 
@@ -47,7 +47,7 @@ const LoginForm = () => {
                 name="password" 
                 value={data.password} 
                 onChange={handleChange}
-                // error={errors.password}
+                error={errors.password}
             />
             <button>Submit</button>
         </form>
