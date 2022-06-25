@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import TextField from "../../commonComponents/textField"
+import TextField from "../../commonComponents/textField/textField"
 import { validator } from "../../../utils/validator";
+import style from "../../commonComponents/buttons/buttons.module.css"
 
 const RegisterForm = () => {
     const [data, setData]=useState({firstName:"", secondName:"",  phoneNumber:"", email:"", password:""});
@@ -74,7 +75,7 @@ const RegisterForm = () => {
                 onChange={handleChange}
                 error={errors.password}
             />
-            <button>Submit</button>
+            <button className={style.mainButton}>Continue</button>
         </form>
     )
 }

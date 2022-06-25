@@ -1,0 +1,27 @@
+.mainButton {
+    font-size: 20px;
+    position: relative;
+    background: rgba(77, 134, 247, 0.5);
+    border: none;
+    border-radius: 8px;
+    margin-top: 40px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.mainButton:hover { 
+    background: rgba(77, 134, 247, 0.4); 
+}
+
+.secondaryButton {
+    font-size: 10px;
+    position: relative;
+    background: rgba(116, 133, 167, 0.5);
+    border: none;
+    border-radius: 8px;
+    margin-top: 40px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.secondaryButton:hover { 
+    background: rgba(116, 133, 167, 0.4); 
+}

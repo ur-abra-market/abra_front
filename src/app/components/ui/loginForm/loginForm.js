@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import TextField from "../../commonComponents/textField"
+import TextField from "../../commonComponents/textField/textField"
 import { validator } from "../../../utils/validator";
+import style from "../../commonComponents/buttons/buttons.module.css"
 
 const LoginForm = () => {
     const [data, setData]=useState({email:"", password:""});
@@ -40,6 +41,7 @@ const LoginForm = () => {
                 value={data.email} 
                 onChange={handleChange}
                 error={errors.email}
+
             />
             <TextField 
                 label="Password" 
@@ -49,7 +51,7 @@ const LoginForm = () => {
                 onChange={handleChange}
                 error={errors.password}
             />
-            <button>Submit</button>
+            <button className={style.mainButton}>Log in my WB account</button>
         </form>
     )
 }
