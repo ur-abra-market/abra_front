@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import LoginForm from "../../components/ui/loginForm/loginForm";
-
-
+import RegisterForm from "../../components/ui/registerForm/registerForm";
 
 const Login = () => {
   const [formType, setFormType] = useState("register");
-
 
   const toggleFormType = () => {
     setFormType((prevState) =>
@@ -13,14 +11,12 @@ const Login = () => {
     );
   };
 
-
-
   return (
     <div>
       {formType === "register" ? (
         <>
           <h3>Регистрация</h3>
-
+          {<RegisterForm />}
           <p>
             У Вас есть аккаунт? <button onClick={toggleFormType}> Войти</button>
           </p>
@@ -30,8 +26,6 @@ const Login = () => {
           <h3>Вход</h3>
 
           {<LoginForm />}
-          
-
 
           <p>
             У Вас нет аккаунта?{" "}

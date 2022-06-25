@@ -13,14 +13,14 @@ const LoginForm = () => {
       }));
     };
 
-    const validetorConfig = {
+    const validatorConfig = {
         email:{ isRequired: {message: "Email is required!"}},
         password:{ isRequired: {message: "Password is required!"}},
     };
     useEffect(()=>{validate();},[data]);
 
     const validate = () => {
-        const errors=validator(data, validetorConfig);
+        const errors=validator(data, validatorConfig);
         setErrors(errors);
         return Object.keys(errors).length === 0
     };
@@ -39,7 +39,7 @@ const LoginForm = () => {
                 name="email" 
                 value={data.email} 
                 onChange={handleChange}
-                error={errors.password}
+                error={errors.email}
             />
             <TextField 
                 label="Password" 
