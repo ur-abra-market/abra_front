@@ -3,7 +3,7 @@ import LoginForm from "../../components/ui/loginForm/loginForm";
 import RegisterForm from "../../components/ui/registerForm/registerForm";
 
 const Login = () => {
-  const [formType, setFormType] = useState("register");
+  const [formType, setFormType] = useState("login");
 
   const toggleFormType = () => {
     setFormType((prevState) =>
