@@ -23,16 +23,3 @@
     box-shadow: 0 0 20px rgb(0 0 0 / 10%);
 }
 
-.secondaryButton {
-    font-size: 15px;
-    position: relative;
-    background: rgba(116, 133, 167, 0.5);
-    border: none;
-    border-radius: 8px;
-    margin-top: 40px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-.secondaryButton:hover { 
-    background: rgba(116, 133, 167, 0.4); 
-}
