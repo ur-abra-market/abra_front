@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import TextField from "../../commonComponents/textField/textField"
+import TextField from "../../commonComponents/textField/textField";
+import RadioField from "../../commonComponents/radioField/radioField";
 import { validator } from "../../../utils/validator";
-import style from "../../commonComponents/buttons/buttons.module.css"
+import styleBtn from "../../commonComponents/buttons/buttons.module.css";
+
 
 const RegisterForm = () => {
-    const [data, setData]=useState({firstName:"", secondName:"",  phoneNumber:"", email:"", password:""});
-    const [errors, setErrors]=useState({})
+    const [data, setData]=useState({firstName:"", secondName:"",  phoneNumber:"", email:"", password:"", status:""});
+    const [errors, setErrors]=useState({});
 
     const handleChange = ({target}) => {
       setData((prevState) => ({
@@ -18,7 +20,13 @@ const RegisterForm = () => {
         firstName:{ isRequired: {message: "First name is required!"}},
         secondName:{ isRequired: {message: "Second name is required!"}},
         phoneNumber:{ isRequired: {message: "Phone number is required!"}},
-        email:{ isRequired: {message: "Email is required!"}},
+        email:{ 
+            isRequired: {message: "Email is required!"},
+            isEmail: {message: "Email is incorrect!"},
+            isDigitSymbol: {message: "Password must contain a digit!"},
+            min: {message: "Password must contain at least 8 characters!",
+                value: 8},
+        },
         password:{ isRequired: {message: "Password is required!"}},
     };
     useEffect(()=>{validate();},[data]);
@@ -28,6 +36,8 @@ const RegisterForm = () => {
         setErrors(errors);
         return Object.keys(errors).length === 0
     };
+
+    const isValid = Object.keys(errors).length === 0;
 
     const handSubmit = (e) => {
         e.preventDefault();
@@ -75,7 +85,14 @@ const RegisterForm = () => {
                 onChange={handleChange}
                 error={errors.password}
             />
-            <button className={style.mainButton}>Continue</button>
+            <RadioField
+                options={[{name: "Seller", value: "seller"}, {name: "Supplier", value: "supplier"}]}
+                value={data.status}
+                name="status"
+                onChange={handleChange} 
+            />
+
+            <button className={styleBtn.mainButton} disabled={!isValid}>Continue</button>
         </form>
     )
 }

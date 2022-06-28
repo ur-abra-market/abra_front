@@ -1,15 +1,17 @@
 .mainButton {
     font-size: 20px;
+    color: rgb(59, 61, 66);
     position: relative;
     background: rgba(77, 134, 247, 0.5);
     border: none;
     border-radius: 8px;
-    margin-top: 40px;
+    margin-top: 20px;
     padding: 10px 20px;
     cursor: pointer;
+    transition: all 500ms;
 }
 .mainButton:hover { 
-    background: rgba(77, 134, 247, 0.4); 
+    background: rgba(77, 134, 247, 0.3); 
 }
 
 .secondaryButton {
@@ -18,10 +20,12 @@
     background: rgba(116, 133, 167, 0.5);
     border: none;
     border-radius: 8px;
-    margin-top: 40px;
+    color: rgb(59, 61, 66);
+    margin-top: 20px;
     padding: 10px 20px;
     cursor: pointer;
+    transition: all 500ms;
 }
 .secondaryButton:hover { 
-    background: rgba(116, 133, 167, 0.4); 
+    background: rgba(116, 133, 167, 0.3); 
 }

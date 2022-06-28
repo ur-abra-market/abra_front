@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import TextField from "../../commonComponents/textField/textField"
 import { validator } from "../../../utils/validator";
-import style from "../../commonComponents/buttons/buttons.module.css"
+import styleBtn from "../../commonComponents/buttons/buttons.module.css"
 
 const LoginForm = () => {
     const [data, setData]=useState({email:"", password:""});
-    const [errors, setErrors]=useState({})
+    const [errors, setErrors]=useState({});
 
     const handleChange = ({target}) => {
       setData((prevState) => ({
@@ -15,8 +15,17 @@ const LoginForm = () => {
     };
 
     const validatorConfig = {
-        email:{ isRequired: {message: "Email is required!"}},
-        password:{ isRequired: {message: "Password is required!"}},
+        email: { 
+            isRequired: {message: "Email is required!"},
+            isEmail: {message: "Email is incorrect!"},
+        },
+        password:{ 
+            isRequired: {message: "Password is required!"},
+            isCapitalSymbol: {message: "Password must contain a capital letter!"},
+            isDigitSymbol: {message: "Password must contain a digit!"},
+            min: {message: "Password must contain at least 8 characters!",
+                value: 8},
+        },
     };
     useEffect(()=>{validate();},[data]);
 
@@ -25,6 +34,8 @@ const LoginForm = () => {
         setErrors(errors);
         return Object.keys(errors).length === 0
     };
+
+    const isValid = Object.keys(errors).length === 0;
 
     const handSubmit = (e) => {
         e.preventDefault();
@@ -51,7 +62,7 @@ const LoginForm = () => {
                 onChange={handleChange}
                 error={errors.password}
             />
-            <button className={style.mainButton}>Log in my WB account</button>
+            <button className={styleBtn.mainButton} disabled={!isValid}>Log in my WB account</button>
         </form>
     )
 }
