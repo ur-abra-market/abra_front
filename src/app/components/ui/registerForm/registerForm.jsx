@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TextField from "../../commonComponents/textField/textField"
+import TextField from "../../commonComponents/textField"
 import { validator } from "../../../utils/validator";
 import style from "../../commonComponents/buttons/buttons.module.css"
 
