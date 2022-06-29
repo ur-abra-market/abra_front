@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import TextField from "../../commonComponents/textField"
-import RadioField from "../../commonComponents/radioField"
+import TextField from "../../commonComponents/textField";
+import RadioField from "../../commonComponents/radioField";
+import Button from "../../commonComponents/buttons/button";
 import { validator } from "../../../utils/validator";
 import styleBtn from "../../commonComponents/buttons/buttons.module.css";
 
@@ -23,11 +24,12 @@ const RegisterForm = () => {
         email:{ 
             isRequired: {message: "Email is required!"},
             isEmail: {message: "Email is incorrect!"},
+        },
+        password:{ 
+            isRequired: {message: "Password is required!"},
             isDigitSymbol: {message: "Password must contain a digit!"},
             min: {message: "Password must contain at least 8 characters!",
-                value: 8},
-        },
-        password:{ isRequired: {message: "Password is required!"}},
+                value: 8},},
     };
     useEffect(()=>{validate();},[data]);
 
@@ -92,7 +94,7 @@ const RegisterForm = () => {
                 onChange={handleChange} 
             />
 
-            <button className={styleBtn.mainButton} disabled={!isValid}>Continue</button>
+            <Button value="Continue" className={styleBtn.mainButton} disabled={!isValid}/>
         </form>
     )
 }

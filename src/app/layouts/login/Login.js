@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import LoginForm from "../../components/ui/loginForm/loginForm";
 import RegisterForm from "../../components/ui/registerForm/registerForm";
+import Button from "../../components/commonComponents/buttons/button";
 import style from "../login/login.module.css";
 import styleBtn from "../../components/commonComponents/buttons/buttons.module.css";
 
@@ -24,7 +25,7 @@ const Login = () => {
           <h2 className={style.subheader}>
             You already have an account?
             <div>
-              <button className={styleBtn.secondaryButton} onClick={toggleFormType}>Log in</button>
+              <Button value="Log in" className={styleBtn.secondaryButton} onClick={toggleFormType}/>
             </div>
           </h2>
         </>
@@ -37,7 +38,7 @@ const Login = () => {
           <h2 className={style.subheader}>
             New to WB?{" "}
             <div>
-              <button className={styleBtn.secondaryButton} onClick={toggleFormType}>Create your WB account</button>
+              <Button value="Create your WB account" className={styleBtn.secondaryButton} onClick={toggleFormType}/>
             </div>
           </h2>
         </>
