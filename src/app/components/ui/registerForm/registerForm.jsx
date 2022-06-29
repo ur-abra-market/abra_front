@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import TextField from "../../commonComponents/textField/textField";
-import RadioField from "../../commonComponents/radioField/radioField";
+import TextField from "../../commonComponents/textField"
+import RadioField from "../../commonComponents/radioField"
 import { validator } from "../../../utils/validator";
 import styleBtn from "../../commonComponents/buttons/buttons.module.css";
 
