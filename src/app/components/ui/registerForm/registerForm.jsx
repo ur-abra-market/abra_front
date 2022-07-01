@@ -20,7 +20,9 @@ const RegisterForm = () => {
     const validatorConfig = {
         firstName:{ isRequired: {message: "First name is required!"}},
         secondName:{ isRequired: {message: "Second name is required!"}},
-        phoneNumber:{ isRequired: {message: "Phone number is required!"}},
+        phoneNumber:{ 
+            isRequired: {message: "Phone number is required!"},
+            isPhoneNumber: {message: "Enter the correct number!"}},
         email:{ 
             isRequired: {message: "Email is required!"},
             isEmail: {message: "Email is incorrect!"},
