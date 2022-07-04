@@ -1,5 +1,5 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
-// Создать файл и написать запросы import authService from "../services/auth.service";
+import authService from "../services/auth.service";
 import { generateAuthError } from "../utils/generateAuthError";
 
 const initialState = {
@@ -51,11 +51,11 @@ export const login =
   };
 
 export const signUp =
-  ({ email, password, ...rest }) =>
+  ({ email, password, status, ...rest }) =>
   async (dispatch) => {
     dispatch(authRequested());
     try {
-      const data = await authService.register({ email, password });
+      const data = await authService.register({ email, password, status });
       dispatch(authRequestSuccess({ userId: data.localId }));
       dispatch(
         createUser({
@@ -67,12 +67,22 @@ export const signUp =
     }
   };
 
+function createUser(payload) {
+  return async function () {
+    try {
+      console.log(payload);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
 export const logOut = () => (dispatch) => {
   dispatch(userLoggedOut());
 };
 
 export const getIsLoggedIn = () => (state) => state.user.isLoggedIn;
 export const getCurrentUserId = () => (state) => state.user.auth.userId;
-export const getAuthErrors = () => (state) => state.user.error;
+export const getAuthErrors = () => (state) => state.user;
 
 export default userReducer;
