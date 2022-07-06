@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types";
 import style from "./textField.module.css"
-import eyeClosed from '../../../img/icons/closed-eye.png';
-import eyeOpend from '../../../img/icons/opend-eye.png';
+import eyeClosed from "../../../assets/img/icons/closed-eye.png";
+import eyeOpend from '../../../assets/img/icons/opend-eye.png';
 
 const TextField = ({label, type, name, value, onChange, error}) => {
     const [showPassword, setShowPassword] = useState(false);

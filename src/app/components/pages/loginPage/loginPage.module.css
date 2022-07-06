@@ -1,0 +1,24 @@
+.header {
+    font-size: 30px;
+    color: #8b8b8b;
+    margin: 30px auto;
+}
+
+.subheader {
+    color: #8b8b8b;
+    font-size: 20px;
+    margin: 30px auto;
+}
+
+.subheader__btn {
+    margin: 40px auto;
+}
+
+.logInPage__wrap {
+    position: relative;
+    margin: 40px auto 0;
+    width: 420px;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgb(0 0 0 / 10%);
+}

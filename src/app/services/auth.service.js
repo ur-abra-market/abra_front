@@ -1,19 +1,16 @@
-import axios from "axios";
+import httpService from "./http.service";
 
-const httpAuth = axios.create({
-  baseURL: "http://wbplt-env.eba-qxbp72mz.eu-central-1.elasticbeanstalk.com/",
-});
 
 const authService = {
   register: async ({ status, ...rest }) => {
-    const { data } = await httpAuth.post(`register/${status}/`, {
+    const { data } = await httpService.post(`register/${status}/`, {
       ...rest,
     });
     console.log(data);
     return data;
   },
   login: async ({ email, password }) => {
-    const { data } = await httpAuth.post(`login/`, {
+    const { data } = await httpService.post(`login/`, {
       email,
       password,
     });

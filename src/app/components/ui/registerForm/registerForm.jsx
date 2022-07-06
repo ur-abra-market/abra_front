@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import TextField from "../../commonComponents/textField";
-import RadioField from "../../commonComponents/radioField";
-import Button from "../../commonComponents/buttons/button";
+import TextField from "../../common/textField";
+import RadioField from "../../common/radioField";
+import Button from "../../common/buttons/button";
 import { validator } from "../../../utils/validator";
-import styleBtn from "../../commonComponents/buttons/buttons.module.css";
+import styleBtn from "../../common/buttons/buttons.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getAuthErrors, signUp } from "../../../store/user";
+import { registerService } from "../../../store/reducers/registerSlice";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-  const resError = useSelector(getAuthErrors());
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -66,8 +65,10 @@ const RegisterForm = () => {
     const isValid = validate();
     if (!isValid) return;
     //console.log(data);
-    dispatch(signUp(data));
+    dispatch(registerService(data));
   };
+
+  const resServer = useSelector((state) => state.register.resMessage);
 
   return (
     <form action="" onSubmit={handSubmit}>
@@ -110,20 +111,19 @@ const RegisterForm = () => {
       />
       <RadioField
         options={[
-          { name: "Seller", value: "seller" },
-          { name: "Supplier", value: "supplier" },
+          { name: "Seller", value: "sellers" },
+          { name: "Supplier", value: "suppliers" },
         ]}
         value={data.status}
         name="status"
         onChange={handleChange}
       />
-
+      <div>{resServer}</div>
       <Button
         value="Continue"
         className={styleBtn.mainButton}
         disabled={!isValid}
       />
-      {resError ? <p>{resError}</p> : ""}
     </form>
   );
 };

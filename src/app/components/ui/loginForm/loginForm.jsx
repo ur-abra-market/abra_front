@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import TextField from "../../commonComponents/textField";
-import Button from "../../commonComponents/buttons/button";
+import TextField from "../../common/textField";
+import Button from "../../common/buttons/button";
 import { validator } from "../../../utils/validator";
-import style from "../../commonComponents/buttons/buttons.module.css";
-import { getAuthErrors, login } from "../../../store/user";
+import style from "../../common/buttons/buttons.module.css";
+import { loginService } from "../../../store/reducers/loginSlice";
 
 const LoginForm = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
 
   const dispatch = useDispatch();
-  const resError = useSelector(getAuthErrors());
   const handleChange = ({ target }) => {
     setData((prevState) => ({
       ...prevState,
@@ -51,32 +50,31 @@ const LoginForm = () => {
     const isValid = validate();
     if (!isValid) return;
     //console.log(data);
-    dispatch(login({ payload: data }));
+    dispatch(loginService(data));
   };
+
+  const resServer = useSelector((state) => state.login.resMessage);
 
   return (
     <form action="" onSubmit={handSubmit}>
-      <TextField
-        label="Email"
+      <TextField label="Email"
         name="email"
         value={data.email}
         onChange={handleChange}
         error={errors.email}
       />
-      <TextField
-        label="Password"
+      <TextField label="Password"
         type="password"
         name="password"
         value={data.password}
         onChange={handleChange}
         error={errors.password}
       />
-      <Button
-        value="Log in my WB account"
+      <div>{resServer}</div>
+      <Button value="Log in my WB account"
         className={style.mainButton}
         disabled={!isValid}
       />
-      {resError ? <p>{resError}</p> : ""}
     </form>
   );
 };
