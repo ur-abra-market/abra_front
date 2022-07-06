@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import TextField from "../../commonComponents/textField";
 import Button from "../../commonComponents/buttons/button";
 import { validator } from "../../../utils/validator";
 import style from "../../commonComponents/buttons/buttons.module.css";
+import { getAuthErrors, login } from "../../../store/user";
 
 const LoginForm = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
 
+  const dispatch = useDispatch();
+  const resError = useSelector(getAuthErrors());
   const handleChange = ({ target }) => {
     setData((prevState) => ({
       ...prevState,
@@ -16,18 +20,20 @@ const LoginForm = () => {
   };
 
   const validatorConfig = {
-    email: { 
-        isRequired: {message: "Email is required!"},
-        isEmail: {message: "Email is incorrect!"},
+    email: {
+      isRequired: { message: "Email is required!" },
+      isEmail: { message: "Email is incorrect!" },
     },
-    password:{ 
-        isRequired: {message: "Password is required!"},
-        isCapitalSymbol: {message: "Password must contain a capital letter!"},
-        isDigitSymbol: {message: "Password must contain a digit!"},
-        min: {message: "Password must contain at least 8 characters!",
-            value: 8},
+    password: {
+      isRequired: { message: "Password is required!" },
+      isCapitalSymbol: { message: "Password must contain a capital letter!" },
+      isDigitSymbol: { message: "Password must contain a digit!" },
+      min: {
+        message: "Password must contain at least 8 characters!",
+        value: 8,
+      },
     },
-};
+  };
   useEffect(() => {
     validate();
   }, [data]);
@@ -44,7 +50,8 @@ const LoginForm = () => {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
-    console.log(data);
+    //console.log(data);
+    dispatch(login({ payload: data }));
   };
 
   return (
@@ -64,10 +71,12 @@ const LoginForm = () => {
         onChange={handleChange}
         error={errors.password}
       />
-      <Button 
-        value="Log in my WB account" 
-        className={style.mainButton} 
-        disabled={!isValid}/>
+      <Button
+        value="Log in my WB account"
+        className={style.mainButton}
+        disabled={!isValid}
+      />
+      {resError ? <p>{resError}</p> : ""}
     </form>
   );
 };

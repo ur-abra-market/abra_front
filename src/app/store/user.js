@@ -1,6 +1,5 @@
-import { createAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "../services/auth.service";
-import { generateAuthError } from "../utils/generateAuthError";
 
 const initialState = {
   auth: null,
@@ -27,45 +26,36 @@ const usersSlice = createSlice({
       state.auth = null;
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(login.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.auth = action.payload;
+        state.isLoggedIn = true;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.error = action.payload;
+      });
+  },
 });
 const { reducer: userReducer, actions } = usersSlice;
-const { authRequestSuccess, authRequestFailed, userLoggedOut } = actions;
+const { userLoggedOut } = actions;
 
-const authRequested = createAction("user/authRequested");
+export const login = createAsyncThunk("user/login", async ({ payload }) => {
+  const data = await authService.login(payload);
+  return data;
+});
 
-export const login =
-  ({ payload }) =>
-  async (dispatch) => {
-    const { email, password } = payload;
-    dispatch(authRequested());
-    try {
-      const data = await authService.login({ email, password });
-      dispatch(authRequestSuccess({ userId: data.localId }));
-    } catch (error) {
-      const { code, message } = error.response.data.error;
-      if (code === 400) {
-        const errorMessage = generateAuthError(message);
-        dispatch(authRequestFailed(errorMessage));
-      } else dispatch(authRequestFailed(error.message));
-    }
-  };
-
-export const signUp =
-  ({ email, password, status, ...rest }) =>
-  async (dispatch) => {
-    dispatch(authRequested());
-    try {
-      const data = await authService.register({ email, password, status });
-      dispatch(authRequestSuccess({ userId: data.localId }));
-      dispatch(
-        createUser({
-          ...rest,
-        })
-      );
-    } catch (error) {
-      dispatch(authRequestFailed(error.message));
-    }
-  };
+export const signUp = createAsyncThunk(
+  "user/sigUp",
+  async ({ status, ...rest }) => {
+    const data = await authService.register({ status, ...rest });
+    createUser({ ...rest });
+    return data;
+  }
+);
 
 function createUser(payload) {
   return async function () {
@@ -83,6 +73,6 @@ export const logOut = () => (dispatch) => {
 
 export const getIsLoggedIn = () => (state) => state.user.isLoggedIn;
 export const getCurrentUserId = () => (state) => state.user.auth.userId;
-export const getAuthErrors = () => (state) => state.user;
+export const getAuthErrors = () => (state) => state.user.error;
 
 export default userReducer;

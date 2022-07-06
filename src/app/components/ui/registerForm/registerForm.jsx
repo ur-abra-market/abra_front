@@ -10,11 +10,12 @@ import { signUp } from "../../../store/user";
 const RegisterForm = () => {
   const dispatch = useDispatch();
   const [data, setData] = useState({
-    firstName: "",
-    secondName: "",
-    phoneNumber: "",
+    first_name: "",
+    last_name: "",
     email: "",
+    phone: "",
     password: "",
+    additional_info: "",
     status: "",
   });
   const [errors, setErrors] = useState({});
@@ -27,9 +28,9 @@ const RegisterForm = () => {
   };
 
   const validatorConfig = {
-    firstName: { isRequired: { message: "First name is required!" } },
-    secondName: { isRequired: { message: "Second name is required!" } },
-    phoneNumber: {
+    first_name: { isRequired: { message: "First name is required!" } },
+    last_name: { isRequired: { message: "Second name is required!" } },
+    phone: {
       isRequired: { message: "Phone number is required!" },
       isPhoneNumber: { message: "Enter the correct number!" },
     },
@@ -63,7 +64,7 @@ const RegisterForm = () => {
     e.preventDefault();
     const isValid = validate();
     if (!isValid) return;
-    console.log(data);
+    //console.log(data);
     dispatch(signUp(data));
   };
 
@@ -71,17 +72,17 @@ const RegisterForm = () => {
     <form action="" onSubmit={handSubmit}>
       <TextField
         label="First name"
-        name="firstName"
-        value={data.firstName}
+        name="first_name"
+        value={data.first_name}
         onChange={handleChange}
-        error={errors.firstName}
+        error={errors.first_name}
       />
       <TextField
         label="Second name"
-        name="secondName"
-        value={data.secondName}
+        name="last_name"
+        value={data.last_name}
         onChange={handleChange}
-        error={errors.secondName}
+        error={errors.last_name}
       />
       <TextField
         label="Email"
@@ -92,11 +93,11 @@ const RegisterForm = () => {
       />
       <TextField
         label="Phone number"
-        name="phoneNumber"
+        name="phone"
         type="tel"
-        value={data.phoneNumber}
+        value={data.phone}
         onChange={handleChange}
-        error={errors.phoneNumber}
+        error={errors.phone}
       />
       <TextField
         label="Password"
