@@ -4,11 +4,12 @@ import RadioField from "../../commonComponents/radioField";
 import Button from "../../commonComponents/buttons/button";
 import { validator } from "../../../utils/validator";
 import styleBtn from "../../commonComponents/buttons/buttons.module.css";
-import { useDispatch } from "react-redux";
-import { signUp } from "../../../store/user";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthErrors, signUp } from "../../../store/user";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const resError = useSelector(getAuthErrors());
   const [data, setData] = useState({
     first_name: "",
     last_name: "",
@@ -122,6 +123,7 @@ const RegisterForm = () => {
         className={styleBtn.mainButton}
         disabled={!isValid}
       />
+      {resError ? <p>{resError}</p> : ""}
     </form>
   );
 };
