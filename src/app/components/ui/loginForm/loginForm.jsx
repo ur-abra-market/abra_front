@@ -3,14 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import TextField from "../../common/textField";
 import Button from "../../common/buttons/button";
 import { validator } from "../../../utils/validator";
+import { showError } from "../../../utils/showError";
 import style from "../../common/buttons/buttons.module.css";
 import { loginService } from "../../../store/reducers/loginSlice";
 
 const LoginForm = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
-
+  const [isDirty, setIsDirty] = useState(false);
   const dispatch = useDispatch();
+
+  const handleBlur = ({ target }) => {
+    const { name } = target;
+    setIsDirty(showError(data, name));
+  };
+
   const handleChange = ({ target }) => {
     setData((prevState) => ({
       ...prevState,
@@ -54,24 +61,30 @@ const LoginForm = () => {
   };
 
   const resServer = useSelector((state) => state.login.resMessage);
-
   return (
     <form action="" onSubmit={handSubmit}>
-      <TextField label="Email"
+      <TextField
+        label="Email"
         name="email"
         value={data.email}
+        showError={isDirty}
+        onBlur={handleBlur}
         onChange={handleChange}
         error={errors.email}
       />
-      <TextField label="Password"
+      <TextField
+        label="Password"
         type="password"
         name="password"
         value={data.password}
+        showError={isDirty}
+        onBlur={handleBlur}
         onChange={handleChange}
         error={errors.password}
       />
       <div>{resServer}</div>
-      <Button value="Log in my WB account"
+      <Button
+        value="Log in my WB account"
         className={style.mainButton}
         disabled={!isValid}
       />

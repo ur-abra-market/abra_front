@@ -3,6 +3,7 @@ import TextField from "../../common/textField";
 import RadioField from "../../common/radioField";
 import Button from "../../common/buttons/button";
 import { validator } from "../../../utils/validator";
+import { showError } from "../../../utils/showError";
 import styleBtn from "../../common/buttons/buttons.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { registerService } from "../../../store/reducers/registerSlice";
@@ -19,7 +20,12 @@ const RegisterForm = () => {
     status: "",
   });
   const [errors, setErrors] = useState({});
+  const [isDirty, setIsDirty] = useState(false);
 
+  const handleBlur = ({ target }) => {
+    const { name } = target;
+    setIsDirty(showError(data, name));
+  };
   const handleChange = ({ target }) => {
     setData((prevState) => ({
       ...prevState,
@@ -76,6 +82,8 @@ const RegisterForm = () => {
         label="First name"
         name="first_name"
         value={data.first_name}
+        showError={isDirty}
+        onBlur={handleBlur}
         onChange={handleChange}
         error={errors.first_name}
       />
@@ -83,6 +91,8 @@ const RegisterForm = () => {
         label="Second name"
         name="last_name"
         value={data.last_name}
+        showError={isDirty}
+        onBlur={handleBlur}
         onChange={handleChange}
         error={errors.last_name}
       />
@@ -90,6 +100,8 @@ const RegisterForm = () => {
         label="Email"
         name="email"
         value={data.email}
+        showError={isDirty}
+        onBlur={handleBlur}
         onChange={handleChange}
         error={errors.email}
       />
@@ -98,6 +110,8 @@ const RegisterForm = () => {
         name="phone"
         type="tel"
         value={data.phone}
+        showError={isDirty}
+        onBlur={handleBlur}
         onChange={handleChange}
         error={errors.phone}
       />
@@ -106,6 +120,8 @@ const RegisterForm = () => {
         type="password"
         name="password"
         value={data.password}
+        showError={isDirty}
+        onBlur={handleBlur}
         onChange={handleChange}
         error={errors.password}
       />
