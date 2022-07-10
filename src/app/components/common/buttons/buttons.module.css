@@ -1,31 +1,44 @@
-.mainButton {
-    font-size: 20px;
-    color: rgb(59, 61, 66);
-    position: relative;
-    background: rgba(77, 134, 247, 0.5);
+.activeButton,
+.commonButton {
+    height: 44px;
     border: none;
-    border-radius: 8px;
-    margin-top: 20px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: all 500ms;
-}
-.mainButton:hover { 
-    background: rgba(77, 134, 247, 0.3); 
+    border-radius: 4px;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.16px;
 }
 
-.secondaryButton {
-    font-size: 15px;
-    position: relative;
-    background: rgba(116, 133, 167, 0.5);
-    border: none;
-    border-radius: 8px;
-    color: rgb(59, 61, 66);
-    margin-top: 20px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: all 500ms;
+.activeButton {
+    background: #828282;
+    color: #FFFFFF; 
 }
-.secondaryButton:hover { 
-    background: rgba(116, 133, 167, 0.3); 
+
+.commonButton {
+    background: #F2F2F2;
+    color: #828282;
+    cursor: pointer;
+}
+.commonButton:hover { 
+    box-shadow: inset 0px 0px 20px rgba(0,0,0,0.1);
+}
+
+.tab {
+    width: 200px;
+    margin-bottom: 32px;
+}
+
+.logInBtnInactive,
+.logInBtnActive {
+    width: 400px;
+}
+
+.logInBtnActive {
+    background: #000000;
+}
+
+.socialNetwork {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
 }

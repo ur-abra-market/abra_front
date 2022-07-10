@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React  from "react";
 import LoginForm from "../../ui/loginForm/loginForm";
 import Button from "../../common/buttons/button";
 import style from "./loginPage.module.css";
@@ -9,16 +9,14 @@ const LoginPage = ({togglePageType}) => {
 
     return (
         <>
-            <h1 className={style.header}>Please, login to your account</h1>
-            <div className={style.logInPage__wrap}>
-                {<LoginForm />}
-            </div>
-            <h2 className={style.subheader}>
-                New to WB?{" "}
-                <div>
-                    <Button value="Create your WB account" className={styleBtn.secondaryButton} onClick={() => togglePageType()} />
+            <div className={style.authPage__wrap}>
+                <Button value="Log in" className={`${styleBtn.activeButton} ${styleBtn.tab}`}/>
+                <Button value="Sign up" className={`${styleBtn.commonButton} ${styleBtn.tab}`} onClick={togglePageType}/>
+                <div className={style.form__wrap}>
+                    {<LoginForm />}
                 </div>
-            </h2>
+            </div>
+            <a href="/" className={style.forgotPasswordlink}>Forgot password?</a>
         </>
     )
 }

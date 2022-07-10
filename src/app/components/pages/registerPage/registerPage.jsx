@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import RegisterForm from "../../ui/registerForm";
 import Button from "../../common/buttons/button";
 import style from "./registerPage.module.css";
@@ -9,16 +9,13 @@ const RegisterPage = ({togglePageType}) => {
 
     return (
         <>
-            <h1 className={style.header}>Registration</h1>
-            <div className={style.logInPage__wrap}>
-                {<RegisterForm />}
-            </div>
-            <h2 className={style.subheader}>
-                You already have an account?
-                <div>
-                    <Button value="Log in" className={styleBtn.secondaryButton} onClick={() => togglePageType()} />
+            <div className={style.authPage__wrap}>
+                <Button value="Log in" className={`${styleBtn.commonButton } ${styleBtn.tab}`} onClick={togglePageType}/>
+                <Button value="Sign up" className={`${styleBtn.activeButton } ${styleBtn.tab}`}/>
+                <div className={style.form__wrap}>
+                    {<RegisterForm />}
                 </div>
-            </h2>
+            </div>
         </>
     )
 }

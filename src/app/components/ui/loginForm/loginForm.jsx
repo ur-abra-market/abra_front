@@ -4,7 +4,7 @@ import TextField from "../../common/textField";
 import Button from "../../common/buttons/button";
 import { validator } from "../../../utils/validator";
 import { showError } from "../../../utils/showError";
-import style from "../../common/buttons/buttons.module.css";
+import styleBtn from "../../common/buttons/buttons.module.css";
 import { loginService } from "../../../store/reducers/loginSlice";
 
 const LoginForm = () => {
@@ -85,7 +85,9 @@ const LoginForm = () => {
       <div>{resServer}</div>
       <Button
         value="Log in my WB account"
-        className={style.mainButton}
+        className={ (!isValid) ? 
+          `${styleBtn.commonButton } ${styleBtn.logInBtnInactive}` : 
+          `${styleBtn.commonButton } ${styleBtn.logInBtnActive}`}
         disabled={!isValid}
       />
     </form>

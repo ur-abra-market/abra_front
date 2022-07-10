@@ -1,25 +1,36 @@
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
 .header {
-    font-size: 30px;
-    color: #8b8b8b;
-    margin: 30px auto;
+    height: 40px;
+    width: 86px;
+    margin: 0 auto;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    color: #000000;
+    letter-spacing: 0.0024em;
 }
 
 .subheader {
-    color: #8b8b8b;
-    font-size: 20px;
-    margin: 30px auto;
+    width: 170px;
+    height: 24px;
+    margin: 16px auto 20px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.16px;
+    color: #636568;
 }
 
-.subheader__btn {
-    margin: 40px auto;
-}
-
-.logInPage__wrap {
-    position: relative;
-    margin: 40px auto 0;
-    width: 420px;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgb(0 0 0 / 10%);
+.socialNetworksWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 48px;
 }
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import TextField from "../../common/textField";
-import RadioField from "../../common/radioField";
+// import RadioField from "../../common/radioField";
 import Button from "../../common/buttons/button";
 import { validator } from "../../../utils/validator";
 import { showError } from "../../../utils/showError";
+import style from "./registerForm.module.css"
 import styleBtn from "../../common/buttons/buttons.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { registerService } from "../../../store/reducers/registerSlice";
@@ -125,7 +126,7 @@ const RegisterForm = () => {
         onChange={handleChange}
         error={errors.password}
       />
-      <RadioField
+      {/* <RadioField
         options={[
           { name: "Seller", value: "sellers" },
           { name: "Supplier", value: "suppliers" },
@@ -133,11 +134,31 @@ const RegisterForm = () => {
         value={data.status}
         name="status"
         onChange={handleChange}
-      />
+      /> */}
+      <div className={style.requirementsWrapper} onChange={""}>
+          <div className={`${style.requirement} ${style.capitalLetter}`}>
+              <div className={data.isUpperCase ? `${style.requirementCheckmark} ${style.done}` : style.requirementCheckmark}></div>
+              <div>1 capital letter</div>
+          </div>
+          <div className={style.requirement}  onChange={""}>
+              <div className={data.containsNumbers ? `${style.requirementCheckmark} ${style.done}` : style.requirementCheckmark}></div>
+              <div>1 number</div>
+          </div>
+          <div className={style.requirement}  onChange={""}>
+              <div className={data.passwordLength ? `${style.requirementCheckmark} ${style.done}` : style.requirementCheckmark}></div>
+              <div>8 symbols</div>
+          </div>
+          <div className={style.requirement}  onChange={""}>
+              <div className={data.containsSymbols ? `${style.requirementCheckmark} ${style.done}` : style.requirementCheckmark}></div>
+              <div>!/#/+/*</div>
+          </div>
+      </div>
       <div>{resServer}</div>
       <Button
         value="Continue"
-        className={styleBtn.mainButton}
+        className={ (!isValid) ? 
+          `${styleBtn.commonButton } ${styleBtn.logInBtnInactive}` : 
+          `${styleBtn.commonButton } ${styleBtn.logInBtnActive}`}
         disabled={!isValid}
       />
     </form>
