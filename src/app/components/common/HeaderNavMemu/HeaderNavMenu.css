@@ -1,7 +1,6 @@
 .header__nav {
   display: flex;
-  width: fit-content; 
-  margin-left: 106px;
+  width: fit-content;   
 }
 
 .header__nav_list {
