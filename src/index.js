@@ -7,6 +7,9 @@ import App from "./app/App";
 
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
+import "./app/style/global.css";
+import "./app/style/variables.css";
+import "./app/style/fonts.css";
 
 const container = document.getElementById("root");
 const root = createRoot(container);

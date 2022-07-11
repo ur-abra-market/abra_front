@@ -1,0 +1,27 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;  
+  text-decoration: none;   
+  list-style-type: none;
+}
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}  
+*:focus,
+*:active {
+  outline: none;
+}
+
+body {
+  display: block;
+  width: 100vw;
+  height: 100vh;  
+  background-color: var(--back);
+  font-style: normal;
+  font-weight: normal;  
+}

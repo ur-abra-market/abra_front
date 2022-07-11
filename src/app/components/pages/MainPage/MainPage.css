@@ -1,0 +1,5 @@
+.main-page {
+  width: calc(100% - 64px);
+  padding: 32px;
+  background-color: #ffffff;
+}
