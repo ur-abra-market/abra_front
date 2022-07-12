@@ -19,9 +19,12 @@
 
 body {
   display: block;
-  width: 100vw;
+  width: calc(100vw - 20px);
   height: 100vh;  
   background-color: var(--back);
+  font-family: 'Roboto';
   font-style: normal;
-  font-weight: normal;  
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;  
 }
