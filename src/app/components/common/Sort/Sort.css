@@ -1,0 +1,36 @@
+.Sort {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 96px;
+}
+.Sort__btn {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  height: fit-content;   
+  align-items: center;
+  gap: 8px;
+}
+.Sort__btn_name {  
+  width: 240px;
+  height: fit-content;
+  text-align: center;
+  font-size: var(--fd);
+  font-family: 'SF Pro Display Bold';
+  line-height: 25px;  
+  cursor: pointer;
+}
+.Sort__btn_check {  
+  width: 20px;
+  height: 10px;   
+}
+.Sort__btn_check {  
+  width: 20px;
+  height: 10px;   
+}
+
+.sort-active {
+  background-image: url('../../../assets/img/icons/check-arrow.png');
+}
