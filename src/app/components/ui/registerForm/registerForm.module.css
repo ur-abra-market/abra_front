@@ -28,3 +28,17 @@
 .done {
     opacity: 1;
 }
+
+.buySellBtnWrappeer {
+    position: absolute;
+    left: 500px;
+    top: -270px;
+    margin-top: 24px;
+}
+
+.flexContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}

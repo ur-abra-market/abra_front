@@ -4,21 +4,29 @@ import TextField from "../../common/textField";
 import Button from "../../common/buttons/button";
 // import { validator } from "../../../utils/validator";
 // import { showError } from "../../../utils/showError";
+import style from "../registerForm/registerForm.module.css";
 import styleBtn from "../../common/buttons/buttons.module.css";
 import { loginService } from "../../../store/reducers/loginSlice";
 import { useForm } from "react-hook-form";
 
 const LoginForm = () => {
+  const [userStatus, setUserStatus] = useState("buyer");
+  const dispatch = useDispatch();
   const {
     register,
     formState: { isValid, errors },
     handleSubmit,
   } = useForm({ mode: "onChange" });
 
+  const toggleUserStatus = () => {
+  setUserStatus((prevState) =>
+      prevState === "buyer" ? "seller" : "buyer"
+  );
+};
+
   // const [data, setData] = useState({ email: "", password: "" });
   // const [errors, setErrors] = useState({});
   // const [isDirty, setIsDirty] = useState(false);
-  const dispatch = useDispatch();
 
   // const handleBlur = ({ target }) => {
   //   const { name } = target;
@@ -65,10 +73,32 @@ const LoginForm = () => {
 
     // console.log(data);
     dispatch(loginService(data));
+
+    console.log(data)
   };
 
   const resServer = useSelector((state) => state.login.resMessage);
   return (
+    <>
+    <div className={style.buySellBtnWrappeer}>
+      <div className={style.flexContainer}>
+      <Button 
+        value="I'm here to buy"
+        className={userStatus === "buyer"
+        ? styleBtn.userStatusBtnInactive
+        : styleBtn.userStatusBtnActive}
+        onClick={userStatus === "seller" ? toggleUserStatus: {}}
+
+        />
+        <Button 
+        value="I'm here to sell"
+        className={userStatus === "seller"
+        ? styleBtn.userStatusBtnInactive
+        : styleBtn.userStatusBtnActive}
+        onClick={userStatus === "buyer" ? toggleUserStatus: {}}
+        />
+      </div>
+    </div>
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextField
         register={register("email", {
@@ -80,11 +110,11 @@ const LoginForm = () => {
         })}
         label="Email"
         name="email"
+        error={errors.email}
         // value={data.email}
         // showError={isDirty}
         // onBlur={handleBlur}
         // onChange={handleChange}
-        error={errors.email}
       />
       <TextField
         register={register("password", {
@@ -96,21 +126,23 @@ const LoginForm = () => {
           validate: {
             capitalSymbol: (s) => /[A-Z]+/g.test(s),
             digitSymbol: (s) => /\d+/g.test(s),
+            specialSymbol: (s) => /[!#+*]/g.test(s),
           },
         })}
         label="Password"
         type="password"
         id="password"
         name="password"
+        error={errors.password}
         // value={data.password}
         // showError={isDirty}
         // onBlur={handleBlur}
         // onChange={handleChange}
-        error={errors.password}
+        // error={errors.password}
       />
       <div>{resServer}</div>
       <Button
-        value="Log in my WB account"
+        value="Log in"
         className={
           !isValid
             ? `${styleBtn.commonButton} ${styleBtn.logInBtnInactive}`
@@ -119,6 +151,7 @@ const LoginForm = () => {
         disabled={!isValid}
       />
     </form>
+    </>
   );
 };
 export default LoginForm;

@@ -42,3 +42,21 @@
     align-items: center;
     width: 44px;
 }
+
+.userStatusBtnActive {
+    width: 196px;
+    height: 44px;
+    color: #828282;
+    background: #F2F2F2;
+    border: none;
+    cursor: pointer;
+}
+
+.userStatusBtnInactive {
+    width: 196px;
+    height: 44px;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    color: #000;
+    background: #F2F2F2;
+}
