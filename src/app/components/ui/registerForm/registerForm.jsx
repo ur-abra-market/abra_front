@@ -9,7 +9,7 @@ import { useForm, useWatch } from "react-hook-form";
 import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
 
 const RegisterForm = () => {
-  const [userStatus, setUserStatus] = useState("buyer");
+  const [userStatus, setUserStatus] = useState("supplier");
   const dispatch = useDispatch();
   const {
     register,
@@ -22,7 +22,7 @@ const RegisterForm = () => {
 
   const toggleUserStatus = () => {
     setUserStatus((prevState) =>
-        prevState === "buyer" ? "seller" : "buyer"
+        prevState === "supplier" ? "seller" : "supplier"
     );
 };
 

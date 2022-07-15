@@ -10,7 +10,7 @@ import { loginService } from "../../../store/reducers/loginSlice";
 import { useForm } from "react-hook-form";
 
 const LoginForm = () => {
-  const [userStatus, setUserStatus] = useState("buyer");
+  const [userStatus, setUserStatus] = useState("supplier");
   const dispatch = useDispatch();
   const {
     register,
@@ -20,7 +20,7 @@ const LoginForm = () => {
 
   const toggleUserStatus = () => {
   setUserStatus((prevState) =>
-      prevState === "buyer" ? "seller" : "buyer"
+      prevState === "supplier" ? "seller" : "supplier"
   );
 };
 
