@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TextField from "../../common/textField";
 // import RadioField from "../../common/radioField";
 import Button from "../../common/buttons/button";
@@ -9,12 +9,20 @@ import styleBtn from "../../common/buttons/buttons.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { registerService } from "../../../store/reducers/registerSlice";
 import { useForm } from "react-hook-form";
+import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
 
 const RegisterForm = () => {
   const [userStatus, setUserStatus] = useState("buyer");
+  // const [pathwordState, setPathwordState] = useState({
+  //   minLength: false,
+  //   digitSymbol: false,
+  //   capitalSymbol: false,
+  //   containsSymbols: false
+  // })
   const dispatch = useDispatch();
   const {
     register,
+    getValues,
     formState: { isValid, errors },
     handleSubmit,
   } = useForm({ mode: "onChange" });
@@ -90,6 +98,7 @@ const RegisterForm = () => {
     console.log(data);
   };
 
+
   const resServer = useSelector((state) => state.register.resMessage);
 
   return (
@@ -161,45 +170,26 @@ const RegisterForm = () => {
         error={errors.phone}
       /> */}
       <TextField
-        register={register("password", {
+        register={register("password", 
+        {
           required: "Password is required!",
           minLength: {
             value: 8,
             message: "Password must contain at least 8 characters!",
           },
           validate: {
-            capitalSymbol: (s) => /[A-Z]+/g.test(s),            
+            capitalSymbol: (s) => /[A-Z]+/g.test(s),
             digitSymbol: (s) => /\d+/g.test(s),
             specialSymbol: (s) => /[!#+*]/g.test(s),
           },
-        })}
+        }
+        )}
         label="Password"
         type="password"
         id="password"
         name="password"
-        error={errors.password}
-        onChange={(s)=> {
-          <div className={style.requirementsWrapper}>
-
-            <div className={`${style.requirement} ${style.capitalLetter}`}>
-              <div className={errors.password.type.capitalSymbol ? `${style.requirementCheckmark} ${style.done}` : style.requirementCheckmark}></div>
-              <div>1 capital letter</div>
-            </div>
-
-            <div className={style.requirement}>
-              <div className={errors.password.type.digitSymbol ? `${style.requirementCheckmark} ${style.done}` : style.requirementCheckmark}></div>
-              <div>1 number</div>
-            </div>
-            <div className={style.requirement}>
-              <div className={errors.password.type.minLength ? `${style.requirementCheckmark} ${style.done}` : style.requirementCheckmark}></div>
-              <div>8 symbols</div>
-            </div>
-            <div className={style.requirement}>
-              <div className={errors.password.type.specialSymbol ? `${style.requirementCheckmark} ${style.done}` : style.requirementCheckmark}></div>
-              <div>!/#/+/*</div>
-            </div>
-          </div>
-        }}
+        // error={errors.password}
+        
         // value={data.password}
         // showError={isDirty}
         // onBlur={handleBlur}
@@ -215,9 +205,9 @@ const RegisterForm = () => {
         name="status"
         onChange={handleChange}
       /> */}
-      {/* <div className={style.requirementsWrapper}>
-          <div className={`${style.requirement} ${style.capitalLetter}`}>
-              <div className={error.type.capitalSymbol ? `${style.requirementCheckmark} ${style.done}` : style.requirementCheckmark}></div>
+        <PasswordComplexity valueOfNewPassword={getValues().password}/>
+          {/* <div className={`${style.requirement} ${style.capitalLetter}`}>
+              <div className={errors.type.capitalSymbol ? `${style.requirementCheckmark} ${style.done}` : style.requirementCheckmark}></div>
               <div>1 capital letter</div>
           </div>
           <div className={style.requirement}>
@@ -231,8 +221,7 @@ const RegisterForm = () => {
           <div className={style.requirement}>
               <div className={errors.type.containsSymbols ? `${style.requirementCheckmark} ${style.done}` : style.requirementCheckmark}></div>
               <div>!/#/+/*</div>
-          </div>
-      </div> */}
+          </div> */}
       <div>{resServer}</div>
       <Button
         value="Sign up"

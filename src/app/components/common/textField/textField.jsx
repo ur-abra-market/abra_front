@@ -6,7 +6,7 @@ import eyeVisiblePassword from "../../../assets/img/icons/eye_visible_password.p
 
 const TextField = ({ label, id, type, name, error, register }) => {
   const [showPassword, setShowPassword] = useState(false);
-  //   console.log(register);
+
   const toggleShowPassword = (e) => {
     e.preventDefault();
     setShowPassword((prevState) => !prevState);
@@ -15,6 +15,8 @@ const TextField = ({ label, id, type, name, error, register }) => {
     // console.log(findPassword.type);
     // console.log(showPassword);
   };
+
+
   console.log(error);
   return (
     <>

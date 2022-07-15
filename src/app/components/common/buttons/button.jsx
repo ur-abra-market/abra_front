@@ -18,7 +18,8 @@ const Button = ({value, className, onClick, disabled, active, ...attrs}) => {
         className={classes}
         disabled={disabled}
         onClick={onClickAction}
-    >{value}</Tag> 
+        >{value}
+    </Tag> 
     )
 }
 
