@@ -10,7 +10,7 @@ import { loginService } from "../../../store/reducers/loginSlice";
 import { useForm } from "react-hook-form";
 
 const LoginForm = () => {
-  const [userStatus, setUserStatus] = useState("buyer");
+  const [userStatus, setUserStatus] = useState("supplier");
   const dispatch = useDispatch();
   const {
     register,
@@ -20,7 +20,7 @@ const LoginForm = () => {
 
   const toggleUserStatus = () => {
   setUserStatus((prevState) =>
-      prevState === "buyer" ? "seller" : "buyer"
+      prevState === "supplier" ? "seller" : "supplier"
   );
 };
 
@@ -84,7 +84,7 @@ const LoginForm = () => {
       <div className={style.flexContainer}>
       <Button 
         value="I'm here to buy"
-        className={userStatus === "buyer"
+        className={userStatus === "supplier"
         ? styleBtn.userStatusBtnInactive
         : styleBtn.userStatusBtnActive}
         onClick={userStatus === "seller" ? toggleUserStatus: {}}
@@ -95,7 +95,7 @@ const LoginForm = () => {
         className={userStatus === "seller"
         ? styleBtn.userStatusBtnInactive
         : styleBtn.userStatusBtnActive}
-        onClick={userStatus === "buyer" ? toggleUserStatus: {}}
+        onClick={userStatus === "supplier" ? toggleUserStatus: {}}
         />
       </div>
     </div>
