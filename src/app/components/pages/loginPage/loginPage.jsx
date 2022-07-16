@@ -1,5 +1,6 @@
 import React  from "react";
 import LoginForm from "../../ui/loginForm/loginForm";
+import { Link } from "react-router-dom";
 import Button from "../../common/buttons/button";
 import style from "./loginPage.module.css";
 import styleBtn from "../../common/buttons/buttons.module.css";
@@ -16,7 +17,9 @@ const LoginPage = ({togglePageType}) => {
                     {<LoginForm />}
                 </div>
             </div>
-            <a href="/" className={style.forgotPasswordlink}>Forgot password?</a>
+            <Link className={style.forgotPasswordlink} to="/forgotPasswordPage">
+            Forgot password?
+            </Link>
         </>
     )
 }

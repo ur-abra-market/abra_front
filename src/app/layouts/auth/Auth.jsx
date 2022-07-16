@@ -6,7 +6,6 @@ import styleBtn from ".././../components/common/buttons/buttons.module.css";
 import iconGoogle from '../../assets/img/icons/Google.png';
 import iconApple from '../../assets/img/icons/Apple.png';
 import iconVK from '../../assets/img/icons/VK.png';
-import Button from "../../components/common/buttons/button";
 
 
 const Auth = () => {

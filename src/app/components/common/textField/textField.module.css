@@ -1,6 +1,15 @@
 .labelTextField {
     display: none;
+}
 
+.innerWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    margin-bottom: 12px;
 }
 
 .inputTextField,
@@ -20,7 +29,6 @@
 .inputTextFieldPassword {
     display: block;
     width: 330px;
-
 }
 
 .error {
@@ -28,16 +36,6 @@
     color: #828282;
     font-size: 12px;
     letter-spacing: 0.02em;
-}
-
-.innerWrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0;
-    border: 1px solid #E0E0E0;
-    border-radius: 4px;
-    margin-bottom: 12px;
 }
 
 .showPasswordBtn {

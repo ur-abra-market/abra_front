@@ -5,11 +5,11 @@ import style from "./registerForm.module.css"
 import styleBtn from "../../common/buttons/buttons.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { registerService } from "../../../store/reducers/registerSlice";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
 
 const RegisterForm = () => {
-  const [userStatus, setUserStatus] = useState("supplier");
+  const [userStatus, setUserStatus] = useState("suppliers");
   const dispatch = useDispatch();
   const {
     register,
@@ -22,16 +22,23 @@ const RegisterForm = () => {
 
   const toggleUserStatus = () => {
     setUserStatus((prevState) =>
-        prevState === "supplier" ? "seller" : "supplier"
+        prevState === "suppliers" ? "sellers" : "suppliers"
     );
 };
+//   const toggleUserStatus = () => {
+//     // e.preventDefault();
+//     // value === "I'm here to buy" ? userStatus=setUserStatus("suppliers") : userStatus=setUserStatus("sellers")
+//     console.log("value")
+//     // setUserStatus((prevState) =>
+//     //     prevState === "suppliers" ? "sellers" : "suppliers"
+//     // );
+// };
 
   const onSubmit = (data) => {
     if (!isValid) return;
     dispatch(registerService(data));
     console.log(data);
   };
-
 
   const resServer = useSelector((state) => state.register.resMessage);
 
@@ -41,18 +48,30 @@ const RegisterForm = () => {
       <div className={style.flexContainer}>
         <Button 
         value="I'm here to buy"
-        className={userStatus === "supplier"
+        className={userStatus === "suppliers"
         ? styleBtn.userStatusBtnInactive
         : styleBtn.userStatusBtnActive}
-        onClick={userStatus === "seller" ? toggleUserStatus: {}}
+        onClick={userStatus === "sellers" ? toggleUserStatus: {}}
+        // onClick={toggleUserStatus}
+        // onClick={()=> console.log(Button.value)}
+        // onClick={(target) => target.value==="I'm here to buy"? setUserStatus("suppliers"):{}}
+        // onClick={() => {console.log(userStatus); setUserStatus("suppliers"); console.log(userStatus)}}
+        // onClick={(e) => alert(e.target.value)}
+
 
         />
         <Button 
         value="I'm here to sell"
-        className={userStatus === "seller"
+        className={userStatus === "sellers"
         ? styleBtn.userStatusBtnInactive
         : styleBtn.userStatusBtnActive}
-        onClick={userStatus === "supplier" ? toggleUserStatus: {}}
+        onClick={userStatus === "suppliers" ? toggleUserStatus: {}}
+        // onClick={(e)=>toggleUserStatus(e)}
+        // onClick={()=> console.log(Button.value)}
+        // onClick={(target) => target.value==="I'm here to buy"? setUserStatus("sellers"):{}}
+        // onClick={() => {console.log(userStatus); setUserStatus("sellers"); console.log(userStatus)}}
+        // onClick={(e) => alert(e.target.value)}
+
 
         />
       </div>
