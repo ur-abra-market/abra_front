@@ -1,2 +1,2 @@
-import ResetPasswordForm from "./registerPage";
+import ResetPasswordForm from "./resetPasswordForm";
 export default  ResetPasswordForm;

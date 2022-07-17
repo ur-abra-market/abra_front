@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import TextField from "../../common/textField";
 import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
 
-const ResetPasswordForm = () => {
+const ResetPasswordForm = ({setActive}) => {
     const {
         register,
         watch,
@@ -50,6 +50,7 @@ const ResetPasswordForm = () => {
                     : `${styleBtn.commonButton} ${styleBtn.logInBtnActive}`
                 }
                 disabled={!isValid}
+                onClick={()=> setActive(true)}
             />
 
         </form>

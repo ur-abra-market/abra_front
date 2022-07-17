@@ -1,5 +1,6 @@
 .activeButton,
-.commonButton {
+.commonButton,
+.modalWindewBtnActive {
     height: 44px;
     border: none;
     border-radius: 4px;
@@ -59,4 +60,10 @@
     border-radius: 4px;
     color: #000;
     background: #F2F2F2;
+}
+
+.modalWindewBtnActive {
+    width: 420px;
+    background: #000000;
+    color: #FFFFFF; 
 }
