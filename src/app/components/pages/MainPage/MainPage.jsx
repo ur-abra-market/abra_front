@@ -2,7 +2,7 @@ import React from 'react';
 import './MainPage.css';
 import Slider from '../../common/Slider/Slider';
 import Sort from '../../common/Sort/Sort';
-import Feedback from '../../common/Feedback/Feedback';
+import InfoBtn from '../../common/InfoBtn/InfoBtn';
 
 const MainPage = () => {
   const dataArr = ['All categories', 'Clothes and accessories', 'Household products', 'Cosmetics and self care'];
@@ -12,9 +12,9 @@ const MainPage = () => {
       <div className='Main__sliders'>
         {dataArr.map((data, index) => (
           <Slider key={`name-1-${index}`} title={data} />
-        ))} 
-      </div>
-      <Feedback />                
+        ))}         
+      </div> 
+      <InfoBtn />         
     </div>
   )
 }
