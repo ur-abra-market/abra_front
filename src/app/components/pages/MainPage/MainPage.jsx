@@ -2,6 +2,7 @@ import React from 'react';
 import './MainPage.css';
 import Slider from '../../common/Slider/Slider';
 import Sort from '../../common/Sort/Sort';
+import Feedback from '../../common/Feedback/Feedback';
 
 const MainPage = () => {
   const dataArr = ['All categories', 'Clothes and accessories', 'Household products', 'Cosmetics and self care'];
@@ -12,7 +13,8 @@ const MainPage = () => {
         {dataArr.map((data, index) => (
           <Slider key={`name-1-${index}`} title={data} />
         ))} 
-      </div>           
+      </div>
+      <Feedback />                
     </div>
   )
 }
