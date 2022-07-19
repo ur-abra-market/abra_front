@@ -21,83 +21,85 @@ const LoginForm = () => {
   const watchPasword = watch("password");
 
   const toggleUserStatus = () => {
-  setUserStatus((prevState) =>
+    setUserStatus((prevState) =>
       prevState === "suppliers" ? "sellers" : "suppliers"
-  );
-};
+    );
+  };
 
   const onSubmit = (data) => {
     if (!isValid) return;
     dispatch(loginService(data));
-    console.log(data)
+    console.log(data);
   };
 
   const resServer = useSelector((state) => state.login.resMessage);
   return (
     <>
-    <div className={style.buySellBtnWrappeer}>
-      <div className={style.flexContainer}>
-      <Button 
-        value="I'm here to buy"
-        className={userStatus === "suppliers"
-        ? styleBtn.userStatusBtnInactive
-        : styleBtn.userStatusBtnActive}
-        onClick={userStatus === "sellers" ? toggleUserStatus: {}}
-
-        />
-        <Button 
-        value="I'm here to sell"
-        className={userStatus === "sellers"
-        ? styleBtn.userStatusBtnInactive
-        : styleBtn.userStatusBtnActive}
-        onClick={userStatus === "suppliers" ? toggleUserStatus: {}}
-        />
+      <div className={style.buySellBtnWrappeer}>
+        <div className={style.flexContainer}>
+          <Button
+            value="I'm here to buy"
+            className={
+              userStatus === "suppliers"
+                ? styleBtn.userStatusBtnInactive
+                : styleBtn.userStatusBtnActive
+            }
+            onClick={toggleUserStatus}
+          />
+          <Button
+            value="I'm here to sell"
+            className={
+              userStatus === "sellers"
+                ? styleBtn.userStatusBtnInactive
+                : styleBtn.userStatusBtnActive
+            }
+            onClick={toggleUserStatus}
+          />
+        </div>
       </div>
-    </div>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <TextField
-        register={register("email", {
-          required: "Email is required!",
-          pattern: {
-            value: /^\S+@\S+\.\S+$/g,
-            message: "Email is incorrect!",
-          },
-        })}
-        label="Email"
-        name="email"
-        error={errors.email}
-      />
-      <TextField
-        register={register("password", {
-          required: "Password is required!",
-          minLength: {
-            value: 8,
-            message: "Password must contain at least 8 characters!",
-          },
-          validate: {
-            capitalSymbol: (s) => /[A-Z]+/g.test(s),
-            digitSymbol: (s) => /\d+/g.test(s),
-            specialSymbol: (s) => /[!#+*]/g.test(s),
-          },
-        })}
-        label="Password"
-        type="password"
-        id="password"
-        name="password"
-        // error={errors.password}
-      />
-      <PasswordComplexity valueOfNewPassword={watchPasword}/>
-      <div>{resServer}</div>
-      <Button
-        value="Log in"
-        className={
-          !isValid
-            ? `${styleBtn.commonButton} ${styleBtn.logInBtnInactive}`
-            : `${styleBtn.commonButton} ${styleBtn.logInBtnActive}`
-        }
-        disabled={!isValid}
-      />
-    </form>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <TextField
+          register={register("email", {
+            required: "Email is required!",
+            pattern: {
+              value: /^\S+@\S+\.\S+$/g,
+              message: "Email is incorrect!",
+            },
+          })}
+          label="Email"
+          name="email"
+          error={errors.email}
+        />
+        <TextField
+          register={register("password", {
+            required: "Password is required!",
+            minLength: {
+              value: 8,
+              message: "Password must contain at least 8 characters!",
+            },
+            validate: {
+              capitalSymbol: (s) => /[A-Z]+/g.test(s),
+              digitSymbol: (s) => /\d+/g.test(s),
+              specialSymbol: (s) => /[!#+*]/g.test(s),
+            },
+          })}
+          label="Password"
+          type="password"
+          id="password"
+          name="password"
+        />
+        <PasswordComplexity valueOfNewPassword={watchPasword} />
+        <div>{resServer}</div>
+        <Button
+          value="Log in"
+          className={
+            !isValid
+              ? `${styleBtn.commonButton} ${styleBtn.logInBtnInactive}`
+              : `${styleBtn.commonButton} ${styleBtn.logInBtnActive}`
+          }
+          disabled={!isValid}
+        />
+      </form>
     </>
   );
 };
