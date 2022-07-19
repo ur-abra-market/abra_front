@@ -1,0 +1,13 @@
+.main-page {
+  width: calc(100% - 64px);
+  padding: 32px;
+  background-color: #ffffff;
+}
+.Main__sliders {
+  width: 100%;
+  margin-top: 56px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+}

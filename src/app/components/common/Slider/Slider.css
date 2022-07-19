@@ -1,0 +1,18 @@
+.Slider {
+  width: 100%;
+  height: fit-content;  
+}
+.Slider__card {
+  margin-top: 32px;
+  display: flex;  
+  width: 100%;
+  height: fit-content;
+  overflow-x: hidden;  
+}
+.Slider__card_list {
+  display: flex;
+  flex-direction: row;
+  gap: 11px;
+  width: fit-content;
+  height: fit-content;
+}

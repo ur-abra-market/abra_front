@@ -1,0 +1,30 @@
+.button-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  width: fit-content;      
+}
+.button-header:hover {
+  cursor: pointer;
+}
+.button-header__image {
+  display: flex;  
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;  
+  background-color: var(--back);
+  border-radius: 50%;          
+}
+.button-header__image-img {
+  display: block;
+  width: 16px;
+  width: 16px;
+}
+.button-header__name {
+  font-size: var(--fs); 
+  line-height: 16px;
+}
