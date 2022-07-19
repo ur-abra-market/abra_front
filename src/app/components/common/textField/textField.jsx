@@ -12,12 +12,8 @@ const TextField = ({ label, id, type, name, error, register }) => {
     setShowPassword((prevState) => !prevState);
     let findPassword = document.getElementById("password");
     findPassword.type = !showPassword ? "text" : "password";
-    // console.log(findPassword.type);
-    // console.log(showPassword);
   };
 
-
-  console.log(error);
   return (
     <>
       <label htmlFor={name} className={style.labelTextField}>

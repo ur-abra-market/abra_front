@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TextField from "../../common/textField";
-import Button from "../../common/buttons/button";
+import Button from "../../common/buttons";
 import style from "../registerForm/registerForm.module.css";
 import styleBtn from "../../common/buttons/buttons.module.css";
 import { loginService } from "../../../store/reducers/loginSlice";
@@ -33,6 +33,7 @@ const LoginForm = () => {
   };
 
   const resServer = useSelector((state) => state.login.resMessage);
+
   return (
     <>
       <div className={style.buySellBtnWrappeer}>

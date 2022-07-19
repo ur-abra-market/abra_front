@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import TextField from "../../common/textField";
-import Button from "../../common/buttons/button";
+import Button from "../../common/buttons";
 import style from "./registerForm.module.css";
 import styleBtn from "../../common/buttons/buttons.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { registerService } from "../../../store/reducers/registerSlice";
 import { useForm } from "react-hook-form";
-import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
+import PasswordComplexity from "../../common/passwordComplexity";
 
 const RegisterForm = () => {
   const [userStatus, setUserStatus] = useState("suppliers");
@@ -28,7 +28,7 @@ const RegisterForm = () => {
 
   const onSubmit = (data) => {
     if (!isValid) return;
-    dispatch(registerService(data));
+    dispatch(registerService({ ...data, userStatus }));
     console.log(data);
   };
 
