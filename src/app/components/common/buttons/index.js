@@ -1,2 +1,3 @@
 import Button from "./button";
-export default Button;
+import ButtonHeader from "./ButtonHeader/ButtonHeader";
+export default { Button, ButtonHeader };

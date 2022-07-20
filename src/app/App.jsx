@@ -17,6 +17,14 @@ function App() {
         <Route path="forgotPassword" element={<ForgotPasswordPage />} />
         <Route path="resetPassword" element={<ResetPasswordPage />} />
         <Route path="help" element={<p> Help </p>} />
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: "1rem" }}>
+              <p>There's nothing here!</p>
+            </main>
+          }
+        />
       </Routes>
     </div>
   );
