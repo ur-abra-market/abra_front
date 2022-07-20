@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { registerService } from "../../../store/reducers/registerSlice";
 import { useForm } from "react-hook-form";
 import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
+import Form from "../../common/form/form";
 
 const RegisterForm = () => {
   const [userStatus, setUserStatus] = useState("suppliers");
@@ -23,21 +24,12 @@ const RegisterForm = () => {
   const toggleUserStatus = () => {
     setUserStatus((prevState) =>
         prevState === "suppliers" ? "sellers" : "suppliers"
-    );
-};
-//   const toggleUserStatus = () => {
-//     // e.preventDefault();
-//     // value === "I'm here to buy" ? userStatus=setUserStatus("suppliers") : userStatus=setUserStatus("sellers")
-//     console.log("value")
-//     // setUserStatus((prevState) =>
-//     //     prevState === "suppliers" ? "sellers" : "suppliers"
-//     // );
-// };
+    )
+  };
 
   const onSubmit = (data) => {
     if (!isValid) return;
     dispatch(registerService(data));
-    console.log(data);
   };
 
   const resServer = useSelector((state) => state.register.resMessage);
@@ -47,37 +39,23 @@ const RegisterForm = () => {
     <div className={style.buySellBtnWrappeer}>
       <div className={style.flexContainer}>
         <Button 
-        value="I'm here to buy"
-        className={userStatus === "suppliers"
-        ? styleBtn.userStatusBtnInactive
-        : styleBtn.userStatusBtnActive}
-        onClick={userStatus === "sellers" ? toggleUserStatus: {}}
-        // onClick={toggleUserStatus}
-        // onClick={()=> console.log(Button.value)}
-        // onClick={(target) => target.value==="I'm here to buy"? setUserStatus("suppliers"):{}}
-        // onClick={() => {console.log(userStatus); setUserStatus("suppliers"); console.log(userStatus)}}
-        // onClick={(e) => alert(e.target.value)}
-
-
+          value="I'm here to buy"
+          className={userStatus === "suppliers"
+            ? styleBtn.userStatusBtnInactive
+            : styleBtn.userStatusBtnActive}
+          onClick={toggleUserStatus}
         />
         <Button 
         value="I'm here to sell"
         className={userStatus === "sellers"
         ? styleBtn.userStatusBtnInactive
         : styleBtn.userStatusBtnActive}
-        onClick={userStatus === "suppliers" ? toggleUserStatus: {}}
-        // onClick={(e)=>toggleUserStatus(e)}
-        // onClick={()=> console.log(Button.value)}
-        // onClick={(target) => target.value==="I'm here to buy"? setUserStatus("sellers"):{}}
-        // onClick={() => {console.log(userStatus); setUserStatus("sellers"); console.log(userStatus)}}
-        // onClick={(e) => alert(e.target.value)}
-
-
+        onClick={toggleUserStatus}
         />
       </div>
     </div>
 
-    <form action="" onSubmit={handleSubmit(onSubmit)}>
+    <Form action="" onSubmit={handleSubmit(onSubmit)}>
       <TextField
         register={register("email", {
           required: "Email is required!",
@@ -109,7 +87,6 @@ const RegisterForm = () => {
         type="password"
         id="password"
         name="password"
-        // error={errors.password}
       />
       <PasswordComplexity valueOfNewPassword={watchPasword}/>
       <div>{resServer}</div>
@@ -120,7 +97,7 @@ const RegisterForm = () => {
           `${styleBtn.commonButton } ${styleBtn.logInBtnActive}`}
         disabled={!isValid}
       />
-    </form>
+    </Form>
     </>
   );
 };

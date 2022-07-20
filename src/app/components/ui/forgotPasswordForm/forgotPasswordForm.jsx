@@ -4,6 +4,7 @@ import style from "./forgotPasswordForm.module.css";
 import styleBtn from "../../common/buttons/buttons.module.css";
 import TextField from "../../common/textField";
 import { useForm } from "react-hook-form";
+import Form from "../../common/form/form";
 
 const ForgotPasswordPage = ({togglePageType}) => {
     const {
@@ -19,7 +20,7 @@ const ForgotPasswordPage = ({togglePageType}) => {
 
     return (
         <>
-        <form action="/" target="_self" onSubmit={handleSubmit(onSubmit)} className={style.forgotPasswordForm}>
+        <Form action="/" target="_self" onSubmit={handleSubmit(onSubmit)} className={style.forgotPasswordForm}>
             <TextField
                 register={register("email", {
                 required: "Email is required!",
@@ -43,7 +44,7 @@ const ForgotPasswordPage = ({togglePageType}) => {
                 onClick={togglePageType}
             />
 
-        </form>
+        </Form>
         </>
     )
 }

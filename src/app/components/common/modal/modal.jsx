@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./modal.module.css";
+import PropTypes from "prop-types";
 
 const Modal = ({active, setActive, children}) => {
     return (
@@ -11,3 +12,9 @@ const Modal = ({active, setActive, children}) => {
     )
 }
 export default Modal;
+
+Modal.propTypes={
+    children: PropTypes.node,
+    setActive: PropTypes.func,
+    active: PropTypes.bool,
+}

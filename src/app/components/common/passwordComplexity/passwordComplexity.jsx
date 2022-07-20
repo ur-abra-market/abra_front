@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
-import style from "./passwordComplexity.module.css"
+import style from "./passwordComplexity.module.css";
+import PasswordStrengthIndicatorItem from "../passwordStrengthIndicatorItem/passwordStrengthIndicatorItem";
+import PropTypes from "prop-types";
 
 const PasswordComplexity = ({valueOfNewPassword}) => {
     const [passwordValidyty, setPasswordValidyty] = useState({
@@ -9,11 +11,10 @@ const PasswordComplexity = ({valueOfNewPassword}) => {
         containsSpecSymbols: null,
     })
 
-    const digitRegExp = /\d/g;
-    const capitalRegExp = /[A-Z]/g;
-    const specSymbolRegExp = /[!#+*]/g;
-
     useEffect(()=> {
+        const digitRegExp = /\d/g;
+        const capitalRegExp = /[A-Z]/g;
+        const specSymbolRegExp = /[!#+*]/g;
         setPasswordValidyty({
             minLength: valueOfNewPassword?.length >= 8,
             digitSymbol: !!digitRegExp.test(valueOfNewPassword),
@@ -23,17 +24,6 @@ const PasswordComplexity = ({valueOfNewPassword}) => {
 
     }, [valueOfNewPassword])
 
-    const PasswordStrengthIndicatorItem = ({isValid, text}) => {
-        return ( 
-        <>
-            <div className={style.requirement}>
-                <div className={isValid 
-                ? style.requirementMet 
-                : style.requirementNotMet}></div>
-                <div>{text}</div>
-            </div>
-        </>
-    )}
     return (
         <>
         <div className={style.requirementsWrapper}>
@@ -59,3 +49,6 @@ const PasswordComplexity = ({valueOfNewPassword}) => {
 };
 export default PasswordComplexity;
 
+PasswordComplexity.propTypes={
+    valueOfNewPassword: PropTypes.string,
+}

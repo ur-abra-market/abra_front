@@ -5,6 +5,7 @@ import styleBtn from "../../common/buttons/buttons.module.css";
 import { useForm } from "react-hook-form";
 import TextField from "../../common/textField";
 import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
+import Form from "../../common/form/form";
 
 const ResetPasswordForm = ({setActive}) => {
     const {
@@ -20,7 +21,7 @@ const ResetPasswordForm = ({setActive}) => {
     };
     return (
         <>
-        <form onSubmit={handleSubmit(onSubmit)} className={style.resetPasswordForm}>
+        <Form onSubmit={handleSubmit(onSubmit)} className={style.resetPasswordForm}>
             <TextField
             register={register("password", 
             {
@@ -53,7 +54,7 @@ const ResetPasswordForm = ({setActive}) => {
                 onClick={()=> setActive(true)}
             />
 
-        </form>
+        </Form>
         </>
     )
 }

@@ -3,6 +3,7 @@ import RegisterForm from "../../ui/registerForm";
 import Button from "../../common/buttons/button";
 import style from "./registerPage.module.css";
 import styleBtn from "../../common/buttons/buttons.module.css";
+import PropTypes from "prop-types";
 
 
 const RegisterPage = ({togglePageType}) => {
@@ -19,5 +20,10 @@ const RegisterPage = ({togglePageType}) => {
         </>
     )
 }
+
+RegisterPage.propTypes={
+    togglePageType: PropTypes.func,
+}
+
 
 export default RegisterPage;

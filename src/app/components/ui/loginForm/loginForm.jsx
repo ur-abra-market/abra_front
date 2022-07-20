@@ -7,6 +7,7 @@ import styleBtn from "../../common/buttons/buttons.module.css";
 import { loginService } from "../../../store/reducers/loginSlice";
 import { useForm } from "react-hook-form";
 import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
+import Form from "../../common/form/form";
 
 const LoginForm = () => {
   const [userStatus, setUserStatus] = useState("suppliers");
@@ -22,9 +23,10 @@ const LoginForm = () => {
 
   const toggleUserStatus = () => {
   setUserStatus((prevState) =>
-      prevState === "suppliers" ? "sellers" : "suppliers"
+      prevState === "sellers" ? "suppliers" : "sellers"
   );
 };
+console.log(userStatus)
 
   const onSubmit = (data) => {
     if (!isValid) return;
@@ -42,7 +44,7 @@ const LoginForm = () => {
         className={userStatus === "suppliers"
         ? styleBtn.userStatusBtnInactive
         : styleBtn.userStatusBtnActive}
-        onClick={userStatus === "sellers" ? toggleUserStatus: {}}
+        onClick={toggleUserStatus}
 
         />
         <Button 
@@ -50,11 +52,11 @@ const LoginForm = () => {
         className={userStatus === "sellers"
         ? styleBtn.userStatusBtnInactive
         : styleBtn.userStatusBtnActive}
-        onClick={userStatus === "suppliers" ? toggleUserStatus: {}}
+        onClick={toggleUserStatus}
         />
       </div>
     </div>
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <TextField
         register={register("email", {
           required: "Email is required!",
@@ -84,7 +86,6 @@ const LoginForm = () => {
         type="password"
         id="password"
         name="password"
-        // error={errors.password}
       />
       <PasswordComplexity valueOfNewPassword={watchPasword}/>
       <div>{resServer}</div>
@@ -97,7 +98,7 @@ const LoginForm = () => {
         }
         disabled={!isValid}
       />
-    </form>
+    </Form>
     </>
   );
 };

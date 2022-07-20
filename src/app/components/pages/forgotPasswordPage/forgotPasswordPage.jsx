@@ -2,7 +2,7 @@ import React, { useState }  from "react";
 import style from "./forgotPasswordPage.module.css";
 import ForgotPasswordForm from "../../ui/forgotPasswordForm";
 
-const ForgotPasswordPage = (params) => {
+const ForgotPasswordPage = () => {
     const [pageType, setPageType] = useState("forgotPassword");
 
     const togglePageType = () => {
