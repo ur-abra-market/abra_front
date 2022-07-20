@@ -4,22 +4,15 @@ import PropTypes from "prop-types";
 const Button = ({value, className, onClick, disabled, active, ...attrs}) => {
     
     const classes = `${className} + ${active}`;
-    const Tag = attrs.href ? 'a' : 'button';
-    const onClickAction = (e) => {
-        if (disabled) {
-            e.preventDefault();
-        }
-        else onClick();
-    };
 
     return (
-    <Tag 
+    <button 
         {...attrs}
         className={classes}
         disabled={disabled}
-        onClick={onClickAction}
+        onClick={onClick}
         >{value}
-    </Tag> 
+    </button> 
     )
 }
 
@@ -34,7 +27,6 @@ Button.propTypes={
 Button.defaultProps={
     value: 'Default Button',
     className: '',
-    onClick: () => {},
     disabled: false,
     active: false,
 }
