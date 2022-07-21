@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
-import Button from "../../common/buttons";
+import { Button } from "../../common/buttons";
 import style from "./forgotPasswordForm.module.css";
 import styleBtn from "../../common/buttons/buttons.module.css";
 import TextField from "../../common/textField";

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "../../common/buttons";
+import { Button } from "../../common/buttons";
 import style from "./resetPasswordForm.module.css";
 import styleBtn from "../../common/buttons/buttons.module.css";
 import { useForm } from "react-hook-form";

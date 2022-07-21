@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TextField from "../../common/textField";
-import Button from "../../common/buttons";
+import { Button } from "../../common/buttons";
 import style from "./registerForm.module.css";
 import styleBtn from "../../common/buttons/buttons.module.css";
 import { useDispatch, useSelector } from "react-redux";

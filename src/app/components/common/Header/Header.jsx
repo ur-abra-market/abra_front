@@ -1,25 +1,14 @@
 import React from "react";
-import Search from "../Search/Search";
-import ButtonHeader from "../buttons/ButtonHeader/ButtonHeader";
+import NavBar from "../../ui/navBar/navBar";
 import HeaderNavMenu from "../HeaderNavMemu";
 import SelectCurrency from "../SelectCurrency/SelectCurrency";
 import SelectShip from "../SelectShip/SelectShip";
-import imgBtnHeader from "../../../assets/img/icons/icon-img.png";
 import "./Header.css";
 
 const Header = () => {
   return (
     <header className="header">
-      <div className="header__basic">
-        <div className="header__basic_logo">Abra</div>
-        <Search />
-        <div className="header__basic_buttons">
-          <ButtonHeader name="My Profile" imgSrc={imgBtnHeader} />
-          <ButtonHeader name="Notifications" imgSrc={imgBtnHeader} />
-          <ButtonHeader name="Favorites" imgSrc={imgBtnHeader} />
-          <ButtonHeader name="Cart" imgSrc={imgBtnHeader} />
-        </div>
-      </div>
+      <NavBar />
       <div className="header__menu">
         <div className="header__menu_categories">
           <div>All categories</div>

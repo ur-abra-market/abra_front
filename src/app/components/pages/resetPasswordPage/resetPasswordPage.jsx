@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import style from "./resetPasswordPage.module.css";
 import ResetPasswordForm from "../../ui/resetPasswordForm";
 import Modal from "../../common/modal";
-import Button from "../../common/buttons";
+import { Button } from "../../common/buttons";
 import styleBtn from "../../common/buttons/buttons.module.css";
 
 const ResetPasswordPage = () => {

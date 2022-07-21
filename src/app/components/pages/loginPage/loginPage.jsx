@@ -2,10 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import LoginForm from "../../ui/loginForm";
 import { Link } from "react-router-dom";
-import Button from "../../common/buttons";
+import { Button } from "../../common/buttons";
 import style from "./loginPage.module.css";
 import styleBtn from "../../common/buttons/buttons.module.css";
-import PropTypes from "prop-types";
 
 const LoginPage = ({ togglePageType }) => {
   return (
