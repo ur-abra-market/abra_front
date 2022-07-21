@@ -19,7 +19,7 @@ const Auth = () => {
 
     return (
         <> 
-            <div className={style.container}>
+            <div className={style.authPage}>
                 <h1 className={style.header}>Abra</h1>
                 <h2 className={style.subheader}>Start buying in bulk now!</h2>
                 {

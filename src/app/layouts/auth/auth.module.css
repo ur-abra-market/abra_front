@@ -1,6 +1,8 @@
-.container {
-    max-width: 1440px;
+.authPage {
     margin: 0 auto;
+    background: #FFFFFF;
+    height: 100vh;
+    /* width: 100vw; */
 }
 
 .header {
@@ -12,7 +14,7 @@
     font-size: 40px;
     color: #000000;
     letter-spacing: 0.0024em;
-    margin-top: 168px;
+    padding-top: 168px;
 }
 
 .subheader {
