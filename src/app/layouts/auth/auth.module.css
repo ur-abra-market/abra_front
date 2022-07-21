@@ -1,37 +1,37 @@
-.container {
-    max-width: 1440px;
-    margin: 0 auto;
+.authPage {
+  margin: 0 auto;
+  background: #ffffff;
+  height: 100vh;
 }
 
 .header {
-    height: 40px;
-    width: 86px;
-    margin: 0 auto;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 40px;
-    color: #000000;
-    letter-spacing: 0.0024em;
-    margin-top: 168px;
+  height: 40px;
+  width: 86px;
+  margin: 0 auto;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  color: #000000;
+  letter-spacing: 0.0024em;
+  padding-top: 168px;
 }
 
 .subheader {
-    width: 170px;
-    height: 24px;
-    margin: 16px auto 20px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 24px;
-    letter-spacing: 0.16px;
-    color: #636568;
+  width: 170px;
+  height: 24px;
+  margin: 16px auto 20px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.16px;
+  color: #636568;
 }
 
 .socialNetworksWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin-top: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 48px;
 }
-

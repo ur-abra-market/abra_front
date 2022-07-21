@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import PasswordStrengthIndicatorItem from "../passwordStrengthIndicatorItem";
 import style from "./passwordComplexity.module.css";
 
 const PasswordComplexity = ({ valueOfNewPassword }) => {
@@ -23,18 +24,6 @@ const PasswordComplexity = ({ valueOfNewPassword }) => {
     });
   }, [valueOfNewPassword]);
 
-  const PasswordStrengthIndicatorItem = ({ isValid, text }) => {
-    return (
-      <>
-        <div className={style.requirement}>
-          <div
-            className={isValid ? style.requirementMet : style.requirementNotMet}
-          ></div>
-          <div>{text}</div>
-        </div>
-      </>
-    );
-  };
   return (
     <>
       <div className={style.requirementsWrapper}>
