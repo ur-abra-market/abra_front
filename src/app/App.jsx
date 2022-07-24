@@ -5,12 +5,14 @@ import Auth from "./layouts/auth";
 import Main from "./layouts/main";
 import ForgotPasswordPage from "./components/pages/forgotPasswordPage";
 import ResetPasswordPage from "./components/pages/resetPasswordPage";
+import UserAccountPage from "./components/pages/userAccountPage/userAccountPage";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/personalAccount" element={<UserAccountPage />} />
         <Route path="auth" element={<Auth />} />
         <Route path="forgotPassword" element={<ForgotPasswordPage />} />
         <Route path="resetPassword" element={<ResetPasswordPage />} />

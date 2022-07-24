@@ -1,3 +1,3 @@
 import Button from "./button";
-import ButtonHeader from "./ButtonHeader/ButtonHeader";
-export { ButtonHeader, Button };
+import ButtonLink from "../buttons/buttonLink/buttonLink"
+export { Button, ButtonLink};

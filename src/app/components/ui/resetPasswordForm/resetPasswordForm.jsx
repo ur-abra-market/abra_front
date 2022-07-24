@@ -20,6 +20,11 @@ const ResetPasswordForm = ({ handleChangeModalActive }) => {
     if (!isValid) return;
     console.log(data);
   };
+  const textFieldClasses = {
+    label: `${style.textFieldLabel}`, 
+    inputWrapper: `${style.inputWrapper}`,
+    input: `${style.textFieldInput}`
+  }
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className={style.resetPasswordForm}>
       <TextField
@@ -39,6 +44,7 @@ const ResetPasswordForm = ({ handleChangeModalActive }) => {
         type="password"
         id="password"
         name="password"
+        classes={textFieldClasses}
       />
       <PasswordComplexity valueOfNewPassword={watchPasword} />
       <Button

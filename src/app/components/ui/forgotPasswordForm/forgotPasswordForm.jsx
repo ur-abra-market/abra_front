@@ -18,6 +18,12 @@ const ForgotPasswordForm = ({ togglePageType }) => {
     console.log(data);
   };
 
+  const textFieldClasses = {
+    label: `${style.textFieldLabel}`, 
+    inputWrapper: `${style.inputWrapper}`,
+    input: `${style.textFieldInput}`
+  }
+
   return (
     <>
       <form
@@ -36,6 +42,8 @@ const ForgotPasswordForm = ({ togglePageType }) => {
           })}
           label="Email"
           name="email"
+          placeholder="Email"
+          classes={textFieldClasses}
           error={errors.email}
         />
         <Button

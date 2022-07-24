@@ -35,6 +35,12 @@ const RegisterForm = () => {
 
   const resServer = useSelector((state) => state.register.resMessage);
 
+  const textFieldClasses = {
+    label: `${style.textFieldLabel}`, 
+    inputWrapper: `${style.inputWrapper}`,
+    input: `${style.textFieldInput}`
+  }
+
   return (
     <>
       <div className={style.buySellBtnWrappeer}>
@@ -71,6 +77,8 @@ const RegisterForm = () => {
         })}
         label="Email"
         name="email"
+        placeholder="Email"
+        classes={textFieldClasses}
         error={errors.email}
       />
       <TextField
@@ -92,6 +100,8 @@ const RegisterForm = () => {
         type="password"
         id="password"
         name="password"
+        placeholder="Password"
+        classes={textFieldClasses}
       />
       <PasswordComplexity valueOfNewPassword={watchPasword}/>
       <div>{resServer}</div>

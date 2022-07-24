@@ -35,6 +35,12 @@ const LoginForm = () => {
 
   const resServer = useSelector((state) => state.login.resMessage);
 
+  const textFieldClasses = {
+    label: `${style.textFieldLabel}`, 
+    inputWrapper: `${style.inputWrapper}`,
+    input: `${style.textFieldInput}`
+  }
+
   return (
     <>
       <div className={style.buySellBtnWrappeer}>
@@ -70,6 +76,8 @@ const LoginForm = () => {
           })}
           label="Email"
           name="email"
+          placeholder="Email"
+          classes={textFieldClasses}
           error={errors.email}
         />
         <TextField
@@ -89,6 +97,8 @@ const LoginForm = () => {
           type="password"
           id="password"
           name="password"
+          placeholder="Password"
+          classes={textFieldClasses}
         />
         <PasswordComplexity valueOfNewPassword={watchPasword} />
         <div>{resServer}</div>

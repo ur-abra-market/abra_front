@@ -4,7 +4,9 @@ import style from "./textField.module.css";
 import eyeHiddenPassword from "../../../assets/img/icons/eye_hidden_password.png";
 import eyeVisiblePassword from "../../../assets/img/icons/eye_visible_password.png";
 
-const TextField = ({ label, id, type, name, error, register }) => {
+const TextField = (props) => {
+  const { label, id, type, name, placeholder, error, register, classes } = props;
+  
   const [showPassword, setShowPassword] = useState(false);
 
   const toggleShowPassword = (e) => {
@@ -16,21 +18,20 @@ const TextField = ({ label, id, type, name, error, register }) => {
 
   return (
     <>
-      <label htmlFor={name} className={style.labelTextField}>
-        {" "}
-        {label}{" "}
+      <label htmlFor={name} className={classes.label}>
+        {label}
       </label>
-      <div className={style.innerWrapper}>
+      <div className={classes.inputWrapper}>
         <input
           {...register}
           type={showPassword ? "text" : type}
           id={id}
           className={
             !(name === "password")
-              ? style.inputTextField
-              : style.inputTextFieldPassword
+              ? classes.input
+              : (classes.password) ? classes.password.inputTextFieldPassword : style.inputTextFieldPassword
           }
-          placeholder={label}
+          placeholder={placeholder}
         />
         {name === "password" && (
           <div className={style.showPasswordBtn} onClick={toggleShowPassword}>
@@ -62,6 +63,7 @@ TextField.propTypes = {
   type: PropTypes.string,
   register: PropTypes.object,
   error: PropTypes.object,
+  classes: PropTypes.object,
 };
 
 export default TextField;
