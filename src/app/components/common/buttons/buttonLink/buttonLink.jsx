@@ -1,32 +1,22 @@
-import React from 'react';
+import React from "react";
 import PropTypes from "prop-types";
 
 const ButtonLink = (props) => {
-  const {name, src, href, classes} = props;
+  const { name, src, classes } = props;
   return (
-    <a 
-    className={classes.wrepperButtonLink}  
-    href={href}>
-      <div 
-      className={classes.wrepperBtnImg}
-      >
-        <img 
-          className={classes.btnImg}
-          src={src} 
-          alt="btn-header" />
+    <>
+      <div className={classes.wrepperBtnImg}>
+        <img className={classes.btnImg} src={src} alt="btn-header" />
       </div>
-      <div 
-      className={classes.btnName}
-      >{name}</div>
-    </a>
-  )
-}
+      <div className={classes.btnName}>{name}</div>
+    </>
+  );
+};
 
 ButtonLink.propTypes = {
   name: PropTypes.string,
   src: PropTypes.string,
-  href: PropTypes.string,
   classes: PropTypes.object,
 };
 
-export default ButtonLink
+export default ButtonLink;
