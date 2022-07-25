@@ -1,8 +1,4 @@
-.labelTextField {
-    display: none;
-}
-
-.innerWrapper {
+.inputWrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -12,11 +8,10 @@
     margin-bottom: 12px;
 }
 
-.inputTextField,
 .inputTextFieldPassword {
     width: 368px;
     height: 42px;
-    margin-left: 16px;
+    padding-left: 16px;
     font-size: 12px;;
     letter-spacing: 0.02em;
     color: #000000;
@@ -46,6 +41,7 @@
     height: 42px;
     border: none;
     cursor: pointer;
+    background: inherit;
 }
 
 .showPasswordBtn_img {

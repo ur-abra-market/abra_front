@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import PasswordStrengthIndicatorItem from "../passwordStrengthIndicatorItem";
 import style from "./passwordComplexity.module.css";
+import PasswordStrengthIndicatorItem from "../passwordStrengthIndicatorItem/passwordStrengthIndicatorItem";
 
 const PasswordComplexity = ({ valueOfNewPassword }) => {
   const [passwordValidyty, setPasswordValidyty] = useState({

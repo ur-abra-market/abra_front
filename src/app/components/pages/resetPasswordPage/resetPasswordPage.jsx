@@ -13,15 +13,17 @@ const ResetPasswordPage = () => {
 
   return (
     <>
-      <div className={style.pageWrap}>
-        <div className={style.header}>Create new password</div>
-        <div className={style.subheader}>
-          Enter a new password that matches the criteria
-        </div>
-        <div className={style.innerWrapper}>
-          <ResetPasswordForm
-            handleChangeModalActive={handleChangeModalActive}
-          />
+      <div className={style.page}>
+        <div className={style.pageWrap}>
+          <div className={style.header}>Create new password</div>
+          <div className={style.subheader}>
+            Enter a new password that matches the criteria
+          </div>
+          <div className={style.innerWrapper}>
+            <ResetPasswordForm
+              handleChangeModalActive={handleChangeModalActive}
+            />
+          </div>
         </div>
       </div>
       <Modal active={modalActive}>
