@@ -5,37 +5,16 @@ import iconImage from "../../../assets/img/icons/icon-img.png";
 import TextField from "../../common/textField";
 import { ButtonLink } from "../../common/buttons";
 import Checkbox from "../../common/checkbox/checkbox";
+import {profileInfoBtnClasses, 
+        profileInfo__textFieldClasses,
+        accountDetails__textFieldClasses,
+        checkboxClasses
+      } from "./classesStyles"
+import Orders from "./orders";
+
+
 
 const UserAccountPage = () => {
-  const profileInfoBtnClasses = {
-    wrepperBtnImg: `${style.wrepperBtnImgProfile}`,
-    btnImg: `${style.btnImgProfile}`,
-    btnName: `${style.btnNameProfile}`,
-  };
-  const ordersCategoryBtnClasses = {
-    wrepperBtnImg: `${style.wrepperBtnImg}`,
-    btnImg: `${style.btnImg}`,
-    btnName: `${style.btnName}`,
-  };
-  const profileInfo__textFieldClasses = {
-    label: `${style.textFieldLabel}`,
-    inputWrapper: `${style.inputWrapper}`,
-    input: `${style.profileInfo__textFieldInput}`,
-  };
-  const accountDetails__textFieldClasses = {
-    label: `${style.textFieldLabel}`,
-    inputWrapper: `${style.inputWrapper__inputTextFieldPassword}`,
-    input: `${style.accountDetails__textFieldInput}`,
-    password: {
-      inputTextFieldPassword: `${style.accountDetails__inputTextFieldPassword}`,
-      inputWrapper: `${style.inputWrapper__inputTextFieldPassword}`,
-    },
-  };
-  const checkboxClasses = {
-    labelCheckbox: `${style.labelCheckbox}`,
-    inputCheckbox: `${style.inputCheckbox}`,
-  };
-
   return (
     <div className={style.userCabinet}>
       <div className={style.userCabinet__contentWrapper}>
@@ -72,49 +51,7 @@ const UserAccountPage = () => {
         </div>
 
         <div className={`${style.section} ${style.orders}`}>
-          <div className={style.header__wrapper}>
-            <div className={style.header}>Orders</div>
-            <Link className={style.header__link} to="/">
-              View All
-            </Link>
-          </div>
-          <div className={style.ordersCategory__wrapper}>
-            <Link className={style.wrepperButtonLink} to="/">
-              <ButtonLink
-                name="Unpaid"
-                src={iconImage}
-                classes={ordersCategoryBtnClasses}
-              />
-            </Link>
-            <Link className={style.wrepperButtonLink} to="/">
-              <ButtonLink
-                name="To be shipped"
-                src={iconImage}
-                classes={ordersCategoryBtnClasses}
-              />
-            </Link>
-            <Link className={style.wrepperButtonLink} to="/">
-              <ButtonLink
-                name="Shipped"
-                src={iconImage}
-                classes={ordersCategoryBtnClasses}
-              />
-            </Link>
-            <Link className={style.wrepperButtonLink} to="/">
-              <ButtonLink
-                name="To be reviewed"
-                src={iconImage}
-                classes={ordersCategoryBtnClasses}
-              />
-            </Link>
-            <Link className={style.wrepperButtonLink} to="/">
-              <ButtonLink
-                name="Completed"
-                src={iconImage}
-                classes={ordersCategoryBtnClasses}
-              />
-            </Link>
-          </div>
+          <Orders/>
         </div>
 
         <div className={`${style.section} ${style.notifications}`}>
