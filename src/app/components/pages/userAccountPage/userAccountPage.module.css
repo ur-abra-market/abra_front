@@ -76,52 +76,52 @@
   }
   
 .wrepperButtonLinkProfile:hover {
-cursor: pointer;
+    cursor: pointer;
 }
   
 .wrepperBtnImgProfile {
-display: flex;  
-align-items: center;
-justify-content: center;
-height: 80px;
-width: 80px;  
-background: #E0E0E0;
-border-radius: 50%;
-/* width: 80px;
-height: 80px; */
-/* width: calc(80px + 1vw); 
-height: calc(80px + 1vw); */
-/* width: calc(24px + 4vw);
-height: calc(24px + 4vw);
-background: #E0E0E0;
-border-radius: 100%; */
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 80px;  
+    background: #E0E0E0;
+    border-radius: 50%;
+    /* width: 80px;
+    height: 80px; */
+    /* width: calc(80px + 1vw); 
+    height: calc(80px + 1vw); */
+    /* width: calc(24px + 4vw);
+    height: calc(24px + 4vw);
+    background: #E0E0E0;
+    border-radius: 100%; */
 }
 
 .btnImgProfile,
-.btnImg
-{
-display: block;
-width: 37.5%;
+.btnImg {
+    display: block;
+    width: 37.5%;
 }
 
 .btnNameProfile {
-font-style: normal;
-font-weight: 400;
-font-size: 15px;
-line-height: 20px;
-letter-spacing: 0.16px;
-text-decoration-line: underline;
-color: #828282;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0.16px;
+    text-decoration-line: underline;
+    color: #828282;
 }
 
 .profileInfo__textFields {
     margin-top: 24px;
     display: flex;
-    gap: 16px;
+    gap: 28px;
 }
 
 .flexContainer {
     display: flex;
+    width: 100%;
     flex-direction: column;
     align-items: start;
     gap: 8px;
@@ -151,17 +151,23 @@ color: #828282;
 }
 
 .profileInfo__textFieldInput {
-    width: 195px;
+    display: block;
+    width: 96%;
 }
 
 .inputWrapper {
+    display: block;
+    width: 100%;
+}
+
+.inputWrapper__inputTextFieldPassword {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 0;
-    /* margin-bottom: 12px; */
     border: none;
     background:  #F2F2F2;
+    width: 100%;
 }
 
 .accountDetails__textFieldInput {

@@ -8,7 +8,6 @@ import Checkbox from "../../common/checkbox/checkbox";
 
 const UserAccountPage = () => {
   const profileInfoBtnClasses = {
-    wrepperButtonLink: `${style.wrepperButtonLinkProfile}`,
     wrepperBtnImg: `${style.wrepperBtnImgProfile}`,
     btnImg: `${style.btnImgProfile}`,
     btnName: `${style.btnNameProfile}`,
@@ -25,10 +24,11 @@ const UserAccountPage = () => {
   };
   const accountDetails__textFieldClasses = {
     label: `${style.textFieldLabel}`,
-    inputWrapper: `${style.inputWrapper}`,
+    inputWrapper: `${style.inputWrapper__inputTextFieldPassword}`,
     input: `${style.accountDetails__textFieldInput}`,
     password: {
       inputTextFieldPassword: `${style.accountDetails__inputTextFieldPassword}`,
+      inputWrapper: `${style.inputWrapper__inputTextFieldPassword}`,
     },
   };
   const checkboxClasses = {
@@ -43,12 +43,14 @@ const UserAccountPage = () => {
           <div className={style.header__wrapper}>
             <div className={style.header}>Profile Info</div>
           </div>
-          <ButtonLink
-            name="Add image"
-            src={iconImage}
-            classes={profileInfoBtnClasses}
-            href="*"
-          />
+          <div className={style.wrepperButtonLinkProfile}>
+            <ButtonLink
+              name="Add image"
+              src={iconImage}
+              classes={profileInfoBtnClasses}
+              href="*"
+            />
+          </div>
           <div className={style.profileInfo__textFields}>
             <div className={style.flexContainer}>
               <TextField
