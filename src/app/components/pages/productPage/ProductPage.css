@@ -30,3 +30,16 @@
   width: calc(50% - 24px);
   height: fit-content;
 }
+.ProductPage__basic_top {
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between;   
+  align-items: center;  
+  width: 100%;  
+  margin-bottom: 37px;  
+}
+.ProductPage__basic_top-btn {
+  display: flex;
+  flex-direction: row; 
+  gap: 8px;   
+}

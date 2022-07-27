@@ -7,7 +7,7 @@ import ForgotPasswordPage from "./components/pages/forgotPasswordPage";
 import ResetPasswordPage from "./components/pages/resetPasswordPage";
 import UserAccountPage from "./components/pages/userAccountPage/userAccountPage";
 import MainPage from "./components/pages/MainPage/MainPage";
-import ProductPage from "./components/pages/productPage";
+import ProductPage from "./components/pages/ProductPage";
 
 function App() {
   return (

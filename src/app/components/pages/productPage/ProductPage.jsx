@@ -1,6 +1,8 @@
 import React from 'react'
+import BtnNewBest from '../../common/BtnNewBest/BtnNewBest'
 import ProductPath from '../../common/ProductPath'
 import ProductPhoto from '../../common/ProductPhoto'
+import Reward from '../../common/Reward'
 import './ProductPage.css'
 
 const ProductPage = () => {
@@ -12,7 +14,14 @@ const ProductPage = () => {
           <ProductPhoto />
         </div>
         <div className='ProductPage__basic_right'>
-
+          <div className='ProductPage__basic_top'>
+            <div className='ProductPage__basic_top-btn'>
+              <BtnNewBest name='Bestseller' />
+              <BtnNewBest name='New Arrivals' />
+            </div>             
+            <Reward star={true}/>         
+          </div>
+          <h2>Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes</h2>
         </div>
       </div>
       <div className='ProductPage__about'></div>
