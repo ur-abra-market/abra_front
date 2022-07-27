@@ -7,6 +7,7 @@ import ForgotPasswordPage from "./components/pages/forgotPasswordPage";
 import ResetPasswordPage from "./components/pages/resetPasswordPage";
 import UserAccountPage from "./components/pages/userAccountPage/userAccountPage";
 import MainPage from "./components/pages/MainPage/MainPage";
+import ProductPage from "./components/pages/productPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />}>
           <Route index element={<MainPage />} />
+          <Route path="product" element={<ProductPage />} />
           <Route path="/personalAccount" element={<UserAccountPage />} />
           <Route path="auth" element={<Auth />} />
           <Route path="forgotPassword" element={<ForgotPasswordPage />} />

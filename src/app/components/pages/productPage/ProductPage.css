@@ -1,0 +1,32 @@
+.ProductPage {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 64px);
+  height: fit-content;  
+  gap: 96px;
+  margin: 0 auto;
+  padding-top: 48px;
+  padding-left: 32px;
+  padding-right: 32px;
+  background-color: var(--front);  
+}
+.ProductPage__basic {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: fit-content;
+  gap: 48px;  
+}
+.ProductPage__basic_left {
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - 24px);
+  height: fit-content;  
+  gap: 48px;
+}
+.ProductPage__basic_right {
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - 24px);
+  height: fit-content;
+}
