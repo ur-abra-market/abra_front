@@ -3,9 +3,11 @@ import BtnNewBest from '../../common/BtnNewBest/BtnNewBest'
 import ProductPath from '../../common/ProductPath'
 import ProductPhoto from '../../common/ProductPhoto'
 import Reward from '../../common/Reward'
+import Slider from '../../common/Slider'
 import './ProductPage.css'
 
 const ProductPage = () => {
+  const data = ['Similar products', 'Popular products in this category'];
   return (
     <div className='ProductPage'>
       <div className='ProductPage__basic'>
@@ -24,8 +26,10 @@ const ProductPage = () => {
           <h2>Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes</h2>
         </div>
       </div>
-      <div className='ProductPage__about'></div>
-      <div className='ProductPage__reviews'></div>
+      <div className='ProductPage__about'>aboute</div>
+      <div className='ProductPage__reviews'>reviews</div>
+      <Slider title={data[0]} /> 
+      <Slider title={data[1]} />           
       <div className='ProductPage__latest'></div>
     </div>
   )
