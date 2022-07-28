@@ -1,0 +1,34 @@
+.ProductAbout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+}
+.ProductAbout__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.ProductAbout__specifications {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 337px;
+  border: 1px red solid;
+}
+
+.ProductAbout__property {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 569px;
+  border: 1px red solid;
+}
+
+.ProductAbout__process {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 223px;
+  border: 1px red solid;
+}

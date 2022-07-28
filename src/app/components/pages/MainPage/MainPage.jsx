@@ -1,9 +1,9 @@
 import React from 'react';
 import './MainPage.css';
-import Slider from '../../common/Slider/Slider';
-import Sort from '../../common/Sort/Sort';
-import InfoBtn from '../../common/InfoBtn/InfoBtn';
-import Feedback from '../../common/Feedback/Feedback';
+import Slider from '../../common/Slider';
+import Sort from '../../common/Sort';
+import InfoBtn from '../../common/InfoBtn';
+import Feedback from '../../ui/feedback/Feedback';
 
 const MainPage = () => {
   const dataArr = ['All categories', 'Clothes and accessories', 'Household products', 'Cosmetics and self care'];

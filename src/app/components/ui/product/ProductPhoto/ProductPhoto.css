@@ -41,14 +41,14 @@
   align-self: center;
   width: 24px;  
   height: 24px;  
-  background-image: url('../../../assets/img/icons/arrow-slide-up.svg');
+  background-image: url('../../../../assets/img/icons/arrow-slide-up.svg');
 }
 
 .Photo__slider_btn-down {
   align-self: center;
   width: 24px;  
   height: 24px;  
-  background-image: url('../../../assets/img/icons/arrow-slide-down.svg'); 
+  background-image: url('../../../../assets/img/icons/arrow-slide-down.svg'); 
 }
 .Photo__slider_btn-up:hover,
 .Photo__slider_btn-down:hover {

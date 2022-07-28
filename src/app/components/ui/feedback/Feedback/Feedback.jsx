@@ -1,8 +1,8 @@
 import React from 'react'
-import FeedbackFAQ from '../FeedbackFAQ/FeedbackFAQ'
-import WhatsApp from '../WhatsApp/WhatsApp'
-import Social from '../Social/Social'
-import Subscribe from '../Subscribe/Subscribe'
+import FeedbackFAQ from '../FeedbackFAQ'
+import WhatsApp from '../WhatsApp'
+import Social from '../Social'
+import Subscribe from '../Subscribe'
 import './Feedback.css'
 
 const Feedback = () => {
