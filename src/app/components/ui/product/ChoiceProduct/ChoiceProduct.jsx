@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './ChoiceProduct.css'
 
 const ChoiceProduct = () => {
   const colors = ['#828282', '#b9b9b9', '#cfcfcf', '#dddddd'];
   const [quantity, SetQuantity] = useState(0);
-  const max = 100;
-  const price = 8.5
-  const amount = price * quantity;
-  const discount = (quantity > 50 ? ~~(amount * 0.9178)  : amount); 
+  const [price, SetPrice] = useState(0);
+  const [discount, SetDiscount] = useState(0);
+  const max = 100;  
+  const amount = price * quantity;  
   const ship = 220; 
   const total = discount + ship;
 
@@ -22,6 +22,11 @@ const ChoiceProduct = () => {
     else if (value >  max) SetQuantity(max)
     else SetQuantity(value);
   }
+
+  useEffect(() => {    
+    quantity > 99 ? SetDiscount(7.8 * quantity) : SetDiscount(price * quantity);    
+  }, [quantity, price])
+  
 
   return (
     <div className='ChoiceProduct'>
