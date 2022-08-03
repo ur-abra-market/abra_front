@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import photo from '../../../assets/img/icons/ic_baseline-photo-camera.png'
-import './Search.css'
+import './Search.module.css'
+import style from './Search.module.css';
 
 const Search = () => {
   const [text, setText] = useState('');
@@ -11,16 +12,16 @@ const Search = () => {
   };
 
   return (
-    <form className='search' onSubmit={handleSubmit}>
+    <form className={style.search} onSubmit={handleSubmit}>
       <input
         type='text'
-        className='search__text'
+        className={style.search__text}
         value={text}
         placeholder='Search'
         onChange={(e) => setText(e.target.value)}
       />
       <input type='submit' hidden />
-      <img className='search-photo' src={photo} alt="img" />
+      <img className={style.search-photo} src={photo} alt="img" />
     </form>
   )
 }
