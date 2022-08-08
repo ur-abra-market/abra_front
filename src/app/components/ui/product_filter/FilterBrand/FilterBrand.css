@@ -4,6 +4,12 @@
   width: 100%;
   gap: 8px;  
 }
+.FilterBrand__btns {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0px; 
+}
 .FilterBrand__list {
   display: flex;
   flex-wrap: wrap;
@@ -36,4 +42,8 @@
   margin-left: 8px;
   background: url('../../../../assets/img/icons/filter_cross.png');    
   background-size: cover;
+}
+
+.none {
+  display: none;
 }
