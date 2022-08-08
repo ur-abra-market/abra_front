@@ -20,14 +20,23 @@
   display: flex;
   width: 24px;
   height: 49px;
-  padding-left: 10px;
+  padding-left: 8px;
   padding-right: 8px;
   object-fit: cover;
   align-items: center; 
 }
 .SelectFilter_text {
+  display: flex;
+  flex-direction: row;
   width: 100%;   
-  text-align: start;
+  align-items: center;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  gap: 4px;  
+}
+.SelectFilter_text-remains {
+  color: #828282;
 }
 
 .SelectFilter__list {

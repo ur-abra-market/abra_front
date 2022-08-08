@@ -26,3 +26,15 @@
   cursor: pointer;
   border-radius: 4px;
 }
+.filter-item_active {
+  padding-right: 4px;
+}
+.filter-item_active::after {
+  position: relative; 
+  content: '';   
+  width: 16px;
+  height: 16px; 
+  margin-left: 8px;
+  background: url('../../../../assets/img/icons/filter_cross.png');    
+  background-size: cover;
+}

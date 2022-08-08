@@ -3,8 +3,8 @@ import SelectFilter from '../SelectFilter/SelectFilter'
 import './FilterSort.css'
 
 const FilterSort = () => {
-  const listSort = ['Sort By Rating', 'Sort By ...'];
-  const listAccessories = ['Clothes and Accessories', '...'];
+  const listSort = ['Sort By Rating', 'Sort By Price (From High to Low)', 'Sort By Price (From Low to High)'];
+  const listAccessories = ['All Categories', 'Clothes and Accessories', '...'];
 
   return (
     <div className='FilterSort'>

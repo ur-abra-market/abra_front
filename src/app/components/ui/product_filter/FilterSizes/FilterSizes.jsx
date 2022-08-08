@@ -20,7 +20,7 @@ const FilterSizes = () => {
         {sizeList.map((s, i) => (
           <div 
             className='FilterSizes__list_item'
-            style={{background: check[i] ? '#e5e5e5' : 'none'}}
+            style={{background: check[i] ? '#000000' : '#ffffff', color: check[i] ? '#ffffff' : '#000000'}}
             onClick={() => changeState(i)}
             key={`size_${s}`}>{s}</div>
         ))}        

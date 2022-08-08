@@ -8,19 +8,25 @@ const SelectFilter = ({list}) => {
   const styleList = {
     height: listSwitch ? 'fit-content' : '0px'
   }
+  const basic = option.split(/[()]/)[0];
+  const remains = option.split(/[()]/)[1];
+  
   
   const switchList = (e) => {
     e.preventDefault();
     const nameClass = e.relatedTarget.className;
     if (!nameClass.includes('SelectFilter')) {
       setTimeout(() => {setListSwitch(false)}, 100)      
-    };        
+    }; 
   }
   
   return (
     <div className='SelectFilter' onMouseOut={(e) => switchList(e)}>   
       <div className='SelectFilter__select' onClick={() => setListSwitch(!listSwitch)}>
-        <div className='SelectFilter_text'>{option}</div>
+        <div className='SelectFilter_text'>
+          <div>{basic}</div>
+          <div className='SelectFilter_text-remains'>{remains ? `(${remains})`: ''}</div>          
+        </div>
         <div className='SelectFilter_img'><img src={arrowDown} alt="arrow-down" /></div>
       </div>   
       <ul className='SelectFilter__list' style={styleList} >
