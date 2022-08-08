@@ -8,6 +8,7 @@ import ResetPasswordPage from "./components/pages/resetPasswordPage";
 import UserAccountPage from "./components/pages/userAccountPage/userAccountPage";
 import MainPage from "./components/pages/MainPage/MainPage";
 import ProductPage from "./components/pages/productPage";
+import ProductListPage from "./components/pages/productListPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Main />}>
           <Route index element={<MainPage />} />
           <Route path="product" element={<ProductPage />} />
+          <Route path="productList" element={<ProductListPage />} />
           <Route path="personalAccount" element={<UserAccountPage />} />
           <Route path="help" element={<p> Help </p>} />
         </Route>
