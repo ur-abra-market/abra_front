@@ -4,7 +4,7 @@ import './FilterPrice.css'
 
 const FilterPrice = () => {
   const [priceFrom, SetPriceFrom] = useState(0);
-  const [priceTo, SetPriceTo] = useState(0);
+  const [priceTo, SetPriceTo] = useState(100);
 
   return (
     <div className='FilterPrice'>
