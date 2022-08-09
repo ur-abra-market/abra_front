@@ -3,7 +3,7 @@ import style from "./userAccountPage.module.css";
 import { Link } from "react-router-dom";
 import iconImage from "../../../assets/img/icons/icon-img.png";
 import TextField from "../../common/textField";
-import { ButtonLink } from "../../common/buttons";
+import { ButtonLink, InfoBtn } from "../../common/buttons";
 import Checkbox from "../../common/checkbox/checkbox";
 
 const UserAccountPage = () => {
@@ -199,6 +199,7 @@ const UserAccountPage = () => {
         <div className={style.linkDescription}>
           (All your data including order history will be deleted)
         </div>
+        <InfoBtn />
       </div>
     </div>
   );

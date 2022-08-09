@@ -15,37 +15,40 @@ import LatestSearch from '../../ui/product/LatestSearch'
 import InfoBtn from '../../common/InfoBtn/InfoBtn'
 
 const ProductPage = () => {
-  const data = ['Similar products', 'Popular products in this category'];
+  const data = ["Similar products", "Popular products in this category"];
   return (
-    <div className='ProductPage'>
-      <div className='ProductPage__basic'>
-        <div className='ProductPage__basic_left'>
+    <div className="ProductPage">
+      <div className="ProductPage__basic">
+        <div className="ProductPage__basic_left">
           <ProductPath />
           <ProductPhoto />
         </div>
-        <div className='ProductPage__basic_right'>
-          <div className='ProductPage__basic_top'>
-            <div className='ProductPage__basic_top-btn'>
-              <BtnNewBest name='Bestseller' />
-              <BtnNewBest name='New Arrivals' />
-            </div>             
-            <Reward star={true}/>         
+        <div className="ProductPage__basic_right">
+          <div className="ProductPage__basic_top">
+            <div className="ProductPage__basic_top-btn">
+              <BtnNewBest name="Bestseller" />
+              <BtnNewBest name="New Arrivals" />
+            </div>
+            <Reward star={true} />
           </div>
-          <h2>Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes</h2>
-          <div className='ProductPage__basic_block1'>
-            <div className='ProductPage__basic_path'>
+          <h2>
+            Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall
+            Clothes
+          </h2>
+          <div className="ProductPage__basic_block1">
+            <div className="ProductPage__basic_path">
               <p>Clothes for women</p>
               <p>Dress</p>
               <p>Spring-Summer</p>
             </div>
             <FlagFavorites />
           </div>
-          <div className='ProductPage__basic_block2'>
+          <div className="ProductPage__basic_block2">
             <ChoiceProduct />
             <ProductStatistics />
           </div>
-          <div className='ProductPage__button'>Add to Cart</div>
-          <div className='ProductPage__line'/>
+          <div className="ProductPage__button">Add to Cart</div>
+          <div className="ProductPage__line" />
           <StatusSeller />
         </div>
       </div>
@@ -59,4 +62,4 @@ const ProductPage = () => {
   )
 }
 
-export default ProductPage
+export default ProductPage;

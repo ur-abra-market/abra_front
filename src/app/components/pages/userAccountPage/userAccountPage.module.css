@@ -323,8 +323,9 @@ border-radius: 100%; */
 }
 
 .removeWrapper {
+  display: flex;
+  flex-flow: column;
   margin-top: 38px;
-  text-align: left;
 }
 
 .removeAccauntLink,
