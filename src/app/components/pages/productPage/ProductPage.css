@@ -9,6 +9,7 @@
   padding-left: 32px;
   padding-right: 32px;
   background-color: var(--front);  
+  padding-bottom: 32px;
 }
 .ProductPage__basic {
   display: flex;
