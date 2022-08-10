@@ -7,8 +7,8 @@
 }
 
 .table {
+    width: 100%;
     border-spacing: 40px 22px;
-    margin-left: -40px;
     background: #ffffff;
     border-radius: 8px;
 }

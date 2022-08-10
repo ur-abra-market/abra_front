@@ -4,11 +4,17 @@ import Search from "../../common/Search";
 import imgBtnHeader from "../../../assets/img/icons/icon-img.png";
 import { ButtonLink } from "../../common/buttons";
 import style from "./navBar.module.css";
+import photo from '../../../assets/img/icons/ic_baseline-photo-camera.png'
 
 const navbarBtnClasses = {
   wrepperBtnImg: `${style.wrepperBtnImg}`,
   btnImg: `${style.btnImg}`,
   btnName: `${style.btnName}`,
+};
+
+const searchClasses = {
+  search__wrap: `${style.search__wrap}`,
+  search__input: `${style.search__input}`,
 };
 
 const NavBar = () => {
@@ -18,7 +24,11 @@ const NavBar = () => {
       <Link className="header__basic_logo" to="/">
         Abra
       </Link>
-      <Search />
+      <Search 
+        placeholder={'Search'}
+        searchIcon={photo}
+        classes={searchClasses}
+      />
 
       <div className="header__basic_buttons">
         {isAuth ? (

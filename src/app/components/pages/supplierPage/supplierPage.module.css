@@ -1,10 +1,39 @@
 .pageWrapper {
     overflow-x:hidden;
+    padding-left: 32px;
+    padding-right: 32px;
 }
 
-.contentPageWrapper {
-    display: grid;
-    grid-template-columns: 230px 1fr;
+.search__wrap {
+    display: flex;
+    background-color: #FFFFFF;
+    width: 30%;
+    min-width: 300px;
+    height: 34px;      
+    padding: 5px 14px;
+    border-radius: 3px;   
+    align-items: center;  
+    margin-right: 43px;
+    margin-top: 30px;
+    margin-bottom: 34px;
+}
+  
+.search__wrap::before {
+    position: relative; 
+    content: '';   
+    width: 16px;
+    height: 16px; 
+    background: url('../../../assets/img/icons/search.png');    
+    background-size: cover;
+} 
+
+.search__input {
+    display: block; 
+    font-size: var(--fp);    
+    padding-left: 6px;
+    height: 100%; 
+    width: 100%;    
+    background-color: inherit;
 }
 
 .wrepperBtnImg {
@@ -38,24 +67,50 @@
 }
 
 .btnName {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 16px;
-    letter-spacing: -0.24px;
-    color: #828282;
-    text-decoration: none;
-}
-
-.wrepperButtonLink {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    display: none;
 }
 
 .contentWrapper {
     display: flex;
 
+}
+
+.selectWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.select_headerWrapper {
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+.select_header {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 25px;
+    letter-spacing: 0.38px;
+    color: #000000;
+}
+
+.select_options {
+    background-color: #ffffff;
+    display: flex; 
+    flex-direction: column;  
+    position: absolute;
+    top: 115px;
+    width: 130px;
+    height: fit-content;
+    margin-top: 26px;      
+    overflow: hidden; 
+    transition: 0.4s;  
+    gap: 5px;
+    border-radius: 3px;
+}
+
+.option {
+    padding-left: 10px;
 }

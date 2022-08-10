@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import photo from '../../../assets/img/icons/ic_baseline-photo-camera.png'
 import './Search.module.css'
 import style from './Search.module.css';
 
-const Search = () => {
+const Search = ({ placeholder, searchIcon, classes }) => {
   const [text, setText] = useState('');
 
   const handleSubmit = async (e) => {
@@ -12,16 +11,16 @@ const Search = () => {
   };
 
   return (
-    <form className={style.search} onSubmit={handleSubmit}>
+    <form className={classes.search__wrap} onSubmit={handleSubmit}>
       <input
         type='text'
-        className={style.search__text}
+        className={classes.search__input}
         value={text}
-        placeholder='Search'
+        placeholder={placeholder}
         onChange={(e) => setText(e.target.value)}
       />
       <input type='submit' hidden />
-      <img className={style.search_photo} src={photo} alt="img" />
+      <img className={style.search_photo} src={searchIcon} alt="img" />
     </form>
   )
 }

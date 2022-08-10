@@ -8,7 +8,6 @@ const NavBarUniversal = ({logo, children, ...props}) => {
             <h1 className={style.logoSection}>
                 {logo}
             </h1>
-                <Search/>
             <div className={style.linksSection}>
                 {children}
             </div>

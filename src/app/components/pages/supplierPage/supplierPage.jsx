@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ButtonLink } from '../../common/buttons';
-import DownloadReportSection from '../../pages/supplierPage/chooseBusinessName-and-downloadReport-section';
 import NavBarUniversal from '../../ui/navBarUniversal';
 import SupplierMenu from './supplierMenu/supplierMenu';
 import iconImage from "../../../assets/img/icons/icon-img.png";
-import logOut from "../../../assets/img/icons/ligIn-logOut.svg";
+import bellImg from "../../../assets/img/icons/notification-bell.png";
+import searchIcon from '../../../assets/img/icons/searchIcon.png';
+import arrowTriangleImg from '../../../assets/img/icons/check-arrow.png';
 import style from "./supplierPage.module.css"
 import SupplierSection from './supplierSection/supplierSection';
+import Select from '../../common/select';
+import Search from '../../common/Search';
 
 const SupplierPage = (params) => {
     const [currentMenuItemID, setcurrentMenuItemID] = useState();
     // const [currentSectionID, setCurrentSectionID] = useState("Business");
     useEffect(() => {
-        setcurrentMenuItemID("Business");
+        setcurrentMenuItemID("Dashboard");
     }, []);
 
     // useEffect(() => {
@@ -31,8 +34,21 @@ const SupplierPage = (params) => {
         btnName: `${style.btnName}`,
     };
 
+    const SelectBussinessClasses = {
+        selectWrapper: `${style.selectWrapper}`,
+        select_headerWrapper: `${style.select_headerWrapper}`,
+        select_header: `${style.select_header}`,
+        select_options: `${style.select_options}`,
+        option: `${style.option}`,
+    };
+
+    const searchClasses = {
+        search__wrap: `${style.search__wrap}`,
+        search__input: `${style.search__input}`,
+      };
+
     return (
-        <div className={style.pageWrapper}>
+        <>
             <NavBarUniversal
                 logo={
                     <>
@@ -42,36 +58,42 @@ const SupplierPage = (params) => {
                     </>
                 }
             >
-                <Link className={style.wrepperButtonLink} to="/">
+                <Link to="/">
                     <ButtonLink
-                    name="Notifications"
-                    src={iconImage}
-                    classes={navbarCategoryBtnClasses}
-                    key="Notifications"
+                        name="Avatar"
+                        src={bellImg}
+                        classes={navbarCategoryBtnClasses}
                     />
                 </Link>
-                <Link className={style.wrepperButtonLink} to="/">
+                <Link to="/">
                     <ButtonLink
-                    name="Log Out"
-                    src={logOut}
-                    classes={navbarCategoryBtnClasses}
-                    key="LogOut"
+                        name="Avatar"
+                        src={iconImage}
+                        classes={navbarCategoryBtnClasses}
                     />
                 </Link>
-                
+                <Select
+                    defaultName="Business Name"
+                    img={arrowTriangleImg}
+                    options={[ "Name 1", "Name 2", "Name 3"]}
+                    classes={SelectBussinessClasses}
+                />                
             </NavBarUniversal>
-            <DownloadReportSection/>
-            <div className={style.contentPageWrapper}>
-                <SupplierMenu 
-                    onMenuItemSelect={handleMenuItemSelect}
-                    selectedMenuItemID={currentMenuItemID}
-                    />
-                <SupplierSection 
-                    pageID={currentMenuItemID}
-                />
-
-            </div>
+        <div className={style.pageWrapper}>
+            <SupplierMenu 
+                onMenuItemSelect={handleMenuItemSelect}
+                selectedMenuItemID={currentMenuItemID}
+            />
+            <Search
+                placeholder={'Search'}
+                searchIcon={searchIcon}
+                classes={searchClasses}
+            />
+            <SupplierSection 
+                pageID={currentMenuItemID}
+            />
         </div>
+        </>
     )
 }
 
