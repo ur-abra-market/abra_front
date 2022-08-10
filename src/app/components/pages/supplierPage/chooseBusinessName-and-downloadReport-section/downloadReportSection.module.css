@@ -1,0 +1,113 @@
+.downloadReportSection {
+    padding: 10px 32px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.selectWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.select_headerWrapper {
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+
+.select_header {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 25px;
+    letter-spacing: 0.38px;
+    color: #000000;
+}
+
+.select_options {
+    background-color: #ffffff;
+    display: flex; 
+    flex-direction: column;  
+    position: absolute;
+    top: 115px;
+    width: 130px;
+    height: fit-content;
+    margin-top: 26px;      
+    overflow: hidden; 
+    transition: 0.4s;  
+    gap: 5px;
+    border-radius: 3px;
+}
+
+.option {
+    padding-left: 10px;
+}
+
+.downloadWrapper {
+    display: flex;
+    gap: 20px;
+}
+
+.downloadPeeriodWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #E5E5E5;
+    width: 125px;
+    height: 35px;
+    padding: 5px 13px;
+}
+
+.downloadPeeriod_headerWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.downloadPeeriod_header {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 25px;
+    letter-spacing: 0.38px;
+    color: #999999;
+}
+
+.downloadPeeriod_selectImg {
+    opacity: 0.3;
+    padding-top: 5px;
+    position: relative;
+    right: 0;
+    color: #999999;
+    border-left: 1px solid #999999;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+.downloadPeeriod_selectOptions {
+    margin-top: 20px;
+    background-color: #ffffff;
+    display: flex; 
+    flex-direction: column;  
+    position: absolute;  
+    top: 130px;
+    width: 130px;
+    height: fit-content;
+    margin-top: 26px;      
+    overflow: hidden; 
+    transition: 0.4s;  
+    gap: 5px;
+    border-radius: 3px;
+}
+
+.dowloadReport_Btn {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 25px;
+    letter-spacing: 0.38px;
+    color: #000000;
+}

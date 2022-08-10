@@ -1,0 +1,7 @@
+.sectionWrapper {
+    height: 100vh;
+    padding: 40px 45px;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    margin-left: 27px;
+}

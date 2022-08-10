@@ -34,7 +34,8 @@ const NavBar = () => {
                 classes={navbarBtnClasses}
               />
             </Link>
-            <Link className={style.wrepperButtonLink} to="/">
+            {/* supplierPage тут временно */}
+            <Link className={style.wrepperButtonLink} to="/supplierPage">
               <ButtonLink
                 name="Notifications"
                 src={imgBtnHeader}

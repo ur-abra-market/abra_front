@@ -2,12 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Button = ({ value, className, onClick, disabled, active, ...attrs }) => {
-  const classes = `${className} + ${active}`;
-
   return (
     <button
       {...attrs}
-      className={classes}
+      className={className}
       disabled={disabled}
       onClick={onClick}
     >

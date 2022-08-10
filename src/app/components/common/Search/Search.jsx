@@ -21,7 +21,7 @@ const Search = () => {
         onChange={(e) => setText(e.target.value)}
       />
       <input type='submit' hidden />
-      <img className={style.search-photo} src={photo} alt="img" />
+      <img className={style.search_photo} src={photo} alt="img" />
     </form>
   )
 }

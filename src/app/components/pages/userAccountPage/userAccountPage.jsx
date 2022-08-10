@@ -72,7 +72,7 @@ const UserAccountPage = () => {
         <div className={`${style.section} ${style.orders}`}>
           <div className={style.header__wrapper}>
             <div className={style.header}>Orders</div>
-            <Link className={style.header__link} to="/orders">
+            <Link className={style.header__link} to="/">
               View All
             </Link>
           </div>

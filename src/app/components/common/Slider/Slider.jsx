@@ -4,7 +4,7 @@ import Card from "../Card";
 import "./Slider.css";
 
 const Slider = ({ title }) => {
-  const n = 9;
+  const n = 10;
   const widthCart = 220;
   const gap = 11;
   const step = widthCart + gap;

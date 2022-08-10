@@ -25,6 +25,6 @@
   background: url('../../../assets/img/icons/search.png');    
   background-size: cover;
 } 
-.search-photo:hover {
+.search_photo:hover {
   cursor: pointer;
 }

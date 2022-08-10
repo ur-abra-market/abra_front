@@ -1,18 +1,18 @@
-import React from "react";
-import Search from "../Search";
+import React from 'react';
+import Search from '../../common/Search';
 import style from './navBarUniversal.module.css'
 
-const NavBarUniversal = ({logo, links}) => {
+const NavBarUniversal = ({logo, children, ...props}) => {
     return (
-        <navBar className={style.navBarWrapper}>
+        <nav className={style.navBarWrapper}>
             <h1 className={style.logoSection}>
                 {logo}
             </h1>
                 <Search/>
             <div className={style.linksSection}>
-                {links}
+                {children}
             </div>
-        </navBar>
+        </nav>
     )
 }
 
