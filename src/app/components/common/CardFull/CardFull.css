@@ -1,0 +1,79 @@
+.CardFull {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  width: 100%;
+  border: 1px red solid;
+}
+
+.CardFull__image {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 220px;
+  width: 220px;
+  background-color: #e5e5e5;  
+  background-size: cover;   
+}
+
+.CardFull__image_flag {
+  position: relative;
+  top: 16px;
+  left: 172px;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #ffffff;  
+  cursor: pointer;
+}
+.CardFull__info {
+  display: flex;
+  flex-direction: column;    
+  width: calc(100% - 252px);    
+  color: #000000;
+}
+
+.CardFull__direction {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;   
+}
+
+.CardFull__direction>h4 {
+  display: flex;
+  width: 100%;
+  margin-top: 12px;
+  width: 480px;
+  height: 40px; 
+}
+
+.CardFull__path {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row; 
+  gap: 16px; 
+  height: 24px; 
+  align-items: center; 
+  font-size: var(--fp); 
+  letter-spacing: 0.16px;
+  color: #828282;
+}
+.CardFull__price {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: var(--fd);
+  font-family: 'SF Pro Display Bold';  
+  margin-bottom: 4px;
+}
+.CardFull__price>span {
+  display: block;  
+  align-self: flex-end;
+  font-size: var(--fs);
+  font-family: 'Roboto';
+}

@@ -19,7 +19,7 @@ const SelectFilter = ({list}) => {
       setTimeout(() => {setListSwitch(false)}, 100)      
     }; 
   }
-  
+
   return (
     <div className='SelectFilter' onMouseOut={(e) => switchList(e)}>   
       <div className='SelectFilter__select' onClick={() => setListSwitch(!listSwitch)}>

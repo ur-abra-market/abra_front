@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import Stars from '../Stars';
 import './Card.css'
 
 const Card = () => {
+  const price = useSelector((state) => state.product.price);
   return (
     <div className='Card'>
       <div className='Card__image' style={{backgroundImage: 'url("./assets/image/Screenshot_1.png")'}}>        
@@ -15,26 +18,10 @@ const Card = () => {
         <span>Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dre...</span>
       </div>
       <div className='Card__price'>
-        <div className='amount'>$8.50/pc</div>
+        <div className='amount'>${price}/pc</div>
         <span>/from 4 pcs</span>
       </div>
-      <div className='Card__stars'>
-      <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 15L9.79611 9.47214H15.6085L10.9062 6.05573L12.7023 0.527864L8 3.94427L3.29772 0.527864L5.09383 6.05573L0.391548 9.47214H6.20389L8 15Z" fill="black"/>
-      </svg>
-      <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 15L9.79611 9.47214H15.6085L10.9062 6.05573L12.7023 0.527864L8 3.94427L3.29772 0.527864L5.09383 6.05573L0.391548 9.47214H6.20389L8 15Z" fill="black"/>
-      </svg>
-      <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 15L9.79611 9.47214H15.6085L10.9062 6.05573L12.7023 0.527864L8 3.94427L3.29772 0.527864L5.09383 6.05573L0.391548 9.47214H6.20389L8 15Z" fill="black"/>
-      </svg>
-      <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 15L9.79611 9.47214H15.6085L10.9062 6.05573L12.7023 0.527864L8 3.94427L3.29772 0.527864L5.09383 6.05573L0.391548 9.47214H6.20389L8 15Z" fill="black"/>
-      </svg>
-      <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 15L9.79611 9.47214H15.6085L10.9062 6.05573L12.7023 0.527864L8 3.94427L3.29772 0.527864L5.09383 6.05573L0.391548 9.47214H6.20389L8 15Z" fill="black"/>
-      </svg>
-      </div>
+      <Stars/>
     </div>
   )
 }

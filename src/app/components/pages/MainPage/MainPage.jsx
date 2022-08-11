@@ -1,7 +1,7 @@
 import React from "react";
 import "./MainPage.css";
 import Slider from "../../common/Slider";
-import Sort from "../../common/Sort";
+import StatusProduct from "../../common/StatusProduct";
 import { InfoBtn } from "../../common/buttons";
 import Feedback from "../../ui/feedback/Feedback";
 
@@ -15,7 +15,7 @@ const MainPage = () => {
   return (
     <>
       <div className="main-page">
-        <Sort />
+        <StatusProduct />
         <div className="Main__sliders">
           {dataArr.map((data, index) => (
             <Slider key={`name-1-${index}`} title={data} />

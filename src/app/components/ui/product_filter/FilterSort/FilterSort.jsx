@@ -4,7 +4,7 @@ import './FilterSort.css'
 
 const FilterSort = () => {
   const listSort = ['Sort By Rating', 'Sort By Price (From High to Low)', 'Sort By Price (From Low to High)'];
-  const listAccessories = ['All Categories', 'Clothes and Accessories', '...'];
+  const listCategories = ['All Categories', 'Clothes and Accessories'];  
 
   return (
     <div className='FilterSort'>
@@ -13,7 +13,7 @@ const FilterSort = () => {
         <span className='FilterSort__reset'>Reset All</span>
       </div>
       <SelectFilter list={listSort} />
-      <SelectFilter list={listAccessories} />       
+      <SelectFilter list={listCategories} />       
     </div>
   )
 }

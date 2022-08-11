@@ -1,27 +1,21 @@
 import React, { useState, useEffect } from 'react'
+import { input } from '../../../../store/reducers/productSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import ProductQuantityControl from '../../../common/ProductQuantityControl/ProductQuantityControl';
 import './ChoiceProduct.css'
 
 const ChoiceProduct = () => {
   const colors = ['#828282', '#b9b9b9', '#cfcfcf', '#dddddd'];
-  const [quantity, SetQuantity] = useState(0);
-  const [price, SetPrice] = useState(0);
-  const [discount, SetDiscount] = useState(0);
-  const max = 100;  
+
+  const dispatch = useDispatch();  
+  const quantity = useSelector((state) => state.product.quantity);
+  const max = useSelector((state) => state.product.max);
+  const price = useSelector((state) => state.product.price);
+
+  const [discount, SetDiscount] = useState(0);  
   const amount = price * quantity;  
   const ship = 220; 
   const total = discount + ship;
-
-  const sum = (n) => {
-    if (n < 0 && quantity === 0) SetQuantity(0)
-    else if (n > 0 && quantity === max) SetQuantity(max)
-    else SetQuantity(quantity + n) 
-  }
-
-  const printSum = (value) => {
-    if (value < 0) SetQuantity(0)
-    else if (value >  max) SetQuantity(max)
-    else SetQuantity(value);
-  }
 
   useEffect(() => {    
     quantity > 99 ? SetDiscount(7.8 * quantity) : SetDiscount(price * quantity);    
@@ -41,13 +35,9 @@ const ChoiceProduct = () => {
       <div className='ChoiceProduct__quantity'>
         <div className='ChoiceProduct__quantity_block'>
           <div className='ChoiceProduct__quantity_title'>Quantity</div>
-          <span className='ChoiceProduct__quantity_max' onClick={() => SetQuantity(max) }>/from {max} pcs</span>
+          <span className='ChoiceProduct__quantity_max' onClick={(e) =>dispatch(input(max))}>/from {max} pcs</span>
         </div>
-        <div className='ChoiceProduct__quantity_control'>
-          <div className='ChoiceProduct__quantity_btn' onClick={() => sum(-1)}>—</div> 
-          <input className='ChoiceProduct__quantity_sum' type='number' max={max} value={quantity} onChange={(e) => printSum(+(e.target.value))}/>
-          <div className='ChoiceProduct__quantity_btn'onClick={() => sum(1)}>+</div>
-        </div>                       
+        <ProductQuantityControl />                      
       </div>
       <div className='ChoiceProduct__price'>
           <div className='ChoiceProduct__price-item'>1pc<span> .......................................... </span>${Math.floor(price) < price ? price.toFixed(2) : price}</div>
