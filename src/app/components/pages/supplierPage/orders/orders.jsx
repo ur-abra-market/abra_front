@@ -6,8 +6,14 @@ import style from './orders.module.css';
 import _ from 'lodash';
 import Select from '../../../common/select';
 import Pagination from '../../../ui/pagination/pagination';
+import { paginate } from '../../../../utils/paginate';
+import { useSelector } from 'react-redux';
 
 const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) => {
+    const pageSize = 8;
+    const activePage = useSelector((state) => state.paginate.activePage);
+    const amountPages = useSelector((state) => state.paginate.amountPages);
+
     const [orders, setOrders] = useState();
     const [selectedOrdersStatus, setSelectedOrdersStatus] = useState("All Orders");
     const [sortBy, setSortBy] = useState({ path: 'name', direction: 'asc' });
@@ -58,6 +64,8 @@ const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) =
                     order.status === selectedOrdersStatus
             );
         const sortedOrders = _.orderBy(filteredOrders, [sortBy.path], [sortBy.direction]);
+        const count = filteredOrders.length;
+        const orderCrop = paginate(sortedOrders, activePage, pageSize);
 
         return (
             <>
@@ -68,7 +76,11 @@ const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) =
                     options={[ "Name 1", "Name 2", "Name 3"]}
                     classes={SelectBussinessClasses}
                 /> */}
-                <Pagination/>
+                <Pagination
+                    activePage={activePage}
+                    amountPages={amountPages}
+
+                />
             </div>
             <div className={style.contentWrapper}>
                 <div className={style.filtersWrapper}>
@@ -89,7 +101,7 @@ const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) =
                     onSort={handleSort}
                     selectedSort={sortBy}
                     columns={columns}
-                    data={filteredOrders}
+                    data={orderCrop}
                     classes={tableStyleClasses}>
                 </Table>
             </div>
