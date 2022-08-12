@@ -7,18 +7,12 @@ import style from './tableHeader.module.css'
 const TableHeader = ({ onSort, selectedSort, columns, classes}) => {
     const handleSort = (item) => {
         if (selectedSort.path === item) {
-            onSort({ ...selectedSort, order: selectedSort.order === 'asc' ? 'desc' : 'asc' });
+            onSort({ ...selectedSort, direction: selectedSort.direction === 'asc' ? 'desc' : 'asc' });
         } else {
             onSort({ path: item, order: 'asc' });
         }
     };
-    // const renderSortArrow = (selectedSort, currentPath) => {
-    //     if (selectedSort.path === currentPath) {
-    //         return (
-    //             <img src={(selectedSort.order === 'asc') ? arrowDown : arrowUp} alt='arrow'/>
-    //         );
-    //     }
-    // };
+
     return (
         <thead>
             <tr>
@@ -37,7 +31,6 @@ const TableHeader = ({ onSort, selectedSort, columns, classes}) => {
                             </span>
                         }
 
-                        {/* {renderSortArrow(selectedSort, columns[column].path)} */}
                     </th>
                 ))}
             </tr>

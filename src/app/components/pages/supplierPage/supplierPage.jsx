@@ -14,14 +14,10 @@ import Search from '../../common/Search';
 
 const SupplierPage = (params) => {
     const [currentMenuItemID, setcurrentMenuItemID] = useState();
-    // const [currentSectionID, setCurrentSectionID] = useState("Business");
+
     useEffect(() => {
         setcurrentMenuItemID("Dashboard");
     }, []);
-
-    // useEffect(() => {
-    //     setCurrentSectionID("Business");
-    // }, [currentMenuItemID]);
 
     const handleMenuItemSelect = (sectionName) => {
         const sectionNameID = sectionName.split(' ')[0]
