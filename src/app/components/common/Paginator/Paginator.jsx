@@ -25,7 +25,7 @@ const Paginator = () => {
       </div>
     );
   });
-  
+   
   const handlePage = (page) => {
     dispatch(active(page)); 
     const dataProduct = {type: statusProduct, category: categoryProduct}   

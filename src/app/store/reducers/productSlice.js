@@ -26,9 +26,10 @@ const initialState = {
   sumProduct: 100,
   stateProduct: 'nothing',
   quantity: 0,
-  max: 100,
+  max: 1000000,
   price: 8.50,
-  reward: 4
+  reward: 4,
+  step: 100
 };
 
 export const productSlice = createSlice({
@@ -56,15 +57,16 @@ export const productSlice = createSlice({
       state.categoryProduct = action.payload;
     },
     increment: (state) => {
-      state.quantity = state.quantity === state.max ? state.max : state.quantity + 1;
+      state.quantity = state.quantity === state.max ? state.max : state.quantity + state.step;
     },
     decrement: (state) => {
-      state.quantity = state.quantity === 0 ? 0 : state.quantity - 1;
+      state.quantity = state.quantity === 0 ? 0 : state.quantity - state.step;
     },
     input: (state, action) => {
-      if (action.payload < 0) state.quantity = 0
-      else if (action.payload >  state.max) state.quantity = state.max
-      else state.quantity = action.payload;
+      const value = Math.ceil(action.payload/100) * 100;
+      if (value < 0) state.quantity = 0
+      else if (value > state.max) state.quantity = state.max
+      else state.quantity = value;
     },
   },
 });

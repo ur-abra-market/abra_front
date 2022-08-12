@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: row;
   gap: 32px;
-  width: 100%;
-  border: 1px red solid;
+  width: 100%;  
+  min-height: 240px;  
 }
 
 .CardFull__image {
@@ -34,6 +34,8 @@
   flex-direction: column;    
   width: calc(100% - 252px);    
   color: #000000;
+  justify-content: space-between;
+  height: 220px;
 }
 
 .CardFull__direction {
@@ -76,4 +78,64 @@
   align-self: flex-end;
   font-size: var(--fs);
   font-family: 'Roboto';
+}
+.CardFull__block1 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.CardFull__block2 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;  
+  padding-top: 10px;  
+}
+.CardFull__block3 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.CardFull__price-stars {
+  display: flex;
+  flex-direction: row;
+  width: 355px;
+  justify-content: space-between;
+  align-items: flex-end;  
+}
+.CardFull__stars-reviews {
+ display: flex;
+ flex-direction: row;  
+}
+.CardFull__stars-reviews>span {
+  font-size: 11px;
+  font-weight: 400;
+  font-family: 'Roboto';
+  line-height: 16px;  
+  color: #828282;
+}
+.CardFull__orders {
+  display: flex;
+  align-self: end;
+  color: #828282;
+  font-size: var(--fs);
+  font-family: 'Roboto';
+}
+.CardFull__basket {
+  border:1px #dddddd solid;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+ }
+  
+.CardFull__basket>div {
+  width: 24px;
+  height: 24px;    
+  background-size: 24px;
+  background-position: center;  
+  background-image: url('../../../assets/img/icons/bxs_cart.svg');  
 }

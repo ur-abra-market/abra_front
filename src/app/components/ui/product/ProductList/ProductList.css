@@ -4,9 +4,10 @@
   width: calc(100% - 346px);  
 }
 .ProductList__control {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-between;  
 }
 .ProductList__control_btns {
   display: flex;
@@ -42,4 +43,10 @@
   margin-top: 24px;
   width: 100%;
   gap: 48px;  
+  max-height: 1968px;
+  overflow-y: scroll;   
+  margin-bottom: 80px; 
+}
+.ProductList__list::-webkit-scrollbar {
+  width: 0;
 }

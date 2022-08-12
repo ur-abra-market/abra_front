@@ -1,12 +1,14 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import CardFull from '../../../common/CardFull';
-import Paginator from '../../../common/Paginator'
+import Paginator from '../../../common/Paginator';
+import ShowPage from '../../../common/ShowPage';
 import './ProductList.css'
 
 const ProductList = () => {
-  const n = 5;
-  const dataArr = Array(n).fill("dataCard");
+  const amountItems = useSelector((state) => state.paginate.amountItems);  
+  const dataArr = Array(+amountItems).fill("dataCard");
 
   return (
     <div className='ProductList'>
@@ -14,7 +16,7 @@ const ProductList = () => {
         <div className='ProductList__control_btns'>
           <div className='ProductList__control_blocks' />
           <div className='ProductList__control_list' />
-          <div className='ProductList__control_category'>{`< Clothes and Accessories`}y</div>
+          <div className='ProductList__control_category'>{`< Clothes and Accessories`}</div>
         </div>
         <Paginator />      
       </div>
@@ -22,6 +24,10 @@ const ProductList = () => {
         {dataArr.map((data, index) => (
           <CardFull key={`${data}-${index}`} />          
         ))}
+      </div>
+      <div className='ProductList__control'>
+        <ShowPage />
+        <Paginator /> 
       </div>
     </div>
   )
