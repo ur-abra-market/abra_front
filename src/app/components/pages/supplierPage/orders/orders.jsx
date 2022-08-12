@@ -5,6 +5,7 @@ import api from './fakeAPI';
 import style from './orders.module.css';
 import _ from 'lodash';
 import Select from '../../../common/select';
+import Pagination from '../../../ui/pagination/pagination';
 
 const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) => {
     const [orders, setOrders] = useState();
@@ -67,7 +68,7 @@ const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) =
                     options={[ "Name 1", "Name 2", "Name 3"]}
                     classes={SelectBussinessClasses}
                 /> */}
-                {/* <Pagination/> */}
+                <Pagination/>
             </div>
             <div className={style.contentWrapper}>
                 <div className={style.filtersWrapper}>
