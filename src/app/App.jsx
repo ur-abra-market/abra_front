@@ -5,6 +5,7 @@ import Auth from "./layouts/auth";
 import Main from "./layouts/main"
 import NavBar from "./components/ui/navBar";
 import ForgotPasswordPage from "./components/pages/forgotPasswordPage";
+import ConfirmEmail from "./components/pages/confirmEmail";
 
 
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="login" element={<Auth />}>
         </Route>
         <Route path="forgotPasswordPage" element={< ForgotPasswordPage />} />
+        <Route path="confirmEmail" element={<ConfirmEmail />} />
         <Route path="help" element={<p> Help </p>} />
       </Routes>
     </div>
