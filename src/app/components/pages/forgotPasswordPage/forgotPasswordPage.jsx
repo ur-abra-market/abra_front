@@ -1,7 +1,7 @@
 import React, { useState }  from "react";
 import style from "./forgotPasswordPage.module.css";
 import ForgotPasswordForm from "../../ui/forgotPasswordForm";
-import ContentMessage from "../../common/contentMessage/contentMessage"
+import ContentMessage from "../../common/contentMessage"
 
 const ForgotPasswordPage = () => {
     const [pageType, setPageType] = useState("forgotPassword");

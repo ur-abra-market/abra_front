@@ -1,4 +1,4 @@
-import ContentMessage from "../../common/contentMessage/contentMessage";
+import ContentMessage from "../../common/contentMessage";
 import style from "./confirmEmail.module.css"
 
 
