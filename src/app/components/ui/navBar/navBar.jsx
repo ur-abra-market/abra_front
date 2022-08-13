@@ -21,7 +21,7 @@ const NavBar = () => {
       <Search />
 
       <div className="header__basic_buttons">
-        {isAuth ? (
+        {!isAuth ? (
           <Link className={style.wrepperButtonLink} to="/auth">
             Sig in | Sig up
           </Link>

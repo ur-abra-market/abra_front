@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "../../services/auth.service";
+import { generateResponseError } from "../../utils/generateResponseError";
 
 const initialState = {
   resMessage: "",
@@ -14,12 +15,14 @@ export const loginService = createAsyncThunk(
   async function (dataUser, { rejectWithValue }) {
     try {
       const data = await authService.login(dataUser);
+
       return data.result;
     } catch (error) {
-      const err = error.response.data.result
-        ? error.response.data.result
+      const err = error.response.data.detail
+        ? error.response.data.detail
         : error.message;
-      return rejectWithValue(err);
+      const message = generateResponseError(err);
+      return rejectWithValue(message);
     }
   }
 );

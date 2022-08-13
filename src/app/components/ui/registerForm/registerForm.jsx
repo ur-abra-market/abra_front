@@ -8,6 +8,7 @@ import { registerService } from "../../../store/reducers/registerSlice";
 import { useForm } from "react-hook-form";
 import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
 import Form from "../../common/form/form";
+import Spinner from "../spinner/Spinner";
 
 const RegisterForm = () => {
   const [userStatus, setUserStatus] = useState("suppliers");
@@ -33,13 +34,14 @@ const RegisterForm = () => {
     console.log(data);
   };
 
-  const resServer = useSelector((state) => state.register.resMessage);
+  const isLoading = useSelector((state) => state.register.loading);
+  const errMessage = useSelector((state) => state.register.errMessage);
 
   const textFieldClasses = {
-    label: `${style.textFieldLabel}`, 
+    label: `${style.textFieldLabel}`,
     inputWrapper: `${style.inputWrapper}`,
-    input: `${style.textFieldInput}`
-  }
+    input: `${style.textFieldInput}`,
+  };
 
   return (
     <>
@@ -66,53 +68,54 @@ const RegisterForm = () => {
         </div>
       </div>
 
-    <Form action="" onSubmit={handleSubmit(onSubmit)}>
-      <TextField
-        register={register("email", {
-          required: "Email is required!",
-          pattern: {
-            value: /^\S+@\S+\.\S+$/g,
-            message: "Email is incorrect!",
-          },
-        })}
-        label="Email"
-        name="email"
-        placeholder="Email"
-        classes={textFieldClasses}
-        error={errors.email}
-      />
-      <TextField
-        register={register("password", 
-        {
-          required: "Password is required!",
-          minLength: {
-            value: 8,
-            message: "Password must contain at least 8 characters!",
-          },
-          validate: {
-            capitalSymbol: (s) => /[A-Z]+/g.test(s),
-            digitSymbol: (s) => /\d+/g.test(s),
-            specialSymbol: (s) => /[!#+*]/g.test(s),
-          },
-        }
-        )}
-        label="Password"
-        type="password"
-        id="password"
-        name="password"
-        placeholder="Password"
-        classes={textFieldClasses}
-      />
-      <PasswordComplexity valueOfNewPassword={watchPasword}/>
-      <div>{resServer}</div>
-      <Button
-        value="Sign up"
-        className={ (!isValid) ? 
-          `${styleBtn.commonButton } ${styleBtn.logInBtnInactive}` : 
-          `${styleBtn.commonButton } ${styleBtn.logInBtnActive}`}
-        disabled={!isValid}
-      />
-    </Form>
+      <Form action="" onSubmit={handleSubmit(onSubmit)}>
+        <TextField
+          register={register("email", {
+            required: "Email is required!",
+            pattern: {
+              value: /^\S+@\S+\.\S+$/g,
+              message: "Email is incorrect!",
+            },
+          })}
+          label="Email"
+          name="email"
+          placeholder="Email"
+          classes={textFieldClasses}
+          error={errors.email}
+        />
+        <TextField
+          register={register("password", {
+            required: "Password is required!",
+            minLength: {
+              value: 8,
+              message: "Password must contain at least 8 characters!",
+            },
+            validate: {
+              capitalSymbol: (s) => /[A-Z]+/g.test(s),
+              digitSymbol: (s) => /\d+/g.test(s),
+              specialSymbol: (s) => /[!#+*]/g.test(s),
+            },
+          })}
+          label="Password"
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          classes={textFieldClasses}
+        />
+        <PasswordComplexity valueOfNewPassword={watchPasword} />
+        {isLoading && <Spinner />}
+        {errMessage && <p>{errMessage}</p>}
+        <Button
+          value="Sign up"
+          className={
+            !isValid
+              ? `${styleBtn.commonButton} ${styleBtn.logInBtnInactive}`
+              : `${styleBtn.commonButton} ${styleBtn.logInBtnActive}`
+          }
+          disabled={!isValid}
+        />
+      </Form>
     </>
   );
 };

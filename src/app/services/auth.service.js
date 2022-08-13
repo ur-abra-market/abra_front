@@ -12,7 +12,13 @@ const authService = {
     const { data } = await httpService.post(`login/`, {
       email,
       password,
+      withCredentials: true,
     });
+    return data;
+  },
+  refresh: async () => {
+    const { data } = await httpService.post("login/refresh");
+    console.log(data);
     return data;
   },
 };

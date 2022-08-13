@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import style from "./auth.module.css";
 import LoginPage from "../../components/pages/loginPage/loginPage";
 import RegisterPage from "../../components/pages/registerPage/registerPage";
@@ -19,7 +20,9 @@ const Auth = () => {
   return (
     <>
       <div className={style.authPage}>
-        <h1 className={style.header}>Abra</h1>
+        <h1 className={style.header}>
+          <Link to="/">Abra</Link>
+        </h1>
         <h2 className={style.subheader}>Start buying in bulk now!</h2>
         {pageType === "register" ? (
           <RegisterPage togglePageType={togglePageType} />

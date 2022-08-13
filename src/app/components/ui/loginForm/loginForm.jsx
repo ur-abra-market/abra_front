@@ -8,6 +8,8 @@ import { loginService } from "../../../store/reducers/loginSlice";
 import { useForm } from "react-hook-form";
 import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
 import Form from "../../common/form/form";
+import Spinner from "../spinner/Spinner";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [userStatus, setUserStatus] = useState("suppliers");
@@ -18,7 +20,7 @@ const LoginForm = () => {
     formState: { isValid, errors },
     handleSubmit,
   } = useForm({ mode: "onChange" });
-
+  const navigate = useNavigate();
   const watchPasword = watch("password");
 
   const toggleUserStatus = () => {
@@ -27,19 +29,22 @@ const LoginForm = () => {
     );
   };
 
+  const isLoading = useSelector((state) => state.login.loading);
+  const errMessage = useSelector((state) => state.login.errMessage);
+
   const onSubmit = (data) => {
     if (!isValid) return;
     dispatch(loginService(data));
+
+    if (!errMessage) navigate("/");
     console.log(data);
   };
 
-  const resServer = useSelector((state) => state.login.resMessage);
-
   const textFieldClasses = {
-    label: `${style.textFieldLabel}`, 
+    label: `${style.textFieldLabel}`,
     inputWrapper: `${style.inputWrapper}`,
-    input: `${style.textFieldInput}`
-  }
+    input: `${style.textFieldInput}`,
+  };
 
   return (
     <>
@@ -101,7 +106,8 @@ const LoginForm = () => {
           classes={textFieldClasses}
         />
         <PasswordComplexity valueOfNewPassword={watchPasword} />
-        <div>{resServer}</div>
+        {isLoading && <Spinner />}
+        {errMessage && <p>{errMessage}</p>}
         <Button
           value="Log in"
           className={
