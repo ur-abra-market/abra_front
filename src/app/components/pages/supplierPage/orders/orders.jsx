@@ -107,6 +107,14 @@ const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) =
                     classes={tableStyleClasses}>
                 </Table>
             </div>
+            <div className={style.selectAndPaginationWrapper}>
+                <ShowPage/>
+                <Pagination
+                    activePage={activePage}
+                    amountPages={amountPages}
+                />
+            </div>
+
             </>
             
         );
