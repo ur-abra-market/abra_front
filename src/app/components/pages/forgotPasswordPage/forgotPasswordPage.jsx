@@ -1,6 +1,7 @@
 import React, { useState }  from "react";
 import style from "./forgotPasswordPage.module.css";
 import ForgotPasswordForm from "../../ui/forgotPasswordForm";
+import ContentMessage from "../../common/contentMessage/contentMessage"
 
 const ForgotPasswordPage = () => {
     const [pageType, setPageType] = useState("forgotPassword");
@@ -17,8 +18,9 @@ const ForgotPasswordPage = () => {
                 {
                 pageType === "forgotPassword" ? (
                     <>
-                    <div className={style.header}>Forgot the password?</div>
-                    <div className={style.subheader}>Enter your email address to receive a link to reset your password</div>
+                    <ContentMessage 
+                    title="Forgot the password?"
+                    text="Enter your email address to receive a link to reset your password" />
                     <div className={style.innerWrapper}>
                         <ForgotPasswordForm togglePageType={togglePageType}/>
                     </div>
