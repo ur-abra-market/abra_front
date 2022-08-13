@@ -4,7 +4,7 @@ const initialState= {
   amountItems: 20,
   amountPages: 30,
   activePage: 1,
-  // items: 500,
+  items: 500,
 };
 
 export const paginateSlice = createSlice({

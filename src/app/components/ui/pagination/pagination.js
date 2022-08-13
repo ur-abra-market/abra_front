@@ -1,28 +1,22 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { active } from '../../../store/reducers/paginateSlice';
-// import { productService } from '../../../store/reducers/productSlice';
 import './pagination.module.css';
 import styles from './pagination.module.css'
 
-const Pagination = ({ activePage, amountPages }) => {
+const Pagination = ({ activePage, amountPages, ...props}) => {
 
   const dispatch = useDispatch();
-   
-  // const activePage = useSelector((state) => state.paginate.activePage);
-  // const amountPages = useSelector((state) => state.paginate.amountPages);
-  // const statusProduct = useSelector((state) => state.product.statusProduct);
-  // const categoryProduct = useSelector((state) => state.product.categoryProduct);
   
   const arrPages = Array(amountPages - 2).fill(2);
   const pages = amountPages > 2 ? arrPages.map((_, i) => i + 2) : [];
   
   const buttons = pages.map((p) => {
     let currentClass = '';
-    if (activePage === p) currentClass = 'activePage';
-    if (Math.abs(activePage - p) > 2) currentClass = 'invisible';
+    if (activePage === p) currentClass = `${styles.activePage}`;
+    if (Math.abs(activePage - p) > 2) currentClass = `${styles.invisible}`;
     return (
-      <div className={`cursor ${currentClass}`} key={p} onClick={() => handlePage(p)}>
+      <div className={`${styles.cursor} ${currentClass}`} key={p} onClick={() => handlePage(p)}>
         {p}
       </div>
     );
@@ -30,8 +24,6 @@ const Pagination = ({ activePage, amountPages }) => {
    
   const handlePage = (page) => {
     dispatch(active(page)); 
-    // const dataProduct = {type: statusProduct, category: categoryProduct}   
-    // dispatch(productService(dataProduct));
   };
 
   return (
@@ -43,16 +35,16 @@ const Pagination = ({ activePage, amountPages }) => {
         <div className={styles.Paginator__left_arrow}></div>
       </div>
       <div className={styles.Paginator__numbers}>
-        <div className={`cursor ${activePage === 1 ? 'activePage' : ''}`} onClick={() => handlePage(1)}>
+        <div className={activePage === 1 ? `${styles.activePage}` : `${styles.cursor}`} onClick={() => handlePage(1)}>
           1
         </div>
 
-        <div className={amountPages < 5 || activePage < 5 ? 'invisible' : ''}>...</div>
+        <div className={amountPages < 5 || activePage < 5 ? `${styles.invisible}` : ''}>...</div>
         {buttons}
-        <div className={amountPages < 5 || amountPages - activePage < 4 ? 'invisible' : ''}>...</div>
+        <div className={amountPages < 5 || amountPages - activePage < 4 ? `${styles.invisible}` : ''}>...</div>
         
         <div
-          className={`cursor ${activePage === amountPages ? 'activePage' : ''}`}
+          className={activePage === amountPages ? `${styles.activePage}` : `${styles.cursor}`}
           onClick={() => handlePage(amountPages)}
         >
           {amountPages}

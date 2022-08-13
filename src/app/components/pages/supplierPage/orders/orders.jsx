@@ -4,15 +4,18 @@ import Table from '../../../common/table/table';
 import api from './fakeAPI';
 import style from './orders.module.css';
 import _ from 'lodash';
-import Select from '../../../common/select';
 import Pagination from '../../../ui/pagination/pagination';
 import { paginate } from '../../../../utils/paginate';
 import { useSelector } from 'react-redux';
+import ShowPage from '../../../common/ShowPage';
+import { amount } from '../../../../store/reducers/paginateSlice';
+
 
 const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) => {
-    const pageSize = 8;
+    const pageSize = 2;
     const activePage = useSelector((state) => state.paginate.activePage);
     const amountPages = useSelector((state) => state.paginate.amountPages);
+    // const amountItems = useSelector((state) => state.paginate.amountItems);
 
     const [orders, setOrders] = useState();
     const [selectedOrdersStatus, setSelectedOrdersStatus] = useState("All Orders");
@@ -64,7 +67,6 @@ const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) =
                     order.status === selectedOrdersStatus
             );
         const sortedOrders = _.orderBy(filteredOrders, [sortBy.path], [sortBy.direction]);
-        const count = filteredOrders.length;
         const orderCrop = paginate(sortedOrders, activePage, pageSize);
 
         return (
@@ -76,10 +78,10 @@ const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) =
                     options={[ "Name 1", "Name 2", "Name 3"]}
                     classes={SelectBussinessClasses}
                 /> */}
+                <ShowPage/>
                 <Pagination
                     activePage={activePage}
                     amountPages={amountPages}
-
                 />
             </div>
             <div className={style.contentWrapper}>

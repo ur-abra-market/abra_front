@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { amount } from '../../../store/reducers/paginateSlice';
-import arrowDown from '../../../assets/img/icons/arrow-slide-up.svg'
-import './ShowPage.module.css';
+import arrowDown from '../../../assets/img/icons/arrow-slide-down.svg';
+import style from'./ShowPage.module.css';
 
 const ShowPage = () => {  
   const dispatch = useDispatch(); 
@@ -23,14 +23,14 @@ const ShowPage = () => {
   }
 
   return (
-    <div className='ShowPage' onMouseOut={(e) => switchList(e)}>   
-      <div className='ShowPage__select'>
-        <div className='ShowPage_text'>{`Show by ${option}`}</div>
-        <div className='ShowPage_img' onClick={() => setListSwitch(!listSwitch)}><img src={arrowDown} alt="arrow-down" /></div>
+    <div className={style.ShowPage} onMouseOut={(e) => switchList(e)}>   
+      <div className={style.ShowPage__select}>
+        <div className={style.ShowPage_text}>{`Show by ${option}`}</div>
+        <div className={style.ShowPage_img} onClick={() => setListSwitch(!listSwitch)}><img src={arrowDown} alt="arrow-down" /></div>
       </div>   
-      <ul className='ShowPage__list' style={styleList} >
+      <ul className={style.ShowPage__list} style={styleList} >
         {list.map((e, i) => (
-          <li className='ShowPage__list_item' key={`option_${e}`} onClick={() => {setOption(e); setListSwitch(!listSwitch); dispatch(amount(+e))}}>{e}</li>
+          <li className={style.ShowPage__list_item} key={`option_${e}`} onClick={() => {setOption(e); setListSwitch(!listSwitch); dispatch(amount(+e)); console.log(amount(+e))}}>{e}</li>
         ))}        
       </ul>
     </div>
