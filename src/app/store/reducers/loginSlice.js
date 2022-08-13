@@ -1,14 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "../../services/auth.service";
+import cookieService from "../../services/cookie.service";
 import { generateResponseError } from "../../utils/generateResponseError";
 
-const initialState = {
-  resMessage: "",
-  errMessage: "",
-  loading: false,
-  isAuth: false,
-};
+const initialState = cookieService.getCookie()
+  ? {
+      resMessage: "",
+      errMessage: "",
+      loading: false,
+      isAuth: true,
+    }
+  : {
+      resMessage: "",
+      errMessage: "",
+      loading: false,
+      isAuth: false,
+    };
 
 export const loginService = createAsyncThunk(
   "login/loginService",

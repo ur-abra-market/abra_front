@@ -1,5 +1,6 @@
 import axios from "axios";
-// import authService from "./auth.service";
+import cookieService from "./cookie.service";
+import authService from "./auth.service";
 
 const httpService = axios.create({
   // baseURL: "https://wbplt-env.eba-qxbp72mz.eu-central-1.elasticbeanstalk.com/",
@@ -10,9 +11,12 @@ const httpService = axios.create({
 
 httpService.interceptors.request.use(
   async function (config) {
-    // const data = await authService.refresh();
-    // console.log(data);
-
+    const refresh = cookieService.getCookie();
+    if (refresh) {
+      const data = await authService.refresh();
+      console.log(data);
+    }
+    config.headers = { ...config.headers, csrf_refresh_token: refresh };
     console.log(config);
 
     return config;
@@ -24,7 +28,6 @@ httpService.interceptors.request.use(
 
 httpService.interceptors.response.use(
   (res) => {
-    console.log(res.headers["set-cookie"]);
     return res;
   },
   function (error) {

@@ -8,7 +8,6 @@ const initialState = {
   errMessage: "",
   loading: false,
 };
-
 export const registerService = createAsyncThunk(
   "register/registerService",
   async ({ userStatus, ...rest }, { rejectWithValue }) => {
