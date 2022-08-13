@@ -1,18 +1,18 @@
-import React from 'react'
-import BtnNewBest from '../../common/BtnNewBest/BtnNewBest'
-import ChoiceProduct from '../../ui/product/ChoiceProduct'
-import FlagFavorites from '../../ui/product/FlagFavorites'
-import ProductAbout from '../../ui/product/ProductAbout'
-import ProductPath from '../../ui/product/ProductPath'
-import ProductPhoto from '../../ui/product/ProductPhoto'
-import Reward from '../../ui/product/Reward'
-import Slider from '../../common/Slider'
-import StatusSeller from '../../ui/product/StatusSeller'
-import './ProductPage.css'
-import ProductStatistics from '../../ui/product/ProductStatistics'
-import ProductReview from '../../ui/product/ProductReview'
-import LatestSearch from '../../ui/product/LatestSearch'
-import InfoBtn from '../../common/InfoBtn/InfoBtn'
+import React from "react";
+import { BtnNewBest } from "../../common/buttons";
+import ChoiceProduct from "../../ui/product/ChoiceProduct";
+import FlagFavorites from "../../ui/product/FlagFavorites";
+import ProductAbout from "../../ui/product/ProductAbout";
+import ProductPath from "../../ui/product/ProductPath";
+import ProductPhoto from "../../ui/product/ProductPhoto";
+import Reward from "../../ui/product/Reward";
+import Slider from "../../common/Slider";
+import StatusSeller from "../../ui/product/StatusSeller";
+import "./ProductPage.css";
+import ProductStatistics from "../../ui/product/ProductStatistics";
+import ProductReview from "../../ui/product/ProductReview";
+import LatestSearch from "../../ui/product/LatestSearch";
+import { InfoBtn } from "../../common/buttons";
 
 const ProductPage = () => {
   const data = ["Similar products", "Popular products in this category"];
@@ -54,12 +54,12 @@ const ProductPage = () => {
       </div>
       <ProductAbout />
       <ProductReview />
-      <Slider title={data[0]} /> 
-      <Slider title={data[1]} />           
+      <Slider title={data[0]} />
+      <Slider title={data[1]} />
       <LatestSearch />
       <InfoBtn />
-    </div>    
-  )
-}
+    </div>
+  );
+};
 
 export default ProductPage;
