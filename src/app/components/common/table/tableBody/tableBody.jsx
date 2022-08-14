@@ -15,7 +15,6 @@ const TableBody = ({ data, columns, classes }) => {
         // для этого используем lodash
         return _.get(item, columns[column].path);
     };
-
     
     return (
         <tbody>
@@ -25,7 +24,7 @@ const TableBody = ({ data, columns, classes }) => {
                     {Object.keys(columns).map((column) => (
                         // если мы динамически передаем вложенные данные, то не можем получить к ним доступ
                         // для этого используем lodash
-                        <td key={column.replace(/ /g,'')} className={classes.tableData}>
+                        <td key={column.replace(/ /g,'')} className={ (item.status ==='Cancelled'||  item.status ==='Off-sale') ? classes.tableData_inactive : classes.tableData}>
                             {renderCompont(item, column)}
                         </td>
                     ))}
@@ -34,9 +33,10 @@ const TableBody = ({ data, columns, classes }) => {
     );
 };
 
-// TableBody.propTypes = {
-//     data: PropTypes.array.isRequired,
-//     columns: PropTypes.object.isRequired
-// };
+TableBody.propTypes = {
+    data: PropTypes.array.isRequired,
+    classes: PropTypes.object.isRequired,
+    columns: PropTypes.object.isRequired
+};
 
 export default TableBody;

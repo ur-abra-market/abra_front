@@ -8,7 +8,6 @@ import Pagination from '../../../ui/pagination/pagination';
 import { paginate } from '../../../../utils/paginate';
 import { useSelector } from 'react-redux';
 import ShowPage from '../../../common/ShowPage';
-import { amount } from '../../../../store/reducers/paginateSlice';
 import Search from '../../../common/Search';
 import searchIcon from '../../../../assets/img/icons/searchIcon.png';
 
@@ -22,6 +21,9 @@ const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) =
     const [orders, setOrders] = useState();
     const [selectedOrdersStatus, setSelectedOrdersStatus] = useState("All Orders");
     const [sortBy, setSortBy] = useState({ path: 'name', direction: 'asc' });
+    const [openedAdditioninfo, setOpenedAdditioninfo] = useState(false);
+    const [selectedAdditioninfo, setSelectedAdditioninfo] = useState('');
+
     useEffect(() => {
         api.orders.fetchAll().then((data) => setOrders(data));
     }, []);
@@ -37,12 +39,21 @@ const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) =
         inMoreDetail: {  name: 'In more details',           
             component: (order) => (
             <button className={style.buttonDetails}
+                id={'button_id_' + order.orderNumber}
+                onClick={() => { setSelectedAdditioninfo(order.orderNumber); setOpenedAdditioninfo(!openedAdditioninfo)}}
+                onMouseOut={(e) => setOpenedAdditioninfo(false)}
                 // className='btn btn-danger btn-sm m-2'
                 // onClick={() => onDelete(order.orderNumber)}
             >
                 <div className={style.buttonDetailsWrapper_points}>
                     <div className={style.buttonDetails_points}></div>
                 </div>
+                {(selectedAdditioninfo===order.orderNumber) ? 
+                (<div id={'button_id_info' + order.orderNumber} 
+                    className={openedAdditioninfo ? style.infoVisible : style.infoInvisible}>
+                    <div >Addition info</div>
+                </div>) :
+                <></>}
             </button>
         )}
     };
@@ -52,6 +63,7 @@ const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) =
         tableHeader: `${style.tableHeader}`,
         tableRow: `${style.tableRow}`,
         tableData: `${style.tableData}`,
+        tableData_inactive: `${style.tableData_inactive}`
     }
     const searchClasses = {
         search__wrap: `${style.search__wrap}`,
@@ -86,12 +98,6 @@ const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) =
                 classes={searchClasses}
             />
             <div className={style.selectAndPaginationWrapper}>
-                {/* <Select
-                    defaultName="Business Name"
-                    img={arrowTriangleImg}
-                    options={[ "Name 1", "Name 2", "Name 3"]}
-                    classes={SelectBussinessClasses}
-                /> */}
                 <ShowPage/>
                 <Pagination
                     activePage={activePage}
