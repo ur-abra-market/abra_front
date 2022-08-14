@@ -9,13 +9,15 @@ import { paginate } from '../../../../utils/paginate';
 import { useSelector } from 'react-redux';
 import ShowPage from '../../../common/ShowPage';
 import { amount } from '../../../../store/reducers/paginateSlice';
+import Search from '../../../common/Search';
+import searchIcon from '../../../../assets/img/icons/searchIcon.png';
 
 
 const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) => {
-    const pageSize = 2;
     const activePage = useSelector((state) => state.paginate.activePage);
     const amountPages = useSelector((state) => state.paginate.amountPages);
-    // const amountItems = useSelector((state) => state.paginate.amountItems);
+    const amountItems = useSelector((state) => state.paginate.amountItems);
+    const pageSize = amountItems;
 
     const [orders, setOrders] = useState();
     const [selectedOrdersStatus, setSelectedOrdersStatus] = useState("All Orders");
@@ -51,6 +53,10 @@ const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) =
         tableRow: `${style.tableRow}`,
         tableData: `${style.tableData}`,
     }
+    const searchClasses = {
+        search__wrap: `${style.search__wrap}`,
+        search__input: `${style.search__input}`,
+    };
 
     const handlePOrderStatusSelect = (value) => {
         setSelectedOrdersStatus(value);
@@ -59,7 +65,10 @@ const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) =
         setSortBy(item);
     };
 
-    if (orders) {
+    if (!orders)  {
+        return (<h2 className={style.loading}>Loading...</h2>)
+    }
+    else {
         const filteredOrders = (selectedOrdersStatus === "All Orders") ? 
             orders :
             orders.filter(
@@ -71,6 +80,11 @@ const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) =
 
         return (
             <>
+            <Search
+                placeholder={'Search'}
+                searchIcon={searchIcon}
+                classes={searchClasses}
+            />
             <div className={style.selectAndPaginationWrapper}>
                 {/* <Select
                     defaultName="Business Name"

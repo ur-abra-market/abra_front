@@ -5,8 +5,7 @@ import arrowDown from '../../../assets/img/icons/arrow-slide-down.svg';
 import style from'./ShowPage.module.css';
 
 const ShowPage = () => {  
-  const dispatch = useDispatch(); 
-  dispatch(amount(20));  
+  const dispatch = useDispatch();  
   const list = ['20', '40', '60', '80', '100']
   const [option, setOption] = useState(list[0]);
   const [listSwitch, setListSwitch] = useState(false);

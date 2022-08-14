@@ -5,12 +5,10 @@ import NavBarUniversal from '../../ui/navBarUniversal';
 import SupplierMenu from './supplierMenu/supplierMenu';
 import iconImage from "../../../assets/img/icons/icon-img.png";
 import bellImg from "../../../assets/img/icons/notification-bell.png";
-import searchIcon from '../../../assets/img/icons/searchIcon.png';
 import arrowTriangleImg from '../../../assets/img/icons/check-arrow.png';
 import style from "./supplierPage.module.css"
 import SupplierSection from './supplierSection/supplierSection';
 import Select from '../../common/select';
-import Search from '../../common/Search';
 
 const SupplierPage = (params) => {
     const [currentMenuItemID, setcurrentMenuItemID] = useState();
@@ -37,11 +35,6 @@ const SupplierPage = (params) => {
         select_options: `${style.select_options}`,
         option: `${style.option}`,
     };
-
-    const searchClasses = {
-        search__wrap: `${style.search__wrap}`,
-        search__input: `${style.search__input}`,
-      };
 
     return (
         <>
@@ -79,11 +72,6 @@ const SupplierPage = (params) => {
             <SupplierMenu 
                 onMenuItemSelect={handleMenuItemSelect}
                 selectedMenuItemID={currentMenuItemID}
-            />
-            <Search
-                placeholder={'Search'}
-                searchIcon={searchIcon}
-                classes={searchClasses}
             />
             <SupplierSection 
                 pageID={currentMenuItemID}
