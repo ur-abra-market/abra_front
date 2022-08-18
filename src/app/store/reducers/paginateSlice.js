@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState= {
   amountItems: 20,
-  amountPages: 30,
+  amountPages: 25,
   activePage: 1,
-  items: 500,
+  allItems: 500,
 };
 
 export const paginateSlice = createSlice({
@@ -16,7 +16,7 @@ export const paginateSlice = createSlice({
     },    
     amount: (state, action) => {
       state.amountItems = action.payload;
-      state.amountPages = Math.ceil(state.items / action.payload);      
+      state.amountPages = Math.ceil(state.allItems / action.payload);      
     }
   },
 });

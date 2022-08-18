@@ -1,7 +1,8 @@
 .ProductList {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 346px);  
+  width: calc(100% - 464px);  
+  padding-right: 118px;
 }
 .ProductList__control {
   width: 100%;
@@ -38,15 +39,23 @@
   font-size: 14px;
 }
 .ProductList__list {
-  display: flex;
-  flex-direction: column;
+  display: flex;  
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin-top: 24px;
   width: 100%;
-  gap: 48px;  
+  row-gap: 48px;  
   max-height: 1968px;
   overflow-y: scroll;   
   margin-bottom: 80px; 
 }
 .ProductList__list::-webkit-scrollbar {
   width: 0;
+}
+
+.ProductList__InfoBtn {
+  display: flex;
+  width: fit-content;  
+  margin-right: -118px;
+  align-self: flex-end;  
 }

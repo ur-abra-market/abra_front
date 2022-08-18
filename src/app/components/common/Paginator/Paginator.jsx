@@ -11,6 +11,7 @@ const Paginator = () => {
   const amountPages = useSelector((state) => state.paginate.amountPages);
   const statusProduct = useSelector((state) => state.product.statusProduct);
   const categoryProduct = useSelector((state) => state.product.categoryProduct);
+  console.log(amountPages);
   
   const arrPages = Array(amountPages - 2).fill(2);
   const pages = amountPages > 2 ? arrPages.map((_, i) => i + 2) : [];
@@ -38,7 +39,7 @@ const Paginator = () => {
         className='Paginator__left'
         onClick={() => (activePage > 1 ? handlePage(activePage - 1) : false)}
       >
-        <div className='Paginator__left_arrow'></div>
+        <div className='Paginator__left_arrow' />
       </div>
       <div className='Paginator__numbers'>
         <div className={`cursor ${activePage === 1 ? 'activePage' : ''}`} onClick={() => handlePage(1)}>
@@ -60,7 +61,7 @@ const Paginator = () => {
         className='Paginator__right'
         onClick={() => (activePage < amountPages ? handlePage(activePage + 1) : false)}
       >
-        <div className='Paginator__right_arrow'></div>
+        <div className='Paginator__right_arrow' />
       </div>
     </div>
   );

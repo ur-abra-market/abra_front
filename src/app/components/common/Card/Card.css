@@ -14,19 +14,6 @@
   background-size: cover;  
 }
 
-.Card__image_flag {
-  position: relative;
-  top: 16px;
-  left: 172px;  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: #ffffff;  
-  cursor: pointer;
-}
 .Card__direction {
   margin-top: 12px;
   width: 100%;

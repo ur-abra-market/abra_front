@@ -46,7 +46,7 @@
   position: absolute;  
   width: 273px;
   height: fit-content;
-  margin-top: 50px;      
+  margin-top: 52px;      
   overflow: hidden; 
   transition: 0.4s;  
   border-radius: 3px;    
@@ -57,11 +57,10 @@
   display: block;
   padding-left: 10px;
   text-decoration: none; 
-  width: calc(100% - 13px);
+  width: calc(100% - 10px);
   height: 40px;
   line-height: 40px;
-  cursor: pointer; 
-  border: 1px #dddddd solid;
+  cursor: pointer;   
 }
 
 .SelectFilter__list_item:hover {

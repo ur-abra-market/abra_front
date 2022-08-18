@@ -8,7 +8,7 @@ const ProductListPage = () => {
   return (
     <div className='ProductListPage'>
       <ProductFilter />
-      <ProductList />
+      <ProductList />      
     </div>
   )
 }

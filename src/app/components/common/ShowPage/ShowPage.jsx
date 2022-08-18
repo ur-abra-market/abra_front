@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { amount } from '../../../store/reducers/paginateSlice';
 import arrowDown from '../../../assets/img/icons/arrow-slide-up.svg'
 import './ShowPage.css';
 
 const ShowPage = () => {  
   const dispatch = useDispatch(); 
-  dispatch(amount(20));  
+    
   const list = ['20', '40', '60', '80', '100']
   const [option, setOption] = useState(list[0]);
   const [listSwitch, setListSwitch] = useState(false);

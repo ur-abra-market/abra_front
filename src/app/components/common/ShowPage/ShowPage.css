@@ -52,11 +52,12 @@
   display: block;
   text-decoration: none; 
   text-align: center;
-  width: 48px;  
+  width: 50px;  
   height: 40px;
   line-height: 40px;
   cursor: pointer; 
 }
+
 .ShowPage__list_item:hover {
   background-color: #000000;
   color: #ffffff;  
