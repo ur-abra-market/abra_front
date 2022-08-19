@@ -18,7 +18,7 @@ function App() {
         <Route path="login" element={<Auth />}>
         </Route>
         <Route path="forgotPasswordPage" element={< ForgotPasswordPage />} />
-        <Route path="confirmEmail" element={<ConfirmEmail />} />
+        <Route path="register/email-confirmation" element={<ConfirmEmail />} />
         <Route path="help" element={<p> Help </p>} />
       </Routes>
     </div>
