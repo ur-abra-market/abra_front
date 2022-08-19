@@ -15,7 +15,7 @@ const RegisterForm = () => {
   const [userStatus, setUserStatus] = useState("suppliers");
 
   const navigate = useNavigate()
-  
+
   const dispatch = useDispatch();
   const {
     register,
@@ -25,29 +25,28 @@ const RegisterForm = () => {
   } = useForm({ mode: "onChange" });
 
   const watchPasword = watch("password");
-  
+
   const toggleUserStatus = () => {
     setUserStatus((prevState) =>
       prevState === "suppliers" ? "sellers" : "suppliers"
     )
   };
-  
+
   const onSubmit = (data) => {
     if (!isValid) return;
     dispatch(registerService({ ...data, userStatus }));
-    // goConfirmPage()
   };
-  
-  const resServer = useSelector((state) => state.register.resMessage);
-  
-  useEffect(()=>{
-    
-    const goConfirmPage = () => navigate('/confirmEmail', { replace: true })
 
-    resServer === 'REGISTRATION_SUCCESSFUL' ?
-    goConfirmPage() :
-    console.log(2)
-  },[resServer, navigate])
+  const resServer = useSelector((state) => state.register.resMessage);
+
+  useEffect(() => {
+
+    const goConfirmPage = () => navigate('/register/email-confirmation', { replace: true })
+
+    if(resServer === 'MESSAGE_HAS_BEEN_SENT'){
+      goConfirmPage() 
+    }
+  }, [resServer, navigate])
 
   return (
     <>
