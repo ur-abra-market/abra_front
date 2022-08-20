@@ -1,20 +1,24 @@
  import iconImg from '../../../../../assets/img/icons/icon-img.png'
  const backgroundImg = {
     'display': 'flex',
-    'flex-direction': 'column',
-    'align-items': 'center',
-    'justify-content': 'center',
+    'flexDirection': 'column',
+    'alignItems': 'center',
+    'justifyContent': 'center',
     'height': '40px',
     'width': '40px',
-    'background-color': 'var(--back)',
-    'border-radius': '50%'
+    'backgroundColor': 'var(--back)',
+    'borderRadius': '50%'
+  }
+
+  const styleImg = {
+    'width': '40%'
   }
  
  const products = [
     {
         id: 1,
         SKU : '00000025',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'On Sale',
@@ -25,7 +29,7 @@
     {
         id: 2,
         SKU : '00000025',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'On Sale',
@@ -36,7 +40,7 @@
     {
         id: 3,
         SKU : '00000025',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'On Sale',
@@ -47,7 +51,7 @@
     {
         id: 4,
         SKU : '00000025',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'On Sale',
@@ -58,7 +62,7 @@
     {
         id: 5,
         SKU : '00000025',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'On Sale',
@@ -69,7 +73,7 @@
     {
         id: 6,
         SKU : '00000025',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'On Sale',
@@ -80,7 +84,7 @@
     {
         id: 7,
         SKU : '00000025',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'On Sale',
@@ -91,7 +95,7 @@
     {
         id: 8,
         SKU : '00000025',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'On Sale',
@@ -102,7 +106,7 @@
     {
         id: 9,
         SKU : '00000025',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'On Sale',
@@ -113,7 +117,7 @@
     {
         id: 10,
         SKU : '00000025',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'On Sale',
@@ -124,7 +128,7 @@
     {
         id: 11,
         SKU : '00000025',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'On Sale',
@@ -135,7 +139,7 @@
     {
         id: 12,
         SKU : '00000025',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'On Sale',
@@ -146,7 +150,7 @@
     {
         id: 13,
         SKU : '00000025',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'On Sale',
@@ -157,7 +161,7 @@
     {
         id: 14,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -168,7 +172,7 @@
     {
         id: 15,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -179,7 +183,7 @@
     {
         id: 16,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -190,7 +194,7 @@
     {
         id: 17,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -201,7 +205,7 @@
     {
         id: 18,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -212,7 +216,7 @@
     {
         id: 19,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -223,7 +227,7 @@
     {
         id: 20,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -234,7 +238,7 @@
     {
         id: 21,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -245,7 +249,7 @@
     {
         id: 22,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -256,7 +260,7 @@
     {
         id: 23,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -267,7 +271,7 @@
     {
         id: 24,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -278,7 +282,7 @@
     {
         id: 25,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -289,7 +293,7 @@
     {
         id: 26,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -300,7 +304,7 @@
     {
         id: 27,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -311,7 +315,7 @@
     {
         id: 28,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -322,7 +326,7 @@
     {
         id: 29,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -333,7 +337,7 @@
     {
         id: 30,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -344,7 +348,7 @@
     {
         id: 31,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -355,7 +359,7 @@
     {
         id: 32,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -366,7 +370,7 @@
     {
         id: 33,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -377,7 +381,7 @@
     {
         id: 34,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',
@@ -388,7 +392,7 @@
     {
         id: 35,
         SKU : '00000017',
-        picture: <div style={backgroundImg}><img src={iconImg} alt="img"/></div>,
+        picture: <div style={backgroundImg}><img src={iconImg} alt="img" style={styleImg}/></div>,
         name: 'Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes',
         creationDate: '07.17.2022 9:14 ам',
         status: 'Off-sale',

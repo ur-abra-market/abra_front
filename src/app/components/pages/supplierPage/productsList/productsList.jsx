@@ -148,7 +148,7 @@ const ProductsList = (params) => {
             (
                 <div className={style.cardsWrapper}>
                 {products.map((item) => (
-                    <div className={style.productCard}>
+                    <div className={style.productCard} key={item.id}>
                         {/* <img src={item.picture} alt='product img'></img> */}
                         <div className={style.picture}></div>
                         <div className={style.viewAndAdditWrapper}>
