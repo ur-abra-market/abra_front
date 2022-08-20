@@ -211,7 +211,6 @@ const orders = [
     }
 ];
 
-// export default orders;
 
 const fetchAll = () =>
     new Promise((resolve) => {

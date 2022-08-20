@@ -1,25 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from './supplierSection.module.css'
-import BusinessProfile from '../businessPrifile/businessPrifile';
 import Dashboard from '../dashboard';
-import CardCatalog from '../cardCatalog';
 import Analytics from '../analytics';
 import PriceManagement from '../priceManagement';
 import Orders from '../orders';
 import FeedbackAndQuestions from '../feedbackAndQuestions';
-import ManageProducts from '../manageProducts/manageProduct';
+import ProductsList from '../productsList/productsList';
 
 const SupplierSection = ({pageID}) => {
 
     const sectionsArray = [
-        <BusinessProfile/>,
         <Dashboard/>,
-        <CardCatalog/>,
-        <ManageProducts/>,
-        <Analytics/>,
-        <PriceManagement/>,
+        <ProductsList/>,
         <Orders/>,
+        <PriceManagement/>,
+        <Analytics/>,
         <FeedbackAndQuestions/>
     ]
 

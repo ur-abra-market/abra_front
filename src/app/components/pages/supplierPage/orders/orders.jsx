@@ -12,7 +12,7 @@ import Search from '../../../common/Search';
 import searchIcon from '../../../../assets/img/icons/searchIcon.png';
 
 
-const Orders = ({ onSort, selectedSort, onToggleBookMark, onDelete, ...rest }) => {
+const Orders = () => {
     const activePage = useSelector((state) => state.paginate.activePage);
     const amountPages = useSelector((state) => state.paginate.amountPages);
     const amountItems = useSelector((state) => state.paginate.amountItems);
