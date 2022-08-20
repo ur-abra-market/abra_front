@@ -20,7 +20,7 @@ const TableBody = ({ data, columns, classes }) => {
         <tbody>
             { data ? 
             (data.map((item) => (
-                <tr key={item.orderNumber} className={classes.tableRow}>
+                <tr key={''+item.orderNumber} className={classes.tableRow}>
                     {Object.keys(columns).map((column) => (
                         // если мы динамически передаем вложенные данные, то не можем получить к ним доступ
                         // для этого используем lodash
