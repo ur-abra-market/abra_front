@@ -35,7 +35,7 @@ const Slider = ({ title }) => {
       <div className="Slider__card">
         <div className="Slider__card_list" style={{ left: `${left}px` }}>
           {dataArr.map((data, index) => (
-            <Link to="/product">
+            <Link to="/product" key={index}>
               <Card key={`${data}-${index}`} />
             </Link>
           ))}
