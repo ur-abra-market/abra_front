@@ -6,6 +6,7 @@ import styleBtn from "../../common/buttons/buttons.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { registerService } from "../../../store/reducers/registerSlice";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
 import Form from "../../common/form/form";
 import Spinner from "../spinner/Spinner";
@@ -13,6 +14,7 @@ import Spinner from "../spinner/Spinner";
 const RegisterForm = () => {
   const [userStatus, setUserStatus] = useState("suppliers");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     watch,
@@ -22,6 +24,9 @@ const RegisterForm = () => {
 
   const watchPasword = watch("password");
 
+  const isLoading = useSelector((state) => state.register.loading);
+  const errMessage = useSelector((state) => state.register.errMessage);
+
   const toggleUserStatus = () => {
     setUserStatus((prevState) =>
       prevState === "suppliers" ? "sellers" : "suppliers"
@@ -30,12 +35,9 @@ const RegisterForm = () => {
 
   const onSubmit = (data) => {
     if (!isValid) return;
-    dispatch(registerService({ ...data, userStatus }));
-    console.log(data);
+    dispatch(registerService({ ...data, rout: userStatus }));
+    if (!errMessage && !isLoading) navigate("/");
   };
-
-  const isLoading = useSelector((state) => state.register.loading);
-  const errMessage = useSelector((state) => state.register.errMessage);
 
   const textFieldClasses = {
     label: `${style.textFieldLabel}`,

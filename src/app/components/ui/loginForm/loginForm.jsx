@@ -36,8 +36,7 @@ const LoginForm = () => {
     if (!isValid) return;
     dispatch(loginService(data));
 
-    if (!errMessage) navigate("/");
-    console.log(data);
+    if (!errMessage && !isLoading) navigate("/");
   };
 
   const textFieldClasses = {

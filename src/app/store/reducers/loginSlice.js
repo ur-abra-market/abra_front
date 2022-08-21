@@ -4,7 +4,7 @@ import authService from "../../services/auth.service";
 import cookieService from "../../services/cookie.service";
 import { generateResponseError } from "../../utils/generateResponseError";
 
-const initialState = cookieService.getCookie()
+const initialState = cookieService.getRefreshToken()
   ? {
       resMessage: "",
       errMessage: "",

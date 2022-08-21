@@ -9,6 +9,7 @@ import UserAccountPage from "./components/pages/userAccountPage/userAccountPage"
 import MainPage from "./components/pages/MainPage/MainPage";
 import ProductPage from "./components/pages/productPage";
 import ProductListPage from "./components/pages/productListPage";
+import ConfirmEmail from "./components/pages/confirmEmail/confirmEmail";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="auth" element={<Auth />} />
         <Route path="forgotPassword" element={<ForgotPasswordPage />} />
         <Route path="resetPassword" element={<ResetPasswordPage />} />
+        <Route path="register/email-confirmation" element={<ConfirmEmail />} />
       </Routes>
     </div>
   );
