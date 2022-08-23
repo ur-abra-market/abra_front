@@ -1,18 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { active } from '../../../store/reducers/paginateSlice';
-import { productService } from '../../../store/reducers/productSlice';
+import { productPaginateService } from '../../../store/reducers/productPaginateSlice';
 import './Paginator.css';
 
 const Paginator = () => {
   const dispatch = useDispatch();
    
   const activePage = useSelector((state) => state.paginate.activePage);
-  const amountPages = useSelector((state) => state.paginate.amountPages);
-  const statusProduct = useSelector((state) => state.product.statusProduct);
+  const amountPages = useSelector((state) => state.paginate.amountPages);  
+  const amountItems = useSelector((state) => state.paginate.amountItems);  
   const categoryProduct = useSelector((state) => state.product.categoryProduct);
-  console.log(amountPages);
-  
+    
   const arrPages = Array(amountPages - 2).fill(2);
   const pages = amountPages > 2 ? arrPages.map((_, i) => i + 2) : [];
   
@@ -26,11 +25,13 @@ const Paginator = () => {
       </div>
     );
   });
-   
+
+  
   const handlePage = (page) => {
     dispatch(active(page)); 
-    const dataProduct = {type: statusProduct, category: categoryProduct}   
-    dispatch(productService(dataProduct));
+    const data = {page_num: page, page_size: amountItems, category: categoryProduct};
+    console.log(data);
+    dispatch(productPaginateService(data));
   };
 
   return (

@@ -5,8 +5,7 @@ const productFetch = {
     const { data } = await httpService.get(`products/compilation/?type=${productData.type}&category=${productData.category}`);
     console.log(data.result)
     return data.result;
-  },
-  
+  },  
 };
 
 export default productFetch;

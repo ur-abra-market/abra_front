@@ -3,6 +3,7 @@ import loginReducer from "./reducers/loginSlice";
 import registerReducer from "./reducers/registerSlice";
 import productReducer from "./reducers/productSlice";
 import paginateReducer from "./reducers/paginateSlice";
+import productPaginateReducer from "./reducers/productPaginateSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     register: registerReducer,
     product: productReducer,
     paginate: paginateReducer,
+    productPaginate: productPaginateReducer,
   },
 });

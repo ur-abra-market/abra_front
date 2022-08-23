@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { amount } from '../../../store/reducers/paginateSlice';
+import { productPaginateService } from '../../../store/reducers/productPaginateSlice';
 import arrowDown from '../../../assets/img/icons/arrow-slide-up.svg'
 import './ShowPage.css';
 
 const ShowPage = () => {  
   const dispatch = useDispatch(); 
+
+  const activePage = useSelector((state) => state.paginate.activePage);     
+  const categoryProduct = useSelector((state) => state.product.categoryProduct);
     
   const list = ['20', '40', '60', '80', '100']
   const [option, setOption] = useState(list[0]);
@@ -22,6 +26,14 @@ const ShowPage = () => {
     }; 
   }
    
+  const handlerPage = (el) => {
+    setOption(el);
+    setListSwitch(!listSwitch);
+    dispatch(amount(+el));
+    const data = {page_num: activePage, page_size: +el, category: categoryProduct}   
+    dispatch(productPaginateService(data));
+  }
+
   return (
     <div className='ShowPage' onMouseOut={(e) => switchList(e)}>   
       <div className='ShowPage__select'>
@@ -29,8 +41,8 @@ const ShowPage = () => {
         <div className='ShowPage_img' onClick={() => setListSwitch(!listSwitch)}><img src={arrowDown} alt="arrow-down" /></div>
       </div>   
       <ul className='ShowPage__list' style={styleList} >
-        {list.map((e, i) => (
-          <li className='ShowPage__list_item' key={`option_${e}`} onClick={() => {setOption(e); setListSwitch(!listSwitch); dispatch(amount(+e))}}>{e}</li>
+        {list.map((el, i) => (
+          <li className='ShowPage__list_item' key={`option_${el}`} onClick={() => handlerPage(el)}>{el}</li>
         ))}        
       </ul>
     </div>

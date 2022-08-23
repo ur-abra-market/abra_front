@@ -1,13 +1,12 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
 import './ProductPrice.css'
 
-const ProductPrice = () => {
-  const price = useSelector((state) => state.product.price);
+const ProductPrice = ({price, quantity}) => {
+  
   return (
     <div className='ProductPrice'>
       <div className='amount'>${price}/pc</div>
-      <span>/from 4 pcs</span>
+      <span>{`/from ${quantity} pcs`}</span>
     </div>
   )
 }

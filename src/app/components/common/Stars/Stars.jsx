@@ -1,9 +1,7 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
 import './Stars.css'
 
-const Stars = () => {
-  const reward = useSelector((state) => state.product.reward);
+const Stars = ({reward}) => {
   const value = `${100 * (reward - Math.floor(reward))}%`;
    
   let percent = ['100%', '100%', '100%', '100%', '100%'];  

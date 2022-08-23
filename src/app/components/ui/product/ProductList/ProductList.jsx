@@ -8,10 +8,9 @@ import './ProductList.css'
 import InfoBtn from '../../../common/InfoBtn';
 
 const ProductList = () => {
-  const amountItems = useSelector((state) => state.paginate.amountItems);  
-  const dataArr = Array(+amountItems).fill("dataCard");
-  const [list, setList] = useState(true);
-
+  const dataArr = useSelector((state) => state.productPaginate.dataProductPaginate);  
+  const [list, setList] = useState(true); 
+    
   return (
     <div className='ProductList'>
       <div className='ProductList__control'>
@@ -24,8 +23,8 @@ const ProductList = () => {
       </div>
       <div className='ProductList__list'>
         {dataArr.map((data, index) => list ? (
-          <CardFull key={`${data}-${index}`} />          
-        ): (<Card key={`${data}-${index}`} />))}
+          <CardFull key={`${data}-${index}`} props={data} />          
+        ): (<Card key={`${data}-${index}`} props={data} />))}
       </div>
       <div className='ProductList__control'>
         <ShowPage />
