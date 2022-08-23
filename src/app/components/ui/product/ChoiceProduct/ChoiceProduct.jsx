@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { input } from '../../../../store/reducers/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductQuantityControl from '../../../common/ProductQuantityControl/ProductQuantityControl';
 import './ChoiceProduct.css'
 
-const ChoiceProduct = () => {
+const ChoiceProduct = () => { 
   const colors = ['#828282', '#b9b9b9', '#cfcfcf', '#dddddd'];
-
   const dispatch = useDispatch();  
-  const quantity = useSelector((state) => state.product.quantity);
-  const max = useSelector((state) => state.product.max);
-  const price = useSelector((state) => state.product.price);
+  const productData = useSelector((state) => state.productPaginate.productActive);
+ 
+  const {quantity, value_price} = productData.info;
+  const max = useSelector((state) => state.product.max);  
+  const basket = useSelector((state) => state.basket.basketProduct);  
+  const product = basket.find((obj) => obj.product_id === productData.product_id);
+  const propsNew = product ? product : productData;
 
-  const [discount, SetDiscount] = useState(0);  
-  const amount = price * quantity;  
+  const discount = 0;  
+  const amount = value_price * quantity;  
   const ship = 220; 
   const total = discount + ship;
-
-  useEffect(() => {    
-    quantity > 99 ? SetDiscount(7.8 * quantity) : SetDiscount(price * quantity);    
-  }, [quantity, price])
-  
 
   return (
     <div className='ChoiceProduct'>
@@ -35,12 +33,12 @@ const ChoiceProduct = () => {
       <div className='ChoiceProduct__quantity'>
         <div className='ChoiceProduct__quantity_block'>
           <div className='ChoiceProduct__quantity_title'>Quantity</div>
-          <span className='ChoiceProduct__quantity_max' onClick={(e) =>dispatch(input(max))}>/from {max} pcs</span>
+          <span className='ChoiceProduct__quantity_max' onClick={(e) =>dispatch(input(max))}>/from {propsNew.info.quantity} pcs</span>
         </div>
-        <ProductQuantityControl />                      
+        <ProductQuantityControl obj={propsNew}/>                      
       </div>
       <div className='ChoiceProduct__price'>
-          <div className='ChoiceProduct__price-item'>1pc<span> .......................................... </span>${Math.floor(price) < price ? price.toFixed(2) : price}</div>
+          <div className='ChoiceProduct__price-item'>1pc<span> .......................................... </span>${Math.floor(value_price) < value_price ? value_price.toFixed(2) : value_price}</div>
           <div className='ChoiceProduct__price-discount'>{max}pc <span> ............................................ </span>${Math.floor(discount) < discount ? discount.toFixed(2) : discount}</div>
           <div className='ChoiceProduct__price-amount'>{max}pc<span> ................................................... </span>${Math.floor(amount) < amount ? amount.toFixed(2) : amount}</div>          
           <div className='ChoiceProduct__price-ship'>Shipping <span> ................................................. </span>${Math.floor(ship) < ship ? ship.toFixed(2) : ship}</div>

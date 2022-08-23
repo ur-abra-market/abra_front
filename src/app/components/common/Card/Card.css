@@ -3,15 +3,7 @@
   flex-direction: column;
   width: fit-content;
   height: 325px;
-  width: 220px;  
-}
-.Card__image {
-  display: block;
-  object-fit: cover;
-  width: 100%;
-  height: 220px;
-  background-color: #e5e5e5;  
-  background-size: cover;  
+  width: 220px;    
 }
 
 .Card__direction {
@@ -19,7 +11,8 @@
   width: 100%;
   height: fit-content;
   max-height: 40px;
-  font-size: var(--fp);  
+  font-size: var(--fp); 
+  cursor: pointer; 
 }
 .Card__price {
   display: flex;

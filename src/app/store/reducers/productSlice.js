@@ -67,7 +67,7 @@ export const productSlice = createSlice({
       if (value < 0) state.quantity = 0
       else if (value > state.max) state.quantity = state.max
       else state.quantity = value;
-    },
+    },        
   },
 });
 export const { status, category, increment, decrement, input } = productSlice.actions;

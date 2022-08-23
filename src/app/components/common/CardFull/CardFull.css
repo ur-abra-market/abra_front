@@ -28,6 +28,7 @@
   margin-top: 12px;
   width: 480px;
   height: 40px; 
+  cursor: pointer;
 }
 
 .CardFull__path {

@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { productPaginateService } from '../../../store/reducers/productPaginateSlice';
 import "./MainPage.css";
 import Slider from "../../common/Slider";
 import StatusProduct from "../../common/StatusProduct";
@@ -6,6 +8,13 @@ import { InfoBtn } from "../../common/buttons";
 import Feedback from "../../ui/feedback/Feedback";
 
 const MainPage = () => {
+  const dispatch = useDispatch();
+  const activePage = useSelector((state) => state.paginate.activePage);   
+  const amountItems = useSelector((state) => state.paginate.amountItems);  
+  const categoryProduct = useSelector((state) => state.product.categoryProduct);
+  const data = {page_num: activePage, page_size: amountItems, category: categoryProduct};
+  dispatch(productPaginateService(data));
+
   const dataArr = [
     "All categories",
     "Clothes and accessories",

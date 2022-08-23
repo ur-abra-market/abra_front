@@ -4,6 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState= {  
   dataProductPaginate: [],  
+  productActive: null,
   stateProduct: 'nothing',
 };
 
@@ -11,8 +12,7 @@ export const productPaginateService = createAsyncThunk(
   "productPaginate/productPaginateService",
   async function (productPaginateData, { rejectWithValue }) {
     try {
-      const data = await productPaginateFetch.getProductPaginateList(productPaginateData);
-      console.log(data.result)
+      const data = await productPaginateFetch.getProductPaginateList(productPaginateData);      
       return data.result;
     } catch (error) {
       const err = error.response.data.result
@@ -40,7 +40,12 @@ export const productPaginateSlice = createSlice({
       state.stateProduct = 'nothing';
     });
   },
-  reducers: {},
+  reducers: {
+    actve: (state, action) => {      
+      state.productActive = action.payload;
+    },
+  },
 });
 
+export const { actve } = productPaginateSlice.actions;
 export default productPaginateSlice.reducer;
