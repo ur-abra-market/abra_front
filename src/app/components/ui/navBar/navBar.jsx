@@ -7,6 +7,7 @@ import style from "./navBar.module.css";
 import photo from '../../../assets/img/icons/ic_baseline-photo-camera.png'
 
 const navbarBtnClasses = {
+  wrepperButtonLink: `${style.wrepperButtonLink}`,
   wrepperBtnImg: `${style.wrepperBtnImg}`,
   btnImg: `${style.btnImg}`,
   btnName: `${style.btnName}`,

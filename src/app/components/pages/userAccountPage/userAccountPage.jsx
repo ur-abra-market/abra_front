@@ -14,6 +14,7 @@ const UserAccountPage = () => {
     btnName: `${style.btnNameProfile}`,
   };
   const ordersCategoryBtnClasses = {
+    wrepperButtonLink: `${style.wrepperButtonLink}`,
     wrepperBtnImg: `${style.wrepperBtnImg}`,
     btnImg: `${style.btnImg}`,
     btnName: `${style.btnName}`,

@@ -42,8 +42,6 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  /* height: 64px; */
-  /* width: fit-content;  */
 }
 
 .wrepper:hover {

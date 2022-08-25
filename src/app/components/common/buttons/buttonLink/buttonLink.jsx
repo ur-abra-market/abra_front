@@ -5,11 +5,13 @@ const ButtonLink = (props) => {
   const { name, src, classes, children } = props;
   return (
     <>
-      <div className={classes.wrepperBtnImg}>
-        {children}
-        <img className={classes.btnImg} src={src} alt="btn-header" />
+      <div className={classes.wrepperButtonLink}>
+        <div className={classes.wrepperBtnImg}>
+          {children}
+          <img className={classes.btnImg} src={src} alt="btn-header" />
+        </div>
+        <div className={classes.btnName}>{name}</div>
       </div>
-      <div className={classes.btnName}>{name}</div>
     </>
   );
 };
