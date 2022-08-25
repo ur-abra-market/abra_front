@@ -1,5 +1,4 @@
 import React from 'react';
-import Search from '../../common/Search';
 import style from './navBarUniversal.module.css'
 
 const NavBarUniversal = ({logo, children, ...props}) => {

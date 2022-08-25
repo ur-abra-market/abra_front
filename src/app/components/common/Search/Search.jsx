@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import './Search.module.css'
-import style from './Search.module.css';
 
-const Search = ({ placeholder, searchIcon, classes }) => {
+const Search = ({ placeholder, searchIcon, classes, onClick}) => {
   const [text, setText] = useState('');
 
   const handleSubmit = async (e) => {
@@ -20,7 +18,12 @@ const Search = ({ placeholder, searchIcon, classes }) => {
         onChange={(e) => setText(e.target.value)}
       />
       <input type='submit' hidden />
-      <img className={style.search_photo} src={searchIcon} alt="img" />
+      <img 
+        className={classes.search_photo} 
+        src={searchIcon} 
+        onClick={onClick}
+        alt="img"
+        />
     </form>
   )
 }

@@ -12,6 +12,7 @@ import Select from "../../common/select";
 
 import { useDispatch } from "react-redux";
 import { active } from "../../../store/reducers/paginateSlice";
+import FooterForSupplierPart from "../../common/footerForSupplierPart";
 
 const SupplierPage = () => {
   const [currentMenuItemID, setcurrentMenuItemID] = useState();
@@ -80,6 +81,7 @@ const SupplierPage = () => {
         />
         <SupplierSection pageID={currentMenuItemID} />
       </div>
+      <FooterForSupplierPart/>
     </>
   );
 };

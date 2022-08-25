@@ -3,20 +3,25 @@ import { useSelector } from "react-redux";
 import { paginate } from "../../../../utils/paginate";
 import Search from "../../../common/Search";
 import api from "./fakeAPI";
-import style from "./productsList.module.css";
 import _ from "lodash";
 import ShowPage from "../../../common/ShowPage";
 import Pagination from "../../../ui/pagination/";
-import searchIcon from "../../../../assets/img/icons/searchIcon.png";
+import Select from "../../../common/select/select";
+import Checkbox from "../../../common/checkbox/checkbox";
 import FiltersList from "../../../common/filtersList/";
 import Table from "../../../common/table/";
+import searchIcon from "../../../../assets/img/icons/searchIcon.png";
 import tileLayout from "../../../../assets/img/icons/tileLayout.png";
 import tableLayout from "../../../../assets/img/icons/tableLayout.png";
 import addImg from "../../../../assets/img/icons/addImg.png";
 import deleteImg from "../../../../assets/img/icons/deleteImg.png";
 import star from "../../../../assets/img/icons/Star 1.png";
+import calendar from "../../../../assets/img/icons/calendar.png";
 import viewIcon from "../../../../assets/img/icons/viewIcon.png";
+import arrowDown from "../../../../assets/img/icons/arrow-down.png";
 import additIcon from "../../../../assets/img/icons/additIcon.png";
+import { tableStyleClasses, selectStyles, checkboxStyles } from "./constantsOfClassesStyles";
+import style from "./productsList.module.css";
 
 const ProductsList = (params) => {
   const activePage = useSelector((state) => state.paginate.activePage);
@@ -29,6 +34,7 @@ const ProductsList = (params) => {
     useState("All Products");
   const [sortBy, setSortBy] = useState({ path: "name", direction: "asc" });
   const [layout, setLayout] = useState("tableLayout");
+  const [restFilters, setRestFilters] = useState(false);
 
   useEffect(() => {
     api.products.fetchAll().then((data) => setProducts(data));
@@ -59,23 +65,23 @@ const ProductsList = (params) => {
     visibility: { path: "visibility", name: "Visibility" },
   };
 
-  const tableStyleClasses = {
-    table: `${style.table}`,
-    tableHeader: `${style.tableHeader}`,
-    tableRow: `${style.tableRow}`,
-    tableData: `${style.tableData}`,
-    tableData_inactive: `${style.tableData_inactive}`,
-  };
   const searchClasses = {
     search__wrap: `${style.search__wrap}`,
     search__input: `${style.search__input}`,
+    search_photo: 
+      restFilters ? `${style.search_photo__clicked}` : `${style.search_photo}`
   };
 
+  const handleRestFiltersSet = () => {
+    setRestFilters(!restFilters) 
+  };
+  
   const handleLayoutSet = () => {
     setLayout((prevState) =>
       prevState === "tableLayout" ? "tileLayout" : "tableLayout"
     );
   };
+
 
   const handleProductsStatusSelect = (value) => {
     setSelectedProductsStatus(value);
@@ -102,11 +108,15 @@ const ProductsList = (params) => {
     return (
       <>
         <div className={style.searchAndLayout}>
-          <Search
-            placeholder={"Search"}
-            searchIcon={searchIcon}
-            classes={searchClasses}
-          />
+          <div className={style.searchWithRestFilters}>
+            <Search
+              placeholder={"Search"}
+              searchIcon={searchIcon}
+              classes={searchClasses}
+              onClick={handleRestFiltersSet}
+            />
+            {restFilters ? <span className={style.restFilters}>Reset Filters</span> : <></>}
+          </div>
           <div className={style.layouts}>
             <img
               className={
@@ -130,6 +140,42 @@ const ProductsList = (params) => {
             />
           </div>
         </div>
+        {restFilters ? 
+
+          <div className={style.restFiltersWrapper}>
+            <div className={style.filter}>
+              <div className={style.filter_name}>Creation Date</div>
+              <div className={style.filter_input}>
+                <input className={style.filter_input__date}placeholder='Select the Date'></input>
+                <img className={style.selectDate_img} src={calendar} alt='calendar'/>
+              </div>
+            </div>
+
+            <div className={style.filter}>
+              <div className={style.filter_name}>Sort by:</div>
+              <Select
+                defaultName={'Category'}
+                options={[1, 2, 3]}
+                img={arrowDown}
+                classes={selectStyles}
+              />
+            </div>
+
+            <div className={style.filter}>
+              <Select
+                defaultName={'Status'}
+                options={['On Sale', 'Off-sale']}
+                img={arrowDown}
+                classes={selectStyles}
+              />
+            </div>
+            <Checkbox
+              label={'Include Hidden'}
+              classes={checkboxStyles}
+            />
+          </div>
+        
+        : <></>}
         <div className={style.selectAndPaginationWrapper}>
           <ShowPage />
           <Pagination activePage={activePage} amountPages={amountPages} />
