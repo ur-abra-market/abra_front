@@ -1,6 +1,11 @@
-.ProductPath {
-  display: flex;  
-  width: 100%; 
-  font-family: 'SF Pro Display Medium';
-  font-size: var(--fd);
+.ProductPath  {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row; 
+  gap: 16px; 
+  height: 24px; 
+  align-items: center; 
+  font-size: var(--fp); 
+  letter-spacing: 0.16px;
+  color: #828282;
 }

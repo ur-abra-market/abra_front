@@ -1,10 +1,15 @@
 import React from 'react'
 import './ProductPath.css'
-
+const pathArr = ['Clothes for women', 'Dress', 'Spring-Summer']
 const ProductPath = () => {
-  const pathProduct = 'Clothing > For women > Dress > Spring-Summer'
   return (
-    <div className='ProductPath'>{pathProduct}</div>
+    <div className='ProductPath'>
+      {
+        pathArr.map((route, i) => (
+          <p key={`path_${route}`}>{route}</p>
+        ))
+      }      
+    </div>
   )
 }
 
