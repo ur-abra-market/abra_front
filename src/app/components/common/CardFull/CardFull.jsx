@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { actve } from '../../../store/reducers/productPaginateSlice';
 import { changeById } from '../../../store/reducers/basketSlice';
-import BtnNewBest from '../BtnNewBest'
+import BtnNewBest from '../BtnNewBest/BtnNewBest'
 import ProductQuantityControl from '../ProductQuantityControl'
 import Stars from '../Stars'
 import './CardFull.css'
