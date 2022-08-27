@@ -1,5 +1,5 @@
 const refreshToken = "csrf_refresh_token";
-const accesToken = "";
+const accesToken = "csrf_access_token";
 
 function getCookie(name) {
   let matches = document.cookie.match(

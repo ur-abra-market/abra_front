@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { productPaginateService } from '../../../store/reducers/productPaginateSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { productPaginateService } from "../../../store/reducers/productPaginateSlice";
 import "./MainPage.css";
 import Slider from "../../common/Slider";
 import StatusProduct from "../../common/StatusProduct";
@@ -9,12 +9,12 @@ import Feedback from "../../ui/feedback/Feedback";
 
 const MainPage = () => {
   const dispatch = useDispatch();
-  const paginate = useSelector((state) => state.paginate);     
+  const paginate = useSelector((state) => state.paginate);
   const filter = useSelector((state) => state.filter);
-  const data = {...filter, ...paginate}; 
-  useEffect(() => {    
+  const data = { ...filter, ...paginate };
+  useEffect(() => {
     dispatch(productPaginateService(data));
-  }) 
+  }, [paginate, filter]);
 
   const dataArr = [
     "All categories",
