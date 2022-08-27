@@ -5,10 +5,11 @@ import Auth from "./layouts/auth";
 import Main from "./layouts/main";
 import ForgotPasswordPage from "./components/pages/forgotPasswordPage";
 import ResetPasswordPage from "./components/pages/resetPasswordPage";
-import UserAccountPage from "./components/pages/userAccountPage/userAccountPage";
 import MainPage from "./components/pages/MainPage/MainPage";
 import ProductPage from "./components/pages/productPage";
 import SupplierPage from "./components/pages/supplierPage";
+import SellerAccountPage from "./components/pages/sellerAccountPage";
+import SupplierAccountMainPage from "./components/pages/supplierPage/supplierAccountMainPage/supplierAccountMainPage";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
         <Route path="/" element={<Main />}>
           <Route index element={<MainPage />} />
           <Route path="product" element={<ProductPage />} />
-          <Route path="personalAccount" element={<UserAccountPage />} />
+          <Route path="sellerPersonalAccount" element={<SellerAccountPage />} />
+          <Route path="supplierPersonalAccount" element={<SupplierAccountMainPage />} />
           <Route path="help" element={<p> Help </p>} />
         </Route>
         <Route

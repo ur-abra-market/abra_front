@@ -38,7 +38,7 @@ const NavBar = () => {
           </Link>
         ) : (
           <>
-            <Link className={style.wrepperButtonLink} to="/personalAccount">
+            <Link className={style.wrepperButtonLink} to="/">
               <ButtonLink
                 name="My Profile"
                 src={imgBtnHeader}

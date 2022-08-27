@@ -13,18 +13,19 @@ import Select from "../../common/select";
 import { useDispatch } from "react-redux";
 import { active } from "../../../store/reducers/paginateSlice";
 import FooterForSupplierPart from "../../common/footerForSupplierPart";
+import SupplierAccountMainPage from "./supplierAccountMainPage/supplierAccountMainPage";
 
 const SupplierPage = () => {
-  const [currentMenuItemID, setcurrentMenuItemID] = useState();
+  const [currentMenuItemID, setCurrentMenuItemID] = useState();
 
   const dispatch = useDispatch();
   useEffect(() => {
-    setcurrentMenuItemID("Dashboard");
+    setCurrentMenuItemID("MainPage");
   }, []);
 
   const handleMenuItemSelect = (sectionName) => {
     const sectionNameID = sectionName.split(" ")[0];
-    setcurrentMenuItemID(sectionNameID);
+    setCurrentMenuItemID(sectionNameID);
     dispatch(active(1));
   };
 
@@ -49,7 +50,11 @@ const SupplierPage = () => {
           <>
             <Link to="/">Abra</Link>
             <span className={style.verticalLine}></span>
-            <span>SUPPLIER</span>
+            <span 
+              className={style.supplierMainPagelink}
+              onClick={() => setCurrentMenuItemID("MainPage")}
+              >SUPPLIER
+            </span>
           </>
         }
       >
@@ -79,7 +84,11 @@ const SupplierPage = () => {
           onMenuItemSelect={handleMenuItemSelect}
           selectedMenuItemID={currentMenuItemID}
         />
-        <SupplierSection pageID={currentMenuItemID} />
+        {currentMenuItemID === "MainPage" ? 
+          <SupplierAccountMainPage/> :
+          <SupplierSection pageID={currentMenuItemID}/>
+        } 
+        {/* <SupplierSection pageID={currentMenuItemID} /> */}
       </div>
       <FooterForSupplierPart/>
     </>

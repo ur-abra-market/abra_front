@@ -1,12 +1,12 @@
 import React from "react";
-import style from "./userAccountPage.module.css";
+import style from "./sellerAccountPage.module.css";
 import { Link } from "react-router-dom";
 import iconImage from "../../../assets/img/icons/icon-img.png";
 import TextField from "../../common/textField";
 import { ButtonLink, InfoBtn } from "../../common/buttons";
 import Checkbox from "../../common/checkbox/checkbox";
 
-const UserAccountPage = () => {
+const SellerAccountPage = () => {
   const profileInfoBtnClasses = {
     wrepperButtonLink: `${style.wrepperButtonLinkProfile}`,
     wrepperBtnImg: `${style.wrepperBtnImgProfile}`,
@@ -38,8 +38,8 @@ const UserAccountPage = () => {
   };
 
   return (
-    <div className={style.userCabinet}>
-      <div className={style.userCabinet__contentWrapper}>
+    <div className={style.sellerCabinet}>
+      <div className={style.sellerCabinet__contentWrapper}>
         <div className={`${style.section} ${style.profileInfo}`}>
           <div className={style.header__wrapper}>
             <div className={style.header}>Profile Info</div>
@@ -206,4 +206,4 @@ const UserAccountPage = () => {
   );
 };
 
-export default UserAccountPage;
+export default SellerAccountPage;

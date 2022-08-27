@@ -1,8 +1,8 @@
-.userCabinet {
+.sellerCabinet {
   background: #f5f5f5;
   padding: 24px 30px 48px;
 }
-.userCabinet__contentWrapper {
+.sellerCabinet__contentWrapper {
   display: grid;
   grid-template-columns: 32.63vw 41.66vw 18.95vw;
   grid-template-rows: minmax(min-content, 26.59vh) minmax(min-content, 34.56vh);
@@ -180,7 +180,7 @@ border-radius: 100%; */
   margin-top: 44px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-start;
   /* gap: 32px; */
   margin-bottom: 30px;
