@@ -1,8 +1,13 @@
 .Loader {
   display: flex;
+  position: absolute;
   align-items: center;
-  min-height: calc(100vh - 300px);
-  height: fit-content;  
+  justify-content: center;
+  width: 100vw;
+  height: max-content;
+  min-height: 100vh;  
+  z-index: 20; 
+  background-color: #00000080;
 }
 
 .Loader_indicator {
