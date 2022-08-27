@@ -9,7 +9,8 @@
 .ProductPrice>span {
   display: block;  
   align-self: flex-end;
-  font-size: var(--fs);
+  font-size: 10px;
   font-family: 'Roboto';
-  color: #828282;
+  color: #828282;  
+  margin-right: 16px;
 }

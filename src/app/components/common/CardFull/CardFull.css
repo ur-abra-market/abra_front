@@ -80,10 +80,11 @@
 
 .CardFull__price-stars {
   display: flex;
-  flex-direction: row;
-  width: 355px;
+  flex-direction: row;  
+  min-width: 355px;
+  width: max-content;
   justify-content: space-between;
-  align-items: flex-end;  
+  align-items: flex-end;   
 }
 .CardFull__stars-reviews {
  display: flex;
