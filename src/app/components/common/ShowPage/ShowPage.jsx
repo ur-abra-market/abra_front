@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { amount } from '../../../store/reducers/paginateSlice';
-import { productPaginateService } from '../../../store/reducers/productPaginateSlice';
 import arrowDown from '../../../assets/img/icons/arrow-slide-up.svg'
 import './ShowPage.css';
 
 const ShowPage = () => {  
   const dispatch = useDispatch(); 
-
-  const activePage = useSelector((state) => state.paginate.page_num);     
-  const filter = useSelector((state) => state.filter);
     
   const list = ['20', '40', '60', '80', '100']
   const [option, setOption] = useState(list[0]);
@@ -29,9 +25,7 @@ const ShowPage = () => {
   const handlerPage = (el) => {
     setOption(el);
     setListSwitch(!listSwitch);
-    dispatch(amount(+el));
-    const data = {page_num: activePage, page_size: +el, ...filter}   
-    dispatch(productPaginateService(data));
+    dispatch(amount(+el));    
   }
 
   return (

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { active } from '../../../store/reducers/paginateSlice';
-import { productPaginateService } from '../../../store/reducers/productPaginateSlice';
 import './Paginator.css';
 
 const Paginator = () => {
@@ -9,9 +8,7 @@ const Paginator = () => {
    
   const activePage = useSelector((state) => state.paginate.page_num);
   const amountPages = useSelector((state) => state.paginate.amountPages);  
-  const amountItems = useSelector((state) => state.paginate.page_size);  
-  const filter = useSelector((state) => state.filter);
-    
+      
   const arrPages = Array(amountPages - 2).fill(2);
   const pages = amountPages > 2 ? arrPages.map((_, i) => i + 2) : [];
   
@@ -28,9 +25,7 @@ const Paginator = () => {
 
   
   const handlePage = (page) => {
-    dispatch(active(page));     
-    const data = {page_num: page, page_size: amountItems, ...filter};
-    dispatch(productPaginateService(data));
+    dispatch(active(page)); 
   };
 
   return (
