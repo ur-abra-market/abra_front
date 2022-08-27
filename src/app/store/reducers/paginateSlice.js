@@ -12,7 +12,7 @@ export const paginateSlice = createSlice({
   initialState,
   reducers: {
     active: (state, action) => {
-      state.activePage = action.payload;
+      state.page_num = action.payload;
     },    
     amount: (state, action) => {
       state.page_size = action.payload;
