@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import iconImage from "../../../../assets/img/icons/icon-img.png";
 import TextField from "../../../common/textField";
+import PhoneNumFieldWithoutCountryCode from "../../../common/phoneNumFieldWithoutCountryCode/phoneNumFieldWithoutCountryCode";
 import { InfoBtn } from "../../../common/buttons";
 import Checkbox from "../../../common/checkbox/checkbox";
 import Select from "../../../common/select";
@@ -11,16 +12,17 @@ import
     accountDetails__textFieldClasses,
     notificationCheckboxClasses,
     checkboxClasses,
-    SelectCountryClasses,
-    SelectPersonalPhoneClasses,
-    SelectBusinessPhoneClasses,
-    SelectBusinessSectorClasses,
-    SelectNumberOfEmployeesClasses
+    selectCountryClasses,
+    selectPersonalPhoneClasses,
+    selectBusinessPhoneClasses,
+    selectBusinessSectorClasses,
+    selectNumberOfEmployeesClasses,
+    inputPhoneClasses
   } from "./constantsOfClassesStyles";
 import style from "./supplierAccountMainPage.module.css";
 
 const SupplierAccountMainPage = () => {
-  
+
   return (
     <div className={style.supplierCabinet}>
 
@@ -52,7 +54,7 @@ const SupplierAccountMainPage = () => {
             defaultName="Select"
             img={arrowTriangleImg}
             options={["Turkey", "Russia", "some other"]}
-            classes={SelectCountryClasses}
+            classes={selectCountryClasses}
           />
           <div className={style.subtitle}>Personal phone number</div>
           <div className={style.profileInfo__number}>
@@ -60,14 +62,14 @@ const SupplierAccountMainPage = () => {
               defaultName="+90"
               img={arrowTriangleImg}
               options={["+7", "+90", "other"]}
-              classes={SelectPersonalPhoneClasses}
+              classes={selectPersonalPhoneClasses}
             />
-            <TextField
+            <PhoneNumFieldWithoutCountryCode
               label=""
               name="phone"
               type="tel"
               placeholder="(XXX) XXX - XX - XX"
-              classes={textFieldClasses}
+              classes={inputPhoneClasses}
             />
           </div>
           <div className={style.textFieldWrapper}>
@@ -109,7 +111,7 @@ const SupplierAccountMainPage = () => {
                 defaultName="Select"
                 img={arrowTriangleImg}
                 options={["Option1", "Option2", "Option3"]}
-                classes={SelectBusinessSectorClasses}
+                classes={selectBusinessSectorClasses}
               />
             </div>
           </div>
@@ -133,7 +135,7 @@ const SupplierAccountMainPage = () => {
                 defaultName="Select"
                 img={arrowTriangleImg}
                 options={["<10", ">10", ">50", ">100"]}
-                classes={SelectNumberOfEmployeesClasses}
+                classes={selectNumberOfEmployeesClasses}
               />
             </div>
           </div>
@@ -171,14 +173,14 @@ const SupplierAccountMainPage = () => {
               defaultName="+90"
               img={arrowTriangleImg}
               options={["+7", "+90", "other"]}
-              classes={SelectBusinessPhoneClasses}
+              classes={selectBusinessPhoneClasses}
             />
-            <TextField
+            <PhoneNumFieldWithoutCountryCode
               label=""
               name="phone"
               type="tel"
               placeholder="(XXX) XXX - XX - XX"
-              classes={textFieldClasses}
+              classes={inputPhoneClasses}
             />
           </div>
           <div className={style.textFieldWrapper}>
@@ -196,9 +198,6 @@ const SupplierAccountMainPage = () => {
             name="bussinessAdress"
             wrap="hard"
           />
-
-
-
         </div>
 
         <div className={`${style.section} ${style.notifications}`}>
@@ -239,6 +238,7 @@ const SupplierAccountMainPage = () => {
               <TextField
                 label="Email"
                 name="email"
+                placeholder="Enter your email"
                 classes={accountDetails__textFieldClasses}
               />
             </div>
@@ -247,6 +247,7 @@ const SupplierAccountMainPage = () => {
                 label="Password"
                 name="password"
                 type="password"
+                placeholder="Enter your email password"
                 classes={accountDetails__textFieldClasses}
               />
             </div>
