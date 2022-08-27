@@ -5,11 +5,11 @@ import Auth from "./layouts/auth";
 import Main from "./layouts/main";
 import ForgotPasswordPage from "./components/pages/forgotPasswordPage";
 import ResetPasswordPage from "./components/pages/resetPasswordPage";
-import UserAccountPage from "./components/pages/userAccountPage/userAccountPage";
-import MainPage from "./components/pages/MainPage/MainPage";
+import UserAccountPage from "./components/pages/userAccountPage";
+import MainPage from "./components/pages/MainPage";
 import ProductPage from "./components/pages/productPage";
 import ProductListPage from "./components/pages/productListPage";
-import ConfirmEmail from "./components/pages/confirmEmail/confirmEmail";
+import ConfirmEmail from "./components/pages/confirmEmail";
 
 function App() {
   return (

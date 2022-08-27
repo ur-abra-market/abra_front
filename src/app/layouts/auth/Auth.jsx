@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import style from "./auth.module.css";
-import LoginPage from "../../components/pages/loginPage/loginPage";
-import RegisterPage from "../../components/pages/registerPage/registerPage";
-import styleBtn from ".././../components/common/buttons/buttons.module.css";
+import LoginPage from "../../components/pages/loginPage";
+import RegisterPage from "../../components/pages/registerPage";
 import iconGoogle from "../../assets/img/icons/Google.png";
 import iconApple from "../../assets/img/icons/Apple.png";
 import iconVK from "../../assets/img/icons/VK.png";
+import style from "./auth.module.css";
+import styleBtn from ".././../components/common/buttons/buttons.module.css";
 
 const Auth = () => {
   const [pageType, setPageType] = useState("login");

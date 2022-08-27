@@ -1,5 +1,5 @@
 import React from "react";
-import { BtnNewBest } from "../../common/buttons";
+import { BtnNewBest, InfoBtn } from "../../common/buttons";
 import ChoiceProduct from "../../ui/product/ChoiceProduct";
 import FlagFavorites from "../../ui/product/FlagFavorites";
 import ProductAbout from "../../ui/product/ProductAbout";
@@ -12,7 +12,6 @@ import "./ProductPage.css";
 import ProductStatistics from "../../ui/product/ProductStatistics";
 import ProductReview from "../../ui/product/ProductReview";
 import LatestSearch from "../../ui/product/LatestSearch";
-import { InfoBtn } from "../../common/buttons";
 
 const ProductPage = () => {
   const data = ["Similar products", "Popular products in this category"];

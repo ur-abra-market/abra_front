@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import TextField from "../../common/textField";
 import { Button } from "../../common/buttons";
-import style from "./registerForm.module.css";
-import styleBtn from "../../common/buttons/buttons.module.css";
-import { useDispatch, useSelector } from "react-redux";
 import { registerService } from "../../../store/reducers/registerSlice";
-import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
-import Form from "../../common/form/form";
-import Spinner from "../spinner/Spinner";
+import PasswordComplexity from "../../common/passwordComplexity";
+import Form from "../../common/form";
+import Loader from "../../common/Loader";
+import styleBtn from "../../common/buttons/buttons.module.css";
+import style from "./registerForm.module.css";
 
 const RegisterForm = () => {
   const [userStatus, setUserStatus] = useState("suppliers");
@@ -106,7 +106,7 @@ const RegisterForm = () => {
           classes={textFieldClasses}
         />
         <PasswordComplexity valueOfNewPassword={watchPasword} />
-        {isLoading && <Spinner />}
+        {isLoading && <Loader />}
         {errMessage && <p>{errMessage}</p>}
         <Button
           value="Sign up"

@@ -1,12 +1,12 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 import { Button } from "../../common/buttons";
+import TextField from "../../common/textField";
+import PasswordComplexity from "../../common/passwordComplexity";
+import Form from "../../common/form";
 import style from "./resetPasswordForm.module.css";
 import styleBtn from "../../common/buttons/buttons.module.css";
-import { useForm } from "react-hook-form";
-import TextField from "../../common/textField";
-import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
-import Form from "../../common/form/form";
 
 const ResetPasswordForm = ({ handleChangeModalActive }) => {
   const {

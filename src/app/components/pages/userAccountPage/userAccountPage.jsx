@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import iconImage from "../../../assets/img/icons/icon-img.png";
 import TextField from "../../common/textField";
 import { ButtonLink, InfoBtn } from "../../common/buttons";
-import Checkbox from "../../common/checkbox/checkbox";
+import Checkbox from "../../common/checkbox";
 
 const UserAccountPage = () => {
   const profileInfoBtnClasses = {

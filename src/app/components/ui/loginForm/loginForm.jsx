@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { loginService } from "../../../store/reducers/loginSlice";
 import TextField from "../../common/textField";
 import { Button } from "../../common/buttons";
-import style from "../registerForm/registerForm.module.css";
+import PasswordComplexity from "../../common/passwordComplexity";
+import Form from "../../common/form";
+import Loader from "../../common/Loader";
 import styleBtn from "../../common/buttons/buttons.module.css";
-import { loginService } from "../../../store/reducers/loginSlice";
-import { useForm } from "react-hook-form";
-import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
-import Form from "../../common/form/form";
-import Spinner from "../spinner/Spinner";
-import { useNavigate } from "react-router-dom";
+import style from "../registerForm/registerForm.module.css";
 
 const LoginForm = () => {
   const [userStatus, setUserStatus] = useState("suppliers");
@@ -105,7 +105,7 @@ const LoginForm = () => {
           classes={textFieldClasses}
         />
         <PasswordComplexity valueOfNewPassword={watchPasword} />
-        {isLoading && <Spinner />}
+        {isLoading && <Loader />}
         {errMessage && <p>{errMessage}</p>}
         <Button
           value="Log in"
