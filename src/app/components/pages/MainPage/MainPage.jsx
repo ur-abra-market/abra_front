@@ -9,10 +9,9 @@ import Feedback from "../../ui/feedback/Feedback";
 
 const MainPage = () => {
   const dispatch = useDispatch();
-  const activePage = useSelector((state) => state.paginate.activePage);   
-  const amountItems = useSelector((state) => state.paginate.amountItems);  
-  const categoryProduct = useSelector((state) => state.product.categoryProduct);
-  const data = {page_num: activePage, page_size: amountItems, category: categoryProduct};
+  const paginate = useSelector((state) => state.paginate);     
+  const filter = useSelector((state) => state.filter);
+  const data = {...filter, ...paginate}; 
   dispatch(productPaginateService(data));
 
   const dataArr = [

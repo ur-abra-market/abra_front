@@ -5,6 +5,7 @@ import productReducer from "./reducers/productSlice";
 import paginateReducer from "./reducers/paginateSlice";
 import productPaginateReducer from "./reducers/productPaginateSlice";
 import basketReducer from "./reducers/basketSlice";
+import filterReducer from "./reducers/filterSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,7 @@ export const store = configureStore({
     paginate: paginateReducer,
     productPaginate: productPaginateReducer,
     basket: basketReducer,
+    filter: filterReducer,
   },
 });
+

@@ -7,10 +7,10 @@ import './Paginator.css';
 const Paginator = () => {
   const dispatch = useDispatch();
    
-  const activePage = useSelector((state) => state.paginate.activePage);
+  const activePage = useSelector((state) => state.paginate.page_num);
   const amountPages = useSelector((state) => state.paginate.amountPages);  
-  const amountItems = useSelector((state) => state.paginate.amountItems);  
-  const categoryProduct = useSelector((state) => state.product.categoryProduct);
+  const amountItems = useSelector((state) => state.paginate.page_size);  
+  const filter = useSelector((state) => state.filter);
     
   const arrPages = Array(amountPages - 2).fill(2);
   const pages = amountPages > 2 ? arrPages.map((_, i) => i + 2) : [];
@@ -28,9 +28,8 @@ const Paginator = () => {
 
   
   const handlePage = (page) => {
-    dispatch(active(page)); 
-    const data = {page_num: page, page_size: amountItems, category: categoryProduct};
-    console.log(data);
+    dispatch(active(page));     
+    const data = {page_num: page, page_size: amountItems, ...filter};
     dispatch(productPaginateService(data));
   };
 

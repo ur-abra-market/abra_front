@@ -2,11 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import productPaginateFetch from "../../services/productPaginate.service";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+
 const initialState= {  
   dataProductPaginate: [],  
   productActive: null,
   stateProduct: 'nothing',
 };
+
 
 export const productPaginateService = createAsyncThunk(
   "productPaginate/productPaginateService",

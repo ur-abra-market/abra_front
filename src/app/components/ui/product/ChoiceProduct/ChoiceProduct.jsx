@@ -8,15 +8,18 @@ const ChoiceProduct = () => {
   const colors = ['#828282', '#b9b9b9', '#cfcfcf', '#dddddd'];
   const dispatch = useDispatch();  
   const productData = useSelector((state) => state.productPaginate.productActive);
+  console.log(productData);
  
-  const {quantity, value_price} = productData.info;
+  const price = +productData.info.value_price;
+  const quantity = +productData.info.quantity;
+
   const max = useSelector((state) => state.product.max);  
   const basket = useSelector((state) => state.basket.basketProduct);  
   const product = basket.find((obj) => obj.product_id === productData.product_id);
   const propsNew = product ? product : productData;
 
   const discount = 0;  
-  const amount = value_price * quantity;  
+  const amount = price * quantity;  
   const ship = 220; 
   const total = discount + ship;
 
@@ -38,7 +41,7 @@ const ChoiceProduct = () => {
         <ProductQuantityControl obj={propsNew}/>                      
       </div>
       <div className='ChoiceProduct__price'>
-          <div className='ChoiceProduct__price-item'>1pc<span> .......................................... </span>${Math.floor(value_price) < value_price ? value_price.toFixed(2) : value_price}</div>
+          <div className='ChoiceProduct__price-item'>1pc<span> .......................................... </span>${Math.floor(price) < price ? price.toFixed(2) : price}</div>
           <div className='ChoiceProduct__price-discount'>{max}pc <span> ............................................ </span>${Math.floor(discount) < discount ? discount.toFixed(2) : discount}</div>
           <div className='ChoiceProduct__price-amount'>{max}pc<span> ................................................... </span>${Math.floor(amount) < amount ? amount.toFixed(2) : amount}</div>          
           <div className='ChoiceProduct__price-ship'>Shipping <span> ................................................. </span>${Math.floor(ship) < ship ? ship.toFixed(2) : ship}</div>

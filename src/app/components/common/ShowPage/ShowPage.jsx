@@ -8,8 +8,8 @@ import './ShowPage.css';
 const ShowPage = () => {  
   const dispatch = useDispatch(); 
 
-  const activePage = useSelector((state) => state.paginate.activePage);     
-  const categoryProduct = useSelector((state) => state.product.categoryProduct);
+  const activePage = useSelector((state) => state.paginate.page_num);     
+  const filter = useSelector((state) => state.filter);
     
   const list = ['20', '40', '60', '80', '100']
   const [option, setOption] = useState(list[0]);
@@ -30,7 +30,7 @@ const ShowPage = () => {
     setOption(el);
     setListSwitch(!listSwitch);
     dispatch(amount(+el));
-    const data = {page_num: activePage, page_size: +el, category: categoryProduct}   
+    const data = {page_num: activePage, page_size: +el, ...filter}   
     dispatch(productPaginateService(data));
   }
 
