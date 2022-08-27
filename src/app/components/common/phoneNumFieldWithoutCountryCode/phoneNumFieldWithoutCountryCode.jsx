@@ -12,9 +12,23 @@ const PhoneNumFieldWithoutCountryCode = (props) => {
     let input = e.target
     let inputNumbersValue = getInputNumbersValue(input)
     let formatedInputValue = ""
+    let selectionStart = input.selectionStart
 
     if (!inputNumbersValue) {
       return input.value = "";
+    }
+
+    console.log(input.value.length === selectionStart)
+
+   //В ЭТО УСЛОВИЕ МЫ НИКОГДА НЕ ПОПАДАЕМ, внутри корректное редактирование номера
+    if (input.value.length !== selectionStart) {
+      console.log('середина строки')
+      // Editing in the middle of input, not last symbol
+      if (e.data && /\D/g.test(e.data)) {
+          // Attempt to input non-numeric symbol
+          input.value = inputNumbersValue;
+      }
+      return;
     }
 
     if (inputNumbersValue.length > 0) {
@@ -35,13 +49,21 @@ const PhoneNumFieldWithoutCountryCode = (props) => {
       formatedInputValue = ""
       formatedInputValue = inputNumbersValue
     }
-
-
-
     input.value = formatedInputValue
-    console.log(formatedInputValue)
-    
+
+    console.log(`input.value.length ${input.value.length}`)
+    console.log(`selectionStart ${selectionStart}`)
   }
+
+  const onPhoneKeyDown = (e) => {
+    let input = e.target;
+
+    if (e.keyCode === 8) {
+      e.target.value = getInputNumbersValue(input).trim()
+      console.log(e.target.value)
+    }
+  }
+
 
   return (
     <>
@@ -54,8 +76,8 @@ const PhoneNumFieldWithoutCountryCode = (props) => {
           id={id}
           className={classes.input}
           placeholder={placeholder}
-          onInput ={(e)=>onPhoneInput(e)}
-          maxLength="25"
+          onInput = {(e)=>onPhoneInput(e)}
+          onKeyDown = {(e)=>onPhoneKeyDown(e)}
         />
       </div>
     </>
