@@ -1,3 +1,4 @@
+import { useForm } from "react-hook-form";
 import ButtonReg from "../../common/buttons/buttonReg";
 import Form from "../../common/form";
 import FormTitle from "../../common/formTitle";
@@ -8,6 +9,18 @@ import style from "./businessProfileForm.module.css";
 
 
 const BusinessProfileForm = () => {
+
+    const {
+        register,
+        formState: { errors, isValid },
+        handleSubmit,
+        reset,
+    } = useForm({ mode: 'onChange' })
+
+    const onSubmit = (data) => {
+        reset()
+    }
+
     return (
         <div className={style.formWrapper}>
             <div className={style.formContainer}>
@@ -16,7 +29,7 @@ const BusinessProfileForm = () => {
                     text={'Enter the information you want to show on your store profile'}
                 />
 
-                <Form action="">
+                <Form action="" onSubmit={handleSubmit(onSubmit)}>
                     <div className={style.mainInfo}>
 
                         <p className={style.mainInfoTitle}>Main info</p>
@@ -24,31 +37,45 @@ const BusinessProfileForm = () => {
                         <ImageAdding
                             label={'Add logo or profile image'}
                             placeholder={'The customers will recognize your store by this image'}
+                            register={
+                                register('profileLogo', {
+                                    required: 'Field is required'
+                                })}
+                            error={errors?.profileLogo?.message}
                         />
 
                         <div className={style.selectInfoInputs}>
 
                             <TextFieldLabelAbove
+                                register={
+                                    register('storeName', {
+                                        required: 'Field is required'
+                                    })}
+                                error={errors?.storeName?.message}
                                 title={'Shop name (will be shown on the profile)'}
                                 name={'storeName'}
                                 type={'text'}
-                                placeholder={'Enter your company or store name'}
-                                error={'Please add text'} />
+                                placeholder={'Enter your company or store name'} />
 
                             <div className={style.selectEqual}>
                                 <SelectLabelAbove
+                                    register={
+                                        register('businessSector', {
+                                            required: 'Field is required'
+                                        })}
+                                    error={errors?.businessSector?.message}
                                     title={'Your main business sector'}
-                                    name={'lname'}
+                                    name={'businessSector'}
                                     options={['1', '2', '3', '4', '5', '6']}
-                                    placeholder={'Select'}
-                                    error={'Please add text'} />
+                                    placeholder={'Select'} />
                             </div>
 
                         </div>
 
                         <div className={style.checkboxContainer}>
                             <input type="checkbox" id="checkbox"
-                                className={style.checkbox} />
+                                className={style.checkbox}
+                                {...register('checkbox')} />
                             <label htmlFor="checkbox">I am a manufacturer</label>
                         </div>
                     </div>
@@ -61,29 +88,29 @@ const BusinessProfileForm = () => {
                         <div className={style.selectInfoInputs}>
 
                             <TextFieldLabelAbove
+                                register={register('yearEstablished')}
                                 title={'Year Established'}
                                 name={'yearEstablished'}
                                 type={'number'}
-                                placeholder={'Enter the year'}
-                                error={'Please add text'} />
+                                placeholder={'Enter the year'} />
 
                             <div className={style.selectEqual}>
                                 <SelectLabelAbove
+                                    register={register('numEmployees')}
                                     title={'Number of employees'}
                                     name={'numEmployees'}
                                     options={['0', '<4', '<10', '>10']}
-                                    placeholder={'Select'}
-                                    error={'Please add text'} />
+                                    placeholder={'Select'} />
                             </div>
 
                         </div>
 
 
                         <TextFieldLabelAbove
+                            register={register('textarea')}
                             title={'About the business'}
                             name={'textarea'}
-                            placeholder={'Tell more about your company or business'}
-                            error={'Please add text'} />
+                            placeholder={'Tell more about your company or business'} />
 
 
                         <p className={style.listImgTitle}>Photo of the company or production</p>
@@ -102,6 +129,7 @@ const BusinessProfileForm = () => {
 
                         <div className={style.phoneNumber}>
                             <SelectLabelAbove
+                                register={register('code')}
                                 name={'countryCode'}
                                 title={'Business phone number'}
                                 options={['+90', '+44', '+77', '+1']}
@@ -109,34 +137,49 @@ const BusinessProfileForm = () => {
 
                             <div className={style.marginFix}>
                                 <TextFieldLabelAbove
+                                    register={
+                                        register('tel', {
+                                            pattern: {
+                                                value: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
+                                                message: "Invalid phone number",
+                                            }
+                                        })}
+                                    error={errors?.tel?.message}
                                     name={'tel'}
                                     type={'tel'}
-                                    placeholder={'(XXX) XXX - XX - XX'}
-                                    error={'Please add text'} />
+                                    placeholder={'(XXX) XXX - XX - XX'} />
                             </div>
 
                         </div>
 
                         <div className={style.contactsInputs}>
                             <TextFieldLabelAbove
+                                register={
+                                    register('email', {
+                                        pattern: {
+                                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                            message: "Invalid email address",
+                                        }
+                                    })}
+                                error={errors?.email?.message}
                                 title={'Business email address'}
                                 name={'email'}
                                 type={'email'}
-                                placeholder={'business@email.com'}
-                                error={'Please add text'} />
+                                placeholder={'business@email.com'} />
+
                             <TextFieldLabelAbove
+                                register={register('address')}
                                 title={'Main company address'}
                                 name={'address'}
                                 type={'text'}
-                                placeholder={'Enter address'}
-                                error={'Please add text'} />
+                                placeholder={'Enter address'} />
                         </div>
 
                     </div>
 
                     <ButtonReg type={'submit'}
                         value={'Continue'}
-                        isValid={true} />
+                        isValid={!isValid} />
                 </Form>
 
             </div>
