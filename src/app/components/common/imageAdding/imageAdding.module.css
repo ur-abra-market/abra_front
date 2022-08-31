@@ -89,3 +89,10 @@
     max-width: 160px;
     text-align: left;
 }
+
+.inputError {
+    color: #ff4040;
+    font-size: 13px;
+    text-align: left;
+    position: absolute;
+}
