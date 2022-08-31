@@ -1,15 +1,15 @@
 import style from './textFieldLabelAbove.module.css'
 
-const TextFieldLabelAbove = ({ title, type, placeholder, error, name }) => {
+const TextFieldLabelAbove = ({ title, type, placeholder, error, name, register }) => {
 
     const textareaScroll = (e) => e.target.style.height = e.target.scrollHeight + 'px'
-
     return (
         <div className={style.inputWrapper}>
             <p className={style.inputTitle}>{title}</p>
 
             {name === 'textarea' ?
                 <textarea
+                    {...register}
                     name={name}
                     placeholder={placeholder}
                     className={style.textarea}
@@ -17,6 +17,7 @@ const TextFieldLabelAbove = ({ title, type, placeholder, error, name }) => {
                     onInput={(e) => textareaScroll(e)} />
 
                 : <input type={type}
+                    {...register}
                     name={name}
                     placeholder={placeholder}
                     className={style.inputTextField} />

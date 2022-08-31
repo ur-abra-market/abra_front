@@ -1,13 +1,14 @@
 import style from './selectLabelAbove.module.css'
 
 
-const SelectLabelAbove = ({ title, name, placeholder, options, error }) => {
+const SelectLabelAbove = ({ title, name, placeholder, options, error, register }) => {
     return (
         <div>
             <p className={style.selectTitle}>{title}</p>
 
             <div className={style.selectContainer}>
                 <select
+                    {...register}
                     defaultValue={''}
                     name={name}
                     className={style.selectField}>
