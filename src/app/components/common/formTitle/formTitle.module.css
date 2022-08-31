@@ -1,0 +1,11 @@
+.title {
+    font-weight: 700;
+    font-size: 34px;
+    text-align: left;
+}
+
+.text{
+    margin-top: 8px;
+    font-size: 15px;
+    text-align: left;
+}
