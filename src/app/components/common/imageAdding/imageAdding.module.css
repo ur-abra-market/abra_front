@@ -1,0 +1,91 @@
+.inputFileLabel {
+    opacity: 0;
+    position: absolute;
+    height: 88px;
+    width: 88px;
+    border-radius: 50%;
+    left: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.inputFile {
+    opacity: 0;
+    position: absolute;
+    height: 120px;
+    width: 120px;
+    left: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.iconImgLabel {
+    width: 42px;
+    position: absolute;
+    left: 23.3px;
+    top: 23.3px;
+}
+
+.iconImg {
+    width: 45.7px;
+    position: absolute;
+    left: 37.7px;
+    top: 37.7px;
+}
+
+.avatarImgLabel {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+}
+
+.avatarImg {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+}
+
+.inputContainer {
+    position: relative;
+}
+
+.iconBackgroundLabel {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: #F2F2F2;
+    margin-right: 16px;
+}
+
+.iconBackground {
+    width: 120px;
+    height: 120px;
+    background: #F2F2F2;
+}
+
+.profileLogoWrapper {
+    display: flex;
+}
+
+.label {
+    font-size: 14px;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.labelContainer {
+    margin-top: 13px;
+}
+
+.placeholder {
+    margin-top: 8px;
+    font-size: 11px;
+    color: #828282;
+    max-width: 160px;
+    text-align: left;
+}
