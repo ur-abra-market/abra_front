@@ -1,0 +1,13 @@
+.CheckoutPage {
+  width: calc(100% - 64px);
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  border: 1px red solid;  
+}
+.Checkout {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

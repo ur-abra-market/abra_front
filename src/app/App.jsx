@@ -10,6 +10,7 @@ import MainPage from "./components/pages/MainPage";
 import ProductPage from "./components/pages/productPage";
 import ProductListPage from "./components/pages/productListPage";
 import ConfirmEmail from "./components/pages/confirmEmail";
+import CheckoutPage from "./components/pages/checkoutPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route index element={<MainPage />} />
           <Route path="product" element={<ProductPage />} />
           <Route path="productList" element={<ProductListPage />} />
+          <Route path="checkout" element={<CheckoutPage />} />
           <Route path="personalAccount" element={<UserAccountPage />} />
           <Route path="help" element={<p> Help </p>} />
         </Route>
