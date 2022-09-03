@@ -6,6 +6,8 @@ import Main from "./layouts/main";
 import ForgotPasswordPage from "./components/pages/forgotPasswordPage";
 import ResetPasswordPage from "./components/pages/resetPasswordPage";
 import UserAccountPage from "./components/pages/userAccountPage";
+import OrderHistoryPage from "./components/pages/orderHistoryPage";
+import OrderDetailsPage from "./components/pages/orderDetailsPage";
 import MainPage from "./components/pages/MainPage";
 import ProductPage from "./components/pages/productPage";
 import ProductListPage from "./components/pages/productListPage";
@@ -20,6 +22,8 @@ function App() {
           <Route path="product" element={<ProductPage />} />
           <Route path="productList" element={<ProductListPage />} />
           <Route path="personalAccount" element={<UserAccountPage />} />
+          <Route path="orderHistory" element={< OrderHistoryPage />} />
+          <Route path="orderHistory/4784437395989684" element={<OrderDetailsPage />} />
           <Route path="help" element={<p> Help </p>} />
         </Route>
         <Route
