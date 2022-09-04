@@ -11,7 +11,10 @@ const CheckoutPage = () => {
       <div className='Checkout'>
         <CheckDelivery />
         <CheckPayment />
-        <CheckItems />
+        <div className='Checkout_items'>          
+          <CheckItems index='0'/>
+          <CheckItems index='1'/>
+        </div>
       </div>
       <CheckOrder />
     </div>
