@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
 @font-face {
   font-family: 'SF Pro Display Regular';
   src: url('./app/assets/fonts/SFProDisplay-Regular.ttf');
@@ -29,15 +31,16 @@
 
 :root {
   /*-------color------*/
-  --black: #000000;
-  --blue: #0064eb;
-  --gray: #808080;
+  --black: #000000;  
+  --gray: #c4c4c4;
 
   --back: #f5f5f5;
   --front: #ffffff;
 /*-------fonts------*/
-  --fh1: 32px;
-  --fh2: 24px;
+  --fh1: 64px;
+  --fh2: 34px;
+  --fh3: 25px;
+  --fh4: 20px;
   --fd: 20px;  
   --fp: 15px;
   --fs: 13px;
@@ -62,6 +65,14 @@
   outline: none;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 body {
   display: block;
   width: calc(100vw - 20px);
@@ -72,4 +83,21 @@ body {
   font-weight: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;  
+} 
+
+h1 {
+  font-size: var(--fh1);
+  letter-spacing: 0.41px;
+}
+h2 {
+  font-size: var(--fh2);
+  letter-spacing: 0.41px;
+}
+h3 {
+  font-size: var(--fh3);
+  letter-spacing: 0.38px;
+}
+h4 {
+  font-size: var(--fh4);
+  letter-spacing: 0.38px;
 }

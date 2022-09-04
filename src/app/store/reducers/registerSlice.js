@@ -1,24 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "../../services/auth.service";
+import { generateResponseError } from "../../utils/generateResponseError";
 
 const initialState = {
   resMessage: "",
   errMessage: "",
   loading: false,
 };
-
 export const registerService = createAsyncThunk(
   "register/registerService",
-  async ({ userStatus, ...rest }, { rejectWithValue }) => {
+  async ({ rout, ...rest }, { rejectWithValue }) => {
     try {
-      const response = await authService.register({ userStatus, ...rest });
-      return response.data.result;
+      const response = await authService.register({ rout, ...rest });
+      return response.result;
     } catch (error) {
-      const err = error.response.data.result
-        ? error.response.data.result
+      const err = error.response.data.detail
+        ? error.response.data.detail
         : error.message;
-      return rejectWithValue(err);
+      const message = generateResponseError(err);
+      return rejectWithValue(message);
     }
   }
 );

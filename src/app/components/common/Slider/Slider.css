@@ -2,6 +2,49 @@
   width: 100%;
   height: fit-content;  
 }
+.Slider__control {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;  
+}
+.Slider__name {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;  
+  gap: 8px;
+}
+.Slider__name>span {
+  text-decoration: underline;
+  margin-bottom: 5px;
+  color: #555555;
+}
+.Slider__name>span:hover {
+  cursor: pointer;
+}
+
+.Slider__btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 64px;  
+}
+.Slider__btn_left {  
+  width: 24px;  
+  height: 24px;
+  background-image: url('../../../assets/img/icons/arrow-slide-left.svg');
+}
+
+.Slider__btn_right {
+  width: 24px;  
+  height: 24px;
+  background-image: url('../../../assets/img/icons/arrow-slide-right.svg'); 
+}
+.Slider__btn_left:hover,
+.Slider__btn_right:hover {
+  cursor: pointer;
+}
+
 .Slider__card {
   margin-top: 32px;
   display: flex;  
@@ -15,4 +58,6 @@
   gap: 11px;
   width: fit-content;
   height: fit-content;
+  position: relative;
+  transition: 0.5s;
 }

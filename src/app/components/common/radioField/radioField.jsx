@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import style from "../radioField/radioField.module.css";
+import style from "./radioField.module.css";
 
 const RadioField = ({ options, name, onChange, value, label }) => {
   return (

@@ -1,15 +1,19 @@
-import Header from "../../components/common/Header/Header";
-import MainPage from "../../components/pages/MainPage/MainPage";
-import Footer from "../../components/common/Footer/Footer";
-import './Main.css'
+import { Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Header from "../../components/common/Header";
+import Footer from "../../components/common/Footer";
+import Loader from "../../components/common/Loader";
+import "./Main.css";
 
 const Main = () => {
+  const statusPage = useSelector((state) => state.productPaginate.stateProduct);
   return (
     <div className="container">
-    <Header />
-    <MainPage />
-    <Footer />
-    </div>        
+      <Header />
+      {statusPage === "loading" ? <Loader /> : <></>}
+      <Outlet />
+      <Footer />
+    </div>
   );
 };
 

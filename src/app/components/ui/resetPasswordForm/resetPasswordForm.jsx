@@ -1,12 +1,12 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import PropTypes from "prop-types";
 import { Button } from "../../common/buttons";
+import TextField from "../../common/textField";
+import PasswordComplexity from "../../common/passwordComplexity";
+import Form from "../../common/form";
 import style from "./resetPasswordForm.module.css";
 import styleBtn from "../../common/buttons/buttons.module.css";
-import { useForm } from "react-hook-form";
-import TextField from "../../common/textField";
-import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
-import Form from "../../common/form/form";
 
 const ResetPasswordForm = ({ handleChangeModalActive }) => {
   const {
@@ -18,13 +18,12 @@ const ResetPasswordForm = ({ handleChangeModalActive }) => {
   const watchPasword = watch("password");
   const onSubmit = (data) => {
     if (!isValid) return;
-    console.log(data);
   };
   const textFieldClasses = {
-    label: `${style.textFieldLabel}`, 
+    label: `${style.textFieldLabel}`,
     inputWrapper: `${style.inputWrapper}`,
-    input: `${style.textFieldInput}`
-  }
+    input: `${style.textFieldInput}`,
+  };
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className={style.resetPasswordForm}>
       <TextField

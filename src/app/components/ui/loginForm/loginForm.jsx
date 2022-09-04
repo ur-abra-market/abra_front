@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { loginService } from "../../../store/reducers/loginSlice";
 import TextField from "../../common/textField";
 import { Button } from "../../common/buttons";
-import style from "../registerForm/registerForm.module.css";
+import PasswordComplexity from "../../common/passwordComplexity";
+import Form from "../../common/form";
+import Loader from "../../common/Loader";
 import styleBtn from "../../common/buttons/buttons.module.css";
-import { loginService } from "../../../store/reducers/loginSlice";
-import { useForm } from "react-hook-form";
-import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
-import Form from "../../common/form/form";
+import style from "../registerForm/registerForm.module.css";
 
 const LoginForm = () => {
   const [userStatus, setUserStatus] = useState("suppliers");
@@ -18,7 +20,7 @@ const LoginForm = () => {
     formState: { isValid, errors },
     handleSubmit,
   } = useForm({ mode: "onChange" });
-
+  const navigate = useNavigate();
   const watchPasword = watch("password");
 
   const toggleUserStatus = () => {
@@ -27,19 +29,21 @@ const LoginForm = () => {
     );
   };
 
+  const isLoading = useSelector((state) => state.login.loading);
+  const errMessage = useSelector((state) => state.login.errMessage);
+
   const onSubmit = (data) => {
     if (!isValid) return;
     dispatch(loginService(data));
-    console.log(data);
+
+    if (!errMessage && !isLoading) navigate("/");
   };
 
-  const resServer = useSelector((state) => state.login.resMessage);
-
   const textFieldClasses = {
-    label: `${style.textFieldLabel}`, 
+    label: `${style.textFieldLabel}`,
     inputWrapper: `${style.inputWrapper}`,
-    input: `${style.textFieldInput}`
-  }
+    input: `${style.textFieldInput}`,
+  };
 
   return (
     <>
@@ -101,7 +105,8 @@ const LoginForm = () => {
           classes={textFieldClasses}
         />
         <PasswordComplexity valueOfNewPassword={watchPasword} />
-        <div>{resServer}</div>
+        {isLoading && <Loader />}
+        {errMessage && <p>{errMessage}</p>}
         <Button
           value="Log in"
           className={

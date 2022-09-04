@@ -1,0 +1,72 @@
+.StatusSeller {
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: space-between;
+  width: 100%; 
+}
+.StatusSeller__basic {
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+}
+.StatusSeller__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #dddddd;
+  margin-right: 16px; 
+}
+.StatusSeller__person {
+  display: flex;
+  flex-direction: column;
+  height: 50px;   
+}
+
+.StatusSeller__person_reward {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.StatusSeller__numbers {
+  display: flex;
+  flex-direction: row;
+  line-height: 24px;
+  font-size: var(--fp);
+  color: #828282;
+}
+
+.StatusSeller__status {
+  display: flex;
+  flex-direction: row;
+  line-height: 24px;
+  font-size: var(--fp);
+  color: #828282;
+}
+.StatusSeller__activity {
+  display: flex;
+  flex-direction: column; 
+}
+.StatusSeller__deals {
+  display: flex;
+  flex-direction: row;
+  line-height: 24px;
+  gap: 16px;
+  font-size: var(--fp);
+  color: #828282;
+}
+.StatusSeller__delivery {
+  display: flex;
+  flex-direction: row;
+  line-height: 24px;
+  gap: 8px;
+  font-size: var(--fp);
+  color: #828282;  
+}
+.StatusSeller__btn {  
+  width: 40px;
+  height: 40px;
+  background: url('../../../../assets/img/icons/arrow-right.svg');
+  cursor: pointer;
+}
