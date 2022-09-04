@@ -144,8 +144,8 @@ const SupplierAccountMainPage = () => {
             className={style.aboutBussiness}
             placeholder="Tell more about your company or business"
             name="aboutBussiness"
-            wrap="hard"
-            rows="1"
+            // wrap="hard"
+            rows="5"
           />
           <div className={style.textareaName}>Photo of the company or production</div>
           <div className={style.companyPhotoWrapper}>
