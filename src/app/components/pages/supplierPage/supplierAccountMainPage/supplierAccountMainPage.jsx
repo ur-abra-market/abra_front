@@ -1,12 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import iconImage from "../../../../assets/img/icons/icon-img.png";
-import TextField from "../../../common/textField";
-import PhoneNumFieldWithoutCountryCode from "../../../common/phoneNumFieldWithoutCountryCode/phoneNumFieldWithoutCountryCode";
-import { InfoBtn } from "../../../common/buttons";
-import Checkbox from "../../../common/checkbox/checkbox";
-import Select from "../../../common/select";
-import arrowTriangleImg from "../../../../assets/img/icons/check-arrow.png";
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import iconImage from '../../../../assets/img/icons/icon-img.png';
+import TextField from '../../../common/textField';
+import PhoneNumFieldWithoutCountryCode from '../../../common/phoneNumFieldWithoutCountryCode/phoneNumFieldWithoutCountryCode';
+import { InfoBtn } from '../../../common/buttons';
+import Checkbox from '../../../common/checkbox/checkbox';
+import Select from '../../../common/select';
+import arrowTriangleImg from '';
+import supplierAccountService from '../../../../services/supplierAccount.service'
 import 
   { textFieldClasses,
     accountDetails__textFieldClasses,
@@ -22,6 +24,15 @@ import
 import style from "./supplierAccountMainPage.module.css";
 
 const SupplierAccountMainPage = () => {
+  const dispatch = useDispatch();
+  // нужно создать useSelector для всех изменяемых полей?
+  const data = {
+    //идентификаторы всех полей, которые можно менять
+  }
+  useEffect(() => {
+    //нужно что-то передавать в dispatch. 
+    dispatch(supplierAccountService(data));
+  }) 
 
   return (
     <div className={style.supplierCabinet}>

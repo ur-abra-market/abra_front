@@ -13,7 +13,7 @@ import ProductListPage from "./components/pages/productListPage";
 import ConfirmEmail from "./components/pages/confirmEmail";
 import SupplierPage from "./components/pages/supplierPage";
 import SellerAccountPage from "./components/pages/sellerAccountPage";
-import SupplierAccountMainPage from "./components/pages/supplierPage/supplierAccountMainPage/supplierAccountMainPage";
+// import SupplierAccountMainPage from "./components/pages/supplierPage/supplierAccountMainPage/supplierAccountMainPage";
 
 function App() {
   return (
@@ -24,7 +24,8 @@ function App() {
           <Route path="product" element={<ProductPage />} />
           <Route path="productList" element={<ProductListPage />} />
           <Route path="sellerPersonalAccount" element={<SellerAccountPage />} />
-          <Route path="supplierPersonalAccount" element={<SupplierAccountMainPage />} />
+          <Route path="supplierPersonalAccount" element={<SupplierPage />} />
+          {/* <Route path="supplierPersonalAccount" element={<SupplierAccountMainPage />} /> */}
           <Route path="orderHistory" element={< OrderHistoryPage />} />
           <Route path="orderHistory/4784437395989684" element={<OrderDetailsPage />} />
           <Route path="help" element={<p> Help </p>} />
