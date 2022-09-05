@@ -15,14 +15,13 @@ const ForgotPasswordForm = ({ togglePageType }) => {
 
   const onSubmit = (data) => {
     if (!isValid) return;
-    console.log(data);
   };
 
   const textFieldClasses = {
-    label: `${style.textFieldLabel}`, 
+    label: `${style.textFieldLabel}`,
     inputWrapper: `${style.inputWrapper}`,
-    input: `${style.textFieldInput}`
-  }
+    input: `${style.textFieldInput}`,
+  };
 
   return (
     <>

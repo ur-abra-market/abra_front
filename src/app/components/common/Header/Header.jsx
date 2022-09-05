@@ -2,8 +2,8 @@
 import React from "react";
 import NavBar from "../../ui/navBar/navBar";
 import HeaderNavMenu from "../HeaderNavMemu";
-import SelectCurrency from "../SelectCurrency/SelectCurrency";
-import SelectShip from "../SelectShip/SelectShip";
+import SelectCurrency from "../SelectCurrency";
+import SelectShip from "../SelectShip";
 import "./Header.css";
 
 const Header = () => {

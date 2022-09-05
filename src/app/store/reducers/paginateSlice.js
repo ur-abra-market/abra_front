@@ -1,26 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState= {
-  amountItems: 20,
-  amountPages: 30,
-  activePage: 1,
-  items: 500,
+  page_size: 20,
+  amountPages: 25,
+  page_num: 1,
+  allItems: 500,
 };
 
 export const paginateSlice = createSlice({
-    name: 'paginate',
-    initialState,
-    reducers: {
-      active: (state, action) => {
-        state.activePage = action.payload;
-      },    
-      amount: (state, action) => {
-        state.amountItems = action.payload;
-        state.amountPages = Math.ceil(state.items / action.payload);      
-      }
-    },
-  });
-  
-  export const { active, amount } = paginateSlice.actions;
-  export default paginateSlice.reducer;
-  
+  name: 'paginate',
+  initialState,
+  reducers: {
+    active: (state, action) => {
+      state.page_num = action.payload;
+    },    
+    amount: (state, action) => {
+      state.page_size = action.payload;
+      state.amountPages = Math.ceil(state.allItems / action.payload);      
+    }
+  },
+});
+
+export const { active, amount } = paginateSlice.actions;
+export default paginateSlice.reducer;

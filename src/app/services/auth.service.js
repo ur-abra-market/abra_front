@@ -1,11 +1,10 @@
 import httpService from "./http.service";
 
 const authService = {
-  register: async ({ userStatus, ...rest }) => {
-    const { data } = await httpService.post(`register/${userStatus}/`, {
+  register: async ({ rout, ...rest }) => {
+    const { data } = await httpService.post(`register/${rout}/`, {
       ...rest,
     });
-    console.log(data);
     return data;
   },
   login: async ({ email, password }) => {
@@ -13,6 +12,10 @@ const authService = {
       email,
       password,
     });
+    return data;
+  },
+  refresh: async () => {
+    const { data } = await httpService.post("login/refresh");
     return data;
   },
 };

@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+// import photo from '../../../assets/img/icons/ic_baseline-photo-camera.png'
+
 
 const Search = ({ placeholder, searchIcon, classes, onClick}) => {
+  const navigate = useNavigate();
   const [text, setText] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {    
+    navigate('../productList')
     // передаём action в Dispatch (выполняем запрос на сервер)
   };
 

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import iconImage from "../../../assets/img/icons/icon-img.png";
 import TextField from "../../common/textField";
 import { ButtonLink, InfoBtn } from "../../common/buttons";
-import Checkbox from "../../common/checkbox/checkbox";
+import Checkbox from "../../common/checkbox";
 
 const SellerAccountPage = () => {
   const profileInfoBtnClasses = {
@@ -73,40 +73,40 @@ const SellerAccountPage = () => {
         <div className={`${style.section} ${style.orders}`}>
           <div className={style.header__wrapper}>
             <div className={style.header}>Orders</div>
-            <Link className={style.header__link} to="/">
+            <Link className={style.header__link} to="/orderHistory">
               View All
             </Link>
           </div>
           <div className={style.ordersCategory__wrapper}>
-            <Link className={style.wrepperButtonLink} to="/">
+            <Link className={style.wrepperButtonLink} to="/orderHistory">
               <ButtonLink
                 name="Unpaid"
                 src={iconImage}
                 classes={ordersCategoryBtnClasses}
               />
             </Link>
-            <Link className={style.wrepperButtonLink} to="/">
+            <Link className={style.wrepperButtonLink} to="/orderHistory">
               <ButtonLink
                 name="To be shipped"
                 src={iconImage}
                 classes={ordersCategoryBtnClasses}
               />
             </Link>
-            <Link className={style.wrepperButtonLink} to="/">
+            <Link className={style.wrepperButtonLink} to="/orderHistory">
               <ButtonLink
                 name="Shipped"
                 src={iconImage}
                 classes={ordersCategoryBtnClasses}
               />
             </Link>
-            <Link className={style.wrepperButtonLink} to="/">
+            <Link className={style.wrepperButtonLink} to="/orderHistory">
               <ButtonLink
                 name="To be reviewed"
                 src={iconImage}
                 classes={ordersCategoryBtnClasses}
               />
             </Link>
-            <Link className={style.wrepperButtonLink} to="/">
+            <Link className={style.wrepperButtonLink} to="/orderHistory">
               <ButtonLink
                 name="Completed"
                 src={iconImage}

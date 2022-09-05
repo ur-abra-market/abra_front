@@ -1,11 +1,11 @@
-.Sort {
+.StatusProduct {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
   margin-top: 96px;
 }
-.Sort__btn {
+.StatusProduct__btn {
   display: flex;
   flex-direction: column;
   width: 240px;
@@ -13,7 +13,7 @@
   align-items: center;
   gap: 8px;
 }
-.Sort__btn_name {  
+.StatusProduct__btn_name {  
   width: 240px;
   height: fit-content;
   text-align: center;
@@ -22,11 +22,11 @@
   line-height: 25px;  
   cursor: pointer;
 }
-.Sort__btn_check {  
+.StatusProduct__btn_check {  
   width: 20px;
   height: 10px;   
 }
-.Sort__btn_check {  
+.StatusProduct__btn_check {  
   width: 20px;
   height: 10px;   
 }

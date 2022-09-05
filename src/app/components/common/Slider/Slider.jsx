@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import Card from "../Card";
 import "./Slider.css";
 
 const Slider = ({ title }) => {
-  const n = 10;
+  const dataArr = useSelector((state) => state.productPaginate.dataProductPaginate);  
   const widthCart = 220;
   const gap = 11;
   const step = widthCart + gap;
-  const widthList = n * widthCart + (n - 1) * gap;
+  const widthList = dataArr.length * widthCart + (dataArr.length - 1) * gap;
   const widthSlider = 1376;
-  const dl = widthSlider - widthList;
-  const dataArr = Array(n).fill("dataCard");
-  const [left, setLeft] = useState(0);
+  const dl = widthSlider - widthList;  
+  const [left, setLeft] = useState(0);  
 
   const move = (d) => {
     const newleft = left + d;
@@ -35,9 +34,7 @@ const Slider = ({ title }) => {
       <div className="Slider__card">
         <div className="Slider__card_list" style={{ left: `${left}px` }}>
           {dataArr.map((data, index) => (
-            <Link to="/product" key={index}>
-              <Card key={`${data}-${index}`} />
-            </Link>
+           <Card key={`card_${index}`} props={data} />            
           ))}
         </div>
       </div>

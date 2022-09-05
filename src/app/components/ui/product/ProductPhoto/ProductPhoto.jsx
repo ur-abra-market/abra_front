@@ -29,7 +29,7 @@ const ProductPhoto = () => {
     setLen(photoAll.length);
     const amountSlide = photoAll.length < 6 ? photoAll.length - 1 : 5;
     SetHeight(amountSlide * step - 8);
-  }, [photoAll]);
+  }, []);
 
   const moveDown = () => {
     SetTransition("0.5s");

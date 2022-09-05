@@ -27,7 +27,6 @@
 }
 .header__basic_buttons {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   width: 325px;
 }

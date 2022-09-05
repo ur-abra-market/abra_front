@@ -2,7 +2,7 @@ import React from 'react'
 
 const ProductReview = () => {
   return (
-    <div>ProductReview</div>
+    <h2 style={{color: 'red'}}>ProductReview</h2>
   )
 }
 

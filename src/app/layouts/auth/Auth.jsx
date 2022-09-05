@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import style from "./auth.module.css";
-import LoginPage from "../../components/pages/loginPage/loginPage";
-import RegisterPage from "../../components/pages/registerPage/registerPage";
-import styleBtn from ".././../components/common/buttons/buttons.module.css";
+import { Link } from "react-router-dom";
+import LoginPage from "../../components/pages/loginPage";
+import RegisterPage from "../../components/pages/registerPage";
 import iconGoogle from "../../assets/img/icons/Google.png";
 import iconApple from "../../assets/img/icons/Apple.png";
 import iconVK from "../../assets/img/icons/VK.png";
+import style from "./auth.module.css";
+import styleBtn from ".././../components/common/buttons/buttons.module.css";
 
 const Auth = () => {
   const [pageType, setPageType] = useState("login");
@@ -19,7 +20,9 @@ const Auth = () => {
   return (
     <>
       <div className={style.authPage}>
-        <h1 className={style.header}>Abra</h1>
+        <h1 className={style.header}>
+          <Link to="/">Abra</Link>
+        </h1>
         <h2 className={style.subheader}>Start buying in bulk now!</h2>
         {pageType === "register" ? (
           <RegisterPage togglePageType={togglePageType} />

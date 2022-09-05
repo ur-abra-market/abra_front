@@ -1,5 +1,5 @@
 import React from "react";
-import { BtnNewBest } from "../../common/buttons";
+import { BtnNewBest, InfoBtn } from "../../common/buttons";
 import ChoiceProduct from "../../ui/product/ChoiceProduct";
 import FlagFavorites from "../../ui/product/FlagFavorites";
 import ProductAbout from "../../ui/product/ProductAbout";
@@ -9,6 +9,9 @@ import Reward from "../../ui/product/Reward";
 import Slider from "../../common/Slider";
 import StatusSeller from "../../ui/product/StatusSeller";
 import "./ProductPage.css";
+import ProductStatistics from "../../ui/product/ProductStatistics";
+import ProductReview from "../../ui/product/ProductReview";
+import LatestSearch from "../../ui/product/LatestSearch";
 
 const ProductPage = () => {
   const data = ["Similar products", "Popular products in this category"];
@@ -41,6 +44,7 @@ const ProductPage = () => {
           </div>
           <div className="ProductPage__basic_block2">
             <ChoiceProduct />
+            <ProductStatistics />
           </div>
           <div className="ProductPage__button">Add to Cart</div>
           <div className="ProductPage__line" />
@@ -48,10 +52,11 @@ const ProductPage = () => {
         </div>
       </div>
       <ProductAbout />
-      <div className="ProductPage__reviews">reviews</div>
+      <ProductReview />
       <Slider title={data[0]} />
       <Slider title={data[1]} />
-      <div className="ProductPage__latest"></div>
+      <LatestSearch />
+      <InfoBtn />
     </div>
   );
 };

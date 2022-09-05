@@ -2,8 +2,9 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Search from "../../common/Search";
 import imgBtnHeader from "../../../assets/img/icons/icon-img.png";
-import { ButtonLink } from "../../common/buttons";
+import { ButtonLink, Button } from "../../common/buttons";
 import style from "./navBar.module.css";
+import styleBtn from "../../common/buttons/buttons.module.css";
 import photo from '../../../assets/img/icons/ic_baseline-photo-camera.png'
 
 const navbarBtnClasses = {
@@ -32,13 +33,24 @@ const NavBar = () => {
       />
 
       <div className="header__basic_buttons">
-        {isAuth ? (
-          <Link className={style.wrepperButtonLink} to="/auth">
-            Sig in | Sig up
-          </Link>
+        {!isAuth ? (
+          <>
+            <Link className={style.wrepperButtonLink} to="/auth">
+              <Button
+                value="Log in"
+                className={`${styleBtn.commonButton} ${styleBtn.tab}`}
+              />
+            </Link>
+            <Link className={style.wrepperButtonLink} to="/auth">
+              <Button
+                value="Sign up"
+                className={`${styleBtn.commonButton} ${styleBtn.tab}`}
+              />
+            </Link>
+          </>
         ) : (
           <>
-            <Link className={style.wrepperButtonLink} to="/">
+            <Link className={style.wrepperButtonLink} to="/personalAccount">
               <ButtonLink
                 name="My Profile"
                 src={imgBtnHeader}
