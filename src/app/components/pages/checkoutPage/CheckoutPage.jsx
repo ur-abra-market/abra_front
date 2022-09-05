@@ -4,6 +4,7 @@ import CheckItems from '../../ui/checkout/CheckItems'
 import CheckOrder from '../../ui/checkout/CheckOrder'
 import CheckPayment from '../../ui/checkout/CheckPayment'
 import AddressPopup from '../../ui/popup/AddressPopup'
+import PaymentPopup from '../../ui/popup/PaymentPopup'
 import './CheckoutPage.css'
 
 const CheckoutPage = () => {
@@ -19,6 +20,7 @@ const CheckoutPage = () => {
       </div>
       <CheckOrder />
       <AddressPopup />
+      <PaymentPopup />
     </div>
   )
 }

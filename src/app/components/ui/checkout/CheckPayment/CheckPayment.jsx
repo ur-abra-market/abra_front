@@ -1,7 +1,10 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+import { payment } from '../../../../store/reducers/modalSlice';
 import './CheckPayment.css'
 
 const CheckPayment = () => {
+  const dispatch = useDispatch(); 
   return (
     <div className='CheckPayment'>      
       <div className='CheckPayment__block'>
@@ -11,7 +14,7 @@ const CheckPayment = () => {
           <div className='CheckPayment__block_kind-cart'></div>
         </div>
       </div>
-      <div className='CheckPayment_add'>+ Add a credit or debit card</div>      
+      <div className='CheckPayment_add' onClick={() => dispatch(payment(true))}>+ Add a credit or debit card</div>      
     </div>
   )
 }
