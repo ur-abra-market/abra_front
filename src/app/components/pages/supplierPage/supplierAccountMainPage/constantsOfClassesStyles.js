@@ -5,13 +5,11 @@ export const textFieldClasses = {
   inputWrapper: `${style.inputWrapper}`,
   input: `${style.textFieldInput}`,
 };
-
 export const inputPhoneClasses = {
   label: `${style.textFieldLabel}`,
   inputWrapper: `${style.inputWrapper}`,
   input: `${style.textFieldInput}`,
 };
-
 export const accountDetails__textFieldClasses = {
   label: `${style.textFieldLabel}`,
   inputWrapper: `${style.inputWrapper}`,
@@ -20,7 +18,6 @@ export const accountDetails__textFieldClasses = {
     inputTextFieldPassword: `${style.accountDetails__inputTextFieldPassword}`,
   },
 };
-
 export const notificationCheckboxClasses = {
   labelCheckbox: `${style.notificationLabelCheckbox}`,
   inputCheckbox: `${style.notificationInputCheckbox}`,
@@ -35,14 +32,14 @@ export const selectCountryClasses = {
   select_header: `${style.select_header}`,
   select_options: `${style.select_options__country}`,
   option: `${style.option}`,
-}
+};
 export const selectPersonalPhoneClasses = {
   selectWrapper: `${style.selectWrapper}`,
   select_headerWrapper: `${style.select_headerWrapper}`,
   select_header: `${style.select_header}`,
   select_options: `${style.select_options__phonePersonal}`,
   option: `${style.option}`,
-}
+};
 export const selectBusinessPhoneClasses = {
   selectWrapper: `${style.selectWrapper}`,
   select_headerWrapper: `${style.select_headerWrapper}`,
@@ -56,11 +53,11 @@ export const selectBusinessSectorClasses = {
   select_header: `${style.select_header}`,
   select_options: `${style.select_options__businessSector}`,
   option: `${style.option}`,
-}
+};
 export const selectNumberOfEmployeesClasses = {
   selectWrapper: `${style.selectWrapper__numberOfEmployees}`,
   select_headerWrapper: `${style.select_headerWrapper}`,
   select_header: `${style.select_header}`,
   select_options: `${style.select_options__numberOfEmployees}`,
   option: `${style.option}`,
-}
+};

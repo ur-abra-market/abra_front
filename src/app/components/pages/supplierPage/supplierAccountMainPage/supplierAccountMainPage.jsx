@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import iconImage from '../../../../assets/img/icons/icon-img.png';
 import TextField from '../../../common/textField';
@@ -7,8 +7,8 @@ import PhoneNumFieldWithoutCountryCode from '../../../common/phoneNumFieldWithou
 import { InfoBtn } from '../../../common/buttons';
 import Checkbox from '../../../common/checkbox/checkbox';
 import Select from '../../../common/select';
-import arrowTriangleImg from '';
-import supplierAccountService from '../../../../services/supplierAccount.service'
+import arrowTriangleImg from '../../../../assets/img/icons/check-arrow.png';
+import supplierAccountService from '../../../../store/reducers/supplierAccountSlice'
 import 
   { textFieldClasses,
     accountDetails__textFieldClasses,
@@ -25,14 +25,12 @@ import style from "./supplierAccountMainPage.module.css";
 
 const SupplierAccountMainPage = () => {
   const dispatch = useDispatch();
-  // нужно создать useSelector для всех изменяемых полей?
-  const data = {
-    //идентификаторы всех полей, которые можно менять
-  }
-  useEffect(() => {
-    //нужно что-то передавать в dispatch. 
-    dispatch(supplierAccountService(data));
-  }) 
+  const supplierData= useSelector((state)=> state.supplierAccount.data)
+  console.log(supplierData)
+
+  // useEffect(() => {
+  //   dispatch(supplierAccountService(supplierData));
+  // }, [dispatch]) 
 
   return (
     <div className={style.supplierCabinet}>
