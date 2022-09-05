@@ -53,6 +53,11 @@
   border-radius: 4px;
   margin-top: 16px;
   cursor: pointer;
+  transition: 0.3s;
+}
+.CheckOrder__place:hover {
+  background-color: #000000;
+  color: #ffffff;  
 }
 .CheckOrder__text {
   width: 100%;

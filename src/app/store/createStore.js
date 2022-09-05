@@ -6,6 +6,7 @@ import paginateReducer from "./reducers/paginateSlice";
 import productPaginateReducer from "./reducers/productPaginateSlice";
 import basketReducer from "./reducers/basketSlice";
 import filterReducer from "./reducers/filterSlice";
+import modalReducer from "./reducers/modalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     productPaginate: productPaginateReducer,
     basket: basketReducer,
     filter: filterReducer,
+    modal: modalReducer,
   },
 });
 
