@@ -15,7 +15,8 @@ const AddressPopup = () => {
   const place = useSelector((state) => state.modal.address);
   
   const style = {
-    scale: modal ? '1' : '0'
+    scale: modal ? '1' : '0',
+    zIndex: modal ? '20' : '0'
   } 
   const handlerConfirm = () => {    
     if (arrAddress.length < 2) dispatch(addAddress(place));    
@@ -36,8 +37,8 @@ const AddressPopup = () => {
         <div className='AddressPopup__block'>
           <div className='AddressPopup__block_title'>Recipient Info</div>
           <div className='AddressPopup__block_row2'>
-            <TextModal title='First name' placeholder='Recipient’s first name'/>
-            <TextModal title='Last name' placeholder='Recipient’s last name'/>                                               
+            <TextModal title={'First name'} placeholder='Recipient’s first name'/>
+            <TextModal title={'Last name'} placeholder='Recipient’s last name'/>                                               
           </div>
           <div className='AddressPopup__phone'>
             <div className='AddressPopup__phone_title'>Personal phone number</div>
@@ -59,13 +60,13 @@ const AddressPopup = () => {
             <TextModal title={'State / Province (optional)'} placeholder='Enter a state or province name'/>                                                
           </div>
           <div className='AddressPopup__block_row2'>
-            <TextModal title='City / Town' placeholder='Enter a city or town name'/>
-            <TextModal title='Region (optional)' placeholder='Enter a state or region name'/>                                                            
+            <TextModal title={'City / Town'} placeholder='Enter a city or town name'/>
+            <TextModal title={'Region (optional)'} placeholder='Enter a state or region name'/>                                                            
           </div> 
-          <TextModal title='Street address' placeholder='Enter a street name and number' />
+          <TextModal title={'Street address'} placeholder='Enter a street name and number' />
           <div className='AddressPopup__block_row2'>
             <TextModal title={'Apt, suite, office (optional)'} placeholder='Enter a number or a letter'/>
-            <TextModal title='Zip Code' placeholder='Enter a postal code' />                                                            
+            <TextModal title={'Zip Code'} placeholder='Enter a postal code' />                                                            
           </div> 
         </div>  
         <div className='AddressPopup__button' onClick={() => handlerConfirm()}>Confirm</div>            

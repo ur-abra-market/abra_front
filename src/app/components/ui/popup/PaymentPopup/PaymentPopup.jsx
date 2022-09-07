@@ -9,7 +9,8 @@ const PaymentPopup = () => {
   const dispatch = useDispatch();  
   const modal = useSelector((state) => state.modal.isPayment);  
   const style = {
-    scale: modal ? '1' : '0'
+    scale: modal ? '1' : '0',
+    zIndex: modal ? '20' : '0'
   } 
   
   return (
