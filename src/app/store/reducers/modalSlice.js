@@ -1,8 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState= {
-  address: false,
-  payment: false
+  isAddress: false,
+  isPayment: false,
+  mainAddress: {
+    main: false,
+    firstname: '',
+    lastname: '',
+    phone: '',
+    street: '',
+    building: '',
+    apartment: '',
+    city: '',
+    region: '',
+    state: '',
+    country: '',
+    zipcode: ''
+  },
+ addresses: []
 };
 
 export const modalSlice = createSlice({
@@ -10,10 +25,10 @@ export const modalSlice = createSlice({
   initialState,
   reducers: {
     address: (state, action) => {
-      state.address = action.payload;
+      state.isAddress = action.payload;
     },    
     payment: (state, action) => {
-      state.payment = action.payload;            
+      state.isPayment = action.payload;            
     }
   },
 });

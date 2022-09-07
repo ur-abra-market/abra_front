@@ -10,7 +10,7 @@ const AddressPopup = () => {
   const dispatch = useDispatch();   
   const listPhone = ['+7', '+90'];
   const listCountry = ['Select a country', 'Russia', 'Turkey'];
-  const modal = useSelector((state) => state.modal.address)
+  const modal = useSelector((state) => state.modal.isAddress)
   
   const style = {
     scale: modal ? '1' : '0'

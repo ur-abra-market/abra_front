@@ -16,3 +16,8 @@
   text-decoration: underline;
   cursor: pointer;
 }
+.CheckDelivery_address {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

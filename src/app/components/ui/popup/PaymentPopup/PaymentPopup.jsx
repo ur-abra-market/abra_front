@@ -7,7 +7,7 @@ import './PaymentPopup.css'
 
 const PaymentPopup = () => {
   const dispatch = useDispatch();  
-  const modal = useSelector((state) => state.modal.payment);  
+  const modal = useSelector((state) => state.modal.isPayment);  
   const style = {
     scale: modal ? '1' : '0'
   } 
