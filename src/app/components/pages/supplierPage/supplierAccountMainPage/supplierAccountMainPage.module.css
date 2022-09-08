@@ -416,6 +416,7 @@
   width: 52px;
   height: 32px;
   padding: 1px;
+  margin-left: 15px;
   background: #f2f2f2;
   border-radius: 36.5px;
   transition: 0.5s;
@@ -478,4 +479,31 @@
 
 .linkDescription {
   color: #828282;
+}
+
+@media all and (max-width: 1340px) {
+  .selectWrapper {
+    width: 100%;
+  }
+
+  .supplierCabinet__contentWrapper {
+    grid-template-columns:  minmax(280px, 2fr) ;
+  }
+
+  .companyPhotoWrapper {
+    gap: 10px;
+  }
+
+  .companyPhoto_backgroung:last-child {
+    display: none;
+  }
+
+  .fieldsWrapper {
+    flex-direction: column;
+  }
+
+  .profileInfo__number {
+    flex-direction: column;
+  } 
+
 }
