@@ -24,7 +24,6 @@ function App() {
           <Route path="product" element={<ProductPage />} />
           <Route path="productList" element={<ProductListPage />} />
           <Route path="sellerPersonalAccount" element={<SellerAccountPage />} />
-          <Route path="supplierPersonalAccount" element={<SupplierPage />} />
           {/* <Route path="supplierPersonalAccount" element={<SupplierAccountMainPage />} /> */}
           <Route path="orderHistory" element={< OrderHistoryPage />} />
           <Route path="orderHistory/4784437395989684" element={<OrderDetailsPage />} />
