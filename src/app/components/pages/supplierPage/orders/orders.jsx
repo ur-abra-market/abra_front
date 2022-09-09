@@ -15,7 +15,7 @@ import calendar from "../../../../assets/img/icons/calendar.png";
 import arrowDown from "../../../../assets/img/icons/arrow-down.png";
 
 const Orders = () => {
-  const activePage = useSelector((state) => state.paginate.activePage);
+  const activePage = useSelector((state) => state.paginate.page_num);
   const amountPages = useSelector((state) => state.paginate.amountPages);
   const pageSize = useSelector((state) => state.paginate.page_size);
 

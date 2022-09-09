@@ -24,7 +24,7 @@ import { tableStyleClasses, selectStyles, checkboxStyles } from "./constantsOfCl
 import style from "./productsList.module.css";
 
 const ProductsList = (params) => {
-  const activePage = useSelector((state) => state.paginate.activePage);
+  const activePage = useSelector((state) => state.paginate.page_num);
   const amountPages = useSelector((state) => state.paginate.amountPages);
   const pageSize = useSelector((state) => state.paginate.page_size);
 
