@@ -17,8 +17,7 @@ import arrowDown from "../../../../assets/img/icons/arrow-down.png";
 const Orders = () => {
   const activePage = useSelector((state) => state.paginate.activePage);
   const amountPages = useSelector((state) => state.paginate.amountPages);
-  const amountItems = useSelector((state) => state.paginate.amountItems);
-  const pageSize = amountItems;
+  const pageSize = useSelector((state) => state.paginate.page_size);
 
   const [orders, setOrders] = useState();
   const [selectedOrdersStatus, setSelectedOrdersStatus] = useState("All Orders");
@@ -106,6 +105,7 @@ const Orders = () => {
       );
     const sortedOrders = _.orderBy(filteredOrders, [sortBy.path], [sortBy.direction]);
     const orderCrop = paginate(sortedOrders, activePage, pageSize);
+    console.log(activePage)
 
     return (
       <>

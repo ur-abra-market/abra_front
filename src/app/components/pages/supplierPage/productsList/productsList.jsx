@@ -26,8 +26,7 @@ import style from "./productsList.module.css";
 const ProductsList = (params) => {
   const activePage = useSelector((state) => state.paginate.activePage);
   const amountPages = useSelector((state) => state.paginate.amountPages);
-  const amountItems = useSelector((state) => state.paginate.amountItems);
-  const pageSize = amountItems;
+  const pageSize = useSelector((state) => state.paginate.page_size);
 
   const [products, setProducts] = useState();
   const [selectedProductsStatus, setSelectedProductsStatus] =
