@@ -25,6 +25,7 @@ const BusinessProfileForm = () => {
         <div className={style.formWrapper}>
             <div className={style.formContainer}>
                 <FormTitle
+                    step={'Step 2/3'}
                     title={'Business profile'}
                     text={'Enter the information you want to show on your store profile'}
                 />
@@ -139,9 +140,9 @@ const BusinessProfileForm = () => {
                                 <TextFieldLabelAbove
                                     register={
                                         register('tel', {
-                                            pattern: {
-                                                value: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
-                                                message: "Invalid phone number",
+                                            minLength: {
+                                                value: 10,
+                                                message: 'Phone number must be 10 digits',
                                             }
                                         })}
                                     error={errors?.tel?.message}
@@ -170,8 +171,7 @@ const BusinessProfileForm = () => {
                             <TextFieldLabelAbove
                                 register={register('address')}
                                 title={'Main company address'}
-                                name={'address'}
-                                type={'text'}
+                                name={'textarea'}
                                 placeholder={'Enter address'} />
                         </div>
 
