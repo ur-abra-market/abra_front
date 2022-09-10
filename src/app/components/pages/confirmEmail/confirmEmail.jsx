@@ -22,9 +22,9 @@ const ConfirmEmail = () => {
     }, [searchParams, dispatch, token])
 
     useEffect(() => {
-        const goMainPage = () => navigate('/', { replace: true })
+        const goNextPage = () => navigate('/account-setup', { replace: true })
         if (resServer === 'REGISTRATION_SUCCESSFUL') {
-            goMainPage()
+            goNextPage()
         }
     }, [resServer, navigate])
 
