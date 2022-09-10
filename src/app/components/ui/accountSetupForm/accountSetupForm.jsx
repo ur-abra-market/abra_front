@@ -23,6 +23,7 @@ const AccountSetupForm = () => {
         <div className={style.formWrapper}>
             <div className={style.formContainer}>
                 <FormTitle
+                    step={'Step 1/3'}
                     title={'Account Info'}
                     text={'This information will not be published. The data will only be used to create your account'}
                 />
@@ -80,10 +81,10 @@ const AccountSetupForm = () => {
                             <TextFieldLabelAbove
                                 register={
                                     register('tel', {
-                                        required: 'Field is required',
-                                        pattern: {
-                                            value: /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
-                                            message: "Invalid phone number",
+                                        required: 'Phone num is required',
+                                        minLength: {
+                                            value: 10,
+                                            message: 'Phone number must be 10 digits',
                                         }
                                     })}
                                 error={errors?.tel?.message}
