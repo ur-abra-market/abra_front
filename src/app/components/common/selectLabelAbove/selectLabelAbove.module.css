@@ -37,7 +37,6 @@
 .selectArrow {
     position: absolute;
     right: 16px;
-    z-index: 2;
     bottom: 14px;
     font-size: 12px;
     pointer-events: none;
