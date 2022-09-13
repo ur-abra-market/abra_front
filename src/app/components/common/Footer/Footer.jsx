@@ -1,21 +1,29 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import HeaderNavMenu from "../HeaderNavMemu/HeaderNavMenu";
 import SelectCurrency from "../SelectCurrency/SelectCurrency";
 import SelectShip from "../SelectShip/SelectShip";
 import "./Footer.css";
 
 const Footer = () => {
+  const routs = ["personalAccount", "orderHistory"];
+  const { pathname } = useLocation();
+  const showHeadNav = routs.some((el) => el === pathname.split("/")[1]);
   return (
     <div className="Footer">
-      <div className="Footer__basic">
-        <div className="Footer__basic_logo">Abra</div>
-        <HeaderNavMenu />
-        <div className="Footer__selects">
-          <div className="dividing-line-2">|</div>
-          <SelectCurrency />
-          <SelectShip />
+      {showHeadNav ? (
+        <></>
+      ) : (
+        <div className="Footer__basic">
+          <div className="Footer__basic_logo">Abra</div>
+          <HeaderNavMenu />
+          <div className="Footer__selects">
+            <div className="dividing-line-2">|</div>
+            <SelectCurrency />
+            <SelectShip />
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="Footer__add">
         <div className="Footer__add_text1">© Copyright 2022</div>

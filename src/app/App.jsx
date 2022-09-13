@@ -22,8 +22,11 @@ function App() {
           <Route path="product" element={<ProductPage />} />
           <Route path="productList" element={<ProductListPage />} />
           <Route path="personalAccount" element={<UserAccountPage />} />
-          <Route path="orderHistory" element={< OrderHistoryPage />} />
-          <Route path="orderHistory/4784437395989684" element={<OrderDetailsPage />} />
+          <Route path="orderHistory" element={<OrderHistoryPage />} />
+          <Route
+            path="orderHistory/4784437395989684"
+            element={<OrderDetailsPage />}
+          />
           <Route path="help" element={<p> Help </p>} />
         </Route>
         <Route
