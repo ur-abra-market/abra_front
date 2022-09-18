@@ -12,7 +12,7 @@ const CheckboxFor = ({ register, array, title }) => {
                     return <CheckboxStyledElem
                         size={e}
                         register={register(e)}
-                        key={Math.random() + e} />
+                        key={e} />
                 })}
             </div>
         </div>

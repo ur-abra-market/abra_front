@@ -17,7 +17,7 @@ const RadiosFor = ({ register, state, array, title, name }) => {
                         setChoice={setChoice}
                         register={register}
                         value={e}
-                        key={Math.random() + e} />
+                        key={e} />
                 })}
             </div>
         </div>
