@@ -3,10 +3,11 @@ import RelatedInputs from "../../common/relatedInputs";
 import style from "./materialInputs.module.css";
 
 
-const MaterialInputs = ({ register, mainTitle, optTitle, mainPlaceholder, optPlaceholder, fakeArr, mainType, optType }) => {
+let fakeArr = []
+const MaterialInputs = ({ register, mainTitle, optTitle, mainPlaceholder, optPlaceholder, mainType, optType }) => {
 
     const [count, setCount] = useState(1)
-
+    
     const addInputs = () => {
         setCount(count + 1)
         fakeArr.push(count)
