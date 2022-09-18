@@ -6,7 +6,7 @@ const RadioStyledElem = ({ name, value, choice, register, setChoice }) => {
     const colorValue = value?.slice(0, 1).toUpperCase() + value?.slice(1)
 
     const valueStr = value.split(' ').join('')
-
+    console.log(choice);
     return (
         <div className={style.colorWrapper}>
 
@@ -14,7 +14,6 @@ const RadioStyledElem = ({ name, value, choice, register, setChoice }) => {
                 {...register}
                 onClick={(e) => setChoice(e.target.value)}
                 value={value}
-                checked={value === 'no color'}
                 className={`${style[name]}`}
                 name={name} />
 
