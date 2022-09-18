@@ -53,7 +53,7 @@ const ProductListRegistrationForm = () => {
                                     register('prodName', {
                                         required: 'Field is required'
                                     })}
-                                error={errors?.fname?.message}
+                                error={errors?.prodName?.message}
                                 title={'Product name *'}
                                 name={'prodName'}
                                 type={'text'}
@@ -63,9 +63,8 @@ const ProductListRegistrationForm = () => {
                                     <SelectLabelAbove
                                         register={
                                             register('category', {
-                                                required: 'Field is required'
+                                                required: true
                                             })}
-                                        error={errors?.businessSector?.message}
                                         title={'Category *'}
                                         name={'category'}
                                         options={['Clothes', 'Accessories']}
@@ -75,9 +74,8 @@ const ProductListRegistrationForm = () => {
                                     <SelectLabelAbove
                                         register={
                                             register('type', {
-                                                required: 'Field is required'
+                                                required: true
                                             })}
-                                        error={errors?.businessSector?.message}
                                         title={'Type *'}
                                         name={'type'}
                                         options={clothes}
@@ -101,7 +99,63 @@ const ProductListRegistrationForm = () => {
 
                         <DropDownField title={'Properties'}>
 
-                            <RadiosFor register={register('color')}
+                            <div className={style.selectInputs}>
+                                <div className={style.selectEqual}>
+                                    <SelectLabelAbove
+                                        register={
+                                            register('occasion', {
+                                                required: true
+                                            })}
+                                        title={'Occasion *'}
+                                        name={'occasion'}
+                                        options={['Casual', 'Formal', 'Home', 'Sport']}
+                                        placeholder={'Select'} />
+                                </div>
+                                <div className={style.selectEqual}>
+                                    <SelectLabelAbove
+                                        register={register('season')}
+                                        title={'Season'}
+                                        name={'season'}
+                                        options={['Spring-Summer', 'Autumn-Winter']}
+                                        placeholder={'Select'} />
+                                </div>
+                            </div>
+
+                            <div className={style.selectInputs}>
+
+                                <div className={style.selectEqual}>
+                                    <SelectLabelAbove
+                                        register={
+                                            register('sizesGrid', {
+                                                required: true
+                                            })}
+                                        title={'Sizes grid type *'}
+                                        name={'sizesGrid'}
+                                        options={['12', '23', '34', '45']}
+                                        placeholder={'Select'} />
+                                </div>
+
+                                <div className={style.selectEqual}>
+                                    <SelectLabelAbove
+                                        register={register('gender')}
+                                        title={'Gender'}
+                                        name={'gender'}
+                                        options={['Men', 'Women', 'Unisex']}
+                                        placeholder={'Select'} />
+                                </div>
+
+                            </div>
+
+                            <MaterialInputs
+                                register={register}
+                                mainTitle={'Material (optional)'}
+                                optTitle={'% (optional)'}
+                                mainPlaceholder={'Enter the material name'}
+                                optPlaceholder={'Enter percentage of material'}
+                                mainType={'text'}
+                                optType={'number'}
+                            />
+                            <RadiosFor register={register('color', { required: true })}
                                 title={'Select color *'}
                                 state={'no color'}
                                 array={colorAmount}
@@ -118,72 +172,11 @@ const ProductListRegistrationForm = () => {
                                 array={growths}
                                 name={'growth'} />
 
-                            <div className={style.selectInputs}>
-                                <div className={style.selectEqual}>
-                                    <SelectLabelAbove
-                                        register={
-                                            register('occasion', {
-                                                required: 'Field is required'
-                                            })}
-                                        error={errors?.businessSector?.message}
-                                        title={'Occasion *'}
-                                        name={'occasion'}
-                                        options={['Casual', 'Formal', 'Home', 'Sport']}
-                                        placeholder={'Select'} />
-                                </div>
-                                <div className={style.selectEqual}>
-                                    <SelectLabelAbove
-                                        register={
-                                            register('season')}
-                                        title={'Season'}
-                                        name={'season'}
-                                        options={['Spring-Summer', 'Autumn-Winter']}
-                                        placeholder={'Select'} />
-                                </div>
-                            </div>
-
-                            <div className={style.selectInputs}>
-
-                                <div className={style.selectEqual}>
-                                    <SelectLabelAbove
-                                        register={
-                                            register('gender')}
-                                        title={'Gender'}
-                                        name={'gender'}
-                                        options={['Men', 'Women', 'Unisex']}
-                                        placeholder={'Select'} />
-                                </div>
-
-                                <TextFieldLabelAbove
-                                    register={
-                                        register('sku', {
-                                            required: 'Field is required'
-                                        })}
-                                    error={errors?.storeName?.message}
-                                    title={'SKU *'}
-                                    name={'sku'}
-                                    type={'text'}
-                                    placeholder={'Enter the SKU'} />
-
-                            </div>
-
-                            <MaterialInputs
-                                register={register}
-                                mainTitle={'Material (optional)'}
-                                optTitle={'% (optional)'}
-                                mainPlaceholder={'Enter the material name'}
-                                optPlaceholder={'Enter percentage of material'}
-                                mainType={'text'}
-                                optType={'number'}
-                                fakeArr={[]}
-                            />
-
-
                         </DropDownField>
 
                         <DropDownField title={'Additional Product Info'}>
-                            
-                        <ProdInfoInputs register={register}/>
+
+                            <ProdInfoInputs register={register} />
 
                         </DropDownField>
 
