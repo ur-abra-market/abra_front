@@ -3,8 +3,7 @@ import cookieService from "./cookie.service";
 import authService from "./auth.service";
 
 const httpService = axios.create({
-  // baseURL: "https://wbplt-env.eba-qxbp72mz.eu-central-1.elasticbeanstalk.com/",
-  baseURL: "http://localhost:8000",
+  baseURL: "http://" + process.env.REACT_APP_SERVER_URL + "/",
   withCredentials: true,
   // headers: { crossDomain: true },
 });
