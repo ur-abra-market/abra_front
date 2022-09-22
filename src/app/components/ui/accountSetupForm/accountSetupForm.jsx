@@ -5,8 +5,13 @@ import Form from "../../common/form";
 import FormTitle from "../../common/formTitle";
 import { useForm } from "react-hook-form";
 import style from "./accountSetupForm.module.css";
+import { useDispatch } from "react-redux";
+import { setAccountInfo } from "../../../store/reducers/formRegistrationSlice";
+import { useNavigate } from "react-router-dom";
 
 const AccountSetupForm = () => {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const {
         register,
@@ -16,6 +21,19 @@ const AccountSetupForm = () => {
     } = useForm({ mode: 'onChange' })
 
     const onSubmit = (data) => {
+        const phone = data.code + data.tel
+
+        dispatch(setAccountInfo({
+            first_name: data.fname,
+            last_name: data.lname,
+            country: data.country,
+            phone,
+            tax_number: data.license,
+        }))
+
+        const goConfirmPage = () => navigate('/business-profile', { replace: true })
+        goConfirmPage()
+
         reset()
     }
 
@@ -35,7 +53,11 @@ const AccountSetupForm = () => {
                         <TextFieldLabelAbove
                             register={
                                 register('fname', {
-                                    required: 'Field is required'
+                                    required: 'Field is required',
+                                    minLength: {
+                                        value: 2,
+                                        message: 'Name should have at least a 2 symbols'
+                                    }
                                 })}
                             error={errors?.fname?.message}
                             title={'First name'}
@@ -46,7 +68,11 @@ const AccountSetupForm = () => {
                         <TextFieldLabelAbove
                             register={
                                 register('lname', {
-                                    required: 'Field is required'
+                                    required: 'Field is required',
+                                    minLength: {
+                                        value: 2,
+                                        message: 'Name should have at least a 2 symbols'
+                                    }
                                 })}
                             error={errors?.lname?.message}
                             title={'Last name'}
@@ -62,7 +88,6 @@ const AccountSetupForm = () => {
                                 required: 'Field is required'
                             })}
                         error={errors?.country?.message}
-
                         name={'country'}
                         title={'Country of company registration'}
                         placeholder={'Select'}
@@ -81,11 +106,7 @@ const AccountSetupForm = () => {
                             <TextFieldLabelAbove
                                 register={
                                     register('tel', {
-                                        required: 'Phone num is required',
-                                        minLength: {
-                                            value: 10,
-                                            message: 'Phone number must be 10 digits',
-                                        }
+                                        required: true,
                                     })}
                                 error={errors?.tel?.message}
                                 name={'tel'}
