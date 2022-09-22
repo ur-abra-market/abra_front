@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import ButtonReg from "../../common/buttons/buttonReg";
 import Form from "../../common/form";
@@ -9,7 +10,8 @@ import style from "./businessProfileForm.module.css";
 
 
 const BusinessProfileForm = () => {
-
+    const [imgUrl, setImgUrl] = useState('')
+    
     const {
         register,
         formState: { errors, isValid },
@@ -18,6 +20,7 @@ const BusinessProfileForm = () => {
     } = useForm({ mode: 'onChange' })
 
     const onSubmit = (data) => {
+        console.log(data);
         reset()
     }
 
@@ -36,12 +39,12 @@ const BusinessProfileForm = () => {
                         <p className={style.mainInfoTitle}>Main info</p>
 
                         <ImageAdding
+                            imgUrl={imgUrl}
+                            setImgUrl={setImgUrl}
                             label={'Add logo or profile image'}
                             placeholder={'The customers will recognize your store by this image'}
                             register={
-                                register('profileLogo', {
-                                    required: 'Field is required'
-                                })}
+                                register('profileLogo')}
                             error={errors?.profileLogo?.message}
                         />
 
@@ -67,7 +70,7 @@ const BusinessProfileForm = () => {
                                     error={errors?.businessSector?.message}
                                     title={'Your main business sector'}
                                     name={'businessSector'}
-                                    options={['1', '2', '3', '4', '5', '6']}
+                                    options={['Clothes', 'Accessories', 'electronics']}
                                     placeholder={'Select'} />
                             </div>
 
@@ -89,7 +92,13 @@ const BusinessProfileForm = () => {
                         <div className={style.selectInfoInputs}>
 
                             <TextFieldLabelAbove
-                                register={register('yearEstablished')}
+                                register={register('yearEstablished', {
+                                    maxLength: {
+                                        value: 4,
+                                        message: 'Add an existing year'
+                                    }
+                                })}
+                                error={errors?.yearEstablished?.message}
                                 title={'Year Established'}
                                 name={'yearEstablished'}
                                 type={'number'}
