@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { accountInfoService } from "../../../store/reducers/formRegistrationSlice";
 import ButtonReg from "../../common/buttons/buttonReg";
 import Form from "../../common/form";
 import FormTitle from "../../common/formTitle";
@@ -11,7 +14,11 @@ import style from "./businessProfileForm.module.css";
 
 const BusinessProfileForm = () => {
     const [imgUrl, setImgUrl] = useState('')
-    
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { resMessage, accountInfo } = useSelector((state) => state.formRegistration);
+
     const {
         register,
         formState: { errors, isValid },
@@ -20,9 +27,41 @@ const BusinessProfileForm = () => {
     } = useForm({ mode: 'onChange' })
 
     const onSubmit = (data) => {
-        console.log(data);
+        const phone = data.code + data.tel
+
+        dispatch(accountInfoService({
+            path: 'send-account-info',
+            rest: {
+                supplier_info: accountInfo,
+                account_info: {
+                    logo_url: imgUrl,
+                    shop_name: data.storeName,
+                    business_sector: data.businessSector,
+                    is_manufacturer: data.checkbox,
+                    year_established: data.yearEstablished,
+                    number_of_emploees: data.numEmployees,
+                    description: data.textarea,
+                    photo_url: "string",
+                    business_phone: phone,
+                    business_email: data.email,
+                    company_address: data.address
+                }
+            }
+        }))
+
         reset()
     }
+
+
+    useEffect(() => {
+
+        const goConfirmPage = () => navigate('/product-list-registration', { replace: true })
+
+        if (resMessage === 'MESSAGE_HAS_BEEN_SENT') {
+            goConfirmPage()
+        }
+    }, [resMessage, navigate])
+
 
     return (
         <div className={style.formWrapper}>
@@ -45,7 +84,6 @@ const BusinessProfileForm = () => {
                             placeholder={'The customers will recognize your store by this image'}
                             register={
                                 register('profileLogo')}
-                            error={errors?.profileLogo?.message}
                         />
 
                         <div className={style.selectInfoInputs}>
