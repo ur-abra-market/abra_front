@@ -13,35 +13,34 @@
 .searchWithRestFilters {
   display: flex;
   gap: 15px;
-
 }
 
 .search__wrap {
   display: flex;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 30%;
   min-width: 300px;
-  height: 34px;  
+  height: 34px;
   padding: 5px 14px;
-  border-radius: 3px;   
-  align-items: center;  
+  border-radius: 3px;
+  align-items: center;
 }
-  
+
 .search__wrap::before {
-  position: relative; 
-  content: '';   
+  position: relative;
+  content: '';
   width: 16px;
-  height: 16px; 
-  background: url('../../../../assets/img/icons/search.png');  
+  height: 16px;
+  background: url('../../../../assets/img/icons/search.png');
   background-size: cover;
-} 
+}
 
 .search__input {
-  display: block; 
-  font-size: var(--fp);  
+  display: block;
+  font-size: var(--fp);
   padding-left: 6px;
-  height: 100%; 
-  width: 100%;  
+  height: 100%;
+  width: 100%;
   background-color: inherit;
 }
 
@@ -72,10 +71,10 @@
 }
 
 .layouts {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   gap: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 }
 
 .inactiveLayout {
@@ -115,7 +114,7 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 4px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 11px;
 }
 
@@ -124,7 +123,7 @@
 }
 
 .selectWrapper {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 4px;
 }
 
@@ -140,19 +139,19 @@
 
 .select_options {
   background-color: #ffffff;
-  display: flex; 
-  flex-direction: column;  
+  display: flex;
+  flex-direction: column;
   justify-content: space-around;
   position: absolute;
   top: 300px;
   width: 261px;
   height: fit-content;
-  margin-top: 26px;  
-  overflow: hidden; 
-  transition: 0.4s;  
+  margin-top: 26px;
+  overflow: hidden;
+  transition: 0.4s;
   gap: 5px;
   border-radius: 4px;
-  box-shadow: 5px 0px 10px rgb(0, 0, 0, 0.25);  
+  box-shadow: 5px 0px 10px rgb(0, 0, 0, 0.25);
 }
 
 .option {
@@ -181,7 +180,7 @@
   height: 14.25px;
   border: 0.593805px solid #999999;
   border-radius: 2.37522px;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   margin: 15px;
 }
 
@@ -255,7 +254,6 @@
   line-height: 20px;
   letter-spacing: 0.38px;
   color: #000000;
-
 }
 .filterOrders__active {
   text-decoration: underline;
@@ -322,7 +320,7 @@
 .picture {
   width: 265px;
   height: 265px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
 }
 
 .viewAndAdditWrapper {
@@ -336,7 +334,7 @@
 .iconBackground {
   width: 40px;
   height: 40px;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 100%;
   display: flex;
   justify-content: center;
@@ -382,7 +380,7 @@
   color: #828282;
 }
 
-.otherInfo{
+.otherInfo {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -394,5 +392,35 @@
   font-size: 11.9338px;
   line-height: 30px;
   letter-spacing: 0.453484px;
-  color: #828282; 
+  color: #828282;
+}
+
+.modalHeader {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.38px;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.buttons_wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal_button {
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 8px;
+  background: #f2f2f2;
+  width: 30px;
+  padding: 10px 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.modal_button:hover {
+  background: #d9d9d9;
 }

@@ -1,27 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { paginate } from "../../../../utils/paginate";
-import Search from "../../../common/Search";
-import api from "./fakeAPI";
-import _ from "lodash";
-import ShowPage from "../../../common/ShowPage";
-import Pagination from "../../../ui/pagination/";
-import Select from "../../../common/select/select";
-import Checkbox from "../../../common/checkbox/checkbox";
-import FiltersList from "../../../common/filtersList/";
-import Table from "../../../common/table/";
-import searchIcon from "../../../../assets/img/icons/searchIcon.png";
-import tileLayout from "../../../../assets/img/icons/tileLayout.png";
-import tableLayout from "../../../../assets/img/icons/tableLayout.png";
-import addImg from "../../../../assets/img/icons/addImg.png";
-import deleteImg from "../../../../assets/img/icons/deleteImg.png";
-import star from "../../../../assets/img/icons/Star 1.png";
-import calendar from "../../../../assets/img/icons/calendar.png";
-import viewIcon from "../../../../assets/img/icons/viewIcon.png";
-import arrowDown from "../../../../assets/img/icons/arrow-down.png";
-import additIcon from "../../../../assets/img/icons/additIcon.png";
-import { tableStyleClasses, selectStyles, checkboxStyles } from "./constantsOfClassesStyles";
-import style from "./productsList.module.css";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { paginate } from '../../../../utils/paginate';
+import Search from '../../../common/Search';
+import api from './fakeAPI';
+import _ from 'lodash';
+import ShowPage from '../../../common/ShowPage';
+import Pagination from '../../../ui/pagination/';
+import Select from '../../../common/select/select';
+import Checkbox from '../../../common/checkbox/checkbox';
+import FiltersList from '../../../common/filtersList/';
+import Table from '../../../common/table/';
+import searchIcon from '../../../../assets/img/icons/searchIcon.png';
+import tileLayout from '../../../../assets/img/icons/tileLayout.png';
+import tableLayout from '../../../../assets/img/icons/tableLayout.png';
+import addImg from '../../../../assets/img/icons/addImg.png';
+import deleteImg from '../../../../assets/img/icons/deleteImg.png';
+import star from '../../../../assets/img/icons/Star 1.png';
+import calendar from '../../../../assets/img/icons/calendar.png';
+import viewIcon from '../../../../assets/img/icons/viewIcon.png';
+import arrowDown from '../../../../assets/img/icons/arrow-down.png';
+import additIcon from '../../../../assets/img/icons/additIcon.png';
+import { tableStyleClasses, selectStyles, checkboxStyles } from './constantsOfClassesStyles';
+import Modal from '../../../common/modal';
+import style from './productsList.module.css';
 
 const ProductsList = (params) => {
   const activePage = useSelector((state) => state.paginate.page_num);
@@ -29,58 +30,89 @@ const ProductsList = (params) => {
   const pageSize = useSelector((state) => state.paginate.page_size);
 
   const [products, setProducts] = useState();
-  const [selectedProductsStatus, setSelectedProductsStatus] =
-    useState("All Products");
-  const [sortBy, setSortBy] = useState({ path: "name", direction: "asc" });
-  const [layout, setLayout] = useState("tableLayout");
+  const [selectedProductsStatus, setSelectedProductsStatus] = useState('All Products');
+  const [sortBy, setSortBy] = useState({ path: 'name', direction: 'asc' });
+  const [layout, setLayout] = useState('tableLayout');
   const [restFilters, setRestFilters] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
+  const [checked, setChecked] = useState(false);
+
+  function chengeCheckbox() {
+    setChecked(!checked);
+  }
+
+  const handleChangeModalActive = () => {
+    setModalActive((prevState) => !prevState);
+  };
 
   useEffect(() => {
     api.products.fetchAll().then((data) => setProducts(data));
   }, []);
 
   const handleSwitchMainCheckbox = (tagret) => {
-    const inputs = document.querySelectorAll(".checkbox");
+    const inputs = document.querySelectorAll('.checkbox');
     inputs.forEach((input) => (input.checked = tagret.checked));
   };
 
   const columns = {
     check: {
-      name: (
+      name: <input type="checkbox" onClick={(e) => handleSwitchMainCheckbox(e.target)} />,
+      component: (product) => (
         <input
           type="checkbox"
-          onClick={(e) => handleSwitchMainCheckbox(e.target)}
+          className="checkbox"
+          // checked={checked}
+          onClick={(e) => chengeCheckbox(e.target)}
+          key={product.id}
         />
       ),
-      component: (product) => <input type="checkbox" className="checkbox" />,
     },
-    orderNumber: { path: "SKU", name: "SKU" },
-    detail: { path: "picture", name: "Picture" },
-    name: { path: "name", name: "Name" },
-    creationDate: { path: "creationDate", name: "Creation Date" },
-    status: { path: "status", name: "Status" },
-    price: { path: "price", name: "Price" },
-    balaceUnits: { path: "balaceUnits", name: "Balace, units" },
-    visibility: { path: "visibility", name: "Visibility" },
+    orderNumber: { path: 'SKU', name: 'SKU' },
+    detail: { path: 'picture', name: 'Picture' },
+    name: { path: 'name', name: 'Name' },
+    creationDate: { path: 'creationDate', name: 'Creation Date' },
+    status: { path: 'status', name: 'Status' },
+    price: { path: 'price', name: 'Price' },
+    balaceUnits: { path: 'balaceUnits', name: 'Balace, units' },
+    visibility: { path: 'visibility', name: 'Visibility' },
   };
+
+  function getCheckedCheckboxes() {
+    const checkedCheckbox = document.querySelectorAll('input.checkbox:checked');
+    let selectedItems = [];
+    products.map((product) => {
+      for (let index = 0; index < checkedCheckbox.length; index++) {
+        if (product.id === checkedCheckbox[index].key) {
+          selectedItems.push(product);
+        }
+      }
+      return selectedItems;
+    });
+
+    // let chengeCheckbox = [];
+    // for (let index = 0; index < checkboxes.length; index++) {
+    //    if (checkboxes[index].checked) {
+    //       checkboxesChecked.push(checkboxes[index].value); // положим в массив выбранный
+    //       alert(checkboxes[index].value); // делайте что нужно - это для наглядности
+    //    }
+    // }
+    // return checkboxesChecked; // для использования в нужном месте
+    console.log(selectedItems);
+  }
 
   const searchClasses = {
     search__wrap: `${style.search__wrap}`,
     search__input: `${style.search__input}`,
-    search_photo: 
-      restFilters ? `${style.search_photo__clicked}` : `${style.search_photo}`
+    search_photo: restFilters ? `${style.search_photo__clicked}` : `${style.search_photo}`,
   };
 
   const handleRestFiltersSet = () => {
-    setRestFilters(!restFilters) 
-  };
-  
-  const handleLayoutSet = () => {
-    setLayout((prevState) =>
-      prevState === "tableLayout" ? "tileLayout" : "tableLayout"
-    );
+    setRestFilters(!restFilters);
   };
 
+  const handleLayoutSet = () => {
+    setLayout((prevState) => (prevState === 'tableLayout' ? 'tileLayout' : 'tableLayout'));
+  };
 
   const handleProductsStatusSelect = (value) => {
     setSelectedProductsStatus(value);
@@ -94,14 +126,10 @@ const ProductsList = (params) => {
     return <h2 className={style.loading}>Loading...</h2>;
   } else {
     const filteredProducts =
-      selectedProductsStatus === "All Products"
+      selectedProductsStatus === 'All Products'
         ? products
         : products.filter((order) => order.status === selectedProductsStatus);
-    const sortedProducts = _.orderBy(
-      filteredProducts,
-      [sortBy.path],
-      [sortBy.direction]
-    );
+    const sortedProducts = _.orderBy(filteredProducts, [sortBy.path], [sortBy.direction]);
     const orderCrop = paginate(sortedProducts, activePage, pageSize);
 
     return (
@@ -109,7 +137,7 @@ const ProductsList = (params) => {
         <div className={style.searchAndLayout}>
           <div className={style.searchWithRestFilters}>
             <Search
-              placeholder={"Search"}
+              placeholder={'Search'}
               searchIcon={searchIcon}
               classes={searchClasses}
               onClick={handleRestFiltersSet}
@@ -119,9 +147,7 @@ const ProductsList = (params) => {
           <div className={style.layouts}>
             <img
               className={
-                layout === "tileLayout"
-                  ? `${style.activeLayout}`
-                  : `${style.inactiveLayout}`
+                layout === 'tileLayout' ? `${style.activeLayout}` : `${style.inactiveLayout}`
               }
               onClick={handleLayoutSet}
               src={tileLayout}
@@ -129,9 +155,7 @@ const ProductsList = (params) => {
             />
             <img
               className={
-                layout === "tableLayout"
-                  ? `${style.activeLayout}`
-                  : `${style.inactiveLayout}`
+                layout === 'tableLayout' ? `${style.activeLayout}` : `${style.inactiveLayout}`
               }
               onClick={handleLayoutSet}
               src={tableLayout}
@@ -139,14 +163,13 @@ const ProductsList = (params) => {
             />
           </div>
         </div>
-        {restFilters ? 
-
+        {restFilters ? (
           <div className={style.restFiltersWrapper}>
             <div className={style.filter}>
               <div className={style.filter_name}>Creation Date</div>
               <div className={style.filter_input}>
-                <input className={style.filter_input__date}placeholder='Select the Date'></input>
-                <img className={style.selectDate_img} src={calendar} alt='calendar'/>
+                <input className={style.filter_input__date} placeholder="Select the Date"></input>
+                <img className={style.selectDate_img} src={calendar} alt="calendar" />
               </div>
             </div>
 
@@ -168,23 +191,21 @@ const ProductsList = (params) => {
                 classes={selectStyles}
               />
             </div>
-            <Checkbox
-              label={'Include Hidden'}
-              classes={checkboxStyles}
-            />
+            <Checkbox label={'Include Hidden'} classes={checkboxStyles} />
           </div>
-        
-        : <></>}
+        ) : (
+          <></>
+        )}
         <div className={style.selectAndPaginationWrapper}>
           <ShowPage />
           <Pagination activePage={activePage} amountPages={amountPages} />
         </div>
-        {layout === "tableLayout" ? (
+        {layout === 'tableLayout' ? (
           <div className={style.contentWrapper}>
             <div className={style.contentHeader}>
               <div className={style.filtersWrapper}>
                 <FiltersList
-                  filters={["All Products", "On Sale", "Off-sale"]}
+                  filters={['All Products', 'On Sale', 'Off-sale']}
                   className={style.filteredProducts}
                   activeClassName={style.filteredProducts__active}
                   onItemSelect={handleProductsStatusSelect}
@@ -192,6 +213,9 @@ const ProductsList = (params) => {
                 />
               </div>
               <div className={style.actionsWrapper}>
+                <div className={style.action} onClick={handleChangeModalActive}>
+                  Delete items
+                </div>
                 <div className={style.action}>
                   <img src={addImg} alt="img" />
                   <div className={style.subtitle}>Add a new product</div>
@@ -208,7 +232,20 @@ const ProductsList = (params) => {
               columns={columns}
               data={orderCrop}
               classes={tableStyleClasses}
-            ></Table>
+            />
+            <Modal active={modalActive}>
+              <h1 className={style.modalHeader}>
+                Are you sure you want to delete the selected items?
+              </h1>
+              <div className={style.buttons_wrapper}>
+                <div className={style.modal_button} onClick={getCheckedCheckboxes}>
+                  YES
+                </div>
+                <div className={style.modal_button} onClick={handleChangeModalActive}>
+                  NO
+                </div>
+              </div>
+            </Modal>
           </div>
         ) : (
           <div className={style.cardsWrapper}>
@@ -237,9 +274,7 @@ const ProductsList = (params) => {
                     <img src={star} alt="star" />
                     <img src={star} alt="star" />
                   </div>
-                  <div className={style.productCreationDate}>
-                    {item.creationDate}
-                  </div>
+                  <div className={style.productCreationDate}>{item.creationDate}</div>
                 </div>
               </div>
             ))}
