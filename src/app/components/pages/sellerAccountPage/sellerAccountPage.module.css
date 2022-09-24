@@ -4,12 +4,12 @@
 }
 .sellerCabinet__contentWrapper {
   display: grid;
-  grid-template-columns: 32.63vw 41.66vw 18.95vw;
+  grid-template-columns: 34.2% 43.7% 19.9%;
   grid-template-rows: minmax(min-content, 26.59vh) minmax(min-content, 34.56vh);
   /* grid-template-columns: 470px 600px 273px; */
   /* grid-template-rows: 26.59vh 34.56vh; */
   grid-gap: 16px;
-  grid-template-areas: "profileInfo orders notifications" "accountDetails myAddresses notifications";
+  grid-template-areas: 'profileInfo orders notifications' 'accountDetails myAddresses notifications';
 }
 
 .profileInfo {
@@ -115,10 +115,13 @@ border-radius: 100%; */
 .profileInfo__textFields {
   margin-top: 24px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   gap: 16px;
 }
 
 .flexContainer {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -149,7 +152,7 @@ border-radius: 100%; */
 }
 
 .profileInfo__textFieldInput {
-  width: 195px;
+  width: 100%;
 }
 
 .inputWrapper {
@@ -163,12 +166,21 @@ border-radius: 100%; */
 }
 
 .accountDetails__textFieldInput {
-  width: 406px;
+  width: 100%;
+}
+
+.inputWrapper__inputTextField {
+  width: 100%;
+}
+
+.inputWrapper__inputTextFieldPassword {
+  width: 100%;
+  display: flex;
 }
 
 .accountDetails__inputTextFieldPassword {
   background: #f2f2f2;
-  width: 353px;
+  width: 100%;
   height: 42px;
   padding-left: 12px;
 }
@@ -215,7 +227,7 @@ border-radius: 100%; */
   font-style: normal;
   font-weight: 700;
   font-size: 15px;
-  line-height: 24px;
+  /*line-height: 24px;*/
   color: #828282;
   text-decoration: none;
 }
@@ -232,7 +244,7 @@ border-radius: 100%; */
 }
 
 .notificationsList__item::after {
-  content: "";
+  content: '';
   margin-top: 12px;
   display: block;
   height: 1px;
@@ -276,7 +288,7 @@ border-radius: 100%; */
 .inputCheckbox::before,
 .inputCheckbox::after {
   position: absolute;
-  content: "";
+  content: '';
   display: inline-block;
 }
 
@@ -285,16 +297,16 @@ border-radius: 100%; */
   height: 28px;
   background: #ffffff;
   border: 0.5px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15), 0px 1px 1px rgba(0, 0, 0, 0.16),
-    0px 3px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.16),
+    0 3px 1px rgba(0, 0, 0, 0.1);
   border-radius: 100px;
   transform: matrix(-1, 0, 0, 1, 0, 0);
 }
 
 .inputCheckbox::after {
   border: 0.5px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15), 0px 1px 1px rgba(0, 0, 0, 0.16),
-    0px 3px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.16),
+    0 3px 1px rgba(0, 0, 0, 0.1);
 }
 
 .inputCheckbox:checked {
@@ -303,9 +315,11 @@ border-radius: 100%; */
 }
 
 .accountDetails__wrapper {
+  max-width: 406px;
   margin-top: 32px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 12px;
 }
 

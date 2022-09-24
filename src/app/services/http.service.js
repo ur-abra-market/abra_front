@@ -3,7 +3,7 @@ import cookieService from './cookie.service';
 import authService from './auth.service';
 
 const httpService = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: 'http://' + process.env.REACT_APP_SERVER_URL + '/',
   withCredentials: true,
   // headers: { crossDomain: true },
 });
