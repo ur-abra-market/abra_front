@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { paginate } from '../../../../utils/paginate';
 import Search from '../../../common/Search';
 import api from './fakeAPI';
@@ -22,6 +22,7 @@ import arrowDown from '../../../../assets/img/icons/arrow-down.png';
 import additIcon from '../../../../assets/img/icons/additIcon.png';
 import { tableStyleClasses, selectStyles, checkboxStyles } from './constantsOfClassesStyles';
 import Modal from '../../../common/modal';
+import manageProductsService from '../../../../store/reducers/manageProductsSlice';
 import style from './productsList.module.css';
 
 const ProductsList = (params) => {
@@ -36,6 +37,12 @@ const ProductsList = (params) => {
   const [restFilters, setRestFilters] = useState(false);
   const [modalActive, setModalActive] = useState(false);
   const [checked, setChecked] = useState(false);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(manageProductsService());
+  }, [dispatch]);
+  const productsData = useSelector((state) => state.manageProducts.products);
+  console.log(productsData);
 
   function chengeCheckbox() {
     setChecked(!checked);
@@ -97,7 +104,7 @@ const ProductsList = (params) => {
     //    }
     // }
     // return checkboxesChecked; // для использования в нужном месте
-    console.log(selectedItems);
+    // console.log(selectedItems);
   }
 
   const searchClasses = {

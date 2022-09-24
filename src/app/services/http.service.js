@@ -1,10 +1,9 @@
-import axios from "axios";
-import cookieService from "./cookie.service";
-import authService from "./auth.service";
+import axios from 'axios';
+import cookieService from './cookie.service';
+import authService from './auth.service';
 
 const httpService = axios.create({
-  // baseURL: "https://wbplt-env.eba-qxbp72mz.eu-central-1.elasticbeanstalk.com/",
-  baseURL: "http://localhost:8000",
+  baseURL: 'http://localhost:8000',
   withCredentials: true,
   // headers: { crossDomain: true },
 });
@@ -21,7 +20,7 @@ httpService.interceptors.request.use(
   },
   function (error) {
     return Promise.reject(error);
-  }
+  },
 );
 
 httpService.interceptors.response.use(
@@ -30,14 +29,12 @@ httpService.interceptors.response.use(
   },
   function (error) {
     const expectedErrors =
-      error.response &&
-      error.response.status >= 400 &&
-      error.response.status < 500;
+      error.response && error.response.status >= 400 && error.response.status < 500;
 
     if (!expectedErrors) {
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default httpService;
