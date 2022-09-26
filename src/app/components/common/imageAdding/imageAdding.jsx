@@ -1,16 +1,14 @@
-import { useState } from "react";
 import iconImg from "../../../assets/img/icons/icon-img.png";
 import style from "./imageAdding.module.css";
 
 
-const ImageAdding = ({ label, placeholder, error, register }) => {
-    const [logoUrl, setLogoUrl] = useState('')
+const ImageAdding = ({ label, placeholder, error, register, imgUrl, setImgUrl }) => {
 
     const imgChange = (item) => {
         const reader = new FileReader()
 
         reader.onload = function () {
-            setLogoUrl(reader?.result)
+            setImgUrl(reader?.result)
         };
         if (item.target.files[0]) {
             reader.readAsDataURL(item.target.files[0]);
@@ -29,8 +27,8 @@ const ImageAdding = ({ label, placeholder, error, register }) => {
                     className={label ? style.inputFileLabel : style.inputFile}
                     onChange={imgChange} />
 
-                {logoUrl ?
-                    <img src={logoUrl}
+                {imgUrl ?
+                    <img src={imgUrl}
                         alt="avatar img"
                         id="avatarImg"
                         className={label ? style.avatarImgLabel : style.avatarImg} />

@@ -1,4 +1,8 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { accountInfoService } from "../../../store/reducers/formRegistrationSlice";
 import ButtonReg from "../../common/buttons/buttonReg";
 import Form from "../../common/form";
 import FormTitle from "../../common/formTitle";
@@ -9,6 +13,11 @@ import style from "./businessProfileForm.module.css";
 
 
 const BusinessProfileForm = () => {
+    const [imgUrl, setImgUrl] = useState('')
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { resMessage, accountInfo } = useSelector((state) => state.formRegistration);
 
     const {
         register,
@@ -18,8 +27,41 @@ const BusinessProfileForm = () => {
     } = useForm({ mode: 'onChange' })
 
     const onSubmit = (data) => {
+        const phone = data.code + data.tel
+
+        dispatch(accountInfoService({
+            path: 'send-account-info',
+            rest: {
+                supplier_info: accountInfo,
+                account_info: {
+                    logo_url: imgUrl,
+                    shop_name: data.storeName,
+                    business_sector: data.businessSector,
+                    is_manufacturer: data.checkbox,
+                    year_established: data.yearEstablished,
+                    number_of_emploees: data.numEmployees,
+                    description: data.textarea,
+                    photo_url: "string",
+                    business_phone: phone,
+                    business_email: data.email,
+                    company_address: data.address
+                }
+            }
+        }))
+
         reset()
     }
+
+
+    useEffect(() => {
+
+        const goConfirmPage = () => navigate('/product-list-registration', { replace: true })
+
+        if (resMessage === 'MESSAGE_HAS_BEEN_SENT') {
+            goConfirmPage()
+        }
+    }, [resMessage, navigate])
+
 
     return (
         <div className={style.formWrapper}>
@@ -36,13 +78,12 @@ const BusinessProfileForm = () => {
                         <p className={style.mainInfoTitle}>Main info</p>
 
                         <ImageAdding
+                            imgUrl={imgUrl}
+                            setImgUrl={setImgUrl}
                             label={'Add logo or profile image'}
                             placeholder={'The customers will recognize your store by this image'}
                             register={
-                                register('profileLogo', {
-                                    required: 'Field is required'
-                                })}
-                            error={errors?.profileLogo?.message}
+                                register('profileLogo')}
                         />
 
                         <div className={style.selectInfoInputs}>
@@ -67,7 +108,7 @@ const BusinessProfileForm = () => {
                                     error={errors?.businessSector?.message}
                                     title={'Your main business sector'}
                                     name={'businessSector'}
-                                    options={['1', '2', '3', '4', '5', '6']}
+                                    options={['Clothes', 'Accessories', 'electronics']}
                                     placeholder={'Select'} />
                             </div>
 
@@ -89,7 +130,13 @@ const BusinessProfileForm = () => {
                         <div className={style.selectInfoInputs}>
 
                             <TextFieldLabelAbove
-                                register={register('yearEstablished')}
+                                register={register('yearEstablished', {
+                                    maxLength: {
+                                        value: 4,
+                                        message: 'Add an existing year'
+                                    }
+                                })}
+                                error={errors?.yearEstablished?.message}
                                 title={'Year Established'}
                                 name={'yearEstablished'}
                                 type={'number'}
