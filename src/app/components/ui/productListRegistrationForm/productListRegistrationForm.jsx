@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 import ButtonReg from "../../common/buttons/buttonReg";
 import DropDownField from "../../common/dropDownField";
 import Form from "../../common/form";
@@ -11,24 +11,35 @@ import style from "./productListRegistrationForm.module.css";
 import CheckboxFor from "../checkboxFor";
 import MaterialInputs from "../materialInputs";
 import ProdInfoInputs from "../prodInfoInputs";
+import {generateKey} from "../../../utils/generateKey";
 
 
-const ProductListRegistrationForm = () => {
+const ProductListRegistrationForm = ({
+                                         firstCategory,
+                                         secondCategory,
+                                         thirdCategory,
+                                         setSecondCategory,
+                                         setFirstCategory,
+                                         setThirdCategory,
+                                         firstStageCategories,
+                                         thirdStageCategories,
+                                         secondStageCategories
+                                     }) => {
 
     const {
         register,
-        formState: { errors, isValid },
+        formState: {errors, isValid},
         handleSubmit,
         reset,
-    } = useForm({ mode: 'onChange' })
+    } = useForm({mode: 'onChange'})
 
     const onSubmit = (data) => {
         console.log(data);
         reset()
     }
 
-    const clothes = ['Cardigan', 'Dress', 'Hoodie', 'Jeans', 'Leggings', 'Longsleeve',
-        'Shorts', 'Skirt', 'Suits', 'Sweater', 'Sweatshirt', 'T-Shirt', 'Trousers', 'Turtleneck']
+    /*const clothes = ['Cardigan', 'Dress', 'Hoodie', 'Jeans', 'Leggings', 'Longsleeve',
+        'Shorts', 'Skirt', 'Suits', 'Sweater', 'Sweatshirt', 'T-Shirt', 'Trousers', 'Turtleneck']*/
 
     const colorAmount = ['no color', 'white', 'beige', 'sand', 'gray', 'black', 'metallic', 'bronze', 'red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'lilac', 'purple']
 
@@ -48,6 +59,7 @@ const ProductListRegistrationForm = () => {
                 <Form action="" onSubmit={handleSubmit(onSubmit)}>
                     <div className={style.form}>
                         <DropDownField title={'Main Product Info'}>
+
                             <TextFieldLabelAbove
                                 register={
                                     register('prodName', {
@@ -57,44 +69,73 @@ const ProductListRegistrationForm = () => {
                                 title={'Product name *'}
                                 name={'prodName'}
                                 type={'text'}
-                                placeholder={'Enter the product name'} />
+                                placeholder={'Enter the product name'}
+                            />
+
                             <div className={style.selectInputs}>
+
                                 <div className={style.selectEqual}>
                                     <SelectLabelAbove
+                                        value={firstCategory}
+                                        onChangeOption={setFirstCategory}
+                                        options={firstStageCategories}
                                         register={
                                             register('category', {
                                                 required: true
                                             })}
                                         title={'Category *'}
                                         name={'category'}
-                                        options={['Clothes', 'Accessories']}
-                                        placeholder={'Select'} />
+                                        placeholder={'Select'}/>
                                 </div>
+
                                 <div className={style.selectEqual}>
                                     <SelectLabelAbove
+                                        value={secondCategory}
+                                        onChangeOption={setSecondCategory}
+                                        options={secondStageCategories}
                                         register={
-                                            register('type', {
+                                            register('type1', {
                                                 required: true
                                             })}
-                                        title={'Type *'}
+                                        title={'Type 1 *'}
                                         name={'type'}
-                                        options={clothes}
-                                        placeholder={'Select'} />
+                                        placeholder={'Select'}
+                                    />
                                 </div>
+
+                                <div className={style.selectEqual}>
+                                    <SelectLabelAbove
+                                        value={thirdCategory}
+                                        onChangeOption={setThirdCategory}
+                                        options={thirdStageCategories}
+                                        register={
+                                            register('type2', {
+                                                required: false
+                                            })}
+                                        title={'Type 2'}
+                                        name={'type'}
+                                        placeholder={'Select'}
+                                    />
+                                </div>
+
                             </div>
-                            <p className={style.listImgTitle}>Photo of the company or production</p>
+
+                            <p className={style.listImgTitle}>Photo of the company or
+                                production</p>
+
                             <div className={style.listImg}>
-                                <ImageAdding />
-                                <ImageAdding />
-                                <ImageAdding />
-                                <ImageAdding />
-                                <ImageAdding />
+                                {[...new Array(5)].map((el, i) => (
+                                    <div key={generateKey(i)}>
+                                        <ImageAdding/>
+                                    </div>
+                                ))}
                             </div>
+
                             <TextFieldLabelAbove
                                 register={register('textarea')}
                                 title={'Description'}
                                 name={'textarea'}
-                                placeholder={'Enter the description of your product'} />
+                                placeholder={'Enter the description of your product'}/>
                         </DropDownField>
 
                         <DropDownField title={'Properties'}>
@@ -109,7 +150,7 @@ const ProductListRegistrationForm = () => {
                                         title={'Occasion *'}
                                         name={'occasion'}
                                         options={['Casual', 'Formal', 'Home', 'Sport']}
-                                        placeholder={'Select'} />
+                                        placeholder={'Select'}/>
                                 </div>
                                 <div className={style.selectEqual}>
                                     <SelectLabelAbove
@@ -117,7 +158,7 @@ const ProductListRegistrationForm = () => {
                                         title={'Season'}
                                         name={'season'}
                                         options={['Spring-Summer', 'Autumn-Winter']}
-                                        placeholder={'Select'} />
+                                        placeholder={'Select'}/>
                                 </div>
                             </div>
 
@@ -132,7 +173,7 @@ const ProductListRegistrationForm = () => {
                                         title={'Sizes grid type *'}
                                         name={'sizesGrid'}
                                         options={['12', '23', '34', '45']}
-                                        placeholder={'Select'} />
+                                        placeholder={'Select'}/>
                                 </div>
 
                                 <div className={style.selectEqual}>
@@ -141,7 +182,7 @@ const ProductListRegistrationForm = () => {
                                         title={'Gender'}
                                         name={'gender'}
                                         options={['Men', 'Women', 'Unisex']}
-                                        placeholder={'Select'} />
+                                        placeholder={'Select'}/>
                                 </div>
 
                             </div>
@@ -155,35 +196,35 @@ const ProductListRegistrationForm = () => {
                                 mainType={'text'}
                                 optType={'number'}
                             />
-                            <RadiosFor register={register('color', { required: true })}
-                                title={'Select color *'}
-                                state={'no color'}
-                                array={colorAmount}
-                                name={'color'} />
+                            <RadiosFor register={register('color', {required: true})}
+                                       title={'Select color *'}
+                                       state={'no color'}
+                                       array={colorAmount}
+                                       name={'color'}/>
 
                             <CheckboxFor
                                 register={register}
                                 title={'Size and Quantity *'}
-                                array={sizes} />
+                                array={sizes}/>
 
                             <RadiosFor register={register('growth')}
-                                title={'Growth, cm (optional)'}
-                                state={''}
-                                array={growths}
-                                name={'growth'} />
+                                       title={'Growth, cm (optional)'}
+                                       state={''}
+                                       array={growths}
+                                       name={'growth'}/>
 
                         </DropDownField>
 
                         <DropDownField title={'Additional Product Info'}>
 
-                            <ProdInfoInputs register={register} />
+                            <ProdInfoInputs register={register}/>
 
                         </DropDownField>
 
 
                         <ButtonReg type={'submit'}
-                            value={'Continue'}
-                            isValid={!isValid} />
+                                   value={'Continue'}
+                                   isValid={!isValid}/>
                     </div>
                 </Form>
             </div>
