@@ -8,6 +8,7 @@ import { loginService } from "../../../store/reducers/loginSlice";
 import { useForm } from "react-hook-form";
 import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
 import Form from "../../common/form/form";
+import {useNavigate} from "react-router-dom";
 
 const LoginForm = () => {
   const [userStatus, setUserStatus] = useState("suppliers");
@@ -35,6 +36,12 @@ console.log(userStatus)
   };
 
   const resServer = useSelector((state) => state.login.resMessage);
+  const isAuth = useSelector((state) => state.login.isAuth)
+
+  const navigate = useNavigate()
+  if(isAuth) navigate('/account-setup')
+
+
   return (
     <>
     <div className={style.buySellBtnWrappeer}>

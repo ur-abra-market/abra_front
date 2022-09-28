@@ -28,7 +28,7 @@ const AccountSetupForm = () => {
             last_name: data.lname,
             country: data.country,
             phone,
-            tax_number: data.license,
+            tax_number: +data.license,
         }))
 
         const goConfirmPage = () => navigate('/business-profile', { replace: true })

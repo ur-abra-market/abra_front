@@ -11,10 +11,10 @@ const initialState = {
 
 export const accountInfoService = createAsyncThunk(
     'formRegistration/accountInfoService',
-    async ({ path, ...rest }, { rejectWithValue }) => {
+    async ({ path, rest }, { rejectWithValue }) => {
         console.log('rest',rest);
         try {
-            const response = await formRegistrationService.suppliers({ path, ...rest });
+            const response = await formRegistrationService.suppliers({ path, rest });
             return response.result;
         } catch (error) {
             const err = error.response.data.result ? error.response.data.result : error.message;

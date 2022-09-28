@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { accountInfoService } from "../../../store/reducers/formRegistrationSlice";
+import {useEffect, useState} from "react";
+import {useForm} from "react-hook-form";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {accountInfoService} from "../../../store/reducers/formRegistrationSlice";
 import ButtonReg from "../../common/buttons/buttonReg";
 import Form from "../../common/form";
 import FormTitle from "../../common/formTitle";
@@ -13,41 +13,57 @@ import style from "./businessProfileForm.module.css";
 
 
 const BusinessProfileForm = () => {
+    const date = new Date()
+    const year = date.getFullYear()
     const [imgUrl, setImgUrl] = useState('')
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { resMessage, accountInfo } = useSelector((state) => state.formRegistration);
+    const {resMessage, accountInfo} = useSelector((state) => state.formRegistration);
+    console.log(accountInfo)
 
     const {
         register,
-        formState: { errors, isValid },
+        formState: {errors, isValid},
         handleSubmit,
         reset,
-    } = useForm({ mode: 'onChange' })
+    } = useForm({mode: 'onChange'})
+
 
     const onSubmit = (data) => {
         const phone = data.code + data.tel
+
+        const Info = {
+            logo_url: imgUrl,
+            shop_name: data.storeName,
+            business_sector: data.businessSector,
+            is_manufacturer: data.checkbox,
+            year_established: +data.yearEstablished,
+            number_of_emploees: +data.numEmployees,
+            description: data.textarea,
+            photo_url: "string",
+            business_phone: phone,
+            business_email: data.email,
+            company_address: data.address
+        }
+
+        // checking for empty fields
+        const accountInfoForRequest = {}
+        const array = Object.keys(Info)
+        for (let i = 0; i < array.length; i++) {
+            if (Info[array[i]]) {
+                accountInfoForRequest[array[i]] = Info[array[i]]
+            }
+        }
 
         dispatch(accountInfoService({
             path: 'send-account-info',
             rest: {
                 supplier_info: accountInfo,
-                account_info: {
-                    logo_url: imgUrl,
-                    shop_name: data.storeName,
-                    business_sector: data.businessSector,
-                    is_manufacturer: data.checkbox,
-                    year_established: data.yearEstablished,
-                    number_of_emploees: data.numEmployees,
-                    description: data.textarea,
-                    photo_url: "string",
-                    business_phone: phone,
-                    business_email: data.email,
-                    company_address: data.address
-                }
+                account_info: accountInfoForRequest
             }
         }))
+
 
         reset()
     }
@@ -55,7 +71,7 @@ const BusinessProfileForm = () => {
 
     useEffect(() => {
 
-        const goConfirmPage = () => navigate('/product-list-registration', { replace: true })
+        const goConfirmPage = () => navigate('/product-list-registration', {replace: true})
 
         if (resMessage === 'MESSAGE_HAS_BEEN_SENT') {
             goConfirmPage()
@@ -97,7 +113,7 @@ const BusinessProfileForm = () => {
                                 title={'Shop name (will be shown on the profile)'}
                                 name={'storeName'}
                                 type={'text'}
-                                placeholder={'Enter your company or store name'} />
+                                placeholder={'Enter your company or store name'}/>
 
                             <div className={style.selectEqual}>
                                 <SelectLabelAbove
@@ -109,15 +125,15 @@ const BusinessProfileForm = () => {
                                     title={'Your main business sector'}
                                     name={'businessSector'}
                                     options={['Clothes', 'Accessories', 'electronics']}
-                                    placeholder={'Select'} />
+                                    placeholder={'Select'}/>
                             </div>
 
                         </div>
 
                         <div className={style.checkboxContainer}>
                             <input type="checkbox" id="checkbox"
-                                className={style.checkbox}
-                                {...register('checkbox')} />
+                                   className={style.checkbox}
+                                   {...register('checkbox')} />
                             <label htmlFor="checkbox">I am a manufacturer</label>
                         </div>
                     </div>
@@ -129,18 +145,22 @@ const BusinessProfileForm = () => {
 
                         <div className={style.selectInfoInputs}>
 
-                            <TextFieldLabelAbove
-                                register={register('yearEstablished', {
-                                    maxLength: {
-                                        value: 4,
-                                        message: 'Add an existing year'
-                                    }
-                                })}
-                                error={errors?.yearEstablished?.message}
-                                title={'Year Established'}
-                                name={'yearEstablished'}
-                                type={'number'}
-                                placeholder={'Enter the year'} />
+                                <TextFieldLabelAbove
+                                    register={register('yearEstablished', {
+                                        minLength: {
+                                            value: 4,
+                                            message: 'Add an existing year'
+                                        },
+                                        max: {
+                                            value: year,
+                                            message: 'this year hasn\'t come yet'
+                                        }
+                                    })}
+                                    error={errors?.yearEstablished?.message}
+                                    title={'Year Established'}
+                                    name={'yearEstablished'}
+                                    type={'number'}
+                                    placeholder={'Enter the year'}/>
 
                             <div className={style.selectEqual}>
                                 <SelectLabelAbove
@@ -148,7 +168,7 @@ const BusinessProfileForm = () => {
                                     title={'Number of employees'}
                                     name={'numEmployees'}
                                     options={['0', '<4', '<10', '>10']}
-                                    placeholder={'Select'} />
+                                    placeholder={'Select'}/>
                             </div>
 
                         </div>
@@ -158,16 +178,16 @@ const BusinessProfileForm = () => {
                             register={register('textarea')}
                             title={'About the business'}
                             name={'textarea'}
-                            placeholder={'Tell more about your company or business'} />
+                            placeholder={'Tell more about your company or business'}/>
 
 
                         <p className={style.listImgTitle}>Photo of the company or production</p>
                         <div className={style.listImg}>
-                            <ImageAdding />
-                            <ImageAdding />
-                            <ImageAdding />
-                            <ImageAdding />
-                            <ImageAdding />
+                            <ImageAdding/>
+                            <ImageAdding/>
+                            <ImageAdding/>
+                            <ImageAdding/>
+                            <ImageAdding/>
                         </div>
                     </div>
 
@@ -178,7 +198,7 @@ const BusinessProfileForm = () => {
                         <div className={style.phoneNumber}>
                             <SelectLabelAbove
                                 register={register('code')}
-                                name={'countryCode'}
+                                name={'code'}
                                 title={'Business phone number'}
                                 options={['+90', '+44', '+77', '+1']}
                             />
@@ -195,7 +215,7 @@ const BusinessProfileForm = () => {
                                     error={errors?.tel?.message}
                                     name={'tel'}
                                     type={'tel'}
-                                    placeholder={'(XXX) XXX - XX - XX'} />
+                                    placeholder={'(XXX) XXX - XX - XX'}/>
                             </div>
 
                         </div>
@@ -213,20 +233,20 @@ const BusinessProfileForm = () => {
                                 title={'Business email address'}
                                 name={'email'}
                                 type={'email'}
-                                placeholder={'business@email.com'} />
+                                placeholder={'business@email.com'}/>
 
                             <TextFieldLabelAbove
                                 register={register('address')}
                                 title={'Main company address'}
-                                name={'textarea'}
-                                placeholder={'Enter address'} />
+                                name={'address'}
+                                placeholder={'Enter address'}/>
                         </div>
 
                     </div>
 
                     <ButtonReg type={'submit'}
-                        value={'Continue'}
-                        isValid={!isValid} />
+                               value={'Continue'}
+                               isValid={!isValid}/>
                 </Form>
 
             </div>

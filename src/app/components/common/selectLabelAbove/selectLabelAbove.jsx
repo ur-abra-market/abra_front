@@ -19,6 +19,17 @@ const SelectLabelAbove = ({
         onChangeOption && onChangeOption(e.currentTarget.value)
     }
 
+    const myFn = (str) => {
+        let res = ''
+        if (str[0] === '<' || str[0] === '>') {
+            for (let i = 1; i < str.length; i++) {
+                res += str[i]
+            }
+            return res
+        }
+        return str
+    }
+
     return (
         <div>
             <p className={style.selectTitle}>{title}</p>
@@ -37,7 +48,7 @@ const SelectLabelAbove = ({
                     }
                     {options ? options.map((el, i) => {
                         return (
-                            <option className={style.selectOption} key={generateKey(i)}>
+                            <option value={myFn(el)} className={style.selectOption} key={generateKey(i)}>
                                 {el}
                             </option>)
                     }) : []}
