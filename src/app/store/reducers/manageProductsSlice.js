@@ -1,16 +1,31 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import fetchManageProducts from '../../services/manageProducts.service';
+import fetchDeletedProducts from '../../services/deleteProducts.service';
 
 export const manageProductsService = createAsyncThunk(
-  'supplierAccount/manageProductsService',
+  'manageProducts/manageProductsService',
 
   async function (manageProductsData, { rejectWithValue }) {
     try {
-      const data = await fetchManageProducts.getList(manageProductsData);
+      const data = await fetchManageProducts.getList();
       return data;
     } catch (error) {
-      const err = error.response.data.result ? error.response.data.result : error.message;
-      return rejectWithValue(err);
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const deleteProducts = createAsyncThunk(
+  'manageProducts/deleteProducts',
+  async function ([...id], { rejectWithValue, dispatch }) {
+    try {
+      const responce = await fetchDeletedProducts.deleteList();
+      if (!responce.ok) {
+        throw new Error("Can't delete products. Server Error.");
+      }
+      dispatch(removeProducts([...id]));
+    } catch (error) {
+      return rejectWithValue(error);
     }
   },
 );
@@ -22,11 +37,7 @@ const manageProductsSlice = createSlice({
     status: null,
     error: null,
   },
-  reducers: {
-    products: (state, action) => {
-      state.products = action.payload;
-    },
-  },
+
   extraReducers: {
     [manageProductsService.pending]: (state) => {
       state.status = 'loading';
@@ -41,7 +52,16 @@ const manageProductsSlice = createSlice({
       state.error = action.payload;
     },
   },
+
+  reducers: {
+    products: (state, action) => {
+      state.products = action.payload;
+    },
+    removeProducts(state, action) {
+      state.products = state.products.filter((product) => product.id !== action.payload.id);
+    },
+  },
 });
 
-export const { products } = manageProductsSlice.actions;
+export const { products, removeProducts } = manageProductsSlice.actions;
 export default manageProductsSlice.reducer;

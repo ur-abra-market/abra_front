@@ -22,7 +22,7 @@ import arrowDown from '../../../../assets/img/icons/arrow-down.png';
 import additIcon from '../../../../assets/img/icons/additIcon.png';
 import { tableStyleClasses, selectStyles, checkboxStyles } from './constantsOfClassesStyles';
 import Modal from '../../../common/modal';
-import manageProductsService from '../../../../store/reducers/manageProductsSlice';
+import { manageProductsService } from '../../../../store/reducers/manageProductsSlice';
 import style from './productsList.module.css';
 
 const ProductsList = (params) => {
@@ -36,29 +36,30 @@ const ProductsList = (params) => {
   const [layout, setLayout] = useState('tableLayout');
   const [restFilters, setRestFilters] = useState(false);
   const [modalActive, setModalActive] = useState(false);
+  const [checkedMainCheckbox, setCheckedMainCheckbox] = useState(false);
   const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
+    api.products.fetchAll().then((data) => setProducts(data));
     dispatch(manageProductsService());
   }, [dispatch]);
   const productsData = useSelector((state) => state.manageProducts.products);
   console.log(productsData);
 
-  function chengeCheckbox() {
+  function changeCheckbox() {
     setChecked(!checked);
   }
 
   const handleChangeModalActive = () => {
-    setModalActive((prevState) => !prevState);
+    setModalActive(!modalActive);
   };
 
-  useEffect(() => {
-    api.products.fetchAll().then((data) => setProducts(data));
-  }, []);
-
   const handleSwitchMainCheckbox = (tagret) => {
+    setCheckedMainCheckbox((prevState) => !prevState);
     const inputs = document.querySelectorAll('.checkbox');
-    inputs.forEach((input) => (input.checked = tagret.checked));
+    inputs.forEach((input) => {
+      input.checked = tagret.checked;
+    });
   };
 
   const columns = {
@@ -68,9 +69,8 @@ const ProductsList = (params) => {
         <input
           type="checkbox"
           className="checkbox"
-          // checked={checked}
-          onClick={(e) => chengeCheckbox(e.target)}
-          key={product.id}
+          onClick={(e) => changeCheckbox(e.target)}
+          id={product.id}
         />
       ),
     },
@@ -87,24 +87,11 @@ const ProductsList = (params) => {
   function getCheckedCheckboxes() {
     const checkedCheckbox = document.querySelectorAll('input.checkbox:checked');
     let selectedItems = [];
-    products.map((product) => {
-      for (let index = 0; index < checkedCheckbox.length; index++) {
-        if (product.id === checkedCheckbox[index].key) {
-          selectedItems.push(product);
-        }
-      }
-      return selectedItems;
-    });
-
-    // let chengeCheckbox = [];
-    // for (let index = 0; index < checkboxes.length; index++) {
-    //    if (checkboxes[index].checked) {
-    //       checkboxesChecked.push(checkboxes[index].value); // положим в массив выбранный
-    //       alert(checkboxes[index].value); // делайте что нужно - это для наглядности
-    //    }
-    // }
-    // return checkboxesChecked; // для использования в нужном месте
-    // console.log(selectedItems);
+    for (let index = 0; index < checkedCheckbox.length; index++) {
+      selectedItems.push(checkedCheckbox[index].id);
+    }
+    console.log(selectedItems);
+    return selectedItems;
   }
 
   const searchClasses = {
