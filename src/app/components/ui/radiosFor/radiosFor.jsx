@@ -1,9 +1,9 @@
-import { useState } from "react";
+import {useState} from "react";
 import RadioStyledElem from "../../common/radioStyledElem";
 import style from "./radiosFor.module.css";
 
 
-const RadiosFor = ({ register, state, array, title, name }) => {
+const RadiosFor = ({register, state, array, title, name}) => {
 
     const [choice, setChoice] = useState(state)
 
@@ -11,13 +11,15 @@ const RadiosFor = ({ register, state, array, title, name }) => {
         <div>
             <p className={style.title}>{title}</p>
             <div className={style.radioWrapper}>
-                {array.map((e) => {
-                    return <RadioStyledElem name={name}
-                        choice={choice}
-                        setChoice={setChoice}
-                        register={register}
-                        value={e}
-                        key={e} />
+                {array && array.map((el, i) => {
+                    return <RadioStyledElem key={i}
+                                            name={name}
+                                            choice={choice}
+                                            setChoice={setChoice}
+                                            register={register}
+                                            value={el}
+
+                    />
                 })}
             </div>
         </div>

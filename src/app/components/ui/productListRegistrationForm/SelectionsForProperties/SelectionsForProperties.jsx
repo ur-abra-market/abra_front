@@ -28,7 +28,7 @@ export const SelectionsForProperties = ({
                             className={s.selectField}
                             onChange={onChangeCallBack}
                             register={
-                                register('type1', {
+                                register(`${element[arrValues[0]]}`, {
                                     required: true
                                 })}
                     >
@@ -48,17 +48,18 @@ export const SelectionsForProperties = ({
 
             <div className={style.selectEqual}>
                 <p className={s.selectTitle}>{ucFirst(`${element[arrValues[0]]}(optional)`)}</p>
+                <div className={s.selectContainer}>
 
-                <select name={`${element[arrValues[0]]}(optional)`}
-                        register={register(`${element[arrValues[0]]}(optional)`)}
-                        className={s.selectField}
-                >
-                    <option className={s.selectOption}>
-                        {element.values[currentIndex].optional_value}
-                    </option>
-                </select>
-                <span className={s.selectArrow}>&#9660;</span>
-
+                    <select name={`${element[arrValues[0]]}(optional)`}
+                            register={register(`${element[arrValues[0]]}(optional)`)}
+                            className={s.selectField}
+                    >
+                        <option className={s.selectOption}>
+                            {element.values[currentIndex].optional_value}
+                        </option>
+                    </select>
+                    <span className={s.selectArrow}>&#9660;</span>
+                </div>
             </div>
 
         </div>

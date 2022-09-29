@@ -25,7 +25,8 @@ const ProductListRegistrationForm = ({
                                          firstStageCategories,
                                          thirdStageCategories,
                                          secondStageCategories,
-                                         productProperties
+                                         productProperties,
+                                         productVariations
                                      }) => {
 
     const {
@@ -40,9 +41,9 @@ const ProductListRegistrationForm = ({
         reset()
     }
 
-    //const growths = ['44-51', '63-67', '75-80', '87-92', '105-110', '117-122', '129-134', '141-146', '146-152', '158-164', '170-176', '182-188']
-    const colorAmount = ['no color', 'white', 'beige', 'sand', 'gray', 'black', 'metallic', 'bronze', 'red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'lilac', 'purple']
-    const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'XXXXL']
+
+    const variations = productVariations ? productVariations : []
+    const variationKeys = Object.keys(variations)
 
     return (
         <div className={style.formWrapper}>
@@ -160,23 +161,20 @@ const ProductListRegistrationForm = ({
                                 optType={'number'}
                             />
 
+
                             <RadiosFor
                                 register={register('color', {required: true})}
                                 title={'Select color *'}
                                 state={'no color'}
-                                array={colorAmount}
-                                name={'color'}/>
+                                array={variations[variationKeys[1]]}
+                                name={'color'}
+                            />
 
                             <CheckboxFor
                                 register={register}
                                 title={'Size and Quantity *'}
-                                array={sizes}/>
-
-                            {/*<RadiosFor register={register('growth')}
-                                       title={'Growth, cm (optional)'}
-                                       state={''}
-                                       array={growths}
-                                       name={'growth'}/>*/}
+                                array={variations[variationKeys[0]]}
+                            />
 
                         </DropDownField>
 
@@ -188,7 +186,8 @@ const ProductListRegistrationForm = ({
 
                         <ButtonReg type={'submit'}
                                    value={'Continue'}
-                                   isValid={!isValid}/>
+                                   isValid={!isValid}
+                        />
                     </div>
                 </Form>
             </div>

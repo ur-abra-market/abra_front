@@ -8,7 +8,7 @@ const CheckboxFor = ({ register, array, title }) => {
             <p className={style.title}>{title}</p>
 
             <div className={style.checkboxWrapper}>
-                {array.map((e) => {
+                {array && array.map((e) => {
                     return <CheckboxStyledElem
                         size={e}
                         register={register(e)}
