@@ -11,7 +11,7 @@ const Header = () => {
       <NavBar />
       <div className="header__menu">
         <div className="header__menu_categories">
-          <div>All categories</div>
+          <div className="header_all-categories">All categories</div>
           <div className="dividing-line-1">|</div>
         </div>
         <HeaderNavMenu />

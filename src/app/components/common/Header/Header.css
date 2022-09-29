@@ -48,8 +48,13 @@
   align-self: center;
   height: fit-content;
   width: 125px;
-  justify-content: space-between;
-  margin-left: 33px;
+  justify-content: space-between;  
+  padding-left: 33px;
+  padding-right: 16px;  
+}
+.header_all-categories {
+  text-align: center;
+  padding-right: 16px;
 }
 .heder__selects {
   display: flex;
