@@ -11,15 +11,13 @@ import BusinessProfilePage from "./components/pages/businessProfilePage";
 import ProductListRegistrationPage from "./components/pages/productListRegistrationPage";
 
 
-
 function App() {
   return (
     <div className="App">
       <NavBar />
       <Routes >
         <Route path="/" element={< Main />} />
-        <Route path="login" element={<Auth />}>
-        </Route>
+        <Route path="login" element={<Auth />} />
         <Route path="account-setup" element={<AccountSetupPage />} />
         <Route path="business-profile" element={<BusinessProfilePage />} />
         <Route path="product-list-registration" element={< ProductListRegistrationPage />} />

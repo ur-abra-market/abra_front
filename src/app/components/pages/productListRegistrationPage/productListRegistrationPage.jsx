@@ -6,6 +6,10 @@ import {
     getChilds
 } from "../../../store/reducers/categorySlice";
 import {useDispatch, useSelector} from "react-redux";
+import {
+    getPropertiesService,
+    getVariationsService
+} from "../../../store/reducers/supplierSlice";
 
 const ProductListRegistrationPage = () => {
 
@@ -16,6 +20,8 @@ const ProductListRegistrationPage = () => {
     const [thirdCategory, setThirdCategory] = useState('')
 
     const allCategories = useSelector(state => state.category.dateCategories)
+    const productProperties = useSelector(state => state.supplier.productProperties)
+    const productVariations = useSelector(state => state.supplier.productVariations)
 
     const secondsChilds = useSelector(getChilds(firstCategory, allCategories))
     const thirdChilds = useSelector(getChilds(secondCategory, secondsChilds))
@@ -36,7 +42,6 @@ const ProductListRegistrationPage = () => {
         ? getId(thirdChilds, thirdCategory)
         : getId(secondsChilds, secondCategory)
 
-
     useEffect(() => {
         setSecondCategory('')
         setThirdCategory('')
@@ -50,21 +55,29 @@ const ProductListRegistrationPage = () => {
         dispatch(categoryService())
     }, [])
 
-    if (allCategories)
-        return (
-            <div>
-                <ProductListRegistrationForm firstCategory={firstCategory}
-                                             setFirstCategory={setFirstCategory}
-                                             secondCategory={secondCategory}
-                                             setSecondCategory={setSecondCategory}
-                                             thirdCategory={thirdCategory}
-                                             setThirdCategory={setThirdCategory}
-                                             firstStageCategories={getFirstCategories}
-                                             secondStageCategories={getSecondCategories}
-                                             thirdStageCategories={getThirdCategories}
-                />
-            </div>
-        );
+    useEffect(() => {
+        if (categoryId) {
+            dispatch(getPropertiesService({id: 11}))
+            dispatch(getVariationsService({id: 11}))
+        }
+    }, [categoryId])
+
+    return (
+        <div>
+            <ProductListRegistrationForm firstCategory={firstCategory}
+                                         setFirstCategory={setFirstCategory}
+                                         secondCategory={secondCategory}
+                                         setSecondCategory={setSecondCategory}
+                                         thirdCategory={thirdCategory}
+                                         setThirdCategory={setThirdCategory}
+                                         firstStageCategories={getFirstCategories}
+                                         secondStageCategories={getSecondCategories}
+                                         thirdStageCategories={getThirdCategories}
+                                         productProperties={productProperties}
+                                         productVariations={productVariations}
+            />
+        </div>
+    );
 };
 
 export default ProductListRegistrationPage;

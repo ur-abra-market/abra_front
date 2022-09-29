@@ -1,5 +1,4 @@
 import {useForm} from "react-hook-form";
-import ButtonReg from "../../common/buttons/buttonReg";
 import DropDownField from "../../common/dropDownField";
 import Form from "../../common/form";
 import FormTitle from "../../common/formTitle";
@@ -10,8 +9,10 @@ import RadiosFor from "../radiosFor";
 import style from "./productListRegistrationForm.module.css";
 import CheckboxFor from "../checkboxFor";
 import MaterialInputs from "../materialInputs";
-import ProdInfoInputs from "../prodInfoInputs";
 import {generateKey} from "../../../utils/generateKey";
+import ProdInfoInputs from "../prodInfoInputs";
+import ButtonReg from "../../common/buttons/buttonReg";
+import {SelectionsForProperties} from "./SelectionsForProperties/SelectionsForProperties";
 
 
 const ProductListRegistrationForm = ({
@@ -23,7 +24,8 @@ const ProductListRegistrationForm = ({
                                          setThirdCategory,
                                          firstStageCategories,
                                          thirdStageCategories,
-                                         secondStageCategories
+                                         secondStageCategories,
+                                         productProperties
                                      }) => {
 
     const {
@@ -38,13 +40,8 @@ const ProductListRegistrationForm = ({
         reset()
     }
 
-    /*const clothes = ['Cardigan', 'Dress', 'Hoodie', 'Jeans', 'Leggings', 'Longsleeve',
-        'Shorts', 'Skirt', 'Suits', 'Sweater', 'Sweatshirt', 'T-Shirt', 'Trousers', 'Turtleneck']*/
-
+    //const growths = ['44-51', '63-67', '75-80', '87-92', '105-110', '117-122', '129-134', '141-146', '146-152', '158-164', '170-176', '182-188']
     const colorAmount = ['no color', 'white', 'beige', 'sand', 'gray', 'black', 'metallic', 'bronze', 'red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'lilac', 'purple']
-
-    const growths = ['44-51', '63-67', '75-80', '87-92', '105-110', '117-122', '129-134', '141-146', '146-152', '158-164', '170-176', '182-188']
-
     const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'XXXXL']
 
     return (
@@ -98,7 +95,7 @@ const ProductListRegistrationForm = ({
                                                 required: true
                                             })}
                                         title={'Type 1 *'}
-                                        name={'type'}
+                                        name={'type1'}
                                         placeholder={'Select'}
                                     />
                                 </div>
@@ -113,7 +110,7 @@ const ProductListRegistrationForm = ({
                                                 required: false
                                             })}
                                         title={'Type 2'}
-                                        name={'type'}
+                                        name={'type2'}
                                         placeholder={'Select'}
                                     />
                                 </div>
@@ -140,52 +137,18 @@ const ProductListRegistrationForm = ({
 
                         <DropDownField title={'Properties'}>
 
-                            <div className={style.selectInputs}>
-                                <div className={style.selectEqual}>
-                                    <SelectLabelAbove
-                                        register={
-                                            register('occasion', {
-                                                required: true
-                                            })}
-                                        title={'Occasion *'}
-                                        name={'occasion'}
-                                        options={['Casual', 'Formal', 'Home', 'Sport']}
-                                        placeholder={'Select'}/>
-                                </div>
-                                <div className={style.selectEqual}>
-                                    <SelectLabelAbove
-                                        register={register('season')}
-                                        title={'Season'}
-                                        name={'season'}
-                                        options={['Spring-Summer', 'Autumn-Winter']}
-                                        placeholder={'Select'}/>
-                                </div>
-                            </div>
+                            {productProperties && productProperties.map((el, i) => {
 
-                            <div className={style.selectInputs}>
+                                const arrValues = Object.keys(el)
 
-                                <div className={style.selectEqual}>
-                                    <SelectLabelAbove
-                                        register={
-                                            register('sizesGrid', {
-                                                required: true
-                                            })}
-                                        title={'Sizes grid type *'}
-                                        name={'sizesGrid'}
-                                        options={['12', '23', '34', '45']}
-                                        placeholder={'Select'}/>
-                                </div>
-
-                                <div className={style.selectEqual}>
-                                    <SelectLabelAbove
-                                        register={register('gender')}
-                                        title={'Gender'}
-                                        name={'gender'}
-                                        options={['Men', 'Women', 'Unisex']}
-                                        placeholder={'Select'}/>
-                                </div>
-
-                            </div>
+                                return (
+                                    <SelectionsForProperties key={i}
+                                                             element={el}
+                                                             arrValues={arrValues}
+                                                             register={register}
+                                    />
+                                )
+                            })}
 
                             <MaterialInputs
                                 register={register}
@@ -196,22 +159,24 @@ const ProductListRegistrationForm = ({
                                 mainType={'text'}
                                 optType={'number'}
                             />
-                            <RadiosFor register={register('color', {required: true})}
-                                       title={'Select color *'}
-                                       state={'no color'}
-                                       array={colorAmount}
-                                       name={'color'}/>
+
+                            <RadiosFor
+                                register={register('color', {required: true})}
+                                title={'Select color *'}
+                                state={'no color'}
+                                array={colorAmount}
+                                name={'color'}/>
 
                             <CheckboxFor
                                 register={register}
                                 title={'Size and Quantity *'}
                                 array={sizes}/>
 
-                            <RadiosFor register={register('growth')}
+                            {/*<RadiosFor register={register('growth')}
                                        title={'Growth, cm (optional)'}
                                        state={''}
                                        array={growths}
-                                       name={'growth'}/>
+                                       name={'growth'}/>*/}
 
                         </DropDownField>
 
@@ -220,7 +185,6 @@ const ProductListRegistrationForm = ({
                             <ProdInfoInputs register={register}/>
 
                         </DropDownField>
-
 
                         <ButtonReg type={'submit'}
                                    value={'Continue'}

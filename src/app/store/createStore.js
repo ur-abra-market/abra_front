@@ -4,6 +4,7 @@ import formRegistrationSlice from "./reducers/formRegistrationSlice";
 import loginReducer from "./reducers/loginSlice";
 import registerReducer from './reducers/registerSlice'
 import categoryReducer from './reducers/categorySlice'
+import supplierReducer from './reducers/supplierSlice'
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     counter: counterReducer,
     category: categoryReducer,
     formRegistration: formRegistrationSlice,
+    supplier: supplierReducer,
   }
 });

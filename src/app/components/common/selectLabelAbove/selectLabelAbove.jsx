@@ -39,7 +39,8 @@ const SelectLabelAbove = ({
                     {...register}
                     name={name}
                     onChange={onChangeCallback}
-                    className={style.selectField}>
+                    className={style.selectField}
+                >
                     {placeholder &&
                         <option
                             value='' disabled hidden>

@@ -3,45 +3,46 @@ import categoryFetch from "../../services/category.service";
 
 const initialState = {
     dateCategories: null,
-    currentCategory: [],
-    stateCategories: 'nothing',
-    messageErrorCategory: '',
+    errMessage: '',
+    loading: false
 }
 
 export const categoryService = createAsyncThunk(
     "category/categoryService",
     async function (_, {rejectWithValue}) {
         try {
-            const data = await categoryFetch.getAllCategories();
-            return data.result;
+            const data = await categoryFetch.getAllCategories()
+            return data.result
         } catch (error) {
             const err = error.response.data.result
                 ? error.response.data.result
-                : error.message;
-            return rejectWithValue(err);
+                : error.message
+            return rejectWithValue(err)
         }
     }
-);
+)
+
 
 const categorySlice = createSlice({
     name: "category",
     initialState: initialState,
-    extraReducers: (bulder) => {
-        bulder.addCase(categoryService.pending, (state) => {
-            state.dateCategories = null
-            state.stateCategories = 'loading'
-            state.messageErrorCategory = ''
-        })
-        bulder.addCase(categoryService.fulfilled, (state, action) => {
-            state.dateCategories = action.payload;
-            state.stateCategories = 'presence'
-            state.messageErrorCategory = ''
-        });
-        bulder.addCase(categoryService.rejected, (state, action) => {
-            state.dateCategories = action.payload;
-            state.stateCategories = 'nothing'
-            state.messageErrorCategory = action.payload
-        });
+    extraReducers: (builder) => {
+        builder
+            .addCase(categoryService.pending, (state) => {
+                state.dateCategories = null
+                state.resMessage = ''
+                state.loading = true
+            })
+            .addCase(categoryService.fulfilled, (state, action) => {
+                state.dateCategories = action.payload
+                state.resMessage = ''
+                state.loading = false
+            })
+            .addCase(categoryService.rejected, (state, action) => {
+                state.dateCategories = action.payload
+                state.errMessage = action.payload
+                state.loading = false
+            });
     },
     reducers: {},
 })
