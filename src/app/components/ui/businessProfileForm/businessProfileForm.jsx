@@ -38,7 +38,6 @@ const BusinessProfileForm = () => {
             logo_url: imgUrl,
             shop_name: data.storeName,
             business_sector: data.businessSector,
-            is_manufacturer: data.checkbox,
             year_established: +data.yearEstablished,
             number_of_emploees: +data.numEmployees,
             description: data.textarea,
@@ -56,7 +55,7 @@ const BusinessProfileForm = () => {
             path: 'send-account-info',
             rest: {
                 supplier_info: accountInfo,
-                account_info: accountInfoForRequest
+                account_info: {...accountInfoForRequest, is_manufacturer: data.checkbox? 1 : 0}
             }
         }))
 
