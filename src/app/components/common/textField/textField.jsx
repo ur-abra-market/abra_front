@@ -14,8 +14,6 @@ const TextField = ({ label, id, type, name, error, register }) => {
     findPassword.type = !showPassword ? "text" : "password";
   };
 
-
-  console.log(error);
   return (
     <>
       <label htmlFor={name} className={style.labelTextField}>

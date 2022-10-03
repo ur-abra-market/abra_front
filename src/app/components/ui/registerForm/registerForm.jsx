@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import TextField from "../../common/textField";
 import Button from "../../common/buttons/button";
-import style from "./registerForm.module.css"
+import style from "./registerForm.module.css";
 import styleBtn from "../../common/buttons/buttons.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { registerService } from "../../../store/reducers/registerSlice";
 import { useForm } from "react-hook-form";
 import PasswordComplexity from "../../common/passwordComplexity/passwordComplexity";
 import Form from "../../common/form/form";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const RegisterForm = () => {
   const [userStatus, setUserStatus] = useState("suppliers");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const {
@@ -29,7 +29,7 @@ const RegisterForm = () => {
   const toggleUserStatus = () => {
     setUserStatus((prevState) =>
       prevState === "suppliers" ? "sellers" : "suppliers"
-    )
+    );
   };
 
   const onSubmit = (data) => {
@@ -40,13 +40,13 @@ const RegisterForm = () => {
   const resServer = useSelector((state) => state.register.resMessage);
 
   useEffect(() => {
+    const goConfirmPage = () =>
+      navigate("/register/email-confirmation", { replace: true });
 
-    const goConfirmPage = () => navigate('/register/email-confirmation', { replace: true })
-
-    if(resServer === 'MESSAGE_HAS_BEEN_SENT'){
-      goConfirmPage() 
+    if (resServer === "MESSAGE_HAS_BEEN_SENT") {
+      goConfirmPage();
     }
-  }, [resServer, navigate])
+  }, [resServer, navigate]);
 
   return (
     <>
@@ -54,16 +54,20 @@ const RegisterForm = () => {
         <div className={style.flexContainer}>
           <Button
             value="I'm here to buy"
-            className={userStatus === "suppliers"
-              ? styleBtn.userStatusBtnInactive
-              : styleBtn.userStatusBtnActive}
+            className={
+              userStatus === "sellers"
+                ? styleBtn.userStatusBtnInactive
+                : styleBtn.userStatusBtnActive
+            }
             onClick={toggleUserStatus}
           />
           <Button
             value="I'm here to sell"
-            className={userStatus === "sellers"
-              ? styleBtn.userStatusBtnInactive
-              : styleBtn.userStatusBtnActive}
+            className={
+              userStatus === "suppliers"
+                ? styleBtn.userStatusBtnInactive
+                : styleBtn.userStatusBtnActive
+            }
             onClick={toggleUserStatus}
           />
         </div>
@@ -83,20 +87,18 @@ const RegisterForm = () => {
           error={errors.email}
         />
         <TextField
-          register={register("password",
-            {
-              required: "Password is required!",
-              minLength: {
-                value: 8,
-                message: "Password must contain at least 8 characters!",
-              },
-              validate: {
-                capitalSymbol: (s) => /[A-Z]+/g.test(s),
-                digitSymbol: (s) => /\d+/g.test(s),
-                specialSymbol: (s) => /[!#+*]/g.test(s),
-              },
-            }
-          )}
+          register={register("password", {
+            required: "Password is required!",
+            minLength: {
+              value: 8,
+              message: "Password must contain at least 8 characters!",
+            },
+            validate: {
+              capitalSymbol: (s) => /[A-Z]+/g.test(s),
+              digitSymbol: (s) => /\d+/g.test(s),
+              specialSymbol: (s) => /[!#+*]/g.test(s),
+            },
+          })}
           label="Password"
           type="password"
           id="password"
@@ -106,9 +108,11 @@ const RegisterForm = () => {
         <div>{resServer}</div>
         <Button
           value="Sign up"
-          className={(!isValid) ?
-            `${styleBtn.commonButton} ${styleBtn.logInBtnInactive}` :
-            `${styleBtn.commonButton} ${styleBtn.logInBtnActive}`}
+          className={
+            !isValid
+              ? `${styleBtn.commonButton} ${styleBtn.logInBtnInactive}`
+              : `${styleBtn.commonButton} ${styleBtn.logInBtnActive}`
+          }
           disabled={!isValid}
         />
       </Form>
