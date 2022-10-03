@@ -14,7 +14,6 @@ import ButtonReg from "../../common/buttons/buttonReg";
 import {SelectionsForProperties} from "./SelectionsForProperties/SelectionsForProperties";
 import {useDispatch} from "react-redux";
 import {addProductService} from "../../../store/reducers/supplierSlice";
-import {useState} from "react";
 
 
 const ProductListRegistrationForm = ({
@@ -33,12 +32,6 @@ const ProductListRegistrationForm = ({
                                      }) => {
 
     const dispatch = useDispatch()
-
-    const [isDropDownProdInfo, SetIsDropDownProdInfo] = useState(true)
-    const [isDropDownProperties, SetIsDropDownProperties] = useState(true)
-    const [isDropDownAdditionalProd, SetIsDropDownAdditionalProd] = useState(true)
-
-    const isDisableSubmit = isDropDownProdInfo || isDropDownProperties || isDropDownAdditionalProd
 
     const {register, formState, handleSubmit, reset} = useForm({mode: 'onChange'})
 
@@ -150,9 +143,8 @@ const ProductListRegistrationForm = ({
                 />
                 <Form action="" onSubmit={handleSubmit(onSubmit)}>
                     <div className={style.form}>
-                        <DropDownField setState={SetIsDropDownProdInfo}
-                                       title={'Main Product Info'}
-                        >
+
+                        <DropDownField title={'Main Product Info'}>
 
                             <TextFieldLabelAbove
                                 register={
@@ -233,7 +225,7 @@ const ProductListRegistrationForm = ({
                                 placeholder={'Enter the description of your product'}/>
                         </DropDownField>
 
-                        <DropDownField setState={SetIsDropDownProperties}
+                        <DropDownField isShow={!!productVariations && !!productProperties}
                                        title={'Properties'}
                         >
 
@@ -278,7 +270,7 @@ const ProductListRegistrationForm = ({
 
                         </DropDownField>
 
-                        <DropDownField setState={SetIsDropDownAdditionalProd}
+                        <DropDownField isShow={!!productVariations && !!productProperties}
                                        title={'Additional Product Info'}
                         >
                             <ProdInfoInputs register={register}/>
@@ -287,7 +279,6 @@ const ProductListRegistrationForm = ({
                         <ButtonReg type={'submit'}
                                    value={'Continue'}
                                    isValid={!formState.isValid}
-                                   isDisableSubmit={isDisableSubmit}
                         />
                     </div>
                 </Form>

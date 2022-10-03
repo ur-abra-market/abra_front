@@ -1,17 +1,19 @@
 import {useState} from "react";
 import style from "./dropDownField.module.css";
 
-const DropDownField = ({children, title, setState}) => {
+const DropDownField = ({children, title, isShow}) => {
     const [open, setOpen] = useState(false)
+
+    isShow && !open && setOpen(true)
 
     const onClick = () => {
         setOpen(!open)
-        setState(false)
     }
     return (
         <div>
             <div className={style.title}
-                 onClick={onClick}>
+                 onClick={onClick}
+            >
                 <p className={style.titleText}>{title}</p>
                 <span className={open ? style.arrowOn
                     : style.arrowOff}>&#9660;</span>
