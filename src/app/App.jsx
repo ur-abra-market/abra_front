@@ -20,7 +20,7 @@ function App() {
         <Route path="login" element={<Auth />} />
         <Route path="account-setup" element={<AccountSetupPage />} />
         <Route path="business-profile" element={<BusinessProfilePage />} />
-        <Route path="product-list-registration" element={< ProductListRegistrationPage />} />
+        <Route path="product-list-registration" element={<ProductListRegistrationPage />} />
         <Route path="forgotPasswordPage" element={< ForgotPasswordPage />} />
         <Route path="register/email-confirmation" element={<ConfirmEmail />} />
         <Route path="help" element={<p> Help </p>} />

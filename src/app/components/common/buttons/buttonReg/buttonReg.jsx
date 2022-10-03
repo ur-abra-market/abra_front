@@ -1,13 +1,13 @@
 import style from "./buttonReg.module.css";
 
 
-const ButtonReg = ({type, value, isValid, isDisableSubmit}) => {
+const ButtonReg = ({type, value, isValid}) => {
 
     return (
         <div>
             <button type={type}
                     className={isValid ? style.buttonOff : style.buttonOn}
-                    disabled={isValid && isDisableSubmit}>
+                    disabled={isValid}>
                 {value}
             </button>
         </div>
