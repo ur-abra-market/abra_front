@@ -10,6 +10,7 @@ import ImageAdding from "../../common/imageAdding";
 import SelectLabelAbove from "../../common/selectLabelAbove";
 import TextFieldLabelAbove from "../../common/textFieldLabelAbove";
 import style from "./businessProfileForm.module.css";
+import {filterEmptyValues} from "../../../utils/filterEmptyValues";
 
 
 const BusinessProfileForm = () => {
@@ -33,7 +34,7 @@ const BusinessProfileForm = () => {
     const onSubmit = (data) => {
         const phone = data.code + data.tel
 
-        const Info = {
+        const info = {
             logo_url: imgUrl,
             shop_name: data.storeName,
             business_sector: data.businessSector,
@@ -48,13 +49,8 @@ const BusinessProfileForm = () => {
         }
 
         // checking for empty fields
-        const accountInfoForRequest = {}
-        const array = Object.keys(Info)
-        for (let i = 0; i < array.length; i++) {
-            if (Info[array[i]]) {
-                accountInfoForRequest[array[i]] = Info[array[i]]
-            }
-        }
+        const accountInfoForRequest =  filterEmptyValues(info)
+
 
         dispatch(accountInfoService({
             path: 'send-account-info',
@@ -63,7 +59,6 @@ const BusinessProfileForm = () => {
                 account_info: accountInfoForRequest
             }
         }))
-
 
         reset()
     }
@@ -145,22 +140,22 @@ const BusinessProfileForm = () => {
 
                         <div className={style.selectInfoInputs}>
 
-                                <TextFieldLabelAbove
-                                    register={register('yearEstablished', {
-                                        minLength: {
-                                            value: 4,
-                                            message: 'Add an existing year'
-                                        },
-                                        max: {
-                                            value: year,
-                                            message: 'this year hasn\'t come yet'
-                                        }
-                                    })}
-                                    error={errors?.yearEstablished?.message}
-                                    title={'Year Established'}
-                                    name={'yearEstablished'}
-                                    type={'number'}
-                                    placeholder={'Enter the year'}/>
+                            <TextFieldLabelAbove
+                                register={register('yearEstablished', {
+                                    minLength: {
+                                        value: 4,
+                                        message: 'Add an existing year'
+                                    },
+                                    max: {
+                                        value: year,
+                                        message: 'this year hasn\'t come yet'
+                                    }
+                                })}
+                                error={errors?.yearEstablished?.message}
+                                title={'Year Established'}
+                                name={'yearEstablished'}
+                                type={'number'}
+                                placeholder={'Enter the year'}/>
 
                             <div className={style.selectEqual}>
                                 <SelectLabelAbove
@@ -181,7 +176,8 @@ const BusinessProfileForm = () => {
                             placeholder={'Tell more about your company or business'}/>
 
 
-                        <p className={style.listImgTitle}>Photo of the company or production</p>
+                        <p className={style.listImgTitle}>Photo of the company or
+                            production</p>
                         <div className={style.listImg}>
                             <ImageAdding/>
                             <ImageAdding/>

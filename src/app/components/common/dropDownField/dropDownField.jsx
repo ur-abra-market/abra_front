@@ -1,16 +1,17 @@
-import { useState } from "react";
+import {useState} from "react";
 import style from "./dropDownField.module.css";
 
-const DropDownField = ({ children, title }) => {
+const DropDownField = ({children, title, setState}) => {
     const [open, setOpen] = useState(false)
 
     const onClick = () => {
         setOpen(!open)
+        setState(false)
     }
     return (
         <div>
             <div className={style.title}
-                onClick={onClick}>
+                 onClick={onClick}>
                 <p className={style.titleText}>{title}</p>
                 <span className={open ? style.arrowOn
                     : style.arrowOff}>&#9660;</span>
@@ -19,7 +20,7 @@ const DropDownField = ({ children, title }) => {
             {open && <div className={style.children}>
                 {children}
             </div>
-}
+            }
         </div>
     );
 };

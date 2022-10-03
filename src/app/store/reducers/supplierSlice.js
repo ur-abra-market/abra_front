@@ -38,6 +38,19 @@ export const getVariationsService = createAsyncThunk(
     }
 )
 
+export const addProductService = createAsyncThunk(
+    'formRegistration/accountInfoService',
+    async ({product}, { rejectWithValue }) => {
+        try {
+            const data = await supplierFetch.addProduct(product);
+            return data.result;
+        } catch (error) {
+            const err = error.response.data.result ? error.response.data.result : error.message;
+            return rejectWithValue(err);
+        }
+    }
+)
+
 
 const categorySlice = createSlice({
     name: "supplier",

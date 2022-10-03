@@ -9,10 +9,12 @@ import RadiosFor from "../radiosFor";
 import style from "./productListRegistrationForm.module.css";
 import CheckboxFor from "../checkboxFor";
 import MaterialInputs from "../materialInputs";
-import {generateKey} from "../../../utils/generateKey";
 import ProdInfoInputs from "../prodInfoInputs";
 import ButtonReg from "../../common/buttons/buttonReg";
 import {SelectionsForProperties} from "./SelectionsForProperties/SelectionsForProperties";
+import {useDispatch} from "react-redux";
+import {addProductService} from "../../../store/reducers/supplierSlice";
+import {useState} from "react";
 
 
 const ProductListRegistrationForm = ({
@@ -26,18 +28,110 @@ const ProductListRegistrationForm = ({
                                          thirdStageCategories,
                                          secondStageCategories,
                                          productProperties,
-                                         productVariations
+                                         productVariations,
+                                         categoryId
                                      }) => {
 
-    const {
-        register,
-        formState: {errors, isValid},
-        handleSubmit,
-        reset,
-    } = useForm({mode: 'onChange'})
+    const dispatch = useDispatch()
+
+    const [isDropDownProdInfo, SetIsDropDownProdInfo] = useState(true)
+    const [isDropDownProperties, SetIsDropDownProperties] = useState(true)
+    const [isDropDownAdditionalProd, SetIsDropDownAdditionalProd] = useState(true)
+
+    const isDisableSubmit = isDropDownProdInfo || isDropDownProperties || isDropDownAdditionalProd
+
+    const {register, formState, handleSubmit, reset} = useForm({mode: 'onChange'})
+
+    const values = productProperties?.map(el => el.key)
+
+    const createObjProperty = (el, obj) => {
+        const optional_value = obj[`${el}(optional)`]
+        const value = obj[el]
+        let finalObj = {
+            name: el,
+            value,
+        }
+        if (optional_value) {
+            finalObj = {...finalObj, optional_value}
+        }
+        return finalObj
+    }
 
     const onSubmit = (data) => {
-        console.log(data);
+
+        let keysData = Object.keys(data)
+
+
+        const childs = []
+        productVariations['Размер'].forEach(el => {
+            if (data[el]) {
+                childs.push({
+                    name: "Размер",
+                    value: el,
+                    count: data[el]
+                })
+            }
+        })
+
+
+        const properties = []
+        values.forEach(el => {
+            properties.push(createObjProperty(el, data))
+        })
+
+        const addedMaterialKeys = []
+        const addedMaterialValues = []
+        keysData.forEach(el => {
+            if (el.slice(0, 3) === 'opt') {
+                addedMaterialKeys.push(el)
+            }
+            if (el.slice(0, 4) === 'main') {
+                addedMaterialValues.push(el)
+            }
+        })
+        addedMaterialKeys.forEach((el, i) => {
+            properties.push({
+                name: `material:${i}`,
+                value: data[addedMaterialValues[i]],
+                optional_value: data[el]
+            })
+        })
+
+
+        const prices = [
+            {
+                value: data.mainPrice,
+                quantity: data.mainQuantity
+            }
+        ]
+        if (data.specPrice && data.specQuantity) {
+            prices.push({
+                value: data.specPrice,
+                quantity: data.specQuantity
+            })
+        }
+
+
+        const productInfo = {
+            product_info: {
+                product_name: data.prodName,
+                category_id: categoryId,
+                description: data.textarea
+            },
+            properties,
+            variations: [
+                {
+                    name: "Цвет",
+                    value: data.color,
+                    childs
+                }
+            ],
+            prices
+        }
+
+
+        dispatch(addProductService({product: productInfo}))
+
         reset()
     }
 
@@ -56,14 +150,16 @@ const ProductListRegistrationForm = ({
                 />
                 <Form action="" onSubmit={handleSubmit(onSubmit)}>
                     <div className={style.form}>
-                        <DropDownField title={'Main Product Info'}>
+                        <DropDownField setState={SetIsDropDownProdInfo}
+                                       title={'Main Product Info'}
+                        >
 
                             <TextFieldLabelAbove
                                 register={
                                     register('prodName', {
                                         required: 'Field is required'
                                     })}
-                                error={errors?.prodName?.message}
+                                error={formState.errors?.prodName?.message}
                                 title={'Product name *'}
                                 name={'prodName'}
                                 type={'text'}
@@ -83,7 +179,8 @@ const ProductListRegistrationForm = ({
                                             })}
                                         title={'Category *'}
                                         name={'category'}
-                                        placeholder={'Select'}/>
+                                        placeholder={'Select'}
+                                    />
                                 </div>
 
                                 <div className={style.selectEqual}>
@@ -101,20 +198,20 @@ const ProductListRegistrationForm = ({
                                     />
                                 </div>
 
-                                <div className={style.selectEqual}>
-                                    <SelectLabelAbove
-                                        value={thirdCategory}
-                                        onChangeOption={setThirdCategory}
-                                        options={thirdStageCategories}
-                                        register={
-                                            register('type2', {
-                                                required: false
-                                            })}
-                                        title={'Type 2'}
-                                        name={'type2'}
-                                        placeholder={'Select'}
-                                    />
-                                </div>
+                                {thirdStageCategories && !!thirdStageCategories.length &&
+
+                                    <div className={style.selectEqual}>
+                                        <SelectLabelAbove
+                                            value={thirdCategory}
+                                            onChangeOption={setThirdCategory}
+                                            options={thirdStageCategories}
+                                            register={register('type2')}
+                                            title={'Type 2 *'}
+                                            name={'type2'}
+                                            placeholder={'Select'}
+                                        />
+                                    </div>}
+
 
                             </div>
 
@@ -123,7 +220,7 @@ const ProductListRegistrationForm = ({
 
                             <div className={style.listImg}>
                                 {[...new Array(5)].map((el, i) => (
-                                    <div key={generateKey(i)}>
+                                    <div key={i}>
                                         <ImageAdding/>
                                     </div>
                                 ))}
@@ -136,17 +233,20 @@ const ProductListRegistrationForm = ({
                                 placeholder={'Enter the description of your product'}/>
                         </DropDownField>
 
-                        <DropDownField title={'Properties'}>
+                        <DropDownField setState={SetIsDropDownProperties}
+                                       title={'Properties'}
+                        >
 
                             {productProperties && productProperties.map((el, i) => {
 
-                                const arrValues = Object.keys(el)
+                                const values = [...new Set(el.values.map((el) => el.value))]
 
                                 return (
                                     <SelectionsForProperties key={i}
                                                              element={el}
-                                                             arrValues={arrValues}
+                                                             options={values}
                                                              register={register}
+                                                             placeholder={'Select'}
                                     />
                                 )
                             })}
@@ -163,7 +263,7 @@ const ProductListRegistrationForm = ({
 
 
                             <RadiosFor
-                                register={register('color', {required: true})}
+                                register={register}
                                 title={'Select color *'}
                                 state={'no color'}
                                 array={variations[variationKeys[1]]}
@@ -178,15 +278,16 @@ const ProductListRegistrationForm = ({
 
                         </DropDownField>
 
-                        <DropDownField title={'Additional Product Info'}>
-
+                        <DropDownField setState={SetIsDropDownAdditionalProd}
+                                       title={'Additional Product Info'}
+                        >
                             <ProdInfoInputs register={register}/>
-
                         </DropDownField>
 
                         <ButtonReg type={'submit'}
                                    value={'Continue'}
-                                   isValid={!isValid}
+                                   isValid={!formState.isValid}
+                                   isDisableSubmit={isDisableSubmit}
                         />
                     </div>
                 </Form>

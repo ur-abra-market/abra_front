@@ -3,39 +3,41 @@ import style from "../productListRegistrationForm.module.css";
 import s from '../../../../components/common/selectLabelAbove/selectLabelAbove.module.css'
 import {ucFirst} from "../../../../utils/ucFirst";
 
-export const SelectionsForProperties = ({
-                                            element,
-                                            arrValues,
-                                            register,
-                                        }) => {
+export const SelectionsForProperties = ({element, register, options}) => {
 
-    const [currentIndex, setCurrentIndex] = useState('0')
+    const [currentValue, setCurrentValue] = useState('')
 
-    const onChangeCallBack = (e) => {
-        setCurrentIndex(e.currentTarget.value)
-    }
-
-    const values = element[arrValues[1]].map((el) => el.value)
+    const arrFilteredOptValues = element.values
+        .filter(el => el.value === currentValue && el.optional_value !== null)
+        .map(el => el.optional_value)
 
     return (
         <div className={style.selectInputs}>
 
             <div className={style.selectEqual}>
-                <p className={s.selectTitle}>{ucFirst(`${element[arrValues[0]]}`)}</p>
+                <p className={s.selectTitle}>{ucFirst(`${element.key}`)}</p>
                 <div className={s.selectContainer}>
 
-                    <select name={`${element[arrValues[0]]}`}
-                            className={s.selectField}
-                            onChange={onChangeCallBack}
-                            register={
-                                register(`${element[arrValues[0]]}`, {
-                                    required: true
-                                })}
+                    <select
+                        {...register(`${element.key}`, {
+                            required: true,
+                            onChange: (e) => {
+                                setCurrentValue(e.target.value)
+                            }
+                        })}
+                        className={s.selectField}
                     >
-                        {values.map((el, i) => (
-                            <option className={s.selectOption}
-                                    value={i.toString()}
-                                    key={i}
+
+                        <option hidden
+                                value=''
+                        >
+                            {'Select'}
+                        </option>
+
+                        {options.map((el, i) => (
+                            <option key={i}
+                                    className={s.selectOption}
+                                    value={el}
                             >
                                 {el}
                             </option>
@@ -46,21 +48,33 @@ export const SelectionsForProperties = ({
 
             </div>
 
-            <div className={style.selectEqual}>
-                <p className={s.selectTitle}>{ucFirst(`${element[arrValues[0]]}(optional)`)}</p>
-                <div className={s.selectContainer}>
 
-                    <select name={`${element[arrValues[0]]}(optional)`}
-                            register={register(`${element[arrValues[0]]}(optional)`)}
+            {!!arrFilteredOptValues.length &&
+
+                <div className={style.selectEqual}>
+                    <p className={s.selectTitle}>{ucFirst(`${element.key}(optional)`)}</p>
+                    <div className={s.selectContainer}>
+                        <select
+                            {...register(`${element.key}(optional)`)}
                             className={s.selectField}
-                    >
-                        <option className={s.selectOption}>
-                            {element.values[currentIndex].optional_value}
-                        </option>
-                    </select>
-                    <span className={s.selectArrow}>&#9660;</span>
-                </div>
-            </div>
+                        >
+
+                            <option hidden value=''>
+                                {'Select'}
+                            </option>
+
+                            {arrFilteredOptValues.map((el, i) => (
+                                <option key={i}
+                                        className={s.selectOption}
+                                        value={el}
+                                >
+                                    {el}
+                                </option>
+                            ))}
+                        </select>
+                        <span className={s.selectArrow}>&#9660;</span>
+                    </div>
+                </div>}
 
         </div>
     )

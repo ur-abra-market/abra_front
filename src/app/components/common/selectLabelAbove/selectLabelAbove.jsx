@@ -1,5 +1,4 @@
 import style from './selectLabelAbove.module.css'
-import {generateKey} from "../../../utils/generateKey";
 
 
 const SelectLabelAbove = ({
@@ -49,7 +48,7 @@ const SelectLabelAbove = ({
                     }
                     {options ? options.map((el, i) => {
                         return (
-                            <option value={myFn(el)} className={style.selectOption} key={generateKey(i)}>
+                            <option value={myFn(el)} className={style.selectOption} key={i}>
                                 {el}
                             </option>)
                     }) : []}
