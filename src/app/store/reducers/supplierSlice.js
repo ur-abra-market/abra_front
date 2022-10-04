@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import supplierFetch from "../../services/supplier.service";
 
 const initialState = {
+    productId: null,
     productProperties: null,
     productVariations: null,
     errMessage: '',
@@ -40,7 +41,7 @@ export const getVariationsService = createAsyncThunk(
 
 export const addProductService = createAsyncThunk(
     'formRegistration/accountInfoService',
-    async ({product}, { rejectWithValue }) => {
+    async ({product}, {rejectWithValue}) => {
         try {
             const data = await supplierFetch.addProduct(product);
             return data.result;
@@ -56,6 +57,23 @@ const categorySlice = createSlice({
     name: "supplier",
     initialState: initialState,
     extraReducers: (builder) => {
+        builder
+            .addCase(addProductService.pending, (state) => {
+                state.productId = null
+                state.errMessage = ''
+                state.loading = true
+            })
+            .addCase(addProductService.fulfilled, (state, action) => {
+                state.productId = action.payload
+                state.errMessage = ''
+                state.loading = false
+            })
+            .addCase(addProductService.rejected, (state, action) => {
+                state.productId = action.payload
+                state.errMessage = action.payload
+                state.loading = false
+            })
+
         builder
             .addCase(getPropertiesService.pending, (state) => {
                 state.productProperties = null

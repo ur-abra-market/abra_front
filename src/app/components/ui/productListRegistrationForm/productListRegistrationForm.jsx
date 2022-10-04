@@ -33,7 +33,12 @@ const ProductListRegistrationForm = ({
 
     const dispatch = useDispatch()
 
-    const {register, formState, handleSubmit, reset} = useForm({mode: 'onChange'})
+    const {
+        register,
+        formState: {isValid, errors},
+        handleSubmit,
+        reset
+    } = useForm({mode: 'onChange'})
 
     const values = productProperties?.map(el => el.key)
 
@@ -83,7 +88,7 @@ const ProductListRegistrationForm = ({
             }
         })
         addedMaterialKeys.forEach((el, i) => {
-            if (data[addedMaterialValues[i]]) {
+            if (data[addedMaterialValues[i]] && data[el]) {
 
                 properties.push({
                     name: `material:${i}`,
@@ -144,17 +149,20 @@ const ProductListRegistrationForm = ({
                     title={'Product list'}
                     text={'Enter the information about your first product'}
                 />
-                <Form action="" onSubmit={handleSubmit(onSubmit)}>
+                <Form action=""
+                      onSubmit={handleSubmit(onSubmit)}
+                >
                     <div className={style.form}>
 
-                        <DropDownField title={'Main Product Info'}>
+                        <DropDownField title={'Main Product Info'}
+                        >
 
                             <TextFieldLabelAbove
                                 register={
                                     register('prodName', {
                                         required: 'Field is required'
                                     })}
-                                error={formState.errors?.prodName?.message}
+                                error={errors?.prodName?.message}
                                 title={'Product name *'}
                                 name={'prodName'}
                                 type={'text'}
@@ -226,9 +234,10 @@ const ProductListRegistrationForm = ({
                                 title={'Description'}
                                 name={'textarea'}
                                 placeholder={'Enter the description of your product'}/>
-                        </DropDownField>
+                        </DropDownField
+                        >
 
-                        <DropDownField isShow={!!productVariations && !!productProperties}
+                        <DropDownField isShow={!!productProperties && !!productVariations}
                                        title={'Properties'}
                         >
 
@@ -273,7 +282,7 @@ const ProductListRegistrationForm = ({
 
                         </DropDownField>
 
-                        <DropDownField isShow={!!productVariations && !!productProperties}
+                        <DropDownField isShow={!!productProperties && !!productVariations}
                                        title={'Additional Product Info'}
                         >
                             <ProdInfoInputs register={register}/>
@@ -281,7 +290,7 @@ const ProductListRegistrationForm = ({
 
                         <ButtonReg type={'submit'}
                                    value={'Continue'}
-                                   isValid={!formState.isValid}
+                                   isValid={!isValid}
                         />
                     </div>
                 </Form>

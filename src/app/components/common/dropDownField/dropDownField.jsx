@@ -4,11 +4,12 @@ import style from "./dropDownField.module.css";
 const DropDownField = ({children, title, isShow}) => {
     const [open, setOpen] = useState(false)
 
-    isShow && !open && setOpen(true)
-
     const onClick = () => {
         setOpen(!open)
     }
+
+    isShow && !open && setOpen(!open)
+
     return (
         <div>
             <div className={style.title}
@@ -19,7 +20,7 @@ const DropDownField = ({children, title, isShow}) => {
                     : style.arrowOff}>&#9660;</span>
             </div>
 
-            {open && <div className={style.children}>
+            { open && <div className={style.children}>
                 {children}
             </div>
             }
