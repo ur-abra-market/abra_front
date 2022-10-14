@@ -11,6 +11,7 @@ const httpService = axios.create({
 httpService.interceptors.request.use(
   async function (config) {
     const refresh = cookieService.getRefreshToken();
+    console.log(refresh);
     if (refresh) {
       await authService.refresh();
     }
