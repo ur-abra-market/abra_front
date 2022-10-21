@@ -12,6 +12,9 @@ import MainPage from "./components/pages/MainPage";
 import ProductPage from "./components/pages/productPage";
 import ProductListPage from "./components/pages/productListPage";
 import ConfirmEmail from "./components/pages/confirmEmail";
+import AccountSetupPage from "./components/pages/accountSetupPage";
+import BusinessProfilePage from "./components/pages/businessProfilePage";
+import ProductListRegistrationPage from "./components/pages/productListRegistrationPage";
 
 function App() {
   return (
@@ -38,6 +41,13 @@ function App() {
           }
         />
         <Route path="auth" element={<Auth />} />
+
+        <Route path="account-setup" element={<AccountSetupPage />} />
+        <Route path="business-profile" element={<BusinessProfilePage />} />
+        <Route
+          path="product-list-registration"
+          element={<ProductListRegistrationPage />}
+        />
         <Route path="forgotPassword" element={<ForgotPasswordPage />} />
         <Route path="resetPassword" element={<ResetPasswordPage />} />
         <Route path="register/email-confirmation" element={<ConfirmEmail />} />

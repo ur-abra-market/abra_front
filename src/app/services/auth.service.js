@@ -14,8 +14,12 @@ const authService = {
     });
     return data;
   },
-  refresh: async () => {
-    const { data } = await httpService.post("login/refresh");
+  refresh: async (refresh) => {
+    const { data } = await httpService.post(
+      "login/refresh",
+      {},
+      { headers: { "X-CSRF-TOKEN": refresh } }
+    );
     return data;
   },
 };
