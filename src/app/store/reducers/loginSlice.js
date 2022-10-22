@@ -23,7 +23,7 @@ export const loginService = createAsyncThunk(
   async function (dataUser, { rejectWithValue }) {
     try {
       const data = await authService.login(dataUser);
-
+      if (data.is_supplier) localStorage.setItem("profile", "supplier");
       return data.result;
     } catch (error) {
       const err = error.response.data.detail

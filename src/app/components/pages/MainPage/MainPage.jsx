@@ -6,6 +6,8 @@ import Slider from "../../common/Slider";
 import StatusProduct from "../../common/StatusProduct";
 import { InfoBtn } from "../../common/buttons";
 import Feedback from "../../ui/feedback/Feedback";
+import Header from "../../common/Header";
+import Footer from "../../common/Footer";
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -25,6 +27,7 @@ const MainPage = () => {
   return (
     <>
       <div className="main-page">
+        <Header />
         <StatusProduct />
         <div className="Main__sliders">
           {dataArr.map((data, index) => (
@@ -34,6 +37,7 @@ const MainPage = () => {
         <InfoBtn />
       </div>
       <Feedback />
+      <Footer />
     </>
   );
 };

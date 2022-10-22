@@ -1,11 +1,11 @@
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ContentMessage from "../../common/contentMessage";
-import style from "./confirmEmail.module.css";
+import style from "./confirmEmailPage.module.css";
 import { registerService } from "../../../store/reducers/registerSlice";
 import { useEffect } from "react";
 
-const ConfirmEmail = () => {
+const ConfirmEmailPage = () => {
   const dispatch = useDispatch();
   const resServer = useSelector((state) => state.register.resMessage);
 
@@ -38,4 +38,4 @@ const ConfirmEmail = () => {
   );
 };
 
-export default ConfirmEmail;
+export default ConfirmEmailPage;
