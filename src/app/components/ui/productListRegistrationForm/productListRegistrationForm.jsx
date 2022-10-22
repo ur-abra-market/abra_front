@@ -61,10 +61,10 @@ const ProductListRegistrationForm = ({
 
 
         const childs = []
-        productVariations['Размер'].forEach(el => {
+        productVariations['size']?.forEach(el => {
             if (data[el]) {
                 childs.push({
-                    name: "Размер",
+                    name: "size",
                     value: el,
                     count: data[el]
                 })
@@ -122,7 +122,7 @@ const ProductListRegistrationForm = ({
             properties,
             variations: [
                 {
-                    name: "Цвет",
+                    name: "color",
                     value: data.color,
                     childs
                 }
@@ -270,14 +270,14 @@ const ProductListRegistrationForm = ({
                                 register={register}
                                 title={'Select color *'}
                                 state={'no color'}
-                                array={variations[variationKeys[1]]}
+                                array={variations[variationKeys[2]]}
                                 name={'color'}
                             />
 
                             <CheckboxFor
                                 register={register}
                                 title={'Size and Quantity *'}
-                                array={variations[variationKeys[0]]}
+                                array={variations[variationKeys[1]]}
                             />
 
                         </DropDownField>
