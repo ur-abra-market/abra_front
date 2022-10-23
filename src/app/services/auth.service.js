@@ -1,8 +1,8 @@
 import httpService from "./http.service";
 
 const authService = {
-  register: async ({ rout, ...rest }) => {
-    const { data } = await httpService.post(`register/${rout}/`, {
+  register: async ({ route, ...rest }) => {
+    const { data } = await httpService.post(`register/${route}/`, {
       ...rest,
     });
     return data;
@@ -14,8 +14,12 @@ const authService = {
     });
     return data;
   },
-  refresh: async () => {
-    const { data } = await httpService.post("login/refresh");
+  refresh: async (refresh) => {
+    const { data } = await httpService.post(
+      "login/refresh",
+      {},
+      { headers: { "X-CSRF-TOKEN": refresh } }
+    );
     return data;
   },
 };

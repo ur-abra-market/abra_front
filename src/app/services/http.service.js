@@ -10,13 +10,6 @@ const httpService = axios.create({
 
 httpService.interceptors.request.use(
   async function (config) {
-    const refresh = cookieService.getRefreshToken();
-    console.log(refresh);
-    if (refresh) {
-      await authService.refresh();
-    }
-    config.headers = { ...config.headers, csrf_refresh_token: refresh };
-
     return config;
   },
   function (error) {
@@ -28,12 +21,18 @@ httpService.interceptors.response.use(
   (res) => {
     return res;
   },
-  function (error) {
+  async function (error) {
     const expectedErrors =
       error.response &&
       error.response.status >= 400 &&
       error.response.status < 500;
 
+    const access = cookieService.getAccesToken();
+    const refresh = cookieService.getRefreshToken();
+    if (refresh && !access && error.response.status === 401) {
+      console.log(access);
+      await authService.refresh(refresh);
+    }
     if (!expectedErrors) {
     }
     return Promise.reject(error);

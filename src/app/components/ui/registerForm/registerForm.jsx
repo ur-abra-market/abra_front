@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +26,7 @@ const RegisterForm = () => {
 
   const isLoading = useSelector((state) => state.register.loading);
   const errMessage = useSelector((state) => state.register.errMessage);
+  const resMessage = useSelector((state) => state.register.resMessage);
 
   const toggleUserStatus = () => {
     setUserStatus((prevState) =>
@@ -33,10 +34,14 @@ const RegisterForm = () => {
     );
   };
 
+  useEffect(() => {
+    console.log(resMessage);
+    if (resMessage === "MESSAGE_HAS_BEEN_SENT") navigate("/");
+  }, [resMessage]);
+
   const onSubmit = (data) => {
     if (!isValid) return;
-    dispatch(registerService({ ...data, rout: userStatus }));
-    if (!errMessage && !isLoading) navigate("/");
+    dispatch(registerService({ ...data, route: userStatus }));
   };
 
   const textFieldClasses = {

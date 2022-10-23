@@ -10,7 +10,6 @@ const ChoiceProduct = () => {
   const productData = useSelector(
     (state) => state.productPaginate.productActive
   );
-  console.log(productData);
 
   const price = +productData.info.value_price;
   const quantity = +productData.info.quantity;

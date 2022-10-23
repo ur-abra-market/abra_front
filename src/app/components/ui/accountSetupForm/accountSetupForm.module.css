@@ -1,0 +1,32 @@
+.addName {
+    display: flex;
+    gap: 15px;
+    margin: 40px 0 16px;
+}
+
+.formWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.formContainer {
+    width: 633px;
+}
+
+.phoneNumber {
+    display: flex;
+    margin: 16px 0;
+    gap: 15px;
+}
+
+.marginFix {
+    width: 100%;
+    margin-top: 16px;
+}
+
+.licenseReminder {
+    margin: 16px 0 24px;
+    color: #4F4F4F;
+    font-size: 13px;
+    text-align: left;
+}

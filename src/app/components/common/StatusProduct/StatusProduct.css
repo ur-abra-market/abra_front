@@ -9,28 +9,28 @@
   display: flex;
   flex-direction: column;
   width: 240px;
-  height: fit-content;   
+  height: fit-content;
   align-items: center;
   gap: 8px;
 }
-.StatusProduct__btn_name {  
-  width: 240px;
+.StatusProduct__btn_name {
+  width: fit-content;
   height: fit-content;
   text-align: center;
   font-size: var(--fd);
-  font-family: 'SF Pro Display Bold';
-  line-height: 25px;  
+  font-family: "SF Pro Display Bold";
+  line-height: 25px;
   cursor: pointer;
 }
-.StatusProduct__btn_check {  
+.StatusProduct__btn_check {
   width: 20px;
-  height: 10px;   
+  height: 10px;
 }
-.StatusProduct__btn_check {  
+.StatusProduct__btn_check {
   width: 20px;
-  height: 10px;   
+  height: 10px;
 }
 
 .sort-active {
-  background-image: url('../../../assets/img/icons/check-arrow.png');
+  background-image: url("../../../assets/img/icons/check-arrow.png");
 }
