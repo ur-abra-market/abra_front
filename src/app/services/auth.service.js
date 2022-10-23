@@ -1,8 +1,8 @@
 import httpService from "./http.service";
 
 const authService = {
-  register: async ({ rout, ...rest }) => {
-    const { data } = await httpService.post(`register/${rout}/`, {
+  register: async ({ route, ...rest }) => {
+    const { data } = await httpService.post(`register/${route}/`, {
       ...rest,
     });
     return data;

@@ -10,9 +10,9 @@ const initialState = {
 };
 export const registerService = createAsyncThunk(
   "register/registerService",
-  async ({ rout, ...rest }, { rejectWithValue }) => {
+  async (dataUser, { rejectWithValue }) => {
     try {
-      const response = await authService.register({ rout, ...rest });
+      const response = await authService.register(dataUser);
       return response.result;
     } catch (error) {
       const err = error.response.data.detail

@@ -16,15 +16,15 @@ const ConfirmEmailPage = () => {
     const token = searchParams.get("token");
 
     if (token) {
-      dispatch(registerService({ rout: "email-confirmation-result", token }));
+      dispatch(registerService({ route: "email_confirmation_result", token }));
     }
-  }, [searchParams, dispatch]);
+  }, [searchParams]);
 
   useEffect(() => {
     if (resServer === "REGISTRATION_SUCCESSFUL") {
       navigate("/", { replace: true });
     }
-  }, [resServer, navigate]);
+  }, [resServer]);
 
   return (
     <div className={style.container}>

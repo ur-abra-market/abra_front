@@ -35,8 +35,8 @@ const RegisterForm = () => {
 
   const onSubmit = (data) => {
     if (!isValid) return;
-    dispatch(registerService({ ...data, rout: userStatus }));
-    if (!errMessage && !isLoading) navigate("/");
+    dispatch(registerService({ ...data, route: userStatus }));
+    if (errMessage && !isLoading) navigate("/");
   };
 
   const textFieldClasses = {
