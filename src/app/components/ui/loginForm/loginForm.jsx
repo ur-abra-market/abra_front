@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -31,12 +31,16 @@ const LoginForm = () => {
 
   const isLoading = useSelector((state) => state.login.loading);
   const errMessage = useSelector((state) => state.login.errMessage);
+  const resMessage = useSelector((state) => state.login.resMessage);
+
+  useEffect(() => {
+    console.log(resMessage);
+    if (resMessage === "LOGIN_SUCCESSFUL") navigate("/");
+  }, [resMessage]);
 
   const onSubmit = (data) => {
     if (!isValid) return;
     dispatch(loginService(data));
-
-    if (errMessage && !isLoading) navigate("/");
   };
 
   const textFieldClasses = {
