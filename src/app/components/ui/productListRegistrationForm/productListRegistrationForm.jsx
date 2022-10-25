@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import DropDownField from "../../common/dropDownField";
 import Form from "../../common/form";
 import FormTitle from "../../common/formTitle";
-import ImageAdding from "../../common/imageAdding";
 import SelectLabelAbove from "../../common/selectLabelAbove";
 import TextFieldLabelAbove from "../../common/textFieldLabelAbove";
 import RadiosFor from "../radiosFor";
@@ -12,8 +13,12 @@ import MaterialInputs from "../materialInputs";
 import ProdInfoInputs from "../prodInfoInputs";
 import ButtonReg from "../../common/buttons/buttonReg";
 import { SelectionsForProperties } from "./SelectionsForProperties/SelectionsForProperties";
-import { useDispatch } from "react-redux";
-import { addProductService } from "../../../store/reducers/supplierSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addProductService,
+  uploadImageService,
+} from "../../../store/reducers/supplierSlice";
+import { ImagesAdding } from "../../common/imageAdding/ImagesAdding";
 
 const ProductListRegistrationForm = ({
   firstCategory,
@@ -30,6 +35,10 @@ const ProductListRegistrationForm = ({
   categoryId,
 }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const productId = useSelector((state) => state.supplier.productId);
+
+  const [images, setImages] = useState([]);
 
   const {
     register,
@@ -108,7 +117,7 @@ const ProductListRegistrationForm = ({
     const productInfo = {
       product_info: {
         product_name: data.prodName,
-        category_id: 1,
+        category_id: categoryId,
         description: data.textarea,
       },
       properties,
@@ -130,6 +139,24 @@ const ProductListRegistrationForm = ({
   const variations = productVariations ? productVariations : [];
   const variationKeys = Object.keys(variations);
 
+  useEffect(() => {
+    if (productId) {
+      images.forEach((el, i) => {
+        dispatch(
+          uploadImageService({
+            rest: {
+              img: el,
+              index: i,
+              prodId: productId,
+            },
+          })
+        );
+      });
+
+      navigate("/");
+    }
+  }, [productId]);
+
   return (
     <div className={style.formWrapper}>
       <div className={style.formContainer}>
@@ -141,7 +168,7 @@ const ProductListRegistrationForm = ({
         />
         <Form action="" onSubmit={handleSubmit(onSubmit)}>
           <div className={style.form}>
-            <DropDownField title={"Main Product Info"}>
+            <DropDownField isShow={true} title={"Main Product Info"}>
               <TextFieldLabelAbove
                 register={register("prodName", {
                   required: "Field is required",
@@ -203,9 +230,7 @@ const ProductListRegistrationForm = ({
 
               <div className={style.listImg}>
                 {[...new Array(5)].map((el, i) => (
-                  <div key={i}>
-                    <ImageAdding />
-                  </div>
+                  <ImagesAdding key={i} images={images} setImages={setImages} />
                 ))}
               </div>
 
@@ -250,14 +275,14 @@ const ProductListRegistrationForm = ({
                 register={register}
                 title={"Select color *"}
                 state={"no color"}
-                array={variations[variationKeys[2]]}
+                array={variations[variationKeys[1]]}
                 name={"color"}
               />
 
               <CheckboxFor
                 register={register}
                 title={"Size and Quantity *"}
-                array={variations[variationKeys[1]]}
+                array={variations[variationKeys[0]]}
               />
             </DropDownField>
 

@@ -1,16 +1,15 @@
-.userCabinet {
+.sellerCabinet {
   background: #f5f5f5;
-  padding: 24px 33px 48px;
-  width: calc(100% - 66px);
+  padding: 24px 30px 48px;
 }
-.userCabinet__contentWrapper {
+.sellerCabinet__contentWrapper {
   display: grid;
   grid-template-columns: 34.2% 43.7% 19.9%;
   grid-template-rows: minmax(min-content, 26.59vh) minmax(min-content, 34.56vh);
   /* grid-template-columns: 470px 600px 273px; */
   /* grid-template-rows: 26.59vh 34.56vh; */
   grid-gap: 16px;
-  grid-template-areas: "profileInfo orders notifications" "accountDetails myAddresses notifications";
+  grid-template-areas: 'profileInfo orders notifications' 'accountDetails myAddresses notifications';
 }
 
 .profileInfo {
@@ -193,7 +192,7 @@ border-radius: 100%; */
   margin-top: 44px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-start;
   /* gap: 32px; */
   margin-bottom: 30px;
@@ -245,7 +244,7 @@ border-radius: 100%; */
 }
 
 .notificationsList__item::after {
-  content: "";
+  content: '';
   margin-top: 12px;
   display: block;
   height: 1px;
@@ -289,7 +288,7 @@ border-radius: 100%; */
 .inputCheckbox::before,
 .inputCheckbox::after {
   position: absolute;
-  content: "";
+  content: '';
   display: inline-block;
 }
 

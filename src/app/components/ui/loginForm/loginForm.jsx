@@ -34,7 +34,6 @@ const LoginForm = () => {
   const resMessage = useSelector((state) => state.login.resMessage);
 
   useEffect(() => {
-    console.log(resMessage);
     if (resMessage === "LOGIN_SUCCESSFUL") navigate("/");
   }, [resMessage]);
 

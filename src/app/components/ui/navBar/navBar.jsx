@@ -5,11 +5,18 @@ import imgBtnHeader from "../../../assets/img/icons/icon-img.png";
 import { ButtonLink, Button } from "../../common/buttons";
 import style from "./navBar.module.css";
 import styleBtn from "../../common/buttons/buttons.module.css";
+import photo from '../../../assets/img/icons/ic_baseline-photo-camera.png'
 
 const navbarBtnClasses = {
+  wrepperButtonLink: `${style.wrepperButtonLink}`,
   wrepperBtnImg: `${style.wrepperBtnImg}`,
   btnImg: `${style.btnImg}`,
   btnName: `${style.btnName}`,
+};
+
+const searchClasses = {
+  search__wrap: `${style.search__wrap}`,
+  search__input: `${style.search__input}`,
 };
 
 const NavBar = () => {
@@ -19,7 +26,11 @@ const NavBar = () => {
       <Link className="header__basic_logo" to="/">
         Abra
       </Link>
-      <Search />
+      <Search 
+        placeholder={'Search'}
+        searchIcon={photo}
+        classes={searchClasses}
+      />
 
       <div className="header__basic_buttons">
         {!isAuth ? (
@@ -46,7 +57,8 @@ const NavBar = () => {
                 classes={navbarBtnClasses}
               />
             </Link>
-            <Link className={style.wrepperButtonLink} to="/">
+            {/* supplierPage тут временно */}
+            <Link className={style.wrepperButtonLink} to="/supplierPage">
               <ButtonLink
                 name="Notifications"
                 src={imgBtnHeader}

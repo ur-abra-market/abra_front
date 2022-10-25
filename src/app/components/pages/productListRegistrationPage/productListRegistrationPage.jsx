@@ -61,8 +61,8 @@ const ProductListRegistrationPage = () => {
   useEffect(() => {
     if (categoryId) {
       //The 'id' value in 'dispatch' will need to be changed to 'categoryId'
-      dispatch(getPropertiesService({ id: 1 }));
-      dispatch(getVariationsService({ id: 1 }));
+      dispatch(getPropertiesService({ id: categoryId }));
+      dispatch(getVariationsService({ id: categoryId }));
     }
   }, [categoryId]);
 
