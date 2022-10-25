@@ -40,7 +40,7 @@ const ProductsList = (params) => {
   // const [products, setProducts] = useState();
   const [selectedProductsStatus, setSelectedProductsStatus] =
     useState("All Products");
-  const [sortBy, setSortBy] = useState({ path: "name", direction: "asc" });
+  const [sortBy, setSortBy] = useState({ path: "name", direction: "desc" });
   const [layout, setLayout] = useState("tableLayout");
   const [restFilters, setRestFilters] = useState(false);
   const [modalActive, setModalActive] = useState(false);
@@ -112,7 +112,7 @@ const ProductsList = (params) => {
   function getDeletedItems(items) {
     dispatch(deleteProducts(items));
     dispatch(manageProductsService());
-    console.log(products);
+    // console.log(products);
   }
 
   const searchClasses = {
@@ -148,7 +148,7 @@ const ProductsList = (params) => {
     // if value === 'On-sale'
     // console.log(value);
   };
-  console.log("selectedProductsStatus", selectedProductsStatus);
+  // console.log("selectedProductsStatus", selectedProductsStatus);
 
   const handleSort = (item) => {
     setSortBy(item);
@@ -156,9 +156,10 @@ const ProductsList = (params) => {
   if (!products) {
     return <h2 className={style.loading}>Loading...</h2>;
   } else {
+    console.log();
     const filteredProducts =
       selectedProductsStatus === "All Products"
-        ? products //.sort((prev, next) => prev.is_active - next.is_active)
+        ? [...products].sort((prev, next) => prev.is_active - next.is_active)
         : products.filter(
             (order) => order.with_discount.toString() === selectedProductsStatus
           );
