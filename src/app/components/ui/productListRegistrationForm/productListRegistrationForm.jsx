@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import DropDownField from "../../common/dropDownField";
 import Form from "../../common/form";
 import FormTitle from "../../common/formTitle";
-import ImageAdding from "../../common/imageAdding";
 import SelectLabelAbove from "../../common/selectLabelAbove";
 import TextFieldLabelAbove from "../../common/textFieldLabelAbove";
 import RadiosFor from "../radiosFor";
@@ -13,8 +14,11 @@ import ProdInfoInputs from "../prodInfoInputs";
 import ButtonReg from "../../common/buttons/buttonReg";
 import { SelectionsForProperties } from "./SelectionsForProperties/SelectionsForProperties";
 import { useDispatch, useSelector } from "react-redux";
-import { addProductService } from "../../../store/reducers/supplierSlice";
-import { useNavigate } from "react-router-dom";
+import {
+  addProductService,
+  uploadImageService,
+} from "../../../store/reducers/supplierSlice";
+import { ImagesAdding } from "../../common/imageAdding/ImagesAdding";
 
 const ProductListRegistrationForm = ({
   firstCategory,
@@ -32,6 +36,9 @@ const ProductListRegistrationForm = ({
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const productId = useSelector((state) => state.supplier.productId);
+
+  const [images, setImages] = useState([]);
 
   const {
     register,
@@ -41,8 +48,6 @@ const ProductListRegistrationForm = ({
   } = useForm({ mode: "onChange" });
 
   const values = productProperties?.map((el) => el.key);
-  const productId = useSelector((state) => state.supplier.productId);
-  console.log(productId);
 
   const createObjProperty = (el, obj) => {
     const optional_value = obj[`${el}(optional)`];
@@ -129,12 +134,28 @@ const ProductListRegistrationForm = ({
     dispatch(addProductService({ product: productInfo }));
 
     reset();
-
-    if (productId) navigate("/");
   };
 
   const variations = productVariations ? productVariations : [];
   const variationKeys = Object.keys(variations);
+
+  useEffect(() => {
+    if (productId) {
+      images.forEach((el, i) => {
+        dispatch(
+          uploadImageService({
+            rest: {
+              img: el,
+              index: i,
+              prodId: productId,
+            },
+          })
+        );
+      });
+
+      navigate("/");
+    }
+  }, [productId]);
 
   return (
     <div className={style.formWrapper}>
@@ -209,9 +230,7 @@ const ProductListRegistrationForm = ({
 
               <div className={style.listImg}>
                 {[...new Array(5)].map((el, i) => (
-                  <div key={i}>
-                    <ImageAdding />
-                  </div>
+                  <ImagesAdding key={i} images={images} setImages={setImages} />
                 ))}
               </div>
 

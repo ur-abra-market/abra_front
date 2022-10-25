@@ -40,11 +40,25 @@ export const getVariationsService = createAsyncThunk(
 );
 
 export const addProductService = createAsyncThunk(
-  "supplier/accountInfoService",
+  "supplier/addProduct",
   async ({ product }, { rejectWithValue }) => {
     try {
       const data = await supplierFetch.addProduct(product);
-      return data;
+      return data.product_id;
+    } catch (error) {
+      const err = error.response.data.result
+        ? error.response.data.result
+        : error.message;
+      return rejectWithValue(err);
+    }
+  }
+);
+
+export const uploadImageService = createAsyncThunk(
+  "supplier/uploadImage",
+  async ({ rest }, { rejectWithValue }) => {
+    try {
+      return await supplierFetch.uploadImage(rest.img, rest.prodId, rest.index);
     } catch (error) {
       const err = error.response.data.result
         ? error.response.data.result

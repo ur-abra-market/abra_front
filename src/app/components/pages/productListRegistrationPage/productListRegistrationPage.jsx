@@ -66,24 +66,31 @@ const ProductListRegistrationPage = () => {
     }
   }, [categoryId]);
 
-  return (
-    <div>
-      <ProductListRegistrationForm
-        firstCategory={firstCategory}
-        setFirstCategory={setFirstCategory}
-        secondCategory={secondCategory}
-        setSecondCategory={setSecondCategory}
-        thirdCategory={thirdCategory}
-        setThirdCategory={setThirdCategory}
-        firstStageCategories={getFirstCategories}
-        secondStageCategories={getSecondCategories}
-        thirdStageCategories={getThirdCategories}
-        productProperties={productProperties}
-        productVariations={productVariations}
-        categoryId={categoryId}
-      />
-    </div>
-  );
+    useEffect(() => {
+        if (categoryId) {
+            //The 'id' value in 'dispatch' will need to be changed to 'categoryId'
+            dispatch(getPropertiesService({id: categoryId}))
+            dispatch(getVariationsService({id: categoryId}))
+        }
+    }, [categoryId])
+
+    return (
+        <div>
+            <ProductListRegistrationForm firstCategory={firstCategory}
+                                         setFirstCategory={setFirstCategory}
+                                         secondCategory={secondCategory}
+                                         setSecondCategory={setSecondCategory}
+                                         thirdCategory={thirdCategory}
+                                         setThirdCategory={setThirdCategory}
+                                         firstStageCategories={getFirstCategories}
+                                         secondStageCategories={getSecondCategories}
+                                         thirdStageCategories={getThirdCategories}
+                                         productProperties={productProperties}
+                                         productVariations={productVariations}
+                                         categoryId={categoryId}
+            />
+        </div>
+    );
 };
 
 export default ProductListRegistrationPage;
