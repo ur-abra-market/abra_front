@@ -158,7 +158,7 @@ const ProductsList = (params) => {
   } else {
     const filteredProducts =
       selectedProductsStatus === "All Products"
-        ? products //.sort((product) => product.is_active === 1) //.sort((prev, next) => +prev.price - +next.price)
+        ? products //.sort((prev, next) => prev.is_active - next.is_active)
         : products.filter(
             (order) => order.with_discount.toString() === selectedProductsStatus
           );
