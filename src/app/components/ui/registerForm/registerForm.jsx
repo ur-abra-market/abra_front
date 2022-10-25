@@ -35,7 +35,6 @@ const RegisterForm = () => {
   };
 
   useEffect(() => {
-    console.log(resMessage);
     if (resMessage === "MESSAGE_HAS_BEEN_SENT") navigate("/");
   }, [resMessage]);
 

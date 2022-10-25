@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import photo from '../../../assets/img/icons/ic_baseline-photo-camera.png'
-import './Search.css'
+// import photo from '../../../assets/img/icons/ic_baseline-photo-camera.png'
 
-const Search = () => {
+
+const Search = ({ placeholder, searchIcon, classes, onClick}) => {
   const navigate = useNavigate();
   const [text, setText] = useState('');
 
@@ -13,16 +13,21 @@ const Search = () => {
   };
 
   return (
-    <form className='search' onSubmit={handleSubmit}>
+    <form className={classes.search__wrap} onSubmit={handleSubmit}>
       <input
         type='text'
-        className='search__text'
+        className={classes.search__input}
         value={text}
-        placeholder='Search'
+        placeholder={placeholder}
         onChange={(e) => setText(e.target.value)}
       />
       <input type='submit' hidden />
-      <img className='search-photo' src={photo} alt="img" />
+      <img 
+        className={classes.search_photo} 
+        src={searchIcon} 
+        onClick={onClick}
+        alt="img"
+        />
     </form>
   )
 }

@@ -30,7 +30,6 @@ httpService.interceptors.response.use(
     const access = cookieService.getAccesToken();
     const refresh = cookieService.getRefreshToken();
     if (refresh && !access && error.response.status === 401) {
-      console.log(access);
       await authService.refresh(refresh);
     }
     if (!expectedErrors) {

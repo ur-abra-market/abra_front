@@ -9,6 +9,8 @@ import filterReducer from "./reducers/filterSlice";
 import categoryReducer from "./reducers/categorySlice";
 import formRegistrationReducer from "./reducers/formRegistrationSlice";
 import supplierReducer from "./reducers/supplierSlice";
+import manageProductsReducer from "./reducers/manageProductsSlice";
+import supplierAccountReducer from "./reducers/supplierAccountSlice";
 
 export const store = configureStore({
   reducer: {
@@ -22,5 +24,7 @@ export const store = configureStore({
     category: categoryReducer,
     formRegistration: formRegistrationReducer,
     supplier: supplierReducer,
+    supplierAccount: supplierAccountReducer,
+    manageProducts: manageProductsReducer,
   },
 });

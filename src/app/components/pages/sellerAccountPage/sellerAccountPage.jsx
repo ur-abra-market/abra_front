@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./userAccountPage.module.css";
+import style from "./sellerAccountPage.module.css";
 import { Link } from "react-router-dom";
 import iconImage from "../../../assets/img/icons/icon-img.png";
 import TextField from "../../common/textField";

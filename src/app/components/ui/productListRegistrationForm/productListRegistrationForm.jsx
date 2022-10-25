@@ -12,8 +12,9 @@ import MaterialInputs from "../materialInputs";
 import ProdInfoInputs from "../prodInfoInputs";
 import ButtonReg from "../../common/buttons/buttonReg";
 import { SelectionsForProperties } from "./SelectionsForProperties/SelectionsForProperties";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProductService } from "../../../store/reducers/supplierSlice";
+import { useNavigate } from "react-router-dom";
 
 const ProductListRegistrationForm = ({
   firstCategory,
@@ -30,6 +31,7 @@ const ProductListRegistrationForm = ({
   categoryId,
 }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -39,6 +41,8 @@ const ProductListRegistrationForm = ({
   } = useForm({ mode: "onChange" });
 
   const values = productProperties?.map((el) => el.key);
+  const productId = useSelector((state) => state.supplier.productId);
+  console.log(productId);
 
   const createObjProperty = (el, obj) => {
     const optional_value = obj[`${el}(optional)`];
@@ -108,7 +112,7 @@ const ProductListRegistrationForm = ({
     const productInfo = {
       product_info: {
         product_name: data.prodName,
-        category_id: 1,
+        category_id: categoryId,
         description: data.textarea,
       },
       properties,
@@ -125,6 +129,8 @@ const ProductListRegistrationForm = ({
     dispatch(addProductService({ product: productInfo }));
 
     reset();
+
+    if (productId) navigate("/");
   };
 
   const variations = productVariations ? productVariations : [];
@@ -250,14 +256,14 @@ const ProductListRegistrationForm = ({
                 register={register}
                 title={"Select color *"}
                 state={"no color"}
-                array={variations[variationKeys[2]]}
+                array={variations[variationKeys[1]]}
                 name={"color"}
               />
 
               <CheckboxFor
                 register={register}
                 title={"Size and Quantity *"}
-                array={variations[variationKeys[1]]}
+                array={variations[variationKeys[0]]}
               />
             </DropDownField>
 

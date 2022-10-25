@@ -1,12 +1,12 @@
+import SupplierPage from "../components/pages/supplierPage";
 import AccountSetupPage from "../components/pages/accountSetupPage";
 import BusinessProfilePage from "../components/pages/businessProfilePage";
-import MainPage from "../components/pages/MainPage";
 import ProductListRegistrationPage from "../components/pages/productListRegistrationPage";
 
 const supplierRoute = [
   {
     path: "/",
-    element: <MainPage />,
+    element: <SupplierPage />,
   },
   {
     path: "account-setup",

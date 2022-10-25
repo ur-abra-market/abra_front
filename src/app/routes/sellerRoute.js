@@ -1,7 +1,7 @@
 import MainPage from "../components/pages/MainPage";
 import ProductPage from "../components/pages/productPage";
 import ProductListPage from "../components/pages/productListPage";
-import UserAccountPage from "../components/pages/userAccountPage";
+import UserAccountPage from "../components/pages/sellerAccountPage";
 import OrderHistoryPage from "../components/pages/orderHistoryPage";
 import OrderDetailsPage from "../components/pages/orderDetailsPage";
 
