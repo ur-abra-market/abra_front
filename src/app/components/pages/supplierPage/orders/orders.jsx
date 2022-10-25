@@ -105,7 +105,7 @@ const Orders = () => {
       );
     const sortedOrders = _.orderBy(filteredOrders, [sortBy.path], [sortBy.direction]);
     const orderCrop = paginate(sortedOrders, activePage, pageSize);
-    console.log(activePage)
+ 
 
     return (
       <>

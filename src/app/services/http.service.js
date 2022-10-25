@@ -1,6 +1,6 @@
 import axios from "axios";
-import cookieService from "./cookie.service";
 import authService from "./auth.service";
+import cookieService from "./cookie.service";
 
 const httpService = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
@@ -26,7 +26,6 @@ httpService.interceptors.response.use(
       error.response &&
       error.response.status >= 400 &&
       error.response.status < 500;
-
     const access = cookieService.getAccesToken();
     const refresh = cookieService.getRefreshToken();
     if (refresh && !access && error.response.status === 401) {

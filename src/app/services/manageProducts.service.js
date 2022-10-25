@@ -2,7 +2,7 @@ import httpService from "./http.service";
 
 const fetchManageProducts = {
   getList: async () => {
-    const { data } = await httpService.get(`suppliers/manage_products`);
+    const { data } = await httpService.get(`suppliers/manage_products`); //нужно подгружать только позиции, которые не были удалены
 
     return data.result;
   },

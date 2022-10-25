@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import iconImage from "../../../../assets/img/icons/icon-img.png";
 import TextField from "../../../common/textField";
@@ -23,8 +22,6 @@ import {
 import style from "./supplierAccountMainPage.module.css";
 
 const SupplierAccountMainPage = () => {
-  const dispatch = useDispatch();
-
   // useEffect(() => {
   //   dispatch(supplierAccountService(supplierData));
   // }, [dispatch])

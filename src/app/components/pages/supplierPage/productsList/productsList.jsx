@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { paginate } from "../../../../utils/paginate";
 import Search from "../../../common/Search";
-import api from "./fakeAPI";
+// import api from './fakeAPI';
 import _ from "lodash";
 import ShowPage from "../../../common/ShowPage";
 import Pagination from "../../../ui/pagination/";
 import Select from "../../../common/select/select";
-import Checkbox from "../../../common/checkbox";
+import Checkbox from "../../../common/checkbox/checkbox";
 import FiltersList from "../../../common/filtersList/";
 import Table from "../../../common/table/";
 import searchIcon from "../../../../assets/img/icons/searchIcon.png";
@@ -26,32 +26,32 @@ import {
   checkboxStyles,
 } from "./constantsOfClassesStyles";
 import Modal from "../../../common/modal";
-import { manageProductsService } from "../../../../store/reducers/manageProductsSlice";
+import {
+  manageProductsService,
+  deleteProducts,
+} from "../../../../store/reducers/manageProductsSlice";
 import style from "./productsList.module.css";
 
-const ProductsList = () => {
+const ProductsList = (params) => {
   const activePage = useSelector((state) => state.paginate.page_num);
   const amountPages = useSelector((state) => state.paginate.amountPages);
   const pageSize = useSelector((state) => state.paginate.page_size);
 
-  const [products, setProducts] = useState();
+  // const [products, setProducts] = useState();
   const [selectedProductsStatus, setSelectedProductsStatus] =
     useState("All Products");
-  const [sortBy, setSortBy] = useState({ path: "name", direction: "asc" });
+  const [sortBy, setSortBy] = useState({ path: "name", direction: "desc" });
   const [layout, setLayout] = useState("tableLayout");
   const [restFilters, setRestFilters] = useState(false);
   const [modalActive, setModalActive] = useState(false);
   const [checkedMainCheckbox, setCheckedMainCheckbox] = useState(false);
   const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
-
+  const products = useSelector((state) => state.manageProducts.products);
   useEffect(() => {
-    api.products.fetchAll().then((data) => setProducts(data));
+    // api.products.fetchAll().then((data) => setProducts(data));
     dispatch(manageProductsService());
   }, []);
-
-  const productsData = useSelector((state) => state.manageProducts.products);
-  console.log(productsData);
 
   function changeCheckbox() {
     setChecked(!checked);
@@ -86,14 +86,14 @@ const ProductsList = () => {
         />
       ),
     },
-    orderNumber: { path: "SKU", name: "SKU" },
-    detail: { path: "picture", name: "Picture" },
+    orderNumber: { path: "id", name: "SKU" },
+    detail: { path: "image_url", name: "Picture" },
     name: { path: "name", name: "Name" },
-    creationDate: { path: "creationDate", name: "Creation Date" },
-    status: { path: "status", name: "Status" },
+    creationDate: { path: "datetime", name: "Creation Date" },
+    status: { path: "with_discount", name: "Status" },
     price: { path: "price", name: "Price" },
-    balaceUnits: { path: "balaceUnits", name: "Balace, units" },
-    visibility: { path: "visibility", name: "Visibility" },
+    balaceUnits: { path: "balance", name: "Balace, units" },
+    visibility: { path: "is_active", name: "Visibility" },
   };
 
   function getCheckedCheckboxes() {
@@ -102,8 +102,14 @@ const ProductsList = () => {
     for (let index = 0; index < checkedCheckbox.length; index++) {
       selectedItems.push(checkedCheckbox[index].id);
     }
-
-    return selectedItems;
+    getDeletedItems(selectedItems);
+    handleChangeModalActive();
+ 
+    // return selectedItems;
+  }
+  function getDeletedItems(items) {
+    dispatch(deleteProducts(items));
+    dispatch(manageProductsService());
   }
 
   const searchClasses = {
@@ -123,22 +129,34 @@ const ProductsList = () => {
       prevState === "tableLayout" ? "tileLayout" : "tableLayout"
     );
   };
-
+  const filters = {
+    "All Products": "All Products",
+    "On-sale": "1",
+    "Off-sale": "0",
+  };
   const handleProductsStatusSelect = (value) => {
-    setSelectedProductsStatus(value);
+    let fieldValue = value;
+    if (value === "Off-sale") fieldValue = "0";
+    if (value === "On-sale") fieldValue = "1";
+    setSelectedProductsStatus(fieldValue);
+    // Object.keys(filters).map((filter)=>{
+    //   filter.key === valuee
+    // })
+    // if value === 'On-sale'
   };
 
   const handleSort = (item) => {
     setSortBy(item);
   };
-
   if (!products) {
     return <h2 className={style.loading}>Loading...</h2>;
-  } else {
+  } else { 
     const filteredProducts =
       selectedProductsStatus === "All Products"
-        ? products
-        : products.filter((order) => order.status === selectedProductsStatus);
+        ? [...products].sort((prev, next) => prev.is_active - next.is_active)
+        : products.filter(
+            (order) => order.with_discount.toString() === selectedProductsStatus
+          );
     const sortedProducts = _.orderBy(
       filteredProducts,
       [sortBy.path],
@@ -234,7 +252,7 @@ const ProductsList = () => {
             <div className={style.contentHeader}>
               <div className={style.filtersWrapper}>
                 <FiltersList
-                  filters={["All Products", "On Sale", "Off-sale"]}
+                  filters={filters}
                   className={style.filteredProducts}
                   activeClassName={style.filteredProducts__active}
                   onItemSelect={handleProductsStatusSelect}
