@@ -1,42 +1,34 @@
-.loading {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .searchWithRestFilters {
   display: flex;
   gap: 15px;
-
 }
 
 .search__wrap {
   display: flex;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 30%;
   min-width: 300px;
   height: 34px;
   padding: 5px 14px;
   border-radius: 3px;
-  align-items: center;  
+  align-items: center;
 }
-  
+
 .search__wrap::before {
-  position: relative; 
-  content: '';
+  position: relative;
+  content: "";
   width: 16px;
-  height: 16px; 
-  background: url('../../../../assets/img/icons/search.png');  
+  height: 16px;
+  background: url("../../../../assets/img/icons/search.png");
   background-size: cover;
-} 
+}
 
 .search__input {
-  display: block; 
-  font-size: var(--fp);  
+  display: block;
+  font-size: var(--fp);
   padding-left: 6px;
-  height: 100%; 
-  width: 100%;  
+  height: 100%;
+  width: 100%;
   background-color: inherit;
 }
 
@@ -98,7 +90,7 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 4px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 11px;
 }
 
@@ -107,7 +99,7 @@
 }
 
 .selectWrapper {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 4px;
 }
 
@@ -122,19 +114,19 @@
 
 .select_options {
   background-color: #ffffff;
-  display: flex; 
-  flex-direction: column;  
+  display: flex;
+  flex-direction: column;
   justify-content: space-around;
   position: absolute;
   top: 300px;
   width: 261px;
   height: fit-content;
-  margin-top: 26px;    
-  overflow: hidden; 
-  transition: 0.4s;  
+  margin-top: 26px;
+  overflow: hidden;
+  transition: 0.4s;
   gap: 5px;
   border-radius: 4px;
-  box-shadow: 5px 0px 10px rgb(0, 0, 0, 0.25);  
+  box-shadow: 5px 0px 10px rgb(0, 0, 0, 0.25);
 }
 
 .option {
@@ -183,7 +175,6 @@
   line-height: 20px;
   letter-spacing: 0.38px;
   color: #000000;
-
 }
 .filterOrders__active {
   text-decoration: underline;
@@ -214,7 +205,7 @@
 
 .buttonDetails {
   display: flex;
-  justify-content:space-around;
+  justify-content: space-around;
   width: 100%;
   height: 100%;
   background: #ffffff;
@@ -232,12 +223,12 @@
 .buttonDetails_points::after {
   width: 3px;
   height: 3px;
-  background: #28303F;
+  background: #28303f;
   border-radius: 100%;
 }
 
 .buttonDetails_points::before {
-  content: '';
+  content: "";
   display: block;
   margin-top: 8px;
 }
@@ -247,7 +238,7 @@
 }
 
 .buttonDetails_points::after {
-  content: '';
+  content: "";
   display: block;
   margin-top: 5px;
 }
@@ -255,14 +246,14 @@
 .infoVisible {
   height: fit-content;
   background-color: #999999;
-  position: absolute;  
+  position: absolute;
   width: 50px;
   height: fit-content;
-  margin-top: -4px;  
-  margin-left: 90px;  
-  overflow: hidden; 
-  transition: 0.4s;  
-  box-shadow: 5px 0px 10px rgb(0, 0, 0, 0.25); 
+  margin-top: -4px;
+  margin-left: 90px;
+  overflow: hidden;
+  transition: 0.4s;
+  box-shadow: 5px 0px 10px rgb(0, 0, 0, 0.25);
 }
 
 .infoInvisible {

@@ -31,6 +31,7 @@ import {
   deleteProducts,
 } from "../../../../store/reducers/manageProductsSlice";
 import style from "./productsList.module.css";
+import Loader from "../../../common/Loader";
 
 const ProductsList = (params) => {
   const activePage = useSelector((state) => state.paginate.page_num);
@@ -104,7 +105,7 @@ const ProductsList = (params) => {
     }
     getDeletedItems(selectedItems);
     handleChangeModalActive();
- 
+
     // return selectedItems;
   }
   function getDeletedItems(items) {
@@ -149,8 +150,8 @@ const ProductsList = (params) => {
     setSortBy(item);
   };
   if (!products) {
-    return <h2 className={style.loading}>Loading...</h2>;
-  } else { 
+    return <Loader />;
+  } else {
     const filteredProducts =
       selectedProductsStatus === "All Products"
         ? [...products].sort((prev, next) => prev.is_active - next.is_active)
