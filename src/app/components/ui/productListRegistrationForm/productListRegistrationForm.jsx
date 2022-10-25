@@ -2,7 +2,6 @@ import {useForm} from "react-hook-form";
 import DropDownField from "../../common/dropDownField";
 import Form from "../../common/form";
 import FormTitle from "../../common/formTitle";
-import ImageAdding from "../../common/imageAdding";
 import SelectLabelAbove from "../../common/selectLabelAbove";
 import TextFieldLabelAbove from "../../common/textFieldLabelAbove";
 import RadiosFor from "../radiosFor";
@@ -12,8 +11,13 @@ import MaterialInputs from "../materialInputs";
 import ProdInfoInputs from "../prodInfoInputs";
 import ButtonReg from "../../common/buttons/buttonReg";
 import {SelectionsForProperties} from "./SelectionsForProperties/SelectionsForProperties";
-import {useDispatch} from "react-redux";
-import {addProductService} from "../../../store/reducers/supplierSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    addProductService,
+    uploadImageService
+} from "../../../store/reducers/supplierSlice";
+import {ImagesAdding} from "../../common/imageAdding/ImagesAdding";
+import {useEffect, useState} from "react";
 
 
 const ProductListRegistrationForm = ({
@@ -32,6 +36,9 @@ const ProductListRegistrationForm = ({
                                      }) => {
 
     const dispatch = useDispatch()
+    const productId = useSelector(state => state.supplier.productId)
+
+    const [images, setImages] = useState([]);
 
     const {
         register,
@@ -55,10 +62,10 @@ const ProductListRegistrationForm = ({
         return finalObj
     }
 
+
     const onSubmit = (data) => {
 
         let keysData = Object.keys(data)
-
 
         const childs = []
         productVariations['size']?.forEach(el => {
@@ -136,9 +143,23 @@ const ProductListRegistrationForm = ({
         reset()
     }
 
-
     const variations = productVariations ? productVariations : []
     const variationKeys = Object.keys(variations)
+
+
+    useEffect(() => {
+        if (productId) {
+            images.forEach((el, i) => {
+                dispatch(uploadImageService({
+                    rest: {
+                        img: el,
+                        index: i,
+                        prodId: productId,
+                    }
+                }))
+            })
+        }
+    }, [productId])
 
     return (
         <div className={style.formWrapper}>
@@ -223,9 +244,10 @@ const ProductListRegistrationForm = ({
 
                             <div className={style.listImg}>
                                 {[...new Array(5)].map((el, i) => (
-                                    <div key={i}>
-                                        <ImageAdding/>
-                                    </div>
+                                    <ImagesAdding key={i}
+                                                  images={images}
+                                                  setImages={setImages}
+                                    />
                                 ))}
                             </div>
 
@@ -234,8 +256,7 @@ const ProductListRegistrationForm = ({
                                 title={'Description'}
                                 name={'textarea'}
                                 placeholder={'Enter the description of your product'}/>
-                        </DropDownField
-                        >
+                        </DropDownField>
 
                         <DropDownField isShow={!!productProperties && !!productVariations}
                                        title={'Properties'}
@@ -270,14 +291,14 @@ const ProductListRegistrationForm = ({
                                 register={register}
                                 title={'Select color *'}
                                 state={'no color'}
-                                array={variations[variationKeys[2]]}
+                                array={variations[variationKeys[1]]}
                                 name={'color'}
                             />
 
                             <CheckboxFor
                                 register={register}
                                 title={'Size and Quantity *'}
-                                array={variations[variationKeys[1]]}
+                                array={variations[variationKeys[0]]}
                             />
 
                         </DropDownField>

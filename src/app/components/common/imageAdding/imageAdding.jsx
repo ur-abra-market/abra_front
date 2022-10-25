@@ -2,50 +2,61 @@ import iconImg from "../../../assets/img/icons/icon-img.png";
 import style from "./imageAdding.module.css";
 
 
-const ImageAdding = ({ label, placeholder, error, register, imgUrl, setImgUrl }) => {
+const ImageAdding = ({
+                         label,
+                         placeholder,
+                         error,
+                         register,
+                         imgUrl,
+                         setImgUrl,
+                         images,
+                         setImages
+                     }) => {
 
-    const imgChange = (item) => {
+    const imgChange = (e) => {
         const reader = new FileReader()
 
         reader.onload = function () {
             setImgUrl(reader?.result)
         };
-        if (item.target.files[0]) {
-            reader.readAsDataURL(item.target.files[0]);
+        if (e.target.files[0]) {
+            reader.readAsDataURL(e.target.files[0]);
+            setImages([...images, e.target.files[0]])
         }
     }
+
     return (
         <div className={style.profileLogoWrapper}>
 
             <div className={style.inputContainer}>
 
                 <input type="file"
-                    {...register}
-                    accept="image/*"
-                    name='profileLogo'
-                    id='profileLogo'
-                    className={label ? style.inputFileLabel : style.inputFile}
-                    onChange={imgChange} />
+                       {...register}
+                       accept="image/*"
+                       name='file'
+                       id='profileLogo'
+                       className={label ? style.inputFileLabel : style.inputFile}
+                       onChange={imgChange}/>
 
                 {imgUrl ?
                     <img src={imgUrl}
-                        alt="avatar img"
-                        id="avatarImg"
-                        className={label ? style.avatarImgLabel : style.avatarImg} />
+                         alt="avatar img"
+                         id="avatarImg"
+                         className={label ? style.avatarImgLabel : style.avatarImg}/>
 
                     : <img src={iconImg}
-                        alt="icon img"
-                        id="iconImg"
-                        className={label ? style.iconImgLabel : style.iconImg} />}
+                           alt="icon img"
+                           id="iconImg"
+                           className={label ? style.iconImgLabel : style.iconImg}/>}
 
-                {label ? <div className={style.iconBackgroundLabel} />
-                    : <div className={style.iconBackground} />}
+                {label ? <div className={style.iconBackgroundLabel}/>
+                    : <div className={style.iconBackground}/>}
 
             </div>
 
             <div className={style.labelContainer}>
                 <label htmlFor='profileLogo'
-                    className={style.label}>{label}</label>
+                       className={style.label}>{label}</label>
 
                 <p className={style.placeholder}>{placeholder}</p>
             </div>
