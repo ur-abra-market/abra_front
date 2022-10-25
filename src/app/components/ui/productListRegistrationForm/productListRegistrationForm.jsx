@@ -168,7 +168,7 @@ const ProductListRegistrationForm = ({
         />
         <Form action="" onSubmit={handleSubmit(onSubmit)}>
           <div className={style.form}>
-            <DropDownField title={"Main Product Info"}>
+            <DropDownField isShow={true} title={"Main Product Info"}>
               <TextFieldLabelAbove
                 register={register("prodName", {
                   required: "Field is required",

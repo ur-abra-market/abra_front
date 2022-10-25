@@ -32,8 +32,10 @@ import {
 } from "../../../../store/reducers/manageProductsSlice";
 import style from "./productsList.module.css";
 import Loader from "../../../common/Loader";
+import { useNavigate } from "react-router-dom";
 
 const ProductsList = (params) => {
+  const navigate = useNavigate();
   const activePage = useSelector((state) => state.paginate.page_num);
   const amountPages = useSelector((state) => state.paginate.amountPages);
   const pageSize = useSelector((state) => state.paginate.page_size);
@@ -266,7 +268,14 @@ const ProductsList = (params) => {
                 </div>
                 <div className={style.action}>
                   <img src={addImg} alt="img" />
-                  <div className={style.subtitle}>Add a new product</div>
+                  <div
+                    className={style.subtitle}
+                    onClick={() => {
+                      navigate("product-list-registration");
+                    }}
+                  >
+                    Add a new product
+                  </div>
                 </div>
                 <div className={style.action}>
                   <img src={deleteImg} alt="img" />
