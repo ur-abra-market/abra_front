@@ -1,50 +1,58 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { paginate } from '../../../../utils/paginate';
-import Search from '../../../common/Search';
-import api from './fakeAPI';
-import _ from 'lodash';
-import ShowPage from '../../../common/ShowPage';
-import Pagination from '../../../ui/pagination/';
-import Select from '../../../common/select/select';
-import Checkbox from '../../../common/checkbox/checkbox';
-import FiltersList from '../../../common/filtersList/';
-import Table from '../../../common/table/';
-import searchIcon from '../../../../assets/img/icons/searchIcon.png';
-import tileLayout from '../../../../assets/img/icons/tileLayout.png';
-import tableLayout from '../../../../assets/img/icons/tableLayout.png';
-import addImg from '../../../../assets/img/icons/addImg.png';
-import deleteImg from '../../../../assets/img/icons/deleteImg.png';
-import star from '../../../../assets/img/icons/Star 1.png';
-import calendar from '../../../../assets/img/icons/calendar.png';
-import viewIcon from '../../../../assets/img/icons/viewIcon.png';
-import arrowDown from '../../../../assets/img/icons/arrow-down.png';
-import additIcon from '../../../../assets/img/icons/additIcon.png';
-import { tableStyleClasses, selectStyles, checkboxStyles } from './constantsOfClassesStyles';
-import Modal from '../../../common/modal';
-import { manageProductsService } from '../../../../store/reducers/manageProductsSlice';
-import style from './productsList.module.css';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { paginate } from "../../../../utils/paginate";
+import Search from "../../../common/Search";
+// import api from './fakeAPI';
+import _ from "lodash";
+import ShowPage from "../../../common/ShowPage";
+import Pagination from "../../../ui/pagination/";
+import Select from "../../../common/select/select";
+import Checkbox from "../../../common/checkbox/checkbox";
+import FiltersList from "../../../common/filtersList/";
+import Table from "../../../common/table/";
+import searchIcon from "../../../../assets/img/icons/searchIcon.png";
+import tileLayout from "../../../../assets/img/icons/tileLayout.png";
+import tableLayout from "../../../../assets/img/icons/tableLayout.png";
+import addImg from "../../../../assets/img/icons/addImg.png";
+import deleteImg from "../../../../assets/img/icons/deleteImg.png";
+import star from "../../../../assets/img/icons/Star 1.png";
+import calendar from "../../../../assets/img/icons/calendar.png";
+import viewIcon from "../../../../assets/img/icons/viewIcon.png";
+import arrowDown from "../../../../assets/img/icons/arrow-down.png";
+import additIcon from "../../../../assets/img/icons/additIcon.png";
+import {
+  tableStyleClasses,
+  selectStyles,
+  checkboxStyles,
+} from "./constantsOfClassesStyles";
+import Modal from "../../../common/modal";
+import {
+  manageProductsService,
+  deleteProducts,
+} from "../../../../store/reducers/manageProductsSlice";
+import style from "./productsList.module.css";
 
 const ProductsList = (params) => {
   const activePage = useSelector((state) => state.paginate.page_num);
   const amountPages = useSelector((state) => state.paginate.amountPages);
   const pageSize = useSelector((state) => state.paginate.page_size);
 
-  const [products, setProducts] = useState();
-  const [selectedProductsStatus, setSelectedProductsStatus] = useState('All Products');
-  const [sortBy, setSortBy] = useState({ path: 'name', direction: 'asc' });
-  const [layout, setLayout] = useState('tableLayout');
+  // const [products, setProducts] = useState();
+  const [selectedProductsStatus, setSelectedProductsStatus] =
+    useState("All Products");
+  const [sortBy, setSortBy] = useState({ path: "name", direction: "asc" });
+  const [layout, setLayout] = useState("tableLayout");
   const [restFilters, setRestFilters] = useState(false);
   const [modalActive, setModalActive] = useState(false);
   const [checkedMainCheckbox, setCheckedMainCheckbox] = useState(false);
   const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
+  const products = useSelector((state) => state.manageProducts.products);
   useEffect(() => {
-    api.products.fetchAll().then((data) => setProducts(data));
+    // api.products.fetchAll().then((data) => setProducts(data));
     dispatch(manageProductsService());
-  }, [dispatch]);
-  const productsData = useSelector((state) => state.manageProducts.products);
-  console.log(productsData);
+  }, []);
+  // console.log(products);
 
   function changeCheckbox() {
     setChecked(!checked);
@@ -56,7 +64,7 @@ const ProductsList = (params) => {
 
   const handleSwitchMainCheckbox = (tagret) => {
     setCheckedMainCheckbox((prevState) => !prevState);
-    const inputs = document.querySelectorAll('.checkbox');
+    const inputs = document.querySelectorAll(".checkbox");
     inputs.forEach((input) => {
       input.checked = tagret.checked;
     });
@@ -64,7 +72,12 @@ const ProductsList = (params) => {
 
   const columns = {
     check: {
-      name: <input type="checkbox" onClick={(e) => handleSwitchMainCheckbox(e.target)} />,
+      name: (
+        <input
+          type="checkbox"
+          onClick={(e) => handleSwitchMainCheckbox(e.target)}
+        />
+      ),
       component: (product) => (
         <input
           type="checkbox"
@@ -74,30 +87,40 @@ const ProductsList = (params) => {
         />
       ),
     },
-    orderNumber: { path: 'SKU', name: 'SKU' },
-    detail: { path: 'picture', name: 'Picture' },
-    name: { path: 'name', name: 'Name' },
-    creationDate: { path: 'creationDate', name: 'Creation Date' },
-    status: { path: 'status', name: 'Status' },
-    price: { path: 'price', name: 'Price' },
-    balaceUnits: { path: 'balaceUnits', name: 'Balace, units' },
-    visibility: { path: 'visibility', name: 'Visibility' },
+    orderNumber: { path: "id", name: "SKU" },
+    detail: { path: "image_url", name: "Picture" },
+    name: { path: "name", name: "Name" },
+    creationDate: { path: "datetime", name: "Creation Date" },
+    status: { path: "with_discount", name: "Status" },
+    price: { path: "price", name: "Price" },
+    balaceUnits: { path: "balance", name: "Balace, units" },
+    visibility: { path: "is_active", name: "Visibility" },
   };
 
   function getCheckedCheckboxes() {
-    const checkedCheckbox = document.querySelectorAll('input.checkbox:checked');
+    const checkedCheckbox = document.querySelectorAll("input.checkbox:checked");
     let selectedItems = [];
     for (let index = 0; index < checkedCheckbox.length; index++) {
       selectedItems.push(checkedCheckbox[index].id);
     }
+    getDeletedItems(selectedItems);
+    handleChangeModalActive();
+
     console.log(selectedItems);
-    return selectedItems;
+    // return selectedItems;
+  }
+  function getDeletedItems(items) {
+    dispatch(deleteProducts(items));
+    dispatch(manageProductsService());
+    console.log(products);
   }
 
   const searchClasses = {
     search__wrap: `${style.search__wrap}`,
     search__input: `${style.search__input}`,
-    search_photo: restFilters ? `${style.search_photo__clicked}` : `${style.search_photo}`,
+    search_photo: restFilters
+      ? `${style.search_photo__clicked}`
+      : `${style.search_photo}`,
   };
 
   const handleRestFiltersSet = () => {
@@ -105,25 +128,45 @@ const ProductsList = (params) => {
   };
 
   const handleLayoutSet = () => {
-    setLayout((prevState) => (prevState === 'tableLayout' ? 'tileLayout' : 'tableLayout'));
+    setLayout((prevState) =>
+      prevState === "tableLayout" ? "tileLayout" : "tableLayout"
+    );
   };
-
+  const filters = {
+    "All Products": "All Products",
+    "On-sale": "1",
+    "Off-sale": "0",
+  };
   const handleProductsStatusSelect = (value) => {
-    setSelectedProductsStatus(value);
+    let fieldValue = value;
+    if (value === "Off-sale") fieldValue = "0";
+    if (value === "On-sale") fieldValue = "1";
+    setSelectedProductsStatus(fieldValue);
+    // Object.keys(filters).map((filter)=>{
+    //   filter.key === valuee
+    // })
+    // if value === 'On-sale'
+    // console.log(value);
   };
+  console.log("selectedProductsStatus", selectedProductsStatus);
 
   const handleSort = (item) => {
     setSortBy(item);
   };
-
   if (!products) {
     return <h2 className={style.loading}>Loading...</h2>;
   } else {
     const filteredProducts =
-      selectedProductsStatus === 'All Products'
-        ? products
-        : products.filter((order) => order.status === selectedProductsStatus);
-    const sortedProducts = _.orderBy(filteredProducts, [sortBy.path], [sortBy.direction]);
+      selectedProductsStatus === "All Products"
+        ? products //.sort((product) => product.is_active === 1) //.sort((prev, next) => +prev.price - +next.price)
+        : products.filter(
+            (order) => order.with_discount.toString() === selectedProductsStatus
+          );
+    const sortedProducts = _.orderBy(
+      filteredProducts,
+      [sortBy.path],
+      [sortBy.direction]
+    );
     const orderCrop = paginate(sortedProducts, activePage, pageSize);
 
     return (
@@ -131,17 +174,23 @@ const ProductsList = (params) => {
         <div className={style.searchAndLayout}>
           <div className={style.searchWithRestFilters}>
             <Search
-              placeholder={'Search'}
+              placeholder={"Search"}
               searchIcon={searchIcon}
               classes={searchClasses}
               onClick={handleRestFiltersSet}
             />
-            {restFilters ? <span className={style.restFilters}>Reset Filters</span> : <></>}
+            {restFilters ? (
+              <span className={style.restFilters}>Reset Filters</span>
+            ) : (
+              <></>
+            )}
           </div>
           <div className={style.layouts}>
             <img
               className={
-                layout === 'tileLayout' ? `${style.activeLayout}` : `${style.inactiveLayout}`
+                layout === "tileLayout"
+                  ? `${style.activeLayout}`
+                  : `${style.inactiveLayout}`
               }
               onClick={handleLayoutSet}
               src={tileLayout}
@@ -149,7 +198,9 @@ const ProductsList = (params) => {
             />
             <img
               className={
-                layout === 'tableLayout' ? `${style.activeLayout}` : `${style.inactiveLayout}`
+                layout === "tableLayout"
+                  ? `${style.activeLayout}`
+                  : `${style.inactiveLayout}`
               }
               onClick={handleLayoutSet}
               src={tableLayout}
@@ -162,15 +213,22 @@ const ProductsList = (params) => {
             <div className={style.filter}>
               <div className={style.filter_name}>Creation Date</div>
               <div className={style.filter_input}>
-                <input className={style.filter_input__date} placeholder="Select the Date"></input>
-                <img className={style.selectDate_img} src={calendar} alt="calendar" />
+                <input
+                  className={style.filter_input__date}
+                  placeholder="Select the Date"
+                ></input>
+                <img
+                  className={style.selectDate_img}
+                  src={calendar}
+                  alt="calendar"
+                />
               </div>
             </div>
 
             <div className={style.filter}>
               <div className={style.filter_name}>Sort by:</div>
               <Select
-                defaultName={'Category'}
+                defaultName={"Category"}
                 options={[1, 2, 3]}
                 img={arrowDown}
                 classes={selectStyles}
@@ -179,13 +237,13 @@ const ProductsList = (params) => {
 
             <div className={style.filter}>
               <Select
-                defaultName={'Status'}
-                options={['On Sale', 'Off-sale']}
+                defaultName={"Status"}
+                options={["On Sale", "Off-sale"]}
                 img={arrowDown}
                 classes={selectStyles}
               />
             </div>
-            <Checkbox label={'Include Hidden'} classes={checkboxStyles} />
+            <Checkbox label={"Include Hidden"} classes={checkboxStyles} />
           </div>
         ) : (
           <></>
@@ -194,12 +252,12 @@ const ProductsList = (params) => {
           <ShowPage />
           <Pagination activePage={activePage} amountPages={amountPages} />
         </div>
-        {layout === 'tableLayout' ? (
+        {layout === "tableLayout" ? (
           <div className={style.contentWrapper}>
             <div className={style.contentHeader}>
               <div className={style.filtersWrapper}>
                 <FiltersList
-                  filters={['All Products', 'On Sale', 'Off-sale']}
+                  filters={filters}
                   className={style.filteredProducts}
                   activeClassName={style.filteredProducts__active}
                   onItemSelect={handleProductsStatusSelect}
@@ -232,10 +290,16 @@ const ProductsList = (params) => {
                 Are you sure you want to delete the selected items?
               </h1>
               <div className={style.buttons_wrapper}>
-                <div className={style.modal_button} onClick={getCheckedCheckboxes}>
+                <div
+                  className={style.modal_button}
+                  onClick={getCheckedCheckboxes}
+                >
                   YES
                 </div>
-                <div className={style.modal_button} onClick={handleChangeModalActive}>
+                <div
+                  className={style.modal_button}
+                  onClick={handleChangeModalActive}
+                >
                   NO
                 </div>
               </div>
@@ -268,7 +332,9 @@ const ProductsList = (params) => {
                     <img src={star} alt="star" />
                     <img src={star} alt="star" />
                   </div>
-                  <div className={style.productCreationDate}>{item.creationDate}</div>
+                  <div className={style.productCreationDate}>
+                    {item.creationDate}
+                  </div>
                 </div>
               </div>
             ))}

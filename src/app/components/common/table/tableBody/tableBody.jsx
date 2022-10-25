@@ -6,13 +6,29 @@ const TableBody = ({ data, columns, classes }) => {
   const renderCompont = (item, column) => {
     if (columns[column].component) {
       const component = columns[column].component;
+
+      // item.with_discount === 0 ?
       if (typeof component === "function") {
         return component(item);
       }
+
       return component;
     }
     // если мы динамически передаем вложенные данные, то не можем получить к ним доступ
     // для этого используем lodash
+    const fieldValue = columns[column].path;
+    if (fieldValue === "with_discount" && item.with_discount === 0) {
+      return "Off-sale";
+    }
+    if (fieldValue === "with_discount" && item.with_discount === 1) {
+      return "On-sale";
+    }
+    if (fieldValue === "is_active" && item.is_active === 0) {
+      return "Hidden";
+    }
+    if (fieldValue === "is_active" && item.is_active === 1) {
+      return "Visible";
+    }
     return _.get(item, columns[column].path);
   };
   return (
@@ -26,7 +42,7 @@ const TableBody = ({ data, columns, classes }) => {
               <td
                 key={column.replace(/ /g, "")}
                 className={
-                  item.status === "Cancelled" || item.status === "Off-sale"
+                  item.status === "Cancelled" || item.is_active === 0
                     ? classes.tableData_inactive
                     : classes.tableData
                 }
