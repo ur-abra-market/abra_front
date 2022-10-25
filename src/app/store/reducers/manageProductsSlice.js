@@ -19,12 +19,10 @@ export const deleteProducts = createAsyncThunk(
   "manageProducts/deleteProducts",
   async function (id, { rejectWithValue, dispatch }) {
     try {
-      const responce = await fetchDeletedProducts.deleteList(id);
-      if (!responce.ok) {
-        throw new Error("Can't delete products. Server Error.");
-      }
+      const response = await fetchDeletedProducts.deleteList(id);
+
       dispatch(removeProducts(id));
-      console.log(responce);
+      return response;
     } catch (error) {
       return rejectWithValue(error);
     }
