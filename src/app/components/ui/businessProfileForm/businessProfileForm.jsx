@@ -35,15 +35,15 @@ const BusinessProfileForm = () => {
 
     const info = {
       logo_url: imgUrl,
-      shop_name: data.storeName,
+      name: data.storeName,
       business_sector: data.businessSector,
       year_established: +data.yearEstablished,
       number_of_emploees: +data.numEmployees,
       description: data.textarea,
-      photo_url: "string",
-      business_phone: phone,
+      photo_url: ["string"],
+      phone: phone,
       business_email: data.email,
-      company_address: data.address,
+      address: data.address,
     };
 
     // checking for empty fields
@@ -51,10 +51,10 @@ const BusinessProfileForm = () => {
 
     dispatch(
       accountInfoService({
-        path: "send-account-info",
+        path: "send_account_info",
         rest: {
-          supplier_info: accountInfo,
-          account_info: {
+          ...accountInfo,
+          company_info: {
             ...accountInfoForRequest,
             is_manufacturer: data.checkbox ? 1 : 0,
           },

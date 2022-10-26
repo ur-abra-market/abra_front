@@ -25,11 +25,17 @@ const AccountSetupForm = () => {
 
     dispatch(
       setAccountInfo({
-        first_name: data.fname,
-        last_name: data.lname,
-        country: data.country,
-        phone,
-        tax_number: +data.license,
+        user_info: {
+          first_name: data.fname,
+          last_name: data.lname,
+          phone,
+        },
+        license: {
+          license_number: +data.license,
+        },
+        country: {
+          country: data.country,
+        },
       })
     );
 

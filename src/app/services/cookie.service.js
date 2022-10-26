@@ -12,7 +12,6 @@ function getCookie(name) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 function getRefreshToken() {
-  console.log(document.cookie);
   return getCookie(refreshToken);
 }
 function getAccesToken() {

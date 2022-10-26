@@ -7,6 +7,7 @@ const initialState = {
   productVariations: null,
   errMessage: "",
   loading: false,
+  companyInfo: null,
 };
 
 export const getPropertiesService = createAsyncThunk(
@@ -14,6 +15,20 @@ export const getPropertiesService = createAsyncThunk(
   async function ({ id }, { rejectWithValue }) {
     try {
       const data = await supplierFetch.getProductProperties(id);
+      return data.result;
+    } catch (error) {
+      const err = error.response.data.result
+        ? error.response.data.result
+        : error.message;
+      return rejectWithValue(err);
+    }
+  }
+);
+export const getCompanyInfoService = createAsyncThunk(
+  "supplier/getCompanyInfoService",
+  async function (id, { rejectWithValue }) {
+    try {
+      const data = await supplierFetch.getSupplierCompanyInfo();
       return data.result;
     } catch (error) {
       const err = error.response.data.result
@@ -102,6 +117,23 @@ const categorySlice = createSlice({
       })
       .addCase(getPropertiesService.rejected, (state, action) => {
         state.productProperties = action.payload;
+        state.errMessage = action.payload;
+        state.loading = false;
+      });
+
+    builder
+      .addCase(getCompanyInfoService.pending, (state) => {
+        state.companyInfo = null;
+        state.errMessage = "";
+        state.loading = true;
+      })
+      .addCase(getCompanyInfoService.fulfilled, (state, action) => {
+        state.companyInfo = action.payload;
+        state.errMessage = "";
+        state.loading = false;
+      })
+      .addCase(getCompanyInfoService.rejected, (state, action) => {
+        state.companyInfo = null;
         state.errMessage = action.payload;
         state.loading = false;
       });

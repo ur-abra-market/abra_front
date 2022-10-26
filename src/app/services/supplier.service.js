@@ -26,6 +26,10 @@ const supplierFetch = {
     );
     return data;
   },
+  getSupplierCompanyInfo: async () => {
+    const { data } = await httpService.get(`suppliers/company_info/`);
+    return data;
+  },
   addProduct: async (product) => {
     const { data } = await httpService.post(`suppliers/add_product/`, product, {
       headers: { "X-CSRF-TOKEN": access },
