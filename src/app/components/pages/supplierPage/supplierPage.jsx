@@ -25,7 +25,6 @@ const SupplierPage = () => {
   const navigate = useNavigate();
   const isLoading = useSelector((state) => state.supplier.loading);
   const companyInfo = useSelector((state) => state.supplier.companyInfo);
-  console.log(companyInfo);
 
   useEffect(() => {
     dispatch(getCompanyInfoService());

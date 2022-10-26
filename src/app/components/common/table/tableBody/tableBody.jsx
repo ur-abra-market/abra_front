@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import Loader from "../../Loader";
+import { Link } from "react-router-dom";
 
 const TableBody = ({ data, columns, classes }) => {
   const renderCompont = (item, column) => {
@@ -18,6 +19,16 @@ const TableBody = ({ data, columns, classes }) => {
     // если мы динамически передаем вложенные данные, то не можем получить к ним доступ
     // для этого используем lodash
     const fieldValue = columns[column].path;
+    if (fieldValue === "image_url") {
+      return (
+        <img
+          width={"40px"}
+          height={"40px"}
+          src={`${item.image_url}`}
+          alt="img"
+        />
+      );
+    }
     if (fieldValue === "with_discount" && item.with_discount === 0) {
       return "Off-sale";
     }
@@ -35,24 +46,32 @@ const TableBody = ({ data, columns, classes }) => {
   return (
     <tbody>
       {data ? (
-        data.map((item) => (
-          <tr key={item.id} className={classes.tableRow}>
-            {Object.keys(columns).map((column) => (
-              // если мы динамически передаем вложенные данные, то не можем получить к ним доступ
-              // для этого используем lodash
-              <td
-                key={column.replace(/ /g, "")}
-                className={
-                  item.status === "Cancelled" || item.is_active === 0
-                    ? classes.tableData_inactive
-                    : classes.tableData
-                }
-              >
-                {renderCompont(item, column)}
-              </td>
-            ))}
+        data.length === 0 ? (
+          <tr>
+            <td style={{ textAlign: "center" }} colSpan={"9"}>
+              Please, <Link to="product-list-registration">add product</Link>
+            </td>
           </tr>
-        ))
+        ) : (
+          data.map((item) => (
+            <tr key={item.id} className={classes.tableRow}>
+              {Object.keys(columns).map((column) => (
+                // если мы динамически передаем вложенные данные, то не можем получить к ним доступ
+                // для этого используем lodash
+                <td
+                  key={column.replace(/ /g, "")}
+                  className={
+                    item.status === "Cancelled" || item.is_active === 0
+                      ? classes.tableData_inactive
+                      : classes.tableData
+                  }
+                >
+                  {renderCompont(item, column)}
+                </td>
+              ))}
+            </tr>
+          ))
+        )
       ) : (
         <Loader />
       )}

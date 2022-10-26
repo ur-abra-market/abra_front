@@ -33,21 +33,36 @@ const manageProductsSlice = createSlice({
   name: "manageProducts",
   initialState: {
     products: null,
-    status: null,
+    isLoading: false,
+    isStarted: false,
     error: null,
   },
 
   extraReducers: {
     [manageProductsService.pending]: (state) => {
-      state.status = "loading";
+      state.isLoading = true;
+      state.isStarted = true;
       state.error = null;
     },
     [manageProductsService.fulfilled]: (state, action) => {
-      state.status = "resolved";
+      state.isLoading = false;
       state.products = action.payload;
     },
     [manageProductsService.rejected]: (state, action) => {
-      state.status = "rejected";
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [deleteProducts.pending]: (state) => {
+      state.isLoading = true;
+      state.isStarted = true;
+      state.error = null;
+    },
+    [deleteProducts.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.products = action.payload;
+    },
+    [deleteProducts.rejected]: (state, action) => {
+      state.isLoading = false;
       state.error = action.payload;
     },
   },

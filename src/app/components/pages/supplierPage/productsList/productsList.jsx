@@ -43,14 +43,19 @@ const ProductsList = (params) => {
   // const [products, setProducts] = useState();
   const [selectedProductsStatus, setSelectedProductsStatus] =
     useState("All Products");
-  const [sortBy, setSortBy] = useState({ path: "name", direction: "desc" });
+  const [sortBy, setSortBy] = useState({
+    path: "is_active",
+    direction: "desc",
+  });
   const [layout, setLayout] = useState("tableLayout");
   const [restFilters, setRestFilters] = useState(false);
   const [modalActive, setModalActive] = useState(false);
   const [checkedMainCheckbox, setCheckedMainCheckbox] = useState(false);
   const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.manageProducts.products);
+  const { isLoading, isStarted, products } = useSelector(
+    (state) => state.manageProducts
+  );
   useEffect(() => {
     // api.products.fetchAll().then((data) => setProducts(data));
     dispatch(manageProductsService());
@@ -112,7 +117,6 @@ const ProductsList = (params) => {
   }
   function getDeletedItems(items) {
     dispatch(deleteProducts(items));
-    dispatch(manageProductsService());
   }
 
   const searchClasses = {
@@ -151,13 +155,14 @@ const ProductsList = (params) => {
   const handleSort = (item) => {
     setSortBy(item);
   };
-  if (!products) {
+  if (isLoading) {
     return <Loader />;
   } else {
+    const prod = products ? products : [];
     const filteredProducts =
       selectedProductsStatus === "All Products"
-        ? [...products].sort((prev, next) => prev.is_active - next.is_active)
-        : products.filter(
+        ? [...prod].sort((prev, next) => prev.is_active - next.is_active)
+        : prod.filter(
             (order) => order.with_discount.toString() === selectedProductsStatus
           );
     const sortedProducts = _.orderBy(

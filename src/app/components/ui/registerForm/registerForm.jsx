@@ -56,7 +56,7 @@ const RegisterForm = () => {
           <Button
             value="I'm here to buy"
             className={
-              userStatus === "suppliers"
+              userStatus === "sellers"
                 ? styleBtn.userStatusBtnInactive
                 : styleBtn.userStatusBtnActive
             }
@@ -65,7 +65,7 @@ const RegisterForm = () => {
           <Button
             value="I'm here to sell"
             className={
-              userStatus === "sellers"
+              userStatus === "suppliers"
                 ? styleBtn.userStatusBtnInactive
                 : styleBtn.userStatusBtnActive
             }
