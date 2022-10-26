@@ -1,46 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { paginate } from "../../../../utils/paginate";
-import Search from "../../../common/Search";
-// import api from './fakeAPI';
+import { paginate } from "../../../utils/paginate";
+import Search from "../../common/Search";
 import _ from "lodash";
-import ShowPage from "../../../common/ShowPage";
-import Pagination from "../../../ui/pagination/";
-import Select from "../../../common/select/select";
-import Checkbox from "../../../common/checkbox/checkbox";
-import FiltersList from "../../../common/filtersList/";
-import Table from "../../../common/table/";
-import searchIcon from "../../../../assets/img/icons/searchIcon.png";
-import tileLayout from "../../../../assets/img/icons/tileLayout.png";
-import tableLayout from "../../../../assets/img/icons/tableLayout.png";
-import addImg from "../../../../assets/img/icons/addImg.png";
-import deleteImg from "../../../../assets/img/icons/deleteImg.png";
-import star from "../../../../assets/img/icons/Star 1.png";
-import calendar from "../../../../assets/img/icons/calendar.png";
-import viewIcon from "../../../../assets/img/icons/viewIcon.png";
-import arrowDown from "../../../../assets/img/icons/arrow-down.png";
-import additIcon from "../../../../assets/img/icons/additIcon.png";
+import ShowPage from "../../common/ShowPage";
+import Pagination from "../../ui/pagination";
+import Select from "../../common/select/select";
+import Checkbox from "../../common/checkbox/checkbox";
+import FiltersList from "../../common/filtersList";
+import Table from "../../common/table";
+import searchIcon from "../../../assets/img/icons/searchIcon.png";
+import tileLayout from "../../../assets/img/icons/tileLayout.png";
+import tableLayout from "../../../assets/img/icons/tableLayout.png";
+import addImg from "../../../assets/img/icons/addImg.png";
+import deleteImg from "../../../assets/img/icons/deleteImg.png";
+import star from "../../../assets/img/icons/Star 1.png";
+import calendar from "../../../assets/img/icons/calendar.png";
+import viewIcon from "../../../assets/img/icons/viewIcon.png";
+import arrowDown from "../../../assets/img/icons/arrow-down.png";
+import additIcon from "../../../assets/img/icons/additIcon.png";
 import {
   tableStyleClasses,
   selectStyles,
   checkboxStyles,
 } from "./constantsOfClassesStyles";
-import Modal from "../../../common/modal";
+import Modal from "../../common/modal";
 import {
   manageProductsService,
   deleteProducts,
-} from "../../../../store/reducers/manageProductsSlice";
-import style from "./productsList.module.css";
-import Loader from "../../../common/Loader";
+} from "../../../store/reducers/manageProductsSlice";
+import style from "./productsListPage.module.css";
+import Loader from "../../common/Loader";
 import { useNavigate } from "react-router-dom";
 
-const ProductsList = (params) => {
+const ProductsListPage = (params) => {
   const navigate = useNavigate();
   const activePage = useSelector((state) => state.paginate.page_num);
   const amountPages = useSelector((state) => state.paginate.amountPages);
   const pageSize = useSelector((state) => state.paginate.page_size);
 
-  // const [products, setProducts] = useState();
   const [selectedProductsStatus, setSelectedProductsStatus] =
     useState("All Products");
   const [sortBy, setSortBy] = useState({
@@ -50,14 +48,10 @@ const ProductsList = (params) => {
   const [layout, setLayout] = useState("tableLayout");
   const [restFilters, setRestFilters] = useState(false);
   const [modalActive, setModalActive] = useState(false);
-  const [checkedMainCheckbox, setCheckedMainCheckbox] = useState(false);
   const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
-  const { isLoading, isStarted, products } = useSelector(
-    (state) => state.manageProducts
-  );
+  const { isLoading, products } = useSelector((state) => state.manageProducts);
   useEffect(() => {
-    // api.products.fetchAll().then((data) => setProducts(data));
     dispatch(manageProductsService());
   }, []);
 
@@ -70,7 +64,6 @@ const ProductsList = (params) => {
   };
 
   const handleSwitchMainCheckbox = (tagret) => {
-    setCheckedMainCheckbox((prevState) => !prevState);
     const inputs = document.querySelectorAll(".checkbox");
     inputs.forEach((input) => {
       input.checked = tagret.checked;
@@ -112,8 +105,6 @@ const ProductsList = (params) => {
     }
     getDeletedItems(selectedItems);
     handleChangeModalActive();
-
-    // return selectedItems;
   }
   function getDeletedItems(items) {
     dispatch(deleteProducts(items));
@@ -146,10 +137,6 @@ const ProductsList = (params) => {
     if (value === "Off-sale") fieldValue = "0";
     if (value === "On-sale") fieldValue = "1";
     setSelectedProductsStatus(fieldValue);
-    // Object.keys(filters).map((filter)=>{
-    //   filter.key === valuee
-    // })
-    // if value === 'On-sale'
   };
 
   const handleSort = (item) => {
@@ -359,4 +346,4 @@ const ProductsList = (params) => {
   }
 };
 
-export default ProductsList;
+export default ProductsListPage;

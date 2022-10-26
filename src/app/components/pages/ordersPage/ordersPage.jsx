@@ -15,10 +15,10 @@ import React, { useEffect, useState } from "react";
 // import arrowDown from "../../../../assets/img/icons/arrow-down.png";
 // import Loader from "../../../common/Loader";
 
-const Orders = () => {
+const OrdersPage = () => {
   return (
     <>
-      <h2>Orders</h2>
+      <h2>OrdersPage</h2>
     </>
   );
 
@@ -210,4 +210,4 @@ const Orders = () => {
   // }
 };
 
-export default Orders;
+export default OrdersPage;

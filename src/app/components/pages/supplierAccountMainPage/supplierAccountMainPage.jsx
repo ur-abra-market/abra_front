@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import iconImage from "../../../../assets/img/icons/icon-img.png";
-import TextField from "../../../common/textField";
-import PhoneNumFieldWithoutCountryCode from "../../../common/phoneNumFieldWithoutCountryCode/phoneNumFieldWithoutCountryCode";
-import { InfoBtn } from "../../../common/buttons";
-import Checkbox from "../../../common/checkbox/checkbox";
-import Select from "../../../common/select";
-import arrowTriangleImg from "../../../../assets/img/icons/check-arrow.png";
+import iconImage from "../../../assets/img/icons/icon-img.png";
+import TextField from "../../common/textField";
+import PhoneNumFieldWithoutCountryCode from "../../common/phoneNumFieldWithoutCountryCode/phoneNumFieldWithoutCountryCode";
+import { InfoBtn } from "../../common/buttons";
+import Checkbox from "../../common/checkbox/checkbox";
+import Select from "../../common/select";
+import arrowTriangleImg from "../../../assets/img/icons/check-arrow.png";
 import {
   textFieldClasses,
   accountDetails__textFieldClasses,
@@ -22,10 +22,6 @@ import {
 import style from "./supplierAccountMainPage.module.css";
 
 const SupplierAccountMainPage = () => {
-  // useEffect(() => {
-  //   dispatch(supplierAccountService(supplierData));
-  // }, [dispatch])
-
   return (
     <div className={style.supplierCabinet}>
       <div className={style.supplierCabinet__contentWrapper}>
