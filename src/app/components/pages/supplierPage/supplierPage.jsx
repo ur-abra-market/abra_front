@@ -42,7 +42,7 @@ const SupplierPage = () => {
   };
   useEffect(() => {
     if (isGetCompanyInfo && !isLoading && !companyInfo?.name) {
-      navigate("account-setup");
+      navigate("../account-setup");
     }
   }, [isLoading]);
 
