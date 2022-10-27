@@ -67,7 +67,7 @@ const BusinessProfileForm = () => {
 
   useEffect(() => {
     if (resMessage === "DATA_HAS_BEEN_SENT") {
-      navigate("add-product", { replace: true });
+      navigate("../add-product", { replace: true });
     }
   }, [resMessage, navigate]);
 
