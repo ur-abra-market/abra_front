@@ -169,8 +169,8 @@ const ProductListRegistrationForm = ({
         ) : (
           <>
             <FormTitle
-              step={companyInfo ? "" : "Step 3/3"}
-              link={companyInfo ? "Back" : "Skip and Get started"}
+              step={companyInfo?.name ? "" : "Step 3/3"}
+              link={companyInfo?.name ? "Back" : "Skip and Get started"}
               title={"Product list"}
               text={"Enter the information about your first product"}
             />
