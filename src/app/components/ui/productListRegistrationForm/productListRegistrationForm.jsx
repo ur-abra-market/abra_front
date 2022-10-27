@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import DropDownField from "../../common/dropDownField";
 import Form from "../../common/form";
@@ -13,7 +14,6 @@ import MaterialInputs from "../materialInputs";
 import ProdInfoInputs from "../prodInfoInputs";
 import ButtonReg from "../../common/buttons/buttonReg";
 import { SelectionsForProperties } from "./SelectionsForProperties/SelectionsForProperties";
-import { useDispatch, useSelector } from "react-redux";
 import {
   addProductService,
   uploadImageService,
@@ -38,6 +38,8 @@ const ProductListRegistrationForm = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { productId, loading } = useSelector((state) => state.supplier);
+
+  const companyInfo = useSelector((state) => state.supplier.companyInfo);
 
   const [isSubmit, setIsSubmit] = useState(false);
   const [images, setImages] = useState([]);
@@ -167,8 +169,8 @@ const ProductListRegistrationForm = ({
         ) : (
           <>
             <FormTitle
-              step={"Step 3/3"}
-              link={"Skip and Get started"}
+              step={companyInfo ? "" : "Step 3/3"}
+              link={companyInfo ? "Back" : "Skip and Get started"}
               title={"Product list"}
               text={"Enter the information about your first product"}
             />

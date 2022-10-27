@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./supplierMenu.module.css";
 import PropTypes from "prop-types";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const SupplierMenu = () => {
   const menu = [

@@ -30,7 +30,6 @@ const CheckboxStyledElem = ({ size, register }) => {
           type="number"
           className={style.inputValue}
           {...register}
-          name={size}
           placeholder={amount}
           onInput={(e) => setAmount(e.target.value)}
           id={size}

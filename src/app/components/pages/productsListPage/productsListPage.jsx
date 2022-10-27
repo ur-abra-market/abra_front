@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { paginate } from "../../../utils/paginate";
 import Search from "../../common/Search";
 import _ from "lodash";
@@ -31,7 +32,6 @@ import {
 } from "../../../store/reducers/manageProductsSlice";
 import style from "./productsListPage.module.css";
 import Loader from "../../common/Loader";
-import { useNavigate } from "react-router-dom";
 
 const ProductsListPage = (params) => {
   const navigate = useNavigate();
@@ -263,7 +263,7 @@ const ProductsListPage = (params) => {
                   <div
                     className={style.subtitle}
                     onClick={() => {
-                      navigate("product-list-registration");
+                      navigate("../add-product");
                     }}
                   >
                     Add a new product

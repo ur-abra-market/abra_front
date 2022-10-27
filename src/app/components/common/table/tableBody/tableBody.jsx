@@ -49,7 +49,7 @@ const TableBody = ({ data, columns, classes }) => {
         data.length === 0 ? (
           <tr>
             <td style={{ textAlign: "center" }} colSpan={"9"}>
-              Please, <Link to="product-list-registration">add product</Link>
+              Please, <Link to="../add-product">add product</Link>
             </td>
           </tr>
         ) : (

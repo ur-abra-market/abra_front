@@ -57,7 +57,9 @@ const SupplierPage = () => {
               <>
                 <Link to="/">Abra</Link>
                 <span className={style.verticalLine}></span>
-                <span className={style.supplierMainPagelink}>SUPPLIER</span>
+                <span className={style.supplierMainPagelink}>
+                  <Link to="/"> SUPPLIER</Link>
+                </span>
               </>
             }
           >

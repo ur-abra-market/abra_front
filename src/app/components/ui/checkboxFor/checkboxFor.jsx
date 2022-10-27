@@ -4,12 +4,11 @@ import style from "./checkboxFor.module.css";
 
 const CheckboxFor = ({ register, array, title, getValues }) => {
   const validate = useCallback(() => {
-    const errorMessage = "Choose format";
     const values = getValues(array.map((v, index) => v));
 
     const isValid = values.some((v) => v);
-    console.log(isValid);
-    return isValid || errorMessage;
+
+    return isValid;
   }, []);
   return (
     <div>

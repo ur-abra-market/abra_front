@@ -54,7 +54,7 @@ const supplierRoute = [
     element: <BusinessProfilePage />,
   },
   {
-    path: "product-list-registration",
+    path: "add-product",
     element: <ProductListRegistrationPage />,
   },
 ];
