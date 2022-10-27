@@ -1,4 +1,3 @@
-import { DevTool } from "@hookform/devtools";
 import { useCallback } from "react";
 import CheckboxStyledElem from "../../common/checkboxStyledElem";
 import style from "./checkboxFor.module.css";
