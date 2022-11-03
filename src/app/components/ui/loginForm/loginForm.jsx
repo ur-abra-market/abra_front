@@ -77,7 +77,7 @@ const LoginForm = () => {
           register={register("email", {
             required: "Email is required!",
             pattern: {
-              value: /^\S+@\S+\.\S+$/g,
+              value: /^\w+\S+@\w+\S+\.[\w+\S+]{2,}$/g,
               message: "Email is incorrect!",
             },
           })}
@@ -98,6 +98,7 @@ const LoginForm = () => {
               capitalSymbol: (s) => /[A-Z]+/g.test(s),
               digitSymbol: (s) => /\d+/g.test(s),
               specialSymbol: (s) => /[!#+*]/g.test(s),
+              spaceSymbol: (s) => !/\s/g.test(s),
             },
           })}
           label="Password"
