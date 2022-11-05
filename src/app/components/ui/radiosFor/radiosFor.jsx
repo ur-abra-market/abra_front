@@ -3,7 +3,7 @@ import RadioStyledElem from "../../common/radioStyledElem";
 import style from "./radiosFor.module.css";
 
 
-const RadiosFor = ({register, state, array, title, name}) => {
+const RadiosFor = ({register, state, array, title, name,typeId}) => {
 
     const [choice, setChoice] = useState(state)
 
@@ -12,13 +12,14 @@ const RadiosFor = ({register, state, array, title, name}) => {
             <p className={style.title}>{title}</p>
             <div className={style.radioWrapper}>
                 {array && array.map((el, i) => {
+
                     return <RadioStyledElem key={i}
+                                            typeId={typeId}
                                             name={name}
                                             choice={choice}
                                             setChoice={setChoice}
                                             register={register}
                                             value={el}
-
                     />
                 })}
             </div>
