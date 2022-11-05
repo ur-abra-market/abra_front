@@ -1,35 +1,40 @@
-import { useCallback } from "react";
 import CheckboxStyledElem from "../../common/checkboxStyledElem";
 import style from "./checkboxFor.module.css";
+import {useCallback} from "react";
 
-const CheckboxFor = ({ register, array, title, getValues }) => {
-  const validate = useCallback(() => {
-    const values = getValues(array.map((v, index) => v));
+const CheckboxFor = ({register, array, title, getValues, typeId}) => {
 
-    const isValid = values.some((v) => v);
+    const validate = useCallback(() => {
+        const values = getValues(array.map((el) => `${typeId}-${el}`))
 
-    return isValid;
-  }, []);
-  return (
-    <div>
-      <p className={style.title}>{title}</p>
+        const isValid = values.some((el) => el)
 
-      <div className={style.checkboxWrapper}>
-        {array &&
-          array.map((el) => {
-            return (
-              <CheckboxStyledElem
-                size={el}
-                register={register(el, {
-                  validate,
+        console.log(getValues())
+
+        return isValid
+    }, [])
+
+
+
+    return (
+        <div>
+            <p className={style.title}>{title}</p>
+
+            <div className={style.checkboxWrapper}>
+                {array && array.map((el) => {
+                    return (
+                        <CheckboxStyledElem key={el}
+                                            typeId={typeId}
+                                            size={el}
+                                            register={register(`${typeId}-${el}`, {
+                                                validate,
+                                            })}
+                        />
+                    );
                 })}
-                key={el}
-              />
-            );
-          })}
-      </div>
-    </div>
-  );
+            </div>
+        </div>
+    );
 };
 
 export default CheckboxFor;

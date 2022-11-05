@@ -1,43 +1,53 @@
 import style from "./radioStyledElem.module.css";
-import { ucFirst } from "../../../utils/ucFirst";
+import {ucFirst} from "../../../utils/ucFirst";
 
-const RadioStyledElem = ({ name, value, choice, register, setChoice }) => {
-  const colorValue = ucFirst(value);
+const RadioStyledElem = ({
+                             name,
+                             value,
+                             choice,
+                             register,
+                             setChoice,
+                             typeId
+                         }) => {
+    const colorValue = ucFirst(value);
 
-  const valueStr = value.split(" ").join("");
+    const valueStr = value.split(" ").join("");
 
-  return (
-    <div className={style.colorWrapper}>
-      <input
-        type="radio"
-        {...register(name, {
-          required: true,
-        })}
-        onClick={(e) => setChoice(e.target.value)}
-        value={value}
-        className={`${style[name]}`}
-        name={name}
-      />
+    const onClickChoiceColorHandler = (e) => {
+        setChoice(e.target.value)
+    }
 
-      {name === "color" && (
-        <div
-          className={`${value === choice && style.borderContainer} ${
-            style.colorContainer
-          }`}
-        >
-          <div
-            style={{ background: `${valueStr}` }}
-            className={`${style.colorBlock}  `}
-          />
-          <p className={style.colorValue}>{colorValue}</p>
-        </div>
-      )}
+    return (
+        <div className={style.colorWrapper}>
+            <input
+                type="radio"
+                {...register(`${typeId}-${name}`, {
+                    required: true,
+                })}
+                onClick={onClickChoiceColorHandler}
+                value={value}
+                className={`${style[name]}`}
+            />
 
-      {/*{name === 'growth' && <div className={`${value === choice && style.borderContainer} ${style.growthContainer}`}>
+            {name === "color" && (
+                <div
+                    className={`${value === choice && style.borderContainer} ${
+                        style.colorContainer
+                    }`}
+                >
+                    <div
+                        style={{background: `${valueStr}`}}
+                        className={`${style.colorBlock}  `}
+                    />
+                    <p className={style.colorValue}>{colorValue}</p>
+                </div>
+            )}
+
+            {/*{name === 'growth' && <div className={`${value === choice && style.borderContainer} ${style.growthContainer}`}>
                 <p className={style.growthValue}>{colorValue}</p>
             </div>}*/}
-    </div>
-  );
+        </div>
+    );
 };
 
 export default RadioStyledElem;
