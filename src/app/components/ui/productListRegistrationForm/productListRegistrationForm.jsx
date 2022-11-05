@@ -1,7 +1,7 @@
-import {useEffect, useState} from "react";
-import {useForm} from "react-hook-form";
-import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import DropDownField from "../../common/dropDownField";
 import Form from "../../common/form";
 import FormTitle from "../../common/formTitle";
@@ -11,164 +11,159 @@ import style from "./productListRegistrationForm.module.css";
 import MaterialInputs from "../materialInputs";
 import ProdInfoInputs from "../prodInfoInputs";
 import ButtonReg from "../../common/buttons/buttonReg";
-import {SelectionsForProperties} from "./SelectionsForProperties/SelectionsForProperties";
+import { SelectionsForProperties } from "./SelectionsForProperties/SelectionsForProperties";
 import {
-    addProductService,
-    uploadImageService,
+  addProductService,
+  uploadImageService,
 } from "../../../store/reducers/supplierSlice";
-import {ImagesAdding} from "../../common/imageAdding/ImagesAdding";
+import { ImagesAdding } from "../../common/imageAdding/ImagesAdding";
 import Loader from "../../common/Loader";
-import {TypesPage} from "./TypesPage/TypesPage";
+import { TypesPage } from "./TypesPage/TypesPage";
 
 const ProductListRegistrationForm = ({
-                                         firstCategory,
-                                         secondCategory,
-                                         thirdCategory,
-                                         setSecondCategory,
-                                         setFirstCategory,
-                                         setThirdCategory,
-                                         firstStageCategories,
-                                         thirdStageCategories,
-                                         secondStageCategories,
-                                         productProperties,
-                                         productVariations,
-                                         categoryId,
-                                     }) => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const {productId, loading} = useSelector((state) => state.supplier);
+  firstCategory,
+  secondCategory,
+  thirdCategory,
+  setSecondCategory,
+  setFirstCategory,
+  setThirdCategory,
+  firstStageCategories,
+  thirdStageCategories,
+  secondStageCategories,
+  productProperties,
+  productVariations,
+  categoryId,
+}) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { productId, loading } = useSelector((state) => state.supplier);
 
-    const companyInfo = useSelector((state) => state.supplier.companyInfo);
+  const companyInfo = useSelector((state) => state.supplier.companyInfo);
 
-    const [isSubmit, setIsSubmit] = useState(false);
-    const [images, setImages] = useState([]);
-    const [types, setTypes] = useState([
-        {id: 1, selected: true},
-    ])
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [images, setImages] = useState([]);
+  const [types, setTypes] = useState([{ id: 1, selected: true }]);
 
+  const {
+    register,
+    formState: { isValid, errors },
+    handleSubmit,
+    reset,
+    getValues,
+  } = useForm({ mode: "onChange" });
 
-    const {
-        register,
-        formState: {isValid, errors},
-        handleSubmit,
-        reset,
-        getValues,
-    } = useForm({mode: "onChange"})
+  const values = productProperties?.map((el) => el.key);
 
-
-    const values = productProperties?.map((el) => el.key);
-
-    const createObjProperty = (el, obj) => {
-        const optional_value = obj[`${el}(optional)`];
-        const value = obj[el];
-        let finalObj = {
-            name: el,
-            value,
-        };
-        if (optional_value) {
-            finalObj = {...finalObj, optional_value};
-        }
-        return finalObj;
+  const createObjProperty = (el, obj) => {
+    const optional_value = obj[`${el}(optional)`];
+    const value = obj[el];
+    let finalObj = {
+      name: el,
+      value,
+    };
+    if (optional_value) {
+      finalObj = { ...finalObj, optional_value };
     }
+    return finalObj;
+  };
 
-    const createObjVariation = (id, data) => {
-        const childs = []
+  const createObjVariation = (id, data) => {
+    const childs = [];
 
-        productVariations["size"]?.forEach((el) => {
-            if (data[`${id}-${el}`]) {
-                childs.push({
-                    name: "size",
-                    value: el,
-                    count: data[`${id}-${el}`],
-                })
-            }
-        })
-
-        return {
-            name: "color",
-            value: data[`${id}-color`],
-            childs,
-        }
-    }
-
-    const onSubmit = (data) => {
-        let keysData = Object.keys(data);
-
-        const properties = [];
-        values.forEach((el) => {
-            properties.push(createObjProperty(el, data));
-        })
-
-        const variations = []
-        types.forEach((el) => {
-            variations.push(createObjVariation(el.id, data));
-        })
-
-        const addedMaterialKeys = [];
-        const addedMaterialValues = [];
-        keysData.forEach((el) => {
-            if (el.slice(0, 3) === "opt") {
-                addedMaterialKeys.push(el);
-            }
-            if (el.slice(0, 4) === "main") {
-                addedMaterialValues.push(el);
-            }
+    productVariations["size"]?.forEach((el) => {
+      if (data[`${id}-${el}`]) {
+        childs.push({
+          name: "size",
+          value: el,
+          count: data[`${id}-${el}`],
         });
-        addedMaterialKeys.forEach((el, i) => {
-            if (data[addedMaterialValues[i]] && data[el]) {
-                properties.push({
-                    name: `material:${i}`,
-                    value: data[addedMaterialValues[i]],
-                    optional_value: data[el],
-                });
-            }
+      }
+    });
+
+    return {
+      name: "color",
+      value: data[`${id}-color`],
+      childs,
+    };
+  };
+
+  const onSubmit = (data) => {
+    let keysData = Object.keys(data);
+    console.log(data);
+    const properties = [];
+    values.forEach((el) => {
+      properties.push(createObjProperty(el, data));
+    });
+
+    const variations = [];
+    types.forEach((el) => {
+      variations.push(createObjVariation(el.id, data));
+    });
+
+    const addedMaterialKeys = [];
+    const addedMaterialValues = [];
+    keysData.forEach((el) => {
+      if (el.slice(0, 3) === "opt") {
+        addedMaterialKeys.push(el);
+      }
+      if (el.slice(0, 4) === "main") {
+        addedMaterialValues.push(el);
+      }
+    });
+    addedMaterialKeys.forEach((el, i) => {
+      if (data[addedMaterialValues[i]] && data[el]) {
+        properties.push({
+          name: `material:${i}`,
+          value: data[addedMaterialValues[i]],
+          optional_value: data[el],
         });
+      }
+    });
 
-        const prices = [
-            {
-                value: data.mainPrice,
-                quantity: data.mainQuantity,
-            },
-        ];
-        if (data.specPrice && data.specQuantity) {
-            prices.push({
-                value: data.specPrice,
-                quantity: data.specQuantity,
-            });
-        }
-
-        const productInfo = {
-            product_info: {
-                product_name: data.prodName,
-                category_id: categoryId,
-                description: data.textarea,
-            },
-            properties,
-            variations,
-            prices,
-        };
-
-        dispatch(addProductService({product: productInfo}));
-        setIsSubmit(true);
-        reset();
-
+    const prices = [
+      {
+        value: data.mainPrice,
+        quantity: data.mainQuantity,
+      },
+    ];
+    if (data.specPrice && data.specQuantity) {
+      prices.push({
+        value: data.specPrice,
+        quantity: data.specQuantity,
+      });
     }
 
-    const variations = productVariations ? productVariations : [];
+    const productInfo = {
+      product_info: {
+        product_name: data.prodName,
+        category_id: categoryId,
+        description: data.textarea,
+      },
+      properties,
+      variations,
+      prices,
+    };
 
-    useEffect(() => {
-        if (productId && isSubmit) {
-            images.forEach((el, i) => {
-                dispatch(
-                    uploadImageService({
-                        rest: {
-                            img: el,
-                            index: i,
-                            prodId: productId,
-                        },
-                    })
-                );
-            });
+    dispatch(addProductService({ product: productInfo }));
+    setIsSubmit(true);
+    reset();
+  };
+
+  const variations = productVariations ? productVariations : [];
+
+  useEffect(() => {
+    if (productId && isSubmit) {
+      images.forEach((el, i) => {
+        dispatch(
+          uploadImageService({
+            rest: {
+              img: el,
+              index: i,
+              prodId: productId,
+            },
+          })
+        );
+      });
 
       navigate("/");
     }
@@ -220,9 +215,7 @@ const ProductListRegistrationForm = ({
                         value={secondCategory}
                         onChangeOption={setSecondCategory}
                         options={secondStageCategories}
-                        register={register("type1", {
-                          required: true,
-                        })}
+                        register={register("type1", {})}
                         title={"Type 1 *"}
                         name={"type1"}
                         placeholder={"Select"}
@@ -297,13 +290,13 @@ const ProductListRegistrationForm = ({
                     optType={"number"}
                   />
 
-                    <TypesPage variations={variations}
-                               register={register}
-                               setTypes={setTypes}
-                               types={types}
-                               getValues={getValues}
-                    />
-
+                  <TypesPage
+                    variations={variations}
+                    register={register}
+                    setTypes={setTypes}
+                    types={types}
+                    getValues={getValues}
+                  />
                 </DropDownField>
 
                 <DropDownField
