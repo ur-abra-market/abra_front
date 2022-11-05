@@ -2,6 +2,7 @@ import CheckboxStyledElem from "../../common/checkboxStyledElem";
 import style from "./checkboxFor.module.css";
 import {useCallback} from "react";
 
+
 const CheckboxFor = ({register, array, title, getValues, typeId}) => {
 
     const validate = useCallback(() => {
@@ -9,16 +10,12 @@ const CheckboxFor = ({register, array, title, getValues, typeId}) => {
 
         const isValid = values.some((el) => el)
 
-        console.log(getValues())
-
         return isValid
-    }, [])
 
-
-
-    return (
-        <div>
-            <p className={style.title}>{title}</p>
+  }, []);
+  return (
+    <div>
+      <p className={style.title}>{title}</p>
 
             <div className={style.checkboxWrapper}>
                 {array && array.map((el) => {

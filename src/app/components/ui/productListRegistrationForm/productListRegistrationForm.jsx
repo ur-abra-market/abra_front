@@ -170,162 +170,168 @@ const ProductListRegistrationForm = ({
                 );
             });
 
-            navigate("/");
-        }
-    }, [productId]);
-    return (
-        <div className={style.formWrapper}>
-            <div className={style.formContainer}>
-                {loading ? (
-                    <Loader/>
-                ) : (
-                    <>
-                        <FormTitle
-                            step={companyInfo?.name ? "" : "Step 3/3"}
-                            link={companyInfo?.name ? "Back" : "Skip and Get started"}
-                            title={"Product list"}
-                            text={"Enter the information about your first product"}
+      navigate("/");
+    }
+  }, [productId]);
+  return (
+    <div className={style.formWrapper}>
+      <div className={style.formContainer}>
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            <FormTitle
+              step={companyInfo?.name ? "" : "Step 3/3"}
+              link={companyInfo?.name ? "Back" : "Skip and Get started"}
+              title={"Product list"}
+              text={"Enter the information about your first product"}
+            />
+            <Form action="" onSubmit={handleSubmit(onSubmit)}>
+              <div className={style.form}>
+                <DropDownField isShow={true} title={"Main Product Info"}>
+                  <TextFieldLabelAbove
+                    register={register("prodName", {
+                      required: "Field is required",
+                    })}
+                    error={errors?.prodName?.message}
+                    title={"Product name *"}
+                    name={"prodName"}
+                    type={"text"}
+                    placeholder={"Enter the product name"}
+                  />
+
+                  <div className={style.selectInputs}>
+                    <div className={style.selectEqual}>
+                      <SelectLabelAbove
+                        value={firstCategory}
+                        onChangeOption={setFirstCategory}
+                        options={firstStageCategories}
+                        register={register("category", {
+                          required: true,
+                        })}
+                        title={"Category *"}
+                        name={"category"}
+                        placeholder={"Select"}
+                      />
+                    </div>
+
+                    <div className={style.selectEqual}>
+                      <SelectLabelAbove
+                        value={secondCategory}
+                        onChangeOption={setSecondCategory}
+                        options={secondStageCategories}
+                        register={register("type1", {
+                          required: true,
+                        })}
+                        title={"Type 1 *"}
+                        name={"type1"}
+                        placeholder={"Select"}
+                      />
+                    </div>
+
+                    {thirdStageCategories && !!thirdStageCategories.length && (
+                      <div className={style.selectEqual}>
+                        <SelectLabelAbove
+                          value={thirdCategory}
+                          onChangeOption={setThirdCategory}
+                          options={thirdStageCategories}
+                          register={register("type2")}
+                          title={"Type 2 *"}
+                          name={"type2"}
+                          placeholder={"Select"}
                         />
-                        <Form action="" onSubmit={handleSubmit(onSubmit)}>
-                            <div className={style.form}>
-                                <DropDownField isShow={true} title={"Main Product Info"}>
-                                    <TextFieldLabelAbove
-                                        register={register("prodName", {
-                                            required: "Field is required",
-                                        })}
-                                        error={errors?.prodName?.message}
-                                        title={"Product name *"}
-                                        name={"prodName"}
-                                        type={"text"}
-                                        placeholder={"Enter the product name"}
-                                    />
+                      </div>
+                    )}
+                  </div>
 
-                                    <div className={style.selectInputs}>
-                                        <div className={style.selectEqual}>
-                                            <SelectLabelAbove
-                                                value={firstCategory}
-                                                onChangeOption={setFirstCategory}
-                                                options={firstStageCategories}
-                                                register={register("category", {
-                                                    required: true,
-                                                })}
-                                                title={"Category *"}
-                                                name={"category"}
-                                                placeholder={"Select"}
-                                            />
-                                        </div>
+                  <p className={style.listImgTitle}>
+                    Photo of the company or production
+                  </p>
 
-                                        <div className={style.selectEqual}>
-                                            <SelectLabelAbove
-                                                value={secondCategory}
-                                                onChangeOption={setSecondCategory}
-                                                options={secondStageCategories}
-                                                register={register("type1", {
-                                                    required: true,
-                                                })}
-                                                title={"Type 1 *"}
-                                                name={"type1"}
-                                                placeholder={"Select"}
-                                            />
-                                        </div>
+                  <div className={style.listImg}>
+                    {[...new Array(5)].map((el, i) => (
+                      <ImagesAdding
+                        key={i}
+                        images={images}
+                        setImages={setImages}
+                      />
+                    ))}
+                  </div>
 
-                                        {thirdStageCategories && !!thirdStageCategories.length && (
-                                            <div className={style.selectEqual}>
-                                                <SelectLabelAbove
-                                                    value={thirdCategory}
-                                                    onChangeOption={setThirdCategory}
-                                                    options={thirdStageCategories}
-                                                    register={register("type2")}
-                                                    title={"Type 2 *"}
-                                                    name={"type2"}
-                                                    placeholder={"Select"}
-                                                />
-                                            </div>
-                                        )}
-                                    </div>
+                  <TextFieldLabelAbove
+                    register={register("textarea")}
+                    title={"Description"}
+                    name={"textarea"}
+                    placeholder={"Enter the description of your product"}
+                  />
+                </DropDownField>
 
-                                    <p className={style.listImgTitle}>
-                                        Photo of the company or production
-                                    </p>
+                <DropDownField
+                  isShow={!!productProperties && !!productVariations}
+                  title={"Properties"}
+                >
+                  {productProperties &&
+                    productProperties.map((el, i) => {
+                      const values = [
+                        ...new Set(el.values.map((el) => el.value)),
+                      ];
 
-                                    <div className={style.listImg}>
-                                        {[...new Array(5)].map((el, i) => (
-                                            <ImagesAdding
-                                                key={i}
-                                                images={images}
-                                                setImages={setImages}
-                                            />
-                                        ))}
-                                    </div>
+                      return (
+                        <SelectionsForProperties
+                          key={i}
+                          element={el}
+                          options={values}
+                          register={register}
+                          placeholder={"Select"}
+                        />
+                      );
+                    })}
 
-                                    <TextFieldLabelAbove
-                                        register={register("textarea")}
-                                        title={"Description"}
-                                        name={"textarea"}
-                                        placeholder={"Enter the description of your product"}
-                                    />
-                                </DropDownField>
+                  <MaterialInputs
+                    register={register}
+                    mainTitle={"Material (optional)"}
+                    optTitle={"% (optional)"}
+                    mainPlaceholder={"Enter the material name"}
+                    optPlaceholder={"Enter percentage of material"}
+                    mainType={"text"}
+                    optType={"number"}
+                  />
 
-                                <DropDownField
-                                    isShow={!!productProperties && !!productVariations}
-                                    title={"Properties"}
-                                >
-                                    {productProperties &&
-                                        productProperties.map((el, i) => {
-                                            const values = [
-                                                ...new Set(el.values.map((el) => el.value)),
-                                            ];
+                  <RadiosFor
+                    register={register}
+                    title={"Select color *"}
+                    state={"no color"}
+                    array={variations[variationKeys[1]]}
+                    name={"color"}
+                  />
 
-                                            return (
-                                                <SelectionsForProperties
-                                                    key={i}
-                                                    element={el}
-                                                    options={values}
-                                                    register={register}
-                                                    placeholder={"Select"}
-                                                />
-                                            );
-                                        })}
+                  <CheckboxFor
+                    getValues={getValues}
+                    register={register}
+                    title={"Size and Quantity *"}
+                    array={variations[variationKeys[0]]}
+                  />
+                </DropDownField>
 
-                                    <MaterialInputs
-                                        register={register}
-                                        mainTitle={"Material (optional)"}
-                                        optTitle={"% (optional)"}
-                                        mainPlaceholder={"Enter the material name"}
-                                        optPlaceholder={"Enter percentage of material"}
-                                        mainType={"text"}
-                                        optType={"number"}
-                                    />
+                <DropDownField
+                  isShow={!!productProperties && !!productVariations}
+                  title={"Additional Product Info"}
+                >
+                  <ProdInfoInputs register={register} />
+                </DropDownField>
 
-                                    <TypesPage variations={variations}
-                                               getValues={getValues}
-                                               register={register}
-                                               types={types}
-                                               setTypes={setTypes}
-                                    />
-
-
-                                </DropDownField>
-
-                                <DropDownField
-                                    isShow={!!productProperties && !!productVariations}
-                                    title={"Additional Product Info"}
-                                >
-                                    <ProdInfoInputs register={register}/>
-                                </DropDownField>
-
-                                <ButtonReg
-                                    type={"submit"}
-                                    value={"Continue"}
-                                    isValid={!isValid}
-                                />
-                            </div>
-                        </Form>
-                    </>
-                )}
-            </div>
-        </div>
-    );
+                <ButtonReg
+                  type={"submit"}
+                  value={"Continue"}
+                  isValid={!isValid}
+                />
+              </div>
+            </Form>
+          </>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default ProductListRegistrationForm;
