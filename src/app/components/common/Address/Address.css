@@ -1,0 +1,61 @@
+.Address {
+  display: flex;
+  flex-direction: column;
+  width: 435px;
+  height: 108px;
+  padding: 16px;
+  padding-left: 24px;
+  border: 2px #000000 solid;
+  background: #f2f2f2;
+}
+.Address__content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.Address__content-text {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+}
+.Address__content-edit {
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+  background: url('../../../assets/img/icons/edit.svg');
+  cursor: pointer;
+}
+.Address_place {
+  margin-top: 8px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 24px;
+}
+.Address__main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.Address__main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: auto;
+  align-items: center;
+}
+
+.Address__main_mark {
+  width: 16px;
+  height: 16px;
+  background-size: cover;
+  background: url('../../../assets/img/icons/check-mark.svg'); 
+}
+.Address__main_text {
+  font-size: var(--fs);
+  line-height: 18px;
+  color: #828282;
+  font-family: 'SF Pro Display Regular';
+}

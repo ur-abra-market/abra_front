@@ -1,0 +1,23 @@
+.CheckoutPage {
+  width: calc(100% - 64px);
+  display: flex;
+  flex-direction: row;
+  gap: 8px;   
+}
+.Checkout {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.Checkout_items {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;  
+}
+.Checkout_items>h4 {
+  padding-left: 32px;
+  padding-top: 32px;  
+  background-color: #ffffff;
+}
