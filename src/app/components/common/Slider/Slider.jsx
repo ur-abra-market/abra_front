@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { useSelector } from 'react-redux';
 import Card from "../Card";
 import "./Slider.css";
 
 const Slider = ({ title, products }) => {
-  const dataArr = useSelector((state) => state.productPaginate.dataProductPaginate);
-
   const widthCart = 220;
   const gap = 11;
   const step = widthCart + gap;
@@ -34,10 +31,6 @@ const Slider = ({ title, products }) => {
       </div>
       <div className="Slider__card">
         <div className="Slider__card_list" style={{ left: `${left}px` }}>
-          {/*{dataArr.map((data, index) => (*/}
-          {/* <Card key={`card_${index}`} props={data} />*/}
-          {/*))}*/}
-
           {products.map((product) => {
             return <Card key={product.id} product={product}/>
           })}

@@ -28,6 +28,15 @@ const mainPageSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchProductList.fulfilled, (state, action) => {
       state.products[action.payload.category] = action.payload.data
+      state.isLoading = false
+    })
+    builder.addCase(fetchProductList.pending, (state, action) => {
+      state.isLoading = true
+      state.error = null
+    })
+    builder.addCase(fetchProductList.rejected, (state, action) => {
+      state.isLoading = false
+      state.error = action.payload
     })
   }
 })
