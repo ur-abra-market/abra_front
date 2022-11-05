@@ -297,20 +297,13 @@ const ProductListRegistrationForm = ({
                     optType={"number"}
                   />
 
-                  <RadiosFor
-                    register={register}
-                    title={"Select color *"}
-                    state={"no color"}
-                    array={variations[variationKeys[1]]}
-                    name={"color"}
-                  />
+                    <TypesPage variations={variations}
+                               register={register}
+                               setTypes={setTypes}
+                               types={types}
+                               getValues={getValues}
+                    />
 
-                  <CheckboxFor
-                    getValues={getValues}
-                    register={register}
-                    title={"Size and Quantity *"}
-                    array={variations[variationKeys[0]]}
-                  />
                 </DropDownField>
 
                 <DropDownField
