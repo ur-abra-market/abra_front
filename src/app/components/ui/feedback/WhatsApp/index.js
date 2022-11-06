@@ -1,2 +1,2 @@
-import WhatsApp from "./WhatsApp";
-export default WhatsApp;
+import WhatsApp from './WhatsApp'
+export default WhatsApp

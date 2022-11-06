@@ -1,2 +1,2 @@
-import SupplierPage from './supplierPage';
-export default SupplierPage;
+import SupplierPage from './SupplierPage'
+export default SupplierPage

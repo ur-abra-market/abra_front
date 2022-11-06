@@ -1,2 +1,2 @@
-import MaterialInputs from "./materialInputs";
-export default MaterialInputs;
+import MaterialInputs from './MaterialInputs'
+export default MaterialInputs

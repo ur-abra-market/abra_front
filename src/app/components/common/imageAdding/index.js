@@ -1,2 +1,2 @@
-import ImageAdding from "./imageAdding";
-export default ImageAdding;
+import ImageAdding from './ImageAdding'
+export default ImageAdding

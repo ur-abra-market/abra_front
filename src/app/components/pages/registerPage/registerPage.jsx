@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import RegisterForm from "../../ui/registerForm";
-import { Button } from "../../common/buttons";
-import style from "./registerPage.module.css";
-import styleBtn from "../../common/buttons/buttons.module.css";
+import React from 'react'
+import PropTypes from 'prop-types'
+import RegisterForm from '../../ui/RegisterForm'
+import { Button } from '../../common/buttons'
+import style from './RegisterPage.module.css'
+import styleBtn from '../../common/buttons/buttons.module.css'
 
 const RegisterPage = ({ togglePageType }) => {
   return (
@@ -21,9 +21,9 @@ const RegisterPage = ({ togglePageType }) => {
         <div className={style.form__wrap}>{<RegisterForm />}</div>
       </div>
     </>
-  );
-};
+  )
+}
 RegisterPage.propTypes = {
-  togglePageType: PropTypes.func,
-};
-export default RegisterPage;
+  togglePageType: PropTypes.func
+}
+export default RegisterPage

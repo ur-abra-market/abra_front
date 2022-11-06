@@ -1,40 +1,40 @@
 .buySellBtnWrappeer {
-    position: absolute;
-    left: 500px;
-    top: -270px;
-    margin-top: 24px;
+  position: absolute;
+  left: 500px;
+  top: -270px;
+  margin-top: 24px;
 }
 
 .flexContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 }
 
 .textFieldLabel {
-    display: none;
+  display: none;
 }
 
 .textFieldInput {
-    width: 368px;
-    height: 42px;
-    padding-left: 16px;
-    font-size: 12px;;
-    letter-spacing: 0.02em;
-    color: #000000;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    background: #ffffff;
+  width: 368px;
+  height: 42px;
+  padding-left: 16px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: #000000;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: #ffffff;
 }
 
 .inputWrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0;
-    border: 1px solid #E0E0E0;
-    border-radius: 4px;
-    margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 12px;
 }

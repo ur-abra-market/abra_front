@@ -1,29 +1,28 @@
-
-import React from "react";
-import NavBar from "../../ui/navBar/navBar";
-import HeaderNavMenu from "../HeaderNavMemu";
-import SelectCurrency from "../SelectCurrency";
-import SelectShip from "../SelectShip";
-import "./Header.css";
+import React from 'react'
+import NavBar from '../../ui/NavBar'
+import HeaderNavMenu from '../HeaderNavMemu'
+import SelectCurrency from '../SelectCurrency'
+import SelectShip from '../SelectShip'
+import style from './Header.module.css'
 
 const Header = () => {
   return (
-    <header className="header">
+    <header className={style.header}>
       <NavBar />
-      <div className="header__menu">
-        <div className="header__menu_categories">
+      <div className={style.header__menu}>
+        <div className={style.header__menu_categories}>
           <div>All categories</div>
-          <div className="dividing-line-1">|</div>
+          <div className={style.dividing_line_1}>|</div>
         </div>
         <HeaderNavMenu />
-        <div className="heder__selects">
-          <div className="dividing-line-2">|</div>
+        <div className={style.heder__selects}>
+          <div className={style.dividing_line_2}>|</div>
           <SelectCurrency />
           <SelectShip />
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

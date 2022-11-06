@@ -1,52 +1,52 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { loginService } from "../../../store/reducers/loginSlice";
-import TextField from "../../common/textField";
-import { Button } from "../../common/buttons";
-import PasswordComplexity from "../../common/passwordComplexity";
-import Form from "../../common/form";
-import Loader from "../../common/Loader";
-import styleBtn from "../../common/buttons/buttons.module.css";
-import style from "../registerForm/registerForm.module.css";
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { loginService } from '../../../store/reducers/loginSlice'
+import TextField from '../../common/TextField'
+import { Button } from '../../common/buttons'
+import PasswordComplexity from '../../common/PasswordComplexity'
+import Form from '../../common/form'
+import Loader from '../../common/Loader'
+import styleBtn from '../../common/buttons/buttons.module.css'
+import style from '../RegisterForm/RegisterForm.module.css'
 
 const LoginForm = () => {
-  const [userStatus, setUserStatus] = useState("suppliers");
-  const dispatch = useDispatch();
+  const [userStatus, setUserStatus] = useState('suppliers')
+  const dispatch = useDispatch()
   const {
     register,
     watch,
     formState: { isValid, errors },
-    handleSubmit,
-  } = useForm({ mode: "onChange" });
-  const navigate = useNavigate();
-  const watchPasword = watch("password");
+    handleSubmit
+  } = useForm({ mode: 'onChange' })
+  const navigate = useNavigate()
+  const watchPasword = watch('password')
 
   const toggleUserStatus = () => {
     setUserStatus((prevState) =>
-      prevState === "suppliers" ? "sellers" : "suppliers"
-    );
-  };
+      prevState === 'suppliers' ? 'sellers' : 'suppliers'
+    )
+  }
 
-  const isLoading = useSelector((state) => state.login.loading);
-  const errMessage = useSelector((state) => state.login.errMessage);
-  const resMessage = useSelector((state) => state.login.resMessage);
+  const isLoading = useSelector((state) => state.login.loading)
+  const errMessage = useSelector((state) => state.login.errMessage)
+  const resMessage = useSelector((state) => state.login.resMessage)
 
   useEffect(() => {
-    if (resMessage === "LOGIN_SUCCESSFUL") navigate("/");
-  }, [resMessage]);
+    if (resMessage === 'LOGIN_SUCCESSFUL') navigate('/')
+  }, [resMessage])
 
   const onSubmit = (data) => {
-    if (!isValid) return;
-    dispatch(loginService(data));
-  };
+    if (!isValid) return
+    dispatch(loginService(data))
+  }
 
   const textFieldClasses = {
     label: `${style.textFieldLabel}`,
     inputWrapper: `${style.inputWrapper}`,
-    input: `${style.textFieldInput}`,
-  };
+    input: `${style.textFieldInput}`
+  }
 
   return (
     <>
@@ -55,7 +55,7 @@ const LoginForm = () => {
           <Button
             value="I'm here to buy"
             className={
-              userStatus === "sellers"
+              userStatus === 'sellers'
                 ? styleBtn.userStatusBtnInactive
                 : styleBtn.userStatusBtnActive
             }
@@ -64,7 +64,7 @@ const LoginForm = () => {
           <Button
             value="I'm here to sell"
             className={
-              userStatus === "suppliers"
+              userStatus === 'suppliers'
                 ? styleBtn.userStatusBtnInactive
                 : styleBtn.userStatusBtnActive
             }
@@ -74,12 +74,12 @@ const LoginForm = () => {
       </div>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <TextField
-          register={register("email", {
-            required: "Email is required!",
+          register={register('email', {
+            required: 'Email is required!',
             pattern: {
               value: /^\w+\S+@\w+\S+\.[\w+\S+]{2,}$/g,
-              message: "Email is incorrect!",
-            },
+              message: 'Email is incorrect!'
+            }
           })}
           label="Email"
           name="email"
@@ -88,18 +88,18 @@ const LoginForm = () => {
           error={errors.email}
         />
         <TextField
-          register={register("password", {
-            required: "Password is required!",
+          register={register('password', {
+            required: 'Password is required!',
             minLength: {
               value: 8,
-              message: "Password must contain at least 8 characters!",
+              message: 'Password must contain at least 8 characters!'
             },
             validate: {
               capitalSymbol: (s) => /[A-Z]+/g.test(s),
               digitSymbol: (s) => /\d+/g.test(s),
               specialSymbol: (s) => /[!#+*]/g.test(s),
-              spaceSymbol: (s) => !/\s/g.test(s),
-            },
+              spaceSymbol: (s) => !/\s/g.test(s)
+            }
           })}
           label="Password"
           type="password"
@@ -122,6 +122,6 @@ const LoginForm = () => {
         />
       </Form>
     </>
-  );
-};
-export default LoginForm;
+  )
+}
+export default LoginForm

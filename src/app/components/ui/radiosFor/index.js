@@ -1,2 +1,2 @@
-import RadiosFor from "./radiosFor";
-export default RadiosFor;
+import RadiosFor from './RadiosFor'
+export default RadiosFor

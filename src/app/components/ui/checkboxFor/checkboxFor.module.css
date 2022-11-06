@@ -1,11 +1,11 @@
-.title{
-    color: #828282;
-    font-size: 13px;
-    margin: 8px 0;
+.title {
+  color: #828282;
+  font-size: 13px;
+  margin: 8px 0;
 }
 
-.checkboxWrapper{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 17px;
+.checkboxWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 17px;
 }

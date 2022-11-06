@@ -1,0 +1,36 @@
+.switchBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.switchBox__label {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+}
+.switchBox__box {
+  display: flex;
+  flex-direction: row;
+  width: 28px;
+  height: 24px;
+  padding-left: 4px;
+  padding-right: 4px;
+  border-radius: 12px;
+  background: #e0e0e0;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.switchBox__box_btn {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  pointer-events: none;
+  transition: 0.2s;
+}

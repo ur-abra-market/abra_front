@@ -1,51 +1,53 @@
-import { Link} from "react-router-dom";
-import style from "./orderHistoryPage.module.css";
-import { useState } from "react";
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import style from './OrderHistoryPage.module.css'
 
 const OrderHistoryPage = () => {
-  const statusLinksList = ["All", "Preparing", "In progress", "Completed"];
-  const ordersInfo = [{
-      number: "4784437395989684",
-      date: "20.12.2022",
-      status: "In progress"
+  const statusLinksList = ['All', 'Preparing', 'In progress', 'Completed']
+  const ordersInfo = [
+    {
+      number: '4784437395989684',
+      date: '20.12.2022',
+      status: 'In progress'
     },
     {
-      number: "4784437395989684",
-      date: "20.12.2022",
-      status: "In progress"
+      number: '4784437395989684',
+      date: '20.12.2022',
+      status: 'In progress'
     },
     {
-      number: "4784437395989684",
-      date: "20.12.2022",
-      status: "Preparing"
+      number: '4784437395989684',
+      date: '20.12.2022',
+      status: 'Preparing'
     },
     {
-      number: "4784437395989684",
-      date: "19.12.2022",
-      status: "In progress"
+      number: '4784437395989684',
+      date: '19.12.2022',
+      status: 'In progress'
     },
     {
-      number: "4784437395989684",
-      date: "18.12.2022",
-      status: "Completed"
+      number: '4784437395989684',
+      date: '18.12.2022',
+      status: 'Completed'
     }
-  ];
+  ]
 
-  const statusCheck = statusLinksList.map((link) => link === "All" ? link = true : link = false);
+  const statusCheck = statusLinksList.map((link) =>
+    link === 'All' ? (link = true) : (link = false)
+  )
 
-  const [check, setCheck] = useState(statusCheck);
-  const [ordersArray, setOrdersArray] = useState(ordersInfo);
+  const [check, setCheck] = useState(statusCheck)
+  const [ordersArray, setOrdersArray] = useState(ordersInfo)
 
   const handleButtonCategoryClick = (index, link) => {
-    const arrCheck = check.map((e, i) => i === index ? true : false);
-    setCheck(arrCheck);
+    const arrCheck = check.map((e, i) => (i === index ? true : false))
+    setCheck(arrCheck)
 
-    if (link === "All") {
-      setOrdersArray(ordersInfo);
-    } else {
-      const filterOrders = ordersInfo.find(order => link === order.status);
-      setOrdersArray([filterOrders]);
-    };
+    if (link === 'All') setOrdersArray(ordersInfo)
+    else {
+      const filterOrders = ordersInfo.find((order) => link === order.status)
+      setOrdersArray([filterOrders])
+    }
   }
 
   return (
@@ -56,7 +58,10 @@ const OrderHistoryPage = () => {
           {statusLinksList.map((link, i) => (
             <button
               className={style.link}
-              style={{background: check[i] ? '#000000' : '#D9D9D9', color: check[i] ? '#ffffff' : 'rgba(0, 0, 0, 0.5)'}}
+              style={{
+                background: check[i] ? '#000000' : '#D9D9D9',
+                color: check[i] ? '#ffffff' : 'rgba(0, 0, 0, 0.5)'
+              }}
               onClick={() => handleButtonCategoryClick(i, link)}
               key={`status_${link}`}
             >
@@ -64,42 +69,37 @@ const OrderHistoryPage = () => {
             </button>
           ))}
         </div>
-        
-        {ordersArray.length
-          ? <ul className={style.list}>
-              {ordersArray.map((order, index) => (
-                <li key={index}>
-                  <Link
-                    to={order.number}
-                    className={style.item}
-                  >
-                    <div className={style.info}>
-                      <h3 className={style.number}>Order No: {order.number}</h3>
-                      <p className={style.date}>{order.date}</p>
-                    </div>
-                    <div className={style.status}>
-                      {order.status}
-                    </div>
 
-                    <div className={style.images}>
-                      <div className={style.image}></div>
-                      <div className={style.image}></div>
-                      <div className={style.image}></div>
-                      <div className={style.image}></div>
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          : <div className={style.messageTitle}>
-              <p>Unfortunately, there are no orders.</p>
-              <p>As soon as you place your first order it will appear here</p>
-            </div>
-        }
-        
+        {ordersArray.length ? (
+          <ul className={style.list}>
+            {ordersArray.map((order, index) => (
+              <li key={index}>
+                <Link to={order.number} className={style.item}>
+                  <div className={style.info}>
+                    <h3 className={style.number}>Order No: {order.number}</h3>
+                    <p className={style.date}>{order.date}</p>
+                  </div>
+                  <div className={style.status}>{order.status}</div>
+
+                  <div className={style.images}>
+                    <div className={style.image}></div>
+                    <div className={style.image}></div>
+                    <div className={style.image}></div>
+                    <div className={style.image}></div>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className={style.messageTitle}>
+            <p>Unfortunately, there are no orders.</p>
+            <p>As soon as you place your first order it will appear here</p>
+          </div>
+        )}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default OrderHistoryPage;
+export default OrderHistoryPage

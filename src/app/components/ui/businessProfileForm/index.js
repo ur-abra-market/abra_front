@@ -1,2 +1,2 @@
-import BusinessProfileForm from "./businessProfileForm";
-export default BusinessProfileForm;
+import BusinessProfileForm from './BusinessProfileForm'
+export default BusinessProfileForm

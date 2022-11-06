@@ -1,2 +1,2 @@
-import Table from "./table";
-export default Table;
+import Table from './Table'
+export default Table

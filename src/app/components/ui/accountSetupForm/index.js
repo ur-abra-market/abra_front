@@ -1,2 +1,2 @@
-import AccountSetupForm from "./accountSetupForm";
-export default AccountSetupForm;
+import AccountSetupForm from './AccountSetupForm'
+export default AccountSetupForm

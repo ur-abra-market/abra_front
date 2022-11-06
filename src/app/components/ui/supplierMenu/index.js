@@ -1,2 +1,2 @@
-import SupplierMenu from "./Slider";
-export default SupplierMenu;
+import SupplierMenu from './SupplierMenu'
+export default SupplierMenu

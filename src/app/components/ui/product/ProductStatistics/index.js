@@ -1,2 +1,2 @@
-import ProductStatistics from "./ProductStatistics";
-export default ProductStatistics;
+import ProductStatistics from './ProductStatistics'
+export default ProductStatistics

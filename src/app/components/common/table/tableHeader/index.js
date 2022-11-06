@@ -1,2 +1,2 @@
-import TableHeader from "./tableHeader";
-export default TableHeader;
+import TableHeader from './TableHeader'
+export default TableHeader

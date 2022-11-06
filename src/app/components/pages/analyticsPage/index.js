@@ -1,2 +1,2 @@
-import AnalyticsPage from "./analyticsPage";
-export default AnalyticsPage;
+import AnalyticsPage from './AnalyticsPage'
+export default AnalyticsPage

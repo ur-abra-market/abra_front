@@ -1,2 +1,2 @@
-import ShowPage from "./ShowPage";
-export default ShowPage;
+import ShowPage from './ShowPage'
+export default ShowPage

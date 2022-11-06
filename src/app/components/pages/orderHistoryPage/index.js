@@ -1,2 +1,2 @@
-import OrderHistoryPage from "./orderHistoryPage";
-export default OrderHistoryPage;
+import OrderHistoryPage from './OrderHistoryPage'
+export default OrderHistoryPage

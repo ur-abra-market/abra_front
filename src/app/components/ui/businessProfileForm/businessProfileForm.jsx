@@ -1,37 +1,37 @@
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { accountInfoService } from "../../../store/reducers/formRegistrationSlice";
-import ButtonReg from "../../common/buttons/buttonReg";
-import Form from "../../common/form";
-import FormTitle from "../../common/formTitle";
-import ImageAdding from "../../common/imageAdding";
-import SelectLabelAbove from "../../common/selectLabelAbove";
-import TextFieldLabelAbove from "../../common/textFieldLabelAbove";
-import style from "./businessProfileForm.module.css";
-import { filterEmptyValues } from "../../../utils/filterEmptyValues";
+import React, { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { accountInfoService } from '../../../store/reducers/formRegistrationSlice'
+import ButtonReg from '../../common/buttons/buttonReg'
+import Form from '../../common/form'
+import FormTitle from '../../common/FormTitle'
+import ImageAdding from '../../common/imageAdding'
+import SelectLabelAbove from '../../common/SelectLabelAbove'
+import TextFieldLabelAbove from '../../common/TextFieldLabelAbove'
+import { filterEmptyValues } from '../../../utils/filterEmptyValues'
+import style from './BusinessProfileForm.module.css'
 
 const BusinessProfileForm = () => {
-  const date = new Date();
-  const year = date.getFullYear();
-  const [imgUrl, setImgUrl] = useState("");
+  const date = new Date()
+  const year = date.getFullYear()
+  const [imgUrl, setImgUrl] = useState('')
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const { resMessage, accountInfo } = useSelector(
     (state) => state.formRegistration
-  );
+  )
 
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
-    reset,
-  } = useForm({ mode: "onChange" });
+    reset
+  } = useForm({ mode: 'onChange' })
 
   const onSubmit = (data) => {
-    const phone = data.code + data.tel;
+    const phone = data.code + data.tel
 
     const info = {
       logo_url: imgUrl,
@@ -40,44 +40,43 @@ const BusinessProfileForm = () => {
       year_established: +data.yearEstablished,
       number_of_emploees: +data.numEmployees,
       description: data.textarea,
-      photo_url: ["string"],
+      photo_url: ['string'],
       phone: phone,
       business_email: data.email,
-      address: data.address,
-    };
+      address: data.address
+    }
 
     // checking for empty fields
-    const accountInfoForRequest = filterEmptyValues(info);
+    const accountInfoForRequest = filterEmptyValues(info)
 
     dispatch(
       accountInfoService({
-        path: "send_account_info",
+        path: 'send_account_info',
         rest: {
           ...accountInfo,
           company_info: {
             ...accountInfoForRequest,
-            is_manufacturer: data.checkbox ? 1 : 0,
-          },
-        },
+            is_manufacturer: data.checkbox ? 1 : 0
+          }
+        }
       })
-    );
+    )
 
-    reset();
-  };
+    reset()
+  }
 
   useEffect(() => {
-    if (resMessage === "DATA_HAS_BEEN_SENT") {
-      navigate("../add-product", { replace: true });
-    }
-  }, [resMessage, navigate]);
+    if (resMessage === 'DATA_HAS_BEEN_SENT')
+      navigate('../add-product', { replace: true })
+  }, [resMessage, navigate])
 
   return (
     <div className={style.formWrapper}>
       <div className={style.formContainer}>
         <FormTitle
-          step={"Step 2/3"}
-          title={"Business profile"}
-          text={"Enter the information you want to show on your store profile"}
+          step={'Step 2/3'}
+          title={'Business profile'}
+          text={'Enter the information you want to show on your store profile'}
         />
 
         <Form action="" onSubmit={handleSubmit(onSubmit)}>
@@ -87,35 +86,35 @@ const BusinessProfileForm = () => {
             <ImageAdding
               imgUrl={imgUrl}
               setImgUrl={setImgUrl}
-              label={"Add logo or profile image"}
+              label={'Add logo or profile image'}
               placeholder={
-                "The customers will recognize your store by this image"
+                'The customers will recognize your store by this image'
               }
-              register={register("profileLogo")}
+              register={register('profileLogo')}
             />
 
             <div className={style.selectInfoInputs}>
               <TextFieldLabelAbove
-                register={register("storeName", {
-                  required: "Field is required",
+                register={register('storeName', {
+                  required: 'Field is required'
                 })}
                 error={errors?.storeName?.message}
-                title={"Shop name (will be shown on the profile)"}
-                name={"storeName"}
-                type={"text"}
-                placeholder={"Enter your company or store name"}
+                title={'Shop name (will be shown on the profile)'}
+                name={'storeName'}
+                type={'text'}
+                placeholder={'Enter your company or store name'}
               />
 
               <div className={style.selectEqual}>
                 <SelectLabelAbove
-                  register={register("businessSector", {
-                    required: "Field is required",
+                  register={register('businessSector', {
+                    required: 'Field is required'
                   })}
                   error={errors?.businessSector?.message}
-                  title={"Your main business sector"}
-                  name={"businessSector"}
-                  options={["Clothes", "Accessories", "electronics"]}
-                  placeholder={"Select"}
+                  title={'Your main business sector'}
+                  name={'businessSector'}
+                  options={['Clothes', 'Accessories', 'electronics']}
+                  placeholder={'Select'}
                 />
               </div>
             </div>
@@ -125,7 +124,7 @@ const BusinessProfileForm = () => {
                 type="checkbox"
                 id="checkbox"
                 className={style.checkbox}
-                {...register("checkbox")}
+                {...register('checkbox')}
               />
               <label htmlFor="checkbox">I am a manufacturer</label>
             </div>
@@ -136,39 +135,39 @@ const BusinessProfileForm = () => {
 
             <div className={style.selectInfoInputs}>
               <TextFieldLabelAbove
-                register={register("yearEstablished", {
+                register={register('yearEstablished', {
                   minLength: {
                     value: 4,
-                    message: "Add an existing year",
+                    message: 'Add an existing year'
                   },
                   max: {
                     value: year,
-                    message: "this year hasn't come yet",
-                  },
+                    message: `this year hasn't come yet`
+                  }
                 })}
                 error={errors?.yearEstablished?.message}
-                title={"Year Established"}
-                name={"yearEstablished"}
-                type={"number"}
-                placeholder={"Enter the year"}
+                title={'Year Established'}
+                name={'yearEstablished'}
+                type={'number'}
+                placeholder={'Enter the year'}
               />
 
               <div className={style.selectEqual}>
                 <SelectLabelAbove
-                  register={register("numEmployees")}
-                  title={"Number of employees"}
-                  name={"numEmployees"}
-                  options={["0", "<4", "<10", ">10"]}
-                  placeholder={"Select"}
+                  register={register('numEmployees')}
+                  title={'Number of employees'}
+                  name={'numEmployees'}
+                  options={['0', '<4', '<10', '>10']}
+                  placeholder={'Select'}
                 />
               </div>
             </div>
 
             <TextFieldLabelAbove
-              register={register("textarea")}
-              title={"About the business"}
-              name={"textarea"}
-              placeholder={"Tell more about your company or business"}
+              register={register('textarea')}
+              title={'About the business'}
+              name={'textarea'}
+              placeholder={'Tell more about your company or business'}
             />
 
             <p className={style.listImgTitle}>
@@ -188,57 +187,57 @@ const BusinessProfileForm = () => {
 
             <div className={style.phoneNumber}>
               <SelectLabelAbove
-                register={register("code")}
-                name={"code"}
-                title={"Business phone number"}
-                options={["+90", "+44", "+77", "+1"]}
+                register={register('code')}
+                name={'code'}
+                title={'Business phone number'}
+                options={['+90', '+44', '+77', '+1']}
               />
 
               <div className={style.marginFix}>
                 <TextFieldLabelAbove
-                  register={register("tel", {
+                  register={register('tel', {
                     minLength: {
                       value: 10,
-                      message: "Phone number must be 10 digits",
-                    },
+                      message: 'Phone number must be 10 digits'
+                    }
                   })}
                   error={errors?.tel?.message}
-                  name={"tel"}
-                  type={"tel"}
-                  placeholder={"(XXX) XXX - XX - XX"}
+                  name={'tel'}
+                  type={'tel'}
+                  placeholder={'(XXX) XXX - XX - XX'}
                 />
               </div>
             </div>
 
             <div className={style.contactsInputs}>
               <TextFieldLabelAbove
-                register={register("email", {
+                register={register('email', {
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Invalid email address",
-                  },
+                    message: 'Invalid email address'
+                  }
                 })}
                 error={errors?.email?.message}
-                title={"Business email address"}
-                name={"email"}
-                type={"email"}
-                placeholder={"business@email.com"}
+                title={'Business email address'}
+                name={'email'}
+                type={'email'}
+                placeholder={'business@email.com'}
               />
 
               <TextFieldLabelAbove
-                register={register("address")}
-                title={"Main company address"}
-                name={"address"}
-                placeholder={"Enter address"}
+                register={register('address')}
+                title={'Main company address'}
+                name={'address'}
+                placeholder={'Enter address'}
               />
             </div>
           </div>
 
-          <ButtonReg type={"submit"} value={"Continue"} isValid={!isValid} />
+          <ButtonReg type={'submit'} value={'Continue'} isValid={!isValid} />
         </Form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default BusinessProfileForm;
+export default BusinessProfileForm

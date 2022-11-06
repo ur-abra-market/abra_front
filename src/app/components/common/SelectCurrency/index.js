@@ -1,2 +1,2 @@
-import SelectCurrency from "./SelectCurrency";
-export default SelectCurrency;
+import SelectCurrency from './SelectCurrency'
+export default SelectCurrency

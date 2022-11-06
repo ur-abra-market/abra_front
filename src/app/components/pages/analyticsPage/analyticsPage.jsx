@@ -1,11 +1,7 @@
-import React from "react";
+import React from 'react'
 
-const AnalyticsPage = (params) => {
-  return (
-    <>
-      <h2>AnalyticsPage</h2>
-    </>
-  );
-};
+const AnalyticsPage = () => {
+  return <h2>AnalyticsPage</h2>
+}
 
-export default AnalyticsPage;
+export default AnalyticsPage

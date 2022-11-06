@@ -1,50 +1,49 @@
-import React, { useEffect, useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { ButtonLink } from "../../common/buttons";
-import NavBarUniversal from "../../ui/navBarUniversal";
-import SupplierMenu from "../../ui/supplierMenu/supplierMenu";
-import iconImage from "../../../assets/img/icons/icon-img.png";
-import bellImg from "../../../assets/img/icons/notification-bell.png";
-import arrowTriangleImg from "../../../assets/img/icons/check-arrow.png";
-import style from "./supplierPage.module.css";
-import Select from "../../common/select";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { ButtonLink } from '../../common/buttons'
+import NavBarUniversal from '../../ui/NavBarUniversal'
+import SupplierMenu from '../../ui/SupplierMenu/SupplierMenu'
+import iconImage from '../../../assets/img/icons/icon-img.png'
+import bellImg from '../../../assets/img/icons/notification-bell.png'
+import arrowTriangleImg from '../../../assets/img/icons/check-arrow.png'
+import style from './SupplierPage.module.css'
+import Select from '../../common/Select'
 
-import { useDispatch, useSelector } from "react-redux";
-import FooterForSupplierPart from "../../common/footerForSupplierPart";
-import Loader from "../../common/Loader";
-import { getCompanyInfoService } from "../../../store/reducers/supplierSlice";
+import FooterForSupplierPart from '../../common/FooterForSupplierPart'
+import Loader from '../../common/Loader'
+import { getCompanyInfoService } from '../../../store/reducers/supplierSlice'
 
 const SupplierPage = () => {
-  const [isGetCompanyInfo, setIsGetCompanyInfo] = useState(false);
+  const [isGetCompanyInfo, setIsGetCompanyInfo] = useState(false)
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const isLoading = useSelector((state) => state.supplier.loading);
-  const companyInfo = useSelector((state) => state.supplier.companyInfo);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const isLoading = useSelector((state) => state.supplier.loading)
+  const companyInfo = useSelector((state) => state.supplier.companyInfo)
 
   useEffect(() => {
-    dispatch(getCompanyInfoService());
-    setIsGetCompanyInfo(true);
-  }, []);
+    dispatch(getCompanyInfoService())
+    setIsGetCompanyInfo(true)
+  }, [])
 
   const navbarCategoryBtnClasses = {
     wrepperBtnImg: `${style.wrepperBtnImg}`,
     btnImg: `${style.btnImg}`,
-    btnName: `${style.btnName}`,
-  };
+    btnName: `${style.btnName}`
+  }
 
   const SelectBussinessClasses = {
     selectWrapper: `${style.selectWrapper}`,
     select_headerWrapper: `${style.select_headerWrapper}`,
     select_header: `${style.select_header}`,
     select_options: `${style.select_options}`,
-    option: `${style.option}`,
-  };
+    option: `${style.option}`
+  }
   useEffect(() => {
-    if (isGetCompanyInfo && !isLoading && !companyInfo?.name) {
-      navigate("../account-setup");
-    }
-  }, [isLoading]);
+    if (isGetCompanyInfo && !isLoading && !companyInfo?.name)
+      navigate('../account-setup')
+  }, [isLoading])
 
   return (
     <>
@@ -80,7 +79,7 @@ const SupplierPage = () => {
             <Select
               defaultName={companyInfo?.name}
               img={arrowTriangleImg}
-              options={["Name 1", "Name 2", "Name 3"]}
+              options={['Name 1', 'Name 2', 'Name 3']}
               classes={SelectBussinessClasses}
             />
           </NavBarUniversal>
@@ -92,7 +91,7 @@ const SupplierPage = () => {
         </>
       )}
     </>
-  );
-};
+  )
+}
 
-export default SupplierPage;
+export default SupplierPage

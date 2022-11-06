@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import style from "./resetPasswordPage.module.css";
-import ResetPasswordForm from "../../ui/resetPasswordForm";
-import Modal from "../../common/modal";
-import { Button } from "../../common/buttons";
-import styleBtn from "../../common/buttons/buttons.module.css";
+import React, { useState } from 'react'
+import ResetPasswordForm from '../../ui/ResetPasswordForm'
+import Modal from '../../common/Modal'
+import { Button } from '../../common/buttons'
+import style from './ResetPasswordPage.module.css'
+import styleBtn from '../../common/buttons/buttons.module.css'
 
 const ResetPasswordPage = () => {
-  const [modalActive, setModalActive] = useState(false);
+  const [modalActive, setModalActive] = useState(false)
   const handleChangeModalActive = () => {
-    setModalActive((prevState) => !prevState);
-  };
+    setModalActive((prevState) => !prevState)
+  }
 
   return (
     <>
@@ -42,6 +42,6 @@ const ResetPasswordPage = () => {
         </div>
       </Modal>
     </>
-  );
-};
-export default ResetPasswordPage;
+  )
+}
+export default ResetPasswordPage

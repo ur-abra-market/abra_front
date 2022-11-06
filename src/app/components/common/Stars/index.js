@@ -1,2 +1,2 @@
-import Stars from "./Stars";
-export default Stars;
+import Stars from './Stars'
+export default Stars

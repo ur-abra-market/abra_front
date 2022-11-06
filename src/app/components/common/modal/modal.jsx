@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import style from "./modal.module.css";
+import React from 'react'
+import PropTypes from 'prop-types'
+import style from './Modal.module.css'
 
 const Modal = ({ active, children }) => {
   return (
@@ -18,13 +18,13 @@ const Modal = ({ active, children }) => {
         {children}
       </div>
     </div>
-  );
-};
+  )
+}
 Modal.propTypes = {
   active: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-};
-export default Modal;
+    PropTypes.node
+  ])
+}
+export default Modal

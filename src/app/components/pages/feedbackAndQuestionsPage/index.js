@@ -1,2 +1,2 @@
-import feedbackAndQuestionsPage from "./feedbackAndQuestionsPage";
-export default feedbackAndQuestionsPage;
+import feedbackAndQuestionsPage from './FeedbackAndQuestionsPage'
+export default feedbackAndQuestionsPage

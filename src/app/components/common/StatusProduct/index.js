@@ -1,2 +1,2 @@
-import StatusProduct from "./StatusProduct";
-export default StatusProduct;
+import StatusProduct from './StatusProduct'
+export default StatusProduct

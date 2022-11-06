@@ -1,2 +1,2 @@
-import PriceManagementPage from "./priceManagement";
-export default PriceManagementPage;
+import PriceManagementPage from './PriceManagement'
+export default PriceManagementPage

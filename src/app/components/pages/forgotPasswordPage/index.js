@@ -1,2 +1,2 @@
-import ForgotPasswordPage from "./forgotPasswordPage";
-export default ForgotPasswordPage;
+import ForgotPasswordPage from './ForgotPasswordPage'
+export default ForgotPasswordPage

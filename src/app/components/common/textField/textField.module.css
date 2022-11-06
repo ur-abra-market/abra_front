@@ -1,53 +1,51 @@
 .inputWrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0;
-    border: 1px solid #E0E0E0;
-    border-radius: 4px;
-    margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 12px;
 }
 
 .inputTextFieldPassword {
-    width: 368px;
-    height: 42px;
-    padding-left: 16px;
-    font-size: 12px;;
-    letter-spacing: 0.02em;
-    color: #000000;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    background: #ffffff;
+  width: 368px;
+  height: 42px;
+  padding-left: 16px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: #000000;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: #ffffff;
 }
 
 .inputTextFieldPassword {
-    display: block;
-    width: 330px;
+  display: block;
+  width: 330px;
 }
 
 .error {
-    margin: -4px auto 24px;
-    color: #828282;
-    font-size: 12px;
-    letter-spacing: 0.02em;
+  margin: -4px auto 24px;
+  color: #828282;
+  font-size: 12px;
+  letter-spacing: 0.02em;
 }
 
 .showPasswordBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 53px;
-    height: 42px;
-    border: none;
-    cursor: pointer;
-    background: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 53px;
+  height: 42px;
+  border: none;
+  cursor: pointer;
+  background: inherit;
 }
 
 .showPasswordBtn_img {
-    width: 21px;
-    height: 16px;
-    border: none;
+  width: 21px;
+  height: 16px;
+  border: none;
 }
-
-

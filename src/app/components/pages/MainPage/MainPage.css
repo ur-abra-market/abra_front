@@ -4,7 +4,7 @@
   width: calc(100% - 64px);
   height: fit-content;
   padding: 32px;
-  background-color: #ffffff;    
+  background-color: #ffffff;
 }
 
 .Main__sliders {
@@ -13,5 +13,5 @@
   height: fit-content;
   display: flex;
   flex-direction: column;
-  gap: 96px;    
+  gap: 96px;
 }

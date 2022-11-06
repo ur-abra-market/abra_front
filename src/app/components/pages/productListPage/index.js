@@ -1,2 +1,2 @@
-import ProductListPage from "./ProductListPage";
-export default ProductListPage;
+import ProductListPage from './ProductListPage'
+export default ProductListPage

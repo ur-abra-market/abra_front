@@ -1,2 +1,2 @@
-import RelatedInputs from './relatedInputs';
-export default RelatedInputs;
+import RelatedInputs from './RelatedInputs'
+export default RelatedInputs

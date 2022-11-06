@@ -1,2 +1,2 @@
-import FilterMaterial from "./FilterMaterial";
-export default FilterMaterial;
+import FilterMaterial from './FilterMaterial'
+export default FilterMaterial

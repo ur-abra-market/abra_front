@@ -1,2 +1,2 @@
-import ProductListRegistrationPage from "./productListRegistrationPage";
-export default ProductListRegistrationPage;
+import ProductListRegistrationPage from './ProductListRegistrationPage'
+export default ProductListRegistrationPage

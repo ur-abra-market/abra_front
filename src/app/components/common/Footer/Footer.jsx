@@ -1,40 +1,40 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-import HeaderNavMenu from "../HeaderNavMemu/HeaderNavMenu";
-import SelectCurrency from "../SelectCurrency/SelectCurrency";
-import SelectShip from "../SelectShip/SelectShip";
-import "./Footer.css";
+import React from 'react'
+import { useLocation } from 'react-router-dom'
+import HeaderNavMenu from '../HeaderNavMemu/HeaderNavMenu'
+import SelectCurrency from '../SelectCurrency/SelectCurrency'
+import SelectShip from '../SelectShip/SelectShip'
+import style from './Footer.module.css'
 
 const Footer = () => {
-  const routs = ["personalAccount", "orderHistory"];
-  const { pathname } = useLocation();
-  const showHeadNav = routs.some((el) => el === pathname.split("/")[1]);
+  const routs = ['personal-account', 'order-history']
+  const { pathname } = useLocation()
+  const showHeadNav = routs.some((el) => el === pathname.split('/')[1])
   return (
-    <div className="Footer">
+    <div className={style.footer}>
       {showHeadNav ? (
         <></>
       ) : (
-        <div className="Footer__basic">
-          <div className="Footer__basic_logo">Abra</div>
+        <div className={style.footer__basic}>
+          <div className={style.footer__basic_logo}>Abra</div>
           <HeaderNavMenu />
-          <div className="Footer__selects">
-            <div className="dividing-line-2">|</div>
+          <div className={style.footer__selects}>
+            <div className={style.dividing_line_2}>|</div>
             <SelectCurrency />
             <SelectShip />
           </div>
         </div>
       )}
 
-      <div className="Footer__add">
-        <div className="Footer__add_text1">© Copyright 2022</div>
-        <div className="Footer__add_text2">
+      <div className={style.footer__add}>
+        <div className={style.footer__add_text1}>© Copyright 2022</div>
+        <div className={style.footer__add_text2}>
           <span>Terms & Conditions</span>
           <span>Privacy Policy</span>
         </div>
-        <div className="Footer__add_text1"></div>
+        <div className={style.footer__add_text1}></div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

@@ -16,10 +16,10 @@
 
 .search__wrap::before {
   position: relative;
-  content: "";
+  content: '';
   width: 16px;
   height: 16px;
-  background: url("../../../../assets/img/icons/search.png");
+  background: url('../../../../assets/img/icons/search.png');
   background-size: cover;
 }
 
@@ -228,7 +228,7 @@
 }
 
 .buttonDetails_points::before {
-  content: "";
+  content: '';
   display: block;
   margin-top: 8px;
 }
@@ -238,7 +238,7 @@
 }
 
 .buttonDetails_points::after {
-  content: "";
+  content: '';
   display: block;
   margin-top: 5px;
 }

@@ -1,2 +1,2 @@
-import ProductListRegistrationForm from "./productListRegistrationForm";
-export default ProductListRegistrationForm;
+import ProductListRegistrationForm from './ProductListRegistrationForm'
+export default ProductListRegistrationForm

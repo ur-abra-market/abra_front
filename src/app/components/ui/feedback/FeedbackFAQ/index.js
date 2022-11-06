@@ -1,2 +1,2 @@
-import FeedbackFAQ from "./FeedbackFAQ";
-export default FeedbackFAQ;
+import FeedbackFAQ from './FeedbackFAQ'
+export default FeedbackFAQ

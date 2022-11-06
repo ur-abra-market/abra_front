@@ -1,4 +1,5 @@
-import style from "./orderDetails.module.css";
+import React from 'react'
+import style from './OrderDetails.module.css'
 
 const OrderDetailsPage = () => {
   return (
@@ -12,7 +13,10 @@ const OrderDetailsPage = () => {
         <div className={style.addressInfo}>
           <p className={style.titleAddress}>Shipping Address</p>
           <p className={style.information}>Olga Andreeva, +79158448547</p>
-          <p className={style.address}>Jaroslava Gasheka 6, building 2, apartment 904, Moscow, Russian Federation, 589964</p>
+          <p className={style.address}>
+            Jaroslava Gasheka 6, building 2, apartment 904, Moscow, Russian
+            Federation, 589964
+          </p>
         </div>
         <div>
           <p className={style.total}>Total: $657 668</p>
@@ -26,16 +30,15 @@ const OrderDetailsPage = () => {
             <li className={style.item}>
               <div className={style.image}></div>
               <div className={style.description}>
-                <h2>Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes</h2>
+                <h2>
+                  Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress
+                  Fall Clothes
+                </h2>
                 <p>Color: Silver</p>
                 <p>Status: Shipped</p>
                 <div className={style.price}>
-                  <p>
-                    $780/pc
-                  </p>
-                  <p>
-                    x2
-                  </p>
+                  <p>$780/pc</p>
+                  <p>x2</p>
                 </div>
               </div>
             </li>
@@ -43,16 +46,15 @@ const OrderDetailsPage = () => {
             <li className={style.item}>
               <div className={style.image}></div>
               <div className={style.description}>
-                <h2>Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes</h2>
+                <h2>
+                  Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress
+                  Fall Clothes
+                </h2>
                 <p>Color: Silver</p>
                 <p>Status: Shipped</p>
                 <div className={style.price}>
-                  <p>
-                    $780/pc
-                  </p>
-                  <p>
-                    x1
-                  </p>
+                  <p>$780/pc</p>
+                  <p>x1</p>
                 </div>
               </div>
             </li>
@@ -61,6 +63,6 @@ const OrderDetailsPage = () => {
       </ul>
     </div>
   )
-};
+}
 
-export default OrderDetailsPage;
+export default OrderDetailsPage

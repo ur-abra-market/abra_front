@@ -1,12 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import iconImage from "../../../assets/img/icons/icon-img.png";
-import TextField from "../../common/textField";
-import PhoneNumFieldWithoutCountryCode from "../../common/phoneNumFieldWithoutCountryCode/phoneNumFieldWithoutCountryCode";
-import { InfoBtn } from "../../common/buttons";
-import Checkbox from "../../common/checkbox/checkbox";
-import Select from "../../common/select";
-import arrowTriangleImg from "../../../assets/img/icons/check-arrow.png";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import iconImage from '../../../assets/img/icons/icon-img.png'
+import TextField from '../../common/TextField'
+import PhoneNumFieldWithoutCountryCode from '../../common/PhoneNumFieldWithoutCountryCode'
+import { InfoBtn } from '../../common/buttons'
+import Checkbox from '../../common/checkbox'
+import Select from '../../common/Select'
+import arrowTriangleImg from '../../../assets/img/icons/check-arrow.png'
 import {
   textFieldClasses,
   accountDetails__textFieldClasses,
@@ -17,9 +17,9 @@ import {
   selectBusinessPhoneClasses,
   selectBusinessSectorClasses,
   selectNumberOfEmployeesClasses,
-  inputPhoneClasses,
-} from "./constantsOfClassesStyles";
-import style from "./supplierAccountMainPage.module.css";
+  inputPhoneClasses
+} from './constantsOfClassesStyles'
+import style from './SupplierAccountMainPage.module.css'
 
 const SupplierAccountMainPage = () => {
   return (
@@ -51,7 +51,7 @@ const SupplierAccountMainPage = () => {
           <Select
             defaultName="Select"
             img={arrowTriangleImg}
-            options={["Turkey", "Russia", "some other"]}
+            options={['Turkey', 'Russia', 'some other']}
             classes={selectCountryClasses}
           />
           <div className={style.subtitle}>Personal phone number</div>
@@ -59,7 +59,7 @@ const SupplierAccountMainPage = () => {
             <Select
               defaultName="+90"
               img={arrowTriangleImg}
-              options={["+7", "+90", "other"]}
+              options={['+7', '+90', 'other']}
               classes={selectPersonalPhoneClasses}
             />
             <PhoneNumFieldWithoutCountryCode
@@ -118,12 +118,12 @@ const SupplierAccountMainPage = () => {
               <Select
                 defaultName="Select"
                 img={arrowTriangleImg}
-                options={["Option1", "Option2", "Option3"]}
+                options={['Option1', 'Option2', 'Option3']}
                 classes={selectBusinessSectorClasses}
               />
             </div>
           </div>
-          <Checkbox label={"I am a manufacturer"} classes={checkboxClasses} />
+          <Checkbox label={'I am a manufacturer'} classes={checkboxClasses} />
           <div className={style.section_subtitle}>Company Info (optional)</div>
           <div className={style.fieldsWrapper}>
             <div className={style.flexContainer}>
@@ -139,7 +139,7 @@ const SupplierAccountMainPage = () => {
               <Select
                 defaultName="Select"
                 img={arrowTriangleImg}
-                options={["<10", ">10", ">50", ">100"]}
+                options={['<10', '>10', '>50', '>100']}
                 classes={selectNumberOfEmployeesClasses}
               />
             </div>
@@ -199,7 +199,7 @@ const SupplierAccountMainPage = () => {
             <Select
               defaultName="+90"
               img={arrowTriangleImg}
-              options={["+7", "+90", "other"]}
+              options={['+7', '+90', 'other']}
               classes={selectBusinessPhoneClasses}
             />
             <PhoneNumFieldWithoutCountryCode
@@ -312,7 +312,7 @@ const SupplierAccountMainPage = () => {
         <InfoBtn />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SupplierAccountMainPage;
+export default SupplierAccountMainPage

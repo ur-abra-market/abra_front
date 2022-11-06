@@ -1,10 +1,9 @@
 .authPage__wrap {
-    position: relative;
-    margin: 0 auto;
-    width: 400px;
+  position: relative;
+  margin: 0 auto;
+  width: 400px;
 }
 
 .subheader__btn {
-    margin: 40px auto;
+  margin: 40px auto;
 }
-

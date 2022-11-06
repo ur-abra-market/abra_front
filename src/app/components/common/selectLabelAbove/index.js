@@ -1,2 +1,2 @@
-import SelectLabelAbove from "./selectLabelAbove";
-export default SelectLabelAbove;
+import SelectLabelAbove from './SelectLabelAbove'
+export default SelectLabelAbove

@@ -1,2 +1,2 @@
-import FooterForSupplierPart from "./footerForSupplierPart";
-export default FooterForSupplierPart;
+import FooterForSupplierPart from './FooterForSupplierPart'
+export default FooterForSupplierPart

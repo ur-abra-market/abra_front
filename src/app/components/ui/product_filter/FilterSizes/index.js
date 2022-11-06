@@ -1,2 +1,2 @@
-import FilterSizes from "./FilterSizes";
-export default FilterSizes;
+import FilterSizes from './FilterSizes'
+export default FilterSizes

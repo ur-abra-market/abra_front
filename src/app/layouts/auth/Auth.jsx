@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import LoginPage from "../../components/pages/loginPage";
-import RegisterPage from "../../components/pages/registerPage";
-import iconGoogle from "../../assets/img/icons/Google.png";
-import iconApple from "../../assets/img/icons/Apple.png";
-import iconVK from "../../assets/img/icons/VK.png";
-import style from "./auth.module.css";
-import styleBtn from ".././../components/common/buttons/buttons.module.css";
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import LoginPage from '../../components/pages/LoginPage'
+import RegisterPage from '../../components/pages/RegisterPage'
+import iconGoogle from '../../assets/img/icons/Google.png'
+import iconApple from '../../assets/img/icons/Apple.png'
+import iconVK from '../../assets/img/icons/VK.png'
+import style from './auth.module.css'
+import styleBtn from '.././../components/common/buttons/buttons.module.css'
 
 const Auth = () => {
-  const [pageType, setPageType] = useState("login");
+  const [pageType, setPageType] = useState('login')
 
   const togglePageType = () => {
     setPageType((prevState) =>
-      prevState === "register" ? "login" : "register"
-    );
-  };
+      prevState === 'register' ? 'login' : 'register'
+    )
+  }
 
   return (
     <>
@@ -24,7 +24,7 @@ const Auth = () => {
           <Link to="/">Abra</Link>
         </h1>
         <h2 className={style.subheader}>Start buying in bulk now!</h2>
-        {pageType === "register" ? (
+        {pageType === 'register' ? (
           <RegisterPage togglePageType={togglePageType} />
         ) : (
           <LoginPage togglePageType={togglePageType} />
@@ -48,7 +48,7 @@ const Auth = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Auth;
+export default Auth

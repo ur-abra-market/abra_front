@@ -1,2 +1,2 @@
-import CheckboxStyledElem from "./checkboxStyledElem";
-export default CheckboxStyledElem;
+import CheckboxStyledElem from './checkboxStyledElem'
+export default CheckboxStyledElem

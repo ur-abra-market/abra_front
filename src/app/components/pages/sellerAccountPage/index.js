@@ -1,2 +1,2 @@
-import SellerAccountPage from "./sellerAccountPage";
-export default SellerAccountPage;
+import SellerAccountPage from './SellerAccountPage'
+export default SellerAccountPage

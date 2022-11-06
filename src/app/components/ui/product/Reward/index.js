@@ -1,2 +1,2 @@
-import Reward from "./Reward";
-export default Reward;
+import Reward from './Reward'
+export default Reward

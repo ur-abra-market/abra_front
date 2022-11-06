@@ -1,2 +1,2 @@
-import PhoneNumFieldWithoutCountryCode from "./phoneNumFieldWithoutCountryCode";
-export default PhoneNumFieldWithoutCountryCode;
+import PhoneNumFieldWithoutCountryCode from './PhoneNumFieldWithoutCountryCode'
+export default PhoneNumFieldWithoutCountryCode

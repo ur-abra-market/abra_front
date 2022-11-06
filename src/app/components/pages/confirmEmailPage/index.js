@@ -1,2 +1,2 @@
-import confirmEmailPage from "./confirmEmailPage";
-export default confirmEmailPage;
+import confirmEmailPage from './ConfirmEmailPage'
+export default confirmEmailPage

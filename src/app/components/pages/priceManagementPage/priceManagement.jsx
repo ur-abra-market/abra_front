@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 
-const PriceManagementPage = (params) => {
+const PriceManagementPage = () => {
   return (
     <>
       <h2>Price Management</h2>
     </>
-  );
-};
+  )
+}
 
-export default PriceManagementPage;
+export default PriceManagementPage

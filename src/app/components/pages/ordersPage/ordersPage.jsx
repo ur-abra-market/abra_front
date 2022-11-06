@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from 'react'
 // import FiltersList from "../../../common/filtersList/filtersList";
 // import Table from "../../../common/table/table";
 // import api from "./fakeAPI";
@@ -20,7 +20,7 @@ const OrdersPage = () => {
     <>
       <h2>OrdersPage</h2>
     </>
-  );
+  )
 
   // const activePage = useSelector((state) => state.paginate.page_num);
   // const amountPages = useSelector((state) => state.paginate.amountPages);
@@ -208,6 +208,6 @@ const OrdersPage = () => {
   //     </>
   //   );
   // }
-};
+}
 
-export default OrdersPage;
+export default OrdersPage

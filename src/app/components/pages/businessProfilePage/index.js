@@ -1,2 +1,2 @@
-import BusinessProfilePage from './businessProfilePage';
-export default BusinessProfilePage;
+import BusinessProfilePage from './BusinessProfilePage'
+export default BusinessProfilePage

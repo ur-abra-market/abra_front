@@ -1,0 +1,19 @@
+.header__nav {
+  display: flex;
+  width: fit-content;
+}
+
+.header__nav_list {
+  display: flex;
+  width: 100%;
+  list-style: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  transition: 0.4s;
+}
+
+.header__nav_list > li > a {
+  color: var(--black);
+  transition: 0.3s;
+}

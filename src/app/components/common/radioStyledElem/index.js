@@ -1,2 +1,2 @@
-import RadioStyledElem from './radioStyledElem';
-export default RadioStyledElem;
+import RadioStyledElem from './RadioStyledElem'
+export default RadioStyledElem

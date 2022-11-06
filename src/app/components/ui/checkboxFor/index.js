@@ -1,2 +1,2 @@
-import CheckboxFor from "./checkboxFor";
-export default CheckboxFor;
+import CheckboxFor from './CheckboxFor'
+export default CheckboxFor

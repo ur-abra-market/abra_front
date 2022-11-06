@@ -1,13 +1,12 @@
-import AccountSetupForm from '../../ui/accountSetupForm';
-
+import React from 'react'
+import AccountSetupForm from '../../ui/AccountSetupForm'
 
 const AccountSetupPage = () => {
-    return (
-        <div>
-            <AccountSetupForm />
+  return (
+    <div>
+      <AccountSetupForm />
+    </div>
+  )
+}
 
-        </div>
-    );
-};
-
-export default AccountSetupPage;
+export default AccountSetupPage

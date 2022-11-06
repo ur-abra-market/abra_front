@@ -1,2 +1,2 @@
-import ProductReview from "./ProductReview";
-export default ProductReview;
+import ProductReview from './ProductReview'
+export default ProductReview

@@ -1,0 +1,74 @@
+.productStatistics {
+  width: 338px;
+  display: flex;
+  flex-direction: column;
+}
+
+.productStatistics__basic {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 45px;
+}
+
+.productStatistics__demend {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.productStatistics__demend_parameter {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: var(--fp);
+  line-height: 24px;
+}
+
+.productStatistics__demend_value {
+  font-family: 'SF Pro Display Bold';
+  font-size: 16px;
+  letter-spacing: 0.16px;
+}
+.productStatistics__demend_note {
+  margin-top: 4px;
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 16px;
+  letter-spacing: 0.16px;
+  color: #828282;
+}
+
+.productStatistics__price {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 24px;
+  align-items: center;
+  margin-top: 37px;
+}
+.productStatistics__price_change {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: var(--fp);
+}
+.productStatistics__price_range {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: var(--fp);
+  color: #828282;
+}
+.productStatistics__condition {
+  width: 100%;
+  height: 76px;
+  margin-top: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: var(--fp);
+  color: #828282;
+}

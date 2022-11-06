@@ -1,2 +1,2 @@
-import PhonePopup from "./phonePopup";
-export default PhonePopup;
+import PhonePopup from './PhonePopup'
+export default PhonePopup

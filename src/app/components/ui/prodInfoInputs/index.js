@@ -1,2 +1,2 @@
-import ProdInfoInputs from "./prodInfoInputs";
-export default ProdInfoInputs;
+import ProdInfoInputs from './ProdInfoInputs'
+export default ProdInfoInputs

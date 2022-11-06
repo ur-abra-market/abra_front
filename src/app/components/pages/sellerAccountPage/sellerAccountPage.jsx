@@ -1,19 +1,19 @@
-import React from "react";
-import style from "./sellerAccountPage.module.css";
-import { Link } from "react-router-dom";
-import iconImage from "../../../assets/img/icons/icon-img.png";
-import TextField from "../../common/textField";
-import { ButtonLink, InfoBtn } from "../../common/buttons";
-import Checkbox from "../../common/checkbox/checkbox";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import iconImage from '../../../assets/img/icons/icon-img.png'
+import TextField from '../../common/TextField'
+import { ButtonLink, InfoBtn } from '../../common/buttons'
+import Checkbox from '../../common/checkbox/checkbox'
+import Orders from './orders'
+import Header from '../../common/Header'
+import Footer from '../../common/Footer'
 import {
   profileInfoBtnClasses,
   profileInfo__textFieldClasses,
   accountDetails__textFieldClasses,
-  checkboxClasses,
-} from "./classesStyles";
-import Orders from "./orders";
-import Header from "../../common/Header";
-import Footer from "../../common/Footer";
+  checkboxClasses
+} from './classesStyles'
+import style from './SellerAccountPage.module.css'
 
 const UserAccountPage = () => {
   return (
@@ -155,7 +155,7 @@ const UserAccountPage = () => {
       </div>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default UserAccountPage;
+export default UserAccountPage

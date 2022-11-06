@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import style from "./forgotPasswordPage.module.css";
-import ForgotPasswordForm from "../../ui/forgotPasswordForm";
-import ContentMessage from "../../common/contentMessage";
+import React, { useState } from 'react'
+import ForgotPasswordForm from '../../ui/ForgotPasswordForm'
+import ContentMessage from '../../common/contentMessage'
+import style from './ForgotPasswordPage.module.css'
 
 const ForgotPasswordPage = () => {
-  const [pageType, setPageType] = useState("forgotPassword");
+  const [pageType, setPageType] = useState('forgotPassword')
 
   const togglePageType = () => {
     setPageType((prevState) =>
-      prevState === "forgotPassword" ? "recoveryEmailIsSent" : "forgotPassword"
-    );
-  };
+      prevState === 'forgotPassword' ? 'recoveryEmailIsSent' : 'forgotPassword'
+    )
+  }
 
   return (
     <>
       <div className={style.pageWrap}>
-        {pageType === "forgotPassword" ? (
+        {pageType === 'forgotPassword' ? (
           <>
             <ContentMessage
               title="Forgot the password?"
@@ -41,6 +41,6 @@ const ForgotPasswordPage = () => {
         )}
       </div>
     </>
-  );
-};
-export default ForgotPasswordPage;
+  )
+}
+export default ForgotPasswordPage

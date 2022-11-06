@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import './SearchFilter.css'
+import React, { useState } from 'react'
+import style from './SearchFilter.module.css'
 
 const SearchFilter = () => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState('')
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     // передаём action в Dispatch (выполняем запрос на сервер)
-  };
+  }
 
   return (
-    <form className='SearchFilter' onSubmit={handleSubmit}>
+    <form className={style.searchFilter} onSubmit={handleSubmit}>
       <input
-        type='text'
-        className='SearchFilter__text'
+        type="text"
+        className={style.searchFilter__text}
         value={text}
-        placeholder='Search'
+        placeholder="Search"
         onChange={(e) => setText(e.target.value)}
       />
-      <input type='submit' hidden />      
+      <input type="submit" hidden />
     </form>
   )
 }

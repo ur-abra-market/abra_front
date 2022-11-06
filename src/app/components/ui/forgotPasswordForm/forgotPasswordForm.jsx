@@ -1,27 +1,28 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import PropTypes from "prop-types";
-import { Button } from "../../common/buttons";
-import style from "./forgotPasswordForm.module.css";
-import styleBtn from "../../common/buttons/buttons.module.css";
-import TextField from "../../common/textField";
+import React from 'react'
+import PropTypes from 'prop-types'
+import { useForm } from 'react-hook-form'
+import { Button } from '../../common/buttons'
+import TextField from '../../common/TextField'
+import style from './ForgotPasswordForm.module.css'
+import styleBtn from '../../common/buttons/buttons.module.css'
 
 const ForgotPasswordForm = ({ togglePageType }) => {
   const {
     register,
     formState: { isValid, errors },
-    handleSubmit,
-  } = useForm({ mode: "onChange" });
+    handleSubmit
+  } = useForm({ mode: 'onChange' })
 
   const onSubmit = (data) => {
-    if (!isValid) return;
-  };
+    console.log(data)
+    if (!isValid) return
+  }
 
   const textFieldClasses = {
     label: `${style.textFieldLabel}`,
     inputWrapper: `${style.inputWrapper}`,
-    input: `${style.textFieldInput}`,
-  };
+    input: `${style.textFieldInput}`
+  }
 
   return (
     <>
@@ -32,12 +33,12 @@ const ForgotPasswordForm = ({ togglePageType }) => {
         className={style.forgotPasswordForm}
       >
         <TextField
-          register={register("email", {
-            required: "Email is required!",
+          register={register('email', {
+            required: 'Email is required!',
             pattern: {
               value: /^\S+@\S+\.\S+$/g,
-              message: "Email is incorrect!",
-            },
+              message: 'Email is incorrect!'
+            }
           })}
           label="Email"
           name="email"
@@ -57,10 +58,10 @@ const ForgotPasswordForm = ({ togglePageType }) => {
         />
       </form>
     </>
-  );
-};
+  )
+}
 
 ForgotPasswordForm.propTypes = {
-  togglePageType: PropTypes.func,
-};
-export default ForgotPasswordForm;
+  togglePageType: PropTypes.func
+}
+export default ForgotPasswordForm

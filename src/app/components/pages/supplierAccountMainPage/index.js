@@ -1,2 +1,2 @@
-import SupplierAccountMainPage from "./supplierAccountMainPage";
-export default SupplierAccountMainPage;
+import SupplierAccountMainPage from './SupplierAccountMainPage'
+export default SupplierAccountMainPage

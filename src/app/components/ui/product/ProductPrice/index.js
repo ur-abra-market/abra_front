@@ -1,2 +1,2 @@
-import ProductPrice from "./ProductPrice";
-export default ProductPrice;
+import ProductPrice from './ProductPrice'
+export default ProductPrice

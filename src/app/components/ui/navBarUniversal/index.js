@@ -1,2 +1,2 @@
-import NavBarUniversal from "./navBarUniversal";
-export default NavBarUniversal;
+import NavBarUniversal from './NavBarUniversal'
+export default NavBarUniversal

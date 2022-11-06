@@ -1,2 +1,2 @@
-import FilterGrowth from "./FilterGrowth";
-export default FilterGrowth;
+import FilterGrowth from './FilterGrowth'
+export default FilterGrowth

@@ -1,30 +1,30 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
 @font-face {
-  font-family: "SF Pro Display Regular";
-  src: url("./app/assets/fonts/SFProDisplay-Regular.ttf");
+  font-family: 'SF Pro Display Regular';
+  src: url('./app/assets/fonts/SFProDisplay-Regular.ttf');
 }
 @font-face {
-  font-family: "SF Pro Display Black";
-  src: url("./app/assets/fonts/SFProDisplay-Black.ttf");
+  font-family: 'SF Pro Display Black';
+  src: url('./app/assets/fonts/SFProDisplay-Black.ttf');
 }
 @font-face {
-  font-family: "SF Pro Display Bold";
-  src: url("./app/assets/fonts/SFProDisplay-Bold.ttf");
+  font-family: 'SF Pro Display Bold';
+  src: url('./app/assets/fonts/SFProDisplay-Bold.ttf');
 }
 @font-face {
-  font-family: "SF Pro Display Medium";
-  src: url("./app/assets/fonts/SFProDisplay-Medium.ttf");
+  font-family: 'SF Pro Display Medium';
+  src: url('./app/assets/fonts/SFProDisplay-Medium.ttf');
 }
 @font-face {
-  font-family: "SF Pro Display Light";
-  src: url("./app/assets/fonts/SFProDisplay-Light-1.ttf");
+  font-family: 'SF Pro Display Light';
+  src: url('./app/assets/fonts/SFProDisplay-Light-1.ttf');
 }
 @font-face {
-  font-family: "SF Pro Display RegularItalic";
-  src: url("./app/assets/fonts/SFProDisplay-RegularItalic.ttf");
+  font-family: 'SF Pro Display RegularItalic';
+  src: url('./app/assets/fonts/SFProDisplay-RegularItalic.ttf');
 }
 
 :root {
@@ -67,13 +67,13 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 
 body {
   background-color: var(--back);
-  font-family: "Roboto";
+  font-family: 'Roboto';
   font-style: normal;
   font-weight: normal;
   -webkit-font-smoothing: antialiased;

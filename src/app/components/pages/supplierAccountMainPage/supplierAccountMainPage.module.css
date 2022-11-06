@@ -9,8 +9,8 @@
   /* grid-template-rows: 26.59vh 34.56vh; */
   grid-gap: 16px;
   grid-template-areas:
-    "profileInfo businessProfile notifications"
-    "accountDetails businessProfile notifications";
+    'profileInfo businessProfile notifications'
+    'accountDetails businessProfile notifications';
 }
 
 .profileInfo {
@@ -301,7 +301,7 @@
   position: absolute;
   top: 12px;
   right: 3px;
-  content: "";
+  content: '';
   width: 20px;
   height: 2px;
   background: #000000;
@@ -375,7 +375,7 @@
 }
 
 .notificationsList__item::after {
-  content: "";
+  content: '';
   margin-top: 12px;
   display: block;
   height: 1px;
@@ -420,7 +420,7 @@
 .notificationInputCheckbox::before,
 .notificationInputCheckbox::after {
   position: absolute;
-  content: "";
+  content: '';
   display: inline-block;
 }
 

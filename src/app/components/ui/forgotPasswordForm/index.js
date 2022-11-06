@@ -1,2 +1,2 @@
-import ForgotPasswordForm from "./forgotPasswordForm";
-export default ForgotPasswordForm;
+import ForgotPasswordForm from './ForgotPasswordForm'
+export default ForgotPasswordForm

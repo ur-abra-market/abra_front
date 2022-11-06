@@ -3,24 +3,24 @@ import FeedbackFAQ from '../FeedbackFAQ'
 import WhatsApp from '../WhatsApp'
 import Social from '../Social'
 import Subscribe from '../Subscribe'
-import './Feedback.css'
+import style from './Feedback.module.css'
 
 const Feedback = () => {
   return (
-    <div className='Feedback'>
-      <div className='Feedback__left'>
+    <div className={style.feedback}>
+      <div className={style.feedback__left}>
         <Subscribe />
         <Social />
-      </div>          
-      <div className='Feedback__center'></div>  
-      <div className='Feedback__right'>
+      </div>
+      <div className={style.feedback__center}></div>
+      <div className={style.feedback__right}>
         <FeedbackFAQ />
-        <div className='Feedback__right_separator'>
-          <div className='Feedback__right_separator-line'></div>
-          <div className='Feedback__right_separator-text'>Or</div>
-          <div className='Feedback__right_separator-line'></div>
+        <div className={style.feedback__right_separator}>
+          <div className={style.feedback__right_separator_line}></div>
+          <div className={style.feedback__right_separator_text}>Or</div>
+          <div className={style.feedback__right_separator_line}></div>
         </div>
-        <WhatsApp />        
+        <WhatsApp />
       </div>
     </div>
   )

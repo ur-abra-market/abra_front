@@ -1,5 +1,6 @@
-import React from "react";
-import style from "./navBarUniversal.module.css";
+import React from 'react'
+import PropTypes from 'prop-types'
+import style from './NavBarUniversal.module.css'
 
 const NavBarUniversal = ({ logo, children }) => {
   return (
@@ -7,7 +8,10 @@ const NavBarUniversal = ({ logo, children }) => {
       <h1 className={style.logoSection}>{logo}</h1>
       <div className={style.linksSection}>{children}</div>
     </nav>
-  );
-};
-
-export default NavBarUniversal;
+  )
+}
+NavBarUniversal.propTypes = {
+  logo: PropTypes.object,
+  children: PropTypes.arrayOf(PropTypes.node, PropTypes.array)
+}
+export default NavBarUniversal

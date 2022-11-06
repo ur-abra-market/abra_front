@@ -1,38 +1,39 @@
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import Search from "../../common/Search";
-import imgBtnHeader from "../../../assets/img/icons/icon-img.png";
-import { ButtonLink, Button } from "../../common/buttons";
-import style from "./navBar.module.css";
-import styleBtn from "../../common/buttons/buttons.module.css";
+import React from 'react'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import Search from '../../common/Search'
+import imgBtnHeader from '../../../assets/img/icons/icon-img.png'
+import { ButtonLink, Button } from '../../common/buttons'
+import style from './NavBar.module.css'
+import styleBtn from '../../common/buttons/buttons.module.css'
 import photo from '../../../assets/img/icons/ic_baseline-photo-camera.png'
 
 const navbarBtnClasses = {
   wrepperButtonLink: `${style.wrepperButtonLink}`,
   wrepperBtnImg: `${style.wrepperBtnImg}`,
   btnImg: `${style.btnImg}`,
-  btnName: `${style.btnName}`,
-};
+  btnName: `${style.btnName}`
+}
 
 const searchClasses = {
   search__wrap: `${style.search__wrap}`,
-  search__input: `${style.search__input}`,
-};
+  search__input: `${style.search__input}`
+}
 
 const NavBar = () => {
-  const isAuth = useSelector((state) => state.login.isAuth);
+  const isAuth = useSelector((state) => state.login.isAuth)
   return (
-    <nav className="header__basic">
-      <Link className="header__basic_logo" to="/">
+    <nav className={style.header__basic}>
+      <Link className={style.header__basic_logo} to="/">
         Abra
       </Link>
-      <Search 
+      <Search
         placeholder={'Search'}
         searchIcon={photo}
         classes={searchClasses}
       />
 
-      <div className="header__basic_buttons">
+      <div className={style.header__basic_buttons}>
         {!isAuth ? (
           <>
             <Link className={style.wrepperButtonLink} to="/auth">
@@ -50,7 +51,7 @@ const NavBar = () => {
           </>
         ) : (
           <>
-            <Link className={style.wrepperButtonLink} to="/personalAccount">
+            <Link className={style.wrepperButtonLink} to="/personal-account">
               <ButtonLink
                 name="My Profile"
                 src={imgBtnHeader}
@@ -58,7 +59,7 @@ const NavBar = () => {
               />
             </Link>
             {/* supplierPage тут временно */}
-            <Link className={style.wrepperButtonLink} to="/supplierPage">
+            <Link className={style.wrepperButtonLink} to="/">
               <ButtonLink
                 name="Notifications"
                 src={imgBtnHeader}
@@ -72,7 +73,7 @@ const NavBar = () => {
                 classes={navbarBtnClasses}
               />
             </Link>
-            <Link className={style.wrepperButtonLink} to="/">
+            <Link className={style.wrepperButtonLink} to="/cart">
               <ButtonLink
                 name="Cart"
                 src={imgBtnHeader}
@@ -83,6 +84,6 @@ const NavBar = () => {
         )}
       </div>
     </nav>
-  );
-};
-export default NavBar;
+  )
+}
+export default NavBar

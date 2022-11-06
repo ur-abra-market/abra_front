@@ -1,43 +1,43 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import PropTypes from "prop-types";
-import { Button } from "../../common/buttons";
-import TextField from "../../common/textField";
-import PasswordComplexity from "../../common/passwordComplexity";
-import Form from "../../common/form";
-import style from "./resetPasswordForm.module.css";
-import styleBtn from "../../common/buttons/buttons.module.css";
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import PropTypes from 'prop-types'
+import { Button } from '../../common/buttons'
+import TextField from '../../common/TextField'
+import PasswordComplexity from '../../common/PasswordComplexity'
+import Form from '../../common/form'
+import style from './ResetPasswordForm.module.css'
+import styleBtn from '../../common/buttons/buttons.module.css'
 
 const ResetPasswordForm = ({ handleChangeModalActive }) => {
   const {
     register,
     watch,
     formState: { isValid },
-    handleSubmit,
-  } = useForm({ mode: "onChange" });
-  const watchPasword = watch("password");
-  const onSubmit = (data) => {
-    if (!isValid) return;
-  };
+    handleSubmit
+  } = useForm({ mode: 'onChange' })
+  const watchPasword = watch('password')
+  const onSubmit = () => {
+    if (!isValid) return
+  }
   const textFieldClasses = {
     label: `${style.textFieldLabel}`,
     inputWrapper: `${style.inputWrapper}`,
-    input: `${style.textFieldInput}`,
-  };
+    input: `${style.textFieldInput}`
+  }
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className={style.resetPasswordForm}>
       <TextField
-        register={register("password", {
-          required: "Password is required!",
+        register={register('password', {
+          required: 'Password is required!',
           minLength: {
             value: 8,
-            message: "Password must contain at least 8 characters!",
+            message: 'Password must contain at least 8 characters!'
           },
           validate: {
             capitalSymbol: (s) => /[A-Z]+/g.test(s),
             digitSymbol: (s) => /\d+/g.test(s),
-            specialSymbol: (s) => /[!#+*]/g.test(s),
-          },
+            specialSymbol: (s) => /[!#+*]/g.test(s)
+          }
         })}
         label="Password"
         type="password"
@@ -57,10 +57,10 @@ const ResetPasswordForm = ({ handleChangeModalActive }) => {
         onClick={handleChangeModalActive}
       />
     </Form>
-  );
-};
+  )
+}
 
 ResetPasswordForm.propTypes = {
-  handleChangeModalActive: PropTypes.func,
-};
-export default ResetPasswordForm;
+  handleChangeModalActive: PropTypes.func
+}
+export default ResetPasswordForm

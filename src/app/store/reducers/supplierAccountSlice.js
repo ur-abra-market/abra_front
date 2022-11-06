@@ -1,29 +1,29 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { manageProductsService } from "./manageProductsSlice";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { manageProductsService } from './manageProductsSlice'
 
 export const supplierAccountService = createAsyncThunk(
-  "supplierAccount/supplierAccountService",
+  'supplierAccount/supplierAccountService',
 
   async function (supplierAccountData, { rejectWithValue }) {
     try {
-      const data = await manageProductsService.getList(supplierAccountData);
-      return data;
+      const data = await manageProductsService.getList(supplierAccountData)
+      return data
     } catch (error) {
       const err = error.response.data.result
         ? error.response.data.result
-        : error.message;
-      return rejectWithValue(err);
+        : error.message
+      return rejectWithValue(err)
     }
   }
-);
+)
 
 const supplierAccountSlice = createSlice({
-  name: "supplierAccount",
+  name: 'supplierAccount',
   initialState: {
     status: null,
     error: null,
 
-    data: null,
+    data: null
     // {
     //     firstName: '',
     //     lastName: '',
@@ -130,19 +130,19 @@ const supplierAccountSlice = createSlice({
   },
   extraReducers: {
     [supplierAccountService.pending]: (state) => {
-      state.status = "loading";
-      state.error = null;
+      state.status = 'loading'
+      state.error = null
     },
     [supplierAccountService.fulfilled]: (state, action) => {
-      state.status = "resolved";
-      state.data = action.payload;
+      state.status = 'resolved'
+      state.data = action.payload
     },
     [supplierAccountService.rejected]: (state, action) => {
-      state.status = "rejected";
-      state.error = action.payload;
-    },
-  },
-});
+      state.status = 'rejected'
+      state.error = action.payload
+    }
+  }
+})
 
 export const {
   firstName,
@@ -168,6 +168,6 @@ export const {
   orderReminders,
   onStockAgain,
   yourFavoritesNew,
-  accountSupport,
-} = supplierAccountSlice.actions;
-export default supplierAccountSlice.reducer;
+  accountSupport
+} = supplierAccountSlice.actions
+export default supplierAccountSlice.reducer

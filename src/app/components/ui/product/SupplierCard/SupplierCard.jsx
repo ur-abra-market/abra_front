@@ -1,17 +1,24 @@
 import React from 'react'
-import './SupplierCard.css'
+import PropTypes from 'prop-types'
+import style from './SupplierCard.module.css'
 
-const SupplierCard = ({supplier}) => {
+const SupplierCard = ({ supplier }) => {
   return (
-    <div className='SupplierCard'>
-      <div className='SupplierCard__avatar' />
-      <div className='SupplierCard__info'>
-        <div className='SupplierCard__info_name'>{supplier.name}</div>
-        <div className='SupplierCard__info_deals'>{`${supplier.period} Years : ${supplier.count} Deals : On-time delivery ${supplier.value}%`}</div>
+    <div className={style.supplierCard}>
+      <div className={style.supplierCard__avatar} />
+      <div className={style.supplierCard__info}>
+        <div className={style.supplierCard__info_name}>{supplier?.name}</div>
+        <div
+          className={style.supplierCard__info_deals}
+        >{`${supplier?.period} Years : ${supplier?.count} Deals : On-time delivery ${supplier?.value}%`}</div>
       </div>
-      <div className='SupplierCard__arrow' />
+      <div className={style.supplierCard__arrow} />
     </div>
   )
+}
+
+SupplierCard.propTypes = {
+  supplier: PropTypes.object
 }
 
 export default SupplierCard

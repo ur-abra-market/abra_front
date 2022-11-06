@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import LoginForm from "../../ui/loginForm";
-import { Link } from "react-router-dom";
-import { Button } from "../../common/buttons";
-import style from "./loginPage.module.css";
-import styleBtn from "../../common/buttons/buttons.module.css";
+import React from 'react'
+import PropTypes from 'prop-types'
+import LoginForm from '../../ui/LoginForm'
+import { Link } from 'react-router-dom'
+import { Button } from '../../common/buttons'
+import style from './LoginPage.module.css'
+import styleBtn from '../../common/buttons/buttons.module.css'
 
 const LoginPage = ({ togglePageType }) => {
   return (
@@ -25,11 +25,11 @@ const LoginPage = ({ togglePageType }) => {
         Forgot password?
       </Link>
     </>
-  );
-};
+  )
+}
 
 LoginPage.propTypes = {
-  togglePageType: PropTypes.func,
-};
+  togglePageType: PropTypes.func
+}
 
-export default LoginPage;
+export default LoginPage

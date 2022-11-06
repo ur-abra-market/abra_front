@@ -1,2 +1,2 @@
-import AccountSetupPage from './accountSetupPage';
-export default AccountSetupPage;
+import AccountSetupPage from './AccountSetupPage'
+export default AccountSetupPage

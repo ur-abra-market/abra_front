@@ -1,13 +1,17 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import style from './contentMessage.module.css'
 
 const ContentMessage = ({ title, text }) => {
-
-    return (
-        <>
-            <div className={style.header}>{title}</div>
-            <div className={style.subheader}>{text}</div>
-        </>
-    );
-};
-
-export default ContentMessage;
+  return (
+    <>
+      <div className={style.header}>{title}</div>
+      <div className={style.subheader}>{text}</div>
+    </>
+  )
+}
+ContentMessage.propTypes = {
+  title: PropTypes.string,
+  text: PropTypes.string
+}
+export default ContentMessage

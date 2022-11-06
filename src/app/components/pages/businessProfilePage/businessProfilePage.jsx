@@ -1,12 +1,11 @@
-import BusinessProfileForm from '../../ui/businessProfileForm';
-
+import BusinessProfileForm from '../../ui/BusinessProfileForm'
 
 const BusinessProfilePage = () => {
-    return (
-        <div>
-            <BusinessProfileForm />
-        </div>
-    );
-};
+  return (
+    <div>
+      <BusinessProfileForm />
+    </div>
+  )
+}
 
-export default BusinessProfilePage;
+export default BusinessProfilePage

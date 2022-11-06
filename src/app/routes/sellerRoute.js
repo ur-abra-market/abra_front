@@ -1,39 +1,45 @@
-import MainPage from "../components/pages/MainPage";
-import ProductPage from "../components/pages/productPage";
-import ProductListPage from "../components/pages/productListPage";
-import UserAccountPage from "../components/pages/sellerAccountPage";
-import OrderHistoryPage from "../components/pages/orderHistoryPage";
-import OrderDetailsPage from "../components/pages/orderDetailsPage";
+import React from 'react'
+import MainPage from '../components/pages/MainPage'
+import ProductPage from '../components/pages/ProductPage'
+import ProductListPage from '../components/pages/ProductListPage'
+import UserAccountPage from '../components/pages/SellerAccountPage'
+import OrderHistoryPage from '../components/pages/OrderHistoryPage'
+import OrderDetailsPage from '../components/pages/OrderDetailsPage'
+import CheckoutPage from '../components/pages/CheckoutPage/CheckoutPage'
 
 const sellerRoute = [
   {
-    path: "/",
-    element: <MainPage />,
+    path: '/',
+    element: <MainPage />
   },
   {
-    path: "product",
-    element: <ProductPage />,
+    path: 'product',
+    element: <ProductPage />
   },
   {
-    path: "productList",
-    element: <ProductListPage />,
+    path: 'product-list',
+    element: <ProductListPage />
   },
   {
-    path: "personalAccount",
-    element: <UserAccountPage />,
+    path: 'personal-account',
+    element: <UserAccountPage />
   },
   {
-    path: "orderHistory",
-    element: <OrderHistoryPage />,
+    path: 'cart',
+    element: <CheckoutPage />
   },
   {
-    path: "orderHistory/4784437395989684",
-    element: <OrderDetailsPage />,
+    path: 'order-history',
+    element: <OrderHistoryPage />
   },
   {
-    path: "help",
-    element: <p> Help </p>,
+    path: 'order-history/4784437395989684',
+    element: <OrderDetailsPage />
   },
-];
+  {
+    path: 'help',
+    element: <p> Help </p>
+  }
+]
 
-export default sellerRoute;
+export default sellerRoute

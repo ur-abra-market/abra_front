@@ -1,2 +1,2 @@
-import SupplierSection from "./supplierSection";
-export default SupplierSection;
+import SupplierSection from './SupplierSection'
+export default SupplierSection

@@ -1,2 +1,2 @@
-import TextFieldLabelAbove from './textFieldLabelAbove';
-export default TextFieldLabelAbove;
+import TextFieldLabelAbove from './TextFieldLabelAbove'
+export default TextFieldLabelAbove

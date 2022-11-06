@@ -1,10 +1,10 @@
-import React from 'react';
-import './InfoBtn.css';
+import React from 'react'
+import './InfoBtn.css'
 
 const InfoBtn = () => {
   return (
-    <div className='InfoBtn'>
-      <div className='InfoBtn_icon'></div>      
+    <div className="InfoBtn">
+      <div className="InfoBtn_icon"></div>
     </div>
   )
 }

@@ -1,17 +1,16 @@
-import React from "react";
-import style from "./supplierMenu.module.css";
-import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import style from './SupplierMenu.module.css'
 
 const SupplierMenu = () => {
   const menu = [
-    { name: "Dashboard", path: "dashboard" },
-    { name: "Products List", path: "products-list" },
-    { name: "Orders", path: "orders" },
-    { name: "Price Management", path: "price" },
-    { name: "Analytics", path: "analytics" },
-    { name: "Feedback and questions", path: "feedback" },
-  ];
+    { name: 'Dashboard', path: 'dashboard' },
+    { name: 'Products List', path: 'products-list' },
+    { name: 'Orders', path: 'orders' },
+    { name: 'Price Management', path: 'price' },
+    { name: 'Analytics', path: 'analytics' },
+    { name: 'Feedback and questions', path: 'feedback' }
+  ]
 
   return (
     <ul className={style.supplierMenuSection_wrapper}>
@@ -28,12 +27,7 @@ const SupplierMenu = () => {
         </li>
       ))}
     </ul>
-  );
-};
+  )
+}
 
-SupplierMenu.propTypes = {
-  selectedMenuItemID: PropTypes.string,
-  onMenuItemSelect: PropTypes.func,
-};
-
-export default SupplierMenu;
+export default SupplierMenu

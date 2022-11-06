@@ -1,2 +1,2 @@
-import FormTitle from "./formTitle";
-export default FormTitle;
+import FormTitle from './FormTitle'
+export default FormTitle
