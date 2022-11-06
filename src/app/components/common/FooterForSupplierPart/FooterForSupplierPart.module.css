@@ -1,0 +1,33 @@
+.footer {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #dddddd;
+  padding: 12px 32px;
+  margin-top: auto;
+}
+
+.footer_logo {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.38px;
+  color: #000000;
+}
+
+.footer_linksWrapper {
+  display: flex;
+  width: 500px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer_link,
+.footer_copyright {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.16px;
+  color: rgba(0, 0, 0, 0.48);
+}

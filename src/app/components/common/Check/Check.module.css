@@ -1,0 +1,23 @@
+.check {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+}
+.check__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: #dddddd;
+}
+.check__box_mark {
+  width: 16px;
+  height: 16px;
+  background: url('../../../assets/img/icons/check.svg');
+  background-size: cover;
+  background-position: center;
+}

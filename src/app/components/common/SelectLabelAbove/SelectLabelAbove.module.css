@@ -1,0 +1,47 @@
+.selectField {
+  padding: 12px 10px 15px 16px;
+  font-size: 14px;
+  width: 100%;
+  min-width: 160px;
+  outline: none;
+  border: none;
+  background: #f2f2f2;
+  border-radius: 4px;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: #000000;
+  cursor: pointer;
+}
+
+.selectTitle {
+  font-size: 13px;
+  text-align: left;
+  margin-bottom: 8px;
+  color: #828282;
+}
+
+.selectError {
+  color: #ff4040;
+  font-size: 13px;
+  text-align: left;
+  position: absolute;
+}
+
+.selectContainer {
+  position: relative;
+  cursor: pointer;
+}
+
+.selectArrow {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.selectOption {
+  font-size: 24px;
+}

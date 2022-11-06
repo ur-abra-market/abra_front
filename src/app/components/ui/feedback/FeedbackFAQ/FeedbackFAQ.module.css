@@ -1,0 +1,19 @@
+.feedbackFAQ {
+  width: calc(100% - 110px);
+  display: flex;
+  flex-direction: column;
+  padding: 0 55px;
+  gap: 24px;
+}
+.feedbackFAQ__find {
+  display: block;
+  width: 100%;
+  height: 40px;
+  border: 2px #dddddd solid;
+  text-align: center;
+  line-height: 44px;
+  font-size: var(--fp);
+}
+.feedbackFAQ__find:hover {
+  cursor: pointer;
+}
