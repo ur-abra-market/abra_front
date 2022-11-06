@@ -1,3 +1,5 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import style from './buttonReg.module.css'
 
 const ButtonReg = ({ type, value, isValid }) => {
@@ -13,5 +15,9 @@ const ButtonReg = ({ type, value, isValid }) => {
     </div>
   )
 }
-
+ButtonReg.propTypes = {
+  type: PropTypes.string,
+  value: PropTypes.string,
+  isValid: PropTypes.bool
+}
 export default ButtonReg

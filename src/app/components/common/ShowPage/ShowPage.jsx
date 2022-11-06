@@ -35,7 +35,7 @@ const ShowPage = () => {
         </div>
       </div>
       <ul className={style.ShowPage__list} style={styleList}>
-        {list.map((e, i) => (
+        {list.map((e) => (
           <li
             className={style.ShowPage__list_item}
             key={`option_${e}`}
