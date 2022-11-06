@@ -1,0 +1,25 @@
+.latestSearch {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+  margin-bottom: -96px;
+}
+
+.latestSearch__list {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.latestSearch__list_item {
+  display: block;
+  width: fit-content;
+  height: 27px;
+  line-height: 27px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background: #eaeaea;
+  cursor: pointer;
+}

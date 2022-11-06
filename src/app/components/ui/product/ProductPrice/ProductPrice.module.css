@@ -1,0 +1,16 @@
+.productPrice {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: var(--fd);
+  font-family: 'SF Pro Display Bold';
+}
+.productPrice > span {
+  display: block;
+  align-self: flex-end;
+  font-size: 10px;
+  font-family: 'Roboto';
+  color: #828282;
+  margin-right: 16px;
+}

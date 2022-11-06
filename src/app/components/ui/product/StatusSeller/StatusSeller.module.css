@@ -1,0 +1,72 @@
+.statusSeller {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.statusSeller__basic {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.statusSeller__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #dddddd;
+  margin-right: 16px;
+}
+.statusSeller__person {
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+}
+
+.statusSeller__person_reward {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.statusSeller__numbers {
+  display: flex;
+  flex-direction: row;
+  line-height: 24px;
+  font-size: var(--fp);
+  color: #828282;
+}
+
+.statusSeller__status {
+  display: flex;
+  flex-direction: row;
+  line-height: 24px;
+  font-size: var(--fp);
+  color: #828282;
+}
+.statusSeller__activity {
+  display: flex;
+  flex-direction: column;
+}
+.statusSeller__deals {
+  display: flex;
+  flex-direction: row;
+  line-height: 24px;
+  gap: 16px;
+  font-size: var(--fp);
+  color: #828282;
+}
+.statusSeller__delivery {
+  display: flex;
+  flex-direction: row;
+  line-height: 24px;
+  gap: 8px;
+  font-size: var(--fp);
+  color: #828282;
+}
+.statusSeller__btn {
+  width: 40px;
+  height: 40px;
+  background: url('../../../../assets/img/icons/arrow-right.svg');
+  cursor: pointer;
+}

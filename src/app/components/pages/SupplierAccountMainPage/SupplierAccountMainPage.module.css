@@ -1,0 +1,502 @@
+.supplierCabinet {
+  background: #f5f5f5;
+}
+.supplierCabinet__contentWrapper {
+  display: grid;
+  grid-template-columns: 1.7fr 2fr 1fr;
+  grid-template-rows: minmax(min-content, 26.59vh) minmax(min-content, 34.56vh);
+  /* grid-template-columns: 470px 600px 273px; */
+  /* grid-template-rows: 26.59vh 34.56vh; */
+  grid-gap: 16px;
+  grid-template-areas:
+    'profileInfo businessProfile notifications'
+    'accountDetails businessProfile notifications';
+}
+
+.profileInfo {
+  grid-area: profileInfo;
+}
+.businessProfile {
+  grid-area: businessProfile;
+}
+.notifications {
+  grid-area: notifications;
+}
+.accountDetails {
+  grid-area: accountDetails;
+}
+
+.section {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 24px 32px;
+}
+
+.avatar__wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.38px;
+  color: #000000;
+  text-align: left;
+}
+
+.header__link {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0.16px;
+  text-decoration-line: underline;
+  color: #000000;
+}
+
+.fieldsWrapper {
+  margin-top: 24px;
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.profileInfo__number {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 0;
+  gap: 8px;
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+.textFieldWrapper {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.textFieldLabel,
+.subtitle,
+.selectName,
+.textareaName {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: -0.08px;
+  color: #4f4f4f;
+}
+
+.textareaName {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.textFieldInput,
+.accountDetails__textFieldInput,
+.aboutBussiness {
+  height: 42px;
+  padding-left: 12px;
+  background: #f2f2f2;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+  color: #000000;
+  width: 100%;
+}
+
+.aboutBussiness {
+  resize: none;
+  padding-top: 12px;
+}
+
+.aboutBussiness::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.24px;
+  color: #828282;
+}
+
+.inputWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+  border: none;
+  background: #f2f2f2;
+  width: 100%;
+  border-radius: 4px;
+  height: 42px;
+}
+
+.selectWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 42px;
+  min-width: 160px;
+}
+
+.selectWrapper__businessSector,
+.selectWrapper__numberOfEmployees {
+  width: 100%;
+}
+
+.select_headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background: #f2f2f2;
+  border-radius: 4px;
+  padding: 10px 14px;
+}
+
+.select_header {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+  color: #828282;
+}
+
+.select_options__country,
+.select_options__phonePersonal,
+.select_options__businessSector,
+.select_options__numberOfEmployees,
+.select_options__phoneBusiness {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: fit-content;
+  margin-top: 26px;
+  overflow: hidden;
+  transition: 0.4s;
+  gap: 5px;
+  border-radius: 3px;
+  box-shadow: 5px 0px 10px rgb(0, 0, 0, 0.25);
+}
+
+.select_options__country {
+  top: 325px;
+  width: 30%;
+}
+
+.select_options__phonePersonal {
+  top: 410px;
+  width: 8%;
+}
+
+.select_options__phoneBusiness {
+  top: 940px;
+  width: 8%;
+}
+
+.select_options__businessSector {
+  top: 357px;
+  width: 18%;
+}
+
+.select_options__numberOfEmployees {
+  top: 522px;
+  width: 18%;
+}
+
+.option {
+  padding-left: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.option:hover {
+  background: #b5b5b5;
+}
+
+.section_subtitle {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.38px;
+  color: #000000;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.accountDetails__textFieldInput {
+  width: 406px;
+}
+
+.accountDetails__inputTextFieldPassword {
+  background: #f2f2f2;
+  width: 353px;
+  height: 42px;
+  padding-left: 12px;
+}
+
+.profileLogo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  margin: 30px 0;
+}
+
+.profileLogo_backgroung,
+.companyPhoto_backgroung {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 80px;
+  background: #e0e0e0;
+  border-radius: 50%;
+}
+.companyPhoto_backgroung {
+  border-radius: 0;
+}
+
+.profileLogo_img,
+.companyPhoto_img {
+  display: block;
+  width: 37.5%;
+}
+
+.companyPhoto_backgroung:hover {
+  position: relative;
+  background: #b5b5b5;
+}
+
+.companyPhoto_backgroung:hover::before,
+.companyPhoto_backgroung:hover::after {
+  position: absolute;
+  top: 12px;
+  right: 3px;
+  content: '';
+  width: 20px;
+  height: 2px;
+  background: #000000;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.companyPhoto_backgroung:hover::before {
+  transform: rotate(45deg);
+}
+
+.companyPhoto_backgroung:hover::after {
+  transform: rotate(-45deg);
+}
+
+.companyPhotoWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profileLogo_descriptionTitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+  text-decoration-line: underline;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.profileLogo_descriptionSubtitle {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: 0.07px;
+  color: #828282;
+}
+
+.labelCheckbox {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 5px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+  color: #000000;
+}
+
+.inputCheckbox {
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border: 1px solid #828282;
+  border-radius: 4px;
+  margin: 15px;
+  margin-left: 0;
+}
+
+.notificationsList {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 16px;
+}
+
+.notificationsList__item {
+  padding-top: 12px;
+}
+
+.notificationsList__item::after {
+  content: '';
+  margin-top: 12px;
+  display: block;
+  height: 1px;
+  background: #f2f2f2;
+}
+
+.notificationsList__item:last-child:after {
+  display: none;
+}
+
+.notificationLabelCheckbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+  color: #000000;
+}
+
+.notificationInputCheckbox {
+  appearance: none;
+  border: none;
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width: 52px;
+  height: 32px;
+  padding: 1px;
+  margin-left: 15px;
+  background: #f2f2f2;
+  border-radius: 36.5px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.notificationInputCheckbox::before,
+.notificationInputCheckbox::after {
+  position: absolute;
+  content: '';
+  display: inline-block;
+}
+
+.notificationInputCheckbox::before {
+  width: 28px;
+  height: 28px;
+  background: #ffffff;
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15), 0px 1px 1px rgba(0, 0, 0, 0.16),
+    0px 3px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 100px;
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.notificationInputCheckbox::after {
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15), 0px 1px 1px rgba(0, 0, 0, 0.16),
+    0px 3px 1px rgba(0, 0, 0, 0.1);
+}
+
+.notificationInputCheckbox:checked {
+  background: #000000;
+  justify-content: right;
+}
+
+.accountDetails__wrapper {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.removeWrapper {
+  display: flex;
+  flex-flow: column;
+  margin-top: 38px;
+}
+
+.removeAccauntLink,
+.linkDescription {
+  text-align: left;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 32px;
+  letter-spacing: 0.16px;
+  text-decoration-line: underline;
+  color: #000000;
+}
+
+.linkDescription {
+  color: #828282;
+}
+
+@media all and (max-width: 1340px) {
+  .selectWrapper {
+    width: 100%;
+  }
+
+  .supplierCabinet__contentWrapper {
+    grid-template-columns: minmax(280px, 2fr);
+  }
+
+  .companyPhotoWrapper {
+    gap: 10px;
+  }
+
+  .companyPhoto_backgroung:last-child {
+    display: none;
+  }
+
+  .fieldsWrapper {
+    flex-direction: column;
+  }
+
+  .profileInfo__number {
+    flex-direction: column;
+  }
+}

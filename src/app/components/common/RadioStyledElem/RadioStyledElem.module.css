@@ -1,0 +1,139 @@
+.colorWrapper {
+  position: relative;
+}
+
+.color,
+.growth {
+  opacity: 0;
+  position: absolute;
+  width: 64px;
+  height: 57px;
+  left: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.growth {
+  width: 88px;
+  height: 30px;
+}
+
+.colorContainer,
+.growthContainer {
+  width: 64px;
+  height: 57px;
+  border-radius: 4px;
+  border: #d8d8d8 1px solid;
+  box-sizing: border-box;
+}
+
+.borderContainer {
+  border: #000000 2px solid;
+}
+
+.growthContainer {
+  width: 88px;
+  height: 30px;
+}
+
+.colorBlock {
+  box-sizing: border-box;
+  height: 30px;
+  width: 100%;
+  border-bottom: 1px solid #d8d8d8;
+  border-radius: 2px;
+}
+
+.colorValue,
+.growthValue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999999;
+  font-size: 14px;
+}
+
+.growthValue {
+  padding: 4px 8px;
+}
+
+.blue {
+  background: #6ddcff;
+}
+
+.red {
+  background: #ff0000;
+}
+
+.white {
+  background: #ffffff;
+}
+
+.green {
+  background: #53da71;
+}
+
+.beige {
+  background: #f9f3ed;
+}
+
+.yellow {
+  background: #ffd600;
+}
+
+.sand {
+  background: #f0e6d1;
+}
+
+.gray {
+  background: #bfbfc0;
+}
+
+.black {
+  background: #484848;
+}
+
+.indigo {
+  background: #487bff;
+}
+
+.lilac {
+  background: #be58e1;
+}
+
+.purple {
+  background: #931fee;
+}
+
+.orange {
+  background: #ff9900;
+}
+
+.metallic {
+  background: linear-gradient(
+    257.61deg,
+    #000000 0%,
+    #dedede 51.6%,
+    #4e4e4e 100%
+  );
+}
+
+.bronze {
+  background: linear-gradient(
+    257.61deg,
+    #856565 0%,
+    #d3bfbf 51.6%,
+    #665247 100%
+  );
+}
+
+.nocolor::after {
+  content: '';
+  position: absolute;
+  width: 66.5px;
+  border-bottom: 1px solid #d8d8d8;
+  transform: rotate(-23deg);
+  left: -1px;
+  top: 15px;
+  cursor: pointer;
+}

@@ -1,0 +1,31 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  height: 325px;
+  width: 220px;
+}
+
+.card__direction {
+  margin-top: 12px;
+  width: 100%;
+  height: fit-content;
+  max-height: 40px;
+  font-size: var(--fp);
+  cursor: pointer;
+}
+.card__price {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: var(--fd);
+  font-family: 'SF Pro Display Bold';
+  margin-bottom: 4px;
+}
+.card__price > span {
+  display: block;
+  align-self: flex-end;
+  font-size: var(--fs);
+  font-family: 'Roboto';
+}
