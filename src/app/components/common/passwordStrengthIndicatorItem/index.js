@@ -1,2 +1,0 @@
-import PasswordStrengthIndicatorItem from "./passwordStrengthIndicatorItem";
-export default PasswordStrengthIndicatorItem;
