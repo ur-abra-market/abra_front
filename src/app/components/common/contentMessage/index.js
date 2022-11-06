@@ -1,2 +1,2 @@
-import ContentMessage from './contentMessage'
+import ContentMessage from './ContentMessage'
 export default ContentMessage

@@ -4,7 +4,7 @@ import iconImage from '../../../assets/img/icons/icon-img.png'
 import TextField from '../../common/TextField'
 import PhoneNumFieldWithoutCountryCode from '../../common/PhoneNumFieldWithoutCountryCode'
 import { InfoBtn } from '../../common/buttons'
-import Checkbox from '../../common/checkbox'
+import Checkbox from '../../common/Checkbox'
 import Select from '../../common/Select'
 import arrowTriangleImg from '../../../assets/img/icons/check-arrow.png'
 import {

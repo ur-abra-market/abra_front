@@ -5,7 +5,7 @@ import RegisterPage from '../../components/pages/RegisterPage'
 import iconGoogle from '../../assets/img/icons/Google.png'
 import iconApple from '../../assets/img/icons/Apple.png'
 import iconVK from '../../assets/img/icons/VK.png'
-import style from './auth.module.css'
+import style from './Auth.module.css'
 import styleBtn from '.././../components/common/buttons/buttons.module.css'
 
 const Auth = () => {

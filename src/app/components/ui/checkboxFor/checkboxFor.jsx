@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
-import CheckboxStyledElem from '../../common/checkboxStyledElem'
+import CheckboxStyledElem from '../../common/CheckboxStyledElem'
 import style from './CheckboxFor.module.css'
 
 const CheckboxFor = ({ register, array, title, getValues, typeId }) => {

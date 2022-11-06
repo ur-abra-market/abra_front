@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import ContentMessage from '../../common/contentMessage'
+import ContentMessage from '../../common/ContentMessage'
 import style from './ConfirmEmailPage.module.css'
 import { registerService } from '../../../store/reducers/registerSlice'
 

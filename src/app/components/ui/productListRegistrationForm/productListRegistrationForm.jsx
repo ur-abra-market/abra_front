@@ -90,7 +90,7 @@ const ProductListRegistrationForm = ({
 
   const onSubmit = (data) => {
     let keysData = Object.keys(data)
-    console.log(data)
+
     const properties = []
     values.forEach((el) => {
       properties.push(createObjProperty(el, data))

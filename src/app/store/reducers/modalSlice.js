@@ -68,7 +68,6 @@ export const modalSlice = createSlice({
     },
     addAddress: (state, action) => {
       state.addresses.push(action.payload)
-      console.log(action.payload)
     },
     addressNull: (state) => {
       state.address.isMain = false

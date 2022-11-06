@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import iconImg from '../../../assets/img/icons/icon-img.png'
-import style from './imageAdding.module.css'
+import style from './ImageAdding.module.css'
 
 const ImageAdding = ({
   label,

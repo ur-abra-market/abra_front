@@ -11,7 +11,7 @@ const Card = ({ props }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const image = props.images.length ? [props.images[0]] : props.images
-  console.log(image)
+
   return (
     <div className={style.card}>
       <ImgSlider srcArr={image} />

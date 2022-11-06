@@ -20,11 +20,12 @@ const ProductList = () => {
           <div
             className={style.productList__control_blocks}
             onClick={() => setList(false)}
-          />
+          ></div>
           <div
             className={style.productList__control_list}
             onClick={() => setList(true)}
-          />
+          ></div>
+
           <div
             className={style.productList__control_category}
           >{`< Clothes and Accessories`}</div>
