@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Button = ({ value, className, onClick, disabled, active, ...attrs }) => {
+const Button = ({ value, className, onClick, disabled, ...attrs }) => {
   return (
     <button
       {...attrs}
@@ -18,15 +18,13 @@ Button.propTypes = {
   value: PropTypes.string,
   className: PropTypes.string,
   onClick: PropTypes.func,
-  disabled: PropTypes.bool,
-  active: PropTypes.bool
+  disabled: PropTypes.bool
 }
 
 Button.defaultProps = {
   value: 'Default Button',
   className: '',
-  disabled: false,
-  active: false
+  disabled: false
 }
 
 export default Button

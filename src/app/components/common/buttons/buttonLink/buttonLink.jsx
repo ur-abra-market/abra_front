@@ -19,7 +19,8 @@ const ButtonLink = (props) => {
 ButtonLink.propTypes = {
   name: PropTypes.string,
   src: PropTypes.string,
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 }
 
 export default ButtonLink
