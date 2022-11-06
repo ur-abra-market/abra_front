@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import RadiosFor from '../../RadiosFor'
-import CheckboxFor from '../../CheckboxFor'
+import RadiosFor from '../RadiosFor'
+import CheckboxFor from '../CheckboxFor'
 
 const TypeList = ({ colors, sizes, getValues, register, types }) => {
   return (

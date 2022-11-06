@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import TypeBar from './TypeBar/TypeBar'
-import TypeList from './TypeList/TypeList'
+import TypeBar from '../TypeBar/TypeBar'
+import TypeList from '../TypeList/TypeList'
 
 const TypesPage = ({ variations, getValues, register, setTypes, types }) => {
   const [sizes, colors] = [variations['size'], variations['color']]
