@@ -73,7 +73,7 @@ const ProductPage = () => {
         </div>
         <ProductAbout />
         <ProductReview />
-        {Object.keys(categories).map(categoryId => (
+        {Object.keys(CATEGORIES).map(categoryId => (
           <Slider key={categoryId} title={CATEGORIES[categoryId]} products={categories[categoryId]}/>
         ))}
         <LatestSearch />
