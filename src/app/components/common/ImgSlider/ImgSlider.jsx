@@ -18,7 +18,7 @@ const ImgSlider = ({srcArr}) => {
       return (
         <div className='ImgSlider__window_list' style={{marginLeft: `${pos}%`}} >          
           {srcArr.map((src, i) => (
-            <img className='ImgSlider__window_list-img' key={`card_slide_${i}`} src={src.image_url} alt={`img_${src.serial_number}`} />
+            <img className='ImgSlider__window_list-img' key={`card_slide_${i}`} src={src.image_url} alt={`img_${i}`} />
           ))}          
         </div>
       )

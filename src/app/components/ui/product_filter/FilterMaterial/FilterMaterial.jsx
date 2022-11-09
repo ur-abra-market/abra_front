@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { material } from '../../../../store/reducers/filterSlice';
 import SearchFilter from '../SearchFilter';
 import './FilterMaterial.css'
 
 const FilterMaterial = () => {
+  const dispatch = useDispatch();
   const materialList = ['Cotton', 'Chiffon', 'Linen', 'Biflex', 'Silk', 'Satin']
   const materialCheck = materialList.map((_) => false);
   const [check, setCheck] = useState(materialCheck);
@@ -11,13 +14,15 @@ const FilterMaterial = () => {
   const changeState = (ctx) => {
     const arrCheck = check.map((e, i) => materialList[i] === ctx ? !e : e)    
     setLen(arrCheck.filter(e => !e).length);
+    const materialArr = materialList.filter((_, i) => arrCheck[i]);    
+    dispatch(material(materialArr));  
     setCheck(arrCheck);   
   }
 
   return (
     <div className='FilterMaterial'>
       <h4 className='FilterMaterial__title'>Material</h4>
-      <SearchFilter />
+      <SearchFilter typeSearch='material'/>
       <div className='FilterMaterial__btns' style={{gap: len < check.length ? '24px' : '0px'}}>
         <div className='FilterMaterial__list'>
           {materialList.filter((b, i) => check[i]).map((m) => (

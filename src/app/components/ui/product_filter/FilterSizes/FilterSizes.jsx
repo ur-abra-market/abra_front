@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { size } from '../../../../store/reducers/filterSlice';
 import './FilterSizes.css';
 
 const FilterSizes = () => {
+  const dispatch = useDispatch();
   const sizeList = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'XXXXL']
-  const sizeCheck = sizeList.map((_) => false);
-   
+  const sizeCheck = sizeList.map((_) => false);   
   const [check, setCheck] = useState(sizeCheck);
   
   const changeState = (index) => {
-    const arrCheck = check.map((e, i) => i === index ? !e : e)    
+    const arrCheck = check.map((e, i) => i === index ? !e : e);
+    const sizeArr = sizeList.filter((_, i) => arrCheck[i]);    
+    dispatch(size(sizeArr));   
     setCheck(arrCheck);   
   }
-
  
   return (
     <div className='FilterSizes'>

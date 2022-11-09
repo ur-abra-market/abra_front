@@ -20,8 +20,7 @@ const ProductListPage = () => {
   const ascending = useSelector((state) => state.filter.ascending);
   const brands = useSelector((state) => state.filter.brands);
   const materials = useSelector((state) => state.filter.materials);
-  const sizes = useSelector((state) => state.filter.sizes);
-
+  const sizes = useSelector((state) => state.filter.sizes);  
   const data = { page_size, page_num, sort_type, category, price_from, price_to, discount, ascending, brands, materials, sizes };
   dispatch(productPaginateService(data));
   

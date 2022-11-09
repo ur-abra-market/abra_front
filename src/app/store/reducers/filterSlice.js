@@ -9,7 +9,8 @@ const initialState = {
   ascending: false,
   brands: [],
   materials: [],
-  sizes: []
+  sizes: [],
+  reset: Array(9).fill(false),
  };
 
 export const filterSlice = createSlice({
@@ -23,28 +24,31 @@ export const filterSlice = createSlice({
       state.sort_type = action.payload;      
     },   
     priceFrom: (state, action) => {
-      state.price_from = action.payload;      
+      state.price_from = +action.payload;      
     },
     priceTo: (state, action) => {
-      state.price_to = action.payload;            
+      state.price_to = +action.payload;            
     },
     discount: (state, action) => {
       state.discount = action.payload ;                
     },
     brand: (state, action) => {
-      state.brands = action.payload;                
+      state.brands = [...action.payload];                
     },
     material: (state, action) => {
-      state.materials = action.payload;                
+      state.materials = [...action.payload];                
     },
     size: (state, action) => {
-      state.sizes = action.payload;                
+      state.sizes = [...action.payload];                
     },  
     ascending: (state, action) => {
       state.ascending = action.payload;                
-    },  
+    },     
+    reset: (state, action) => {
+      state.reset = action.payload;                
+    },
   },
 });
 
-export const { category, sort, priceFrom, priceTo, discount, brand, material, size, ascending } = filterSlice.actions;
+export const { category, sort, priceFrom, priceTo, discount, brand, material, size, ascending, reset } = filterSlice.actions;
 export default filterSlice.reducer;
