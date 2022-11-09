@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { sort, category } from '../../../../store/reducers/filterSlice';
+import { sort, category, ascending } from '../../../../store/reducers/filterSlice';
 import arrowDown from '../../../../assets/img/icons/arrow-down.png'
 import './SelectFilter.css';
 
 const SelectFilter = ({list}) => {  
   const dispatch = useDispatch();
 
-  const listSort = ['Sort By Rating', 'Sort By Price (From High to Low)', 'Sort By Price (From Low to High)'];
-  const typeSort = ['rating', 'price_high_to_low)', 'price_low_to_high)'];
-
+  const listSort = ['Sort By Rating (From High to Low)', 'Sort By Rating (From Low to High)', 'Sort By Price (From High to Low)', 'Sort By Price (From Low to High)'];
+  const typeSort = ['rating', 'rating', 'price', 'price'];
+  
   const listCategory = ['All Categories', 'Clothes and Accessories'];
-  const typeCategory = ['all', 'clothes'];
+  const typeCategory = ['1', '2'];
 
   const [option, setOption] = useState(list[0]);
   const [listSwitch, setListSwitch] = useState(false);
@@ -20,8 +20,7 @@ const SelectFilter = ({list}) => {
   }
   const basic = option.split(/[()]/)[0];
   const remains = option.split(/[()]/)[1];
-  
-  
+    
   const switchList = (e) => {
     e.preventDefault();
     const nameClass = e.relatedTarget.className;
@@ -34,7 +33,9 @@ const SelectFilter = ({list}) => {
     setOption(value);
     setListSwitch(!listSwitch);
     if (listSort.includes(value)) dispatch(sort(typeSort[index]));
-    if (listCategory.includes(value)) dispatch(category(typeCategory[index]));   
+    if (listCategory.includes(value)) dispatch(category(typeCategory[index])); 
+    if (remains === 'From High to Low') dispatch(ascending(true));  
+    if (remains === 'From Low to High') dispatch(ascending(false));    
   }
 
   return (

@@ -4,7 +4,8 @@ import "./FilterSort.css";
 
 const FilterSort = () => {
   const listSort = [
-    "Sort By Rating",
+    "Sort By Rating (From High to Low)",
+    "Sort By Rating (From Low to High)",
     "Sort By Price (From High to Low)",
     "Sort By Price (From Low to High)",
   ];
