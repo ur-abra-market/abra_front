@@ -4,9 +4,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 
 const initialState= {  
-  dataProductPaginate: [],  
+  productsPage: [],  
   productActive: null,
   stateProduct: 'nothing',
+  totalProducts: 0
 };
 
 
@@ -15,7 +16,7 @@ export const productPaginateService = createAsyncThunk(
   async function (productPaginateData, { rejectWithValue }) {
     try {
       const data = await productPaginateFetch.getProductPaginateList(productPaginateData);      
-      return data.result;
+      return data;
     } catch (error) {
       const err = error.response.data.result
         ? error.response.data.result
@@ -30,15 +31,18 @@ export const productPaginateSlice = createSlice({
   initialState,
   extraReducers: (bulder) => {
     bulder.addCase(productPaginateService.pending, (state) => {
-      state.dataProductPaginate = [];
+      state.productsPage = [];
+      state.totalProducts = 0;
       state.stateProduct = 'loading';
     });
     bulder.addCase(productPaginateService.fulfilled, (state, action) => {
-      state.dataProductPaginate = action.payload;          
+      state.productsPage = action.payload.result; 
+      state.totalProducts = action.payload.total_products;            
       state.stateProduct = 'presence';
     });
     bulder.addCase(productPaginateService.rejected, (state) => {
-      state.dataProductPaginate = [];
+      state.productsPage = [];
+      state.totalProducts = 0;
       state.stateProduct = 'nothing';
     });
   },

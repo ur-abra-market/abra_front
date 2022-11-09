@@ -15,11 +15,13 @@ const ImgSlider = ({srcArr}) => {
         </div>
       )
     } else {
+      return (
         <div className='ImgSlider__window_list' style={{marginLeft: `${pos}%`}} >          
           {srcArr.map((src, i) => (
-            <img className='ImgSlider__window_list-img' key={`card_slide_${i}`} src={src} alt="img" />
+            <img className='ImgSlider__window_list-img' key={`card_slide_${i}`} src={src.image_url} alt={`img_${src.serial_number}`} />
           ))}          
         </div>
+      )
     }
   }
   const control = () => {

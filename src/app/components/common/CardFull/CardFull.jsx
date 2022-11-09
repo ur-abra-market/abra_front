@@ -29,8 +29,8 @@ const CardFull = ({ props }) => {
   };
 
   const handlerBasket = () => {
-    setSum(100);
-    propsNew.sum = 100;
+    setSum(propsNew.info.min_quantity);
+    propsNew.sum = propsNew.info.min_quantity;
     const newObj = propsNew;
     dispatch(changeById({ newObj }));
   };
@@ -60,7 +60,7 @@ const CardFull = ({ props }) => {
           >
             <ProductPrice
               price={propsNew.info.value_price}
-              quantity={propsNew.info.quantity}
+              quantity={propsNew.info.min_quantity}
             />
             <div className="CardFull__stars-reviews">
               <Stars reward={+propsNew.info.grade_average} />
@@ -77,7 +77,7 @@ const CardFull = ({ props }) => {
               <div />
             </div>
           )}
-          <SupplierCard supplier={propsNew.supplier} />
+          {propsNew.supplier ? <SupplierCard supplier={propsNew.supplier} /> : <></>}
         </div>
       </div>
     </div>

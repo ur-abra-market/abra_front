@@ -5,12 +5,13 @@ import './ProductQuantityControl.css'
 
 const ProductQuantityControl = ({obj}) => {  
   const dispatch = useDispatch();  
-  const [value, setValue] = useState(obj.sum);
   const max = useSelector((state) => state.product.max); 
-  
-  const handlerInput = () => {    
+  const min = +obj.info.min_quantity;
+  const [value, setValue] = useState(min);  
+    
+  const handlerInput = () => { 
     const newObj = {...obj};
-    const a = Math.ceil(value/100) * 100;
+    const a = Math.ceil(value/min) * min;
     if (a < 0) newObj.sum = 0
     else if (a > max) newObj.sum = max;
     else newObj.sum = a;   
@@ -21,11 +22,11 @@ const ProductQuantityControl = ({obj}) => {
   const handlerQuantity = (a) => {   
     const newObj = {...obj};    
     if (a <= 0) {
-      newObj.sum -= 100;  
+      newObj.sum -= min;  
       newObj.sum = newObj.sum < 0 ? 0 : newObj.sum;       
     }
     if (a > 0) {      
-      newObj.sum += 100;
+      newObj.sum += min;
       newObj.sum = newObj.sum > max ? max : newObj.sum;      
     }        
     setValue(newObj.sum);

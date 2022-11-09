@@ -9,8 +9,9 @@ import "./ProductList.css";
 
 const ProductList = () => {
   const dataArr = useSelector(
-    (state) => state.productPaginate.dataProductPaginate
+    (state) => state.productPaginate.productsPage
   );
+    
   const [list, setList] = useState(true);
 
   return (
@@ -32,9 +33,9 @@ const ProductList = () => {
       <div className="ProductList__list">
         {dataArr.map((data, index) =>
           list ? (
-            <CardFull key={`${data}-${index}`} props={data} />
+            <CardFull key={`product_${data.product_id}-${index}`} props={data} />
           ) : (
-            <Card key={`${data}-${index}`} props={data} />
+            <Card key={`product_${data.product_id}-${index}`} props={data} />
           )
         )}
       </div>
