@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { actve } from "../../../store/reducers/productPaginateSlice";
+import { active } from "../../../store/reducers/productPaginateSlice";
 import { changeById } from "../../../store/reducers/basketSlice";
 import { BtnNewBest } from "../buttons";
 import ProductQuantityControl from "../ProductQuantityControl";
@@ -44,7 +44,7 @@ const CardFull = ({ props }) => {
             <h4
               onClick={() => {
                 navigate("../product");
-                dispatch(actve(propsNew));
+                dispatch(active(propsNew));
               }}
             >
               {propsNew.info.name}

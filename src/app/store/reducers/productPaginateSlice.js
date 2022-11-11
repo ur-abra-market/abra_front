@@ -7,7 +7,10 @@ const initialState= {
   productsPage: [],  
   productActive: null,
   stateProduct: 'nothing',
-  totalProducts: 0
+  totalProducts: 0,
+  pageSize: 20,
+  amountPages: 1,
+  pageNum: 1,
 };
 
 
@@ -32,26 +35,35 @@ export const productPaginateSlice = createSlice({
   extraReducers: (bulder) => {
     bulder.addCase(productPaginateService.pending, (state) => {
       state.productsPage = [];
-      state.totalProducts = 0;
+      state.totalProducts = 0;      
       state.stateProduct = 'loading';
     });
     bulder.addCase(productPaginateService.fulfilled, (state, action) => {
       state.productsPage = action.payload.result; 
-      state.totalProducts = action.payload.total_products;            
+      state.totalProducts = action.payload.total_products;   
+      console.log(action.payload.total_products);
+      state.amountPages = Math.ceil(action.payload.total_products / state.pageSize);         
       state.stateProduct = 'presence';
     });
     bulder.addCase(productPaginateService.rejected, (state) => {
       state.productsPage = [];
       state.totalProducts = 0;
+      state.amountPages = 1;
       state.stateProduct = 'nothing';
     });
   },
   reducers: {
-    actve: (state, action) => {      
+    active: (state, action) => {
       state.productActive = action.payload;
-    },
+    },  
+    activeNum: (state, action) => {
+      state.pageNum = action.payload;
+    },  
+    sizePage: (state, action) => {
+      state.pageSize = action.payload;
+    },     
   },
 });
 
-export const { actve } = productPaginateSlice.actions;
+export const { active, amount, activeNum, sizePage } = productPaginateSlice.actions;
 export default productPaginateSlice.reducer;

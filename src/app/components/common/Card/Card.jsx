@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { actve } from '../../../store/reducers/productPaginateSlice';
+import { active } from '../../../store/reducers/productPaginateSlice';
 import ImgSlider from '../ImgSlider';
 import Stars from '../Stars';
 import './Card.css'
@@ -13,7 +13,7 @@ const Card = ({props}) => {
   return (
     <div className='Card'>
       <ImgSlider srcArr={image}/>
-      <div className='Card__direction' onClick={() => {navigate('../product'); dispatch(actve({...props, ...{sum: 0}}))}}>
+      <div className='Card__direction' onClick={() => {navigate('../product'); dispatch(active({...props, ...{sum: 0}}))}}>
         <span>{props.info.name}</span>
       </div>
       <div className='Card__price'>

@@ -10,8 +10,8 @@ import "./ProductListPage.css";
 
 const ProductListPage = () => {
   const dispatch = useDispatch();  
-  const page_size = useSelector((state) => state.paginate.page_size);
-  const page_num = useSelector((state) => state.paginate.page_num);  
+  const page_size = useSelector((state) => state.productPaginate.pageSize);
+  const page_num = useSelector((state) => state.productPaginate.pageNum);  
   const sort_type = useSelector((state) => state.filter.sort_type); 
   const category = useSelector((state) => state.filter.category);  
   const price_from = useSelector((state) => state.filter.price_from);

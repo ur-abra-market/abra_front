@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { category, sort, priceFrom, priceTo, discount, brand, material, size, ascending } from '../../../../store/reducers/filterSlice';
+import { activeNum } from "../../../../store/reducers/productPaginateSlice";
 import SelectFilter from "../SelectFilter";
 import "./FilterSort.css";
 
@@ -23,7 +24,8 @@ const FilterSort = () => {
     dispatch(brand([]));
     dispatch(material([]));
     dispatch(size([]));
-    dispatch(ascending(false));    
+    dispatch(ascending(false));  
+    dispatch(activeNum(1));  
   }
 
   return (
