@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { priceTo, priceFrom } from '../../../../store/reducers/filterSlice';
 import { productPaginateService } from '../../../../store/reducers/productPaginateSlice';
-import SwitchBox from '../../../common/SwitchBox';
+import SwitchDiscount from '../SwitchDiscount';
 import './FilterPrice.css'
 
 const FilterPrice = () => {
@@ -35,7 +35,7 @@ const FilterPrice = () => {
           <input className='FilterPrice__range_to-input' type="number" value={filter.price_to} onChange={(e) => handlerPriceTo(+e.target.value)}/>
         </div>
       </div>
-      <SwitchBox label={'Only discounted items'} />      
+      <SwitchDiscount />      
     </div>
   )
 }
