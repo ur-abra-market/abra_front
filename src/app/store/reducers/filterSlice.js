@@ -10,7 +10,6 @@ const initialState = {
   brands: [],
   materials: [],
   sizes: [],
-  reset: Array(9).fill(false),
  };
 
 export const filterSlice = createSlice({
@@ -43,12 +42,9 @@ export const filterSlice = createSlice({
     },  
     ascending: (state, action) => {
       state.ascending = action.payload;                
-    },     
-    reset: (state, action) => {
-      state.reset = action.payload;                
-    },
+    },       
   },
 });
 
-export const { category, sort, priceFrom, priceTo, discount, brand, material, size, ascending, reset } = filterSlice.actions;
+export const { category, sort, priceFrom, priceTo, discount, brand, material, size, ascending } = filterSlice.actions;
 export default filterSlice.reducer;
