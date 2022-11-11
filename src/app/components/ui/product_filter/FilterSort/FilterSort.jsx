@@ -1,12 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { category, sort, priceFrom, priceTo, discount, brand, material, size, ascending, reset } from '../../../../store/reducers/filterSlice';
+import { useDispatch } from "react-redux";
+import { category, sort, priceFrom, priceTo, discount, brand, material, size, ascending } from '../../../../store/reducers/filterSlice';
 import SelectFilter from "../SelectFilter";
 import "./FilterSort.css";
 
 const FilterSort = () => {
-  const dispatch = useDispatch(); 
-  const reset = useSelector((state) => state.filter.reset);
+  const dispatch = useDispatch();   
   const listSort = [
     "Sort By Rating (From High to Low)",
     "Sort By Rating (From Low to High)",
@@ -24,8 +23,7 @@ const FilterSort = () => {
     dispatch(brand([]));
     dispatch(material([]));
     dispatch(size([]));
-    dispatch(ascending(false));
-    dispatch(reset(Array(9).fill(true)));
+    dispatch(ascending(false));    
   }
 
   return (
