@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   sort_type: 'rating',  
-  category: '1',  
+  category: '',  
   price_from: 0,
   price_to: 0,
   discount: false,

@@ -6,17 +6,9 @@ import SelectFilter from "../SelectFilter";
 import "./FilterSort.css";
 
 const FilterSort = () => {
-  const dispatch = useDispatch();   
-  const listSort = [
-    "Sort By Rating (From High to Low)",
-    "Sort By Rating (From Low to High)",
-    "Sort By Price (From High to Low)",
-    "Sort By Price (From Low to High)",
-  ];
-  const listCategories = ["All Categories", "Clothes and Accessories"];
-
+  const dispatch = useDispatch();  
   const handlerReset = () => {
-    dispatch(category(0));
+    dispatch(category(''));
     dispatch(sort('rating'));
     dispatch(priceFrom(0));
     dispatch(priceTo(0));
@@ -25,7 +17,7 @@ const FilterSort = () => {
     dispatch(material([]));
     dispatch(size([]));
     dispatch(ascending(false));  
-    dispatch(activeNum(1));  
+    dispatch(activeNum(1));      
   }
 
   return (
@@ -34,8 +26,8 @@ const FilterSort = () => {
         <h4>Filters</h4>
         <span className="FilterSort__reset" onClick={handlerReset}>Reset All</span>
       </div>
-      <SelectFilter list={listSort} />
-      <SelectFilter list={listCategories} />
+      <SelectFilter typeSelect='sort' />
+      <SelectFilter typeSelect='category' />
     </div>
   );
 };

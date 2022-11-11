@@ -1,49 +1,59 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { sort, category, ascending } from '../../../../store/reducers/filterSlice';
 import arrowDown from '../../../../assets/img/icons/arrow-down.png'
 import './SelectFilter.css';
 
-const SelectFilter = ({list}) => {  
+const SelectFilter = ({typeSelect}) => {  
   const dispatch = useDispatch();
-
-  const [listSwitch, setListSwitch] = useState(false);
-  const [option, setOption] = useState('');
-
-  const choiсeSort = useSelector((state) => state.filter.sort_type);
-  const choiсeCategory = useSelector((state) => state.filter.category);
-  const choiсeAscending = useSelector((state) => state.filter.ascending);
 
   const listSort = ['Sort By Rating (From High to Low)', 'Sort By Rating (From Low to High)', 'Sort By Price (From High to Low)', 'Sort By Price (From Low to High)'];
   const typeSort = ['rating', 'rating', 'price', 'price'];
 
   const listCategory = ['All Categories', 'Clothes and Accessories'];
-  const typeCategory = ['1', '2'];
+  const typeCategory = ['', '1'];
+
+  const [listSwitch, setListSwitch] = useState(false);  
+  const [list, setList] = useState([]); 
+  
+  const choiсeSort = useSelector((state) => state.filter.sort_type);
+  const choiсeCategory = useSelector((state) => state.filter.category);
+  const choiсeAscending = useSelector((state) => state.filter.ascending);  
 
   useEffect(() => {
-    if (list[0].includes('Sort')) {
+    if (typeSelect === 'sort') {
+      setList(listSort);
+    } 
+    if (typeSelect === 'category') {
+      setList(listCategory);
+    }    
+  }, []);
+
+  const option = () => {    
+    if (typeSelect === 'sort') {
       if (choiсeSort === 'rating') {
-        setOption(!choiсeAscending ? listSort[0] : listSort[1]); 
+        const choice = !choiсeAscending ? listSort[0] : listSort[1]; 
+        return choice
       }
       if (choiсeSort === 'price') {
-        setOption(!choiсeAscending ? listSort[2] : listSort[3]); 
+        const choice = !choiсeAscending ? listSort[2] : listSort[3]; 
+        return choice
       }       
-    }
-  
-    if (list[0].includes('All Categories')) {
+    }  
+    if (typeSelect === 'category') {
       const index = typeCategory.findIndex(e => e === choiсeCategory);
-      setOption(index < 0 ? listCategory[0] : listCategory[index]);    
-      }    
-    },
-  [choiсeSort, choiсeCategory, choiсeAscending]);
+      const choice = index < 0 ? listCategory[0] : listCategory[index];  
+      return choice  
+    }          
+    setListSwitch(false);
+  }
   
-  const basic = option.split(/[()]/)[0];
-  const remains = option.split(/[()]/)[1];
+  const basic = option().split(/[()]/)[0];
+  const remains = option().split(/[()]/)[1]; 
 
   const styleList = {
     height: listSwitch ? 'fit-content' : '0px'
-  }
-  
+  } 
     
   const switchList = (e) => {
     e.preventDefault();
@@ -53,12 +63,11 @@ const SelectFilter = ({list}) => {
     }; 
   }
 
-  const handlerOption = (value, index) => {        
-    setListSwitch(!listSwitch);
+  const handlerOption = (value, index) => {    
     if (listSort.includes(value)) dispatch(sort(typeSort[index]));
     if (listCategory.includes(value)) dispatch(category(typeCategory[index])); 
     if (remains === 'From High to Low') dispatch(ascending(true));  
-    if (remains === 'From Low to High') dispatch(ascending(false));    
+    if (remains === 'From Low to High') dispatch(ascending(false));      
   }
 
   return (

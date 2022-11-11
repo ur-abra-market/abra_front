@@ -40,8 +40,7 @@ export const productPaginateSlice = createSlice({
     });
     bulder.addCase(productPaginateService.fulfilled, (state, action) => {
       state.productsPage = action.payload.result; 
-      state.totalProducts = action.payload.total_products;   
-      console.log(action.payload.total_products);
+      state.totalProducts = action.payload.total_products;      
       state.amountPages = Math.ceil(action.payload.total_products / state.pageSize);         
       state.stateProduct = 'presence';
     });

@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { productPaginateService } from "../../../store/reducers/productPaginateSlice";
 import Footer from "../../common/Footer";
@@ -22,7 +23,9 @@ const ProductListPage = () => {
   const materials = useSelector((state) => state.filter.materials);
   const sizes = useSelector((state) => state.filter.sizes);  
   const data = { page_size, page_num, sort_type, category, price_from, price_to, discount, ascending, brands, materials, sizes };
-  dispatch(productPaginateService(data));
+  useEffect(() => {
+    dispatch(productPaginateService(data));
+  }, [data]);  
   
   return (
     <>
