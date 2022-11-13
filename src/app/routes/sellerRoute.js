@@ -13,12 +13,12 @@ const sellerRoute = [
     element: <MainPage />
   },
   {
-    path: 'product',
-    element: <ProductPage />
-  },
-  {
     path: 'products-list',
     element: <ProductListPage />
+  },
+  {
+    path: 'product/:productId',
+    element: <ProductPage />
   },
   {
     path: 'personal-account',

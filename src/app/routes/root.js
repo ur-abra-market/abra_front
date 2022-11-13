@@ -7,6 +7,7 @@ import ForgotPasswordPage from '../components/pages/ForgotPasswordPage'
 import ResetPasswordPage from '../components/pages/ResetPasswordPage'
 import supplierRoute from './supplierRoute'
 import sellerRoute from './sellerRoute'
+import ErrorPage from '../components/pages/ErrorPage/ErrorPage'
 
 const profile = localStorage.getItem('profile')
 
@@ -18,7 +19,7 @@ const routes = createBrowserRouter([
     element: <Main />,
     errorElement: (
       <main style={{ padding: '1rem' }}>
-        <p>There&apos;s nothing here!</p>
+        <ErrorPage/>
       </main>
     ),
     children: [...child]
@@ -42,3 +43,5 @@ const routes = createBrowserRouter([
 ])
 
 export default routes
+
+

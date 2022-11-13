@@ -1,0 +1,104 @@
+.slider {
+    width: 100%;
+    height: fit-content;
+}
+
+.slider__control {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.slider__name {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.slider__name > span {
+    text-decoration: underline;
+    margin-bottom: 5px;
+    color: #555555;
+}
+
+.slider__name > span:hover {
+    cursor: pointer;
+}
+
+.slider__btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 64px;
+}
+
+.slider__btn_left {
+    width: 24px;
+    height: 24px;
+    background-image: url('../../../assets/img/icons/arrow-slide-left.svg');
+}
+
+.slider__btn_right {
+    width: 24px;
+    height: 24px;
+    background-image: url('../../../assets/img/icons/arrow-slide-right.svg');
+}
+
+.slider__btn_left:hover,
+.slider__btn_right:hover {
+    cursor: pointer;
+}
+
+.slider__card {
+    margin-top: 32px;
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    overflow-x: hidden;
+}
+
+.slider__card_list {
+    display: flex;
+    flex-direction: row;
+    gap: 11px;
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+    transition: 0.5s;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: 325px;
+    width: 220px;
+}
+
+.card__direction {
+    margin-top: 12px;
+    width: 100%;
+    height: fit-content;
+    max-height: 40px;
+    font-size: var(--fp);
+    cursor: pointer;
+}
+
+.card__price {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    margin-top: 8px;
+    font-size: var(--fd);
+    font-family: 'SF Pro Display Bold';
+    margin-bottom: 4px;
+}
+
+.card__price > span {
+    display: block;
+    align-self: flex-end;
+    font-size: var(--fs);
+    font-family: 'Roboto';
+}

@@ -12,6 +12,8 @@ import supplierReducer from './reducers/supplierSlice'
 import manageProductsReducer from './reducers/manageProductsSlice'
 import supplierAccountReducer from './reducers/supplierAccountSlice'
 import modalReducer from './reducers/modalSlice'
+import {similarProductsReducer} from './reducers/similarProducts'
+
 
 export const store = configureStore({
   reducer: {
@@ -27,6 +29,7 @@ export const store = configureStore({
     supplier: supplierReducer,
     supplierAccount: supplierAccountReducer,
     modal: modalReducer,
-    manageProducts: manageProductsReducer
+    manageProducts: manageProductsReducer,
+    similarProducts: similarProductsReducer,
   }
 })
