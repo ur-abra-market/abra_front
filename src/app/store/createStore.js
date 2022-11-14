@@ -12,7 +12,8 @@ import supplierReducer from './reducers/supplierSlice'
 import manageProductsReducer from './reducers/manageProductsSlice'
 import supplierAccountReducer from './reducers/supplierAccountSlice'
 import modalReducer from './reducers/modalSlice'
-import {similarProductsReducer} from './reducers/similarProducts'
+import { similarProductsReducer } from './reducers/similarProducts'
+import { targetProductReducer } from './reducers/targetProductSlice'
 
 
 export const store = configureStore({
@@ -20,6 +21,7 @@ export const store = configureStore({
     login: loginReducer,
     register: registerReducer,
     product: productReducer,
+    targetProduct: targetProductReducer,
     paginate: paginateReducer,
     productPaginate: productPaginateReducer,
     basket: basketReducer,
@@ -31,5 +33,6 @@ export const store = configureStore({
     modal: modalReducer,
     manageProducts: manageProductsReducer,
     similarProducts: similarProductsReducer,
-  }
+  },
+  devTools: process.env.NODE_ENV !== 'production',
 })

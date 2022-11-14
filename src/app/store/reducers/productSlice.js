@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import productFetch from '../../services/product.service'
+import { productFetch } from '../../services/product.service'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 export const productService = createAsyncThunk(

@@ -11,3 +11,7 @@
   background-color: #ffffff;
   cursor: pointer;
 }
+
+.active{
+  fill: #FC133D;
+}

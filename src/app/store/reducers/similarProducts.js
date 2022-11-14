@@ -5,10 +5,10 @@ import {getSimilarProductsService} from '../../services/getSimilarProducts.servi
 
 export const getSimilarProducts = createAsyncThunk(
   'similarProducts/getSimilarProducts',
-  async function (productId, { rejectWithValue }) {
+  async function ({ productId }, { rejectWithValue }) {
     try {
-      const data = await getSimilarProductsService.get(productId)
-      return data.result
+      const { result } = await getSimilarProductsService.get(productId)
+      return result
     } catch (error) {
       console.log('similarErrorAxios', error.message)
       console.log('similarErrorData', error.data.detail)
