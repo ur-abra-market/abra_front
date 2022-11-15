@@ -10,22 +10,25 @@ import ProductList from "../../ui/product/ProductList";
 import "./ProductListPage.css";
 
 const ProductListPage = () => {
-  const dispatch = useDispatch();  
-  const page_size = useSelector((state) => state.productPaginate.pageSize);
-  const page_num = useSelector((state) => state.productPaginate.pageNum);  
-  const sort_type = useSelector((state) => state.filter.sort_type); 
-  const category = useSelector((state) => state.filter.category);  
-  const price_from = useSelector((state) => state.filter.price_from);
-  const price_to = useSelector((state) => state.filter.price_to);
-  const discount = useSelector((state) => state.filter.discount);
-  const ascending = useSelector((state) => state.filter.ascending);
-  const brands = useSelector((state) => state.filter.brands);
-  const materials = useSelector((state) => state.filter.materials);
-  const sizes = useSelector((state) => state.filter.sizes);  
-  const data = { page_size, page_num, sort_type, category, price_from, price_to, discount, ascending, brands, materials, sizes };
+  const dispatch = useDispatch();   
+  const paginate = useSelector((state) => state.productPaginate);  
+  const filter = useSelector((state) => state.filter); 
+  const data = { 
+    page_size: paginate.pageSize,
+    page_num: paginate.pageNum,
+    sort_type: filter.sort_type,
+    category: filter.category, 
+    price_from: filter.price_from,
+    price_to: filter.price_to,
+    discount: filter.discount,
+    ascending: filter.ascending, 
+    brands: filter.brands,
+    materials: filter.materials,
+    sizes: filter.sizes
+  };
   useEffect(() => {
     dispatch(productPaginateService(data));
-  }, [data]);  
+  }, [paginate, filter]);  
   
   return (
     <>
