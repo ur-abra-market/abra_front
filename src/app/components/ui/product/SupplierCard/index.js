@@ -1,2 +1,2 @@
-import SupplierCard from "./SupplierCard";
-export default SupplierCard;
+import SupplierCard from './SupplierCard'
+export default SupplierCard

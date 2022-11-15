@@ -1,2 +1,2 @@
-import Feedback from "./Feedback";
-export default Feedback;
+import Feedback from './Feedback'
+export default Feedback

@@ -1,2 +1,2 @@
-import ProductPath from "./ProductPath";
-export default ProductPath;
+import ProductPath from './ProductPath'
+export default ProductPath

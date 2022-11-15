@@ -1,21 +1,23 @@
-import React from "react";
-import "./StatusSeller.css";
+import React from 'react'
+import style from './StatusSeller.module.css'
 
 const StatusSeller = () => {
-  const reward = 4.1;
-  const percent = `${(reward / 5) * 100}%`;
-  const years = 4;
-  const deals = 124;
-  const delivery = 98.4;
+  const reward = 4.1
+  const percent = `${(reward / 5) * 100}%`
+  const years = 4
+  const deals = 124
+  const delivery = 98.4
 
   return (
-    <div className="StatusSeller">
-      <div className="StatusSeller__basic">
-        <div className="StatusSeller__avatar"></div>
-        <div className="StatusSeller__person">
-          <h4 className="StatusSeller__person_name">Ningbo Beilun Lonsyne</h4>
-          <div className="StatusSeller__person_reward">
-            <div className="StatusSeller__star">
+    <div className={style.statusSeller}>
+      <div className={style.statusSeller__basic}>
+        <div className={style.statusSeller__avatar}></div>
+        <div className={style.statusSeller__person}>
+          <h4 className={style.statusSeller__person_name}>
+            Ningbo Beilun Lonsyne
+          </h4>
+          <div className={style.statusSeller__person_reward}>
+            <div className={style.statusSeller__star}>
               <svg
                 width="24"
                 height="22"
@@ -35,24 +37,24 @@ const StatusSeller = () => {
                 </linearGradient>
               </svg>
             </div>
-            <div className="StatusSeller__numbers">{reward}</div>
-            <div className="StatusSeller__status">Experienced Seller</div>
+            <div className={style.statusSeller__numbers}>{reward}</div>
+            <div className={style.statusSeller__status}>Experienced Seller</div>
           </div>
         </div>
       </div>
-      <div className="StatusSeller__activity">
-        <div className="StatusSeller__deals">
+      <div className={style.statusSeller__activity}>
+        <div className={style.statusSeller__deals}>
           <p>{years} Years of work</p>
           <p>{deals} Deals</p>
         </div>
-        <div className="StatusSeller__delivery">
+        <div className={style.statusSeller__delivery}>
           <p>On-time delivery:</p>
           <p>{delivery}%</p>
         </div>
       </div>
-      <div className="StatusSeller__btn"></div>
+      <div className={style.statusSeller__btn}></div>
     </div>
-  );
-};
+  )
+}
 
-export default StatusSeller;
+export default StatusSeller

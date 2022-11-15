@@ -1,2 +1,2 @@
-import StatusSeller from "./StatusSeller";
-export default StatusSeller;
+import StatusSeller from './StatusSeller'
+export default StatusSeller

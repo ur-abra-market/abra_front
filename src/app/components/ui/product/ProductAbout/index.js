@@ -1,2 +1,2 @@
-import ProductAbout from "./ProductAbout";
-export default ProductAbout;
+import ProductAbout from './ProductAbout'
+export default ProductAbout

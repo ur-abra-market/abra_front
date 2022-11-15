@@ -1,2 +1,2 @@
-import FilterBrand from "./FilterBrand";
-export default FilterBrand;
+import FilterBrand from './FilterBrand'
+export default FilterBrand

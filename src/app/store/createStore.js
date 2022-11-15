@@ -1,17 +1,17 @@
-import { configureStore } from "@reduxjs/toolkit";
-import loginReducer from "./reducers/loginSlice";
-import registerReducer from "./reducers/registerSlice";
-import productReducer from "./reducers/productSlice";
-import paginateReducer from "./reducers/paginateSlice";
-import productPaginateReducer from "./reducers/productPaginateSlice";
-import basketReducer from "./reducers/basketSlice";
-import filterReducer from "./reducers/filterSlice";
-import categoryReducer from "./reducers/categorySlice";
-import formRegistrationReducer from "./reducers/formRegistrationSlice";
-import supplierReducer from "./reducers/supplierSlice";
-import manageProductsReducer from "./reducers/manageProductsSlice";
-import supplierAccountReducer from "./reducers/supplierAccountSlice";
-import { mainPageReducer } from "./reducers/mainPageSlice";
+import { configureStore } from '@reduxjs/toolkit'
+import loginReducer from './reducers/loginSlice'
+import registerReducer from './reducers/registerSlice'
+import productReducer from './reducers/productSlice'
+import paginateReducer from './reducers/paginateSlice'
+import productPaginateReducer from './reducers/productPaginateSlice'
+import basketReducer from './reducers/basketSlice'
+import filterReducer from './reducers/filterSlice'
+import categoryReducer from './reducers/categorySlice'
+import formRegistrationReducer from './reducers/formRegistrationSlice'
+import supplierReducer from './reducers/supplierSlice'
+import manageProductsReducer from './reducers/manageProductsSlice'
+import supplierAccountReducer from './reducers/supplierAccountSlice'
+import { mainPageReducer } from './reducers/mainPageSlice'
 
 export const store = configureStore({
   reducer: {
@@ -28,5 +28,5 @@ export const store = configureStore({
     supplierAccount: supplierAccountReducer,
     manageProducts: manageProductsReducer,
     mainPageProducts: mainPageReducer
-  },
-});
+  }
+})

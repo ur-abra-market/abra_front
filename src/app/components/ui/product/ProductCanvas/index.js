@@ -1,2 +1,2 @@
-import ProductCanvas from "./ProductCanvas";
-export default ProductCanvas;
+import ProductCanvas from './ProductCanvas'
+export default ProductCanvas

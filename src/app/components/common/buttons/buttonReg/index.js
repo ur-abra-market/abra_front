@@ -1,2 +1,2 @@
-import ButtonReg from "./buttonReg";
-export default ButtonReg;
+import ButtonReg from './buttonReg'
+export default ButtonReg

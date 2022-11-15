@@ -1,2 +1,2 @@
-import FilterSort from "./FilterSort";
-export default FilterSort;
+import FilterSort from './FilterSort'
+export default FilterSort

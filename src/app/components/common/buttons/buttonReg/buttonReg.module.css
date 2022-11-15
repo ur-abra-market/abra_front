@@ -1,21 +1,21 @@
 .buttonOff,
 .buttonOn {
-    padding: 12px 10px 15px 16px;
-    font-size: 14px;
-    width: 100%;
-    outline: none;
-    border: none;
-    border-radius: 4px;
-    box-sizing: border-box;
-    cursor: pointer;
+  padding: 12px 10px 15px 16px;
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
 .buttonOn {
-    color: #FFFFFF;
-    background: #000000;
+  color: #ffffff;
+  background: #000000;
 }
 
-.buttonOff{
-    color: #828282;
-    background: #F2F2F2;
+.buttonOff {
+  color: #828282;
+  background: #f2f2f2;
 }

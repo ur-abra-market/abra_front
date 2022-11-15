@@ -1,2 +1,2 @@
-import SelectShip from "./SelectShip";
-export default SelectShip;
+import SelectShip from './SelectShip'
+export default SelectShip

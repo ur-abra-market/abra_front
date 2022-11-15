@@ -1,61 +1,62 @@
-import SupplierPage from "../components/pages/supplierPage";
-import SupplierAccountPage from "../components/pages/supplierAccountMainPage";
-import DashboardPage from "../components/pages/dashboardPage";
-import ProductsListPage from "../components/pages/productsListPage";
-import OrdersPage from "../components/pages/ordersPage";
-import PriceManagementPage from "../components/pages/priceManagementPage";
-import AnalyticsPage from "../components/pages/analyticsPage";
-import FeedbackAndQuestionsPage from "../components/pages/feedbackAndQuestionsPage/feedbackAndQuestionsPage";
-import AccountSetupPage from "../components/pages/accountSetupPage";
-import BusinessProfilePage from "../components/pages/businessProfilePage";
-import ProductListRegistrationPage from "../components/pages/productListRegistrationPage";
+import React from 'react'
+import SupplierPage from '../components/pages/SupplierPage'
+import SupplierAccountPage from '../components/pages/SupplierAccountMainPage'
+import DashboardPage from '../components/pages/DashboardPage'
+import ProductsListPage from '../components/pages/ProductsListPage'
+import OrdersPage from '../components/pages/OrdersPage'
+import PriceManagementPage from '../components/pages/PriceManagementPage'
+import AnalyticsPage from '../components/pages/AnalyticsPage'
+import FeedbackAndQuestionsPage from '../components/pages/FeedbackAndQuestionsPage'
+import AccountSetupPage from '../components/pages/AccountSetupPage'
+import BusinessProfilePage from '../components/pages/BusinessProfilePage'
+import ProductListRegistrationPage from '../components/pages/ProductListRegistrationPage'
 
 const supplierRoute = [
   {
-    path: "/",
+    path: '/',
     element: <SupplierPage />,
     children: [
       {
-        path: "/",
-        element: <SupplierAccountPage />,
+        path: '/',
+        element: <SupplierAccountPage />
       },
       {
-        path: "dashboard",
-        element: <DashboardPage />,
+        path: 'dashboard',
+        element: <DashboardPage />
       },
       {
-        path: "products-list",
-        element: <ProductsListPage />,
+        path: 'products-list',
+        element: <ProductsListPage />
       },
       {
-        path: "orders",
-        element: <OrdersPage />,
+        path: 'orders',
+        element: <OrdersPage />
       },
       {
-        path: "price",
-        element: <PriceManagementPage />,
+        path: 'price',
+        element: <PriceManagementPage />
       },
       {
-        path: "analytics",
-        element: <AnalyticsPage />,
+        path: 'analytics',
+        element: <AnalyticsPage />
       },
       {
-        path: "feedback",
-        element: <FeedbackAndQuestionsPage />,
-      },
-    ],
+        path: 'feedback',
+        element: <FeedbackAndQuestionsPage />
+      }
+    ]
   },
   {
-    path: "account-setup",
-    element: <AccountSetupPage />,
+    path: 'account-setup',
+    element: <AccountSetupPage />
   },
   {
-    path: "business-profile",
-    element: <BusinessProfilePage />,
+    path: 'business-profile',
+    element: <BusinessProfilePage />
   },
   {
-    path: "add-product",
-    element: <ProductListRegistrationPage />,
-  },
-];
-export default supplierRoute;
+    path: 'add-product',
+    element: <ProductListRegistrationPage />
+  }
+]
+export default supplierRoute

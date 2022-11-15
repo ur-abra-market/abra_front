@@ -1,2 +1,2 @@
-import ChoiceProduct from "./ChoiceProduct";
-export default ChoiceProduct;
+import ChoiceProduct from './ChoiceProduct'
+export default ChoiceProduct

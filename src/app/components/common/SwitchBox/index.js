@@ -1,2 +1,2 @@
-import SwitchBox from "./SwitchBox";
-export default SwitchBox;
+import SwitchBox from './SwitchBox'
+export default SwitchBox

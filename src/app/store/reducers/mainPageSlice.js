@@ -1,15 +1,16 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import productFetch from "../../services/product.service";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import productFetch from '../../services/product.service'
 
 const initialState = {
   products: {},
   isLoading: false,
-  error: null,
+  error: null
 }
 
 export const fetchProductList = createAsyncThunk(
   'mainPageProducts/fetchProductsList',
-  async (productData, {rejectWithValue}) => {   // productData: { type: 'bestsellers' | 'new' | 'rating' | 'hot', category: 1 | 2 | 3 }
+  async (productData, { rejectWithValue }) => {
+    // productData: { type: 'bestsellers' | 'new' | 'rating' | 'hot', category: 1 | 2 | 3 }
     try {
       const response = await productFetch.getList(productData)
       return {
@@ -26,7 +27,7 @@ const mainPageSlice = createSlice({
   name: 'mainPageProducts',
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(fetchProductList.pending, (state, action) => {
+    builder.addCase(fetchProductList.pending, (state) => {
       state.isLoading = true
       state.error = null
     })
@@ -41,4 +42,4 @@ const mainPageSlice = createSlice({
   }
 })
 
-export const mainPageReducer =  mainPageSlice.reducer
+export const mainPageReducer = mainPageSlice.reducer

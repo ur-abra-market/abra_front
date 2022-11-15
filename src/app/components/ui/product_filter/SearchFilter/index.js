@@ -1,2 +1,2 @@
-import SearchFilter from "./SearchFilter";
-export default SearchFilter;
+import SearchFilter from './SearchFilter'
+export default SearchFilter

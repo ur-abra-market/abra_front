@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { amount } from "../../../store/reducers/paginateSlice";
-import arrowDown from "../../../assets/img/icons/arrow-slide-down.svg";
-import style from "./ShowPage.module.css";
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { amount } from '../../../store/reducers/paginateSlice'
+import arrowDown from '../../../assets/img/icons/arrow-slide-down.svg'
+import style from './ShowPage.module.css'
 
 const ShowPage = () => {
-  const dispatch = useDispatch();
-  const list = ["20", "40", "60", "80", "100"];
-  const [option, setOption] = useState(list[0]);
-  const [listSwitch, setListSwitch] = useState(false);
+  const dispatch = useDispatch()
+  const list = ['20', '40', '60', '80', '100']
+  const [option, setOption] = useState(list[0])
+  const [listSwitch, setListSwitch] = useState(false)
   const styleList = {
-    height: listSwitch ? "fit-content" : "0px",
-  };
+    height: listSwitch ? 'fit-content' : '0px'
+  }
 
   const switchList = (e) => {
-    e.preventDefault();
-    const nameClass = e.relatedTarget.className;
-    if (!nameClass.includes("ShowPage")) {
+    e.preventDefault()
+    const nameClass = e.relatedTarget.className
+    if (!nameClass.includes('ShowPage')) {
       setTimeout(() => {
-        setListSwitch(false);
-      }, 100);
+        setListSwitch(false)
+      }, 100)
     }
-  };
+  }
 
   return (
     <div className={style.ShowPage} onMouseOut={(e) => switchList(e)}>
@@ -35,14 +35,14 @@ const ShowPage = () => {
         </div>
       </div>
       <ul className={style.ShowPage__list} style={styleList}>
-        {list.map((e, i) => (
+        {list.map((e) => (
           <li
             className={style.ShowPage__list_item}
             key={`option_${e}`}
             onClick={() => {
-              setOption(e);
-              setListSwitch(!listSwitch);
-              dispatch(amount(+e));
+              setOption(e)
+              setListSwitch(!listSwitch)
+              dispatch(amount(+e))
             }}
           >
             {e}
@@ -50,7 +50,7 @@ const ShowPage = () => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default ShowPage;
+export default ShowPage

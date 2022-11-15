@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const Button = ({ value, className, onClick, disabled, active, ...attrs }) => {
+const Button = ({ value, className, onClick, disabled, ...attrs }) => {
   return (
     <button
       {...attrs}
@@ -11,22 +11,20 @@ const Button = ({ value, className, onClick, disabled, active, ...attrs }) => {
     >
       {value}
     </button>
-  );
-};
+  )
+}
 
 Button.propTypes = {
   value: PropTypes.string,
   className: PropTypes.string,
   onClick: PropTypes.func,
-  disabled: PropTypes.bool,
-  active: PropTypes.bool,
-};
+  disabled: PropTypes.bool
+}
 
 Button.defaultProps = {
-  value: "Default Button",
-  className: "",
-  disabled: false,
-  active: false,
-};
+  value: 'Default Button',
+  className: '',
+  disabled: false
+}
 
-export default Button;
+export default Button

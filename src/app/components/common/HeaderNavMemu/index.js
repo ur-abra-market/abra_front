@@ -1,2 +1,2 @@
-import HeaderNavMenu from "./HeaderNavMenu";
-export default HeaderNavMenu;
+import HeaderNavMenu from './HeaderNavMenu'
+export default HeaderNavMenu

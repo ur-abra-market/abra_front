@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
 const ButtonLink = (props) => {
-  const { name, src, classes, children } = props;
+  const { name, src, classes, children } = props
   return (
     <>
       <div className={classes.wrepperButtonLink}>
@@ -13,13 +13,14 @@ const ButtonLink = (props) => {
         <div className={classes.btnName}>{name}</div>
       </div>
     </>
-  );
-};
+  )
+}
 
 ButtonLink.propTypes = {
   name: PropTypes.string,
   src: PropTypes.string,
   classes: PropTypes.object,
-};
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
+}
 
-export default ButtonLink;
+export default ButtonLink
