@@ -9,7 +9,7 @@ import './Card.css'
 const Card = ({props}) => {  
   const navigate = useNavigate();
   const dispatch = useDispatch(); 
-  const image = props.images.length ? [props.images[0]] : props.images;
+  const image = props.images.length ? [props.images[0]] : [];
   return (
     <div className='Card'>
       <ImgSlider srcArr={image}/>
