@@ -5,11 +5,11 @@ import Loader from '../../components/common/Loader'
 import './Main.css'
 
 const Main = () => {
-  const statusPage = useSelector((state) => state.productPaginate.stateProduct)
+  const isLoading = useSelector((state) => state.mainPageProducts.isLoading)
 
   return (
     <div className="container">
-      {statusPage === 'loading' ? <Loader /> : <></>}
+      {isLoading && <Loader />}
       <Outlet />
     </div>
   )
