@@ -1,7 +1,8 @@
 import React from 'react'
 import style from './ProductPath.module.css'
-const pathArr = ['Clothes for women', 'Dress', 'Spring-Summer']
-const ProductPath = () => {
+import PropTypes from 'prop-types'
+
+const ProductPath = ({pathArr}) => {
   return (
     <div className={style.productPath}>
       {pathArr.map((route) => (
@@ -9,6 +10,10 @@ const ProductPath = () => {
       ))}
     </div>
   )
+}
+
+ProductPath.propTypes = {
+  pathArr: PropTypes.array.isRequired
 }
 
 export default ProductPath

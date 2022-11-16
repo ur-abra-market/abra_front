@@ -6,7 +6,8 @@ import style from './ProductQuantityControl.module.css'
 
 const ProductQuantityControl = ({ obj }) => {
   const dispatch = useDispatch()
-  const [value, setValue] = useState(obj.sum)
+  // const [value, setValue] = useState(obj.sum)
+    const [value, setValue] = useState(100)
   const max = useSelector((state) => state.product.max)
 
   const handlerInput = () => {

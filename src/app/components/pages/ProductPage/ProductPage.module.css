@@ -39,11 +39,11 @@
   width: 100%;
   margin-bottom: 37px;
 }
-.productPage__basic_top_btn {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-}
+/*.productPage__basic_top_btn {*/
+/*  display: flex;*/
+/*  flex-direction: row;*/
+/*  gap: 8px;*/
+/*}*/
 
 .productPage__basic_block1 {
   display: flex;

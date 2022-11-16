@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import style from './Stars.module.css'
 
-const Stars = ({ reward }) => {
+const Stars = ({ reward  }) => {
   const value = `${100 * (reward - Math.floor(reward))}%`
   let percent = ['100%', '100%', '100%', '100%', '100%']
   switch (Math.ceil(reward)) {

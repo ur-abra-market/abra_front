@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {BtnNewBest, InfoBtn} from '../../common/buttons'
+import { InfoBtn} from '../../common/buttons'
 import FlagFavorites from '../../ui/product/FlagFavorites'
 import ProductAbout from '../../ui/product/ProductAbout'
 import ProductPath from '../../ui/product/ProductPath'
@@ -25,20 +25,26 @@ import Stars from '../../common/Stars'
 //TODO удалить как получу фото
 import testImg from '../../common/Carousel/testSimilarImg.jpg'
 import testImg2 from '../../common/Carousel/test2.png'
+import {Status} from '../../../store/enums/status.enum'
+import ChoiceProduct from '../../ui/product/ChoiceProduct'
 
 
 
 const productId = 1
 const sellerId = 2
+const photoAll = [testImg, testImg, testImg, testImg, testImg, testImg,testImg2]
 
 const ProductPage = () => {
     const dispatch = useDispatch()
 
     const {similarProducts} = useSelector(state => state.similarProducts)
-    const {product, popularProducts} = useSelector(state => state.targetProduct)
-    console.log('similarProducts', similarProducts)
-    console.log('popularProducts', popularProducts)
-    console.log('productPage: ', product)
+    const {product, popularProducts, status} = useSelector(state => state.targetProduct)
+    console.log(product)
+    const {grade, category_path, product_name, is_favorite, tags, colors, sizes,
+        monthly_actual_demand, daily_actual_demand, supplier_info,
+        prices
+    } = product
+
 
     useEffect(() => {
         dispatch(getProductByIdAndSellerId({product_id: productId, seller_id: sellerId}))
@@ -46,10 +52,15 @@ const ProductPage = () => {
         dispatch(getPopularProductById({product_id: productId}))
     }, [])
 
+
+
+    const addOrRemoveProductFavorites = () => {
+        // добавление в избранное логика
+    }
+
     const buildCarouselSimilarProducts = () => {
         return similarProducts && similarProducts.map((data, index) => {
             const { name, description, with_discount, id, images, min_quantity, grade_average } = data
-            // const image = props.images.length ? [props.images[0]] : props.images
             const image = Array.isArray(images) ? data.images[0] : images ? images : testImg2
             return (
                 <div className={style.card} key={data.id + '-' + index}>
@@ -74,8 +85,6 @@ const ProductPage = () => {
         return popularProducts && popularProducts.map((data, index) => {
             const { name, description, with_discount, id, images, min_quantity, grade_average, image_url } = data
             console.log('buildCarouselPopularProducts - image_url: ', image_url )
-            console.log('buildCarouselPopularProducts - grade_average: ', +grade_average )
-            // const image = props.images.length ? [props.images[0]] : props.images
             const image = Array.isArray(images) ? data.images[0] : images ? data.images : testImg
             return (
                 <div className={style.card} key={id + '-' + index}>
@@ -96,43 +105,47 @@ const ProductPage = () => {
         })
     }
 
+    if( status !== Status.Success)
+        return <div>Loading</div>
+
     return (
         <>
             <Header/>
             <div className={style.productPage}>
                 <div className={style.productPage__basic}>
                     <div className={style.productPage__basic_left}>
-                        <ProductPath/>
-                        <ProductPhoto/>
+                        <ProductPath pathArr={[category_path, '/Dress', '/Spring-Summer']}/>
+                        <ProductPhoto photoArray={photoAll} />
                     </div>
                     <div className={style.productPage__basic_right}>
                         <div className={style.productPage__basic_top}>
-                            <div className={style.productPage__basic_top_btn}>
-                                <BtnNewBest name="Bestseller"/>
-                                <BtnNewBest name="New Arrivals"/>
-                            </div>
-                            <Reward star={true}/>
+                            {/*<div className={style.productPage__basic_top_btn}>*/}
+                            {/*    <BtnNewBest name="Bestseller"/>*/}
+                            {/*    <BtnNewBest name="New Arrivals"/>*/}
+                            {/*</div>*/}
+                            <Reward star grade={grade}/>
                         </div>
                         <h2>
-                            Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress
-                            Fall
-                            Clothes
+                            <span>{product_name}</span>
                         </h2>
                         <div className={style.productPage__basic_block1}>
                             <div className={style.productPage__basic_path}>
-                                <p>Clothes for women</p>
-                                <p>Dress</p>
-                                <p>Spring-Summer</p>
+                                {tags?.map( tag => <p key={tag}>{tag}</p>)}
                             </div>
-                            <FlagFavorites/>
+                            <FlagFavorites active={is_favorite} onClick={addOrRemoveProductFavorites}/>
                         </div>
                         <div className={style.productPage__basic_block2}>
-                            {/*<ChoiceProduct />*/}
-                            <ProductStatistics/>
+                            <ChoiceProduct colors={colors.length !==0 ? colors : ['#828282', '#b9b9b9', '#cfcfcf', '#dddddd']}/>
+                            <ProductStatistics
+                                sizes={sizes.length !== 0 ? sizes : ['XS', 'S', 'M', 'L', 'XL', 'XXL']}
+                                dailyActualDemand={daily_actual_demand}
+                                prices={prices[0]}
+                                monthlyActualDemand={monthly_actual_demand}/>
+
                         </div>
                         <div className={style.productPage__button}>Add to Cart</div>
                         <div className={style.productPage__line}/>
-                        <StatusSeller/>
+                        <StatusSeller supplierInfo={supplier_info}/>
                     </div>
                 </div>
                 <ProductAbout/>

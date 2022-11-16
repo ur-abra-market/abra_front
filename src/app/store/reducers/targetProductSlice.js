@@ -31,8 +31,8 @@ export const getPopularProductById = createAsyncThunk(
 )
 
 const initialState = {
-  product: undefined,
-  popularProducts: undefined,
+  product: {},
+  popularProducts: [],
   status: Status.Idle,
   error: undefined
 }
@@ -52,16 +52,16 @@ const targetProductSlice = createSlice({
       state.status = Status.Failed
     })
 
-    builder.addCase(getPopularProductById.pending, (state) => {
-      state.status = Status.Loading
-    })
+    // builder.addCase(getPopularProductById.pending, (state) => {
+    //   state.status = Status.Loading
+    // })
     builder.addCase(getPopularProductById.fulfilled, (state, action) => {
       state.popularProducts = action.payload
-      state.status = Status.Success
+      //state.status = Status.Success
     })
-    builder.addCase(getPopularProductById.rejected, (state) => {
-      state.status = Status.Failed
-    })
+    // builder.addCase(getPopularProductById.rejected, (state) => {
+    //   state.status = Status.Failed
+    // })
   },
   reducers: {}
 })

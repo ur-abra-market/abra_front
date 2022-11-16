@@ -1,25 +1,27 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { input } from '../../../../store/reducers/productSlice'
+import {  useSelector } from 'react-redux'
 import ProductQuantityControl from '../../../common/ProductQuantityControl'
 import style from './ChoiceProduct.module.css'
+import PropTypes from 'prop-types'
 
-const ChoiceProduct = () => {
-  const colors = ['#828282', '#b9b9b9', '#cfcfcf', '#dddddd']
-  const dispatch = useDispatch()
-  const productData = useSelector(
-    (state) => state.productPaginate.productActive
-  )
+const ChoiceProduct = ({colors}) => {
+  // const price = +productData.info.value_price
+  // const quantity = +productData.info.quantity
+  const price = 123
+  const quantity = 1
+  const product_id =  34
+  const max = 100
+  // const max = useSelector((state) => state.product.max)
 
-  const price = +productData.info.value_price
-  const quantity = +productData.info.quantity
-
-  const max = useSelector((state) => state.product.max)
   const basket = useSelector((state) => state.basket.basketProduct)
-  const product = basket.find(
-    (obj) => obj.product_id === productData.product_id
+  // const product = basket.find(
+  //   (obj) => obj.product_id === product_id
+  // )
+  // const propsNew = product ? product : productData
+  const propsNew = basket.find(
+      (obj) => obj.product_id === product_id
   )
-  const propsNew = product ? product : productData
+
 
   const discount = 0
   const amount = price * quantity
@@ -43,11 +45,17 @@ const ChoiceProduct = () => {
       <div className={style.choiceProduct__quantity}>
         <div className={style.choiceProduct__quantity_block}>
           <div className={style.choiceProduct__quantity_title}>Quantity</div>
+          {/*<span*/}
+          {/*  className={style.choiceProduct__quantity_max}*/}
+          {/*  onClick={() => dispatch(input(max))}*/}
+          {/*>*/}
+          {/*  /from {propsNew?.info.quantity} pcs*/}
+          {/*</span>*/}
           <span
-            className={style.choiceProduct__quantity_max}
-            onClick={() => dispatch(input(max))}
+              className={style.choiceProduct__quantity_max}
+              onClick={() =>{}}
           >
-            /from {propsNew.info.quantity} pcs
+            /from {100} pcs
           </span>
         </div>
         <ProductQuantityControl obj={propsNew} />
@@ -78,6 +86,10 @@ const ChoiceProduct = () => {
       </div>
     </div>
   )
+}
+
+ChoiceProduct.propTypes = {
+  colors: PropTypes.array.isRequired
 }
 
 export default ChoiceProduct
