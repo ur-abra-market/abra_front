@@ -11,11 +11,13 @@ import SelectLabelAbove from '../../common/SelectLabelAbove'
 import TextFieldLabelAbove from '../../common/TextFieldLabelAbove'
 import { filterEmptyValues } from '../../../utils/filterEmptyValues'
 import style from './BusinessProfileForm.module.css'
+import { uploadUserLogoService } from '../../../store/reducers/userSlice.js'
 
 const BusinessProfileForm = () => {
   const date = new Date()
   const year = date.getFullYear()
   const [imgUrl, setImgUrl] = useState('')
+  const [images, setImages] = useState([])
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -34,7 +36,6 @@ const BusinessProfileForm = () => {
     const phone = data.code + data.tel
 
     const info = {
-      logo_url: imgUrl,
       name: data.storeName,
       business_sector: data.businessSector,
       year_established: +data.yearEstablished,
@@ -48,6 +49,8 @@ const BusinessProfileForm = () => {
 
     // checking for empty fields
     const accountInfoForRequest = filterEmptyValues(info)
+
+    dispatch(uploadUserLogoService(images[0]))
 
     dispatch(
       accountInfoService({
@@ -86,6 +89,8 @@ const BusinessProfileForm = () => {
             <ImageAdding
               imgUrl={imgUrl}
               setImgUrl={setImgUrl}
+              images={images}
+              setImages={setImages}
               label={'Add logo or profile image'}
               placeholder={
                 'The customers will recognize your store by this image'
