@@ -9,7 +9,7 @@ const userFetch = {
     formData.append('file', img)
 
     const { data } = await httpService.post(
-      '/users/upload_logo_image/',
+      'users/upload_logo_image/',
       formData,
       {
         headers: {

@@ -39,7 +39,7 @@ const BusinessProfileForm = () => {
       name: data.storeName,
       business_sector: data.businessSector,
       year_established: +data.yearEstablished,
-      number_of_emploees: +data.numEmployees,
+      number_of_employees: +data.numEmployees,
       description: data.textarea,
       photo_url: ['string'],
       phone: phone,
