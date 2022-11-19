@@ -67,6 +67,7 @@
 .fieldsWrapper {
   margin-top: 24px;
   display: flex;
+  /* justify-self: flex-start; */
   align-items: flex-end;
   gap: 16px;
 }
@@ -105,6 +106,10 @@
   color: #4f4f4f;
 }
 
+.textFieldLabel {
+  margin-bottom: 10px;
+}
+
 .textareaName {
   margin-top: 16px;
   margin-bottom: 8px;
@@ -118,8 +123,9 @@
 .textFieldInput,
 .accountDetails__textFieldInput,
 .aboutBussiness {
-  height: 42px;
-  padding-left: 12px;
+  /* height: 42px; */
+  height: fit-content;
+  padding: 12px;
   background: #f2f2f2;
   border-radius: 4px;
   font-style: normal;
@@ -134,6 +140,7 @@
 .aboutBussiness {
   resize: none;
   padding-top: 12px;
+  box-sizing: border-box;
 }
 
 .aboutBussiness::placeholder {
@@ -218,17 +225,17 @@
 }
 
 .select_options__phoneBusiness {
-  top: 940px;
+  top: 1057px;
   width: 8%;
 }
 
 .select_options__businessSector {
-  top: 357px;
+  top: 390px;
   width: 18%;
 }
 
 .select_options__numberOfEmployees {
-  top: 522px;
+  top: 602px;
   width: 18%;
 }
 
@@ -262,6 +269,17 @@
   height: 42px;
   padding-left: 12px;
 }
+.accountDetails__changeBtnWrapper {
+  padding: 10px;
+}
+
+.accountDetails__changeBtn {
+  font-weight: 500;
+  font-size: 12px;
+  color: #828282;
+  margin: 12px;
+  cursor: pointer;
+}
 
 .profileLogo {
   display: flex;
@@ -271,18 +289,28 @@
   margin: 30px 0;
 }
 
+.hidden {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  line-height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
 .profileLogo_backgroung,
 .companyPhoto_backgroung {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80px;
-  width: 80px;
+  height: 95px;
+  width: 95px;
   background: #e0e0e0;
   border-radius: 50%;
 }
 .companyPhoto_backgroung {
-  border-radius: 0;
+  border-radius: 10px;
 }
 
 .profileLogo_img,
@@ -294,14 +322,15 @@
 .companyPhoto_backgroung:hover {
   position: relative;
   background: #b5b5b5;
+  cursor: pointer;
 }
 
-.companyPhoto_backgroung:hover::before,
+/* .companyPhoto_backgroung:hover::before,
 .companyPhoto_backgroung:hover::after {
   position: absolute;
   top: 12px;
   right: 3px;
-  content: '';
+  content: "";
   width: 20px;
   height: 2px;
   background: #000000;
@@ -315,11 +344,12 @@
 
 .companyPhoto_backgroung:hover::after {
   transform: rotate(-45deg);
-}
+} */
 
 .companyPhotoWrapper {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .profileLogo_descriptionTitle {
@@ -328,7 +358,7 @@
   line-height: 20px;
   letter-spacing: -0.24px;
   text-decoration-line: underline;
-  color: #000000;
+  color: #fc133d;
   margin-bottom: 8px;
 }
 
@@ -343,7 +373,7 @@
 .labelCheckbox {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   padding-bottom: 5px;
   font-weight: 400;
@@ -361,6 +391,10 @@
   border-radius: 4px;
   margin: 15px;
   margin-left: 0;
+}
+
+.inputCheckbox:checked {
+  background: #fc133d;
 }
 
 .notificationsList {
@@ -442,7 +476,7 @@
 }
 
 .notificationInputCheckbox:checked {
-  background: #000000;
+  background: #fc133d;
   justify-content: right;
 }
 
@@ -468,11 +502,54 @@
   line-height: 32px;
   letter-spacing: 0.16px;
   text-decoration-line: underline;
-  color: #000000;
+  color: #fc133d;
 }
 
 .linkDescription {
   color: #828282;
+}
+
+.photo {
+  position: relative;
+  cursor: pointer;
+}
+
+.photoRemove {
+  display: none;
+  position: absolute;
+  background: transparent;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.photoRemove img {
+  width: 20px;
+  height: 20px;
+}
+
+.photo:hover .photoRemove {
+  display: block;
+}
+
+.saveChangesBtnWrapper {
+  margin-top: 10px;
+  display: flex;
+  justify-content: end;
+}
+
+.saveChangesBtn {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 15px;
+  width: 200px;
+  height: 40px;
+  text-align: center;
+  background: #fc133d;
+  margin-right: 32px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 @media all and (max-width: 1340px) {

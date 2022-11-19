@@ -16,7 +16,9 @@ export const accountDetails__textFieldClasses = {
   input: `${style.accountDetails__textFieldInput}`,
   password: {
     inputTextFieldPassword: `${style.accountDetails__inputTextFieldPassword}`
-  }
+  },
+  changeBtnWrapper: `${style.accountDetails__changeBtnWrapper}`,
+  changeBtn: `${style.accountDetails__changeBtn}`
 }
 export const notificationCheckboxClasses = {
   labelCheckbox: `${style.notificationLabelCheckbox}`,

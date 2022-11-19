@@ -2,7 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const PhoneNumFieldWithoutCountryCode = (props) => {
-  const { label, id, name, placeholder, classes } = props
+  const { label, id, name, placeholder, classes, defaultValue = '' } = props
+
+  const formatedValue = defaultValue.replace(
+    /^(\d{3})(\d{3})(\d{2})(\d{2})$/,
+    '($1) $2-$3-$4'
+  )
 
   const getInputNumbersValue = (input) => {
     return input.value.replace(/\D/g, '')
@@ -66,6 +71,7 @@ const PhoneNumFieldWithoutCountryCode = (props) => {
           placeholder={placeholder}
           onInput={(e) => onPhoneInput(e)}
           onKeyDown={(e) => onPhoneKeyDown(e)}
+          defaultValue={formatedValue}
         />
       </div>
     </>
@@ -76,6 +82,7 @@ PhoneNumFieldWithoutCountryCode.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   id: PropTypes.string,
+  defaultValue: PropTypes.string,
   placeholder: PropTypes.string,
   classes: PropTypes.object
 }

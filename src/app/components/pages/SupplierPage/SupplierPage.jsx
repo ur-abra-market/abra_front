@@ -13,6 +13,7 @@ import Select from '../../common/Select'
 import FooterForSupplierPart from '../../common/FooterForSupplierPart'
 import Loader from '../../common/Loader'
 import { getCompanyInfoService } from '../../../store/reducers/supplierSlice'
+// import { supplierAccountService } from '../../../store/reducers/supplierAccountSlice'
 
 const SupplierPage = () => {
   const [isGetCompanyInfo, setIsGetCompanyInfo] = useState(false)
@@ -24,6 +25,7 @@ const SupplierPage = () => {
 
   useEffect(() => {
     dispatch(getCompanyInfoService())
+    // dispatch(supplierAccountService())
     setIsGetCompanyInfo(true)
   }, [])
 

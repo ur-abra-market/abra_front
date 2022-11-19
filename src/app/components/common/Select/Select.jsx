@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const Select = ({ defaultName, img, options, classes }) => {
-  const [option, setOption] = useState(defaultName)
+const Select = ({ defaultName, img, options, classes, value }) => {
+  const [option, setOption] = useState(value ? value : defaultName)
   const [list, setList] = useState(false)
   const styleList = {
     height: list ? 'fit-content' : '0px'
@@ -40,6 +40,7 @@ Select.propTypes = {
   options: PropTypes.array,
   defaultName: PropTypes.string,
   img: PropTypes.string,
+  value: PropTypes.string,
   classes: PropTypes.object
 }
 

@@ -5,7 +5,18 @@ import eyeHiddenPassword from '../../../assets/img/icons/eye_hidden_password.png
 import eyeVisiblePassword from '../../../assets/img/icons/eye_visible_password.png'
 
 const TextField = (props) => {
-  const { label, id, type, name, placeholder, error, register, classes } = props
+  const {
+    label,
+    id,
+    type,
+    name,
+    placeholder,
+    error,
+    register,
+    classes,
+    defaultValue,
+    onChange
+  } = props
 
   const [showPassword, setShowPassword] = useState(false)
 
@@ -17,15 +28,18 @@ const TextField = (props) => {
   }
 
   return (
-    <>
+    <div className={style.fieldWithErrorWrapper}>
       <label htmlFor={name} className={classes.label}>
         {label}
       </label>
+      {error && <div className={style.error}>{error.message}</div>}
       <div className={classes.inputWrapper}>
         <input
+          onChange={onChange}
           {...register}
           type={showPassword ? 'text' : type}
           id={id}
+          defaultValue={defaultValue}
           className={
             !(name === 'password')
               ? classes.input
@@ -53,8 +67,7 @@ const TextField = (props) => {
           </div>
         )}
       </div>
-      {error && <div className={style.error}>{error.message}</div>}
-    </>
+    </div>
   )
 }
 
@@ -66,7 +79,9 @@ TextField.propTypes = {
   register: PropTypes.object,
   error: PropTypes.object,
   placeholder: PropTypes.string,
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  defaultValue: PropTypes.string,
+  onChange: PropTypes.func
 }
 
 export default TextField

@@ -34,14 +34,14 @@ const manageProductsSlice = createSlice({
   initialState: {
     products: null,
     isLoading: false,
-    isStarted: false,
+    // isStarted: false,
     error: null
   },
 
   extraReducers: {
     [manageProductsService.pending]: (state) => {
       state.isLoading = true
-      state.isStarted = true
+      // state.isStarted = true
       state.error = null
     },
     [manageProductsService.fulfilled]: (state, action) => {
@@ -54,7 +54,7 @@ const manageProductsSlice = createSlice({
     },
     [deleteProducts.pending]: (state) => {
       state.isLoading = true
-      state.isStarted = true
+      // state.isStarted = true
       state.error = null
     },
     [deleteProducts.fulfilled]: (state, action) => {

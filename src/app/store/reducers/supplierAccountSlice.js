@@ -1,12 +1,28 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { manageProductsService } from './manageProductsSlice'
+import supplierAccountData from '../../services/supplierAccount.service'
 
-export const supplierAccountService = createAsyncThunk(
-  'supplierAccount/supplierAccountService',
+export const getSupplierAccountDataService = createAsyncThunk(
+  'supplierAccount/getAccountData',
 
-  async function (supplierAccountData, { rejectWithValue }) {
+  async function (data, { rejectWithValue }) {
     try {
-      const data = await manageProductsService.getList(supplierAccountData)
+      const data = await supplierAccountData.getAccountData()
+      console.log(data)
+      return data
+    } catch (error) {
+      const err = error.response.data.result
+        ? error.response.data.result
+        : error.message
+      return rejectWithValue(err)
+    }
+  }
+)
+
+export const postSupplierAccountDataService = createAsyncThunk(
+  'supplierAccount/postAccountData',
+  async ({ personalData }, { rejectWithValue }) => {
+    try {
+      const data = await supplierAccountData.postAccountData(personalData)
       return data
     } catch (error) {
       const err = error.response.data.result
@@ -20,95 +36,105 @@ export const supplierAccountService = createAsyncThunk(
 const supplierAccountSlice = createSlice({
   name: 'supplierAccount',
   initialState: {
-    status: null,
+    isLoading: false,
     error: null,
+    business_profile: {},
+    personal_info: {}
+    // user_info: {
+    //   first_name: '',
+    //   last_name: '',
+    //   phone: ''
+    // },
+    // license: {
+    //   license_number: ''
+    // },
+    // company_info: {
+    //   logo_url: null,
+    //   name: '',
+    //   business_sector: '',
+    //   is_manufacturer: false,
+    //   year_established: '',
+    //   number_of_employees: '',
+    //   description: '',
+    //   photo_url: [],
+    //   phone: '',
+    //   business_email: '',
+    //   address: ''
+    // },
+    // country: {
+    //   country: ''
+    // }
 
-    data: null
-    // {
-    //     firstName: '',
-    //     lastName: '',
-    //     country: null,
-    //     code: '+90',
-    //     phone: '',
-    //     licence: '',
-    //     email: '', //email должен подтягиваться тот, что указывался при регистрации
-    //     password: '', //password должен подтягиваться тот, что указывался при регистрации
-    //     //как быть с подгрузкой картинки профиля??
-    //     shopName: '',
-    //     businessSector: null,
-    //     manufacturer: false,
-    //     yearEstablished: '',
-    //     numberOfEmployees: null,
-    //     aboutTheBusiness: '',
-    //     //как быть с подгрузкой дополнительных фото??
-    //     businessCode: '+90',
-    //     businessPhone: '',
-    //     businessEmail: '',
-    //     companyAddress: '',
+    // notifications: {
     //     discountsOffers: false,
     //     orderUpdates: false,
     //     orderReminders: false,
     //     onStockAgain: false,
+    //     productIsCheaper: false
     //     yourFavoritesNew: false,
     //     accountSupport: false,
     // },
   },
+
+  //будет один редьюсер с выбором изменяемого поля??
   reducers: {
-    //будет один редьюсер с выбором изменяемого поля
-    // firstName: (state, action) => {
-    //     state.firstName = action.payload;
-    // },
-    // lastName: (state, action) => {
-    //     state.lastName = action.payload;
-    // },
-    // country: (state, action) => {
-    //     state.country = action.payload;
-    // },
-    // code: (state, action) => {
-    //     state.code = action.payload;
-    // },
-    // phone: (state, action) => {
-    //     state.phone = action.payload;
-    // },
-    // licence: (state, action) => {
-    //     state.licence = action.payload;
-    // },
-    // email: (state, action) => {
-    //     state.email = action.payload;
-    // },
+    setFirstName: (state, action) => {
+      state.personal_info.first_name = action.payload
+    },
+    setLastName: (state, action) => {
+      state.personal_info.last_name = action.payload
+    },
+    setCountry: (state, action) => {
+      state.personal_info.country = action.payload
+    },
+    setPhone: (state, action) => {
+      state.personal_info.phone = action.payload
+    },
+    setLicence: (state, action) => {
+      state.personal_info.license_number = action.payload
+    },
+    setEmail: (state, action) => {
+      state.email = action.payload
+    },
     // password: (state, action) => {
     //     state.password = action.payload;
     // },
-    // shopName: (state, action) => {
-    //     state.shopName = action.payload;
-    // },
-    // businessSector: (state, action) => {
-    //     state.businessSector = action.payload;
-    // },
-    // manufacturer: (state) => {
-    //     state.manufacturer = !state.manufacturer;
-    // },
-    // yearEstablished: (state, action) => {
-    //     state.yearEstablished = action.payload;
-    // },
-    // numberOfEmployees: (state, action) => {
-    //     state.numberOfEmployees = action.payload;
-    // },
-    // aboutTheBusiness: (state, action) => {
-    //     state.aboutTheBusiness = action.payload;
-    // },
+    setLogo: (state, action) => {
+      state.company_info.logo_url = action.payload
+    },
+    setShopName: (state, action) => {
+      state.company_info.name = action.payload
+    },
+    setBusinessSector: (state, action) => {
+      state.company_info.business_sector = action.payload
+    },
+    setManufacturer: (state) => {
+      state.company_info.is_manufacturer = !state.manufacturer
+    },
+    setYearEstablished: (state, action) => {
+      state.company_info.year_established = action.payload
+    },
+    setNumberOfEmployees: (state, action) => {
+      state.company_info.number_of_employees = action.payload
+    },
+    setAboutTheBusiness: (state, action) => {
+      state.company_info.description = action.payload
+    },
+    setPhotos: (state, action) => {
+      state.company_info.photo_url = action.payload
+    },
     // businessCode: (state, action) => {
-    //     state.businessCode = action.payload;
+    //     state.company_info.businessCode = action.payload;
     // },
-    // businessPhone: (state, action) => {
-    //     state.businessPhone = action.payload;
-    // },
-    // businessEmail: (state, action) => {
-    //     state.businessEmail = action.payload;
-    // },
-    // companyAddress: (state, action) => {
-    //     state.companyAddress = action.payload;
-    // },
+    setBusinessPhone: (state, action) => {
+      state.company_info.phone = action.payload
+    },
+    setBusinessEmail: (state, action) => {
+      state.company_info.business_email = action.payload
+    },
+    setCompanyAddress: (state, action) => {
+      state.company_info.address = action.payload
+    }
     // discountsOffers: (state) => {
     //     state.businessSector = !state.businessSector;
     // },
@@ -121,6 +147,9 @@ const supplierAccountSlice = createSlice({
     // onStockAgain: (state) => {
     //     state.onStockAgain = !state.onStockAgain;
     // },
+    // productIsCheaper: (state) => {
+    //     state.productIsCheaper = !state.productIsCheaper;
+    // },
     // yourFavoritesNew: (state) => {
     //     state.yourFavoritesNew = !state.yourFavoritesNew;
     // },
@@ -129,45 +158,49 @@ const supplierAccountSlice = createSlice({
     // },
   },
   extraReducers: {
-    [supplierAccountService.pending]: (state) => {
-      state.status = 'loading'
+    [getSupplierAccountDataService.pending]: (state) => {
+      // state.status = 'loading'
+      state.isLoading = true
       state.error = null
     },
-    [supplierAccountService.fulfilled]: (state, action) => {
-      state.status = 'resolved'
+    [getSupplierAccountDataService.fulfilled]: (state, action) => {
+      // state.status = 'resolved'
+      state.isLoading = false
       state.data = action.payload
     },
-    [supplierAccountService.rejected]: (state, action) => {
-      state.status = 'rejected'
+    [getSupplierAccountDataService.rejected]: (state, action) => {
+      // state.status = 'rejected'
+      state.isLoading = false
       state.error = action.payload
     }
   }
 })
 
 export const {
-  firstName,
-  lastName,
-  country,
-  code,
-  phone,
-  licence,
-  email,
-  password,
-  shopName,
-  businessSector,
-  manufacturer,
-  yearEstablished,
-  numberOfEmployees,
-  aboutTheBusiness,
-  businessCode,
-  businessPhone,
-  businessEmail,
-  companyAddress,
-  discountsOffers,
-  orderUpdates,
-  orderReminders,
-  onStockAgain,
-  yourFavoritesNew,
-  accountSupport
+  setFirstName,
+  setLastName,
+  setCountry,
+  setPhone,
+  setLicence,
+  setEmail,
+  // password,
+  setLogo,
+  setShopName,
+  setBusinessSector,
+  setManufacturer,
+  setYearEstablished,
+  setNumberOfEmployees,
+  setAboutTheBusiness,
+  setPhotos,
+  setBusinessPhone,
+  setBusinessEmail,
+  setCompanyAddress
+  // discountsOffers,
+  // orderUpdates,
+  // orderReminders,
+  // onStockAgain,
+  // productIsCheaper
+  // yourFavoritesNew,
+  // accountSupport,
 } = supplierAccountSlice.actions
 export default supplierAccountSlice.reducer
