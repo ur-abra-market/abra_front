@@ -1,8 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import style from './PhoneNumFieldWithoutCountryCode.module.css'
 
 const PhoneNumFieldWithoutCountryCode = (props) => {
-  const { label, id, name, placeholder, classes, defaultValue = '' } = props
+  const {
+    register,
+    label,
+    id,
+    error,
+    name,
+    placeholder,
+    classes,
+    defaultValue = ''
+  } = props
 
   const formatedValue = defaultValue.replace(
     /^(\d{3})(\d{3})(\d{2})(\d{2})$/,
@@ -63,16 +73,20 @@ const PhoneNumFieldWithoutCountryCode = (props) => {
       <label htmlFor={name} className={classes.label}>
         {label}
       </label>
-      <div className={classes.inputWrapper}>
-        <input
-          type="tel"
-          id={id}
-          className={classes.input}
-          placeholder={placeholder}
-          onInput={(e) => onPhoneInput(e)}
-          onKeyDown={(e) => onPhoneKeyDown(e)}
-          defaultValue={formatedValue}
-        />
+      <div className={style.wrapper}>
+        {error && <div className={classes.error}>{error.message}</div>}
+        <div className={classes.inputWrapper}>
+          <input
+            type="tel"
+            id={id}
+            className={classes.input}
+            placeholder={placeholder}
+            onInput={(e) => onPhoneInput(e)}
+            onKeyDown={(e) => onPhoneKeyDown(e)}
+            defaultValue={formatedValue}
+            {...register}
+          />
+        </div>
       </div>
     </>
   )
@@ -84,6 +98,8 @@ PhoneNumFieldWithoutCountryCode.propTypes = {
   id: PropTypes.string,
   defaultValue: PropTypes.string,
   placeholder: PropTypes.string,
+  error: PropTypes.string,
+  register: PropTypes.object,
   classes: PropTypes.object
 }
 

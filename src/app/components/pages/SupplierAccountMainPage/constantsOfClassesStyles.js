@@ -3,12 +3,14 @@ import style from './SupplierAccountMainPage.module.css'
 export const textFieldClasses = {
   label: `${style.textFieldLabel}`,
   inputWrapper: `${style.inputWrapper}`,
-  input: `${style.textFieldInput}`
+  input: `${style.textFieldInput}`,
+  error: `${style.error}`
 }
 export const inputPhoneClasses = {
   label: `${style.textFieldLabel}`,
   inputWrapper: `${style.inputWrapper}`,
-  input: `${style.textFieldInput}`
+  input: `${style.textFieldInput}`,
+  error: `${style.error}`
 }
 export const accountDetails__textFieldClasses = {
   label: `${style.textFieldLabel}`,

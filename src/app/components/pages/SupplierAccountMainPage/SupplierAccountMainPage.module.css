@@ -64,6 +64,20 @@
   color: #000000;
 }
 
+.error {
+  margin: -4px auto 5px;
+  padding-top: 5px;
+  /* color: #828282; */
+  color: #fc133d;
+  opacity: 0.7;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+
+.wrapper {
+  margin-top: 16px;
+}
+
 .fieldsWrapper {
   margin-top: 24px;
   display: flex;
@@ -74,6 +88,7 @@
 
 .profileInfo__number {
   display: flex;
+  padding-top: 16px;
   align-items: flex-end;
   margin-top: 0;
   gap: 8px;
@@ -103,7 +118,7 @@
   font-size: 13px;
   line-height: 18px;
   letter-spacing: -0.08px;
-  color: #4f4f4f;
+  color: #828282;
 }
 
 .textFieldLabel {
@@ -122,7 +137,7 @@
 
 .textFieldInput,
 .accountDetails__textFieldInput,
-.aboutBussiness {
+.aboutBusiness {
   /* height: 42px; */
   height: fit-content;
   padding: 12px;
@@ -137,7 +152,7 @@
   width: 100%;
 }
 
-.aboutBussiness {
+.aboutBusiness {
   resize: none;
   padding-top: 12px;
   box-sizing: border-box;

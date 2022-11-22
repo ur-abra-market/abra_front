@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Checkbox = ({ label, classes, defaultChecked }) => {
+const Checkbox = ({ label, classes, defaultChecked, register }) => {
   return (
     <>
       <label className={classes.labelCheckbox}>
@@ -10,6 +10,7 @@ const Checkbox = ({ label, classes, defaultChecked }) => {
           type="checkbox"
           className={classes.inputCheckbox}
           defaultChecked={defaultChecked}
+          {...register}
         />
       </label>
     </>
@@ -19,6 +20,7 @@ const Checkbox = ({ label, classes, defaultChecked }) => {
 Checkbox.propTypes = {
   label: PropTypes.string,
   classes: PropTypes.object,
+  register: PropTypes.object,
   defaultChecked: PropTypes.bool
 }
 

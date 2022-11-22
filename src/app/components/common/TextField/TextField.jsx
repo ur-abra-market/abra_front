@@ -28,46 +28,48 @@ const TextField = (props) => {
   }
 
   return (
-    <div className={style.fieldWithErrorWrapper}>
-      <label htmlFor={name} className={classes.label}>
-        {label}
-      </label>
-      {error && <div className={style.error}>{error.message}</div>}
-      <div className={classes.inputWrapper}>
-        <input
-          onChange={onChange}
-          {...register}
-          type={showPassword ? 'text' : type}
-          id={id}
-          defaultValue={defaultValue}
-          className={
-            !(name === 'password')
-              ? classes.input
-              : classes.password
-              ? classes.password.inputTextFieldPassword
-              : style.inputTextFieldPassword
-          }
-          placeholder={placeholder}
-        />
-        {name === 'password' && (
-          <div className={style.showPasswordBtn} onClick={toggleShowPassword}>
-            {showPassword ? (
-              <img
-                src={eyeVisiblePassword}
-                alt="eyeVisiblePassword"
-                className={style.showPasswordBtn_img}
-              ></img>
-            ) : (
-              <img
-                src={eyeHiddenPassword}
-                alt="eyeHiddenPassword"
-                className={style.showPasswordBtn_img}
-              ></img>
-            )}
-          </div>
-        )}
+    <>
+      <div className={style.fieldWithErrorWrapper}>
+        <label htmlFor={name} className={classes.label}>
+          {label}
+        </label>
+        {error && <div className={classes.error}>{error.message}</div>}
+        <div className={classes.inputWrapper}>
+          <input
+            onChange={onChange}
+            {...register}
+            type={showPassword ? 'text' : type}
+            id={id}
+            defaultValue={defaultValue}
+            className={
+              !(name === 'password')
+                ? classes.input
+                : classes.password
+                ? classes.password.inputTextFieldPassword
+                : style.inputTextFieldPassword
+            }
+            placeholder={placeholder}
+          />
+          {name === 'password' && (
+            <div className={style.showPasswordBtn} onClick={toggleShowPassword}>
+              {showPassword ? (
+                <img
+                  src={eyeVisiblePassword}
+                  alt="eyeVisiblePassword"
+                  className={style.showPasswordBtn_img}
+                ></img>
+              ) : (
+                <img
+                  src={eyeHiddenPassword}
+                  alt="eyeHiddenPassword"
+                  className={style.showPasswordBtn_img}
+                ></img>
+              )}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

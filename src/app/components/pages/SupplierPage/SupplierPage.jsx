@@ -79,7 +79,7 @@ const SupplierPage = () => {
               />
             </Link>
             <Select
-              defaultName={companyInfo?.name}
+              defaultValue={companyInfo?.name}
               img={arrowTriangleImg}
               options={['Name 1', 'Name 2', 'Name 3']}
               classes={SelectBussinessClasses}

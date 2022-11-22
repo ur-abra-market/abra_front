@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
@@ -6,24 +6,24 @@ import iconImage from '../../../assets/img/icons/icon-img.png'
 import TextField from '../../common/TextField'
 import PhoneNumFieldWithoutCountryCode from '../../common/PhoneNumFieldWithoutCountryCode'
 import {
-  getSupplierAccountDataService
-  // postSupplierAccountDataService
+  getSupplierAccountDataService,
+  postSupplierAccountDataService
 } from '../../../store/reducers/supplierAccountSlice'
 import { InfoBtn } from '../../common/buttons'
 import Checkbox from '../../common/Checkbox'
-import Select from '../../common/Select'
-import arrowTriangleImg from '../../../assets/img/icons/check-arrow.png'
+// import Select from '../../common/Select'
+// import arrowTriangleImg from '../../../assets/img/icons/check-arrow.png'
 import deleteImg from '../../../assets/img/icons/delete_Img_red.svg'
 import {
   textFieldClasses,
   accountDetails__textFieldClasses,
   notificationCheckboxClasses,
   checkboxClasses,
-  selectCountryClasses,
-  selectPersonalPhoneClasses,
-  selectBusinessPhoneClasses,
-  selectBusinessSectorClasses,
-  selectNumberOfEmployeesClasses,
+  // selectCountryClasses,
+  // selectPersonalPhoneClasses,
+  // selectBusinessPhoneClasses,
+  // selectBusinessSectorClasses,
+  // selectNumberOfEmployeesClasses,
   inputPhoneClasses
 } from './constantsOfClassesStyles'
 import Loader from '../../common/Loader'
@@ -32,65 +32,42 @@ import {
   countryPrefix,
   numberWithoutPrefix
 } from '../../../utils/phoneNumberSeparator'
-import {
-  setFirstName,
-  setLastName
-  // setCountry,
-  // setPhone,
-  // setEmail,
-  // setLicence,
-  // setLogo,
-  // setShopName,
-  // setBusinessSector,
-  // setManufacturer,
-  // setYearEstablished,
-  // setNumberOfEmployees,
-  // setAboutTheBusiness,
-  // setPhotos,
-  // setBusinessPhone,
-  // setBusinessEmail,
-  // setCompanyAddress
-} from '../../../store/reducers/supplierAccountSlice'
 import style from './SupplierAccountMainPage.module.css'
+import SelectLabelAbove from '../../common/SelectLabelAbove'
 
 const SupplierAccountMainPage = () => {
+  const dispatch = useDispatch()
   const companyPhotoPicker = useRef(null)
   const { isLoading, data } = useSelector((state) => state.supplierAccount)
-  console.log('data', data)
+  // console.log('data', data)
   const {
     register,
-    formState: { errors },
+    formState: { isValid, errors },
     handleSubmit
   } = useForm({ mode: 'onChange' })
-  // const { first_name, last_name } = useSelector(
-  //   (state) => state.supplierAccount.user_info
-  // )
-  // console.log('first_name', first_name)
-
-  // const [selectedCompanyPhoto, setSelectedCompanyPhoto] = useState(null)
-  // const [uploaded, setUploaded] = useState()
-
-  const dispatch = useDispatch()
+  console.log('isValid ', isValid)
 
   useEffect(() => {
     dispatch(getSupplierAccountDataService())
   }, [])
 
+  const [selectedCompanyPhoto, setSelectedCompanyPhoto] = useState(null) // хранится выбранный файл
+  // const [uploaded, setUploaded] = useState() // хранится ответ от сервера с именем файла и путем, где его можно найти
+
   const handleChange = (event) => {
     console.log(event.target.files)
-    // setSelectedCompanyPhoto(event.target.files)
+    setSelectedCompanyPhoto(event.target.files[0])
   }
 
   const handlePick = () => {
     companyPhotoPicker.current.click()
   }
 
-  const renderPhoto = (photo, index) => {
+  const renderPhoto = (photo) => {
     return (
       <>
         <div className={style.photo}>
           <img
-            key={'key_' + index}
             style={{
               width: '95px',
               height: '95px',
@@ -119,37 +96,40 @@ const SupplierAccountMainPage = () => {
     )
   }
 
-  const onSubmit = (info) => {
-    // if (!isValid) return alert('info', info)
-    console.log('info', info)
+  const onSubmitInfo = (updatedData) => {
+    console.log('updatedData', updatedData)
+    const formData = new FormData()
+    formData.append('company_info.photo_url', selectedCompanyPhoto)
+    console.log('selectedCompanyPhoto', selectedCompanyPhoto)
 
-    // const updatedData = {
-    //   user_info: {
-    // first_name: first_name,
-    // last_name: last_name,
-    //   phone: '+7123456'
-    // },
-    // license: {
-    //   license_number: '12345678'
-    // },
-    // company_info: {
-    //   logo_url: 'string',
-    //   name: 'string',
-    //   business_sector: 'string',
-    //   is_manufacturer: 0,
-    //   year_established: 0,
-    //   number_of_employees: 0,
-    //   description: 'string',
-    //   photo_url: ['string'],
-    //   phone: '+90567845',
-    //   business_email: 'user@example.com',
-    //   address: 'string'
-    // },
-    // country: {
-    //   country: 'Russia'
-    // }
-    // }
-    // dispatch(postSupplierAccountDataService(updatedData))
+    const dataForDispatch = {
+      user_info: {
+        first_name: updatedData.firstName,
+        last_name: updatedData.lastName,
+        phone: updatedData.code + updatedData.phone
+      },
+      license: {
+        license_number: updatedData.license
+      },
+      company_info: {
+        logo_url: 'string',
+        name: updatedData.shopName,
+        business_sector: updatedData.businessSector,
+        is_manufacturer: updatedData.is_manufacturer === true ? 1 : 0,
+        year_established: updatedData.yearEstablished,
+        number_of_employees: updatedData.numberOfEmployees,
+        description: updatedData.aboutBusiness,
+        photo_url: formData,
+        phone: updatedData.businessPhoneCode + updatedData.businessPhone,
+        business_email: updatedData.businessEmail,
+        address: updatedData.businessAdress
+      },
+      country: {
+        country: updatedData.country
+      }
+    }
+    console.log(' dataForDispatch', dataForDispatch)
+    dispatch(postSupplierAccountDataService(dataForDispatch))
   }
 
   if (isLoading) return <Loader />
@@ -158,7 +138,7 @@ const SupplierAccountMainPage = () => {
     <>
       {data && (
         <div className={style.supplierCabinet}>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmitInfo)}>
             <div className={style.supplierCabinet__contentWrapper}>
               <div className={`${style.section} ${style.profileInfo}`}>
                 <div className={style.header__wrapper}>
@@ -180,9 +160,6 @@ const SupplierAccountMainPage = () => {
                       placeholder="Enter first name"
                       classes={textFieldClasses}
                       defaultValue={data.personal_info.first_name}
-                      onChange={(e) => {
-                        dispatch(setFirstName(e.target.value))
-                      }}
                     />
                   </div>
                   <div className={style.flexContainer}>
@@ -200,38 +177,46 @@ const SupplierAccountMainPage = () => {
                       placeholder="Enter last name"
                       classes={textFieldClasses}
                       defaultValue={data.personal_info.last_name}
-                      onChange={(e) => {
-                        dispatch(setLastName(e.target.value))
-                      }}
                     />
                   </div>
                 </div>
-                <div className={style.subtitle}>
-                  Country of company registration
-                </div>
-                <Select
-                  defaultName="Select"
-                  img={arrowTriangleImg}
-                  options={['Turkey', 'Russia', 'USA', 'some other']}
-                  classes={selectCountryClasses}
-                  value={data.personal_info.country}
-                />
-                <div className={style.subtitle}>Personal phone number</div>
-                <div className={style.profileInfo__number}>
-                  <Select
-                    defaultName="Select"
-                    img={arrowTriangleImg}
-                    options={['+7', '+90', 'other']}
-                    classes={selectPersonalPhoneClasses}
-                    value={countryPrefix(data.personal_info.phone)}
+                <div className={style.wrapper}>
+                  <SelectLabelAbove
+                    register={register('country', {
+                      required: 'Field is required'
+                    })}
+                    defaultValue={data.personal_info.country}
+                    error={errors?.country?.message}
+                    title={'Country of company registration'}
+                    name={'country'}
+                    options={['Turkey', 'Russia', 'USA', 'some other']}
+                    placeholder={'Select'}
                   />
+                </div>
+                <div className={style.profileInfo__number}>
+                  <div>
+                    <SelectLabelAbove
+                      register={register('code', {
+                        required: 'Field is required'
+                      })}
+                      defaultValue={countryPrefix(data.personal_info.phone)}
+                      error={errors.code}
+                      title={'Personal phone number'}
+                      name={'code'}
+                      options={['+7', '+90', 'other']}
+                      placeholder={'Select'}
+                    />
+                  </div>
                   <PhoneNumFieldWithoutCountryCode
-                    label=""
                     name="phone"
                     type="tel"
                     placeholder="(XXX) XXX - XX - XX"
                     classes={inputPhoneClasses}
                     defaultValue={numberWithoutPrefix(data.personal_info.phone)}
+                    register={register('phone', {
+                      required: 'Phone is required!'
+                    })}
+                    error={errors.phone}
                   />
                 </div>
                 <div className={style.textFieldWrapper}>
@@ -241,6 +226,7 @@ const SupplierAccountMainPage = () => {
                     placeholder="000 – 00 – 0000"
                     classes={textFieldClasses}
                     defaultValue={data.personal_info.license_number.toString()}
+                    register={register('license')}
                   />
                 </div>
               </div>
@@ -294,15 +280,16 @@ const SupplierAccountMainPage = () => {
                     />
                   </div>
                   <div className={style.flexContainer}>
-                    <div className={style.selectName}>
-                      Your main business sector
-                    </div>
-                    <Select
-                      defaultName="Select"
-                      img={arrowTriangleImg}
+                    <SelectLabelAbove
+                      register={register('businessSector', {
+                        required: 'Field is required'
+                      })}
+                      defaultValue={data.business_profile.business_sector}
+                      error={errors?.businessSector?.message}
+                      title={'Your main business sector'}
+                      name={'businessSector'}
                       options={['Option1', 'Option2', 'Clothes']}
-                      classes={selectBusinessSectorClasses}
-                      value={data.business_profile.business_sector}
+                      placeholder={'Select'}
                     />
                   </div>
                 </div>
@@ -310,6 +297,7 @@ const SupplierAccountMainPage = () => {
                   label={'I am a manufacturer'}
                   classes={checkboxClasses}
                   defaultChecked={data.business_profile.is_manufacturer}
+                  register={register('is_manufacturer')}
                 />
                 <div className={style.section_subtitle}>
                   Company Info (optional)
@@ -318,7 +306,6 @@ const SupplierAccountMainPage = () => {
                   <div className={style.flexContainer}>
                     <TextField
                       register={register('yearEstablished', {
-                        required: 'Year established is required!',
                         maxLength: {
                           value: 4,
                           message: 'Enter a valid year!'
@@ -337,24 +324,30 @@ const SupplierAccountMainPage = () => {
                     />
                   </div>
                   <div className={style.flexContainer}>
-                    <div className={style.selectName}>Number of employees</div>
-                    <Select
-                      defaultName="Select"
-                      img={arrowTriangleImg}
+                    <SelectLabelAbove
+                      register={register('numberOfEmployees')}
+                      defaultValue={
+                        data.business_profile.number_of_employees
+                          ? data.business_profile.number_of_employees
+                          : ''
+                      }
+                      error={errors?.numberOfEmployees?.message}
+                      title={'Number of employees'}
+                      name={'numberOfEmployees'}
                       options={['<10', '>10', '>50', '>100']}
-                      classes={selectNumberOfEmployeesClasses}
-                      value={data.business_profile.number_of_employees}
+                      placeholder={'Select'}
                     />
                   </div>
                 </div>
                 <div className={style.textareaName}>About the business</div>
                 <textarea
-                  className={style.aboutBussiness}
+                  className={style.aboutBusiness}
                   placeholder="Tell more about your company or business"
-                  name="aboutBussiness"
+                  name="aboutBusiness"
                   // wrap="hard"
                   rows="5"
                   defaultValue={data.business_profile.description}
+                  {...register('aboutBusiness')}
                 />
                 <div className={style.textareaName}>
                   Photo of the company or production
@@ -382,37 +375,42 @@ const SupplierAccountMainPage = () => {
                 <div className={style.section_subtitle}>
                   Contacts (optional)
                 </div>
-                <div className={style.subtitle}>Business phone number</div>
                 <div className={style.profileInfo__number}>
-                  <Select
-                    defaultName="Select"
-                    img={arrowTriangleImg}
-                    options={['+7', '+90', 'other']}
-                    classes={selectBusinessPhoneClasses}
-                    value={countryPrefix(data.business_profile.phone)}
-                  />
+                  <div className={style.wrapper}>
+                    <SelectLabelAbove
+                      register={register('businessPhoneCode')}
+                      defaultValue={countryPrefix(data.business_profile.phone)}
+                      error={errors.businessCode}
+                      title={'Business phone number'}
+                      name={'businessCode'}
+                      options={['+7', '+90', 'other']}
+                      placeholder={'Select'}
+                    />
+                  </div>
                   <PhoneNumFieldWithoutCountryCode
                     label=""
-                    name="phone"
+                    name="businessPhone"
                     type="tel"
                     placeholder="(XXX) XXX - XX - XX"
                     classes={inputPhoneClasses}
                     defaultValue={numberWithoutPrefix(
                       data.business_profile.phone
                     )}
+                    register={register('businessPhone')}
+                    error={errors.businessPhone}
                   />
                 </div>
                 <div className={style.textFieldWrapper}>
                   <TextField
-                    register={register('email', {
+                    register={register('businessEmail', {
                       pattern: {
                         value: /^\w+\S+@\w+\S+\.[\w+\S+]{2,}$/g,
                         message: 'Email is incorrect!'
                       }
                     })}
-                    error={errors.email}
+                    error={errors.businessEmail}
                     label="Business email address"
-                    name="email"
+                    name="businessEmail"
                     placeholder="business@email.com"
                     classes={textFieldClasses}
                     defaultValue={data.business_profile.business_email}
@@ -420,11 +418,12 @@ const SupplierAccountMainPage = () => {
                 </div>
                 <div className={style.textareaName}>Main company address</div>
                 <textarea
-                  className={style.aboutBussiness}
+                  className={style.aboutBusiness}
                   placeholder="Enter address"
-                  name="bussinessAdress"
+                  name="businessAdress"
                   wrap="hard"
                   defaultValue={data.business_profile.address}
+                  {...register('businessAdress')}
                 />
               </div>
 
@@ -507,12 +506,10 @@ const SupplierAccountMainPage = () => {
               </div>
             </div>
             <div
-              onClick={(i) => onSubmit(i)}
+              // onClick={(i) => onSubmit(i)}
               className={style.saveChangesBtnWrapper}
             >
-              <button type="submit" className={style.saveChangesBtn}>
-                Save changes
-              </button>
+              <button className={style.saveChangesBtn}>Save changes</button>
             </div>
           </form>
 
