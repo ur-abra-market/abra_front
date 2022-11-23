@@ -1,8 +1,8 @@
 import React from 'react'
 import style from './StatusSeller.module.css'
 import PropTypes from 'prop-types'
-import {ReactComponent as HangerIcon} from './../../../pages/ProductPage/hanger_icon.svg'
-import {ReactComponent as StarIcon} from './../../../pages/ProductPage/Star.svg'
+import {HangerIcon, StarIcon} from '../../../../assets/img'
+
 
 const StatusSeller = ({supplierInfo}) => {
   const {name, grade_average, total_deals} = supplierInfo
@@ -22,13 +22,16 @@ const StatusSeller = ({supplierInfo}) => {
               <StarIcon/>
             </div>
             <div className={style.statusSeller__numbers}>{grade_average}</div>
+            <div className={style.statusSeller__deals}>
+              <p>{total_deals} Deals</p>
+            </div>
           </div>
         </div>
       </div>
       <div className={style.statusSeller__activity}>
-        <div className={style.statusSeller__deals}>
-          <p>{total_deals} Deals</p>
-        </div>
+        {/*<div className={style.statusSeller__deals}>*/}
+        {/*  <p>{total_deals} Deals</p>*/}
+        {/*</div>*/}
       </div>
       <div className={style.statusSeller__btn}></div>
     </div>

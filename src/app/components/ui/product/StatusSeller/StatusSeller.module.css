@@ -22,6 +22,9 @@
   flex-direction: column;
   height: 50px;
 }
+.statusSeller__person_name{
+  margin-bottom: 6px;
+}
 
 .statusSeller__person_reward {
   display: flex;
@@ -49,6 +52,7 @@
   flex-direction: column;
 }
 .statusSeller__deals {
+  margin-left: 16px;
   display: flex;
   flex-direction: row;
   line-height: 24px;

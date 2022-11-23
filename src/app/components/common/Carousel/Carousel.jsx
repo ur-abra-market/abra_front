@@ -23,7 +23,6 @@ export const Carousel = ({title, arrayLength, children}) => {
             <div className={style.slider__control}>
                 <div className={style.slider__name}>
                     <h2>{title}</h2>
-                    <span>See all</span>
                 </div>
                 <div className={style.slider__btn}>
                     <div

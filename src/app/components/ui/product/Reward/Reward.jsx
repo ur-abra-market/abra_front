@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import style from './Reward.module.css'
-import {ReactComponent as StartIcon} from './../../../pages/ProductPage/Star.svg'
+import {StarIcon} from '../../../../assets/img'
 
 const Reward = ({ star, grade }) => {
   // const { grade_average, count } = grade
@@ -15,7 +15,7 @@ const Reward = ({ star, grade }) => {
   return (
     <div className={style.reward}>
       <div className={star ? `${style.reward__star}` : 'none-star'}>
-        <StartIcon/>
+        <StarIcon />
       </div>
       <div
         className={style.reward_numbers}

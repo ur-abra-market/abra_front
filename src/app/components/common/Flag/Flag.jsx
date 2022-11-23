@@ -6,7 +6,7 @@ const Flag = () => {
   const [flag, setFlag] = useState(false)
 
   return (
-    <div className={style.flag} onClick={() => setFlag(!flag)}>
+    <div className={style.flag} onClick={(e) => {e.stopPropagation(); setFlag(!flag)}}>
         <FlagIcon className={flag ? style.active : ''} />
     </div>
   )
