@@ -20,7 +20,7 @@ export const getSupplierAccountDataService = createAsyncThunk(
 
 export const postSupplierAccountDataService = createAsyncThunk(
   'supplierAccount/postAccountData',
-  async ({ personalData }, { rejectWithValue }) => {
+  async (personalData, { rejectWithValue }) => {
     try {
       const data = await supplierAccountData.postAccountData(personalData)
       return data

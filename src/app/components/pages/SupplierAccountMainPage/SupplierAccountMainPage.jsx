@@ -56,7 +56,8 @@ const SupplierAccountMainPage = () => {
 
   const handleChange = (event) => {
     console.log(event.target.files)
-    setSelectedCompanyPhoto(event.target.files[0])
+    if (event.target.files.length)
+      setSelectedCompanyPhoto(event.target.files[0])
   }
 
   const handlePick = () => {
@@ -116,10 +117,10 @@ const SupplierAccountMainPage = () => {
         name: updatedData.shopName,
         business_sector: updatedData.businessSector,
         is_manufacturer: updatedData.is_manufacturer === true ? 1 : 0,
-        year_established: updatedData.yearEstablished,
-        number_of_employees: updatedData.numberOfEmployees,
+        year_established: +updatedData.yearEstablished,
+        number_of_employees: 10, //updatedData.numberOfEmployees,
         description: updatedData.aboutBusiness,
-        photo_url: formData,
+        // photo_url: formData,
         phone: updatedData.businessPhoneCode + updatedData.businessPhone,
         business_email: updatedData.businessEmail,
         address: updatedData.businessAdress
@@ -403,6 +404,7 @@ const SupplierAccountMainPage = () => {
                 <div className={style.textFieldWrapper}>
                   <TextField
                     register={register('businessEmail', {
+                      required: 'First name is required!',
                       pattern: {
                         value: /^\w+\S+@\w+\S+\.[\w+\S+]{2,}$/g,
                         message: 'Email is incorrect!'
