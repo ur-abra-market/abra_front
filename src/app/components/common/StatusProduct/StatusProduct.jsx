@@ -8,10 +8,9 @@ const StatusProduct = () => {
     'Bestsellers',
     'New Arrivals',
     'Highest Rating',
-    'Hot Deals',
-    'Popular now'
+    'Hot Deals'
   ]
-  const productArr = ['bestsellers', 'new', 'rating', 'hot', 'popular']
+  const productArr = ['bestsellers', 'new', 'rating', 'hot']
   const dispatch = useDispatch()
   const [check, setCheck] = useState([true, false, false, false, false])
 

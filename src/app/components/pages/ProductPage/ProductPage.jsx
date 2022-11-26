@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BtnNewBest, InfoBtn } from '../../common/buttons'
 import ChoiceProduct from '../../ui/product/ChoiceProduct'
 import FlagFavorites from '../../ui/product/FlagFavorites'
@@ -14,9 +14,25 @@ import ProductReview from '../../ui/product/ProductReview'
 import LatestSearch from '../../ui/product/LatestSearch'
 import Footer from '../../common/Footer'
 import Header from '../../common/Header'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchProductList } from '../../../store/reducers/mainPageSlice'
 
 const ProductPage = () => {
-  const data = ['Similar products', 'Popular products in this category']
+  const dispatch = useDispatch()
+  const filter = useSelector((state) => state.product.statusProduct)
+  const categories = useSelector((state) => state.mainPageProducts.products)
+
+  const CATEGORIES = {
+    0: 'All categories',
+    1: `Women's clothes`
+  }
+
+  useEffect(() => {
+    Object.keys(CATEGORIES).forEach((category) => {
+      dispatch(fetchProductList({ type: filter, category }))
+    })
+  }, [filter])
+
   return (
     <>
       <Header />
@@ -57,8 +73,13 @@ const ProductPage = () => {
         </div>
         <ProductAbout />
         <ProductReview />
-        <Slider title={data[0]} />
-        <Slider title={data[1]} />
+        {Object.keys(CATEGORIES).map((categoryId) => (
+          <Slider
+            key={categoryId}
+            title={CATEGORIES[categoryId]}
+            products={categories[categoryId]}
+          />
+        ))}
         <LatestSearch />
         <InfoBtn />
       </div>

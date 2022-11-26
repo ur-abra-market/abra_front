@@ -11,7 +11,8 @@ import formRegistrationReducer from './reducers/formRegistrationSlice'
 import supplierReducer from './reducers/supplierSlice'
 import manageProductsReducer from './reducers/manageProductsSlice'
 import supplierAccountReducer from './reducers/supplierAccountSlice'
-import modalReducer from './reducers/modalSlice'
+import { mainPageReducer } from './reducers/mainPageSlice'
+import userReducer from './reducers/userSlice'
 
 export const store = configureStore({
   reducer: {
@@ -26,7 +27,8 @@ export const store = configureStore({
     formRegistration: formRegistrationReducer,
     supplier: supplierReducer,
     supplierAccount: supplierAccountReducer,
-    modal: modalReducer,
-    manageProducts: manageProductsReducer
+    manageProducts: manageProductsReducer,
+    mainPageProducts: mainPageReducer,
+    user: userReducer
   }
 })

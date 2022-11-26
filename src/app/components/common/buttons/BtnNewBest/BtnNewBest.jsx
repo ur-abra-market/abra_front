@@ -5,7 +5,7 @@ import './BtnNewBest.css'
 const BtnNewBest = ({ name }) => {
   return <div className="BtnNewBest">{name}</div>
 }
-BtnNewBest.propTypes={
-  name:PropTypes.string,
+BtnNewBest.propTypes = {
+  name: PropTypes.string
 }
 export default BtnNewBest

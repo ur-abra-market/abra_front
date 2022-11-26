@@ -24,6 +24,7 @@ module.exports = {
     ],
     quotes: ['error', 'single', { allowTemplateLiterals: true }],
     semi: ['error', 'never'],
-    'multiline-ternary': ['off']
+    'multiline-ternary': ['off'],
+    'no-debugger': 'off'
   }
 }
