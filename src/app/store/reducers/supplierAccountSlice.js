@@ -7,7 +7,7 @@ export const getSupplierAccountDataService = createAsyncThunk(
   async function (data, { rejectWithValue }) {
     try {
       const data = await supplierAccountData.getAccountData()
-      console.log(data)
+      console.log('data', data)
       return data
     } catch (error) {
       const err = error.response.data.result
@@ -32,6 +32,9 @@ export const postSupplierAccountDataService = createAsyncThunk(
     }
   }
 )
+
+// export const selectLogoImgUrl = (state) => state.business_profile.logo_url
+// console.log('selectLogoImgUrl', selectLogoImgUrl)
 
 const supplierAccountSlice = createSlice({
   name: 'supplierAccount',

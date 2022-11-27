@@ -65,3 +65,14 @@ export const selectNumberOfEmployeesClasses = {
   select_options: `${style.select_options__numberOfEmployees}`,
   option: `${style.option}`
 }
+export const classesOfCompanyImages = {
+  uploadedImage: `${style.uploadedImage}`,
+  background: `${style.companyPhoto_backgroung}`,
+  sampleImage: `${style.companyPhoto_img}`
+}
+export const classesOfLogoImage = {
+  uploadedImage: `${style.uploadedImageLogo}`,
+  background: `${style.profileLogo_backgroung}`,
+  sampleImage: `${style.companyPhoto_img}`,
+  label: `${style.profileLogo_descriptionTitle}`
+}

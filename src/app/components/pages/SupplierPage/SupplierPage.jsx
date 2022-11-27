@@ -13,7 +13,7 @@ import Select from '../../common/Select'
 import FooterForSupplierPart from '../../common/FooterForSupplierPart'
 import Loader from '../../common/Loader'
 import { getCompanyInfoService } from '../../../store/reducers/supplierSlice'
-// import { supplierAccountService } from '../../../store/reducers/supplierAccountSlice'
+import { getSupplierAccountDataService } from '../../../store/reducers/supplierAccountSlice'
 
 const SupplierPage = () => {
   const [isGetCompanyInfo, setIsGetCompanyInfo] = useState(false)
@@ -25,7 +25,7 @@ const SupplierPage = () => {
 
   useEffect(() => {
     dispatch(getCompanyInfoService())
-    // dispatch(supplierAccountService())
+    dispatch(getSupplierAccountDataService())
     setIsGetCompanyInfo(true)
   }, [])
 
@@ -72,16 +72,22 @@ const SupplierPage = () => {
               />
             </Link>
             <Link to="/">
-              <ButtonLink
-                name="Avatar"
-                src={iconImage}
-                classes={navbarCategoryBtnClasses}
-              />
+              {companyInfo.logo_url ? (
+                <div className={style.logoImg}>
+                  <img src={companyInfo.logo_url} alt="logo" />
+                </div>
+              ) : (
+                <ButtonLink
+                  name="logoImg"
+                  src={iconImage}
+                  classes={navbarCategoryBtnClasses}
+                />
+              )}
             </Link>
             <Select
               defaultValue={companyInfo?.name}
               img={arrowTriangleImg}
-              options={['Name 1', 'Name 2', 'Name 3']}
+              options={['Name 1', 'Name 2', `${companyInfo?.name}`]}
               classes={SelectBussinessClasses}
             />
           </NavBarUniversal>

@@ -2,29 +2,29 @@ import React, { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
-import iconImage from '../../../assets/img/icons/icon-img.png'
 import TextField from '../../common/TextField'
 import PhoneNumFieldWithoutCountryCode from '../../common/PhoneNumFieldWithoutCountryCode'
 import {
   getSupplierAccountDataService,
   postSupplierAccountDataService
 } from '../../../store/reducers/supplierAccountSlice'
+// import { uploadUserLogoService } from '../../../store/reducers/userSlice'
 import { InfoBtn } from '../../common/buttons'
 import Checkbox from '../../common/Checkbox'
-// import Select from '../../common/Select'
-// import arrowTriangleImg from '../../../assets/img/icons/check-arrow.png'
 import deleteImg from '../../../assets/img/icons/delete_Img_red.svg'
 import {
   textFieldClasses,
   accountDetails__textFieldClasses,
   notificationCheckboxClasses,
   checkboxClasses,
+  classesOfCompanyImages,
+  classesOfLogoImage,
+  inputPhoneClasses
   // selectCountryClasses,
   // selectPersonalPhoneClasses,
   // selectBusinessPhoneClasses,
   // selectBusinessSectorClasses,
   // selectNumberOfEmployeesClasses,
-  inputPhoneClasses
 } from './constantsOfClassesStyles'
 import Loader from '../../common/Loader'
 import ImmutableTextFieldWithChangeButton from '../../common/ImmutableTextFieldWithChangeButton/ImmutableTextFieldWithChangeButton'
@@ -34,11 +34,17 @@ import {
 } from '../../../utils/phoneNumberSeparator'
 import style from './SupplierAccountMainPage.module.css'
 import SelectLabelAbove from '../../common/SelectLabelAbove'
+import AddingImage from '../../common/AddingImageSpot'
+import AddingImageSpot from '../../common/AddingImageSpot/AddingImageSpot'
 
 const SupplierAccountMainPage = () => {
   const dispatch = useDispatch()
   const companyPhotoPicker = useRef(null)
   const { isLoading, data } = useSelector((state) => state.supplierAccount)
+  const [images, setImages] = useState([])
+  const [logoImgUrl, setLogoImgUrl] = useState('')
+  const [selectedCompanyPhoto, setSelectedCompanyPhoto] = useState(null) // хранится выбранный файл
+  // const [uploaded, setUploaded] = useState() // хранится ответ от сервера с именем файла и путем, где его можно найти
   // console.log('data', data)
   const {
     register,
@@ -51,49 +57,28 @@ const SupplierAccountMainPage = () => {
     dispatch(getSupplierAccountDataService())
   }, [])
 
-  const [selectedCompanyPhoto, setSelectedCompanyPhoto] = useState(null) // хранится выбранный файл
-  // const [uploaded, setUploaded] = useState() // хранится ответ от сервера с именем файла и путем, где его можно найти
-
   const handleChange = (event) => {
-    console.log(event.target.files)
+    console.log(event.target.files[0])
     if (event.target.files.length)
       setSelectedCompanyPhoto(event.target.files[0])
-  }
-
-  const handlePick = () => {
-    companyPhotoPicker.current.click()
   }
 
   const renderPhoto = (photo) => {
     return (
       <>
-        <div className={style.photo}>
-          <img
-            style={{
-              width: '95px',
-              height: '95px',
-              borderRadius: '10px'
-            }}
-            src={`${photo}`}
-            alt="img"
-          />
-          <button className={style.photoRemove}>
-            <img src={deleteImg} alt="close" />
-          </button>
-        </div>
+        <img
+          style={{
+            width: '95px',
+            height: '95px',
+            borderRadius: '10px'
+          }}
+          src={`${photo}`}
+          alt="img"
+        />
+        <button className={style.photoRemove}>
+          <img src={deleteImg} alt="close" />
+        </button>
       </>
-    )
-  }
-  // функция котрая рисует незаполненные окошки для фото компании (всего мест для фото по макету 5)
-  const renderSamples = (index) => {
-    return (
-      <div
-        key={'k_' + index}
-        onClick={handlePick}
-        className={style.companyPhoto_backgroung}
-      >
-        <img className={style.companyPhoto_img} src={iconImage} alt="img" />
-      </div>
     )
   }
 
@@ -131,6 +116,7 @@ const SupplierAccountMainPage = () => {
     }
     console.log(' dataForDispatch', dataForDispatch)
     dispatch(postSupplierAccountDataService(dataForDispatch))
+    // dispatch(uploadUserLogoService())
   }
 
   if (isLoading) return <Loader />
@@ -237,34 +223,24 @@ const SupplierAccountMainPage = () => {
                   <div className={style.header}>Business Profile</div>
                 </div>
                 <div className={style.profileLogo}>
-                  {data.business_profile.logo_url ? (
-                    <img
-                      alt="logo"
-                      src={data.business_profile.logo_url}
-                      width={'80px'}
-                      height={'80px'}
-                      borderradius={'50%'}
-                    />
-                  ) : (
-                    <div className={style.profileLogo_backgroung}>
-                      <img
-                        className={style.profileLogo_img}
-                        src={iconImage}
-                        alt="logo"
-                      />
-                    </div>
-                  )}
-                  <div className={style.profileLogo_description}>
-                    <div className={style.profileLogo_descriptionTitle}>
-                      Add logo or profile image
-                    </div>
-                    <div className={style.profileLogo_descriptionSubtitle}>
-                      The customers will recognize your
-                    </div>
-                    <div className={style.profileLogo_descriptionSubtitle}>
-                      store by this image
-                    </div>
-                  </div>
+                  <AddingImageSpot
+                    imgUrl={logoImgUrl}
+                    // imgUrl={
+                    //   data.business_profile.logo_url
+                    //     ? data.business_profile.logo_url
+                    //     : logoImgUrl
+                    // }
+                    photoFromResponce={data.business_profile.logo_url}
+                    setImgUrl={setLogoImgUrl}
+                    images={images}
+                    setImages={setImages}
+                    classes={classesOfLogoImage}
+                    label={'Add logo or profile image'}
+                    placeholder={
+                      'The customers will recognize your store by this image'
+                    }
+                    register={register('profileLogo')}
+                  />
                 </div>
                 <div className={style.fieldsWrapper}>
                   <div className={style.flexContainer}>
@@ -355,14 +331,30 @@ const SupplierAccountMainPage = () => {
                 </div>
                 <div className={style.companyPhotoWrapper}>
                   {data.business_profile.url.length
-                    ? data.business_profile.url.map((photo, index) =>
-                        renderPhoto(photo, index)
-                      )
-                    : [1, 2, 3, 4, 5].map((index) => renderSamples(index))}
+                    ? data.business_profile.url.map((photo, index) => (
+                        <div className={style.photo} key={index}>
+                          {renderPhoto(photo)}
+                        </div>
+                      ))
+                    : [1, 2, 3, 4, 5].map((index) => (
+                        <AddingImage
+                          key={'index_' + index}
+                          images={images}
+                          setImages={setImages}
+                          classes={classesOfCompanyImages}
+                        />
+                      ))}
                   {data.business_profile.url.length !== 0 &&
                     [1, 2, 3, 4, 5]
                       .slice(data.business_profile.url.length)
-                      .map((index) => renderSamples(index))}
+                      .map((index) => (
+                        <AddingImage
+                          key={'index_' + index}
+                          images={images}
+                          setImages={setImages}
+                          classes={classesOfCompanyImages}
+                        />
+                      ))}
 
                   <input
                     className={style.hidden}
@@ -404,7 +396,6 @@ const SupplierAccountMainPage = () => {
                 <div className={style.textFieldWrapper}>
                   <TextField
                     register={register('businessEmail', {
-                      required: 'First name is required!',
                       pattern: {
                         value: /^\w+\S+@\w+\S+\.[\w+\S+]{2,}$/g,
                         message: 'Email is incorrect!'

@@ -314,6 +314,22 @@
   margin: 0;
 }
 
+.uploadedImage {
+  width: 95px;
+  height: 95px;
+  border-radius: 10px;
+}
+
+.uploadedImageLogo {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+}
+
+.profileLogo_backgroung {
+  cursor: pointer;
+}
+
 .profileLogo_backgroung,
 .companyPhoto_backgroung {
   display: flex;
@@ -375,6 +391,7 @@
   text-decoration-line: underline;
   color: #fc133d;
   margin-bottom: 8px;
+  cursor: pointer;
 }
 
 .profileLogo_descriptionSubtitle {
