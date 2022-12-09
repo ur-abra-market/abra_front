@@ -7,6 +7,7 @@ import ForgotPasswordPage from '../components/pages/ForgotPasswordPage'
 import ResetPasswordPage from '../components/pages/ResetPasswordPage'
 import supplierRoute from './supplierRoute'
 import sellerRoute from './sellerRoute'
+import ChangePasswordPage from '../components/pages/ChangePasswordPage/ChangePasswordPage'
 
 const profile = localStorage.getItem('profile')
 
@@ -34,6 +35,10 @@ const routes = createBrowserRouter([
   {
     path: 'resetPassword',
     element: <ResetPasswordPage />
+  },
+  {
+    path: 'changePassword',
+    element: <ChangePasswordPage />
   },
   {
     path: 'register/email-confirmation',
