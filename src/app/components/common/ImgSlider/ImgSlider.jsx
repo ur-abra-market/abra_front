@@ -33,7 +33,7 @@ const ImgSlider = ({ srcArr }) => {
             <img
               className={style.imgSlider__window_list_img}
               key={`card_slide_${i}`}
-              src={src.image_url}
+              src={src === '$URL' ? './assets/image/none.png' : src}
               alt="img"
             />
           ))}

@@ -8,7 +8,7 @@ const Search = ({ placeholder, searchIcon, classes, onClick }) => {
   const [text, setText] = useState('')
 
   const handleSubmit = async () => {
-    navigate('../productList')
+    navigate('../products-list')
     // передаём action в Dispatch (выполняем запрос на сервер)
   }
 

@@ -11,6 +11,8 @@ import formRegistrationReducer from './reducers/formRegistrationSlice'
 import supplierReducer from './reducers/supplierSlice'
 import manageProductsReducer from './reducers/manageProductsSlice'
 import supplierAccountReducer from './reducers/supplierAccountSlice'
+import { mainPageReducer } from './reducers/mainPageSlice'
+import userReducer from './reducers/userSlice'
 import modalReducer from './reducers/modalSlice'
 import { similarProductsReducer } from './reducers/similarProducts'
 import { targetProductReducer } from './reducers/targetProductSlice'
@@ -30,8 +32,10 @@ export const store = configureStore({
     formRegistration: formRegistrationReducer,
     supplier: supplierReducer,
     supplierAccount: supplierAccountReducer,
-    modal: modalReducer,
     manageProducts: manageProductsReducer,
+    mainPageProducts: mainPageReducer,
+    user: userReducer,
+    modal: modalReducer,
     similarProducts: similarProductsReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',

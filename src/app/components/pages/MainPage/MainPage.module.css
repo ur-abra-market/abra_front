@@ -1,4 +1,4 @@
-.main-page {
+.main_page {
   display: flex;
   flex-direction: column;
   width: calc(100% - 64px);
@@ -7,7 +7,7 @@
   background-color: #ffffff;
 }
 
-.Main__sliders {
+.main__sliders {
   width: 100%;
   margin-top: 56px;
   height: fit-content;
