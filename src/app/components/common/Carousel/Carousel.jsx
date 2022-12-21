@@ -2,13 +2,13 @@ import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import style from './Carousel.module.css'
 
-export const Carousel = ({title, arrayLength, children}) => {
-
+export const Carousel = ({title, arrayLength, children, widthSlider = 1376}) => {
+    console.log('SLIDER', widthSlider)
     const widthCart = 220
     const gap = 11
     const step = widthCart + gap
     const widthList = arrayLength * widthCart + (arrayLength - 1) * gap
-    const widthSlider = 1376
+
     const dl = widthSlider - widthList
     const [left, setLeft] = useState(0)
 
@@ -21,9 +21,9 @@ export const Carousel = ({title, arrayLength, children}) => {
     return (
         <div className={style.slider}>
             <div className={style.slider__control}>
-                <div className={style.slider__name}>
+                {title && <div className={style.slider__name}>
                     <h2>{title}</h2>
-                </div>
+                </div>}
                 <div className={style.slider__btn}>
                     <div
                         className={style.slider__btn_left}
@@ -45,7 +45,8 @@ export const Carousel = ({title, arrayLength, children}) => {
 }
 
 Carousel.propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    widthSlider: PropTypes.number,
     arrayLength: PropTypes.number.isRequired,
     children: PropTypes.node.isRequired
 }

@@ -47,8 +47,8 @@ const Stars = ({ reward  }) => {
           fill="url('#StarGradient0')"
         />
         <linearGradient id="StarGradient0">
-          <stop stopColor="#000000" />
-          <stop offset={percent[0]} stopColor="#000000" />
+          <stop stopColor="#FFAB5E" />
+          <stop offset={percent[0]} stopColor="#FFAB5E" />
           <stop offset={percent[0]} stopColor="#B6B6B6" />
           <stop offset="100%" stopColor="#B6B6B6" />
         </linearGradient>
@@ -65,8 +65,8 @@ const Stars = ({ reward  }) => {
           fill="url('#StarGradient1')"
         />
         <linearGradient id="StarGradient1">
-          <stop stopColor="#000000" />
-          <stop offset={percent[1]} stopColor="#000000" />
+          <stop stopColor="#FFAB5E" />
+          <stop offset={percent[1]} stopColor="#FFAB5E" />
           <stop offset={percent[1]} stopColor="#B6B6B6" />
           <stop offset="100%" stopColor="#B6B6B6" />
         </linearGradient>
@@ -83,8 +83,8 @@ const Stars = ({ reward  }) => {
           fill="url('#StarGradient2')"
         />
         <linearGradient id="StarGradient2">
-          <stop stopColor="#000000" />
-          <stop offset={percent[2]} stopColor="#000000" />
+          <stop stopColor="#FFAB5E" />
+          <stop offset={percent[2]} stopColor="#FFAB5E" />
           <stop offset={percent[2]} stopColor="#B6B6B6" />
           <stop offset="100%" stopColor="#B6B6B6" />
         </linearGradient>
@@ -101,8 +101,8 @@ const Stars = ({ reward  }) => {
           fill="url('#StarGradient3')"
         />
         <linearGradient id="StarGradient3">
-          <stop stopColor="#000000" />
-          <stop offset={percent[3]} stopColor="#000000" />
+          <stop stopColor="#FFAB5E" />
+          <stop offset={percent[3]} stopColor="#FFAB5E" />
           <stop offset={percent[3]} stopColor="#B6B6B6" />
           <stop offset="100%" stopColor="#B6B6B6" />
         </linearGradient>
@@ -120,7 +120,7 @@ const Stars = ({ reward  }) => {
         />
         <linearGradient id="StarGradient4">
           <stop stopColor="#000000" />
-          <stop offset={percent[4]} stopColor="#000000" />
+          <stop offset={percent[4]} stopColor="#FFAB5E" />
           <stop offset={percent[4]} stopColor="#B6B6B6" />
           <stop offset="100%" stopColor="#B6B6B6" />
         </linearGradient>
@@ -130,7 +130,7 @@ const Stars = ({ reward  }) => {
 }
 
 Stars.propTypes = {
-  reward: PropTypes.number
+  reward: PropTypes.number.isRequired
 }
 
 export default Stars

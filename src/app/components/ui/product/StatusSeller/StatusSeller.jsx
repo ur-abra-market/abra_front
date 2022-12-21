@@ -5,6 +5,7 @@ import {HangerIcon, StarIcon} from '../../../../assets/img'
 
 
 const StatusSeller = ({supplierInfo}) => {
+
   const {name, grade_average, total_deals} = supplierInfo
 
   return (

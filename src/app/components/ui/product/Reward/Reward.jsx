@@ -4,7 +4,7 @@ import style from './Reward.module.css'
 import {StarIcon} from '../../../../assets/img'
 
 const Reward = ({ star, grade }) => {
-  // const { grade_average, count } = grade
+  //const { grade_average, count } = grade
 
 
   const thousands = grade?.count > 999 ? Math.floor(grade?.count / 1000) : ''

@@ -19,11 +19,11 @@ export const getProductById = createAsyncThunk(
   }
 )
 
-export const getPopularProductById = createAsyncThunk(
-    'targetProduct/getPopularProductById',
+export const getGradesByProductId = createAsyncThunk(
+    'targetProduct/getGradesByProductId',
     async function ({ product_id }, { rejectWithValue }) {
       try {
-        return await productFetch.getPopularProductById({product_id})
+        return await productFetch.getGradesByProductId({product_id})
       } catch (error) {
         const err = error.response.data.result
             ? error.response.data.result
@@ -34,11 +34,11 @@ export const getPopularProductById = createAsyncThunk(
 )
 
 const initialState = {
-  product: {},
-  images: [],
-  popularProducts: [],
+  product: undefined,
+  gradesData: undefined,
+  images: undefined,
   status: Status.Idle,
-  error: undefined
+  error: undefined,
 }
 
 const targetProductSlice = createSlice({
@@ -56,17 +56,10 @@ const targetProductSlice = createSlice({
     builder.addCase(getProductById.rejected, (state) => {
       state.status = Status.Failed
     })
-
-    // builder.addCase(getPopularProductById.pending, (state) => {
-    //   state.status = Status.Loading
-    // })
-    builder.addCase(getPopularProductById.fulfilled, (state, action) => {
-      state.popularProducts = action.payload
-      //state.status = Status.Success
+    builder.addCase(getGradesByProductId.fulfilled, (state, action) => {
+      console.log('ACTION GRADE', action.payload)
+      state.gradesData = action.payload
     })
-    // builder.addCase(getPopularProductById.rejected, (state) => {
-    //   state.status = Status.Failed
-    // })
   },
   reducers: {}
 })

@@ -113,6 +113,7 @@
     width: 220px;
     height: 220px;
     position: relative;
+    cursor: pointer;
 }
 
 .card__image:hover > .card__hover{
@@ -140,7 +141,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
     border-radius: 8px;
     z-index: -10;
     opacity: 0;
@@ -195,7 +196,7 @@
     gap: 4px;
     margin-top: 8px;
     font-size: var(--fd);
-    font-family: 'SF Pro Display Bold';
+    font-family: 'SF Pro Display Bold', sans-serif;
     margin-bottom: 4px;
 }
 
@@ -203,7 +204,7 @@
     display: block;
     align-self: flex-end;
     font-size: var(--fs);
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
     color: #828282;
 }
 

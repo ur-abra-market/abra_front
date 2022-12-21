@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react'
 import style from './ProductPhoto.module.css'
 import PropTypes from 'prop-types'
 
-//const baseurl = './assets/image/products'
-//const photoAll = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png']
-
 const ProductPhoto = ({photoArray}) => {
   const step = 114
 
