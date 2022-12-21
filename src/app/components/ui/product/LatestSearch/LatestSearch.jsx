@@ -8,9 +8,9 @@ const LatestSearch = ({latestSearchData}) => {
     <div className={style.latestSearch}>
       <h2>Latest searches</h2>
       <div className={style.latestSearch__list}>
-        {latestSearchData.map((e, i) => (
+        {latestSearchData.map(({search_query}, i) => (
           <div className={style.latestSearch__list_item} key={`search-${i}`}>
-            {e}
+            {search_query}
           </div>
         ))}
       </div>

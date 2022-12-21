@@ -12,15 +12,23 @@ export const productFetch = {
     return data.result
   },
 
-  getProductByIdAndSellerId: async ({product_id, seller_id }) => {
-    const { data } = await httpService.get(
-        `products/product_card_p1/`, {params: {
+  getProductById: async ({product_id }) => {
+    const { data } = await httpService.post(
+        `products/product_card_p1/`, {},{params: {
             product_id,
-            seller_id,
           }}
     )
     return data.result
   },
+
+    getProductImagesById: async ({product_id }) => {
+        const { data } = await httpService.get(
+            `products/images/`, {params: {
+                    product_id,
+                }}
+        )
+        return data.result
+    },
 
     getPopularProductById: async ({product_id }) => {
         const { data } = await httpService.get(

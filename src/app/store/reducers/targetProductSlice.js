@@ -2,11 +2,14 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {productFetch} from '../../services/product.service'
 import {Status} from '../enums/status.enum'
 
-export const getProductByIdAndSellerId = createAsyncThunk(
-  'targetProduct/getProductByIdAndSellerId',
-  async function ({ product_id, seller_id }, { rejectWithValue }) {
+export const getProductById = createAsyncThunk(
+  'targetProduct/getProductById',
+  async function ({ product_id }, { rejectWithValue }) {
     try {
-      return await productFetch.getProductByIdAndSellerId({product_id, seller_id})
+      const product = await productFetch.getProductById({product_id})
+      const images = await productFetch.getProductImagesById({product_id})
+
+      return {product, images}
     } catch (error) {
       const err = error.response.data.result
         ? error.response.data.result
@@ -32,6 +35,7 @@ export const getPopularProductById = createAsyncThunk(
 
 const initialState = {
   product: {},
+  images: [],
   popularProducts: [],
   status: Status.Idle,
   error: undefined
@@ -41,14 +45,15 @@ const targetProductSlice = createSlice({
   name: 'targetProduct',
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(getProductByIdAndSellerId.pending, (state) => {
+    builder.addCase(getProductById.pending, (state) => {
       state.status = Status.Loading
     })
-    builder.addCase(getProductByIdAndSellerId.fulfilled, (state, action) => {
-      state.product = action.payload
+    builder.addCase(getProductById.fulfilled, (state, action) => {
+      state.product = action.payload.product
+      state.images = action.payload.images
       state.status = Status.Success
     })
-    builder.addCase(getProductByIdAndSellerId.rejected, (state) => {
+    builder.addCase(getProductById.rejected, (state) => {
       state.status = Status.Failed
     })
 

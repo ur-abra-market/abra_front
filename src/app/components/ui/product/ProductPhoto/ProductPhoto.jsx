@@ -56,8 +56,8 @@ const ProductPhoto = ({photoArray}) => {
                 className={style.photo__slider_slide}
                 key={`${p}-${index}`}
                 // src={`${baseurl}/${p}`}
-                src={p}
-                alt="ptoduct"
+                src={p?.image_url}
+                alt="product"
               />
             ))}
             {slidesHalf2.map((p, index) => (
@@ -65,8 +65,8 @@ const ProductPhoto = ({photoArray}) => {
                 className={style.photo__slider_slide}
                 key={`${p}-${index}`}
                 // src={`${baseurl}/${p}`}
-                src={p}
-                alt="ptoduct"
+                src={p?.image_url}
+                alt="product"
               />
             ))}
           </div>
@@ -75,7 +75,7 @@ const ProductPhoto = ({photoArray}) => {
       </div>
       <div className={style.photo__image}>
         {/*<img src={`${baseurl}/${slides[len + 1 - count]}`} alt="ptoduct" />*/}
-        <img src={`${slides[len + 1 - count]}`} alt="ptoduct" />
+        <img src={`${slides[len + 1 - count]?.image_url}`} alt="product" />
       </div>
     </div>
   )
