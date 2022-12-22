@@ -1,14 +1,28 @@
 .productStatistics {
-  width: 338px;
+  /*width: 338px;*/
   display: flex;
   flex-direction: column;
+}
+
+.sizes{
+  margin-bottom: 70px;
+}
+
+.sizes-title{
+  margin-bottom: 8px;
+
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
 }
 
 .productStatistics__basic {
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 45px;
+  gap: 16px;
 }
 
 .productStatistics__demend {
@@ -19,10 +33,10 @@
 }
 
 .productStatistics__demend_parameter {
-  font-family: 'Roboto';
-  font-weight: 400;
-  font-size: var(--fp);
-  line-height: 24px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
 }
 
 .productStatistics__demend_value {
@@ -32,11 +46,10 @@
 }
 .productStatistics__demend_note {
   margin-top: 4px;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  font-size: 8px;
+  font-size: 12px;
   line-height: 16px;
-  letter-spacing: 0.16px;
   color: #828282;
 }
 

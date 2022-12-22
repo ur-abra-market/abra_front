@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import {HangerIcon, StarIcon} from '../../../../assets/img'
 
 
-const StatusSeller = ({supplierInfo}) => {
+const StatusSeller = ({supplierInfo }) => {
 
-  const {name, grade_average, total_deals} = supplierInfo
+  //const {name, grade_average, total_deals} = supplierInfo
 
   return (
     <div className={style.statusSeller}>
@@ -22,9 +22,9 @@ const StatusSeller = ({supplierInfo}) => {
             <div className={style.statusSeller__star}>
               <StarIcon/>
             </div>
-            <div className={style.statusSeller__numbers}>{grade_average}</div>
+            <div className={style.statusSeller__numbers}>{supplierInfo?.grade_average}</div>
             <div className={style.statusSeller__deals}>
-              <p>{total_deals} Deals</p>
+              <p>{supplierInfo?.total_deals} Deals</p>
             </div>
           </div>
         </div>

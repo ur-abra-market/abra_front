@@ -15,7 +15,7 @@ import Header from '../../common/Header'
 import {useDispatch, useSelector} from 'react-redux'
 import {getSimilarProducts} from '../../../store/reducers/similarProducts'
 import {
-    getGradesByProductId,
+    getGradesByProductId, getImagesByProductId,
     getProductById
 } from '../../../store/reducers/targetProductSlice'
 import {useParams} from 'react-router-dom'
@@ -101,6 +101,7 @@ const ProductPage = () => {
 
     useEffect(() => {
         dispatch(getProductById({product_id: productId}))
+        dispatch(getImagesByProductId({product_id: productId}))
         dispatch(getGradesByProductId({product_id: productId}))
         dispatch(getSimilarProducts({productId}))
         dispatch(getPopularProductsById({product_id: productId}))

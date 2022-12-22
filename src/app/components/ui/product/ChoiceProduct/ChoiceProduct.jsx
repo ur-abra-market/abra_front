@@ -62,26 +62,28 @@ const ChoiceProduct = ({colors}) => {
       </div>
       <div className={style.choiceProduct__price}>
         <div className={style.choiceProduct__price_item}>
-          1pc<span> .......................................... </span>$
+          1pc<span className={style.choiceProduct__price_item_line} />$
           {Math.floor(price) < price ? price.toFixed(2) : price}
         </div>
-        <div className={style.choiceProduct__price_discount}>
-          {max}pc <span> ............................................ </span>$
+
+        <div className={style.choiceProduct__price_item}>
+          {max}pc <span className={style.choiceProduct__price_item_line} />
           {Math.floor(discount) < discount ? discount.toFixed(2) : discount}
         </div>
-        <div className={style.choiceProduct__price_amount}>
-          {max}pc
-          <span> ................................................... </span>$
+
+        <div className={style.choiceProduct__price_item}>
+          {max}pc <span className={style.choiceProduct__price_item_line} />$
           {Math.floor(amount) < amount ? amount.toFixed(2) : amount}
         </div>
-        <div className={style.choiceProduct__price_ship}>
-          Shipping{' '}
-          <span> ................................................. </span>$
+
+        <div className={style.choiceProduct__price_item}>
+          Shipping{' '}<span className={style.choiceProduct__price_item_line} />$
           {Math.floor(ship) < ship ? ship.toFixed(2) : ship}
         </div>
+
         <div className={style.choiceProduct__price_total}>
-          <h4>Total</h4>{' '}
-          <h4>${Math.floor(total) < total ? total.toFixed(2) : total}</h4>
+          <div>Total</div>
+          <div>${Math.floor(total) < total ? total.toFixed(2) : total}</div>
         </div>
       </div>
     </div>
