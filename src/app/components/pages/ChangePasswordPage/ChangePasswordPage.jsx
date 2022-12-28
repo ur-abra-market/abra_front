@@ -3,10 +3,10 @@ import Modal from '../../common/Modal'
 import { Button } from '../../common/buttons'
 import styleBtn from '../../common/buttons/buttons.module.css'
 import style from './ChangePasswordPage.module.css'
-import ChangePasswordForm from '../../ui/ChangePasswordForm/ChangePasswordForm'
+import ChangePasswordForm from '../../ui/ChangePasswordForm'
 import { Link, useNavigate } from 'react-router-dom'
 
-const ResetPasswordPage = () => {
+const ChangePasswordPage = () => {
   const navigate = useNavigate()
   const [modalActive, setModalActive] = useState(false)
   const handleChangeModalActive = () => {
@@ -50,4 +50,4 @@ const ResetPasswordPage = () => {
     </>
   )
 }
-export default ResetPasswordPage
+export default ChangePasswordPage
