@@ -1,0 +1,31 @@
+.size-item{
+  display: inline-block;
+  text-align: center;
+  min-width: 64px;
+  margin-right: 4px;
+  margin-bottom: 12px;
+  padding: 3px 7px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-family: Roboto,sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  cursor: pointer;
+}
+
+.base {
+  background-color: #F4F4F4;
+
+  /* Black */
+  color: #000;
+}
+
+.selected{
+  background: #FFF;
+
+  /* Accent Color */
+  color: #FC133D;
+  border: 1px solid #FC133D;
+}

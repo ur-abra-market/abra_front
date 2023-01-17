@@ -1,0 +1,33 @@
+.textWrapper {
+  position: relative;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 34px;
+  text-align: left;
+}
+
+.text {
+  margin-top: 8px;
+  font-size: 15px;
+  text-align: left;
+}
+
+.stepWrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.step {
+  color: #999;
+  font-weight: 700;
+  font-size: 34px;
+  margin-bottom: 6px;
+  text-align: right;
+}
+
+.link {
+  color: #828282;
+}

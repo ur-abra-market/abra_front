@@ -1,0 +1,44 @@
+.social {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: fit-content;
+  height: 98px;
+}
+
+.social__text {
+  font-size: var(--fd);
+  font-family: "SF Pro Display" Bold;
+}
+
+.social__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 212px;
+}
+
+.social__list_btn {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #DDD;
+  align-items: center;
+  justify-content: center;
+}
+
+.social__list_btn > a {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.social__list_btn > a > img {
+  display: block;
+  width: fit-content;
+  height: fit-content;
+}

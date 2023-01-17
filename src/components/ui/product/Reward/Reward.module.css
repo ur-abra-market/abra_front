@@ -1,0 +1,18 @@
+.reward {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  gap: 8px;
+}
+
+.reward_numbers {
+  font-style: normal;
+  font-weight: 400;
+  font-size: var(--fp);
+  line-height: 20px;
+  color: var(--light-gray);
+}
+
+.none-star {
+  display: none;
+}

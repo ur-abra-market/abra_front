@@ -4,38 +4,38 @@
 
 @font-face {
   font-family: 'SF Pro Display Regular';
-  src: url('./app/assets/fonts/SFProDisplay-Regular.ttf');
+  src: url('assets/fonts/SFProDisplay-Regular.ttf');
 }
 @font-face {
   font-family: 'SF Pro Display Black';
-  src: url('./app/assets/fonts/SFProDisplay-Black.ttf');
+  src: url('assets/fonts/SFProDisplay-Black.ttf');
 }
 @font-face {
   font-family: 'SF Pro Display Bold';
-  src: url('./app/assets/fonts/SFProDisplay-Bold.ttf');
+  src: url('assets/fonts/SFProDisplay-Bold.ttf');
 }
 @font-face {
   font-family: 'SF Pro Display Medium';
-  src: url('./app/assets/fonts/SFProDisplay-Medium.ttf');
+  src: url('assets/fonts/SFProDisplay-Medium.ttf');
 }
 @font-face {
   font-family: 'SF Pro Display Light';
-  src: url('./app/assets/fonts/SFProDisplay-Light-1.ttf');
+  src: url('assets/fonts/SFProDisplay-Light-1.ttf');
 }
 @font-face {
   font-family: 'SF Pro Display RegularItalic';
-  src: url('./app/assets/fonts/SFProDisplay-RegularItalic.ttf');
+  src: url('assets/fonts/SFProDisplay-RegularItalic.ttf');
 }
 
 :root {
-  /*-------color------*/
-  --black: #000000;
-  --gray: #c4c4c4;
+  /* -------color------ */
+  --black: #000;
+  --gray: #C4C4C4;
   --light-gray: #828282;
+  --back: #F5F5F5;
+  --front: #FFF;
 
-  --back: #f5f5f5;
-  --front: #ffffff;
-  /*-------fonts------*/
+  /* -------fonts------ */
   --fh1: 64px;
   --fh2: 34px;
   --fh3: 25px;
@@ -52,13 +52,13 @@
   text-decoration: none;
   list-style-type: none;
 }
-*:before,
-*:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
+
+*::before,
+*::after {
   -webkit-tap-highlight-color: transparent;
   box-sizing: border-box;
 }
+
 *:focus,
 *:active {
   outline: none;
@@ -66,15 +66,16 @@
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+  appearance: none;
 }
+
 input[type='number'] {
-  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 body {
-  /*background-color: var(--back);*/
-  font-family: 'Roboto';
+  /* background-color: var(--back); */
+  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   -webkit-font-smoothing: antialiased;
@@ -85,14 +86,17 @@ h1 {
   font-size: var(--fh1);
   letter-spacing: 0.41px;
 }
+
 h2 {
   font-size: var(--fh2);
   letter-spacing: 0.41px;
 }
+
 h3 {
   font-size: var(--fh3);
   letter-spacing: 0.38px;
 }
+
 h4 {
   font-size: var(--fh4);
   letter-spacing: 0.38px;

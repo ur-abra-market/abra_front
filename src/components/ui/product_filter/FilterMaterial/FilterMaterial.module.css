@@ -1,0 +1,55 @@
+.filterMaterial {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+}
+
+.filterMaterial__title {
+  margin-bottom: 4px;
+}
+
+.filterMaterial__list {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 12px;
+  column-gap: 4px;
+}
+
+.filterMaterial__btns {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 24px;
+}
+
+.filterMaterial__list_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 22px;
+  padding: 4px 16px;
+  border: 1px #E5E5E5 solid;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.filter-item_active {
+  padding-right: 4px;
+}
+
+.filter-item_active::after {
+  position: relative;
+  content: '';
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  background: url('../../../../assets/img/icons/filter_cross.png');
+  background-size: cover;
+}
+
+.none {
+  display: none;
+}

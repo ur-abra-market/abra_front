@@ -1,0 +1,372 @@
+.sellerCabinet {
+  background: #F5F5F5;
+  padding: 24px 30px 48px;
+}
+
+.sellerCabinet__contentWrapper {
+  display: grid;
+  grid-template-columns: 34.2% 43.7% 19.9%;
+  grid-template-rows: minmax(min-content, 26.59vh) minmax(min-content, 34.56vh);
+
+  /* grid-template-columns: 470px 600px 273px; */
+
+  /* grid-template-rows: 26.59vh 34.56vh; */
+  grid-gap: 16px;
+  grid-template-areas: 'profileInfo orders notifications' 'accountDetails myAddresses notifications';
+}
+
+.profileInfo {
+  grid-area: profileInfo;
+}
+
+.orders {
+  grid-area: orders;
+}
+
+.notifications {
+  grid-area: notifications;
+}
+
+.accountDetails {
+  grid-area: accountDetails;
+}
+
+.myAddresses {
+  grid-area: myAddresses;
+}
+
+.section {
+  background: #FFF;
+  border-radius: 8px;
+  padding: 24px 32px;
+}
+
+.avatar__wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.38px;
+  color: #000;
+  text-align: left;
+}
+
+.header__link {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0.16px;
+  text-decoration-line: underline;
+  color: #000;
+}
+
+.wrepperButtonLinkProfile {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+}
+
+.wrepperButtonLinkProfile:hover {
+  cursor: pointer;
+}
+
+.wrepperBtnImgProfile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 80px;
+  background: #E0E0E0;
+  border-radius: 50%;
+
+  /* width: 80px;
+height: 80px; */
+
+  /* width: calc(80px + 1vw); 
+height: calc(80px + 1vw); */
+
+  /* width: calc(24px + 4vw);
+height: calc(24px + 4vw);
+background: #E0E0E0;
+border-radius: 100%; */
+}
+
+.btnImgProfile,
+.btnImg {
+  display: block;
+  width: 37.5%;
+}
+
+.btnNameProfile {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0.16px;
+  text-decoration-line: underline;
+  color: #828282;
+}
+
+.profileInfo__textFields {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.flexContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.textFieldLabel {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: -0.08px;
+  color: #4F4F4F;
+}
+
+.profileInfo__textFieldInput,
+.accountDetails__textFieldInput {
+  height: 42px;
+  padding-left: 12px;
+  background: #F2F2F2;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+  color: #828282;
+}
+
+.profileInfo__textFieldInput {
+  width: 100%;
+}
+
+.inputWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0;
+
+  /* margin-bottom: 12px; */
+  border: none;
+  background: #F2F2F2;
+}
+
+.accountDetails__textFieldInput {
+  width: 100%;
+}
+
+.inputWrapper__inputTextField {
+  width: 100%;
+}
+
+.inputWrapper__inputTextFieldPassword {
+  width: 100%;
+  display: flex;
+}
+
+.accountDetails__inputTextFieldPassword {
+  background: #F2F2F2;
+  width: 100%;
+  height: 42px;
+  padding-left: 12px;
+}
+
+.ordersCategory__wrapper {
+  position: relative;
+  top: 0;
+  left: 0;
+  margin-top: 44px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  /* gap: 32px; */
+  margin-bottom: 30px;
+}
+
+.wrepperButtonLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.wrepperButtonLink:hover {
+  cursor: pointer;
+}
+
+.wrepperBtnImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 80px;
+  background-color: var(--back);
+  border-radius: 50%;
+}
+
+.btnName {
+  line-height: 16px;
+  letter-spacing: -0.24px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+
+  /* line-height: 24px; */
+  color: #828282;
+  text-decoration: none;
+}
+
+.notificationsList {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 16px;
+}
+
+.notificationsList__item {
+  padding-top: 12px;
+}
+
+.notificationsList__item::after {
+  content: '';
+  margin-top: 12px;
+  display: block;
+  height: 1px;
+  background: #F2F2F2;
+}
+
+.notificationsList__item:last-child::after {
+  display: none;
+}
+
+.labelCheckbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+  color: #000;
+}
+
+.inputCheckbox {
+  appearance: none;
+  border: none;
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width: 52px;
+  height: 32px;
+  padding: 1px;
+  background: #F2F2F2;
+  border-radius: 36.5px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.inputCheckbox::before,
+.inputCheckbox::after {
+  position: absolute;
+  content: '';
+  display: inline-block;
+}
+
+.inputCheckbox::before {
+  width: 28px;
+  height: 28px;
+  background: #FFF;
+  border: 0.5px solid rgb(0 0 0 / 4%);
+  box-shadow: 0 3px 8px rgb(0 0 0 / 15%), 0 1px 1px rgb(0 0 0 / 16%),
+    0 3px 1px rgb(0 0 0 / 10%);
+  border-radius: 100px;
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.inputCheckbox::after {
+  border: 0.5px solid rgb(0 0 0 / 4%);
+  box-shadow: 0 3px 8px rgb(0 0 0 / 15%), 0 1px 1px rgb(0 0 0 / 16%),
+    0 3px 1px rgb(0 0 0 / 10%);
+}
+
+.inputCheckbox:checked {
+  background: #000;
+  justify-content: right;
+}
+
+.accountDetails__wrapper {
+  max-width: 406px;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.myAddresses__wrapper {
+  margin-top: 58px;
+}
+
+.noAddress {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0.16px;
+  color: #828282;
+}
+
+.removeWrapper {
+  display: flex;
+  flex-flow: column;
+  margin-top: 38px;
+}
+
+.removeAccauntLink,
+.linkDescription {
+  text-align: left;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 32px;
+  letter-spacing: 0.16px;
+  text-decoration-line: underline;
+  color: #000;
+}
+
+.linkDescription {
+  color: #828282;
+}

@@ -1,4 +1,4 @@
-**/node_modules/**
-**/build/**
-**/.history/**
-.eslintrc.js
+*.css
+*.scss
+*.json
+*.d.ts

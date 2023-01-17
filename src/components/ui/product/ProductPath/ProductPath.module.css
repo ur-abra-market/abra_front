@@ -1,0 +1,25 @@
+.productPath {
+  display: flex;
+  height: 24px;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+  color: #000;
+}
+
+.productPath__item {
+  color: inherit;
+}
+
+.productPath__item > span {
+  margin: 0 24px;
+}
+
+.productPath__item:last-child{
+  pointer-events: none;
+}
+
+.productPath__item:last-child > span {
+  display: none;
+}
