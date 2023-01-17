@@ -2,12 +2,12 @@ import React from 'react';
 
 import { createBrowserRouter } from 'react-router-dom';
 
-import ConfirmEmailPage from '../components/pages/ConfirmEmailPage';
-import ErrorPage from '../components/pages/ErrorPage/ErrorPage';
-import ForgotPasswordPage from '../components/pages/ForgotPasswordPage';
-import ResetPasswordPage from '../components/pages/ResetPasswordPage';
 import Auth from '../layouts/Auth';
 import Main from '../layouts/Main';
+import ConfirmEmailPage from '../pages/ConfirmEmailPage';
+import ErrorPage from '../pages/ErrorPage/ErrorPage';
+import ForgotPasswordPage from '../pages/ForgotPasswordPage';
+import ResetPasswordPage from '../pages/ResetPasswordPage';
 
 import sellerRoute from './sellerRoute';
 import supplierRoute from './supplierRoute';

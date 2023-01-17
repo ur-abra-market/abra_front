@@ -126,11 +126,17 @@
                 "allowExpressions": true
             }
         ],
+//        "camelcase": "off"
         "camelcase": ["error",
             {
                 "properties": "never",
                 "ignoreDestructuring":  true,
-                "allow": ["category_path", "is_favorite", "daily_actual_demand", "monthly_actual_demand", "supplier_info", "product_name"]
+                "allow": ["category_path",
+                    "is_favorite",
+                    "daily_actual_demand",
+                    "monthly_actual_demand",
+                    "supplier_info",
+                    "product_name", ""]
             }
         ]
     },

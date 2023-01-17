@@ -1,0 +1,55 @@
+import React, { useEffect } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import style from './MainPage.module.css';
+
+import { InfoBtn } from 'components/common/buttons';
+import Footer from 'components/common/Footer';
+import Header from 'components/common/Header';
+import Slider from 'components/common/Slider';
+import StatusProduct from 'components/common/StatusProduct';
+import Feedback from 'components/ui/feedback/Feedback';
+import { fetchProductList } from 'store/reducers/mainPageSlice';
+
+const MainPage = (): JSX.Element => {
+  const dispatch = useDispatch();
+  const filter = useSelector(state => state.product.statusProduct);
+  const categories = useSelector(state => state.mainPageProducts.products);
+
+  const CATEGORIES = {
+    0: 'All categories',
+    1: `Women's clothes`,
+    2: `Men's clothes`,
+    3: `Kid's clothes`,
+  };
+
+  useEffect(() => {
+    Object.keys(CATEGORIES).forEach(category => {
+      dispatch(fetchProductList({ type: filter, category }));
+    });
+  }, [filter]);
+
+  return (
+    <>
+      <div className={style.main_page}>
+        <Header />
+        <StatusProduct />
+        <div className={style.main__sliders}>
+          {Object.keys(categories).map(categoryId => (
+            <Slider
+              key={categoryId}
+              title={CATEGORIES[categoryId]}
+              products={categories[categoryId]}
+            />
+          ))}
+        </div>
+        <InfoBtn />
+      </div>
+      <Feedback />
+      <Footer />
+    </>
+  );
+};
+
+export default MainPage;

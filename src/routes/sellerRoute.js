@@ -1,12 +1,12 @@
 import React from 'react';
 
-import CheckoutPage from '../components/pages/CheckoutPage/CheckoutPage';
-import MainPage from '../components/pages/MainPage';
-import OrderDetailsPage from '../components/pages/OrderDetailsPage';
-import OrderHistoryPage from '../components/pages/OrderHistoryPage';
-import ProductListPage from '../components/pages/ProductListPage';
-import ProductPage from '../components/pages/ProductPage';
-import UserAccountPage from '../components/pages/SellerAccountPage';
+import CheckoutPage from '../pages/CheckoutPage/CheckoutPage';
+import MainPage from '../pages/MainPage';
+import OrderDetailsPage from '../pages/OrderDetailsPage';
+import OrderHistoryPage from '../pages/OrderHistoryPage';
+import ProductListPage from '../pages/ProductListPage';
+import ProductPage from '../pages/ProductPage';
+import UserAccountPage from '../pages/SellerAccountPage';
 
 const sellerRoute = [
   {

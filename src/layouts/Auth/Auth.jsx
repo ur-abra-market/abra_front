@@ -6,8 +6,8 @@ import iconApple from '../../assets/img/icons/Apple.png';
 import iconGoogle from '../../assets/img/icons/Google.png';
 import iconVK from '../../assets/img/icons/VK.png';
 import styleBtn from '../../components/common/buttons/buttons.module.css';
-import LoginPage from '../../components/pages/LoginPage';
-import RegisterPage from '../../components/pages/RegisterPage';
+import LoginPage from '../../pages/LoginPage';
+import RegisterPage from '../../pages/RegisterPage';
 
 import style from './Auth.module.css';
 

@@ -1,16 +1,16 @@
 import React from 'react';
 
-import AccountSetupPage from '../components/pages/AccountSetupPage';
-import AnalyticsPage from '../components/pages/AnalyticsPage';
-import BusinessProfilePage from '../components/pages/BusinessProfilePage';
-import DashboardPage from '../components/pages/DashboardPage';
-import FeedbackAndQuestionsPage from '../components/pages/FeedbackAndQuestionsPage';
-import OrdersPage from '../components/pages/OrdersPage';
-import PriceManagementPage from '../components/pages/PriceManagementPage';
-import ProductListRegistrationPage from '../components/pages/ProductListRegistrationPage';
-import ProductsListPage from '../components/pages/ProductsListPage';
-import SupplierAccountPage from '../components/pages/SupplierAccountMainPage';
-import SupplierPage from '../components/pages/SupplierPage';
+import AccountSetupPage from '../pages/AccountSetupPage';
+import AnalyticsPage from '../pages/AnalyticsPage';
+import BusinessProfilePage from '../pages/BusinessProfilePage';
+import DashboardPage from '../pages/DashboardPage';
+import FeedbackAndQuestionsPage from '../pages/FeedbackAndQuestionsPage';
+import OrdersPage from '../pages/OrdersPage';
+import PriceManagementPage from '../pages/PriceManagementPage';
+import ProductListRegistrationPage from '../pages/ProductListRegistrationPage';
+import ProductsListPage from '../pages/ProductsListPage';
+import SupplierAccountPage from '../pages/SupplierAccountMainPage';
+import SupplierPage from '../pages/SupplierPage';
 
 const supplierRoute = [
   {

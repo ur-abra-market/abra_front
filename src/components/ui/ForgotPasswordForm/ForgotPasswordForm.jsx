@@ -29,7 +29,7 @@ const ForgotPasswordForm = ({ togglePageType }) => {
 
   return (
     <form
-      action="/src/components/pages"
+      action="/src/pages"
       target="_self"
       onSubmit={handleSubmit(onSubmit)}
       className={style.forgotPasswordForm}
