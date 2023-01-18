@@ -31,17 +31,17 @@ const Auth = () => {
       )}
       <div className={style.socialNetworksWrapper}>
         <div className={`${styleBtn.commonButton} ${styleBtn.socialNetwork}`}>
-          <a href="/src/routes">
+          <a href="/src/routes" target="_blank">
             <img src={iconGoogle} alt="Google" />
           </a>
         </div>
         <div className={`${styleBtn.commonButton} ${styleBtn.socialNetwork}`}>
-          <a href="/src/routes">
+          <a href="/src/routes" target="_blank">
             <img src={iconApple} alt="Apple" />
           </a>
         </div>
         <div className={`${styleBtn.commonButton} ${styleBtn.socialNetwork}`}>
-          <a href="/src/routes">
+          <a href="/src/routes" target="_blank">
             <img src={iconVK} alt="VK" />
           </a>
         </div>
