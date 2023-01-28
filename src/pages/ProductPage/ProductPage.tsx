@@ -73,6 +73,8 @@ const ProductPage = (): JSX.Element => {
   // TODO заглушка - убрать
   console.log('status', status);
   if (status === Status.Loading || status === Status.Idle) return <Loader />;
+  if (status === Status.Failed)
+    throw Error('[ProductPage] - Status запроса failed. Не работает api!!!');
 
   return (
     <>
