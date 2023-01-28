@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+
   width: 100%;
   margin-top: 96px;
 }
@@ -9,20 +10,23 @@
 .statusProduct__btn {
   display: flex;
   flex-direction: column;
+  gap: 8px;
+  align-items: center;
+
   width: 240px;
   height: fit-content;
-  align-items: center;
-  gap: 8px;
 }
 
 .statusProduct__btn_name {
+  cursor: pointer;
+
   width: fit-content;
   height: fit-content;
-  text-align: center;
-  font-size: var(--fd);
+
   font-family: 'SF Pro Display Bold';
+  font-size: var(--fd);
   line-height: 25px;
-  cursor: pointer;
+  text-align: center;
 }
 
 .statusProduct__btn_check {

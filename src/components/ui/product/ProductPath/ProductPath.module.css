@@ -1,9 +1,11 @@
 .productPath {
   display: flex;
-  height: 24px;
   align-items: center;
-  font-weight: 600;
+
+  height: 24px;
+
   font-size: 16px;
+  font-weight: 600;
   line-height: 16px;
   color: #000;
 }

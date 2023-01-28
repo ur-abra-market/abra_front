@@ -1,18 +1,21 @@
 .feedback {
   display: flex;
   flex-direction: row;
+
   width: calc(100% - 64px);
   height: fit-content;
   padding: 32px;
+
   background-color: var(--back);
 }
 
 .feedback__left {
   display: flex;
   flex-direction: column;
+  gap: 67px;
+
   width: 60%;
   height: 100%;
-  gap: 67px;
 }
 
 .feedback__center {
@@ -22,11 +25,12 @@
 }
 
 .feedback__right {
-  width: calc(40% - 2px);
   display: flex;
-  padding-top: 80px;
   flex-direction: column;
   gap: 56px;
+
+  width: calc(40% - 2px);
+  padding-top: 80px;
 }
 
 .feedback__right_separator {
@@ -37,12 +41,14 @@
 
 .feedback__right_separator_text {
   display: block;
+
   width: 64px;
   height: 24px;
+
   font-size: var(--fp);
-  letter-spacing: 0.16px;
-  text-align: center;
   line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.16px;
 }
 
 .feedback__right_separator_line {

@@ -6,9 +6,10 @@
 .formContainer {
   display: flex;
   flex-direction: column;
+  gap: 40px;
+
   width: 633px;
   margin-bottom: 48px;
-  gap: 40px;
 }
 
 .form {
@@ -27,8 +28,8 @@
 }
 
 .listImgTitle {
-  color: #828282;
   font-size: 13px;
+  color: #828282;
 }
 
 .listImg {

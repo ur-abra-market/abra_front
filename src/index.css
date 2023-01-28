@@ -6,22 +6,27 @@
   font-family: 'SF Pro Display Regular';
   src: url('assets/fonts/SFProDisplay-Regular.ttf');
 }
+
 @font-face {
   font-family: 'SF Pro Display Black';
   src: url('assets/fonts/SFProDisplay-Black.ttf');
 }
+
 @font-face {
   font-family: 'SF Pro Display Bold';
   src: url('assets/fonts/SFProDisplay-Bold.ttf');
 }
+
 @font-face {
   font-family: 'SF Pro Display Medium';
   src: url('assets/fonts/SFProDisplay-Medium.ttf');
 }
+
 @font-face {
   font-family: 'SF Pro Display Light';
   src: url('assets/fonts/SFProDisplay-Light-1.ttf');
 }
+
 @font-face {
   font-family: 'SF Pro Display RegularItalic';
   src: url('assets/fonts/SFProDisplay-RegularItalic.ttf');
@@ -46,17 +51,20 @@
 }
 
 * {
-  padding: 0;
   margin: 0;
-  border: 0;
+  padding: 0;
+
   text-decoration: none;
   list-style-type: none;
+
+  border: 0;
 }
 
 *::before,
 *::after {
-  -webkit-tap-highlight-color: transparent;
   box-sizing: border-box;
+
+  -webkit-tap-highlight-color: transparent;
 }
 
 *:focus,
@@ -76,8 +84,9 @@ input[type='number'] {
 body {
   /* background-color: var(--back); */
   font-family: Roboto;
-  font-style: normal;
   font-weight: normal;
+  font-style: normal;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

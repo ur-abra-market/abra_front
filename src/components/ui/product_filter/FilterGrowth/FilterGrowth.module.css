@@ -1,8 +1,8 @@
 .filterGrowth {
   display: flex;
   flex-direction: column;
-  width: 100%;
   gap: 12px;
+  width: 100%;
 }
 
 .filterGrowth__list {
@@ -13,14 +13,17 @@
 }
 
 .filterGrowth__list_item {
+  cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 68px;
   height: 22px;
   padding: 4px 8px;
-  border: 1px #E5E5E5 solid;
+
   background: none;
-  cursor: pointer;
+  border: 1px #E5E5E5 solid;
   border-radius: 4px;
 }

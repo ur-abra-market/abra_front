@@ -3,6 +3,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+
   width: 100%;
 }
 
@@ -15,9 +16,10 @@
 .statusSeller__avatar {
   width: 64px;
   height: 64px;
-  border-radius: 50%;
-  background-color: #DDD;
   margin-right: 16px;
+
+  background-color: #DDD;
+  border-radius: 50%;
 }
 
 .statusSeller__person {
@@ -39,16 +41,18 @@
 .statusSeller__numbers {
   display: flex;
   flex-direction: row;
-  line-height: 24px;
+
   font-size: var(--fp);
+  line-height: 24px;
   color: #828282;
 }
 
 .statusSeller__status {
   display: flex;
   flex-direction: row;
-  line-height: 24px;
+
   font-size: var(--fp);
+  line-height: 24px;
   color: #828282;
 }
 
@@ -58,27 +62,30 @@
 }
 
 .statusSeller__deals {
-  margin-left: 16px;
   display: flex;
   flex-direction: row;
-  line-height: 24px;
   gap: 16px;
+
+  margin-left: 16px;
+
   font-size: var(--fp);
+  line-height: 24px;
   color: #828282;
 }
 
 .statusSeller__delivery {
   display: flex;
   flex-direction: row;
-  line-height: 24px;
   gap: 8px;
+
   font-size: var(--fp);
+  line-height: 24px;
   color: #828282;
 }
 
 .statusSeller__btn {
+  cursor: pointer;
   width: 40px;
   height: 40px;
   background: url('../../../../assets/img/icons/arrow-right.svg');
-  cursor: pointer;
 }

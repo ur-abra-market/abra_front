@@ -13,38 +13,42 @@
 
 .header__basic {
   display: flex;
-  width: 100%;
-  height: 96px;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+
+  width: 100%;
+  height: 96px;
+
   background-color: #FFF;
 }
 
 .header__basic_logo {
   display: block;
-  text-align: center;
-  line-height: 25px;
+
   width: 45px;
   height: 25px;
-  margin-left: 32px;
   margin-right: 48px;
+  margin-left: 32px;
+
   font-family: 'SF Pro Display Bold';
   font-size: 20px;
+  line-height: 25px;
+  text-align: center;
 }
 
 .header__basic_buttons {
-  width: 325px;
   display: flex;
   justify-content: space-between;
+  width: 325px;
 }
 
 .wrepperButtonLink {
   display: flex;
   flex-direction: column;
+  gap: 8px;
   align-items: center;
   justify-content: center;
-  gap: 8px;
 }
 
 .wrepperButtonLink button {
@@ -61,8 +65,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 40px;
+
   width: 40px;
+  height: 40px;
+
   background-color: var(--back);
   border-radius: 50%;
 }
@@ -80,29 +86,37 @@
 
 .search__wrap {
   display: flex;
-  background-color: var(--back);
+  align-items: center;
+
   width: calc(100% - 550px);
   height: 34px;
-  padding: 5px 14px;
-  border-radius: 3px;
-  align-items: center;
   margin-right: 43px;
+  padding: 5px 14px;
+
+  background-color: var(--back);
+  border-radius: 3px;
 }
 
 .search__wrap::before {
-  position: relative;
   content: '';
+
+  position: relative;
+
   width: 16px;
   height: 16px;
+
   background: url('../../../assets/img/icons/search.png');
   background-size: cover;
 }
 
 .search__input {
   display: block;
-  font-size: var(--fp);
-  padding-left: 6px;
-  height: 100%;
+
   width: 100%;
+  height: 100%;
+  padding-left: 6px;
+
+  font-size: var(--fp);
+
   background-color: var(--back);
 }

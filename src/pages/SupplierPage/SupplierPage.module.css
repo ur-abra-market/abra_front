@@ -1,7 +1,7 @@
 .pageWrapper {
   overflow-x: hidden;
-  padding-left: 32px;
   padding-right: 32px;
+  padding-left: 32px;
 }
 
 .wrepperBtnImg {
@@ -9,29 +9,33 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 40px;
+
   width: 40px;
+  height: 40px;
+
   background-color: var(--back);
   border-radius: 50%;
 }
 
 .verticalLine {
   display: inline-block;
+
   width: 1px;
   height: 17px;
-  background-color: #000;
-  margin-left: 17px;
   margin-right: 17px;
+  margin-left: 17px;
+
+  background-color: #000;
 }
 
 .supplierMainPagelink {
-  color: #000;
   cursor: pointer;
+  color: #000;
 }
 
 .title {
-  border-right: 3px solid #000;
   padding-right: 17px;
+  border-right: 3px solid #000;
 }
 
 .btnImg {
@@ -55,32 +59,36 @@
 
 .select_headerWrapper {
   display: flex;
-  align-items: center;
   gap: 10px;
+  align-items: center;
 }
 
 .select_header {
-  font-style: normal;
-  font-weight: 400;
   font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
   line-height: 25px;
-  letter-spacing: 0.38px;
   color: #000;
+  letter-spacing: 0.38px;
 }
 
 .select_options {
-  background-color: #FFF;
-  display: flex;
-  flex-direction: column;
   position: absolute;
   top: 115px;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
   width: 130px;
   height: fit-content;
   margin-top: 26px;
-  overflow: hidden;
-  transition: 0.4s;
-  gap: 5px;
+
+  background-color: #FFF;
   border-radius: 3px;
+
+  transition: 0.4s;
 }
 
 .option {

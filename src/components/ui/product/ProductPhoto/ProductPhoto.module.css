@@ -1,31 +1,35 @@
 .productPhoto {
   display: flex;
   flex-direction: row;
-  width: 100%;
   gap: 8px;
+  width: 100%;
 }
 
 .photo__slider {
   display: flex;
   flex-direction: column;
-  width: 106px;
   gap: 16px;
+
+  width: 106px;
   height: fit-content;
 }
 
 .photo__slider_slides {
+  overflow: hidden;
   display: block;
   width: 100%;
-  overflow: hidden;
 }
 
 .photo__slider_list {
   position: relative;
+
   display: flex;
   flex-direction: column;
+  gap: 8px;
+
   width: 100%;
   height: fit-content;
-  gap: 8px;
+
   transition: 0.5s;
 }
 

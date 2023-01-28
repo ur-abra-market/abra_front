@@ -5,30 +5,38 @@
 
 .search__wrap {
   display: flex;
-  background-color: #FFF;
+  align-items: center;
+
   width: 30%;
   min-width: 300px;
   height: 34px;
   padding: 5px 14px;
+
+  background-color: #FFF;
   border-radius: 3px;
-  align-items: center;
 }
 
 .search__wrap::before {
-  position: relative;
   content: '';
+
+  position: relative;
+
   width: 16px;
   height: 16px;
+
   background: url('../../../../assets/img/icons/search.png');
   background-size: cover;
 }
 
 .search__input {
   display: block;
-  font-size: var(--fp);
-  padding-left: 6px;
-  height: 100%;
+
   width: 100%;
+  height: 100%;
+  padding-left: 6px;
+
+  font-size: var(--fp);
+
   background-color: inherit;
 }
 
@@ -45,24 +53,26 @@
 }
 
 .restFilters {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 20px;
-  letter-spacing: 0.16px;
-  text-decoration-line: underline;
-  color: #828282;
+  cursor: pointer;
+
   position: relative;
   top: 10px;
   left: 10px;
-  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  color: #828282;
+  text-decoration-line: underline;
+  letter-spacing: 0.16px;
 }
 
 .restFiltersWrapper {
   display: flex;
   gap: 15px;
-  margin-top: 30px;
   align-items: flex-end;
+  margin-top: 30px;
 }
 
 .filter {
@@ -73,9 +83,9 @@
 }
 
 .filter_name {
-  font-style: normal;
-  font-weight: 700;
   font-size: 18px;
+  font-weight: 700;
+  font-style: normal;
   line-height: 22px;
   color: #000;
 }
@@ -87,11 +97,13 @@
 .filter_input,
 .select_headerWrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-radius: 4px;
-  background-color: #FFF;
+  justify-content: space-between;
+
   padding: 11px;
+
+  background-color: #FFF;
+  border-radius: 4px;
 }
 
 .selectDate_img {
@@ -105,33 +117,37 @@
 
 .filter_input__date::placeholder,
 .select_header {
-  font-style: normal;
-  font-weight: 400;
   font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
   line-height: 22px;
   color: #000;
 }
 
 .select_options {
-  background-color: #FFF;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   position: absolute;
   top: 300px;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: space-around;
+
   width: 261px;
   height: fit-content;
   margin-top: 26px;
-  overflow: hidden;
-  transition: 0.4s;
-  gap: 5px;
+
+  background-color: #FFF;
   border-radius: 4px;
   box-shadow: 5px 0 10px rgb(0 0 0 / 25%);
+
+  transition: 0.4s;
 }
 
 .option {
-  padding-left: 10px;
   cursor: pointer;
+  padding-left: 10px;
 }
 
 .option:first-child {
@@ -144,21 +160,21 @@
 
 .selectAndPaginationWrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
 .contentWrapper {
+  margin-bottom: 40px;
+  padding-top: 40px;
   background: #FFF;
   border-radius: 8px;
-  padding-top: 40px;
-  margin-bottom: 40px;
 }
 
 .filtersWrapper {
-  margin-left: 40px;
   margin-bottom: 18px;
+  margin-left: 40px;
 }
 
 .filterOrders {
@@ -168,23 +184,25 @@
 .filterOrders,
 .filterOrders__active {
   display: inline-block;
+
   margin-right: 70px;
-  font-style: normal;
-  font-weight: 400;
+
   font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
   line-height: 20px;
-  letter-spacing: 0.38px;
   color: #000;
+  letter-spacing: 0.38px;
 }
 
 .filterOrders__active {
-  text-decoration: underline;
   cursor: default;
+  text-decoration: underline;
 }
 
 .table {
-  width: 100%;
   border-spacing: 40px 22px;
+  width: 100%;
   padding-bottom: 40px;
 }
 
@@ -193,24 +211,29 @@
 }
 
 .tableHeader {
-  font-style: normal;
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 25px;
-  letter-spacing: 0.38px;
-  color: #999;
-  padding-bottom: 13px;
-  text-align: left;
   cursor: pointer;
+
+  padding-bottom: 13px;
+
+  font-size: 12px;
+  font-weight: 300;
+  font-style: normal;
+  line-height: 25px;
+  color: #999;
+  text-align: left;
+  letter-spacing: 0.38px;
 }
 
 .buttonDetails {
+  cursor: pointer;
+
   display: flex;
   justify-content: space-around;
+
   width: 100%;
   height: 100%;
+
   background: #FFF;
-  cursor: pointer;
 }
 
 .buttonDetailsWrapper_points {
@@ -245,15 +268,19 @@
 }
 
 .infoVisible {
-  background-color: #999;
   position: absolute;
+
+  overflow: hidden;
+
   width: 50px;
   height: fit-content;
   margin-top: -4px;
   margin-left: 90px;
-  overflow: hidden;
-  transition: 0.4s;
+
+  background-color: #999;
   box-shadow: 5px 0 10px rgb(0 0 0 / 25%);
+
+  transition: 0.4s;
 }
 
 .infoInvisible {
@@ -262,12 +289,12 @@
 
 .tableData,
 .tableData_inactive {
-  font-style: normal;
-  font-weight: 400;
   font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
   line-height: 17px;
-  letter-spacing: 0.38px;
   color: #000;
+  letter-spacing: 0.38px;
 }
 
 .tableData {

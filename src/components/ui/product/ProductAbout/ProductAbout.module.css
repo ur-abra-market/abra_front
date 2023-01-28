@@ -1,8 +1,8 @@
 .productAbout {
   display: flex;
   flex-direction: column;
-  width: 100%;
   gap: 24px;
+  width: 100%;
 }
 
 .productAbout__container {
@@ -35,8 +35,10 @@
 .product__specifications {
   display: flex;
   flex-direction: row;
-  width: 100%;
   justify-content: space-between;
+
+  width: 100%;
+
   font-family: Roboto;
   font-size: var(--fp);
   letter-spacing: 0.16px;
@@ -45,11 +47,13 @@
 .product__specifications_key,
 .product__specifications_value {
   display: block;
-  line-height: 24px;
+
   height: 24px;
+
   font-family: Roboto;
-  font-weight: 400;
   font-size: var(--fp);
+  font-weight: 400;
+  line-height: 24px;
   letter-spacing: 0.16px;
 }
 
@@ -57,8 +61,8 @@
 .product__stage {
   display: flex;
   flex-direction: column;
-  width: 100%;
   gap: 8px;
+  width: 100%;
 }
 
 .product__property_key,
@@ -71,24 +75,29 @@
 .product__property_value,
 .product__stage_value {
   display: block;
-  line-height: 24px;
-  font-family: Roboto;
-  font-weight: 400;
-  font-size: var(--fp);
-  letter-spacing: 0.16px;
+
   min-height: fit-content;
+
+  font-family: Roboto;
+  font-size: var(--fp);
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.16px;
 }
 
 .product__property_more {
-  display: block;
-  line-height: 24px;
-  font-family: Roboto;
-  font-weight: 400;
-  font-size: var(--fp);
-  letter-spacing: 0.16px;
-  color: #828282;
-  width: fit-content;
   cursor: pointer;
+
+  display: block;
+
+  width: fit-content;
+
+  font-family: Roboto;
+  font-size: var(--fp);
+  font-weight: 400;
+  line-height: 24px;
+  color: #828282;
+  letter-spacing: 0.16px;
 }
 
 .none {

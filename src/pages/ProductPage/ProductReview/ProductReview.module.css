@@ -1,21 +1,23 @@
 .title {
-  font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 34px;
-  line-height: 34px;
-  letter-spacing: 0.41px;
-  color: #000;
   display: inline-block;
+
   margin-right: 10px;
   margin-bottom: 40px;
+
+  font-family: Roboto, sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 34px;
+  color: #000;
+  letter-spacing: 0.41px;
 }
 
 .link {
   font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: 400;
   font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
   line-height: 20px;
 
 
@@ -38,34 +40,37 @@
 .stars-block{
   display: flex;
   justify-content: space-between;
+
   margin-bottom: 8px;
+
   font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: 400;
   font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
   line-height: 20px;
-
-  /* identical to box height, or 133% */
-
-  letter-spacing: 0.16px;
 
 
   /* Medium grey */
 
   color: #828282;
+
+  /* identical to box height, or 133% */
+
+  letter-spacing: 0.16px;
 }
 
 .rating-line{
   display: flex;
-  align-items: center;
   gap: 15px;
+  align-items: center;
+
   font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: 400;
   font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
   line-height: 20px;
-  letter-spacing: 0.16px;
   color: #000;
+  letter-spacing: 0.16px;
 }
 
 .line, .line-accent{
@@ -75,9 +80,9 @@
 }
 
 .line{
+  position: relative;
   width: 224px;
   background: #D4D4D4;
-  position: relative;
 }
 
 .line-accent{
@@ -93,14 +98,14 @@
 }
 
 .image {
-  max-width: 295px;
   width: 100%;
+  max-width: 295px;
   height: 155px;
   background-color: red;
 }
 
 .image > img {
-  max-width: 295px;
   width: 100%;
+  max-width: 295px;
   height: 155px;
 }

@@ -1,9 +1,10 @@
 .whatsApp {
   display: flex;
-  width: 100%;
   flex-direction: column;
-  align-items: center;
   gap: 8px;
+  align-items: center;
+
+  width: 100%;
 }
 
 .whatsApp__icon_text {
@@ -12,9 +13,11 @@
 
 .whatsApp_btn {
   display: flex;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
   align-items: center;
   justify-content: center;
+
+  width: 56px;
+  height: 56px;
+
+  border-radius: 50%;
 }

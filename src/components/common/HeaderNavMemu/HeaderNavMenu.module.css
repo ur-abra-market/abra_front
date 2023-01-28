@@ -5,11 +5,14 @@
 
 .header__nav_list {
   display: flex;
-  width: 100%;
-  list-style: none;
+  gap: 48px;
   align-items: center;
   justify-content: space-between;
-  gap: 48px;
+
+  width: 100%;
+
+  list-style: none;
+
   transition: 0.4s;
 }
 

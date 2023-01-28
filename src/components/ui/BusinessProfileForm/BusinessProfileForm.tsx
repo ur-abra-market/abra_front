@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { accountInfoService } from '../../../store/reducers/formRegistrationSlice';
-import { uploadUserLogoService } from '../../../store/reducers/userSlice.js';
+import { uploadUserLogoService } from '../../../store/reducers/userSlice.ts';
 import { filterEmptyValues } from '../../../utils/filterEmptyValues';
 import ButtonReg from '../../common/buttons/buttonReg';
 import Form from '../../common/Form';

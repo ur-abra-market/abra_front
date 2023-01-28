@@ -1,8 +1,8 @@
 .filterMaterial {
   display: flex;
   flex-direction: column;
-  width: 100%;
   gap: 8px;
+  width: 100%;
 }
 
 .filterMaterial__title {
@@ -19,20 +19,23 @@
 .filterMaterial__btns {
   display: flex;
   flex-direction: column;
-  width: 100%;
   gap: 24px;
+  width: 100%;
 }
 
 .filterMaterial__list_item {
+  cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: fit-content;
   height: 22px;
   padding: 4px 16px;
-  border: 1px #E5E5E5 solid;
+
   background: none;
-  cursor: pointer;
+  border: 1px #E5E5E5 solid;
   border-radius: 4px;
 }
 
@@ -41,11 +44,14 @@
 }
 
 .filter-item_active::after {
-  position: relative;
   content: '';
+
+  position: relative;
+
   width: 16px;
   height: 16px;
   margin-left: 8px;
+
   background: url('../../../../assets/img/icons/filter_cross.png');
   background-size: cover;
 }

@@ -1,21 +1,27 @@
 .checkDelivery {
   display: flex;
   flex-direction: column;
-  background-color: #FFF;
-  padding: 32px;
   gap: 32px;
+
+  padding: 32px;
+
+  background-color: #FFF;
 }
 
 .checkDelivery_add {
+  cursor: pointer;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px dashed #828282;
+
   width: 100%;
   padding-top: 30px;
   padding-bottom: 29px;
+
   text-decoration: underline;
-  cursor: pointer;
+
+  border: 1px dashed #828282;
 }
 
 .checkDelivery_address {

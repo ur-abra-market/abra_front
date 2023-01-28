@@ -1,14 +1,16 @@
 .authPage__wrap {
   position: relative;
-  margin: 0 auto;
   width: 400px;
+  margin: 0 auto;
 }
 
 .forgotPasswordlink {
   display: block;
+
+  margin-top: 24px;
+
   color: #000;
+  text-align: center;
   text-decoration: none;
   letter-spacing: 0.16px;
-  margin-top: 24px;
-  text-align: center;
 }

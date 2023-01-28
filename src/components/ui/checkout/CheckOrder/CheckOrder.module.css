@@ -1,10 +1,12 @@
 .checkOrder {
   display: flex;
   flex-direction: column;
-  background-color: #FFF;
+
   width: 338px;
   height: 360px;
   padding: 24px;
+
+  background-color: #FFF;
 }
 
 .checkOrder__price,
@@ -12,19 +14,21 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+
   width: 100%;
   height: 24px;
-  line-height: 20px;
+
   font-size: var(--fp);
+  line-height: 20px;
   letter-spacing: 0.16px;
-  justify-content: space-between;
 }
 
 .checkOrder__note {
   font-family: Roboto;
-  font-style: normal;
-  font-weight: 400;
   font-size: 9px;
+  font-weight: 400;
+  font-style: normal;
   line-height: 16px;
   color: #828282;
 }
@@ -32,54 +36,64 @@
 .checkOrder__total {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  justify-self: flex-start;
+
   width: 100%;
   height: 25px;
   margin-top: 32px;
-  justify-content: space-between;
-  font-size: var(--fd);
-  align-items: center;
+
   font-family: 'SF Pro Display Bold';
+  font-size: var(--fd);
   letter-spacing: 0.38px;
-  justify-self: flex-start;
 }
 
 .checkOrder__place {
+  cursor: pointer;
+
   display: flex;
-  width: 100%;
-  height: 44px;
-  background-color: #F2F2F2;
-  color: #828282;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
+
+  width: 100%;
+  height: 44px;
   margin-top: 16px;
-  cursor: pointer;
+
+  color: #828282;
+
+  background-color: #F2F2F2;
+  border-radius: 4px;
+
   transition: 0.3s;
 }
 
 .checkOrder__place:hover {
-  background-color: #000;
   color: #FFF;
+  background-color: #000;
 }
 
 .checkOrder__text {
-  width: 100%;
   display: flex;
   align-items: center;
+
+  width: 100%;
+  margin-top: 16px;
+
   font-family: Roboto;
-  font-weight: 400;
   font-size: var(--fp);
+  font-weight: 400;
   line-height: 20px;
   color: #828282;
-  margin-top: 16px;
 }
 
 .checkOrder__security {
   display: flex;
   flex-direction: row;
   gap: 8px;
-  height: 24px;
   align-items: center;
+
+  height: 24px;
   margin-top: auto;
 }
 
@@ -92,8 +106,8 @@
 
 .checkOrder__security_text {
   font-family: Roboto;
-  font-weight: 400;
   font-size: var(--fp);
+  font-weight: 400;
   line-height: 20px;
   color: #828282;
 }

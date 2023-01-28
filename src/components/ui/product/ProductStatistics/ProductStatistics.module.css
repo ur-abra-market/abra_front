@@ -10,31 +10,32 @@
 
 .sizes-title{
   margin-bottom: 8px;
+
   font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: 400;
   font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
   line-height: 20px;
 }
 
 .productStatistics__basic {
-  width: 100%;
   display: flex;
   flex-direction: row;
   gap: 16px;
+  width: 100%;
 }
 
 .productStatistics__demend {
-  width: fit-content;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: fit-content;
 }
 
 .productStatistics__demend_parameter {
   font-family: Roboto, sans-serif;
-  font-weight: 500;
   font-size: 15px;
+  font-weight: 500;
   line-height: 20px;
 }
 
@@ -46,45 +47,49 @@
 
 .productStatistics__demend_note {
   margin-top: 4px;
+
   font-family: Roboto, sans-serif;
-  font-weight: 400;
   font-size: 12px;
+  font-weight: 400;
   line-height: 16px;
   color: #828282;
 }
 
 .productStatistics__price {
-  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  height: 24px;
   align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 24px;
   margin-top: 37px;
 }
 
 .productStatistics__price_change {
   font-family: Roboto;
-  font-weight: 400;
   font-size: var(--fp);
+  font-weight: 400;
 }
 
 .productStatistics__price_range {
   font-family: Roboto;
-  font-weight: 400;
   font-size: var(--fp);
+  font-weight: 400;
   color: #828282;
 }
 
 .productStatistics__condition {
-  width: 100%;
-  height: 76px;
-  margin-top: 55px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  width: 100%;
+  height: 76px;
+  margin-top: 55px;
+
   font-family: Roboto;
-  font-weight: 400;
   font-size: var(--fp);
+  font-weight: 400;
   color: #828282;
 }

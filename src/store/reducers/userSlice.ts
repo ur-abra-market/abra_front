@@ -23,9 +23,10 @@ const initialState = {
   loading: false,
 };
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: 'user',
   initialState,
+  reducers: {},
   extraReducers: builder => {
     builder
       .addCase(uploadUserLogoService.pending, state => {

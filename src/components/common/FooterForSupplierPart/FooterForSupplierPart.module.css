@@ -1,33 +1,35 @@
 .footer {
-  width: 90%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: #DDD;
-  padding: 12px 32px;
+  justify-content: space-between;
+
+  width: 90%;
   margin-top: auto;
+  padding: 12px 32px;
+
+  background: #DDD;
 }
 
 .footer_logo {
-  font-weight: 700;
   font-size: 20px;
+  font-weight: 700;
   line-height: 25px;
-  letter-spacing: 0.38px;
   color: #000;
+  letter-spacing: 0.38px;
 }
 
 .footer_linksWrapper {
   display: flex;
-  width: 500px;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  width: 500px;
 }
 
 .footer_link,
 .footer_copyright {
-  font-weight: 400;
   font-size: 15px;
+  font-weight: 400;
   line-height: 24px;
-  letter-spacing: 0.16px;
   color: rgb(0 0 0 / 48%);
+  letter-spacing: 0.16px;
 }

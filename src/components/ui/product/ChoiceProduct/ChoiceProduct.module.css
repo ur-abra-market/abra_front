@@ -8,12 +8,14 @@
 
 .choiceProduct__color_title {
   display: block;
+
   height: 24px;
-  line-height: 24px;
   margin-bottom: 8px;
-  font-size: var(--fp);
-  letter-spacing: 0.16px;
+
   font-family: 'SF Pro Display Medium';
+  font-size: var(--fp);
+  line-height: 24px;
+  letter-spacing: 0.16px;
 }
 
 .choiceProduct__color_buttons {
@@ -23,11 +25,14 @@
 }
 
 .choiceProduct__color_buttons_btn {
+  cursor: pointer;
+
   display: block;
+
   width: 44px;
   height: 44px;
+
   border-radius: 50%;
-  cursor: pointer;
 }
 
 .choiceProduct__quantity {
@@ -44,53 +49,64 @@
 
 .choiceProduct__quantity_title {
   display: block;
+
   height: 24px;
-  line-height: 24px;
-  font-size: var(--fp);
-  letter-spacing: 0.16px;
+
   font-family: 'SF Pro Display Medium';
+  font-size: var(--fp);
+  line-height: 24px;
+  letter-spacing: 0.16px;
 }
 
 .choiceProduct__quantity_max {
+  cursor: pointer;
+
   display: block;
   align-self: flex-end;
+
   font-size: 8px;
   line-height: 20px;
-  letter-spacing: 0.16px;
   color: #828282;
-  cursor: pointer;
+  letter-spacing: 0.16px;
 }
 
 .choiceProduct__quantity_control {
   display: flex;
   flex-direction: row;
-  width: 100%;
   justify-content: space-between;
+  width: 100%;
 }
 
 .choiceProduct__quantity_btn {
+  cursor: pointer;
+
   display: flex;
-  width: 40px;
-  height: 40px;
   align-items: center;
   justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  font-size: var(--fp);
+
   border: 2px #DDD solid;
   border-radius: 4px;
-  font-size: var(--fp);
-  cursor: pointer;
 }
 
 .choiceProduct__quantity_sum {
   display: flex;
-  width: 132px;
-  height: 40px;
   align-items: center;
   justify-content: center;
+
+  width: 132px;
+  height: 40px;
+
+  font-size: var(--fp);
+  text-align: center;
+  letter-spacing: 0.16px;
+
   border: 2px #DDD solid;
   border-radius: 4px;
-  font-size: var(--fp);
-  letter-spacing: 0.16px;
-  text-align: center;
 }
 
 .choiceProduct__price {
@@ -99,15 +115,17 @@
 }
 
 .choiceProduct__price_item {
-  width: 192px;
   display: grid;
   grid-template-columns: auto 1fr auto;
   gap: 4px;
   align-items: flex-end;
+
+  width: 192px;
+
   font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: 500;
   font-size: 15px;
+  font-weight: 500;
+  font-style: normal;
   line-height: 20px;
 
   /* Black */
@@ -118,19 +136,24 @@
 .choiceProduct__price_item_line{
   position: relative;
   bottom: 4px;
+
   display: inline-block;
+
   height: 1px;
+
   background-color: #000;
 }
 
 .choiceProduct__price_total {
   display: flex;
   justify-content: space-between;
+
   margin-top: 48px;
+
   font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: 600;
   font-size: 20px;
+  font-weight: 600;
+  font-style: normal;
   line-height: 20px;
 
 
@@ -140,9 +163,11 @@
 }
 
 .choiceProduct__price span {
-  width: 100%;
   overflow: hidden;
-  letter-spacing: 0.2px;
-  padding-left: 4px;
+
+  width: 100%;
   margin-right: 4px;
+  padding-left: 4px;
+
+  letter-spacing: 0.2px;
 }
