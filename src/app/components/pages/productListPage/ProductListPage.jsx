@@ -7,7 +7,6 @@ import Header from '../../common/Header'
 import ProductFilter from '../../ui/product/ProductFilter'
 import ProductList from '../../ui/product/ProductList'
 
-import './ProductListPage.css'
 
 const ProductListPage = () => {
   const dispatch = useDispatch()  

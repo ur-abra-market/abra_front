@@ -8,6 +8,7 @@ import ResetPasswordPage from '../components/pages/ResetPasswordPage'
 import sellerRoute from './sellerRoute'
 import ChangePasswordPage from '../components/pages/ChangePasswordPage'
 import ChangeEmailPage from '../components/pages/ChangeEmailPage'
+import ErrorPage from '../components/pages/ErrorPage/ErrorPage'
 
 const child =  sellerRoute
 
@@ -17,7 +18,7 @@ const routes = createBrowserRouter([
     element: <Main />,
     errorElement: (
       <main style={{ padding: '1rem' }}>
-        <p>There&apos;s nothing here!</p>
+        <ErrorPage />
       </main>
     ),
     children: [...child]

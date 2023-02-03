@@ -12,7 +12,7 @@ import style from './MainPage.module.css'
 const MainPage = () => {
   const dispatch = useDispatch()
   const filter = useSelector((state) => state.product.statusProduct)
-  const categories = useSelector((state) => state.mainPageProducts.products)
+  const categories = useSelector((state) => state?.mainPageProducts?.products)
 
   const CATEGORIES = {
     0: 'All categories',
@@ -21,11 +21,14 @@ const MainPage = () => {
     3: `Kid's clothes`
   }
 
+
   useEffect(() => {
     Object.keys(CATEGORIES).forEach((category) => {
       dispatch(fetchProductList({ type: filter, category }))
     })
   }, [filter])
+
+
 
   return (
     <>
@@ -33,13 +36,14 @@ const MainPage = () => {
         <Header />
         <StatusProduct />
         <div className={style.main__sliders}>
-          {Object.keys(categories).map((categoryId) => (
-            <Slider
-              key={categoryId}
-              title={CATEGORIES[categoryId]}
-              products={categories[categoryId]}
-            />
+          {categories && Object.keys(categories).map((categoryId) => (
+              <Slider
+                  key={categoryId}
+                  title={CATEGORIES[categoryId]}
+                  products={categories[categoryId]}
+              />
           ))}
+
         </div>
         <InfoBtn />
       </div>

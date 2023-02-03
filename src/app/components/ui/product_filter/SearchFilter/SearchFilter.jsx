@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { material, brand } from '../../../../store/reducers/filterSlice'
 import style from './SearchFilter.module.css'
+import PropTypes from 'prop-types'
 
 const SearchFilter = (props) => {
   const dispatch = useDispatch()
@@ -29,6 +30,10 @@ const SearchFilter = (props) => {
       <input type="submit" hidden />
     </form>
   )
+}
+
+SearchFilter.propTypes = {
+  typeSearch: PropTypes.any,
 }
 
 export default SearchFilter

@@ -1,2 +1,3 @@
-import ShowPageProduct from "./ShowPageProduct";
-export default ShowPageProduct;
+import ShowPageProduct from './ShowPageProduct'
+
+export default ShowPageProduct

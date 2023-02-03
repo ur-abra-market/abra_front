@@ -1,2 +1,3 @@
-import SwitchDiscount from "./SwitchDiscount";
-export default SwitchDiscount;
+import SwitchDiscount from './SwitchDiscount'
+
+export default SwitchDiscount

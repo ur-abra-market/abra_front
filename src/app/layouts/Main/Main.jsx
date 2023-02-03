@@ -7,6 +7,7 @@ import './Main.css'
 const Main = () => {
   const isLoading = useSelector((state) => state.mainPageProducts.isLoading)
 
+
   return (
     <div className="container">
       {isLoading && <Loader />}

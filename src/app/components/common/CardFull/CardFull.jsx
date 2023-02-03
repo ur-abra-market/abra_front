@@ -11,8 +11,9 @@ import ProductPath from '../../ui/product/ProductPath'
 import ProductPrice from '../../ui/product/ProductPrice'
 import SupplierCard from '../../ui/product/SupplierCard'
 import ImgSlider from '../ImgSlider'
+import PropTypes from 'prop-types'
 
-const CardFull = ({ props }) => {
+const CardFull = (props) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const basket = useSelector((state) => state.basket.basketProduct)
@@ -34,6 +35,7 @@ const CardFull = ({ props }) => {
     const newObj = propsNew
     dispatch(changeById({ newObj }))
   }
+
 
   return (
     <div className={style.cardFull}>
@@ -87,6 +89,10 @@ const CardFull = ({ props }) => {
       </div>
     </div>
   )
+}
+
+CardFull.propTypes = {
+  product_id: PropTypes.any
 }
 
 export default CardFull

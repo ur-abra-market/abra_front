@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { sort, category, ascending } from '../../../../store/reducers/filterSlice'
+import React, {useEffect, useState} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {ascending, category, sort} from '../../../../store/reducers/filterSlice'
 import arrowDown from '../../../../assets/img/icons/arrow-down.png'
 import style from './SelectFilter.module.css'
+import PropTypes from 'prop-types'
+
 
 const SelectFilter = ({typeSelect}) => {  
   const dispatch = useDispatch()
@@ -16,9 +18,9 @@ const SelectFilter = ({typeSelect}) => {
   const [listSwitch, setListSwitch] = useState(false)  
   const [list, setList] = useState([]) 
   
-  const choiсeSort = useSelector((state) => state.filter.sort_type)
-  const choiсeCategory = useSelector((state) => state.filter.category)
-  const choiсeAscending = useSelector((state) => state.filter.ascending)  
+  const choiceSort = useSelector((state) => state.filter.sort_type)
+  const choiceCategory = useSelector((state) => state.filter.category)
+  const choiceAscending = useSelector((state) => state.filter.ascending)
 
   useEffect(() => {
     if (typeSelect === 'sort') 
@@ -31,19 +33,16 @@ const SelectFilter = ({typeSelect}) => {
 
   const option = () => {    
     if (typeSelect === 'sort') {
-      if (choiсeSort === 'rating') {
-        const choice = !choiсeAscending ? listSort[0] : listSort[1] 
-        return choice
-      }
-      if (choiсeSort === 'price') {
-        const choice = !choiсeAscending ? listSort[2] : listSort[3] 
-        return choice
-      }       
+      if (choiceSort === 'rating') 
+        return !choiceAscending ? listSort[0] : listSort[1]
+      
+      if (choiceSort === 'price') 
+        return !choiceAscending ? listSort[2] : listSort[3]
+             
     }  
     if (typeSelect === 'category') {
-      const index = typeCategory.findIndex(e => e === choiсeCategory)
-      const choice = index < 0 ? listCategory[0] : listCategory[index]  
-      return choice  
+      const index = typeCategory.findIndex(e => e === choiceCategory)
+      return index < 0 ? listCategory[0] : listCategory[index]
     }          
     setListSwitch(false)
   }
@@ -101,6 +100,11 @@ const SelectFilter = ({typeSelect}) => {
       </ul>
     </div>
   )
+}
+
+SelectFilter.propTypes = {
+typeSelect: PropTypes.any,
+
 }
 
 export default SelectFilter
