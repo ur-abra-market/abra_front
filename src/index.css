@@ -31,7 +31,7 @@
   /*-------color------*/
   --black: #000000;
   --gray: #c4c4c4;
-
+  --accentColor: #FC133D;
   --back: #f5f5f5;
   --front: #ffffff;
   /*-------fonts------*/
@@ -73,7 +73,7 @@ input[type='number'] {
 
 body {
   background-color: var(--back);
-  font-family: 'Roboto';
+  font-family: 'Roboto', serif;
   font-style: normal;
   font-weight: normal;
   -webkit-font-smoothing: antialiased;

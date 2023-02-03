@@ -1,0 +1,65 @@
+.header__basic {
+    display: flex;
+    width: 100%;
+    height: 96px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--front);
+    border-bottom: 1px solid var(--gray);
+}
+
+.header__basic_logo {
+    display: block;
+    text-align: center;
+    line-height: 25px;
+    width: 45px;
+    height: 25px;
+    color: var(--accentColor);
+    margin-left: 32px;
+    margin-right: 48px;
+    font-family: 'SF Pro Display Bold', serif;
+    font-size: 20px;
+}
+
+.wrepperButtonLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-right: 32px;
+
+}
+
+.wrepperButtonLink button {
+    width: 144px;
+    margin: 0;
+}
+
+.wrepperBtnImg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 40px;
+    background-color: var(--back);
+    border-radius: 50%;
+}
+
+.btnImg {
+    display: block;
+    width: 20px;
+}
+
+.btnName {
+    font-size: var(--fs);
+    line-height: 16px;
+    letter-spacing: -0.24px;
+}
+
+
+
+
+

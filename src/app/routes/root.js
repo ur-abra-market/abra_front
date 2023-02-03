@@ -5,12 +5,11 @@ import Main from '../layouts/Main'
 import ConfirmEmailPage from '../components/pages/ConfirmEmailPage'
 import ForgotPasswordPage from '../components/pages/ForgotPasswordPage'
 import ResetPasswordPage from '../components/pages/ResetPasswordPage'
-import supplierRoute from './supplierRoute'
 import sellerRoute from './sellerRoute'
+import ChangePasswordPage from '../components/pages/ChangePasswordPage'
+import ChangeEmailPage from '../components/pages/ChangeEmailPage'
 
-const profile = localStorage.getItem('profile')
-
-const child = profile ? supplierRoute : sellerRoute
+const child =  sellerRoute
 
 const routes = createBrowserRouter([
   {
@@ -34,6 +33,14 @@ const routes = createBrowserRouter([
   {
     path: 'resetPassword',
     element: <ResetPasswordPage />
+  },
+  {
+    path: 'changePassword',
+    element: <ChangePasswordPage />
+  },
+  {
+    path: 'changeEmail',
+    element: <ChangeEmailPage />
   },
   {
     path: 'register/email-confirmation',
