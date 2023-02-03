@@ -19,6 +19,22 @@ const supplierAccountData = {
       }
     )
     return data
+  },
+  getNotifications: async () => {
+    const { data } = await httpService.get(`users/get_notifications/`, {
+      headers: { 'X-CSRF-TOKEN': access }
+    })
+    return data.result
+  },
+  postNotifications: async (notifications) => {
+    const { data } = await httpService.post(
+      `users/update_notification/`,
+      notifications,
+      {
+        headers: { 'X-CSRF-TOKEN': access }
+      }
+    )
+    return data.result
   }
 }
 

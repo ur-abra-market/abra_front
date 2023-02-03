@@ -37,8 +37,8 @@ const AddingImageSpot = (props) => {
 
   const onClose = (e) => {
     e.preventDefault()
-    setImages(images.splice(images.length - 1))
     setImgUrl(imgUrl)
+    setImages(images.splice(images.length - 1))
   }
 
   return (

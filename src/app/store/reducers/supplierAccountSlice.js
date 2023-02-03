@@ -18,6 +18,36 @@ export const getSupplierAccountDataService = createAsyncThunk(
   }
 )
 
+export const getSupplierNotifications = createAsyncThunk(
+  'supplierAccount/getNotifications',
+  async (data, { rejectWithValue }) => {
+    try {
+      const notifications = await supplierAccountData.getNotifications(data)
+      return notifications
+    } catch (error) {
+      const err = error.response.notifications.result
+        ? error.response.notifications.result
+        : error.message
+      return rejectWithValue(err)
+    }
+  }
+)
+
+export const postSupplierNotifications = createAsyncThunk(
+  'supplierAccount/postNotifications',
+  async (data, { rejectWithValue }) => {
+    try {
+      const notifications = await supplierAccountData.postNotifications(data)
+      return notifications
+    } catch (error) {
+      const err = error.response.notifications.result
+        ? error.response.notifications.result
+        : error.message
+      return rejectWithValue(err)
+    }
+  }
+)
+
 export const postSupplierAccountDataService = createAsyncThunk(
   'supplierAccount/postAccountData',
   async (personalData, { rejectWithValue }) => {
@@ -33,53 +63,16 @@ export const postSupplierAccountDataService = createAsyncThunk(
   }
 )
 
-// export const selectLogoImgUrl = (state) => state.business_profile.logo_url
-// console.log('selectLogoImgUrl', selectLogoImgUrl)
-
 const supplierAccountSlice = createSlice({
   name: 'supplierAccount',
   initialState: {
     isLoading: false,
     error: null,
     business_profile: {},
-    personal_info: {}
-    // user_info: {
-    //   first_name: '',
-    //   last_name: '',
-    //   phone: ''
-    // },
-    // license: {
-    //   license_number: ''
-    // },
-    // company_info: {
-    //   logo_url: null,
-    //   name: '',
-    //   business_sector: '',
-    //   is_manufacturer: false,
-    //   year_established: '',
-    //   number_of_employees: '',
-    //   description: '',
-    //   photo_url: [],
-    //   phone: '',
-    //   business_email: '',
-    //   address: ''
-    // },
-    // country: {
-    //   country: ''
-    // }
-
-    // notifications: {
-    //     discountsOffers: false,
-    //     orderUpdates: false,
-    //     orderReminders: false,
-    //     onStockAgain: false,
-    //     productIsCheaper: false
-    //     yourFavoritesNew: false,
-    //     accountSupport: false,
-    // },
+    personal_info: {},
+    notifications: {}
   },
 
-  //будет один редьюсер с выбором изменяемого поля??
   reducers: {
     setFirstName: (state, action) => {
       state.personal_info.first_name = action.payload
@@ -99,9 +92,6 @@ const supplierAccountSlice = createSlice({
     setEmail: (state, action) => {
       state.email = action.payload
     },
-    // password: (state, action) => {
-    //     state.password = action.payload;
-    // },
     setLogo: (state, action) => {
       state.company_info.logo_url = action.payload
     },
@@ -137,28 +127,28 @@ const supplierAccountSlice = createSlice({
     },
     setCompanyAddress: (state, action) => {
       state.company_info.address = action.payload
+    },
+    discountsOffers: (state) => {
+      state.businessSector = !state.businessSector
+    },
+    orderUpdates: (state) => {
+      state.orderUpdates = !state.orderUpdates
+    },
+    orderReminders: (state) => {
+      state.orderReminders = !state.orderReminders
+    },
+    onStockAgain: (state) => {
+      state.onStockAgain = !state.onStockAgain
+    },
+    productIsCheaper: (state) => {
+      state.productIsCheaper = !state.productIsCheaper
+    },
+    yourFavoritesNew: (state) => {
+      state.yourFavoritesNew = !state.yourFavoritesNew
+    },
+    accountSupport: (state) => {
+      state.accountSupport = !state.accountSupport
     }
-    // discountsOffers: (state) => {
-    //     state.businessSector = !state.businessSector;
-    // },
-    // orderUpdates: (state) => {
-    //     state.orderUpdates = !state.orderUpdates;
-    // },
-    // orderReminders: (state) => {
-    //     state.orderReminders = !state.orderReminders;
-    // },
-    // onStockAgain: (state) => {
-    //     state.onStockAgain = !state.onStockAgain;
-    // },
-    // productIsCheaper: (state) => {
-    //     state.productIsCheaper = !state.productIsCheaper;
-    // },
-    // yourFavoritesNew: (state) => {
-    //     state.yourFavoritesNew = !state.yourFavoritesNew;
-    // },
-    // accountSupport: (state) => {
-    //     state.accountSupport = !state.accountSupport;
-    // },
   },
   extraReducers: {
     [getSupplierAccountDataService.pending]: (state) => {
@@ -186,7 +176,6 @@ export const {
   setPhone,
   setLicence,
   setEmail,
-  // password,
   setLogo,
   setShopName,
   setBusinessSector,
@@ -197,13 +186,13 @@ export const {
   setPhotos,
   setBusinessPhone,
   setBusinessEmail,
-  setCompanyAddress
-  // discountsOffers,
-  // orderUpdates,
-  // orderReminders,
-  // onStockAgain,
-  // productIsCheaper
-  // yourFavoritesNew,
-  // accountSupport,
+  setCompanyAddress,
+  discountsOffers,
+  orderUpdates,
+  orderReminders,
+  onStockAgain,
+  productIsCheaper,
+  yourFavoritesNew,
+  accountSupport
 } = supplierAccountSlice.actions
 export default supplierAccountSlice.reducer

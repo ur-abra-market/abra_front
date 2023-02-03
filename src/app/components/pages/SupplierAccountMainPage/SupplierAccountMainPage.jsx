@@ -6,9 +6,10 @@ import TextField from '../../common/TextField'
 import PhoneNumFieldWithoutCountryCode from '../../common/PhoneNumFieldWithoutCountryCode'
 import {
   getSupplierAccountDataService,
+  getSupplierNotifications,
+  postSupplierNotifications,
   postSupplierAccountDataService
 } from '../../../store/reducers/supplierAccountSlice'
-// import { uploadUserLogoService } from '../../../store/reducers/userSlice'
 import { InfoBtn } from '../../common/buttons'
 import Checkbox from '../../common/Checkbox'
 import deleteImg from '../../../assets/img/icons/delete_Img_red.svg'
@@ -20,11 +21,6 @@ import {
   classesOfCompanyImages,
   classesOfLogoImage,
   inputPhoneClasses
-  // selectCountryClasses,
-  // selectPersonalPhoneClasses,
-  // selectBusinessPhoneClasses,
-  // selectBusinessSectorClasses,
-  // selectNumberOfEmployeesClasses,
 } from './constantsOfClassesStyles'
 import Loader from '../../common/Loader'
 import ImmutableTextFieldWithChangeButton from '../../common/ImmutableTextFieldWithChangeButton/ImmutableTextFieldWithChangeButton'
@@ -35,31 +31,32 @@ import {
 import style from './SupplierAccountMainPage.module.css'
 import SelectLabelAbove from '../../common/SelectLabelAbove'
 import AddingImage from '../../common/AddingImageSpot'
-import AddingImageSpot from '../../common/AddingImageSpot/AddingImageSpot'
 
 const SupplierAccountMainPage = () => {
   const dispatch = useDispatch()
   const companyPhotoPicker = useRef(null)
   const { isLoading, data } = useSelector((state) => state.supplierAccount)
+  console.log('DATA', data)
+  const { notifications } = useSelector((state) => state.supplierAccount)
+  console.log('notifications', notifications)
   const [images, setImages] = useState([])
-  const [logoImgUrl, setLogoImgUrl] = useState('')
   const [selectedCompanyPhoto, setSelectedCompanyPhoto] = useState(null) // хранится выбранный файл
   // const [uploaded, setUploaded] = useState() // хранится ответ от сервера с именем файла и путем, где его можно найти
   // console.log('data', data)
   const {
     register,
-    formState: { isValid, errors },
+    formState: { errors },
     handleSubmit
   } = useForm({ mode: 'onChange' })
-  console.log('isValid ', isValid)
 
   useEffect(() => {
     dispatch(getSupplierAccountDataService())
+    dispatch(getSupplierNotifications())
   }, [])
 
   const handleChange = (event) => {
     console.log(event.target.files[0])
-    if (event.target.files.length)
+    if (event.target.files.length > 0)
       setSelectedCompanyPhoto(event.target.files[0])
   }
 
@@ -88,7 +85,7 @@ const SupplierAccountMainPage = () => {
     formData.append('company_info.photo_url', selectedCompanyPhoto)
     console.log('selectedCompanyPhoto', selectedCompanyPhoto)
 
-    const dataForDispatch = {
+    const personalDataForDispatch = {
       user_info: {
         first_name: updatedData.firstName,
         last_name: updatedData.lastName,
@@ -103,7 +100,7 @@ const SupplierAccountMainPage = () => {
         business_sector: updatedData.businessSector,
         is_manufacturer: updatedData.is_manufacturer === true ? 1 : 0,
         year_established: +updatedData.yearEstablished,
-        number_of_employees: 10, //updatedData.numberOfEmployees,
+        number_of_employees: 12, //updatedData.numberOfEmployees,
         description: updatedData.aboutBusiness,
         // photo_url: formData,
         phone: updatedData.businessPhoneCode + updatedData.businessPhone,
@@ -114,8 +111,20 @@ const SupplierAccountMainPage = () => {
         country: updatedData.country
       }
     }
-    console.log(' dataForDispatch', dataForDispatch)
-    dispatch(postSupplierAccountDataService(dataForDispatch))
+    const notificationsForDispatch = {
+      discountsOffers: updatedData.discountsOffers,
+      orderUpdates: updatedData.orderUpdates,
+      orderReminders: updatedData.orderReminders,
+      onStockAgain: updatedData.onStockAgain,
+      productIsCheaper: updatedData.productIsCheaper,
+      yourFavoritesNew: updatedData.yourFavoritesNew,
+      accountSupport: updatedData.accountSupport
+    }
+    console.log(' dataForDispatch', personalDataForDispatch)
+    console.log(' notificationsForDispatch', notificationsForDispatch)
+    dispatch(postSupplierAccountDataService(personalDataForDispatch))
+    dispatch(postSupplierNotifications(notificationsForDispatch))
+
     // dispatch(uploadUserLogoService())
   }
 
@@ -223,15 +232,8 @@ const SupplierAccountMainPage = () => {
                   <div className={style.header}>Business Profile</div>
                 </div>
                 <div className={style.profileLogo}>
-                  <AddingImageSpot
-                    imgUrl={logoImgUrl}
-                    // imgUrl={
-                    //   data.business_profile.logo_url
-                    //     ? data.business_profile.logo_url
-                    //     : logoImgUrl
-                    // }
-                    photoFromResponce={data.business_profile.logo_url}
-                    setImgUrl={setLogoImgUrl}
+                  <AddingImage
+                    logo={data.business_profile?.logo_url}
                     images={images}
                     setImages={setImages}
                     classes={classesOfLogoImage}
@@ -427,44 +429,62 @@ const SupplierAccountMainPage = () => {
                 <div className={style.notificationsList}>
                   <div className={style.notificationsList__item}>
                     <Checkbox
+                      defaultChecked={data?.notifications?.on_discount}
                       label="Discounts & offers"
                       classes={notificationCheckboxClasses}
+                      register={register('discountsOffers')}
                     />
                   </div>
                   <div className={style.notificationsList__item}>
                     <Checkbox
+                      defaultChecked={data?.notifications?.on_order_updates}
                       label="Order updates"
                       classes={notificationCheckboxClasses}
+                      register={register('orderUpdates')}
                     />
                   </div>
                   <div className={style.notificationsList__item}>
                     <Checkbox
+                      defaultChecked={data?.notifications?.on_order_reminders}
                       label="Order reminders"
                       classes={notificationCheckboxClasses}
+                      register={register('orderReminders')}
                     />
                   </div>
                   <div className={style.notificationsList__item}>
                     <Checkbox
+                      defaultChecked={data?.notifications?.on_stock_again}
                       label="On stock again"
                       classes={notificationCheckboxClasses}
+                      register={register('onStockAgain')}
                     />
                   </div>
                   <div className={style.notificationsList__item}>
                     <Checkbox
+                      defaultChecked={
+                        data?.notifications?.on_product_is_cheaper
+                      }
                       label="Product is cheaper"
                       classes={notificationCheckboxClasses}
+                      register={register('productIsCheaper')}
                     />
                   </div>
                   <div className={style.notificationsList__item}>
                     <Checkbox
+                      defaultChecked={
+                        data?.notifications?.on_your_favorites_new
+                      }
                       label="Your favorites new"
                       classes={notificationCheckboxClasses}
+                      register={register('yourFavoritesNew')}
                     />
                   </div>
                   <div className={style.notificationsList__item}>
                     <Checkbox
+                      defaultChecked={data?.notifications?.on_account_support}
                       label="Account support"
                       classes={notificationCheckboxClasses}
+                      register={register('accountSupport')}
                     />
                   </div>
                 </div>

@@ -24,10 +24,12 @@ const SupplierPage = () => {
   const companyInfo = useSelector((state) => state.supplier.companyInfo)
 
   useEffect(() => {
+    console.log('nnnnn')
     dispatch(getCompanyInfoService())
     dispatch(getSupplierAccountDataService())
     setIsGetCompanyInfo(true)
   }, [])
+  console.log(isLoading)
 
   const navbarCategoryBtnClasses = {
     wrepperBtnImg: `${style.wrepperBtnImg}`,
@@ -72,7 +74,7 @@ const SupplierPage = () => {
               />
             </Link>
             <Link to="/">
-              {companyInfo.logo_url ? (
+              {companyInfo?.logo_url ? (
                 <div className={style.logoImg}>
                   <img src={companyInfo.logo_url} alt="logo" />
                 </div>
