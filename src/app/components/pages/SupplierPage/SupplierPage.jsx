@@ -13,6 +13,7 @@ import Select from '../../common/Select'
 import FooterForSupplierPart from '../../common/FooterForSupplierPart'
 import Loader from '../../common/Loader'
 import { getCompanyInfoService } from '../../../store/reducers/supplierSlice'
+import { getSupplierAccountDataService } from '../../../store/reducers/supplierAccountSlice'
 
 const SupplierPage = () => {
   const [isGetCompanyInfo, setIsGetCompanyInfo] = useState(false)
@@ -23,9 +24,12 @@ const SupplierPage = () => {
   const companyInfo = useSelector((state) => state.supplier.companyInfo)
 
   useEffect(() => {
+    console.log('nnnnn')
     dispatch(getCompanyInfoService())
+    dispatch(getSupplierAccountDataService())
     setIsGetCompanyInfo(true)
   }, [])
+  console.log(isLoading)
 
   const navbarCategoryBtnClasses = {
     wrepperBtnImg: `${style.wrepperBtnImg}`,
@@ -70,16 +74,22 @@ const SupplierPage = () => {
               />
             </Link>
             <Link to="/">
-              <ButtonLink
-                name="Avatar"
-                src={iconImage}
-                classes={navbarCategoryBtnClasses}
-              />
+              {companyInfo?.logo_url ? (
+                <div className={style.logoImg}>
+                  <img src={companyInfo.logo_url} alt="logo" />
+                </div>
+              ) : (
+                <ButtonLink
+                  name="logoImg"
+                  src={iconImage}
+                  classes={navbarCategoryBtnClasses}
+                />
+              )}
             </Link>
             <Select
-              defaultName={companyInfo?.name}
+              defaultValue={companyInfo?.name}
               img={arrowTriangleImg}
-              options={['Name 1', 'Name 2', 'Name 3']}
+              options={['Name 1', 'Name 2', `${companyInfo?.name}`]}
               classes={SelectBussinessClasses}
             />
           </NavBarUniversal>

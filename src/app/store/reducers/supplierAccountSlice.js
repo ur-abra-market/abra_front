@@ -1,12 +1,58 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { manageProductsService } from './manageProductsSlice'
+import supplierAccountData from '../../services/supplierAccount.service'
 
-export const supplierAccountService = createAsyncThunk(
-  'supplierAccount/supplierAccountService',
+export const getSupplierAccountDataService = createAsyncThunk(
+  'supplierAccount/getAccountData',
 
-  async function (supplierAccountData, { rejectWithValue }) {
+  async function (data, { rejectWithValue }) {
     try {
-      const data = await manageProductsService.getList(supplierAccountData)
+      const data = await supplierAccountData.getAccountData()
+      console.log('data', data)
+      return data
+    } catch (error) {
+      const err = error.response.data.result
+        ? error.response.data.result
+        : error.message
+      return rejectWithValue(err)
+    }
+  }
+)
+
+export const getSupplierNotifications = createAsyncThunk(
+  'supplierAccount/getNotifications',
+  async (data, { rejectWithValue }) => {
+    try {
+      const notifications = await supplierAccountData.getNotifications(data)
+      return notifications
+    } catch (error) {
+      const err = error.response.notifications.result
+        ? error.response.notifications.result
+        : error.message
+      return rejectWithValue(err)
+    }
+  }
+)
+
+export const postSupplierNotifications = createAsyncThunk(
+  'supplierAccount/postNotifications',
+  async (data, { rejectWithValue }) => {
+    try {
+      const notifications = await supplierAccountData.postNotifications(data)
+      return notifications
+    } catch (error) {
+      const err = error.response.notifications.result
+        ? error.response.notifications.result
+        : error.message
+      return rejectWithValue(err)
+    }
+  }
+)
+
+export const postSupplierAccountDataService = createAsyncThunk(
+  'supplierAccount/postAccountData',
+  async (personalData, { rejectWithValue }) => {
+    try {
+      const data = await supplierAccountData.postAccountData(personalData)
       return data
     } catch (error) {
       const err = error.response.data.result
@@ -20,153 +66,132 @@ export const supplierAccountService = createAsyncThunk(
 const supplierAccountSlice = createSlice({
   name: 'supplierAccount',
   initialState: {
-    status: null,
+    isLoading: false,
     error: null,
-
-    data: null
-    // {
-    //     firstName: '',
-    //     lastName: '',
-    //     country: null,
-    //     code: '+90',
-    //     phone: '',
-    //     licence: '',
-    //     email: '', //email должен подтягиваться тот, что указывался при регистрации
-    //     password: '', //password должен подтягиваться тот, что указывался при регистрации
-    //     //как быть с подгрузкой картинки профиля??
-    //     shopName: '',
-    //     businessSector: null,
-    //     manufacturer: false,
-    //     yearEstablished: '',
-    //     numberOfEmployees: null,
-    //     aboutTheBusiness: '',
-    //     //как быть с подгрузкой дополнительных фото??
-    //     businessCode: '+90',
-    //     businessPhone: '',
-    //     businessEmail: '',
-    //     companyAddress: '',
-    //     discountsOffers: false,
-    //     orderUpdates: false,
-    //     orderReminders: false,
-    //     onStockAgain: false,
-    //     yourFavoritesNew: false,
-    //     accountSupport: false,
-    // },
+    business_profile: {},
+    personal_info: {},
+    notifications: {}
   },
+
   reducers: {
-    //будет один редьюсер с выбором изменяемого поля
-    // firstName: (state, action) => {
-    //     state.firstName = action.payload;
-    // },
-    // lastName: (state, action) => {
-    //     state.lastName = action.payload;
-    // },
-    // country: (state, action) => {
-    //     state.country = action.payload;
-    // },
-    // code: (state, action) => {
-    //     state.code = action.payload;
-    // },
-    // phone: (state, action) => {
-    //     state.phone = action.payload;
-    // },
-    // licence: (state, action) => {
-    //     state.licence = action.payload;
-    // },
-    // email: (state, action) => {
-    //     state.email = action.payload;
-    // },
-    // password: (state, action) => {
-    //     state.password = action.payload;
-    // },
-    // shopName: (state, action) => {
-    //     state.shopName = action.payload;
-    // },
-    // businessSector: (state, action) => {
-    //     state.businessSector = action.payload;
-    // },
-    // manufacturer: (state) => {
-    //     state.manufacturer = !state.manufacturer;
-    // },
-    // yearEstablished: (state, action) => {
-    //     state.yearEstablished = action.payload;
-    // },
-    // numberOfEmployees: (state, action) => {
-    //     state.numberOfEmployees = action.payload;
-    // },
-    // aboutTheBusiness: (state, action) => {
-    //     state.aboutTheBusiness = action.payload;
-    // },
+    setFirstName: (state, action) => {
+      state.personal_info.first_name = action.payload
+    },
+    setLastName: (state, action) => {
+      state.personal_info.last_name = action.payload
+    },
+    setCountry: (state, action) => {
+      state.personal_info.country = action.payload
+    },
+    setPhone: (state, action) => {
+      state.personal_info.phone = action.payload
+    },
+    setLicence: (state, action) => {
+      state.personal_info.license_number = action.payload
+    },
+    setEmail: (state, action) => {
+      state.email = action.payload
+    },
+    setLogo: (state, action) => {
+      state.company_info.logo_url = action.payload
+    },
+    setShopName: (state, action) => {
+      state.company_info.name = action.payload
+    },
+    setBusinessSector: (state, action) => {
+      state.company_info.business_sector = action.payload
+    },
+    setManufacturer: (state) => {
+      state.company_info.is_manufacturer = !state.manufacturer
+    },
+    setYearEstablished: (state, action) => {
+      state.company_info.year_established = action.payload
+    },
+    setNumberOfEmployees: (state, action) => {
+      state.company_info.number_of_employees = action.payload
+    },
+    setAboutTheBusiness: (state, action) => {
+      state.company_info.description = action.payload
+    },
+    setPhotos: (state, action) => {
+      state.company_info.photo_url = action.payload
+    },
     // businessCode: (state, action) => {
-    //     state.businessCode = action.payload;
+    //     state.company_info.businessCode = action.payload;
     // },
-    // businessPhone: (state, action) => {
-    //     state.businessPhone = action.payload;
-    // },
-    // businessEmail: (state, action) => {
-    //     state.businessEmail = action.payload;
-    // },
-    // companyAddress: (state, action) => {
-    //     state.companyAddress = action.payload;
-    // },
-    // discountsOffers: (state) => {
-    //     state.businessSector = !state.businessSector;
-    // },
-    // orderUpdates: (state) => {
-    //     state.orderUpdates = !state.orderUpdates;
-    // },
-    // orderReminders: (state) => {
-    //     state.orderReminders = !state.orderReminders;
-    // },
-    // onStockAgain: (state) => {
-    //     state.onStockAgain = !state.onStockAgain;
-    // },
-    // yourFavoritesNew: (state) => {
-    //     state.yourFavoritesNew = !state.yourFavoritesNew;
-    // },
-    // accountSupport: (state) => {
-    //     state.accountSupport = !state.accountSupport;
-    // },
+    setBusinessPhone: (state, action) => {
+      state.company_info.phone = action.payload
+    },
+    setBusinessEmail: (state, action) => {
+      state.company_info.business_email = action.payload
+    },
+    setCompanyAddress: (state, action) => {
+      state.company_info.address = action.payload
+    },
+    discountsOffers: (state) => {
+      state.businessSector = !state.businessSector
+    },
+    orderUpdates: (state) => {
+      state.orderUpdates = !state.orderUpdates
+    },
+    orderReminders: (state) => {
+      state.orderReminders = !state.orderReminders
+    },
+    onStockAgain: (state) => {
+      state.onStockAgain = !state.onStockAgain
+    },
+    productIsCheaper: (state) => {
+      state.productIsCheaper = !state.productIsCheaper
+    },
+    yourFavoritesNew: (state) => {
+      state.yourFavoritesNew = !state.yourFavoritesNew
+    },
+    accountSupport: (state) => {
+      state.accountSupport = !state.accountSupport
+    }
   },
   extraReducers: {
-    [supplierAccountService.pending]: (state) => {
-      state.status = 'loading'
+    [getSupplierAccountDataService.pending]: (state) => {
+      // state.status = 'loading'
+      state.isLoading = true
       state.error = null
     },
-    [supplierAccountService.fulfilled]: (state, action) => {
-      state.status = 'resolved'
+    [getSupplierAccountDataService.fulfilled]: (state, action) => {
+      // state.status = 'resolved'
+      state.isLoading = false
       state.data = action.payload
     },
-    [supplierAccountService.rejected]: (state, action) => {
-      state.status = 'rejected'
+    [getSupplierAccountDataService.rejected]: (state, action) => {
+      // state.status = 'rejected'
+      state.isLoading = false
       state.error = action.payload
     }
   }
 })
 
 export const {
-  firstName,
-  lastName,
-  country,
-  code,
-  phone,
-  licence,
-  email,
-  password,
-  shopName,
-  businessSector,
-  manufacturer,
-  yearEstablished,
-  numberOfEmployees,
-  aboutTheBusiness,
-  businessCode,
-  businessPhone,
-  businessEmail,
-  companyAddress,
+  setFirstName,
+  setLastName,
+  setCountry,
+  setPhone,
+  setLicence,
+  setEmail,
+  setLogo,
+  setShopName,
+  setBusinessSector,
+  setManufacturer,
+  setYearEstablished,
+  setNumberOfEmployees,
+  setAboutTheBusiness,
+  setPhotos,
+  setBusinessPhone,
+  setBusinessEmail,
+  setCompanyAddress,
   discountsOffers,
   orderUpdates,
   orderReminders,
   onStockAgain,
+  productIsCheaper,
   yourFavoritesNew,
   accountSupport
 } = supplierAccountSlice.actions

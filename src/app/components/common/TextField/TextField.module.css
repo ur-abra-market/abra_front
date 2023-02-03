@@ -1,3 +1,9 @@
+.fieldWithErrorWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .inputWrapper {
   display: flex;
   justify-content: space-between;
@@ -24,13 +30,6 @@
 .inputTextFieldPassword {
   display: block;
   width: 330px;
-}
-
-.error {
-  margin: -4px auto 24px;
-  color: #828282;
-  font-size: 12px;
-  letter-spacing: 0.02em;
 }
 
 .showPasswordBtn {

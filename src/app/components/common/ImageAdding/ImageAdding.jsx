@@ -77,7 +77,7 @@ ImageAdding.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   error: PropTypes.string,
-  register: PropTypes.func,
+  register: PropTypes.object,
   imgUrl: PropTypes.string,
   setImgUrl: PropTypes.func,
   images: PropTypes.array,
