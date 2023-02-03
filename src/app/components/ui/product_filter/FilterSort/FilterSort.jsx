@@ -1,23 +1,33 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { category, sort, priceFrom, priceTo, discount, brand, material, size, ascending } from '../../../../store/reducers/filterSlice'
+import { activeNum } from '../../../../store/reducers/productPaginateSlice'
 import SelectFilter from '../SelectFilter'
-import style from './FilterSort.module.css'
+import './FilterSort.css'
 
 const FilterSort = () => {
-  const listSort = [
-    'Sort By Rating',
-    'Sort By Price (From High to Low)',
-    'Sort By Price (From Low to High)'
-  ]
-  const listCategories = ['All Categories', 'Clothes and Accessories']
+  const dispatch = useDispatch()  
+  const handlerReset = () => {
+    dispatch(category(''))
+    dispatch(sort('rating'))
+    dispatch(priceFrom(0))
+    dispatch(priceTo(0))
+    dispatch(discount(false))
+    dispatch(brand([]))
+    dispatch(material([]))
+    dispatch(size([]))
+    dispatch(ascending(false))  
+    dispatch(activeNum(1))      
+  }
 
   return (
     <div className={style.silterSort}>
       <div className={style.silterSort__title}>
         <h4>Filters</h4>
-        <span className={style.silterSort__reset}>Reset All</span>
+        <span className="FilterSort__reset" onClick={handlerReset}>Reset All</span>
       </div>
-      <SelectFilter list={listSort} />
-      <SelectFilter list={listCategories} />
+      <SelectFilter typeSelect='sort' />
+      <SelectFilter typeSelect='category' />
     </div>
   )
 }

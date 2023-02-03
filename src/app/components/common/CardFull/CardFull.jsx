@@ -1,17 +1,16 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { actve } from '../../../store/reducers/productPaginateSlice'
-import { changeById } from '../../../store/reducers/basketSlice'
-import { BtnNewBest } from '../buttons'
-import ProductQuantityControl from '../ProductQuantityControl'
-import Stars from '../Stars'
-import style from './CardFull.module.css'
-import ProductPath from '../../ui/product/ProductPath'
-import ProductPrice from '../../ui/product/ProductPrice'
-import SupplierCard from '../../ui/product/SupplierCard'
-import ImgSlider from '../ImgSlider'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { active } from "../../../store/reducers/productPaginateSlice";
+import { changeById } from "../../../store/reducers/basketSlice";
+import { BtnNewBest } from "../buttons";
+import ProductQuantityControl from "../ProductQuantityControl";
+import Stars from "../Stars";
+import "./CardFull.css";
+import ProductPath from "../../ui/product/ProductPath";
+import ProductPrice from "../../ui/product/ProductPrice";
+import SupplierCard from "../../ui/product/SupplierCard";
+import ImgSlider from "../ImgSlider";
 
 const CardFull = ({ props }) => {
   const navigate = useNavigate()
@@ -30,11 +29,19 @@ const CardFull = ({ props }) => {
   }
 
   const handlerBasket = () => {
+<<<<<<< HEAD
     setSum(100)
     propsNew.sum = 100
     const newObj = propsNew
     dispatch(changeById({ newObj }))
   }
+=======
+    setSum(propsNew.info.min_quantity);
+    propsNew.sum = propsNew.info.min_quantity;
+    const newObj = propsNew;
+    dispatch(changeById({ newObj }));
+  };
+>>>>>>> product-list-back
 
   return (
     <div className={style.cardFull}>
@@ -44,8 +51,13 @@ const CardFull = ({ props }) => {
           <div className={style.cardFull__direction}>
             <h4
               onClick={() => {
+<<<<<<< HEAD
                 navigate('../product')
                 dispatch(actve(propsNew))
+=======
+                navigate("../product");
+                dispatch(active(propsNew));
+>>>>>>> product-list-back
               }}
             >
               {propsNew.info.name}
@@ -61,7 +73,7 @@ const CardFull = ({ props }) => {
           >
             <ProductPrice
               price={propsNew.info.value_price}
-              quantity={propsNew.info.quantity}
+              quantity={propsNew.info.min_quantity}
             />
             <div className={style.cardFull__stars_reviews}>
               <Stars reward={+propsNew.info.grade_average} />
@@ -83,7 +95,7 @@ const CardFull = ({ props }) => {
               <div />
             </div>
           )}
-          <SupplierCard supplier={propsNew.supplier} />
+          {propsNew.supplier ? <SupplierCard supplier={propsNew.supplier} /> : <></>}
         </div>
       </div>
     </div>

@@ -1,17 +1,17 @@
-.switchBox {
+.SwitchDiscount {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
   align-items: center;
 }
-.switchBox__label {
+.SwitchDiscount__label {
   font-family: 'DM Sans', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
 }
-.switchBox__box {
+.SwitchDiscount__box {
   display: flex;
   flex-direction: row;
   width: 28px;
@@ -25,7 +25,7 @@
   cursor: pointer;
   transition: 0.2s;
 }
-.switchBox__box_btn {
+.SwitchDiscount__box_btn {
   display: block;
   width: 16px;
   height: 16px;

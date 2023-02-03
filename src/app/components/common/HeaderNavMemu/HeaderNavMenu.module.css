@@ -5,10 +5,11 @@
 
 .header__nav_list {
   display: flex;
-  width: 100%;
+  width: calc(100% - 32px);
+  padding-left: 16px;
+  padding-right: 16px;
   list-style: none;
-  align-items: center;
-  justify-content: space-between;
+  align-items: center;   
   gap: 48px;
   transition: 0.4s;
 }
@@ -16,4 +17,9 @@
 .header__nav_list > li > a {
   color: var(--black);
   transition: 0.3s;
+}
+@media (max-width: 1400px) {
+  .header__nav_list {
+    gap: calc(7vw - 45px);
+  }  
 }

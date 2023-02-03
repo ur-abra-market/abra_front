@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { amount } from '../../../store/reducers/paginateSlice'
+import { amount } from '../../../store/reducers/productPaginateSlice'
 import arrowDown from '../../../assets/img/icons/arrow-slide-down.svg'
 import style from './ShowPage.module.css'
 

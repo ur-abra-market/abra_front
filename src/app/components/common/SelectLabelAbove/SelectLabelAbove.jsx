@@ -29,7 +29,7 @@ const SelectLabelAbove = ({
   }
 
   return (
-    <div>
+    <>
       <p className={style.selectTitle}>{title}</p>
       <div className={style.selectContainer}>
         <select
@@ -62,7 +62,7 @@ const SelectLabelAbove = ({
       </div>
 
       {error && <p className={style.selectError}>&#9888; {error}</p>}
-    </div>
+    </>
   )
 }
 SelectLabelAbove.propTypes = {
