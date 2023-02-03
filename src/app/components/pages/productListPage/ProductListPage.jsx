@@ -1,5 +1,4 @@
-import React from 'react'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { productPaginateService } from '../../../store/reducers/productPaginateSlice'
 import Footer from '../../common/Footer'
@@ -7,21 +6,22 @@ import Header from '../../common/Header'
 import ProductFilter from '../../ui/product/ProductFilter'
 import ProductList from '../../ui/product/ProductList'
 
+import style from './ProductListPage.module.css'
 
 const ProductListPage = () => {
-  const dispatch = useDispatch()  
-  const page_size = useSelector((state) => state.productPaginate.pageSize)
-  const page_num = useSelector((state) => state.productPaginate.pageNum)  
-  const {sort_type, category, price_from, price_to, discount, ascending, brands, materials, sizes, } = useSelector((state) => state.filter)    
-  const data = { page_size, page_num, sort_type, category, price_from, price_to, discount, ascending, brands, materials, sizes }
+  const dispatch = useDispatch()
+  const paginate = useSelector((state) => state.paginate)
+  const filter = useSelector((state) => state.filter)
+  const data = { ...filter, ...paginate }
+
   useEffect(() => {
     dispatch(productPaginateService(data))
-  }, [data])  
-  
+  })
+
   return (
     <>
       <Header />
-      <div className="ProductListPage">
+      <div className={style.productListPage}>
         <ProductFilter />
         <ProductList />
       </div>
