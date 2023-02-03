@@ -102,7 +102,5 @@ const SelectFilter = ({typeSelect}) => {
     </div>
   )
 }
-SelectFilter.propTypes = {
-  list: PropTypes.array
-}
+
 export default SelectFilter

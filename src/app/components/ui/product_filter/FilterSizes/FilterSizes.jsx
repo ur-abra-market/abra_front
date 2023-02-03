@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { size } from '../../../../store/reducers/filterSlice'
-import './FilterSizes.css'
+import style from './FilterSizes.module.css'
 
 const FilterSizes = () => {
   const dispatch = useDispatch()

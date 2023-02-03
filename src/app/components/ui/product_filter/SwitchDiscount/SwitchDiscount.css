@@ -1,29 +1,17 @@
-<<<<<<< HEAD:src/app/components/ui/product_filter/SwitchDiscount/SwitchBox.module.css
-.switchBox {
-=======
 .SwitchDiscount {
->>>>>>> product-list-back:src/app/components/ui/product_filter/SwitchDiscount/SwitchDiscount.css
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
   align-items: center;
 }
-<<<<<<< HEAD:src/app/components/ui/product_filter/SwitchDiscount/SwitchBox.module.css
-.switchBox__label {
-=======
 .SwitchDiscount__label {
->>>>>>> product-list-back:src/app/components/ui/product_filter/SwitchDiscount/SwitchDiscount.css
   font-family: 'DM Sans', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
 }
-<<<<<<< HEAD:src/app/components/ui/product_filter/SwitchDiscount/SwitchBox.module.css
-.switchBox__box {
-=======
 .SwitchDiscount__box {
->>>>>>> product-list-back:src/app/components/ui/product_filter/SwitchDiscount/SwitchDiscount.css
   display: flex;
   flex-direction: row;
   width: 28px;
@@ -37,11 +25,7 @@
   cursor: pointer;
   transition: 0.2s;
 }
-<<<<<<< HEAD:src/app/components/ui/product_filter/SwitchDiscount/SwitchBox.module.css
-.switchBox__box_btn {
-=======
 .SwitchDiscount__box_btn {
->>>>>>> product-list-back:src/app/components/ui/product_filter/SwitchDiscount/SwitchDiscount.css
   display: block;
   width: 16px;
   height: 16px;

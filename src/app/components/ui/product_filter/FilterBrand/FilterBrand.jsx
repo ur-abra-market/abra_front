@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { brand } from '../../../../store/reducers/filterSlice'
 import SearchFilter from '../SearchFilter'
-import './FilterBrand.css'
+import './FilterBrand.module.css'
 
 const FilterBrand = () => {
   const dispatch = useDispatch()

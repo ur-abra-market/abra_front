@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { category, sort, priceFrom, priceTo, discount, brand, material, size, ascending } from '../../../../store/reducers/filterSlice'
 import { activeNum } from '../../../../store/reducers/productPaginateSlice'
 import SelectFilter from '../SelectFilter'
-import './FilterSort.css'
+import style from './FilterSort.module.css'
 
 const FilterSort = () => {
   const dispatch = useDispatch()  

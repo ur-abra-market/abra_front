@@ -24,7 +24,7 @@ export const store = configureStore({
     supplier: supplierReducer,
     supplierAccount: supplierAccountReducer,
     manageProducts: manageProductsReducer,
-    mainPageProducts: mainPageReducer,
-    user: userReducer
+    // mainPageProducts: mainPageReducer,
+    // user: userReducer
   }
 })

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { material, brand } from '../../../../store/reducers/filterSlice'
-import './SearchFilter.css'
+import style from './SearchFilter.module.css'
 
 const SearchFilter = (props) => {
   const dispatch = useDispatch()

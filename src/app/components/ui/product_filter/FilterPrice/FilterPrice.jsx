@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { priceTo, priceFrom } from '../../../../store/reducers/filterSlice'
 import { productPaginateService } from '../../../../store/reducers/productPaginateSlice'
 import SwitchDiscount from '../SwitchDiscount'
-import './FilterPrice.css'
+import style from './FilterPrice.module.css'
 
 const FilterPrice = () => {
   const dispatch = useDispatch()

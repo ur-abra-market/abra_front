@@ -5,7 +5,7 @@ import Card from '../../../common/Card'
 import PaginatorProduct from '../PaginatorProduct/PaginatorProduct'
 import ShowPageProduct from '../ShowPageProduct'
 import { InfoBtn } from '../../../common/buttons'
-import './ProductList.css'
+import style from './ProductList.module.css'
 
 const ProductList = () => {
   const dataArr = useSelector(

@@ -3,7 +3,7 @@ import style from './HeaderForChangePages.module.css'
 import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {ButtonLink} from '../buttons'
-import imgBtnHeader from '../../../assets/img/icons/account.svg'
+import imgBtnHeader from '../../../assets/img/icons/check-mark.svg'
 
 const navbarBtnClasses = {
     wrepperButtonLink: `${style.wrepperButtonLink}`,

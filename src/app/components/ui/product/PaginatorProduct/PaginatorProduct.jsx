@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { activeNum } from '../../../../store/reducers/productPaginateSlice'
-import './PaginatorProduct.css'
+import style from './PaginatorProduct.css'
 
 const PaginatorProduct = () => {
   const dispatch = useDispatch()

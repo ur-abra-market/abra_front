@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { active } from '../../../store/reducers/productPaginateSlice'
 import ImgSlider from '../ImgSlider'
 import Stars from '../Stars'
-import './Card.css'
+import style from './Card.module.css'
 
 const Card = ({ props }) => {
   const navigate = useNavigate()
@@ -24,8 +24,6 @@ const Card = ({ props }) => {
     </div>
   )
 }
-Card.propTypes = {
-  product: PropTypes.object
-}
+
 
 export default Card
