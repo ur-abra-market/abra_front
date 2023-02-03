@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import CardFull from '../../../common/CardFull'
 import Card from '../../../common/Card'
-import Paginator from '../../../common/Paginator'
-import ShowPage from '../../../common/ShowPage'
+import PaginatorProduct from '../PaginatorProduct/PaginatorProduct'
+import ShowPageProduct from '../ShowPageProduct'
 import { InfoBtn } from '../../../common/buttons'
-import style from './ProductList.module.css'
+import './ProductList.css'
 
 const ProductList = () => {
   const dataArr = useSelector(
-    (state) => state.productPaginate.dataProductPaginate
+    (state) => state.productPaginate.productsPage
   )
-  const [list, setList] = useState(true)
 
+  const [list, setList] = useState(true)
   return (
     <div className={style.productList}>
       <div className={style.productList__control}>
@@ -30,20 +30,20 @@ const ProductList = () => {
             className={style.productList__control_category}
           >{`< Clothes and Accessories`}</div>
         </div>
-        <Paginator />
+        <PaginatorProduct />
       </div>
       <div className={style.productList__list}>
         {dataArr.map((data, index) =>
           list ? (
-            <CardFull key={`${data}-${index}`} props={data} />
+            <CardFull key={`product_${data.product_id}-${index}`} props={data} />
           ) : (
-            <Card key={`${data}-${index}`} props={data} />
+            <Card key={`product_${data.product_id}-${index}`} props={data} />
           )
         )}
       </div>
-      <div className={style.productList__control}>
-        <ShowPage />
-        <Paginator />
+      <div className="ProductList__control">
+        <ShowPageProduct />
+        <PaginatorProduct />
       </div>
       <div className={style.productList__InfoBtn}>
         <InfoBtn />

@@ -2,8 +2,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { priceTo, priceFrom } from '../../../../store/reducers/filterSlice'
 import { productPaginateService } from '../../../../store/reducers/productPaginateSlice'
-import SwitchBox from '../../../common/SwitchBox'
-import style from './FilterPrice.module.css'
+import SwitchDiscount from '../SwitchDiscount'
+import './FilterPrice.css'
 
 const FilterPrice = () => {
   const dispatch = useDispatch()
@@ -44,7 +44,7 @@ const FilterPrice = () => {
           />
         </div>
       </div>
-      <SwitchBox label={'Only discounted items'} />
+      <SwitchDiscount />      
     </div>
   )
 }

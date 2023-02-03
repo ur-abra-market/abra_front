@@ -1,28 +1,27 @@
-import React, { useState } from 'react'
-import style from './FilterSizes.module.css'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { size } from '../../../../store/reducers/filterSlice'
+import './FilterSizes.css'
 
 const FilterSizes = () => {
+  const dispatch = useDispatch()
   const sizeList = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'XXXXL']
-  const sizeCheck = sizeList.map(() => false)
-
-  const [check, setCheck] = useState(sizeCheck)
-
+  const sizes = useSelector((state) => state.filter.sizes)
+    
   const changeState = (index) => {
-    const arrCheck = check.map((e, i) => (i === index ? !e : e))
-    setCheck(arrCheck)
+    const arrCheck = sizeList.map((s) => sizes.includes(s)).map((e, i) => i === index ? !e : e)        
+    const sizeArr = sizeList.filter((_, i) => arrCheck[i])     
+    dispatch(size(sizeArr))         
   }
-
+ 
   return (
     <div className={style.filterSizes}>
       <h4>Sizes</h4>
       <div className={style.filterSizes__list}>
         {sizeList.map((s, i) => (
-          <div
-            className={style.filterSizes__list_item}
-            style={{
-              background: check[i] ? '#000000' : '#ffffff',
-              color: check[i] ? '#ffffff' : '#000000'
-            }}
+          <div 
+            className='FilterSizes__list_item'
+            style={{background: sizes.includes(s) ? '#000000' : '#ffffff', color: sizes.includes(s) ? '#ffffff' : '#000000'}}
             onClick={() => changeState(i)}
             key={`size_${s}`}
           >

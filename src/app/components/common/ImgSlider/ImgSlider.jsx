@@ -24,18 +24,10 @@ const ImgSlider = ({ srcArr }) => {
       )
     } else {
       return (
-        <div
-          className={style.imgSlider__window_list}
-          style={{ marginLeft: `${pos}%` }}
-        >
+        <div className='ImgSlider__window_list' style={{marginLeft: `${pos}%`}} >          
           {srcArr.map((src, i) => (
-            <img
-              className={style.imgSlider__window_list_img}
-              key={`card_slide_${i}`}
-              src={src === '$URL' ? './assets/image/none.png' : src}
-              alt="img"
-            />
-          ))}
+            <img className='ImgSlider__window_list-img' key={`card_slide_${i}`} src={src.image_url} alt={`img_${i}`} />
+          ))}          
         </div>
       )
     }
