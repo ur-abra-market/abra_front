@@ -13,8 +13,10 @@
   align-items: center;
   gap: 8px;
 }
-.statusProduct__btn_name {
-  width: fit-content;
+.StatusProduct__btn_name {  
+  max-width: 240px;
+  padding-left: 8px;
+  padding-right: 8px;
   height: fit-content;
   text-align: center;
   font-size: var(--fd);
