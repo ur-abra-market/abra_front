@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios';
+
 import cookieService from './cookie.service';
 import httpService from './http.service';
 

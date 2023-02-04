@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
 import supplierAccountData from '../../services/supplierAccount.service';
 
@@ -12,72 +13,110 @@ export const getSupplierAccountDataService = createAsyncThunk(
       console.log('data', data);
 
       return data;
-    } catch (error) {
-      const err = error.response.data.result ? error.response.data.result : error.message;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        rejectWithValue(error.message);
+      }
 
-      return rejectWithValue(err);
+      return rejectWithValue('[getSupplierNotifications]: Error');
     }
   },
 );
 
+// TODO - not use
 export const getSupplierNotifications = createAsyncThunk(
   'supplierAccount/getNotifications',
-  async (data, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const notifications = await supplierAccountData.getNotifications(data);
+      const notifications = await supplierAccountData.getNotifications();
 
       return notifications;
-    } catch (error) {
-      const err = error.response.notifications.result
-        ? error.response.notifications.result
-        : error.message;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        rejectWithValue(error.message);
+      }
 
-      return rejectWithValue(err);
+      return rejectWithValue('[getSupplierNotifications]: Error');
     }
   },
 );
 
-export const postSupplierNotifications = createAsyncThunk(
+// TODO - not use
+export const postSupplierNotifications = createAsyncThunk<any, any>(
   'supplierAccount/postNotifications',
   async (data, { rejectWithValue }) => {
     try {
       const notifications = await supplierAccountData.postNotifications(data);
 
       return notifications;
-    } catch (error) {
-      const err = error.response.notifications.result
-        ? error.response.notifications.result
-        : error.message;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        rejectWithValue(error.message);
+      }
 
-      return rejectWithValue(err);
+      return rejectWithValue('[getSupplierNotifications]: Error');
     }
   },
 );
 
-export const postSupplierAccountDataService = createAsyncThunk(
+// TODO - not use
+export const postSupplierAccountDataService = createAsyncThunk<any, any>(
   'supplierAccount/postAccountData',
   async (personalData, { rejectWithValue }) => {
     try {
       const data = await supplierAccountData.postAccountData(personalData);
 
       return data;
-    } catch (error) {
-      const err = error.response.data.result ? error.response.data.result : error.message;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        rejectWithValue(error.message);
+      }
 
-      return rejectWithValue(err);
+      return rejectWithValue('[getSupplierNotifications]: Error');
     }
   },
 );
 
+// TODO - пересмотреть типизацию
+export interface ISupplierAccountSlice {
+  isLoading: boolean;
+  error: string | null;
+  business_profile: any;
+  personal_info: any;
+  notifications: any;
+  company_info: any;
+  businessSector: boolean;
+  orderUpdates: boolean;
+  orderReminders: boolean;
+  onStockAgain: boolean;
+  productIsCheaper: boolean;
+  yourFavoritesNew: boolean;
+  accountSupport: boolean;
+  manufacturer: boolean;
+  email: string;
+}
+const initialState: ISupplierAccountSlice = {
+  isLoading: false,
+  error: null,
+  business_profile: {},
+  personal_info: {},
+  notifications: {},
+  company_info: {},
+  email: '',
+  manufacturer: false,
+  businessSector: false,
+  orderUpdates: false,
+
+  orderReminders: false,
+  onStockAgain: false,
+  productIsCheaper: false,
+  yourFavoritesNew: false,
+  accountSupport: false,
+};
+
 const supplierAccountSlice = createSlice({
   name: 'supplierAccount',
-  initialState: {
-    isLoading: false,
-    error: null,
-    business_profile: {},
-    personal_info: {},
-    notifications: {},
-  },
+  initialState,
 
   reducers: {
     setFirstName: (state, action) => {
@@ -156,23 +195,38 @@ const supplierAccountSlice = createSlice({
       state.accountSupport = !state.accountSupport;
     },
   },
-  extraReducers: {
-    [getSupplierAccountDataService.pending]: state => {
-      // state.status = 'loading'
+  extraReducers: builder => {
+    builder.addCase(getSupplierAccountDataService.pending, state => {
       state.isLoading = true;
       state.error = null;
-    },
-    [getSupplierAccountDataService.fulfilled]: (state, action) => {
-      // state.status = 'resolved'
+    });
+    builder.addCase(getSupplierAccountDataService.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
-    },
-    [getSupplierAccountDataService.rejected]: (state, action) => {
-      // state.status = 'rejected'
+      state.business_profile = action.payload.business_profile;
+      state.personal_info = action.payload.personal_info;
+    });
+    builder.addCase(getSupplierAccountDataService.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.payload;
-    },
+      state.error = action.payload as string;
+    });
   },
+  // extraReducers: {
+  //   [getSupplierAccountDataService.pending]: state => {
+  //     // state.status = 'loading'
+  //     state.isLoading = true;
+  //     state.error = null;
+  //   },
+  //   [getSupplierAccountDataService.fulfilled]: (state, action) => {
+  //     // state.status = 'resolved'
+  //     state.isLoading = false;
+  //     state.data = action.payload;
+  //   },
+  //   [getSupplierAccountDataService.rejected]: (state, action) => {
+  //     // state.status = 'rejected'
+  //     state.isLoading = false;
+  //     state.error = action.payload;
+  //   },
+  // },
 });
 
 export const {

@@ -1,10 +1,12 @@
-import React, { useRef } from 'react';
+import React, { ChangeEvent, FC, useRef, useState } from 'react';
+
+import cn from 'classnames';
 
 import deleteImg from '../../../assets/img/icons/delete_Img_red.svg';
-
 import iconImg from '../../../assets/img/icons/icon-img.png';
 
 import style from './AddingImageSpot.module.css';
+import { AddingImageSpotProps } from './AddingImageSpot.props';
 
 const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
   const {
@@ -12,39 +14,53 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
     error,
     register,
     images,
+    logo,
     setImages,
-    setImgUrl,
-    imgUrl,
     label,
     placeholder,
+    className,
+    ...restProps
   } = props;
+  // TODO поправить str 54
+  const [imgUrl, setImgUrl] = useState<string | ArrayBuffer | null>(logo || '');
 
-  const photoPicker = useRef(null);
+  const photoPicker = useRef<HTMLInputElement | null>(null);
 
-  const handlePickPhoto = () => {
-    photoPicker.current.click();
+  const handlePickPhoto = (): void => {
+    if (photoPicker.current !== null) {
+      photoPicker.current.click();
+    }
   };
 
-  const imgChange = e => {
+  const imgChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const reader = new FileReader();
 
     reader.onload = function () {
       setImgUrl(reader?.result);
     };
-    if (e.target.files[0]) {
+    if (e.target.files !== null && e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
       setImages([...images, e.target.files[0]]);
     }
   };
 
-  const onClose = e => {
-    e.preventDefault();
+  const onClose = (): void => {
+    // e.preventDefault();
     setImgUrl(imgUrl);
     setImages(images.splice(images.length - 1));
   };
 
   return (
-    <div className={label ? style.wrapperWithLabel : style.wrapper}>
+    <div
+      className={cn(
+        {
+          [style.wrapperWithLabel]: !!label,
+          [style.wrapper]: !label,
+        },
+        className,
+      )}
+      {...restProps}
+    >
       <input
         type="file"
         {...register}
@@ -58,12 +74,12 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
       {imgUrl ? (
         <div className={style.photo}>
           <img src={imgUrl} alt="img" id="photoImg" className={classes.uploadedImage} />
-          <button className={style.photoRemove} onClick={onClose}>
+          <button type="button" className={style.photoRemove} onClick={onClose}>
             <img src={deleteImg} alt="close" />
           </button>
         </div>
       ) : (
-        <div className={classes.background} onClick={handlePickPhoto}>
+        <div role="presentation" className={classes.background} onClick={handlePickPhoto}>
           <img
             src={iconImg}
             alt="icon img"
@@ -73,9 +89,10 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
         </div>
       )}
 
-      {label ? (
+      {label && (
         <div className={style.labelContainer}>
           <label
+            role="presentation"
             htmlFor="profileLogo"
             onClick={handlePickPhoto}
             className={classes ? classes.label : style.label}
@@ -85,8 +102,6 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
 
           <p className={style.placeholder}>{placeholder}</p>
         </div>
-      ) : (
-        <></>
       )}
       {error && <p className={style.inputError}>&#9888; {error}</p>}
     </div>

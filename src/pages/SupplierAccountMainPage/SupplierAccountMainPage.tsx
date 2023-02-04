@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import deleteImg from '../../assets/img/icons/delete_Img_red.svg';
-import AddingImage from '../../components/AddingImageSpot/AddingImage';
+import AddingImageSpot from '../../components/AddingImage/AddingImageSpot/AddingImageSpot';
 import { InfoBtn } from '../../components/buttons';
 import Checkbox from '../../components/Checkbox';
 import ImmutableTextFieldWithChangeButton from '../../components/ImmutableTextFieldWithChangeButton/ImmutableTextFieldWithChangeButton';
@@ -32,12 +32,14 @@ import {
 } from './constantsOfClassesStyles';
 import style from './SupplierAccountMainPage.module.css';
 
-const SupplierAccountMainPage = () => {
+const SupplierAccountMainPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const companyPhotoPicker = useRef(null);
-  const { isLoading, data } = useAppSelector(state => state.supplierAccount);
+  const { isLoading, personal_info, business_profile } = useAppSelector(
+    state => state.supplierAccount,
+  );
 
-  console.log('DATA', data);
+  console.log('DATA', personal_info, business_profile);
   const { notifications } = useAppSelector(state => state.supplierAccount);
 
   console.log('notifications', notifications);
@@ -73,14 +75,14 @@ const SupplierAccountMainPage = () => {
           src={`${photo}`}
           alt="img"
         />
-        <button className={style.photoRemove}>
+        <button type="button" className={style.photoRemove}>
           <img src={deleteImg} alt="close" />
         </button>
       </>
     );
   };
 
-  const onSubmitInfo = updatedData => {
+  const onSubmitInfo = (updatedData: any): void => {
     console.log('updatedData', updatedData);
     const formData = new FormData();
 
@@ -158,7 +160,7 @@ const SupplierAccountMainPage = () => {
                       name="firstName"
                       placeholder="Enter first name"
                       classes={textFieldClasses}
-                      defaultValue={data.personal_info.first_name}
+                      defaultValue={personal_info.first_name}
                     />
                   </div>
                   <div className={style.flexContainer}>
@@ -175,7 +177,7 @@ const SupplierAccountMainPage = () => {
                       name="lastName"
                       placeholder="Enter last name"
                       classes={textFieldClasses}
-                      defaultValue={data.personal_info.last_name}
+                      defaultValue={personal_info.last_name}
                     />
                   </div>
                 </div>
@@ -184,7 +186,7 @@ const SupplierAccountMainPage = () => {
                     register={register('country', {
                       required: 'Field is required',
                     })}
-                    defaultValue={data.personal_info.country}
+                    defaultValue={personal_info.country}
                     error={errors?.country?.message}
                     title="Country of company registration"
                     name="country"
@@ -198,7 +200,7 @@ const SupplierAccountMainPage = () => {
                       register={register('code', {
                         required: 'Field is required',
                       })}
-                      defaultValue={countryPrefix(data.personal_info.phone)}
+                      defaultValue={countryPrefix(personal_info.phone)}
                       error={errors.code}
                       title="Personal phone number"
                       name="code"
@@ -211,7 +213,7 @@ const SupplierAccountMainPage = () => {
                     type="tel"
                     placeholder="(XXX) XXX - XX - XX"
                     classes={inputPhoneClasses}
-                    defaultValue={numberWithoutPrefix(data.personal_info.phone)}
+                    defaultValue={numberWithoutPrefix(personal_info.phone)}
                     register={register('phone', {
                       required: 'Phone is required!',
                     })}
@@ -224,7 +226,7 @@ const SupplierAccountMainPage = () => {
                     name="license"
                     placeholder="000 – 00 – 0000"
                     classes={textFieldClasses}
-                    defaultValue={data.personal_info.license_number.toString()}
+                    defaultValue={personal_info.license_number.toString()}
                     register={register('license')}
                   />
                 </div>
@@ -235,8 +237,8 @@ const SupplierAccountMainPage = () => {
                   <div className={style.header}>Business Profile</div>
                 </div>
                 <div className={style.profileLogo}>
-                  <AddingImage
-                    logo={data.business_profile?.logo_url}
+                  <AddingImageSpot
+                    logo={business_profile?.logo_url}
                     images={images}
                     setImages={setImages}
                     classes={classesOfLogoImage}
@@ -256,7 +258,7 @@ const SupplierAccountMainPage = () => {
                       name="shopName"
                       placeholder="Enter your company or store name"
                       classes={textFieldClasses}
-                      defaultValue={data.business_profile.name}
+                      defaultValue={business_profile.name}
                     />
                   </div>
                   <div className={style.flexContainer}>
@@ -264,7 +266,7 @@ const SupplierAccountMainPage = () => {
                       register={register('businessSector', {
                         required: 'Field is required',
                       })}
-                      defaultValue={data.business_profile.business_sector}
+                      defaultValue={business_profile.business_sector}
                       error={errors?.businessSector?.message}
                       title="Your main business sector"
                       name="businessSector"
@@ -276,7 +278,7 @@ const SupplierAccountMainPage = () => {
                 <Checkbox
                   label="I am a manufacturer"
                   classes={checkboxClasses}
-                  defaultChecked={data.business_profile.is_manufacturer}
+                  defaultChecked={business_profile.is_manufacturer}
                   register={register('is_manufacturer')}
                 />
                 <div className={style.section_subtitle}>Company Info (optional)</div>
@@ -298,15 +300,15 @@ const SupplierAccountMainPage = () => {
                       name="yearEstablished"
                       placeholder="Enter the year"
                       classes={textFieldClasses}
-                      defaultValue={data.business_profile.year_established}
+                      defaultValue={business_profile.year_established}
                     />
                   </div>
                   <div className={style.flexContainer}>
                     <SelectLabelAbove
                       register={register('numberOfEmployees')}
                       defaultValue={
-                        data.business_profile.number_of_employees
-                          ? data.business_profile.number_of_employees
+                        business_profile.number_of_employees
+                          ? business_profile.number_of_employees
                           : ''
                       }
                       error={errors?.numberOfEmployees?.message}
@@ -324,32 +326,32 @@ const SupplierAccountMainPage = () => {
                   name="aboutBusiness"
                   // wrap="hard"
                   rows="5"
-                  defaultValue={data.business_profile.description}
+                  defaultValue={business_profile.description}
                   {...register('aboutBusiness')}
                 />
                 <div className={style.textareaName}>
                   Photo of the company or production
                 </div>
                 <div className={style.companyPhotoWrapper}>
-                  {data.business_profile.url.length
-                    ? data.business_profile.url.map((photo, index) => (
+                  {business_profile.url.length
+                    ? business_profile.url.map((photo, index) => (
                         <div className={style.photo} key={index}>
                           {renderPhoto(photo)}
                         </div>
                       ))
                     : [1, 2, 3, 4, 5].map(index => (
-                        <AddingImage
+                        <AddingImageSpot
                           key={`index_${index}`}
                           images={images}
                           setImages={setImages}
                           classes={classesOfCompanyImages}
                         />
                       ))}
-                  {data.business_profile.url.length !== 0 &&
+                  {business_profile.url.length !== 0 &&
                     [1, 2, 3, 4, 5]
                       .slice(data.business_profile.url.length)
                       .map(index => (
-                        <AddingImage
+                        <AddingImageSpot
                           key={`index_${index}`}
                           images={images}
                           setImages={setImages}
@@ -371,7 +373,7 @@ const SupplierAccountMainPage = () => {
                   <div className={style.wrapper}>
                     <SelectLabelAbove
                       register={register('businessPhoneCode')}
-                      defaultValue={countryPrefix(data.business_profile.phone)}
+                      defaultValue={countryPrefix(business_profile.phone)}
                       error={errors.businessCode}
                       title="Business phone number"
                       name="businessCode"
@@ -385,7 +387,7 @@ const SupplierAccountMainPage = () => {
                     type="tel"
                     placeholder="(XXX) XXX - XX - XX"
                     classes={inputPhoneClasses}
-                    defaultValue={numberWithoutPrefix(data.business_profile.phone)}
+                    defaultValue={numberWithoutPrefix(business_profile.phone)}
                     register={register('businessPhone')}
                     error={errors.businessPhone}
                   />
@@ -403,7 +405,7 @@ const SupplierAccountMainPage = () => {
                     name="businessEmail"
                     placeholder="business@email.com"
                     classes={textFieldClasses}
-                    defaultValue={data.business_profile.business_email}
+                    defaultValue={business_profile.business_email}
                   />
                 </div>
                 <div className={style.textareaName}>Main company address</div>
@@ -412,7 +414,7 @@ const SupplierAccountMainPage = () => {
                   placeholder="Enter address"
                   name="businessAdress"
                   wrap="hard"
-                  defaultValue={data.business_profile.address}
+                  defaultValue={business_profile.address}
                   {...register('businessAdress')}
                 />
               </div>
@@ -424,7 +426,7 @@ const SupplierAccountMainPage = () => {
                 <div className={style.notificationsList}>
                   <div className={style.notificationsList__item}>
                     <Checkbox
-                      defaultChecked={data?.notifications?.on_discount}
+                      defaultChecked={notifications?.on_discount}
                       label="Discounts & offers"
                       classes={notificationCheckboxClasses}
                       register={register('discountsOffers')}
@@ -432,7 +434,7 @@ const SupplierAccountMainPage = () => {
                   </div>
                   <div className={style.notificationsList__item}>
                     <Checkbox
-                      defaultChecked={data?.notifications?.on_order_updates}
+                      defaultChecked={notifications?.on_order_updates}
                       label="Order updates"
                       classes={notificationCheckboxClasses}
                       register={register('orderUpdates')}
@@ -440,7 +442,7 @@ const SupplierAccountMainPage = () => {
                   </div>
                   <div className={style.notificationsList__item}>
                     <Checkbox
-                      defaultChecked={data?.notifications?.on_order_reminders}
+                      defaultChecked={notifications?.on_order_reminders}
                       label="Order reminders"
                       classes={notificationCheckboxClasses}
                       register={register('orderReminders')}
@@ -448,7 +450,7 @@ const SupplierAccountMainPage = () => {
                   </div>
                   <div className={style.notificationsList__item}>
                     <Checkbox
-                      defaultChecked={data?.notifications?.on_stock_again}
+                      defaultChecked={notifications?.on_stock_again}
                       label="On stock again"
                       classes={notificationCheckboxClasses}
                       register={register('onStockAgain')}
@@ -456,7 +458,7 @@ const SupplierAccountMainPage = () => {
                   </div>
                   <div className={style.notificationsList__item}>
                     <Checkbox
-                      defaultChecked={data?.notifications?.on_product_is_cheaper}
+                      defaultChecked={notifications?.on_product_is_cheaper}
                       label="Product is cheaper"
                       classes={notificationCheckboxClasses}
                       register={register('productIsCheaper')}
@@ -464,7 +466,7 @@ const SupplierAccountMainPage = () => {
                   </div>
                   <div className={style.notificationsList__item}>
                     <Checkbox
-                      defaultChecked={data?.notifications?.on_your_favorites_new}
+                      defaultChecked={notifications?.on_your_favorites_new}
                       label="Your favorites new"
                       classes={notificationCheckboxClasses}
                       register={register('yourFavoritesNew')}
@@ -472,7 +474,7 @@ const SupplierAccountMainPage = () => {
                   </div>
                   <div className={style.notificationsList__item}>
                     <Checkbox
-                      defaultChecked={data?.notifications?.on_account_support}
+                      defaultChecked={notifications?.on_account_support}
                       label="Account support"
                       classes={notificationCheckboxClasses}
                       register={register('accountSupport')}
@@ -492,7 +494,7 @@ const SupplierAccountMainPage = () => {
                       name="email"
                       placeholder="Enter your email"
                       classes={accountDetails__textFieldClasses}
-                      defaultValue={data.personal_info.email}
+                      defaultValue={personal_info.email}
                     />
                   </div>
                   <div className={style.flexContainer}>

@@ -3,14 +3,18 @@
 //   logo: string;
 // }
 
-export interface AddingImageSpotProps {
+import { DetailedHTMLProps, HTMLAttributes } from 'react';
+
+export interface AddingImageSpotProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  logo: string;
   imgUrl: string;
   setImgUrl: () => void;
   classes: any;
   error: string;
   register: any;
   images: string[];
-  setImages: () => void;
+  setImages: (images: any[]) => void;
   label: string;
   placeholder: string;
   onClose: () => void;
