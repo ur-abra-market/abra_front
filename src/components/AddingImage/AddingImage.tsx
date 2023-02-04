@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC, useState } from 'react';
 
 import AddingImageSpot from './AddingImageSpot';
 
-const AddingImage = ({ logo, ...rest }) => {
+const AddingImage: FC<AddingImageSpotProps> = ({ logo, ...rest }): JSX.Element => {
   const [imgUrl, setImgUrl] = useState(logo || '');
 
   // useEffect(() => {
@@ -14,8 +12,4 @@ const AddingImage = ({ logo, ...rest }) => {
   return <AddingImageSpot {...rest} imgUrl={imgUrl} setImgUrl={setImgUrl} />;
 };
 
-AddingImage.propTypes = {
-  images: PropTypes.array,
-  logo: PropTypes.string,
-};
 export default AddingImage;

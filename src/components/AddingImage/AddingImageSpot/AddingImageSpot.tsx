@@ -1,13 +1,12 @@
 import React, { useRef } from 'react';
 
-import PropTypes from 'prop-types';
+import deleteImg from '../../../assets/img/icons/delete_Img_red.svg';
 
-import deleteImg from '../../assets/img/icons/delete_Img_red.svg';
-import iconImg from '../../assets/img/icons/icon-img.png';
+import iconImg from '../../../assets/img/icons/icon-img.png';
 
 import style from './AddingImageSpot.module.css';
 
-const AddingImageSpot = props => {
+const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
   const {
     classes,
     error,
@@ -94,17 +93,4 @@ const AddingImageSpot = props => {
   );
 };
 
-AddingImageSpot.propTypes = {
-  // deletedPhotoPicker: PropTypes.object,
-  onClose: PropTypes.func,
-  classes: PropTypes.object,
-  label: PropTypes.string,
-  placeholder: PropTypes.string,
-  error: PropTypes.string,
-  imgUrl: PropTypes.string,
-  register: PropTypes.object,
-  setImgUrl: PropTypes.func,
-  images: PropTypes.array,
-  setImages: PropTypes.func,
-};
 export default AddingImageSpot;
