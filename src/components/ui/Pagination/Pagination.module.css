@@ -1,4 +1,4 @@
-.Paginator {
+.PaginatorProduct {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -7,21 +7,20 @@
   font-size: var(--fp);
   line-height: 24px;
 }
-
-.Paginator__left_arrow {
+.PaginatorProduct__left_arrow {
   width: 24px;
-  height: 24px;
-  background: url('../../../assets/img/icons/arrow-slide-left.svg');
+  height: 24px; 
+  background: url("../../../assets/img/icons/arrow-slide-left.svg");
 }
 
-.Paginator__right_arrow {
+.PaginatorProduct__right_arrow {
   width: 24px;
-  height: 24px;
-  background: url('../../../assets/img/icons/arrow-slide-right.svg');
+  height: 24px;   
+  background: url("../../../assets/img/icons/arrow-slide-right.svg");
 }
 
-.Paginator__left,
-.Paginator__right {
+.PaginatorProduct__left,
+.PaginatorProduct__right {
   cursor: pointer;
 
   display: flex;
@@ -32,7 +31,7 @@
   height: 24px;
 }
 
-.Paginator__numbers {
+.PaginatorProduct__numbers {
   display: flex;
   flex-direction: row;
   gap: 9px;
@@ -40,8 +39,7 @@
 
   width: fit-content;
 }
-
-.Paginator__numbers > div {
+.PaginatorProduct__numbers>div {
   width: 24px;
   height: 25px;
   line-height: 25px;
@@ -49,8 +47,8 @@
 }
 
 .activePage {
-  color: #FFF;
-  background-color: #000;
+  color: #FFFFFF;
+  background-color: #000000;
   border-radius: 3px;
 }
 

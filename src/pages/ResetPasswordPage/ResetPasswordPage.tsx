@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { Button } from 'components/common/buttons';
-import styleBtn from 'components/common/buttons/buttons.module.css';
-import Modal from 'components/common/Modal';
+import { Button } from 'components/buttons';
+import styleBtn from 'components/buttons/Buttons.module.css';
+import Modal from 'components/Modal';
 import ResetPasswordForm from 'components/ui/ResetPasswordForm';
 import style from 'pages/ResetPasswordPage/ResetPasswordPage.module.css';
 

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { ucFirst } from '../../../utils/ucFirst';
-import s from '../../common/SelectLabelAbove/SelectLabelAbove.module.css';
+import s from '../../SelectLabelAbove/SelectLabelAbove.module.css';
 import style from '../ProductListRegistrationForm/ProductListRegistrationForm.module.css';
 
 const SelectionsForProperties = ({ element, register, options }) => {

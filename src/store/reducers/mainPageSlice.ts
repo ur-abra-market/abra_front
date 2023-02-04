@@ -28,13 +28,17 @@ export const fetchProductList = createAsyncThunk(
 const mainPageSlice = createSlice({
   name: 'mainPageProducts',
   initialState,
+  reducers: {},
   extraReducers: builder => {
     builder.addCase(fetchProductList.pending, state => {
       state.isLoading = true;
       state.error = null;
     });
     builder.addCase(fetchProductList.fulfilled, (state, action) => {
-      state.products[action.payload.category] = action.payload.data;
+      state.products = {
+        ...state.products,
+        [action.payload.category]: action.payload.data,
+      };
       state.isLoading = false;
     });
     builder.addCase(fetchProductList.rejected, (state, action) => {

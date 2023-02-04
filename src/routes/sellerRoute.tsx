@@ -1,5 +1,6 @@
 import React from 'react';
 
+import CartPage from '../pages/CartPage';
 import CheckoutPage from '../pages/CheckoutPage/CheckoutPage';
 import MainPage from '../pages/MainPage';
 import OrderDetailsPage from '../pages/OrderDetailsPage';
@@ -27,6 +28,10 @@ const sellerRoute = [
   },
   {
     path: 'cart',
+    element: <CartPage />,
+  },
+  {
+    path: 'checkout',
     element: <CheckoutPage />,
   },
   {

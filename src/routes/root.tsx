@@ -4,6 +4,8 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import Auth from '../layouts/Auth';
 import Main from '../layouts/Main';
+import ChangeEmailPage from '../pages/ChangeEmailPage';
+import ChangePasswordPage from '../pages/ChangePasswordPage';
 import ConfirmEmailPage from '../pages/ConfirmEmailPage';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import ForgotPasswordPage from '../pages/ForgotPasswordPage';
@@ -38,6 +40,14 @@ const routes = createBrowserRouter([
   {
     path: 'resetPassword',
     element: <ResetPasswordPage />,
+  },
+  {
+    path: 'changePassword',
+    element: <ChangePasswordPage />,
+  },
+  {
+    path: 'changeEmail',
+    element: <ChangeEmailPage />,
   },
   {
     path: 'register/email-confirmation',

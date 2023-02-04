@@ -1,0 +1,12 @@
+.cartItems {
+  width: 100%;
+}
+
+.cartItems__title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 34px;
+  color: #000000;
+}

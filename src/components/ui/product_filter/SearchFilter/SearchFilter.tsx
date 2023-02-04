@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 
+import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { material, brand } from '../../../../store/reducers/filterSlice';
+
 import style from './SearchFilter.module.css';
 
-const SearchFilter = () => {
+const SearchFilter = props => {
+  const dispatch = useDispatch();
   const [text, setText] = useState('');
+  const brands = useSelector(state => state.filter.brands);
+  const materials = useSelector(state => state.filter.materials);
 
   const handleSubmit = async e => {
     e.preventDefault();
-    // передаём action в Dispatch (выполняем запрос на сервер)
+    if (text.trim() !== '') {
+      if (props.typeSearch === 'material') dispatch(material([...materials, text]));
+      if (props.typeSearch === 'brand') dispatch(brand([...brands, text]));
+    }
   };
 
   return (
@@ -22,6 +33,10 @@ const SearchFilter = () => {
       <input type="submit" hidden />
     </form>
   );
+};
+
+SearchFilter.propTypes = {
+  typeSearch: PropTypes.any,
 };
 
 export default SearchFilter;

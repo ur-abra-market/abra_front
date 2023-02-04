@@ -3,11 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 
-import { Button } from '../../common/buttons';
-import styleBtn from '../../common/buttons/buttons.module.css';
-import Form from '../../common/Form';
-import PasswordComplexity from '../../common/PasswordComplexity';
-import TextField from '../../common/TextField';
+import { Button } from '../../buttons';
+import styleBtn from '../../buttons/Buttons.module.css';
+import Form from '../../Form';
+import PasswordComplexity from '../../PasswordComplexity';
+import TextField from '../../TextField';
 
 import style from './ResetPasswordForm.module.css';
 

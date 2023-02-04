@@ -3,8 +3,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { payment } from '../../../../store/reducers/modalSlice';
-import Check from '../../../common/Check';
-import TextModal from '../../../common/TextModal';
+import Check from '../../../Check';
+import TextModal from '../../../TextModal';
 
 import style from './PaymentPopup.module.css';
 

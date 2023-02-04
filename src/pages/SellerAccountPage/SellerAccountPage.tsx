@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 import style from './SellerAccountPage.module.css';
 
 import iconImage from 'assets/img/icons/icon-img.png';
-import { ButtonLink, InfoBtn } from 'components/common/buttons';
-import Checkbox from 'components/common/Checkbox';
-import Footer from 'components/common/Footer';
-import Header from 'components/common/Header';
-import TextField from 'components/common/TextField';
+import { ButtonLink, InfoBtn } from 'components/buttons';
+import Checkbox from 'components/Checkbox';
+import Footer from 'components/Footer';
+import Header from 'components/Header';
+import TextField from 'components/TextField';
 import {
   profileInfoBtnClasses,
   profileInfo__textFieldClasses,

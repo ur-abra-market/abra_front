@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import iconApple from '../../assets/img/icons/Apple.png';
 import iconGoogle from '../../assets/img/icons/Google.png';
 import iconVK from '../../assets/img/icons/VK.png';
-import styleBtn from '../../components/common/buttons/buttons.module.css';
+import styleBtn from '../../components/buttons/Buttons.module.css';
 import LoginPage from '../../pages/LoginPage';
 import RegisterPage from '../../pages/RegisterPage';
 

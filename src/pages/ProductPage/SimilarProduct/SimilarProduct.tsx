@@ -1,12 +1,12 @@
 import React from 'react';
 
+import { Carousel } from 'components';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as LoupeIcon } from 'assets/img/icons/loupe.svg';
-import { Carousel } from 'components/common';
-import Flag from 'components/common/Flag';
-import Stars from 'components/common/Stars';
+import Flag from 'components/Flag';
+import Stars from 'components/Stars';
 import { getPriceOneItem } from 'pages/ProductPage/helpers/getPriceOneItem';
 import style from 'pages/ProductPage/ProductPage.module.css';
 

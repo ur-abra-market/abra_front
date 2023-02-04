@@ -14,14 +14,14 @@ import star from 'assets/img/icons/Star 1.png';
 import tableLayout from 'assets/img/icons/tableLayout.png';
 import tileLayout from 'assets/img/icons/tileLayout.png';
 import viewIcon from 'assets/img/icons/viewIcon.png';
-import Checkbox from 'components/common/Checkbox/Checkbox';
-import FiltersList from 'components/common/FiltersList';
-import Loader from 'components/common/Loader';
-import Modal from 'components/common/Modal';
-import Search from 'components/common/Search';
-import Select from 'components/common/Select';
-import ShowPage from 'components/common/ShowPage';
-import Table from 'components/common/table';
+import Checkbox from 'components/Checkbox/Checkbox';
+import FiltersList from 'components/FiltersList';
+import Loader from 'components/Loader';
+import Modal from 'components/Modal';
+import Search from 'components/Search';
+import Select from 'components/Select';
+import ShowPage from 'components/ShowPage';
+import Table from 'components/table';
 import Pagination from 'components/ui/Pagination';
 import {
   tableStyleClasses,

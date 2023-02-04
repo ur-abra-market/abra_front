@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 import photo from '../../../assets/img/icons/ic_baseline-photo-camera.png';
 import imgBtnHeader from '../../../assets/img/icons/icon-img.png';
-import { ButtonLink, Button } from '../../common/buttons';
-import styleBtn from '../../common/buttons/buttons.module.css';
-import Search from '../../common/Search';
+import { ButtonLink, Button } from '../../buttons';
+import styleBtn from '../../buttons/Buttons.module.css';
+import Search from '../../Search';
 
 import style from './NavBar.module.css';
 

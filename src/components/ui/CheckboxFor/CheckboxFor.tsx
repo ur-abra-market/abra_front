@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import PropTypes from 'prop-types';
 
-import CheckboxStyledElem from '../../common/CheckboxStyledElem';
+import CheckboxStyledElem from '../../CheckboxStyledElem';
 
 import style from './CheckboxFor.module.css';
 

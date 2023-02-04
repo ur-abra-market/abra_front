@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { address } from '../../../../store/reducers/modalSlice';
-import Address from '../../../common/Address';
+import Address from '../../../Address';
 
 import style from './CheckDelivery.module.css';
 

@@ -3,9 +3,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { address, addAddress } from '../../../../store/reducers/modalSlice';
-import Check from '../../../common/Check';
-import SelectForAddres from '../../../common/SelectForAddres';
-import TextModal from '../../../common/TextModal';
+import Check from '../../../Check';
+import SelectForAddres from '../../../SelectForAddres';
+import TextModal from '../../../TextModal';
 
 import style from './AddressPopup.module.css';
 

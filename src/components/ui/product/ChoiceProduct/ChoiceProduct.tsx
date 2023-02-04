@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
-import ProductQuantityControl from '../../../common/ProductQuantityControl';
+import ProductQuantityControl from '../../../ProductQuantityControl';
 
 import style from './ChoiceProduct.module.css';
 

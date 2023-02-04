@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 import ProductListRegistrationForm from 'components/ui/ProductListRegistrationForm';
 import { categoryService, getCategories, getChilds } from 'store/reducers/categorySlice';
 import { getPropertiesService, getVariationsService } from 'store/reducers/supplierSlice';
 
 const ProductListRegistrationPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [firstCategory, setFirstCategory] = useState('');
   const [secondCategory, setSecondCategory] = useState('');
   const [thirdCategory, setThirdCategory] = useState('');
 
-  const allCategories = useSelector(state => state.category.dateCategories);
-  const productProperties = useSelector(state => state.supplier.productProperties);
-  const productVariations = useSelector(state => state.supplier.productVariations);
+  const allCategories = useAppSelector(state => state.category.dateCategories);
+  const productProperties = useAppSelector(state => state.supplier.productProperties);
+  const productVariations = useAppSelector(state => state.supplier.productVariations);
 
-  const secondsChilds = useSelector(getChilds(firstCategory, allCategories));
-  const thirdChilds = useSelector(getChilds(secondCategory, secondsChilds));
+  const secondsChilds = useAppSelector(getChilds(firstCategory, allCategories));
+  const thirdChilds = useAppSelector(getChilds(secondCategory, secondsChilds));
 
-  const getFirstCategories = useSelector(getCategories(allCategories));
-  const getSecondCategories = useSelector(getCategories(secondsChilds));
-  const getThirdCategories = useSelector(getCategories(thirdChilds));
+  const getFirstCategories = useAppSelector(getCategories(allCategories));
+  const getSecondCategories = useAppSelector(getCategories(secondsChilds));
+  const getThirdCategories = useAppSelector(getCategories(thirdChilds));
 
   const getId = (date, value) => {
     if (date && value) {

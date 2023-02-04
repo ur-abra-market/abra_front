@@ -3,17 +3,19 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
-import arrowTriangleImg from 'assets/img/icons/check-arrow.png';
-import iconImage from 'assets/img/icons/icon-img.png';
-import bellImg from 'assets/img/icons/notification-bell.png';
-import { ButtonLink } from 'components/common/buttons';
-import FooterForSupplierPart from 'components/common/FooterForSupplierPart';
-import Loader from 'components/common/Loader';
-import Select from 'components/common/Select';
-import NavBarUniversal from 'components/ui/NavBarUniversal';
-import SupplierMenu from 'components/ui/SupplierMenu/SupplierMenu';
-import style from 'pages/SupplierPage/SupplierPage.module.css';
-import { getCompanyInfoService } from 'store/reducers/supplierSlice';
+import arrowTriangleImg from '../../assets/img/icons/check-arrow.png';
+import iconImage from '../../assets/img/icons/icon-img.png';
+import bellImg from '../../assets/img/icons/notification-bell.png';
+import { ButtonLink } from '../../components/buttons';
+import FooterForSupplierPart from '../../components/FooterForSupplierPart';
+import Loader from '../../components/Loader';
+import Select from '../../components/Select';
+import NavBarUniversal from '../../components/ui/NavBarUniversal/NavBarUniversal';
+import SupplierMenu from '../../components/ui/SupplierMenu/SupplierMenu';
+import { getSupplierAccountDataService } from '../../store/reducers/supplierAccountSlice';
+import { getCompanyInfoService } from '../../store/reducers/supplierSlice';
+
+import style from './SupplierPage.module.css';
 
 const SupplierPage = () => {
   const [isGetCompanyInfo, setIsGetCompanyInfo] = useState(false);
@@ -24,9 +26,12 @@ const SupplierPage = () => {
   const companyInfo = useSelector(state => state.supplier.companyInfo);
 
   useEffect(() => {
+    console.log('nnnnn');
     dispatch(getCompanyInfoService());
+    dispatch(getSupplierAccountDataService());
     setIsGetCompanyInfo(true);
   }, []);
+  console.log(isLoading);
 
   const navbarCategoryBtnClasses = {
     wrepperBtnImg: `${style.wrepperBtnImg}`,
@@ -72,16 +77,22 @@ const SupplierPage = () => {
               />
             </Link>
             <Link to="/">
-              <ButtonLink
-                name="Avatar"
-                src={iconImage}
-                classes={navbarCategoryBtnClasses}
-              />
+              {companyInfo?.logo_url ? (
+                <div className={style.logoImg}>
+                  <img src={companyInfo.logo_url} alt="logo" />
+                </div>
+              ) : (
+                <ButtonLink
+                  name="logoImg"
+                  src={iconImage}
+                  classes={navbarCategoryBtnClasses}
+                />
+              )}
             </Link>
             <Select
-              defaultName={companyInfo?.name}
+              defaultValue={companyInfo?.name}
               img={arrowTriangleImg}
-              options={['Name 1', 'Name 2', 'Name 3']}
+              options={['Name 1', 'Name 2', `${companyInfo?.name}`]}
               classes={SelectBussinessClasses}
             />
           </NavBarUniversal>

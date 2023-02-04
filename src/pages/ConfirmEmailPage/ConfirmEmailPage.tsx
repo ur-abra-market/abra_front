@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
-import ContentMessage from 'components/common/ContentMessage';
+import ContentMessage from 'components/ContentMessage';
 import style from 'pages/ConfirmEmailPage/ConfirmEmailPage.module.css';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { registerService } from 'store/reducers/registerSlice';

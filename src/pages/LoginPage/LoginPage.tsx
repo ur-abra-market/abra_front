@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 import style from './LoginPage.module.css';
 
-import { Button } from 'components/common/buttons';
-import styleBtn from 'components/common/buttons/buttons.module.css';
+import { Button } from 'components/buttons';
+import styleBtn from 'components/buttons/Buttons.module.css';
 import LoginForm from 'components/ui/LoginForm';
 
 const LoginPage = ({ togglePageType }: any) => {

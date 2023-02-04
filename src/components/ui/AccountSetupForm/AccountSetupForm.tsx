@@ -5,11 +5,11 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { setAccountInfo } from '../../../store/reducers/formRegistrationSlice';
-import ButtonReg from '../../common/buttons/buttonReg';
-import Form from '../../common/Form';
-import FormTitle from '../../common/FormTitle';
-import SelectLabelAbove from '../../common/SelectLabelAbove';
-import TextFieldLabelAbove from '../../common/TextFieldLabelAbove';
+import ButtonReg from '../../buttons/ButtonReg/ButtonReg';
+import Form from '../../Form';
+import FormTitle from '../../FormTitle';
+import SelectLabelAbove from '../../SelectLabelAbove';
+import TextFieldLabelAbove from '../../TextFieldLabelAbove';
 
 import style from './AccountSetupForm.module.css';
 

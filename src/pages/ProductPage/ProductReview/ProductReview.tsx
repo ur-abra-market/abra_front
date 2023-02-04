@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Stars from 'components/common/Stars';
+import Stars from 'components/Stars';
 import { getPercentagesOfTotalCountReview } from 'pages/ProductPage/helpers/getPercentagesOfTotalCountReview';
 import style from 'pages/ProductPage/ProductReview/ProductReview.module.css';
 

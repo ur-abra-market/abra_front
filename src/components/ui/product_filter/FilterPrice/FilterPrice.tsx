@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { priceTo, priceFrom } from '../../../../store/reducers/filterSlice';
 import { productPaginateService } from '../../../../store/reducers/productPaginateSlice';
-import SwitchBox from '../../../common/SwitchBox';
+import SwitchBox from '../../../SwitchBox';
+// import SwitchDiscount from '../SwitchDiscount'
 
 import style from './FilterPrice.module.css';
 
@@ -48,6 +49,7 @@ const FilterPrice = () => {
         </div>
       </div>
       <SwitchBox label="Only discounted items" />
+      {/* <SwitchDiscount /> */}
     </div>
   );
 };

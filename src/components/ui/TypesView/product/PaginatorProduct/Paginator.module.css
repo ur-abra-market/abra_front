@@ -1,0 +1,61 @@
+.paginator {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  font-family: 'SF Pro Display Medium';
+  font-size: var(--fp);
+  line-height: 24px;
+}
+.paginator__left_arrow {
+  width: 24px;
+  height: 24px;
+  background: url('../../../../../assets/img/icons/arrow-slide-left.svg');
+}
+
+.paginator__right_arrow {
+  width: 24px;
+  height: 24px;
+  background: url('../../../../../assets/img/icons/arrow-slide-right.svg');
+}
+
+.paginator__left,
+.paginator__right {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+}
+
+.paginator__numbers {
+  display: flex;
+  flex-direction: row;
+  gap: 9px;
+  justify-content: space-between;
+
+  width: fit-content;
+}
+.paginator__numbers > div {
+  width: 24px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+}
+
+.activePage {
+  color: #FFFFFF;
+  background-color: #000000;
+  border-radius: 3px;
+}
+
+.invisible {
+  display: none;
+}
+
+.cursor {
+  cursor: pointer;
+}

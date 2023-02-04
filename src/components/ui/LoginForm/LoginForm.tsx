@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { loginService } from '../../../store/reducers/loginSlice';
-import { Button } from '../../common/buttons';
-import styleBtn from '../../common/buttons/buttons.module.css';
-import Form from '../../common/Form';
-import Loader from '../../common/Loader';
-import PasswordComplexity from '../../common/PasswordComplexity';
-import TextField from '../../common/TextField';
+import { Button } from '../../buttons';
+import styleBtn from '../../buttons/Buttons.module.css';
+import Form from '../../Form';
+import Loader from '../../Loader';
+import PasswordComplexity from '../../PasswordComplexity';
+import TextField from '../../TextField';
 import style from '../RegisterForm/RegisterForm.module.css';
 
 const LoginForm = () => {

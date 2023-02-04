@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 
-import RadioStyledElem from '../../common/RadioStyledElem';
+import RadioStyledElem from '../../RadioStyledElem';
 
 import style from './RadiosFor.module.css';
 

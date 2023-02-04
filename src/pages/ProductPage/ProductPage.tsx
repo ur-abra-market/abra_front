@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { InfoBtn } from 'components/common/buttons';
-import Footer from 'components/common/Footer';
-import Header from 'components/common/Header';
-import Loader from 'components/common/Loader';
+import { InfoBtn } from 'components/buttons';
+import Footer from 'components/Footer';
+import Header from 'components/Header';
+import Loader from 'components/Loader';
 import ChoiceProduct from 'components/ui/product/ChoiceProduct';
 import FlagFavorites from 'components/ui/product/FlagFavorites';
 import LatestSearch from 'components/ui/product/LatestSearch';

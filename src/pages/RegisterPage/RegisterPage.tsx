@@ -2,12 +2,12 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import { Button } from 'components/common/buttons';
-import styleBtn from 'components/common/buttons/buttons.module.css';
+import { Button } from 'components/buttons';
+import styleBtn from 'components/buttons/Buttons.module.css';
 import RegisterForm from 'components/ui/RegisterForm';
 import style from 'pages/RegisterPage/RegisterPage.module.css';
 
-const RegisterPage = ({ togglePageType }) => {
+const RegisterPage = ({ togglePageType }): JSX.Element => {
   return (
     <div className={style.authPage__wrap}>
       <Button

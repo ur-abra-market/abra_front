@@ -5,14 +5,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { accountInfoService } from '../../../store/reducers/formRegistrationSlice';
-import { uploadUserLogoService } from '../../../store/reducers/userSlice.ts';
+import { uploadUserLogoService } from '../../../store/reducers/userSlice';
 import { filterEmptyValues } from '../../../utils/filterEmptyValues';
-import ButtonReg from '../../common/buttons/buttonReg';
-import Form from '../../common/Form';
-import FormTitle from '../../common/FormTitle';
-import ImageAdding from '../../common/ImageAdding';
-import SelectLabelAbove from '../../common/SelectLabelAbove';
-import TextFieldLabelAbove from '../../common/TextFieldLabelAbove';
+import ButtonReg from '../../buttons/ButtonReg/ButtonReg';
+import Form from '../../Form';
+import FormTitle from '../../FormTitle';
+import ImageAdding from '../../ImageAdding';
+import SelectLabelAbove from '../../SelectLabelAbove';
+import TextFieldLabelAbove from '../../TextFieldLabelAbove';
 
 import style from './BusinessProfileForm.module.css';
 
@@ -42,7 +42,7 @@ const BusinessProfileForm = () => {
       year_established: +data.yearEstablished,
       number_of_employees: +data.numEmployees,
       description: data.textarea,
-      photo_url: ['string'],
+      // photo_url: ['string'],
       phone,
       business_email: data.email,
       address: data.address,
@@ -83,10 +83,7 @@ const BusinessProfileForm = () => {
           text="Enter the information you want to show on your store profile"
         />
 
-        <Form
-          action="src/components/ui/BusinessProfileForm/BusinessProfileForm"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <Form action="" onSubmit={handleSubmit(onSubmit)}>
           <div className={style.mainInfo}>
             <p className={style.mainInfoTitle}>Main info</p>
 

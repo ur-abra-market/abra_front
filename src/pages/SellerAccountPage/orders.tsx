@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import iconImage from 'assets/img/icons/icon-img.png';
-import { ButtonLink } from 'components/common/buttons';
+import { ButtonLink } from 'components/buttons';
 import { ordersCategoryBtnClasses } from 'pages/SellerAccountPage/classesStyles';
 import style from 'pages/SellerAccountPage/SellerAccountPage.module.css';
 

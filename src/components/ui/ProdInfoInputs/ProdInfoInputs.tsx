@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import RelatedInputs from '../../common/RelatedInputs';
+import RelatedInputs from '../../RelatedInputs';
 
 import style from './ProdInfoInputs.module.css';
 

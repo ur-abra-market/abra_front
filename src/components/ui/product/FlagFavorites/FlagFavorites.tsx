@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import { ReactComponent as FlagIcon } from '../../../common/Flag/flag.svg';
+import { ReactComponent as FlagIcon } from '../../../Flag/flag.svg';
 
 import style from './FlagFavorites.module.css';
 

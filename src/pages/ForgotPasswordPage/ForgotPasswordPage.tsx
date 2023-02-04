@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import style from './ForgotPasswordPage.module.css';
 
-import ContentMessage from 'components/common/ContentMessage';
+import ContentMessage from 'components/ContentMessage';
 import ForgotPasswordForm from 'components/ui/ForgotPasswordForm';
 
 const ForgotPasswordPage = () => {

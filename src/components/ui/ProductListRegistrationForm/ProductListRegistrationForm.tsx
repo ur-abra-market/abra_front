@@ -9,14 +9,14 @@ import {
   addProductService,
   uploadImageService,
 } from '../../../store/reducers/supplierSlice';
-import ButtonReg from '../../common/buttons/buttonReg';
-import DropDownField from '../../common/DropDownField';
-import Form from '../../common/Form';
-import FormTitle from '../../common/FormTitle';
-import { ImagesAdding } from '../../common/ImageAdding/ImagesAdding';
-import Loader from '../../common/Loader';
-import SelectLabelAbove from '../../common/SelectLabelAbove';
-import TextFieldLabelAbove from '../../common/TextFieldLabelAbove';
+import ButtonReg from '../../buttons/ButtonReg/ButtonReg';
+import DropDownField from '../../DropDownField';
+import Form from '../../Form';
+import FormTitle from '../../FormTitle';
+import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
+import Loader from '../../Loader';
+import SelectLabelAbove from '../../SelectLabelAbove';
+import TextFieldLabelAbove from '../../TextFieldLabelAbove';
 import MaterialInputs from '../MaterialInputs';
 import ProdInfoInputs from '../ProdInfoInputs';
 import SelectionsForProperties from '../SelectionsForProperties/SelectionsForProperties';

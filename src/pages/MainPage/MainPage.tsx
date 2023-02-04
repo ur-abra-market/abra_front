@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import style from './MainPage.module.css';
 
-import { InfoBtn } from 'components/common/buttons';
-import Footer from 'components/common/Footer';
-import Header from 'components/common/Header';
-import Slider from 'components/common/Slider';
-import StatusProduct from 'components/common/StatusProduct';
+import { InfoBtn } from 'components/buttons';
+import Footer from 'components/Footer';
+import Header from 'components/Header';
+import Slider from 'components/Slider';
+import StatusProduct from 'components/StatusProduct';
 import Feedback from 'components/ui/feedback/Feedback';
 import { fetchProductList } from 'store/reducers/mainPageSlice';
 

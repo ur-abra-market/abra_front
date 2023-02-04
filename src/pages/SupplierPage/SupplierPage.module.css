@@ -25,17 +25,17 @@
   margin-right: 17px;
   margin-left: 17px;
 
-  background-color: #000;
+  background-color: #000000;
 }
 
 .supplierMainPagelink {
   cursor: pointer;
-  color: #000;
+  color: #000000;
 }
 
 .title {
   padding-right: 17px;
-  border-right: 3px solid #000;
+  border-right: 3px solid #000000;
 }
 
 .btnImg {
@@ -68,13 +68,13 @@
   font-weight: 400;
   font-style: normal;
   line-height: 25px;
-  color: #000;
+  color: #000000;
   letter-spacing: 0.38px;
 }
 
 .select_options {
   position: absolute;
-  top: 115px;
+  top: 25px;
 
   overflow: hidden;
   display: flex;
@@ -85,7 +85,7 @@
   height: fit-content;
   margin-top: 26px;
 
-  background-color: #FFF;
+  background-color: #FFFFFF;
   border-radius: 3px;
 
   transition: 0.4s;
@@ -93,4 +93,10 @@
 
 .option {
   padding-left: 10px;
+}
+
+.logoImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
