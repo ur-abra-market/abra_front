@@ -1,0 +1,99 @@
+.selectInfoInputs {
+  display: flex;
+  gap: 15px;
+  margin: 24px 0 16px;
+}
+
+.formWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.selectEqual {
+  width: 309px;
+}
+
+.formContainer {
+  width: 633px;
+  margin-bottom: 40px;
+}
+
+.phoneNumber {
+  display: flex;
+  gap: 15px;
+  margin: 16px 0;
+}
+
+.marginFix {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.licenseReminder {
+  margin: 16px 0 24px;
+  font-size: 13px;
+  color: #4F4F4F;
+  text-align: left;
+}
+
+.mainInfoTitle {
+  margin: 40px 0 16px;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.checkbox {
+  cursor: pointer;
+
+  width: 20px;
+  height: 20px;
+  margin: 0 16px 0 0;
+
+  appearance: none;
+  border: 1px solid #828282;
+  border-radius: 4px;
+}
+
+.checkbox:checked {
+  background-image: url('../../../assets/img/icons/check-mark.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.listImgTitle {
+  margin: 16px 0 8px;
+  font-size: 13px;
+  color: #828282;
+  text-align: left;
+}
+
+.listImg {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.phoneNumber {
+  display: flex;
+  gap: 15px;
+  margin: 16px 0;
+}
+
+.marginFix {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.contactsInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}

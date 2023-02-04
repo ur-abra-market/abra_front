@@ -1,6 +1,0 @@
-.cartPage {
-  width: calc(100% - 64px);
-  display: flex;
-  gap: 32px;
-  padding-top: 48px;
-}

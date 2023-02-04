@@ -1,2 +1,0 @@
-import ImmutableTextFieldWithChangeButton from './ImmutableTextFieldWithChangeButton'
-export default ImmutableTextFieldWithChangeButton

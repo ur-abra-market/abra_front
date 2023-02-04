@@ -1,0 +1,58 @@
+.fieldWithErrorWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+}
+
+.inputTextFieldPassword {
+  cursor: pointer;
+
+  width: 368px;
+  height: 42px;
+  padding-left: 16px;
+
+  font-size: 12px;
+  color: #000000;
+  letter-spacing: 0.02em;
+
+  background: #FFFFFF;
+  border: none;
+  outline: none;
+}
+
+.inputTextFieldPassword {
+  display: block;
+  width: 330px;
+}
+
+.showPasswordBtn {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 53px;
+  height: 42px;
+
+  background: inherit;
+  border: none;
+}
+
+.showPasswordBtn_img {
+  width: 21px;
+  height: 16px;
+  border: none;
+}

@@ -1,0 +1,133 @@
+.productItem {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+
+  width: 100%;
+  margin: 14px 0;
+}
+
+.productItem__mainContainer {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+
+}
+
+.productItem__mainContainer_checkbox {
+  width: 24px;
+  height: 24px;
+  margin-right: 34px;
+}
+
+.productItem__mainContainer_img {
+  display: block;
+
+  width: 120px;
+  height: 120px;
+  margin-right: 26px;
+
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.productItem__mainContainer_name {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 16px;
+}
+
+
+.productItem__mainContainer_info {
+  display: flex;
+  gap: 8px;
+
+  margin: 12px 0;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+}
+
+.productItem__mainContainer_price {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 20px;
+}
+
+.productItem__mainContainer_priceSpecial {
+  display: flex;
+  align-items: center;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  color: #828282;
+}
+
+.productItem__quantityContainer {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.productItem__quantityContainer_title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  color: #000000;
+}
+
+.productItem__quantityContainer_titleFrom {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 16px;
+  color: rgba(130, 130, 130, 1)
+}
+
+.productItem__quantityContainer_quantity {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 7px;
+}
+
+.productItem__quantityContainer_input {
+  width: 50%;
+  padding: 6px 0;
+
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  text-align: center;
+
+  background-color: transparent;
+  border: 1px solid #828282;
+  border-radius: 8px;
+}
+
+.productItem__quantityContainer_button {
+  cursor: pointer;
+
+  width: 32px;
+  height: 32px;
+
+  border: 1px solid #828282;
+  border-radius: 8px;
+}

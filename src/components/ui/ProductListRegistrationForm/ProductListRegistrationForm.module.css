@@ -1,0 +1,38 @@
+.formWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  width: 633px;
+  margin-bottom: 48px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.selectInputs {
+  display: flex;
+  gap: 15px;
+}
+
+.selectEqual {
+  width: 309px;
+}
+
+.listImgTitle {
+  font-size: 13px;
+  color: #828282;
+}
+
+.listImg {
+  display: flex;
+  gap: 8px;
+}

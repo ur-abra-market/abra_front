@@ -1,0 +1,20 @@
+.inputTextFieldPassword {
+  cursor: pointer;
+
+  width: 368px;
+  height: 42px;
+  padding-left: 16px;
+
+  font-size: 12px;
+  color: #000000;
+  letter-spacing: 0.02em;
+
+  background: #FFFFFF;
+  border: none;
+  outline: none;
+}
+
+.inputTextFieldPassword {
+  display: block;
+  width: 330px;
+}

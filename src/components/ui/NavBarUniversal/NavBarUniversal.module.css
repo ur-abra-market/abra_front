@@ -1,0 +1,24 @@
+.navBarWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 90%;
+  padding: 16px 32px;
+
+  background: #FFF;
+}
+
+.logoSection {
+  font-size: 20px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 25px;
+  color: #000;
+  letter-spacing: 0.38px;
+}
+
+.linksSection {
+  display: flex;
+  gap: 25px;
+}

@@ -1,0 +1,25 @@
+.feedbackFAQ {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: calc(100% - 110px);
+  padding: 0 55px;
+}
+
+.feedbackFAQ__find {
+  display: block;
+
+  width: 100%;
+  height: 40px;
+
+  font-size: var(--fp);
+  line-height: 44px;
+  text-align: center;
+
+  border: 2px #DDD solid;
+}
+
+.feedbackFAQ__find:hover {
+  cursor: pointer;
+}

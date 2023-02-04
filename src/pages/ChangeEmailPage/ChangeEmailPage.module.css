@@ -1,0 +1,67 @@
+.page {
+  min-height: calc(100vh - 50px - 96px);
+  background: #FFFFFF;
+}
+
+.pageWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 481px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+
+.header {
+  font-size: 28px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 100%;
+  color: #000000;
+  letter-spacing: 0.0024em;
+}
+
+.subheader {
+  margin-top: 16px;
+
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+  color: #636568;
+  letter-spacing: 0.16px;
+}
+
+.innerWrapper {
+  width: 400px;
+}
+
+.modalContentWrapper {
+  width: 420px;
+  text-align: left;
+}
+
+.modalHeader {
+  margin-bottom: 26px;
+
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 41px;
+  color: #000000;
+  letter-spacing: 0.41px;
+}
+
+.forgotPasswordlink {
+  display: block;
+
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 24px;
+
+  color: #000000;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.16px;
+}

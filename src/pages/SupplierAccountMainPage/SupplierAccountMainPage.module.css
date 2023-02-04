@@ -1,0 +1,659 @@
+.supplierCabinet {
+  background: #F5F5F5;
+}
+.supplierCabinet__contentWrapper {
+  display: grid;
+  /* grid-template-columns: 470px 600px 273px; */
+  /* grid-template-rows: 26.59vh 34.56vh; */
+  grid-gap: 16px;
+  grid-template-areas:
+    'profileInfo businessProfile notifications'
+    'accountDetails businessProfile notifications';
+  grid-template-columns: 1.7fr 2fr 1fr;
+  grid-template-rows: minmax(min-content, 26.59vh) minmax(min-content, 34.56vh);
+}
+
+.profileInfo {
+  grid-area: profileInfo;
+}
+.businessProfile {
+  grid-area: businessProfile;
+}
+.notifications {
+  grid-area: notifications;
+}
+.accountDetails {
+  grid-area: accountDetails;
+}
+
+.section {
+  padding: 24px 32px;
+  background: #FFFFFF;
+  border-radius: 8px;
+}
+
+.avatar__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.header__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header {
+  font-size: 20px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 25px;
+  color: #000000;
+  text-align: left;
+  letter-spacing: 0.38px;
+}
+
+.header__link {
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  color: #000000;
+  text-decoration-line: underline;
+  letter-spacing: 0.16px;
+}
+
+.error {
+  margin: -4px auto 5px;
+  padding-top: 5px;
+
+  font-size: 12px;
+  /* color: #828282; */
+  color: #FC133D;
+  letter-spacing: 0.02em;
+
+  opacity: 0.7;
+}
+
+.wrapper {
+  margin-top: 16px;
+}
+
+.fieldsWrapper {
+  display: flex;
+  gap: 16px;
+  /* justify-self: flex-start; */
+  align-items: flex-end;
+  margin-top: 24px;
+}
+
+.profileInfo__number {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+
+  margin-top: 0;
+  padding-top: 16px;
+}
+
+.flexContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+
+  width: 100%;
+}
+
+.textFieldWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.textFieldLabel,
+.subtitle,
+.selectName,
+.textareaName {
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 18px;
+  color: #828282;
+  letter-spacing: -0.08px;
+}
+
+.textFieldLabel {
+  margin-bottom: 10px;
+}
+
+.textareaName {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.textFieldInput,
+.accountDetails__textFieldInput,
+.aboutBusiness {
+  width: 100%;
+  /* height: 42px; */
+  height: fit-content;
+  padding: 12px;
+
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  color: #000000;
+  letter-spacing: -0.24px;
+
+  background: #F2F2F2;
+  border-radius: 4px;
+}
+
+.aboutBusiness {
+  resize: none;
+  box-sizing: border-box;
+  padding-top: 12px;
+}
+
+.aboutBussiness::placeholder {
+  display: flex;
+  align-items: center;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #828282;
+  letter-spacing: -0.24px;
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 42px;
+
+  background: #F2F2F2;
+  border: none;
+  border-radius: 4px;
+}
+
+.selectWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-width: 160px;
+  height: 42px;
+}
+
+.selectWrapper__businessSector,
+.selectWrapper__numberOfEmployees {
+  width: 100%;
+}
+
+.select_headerWrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 14px;
+
+  background: #F2F2F2;
+  border-radius: 4px;
+}
+
+.select_header {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #828282;
+  letter-spacing: -0.24px;
+}
+
+.select_options__country,
+.select_options__phonePersonal,
+.select_options__businessSector,
+.select_options__numberOfEmployees,
+.select_options__phoneBusiness {
+  position: absolute;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  height: fit-content;
+  margin-top: 26px;
+
+  background-color: #FFFFFF;
+  border-radius: 3px;
+  box-shadow: 5px 0px 10px rgb(0, 0, 0, 0.25);
+
+  transition: 0.4s;
+}
+
+.select_options__country {
+  top: 325px;
+  width: 30%;
+}
+
+.select_options__phonePersonal {
+  top: 410px;
+  width: 8%;
+}
+
+.select_options__phoneBusiness {
+  top: 1057px;
+  width: 8%;
+}
+
+.select_options__businessSector {
+  top: 390px;
+  width: 18%;
+}
+
+.select_options__numberOfEmployees {
+  top: 602px;
+  width: 18%;
+}
+
+.option {
+  cursor: pointer;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.option:hover {
+  background: #B5B5B5;
+}
+
+.section_subtitle {
+  margin-top: 40px;
+  margin-bottom: 16px;
+
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 25px;
+  color: #000000;
+  letter-spacing: 0.38px;
+}
+
+.accountDetails__textFieldInput {
+  width: 406px;
+}
+
+.accountDetails__inputTextFieldPassword {
+  width: 353px;
+  height: 42px;
+  padding-left: 12px;
+  background: #F2F2F2;
+}
+.accountDetails__changeBtnWrapper {
+  padding: 10px;
+}
+
+.accountDetails__changeBtn {
+  cursor: pointer;
+
+  margin: 12px;
+
+  font-size: 12px;
+  font-weight: 500;
+  color: #828282;
+}
+
+.profileLogo {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+
+  margin: 30px 0;
+}
+
+.hidden {
+  overflow: hidden;
+
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+
+  line-height: 0;
+
+  opacity: 0;
+}
+
+.uploadedImage {
+  width: 95px;
+  height: 95px;
+  border-radius: 10px;
+}
+
+.uploadedImageLogo {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+}
+
+.profileLogo_backgroung {
+  cursor: pointer;
+}
+
+.profileLogo_backgroung,
+.companyPhoto_backgroung {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 95px;
+  height: 95px;
+
+  background: #E0E0E0;
+  border-radius: 50%;
+}
+.companyPhoto_backgroung {
+  border-radius: 10px;
+}
+
+.profileLogo_img,
+.companyPhoto_img {
+  display: block;
+  width: 37.5%;
+}
+
+.companyPhoto_backgroung:hover {
+  cursor: pointer;
+  position: relative;
+  background: #B5B5B5;
+}
+
+/* .companyPhoto_backgroung:hover::before,
+.companyPhoto_backgroung:hover::after {
+  position: absolute;
+  top: 12px;
+  right: 3px;
+  content: "";
+  width: 20px;
+  height: 2px;
+  background: #000000;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.companyPhoto_backgroung:hover::before {
+  transform: rotate(45deg);
+}
+
+.companyPhoto_backgroung:hover::after {
+  transform: rotate(-45deg);
+} */
+
+.companyPhotoWrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.profileLogo_descriptionTitle {
+  cursor: pointer;
+
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #FC133D;
+  text-decoration-line: underline;
+  letter-spacing: -0.24px;
+}
+
+.profileLogo_descriptionSubtitle {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13px;
+  color: #828282;
+  letter-spacing: 0.07px;
+}
+
+.labelCheckbox {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+
+  padding-bottom: 5px;
+
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #000000;
+  letter-spacing: -0.24px;
+}
+
+.inputCheckbox {
+  width: 20px;
+  height: 20px;
+  margin: 15px;
+  margin-left: 0;
+
+  background: #FFFFFF;
+  border: 1px solid #828282;
+  border-radius: 4px;
+}
+
+.inputCheckbox:checked {
+  background: #FC133D;
+}
+
+.notificationsList {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 16px;
+}
+
+.notificationsList__item {
+  padding-top: 12px;
+}
+
+.notificationsList__item::after {
+  content: '';
+
+  display: block;
+
+  height: 1px;
+  margin-top: 12px;
+
+  background: #F2F2F2;
+}
+
+.notificationsList__item:last-child:after {
+  display: none;
+}
+
+.notificationLabelCheckbox {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  color: #000000;
+  letter-spacing: -0.24px;
+}
+
+.notificationInputCheckbox {
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: left;
+
+  width: 52px;
+  height: 32px;
+  margin-left: 15px;
+  padding: 1px;
+
+  appearance: none;
+  background: #F2F2F2;
+  border: none;
+  border-radius: 36.5px;
+
+  transition: 0.5s;
+}
+
+.notificationInputCheckbox::before,
+.notificationInputCheckbox::after {
+  content: '';
+  position: absolute;
+  display: inline-block;
+}
+
+.notificationInputCheckbox::before {
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+
+  width: 28px;
+  height: 28px;
+
+  background: #FFFFFF;
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  border-radius: 100px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15), 0px 1px 1px rgba(0, 0, 0, 0.16),
+    0px 3px 1px rgba(0, 0, 0, 0.1);
+}
+
+.notificationInputCheckbox::after {
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15), 0px 1px 1px rgba(0, 0, 0, 0.16),
+    0px 3px 1px rgba(0, 0, 0, 0.1);
+}
+
+.notificationInputCheckbox:checked {
+  justify-content: right;
+  background: #FC133D;
+}
+
+.accountDetails__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.removeWrapper {
+  display: flex;
+  flex-flow: column;
+  margin-top: 38px;
+}
+
+.removeAccauntLink,
+.linkDescription {
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 32px;
+  color: #FC133D;
+  text-align: left;
+  text-decoration-line: underline;
+  letter-spacing: 0.16px;
+}
+
+.linkDescription {
+  color: #828282;
+}
+
+.photo {
+  cursor: pointer;
+  position: relative;
+}
+
+.photoRemove {
+  cursor: pointer;
+
+  position: absolute;
+  z-index: 5;
+  top: 10px;
+  right: 10px;
+
+  display: none;
+
+  background: transparent;
+}
+
+.photoRemove img {
+  width: 20px;
+  height: 20px;
+}
+
+.photo:hover .photoRemove {
+  display: block;
+}
+
+.saveChangesBtnWrapper {
+  display: flex;
+  justify-content: end;
+  margin-top: 10px;
+}
+
+.saveChangesBtn {
+  cursor: pointer;
+
+  width: 200px;
+  height: 40px;
+  margin-right: 32px;
+
+  font-size: 15px;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-align: center;
+
+  background: #FC133D;
+  border-radius: 8px;
+}
+
+@media all and (max-width: 1340px) {
+  .selectWrapper {
+    width: 100%;
+  }
+
+  .supplierCabinet__contentWrapper {
+    grid-template-columns: minmax(280px, 2fr);
+  }
+
+  .companyPhotoWrapper {
+    gap: 10px;
+  }
+
+  .companyPhoto_backgroung:last-child {
+    display: none;
+  }
+
+  .fieldsWrapper {
+    flex-direction: column;
+  }
+
+  .profileInfo__number {
+    flex-direction: column;
+  }
+}

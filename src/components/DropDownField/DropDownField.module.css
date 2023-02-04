@@ -1,0 +1,35 @@
+.title {
+  cursor: pointer;
+  user-select: none;
+
+  display: flex;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding-right: 16px;
+}
+
+.titleText {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.children {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  margin-top: 16px;
+
+  text-align: left;
+}
+
+.arrowOn,
+.arrowOff {
+  font-size: 12px;
+}
+
+.arrowOn {
+  transform: rotate(180deg) translate(0, 5px);
+}

@@ -1,0 +1,38 @@
+.productQuantityControl {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 232px;
+}
+
+.productQuantityControl_btn {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  font-size: var(--fp);
+
+  border: 2px #DDD solid;
+  border-radius: 4px;
+}
+
+.productQuantityControl_sum {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 132px;
+  height: 40px;
+
+  font-size: var(--fp);
+  text-align: center;
+  letter-spacing: 0.16px;
+
+  border: 2px #DDD solid;
+  border-radius: 4px;
+}

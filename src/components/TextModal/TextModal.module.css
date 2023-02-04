@@ -1,0 +1,21 @@
+.textModal {
+  width: 100%;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.textModal_input {
+  width: calc(100% - 16px);
+  height: 44px;
+  padding-left: 16px;
+
+  background-color: #F2F2F2;
+  border-radius: 4px;
+}
+
+.textModal_title {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  color: #828282;
+}

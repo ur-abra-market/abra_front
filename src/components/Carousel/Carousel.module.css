@@ -1,0 +1,74 @@
+.slider {
+  width: 100%;
+  height: fit-content;
+}
+
+.slider__control {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.slider__name {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.slider__name > span {
+  margin-bottom: 5px;
+  color: #555;
+  text-decoration: underline;
+}
+
+.slider__name > span:hover {
+  cursor: pointer;
+}
+
+.slider__btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 64px;
+}
+
+.slider__btn_left {
+  width: 24px;
+  height: 24px;
+  background-image: url('../../assets/img/icons/arrow-slide-left.svg');
+}
+
+.slider__btn_right {
+  width: 24px;
+  height: 24px;
+  background-image: url('../../assets/img/icons/arrow-slide-right.svg');
+}
+
+.slider__btn_left:hover,
+.slider__btn_right:hover {
+  cursor: pointer;
+}
+
+.slider__card {
+  overflow-x: hidden;
+  display: flex;
+
+  width: 100%;
+  height: fit-content;
+  margin-top: 32px;
+}
+
+.slider__card_list {
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  gap: 11px;
+
+  width: fit-content;
+  height: fit-content;
+
+  transition: 0.5s;
+}

@@ -1,0 +1,173 @@
+.choiceProduct {
+  display: flex;
+  flex-direction: column;
+
+  /* width: 232px; */
+  gap: 32px;
+}
+
+.choiceProduct__color_title {
+  display: block;
+
+  height: 24px;
+  margin-bottom: 8px;
+
+  font-family: 'SF Pro Display Medium';
+  font-size: var(--fp);
+  line-height: 24px;
+  letter-spacing: 0.16px;
+}
+
+.choiceProduct__color_buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.choiceProduct__color_buttons_btn {
+  cursor: pointer;
+
+  display: block;
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+}
+
+.choiceProduct__quantity {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.choiceProduct__quantity_block {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.choiceProduct__quantity_title {
+  display: block;
+
+  height: 24px;
+
+  font-family: 'SF Pro Display Medium';
+  font-size: var(--fp);
+  line-height: 24px;
+  letter-spacing: 0.16px;
+}
+
+.choiceProduct__quantity_max {
+  cursor: pointer;
+
+  display: block;
+  align-self: flex-end;
+
+  font-size: 8px;
+  line-height: 20px;
+  color: #828282;
+  letter-spacing: 0.16px;
+}
+
+.choiceProduct__quantity_control {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.choiceProduct__quantity_btn {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  font-size: var(--fp);
+
+  border: 2px #DDD solid;
+  border-radius: 4px;
+}
+
+.choiceProduct__quantity_sum {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 132px;
+  height: 40px;
+
+  font-size: var(--fp);
+  text-align: center;
+  letter-spacing: 0.16px;
+
+  border: 2px #DDD solid;
+  border-radius: 4px;
+}
+
+.choiceProduct__price {
+  display: grid;
+  gap: 12px;
+}
+
+.choiceProduct__price_item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 4px;
+  align-items: flex-end;
+
+  width: 192px;
+
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 20px;
+
+  /* Black */
+
+  color: #000;
+}
+
+.choiceProduct__price_item_line{
+  position: relative;
+  bottom: 4px;
+
+  display: inline-block;
+
+  height: 1px;
+
+  background-color: #000;
+}
+
+.choiceProduct__price_total {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 48px;
+
+  font-family: Roboto, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 20px;
+
+
+  /* Black */
+
+  color: #000;
+}
+
+.choiceProduct__price span {
+  overflow: hidden;
+
+  width: 100%;
+  margin-right: 4px;
+  padding-left: 4px;
+
+  letter-spacing: 0.2px;
+}

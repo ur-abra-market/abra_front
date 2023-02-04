@@ -1,0 +1,29 @@
+.header__nav {
+  display: flex;
+  width: fit-content;
+}
+
+.header__nav_list {
+  display: flex;   
+  gap: 48px;
+  align-items: center;
+
+  width: calc(100% - 32px);
+  padding-right: 16px;
+  padding-left: 16px;
+
+  list-style: none;
+
+  transition: 0.4s;
+}
+
+.header__nav_list > li > a {
+  color: var(--black);
+  transition: 0.3s;
+}
+
+@media (max-width: 1400px) {
+  .header__nav_list {
+    gap: calc(7vw - 45px);
+  }  
+}

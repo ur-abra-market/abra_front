@@ -1,0 +1,11 @@
+.productListPage {
+  display: flex;
+  flex-direction: row;
+  gap: 73px;
+
+  width: calc(100% - 64px);
+  padding: 32px;
+  padding-top: 48px;
+
+  background-color: #FFF;
+}

@@ -1,0 +1,11 @@
+.title {
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #828282;
+}
+
+.radioWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 17px;
+}

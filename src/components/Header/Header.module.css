@@ -1,0 +1,84 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+}
+.header__basic {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: 100%;
+  height: 96px;
+
+  background-color: #FFFFFF;
+}
+.header__basic_logo {
+  display: block;
+
+  width: 45px;
+  height: 25px;
+  margin-right: 48px;
+  margin-left: 32px;
+
+  font-family: 'SF Pro Display Bold';
+  font-size: 20px;
+  line-height: 25px;
+  text-align: center;
+}
+.header__basic_buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 325px;
+}
+.header__menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 56px;
+
+  font-family: 'Roboto';
+  font-size: var(--fp);
+  font-weight: 400;
+  letter-spacing: 0.16px;
+}
+.header__menu_categories {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: space-between;
+
+  width: 125px;
+  height: fit-content;
+  padding-right: 16px;  
+  padding-left: 33px;  
+}
+.header_all-categories {
+  padding-right: 16px;
+  text-align: center;
+}
+.heder__selects {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 32px;
+}
+
+.header__menu_categories:hover {
+  cursor: pointer;
+}
+.dividing_line_1 {
+  margin-left: 0px;
+  line-height: 24px;
+}
+.dividing_line_2 {
+  margin-right: 30px;
+  line-height: 24px;
+}
