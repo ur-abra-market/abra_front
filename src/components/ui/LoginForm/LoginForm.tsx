@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { loginService } from '../../../store/reducers/loginSlice';
 import { Button } from '../../buttons';
 import styleBtn from '../../buttons/Buttons.module.css';
@@ -13,9 +13,9 @@ import PasswordComplexity from '../../PasswordComplexity';
 import TextField from '../../TextField';
 import style from '../RegisterForm/RegisterForm.module.css';
 
-const LoginForm = () => {
+const LoginForm = (): JSX.Element => {
   const [userStatus, setUserStatus] = useState('suppliers');
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const {
     register,
     watch,
@@ -29,9 +29,9 @@ const LoginForm = () => {
     setUserStatus(prevState => (prevState === 'suppliers' ? 'sellers' : 'suppliers'));
   };
 
-  const isLoading = useSelector(state => state.login.loading);
-  const errMessage = useSelector(state => state.login.errMessage);
-  const resMessage = useSelector(state => state.login.resMessage);
+  const isLoading = useAppSelector(state => state.login.loading);
+  const errMessage = useAppSelector(state => state.login.errMessage);
+  const resMessage = useAppSelector(state => state.login.resMessage);
 
   useEffect(() => {
     if (resMessage === 'LOGIN_SUCCESSFUL') navigate('/');

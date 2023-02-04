@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import photo from '../../../assets/img/icons/ic_baseline-photo-camera.png';
 import imgBtnHeader from '../../../assets/img/icons/icon-img.png';
+import { useAppSelector } from '../../../store/hooks';
 import { ButtonLink, Button } from '../../buttons';
 import styleBtn from '../../buttons/Buttons.module.css';
 import Search from '../../Search';
@@ -23,8 +24,8 @@ const searchClasses = {
   search__input: `${style.search__input}`,
 };
 
-const NavBar = () => {
-  const isAuth = useSelector(state => state.login.isAuth);
+const NavBar = (): JSX.Element => {
+  const isAuth = useAppSelector(state => state.login.isAuth);
 
   return (
     <nav className={style.header__basic}>
