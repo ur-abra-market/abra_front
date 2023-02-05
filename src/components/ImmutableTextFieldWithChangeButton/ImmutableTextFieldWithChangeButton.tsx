@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react';
 
-import PropTypes from 'prop-types';
+import cn from 'classnames';
 
-import style from './ImmutableTextFieldWithChangeButton.css';
+import style from './ImmutableTextFieldWithChangeButton.module.css';
 
-const ImmutableTextFieldWithChangeButton = props => {
-  const { label, id, type, name, placeholder, register, classes, defaultValue } = props;
+interface ImmutableTextFieldWithChangeButtonProps {
+  label?: string;
+  name?: string;
+  id?: string;
+  type?: 'email' | 'text' | 'password';
+  placeholder?: string;
+  classes?: any;
+  defaultValue?: string;
+  inputProps?: DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+}
+const ImmutableTextFieldWithChangeButton: FC<ImmutableTextFieldWithChangeButtonProps> = (
+  props,
+): JSX.Element => {
+  const {
+    label,
+    id,
+    type = 'text',
+    name,
+    placeholder,
+    classes,
+    inputProps,
+    defaultValue,
+  } = props;
 
-  // const [showPassword, setShowPassword] = useState(false)
-
-  // const toggleShowPassword = (e) => {
-  //   e.preventDefault()
-  //   setShowPassword((prevState) => !prevState)
-  //   let findPassword = document.getElementById('password')
-  //   findPassword.type = !showPassword ? 'text' : 'password'
-  // }
+  const [edit, setEdit] = useState<boolean>(false);
 
   return (
     <>
@@ -23,9 +37,7 @@ const ImmutableTextFieldWithChangeButton = props => {
       </label>
       <div className={classes.inputWrapper}>
         <input
-          {...register}
           type={type}
-          // type={showPassword ? 'text' : type}
           id={id}
           value={defaultValue}
           className={
@@ -35,26 +47,23 @@ const ImmutableTextFieldWithChangeButton = props => {
               ? classes.password.inputTextFieldPassword
               : style.inputTextFieldPassword
           }
+          // className={cn()}
           placeholder={placeholder}
-          readOnly
+          disabled={!edit}
+          {...inputProps}
         />
         <div className={classes.changeBtnWrapper}>
-          <button className={classes.changeBtn}>Change</button>
+          <button
+            type="button"
+            className={classes.changeBtn}
+            onClick={() => setEdit(!edit)}
+          >
+            Change
+          </button>
         </div>
       </div>
     </>
   );
-};
-
-ImmutableTextFieldWithChangeButton.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string,
-  id: PropTypes.string,
-  type: PropTypes.string,
-  register: PropTypes.object,
-  placeholder: PropTypes.string,
-  classes: PropTypes.object,
-  defaultValue: PropTypes.string,
 };
 
 export default ImmutableTextFieldWithChangeButton;

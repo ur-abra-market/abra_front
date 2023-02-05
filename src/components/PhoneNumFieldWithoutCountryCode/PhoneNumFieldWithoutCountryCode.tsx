@@ -1,18 +1,32 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, {
+  DetailedHTMLProps,
+  FC,
+  HTMLAttributes,
+  HTMLInputTypeAttribute,
+} from 'react';
 
 import style from './PhoneNumFieldWithoutCountryCode.module.css';
 
-const PhoneNumFieldWithoutCountryCode = props => {
+interface PhoneNumFieldWithoutCountryCodeProps {
+  label?: string;
+  name?: string;
+  id?: string | number;
+  defaultValue?: string;
+  placeholder?: string;
+  error: any;
+  classes: any;
+  inputProps?: DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+}
+const PhoneNumFieldWithoutCountryCode: FC<PhoneNumFieldWithoutCountryCodeProps> = (
+  props,
+): JSX.Element => {
   const {
-    register,
     label,
-    id,
     error,
     name,
     placeholder,
     classes,
+    inputProps,
     defaultValue = '',
   } = props;
 
@@ -80,29 +94,17 @@ const PhoneNumFieldWithoutCountryCode = props => {
         <div className={classes.inputWrapper}>
           <input
             type="tel"
-            id={id}
             className={classes.input}
             placeholder={placeholder}
             onInput={e => onPhoneInput(e)}
             onKeyDown={e => onPhoneKeyDown(e)}
             defaultValue={formatedValue}
-            {...register}
+            {...inputProps}
           />
         </div>
       </div>
     </>
   );
-};
-
-PhoneNumFieldWithoutCountryCode.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string,
-  id: PropTypes.string,
-  defaultValue: PropTypes.string,
-  placeholder: PropTypes.string,
-  error: PropTypes.string,
-  register: PropTypes.object,
-  classes: PropTypes.object,
 };
 
 export default PhoneNumFieldWithoutCountryCode;

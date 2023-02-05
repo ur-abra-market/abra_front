@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 
-import PropTypes from 'prop-types';
-
-const Checkbox = ({ label, classes }) => {
+interface CheckBoxProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+  label?: string;
+  classes?: any;
+  inputProps?: DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+}
+const Checkbox: FC<CheckBoxProps> = ({ label, classes, inputProps }): JSX.Element => {
   return (
     <label className={classes.labelCheckbox}>
       {label}
-      <input type="checkbox" className={classes.inputCheckbox} />
+      <input type="checkbox" className={classes.inputCheckbox} {...inputProps} />
     </label>
   );
-};
-
-Checkbox.propTypes = {
-  label: PropTypes.string,
-  classes: PropTypes.object,
 };
 
 export default Checkbox;

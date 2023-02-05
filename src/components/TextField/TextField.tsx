@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
-
-import PropTypes from 'prop-types';
+import React, { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react';
 
 import eyeHiddenPassword from '../../assets/img/icons/eye_hidden_password.png';
 import eyeVisiblePassword from '../../assets/img/icons/eye_visible_password.png';
 
 import style from './TextField.module.css';
 
-const TextField = props => {
+interface TextFieldProps {
+  label?: string;
+  name?: string;
+  id?: string;
+  type?: string;
+
+  error?: any;
+  placeholder?: string;
+  classes?: any;
+  defaultValue?: string;
+  onChange?: Function;
+  inputProps?: DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+}
+const TextField: FC<TextFieldProps> = props => {
   const {
     label,
     id,
@@ -15,7 +26,7 @@ const TextField = props => {
     name,
     placeholder,
     error,
-    register,
+    inputProps,
     classes,
     defaultValue,
     onChange,
@@ -40,21 +51,25 @@ const TextField = props => {
       <div className={classes.inputWrapper}>
         <input
           onChange={onChange}
-          {...register}
           type={showPassword ? 'text' : type}
           id={id}
           defaultValue={defaultValue}
           className={
-            !(name === 'password')
+            name !== 'password'
               ? classes.input
               : classes.password
               ? classes.password.inputTextFieldPassword
               : style.inputTextFieldPassword
           }
           placeholder={placeholder}
+          {...inputProps}
         />
         {name === 'password' && (
-          <div className={style.showPasswordBtn} onClick={toggleShowPassword}>
+          <div
+            role="presentation"
+            className={style.showPasswordBtn}
+            onClick={toggleShowPassword}
+          >
             {showPassword ? (
               <img
                 src={eyeVisiblePassword}
@@ -73,19 +88,6 @@ const TextField = props => {
       </div>
     </div>
   );
-};
-
-TextField.propTypes = {
-  label: PropTypes.string,
-  name: PropTypes.string,
-  id: PropTypes.string,
-  type: PropTypes.string,
-  register: PropTypes.object,
-  error: PropTypes.object,
-  placeholder: PropTypes.string,
-  classes: PropTypes.object,
-  defaultValue: PropTypes.string,
-  onChange: PropTypes.func,
 };
 
 export default TextField;

@@ -1,12 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import supplierAccountData from '../../services/supplierAccount.service';
+import supplierAccountData, {
+  CompanyInfo,
+  Country,
+  INotification,
+  License,
+  UserInfo,
+} from '../../services/supplierAccount.service';
 
 export const getSupplierAccountDataService = createAsyncThunk(
   'supplierAccount/getAccountData',
 
-  async function (data, { rejectWithValue }) {
+  async (data, { rejectWithValue }) => {
     try {
       const data = await supplierAccountData.getAccountData();
 
@@ -30,6 +36,8 @@ export const getSupplierNotifications = createAsyncThunk(
     try {
       const notifications = await supplierAccountData.getNotifications();
 
+      console.log('REDUCER-NOT', notifications);
+
       return notifications;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
@@ -42,13 +50,11 @@ export const getSupplierNotifications = createAsyncThunk(
 );
 
 // TODO - not use
-export const postSupplierNotifications = createAsyncThunk<any, any>(
+export const postSupplierNotifications = createAsyncThunk<any, INotification>(
   'supplierAccount/postNotifications',
   async (data, { rejectWithValue }) => {
     try {
-      const notifications = await supplierAccountData.postNotifications(data);
-
-      return notifications;
+      return supplierAccountData.postNotifications(data);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         rejectWithValue(error.message);
@@ -81,120 +87,27 @@ export const postSupplierAccountDataService = createAsyncThunk<any, any>(
 export interface ISupplierAccountSlice {
   isLoading: boolean;
   error: string | null;
-  business_profile: any;
-  personal_info: any;
-  notifications: any;
-  company_info: any;
-  businessSector: boolean;
-  orderUpdates: boolean;
-  orderReminders: boolean;
-  onStockAgain: boolean;
-  productIsCheaper: boolean;
-  yourFavoritesNew: boolean;
-  accountSupport: boolean;
-  manufacturer: boolean;
-  email: string;
+  notifications?: INotification;
+  // TODO что приходит ?
+  supplierInfo?: {
+    user_info: UserInfo;
+    license: License;
+    company_info: CompanyInfo;
+    country: Country;
+  };
 }
 const initialState: ISupplierAccountSlice = {
   isLoading: false,
   error: null,
-  business_profile: {},
-  personal_info: {},
-  notifications: {},
-  company_info: {},
-  email: '',
-  manufacturer: false,
-  businessSector: false,
-  orderUpdates: false,
-
-  orderReminders: false,
-  onStockAgain: false,
-  productIsCheaper: false,
-  yourFavoritesNew: false,
-  accountSupport: false,
+  supplierInfo: undefined,
+  notifications: undefined,
 };
 
 const supplierAccountSlice = createSlice({
   name: 'supplierAccount',
   initialState,
 
-  reducers: {
-    setFirstName: (state, action) => {
-      state.personal_info.first_name = action.payload;
-    },
-    setLastName: (state, action) => {
-      state.personal_info.last_name = action.payload;
-    },
-    setCountry: (state, action) => {
-      state.personal_info.country = action.payload;
-    },
-    setPhone: (state, action) => {
-      state.personal_info.phone = action.payload;
-    },
-    setLicence: (state, action) => {
-      state.personal_info.license_number = action.payload;
-    },
-    setEmail: (state, action) => {
-      state.email = action.payload;
-    },
-    setLogo: (state, action) => {
-      state.company_info.logo_url = action.payload;
-    },
-    setShopName: (state, action) => {
-      state.company_info.name = action.payload;
-    },
-    setBusinessSector: (state, action) => {
-      state.company_info.business_sector = action.payload;
-    },
-    setManufacturer: state => {
-      state.company_info.is_manufacturer = !state.manufacturer;
-    },
-    setYearEstablished: (state, action) => {
-      state.company_info.year_established = action.payload;
-    },
-    setNumberOfEmployees: (state, action) => {
-      state.company_info.number_of_employees = action.payload;
-    },
-    setAboutTheBusiness: (state, action) => {
-      state.company_info.description = action.payload;
-    },
-    setPhotos: (state, action) => {
-      state.company_info.photo_url = action.payload;
-    },
-    // businessCode: (state, action) => {
-    //     state.company_info.businessCode = action.payload;
-    // },
-    setBusinessPhone: (state, action) => {
-      state.company_info.phone = action.payload;
-    },
-    setBusinessEmail: (state, action) => {
-      state.company_info.business_email = action.payload;
-    },
-    setCompanyAddress: (state, action) => {
-      state.company_info.address = action.payload;
-    },
-    discountsOffers: state => {
-      state.businessSector = !state.businessSector;
-    },
-    orderUpdates: state => {
-      state.orderUpdates = !state.orderUpdates;
-    },
-    orderReminders: state => {
-      state.orderReminders = !state.orderReminders;
-    },
-    onStockAgain: state => {
-      state.onStockAgain = !state.onStockAgain;
-    },
-    productIsCheaper: state => {
-      state.productIsCheaper = !state.productIsCheaper;
-    },
-    yourFavoritesNew: state => {
-      state.yourFavoritesNew = !state.yourFavoritesNew;
-    },
-    accountSupport: state => {
-      state.accountSupport = !state.accountSupport;
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder.addCase(getSupplierAccountDataService.pending, state => {
       state.isLoading = true;
@@ -202,57 +115,37 @@ const supplierAccountSlice = createSlice({
     });
     builder.addCase(getSupplierAccountDataService.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.business_profile = action.payload.business_profile;
-      state.personal_info = action.payload.personal_info;
+      state.supplierInfo = action.payload.result;
     });
     builder.addCase(getSupplierAccountDataService.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload as string;
     });
+    //
+    // builder.addCase(postSupplierNotifications.pending, state => {
+    //   state.isLoading = true;
+    // });
+    // builder.addCase(postSupplierNotifications.fulfilled, (state, action) => {
+    //   state.isLoading = false;
+    //   state.notifications = action.payload;
+    // });
+    // builder.addCase(postSupplierNotifications.rejected, (state, action) => {
+    //   state.isLoading = false;
+    //   state.error = action.payload as string;
+    // });
+
+    builder.addCase(getSupplierNotifications.pending, state => {
+      state.isLoading = true;
+    });
+    builder.addCase(getSupplierNotifications.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.notifications = action.payload;
+    });
+    builder.addCase(getSupplierNotifications.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload as string;
+    });
   },
-  // extraReducers: {
-  //   [getSupplierAccountDataService.pending]: state => {
-  //     // state.status = 'loading'
-  //     state.isLoading = true;
-  //     state.error = null;
-  //   },
-  //   [getSupplierAccountDataService.fulfilled]: (state, action) => {
-  //     // state.status = 'resolved'
-  //     state.isLoading = false;
-  //     state.data = action.payload;
-  //   },
-  //   [getSupplierAccountDataService.rejected]: (state, action) => {
-  //     // state.status = 'rejected'
-  //     state.isLoading = false;
-  //     state.error = action.payload;
-  //   },
-  // },
 });
 
-export const {
-  setFirstName,
-  setLastName,
-  setCountry,
-  setPhone,
-  setLicence,
-  setEmail,
-  setLogo,
-  setShopName,
-  setBusinessSector,
-  setManufacturer,
-  setYearEstablished,
-  setNumberOfEmployees,
-  setAboutTheBusiness,
-  setPhotos,
-  setBusinessPhone,
-  setBusinessEmail,
-  setCompanyAddress,
-  discountsOffers,
-  orderUpdates,
-  orderReminders,
-  onStockAgain,
-  productIsCheaper,
-  yourFavoritesNew,
-  accountSupport,
-} = supplierAccountSlice.actions;
 export default supplierAccountSlice.reducer;

@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { ChangeEvent, DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 
 import PropTypes from 'prop-types';
+import { UseFormRegister } from 'react-hook-form';
 
 import style from './SelectLabelAbove.module.css';
 
-const SelectLabelAbove = ({
+interface SelectLabelAboveProps {
+  onChange?: Function;
+  onChangeOption?: Function;
+  title: string;
+  name?: string;
+  placeholder: string;
+  options: any[];
+  error?: string;
+  restProps?: any;
+  selectProps?: DetailedHTMLProps<HTMLAttributes<HTMLSelectElement>, HTMLSelectElement>;
+}
+const SelectLabelAbove: FC<SelectLabelAboveProps> = ({
   onChange,
   onChangeOption,
   title,
@@ -12,24 +24,11 @@ const SelectLabelAbove = ({
   placeholder,
   options,
   error,
-  register,
-  ...restProps
+  selectProps,
 }) => {
-  const onChangeCallback = e => {
-    onChange && onChange(e);
-    onChangeOption && onChangeOption(e.currentTarget.value);
-  };
-
-  const myFn = str => {
-    let res = '';
-
-    if (str[0] === '<' || str[0] === '>') {
-      for (let i = 1; i < str.length; i++) res += str[i];
-
-      return res;
-    }
-
-    return str;
+  const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>): void => {
+    onChange?.(e);
+    onChangeOption?.(e.currentTarget.value);
   };
 
   return (
@@ -37,11 +36,10 @@ const SelectLabelAbove = ({
       <p className={style.selectTitle}>{title}</p>
       <div className={style.selectContainer}>
         <select
-          {...restProps}
-          {...register}
           name={name}
           onChange={onChangeCallback}
           className={style.selectField}
+          {...selectProps}
         >
           {placeholder && (
             <option value="" disabled hidden>
@@ -51,7 +49,7 @@ const SelectLabelAbove = ({
           {options
             ? options.map((el, i) => {
                 return (
-                  <option value={myFn(el)} className={style.selectOption} key={i}>
+                  <option value={el} className={style.selectOption} key={i}>
                     {el}
                   </option>
                 );
@@ -64,18 +62,6 @@ const SelectLabelAbove = ({
       {error && <p className={style.selectError}>&#9888; {error}</p>}
     </>
   );
-};
-
-SelectLabelAbove.propTypes = {
-  onChange: PropTypes.func,
-  onChangeOption: PropTypes.func,
-  title: PropTypes.string,
-  name: PropTypes.string,
-  placeholder: PropTypes.string,
-  options: PropTypes.array,
-  error: PropTypes.string,
-  register: PropTypes.object,
-  restProps: PropTypes.object,
 };
 
 export default SelectLabelAbove;
