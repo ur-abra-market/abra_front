@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 
 import deleteImg from '../../assets/img/icons/delete_Img_red.svg';
 import AddingImageSpot from '../../components/AddingImage/AddingImageSpot/AddingImageSpot';
+
+
+
+
 import { InfoBtn } from '../../components/buttons';
 import Checkbox from '../../components/Checkbox';
 import ImmutableTextFieldWithChangeButton from '../../components/ImmutableTextFieldWithChangeButton/ImmutableTextFieldWithChangeButton';
@@ -136,8 +140,8 @@ const SupplierAccountMainPage = (): JSX.Element => {
   if (isLoading) return <Loader />;
 
   return (
-    <>
-      {data && (
+
+      {personal_info && business_profile && (
         <div className={style.supplierCabinet}>
           <form onSubmit={handleSubmit(onSubmitInfo)}>
             <div className={style.supplierCabinet__contentWrapper}>
@@ -530,7 +534,6 @@ const SupplierAccountMainPage = (): JSX.Element => {
           </div>
         </div>
       )}
-    </>
   );
 };
 

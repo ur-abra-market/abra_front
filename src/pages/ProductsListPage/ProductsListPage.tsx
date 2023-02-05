@@ -161,10 +161,11 @@ const ProductsListPage = () => {
             classes={searchClasses}
             onClick={handleRestFiltersSet}
           />
-          {restFilters ? <span className={style.restFilters}>Reset Filters</span> : <></>}
+          {restFilters && <span className={style.restFilters}>Reset Filters</span>}
         </div>
         <div className={style.layouts}>
           <img
+            role="presentation"
             className={
               layout === 'tileLayout'
                 ? `${style.activeLayout}`
@@ -175,6 +176,7 @@ const ProductsListPage = () => {
             alt="tileLayoutImg"
           />
           <img
+            role="presentation"
             className={
               layout === 'tableLayout'
                 ? `${style.activeLayout}`
@@ -242,6 +244,7 @@ const ProductsListPage = () => {
               <div className={style.action}>
                 <img src={addImg} alt="img" />
                 <div
+                  role="presentation"
                   className={style.subtitle}
                   onClick={() => {
                     navigate('../add-product');
