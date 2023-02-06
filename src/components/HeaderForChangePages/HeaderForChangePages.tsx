@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import imgBtnHeader from '../../assets/img/icons/check-mark.svg';
+import { useAppSelector } from '../../store/hooks';
 import { ButtonLink } from '../buttons';
 
 import style from './HeaderForChangePages.module.css';
@@ -15,8 +15,8 @@ const navbarBtnClasses = {
   btnName: `${style.btnName}`,
 };
 
-const HeaderForChangePages = () => {
-  const isAuth = useSelector(state => state.login.isAuth);
+const HeaderForChangePages = (): JSX.Element => {
+  const isAuth = useAppSelector(state => state.login.isAuth);
 
   return (
     <nav className={style.header__basic}>

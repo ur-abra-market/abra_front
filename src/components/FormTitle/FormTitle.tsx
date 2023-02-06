@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import style from './FormTitle.module.css';
 
-const FormTitle = ({ title, text, step, link }) => {
+interface FormTitleProps {
+  title?: string;
+  text?: string;
+  step?: string;
+  link?: string;
+}
+const FormTitle: FC<FormTitleProps> = ({ title, text, step, link }) => {
   return (
     <div className={style.textWrapper}>
       <p className={style.title}>{title}</p>
@@ -21,10 +26,4 @@ const FormTitle = ({ title, text, step, link }) => {
   );
 };
 
-FormTitle.propTypes = {
-  title: PropTypes.string,
-  text: PropTypes.string,
-  step: PropTypes.string,
-  link: PropTypes.string,
-};
 export default FormTitle;

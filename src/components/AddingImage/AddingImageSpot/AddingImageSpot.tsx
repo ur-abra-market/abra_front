@@ -35,7 +35,7 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
   const imgChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const reader = new FileReader();
 
-    reader.onload = function () {
+    reader.onload = () => {
       setImgUrl(reader?.result);
     };
     if (e.target.files !== null && e.target.files[0]) {
@@ -73,7 +73,12 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
 
       {imgUrl ? (
         <div className={style.photo}>
-          <img src={imgUrl} alt="img" id="photoImg" className={classes.uploadedImage} />
+          <img
+            src={imgUrl as string}
+            alt="img"
+            id="photoImg"
+            className={classes.uploadedImage}
+          />
           <button type="button" className={style.photoRemove} onClick={onClose}>
             <img src={deleteImg} alt="close" />
           </button>

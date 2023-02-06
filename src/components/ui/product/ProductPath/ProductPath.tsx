@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { ArrowRightBreadCrumbs } from '../../../../assets/img';
 
 import style from './ProductPath.module.css';
 
-const ProductPath = ({ pathArr }) => {
+interface ProductPathProps {
+  pathArr: string[];
+}
+// TODO - to - обязательеный параметр
+const ProductPath: FC<ProductPathProps> = ({ pathArr }): JSX.Element => {
   return (
     <div className={style.productPath}>
       {pathArr.map(route => (
-        <Link key={`path_${route}`} className={style.productPath__item}>
+        <Link key={`path_${route}`} className={style.productPath__item} to="#">
           {route.replace('/', '')}
           <span>
             <ArrowRightBreadCrumbs />
@@ -20,10 +23,6 @@ const ProductPath = ({ pathArr }) => {
       ))}
     </div>
   );
-};
-
-ProductPath.propTypes = {
-  pathArr: PropTypes.array.isRequired,
 };
 
 export default ProductPath;

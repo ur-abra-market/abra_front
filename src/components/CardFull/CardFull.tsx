@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { CSSProperties, FC, useState } from 'react';
 
-import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { changeById } from '../../store/reducers/basketSlice';
 import { active } from '../../store/reducers/productPaginateSlice';
 import { BtnNewBest } from '../buttons';
@@ -16,17 +15,25 @@ import SupplierCard from '../ui/product/SupplierCard';
 
 import style from './CardFull.module.css';
 
-const CardFull = ({ props }) => {
+interface CardFullProps {
+  props: any;
+  product_id?: string;
+}
+const CardFull: FC<CardFullProps> = ({ props }): JSX.Element => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const basket = useSelector(state => state.basket.basketProduct);
+  const dispatch = useAppDispatch();
+  const basket = useAppSelector(state => state.basket.basketProduct);
   const product = basket.find(obj => obj.product_id === props.product_id);
 
   const [sum, setSum] = useState(0);
   const propsNew = product || { ...props, ...{ sum } };
 
-  const style1 = { flexDirection: 'row', alignItems: 'flex-end', gap: '0px' };
-  const style2 = {
+  const style1: CSSProperties = {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    gap: '0px',
+  };
+  const style2: CSSProperties = {
     flexDirection: 'column',
     alignItems: 'flex-start',
     gap: '8px',
@@ -46,6 +53,7 @@ const CardFull = ({ props }) => {
       <div className={style.cardFull__info}>
         <div className={style.cardFull__block1}>
           <div className={style.cardFull__direction}>
+            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
             <h4
               onClick={() => {
                 navigate('../product');
@@ -56,7 +64,7 @@ const CardFull = ({ props }) => {
             </h4>
             <BtnNewBest name="Bestseller" />
           </div>
-          <ProductPath />
+          <ProductPath pathArr={[]} />
         </div>
         <div className={style.cardFull__block2}>
           <div
@@ -80,7 +88,11 @@ const CardFull = ({ props }) => {
           {propsNew.sum > 0 ? (
             <ProductQuantityControl obj={propsNew} />
           ) : (
-            <div className={style.cardFull__basket} onClick={() => handlerBasket()}>
+            <div
+              role="presentation"
+              className={style.cardFull__basket}
+              onClick={() => handlerBasket()}
+            >
               <div />
             </div>
           )}
@@ -89,11 +101,6 @@ const CardFull = ({ props }) => {
       </div>
     </div>
   );
-};
-
-CardFull.propTypes = {
-  props: PropTypes.object,
-  product_id: PropTypes.string,
 };
 
 export default CardFull;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -7,7 +7,10 @@ import Flag from '../Flag';
 
 import style from './ImgSlider.module.css';
 
-const ImgSlider = ({ srcArr }) => {
+interface ImgSliderProps {
+  srcArr: any[];
+}
+const ImgSlider: FC<ImgSliderProps> = ({ srcArr }): JSX.Element => {
   // const photos = ['./assets/image/products/1.png', './assets/image/products/2.png', './assets/image/products/3.png', './assets/image/products/4.png']
   // const arrPhoto = [...photos.slice(-1), ...photos, photos[0]];
   const [slide, setSlide] = useState(0);
@@ -38,7 +41,7 @@ const ImgSlider = ({ srcArr }) => {
       </div>
     );
   };
-  const control = () => {
+  const control = (): JSX.Element => {
     if (Array.isArray(srcArr) && srcArr.length > 1) {
       return (
         <div className={style.imgSlider_control}>
@@ -67,7 +70,5 @@ const ImgSlider = ({ srcArr }) => {
     </div>
   );
 };
-
-ImgSlider.propTypes = { srcArr: PropTypes.array };
 
 export default ImgSlider;

@@ -1,7 +1,5 @@
 import React, { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react';
 
-import cn from 'classnames';
-
 import style from './ImmutableTextFieldWithChangeButton.module.css';
 
 interface ImmutableTextFieldWithChangeButtonProps {

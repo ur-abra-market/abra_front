@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 
-import PropTypes from 'prop-types';
-
-const Form = ({ children, ...props }) => {
+const Form: FC<PropsWithChildren> = ({ children, ...props }) => {
   return (
     <form noValidate {...props}>
       {children}
@@ -11,7 +9,3 @@ const Form = ({ children, ...props }) => {
 };
 
 export default Form;
-
-Form.propTypes = {
-  children: PropTypes.node,
-};

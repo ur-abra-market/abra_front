@@ -1,13 +1,17 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 
 import style from './ButtonReg.module.css';
 
-const ButtonReg = ({ type, value, isValid }): JSX.Element => {
+interface ButtonRegProps {
+  type: 'button' | 'submit';
+  value: string;
+  isValid: boolean;
+}
+const ButtonReg: FC<ButtonRegProps> = ({ type, value, isValid }): JSX.Element => {
   return (
     <div>
       <button
+        /* eslint-disable-next-line react/button-has-type */
         type={type}
         className={isValid ? style.buttonOff : style.buttonOn}
         disabled={isValid}
@@ -18,9 +22,4 @@ const ButtonReg = ({ type, value, isValid }): JSX.Element => {
   );
 };
 
-ButtonReg.propTypes = {
-  type: PropTypes.string,
-  value: PropTypes.string,
-  isValid: PropTypes.bool,
-};
 export default ButtonReg;

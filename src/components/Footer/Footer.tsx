@@ -8,16 +8,14 @@ import SelectShip from '../SelectShip/SelectShip';
 
 import style from './Footer.module.css';
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
   const routs = ['personal-account', 'order-history'];
   const { pathname } = useLocation();
   const showHeadNav = routs.some(el => el === pathname.split('/')[1]);
 
   return (
     <div className={style.footer}>
-      {showHeadNav ? (
-        <></>
-      ) : (
+      {showHeadNav && (
         <div className={style.footer__basic}>
           <div className={style.footer__basic_logo}>Abra</div>
           <HeaderNavMenu />

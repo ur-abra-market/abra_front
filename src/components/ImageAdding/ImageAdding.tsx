@@ -1,12 +1,20 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { ChangeEvent, FC } from 'react';
 
 import iconImg from '../../assets/img/icons/icon-img.png';
 
 import style from './ImageAdding.module.css';
 
-const ImageAdding = ({
+interface ImageAddingProps {
+  label?: string;
+  placeholder?: string;
+  error?: string;
+  imgUrl: string;
+  setImgUrl: any;
+  images: any[];
+  setImages: any;
+  register?: any;
+}
+const ImageAdding: FC<ImageAddingProps> = ({
   label,
   placeholder,
   error,
@@ -16,12 +24,15 @@ const ImageAdding = ({
   images,
   setImages,
 }) => {
-  const imgChange = e => {
+  const imgChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const reader = new FileReader();
 
-    reader.onload = function () {
+    reader.onload = () => {
       setImgUrl(reader?.result);
     };
+
+    if (!e.target.files) return;
+
     if (e.target.files[0]) {
       reader.readAsDataURL(e.target.files[0]);
       setImages([...images, e.target.files[0]]);
@@ -77,14 +88,4 @@ const ImageAdding = ({
   );
 };
 
-ImageAdding.propTypes = {
-  label: PropTypes.string,
-  placeholder: PropTypes.string,
-  error: PropTypes.string,
-  register: PropTypes.object,
-  imgUrl: PropTypes.string,
-  setImgUrl: PropTypes.func,
-  images: PropTypes.array,
-  setImages: PropTypes.func,
-};
 export default ImageAdding;

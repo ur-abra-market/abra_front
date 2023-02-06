@@ -1,10 +1,12 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 
 import style from './ContentMessage.module.css';
 
-const ContentMessage = ({ title, text }) => {
+interface ContentMessageProps {
+  title: string;
+  text: string;
+}
+const ContentMessage: FC<ContentMessageProps> = ({ title, text }) => {
   return (
     <>
       <div className={style.header}>{title}</div>
@@ -13,8 +15,4 @@ const ContentMessage = ({ title, text }) => {
   );
 };
 
-ContentMessage.propTypes = {
-  title: PropTypes.string,
-  text: PropTypes.string,
-};
 export default ContentMessage;

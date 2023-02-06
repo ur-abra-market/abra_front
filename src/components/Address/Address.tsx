@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 
 import style from './Address.module.css';
 
-const Address = ({ address }: any) => {
+interface AddressProps {
+  address: any;
+}
+const Address: FC<AddressProps> = ({ address }): JSX.Element => {
   const styles = {
     background: address.isMain ? '#f2f2f2' : '#ffffff',
     border: address.isMain ? '2px #000000 solid' : '2px #d6d6d6 solid',
@@ -38,10 +41,6 @@ const Address = ({ address }: any) => {
       </div>
     </div>
   );
-};
-
-Address.propTypes = {
-  address: PropTypes.object,
 };
 
 export default Address;

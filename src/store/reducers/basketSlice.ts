@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+interface IBasketInitialState {
+  basketProduct: any[];
+}
+const initialState: IBasketInitialState = {
   basketProduct: [],
 };
 

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import style from './FooterForSupplierPart.module.css';
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
   return (
     <div className={style.footer}>
       <Link to="/" className={style.footer_logo}>

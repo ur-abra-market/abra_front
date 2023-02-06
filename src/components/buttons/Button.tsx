@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
-
 interface ButtonProps {
   value?: string;
   className?: string;
@@ -22,19 +20,6 @@ const Button: FC<ButtonProps> = ({
       {value}
     </button>
   );
-};
-
-Button.propTypes = {
-  value: PropTypes.string,
-  className: PropTypes.string,
-  onClick: PropTypes.func,
-  disabled: PropTypes.bool,
-};
-
-Button.defaultProps = {
-  value: 'Default Button',
-  className: '',
-  disabled: false,
 };
 
 export default Button;

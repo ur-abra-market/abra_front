@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
-
-import PropTypes from 'prop-types';
+import React, { ChangeEvent, FC, useState } from 'react';
 
 import style from './CheckboxStyledElem.module.css';
 
-const CheckboxStyledElem = ({ size, register, typeId }) => {
-  const [amount, setAmount] = useState(0);
-  const [checked, setChecked] = useState(false);
+interface CheckboxStyledElemProps {
+  register: any;
+  size: string;
+  typeId: number;
+}
+const CheckboxStyledElem: FC<CheckboxStyledElemProps> = ({
+  size,
+  register,
+  typeId,
+}): JSX.Element => {
+  const [amount, setAmount] = useState<number>(0);
+  const [checked, setChecked] = useState<boolean>(false);
 
-  const checkboxHandler = e => {
+  const checkboxHandler = (e: ChangeEvent<any>): void => {
     setChecked(e.target.checked);
-    document.getElementById(size + typeId).focus();
+    // TODO переделать!!!!!!
+    // document.getElementById(size + typeId).focus();
   };
 
-  const onInputHandler = e => {
-    setAmount(e.target.value);
+  const onInputHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+    setAmount(+e.target.value);
   };
 
   return (
@@ -42,9 +50,4 @@ const CheckboxStyledElem = ({ size, register, typeId }) => {
   );
 };
 
-CheckboxStyledElem.propTypes = {
-  register: PropTypes.object,
-  size: PropTypes.string,
-  typeId: PropTypes.number,
-};
 export default CheckboxStyledElem;
