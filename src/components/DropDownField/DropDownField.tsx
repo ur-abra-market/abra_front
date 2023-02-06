@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC, PropsWithChildren, useEffect, useState } from 'react';
 
 import style from './DropDownField.module.css';
 
-const DropDownField = ({ children, title, isShow }) => {
+interface DropDownFieldProps {
+  title: string;
+  isShow: boolean;
+}
+const DropDownField: FC<PropsWithChildren<DropDownFieldProps>> = ({
+  children,
+  title,
+  isShow,
+}): JSX.Element => {
   const [open, setOpen] = useState(false);
 
-  const onClick = () => {
+  const onClick = (): void => {
     setOpen(!open);
   };
 
-  isShow && !open && setOpen(!open);
+  useEffect(() => {
+    if (isShow && !open) {
+      setOpen(!open);
+    }
+  }, [isShow, open]);
 
   return (
     <div>
@@ -25,9 +35,4 @@ const DropDownField = ({ children, title, isShow }) => {
   );
 };
 
-DropDownField.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  title: PropTypes.string,
-  isShow: PropTypes.bool,
-};
 export default DropDownField;

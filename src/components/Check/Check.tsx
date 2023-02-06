@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import { main } from '../../store/reducers/modalSlice';
 
 import style from './Check.module.css';
 
-const Check = ({ label }) => {
+interface CheckProps {
+  label: string;
+}
+const Check: FC<CheckProps> = ({ label }): JSX.Element => {
   const [check, setCheck] = useState(false);
-  const [background, setBackground] = useState(false);
+  const [background, setBackground] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,7 +19,7 @@ const Check = ({ label }) => {
     else setBackground('#000000');
   }, [check]);
 
-  const handlerCheck = () => {
+  const handlerCheck = (): void => {
     setCheck(!check);
     switch (label) {
       case 'Main Address':
@@ -29,7 +31,7 @@ const Check = ({ label }) => {
   };
 
   return (
-    <div className={style.check} onClick={() => handlerCheck()}>
+    <div role="presentation" className={style.check} onClick={() => handlerCheck()}>
       <div className={style.check__box} style={{ background }}>
         {check ? <div className={style.check__box_mark} /> : <></>}
       </div>
@@ -38,7 +40,4 @@ const Check = ({ label }) => {
   );
 };
 
-Check.propTypes = {
-  label: PropTypes.string,
-};
 export default Check;

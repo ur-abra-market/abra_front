@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 
-import PropTypes from 'prop-types';
-
-const ButtonLink = props => {
+interface ButtonLinkProps {
+  name?: string;
+  src?: string;
+  classes?: any;
+}
+const ButtonLink: FC<PropsWithChildren<ButtonLinkProps>> = (props): JSX.Element => {
   const { name, src, classes, children } = props;
 
   return (
@@ -14,13 +17,6 @@ const ButtonLink = props => {
       <div className={classes.btnName}>{name}</div>
     </div>
   );
-};
-
-ButtonLink.propTypes = {
-  name: PropTypes.string,
-  src: PropTypes.string,
-  classes: PropTypes.object,
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 export default ButtonLink;

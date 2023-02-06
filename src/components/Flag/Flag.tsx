@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
-import PropTypes from 'prop-types';
 
 import style from './Flag.module.css';
 import { ReactComponent as FlagIcon } from './flag.svg';
 
-const Flag = ({ className }) => {
+interface FlagProps {
+  className?: string;
+}
+const Flag: FC<FlagProps> = ({ className }): JSX.Element => {
   const [flag, setFlag] = useState(false);
 
   return (
@@ -20,10 +22,6 @@ const Flag = ({ className }) => {
       <FlagIcon className={flag ? style.active : ''} />
     </div>
   );
-};
-
-Flag.propTypes = {
-  className: PropTypes.string,
 };
 
 export default Flag;

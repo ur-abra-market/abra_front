@@ -1,13 +1,11 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import './BtnNewBest.css';
 
-const BtnNewBest = ({ name }) => {
+interface BtnNewBestProps {
+  name: string;
+}
+const BtnNewBest: FC<BtnNewBestProps> = ({ name }) => {
   return <div className="BtnNewBest">{name}</div>;
 };
 
-BtnNewBest.propTypes = {
-  name: PropTypes.string,
-};
 export default BtnNewBest;

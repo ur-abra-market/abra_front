@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './HeaderNavMenu.module.css';
 
-const HeaderNavMenu = () => {
+const HeaderNavMenu = (): JSX.Element => {
   return (
     <nav className={style.header__nav}>
       <ul className={style.header__nav_list}>

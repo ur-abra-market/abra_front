@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC, useState } from 'react';
 
 import ImageAdding from './index';
 
-export const ImagesAdding = ({ images, setImages }) => {
+interface ImagesAddingProps {
+  images: any[];
+  setImages: Function;
+}
+export const ImagesAdding: FC<ImagesAddingProps> = ({
+  images,
+  setImages,
+}): JSX.Element => {
   const [imageUrl, setImageUrl] = useState('');
 
   return (
@@ -15,9 +20,4 @@ export const ImagesAdding = ({ images, setImages }) => {
       setImgUrl={setImageUrl}
     />
   );
-};
-
-ImagesAdding.propTypes = {
-  images: PropTypes.array,
-  setImages: PropTypes.func,
 };

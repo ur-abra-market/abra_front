@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import style from './FooterForSupplierPart.module.css';
 
-const FooterForSupplierPart = () => {
+const FooterForSupplierPart = (): JSX.Element => {
   return (
     <div className={style.footer}>
       <div className={style.footer_linksWrapper}>

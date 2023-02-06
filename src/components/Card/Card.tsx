@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -10,7 +9,13 @@ import Stars from '../Stars';
 
 import style from './Card.module.css';
 
-const Card = ({ product }) => {
+interface CardProps {
+  // images?: any;
+  // info?: any;
+  product: any;
+}
+const Card: FC<CardProps> = (props): JSX.Element => {
+  const { product } = props;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -36,7 +41,7 @@ const Card = ({ product }) => {
     supplier: null,
   };
 
-  const productClickHandler = () => {
+  const productClickHandler = (): void => {
     navigate('../product');
     dispatch(active({ ...param, ...{ sum: 0 } }));
   };
@@ -54,12 +59,6 @@ const Card = ({ product }) => {
       <Stars reward={+product.grade_average} />
     </div>
   );
-};
-
-Card.propTypes = {
-  images: PropTypes.any,
-  info: PropTypes.any,
-  product: PropTypes.any,
 };
 
 export default Card;

@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC, PropsWithChildren, useState } from 'react';
 
 import style from './Carousel.module.css';
 
-export const Carousel = ({ title, arrayLength, children, widthSlider = 1376 }) => {
-  console.log('SLIDER', widthSlider);
+interface CarouselProps {
+  title: string;
+  widthSlider: number;
+  arrayLength: number;
+}
+export const Carousel: FC<PropsWithChildren<CarouselProps>> = ({
+  title,
+  arrayLength,
+  children,
+  widthSlider = 1376,
+}): JSX.Element => {
   const widthCart = 220;
   const gap = 11;
   const step = widthCart + gap;
@@ -14,7 +21,7 @@ export const Carousel = ({ title, arrayLength, children, widthSlider = 1376 }) =
   const dl = widthSlider - widthList;
   const [left, setLeft] = useState(0);
 
-  const move = d => {
+  const move = (d: number): void => {
     const newleft = left + d;
     const dLeft = newleft > 0 ? 0 : newleft < dl ? dl : newleft;
 
@@ -30,8 +37,16 @@ export const Carousel = ({ title, arrayLength, children, widthSlider = 1376 }) =
           </div>
         )}
         <div className={style.slider__btn}>
-          <div className={style.slider__btn_left} onClick={() => move(step)} />
-          <div className={style.slider__btn_right} onClick={() => move(-step)} />
+          <div
+            role="presentation"
+            className={style.slider__btn_left}
+            onClick={() => move(step)}
+          />
+          <div
+            role="presentation"
+            className={style.slider__btn_right}
+            onClick={() => move(-step)}
+          />
         </div>
       </div>
       <div className={style.slider__card}>
@@ -41,11 +56,4 @@ export const Carousel = ({ title, arrayLength, children, widthSlider = 1376 }) =
       </div>
     </div>
   );
-};
-
-Carousel.propTypes = {
-  title: PropTypes.string,
-  widthSlider: PropTypes.number,
-  arrayLength: PropTypes.number.isRequired,
-  children: PropTypes.node.isRequired,
 };

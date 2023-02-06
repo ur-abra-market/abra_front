@@ -7,7 +7,7 @@ import NavBar from '../ui/NavBar';
 
 import style from './Header.module.css';
 
-const Header = () => {
+const Header = (): JSX.Element => {
   return (
     <header className={style.header}>
       <NavBar />
