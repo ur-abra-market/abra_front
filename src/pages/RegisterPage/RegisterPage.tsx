@@ -1,13 +1,14 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 
 import { Button } from 'components/buttons';
 import styleBtn from 'components/buttons/Buttons.module.css';
 import RegisterForm from 'components/ui/RegisterForm';
 import style from 'pages/RegisterPage/RegisterPage.module.css';
 
-const RegisterPage = ({ togglePageType }): JSX.Element => {
+interface RegisterPageProps {
+  togglePageType: Function;
+}
+const RegisterPage: FC<RegisterPageProps> = ({ togglePageType }): JSX.Element => {
   return (
     <div className={style.authPage__wrap}>
       <Button
@@ -23,7 +24,4 @@ const RegisterPage = ({ togglePageType }): JSX.Element => {
   );
 };
 
-RegisterPage.propTypes = {
-  togglePageType: PropTypes.func,
-};
 export default RegisterPage;

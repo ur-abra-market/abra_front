@@ -1,8 +1,5 @@
 import React, { ChangeEvent, DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 
-import PropTypes from 'prop-types';
-import { UseFormRegister } from 'react-hook-form';
-
 import style from './SelectLabelAbove.module.css';
 
 interface SelectLabelAboveProps {
@@ -10,10 +7,11 @@ interface SelectLabelAboveProps {
   onChangeOption?: Function;
   title: string;
   name?: string;
-  placeholder: string;
+  placeholder?: string;
   options: any[];
   error?: string;
   restProps?: any;
+  register?: any;
   selectProps?: DetailedHTMLProps<HTMLAttributes<HTMLSelectElement>, HTMLSelectElement>;
 }
 const SelectLabelAbove: FC<SelectLabelAboveProps> = ({
@@ -25,6 +23,7 @@ const SelectLabelAbove: FC<SelectLabelAboveProps> = ({
   options,
   error,
   selectProps,
+  register,
 }) => {
   const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>): void => {
     onChange?.(e);
@@ -40,6 +39,7 @@ const SelectLabelAbove: FC<SelectLabelAboveProps> = ({
           onChange={onChangeCallback}
           className={style.selectField}
           {...selectProps}
+          {...register}
         >
           {placeholder && (
             <option value="" disabled hidden>

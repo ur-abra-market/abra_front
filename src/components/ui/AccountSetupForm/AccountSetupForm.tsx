@@ -13,7 +13,7 @@ import TextFieldLabelAbove from '../../TextFieldLabelAbove';
 
 import style from './AccountSetupForm.module.css';
 
-const AccountSetupForm = () => {
+const AccountSetupForm = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,9 +22,18 @@ const AccountSetupForm = () => {
     formState: { errors, isValid },
     handleSubmit,
     reset,
-  } = useForm({ mode: 'onChange' });
+  } = useForm<{
+    fname: string;
+    lname: string;
+    license: string;
+    country: string;
+    tel: string;
+    code: string;
+  }>({
+    mode: 'onChange',
+  });
 
-  const onSubmit = data => {
+  const onSubmit = (data: any): void => {
     const phone = data.code + data.tel;
 
     dispatch(

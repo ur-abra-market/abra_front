@@ -5,8 +5,10 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import {
   addProductService,
+  getCompanyInfoService,
   uploadImageService,
 } from '../../../store/reducers/supplierSlice';
 import ButtonReg from '../../buttons/ButtonReg/ButtonReg';
@@ -38,11 +40,11 @@ const ProductListRegistrationForm = ({
   productVariations,
   categoryId,
 }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { productId, loading } = useSelector(state => state.supplier);
+  const { productId, loading, companyInfo } = useAppSelector(state => state.supplier);
 
-  const companyInfo = useSelector(state => state.supplier.companyInfo);
+  console.log('COMPANY', companyInfo);
 
   const [isSubmit, setIsSubmit] = useState(false);
   const [images, setImages] = useState([]);
@@ -173,6 +175,10 @@ const ProductListRegistrationForm = ({
       navigate('/');
     }
   }, [productId]);
+
+  useEffect(() => {
+    dispatch(getCompanyInfoService());
+  }, [dispatch]);
 
   return (
     <div className={style.formWrapper}>

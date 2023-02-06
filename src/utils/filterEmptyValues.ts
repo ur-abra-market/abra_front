@@ -1,4 +1,4 @@
-export const filterEmptyValues = data => {
+export const filterEmptyValues = (data: any): any => {
   const accountInfoForRequest = {};
   const array = Object.keys(data);
 

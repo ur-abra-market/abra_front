@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import _ from 'lodash';
-import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 import addImg from 'assets/img/icons/addImg.png';
 import additIcon from 'assets/img/icons/additIcon.png';
@@ -24,22 +25,22 @@ import ShowPage from 'components/ShowPage';
 import Table from 'components/table';
 import Pagination from 'components/ui/Pagination';
 import {
-  tableStyleClasses,
-  selectStyles,
   checkboxStyles,
+  selectStyles,
+  tableStyleClasses,
 } from 'pages/ProductsListPage/constantsOfClassesStyles';
 import style from 'pages/ProductsListPage/ProductsListPage.module.css';
 import {
-  manageProductsService,
   deleteProducts,
+  manageProductsService,
 } from 'store/reducers/manageProductsSlice';
 import { paginate } from 'utils/paginate';
 
-const ProductsListPage = () => {
+const ProductsListPage: FC = (): JSX.Element => {
   const navigate = useNavigate();
-  const activePage = useSelector(state => state.paginate.page_num);
-  const amountPages = useSelector(state => state.paginate.amountPages);
-  const pageSize = useSelector(state => state.paginate.page_size);
+  const activePage = useAppSelector(state => state.paginate.page_num);
+  const amountPages = useAppSelector(state => state.paginate.amountPages);
+  const pageSize = useAppSelector(state => state.paginate.page_size);
 
   const [selectedProductsStatus, setSelectedProductsStatus] = useState('All Products');
   const [sortBy, setSortBy] = useState({
@@ -50,16 +51,16 @@ const ProductsListPage = () => {
   const [restFilters, setRestFilters] = useState(false);
   const [modalActive, setModalActive] = useState(false);
   const [checked, setChecked] = useState(false);
-  const dispatch = useDispatch();
-  const { isLoading, products } = useSelector(state => state.manageProducts);
+  const dispatch = useAppDispatch();
+  const { isLoading, products } = useAppSelector(state => state.manageProducts);
 
   useEffect(() => {
     dispatch(manageProductsService());
   }, []);
 
-  function changeCheckbox() {
+  const changeCheckbox = () => {
     setChecked(!checked);
-  }
+  };
 
   const handleChangeModalActive = () => {
     setModalActive(!modalActive);

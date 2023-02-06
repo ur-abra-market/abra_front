@@ -1,14 +1,30 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { ChangeEvent, FC } from 'react';
 
 import style from './TextFieldLabelAbove.module.css';
 
-const TextFieldLabelAbove = ({ title, type, placeholder, error, name, register }) => {
-  const textareaScroll = e => (e.target.style.height = `${e.target.scrollHeight}px`);
+interface TextFieldLabelAboveProps {
+  title?: string;
+  type?: string;
+  placeholder?: string;
+  error?: string;
+  name?: string;
+  register?: any;
+}
+
+const TextFieldLabelAbove: FC<TextFieldLabelAboveProps> = ({
+  title,
+  type,
+  placeholder,
+  error,
+  name,
+  register,
+}): JSX.Element => {
+  // TODO - переделать
+  const textareaScroll = (e: ChangeEvent<HTMLTextAreaElement>) =>
+    (e.target.style.height = `${e.target.scrollHeight}px`);
 
   if (type === 'tel') {
-    document.getElementById('tel')?.addEventListener('input', function (e) {
+    document.getElementById('tel')?.addEventListener('input', e => {
       const x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
 
       e.target.value = !x[2] ? x[1] : `(${x[1]}) ${x[2]}${x[3] ? ` - ${x[3]}` : ''}`;
@@ -43,12 +59,4 @@ const TextFieldLabelAbove = ({ title, type, placeholder, error, name, register }
   );
 };
 
-TextFieldLabelAbove.propTypes = {
-  title: PropTypes.string,
-  type: PropTypes.string,
-  placeholder: PropTypes.string,
-  error: PropTypes.string,
-  name: PropTypes.string,
-  register: PropTypes.object,
-};
 export default TextFieldLabelAbove;

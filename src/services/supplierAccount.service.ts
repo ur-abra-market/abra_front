@@ -60,7 +60,7 @@ export interface CompanyInfo {
   business_sector: string;
   is_manufacturer: number;
   year_established: number;
-  number_of_employees: number;
+  number_of_employees?: number;
   description: string;
   phone: string;
   business_email: string;

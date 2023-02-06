@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
+import { RequestAccountInfo } from '../../../services/supplierAccount.service';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { accountInfoService } from '../../../store/reducers/formRegistrationSlice';
 import { uploadUserLogoService } from '../../../store/reducers/userSlice';
 import { filterEmptyValues } from '../../../utils/filterEmptyValues';
@@ -16,24 +17,39 @@ import TextFieldLabelAbove from '../../TextFieldLabelAbove';
 
 import style from './BusinessProfileForm.module.css';
 
-const BusinessProfileForm = () => {
+interface FormFields {
+  email: string;
+  code: string;
+  textarea: string;
+  tel: string;
+  yearEstablished: string;
+  phone: string;
+  address: string;
+  checkbox: boolean;
+  numEmployees: string;
+  profileLogo: string;
+  storeName: string;
+  businessSector: string;
+}
+
+const BusinessProfileForm: FC = (): JSX.Element => {
   const date = new Date();
   const year = date.getFullYear();
   const [imgUrl, setImgUrl] = useState('');
   const [images, setImages] = useState([]);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { resMessage, accountInfo } = useSelector(state => state.formRegistration);
+  const dispatch = useAppDispatch();
+  const { resMessage, accountInfo } = useAppSelector(state => state.formRegistration);
 
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
     reset,
-  } = useForm({ mode: 'onChange' });
+  } = useForm<FormFields>({ mode: 'onChange' });
 
-  const onSubmit = data => {
+  const onSubmit = (data: any): void => {
     const phone = data.code + data.tel;
 
     const info = {
@@ -42,13 +58,12 @@ const BusinessProfileForm = () => {
       year_established: +data.yearEstablished,
       number_of_employees: +data.numEmployees,
       description: data.textarea,
-      // photo_url: ['string'],
+      logo_url: 'string',
       phone,
       business_email: data.email,
       address: data.address,
     };
 
-    // checking for empty fields
     const accountInfoForRequest = filterEmptyValues(info);
 
     dispatch(uploadUserLogoService(images[0]));
@@ -62,7 +77,7 @@ const BusinessProfileForm = () => {
             ...accountInfoForRequest,
             is_manufacturer: data.checkbox ? 1 : 0,
           },
-        },
+        } as RequestAccountInfo,
       }),
     );
 
@@ -73,6 +88,8 @@ const BusinessProfileForm = () => {
     if (resMessage === 'DATA_HAS_BEEN_SENT')
       navigate('../add-product', { replace: true });
   }, [resMessage, navigate]);
+
+  if (!accountInfo) return <Navigate to="/account-setup" />;
 
   return (
     <div className={style.formWrapper}>
@@ -130,6 +147,7 @@ const BusinessProfileForm = () => {
                 className={style.checkbox}
                 {...register('checkbox')}
               />
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="checkbox">I am a manufacturer</label>
             </div>
           </div>

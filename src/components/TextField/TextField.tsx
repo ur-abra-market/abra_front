@@ -25,6 +25,7 @@ const TextField: FC<TextFieldProps> = props => {
     type,
     name,
     placeholder,
+    register,
     error,
     inputProps,
     classes,
@@ -63,6 +64,7 @@ const TextField: FC<TextFieldProps> = props => {
           }
           placeholder={placeholder}
           {...inputProps}
+          {...register}
         />
         {name === 'password' && (
           <div

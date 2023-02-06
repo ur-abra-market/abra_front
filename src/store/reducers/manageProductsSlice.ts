@@ -1,73 +1,91 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
 import fetchDeletedProducts from '../../services/deleteProducts.service';
 import fetchManageProducts from '../../services/manageProducts.service';
 
-export const manageProductsService = createAsyncThunk(
+export const manageProductsService = createAsyncThunk<any, void>(
   'manageProducts/manageProductsService',
 
-  async function (manageProductsData, { rejectWithValue }) {
+  async (_, { rejectWithValue }) => {
     try {
       const data = await fetchManageProducts.getList();
 
       return data;
-    } catch (error) {
-      return rejectWithValue(error);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[manageProductsService]: ERROR');
     }
   },
 );
 
-export const deleteProducts = createAsyncThunk(
+export const deleteProducts = createAsyncThunk<any, any>(
   'manageProducts/deleteProducts',
-  async function (id, { rejectWithValue, dispatch }) {
+  async (id, { rejectWithValue, dispatch }) => {
     try {
       const response = await fetchDeletedProducts.deleteList(id);
 
       dispatch(removeProducts(id));
 
       return response;
-    } catch (error) {
-      return rejectWithValue(error);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[deleteProducts]: ERROR');
     }
   },
 );
 
+interface IManageProductsItialState {
+  products: any[] | null;
+  isLoading: boolean;
+  error: string | null;
+}
+
+const initialState: IManageProductsItialState = {
+  products: null,
+  isLoading: false,
+  // isStarted: false,
+  error: null,
+};
+
 const manageProductsSlice = createSlice({
   name: 'manageProducts',
-  initialState: {
-    products: null,
-    isLoading: false,
-    // isStarted: false,
-    error: null,
-  },
+  initialState,
 
-  extraReducers: {
-    [manageProductsService.pending]: state => {
+  extraReducers: builder => {
+    builder.addCase(manageProductsService.pending, state => {
       state.isLoading = true;
       // state.isStarted = true
       state.error = null;
-    },
-    [manageProductsService.fulfilled]: (state, action) => {
+    });
+    builder.addCase(manageProductsService.fulfilled, (state, action) => {
       state.isLoading = false;
       state.products = action.payload;
-    },
-    [manageProductsService.rejected]: (state, action) => {
+    });
+    builder.addCase(manageProductsService.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.payload;
-    },
-    [deleteProducts.pending]: state => {
+      state.error = action.payload as string;
+    });
+
+    builder.addCase(deleteProducts.pending, state => {
       state.isLoading = true;
       // state.isStarted = true
       state.error = null;
-    },
-    [deleteProducts.fulfilled]: (state, action) => {
+    });
+    builder.addCase(deleteProducts.fulfilled, (state, action) => {
       state.isLoading = false;
       state.products = action.payload;
-    },
-    [deleteProducts.rejected]: (state, action) => {
+    });
+    builder.addCase(deleteProducts.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.payload;
-    },
+      state.error = action.payload as string;
+    });
   },
 
   reducers: {
@@ -75,7 +93,11 @@ const manageProductsSlice = createSlice({
       state.products = action.payload;
     },
     removeProducts(state, action) {
-      state.products = state.products.filter(product => product.id !== action.payload.id);
+      if (state.products) {
+        state.products = state.products.filter(
+          product => product.id !== action.payload.id,
+        );
+      }
     },
   },
 });
