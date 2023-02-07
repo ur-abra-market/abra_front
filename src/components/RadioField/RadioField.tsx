@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 
 import style from './RadioField.module.css';
 
-const RadioField = ({ options, name, onChange, value, label }) => {
+interface RadioFieldProps {
+  options: any[];
+  name: string;
+  onChange: any;
+  value: string;
+}
+
+const RadioField: FC<RadioFieldProps> = ({
+  options,
+  name,
+  onChange,
+  value,
+}): JSX.Element => {
   return (
     <div className={style.labelWrapper}>
       {options.map(option => (
@@ -22,14 +34,6 @@ const RadioField = ({ options, name, onChange, value, label }) => {
       ))}
     </div>
   );
-};
-
-RadioField.propTypes = {
-  options: PropTypes.array,
-  name: PropTypes.string,
-  onChange: PropTypes.func,
-  value: PropTypes.string,
-  label: PropTypes.string,
 };
 
 export default RadioField;

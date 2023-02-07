@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
-import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { changeById } from '../../store/reducers/basketSlice';
 
 import style from './ProductQuantityControl.module.css';
@@ -10,13 +8,16 @@ import style from './ProductQuantityControl.module.css';
 const min = 100;
 
 // TODO переделать и повесить логику
-const ProductQuantityControl = ({ obj }) => {
-  const dispatch = useDispatch();
+interface ProductQuantityControlProps {
+  obj: any;
+}
+const ProductQuantityControl: FC<ProductQuantityControlProps> = ({ obj }) => {
+  const dispatch = useAppDispatch();
   // const [value, setValue] = useState(obj.sum)
   const [value, setValue] = useState(min);
-  const max = useSelector(state => state.product.max);
+  const max = useAppSelector(state => state.product.max);
 
-  const handlerInput = () => {
+  const handlerInput = (): void => {
     const newObj = { ...obj };
     const a = Math.ceil(value / 100) * 100;
 
@@ -27,7 +28,7 @@ const ProductQuantityControl = ({ obj }) => {
     dispatch(changeById({ newObj }));
   };
 
-  const handlerQuantity = a => {
+  const handlerQuantity = (a: number): void => {
     // const newObj = {...obj}
     // if (a <= 0) {
     //     newObj.sum -= 100
@@ -48,6 +49,7 @@ const ProductQuantityControl = ({ obj }) => {
   return (
     <div className={style.productQuantityControl}>
       <div
+        role="presentation"
         className={style.productQuantityControl_btn}
         onClick={() => handlerQuantity(-1)}
       >
@@ -64,6 +66,7 @@ const ProductQuantityControl = ({ obj }) => {
         onBlur={handlerInput}
       />
       <div
+        role="presentation"
         className={style.productQuantityControl_btn}
         onClick={() => handlerQuantity(1)}
       >
@@ -71,10 +74,6 @@ const ProductQuantityControl = ({ obj }) => {
       </div>
     </div>
   );
-};
-
-ProductQuantityControl.propTypes = {
-  obj: PropTypes.object,
 };
 
 export default ProductQuantityControl;

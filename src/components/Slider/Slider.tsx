@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC, useState } from 'react';
 
 import Card from '../Card';
 
 import style from './Slider.module.css';
 
-const Slider = ({ title, products }) => {
+interface SliderProps {
+  title: string;
+  products: any[];
+}
+const Slider: FC<SliderProps> = ({ title, products }): JSX.Element => {
   const widthCart = 220;
   const gap = 11;
   const step = widthCart + gap;
@@ -15,7 +17,7 @@ const Slider = ({ title, products }) => {
   const dl = widthSlider - widthList;
   const [left, setLeft] = useState(0);
 
-  const move = d => {
+  const move = (d: number) => {
     const newleft = left + d;
     const dLeft = newleft > 0 ? 0 : newleft < dl ? dl : newleft;
 
@@ -45,8 +47,4 @@ const Slider = ({ title, products }) => {
   );
 };
 
-Slider.propTypes = {
-  title: PropTypes.string,
-  products: PropTypes.array,
-};
 export default Slider;

@@ -1,9 +1,4 @@
-import React, {
-  DetailedHTMLProps,
-  FC,
-  HTMLAttributes,
-  HTMLInputTypeAttribute,
-} from 'react';
+import React, { DetailedHTMLProps, FC, FormEvent, HTMLAttributes } from 'react';
 
 import style from './PhoneNumFieldWithoutCountryCode.module.css';
 
@@ -35,27 +30,29 @@ const PhoneNumFieldWithoutCountryCode: FC<PhoneNumFieldWithoutCountryCodeProps> 
     '($1) $2-$3-$4',
   );
 
-  const getInputNumbersValue = input => {
+  const getInputNumbersValue = (input: HTMLInputElement): string => {
     return input.value.replace(/\D/g, '');
   };
 
-  const onPhoneInput = e => {
-    const input = e.target;
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const onPhoneInput = (e: FormEvent<HTMLInputElement>) => {
+    const input = e.currentTarget;
     const inputNumbersValue = getInputNumbersValue(input);
     let formatedInputValue = '';
-    const { selectionStart } = input;
+    // const { selectionStart } = input;
 
+    // eslint-disable-next-line no-return-assign
     if (!inputNumbersValue) return (input.value = '');
 
     // В ЭТО УСЛОВИЕ МЫ НИКОГДА НЕ ПОПАДАЕМ, внутри корректное редактирование номера
-    if (input.value.length !== selectionStart) {
-      // Editing in the middle of input, not last symbol
-      if (e.data && /\D/g.test(e.data))
-        // Attempt to input non-numeric symbol
-        input.value = inputNumbersValue;
-
-      return;
-    }
+    // if (input.value.length !== selectionStart) {
+    //   // Editing in the middle of input, not last symbol
+    //   if (e.data && /\D/g.test(e.data))
+    //     // Attempt to input non-numeric symbol
+    //     input.value = inputNumbersValue;
+    //
+    //   return;
+    // }
 
     if (inputNumbersValue.length > 0)
       formatedInputValue += `(${inputNumbersValue.slice(0, 3)}`;
@@ -78,10 +75,11 @@ const PhoneNumFieldWithoutCountryCode: FC<PhoneNumFieldWithoutCountryCodeProps> 
     input.value = formatedInputValue;
   };
 
-  const onPhoneKeyDown = e => {
-    const input = e.target;
+  // TODO - !!!!переделать
+  const onPhoneKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    const input = e.currentTarget;
 
-    if (e.keyCode === 8) e.target.value = getInputNumbersValue(input).trim();
+    if (e.keyCode === 8) input.value = getInputNumbersValue(input).trim();
   };
 
   return (

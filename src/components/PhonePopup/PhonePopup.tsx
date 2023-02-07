@@ -1,6 +1,6 @@
 import style from './PhonePopup.module.css';
 
-const PhonePopup = () => {
+const PhonePopup = (): JSX.Element => {
   return (
     <div className={style.popupWrapper}>
       <div className={style.popupContainer}>

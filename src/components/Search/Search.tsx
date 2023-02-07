@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
-import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+
 // import photo from '../../../assets/img/icons/ic_baseline-photo-camera.png'
 
-const Search = ({ placeholder, searchIcon, classes, onClick }) => {
+interface SearchProps {
+  placeholder: string;
+  searchIcon: string;
+  classes: any;
+  onClick: any;
+}
+const Search: FC<SearchProps> = ({
+  placeholder,
+  searchIcon,
+  classes,
+  onClick,
+}): JSX.Element => {
   const navigate = useNavigate();
   const [text, setText] = useState('');
 
-  const handleSubmit = async () => {
+  const handleSubmit = (): void => {
     navigate('../products-list');
     // передаём action в Dispatch (выполняем запрос на сервер)
   };
@@ -24,6 +35,7 @@ const Search = ({ placeholder, searchIcon, classes, onClick }) => {
       />
       <input type="submit" hidden />
       <img
+        role="presentation"
         className={classes.search_photo}
         src={searchIcon}
         onClick={onClick}
@@ -33,10 +45,4 @@ const Search = ({ placeholder, searchIcon, classes, onClick }) => {
   );
 };
 
-Search.propTypes = {
-  placeholder: PropTypes.string,
-  searchIcon: PropTypes.string,
-  classes: PropTypes.object,
-  onClick: PropTypes.func,
-};
 export default Search;

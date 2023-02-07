@@ -1,17 +1,31 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 
 import { ucFirst } from '../../utils/ucFirst';
 
 import style from './RadioStyledElem.module.css';
 
-const RadioStyledElem = ({ name, value, choice, register, setChoice, typeId }) => {
+interface RadioStyledElemProps {
+  name: string;
+  value: string;
+  choice: string;
+  register?: any;
+  setChoice: any;
+  typeId: number;
+}
+const RadioStyledElem: FC<RadioStyledElemProps> = ({
+  name,
+  value,
+  choice,
+  register,
+  setChoice,
+  typeId,
+}): JSX.Element => {
   const colorValue = ucFirst(value);
 
   const valueStr = value.split(' ').join('');
 
-  const onClickChoiceColorHandler = e => {
+  // TODO - переделать!!!
+  const onClickChoiceColorHandler = (e: any): void => {
     setChoice(e.target.value);
   };
 
@@ -46,15 +60,6 @@ const RadioStyledElem = ({ name, value, choice, register, setChoice, typeId }) =
             </div>} */}
     </div>
   );
-};
-
-RadioStyledElem.propTypes = {
-  name: PropTypes.string,
-  value: PropTypes.string,
-  choice: PropTypes.string,
-  register: PropTypes.func,
-  setChoice: PropTypes.func,
-  typeId: PropTypes.number,
 };
 
 export default RadioStyledElem;
