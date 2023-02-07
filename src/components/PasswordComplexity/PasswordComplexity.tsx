@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC, useEffect, useState } from 'react';
 
 import PasswordStrengthIndicatorItem from '../PasswordStrengthIndicatorItem';
 
 import style from './PasswordComplexity.module.css';
 
-const PasswordComplexity = ({ valueOfNewPassword }) => {
-  const [passwordValidyty, setPasswordValidyty] = useState({
+interface PasswordComplexityProps {
+  valueOfNewPassword: string;
+}
+const PasswordComplexity: FC<PasswordComplexityProps> = ({ valueOfNewPassword }) => {
+  const [passwordValidyty, setPasswordValidyty] = useState<any>({
     minLength: null,
     digitSymbol: null,
     capitalSymbol: null,
@@ -49,7 +50,4 @@ const PasswordComplexity = ({ valueOfNewPassword }) => {
   );
 };
 
-PasswordComplexity.propTypes = {
-  valueOfNewPassword: PropTypes.string,
-};
 export default PasswordComplexity;

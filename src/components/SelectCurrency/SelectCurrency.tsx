@@ -4,7 +4,7 @@ import arrowDown from '../../assets/img/icons/arrow-down.png';
 
 import style from './SelectCurrency.module.css';
 
-const SelectCurrency = () => {
+const SelectCurrency = (): JSX.Element => {
   const [option, setOption] = useState('English / USD');
   const [list, setList] = useState(false);
   const styleList = {

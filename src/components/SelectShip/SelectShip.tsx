@@ -4,7 +4,7 @@ import arrowDown from '../../assets/img/icons/arrow-down.png';
 
 import style from './SelectShip.module.css';
 
-const SelectShip = () => {
+const SelectShip = (): JSX.Element => {
   const [option, setOption] = useState('Ship to');
   const [list, setList] = useState(false);
   const styleList = {

@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import arrowDown from '../../assets/img/icons/select-down-arrow.svg';
-import { sort, category } from '../../store/reducers/filterSlice';
+import { category, sort } from '../../store/reducers/filterSlice';
 
 import style from './SelectForAddres.module.css';
 
-const SelectForAddres = ({ list }) => {
+interface SelectForAddressProps {
+  list: any[];
+}
+const SelectForAddres: FC<SelectForAddressProps> = ({ list }): JSX.Element => {
   const dispatch = useDispatch();
 
   const listPhone = ['+7', '+90'];
@@ -24,7 +26,8 @@ const SelectForAddres = ({ list }) => {
     width: list[0] === '+7' ? '166px' : '318px',
   };
 
-  const switchList = e => {
+  // TODO - исправить - нрязь только через useEffect
+  const switchList = (e: any): void => {
     e.preventDefault();
     const nameClass = e.relatedTarget.className;
 
@@ -35,7 +38,7 @@ const SelectForAddres = ({ list }) => {
     }
   };
 
-  const handlerOption = (value, index) => {
+  const handlerOption = (value: any, index: number) => {
     setOption(value);
     setListSwitch(!listSwitch);
     if (listPhone.includes(value)) dispatch(sort(typeSort[index]));
@@ -70,10 +73,6 @@ const SelectForAddres = ({ list }) => {
       </ul>
     </div>
   );
-};
-
-SelectForAddres.propTypes = {
-  list: PropTypes.array,
 };
 
 export default SelectForAddres;

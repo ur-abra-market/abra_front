@@ -1,9 +1,15 @@
 // import React, { useState } from 'react'
-import React from 'react';
+import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
-
-const Select = ({ options, ...rest }) => {
+interface SelectProps {
+  options: any[];
+  defaultName: string;
+  img: string;
+  value: string;
+  register: any;
+  classes: any;
+}
+const Select: FC<SelectProps> = ({ options, ...rest }) => {
   // const Select = ({ defaultName, img, options, classes, value, register }) => {
   // const [option, setOption] = useState(value ? value : defaultName)
   // const [list, setList] = useState(false)
@@ -45,15 +51,6 @@ const Select = ({ options, ...rest }) => {
       ))}
     </select>
   );
-};
-
-Select.propTypes = {
-  options: PropTypes.array,
-  defaultName: PropTypes.string,
-  img: PropTypes.string,
-  value: PropTypes.string,
-  register: PropTypes.object,
-  classes: PropTypes.object,
 };
 
 export default Select;

@@ -1,16 +1,15 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { active } from '../../store/reducers/paginateSlice';
 
 import style from './Paginator.module.css';
 
-const Paginator = () => {
-  const dispatch = useDispatch();
+const Paginator = (): JSX.Element => {
+  const dispatch = useAppDispatch();
 
-  const activePage = useSelector(state => state.paginate.page_num);
-  const amountPages = useSelector(state => state.paginate.amountPages);
+  const activePage = useAppSelector(state => state.paginate.page_num);
+  const amountPages = useAppSelector(state => state.paginate.amountPages);
 
   const arrPages = Array(amountPages - 2).fill(2);
   const pages = amountPages > 2 ? arrPages.map((_, i) => i + 2) : [];
@@ -23,6 +22,7 @@ const Paginator = () => {
 
     return (
       <div
+        role="presentation"
         className={`${style.cursor}${currentClass}`}
         key={p}
         onClick={() => handlePage(p)}
@@ -32,13 +32,14 @@ const Paginator = () => {
     );
   });
 
-  const handlePage = page => {
+  const handlePage = (page: any): void => {
     dispatch(active(page));
   };
 
   return (
     <div className={style.paginator}>
       <div
+        role="presentation"
         className={style.paginator__left}
         onClick={() => (activePage > 1 ? handlePage(activePage - 1) : false)}
       >
@@ -46,6 +47,7 @@ const Paginator = () => {
       </div>
       <div className={style.paginator__numbers}>
         <div
+          role="presentation"
           className={`${style.cursor}${activePage === 1 ? 'activePage' : ''}`}
           onClick={() => handlePage(1)}
         >
@@ -65,6 +67,7 @@ const Paginator = () => {
         </div>
 
         <div
+          role="presentation"
           className={`${style.cursor} ${
             activePage === amountPages ? style.activePage : ''
           }`}
@@ -74,6 +77,7 @@ const Paginator = () => {
         </div>
       </div>
       <div
+        role="presentation"
         className={style.paginator__right}
         onClick={() => (activePage < amountPages ? handlePage(activePage + 1) : false)}
       >

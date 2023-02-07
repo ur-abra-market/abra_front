@@ -7,7 +7,7 @@ import { amount } from '../../store/reducers/paginateSlice';
 
 import style from './ShowPage.module.css';
 
-const ShowPage = () => {
+const ShowPage = (): JSX.Element => {
   const dispatch = useDispatch();
   const list = ['20', '40', '60', '80', '100'];
   const [option, setOption] = useState(list[0]);
@@ -16,10 +16,11 @@ const ShowPage = () => {
     height: listSwitch ? 'fit-content' : '0px',
   };
 
-  const switchList = e => {
+  const switchList = (e: any) => {
     e.preventDefault();
     const nameClass = e.relatedTarget.className;
 
+    // TODO !!!!!
     if (!nameClass.includes('ShowPage')) {
       setTimeout(() => {
         setListSwitch(false);

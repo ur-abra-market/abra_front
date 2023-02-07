@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -6,7 +6,19 @@ import TextFieldLabelAbove from '../TextFieldLabelAbove';
 
 import style from './RelatedInputs.module.css';
 
-const RelatedInputs = ({
+interface RelatedInputsProps {
+  register?: any;
+  optType: string;
+  mainType: string;
+  mainName: string;
+  optName: string;
+  mainTitle: string;
+  mainPlaceholder: string;
+  optPlaceholder: string;
+  optTitle: string;
+  isRequire: boolean;
+}
+const RelatedInputs: FC<RelatedInputsProps> = ({
   register,
   optType,
   mainType,
@@ -17,7 +29,7 @@ const RelatedInputs = ({
   optPlaceholder,
   optTitle,
   isRequire,
-}) => {
+}): JSX.Element => {
   return (
     <div className={style.doubleInputs}>
       <TextFieldLabelAbove
@@ -49,16 +61,4 @@ const RelatedInputs = ({
   );
 };
 
-RelatedInputs.propTypes = {
-  register: PropTypes.func,
-  optType: PropTypes.string,
-  mainType: PropTypes.string,
-  mainName: PropTypes.string,
-  optName: PropTypes.string,
-  mainTitle: PropTypes.string,
-  mainPlaceholder: PropTypes.string,
-  optPlaceholder: PropTypes.string,
-  optTitle: PropTypes.string,
-  isRequire: PropTypes.bool,
-};
 export default RelatedInputs;
