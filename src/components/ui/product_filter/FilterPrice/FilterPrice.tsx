@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { priceTo, priceFrom } from '../../../../store/reducers/filterSlice';
 import { productPaginateService } from '../../../../store/reducers/productPaginateSlice';
 import SwitchBox from '../../../SwitchBox';
@@ -9,18 +10,18 @@ import SwitchBox from '../../../SwitchBox';
 
 import style from './FilterPrice.module.css';
 
-const FilterPrice = () => {
-  const dispatch = useDispatch();
-  const filter = useSelector(state => state.filter);
-  const paginate = useSelector(state => state.paginate);
+const FilterPrice = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const filter = useAppSelector(state => state.filter);
+  const paginate = useAppSelector(state => state.paginate);
   const data = { ...paginate, ...filter };
 
-  const handlerPriceFrom = value => {
+  const handlerPriceFrom = (value: string) => {
     dispatch(priceFrom(+value));
     dispatch(productPaginateService(data));
   };
 
-  const handlerPriceTo = value => {
+  const handlerPriceTo = (value: string): void => {
     dispatch(priceTo(+value));
     dispatch(productPaginateService(data));
   };
@@ -35,7 +36,7 @@ const FilterPrice = () => {
             className={style.filterPrice__range_from_input}
             type="number"
             value={filter.price_from}
-            onChange={e => handlerPriceFrom(+e.target.value)}
+            onChange={e => handlerPriceFrom(e.target.value)}
           />
         </div>
         <div className={style.filterPrice__range_to}>
@@ -44,7 +45,7 @@ const FilterPrice = () => {
             className={style.filterPrice__range_to_input}
             type="number"
             value={filter.price_to}
-            onChange={e => handlerPriceTo(+e.target.value)}
+            onChange={e => handlerPriceTo(e.target.value)}
           />
         </div>
       </div>

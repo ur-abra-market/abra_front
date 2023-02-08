@@ -42,7 +42,7 @@ const ChangePasswordPage = () => {
           <Button
             value="Okay"
             className={styleBtn.modalWindewBtnActive}
-            onClick={() => navigate()}
+            // onClick={() => navigate()}
           />
         </div>
       </Modal>

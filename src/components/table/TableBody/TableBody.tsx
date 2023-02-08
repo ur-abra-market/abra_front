@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import _ from 'lodash';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Loader from '../../Loader';
 
-const TableBody = ({ data, columns, classes }) => {
-  const renderCompont = (item, column) => {
+interface TableBodyProps {
+  data: any[];
+  classes: any;
+  columns: any;
+}
+const TableBody: FC<TableBodyProps> = ({ data, columns, classes }) => {
+  const renderCompont = (item: any, column: any) => {
     if (columns[column].component) {
       const { component } = columns[column];
 
@@ -39,7 +43,7 @@ const TableBody = ({ data, columns, classes }) => {
       {data ? (
         data.length === 0 ? (
           <tr>
-            <td style={{ textAlign: 'center' }} colSpan="9">
+            <td style={{ textAlign: 'center' }} colSpan={9}>
               Please, <Link to="../add-product">add product</Link>
             </td>
           </tr>
@@ -68,12 +72,6 @@ const TableBody = ({ data, columns, classes }) => {
       )}
     </tbody>
   );
-};
-
-TableBody.propTypes = {
-  data: PropTypes.array.isRequired,
-  classes: PropTypes.object.isRequired,
-  columns: PropTypes.object.isRequired,
 };
 
 export default TableBody;

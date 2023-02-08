@@ -37,7 +37,7 @@ const LoginForm = (): JSX.Element => {
     if (resMessage === 'LOGIN_SUCCESSFUL') navigate('/');
   }, [resMessage]);
 
-  const onSubmit = data => {
+  const onSubmit = (data: any) => {
     if (!isValid) return;
     dispatch(loginService(data));
   };

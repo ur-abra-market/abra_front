@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { Carousel } from 'components';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { useAppSelector } from '../../../store/hooks';
 
 import { ReactComponent as LoupeIcon } from 'assets/img/icons/loupe.svg';
 import Flag from 'components/Flag';
@@ -10,15 +11,13 @@ import Stars from 'components/Stars';
 import { getPriceOneItem } from 'pages/ProductPage/helpers/getPriceOneItem';
 import style from 'pages/ProductPage/ProductPage.module.css';
 
-export const PopularProduct = () => {
-  const { popularProducts } = useSelector(state => state.popularProducts);
+export const PopularProduct = (): JSX.Element => {
+  const { popularProducts } = useAppSelector(state => state.popularProducts);
 
-  if (!popularProducts) return null;
-
-  const buildCarouselPopularProducts = () => {
+  const buildCarouselPopularProducts = (): JSX.Element[] => {
     return (
       popularProducts &&
-      popularProducts.map((data, index) => {
+      popularProducts.map((data: any, index: number) => {
         const {
           name,
           price_include_discount,
@@ -32,7 +31,8 @@ export const PopularProduct = () => {
         } = data;
 
         return (
-          <div className={style.card} key={`${id}-${index}`}>
+          // eslint-disable-next-line react/no-array-index-key
+          <div className={style.card} key={index}>
             <div className={style.card__image}>
               <Flag className={style.card__flag} />
               <img src={image_url} alt={name} />
@@ -67,7 +67,7 @@ export const PopularProduct = () => {
       title="Popular products in this category"
       arrayLength={popularProducts.length}
     >
-      {buildCarouselPopularProducts()}
+      {popularProducts && buildCarouselPopularProducts()}
     </Carousel>
   );
 };

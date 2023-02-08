@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
@@ -7,7 +7,11 @@ import { active } from '../../../store/reducers/paginateSlice';
 
 import styles from './Pagination.module.css';
 
-const Pagination = ({ activePage, amountPages }) => {
+interface PaginationProps {
+  activePage: number;
+  amountPages: number;
+}
+const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
   const dispatch = useDispatch();
 
   const arrPages = Array(amountPages - 2).fill(2);
@@ -30,7 +34,7 @@ const Pagination = ({ activePage, amountPages }) => {
     );
   });
 
-  const handlePage = page => {
+  const handlePage = (page: any) => {
     dispatch(active(page));
   };
 
@@ -81,8 +85,4 @@ const Pagination = ({ activePage, amountPages }) => {
   );
 };
 
-Pagination.propTypes = {
-  activePage: PropTypes.number,
-  amountPages: PropTypes.number,
-};
 export default Pagination;

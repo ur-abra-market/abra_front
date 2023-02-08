@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './Social.module.css';
 
-const Social = () => {
+const Social = (): JSX.Element => {
   return (
     <div className={style.social}>
       <div className={style.social__text}>We in social media</div>

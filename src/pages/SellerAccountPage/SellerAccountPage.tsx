@@ -18,7 +18,7 @@ import {
 } from 'pages/SellerAccountPage/classesStyles';
 import Orders from 'pages/SellerAccountPage/orders';
 
-const UserAccountPage = () => {
+const UserAccountPage = (): JSX.Element => {
   return (
     <>
       <Header />
@@ -33,7 +33,6 @@ const UserAccountPage = () => {
                 name="Add image"
                 src={iconImage}
                 classes={profileInfoBtnClasses}
-                href="*"
               />
             </div>
             <div className={style.profileInfo__textFields}>

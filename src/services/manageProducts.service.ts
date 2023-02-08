@@ -9,6 +9,7 @@ const fetchManageProducts = {
       `suppliers/manage_products/`,
       {},
       {
+        // @ts-ignore
         headers: { 'X-CSRF-TOKEN': access },
       },
     ); // нужно подгружать только позиции, которые не были удалены

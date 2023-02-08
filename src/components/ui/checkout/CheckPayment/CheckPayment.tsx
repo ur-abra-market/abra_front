@@ -6,7 +6,7 @@ import { payment } from '../../../../store/reducers/modalSlice';
 
 import style from './CheckPayment.module.css';
 
-const CheckPayment = () => {
+const CheckPayment = (): JSX.Element => {
   const dispatch = useDispatch();
 
   return (

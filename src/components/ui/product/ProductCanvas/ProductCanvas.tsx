@@ -2,10 +2,10 @@ import React, { useRef, useEffect } from 'react';
 
 import style from './ProductCanvas.module.css';
 
-const ProductCanvas = () => {
-  const canvasRef = useRef(null);
+const ProductCanvas = (): JSX.Element => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  const draw = (ctx, widthCanv, heightCanv) => {
+  const draw = (ctx: any, widthCanv: number, heightCanv: number) => {
     ctx.clearRect(0, 0, widthCanv, heightCanv);
     ctx.fillStyle = '#000000';
     ctx.beginPath();
@@ -15,6 +15,7 @@ const ProductCanvas = () => {
   };
 
   useEffect(() => {
+    if (!canvasRef.current) return;
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
     const { width } = canvas;

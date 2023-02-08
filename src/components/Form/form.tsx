@@ -1,6 +1,9 @@
-import React, { FC, PropsWithChildren } from 'react';
+import React, { DetailedHTMLProps, FC, FormHTMLAttributes } from 'react';
 
-const Form: FC<PropsWithChildren> = ({ children, ...props }) => {
+interface FormProps
+  extends DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> {}
+
+const Form: FC<FormProps> = ({ children, ...props }) => {
   return (
     <form noValidate {...props}>
       {children}

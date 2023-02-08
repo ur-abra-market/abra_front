@@ -32,12 +32,15 @@ export const filterSlice = createSlice({
       state.discount = action.payload;
     },
     brand: (state, action) => {
+      // @ts-ignore
       state.brands = [...action.payload];
     },
     material: (state, action) => {
+      // @ts-ignore
       state.materials = [...action.payload];
     },
     size: (state, action) => {
+      // @ts-ignore
       state.sizes = [...action.payload];
     },
     ascending: (state, action) => {

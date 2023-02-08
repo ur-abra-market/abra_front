@@ -47,6 +47,7 @@ export interface GradeDetail {
 }
 
 export interface IGradeProduct {
+  grade_average(grade_average: any): number;
   grade: IGrade;
   grade_details: GradeDetail[];
 }

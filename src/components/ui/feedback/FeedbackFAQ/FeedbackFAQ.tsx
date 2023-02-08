@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './FeedbackFAQ.module.css';
 
-const FeedbackFAQ = () => {
+const FeedbackFAQ = (): JSX.Element => {
   return (
     <div className={style.feedbackFAQ}>
       <h2>Do you have any questions?</h2>

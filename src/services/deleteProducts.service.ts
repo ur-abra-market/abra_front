@@ -4,8 +4,9 @@ import httpService from './http.service';
 const access = cookieService.getAccesToken();
 
 const fetchDeleteProducts = {
-  deleteList: async id => {
+  deleteList: async (id: any) => {
     const { data } = await httpService.patch(`suppliers/delete_products/`, [...id], {
+      // @ts-ignore
       headers: { 'X-CSRF-TOKEN': access },
     });
 

@@ -6,7 +6,7 @@ import ProductListRegistrationForm from 'components/ui/ProductListRegistrationFo
 import { categoryService, getCategories, getChilds } from 'store/reducers/categorySlice';
 import { getPropertiesService, getVariationsService } from 'store/reducers/supplierSlice';
 
-const ProductListRegistrationPage = () => {
+const ProductListRegistrationPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const [firstCategory, setFirstCategory] = useState('');
@@ -24,9 +24,9 @@ const ProductListRegistrationPage = () => {
   const getSecondCategories = useAppSelector(getCategories(secondsChilds));
   const getThirdCategories = useAppSelector(getCategories(thirdChilds));
 
-  const getId = (date, value) => {
+  const getId = (date: any, value: any) => {
     if (date && value) {
-      const objCategory = date.find(el => el.name === value);
+      const objCategory = date.find((el: any) => el.name === value);
 
       return objCategory?.id;
     }

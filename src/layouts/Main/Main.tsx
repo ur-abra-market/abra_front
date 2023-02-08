@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 
 import Loader from '../../components/Loader';
 import './Main.css';
+import { useAppSelector } from '../../store/hooks';
 
-const Main = () => {
-  const isLoading = useSelector(state => state.mainPageProducts.isLoading);
+const Main = (): JSX.Element => {
+  const isLoading = useAppSelector(state => state.mainPageProducts.isLoading);
 
   return (
     <div className="container">

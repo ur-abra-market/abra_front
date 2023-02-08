@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 import arrowTriangleImg from '../../assets/img/icons/check-arrow.png';
@@ -12,6 +11,7 @@ import Loader from '../../components/Loader';
 import Select from '../../components/Select';
 import NavBarUniversal from '../../components/ui/NavBarUniversal/NavBarUniversal';
 import SupplierMenu from '../../components/ui/SupplierMenu/SupplierMenu';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getSupplierAccountDataService } from '../../store/reducers/supplierAccountSlice';
 import { getCompanyInfoService } from '../../store/reducers/supplierSlice';
 
@@ -20,10 +20,10 @@ import style from './SupplierPage.module.css';
 const SupplierPage = () => {
   const [isGetCompanyInfo, setIsGetCompanyInfo] = useState(false);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isLoading = useSelector(state => state.supplier.loading);
-  const companyInfo = useSelector(state => state.supplier.companyInfo);
+  const isLoading = useAppSelector(state => state.supplier.loading);
+  const companyInfo = useAppSelector(state => state.supplier.companyInfo);
 
   useEffect(() => {
     console.log('nnnnn');
@@ -48,6 +48,7 @@ const SupplierPage = () => {
   };
 
   useEffect(() => {
+    // @ts-ignore
     if (isGetCompanyInfo && !isLoading && !companyInfo?.name)
       navigate('../account-setup');
   }, [isLoading]);
@@ -77,22 +78,41 @@ const SupplierPage = () => {
               />
             </Link>
             <Link to="/">
-              {companyInfo?.logo_url ? (
-                <div className={style.logoImg}>
-                  <img src={companyInfo.logo_url} alt="logo" />
-                </div>
-              ) : (
-                <ButtonLink
-                  name="logoImg"
-                  src={iconImage}
-                  classes={navbarCategoryBtnClasses}
-                />
-              )}
+              {
+                // @ts-ignore
+                companyInfo?.logo_url ? (
+                  <div className={style.logoImg}>
+                    <img
+                      src={
+                        // @ts-ignore
+                        companyInfo.logo_url
+                      }
+                      alt="logo"
+                    />
+                  </div>
+                ) : (
+                  <ButtonLink
+                    name="logoImg"
+                    src={iconImage}
+                    classes={navbarCategoryBtnClasses}
+                  />
+                )
+              }
             </Link>
             <Select
-              defaultValue={companyInfo?.name}
+              defaultValue={
+                // @ts-ignore
+                companyInfo?.name
+              }
               img={arrowTriangleImg}
-              options={['Name 1', 'Name 2', `${companyInfo?.name}`]}
+              options={[
+                'Name 1',
+                'Name 2',
+                `${
+                  // @ts-ignore
+                  companyInfo?.name
+                }`,
+              ]}
               classes={SelectBussinessClasses}
             />
           </NavBarUniversal>

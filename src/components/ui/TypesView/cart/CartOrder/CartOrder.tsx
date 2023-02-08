@@ -1,10 +1,11 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 
 import style from './CartOrder.module.css';
 
-const CartOrder = ({ info }) => {
+interface CartOrderProps {
+  info: any;
+}
+const CartOrder: FC<CartOrderProps> = ({ info }) => {
   return (
     <div className={style.cartOrder}>
       <div className={style.cartOrder__items}>
@@ -33,10 +34,6 @@ const CartOrder = ({ info }) => {
       </p>
     </div>
   );
-};
-
-CartOrder.propTypes = {
-  info: PropTypes.object,
 };
 
 export default CartOrder;

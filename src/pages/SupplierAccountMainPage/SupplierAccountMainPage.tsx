@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -14,21 +14,17 @@ import SelectLabelAbove from '../../components/SelectLabelAbove';
 import TextField from '../../components/TextField';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
-  getSupplierAccountDataService,
   getSupplierNotifications,
   postSupplierNotifications,
-  postSupplierAccountDataService,
 } from '../../store/reducers/supplierAccountSlice';
-import { countryPrefix, numberWithoutPrefix } from '../../utils/phoneNumberSeparator';
 
 import {
-  textFieldClasses,
   accountDetails__textFieldClasses,
-  notificationCheckboxClasses,
   checkboxClasses,
-  classesOfCompanyImages,
   classesOfLogoImage,
   inputPhoneClasses,
+  notificationCheckboxClasses,
+  textFieldClasses,
 } from './constantsOfClassesStyles';
 import style from './SupplierAccountMainPage.module.css';
 

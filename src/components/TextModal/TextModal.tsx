@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
@@ -16,11 +16,15 @@ import {
 
 import style from './TextModal.module.css';
 
-const TextModal = ({ title, placeholder }) => {
+interface TextModalProps {
+  title: string;
+  placeholder: string;
+}
+const TextModal: FC<TextModalProps> = ({ title, placeholder }) => {
   const dispatch = useDispatch();
   const [input, setInput] = useState('');
 
-  const handlerText = value => {
+  const handlerText = (value: any) => {
     switch (title) {
       case 'First name':
         dispatch(firstname(value));
@@ -64,11 +68,6 @@ const TextModal = ({ title, placeholder }) => {
       />
     </div>
   );
-};
-
-TextModal.propTypes = {
-  title: PropTypes.string,
-  placeholder: PropTypes.string,
 };
 
 export default TextModal;

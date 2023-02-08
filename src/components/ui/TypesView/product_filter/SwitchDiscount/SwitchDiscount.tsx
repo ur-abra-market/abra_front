@@ -1,15 +1,14 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
-import { discount } from '../../../../store/reducers/filterSlice';
-
+// import { discount } from '../../../../store/reducers/filterSlice';
 import './SwitchDiscount.css';
+import { useAppDispatch, useAppSelector } from '../../../../../store/hooks';
+import { discount } from '../../../../../store/reducers/filterSlice';
 
 const SwitchDiscount = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const choiceDiscount = useSelector(state => state.filter.discount);
+  const choiceDiscount = useAppSelector(state => state.filter.discount);
   const background = choiceDiscount ? '#000000' : '#e0e0e0';
   const justifyContent = choiceDiscount ? 'end' : 'flex-start';
 

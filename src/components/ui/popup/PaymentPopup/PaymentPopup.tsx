@@ -1,16 +1,15 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { payment } from '../../../../store/reducers/modalSlice';
 import Check from '../../../Check';
 import TextModal from '../../../TextModal';
 
 import style from './PaymentPopup.module.css';
 
-const PaymentPopup = () => {
-  const dispatch = useDispatch();
-  const modal = useSelector(state => state.modal.isPayment);
+const PaymentPopup = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const modal = useAppSelector(state => state.modal.isPayment);
   const styles = {
     scale: modal ? '1' : '0',
     zIndex: modal ? '20' : '0',

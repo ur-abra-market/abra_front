@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
 import supplierFetch from '../../services/supplier.service';
 
@@ -11,74 +12,84 @@ const initialState = {
   companyInfo: null,
 };
 
-export const getPropertiesService = createAsyncThunk(
+export const getPropertiesService = createAsyncThunk<any, any>(
   'supplier/getPropertiesService',
   async function ({ id }, { rejectWithValue }) {
     try {
       const data = await supplierFetch.getProductProperties(id);
 
       return data.result;
-    } catch (error) {
-      const err = error.response.data.result ? error.response.data.result : error.message;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
 
-      return rejectWithValue(err);
+      return rejectWithValue('[getPropertiesService]: Error');
     }
   },
 );
-export const getCompanyInfoService = createAsyncThunk(
+export const getCompanyInfoService = createAsyncThunk<any, void>(
   'supplier/getCompanyInfoService',
-  async function (id, { rejectWithValue }) {
+  async (_, { rejectWithValue }) => {
     try {
       const data = await supplierFetch.getSupplierCompanyInfo();
 
       return data.result;
-    } catch (error) {
-      const err = error.response.data.result ? error.response.data.result : error.message;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
 
-      return rejectWithValue(err);
+      return rejectWithValue('[getCompanyInfoService]: Error');
     }
   },
 );
 
-export const getVariationsService = createAsyncThunk(
+export const getVariationsService = createAsyncThunk<any, any>(
   'supplier/getVariationsService',
   async function ({ id }, { rejectWithValue }) {
     try {
       const data = await supplierFetch.getProductVariations(id);
 
       return data.result;
-    } catch (error) {
-      const err = error.response.data.result ? error.response.data.result : error.message;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
 
-      return rejectWithValue(err);
+      return rejectWithValue('[getVariationsService]: Error');
     }
   },
 );
 
-export const addProductService = createAsyncThunk(
+export const addProductService = createAsyncThunk<any, any>(
   'supplier/addProduct',
   async ({ product }, { rejectWithValue }) => {
     try {
       const data = await supplierFetch.addProduct(product);
 
       return data.product_id;
-    } catch (error) {
-      const err = error.response.data.result ? error.response.data.result : error.message;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
 
-      return rejectWithValue(err);
+      return rejectWithValue('[addProductService]: Error');
     }
   },
 );
 
-export const uploadImageService = createAsyncThunk(
+export const uploadImageService = createAsyncThunk<any, any>(
   'supplier/uploadImage',
   async ({ rest }, { rejectWithValue }) => {
     try {
       return await supplierFetch.uploadImage(rest.img, rest.prodId, rest.index);
-    } catch (error) {
-      const err = error.response.data.result ? error.response.data.result : error.message;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
 
-      return rejectWithValue(err);
+      return rejectWithValue('[uploadImageService]: Error');
     }
   },
 );
@@ -100,7 +111,7 @@ const categorySlice = createSlice({
       })
       .addCase(addProductService.rejected, (state, action) => {
         state.productId = null;
-        state.errMessage = action.payload;
+        state.errMessage = action.payload as string;
         state.loading = false;
       });
 
@@ -116,8 +127,9 @@ const categorySlice = createSlice({
         state.loading = false;
       })
       .addCase(getPropertiesService.rejected, (state, action) => {
+        // @ts-ignore
         state.productProperties = action.payload;
-        state.errMessage = action.payload;
+        state.errMessage = action.payload as string;
         state.loading = false;
       });
 
@@ -134,7 +146,7 @@ const categorySlice = createSlice({
       })
       .addCase(getCompanyInfoService.rejected, (state, action) => {
         state.companyInfo = null;
-        state.errMessage = action.payload;
+        state.errMessage = action.payload as string;
         state.loading = false;
       });
 
@@ -150,8 +162,9 @@ const categorySlice = createSlice({
         state.loading = false;
       })
       .addCase(getVariationsService.rejected, (state, action) => {
+        // @ts-ignore
         state.productVariations = action.payload;
-        state.errMessage = action.payload;
+        state.errMessage = action.payload as string;
         state.loading = false;
       });
   },

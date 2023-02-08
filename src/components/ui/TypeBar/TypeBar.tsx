@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
-
-const TypeBar = ({ types, setTypes }) => {
+interface TypeBarProps {
+  types: any[];
+  setTypes: any;
+}
+const TypeBar: FC<TypeBarProps> = ({ types, setTypes }): JSX.Element => {
   const addTypeHandler = () => {
     const newType = { id: types.length + 1, selected: true };
 
     setTypes([...types.map(el => ({ ...el, selected: false })), newType]);
   };
 
-  const changeSelectedTypeHandler = id => {
+  const changeSelectedTypeHandler = (id: any) => {
     setTypes(
       types.map(el =>
         el.id === id ? { ...el, selected: true } : { ...el, selected: false },
@@ -49,8 +51,4 @@ const TypeBar = ({ types, setTypes }) => {
   );
 };
 
-TypeBar.propTypes = {
-  types: PropTypes.array,
-  setTypes: PropTypes.func,
-};
 export default TypeBar;

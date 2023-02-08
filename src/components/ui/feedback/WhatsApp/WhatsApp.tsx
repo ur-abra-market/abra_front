@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './WhatsApp.module.css';
 
-const WhatsApp = () => {
+const WhatsApp = (): JSX.Element => {
   return (
     <div className={style.whatsApp}>
       <div className={style.whatsApp__icon_text}>Contact Us via WhatsApp</div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -6,7 +6,10 @@ import ProductItem from '../ProductItem/ProductItem';
 
 import style from './ShopItem.module.css';
 
-const ShopItem = ({ shopItem }) => {
+interface ShopItemProps {
+  shopItem: any;
+}
+const ShopItem: FC<ShopItemProps> = ({ shopItem }) => {
   const changeStatusHandler = () => {};
 
   return (
@@ -26,7 +29,7 @@ const ShopItem = ({ shopItem }) => {
         <div className={style.shopItem__header_arrowRight} />
       </div>
 
-      {shopItem.products.map(prodItem => (
+      {shopItem.products.map((prodItem: any) => (
         <ProductItem key={prodItem.id} product={prodItem} />
       ))}
 
@@ -38,10 +41,6 @@ const ShopItem = ({ shopItem }) => {
       </div>
     </div>
   );
-};
-
-ShopItem.propTypes = {
-  shopItem: PropTypes.object,
 };
 
 export default ShopItem;

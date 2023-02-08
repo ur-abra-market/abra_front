@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -7,7 +7,19 @@ import ProductCanvas from '../ProductCanvas';
 import style from './ProductStatistics.module.css';
 import { Sizes } from './Sizes/Sizes';
 
-const ProductStatistics = ({ dailyActualDemand, prices, monthlyActualDemand, sizes }) => {
+interface ProductStatisticsProps {
+  dailyActualDemand: number;
+  monthlyActualDemand: number;
+  prices: any;
+  sizes: any[];
+}
+
+const ProductStatistics: FC<ProductStatisticsProps> = ({
+  dailyActualDemand,
+  prices,
+  monthlyActualDemand,
+  sizes,
+}) => {
   // const {min_quantity, value} = prices
 
   const unitPrice = (prices?.value / prices?.min_quantity).toFixed(2);
@@ -52,13 +64,6 @@ const ProductStatistics = ({ dailyActualDemand, prices, monthlyActualDemand, siz
       {/* </div> */}
     </div>
   );
-};
-
-ProductStatistics.propTypes = {
-  dailyActualDemand: PropTypes.number.isRequired,
-  monthlyActualDemand: PropTypes.number.isRequired,
-  prices: PropTypes.object,
-  sizes: PropTypes.array.isRequired,
 };
 
 export default ProductStatistics;

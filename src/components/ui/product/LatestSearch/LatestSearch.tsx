@@ -1,10 +1,11 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 
 import style from './LatestSearch.module.css';
 
-const LatestSearch = ({ latestSearchData }) => {
+interface LatestSearchProps {
+  latestSearchData: any[];
+}
+const LatestSearch: FC<LatestSearchProps> = ({ latestSearchData }) => {
   return (
     <div className={style.latestSearch}>
       <h2>Latest searches</h2>
@@ -20,7 +21,3 @@ const LatestSearch = ({ latestSearchData }) => {
 };
 
 export default LatestSearch;
-
-LatestSearch.propTypes = {
-  latestSearchData: PropTypes.array.isRequired,
-};

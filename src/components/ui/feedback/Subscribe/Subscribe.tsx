@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './Subscribe.module.css';
 
-const Subscribe = () => {
+const Subscribe = (): JSX.Element => {
   return (
     <div className={style.subscribe}>
       <h2>Do you want to be the first</h2>

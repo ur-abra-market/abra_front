@@ -20,13 +20,17 @@ const TextFieldLabelAbove: FC<TextFieldLabelAboveProps> = ({
   register,
 }): JSX.Element => {
   // TODO - переделать
-  const textareaScroll = (e: ChangeEvent<HTMLTextAreaElement>) =>
+  const textareaScroll = (e: any) =>
+    // eslint-disable-next-line no-param-reassign
     (e.target.style.height = `${e.target.scrollHeight}px`);
 
   if (type === 'tel') {
     document.getElementById('tel')?.addEventListener('input', e => {
+      // @ts-ignore
       const x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
 
+      // @ts-ignore
+      // eslint-disable-next-line no-param-reassign
       e.target.value = !x[2] ? x[1] : `(${x[1]}) ${x[2]}${x[3] ? ` - ${x[3]}` : ''}`;
     });
   }

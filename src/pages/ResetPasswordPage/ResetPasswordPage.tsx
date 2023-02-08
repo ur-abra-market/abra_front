@@ -6,9 +6,9 @@ import Modal from 'components/Modal';
 import ResetPasswordForm from 'components/ui/ResetPasswordForm';
 import style from 'pages/ResetPasswordPage/ResetPasswordPage.module.css';
 
-const ResetPasswordPage = () => {
+const ResetPasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
-  const handleChangeModalActive = () => {
+  const handleChangeModalActive = (): void => {
     setModalActive(prevState => !prevState);
   };
 

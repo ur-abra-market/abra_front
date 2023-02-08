@@ -1,11 +1,24 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC, ReactNode } from 'react';
 
 import TableBody from './TableBody';
 import TableHeader from './TableHeader';
 
-const Table = ({ onSort, selectedSort, columns, data, children, classes }) => {
+interface TableProps {
+  columns?: any;
+  selectedSort?: any;
+  onSort?: any;
+  data: any[];
+  classes?: any;
+  children?: ReactNode;
+}
+const Table: FC<TableProps> = ({
+  onSort,
+  selectedSort,
+  columns,
+  data,
+  children,
+  classes,
+}) => {
   return (
     <table className={classes.table}>
       {children || (
@@ -16,15 +29,6 @@ const Table = ({ onSort, selectedSort, columns, data, children, classes }) => {
       )}
     </table>
   );
-};
-
-Table.propTypes = {
-  columns: PropTypes.object.isRequired,
-  selectedSort: PropTypes.object.isRequired,
-  onSort: PropTypes.func.isRequired,
-  data: PropTypes.array.isRequired,
-  children: PropTypes.array,
-  classes: PropTypes.object,
 };
 
 export default Table;

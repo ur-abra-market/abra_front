@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC, useState } from 'react';
 
 import { ucFirst } from '../../../utils/ucFirst';
 import s from '../../SelectLabelAbove/SelectLabelAbove.module.css';
 import style from '../ProductListRegistrationForm/ProductListRegistrationForm.module.css';
 
-const SelectionsForProperties = ({ element, register, options }) => {
+interface SelectionsForPropertiesProps {
+  element: any;
+  register: any;
+  options: any[];
+}
+const SelectionsForProperties: FC<SelectionsForPropertiesProps> = ({
+  element,
+  register,
+  options,
+}) => {
   const [currentValue, setCurrentValue] = useState('');
 
   const arrFilteredOptValues = element.values
-    .filter(el => el.value === currentValue && el.optional_value !== null)
-    .map(el => el.optional_value);
+    .filter(
+      (el: { value: string; optional_value: null }) =>
+        el.value === currentValue && el.optional_value !== null,
+    )
+    .map((el: { optional_value: any }) => el.optional_value);
 
   return (
     <div className={style.selectInputs}>
@@ -21,7 +31,7 @@ const SelectionsForProperties = ({ element, register, options }) => {
           <select
             {...register(`${element.key}`, {
               required: true,
-              onChange: e => {
+              onChange: (e: any) => {
                 setCurrentValue(e.target.value);
               },
             })}
@@ -50,7 +60,7 @@ const SelectionsForProperties = ({ element, register, options }) => {
                 Select
               </option>
 
-              {arrFilteredOptValues.map((el, i) => (
+              {arrFilteredOptValues.map((el: any, i: number) => (
                 <option key={i} className={s.selectOption} value={el}>
                   {el}
                 </option>
@@ -64,9 +74,4 @@ const SelectionsForProperties = ({ element, register, options }) => {
   );
 };
 
-SelectionsForProperties.propTypes = {
-  element: PropTypes.object,
-  register: PropTypes.func,
-  options: PropTypes.array,
-};
 export default SelectionsForProperties;

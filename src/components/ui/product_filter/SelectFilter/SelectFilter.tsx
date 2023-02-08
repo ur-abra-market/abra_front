@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
-
-import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { FC, useEffect, useState } from 'react';
 
 import arrowDown from '../../../../assets/img/icons/arrow-down.png';
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { ascending, category, sort } from '../../../../store/reducers/filterSlice';
 
 import style from './SelectFilter.module.css';
 
-const SelectFilter = ({ typeSelect }) => {
-  const dispatch = useDispatch();
+interface SelectFilterProps {
+  typeSelect: any;
+}
+const SelectFilter: FC<SelectFilterProps> = ({ typeSelect }) => {
+  const dispatch = useAppDispatch();
 
   const listSort = [
     'Sort By Rating (From High to Low)',
@@ -23,11 +24,11 @@ const SelectFilter = ({ typeSelect }) => {
   const typeCategory = ['', '1'];
 
   const [listSwitch, setListSwitch] = useState(false);
-  const [list, setList] = useState([]);
+  const [list, setList] = useState<any[]>([]);
 
-  const choiceSort = useSelector(state => state.filter.sort_type);
-  const choiceCategory = useSelector(state => state.filter.category);
-  const choiceAscending = useSelector(state => state.filter.ascending);
+  const choiceSort = useAppSelector(state => state.filter.sort_type);
+  const choiceCategory = useAppSelector(state => state.filter.category);
+  const choiceAscending = useAppSelector(state => state.filter.ascending);
 
   useEffect(() => {
     if (typeSelect === 'sort') setList(listSort);
@@ -49,14 +50,14 @@ const SelectFilter = ({ typeSelect }) => {
     setListSwitch(false);
   };
 
-  const basic = option().split(/[()]/)[0];
-  const remains = option().split(/[()]/)[1];
+  const basic = option()?.split(/[()]/)[0];
+  const remains = option()?.split(/[()]/)[1];
 
   const styleList = {
     height: listSwitch ? 'fit-content' : '0px',
   };
 
-  const switchList = e => {
+  const switchList = (e: any) => {
     e.preventDefault();
     const nameClass = e.relatedTarget.className;
 
@@ -67,7 +68,7 @@ const SelectFilter = ({ typeSelect }) => {
     }
   };
 
-  const handlerOption = (value, index) => {
+  const handlerOption = (value: any, index: number) => {
     if (listSort.includes(value)) dispatch(sort(typeSort[index]));
     if (listCategory.includes(value)) dispatch(category(typeCategory[index]));
     if (remains === 'From High to Low') dispatch(ascending(true));
@@ -103,10 +104,6 @@ const SelectFilter = ({ typeSelect }) => {
       </ul>
     </div>
   );
-};
-
-SelectFilter.propTypes = {
-  typeSelect: PropTypes.any,
 };
 
 export default SelectFilter;

@@ -1,19 +1,20 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { brand } from '../../../../store/reducers/filterSlice';
 import SearchFilter from '../SearchFilter';
 import './FilterBrand.module.css';
 
-const FilterBrand = () => {
-  const dispatch = useDispatch();
-  const brands = useSelector(state => state.filter.brands);
+const FilterBrand = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const brands = useAppSelector(state => state.filter.brands);
   const brandList = ['Mavi', 'Kotton', 'LC Waikiki', 'Colin’s', 'DeFacto', 'Ipekyol'];
+  // @ts-ignore
   const len = brandList.map(b => brands.includes(b.toLowerCase())).filter(e => !e);
 
-  const changeState = ctx => {
+  const changeState = (ctx: any) => {
     const arrCheck = brandList
+      // @ts-ignore
       .map(b => brands.includes(b.toLowerCase()))
       .map((e, i) => (brandList[i] === ctx ? !e : e));
     const brandArr = brandList.filter((_, i) => arrCheck[i]).map(b => b.toLowerCase());
@@ -27,10 +28,12 @@ const FilterBrand = () => {
       <SearchFilter typeSearch="brand" />
       <div
         className="FilterBrand__btns"
+        // @ts-ignore
         style={{ gap: len < brandList.length ? '24px' : '0px' }}
       >
         <div className="FilterBrand__list">
           {brandList
+            // @ts-ignore
             .filter(b => brands.includes(b.toLowerCase()))
             .map(b => (
               <div
@@ -45,6 +48,7 @@ const FilterBrand = () => {
         </div>
         <div className={len ? 'FilterBrand__list' : 'none'}>
           {brandList
+            // @ts-ignore
             .filter(b => !brands.includes(b.toLowerCase()))
             .map(b => (
               <div

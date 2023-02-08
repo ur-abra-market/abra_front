@@ -1,14 +1,23 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 
 import arrowDown from '../../../assets/img/icons/SortArrowDown.png';
 import arrowUp from '../../../assets/img/icons/SortArrowUp.png';
 
 import style from './TableHeader.module.css';
 
-const TableHeader = ({ onSort, selectedSort, columns, classes }) => {
-  const handleSort = item => {
+interface TableHeaderProps {
+  columns: any[];
+  selectedSort: any;
+  onSort: any;
+  classes?: any;
+}
+const TableHeader: FC<TableHeaderProps> = ({
+  onSort,
+  selectedSort,
+  columns,
+  classes,
+}) => {
+  const handleSort = (item: any) => {
     if (selectedSort.path === item) {
       onSort({
         ...selectedSort,
@@ -25,30 +34,32 @@ const TableHeader = ({ onSort, selectedSort, columns, classes }) => {
             key={column}
             className={classes.tableHeader}
             onClick={
+              // @ts-ignore
               columns[column].path ? () => handleSort(columns[column].path) : undefined
             }
+            // @ts-ignore
             {...{ role: columns[column].path && 'button' }}
             scope="col"
           >
-            {columns[column].name}
-            {!(columns[column].name === 'Detail') && columns[column].path && (
-              <span className={style.arrowWrapper}>
-                <img src={arrowUp} alt="arrowUp" />
-                <img src={arrowDown} alt="arrowDown" />
-              </span>
-            )}
+            {
+              // @ts-ignore
+              columns[column].name
+            }
+
+            {
+              // @ts-ignore
+              !(columns[column].name === 'Detail') && columns[column].path && (
+                <span className={style.arrowWrapper}>
+                  <img src={arrowUp} alt="arrowUp" />
+                  <img src={arrowDown} alt="arrowDown" />
+                </span>
+              )
+            }
           </th>
         ))}
       </tr>
     </thead>
   );
-};
-
-TableHeader.propTypes = {
-  columns: PropTypes.object.isRequired,
-  selectedSort: PropTypes.object.isRequired,
-  onSort: PropTypes.func.isRequired,
-  classes: PropTypes.object,
 };
 
 export default TableHeader;

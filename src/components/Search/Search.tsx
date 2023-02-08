@@ -8,7 +8,7 @@ interface SearchProps {
   placeholder: string;
   searchIcon: string;
   classes: any;
-  onClick: any;
+  onClick?: any;
 }
 const Search: FC<SearchProps> = ({
   placeholder,

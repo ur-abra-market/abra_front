@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 
 import style from './CheckItems.module.css';
 
-const CheckItems = ({ index }) => {
+interface CheckItemsProps {
+  index: string;
+}
+
+const CheckItems: FC<CheckItemsProps> = ({ index }) => {
   return (
     <div className={style.checkItems}>
       {+index ? <></> : <h4>Items to Order</h4>}
@@ -41,10 +45,6 @@ const CheckItems = ({ index }) => {
       </div>
     </div>
   );
-};
-
-CheckItems.propTypes = {
-  index: PropTypes.string,
 };
 
 export default CheckItems;

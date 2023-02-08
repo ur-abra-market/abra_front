@@ -1,7 +1,7 @@
 import httpService from './http.service';
 
 const productPaginateFetch = {
-  getProductPaginateList: async props => {
+  getProductPaginateList: async (props: any) => {
     const bottom_price = props.price_from > 0 ? `bottom_price=${props.price_to}&` : '';
     const top_price = props.price_to > 0 ? `top_price=${props.price_to}&` : '';
     const category = props.category !== '' ? `category_id=${props.category}&` : '';

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
@@ -11,7 +11,10 @@ import TextField from '../../TextField';
 
 import style from './ResetPasswordForm.module.css';
 
-const ResetPasswordForm = ({ handleChangeModalActive }) => {
+interface ResetPasswordFormProps {
+  handleChangeModalActive: any;
+}
+const ResetPasswordForm: FC<ResetPasswordFormProps> = ({ handleChangeModalActive }) => {
   const {
     register,
     watch,
@@ -64,7 +67,4 @@ const ResetPasswordForm = ({ handleChangeModalActive }) => {
   );
 };
 
-ResetPasswordForm.propTypes = {
-  handleChangeModalActive: PropTypes.func,
-};
 export default ResetPasswordForm;

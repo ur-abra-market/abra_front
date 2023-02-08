@@ -34,14 +34,16 @@ const OrderHistoryPage = () => {
     },
   ];
 
-  const statusCheck = statusLinksList.map(link =>
-    link === 'All' ? (link = true) : (link = false),
-  );
+  // TODO переделать!!!
+  // const statusCheck = statusLinksList.map(link =>
+  //   link === 'All' ? (link = true) : (link = false),
+  // );
 
-  const [check, setCheck] = useState(statusCheck);
+  // const [check, setCheck] = useState(statusCheck);
+  const [check, setCheck] = useState<any[]>([]);
   const [ordersArray, setOrdersArray] = useState(ordersInfo);
 
-  const handleButtonCategoryClick = (index, link) => {
+  const handleButtonCategoryClick = (index: any, link: any) => {
     const arrCheck = check.map((e, i) => i === index);
 
     setCheck(arrCheck);
@@ -50,7 +52,9 @@ const OrderHistoryPage = () => {
     else {
       const filterOrders = ordersInfo.find(order => link === order.status);
 
-      setOrdersArray([filterOrders]);
+      if (filterOrders) {
+        setOrdersArray([filterOrders]);
+      }
     }
   };
 
