@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 
 import style from './Stars.module.css';
 
-const Stars = ({ reward }) => {
+interface StarsProps {
+  reward: number;
+}
+
+const Stars: FC<StarsProps> = ({ reward }): JSX.Element => {
   const value = `${100 * (reward - Math.floor(reward))}%`;
   let percent = ['100%', '100%', '100%', '100%', '100%'];
 
@@ -130,10 +134,6 @@ const Stars = ({ reward }) => {
       </svg>
     </div>
   );
-};
-
-Stars.propTypes = {
-  reward: PropTypes.number.isRequired,
 };
 
 export default Stars;

@@ -1,10 +1,13 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 
 import style from './ProductPrice.module.css';
 
-const ProductPrice = ({ price, quantity }) => {
+interface ProductPriceProps {
+  price: string;
+  quantity: string;
+}
+
+const ProductPrice: FC<ProductPriceProps> = ({ price, quantity }) => {
   return (
     <div className={style.productPrice}>
       <div className="amount">${price}/pc</div>
@@ -13,8 +16,4 @@ const ProductPrice = ({ price, quantity }) => {
   );
 };
 
-ProductPrice.propTypes = {
-  price: PropTypes.string,
-  quantity: PropTypes.string,
-};
 export default ProductPrice;

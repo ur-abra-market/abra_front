@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -6,8 +6,18 @@ import RelatedInputs from '../../RelatedInputs';
 
 import style from './MaterialInputs.module.css';
 
-const fakeArr = [];
-const MaterialInputs = ({
+const fakeArr: number[] = [];
+
+interface MaterialInputsProps {
+  register: any;
+  mainTitle: string;
+  optTitle: string;
+  mainPlaceholder: string;
+  optPlaceholder: string;
+  mainType: string;
+  optType: string;
+}
+const MaterialInputs: FC<MaterialInputsProps> = ({
   register,
   mainTitle,
   optTitle,
@@ -60,13 +70,4 @@ const MaterialInputs = ({
   );
 };
 
-MaterialInputs.propTypes = {
-  register: PropTypes.func,
-  mainTitle: PropTypes.string,
-  optTitle: PropTypes.string,
-  mainPlaceholder: PropTypes.string,
-  optPlaceholder: PropTypes.string,
-  mainType: PropTypes.string,
-  optType: PropTypes.string,
-};
 export default MaterialInputs;

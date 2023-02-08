@@ -18,7 +18,7 @@ const initialState = cookieService.getRefreshToken()
       isAuth: false,
     };
 
-export const loginService = createAsyncThunk(
+export const loginService = createAsyncThunk<any, any>(
   'login/loginService',
   async function (dataUser, { rejectWithValue }) {
     try {
@@ -27,7 +27,8 @@ export const loginService = createAsyncThunk(
       if (data.is_supplier) localStorage.setItem('profile', 'supplier');
 
       return data.result;
-    } catch (error) {
+    } catch (error: unknown) {
+      // @ts-ignore
       const err = error.response.data.detail ? error.response.data.detail : error.message;
       const message = generateResponseError(err);
 
@@ -51,8 +52,8 @@ const loginSlice = createSlice({
       state.isAuth = true;
     });
     bulder.addCase(loginService.rejected, (state, action) => {
-      state.resMessage = action.payload;
-      state.errMessage = action.payload;
+      state.resMessage = action.payload as string;
+      state.errMessage = action.payload as string;
       state.loading = false;
       state.isAuth = false;
     });

@@ -3,7 +3,10 @@ export const filterEmptyValues = (data: any): any => {
   const array = Object.keys(data);
 
   for (let i = 0; i < array.length; i++)
-    if (data[array[i]]) accountInfoForRequest[array[i]] = data[array[i]];
+    if (data[array[i]]) {
+      // @ts-ignore
+      accountInfoForRequest[array[i]] = data[array[i]];
+    }
 
   return accountInfoForRequest;
 };

@@ -9,7 +9,8 @@ export const productService = createAsyncThunk(
       const data = await productFetch.getList(productData);
 
       return data.result;
-    } catch (error) {
+    } catch (error: unknown) {
+      // @ts-ignore
       const err = error.response.data.result ? error.response.data.result : error.message;
 
       return rejectWithValue(err);

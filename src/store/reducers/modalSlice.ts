@@ -67,6 +67,7 @@ export const modalSlice = createSlice({
       state.address.zipcode = action.payload;
     },
     addAddress: (state, action) => {
+      // @ts-ignore
       state.addresses.push(action.payload);
     },
     addressNull: state => {

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
-import { useSelector } from 'react-redux';
-
+import { useAppSelector } from '../../../../store/hooks';
 import { InfoBtn } from '../../../buttons';
 import Card from '../../../Card';
 import CardFull from '../../../CardFull';
@@ -9,8 +8,8 @@ import PaginatorProduct from '../../TypesView/product/PaginatorProduct';
 
 import style from './ProductList.module.css';
 
-const ProductList = () => {
-  const dataArr = useSelector(state => state.productPaginate.productsPage);
+const ProductList = (): JSX.Element => {
+  const dataArr = useAppSelector(state => state.productPaginate.productsPage);
 
   const [list, setList] = useState(true);
 
@@ -36,9 +35,10 @@ const ProductList = () => {
       <div className={style.productList__list}>
         {dataArr.map((data, index) =>
           list ? (
-            <CardFull key={`product_${data.product_id}-${index}`} props={data} />
+            <CardFull key={`product-${index}`} props={data} />
           ) : (
-            <Card key={`product_${data.product_id}-${index}`} props={data} />
+            // @ts-ignore
+            <Card key={`product-${index}`} props={data} />
           ),
         )}
       </div>

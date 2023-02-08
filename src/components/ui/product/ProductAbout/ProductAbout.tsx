@@ -37,14 +37,14 @@ const property = {
 //       "description": "attending overhead drain cooler"
 // }
 // }
-const ProductAbout = () => {
-  const targetRef = useRef();
+const ProductAbout = (): JSX.Element => {
+  const targetRef = useRef<HTMLDivElement | null>(null);
   const [height, setHeight] = useState(0);
 
-  const transformKey = key => {
+  const transformKey = (key: any) => {
     return key
       .split('_')
-      .map(w => w[0].toUpperCase() + w.slice(1))
+      .map((w: string | any[]) => w[0].toUpperCase() + w.slice(1))
       .join(' ');
   };
 

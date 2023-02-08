@@ -1,10 +1,11 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 
 import style from './SupplierCard.module.css';
 
-const SupplierCard = ({ supplier }) => {
+interface SupplierCardProps {
+  supplier: any;
+}
+const SupplierCard: FC<SupplierCardProps> = ({ supplier }) => {
   return (
     <div className={style.supplierCard}>
       <div className={style.supplierCard__avatar} />
@@ -17,10 +18,6 @@ const SupplierCard = ({ supplier }) => {
       <div className={style.supplierCard__arrow} />
     </div>
   );
-};
-
-SupplierCard.propTypes = {
-  supplier: PropTypes.object,
 };
 
 export default SupplierCard;

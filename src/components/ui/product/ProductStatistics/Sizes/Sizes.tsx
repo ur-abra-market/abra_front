@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
 import PropTypes from 'prop-types';
 
 import style from './Sizes.module.css';
 
-const isSizeSelected = ({ size, selectedSizes }) => {
-  return selectedSizes.some(el => el === size);
+const isSizeSelected = ({ size, selectedSizes }: any) => {
+  return selectedSizes.some((el: any) => el === size);
 };
 
-const SizeItem = ({ isSelected = false, label, onClick }) => {
+const SizeItem = ({ isSelected = false, label, onClick }: any) => {
   const handleClick = () => onClick?.(label);
 
   return (
@@ -31,10 +31,14 @@ SizeItem.propTypes = {
   onClick: PropTypes.func,
 };
 
-export const Sizes = ({ sizes }) => {
-  const [selectedSizes, setSelectedSizes] = useState([]);
+interface SizesProps {
+  sizes: any[];
+  className?: string;
+}
+export const Sizes: FC<SizesProps> = ({ sizes }) => {
+  const [selectedSizes, setSelectedSizes] = useState<any[]>([]);
 
-  const addOrRemoveSize = size => {
+  const addOrRemoveSize = (size: any) => {
     if (isSizeSelected({ size, selectedSizes }))
       setSelectedSizes(prevState => prevState.filter(item => item !== size));
     else setSelectedSizes(prevState => [...prevState, size]);
@@ -52,9 +56,4 @@ export const Sizes = ({ sizes }) => {
       ))}
     </>
   );
-};
-
-Sizes.propTypes = {
-  sizes: PropTypes.array.isRequired,
-  className: PropTypes.string,
 };

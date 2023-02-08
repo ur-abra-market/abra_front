@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 
 import { Button } from '../../buttons';
@@ -9,15 +8,19 @@ import TextField from '../../TextField';
 
 import style from './ForgotPasswordForm.module.css';
 
-const ForgotPasswordForm = ({ togglePageType }) => {
+interface ForgotPasswordFormProps {
+  togglePageType: any;
+}
+const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => {
   const {
     register,
     formState: { isValid, errors },
     handleSubmit,
   } = useForm({ mode: 'onChange' });
 
-  const onSubmit = data => {
+  const onSubmit = (data: any): void => {
     console.log(data);
+    // eslint-disable-next-line no-useless-return
     if (!isValid) return;
   };
 
@@ -62,7 +65,5 @@ const ForgotPasswordForm = ({ togglePageType }) => {
   );
 };
 
-ForgotPasswordForm.propTypes = {
-  togglePageType: PropTypes.func,
-};
+ForgotPasswordForm.propTypes = {};
 export default ForgotPasswordForm;

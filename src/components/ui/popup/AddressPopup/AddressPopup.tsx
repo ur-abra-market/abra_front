@@ -1,21 +1,20 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
-import { address, addAddress } from '../../../../store/reducers/modalSlice';
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { addAddress, address } from '../../../../store/reducers/modalSlice';
 import Check from '../../../Check';
 import SelectForAddres from '../../../SelectForAddres';
 import TextModal from '../../../TextModal';
 
 import style from './AddressPopup.module.css';
 
-const AddressPopup = () => {
-  const dispatch = useDispatch();
+const AddressPopup = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const listPhone = ['+7', '+90'];
   const listCountry = ['Select a country', 'Russia', 'Turkey'];
-  const modal = useSelector(state => state.modal.isAddress);
-  const arrAddress = useSelector(state => state.modal.addresses);
-  const place = useSelector(state => state.modal.address);
+  const modal = useAppSelector(state => state.modal.isAddress);
+  const arrAddress = useAppSelector(state => state.modal.addresses);
+  const place = useAppSelector(state => state.modal.address);
 
   const styles = {
     scale: modal ? '1' : '0',

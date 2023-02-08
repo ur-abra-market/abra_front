@@ -4,21 +4,21 @@ import { Carousel } from 'components';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { useAppSelector } from '../../../store/hooks';
+
 import { ReactComponent as LoupeIcon } from 'assets/img/icons/loupe.svg';
 import Flag from 'components/Flag';
 import Stars from 'components/Stars';
 import { getPriceOneItem } from 'pages/ProductPage/helpers/getPriceOneItem';
 import style from 'pages/ProductPage/ProductPage.module.css';
 
-export const SimilarProduct = () => {
-  const { similarProducts } = useSelector(state => state.similarProducts);
-
-  if (!similarProducts) return null;
+export const SimilarProduct = (): JSX.Element => {
+  const { similarProducts } = useAppSelector(state => state.similarProducts);
 
   const buildCarouselSimilarProducts = () => {
     return (
       similarProducts &&
-      similarProducts.map((data, index) => {
+      similarProducts.map((data: any, index: number) => {
         const {
           name,
           price_include_discount,
@@ -67,7 +67,7 @@ export const SimilarProduct = () => {
       title="Similar products in this category"
       arrayLength={similarProducts.length}
     >
-      {buildCarouselSimilarProducts()}
+      {similarProducts && buildCarouselSimilarProducts()}
     </Carousel>
   );
 };

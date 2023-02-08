@@ -6,13 +6,13 @@ import { status } from '../../store/reducers/productSlice';
 
 import style from './StatusProduct.module.css';
 
-const StatusProduct = () => {
+const StatusProduct = (): JSX.Element => {
   const statusArr = ['Bestsellers', 'New Arrivals', 'Highest Rating', 'Hot Deals'];
   const productArr = ['bestsellers', 'new', 'rating', 'hot'];
   const dispatch = useDispatch();
   const [check, setCheck] = useState([true, false, false, false, false]);
 
-  const handleCheck = index => {
+  const handleCheck = (index: number) => {
     const arr = Array(statusArr.length)
       .fill(false)
       .map((el, i) => i === index);

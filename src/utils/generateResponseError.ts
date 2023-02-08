@@ -1,4 +1,4 @@
-export function generateResponseError(message) {
+export function generateResponseError(message: string): string {
   switch (message) {
     case 'INVALID_PASSWORD':
       return 'Password was entered incorrectly';

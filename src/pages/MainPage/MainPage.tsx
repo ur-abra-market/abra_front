@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 import style from './MainPage.module.css';
 
@@ -13,9 +13,9 @@ import Feedback from 'components/ui/feedback/Feedback';
 import { fetchProductList } from 'store/reducers/mainPageSlice';
 
 const MainPage = (): JSX.Element => {
-  const dispatch = useDispatch();
-  const filter = useSelector(state => state.product.statusProduct);
-  const categories = useSelector(state => state.mainPageProducts.products);
+  const dispatch = useAppDispatch();
+  const filter = useAppSelector(state => state.product.statusProduct);
+  const categories = useAppSelector(state => state.mainPageProducts.products);
 
   const CATEGORIES = {
     0: 'All categories',
@@ -39,7 +39,9 @@ const MainPage = (): JSX.Element => {
           {Object.keys(categories).map(categoryId => (
             <Slider
               key={categoryId}
+              // @ts-ignore
               title={CATEGORIES[categoryId]}
+              // @ts-ignore
               products={categories[categoryId]}
             />
           ))}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
@@ -10,7 +10,10 @@ import TextField from '../../../TextField';
 
 import style from './ChangeEmailForm.module.css';
 
-const ChangeEmailForm = ({ handleChangeModalActive }) => {
+interface ChangeEmailFormProps {
+  handleChangeModalActive: Function;
+}
+const ChangeEmailForm: FC<ChangeEmailFormProps> = ({ handleChangeModalActive }) => {
   const {
     register,
     formState: { isValid, errors },
@@ -73,7 +76,4 @@ const ChangeEmailForm = ({ handleChangeModalActive }) => {
   );
 };
 
-ChangeEmailForm.propTypes = {
-  handleChangeModalActive: PropTypes.func,
-};
 export default ChangeEmailForm;

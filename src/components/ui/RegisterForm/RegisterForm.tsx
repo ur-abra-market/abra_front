@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { registerService } from '../../../store/reducers/registerSlice';
 import { Button } from '../../buttons';
 import styleBtn from '../../buttons/Buttons.module.css';
@@ -14,9 +14,9 @@ import TextField from '../../TextField';
 
 import style from './RegisterForm.module.css';
 
-const RegisterForm = () => {
+const RegisterForm = (): JSX.Element => {
   const [userStatus, setUserStatus] = useState('suppliers');
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {
     register,
@@ -27,9 +27,9 @@ const RegisterForm = () => {
 
   const watchPasword = watch('password');
 
-  const isLoading = useSelector(state => state.register.loading);
-  const errMessage = useSelector(state => state.register.errMessage);
-  const resMessage = useSelector(state => state.register.resMessage);
+  const isLoading = useAppSelector(state => state.register.loading);
+  const errMessage = useAppSelector(state => state.register.errMessage);
+  const resMessage = useAppSelector(state => state.register.resMessage);
 
   const toggleUserStatus = () => {
     setUserStatus(prevState => (prevState === 'suppliers' ? 'sellers' : 'suppliers'));
@@ -39,7 +39,7 @@ const RegisterForm = () => {
     if (resMessage === 'MESSAGE_HAS_BEEN_SENT') navigate('/');
   }, [resMessage]);
 
-  const onSubmit = data => {
+  const onSubmit = (data: any) => {
     if (!isValid) return;
     dispatch(registerService({ ...data, route: userStatus }));
   };

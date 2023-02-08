@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC, useEffect, useState } from 'react';
 
 import style from './ProductPhoto.module.css';
 
-const ProductPhoto = ({ photoArray }) => {
+interface ProductPhotoProps {
+  photoArray: any[];
+}
+
+const ProductPhoto: FC<ProductPhotoProps> = ({ photoArray }) => {
   const step = 114;
 
   const [len, setLen] = useState(0);
@@ -79,10 +81,6 @@ const ProductPhoto = ({ photoArray }) => {
       </div>
     </div>
   );
-};
-
-ProductPhoto.propTypes = {
-  photoArray: PropTypes.array.isRequired,
 };
 
 export default ProductPhoto;

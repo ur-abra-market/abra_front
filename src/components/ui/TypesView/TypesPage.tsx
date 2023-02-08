@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 
 import TypeBar from '../TypeBar/TypeBar';
 import TypeList from '../TypeList/TypeList';
 
-const TypesPage = ({ variations, getValues, register, setTypes, types }) => {
+interface TypesPageProps {
+  variations: any;
+  getValues: any;
+  register: any;
+  setTypes: any;
+  types: any[];
+}
+const TypesPage: FC<TypesPageProps> = ({
+  variations,
+  getValues,
+  register,
+  setTypes,
+  types,
+}) => {
   const [sizes, colors] = [variations.size, variations.color];
 
   return (
@@ -23,11 +36,4 @@ const TypesPage = ({ variations, getValues, register, setTypes, types }) => {
   );
 };
 
-TypesPage.propTypes = {
-  variations: PropTypes.object,
-  getValues: PropTypes.func,
-  register: PropTypes.func,
-  setTypes: PropTypes.func,
-  types: PropTypes.array,
-};
 export default TypesPage;

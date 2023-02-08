@@ -1,16 +1,27 @@
-import React, { useCallback } from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC, useCallback } from 'react';
 
 import CheckboxStyledElem from '../../CheckboxStyledElem';
 
 import style from './CheckboxFor.module.css';
 
-const CheckboxFor = ({ register, array, title, getValues, typeId }) => {
+interface CheckboxForProps {
+  register: any;
+  array: any[];
+  title: string;
+  getValues: any;
+  typeId: number;
+}
+const CheckboxFor: FC<CheckboxForProps> = ({
+  register,
+  array,
+  title,
+  getValues,
+  typeId,
+}) => {
   const validate = useCallback(() => {
     const values = getValues(array.map(el => `${typeId}-${el}`));
 
-    const isValid = values.some(el => el);
+    const isValid = values.some((el: any) => el);
 
     return isValid;
   }, []);
@@ -38,11 +49,4 @@ const CheckboxFor = ({ register, array, title, getValues, typeId }) => {
   );
 };
 
-CheckboxFor.propTypes = {
-  register: PropTypes.func,
-  array: PropTypes.array,
-  title: PropTypes.string,
-  getValues: PropTypes.func,
-  typeId: PropTypes.number,
-};
 export default CheckboxFor;

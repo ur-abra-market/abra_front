@@ -66,22 +66,23 @@ const ProductsListPage: FC = (): JSX.Element => {
     setModalActive(!modalActive);
   };
 
-  const handleSwitchMainCheckbox = tagret => {
-    const inputs = document.querySelectorAll('.checkbox');
-
-    inputs.forEach(input => {
-      input.checked = tagret.checked;
-    });
+  const handleSwitchMainCheckbox = (tagret: any) => {
+    // TODO переделать
+    // const inputs = document.querySelectorAll('.checkbox');
+    //
+    // inputs.forEach(input => {
+    //   input.checked = tagret.checked;
+    // });
   };
 
   const columns = {
     check: {
       name: <input type="checkbox" onClick={e => handleSwitchMainCheckbox(e.target)} />,
-      component: product => (
+      component: (product: any) => (
         <input
           type="checkbox"
           className="checkbox"
-          onClick={e => changeCheckbox(e.target)}
+          onClick={changeCheckbox}
           id={product.id}
         />
       ),
@@ -106,9 +107,9 @@ const ProductsListPage: FC = (): JSX.Element => {
     getDeletedItems(selectedItems);
     handleChangeModalActive();
   }
-  function getDeletedItems(items) {
+  const getDeletedItems = (items: any) => {
     dispatch(deleteProducts(items));
-  }
+  };
 
   const searchClasses = {
     search__wrap: `${style.search__wrap}`,
@@ -130,7 +131,7 @@ const ProductsListPage: FC = (): JSX.Element => {
     'On-sale': '1',
     'Off-sale': '0',
   };
-  const handleProductsStatusSelect = value => {
+  const handleProductsStatusSelect = (value: any) => {
     let fieldValue = value;
 
     if (value === 'Off-sale') fieldValue = '0';
@@ -138,7 +139,7 @@ const ProductsListPage: FC = (): JSX.Element => {
     setSelectedProductsStatus(fieldValue);
   };
 
-  const handleSort = item => {
+  const handleSort = (item: any) => {
     setSortBy(item);
   };
 
@@ -149,6 +150,7 @@ const ProductsListPage: FC = (): JSX.Element => {
     selectedProductsStatus === 'All Products'
       ? [...prod].sort((prev, next) => prev.is_active - next.is_active)
       : prod.filter(order => order.with_discount.toString() === selectedProductsStatus);
+  // @ts-ignore
   const sortedProducts = _.orderBy(filteredProducts, [sortBy.path], [sortBy.direction]);
   const orderCrop = paginate(sortedProducts, activePage, pageSize);
 
@@ -283,7 +285,7 @@ const ProductsListPage: FC = (): JSX.Element => {
         </div>
       ) : (
         <div className={style.cardsWrapper}>
-          {products.map(item => (
+          {products?.map(item => (
             <div className={style.productCard} key={item.id}>
               {/* <img src={item.picture} alt='product img'></img> */}
               <div className={style.picture} />

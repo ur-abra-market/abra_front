@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
+import { useAppSelector } from '../../../../store/hooks';
 import ProductQuantityControl from '../../../ProductQuantityControl';
 
 import style from './ChoiceProduct.module.css';
 
-const ChoiceProduct = ({ colors }) => {
+interface ChoiceProductProps {
+  colors: any[];
+}
+const ChoiceProduct: FC<ChoiceProductProps> = ({ colors }) => {
   // const price = +productData.info.value_price
   // const quantity = +productData.info.quantity
   const price = 123;
@@ -16,7 +20,7 @@ const ChoiceProduct = ({ colors }) => {
   const max = 100;
   // const max = useSelector((state) => state.product.max)
 
-  const basket = useSelector(state => state.basket.basketProduct);
+  const basket = useAppSelector(state => state.basket.basketProduct);
   // const product = basket.find(
   //   (obj) => obj.product_id === product_id
   // )
@@ -86,10 +90,6 @@ const ChoiceProduct = ({ colors }) => {
       </div>
     </div>
   );
-};
-
-ChoiceProduct.propTypes = {
-  colors: PropTypes.array.isRequired,
 };
 
 export default ChoiceProduct;

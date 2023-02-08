@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 
 import style from './FilterSizes.module.css';
 
-const FilterSizes = () => {
+const FilterSizes = (): JSX.Element => {
   const sizeList = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'XXXXL'];
   const sizeCheck = sizeList.map(() => false);
 
   const [check, setCheck] = useState(sizeCheck);
 
-  const changeState = index => {
+  const changeState = (index: number) => {
     const arrCheck = check.map((e, i) => (i === index ? !e : e));
 
     setCheck(arrCheck);

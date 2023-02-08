@@ -8,10 +8,10 @@ interface ImageAddingProps {
   label?: string;
   placeholder?: string;
   error?: string;
-  imgUrl: string;
-  setImgUrl: any;
-  images: any[];
-  setImages: any;
+  imgUrl?: string;
+  setImgUrl?: any;
+  images?: any[];
+  setImages?: any;
   register?: any;
 }
 const ImageAdding: FC<ImageAddingProps> = ({
@@ -33,7 +33,8 @@ const ImageAdding: FC<ImageAddingProps> = ({
 
     if (!e.target.files) return;
 
-    if (e.target.files[0]) {
+    // TODO - заглущка проверка на images
+    if (e.target.files[0] && images) {
       reader.readAsDataURL(e.target.files[0]);
       setImages([...images, e.target.files[0]]);
     }

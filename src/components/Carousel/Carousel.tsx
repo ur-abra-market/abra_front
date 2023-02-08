@@ -4,7 +4,7 @@ import style from './Carousel.module.css';
 
 interface CarouselProps {
   title: string;
-  widthSlider: number;
+  widthSlider?: number;
   arrayLength: number;
 }
 export const Carousel: FC<PropsWithChildren<CarouselProps>> = ({

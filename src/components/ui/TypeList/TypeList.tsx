@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 
 import CheckboxFor from '../CheckboxFor';
 import RadiosFor from '../RadiosFor';
 
-const TypeList = ({ colors, sizes, getValues, register, types }) => {
+interface TypeListProps {
+  colors: any[];
+  sizes: any[];
+  getValues: any;
+  register: any;
+  types: any[];
+}
+const TypeList: FC<TypeListProps> = ({ colors, sizes, getValues, register, types }) => {
   return (
     <div>
       {types.map(el => (
@@ -32,11 +39,5 @@ const TypeList = ({ colors, sizes, getValues, register, types }) => {
   );
 };
 
-TypeList.propTypes = {
-  colors: PropTypes.array,
-  sizes: PropTypes.array,
-  getValues: PropTypes.func,
-  register: PropTypes.func,
-  types: PropTypes.array,
-};
+TypeList.propTypes = {};
 export default TypeList;

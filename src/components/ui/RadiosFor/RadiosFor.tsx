@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -6,7 +6,22 @@ import RadioStyledElem from '../../RadioStyledElem';
 
 import style from './RadiosFor.module.css';
 
-const RadiosFor = ({ register, state, array, title, name, typeId }) => {
+interface RadiosForProps {
+  register: any;
+  state: any;
+  array: any;
+  title: string;
+  name: string;
+  typeId: number;
+}
+const RadiosFor: FC<RadiosForProps> = ({
+  register,
+  state,
+  array,
+  title,
+  name,
+  typeId,
+}) => {
   const [choice, setChoice] = useState(state);
 
   return (
@@ -14,7 +29,7 @@ const RadiosFor = ({ register, state, array, title, name, typeId }) => {
       <p className={style.title}>{title}</p>
       <div className={style.radioWrapper}>
         {array &&
-          array.map((el, i) => {
+          array.map((el: any, i: number) => {
             return (
               <RadioStyledElem
                 key={i}
@@ -32,12 +47,4 @@ const RadiosFor = ({ register, state, array, title, name, typeId }) => {
   );
 };
 
-RadiosFor.propTypes = {
-  register: PropTypes.func,
-  state: PropTypes.string,
-  array: PropTypes.array,
-  title: PropTypes.string,
-  name: PropTypes.string,
-  typeId: PropTypes.number,
-};
 export default RadiosFor;

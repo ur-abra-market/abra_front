@@ -7,7 +7,7 @@ import WhatsApp from '../WhatsApp';
 
 import style from './Feedback.module.css';
 
-const Feedback = () => {
+const Feedback = (): JSX.Element => {
   return (
     <div className={style.feedback}>
       <div className={style.feedback__left}>

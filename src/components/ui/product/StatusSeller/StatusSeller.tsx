@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -6,7 +6,10 @@ import { HangerIcon, StarIcon } from '../../../../assets/img';
 
 import style from './StatusSeller.module.css';
 
-const StatusSeller = ({ supplierInfo }) => {
+interface StatusSellerProps {
+  supplierInfo: any;
+}
+const StatusSeller: FC<StatusSellerProps> = ({ supplierInfo }) => {
   // const {name, grade_average, total_deals} = supplierInfo
 
   return (
@@ -16,7 +19,7 @@ const StatusSeller = ({ supplierInfo }) => {
           <HangerIcon />
         </div>
         <div className={style.statusSeller__person}>
-          <h4 className={style.statusSeller__person_name}>{name}</h4>
+          <h4 className={style.statusSeller__person_name}>{supplierInfo?.name}</h4>
           <div className={style.statusSeller__person_reward}>
             <div className={style.statusSeller__star}>
               <StarIcon />
@@ -38,10 +41,6 @@ const StatusSeller = ({ supplierInfo }) => {
       <div className={style.statusSeller__btn} />
     </div>
   );
-};
-
-StatusSeller.propTypes = {
-  supplierInfo: PropTypes.object.isRequired,
 };
 
 export default StatusSeller;

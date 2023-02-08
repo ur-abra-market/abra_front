@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './CheckOrder.module.css';
 
-const CheckOrder = () => {
+const CheckOrder = (): JSX.Element => {
   return (
     <div className={style.checkOrder}>
       <div className={style.checkOrder__price}>

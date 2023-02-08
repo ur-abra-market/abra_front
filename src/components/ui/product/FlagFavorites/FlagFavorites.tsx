@@ -1,12 +1,14 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 
 import { ReactComponent as FlagIcon } from '../../../Flag/flag.svg';
 
 import style from './FlagFavorites.module.css';
 
-const FlagFavorites = ({ active, onClick }) => {
+interface FlagFavoritesProps {
+  onClick: any;
+  active: boolean;
+}
+const FlagFavorites: FC<FlagFavoritesProps> = ({ active, onClick }) => {
   return (
     <div className={style.flagFavorites} onClick={() => onClick(!active)}>
       <div className={style.flagFavorites_sign}>
@@ -20,11 +22,6 @@ const FlagFavorites = ({ active, onClick }) => {
       </div>
     </div>
   );
-};
-
-FlagFavorites.propTypes = {
-  onClick: PropTypes.func,
-  active: PropTypes.bool,
 };
 
 export default FlagFavorites;

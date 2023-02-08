@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
-import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
@@ -26,7 +24,21 @@ import TypesPage from '../TypesView/TypesPage';
 
 import style from './ProductListRegistrationForm.module.css';
 
-const ProductListRegistrationForm = ({
+interface ProductListRegistrationFormProps {
+  firstCategory: string;
+  secondCategory: string;
+  thirdCategory: string;
+  setSecondCategory: any;
+  setFirstCategory: any;
+  setThirdCategory: any;
+  firstStageCategories?: any[];
+  thirdStageCategories?: any[];
+  secondStageCategories?: any[];
+  productProperties?: any[] | null;
+  productVariations: any;
+  categoryId?: any;
+}
+const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   firstCategory,
   secondCategory,
   thirdCategory,
@@ -60,7 +72,7 @@ const ProductListRegistrationForm = ({
 
   const values = productProperties?.map(el => el.key);
 
-  const createObjProperty = (el, obj) => {
+  const createObjProperty = (el: any, obj: any) => {
     const optional_value = obj[`${el}(optional)`];
     const value = obj[el];
     let finalObj = {
@@ -68,15 +80,18 @@ const ProductListRegistrationForm = ({
       value,
     };
 
-    if (optional_value) finalObj = { ...finalObj, optional_value };
+    if (optional_value) {
+      // @ts-ignore
+      finalObj = { ...finalObj, optional_value };
+    }
 
     return finalObj;
   };
 
-  const createObjVariation = (id, data) => {
-    const childs = [];
+  const createObjVariation = (id: any, data: any) => {
+    const childs: any[] = [];
 
-    productVariations.size?.forEach(el => {
+    productVariations.size?.forEach((el: any) => {
       if (data[`${id}-${el}`]) {
         childs.push({
           name: 'size',
@@ -93,23 +108,23 @@ const ProductListRegistrationForm = ({
     };
   };
 
-  const onSubmit = data => {
+  const onSubmit = (data: any) => {
     const keysData = Object.keys(data);
 
-    const properties = [];
+    const properties: any[] = [];
 
-    values.forEach(el => {
+    values?.forEach(el => {
       properties.push(createObjProperty(el, data));
     });
 
-    const variations = [];
+    const variations: any[] = [];
 
     types.forEach(el => {
       variations.push(createObjVariation(el.id, data));
     });
 
-    const addedMaterialKeys = [];
-    const addedMaterialValues = [];
+    const addedMaterialKeys: any[] = [];
+    const addedMaterialValues: any[] = [];
 
     keysData.forEach(el => {
       if (el.slice(0, 3) === 'opt') addedMaterialKeys.push(el);
@@ -174,12 +189,13 @@ const ProductListRegistrationForm = ({
 
       navigate('/');
     }
-  }, [productId]);
+  }, [dispatch, images, isSubmit, navigate, productId]);
 
   useEffect(() => {
     dispatch(getCompanyInfoService());
   }, [dispatch]);
 
+  // @ts-ignore
   return (
     <div className={style.formWrapper}>
       <div className={style.formContainer}>
@@ -188,7 +204,9 @@ const ProductListRegistrationForm = ({
         ) : (
           <>
             <FormTitle
+              // @ts-ignore
               step={companyInfo?.name ? '' : 'Step 3/3'}
+              // @ts-ignore
               link={companyInfo?.name ? 'Back' : 'Skip and Get started'}
               title="Product list"
               text="Enter the information about your first product"
@@ -203,6 +221,7 @@ const ProductListRegistrationForm = ({
                     register={register('prodName', {
                       required: 'Field is required',
                     })}
+                    // @ts-ignore
                     error={errors?.prodName?.message}
                     title="Product name *"
                     name="prodName"
@@ -213,8 +232,10 @@ const ProductListRegistrationForm = ({
                   <div className={style.selectInputs}>
                     <div className={style.selectEqual}>
                       <SelectLabelAbove
+                        // @ts-ignore
                         value={firstCategory}
                         onChangeOption={setFirstCategory}
+                        // @ts-ignore
                         options={firstStageCategories}
                         register={register('category', {
                           required: true,
@@ -227,6 +248,7 @@ const ProductListRegistrationForm = ({
 
                     <div className={style.selectEqual}>
                       <SelectLabelAbove
+                        // @ts-ignore
                         value={secondCategory}
                         onChangeOption={setSecondCategory}
                         options={secondStageCategories}
@@ -240,6 +262,7 @@ const ProductListRegistrationForm = ({
                     {thirdStageCategories && !!thirdStageCategories.length && (
                       <div className={style.selectEqual}>
                         <SelectLabelAbove
+                          // @ts-ignore
                           value={thirdCategory}
                           onChangeOption={setThirdCategory}
                           options={thirdStageCategories}
@@ -274,6 +297,7 @@ const ProductListRegistrationForm = ({
                 >
                   {productProperties &&
                     productProperties.map((el, i) => {
+                      // @ts-ignore
                       const values = [...new Set(el.values.map(el => el.value))];
 
                       return (
@@ -282,7 +306,7 @@ const ProductListRegistrationForm = ({
                           element={el}
                           options={values}
                           register={register}
-                          placeholder="Select"
+                          // placeholder="Select"
                         />
                       );
                     })}
@@ -321,21 +345,6 @@ const ProductListRegistrationForm = ({
       </div>
     </div>
   );
-};
-
-ProductListRegistrationForm.propTypes = {
-  firstCategory: PropTypes.string,
-  secondCategory: PropTypes.string,
-  thirdCategory: PropTypes.string,
-  setSecondCategory: PropTypes.func,
-  setFirstCategory: PropTypes.func,
-  setThirdCategory: PropTypes.func,
-  firstStageCategories: PropTypes.array,
-  thirdStageCategories: PropTypes.array,
-  secondStageCategories: PropTypes.array,
-  productProperties: PropTypes.array,
-  productVariations: PropTypes.object,
-  categoryId: PropTypes.number,
 };
 
 export default ProductListRegistrationForm;

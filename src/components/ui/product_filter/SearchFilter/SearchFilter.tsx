@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
-import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { material, brand } from '../../../../store/reducers/filterSlice';
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { brand, material } from '../../../../store/reducers/filterSlice';
 
 import style from './SearchFilter.module.css';
 
-const SearchFilter = props => {
-  const dispatch = useDispatch();
+interface SearchFilterProps {
+  typeSearch: any;
+}
+const SearchFilter: FC<SearchFilterProps> = props => {
+  const dispatch = useAppDispatch();
   const [text, setText] = useState('');
-  const brands = useSelector(state => state.filter.brands);
-  const materials = useSelector(state => state.filter.materials);
+  const brands = useAppSelector(state => state.filter.brands);
+  const materials = useAppSelector(state => state.filter.materials);
 
-  const handleSubmit = async e => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     if (text.trim() !== '') {
       if (props.typeSearch === 'material') dispatch(material([...materials, text]));
@@ -33,10 +34,6 @@ const SearchFilter = props => {
       <input type="submit" hidden />
     </form>
   );
-};
-
-SearchFilter.propTypes = {
-  typeSearch: PropTypes.any,
 };
 
 export default SearchFilter;

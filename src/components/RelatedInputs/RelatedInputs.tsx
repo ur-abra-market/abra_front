@@ -8,15 +8,15 @@ import style from './RelatedInputs.module.css';
 
 interface RelatedInputsProps {
   register?: any;
-  optType: string;
-  mainType: string;
-  mainName: string;
-  optName: string;
-  mainTitle: string;
-  mainPlaceholder: string;
-  optPlaceholder: string;
-  optTitle: string;
-  isRequire: boolean;
+  optType?: string;
+  mainType?: string;
+  mainName?: string;
+  optName?: string;
+  mainTitle?: string;
+  mainPlaceholder?: string;
+  optPlaceholder?: string;
+  optTitle?: string;
+  isRequire?: boolean;
 }
 const RelatedInputs: FC<RelatedInputsProps> = ({
   register,

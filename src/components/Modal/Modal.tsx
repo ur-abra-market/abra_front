@@ -1,13 +1,12 @@
 import React, { FC, PropsWithChildren } from 'react';
 
-import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 
 import style from './Modal.module.css';
 
 interface ModalProps {
   active: boolean;
-  close: (val: boolean) => void;
+  close?: (val: boolean) => void;
 }
 const Modal: FC<PropsWithChildren<ModalProps>> = ({ active, children, close }) => {
   return createPortal(
@@ -15,7 +14,7 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({ active, children, close }) =
       role="presentation"
       className={active ? `${style.modal} ${style.modal_active}` : style.modal}
       onClick={() => {
-        close(false);
+        close?.(false);
       }}
     >
       <div

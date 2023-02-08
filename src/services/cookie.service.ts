@@ -1,19 +1,19 @@
 const refreshToken = 'csrf_refresh_token';
 const accesToken = 'csrf_access_token';
 
-function getCookie(name) {
+const getCookie = (name: any) => {
   const matches = document.cookie.match(
     new RegExp(`(?:^|; )${name.replace(/([.$?*|{}()[]\\\/\+^])/g, '\\$1')}=([^;]*)`),
   );
 
   return matches ? decodeURIComponent(matches[1]) : undefined;
-}
-function getRefreshToken() {
+};
+const getRefreshToken = () => {
   return getCookie(refreshToken);
-}
-function getAccesToken() {
+};
+const getAccesToken = () => {
   return getCookie(accesToken);
-}
+};
 const cookieService = {
   getRefreshToken,
   getAccesToken,

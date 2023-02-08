@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
@@ -7,7 +7,10 @@ import { discount } from '../../store/reducers/filterSlice';
 
 import style from './SwitchBox.module.css';
 
-const SwitchBox = ({ label }) => {
+interface SwitchBoxProps {
+  label: string;
+}
+const SwitchBox: FC<SwitchBoxProps> = ({ label }) => {
   const dispatch = useDispatch();
 
   const [check, setCheck] = useState(false);
@@ -47,10 +50,6 @@ const SwitchBox = ({ label }) => {
       </div>
     </div>
   );
-};
-
-SwitchBox.propTypes = {
-  label: PropTypes.string,
 };
 
 export default SwitchBox;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import style from './FilterGrowth.module.css';
 
-const FilterGrowth = () => {
+const FilterGrowth = (): JSX.Element => {
   const growthList = [
     '44-51',
     '63-67',
@@ -20,7 +20,7 @@ const FilterGrowth = () => {
 
   const [check, setCheck] = useState(growthCheck);
 
-  const changeState = index => {
+  const changeState = (index: number) => {
     const arrCheck = check.map((e, i) => (i === index ? !e : e));
 
     setCheck(arrCheck);

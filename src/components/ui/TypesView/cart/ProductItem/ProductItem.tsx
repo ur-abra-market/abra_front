@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 
 import style from './ProductItem.module.css';
 
-const ProductItem = ({ product }) => {
+interface ProductItemProps {
+  product: any;
+}
+const ProductItem: FC<ProductItemProps> = ({ product }) => {
   const changeQuantityHandler = () => {};
 
   const changeStatusHandler = () => {};
@@ -65,10 +68,6 @@ const ProductItem = ({ product }) => {
       </div>
     </div>
   );
-};
-
-ProductItem.propTypes = {
-  product: PropTypes.object,
 };
 
 export default ProductItem;

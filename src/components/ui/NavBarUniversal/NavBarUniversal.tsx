@@ -1,10 +1,12 @@
-import React from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC, ReactNode } from 'react';
 
 import style from './NavBarUniversal.module.css';
 
-const NavBarUniversal = ({ logo, children }) => {
+interface NavBarUniversalProps {
+  logo: any;
+  children: ReactNode;
+}
+const NavBarUniversal: FC<NavBarUniversalProps> = ({ logo, children }) => {
   return (
     <nav className={style.navBarWrapper}>
       <h1 className={style.logoSection}>{logo}</h1>
@@ -13,8 +15,4 @@ const NavBarUniversal = ({ logo, children }) => {
   );
 };
 
-NavBarUniversal.propTypes = {
-  logo: PropTypes.object,
-  children: PropTypes.arrayOf(PropTypes.node, PropTypes.array),
-};
 export default NavBarUniversal;

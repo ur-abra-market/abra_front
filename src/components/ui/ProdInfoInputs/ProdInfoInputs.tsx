@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -6,7 +6,11 @@ import RelatedInputs from '../../RelatedInputs';
 
 import style from './ProdInfoInputs.module.css';
 
-const ProdInfoInputs = ({ register }) => {
+interface ProdInfoInputsProps {
+  register: any;
+}
+
+const ProdInfoInputs: FC<ProdInfoInputsProps> = ({ register }) => {
   return (
     <div>
       <div className={style.prodInfoContainer}>
@@ -41,10 +45,6 @@ const ProdInfoInputs = ({ register }) => {
       </p>
     </div>
   );
-};
-
-ProdInfoInputs.propTypes = {
-  register: PropTypes.func,
 };
 
 export default ProdInfoInputs;

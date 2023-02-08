@@ -5,10 +5,10 @@ import { productFetch } from '../../services/product.service';
 const initialState = {
   products: {},
   isLoading: false,
-  error: null,
+  error: '',
 };
 
-export const fetchProductList = createAsyncThunk(
+export const fetchProductList = createAsyncThunk<any, any>(
   'mainPageProducts/fetchProductsList',
   async (productData, { rejectWithValue }) => {
     // productData: { type: 'bestsellers' | 'new' | 'rating' | 'hot', category: 1 | 2 | 3 }
@@ -32,7 +32,7 @@ const mainPageSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(fetchProductList.pending, state => {
       state.isLoading = true;
-      state.error = null;
+      state.error = '';
     });
     builder.addCase(fetchProductList.fulfilled, (state, action) => {
       state.products = {
@@ -43,7 +43,7 @@ const mainPageSlice = createSlice({
     });
     builder.addCase(fetchProductList.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.payload;
+      state.error = action.payload as string;
     });
   },
 });

@@ -1,4 +1,4 @@
-export const countryPrefix = num => {
+export const countryPrefix = (num: string): string => {
   let prefix = '';
 
   if (num.includes('+7')) prefix = '+7';
@@ -7,7 +7,7 @@ export const countryPrefix = num => {
   return prefix;
 };
 
-export const numberWithoutPrefix = num => {
+export const numberWithoutPrefix = (num: string): string => {
   let body = '';
 
   if (num.includes('+7')) body = num.slice(2);

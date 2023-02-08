@@ -10,7 +10,7 @@ interface TextFieldProps {
   name?: string;
   id?: string;
   type?: string;
-
+  register?: any;
   error?: any;
   placeholder?: string;
   classes?: any;
@@ -34,13 +34,15 @@ const TextField: FC<TextFieldProps> = props => {
   } = props;
 
   const [showPassword, setShowPassword] = useState(false);
-
-  const toggleShowPassword = e => {
+  // TODO переделать!!!
+  const toggleShowPassword = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
     e.preventDefault();
     setShowPassword(prevState => !prevState);
     const findPassword = document.getElementById('password');
 
-    findPassword.type = !showPassword ? 'text' : 'password';
+    if (findPassword) {
+      findPassword.setAttribute('type', !showPassword ? 'text' : 'password');
+    }
   };
 
   return (
@@ -70,7 +72,7 @@ const TextField: FC<TextFieldProps> = props => {
           <div
             role="presentation"
             className={style.showPasswordBtn}
-            onClick={toggleShowPassword}
+            onClick={e => toggleShowPassword(e)}
           >
             {showPassword ? (
               <img

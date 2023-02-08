@@ -3,9 +3,9 @@ import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks';
 import { activeNum } from '../../../../../store/reducers/productPaginateSlice';
 
-import style from './PaginatorProduct.css';
+import style from './PaginatorProduct.module.css';
 
-const PaginatorProduct = () => {
+const PaginatorProduct = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const activePage = useAppSelector(state => state.productPaginate.pageNum);
@@ -31,7 +31,7 @@ const PaginatorProduct = () => {
     );
   });
 
-  const handlePage = page => {
+  const handlePage = (page: any) => {
     dispatch(activeNum(page));
   };
 

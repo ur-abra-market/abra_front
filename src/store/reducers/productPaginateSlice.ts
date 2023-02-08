@@ -15,7 +15,7 @@ const initialState = {
 
 export const productPaginateService = createAsyncThunk<any, any>(
   'productPaginate/productPaginateService',
-  async function (productPaginateData, { rejectWithValue }) {
+  async (productPaginateData, { rejectWithValue }) => {
     try {
       const data = await productPaginateFetch.getProductPaginateList(productPaginateData);
 

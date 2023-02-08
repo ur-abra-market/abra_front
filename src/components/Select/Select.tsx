@@ -2,12 +2,13 @@
 import React, { FC } from 'react';
 
 interface SelectProps {
-  options: any[];
-  defaultName: string;
-  img: string;
-  value: string;
-  register: any;
-  classes: any;
+  options?: any[];
+  defaultName?: string;
+  img?: string;
+  value?: string;
+  register?: any;
+  classes?: any;
+  defaultValue?: any;
 }
 const Select: FC<SelectProps> = ({ options, ...rest }) => {
   // const Select = ({ defaultName, img, options, classes, value, register }) => {
@@ -44,7 +45,7 @@ const Select: FC<SelectProps> = ({ options, ...rest }) => {
     //   </ul>
     // </div>
     <select {...rest}>
-      {options.map(value => (
+      {options?.map(value => (
         <option key={value} value={value}>
           {value}
         </option>

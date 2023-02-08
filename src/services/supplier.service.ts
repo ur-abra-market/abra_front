@@ -4,7 +4,7 @@ import httpService from './http.service';
 const access = cookieService.getAccesToken();
 
 const supplierFetch = {
-  getProductProperties: async categoryId => {
+  getProductProperties: async (categoryId: any) => {
     const { data } = await httpService.get(`/suppliers/get_product_properties/`, {
       params: {
         category_id: categoryId,
@@ -13,7 +13,7 @@ const supplierFetch = {
 
     return data;
   },
-  getProductVariations: async categoryId => {
+  getProductVariations: async (categoryId: any) => {
     const { data } = await httpService.get(`suppliers/get_product_variations/`, {
       params: {
         category_id: categoryId,
@@ -27,14 +27,15 @@ const supplierFetch = {
 
     return data;
   },
-  addProduct: async product => {
+  addProduct: async (product: any) => {
     const { data } = await httpService.post(`suppliers/add_product/`, product, {
+      // @ts-ignore
       headers: { 'X-CSRF-TOKEN': access },
     });
 
     return data;
   },
-  uploadImage: async (img, prodId, index) => {
+  uploadImage: async (img: any, prodId: any, index: any) => {
     const formData = new FormData();
 
     formData.append('file', img);
@@ -42,6 +43,7 @@ const supplierFetch = {
     const { data } = await httpService.post(`suppliers/upload_image/`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
+        // @ts-ignore
         'X-CSRF-TOKEN': access,
       },
       params: {

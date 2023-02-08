@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -6,7 +6,11 @@ import { StarIcon } from '../../../../assets/img';
 
 import style from './Reward.module.css';
 
-const Reward = ({ star, grade }) => {
+interface RewardProps {
+  star: boolean;
+  grade: any;
+}
+const Reward: FC<RewardProps> = ({ star, grade }) => {
   // const { grade_average, count } = grade
 
   const thousands = grade?.count > 999 ? Math.floor(grade?.count / 1000) : '';
@@ -23,11 +27,6 @@ const Reward = ({ star, grade }) => {
       >{`${grade?.grade_average} / ${thousands} ${remainder} reviews`}</div>
     </div>
   );
-};
-
-Reward.propTypes = {
-  star: PropTypes.bool,
-  grade: PropTypes.object.isRequired,
 };
 
 export default Reward;
