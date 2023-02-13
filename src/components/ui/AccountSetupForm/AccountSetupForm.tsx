@@ -8,8 +8,7 @@ import * as yup from 'yup';
 import { useAppDispatch } from '../../../store/hooks';
 import { setAccountInfo } from '../../../store/reducers/formRegistrationSlice';
 import FormTitle from '../../FormTitle';
-import { Input, Label, Select } from '../../ui-kit';
-import { Button } from '../../ui-kit/Button/Button';
+import { Input, Label, Select, Button } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
 
 import style from './AccountSetupForm.module.css';

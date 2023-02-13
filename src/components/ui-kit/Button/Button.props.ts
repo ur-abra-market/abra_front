@@ -7,4 +7,5 @@ export interface ButtonProps
   > {
   type?: 'submit' | 'button';
   label?: string;
+  color?: 'default' | 'red' | 'light-red' | 'white' | 'black';
 }

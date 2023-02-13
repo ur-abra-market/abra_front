@@ -8,9 +8,7 @@
   font-size: 15px;
   font-weight: var(--medium);
   line-height: 15px;
-  color: #FFFFFF;
 
-  background: #FC133D;
   border: 1px solid transparent;
   border-radius: 12px;
   outline: none;
@@ -18,20 +16,77 @@
   transition: all 0.3s;
 }
 
-.button:hover{
+.default,
+.red{
+  color: #FFFFFF;
+  background: #FC133D;
+}
+
+.default:hover,
+.red:hover{
   background:  linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #FC133D;
 }
 
-.button:active{
+.default:active,
+.red:active{
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), #FC133D;
 }
 
-.button:disabled{
+.default:disabled{
   color: #D4D4D4;
   background: #FFFFFF;
   border: 1px solid #E3E3E3;
 }
 
-/*.button:disabled{*/
-/*  background: rgba(252, 19, 61, 0.2);*/
-/*}*/
+.red:disabled{
+  background: rgba(252, 19, 61, 0.2);
+}
+
+.red:disabled:hover{
+  color: #000000;
+  background: rgba(252, 19, 61, 0.4);
+}
+
+.red:disabled:active{
+  color: #FFFFFF;
+  background: rgba(252, 19, 61, 0.8);
+}
+
+.light_red{
+  color: #000000;
+  background: rgba(252, 19, 61, 0.2);
+}
+
+.light_red:hover{
+  background: rgba(252, 19, 61, 0.4);
+}
+
+.light_red:active{
+  color: #FFFFFF;
+  background: rgba(252, 19, 61, 0.8);
+}
+
+.light_red:disabled{
+  color: #FFFFFF;
+  background: #FC133D;
+}
+
+.light_red:disabled:hover{
+  color: #FFFFFF;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #FC133D;
+}
+
+.light_red:disabled:active{
+  color: #FFFFFF;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), #FC133D;
+}
+
+.white{
+  color: #000000;
+  background: #FFFFFF;
+}
+
+.black{
+  color: #FFFFFF;
+  background: #000000;
+}
