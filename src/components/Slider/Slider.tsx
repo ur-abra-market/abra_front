@@ -17,8 +17,9 @@ const Slider: FC<SliderProps> = ({ title, products }): JSX.Element => {
   const dl = widthSlider - widthList;
   const [left, setLeft] = useState(0);
 
-  const move = (d: number) => {
+  const move = (d: number): void => {
     const newleft = left + d;
+    // eslint-disable-next-line no-nested-ternary
     const dLeft = newleft > 0 ? 0 : newleft < dl ? dl : newleft;
 
     setLeft(dLeft);
@@ -32,8 +33,16 @@ const Slider: FC<SliderProps> = ({ title, products }): JSX.Element => {
           <span>See all</span>
         </div>
         <div className={style.slider__btn}>
-          <div className={style.slider__btn_left} onClick={() => move(step)} />
-          <div className={style.slider__btn_right} onClick={() => move(-step)} />
+          <div
+            role="presentation"
+            className={style.slider__btn_left}
+            onClick={() => move(step)}
+          />
+          <div
+            role="presentation"
+            className={style.slider__btn_right}
+            onClick={() => move(-step)}
+          />
         </div>
       </div>
       <div className={style.slider__card}>

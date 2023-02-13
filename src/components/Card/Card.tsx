@@ -49,7 +49,11 @@ const Card: FC<CardProps> = (props): JSX.Element => {
   return (
     <div className={style.ard}>
       <ImgSlider srcArr={[product.image_url]} />
-      <div className={style.card__direction} onClick={productClickHandler}>
+      <div
+        role="presentation"
+        className={style.card__direction}
+        onClick={productClickHandler}
+      >
         <span>{product.name}</span>
       </div>
       <div className={style.card__price}>

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC } from 'react';
+import React, { FC } from 'react';
 
 import style from './TextFieldLabelAbove.module.css';
 
@@ -20,7 +20,8 @@ const TextFieldLabelAbove: FC<TextFieldLabelAboveProps> = ({
   register,
 }): JSX.Element => {
   // TODO - переделать
-  const textareaScroll = (e: any) =>
+  // eslint-disable-next-line no-return-assign
+  const textareaScroll = (e: any): any =>
     // eslint-disable-next-line no-param-reassign
     (e.target.style.height = `${e.target.scrollHeight}px`);
 

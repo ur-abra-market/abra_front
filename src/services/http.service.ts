@@ -3,6 +3,8 @@ import axios from 'axios';
 import authService from './auth.service';
 import cookieService from './cookie.service';
 
+const UNAUTHORIZED = 401;
+
 const httpService = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
   withCredentials: true,
@@ -26,7 +28,7 @@ httpService.interceptors.response.use(
     const access = cookieService.getAccesToken();
     const refresh = cookieService.getRefreshToken();
 
-    if (refresh && !access && error.response.status === 401)
+    if (refresh && !access && error.response.status === UNAUTHORIZED)
       await authService.refresh(refresh);
 
     return Promise.reject(error);

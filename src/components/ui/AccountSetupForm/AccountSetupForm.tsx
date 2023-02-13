@@ -1,20 +1,54 @@
 import React from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 
+import { useAppDispatch } from '../../../store/hooks';
 import { setAccountInfo } from '../../../store/reducers/formRegistrationSlice';
-import ButtonReg from '../../buttons/ButtonReg/ButtonReg';
-import Form from '../../Form';
 import FormTitle from '../../FormTitle';
-import SelectLabelAbove from '../../SelectLabelAbove';
-import TextFieldLabelAbove from '../../TextFieldLabelAbove';
+import { Input, Label, Select } from '../../ui-kit';
+import { Button } from '../../ui-kit/Button/Button';
+import { IOption } from '../../ui-kit/Select/Select.props';
 
 import style from './AccountSetupForm.module.css';
 
+const COUNTRY_DATA: IOption[] = [
+  { label: 'USA', value: 'USA' },
+  { label: 'Germany', value: 'Germany' },
+  { label: 'Brazil', value: 'Brazil' },
+  { label: 'France', value: 'France' },
+];
+const PHONE_DATA: IOption[] = [
+  { label: '+90', value: '+90' },
+  { label: '+44', value: '+44' },
+  { label: '+77', value: '+77' },
+  { label: '+1', value: '+1' },
+];
+
+const schema = yup
+  .object({
+    fname: yup.string().min(2, 'Name should have at least a 2 symbols').required(),
+    lname: yup.string().min(2, 'Name should have at least a 2 symbols').required(),
+    license: yup.string().min(9, 'Min length is 9').required(),
+    country: yup.string().required(),
+    code: yup.string().required('Field is required'),
+    tel: yup.string().required('Field is required'),
+  })
+  .required();
+
+interface IAccountInfoData {
+  fname: string;
+  lname: string;
+  license: string;
+  country: string;
+  tel: string;
+  code: string;
+}
+
 const AccountSetupForm = (): JSX.Element => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const {
@@ -22,15 +56,9 @@ const AccountSetupForm = (): JSX.Element => {
     formState: { errors, isValid },
     handleSubmit,
     reset,
-  } = useForm<{
-    fname: string;
-    lname: string;
-    license: string;
-    country: string;
-    tel: string;
-    code: string;
-  }>({
-    mode: 'onChange',
+  } = useForm<IAccountInfoData>({
+    resolver: yupResolver(schema),
+    mode: 'all',
   });
 
   const onSubmit = (data: any): void => {
@@ -58,103 +86,66 @@ const AccountSetupForm = (): JSX.Element => {
   };
 
   return (
-    <div className={style.formWrapper}>
-      <div className={style.formContainer}>
+    <div className={style.form_wrapper}>
+      <div className={style.form_container}>
         <FormTitle
           step="Step 1/3"
           title="Account Info"
           text="This information will not be published. The data will only be used to create your account"
         />
 
-        <Form
-          action="src/components/ui/AccountSetupForm/AccountSetupForm"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className={style.addName}>
-            <TextFieldLabelAbove
-              register={register('fname', {
-                required: 'Field is required',
-                minLength: {
-                  value: 2,
-                  message: 'Name should have at least a 2 symbols',
-                },
-              })}
-              error={errors?.fname?.message}
-              title="First name"
-              name="fname"
-              type="text"
-              placeholder="John"
-            />
-
-            <TextFieldLabelAbove
-              register={register('lname', {
-                required: 'Field is required',
-                minLength: {
-                  value: 2,
-                  message: 'Name should have at least a 2 symbols',
-                },
-              })}
-              error={errors?.lname?.message}
-              title="Last name"
-              name="lname"
-              type="text"
-              placeholder="Johnson"
-            />
-          </div>
-
-          <SelectLabelAbove
-            register={register('country', {
-              required: 'Field is required',
-            })}
-            error={errors?.country?.message}
-            name="country"
-            title="Country of company registration"
-            placeholder="Select"
-            options={['USA', 'Germany', 'Brazil', 'France']}
-          />
-
-          <div className={style.phoneNumber}>
-            <SelectLabelAbove
-              register={register('code')}
-              name="countryCode"
-              title="Personal phone number"
-              options={['+90', '+44', '+77', '+1']}
-            />
-
-            <div className={style.marginFix}>
-              <TextFieldLabelAbove
-                register={register('tel', {
-                  required: true,
-                })}
-                error={errors?.tel?.message}
-                name="tel"
-                type="tel"
-                placeholder="(XXX) XXX - XX - XX"
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={style.add_name}>
+            <Label label="First name">
+              <Input
+                placeholder="John"
+                {...register('fname')}
+                error={errors.fname?.message}
               />
-            </div>
+            </Label>
+            <Label label="Last name">
+              <Input
+                placeholder="Johnson"
+                {...register('lname')}
+                error={errors.lname?.message}
+              />
+            </Label>
           </div>
-
-          <TextFieldLabelAbove
-            register={register('license', {
-              required: 'Field is required',
-              minLength: {
-                value: 9,
-                message: 'Min length is 9',
-              },
-            })}
-            error={errors?.license?.message}
-            title="License or entrepreneur number"
-            name="license"
-            type="number"
-            placeholder="000 – 00 – 0000"
-          />
-
-          <p className={style.licenseReminder}>
+          <Label label="Country of company registration">
+            <Select
+              placeholder="Select"
+              options={COUNTRY_DATA}
+              {...register('country')}
+              error={errors?.country?.message}
+            />
+          </Label>
+          <div className={style.phone_number}>
+            <Label label="Personal phone number">
+              <Select placeholder="Select" options={PHONE_DATA} {...register('code')} />
+            </Label>
+            <Input
+              placeholder="(XXX) XXX - XX - XX"
+              {...register('tel')}
+              error={errors?.tel?.message}
+            />
+          </div>
+          <Label label="License or entrepreneur number">
+            <Input
+              {...register('license')}
+              error={errors?.license?.message}
+              placeholder="000 – 00 – 0000"
+            />
+          </Label>
+          <p className={style.license_reminder}>
             Use the number of any document authorizing the sale
           </p>
-
-          <ButtonReg type="submit" value="Continue" isValid={!isValid} />
-        </Form>
+          <Button
+            disabled={!isValid}
+            type="submit"
+            className={style.button}
+            label="Continue"
+          />
+        </form>
       </div>
     </div>
   );

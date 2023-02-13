@@ -39,7 +39,7 @@ const CardFull: FC<CardFullProps> = ({ props }): JSX.Element => {
     gap: '8px',
   };
 
-  const handlerBasket = () => {
+  const handlerBasket = (): void => {
     setSum(100);
     propsNew.sum = 100;
     const newObj = propsNew;

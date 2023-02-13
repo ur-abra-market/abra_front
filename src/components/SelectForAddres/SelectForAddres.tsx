@@ -38,7 +38,7 @@ const SelectForAddres: FC<SelectForAddressProps> = ({ list }): JSX.Element => {
     }
   };
 
-  const handlerOption = (value: any, index: number) => {
+  const handlerOption = (value: any, index: number): void => {
     setOption(value);
     setListSwitch(!listSwitch);
     if (listPhone.includes(value)) dispatch(sort(typeSort[index]));
@@ -46,8 +46,13 @@ const SelectForAddres: FC<SelectForAddressProps> = ({ list }): JSX.Element => {
   };
 
   return (
+    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <div className={style.select} onMouseOut={e => switchList(e)}>
-      <div className={style.select__select} onClick={() => setListSwitch(!listSwitch)}>
+      <div
+        role="presentation"
+        className={style.select__select}
+        onClick={() => setListSwitch(!listSwitch)}
+      >
         <div
           className={style.select_text}
           style={{
@@ -63,6 +68,7 @@ const SelectForAddres: FC<SelectForAddressProps> = ({ list }): JSX.Element => {
       <ul className={style.select__list} style={styleList}>
         {list.map((e, i) => (
           <li
+            role="presentation"
             className={style.select__list_item}
             key={`option_${e}`}
             onClick={() => handlerOption(e, i)}

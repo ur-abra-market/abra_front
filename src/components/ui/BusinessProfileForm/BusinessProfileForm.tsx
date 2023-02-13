@@ -9,11 +9,12 @@ import { accountInfoService } from '../../../store/reducers/formRegistrationSlic
 import { uploadUserLogoService } from '../../../store/reducers/userSlice';
 import { filterEmptyValues } from '../../../utils/filterEmptyValues';
 import ButtonReg from '../../buttons/ButtonReg/ButtonReg';
-import Form from '../../Form';
 import FormTitle from '../../FormTitle';
 import ImageAdding from '../../ImageAdding';
 import SelectLabelAbove from '../../SelectLabelAbove';
 import TextFieldLabelAbove from '../../TextFieldLabelAbove';
+import { Input, Label, Select } from '../../ui-kit';
+import { IOption } from '../../ui-kit/Select/Select.props';
 
 import style from './BusinessProfileForm.module.css';
 
@@ -31,6 +32,12 @@ interface FormFields {
   storeName: string;
   businessSector: string;
 }
+
+const BUSINESS_SECTOR_DATA: IOption[] = [
+  { label: 'Clothes', value: 'Clothes' },
+  { label: 'Accessories', value: 'Accessories' },
+  { label: 'Electronics', value: 'Electronics' },
+];
 
 const BusinessProfileForm: FC = (): JSX.Element => {
   const date = new Date();
@@ -100,7 +107,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
           text="Enter the information you want to show on your store profile"
         />
 
-        <Form action="" onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className={style.mainInfo}>
             <p className={style.mainInfoTitle}>Main info</p>
 
@@ -115,28 +122,27 @@ const BusinessProfileForm: FC = (): JSX.Element => {
             />
 
             <div className={style.selectInfoInputs}>
-              <TextFieldLabelAbove
-                register={register('storeName', {
-                  required: 'Field is required',
-                })}
-                error={errors?.storeName?.message}
-                title="Shop name (will be shown on the profile)"
-                name="storeName"
-                type="text"
-                placeholder="Enter your company or store name"
-              />
-
-              <div className={style.selectEqual}>
-                <SelectLabelAbove
-                  register={register('businessSector', {
+              <Label label="Shop name (will be shown on the profile)">
+                <Input
+                  {...register('storeName', {
                     required: 'Field is required',
                   })}
-                  error={errors?.businessSector?.message}
-                  title="Your main business sector"
-                  name="businessSector"
-                  options={['Clothes', 'Accessories', 'electronics']}
-                  placeholder="Select"
+                  error={errors?.storeName?.message}
+                  placeholder="Enter your company or store name"
                 />
+              </Label>
+
+              <div className={style.selectEqual}>
+                <Label label="Your main business sector">
+                  <Select
+                    options={BUSINESS_SECTOR_DATA}
+                    placeholder="Select"
+                    {...register('businessSector', {
+                      required: 'Field is required',
+                    })}
+                    error={errors?.businessSector?.message}
+                  />
+                </Label>
               </div>
             </div>
 
@@ -147,14 +153,12 @@ const BusinessProfileForm: FC = (): JSX.Element => {
                 className={style.checkbox}
                 {...register('checkbox')}
               />
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="checkbox">I am a manufacturer</label>
             </div>
           </div>
 
           <div className={style.companyInfo}>
             <p className={style.mainInfoTitle}>Company Info (optional)</p>
-
             <div className={style.selectInfoInputs}>
               <TextFieldLabelAbove
                 register={register('yearEstablished', {
@@ -254,7 +258,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
           </div>
 
           <ButtonReg type="submit" value="Continue" isValid={!isValid} />
-        </Form>
+        </form>
       </div>
     </div>
   );

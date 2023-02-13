@@ -1,6 +1,5 @@
 import React, { useState, useEffect, FC } from 'react';
 
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import { discount } from '../../store/reducers/filterSlice';
@@ -27,7 +26,7 @@ const SwitchBox: FC<SwitchBoxProps> = ({ label }) => {
     }
   }, [check]);
 
-  const handlerSwitch = () => {
+  const handlerSwitch = (): void => {
     setCheck(!check);
     switch (label) {
       case 'Only discounted items':
@@ -41,6 +40,7 @@ const SwitchBox: FC<SwitchBoxProps> = ({ label }) => {
   return (
     <div className={style.switchBox}>
       <div className={style.switchBox__label}>{label}</div>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div
         className={style.switchBox__box}
         style={{ background, justifyContent }}

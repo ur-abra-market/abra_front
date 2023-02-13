@@ -58,6 +58,7 @@ const TextField: FC<TextFieldProps> = props => {
           id={id}
           defaultValue={defaultValue}
           className={
+            // eslint-disable-next-line no-nested-ternary
             name !== 'password'
               ? classes.input
               : classes.password

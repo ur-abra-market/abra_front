@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
-
 import TextFieldLabelAbove from '../TextFieldLabelAbove';
 
 import style from './RelatedInputs.module.css';

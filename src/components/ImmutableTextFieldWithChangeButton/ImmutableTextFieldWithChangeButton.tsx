@@ -39,6 +39,7 @@ const ImmutableTextFieldWithChangeButton: FC<ImmutableTextFieldWithChangeButtonP
           id={id}
           value={defaultValue}
           className={
+            // eslint-disable-next-line no-nested-ternary
             !(name === 'password')
               ? classes.input
               : classes.password

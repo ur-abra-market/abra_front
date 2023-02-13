@@ -17,7 +17,7 @@ const TableHeader: FC<TableHeaderProps> = ({
   columns,
   classes,
 }) => {
-  const handleSort = (item: any) => {
+  const handleSort = (item: any): any => {
     if (selectedSort.path === item) {
       onSort({
         ...selectedSort,

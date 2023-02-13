@@ -1,0 +1,37 @@
+.button{
+  cursor: pointer;
+
+  box-sizing: border-box;
+  padding: 15px;
+
+  font-family: var(--roboto);
+  font-size: 15px;
+  font-weight: var(--medium);
+  line-height: 15px;
+  color: #FFFFFF;
+
+  background: #FC133D;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  outline: none;
+
+  transition: all 0.3s;
+}
+
+.button:hover{
+  background:  linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #FC133D;
+}
+
+.button:active{
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), #FC133D;
+}
+
+.button:disabled{
+  color: #D4D4D4;
+  background: #FFFFFF;
+  border: 1px solid #E3E3E3;
+}
+
+/*.button:disabled{*/
+/*  background: rgba(252, 19, 61, 0.2);*/
+/*}*/

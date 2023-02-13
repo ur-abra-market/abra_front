@@ -21,7 +21,7 @@ const FiltersList: FC<FiltersListProps> = ({
           key={filter.replace(/ /g, '').toLowerCase()}
           className={filter === selectedItem ? activeClassName : className}
           onClick={() => onItemSelect(filter)}
-          role="button"
+          role="presentation"
         >
           {filter}
         </div>

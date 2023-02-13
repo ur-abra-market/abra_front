@@ -1,32 +1,39 @@
-.addName {
+.add_name {
   display: flex;
   gap: 15px;
   margin: 40px 0 16px;
 }
 
-.formWrapper {
+.form_wrapper {
   display: flex;
   justify-content: center;
 }
 
-.formContainer {
+.form_container {
   width: 633px;
 }
 
-.phoneNumber {
-  display: flex;
+.phone_number {
+  display: grid;
+  grid-template-columns: 160px 1fr;
   gap: 15px;
+  align-items: flex-end;
+
   margin: 16px 0;
 }
 
-.marginFix {
+.margin_fix {
   width: 100%;
   margin-top: 16px;
 }
 
-.licenseReminder {
-  margin: 16px 0 24px;
+.license_reminder {
+  margin: 12px 0 24px;
   font-size: 13px;
   color: #4F4F4F;
   text-align: left;
+}
+
+.button{
+  width: 100%;
 }

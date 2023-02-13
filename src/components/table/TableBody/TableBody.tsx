@@ -11,7 +11,7 @@ interface TableBodyProps {
   columns: any;
 }
 const TableBody: FC<TableBodyProps> = ({ data, columns, classes }) => {
-  const renderCompont = (item: any, column: any) => {
+  const renderCompont = (item: any, column: any): any => {
     if (columns[column].component) {
       const { component } = columns[column];
 
@@ -40,6 +40,7 @@ const TableBody: FC<TableBodyProps> = ({ data, columns, classes }) => {
 
   return (
     <tbody>
+      {/* eslint-disable-next-line no-nested-ternary */}
       {data ? (
         data.length === 0 ? (
           <tr>

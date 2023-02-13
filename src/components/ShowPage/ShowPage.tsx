@@ -16,7 +16,7 @@ const ShowPage = (): JSX.Element => {
     height: listSwitch ? 'fit-content' : '0px',
   };
 
-  const switchList = (e: any) => {
+  const switchList = (e: any): void => {
     e.preventDefault();
     const nameClass = e.relatedTarget.className;
 
@@ -29,15 +29,21 @@ const ShowPage = (): JSX.Element => {
   };
 
   return (
+    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
     <div className={style.ShowPage} onMouseOut={e => switchList(e)}>
       <div className={style.ShowPage__select}>
         <div className={style.ShowPage_text}>{`Show by ${option}`}</div>
-        <div className={style.ShowPage_img} onClick={() => setListSwitch(!listSwitch)}>
+        <div
+          role="presentation"
+          className={style.ShowPage_img}
+          onClick={() => setListSwitch(!listSwitch)}
+        >
           <img src={arrowDown} alt="arrow-down" />
         </div>
       </div>
       <ul className={style.ShowPage__list} style={styleList}>
         {list.map(e => (
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
           <li
             className={style.ShowPage__list_item}
             key={`option_${e}`}

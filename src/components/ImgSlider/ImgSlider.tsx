@@ -1,7 +1,5 @@
 import React, { FC, useState } from 'react';
 
-import PropTypes from 'prop-types';
-
 import nonePng from '../../assets/img/icons/none.png';
 import Flag from '../Flag';
 
@@ -15,7 +13,7 @@ const ImgSlider: FC<ImgSliderProps> = ({ srcArr }): JSX.Element => {
   // const arrPhoto = [...photos.slice(-1), ...photos, photos[0]];
   const [slide, setSlide] = useState(0);
   const pos = 0 - slide * 100;
-  const images = () => {
+  const images = (): JSX.Element => {
     if (!Array.isArray(srcArr)) {
       return (
         <div className={style.imgSlider__window_list} style={{ marginLeft: '0%' }}>
@@ -47,6 +45,7 @@ const ImgSlider: FC<ImgSliderProps> = ({ srcArr }): JSX.Element => {
         <div className={style.imgSlider_control}>
           {srcArr.map((_, i) => (
             <div
+              role="presentation"
               className={style.imgSlider_control_slide}
               key={`card_photo_${i}`}
               onClick={() => setSlide(i)}

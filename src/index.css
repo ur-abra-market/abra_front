@@ -48,6 +48,14 @@
   --fd: 20px;
   --fp: 15px;
   --fs: 13px;
+
+  /* -------font------ */
+  --roboto: 'Roboto';
+  --light: 300;
+  --regular: 400;
+  --medium: 500;
+  --semi-bold: 600;
+  --bold: 700;
 }
 
 * {
@@ -83,7 +91,7 @@ input[type='number'] {
 
 body {
   /* background-color: var(--back); */
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   font-weight: normal;
   font-style: normal;
 

@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
 
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import {
@@ -24,7 +23,7 @@ const TextModal: FC<TextModalProps> = ({ title, placeholder }) => {
   const dispatch = useDispatch();
   const [input, setInput] = useState('');
 
-  const handlerText = (value: any) => {
+  const handlerText = (value: any): void => {
     switch (title) {
       case 'First name':
         dispatch(firstname(value));

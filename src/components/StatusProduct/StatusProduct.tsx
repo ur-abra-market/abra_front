@@ -12,7 +12,7 @@ const StatusProduct = (): JSX.Element => {
   const dispatch = useDispatch();
   const [check, setCheck] = useState([true, false, false, false, false]);
 
-  const handleCheck = (index: number) => {
+  const handleCheck = (index: number): void => {
     const arr = Array(statusArr.length)
       .fill(false)
       .map((el, i) => i === index);
@@ -25,6 +25,7 @@ const StatusProduct = (): JSX.Element => {
     <div className={style.statusProduct}>
       {statusArr.map((btn, i) => (
         <div className={style.statusProduct__btn} key={`sort-btn-${i}`}>
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
           <div className={style.statusProduct__btn_name} onClick={() => handleCheck(i)}>
             {btn}
           </div>

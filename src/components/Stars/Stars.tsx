@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
-
 import style from './Stars.module.css';
 
 interface StarsProps {
@@ -37,7 +35,6 @@ const Stars: FC<StarsProps> = ({ reward }): JSX.Element => {
       if (reward === 5) percent = ['100%', '100%', '100%', '100%', '100%'];
       break;
     default:
-      alert('Нет таких значений');
   }
 
   return (

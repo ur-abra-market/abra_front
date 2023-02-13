@@ -3,7 +3,7 @@ import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import deleteImg from '../../assets/img/icons/delete_Img_red.svg';
+// import deleteImg from '../../assets/img/icons/delete_Img_red.svg';
 import AddingImageSpot from '../../components/AddingImage/AddingImageSpot/AddingImageSpot';
 import { InfoBtn } from '../../components/buttons';
 import Checkbox from '../../components/Checkbox';
@@ -76,11 +76,11 @@ const SupplierAccountMainPage = (): JSX.Element => {
 
   console.log('DATA', supplierInfo);
   console.log('notifications', notifications);
+  console.log(selectedCompanyPhoto);
 
   const {
     register,
     reset,
-    watch,
     setValue,
     formState: { errors },
     handleSubmit,
@@ -93,24 +93,24 @@ const SupplierAccountMainPage = (): JSX.Element => {
     if (event.target.files.length > 0) setSelectedCompanyPhoto(event.target.files[0]);
   };
 
-  const renderPhoto = (photo: any): JSX.Element => {
-    return (
-      <>
-        <img
-          style={{
-            width: '95px',
-            height: '95px',
-            borderRadius: '10px',
-          }}
-          src={`${photo}`}
-          alt="img"
-        />
-        <button type="button" className={style.photoRemove}>
-          <img src={deleteImg} alt="close" />
-        </button>
-      </>
-    );
-  };
+  // const renderPhoto = (photo: any): JSX.Element => {
+  //   return (
+  //     <>
+  //       <img
+  //         style={{
+  //           width: '95px',
+  //           height: '95px',
+  //           borderRadius: '10px',
+  //         }}
+  //         src={`${photo}`}
+  //         alt="img"
+  //       />
+  //       <button type="button" className={style.photoRemove}>
+  //         <img src={deleteImg} alt="close" />
+  //       </button>
+  //     </>
+  //   );
+  // };
 
   const onSubmitInfo = (updatedData: any): void => {
     console.log('updatedData', updatedData);

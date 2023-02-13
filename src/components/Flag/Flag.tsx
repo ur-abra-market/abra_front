@@ -13,6 +13,7 @@ const Flag: FC<FlagProps> = ({ className }): JSX.Element => {
 
   return (
     <div
+      role="presentation"
       className={cn(style.flag, className)}
       onClick={e => {
         e.stopPropagation();
