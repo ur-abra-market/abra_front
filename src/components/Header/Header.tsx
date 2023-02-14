@@ -1,26 +1,40 @@
-import React from 'react';
+import React, { FC } from 'react';
+
+import cn from 'classnames';
 
 import HeaderNavMenu from '../HeaderNavMemu';
-import SelectCurrency from '../SelectCurrency';
-import SelectShip from '../SelectShip';
-import NavBar from '../ui/NavBar';
+import { Select } from '../ui-kit';
+import { IOption } from '../ui-kit/Select/Select.props';
 
 import style from './Header.module.css';
+import { HeaderProps } from './Header.props';
+import Top from './Top/Top';
 
-const Header = (): JSX.Element => {
+const CURRENCY_DATA: IOption[] = [
+  { label: 'English / USD', value: 'usd' },
+  { label: 'Russian / RUB', value: 'ru' },
+];
+
+const COUNTRY_DATA: IOption[] = [
+  { label: 'Turkey', value: 'turkey' },
+  { label: 'Belarus', value: 'belarus' },
+];
+
+const Header: FC<HeaderProps> = (props): JSX.Element => {
+  const { className, ...restProps } = props;
+
   return (
-    <header className={style.header}>
-      <NavBar />
-      <div className="header__menu">
-        <div className="header__menu_categories">
-          <div className="header_all-categories">All categories</div>
-          <div className="dividing-line-1">|</div>
-        </div>
+    <header className={cn(className)} {...restProps}>
+      <Top />
+      <div className={style.wrapper}>
+        <div className={style.left}>All categories</div>
         <HeaderNavMenu />
-        <div className={style.heder__selects}>
-          <div className={style.dividing_line_2}>|</div>
-          <SelectCurrency />
-          <SelectShip />
+        <div className={style.right}>
+          <Select options={CURRENCY_DATA} className={style.select} />
+          <div className={style.select_box}>
+            <span>Ship to</span>
+            <Select options={COUNTRY_DATA} className={style.select} />
+          </div>
         </div>
       </div>
     </header>

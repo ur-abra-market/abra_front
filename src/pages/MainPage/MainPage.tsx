@@ -28,7 +28,7 @@ const MainPage = (): JSX.Element => {
     Object.keys(CATEGORIES).forEach(category => {
       dispatch(fetchProductList({ type: filter, category }));
     });
-  }, [filter]);
+  }, []);
 
   return (
     <>
