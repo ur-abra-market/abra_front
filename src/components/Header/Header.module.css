@@ -18,6 +18,10 @@
   border-right: 1px solid var(--black);
 }
 
+.center{
+  justify-self: center;
+}
+
 .right{
   display: flex;
   gap: 20px;

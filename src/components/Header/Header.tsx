@@ -28,7 +28,7 @@ const Header: FC<HeaderProps> = (props): JSX.Element => {
       <Top />
       <div className={style.wrapper}>
         <div className={style.left}>All categories</div>
-        <HeaderNavMenu />
+        <HeaderNavMenu className={style.center} />
         <div className={style.right}>
           <Select options={CURRENCY_DATA} className={style.select} />
           <div className={style.select_box}>

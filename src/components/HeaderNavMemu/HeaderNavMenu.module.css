@@ -1,9 +1,9 @@
-.header__nav {
+.header_nav {
   display: flex;
   width: fit-content;
 }
 
-.header__nav_list {
+.header_nav_list {
   display: flex;   
   gap: 48px;
   align-items: center;
@@ -17,13 +17,13 @@
   transition: 0.4s;
 }
 
-.header__nav_list > li > a {
+.header_nav_list > li > a {
   color: var(--black);
   transition: 0.3s;
 }
 
 @media (max-width: 1400px) {
-  .header__nav_list {
+  .header_nav_list {
     gap: calc(7vw - 45px);
   }  
 }

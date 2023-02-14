@@ -1,28 +1,34 @@
-import React from 'react';
+import React, { FC } from 'react';
+
+import cn from 'classnames';
+import { Link } from 'react-router-dom';
 
 import style from './HeaderNavMenu.module.css';
+import { HeaderNavMenuProps } from './HeaderNavMenu.props';
 
-const HeaderNavMenu = (): JSX.Element => {
+const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {
+  const { className, ...restProps } = props;
+
   return (
-    <nav className={style.header__nav}>
-      <ul className={style.header__nav_list}>
+    <nav className={cn(style.header_nav, className)} {...restProps}>
+      <ul className={style.header_nav_list}>
         <li>
-          <a href="news">Last News</a>
+          <Link to="/news">Last News</Link>
         </li>
         <li>
-          <a href="tutorials">Tutorials for Buyers</a>
+          <Link to="/tutorials">Tutorials for Buyers</Link>
         </li>
         <li>
-          <a href="sell">Sell on Abra</a>
+          <Link to="/sell">Sell on Abra</Link>
         </li>
         <li>
-          <a href="contact">Contact Support</a>
+          <Link to="/contact">Contact Support</Link>
         </li>
         <li>
-          <a href="faq">FAQ</a>
+          <Link to="/faq">FAQ</Link>
         </li>
         <li>
-          <a href="about">About Us</a>
+          <Link to="about">About Us</Link>
         </li>
       </ul>
     </nav>
