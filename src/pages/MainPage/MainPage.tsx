@@ -2,14 +2,15 @@ import React, { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
+import { ImagesBlock } from './ImagesBlock/ImagesBlock';
 import style from './MainPage.module.css';
 
 import { InfoBtn } from 'components/buttons';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
 import Slider from 'components/Slider';
-import StatusProduct from 'components/StatusProduct';
 import Feedback from 'components/ui/feedback/Feedback';
+import StatusProduct from 'pages/MainPage/StatusProduct';
 import { fetchProductList } from 'store/reducers/mainPageSlice';
 
 const MainPage = (): JSX.Element => {
@@ -32,10 +33,11 @@ const MainPage = (): JSX.Element => {
 
   return (
     <>
+      <Header style={{ width: '100%' }} />
       <div className={style.main_page}>
-        <Header />
+        <ImagesBlock className={style.images_block} />
         <StatusProduct />
-        <div className={style.main__sliders}>
+        <div className={style.main_sliders}>
           {Object.keys(categories).map(categoryId => (
             <Slider
               key={categoryId}

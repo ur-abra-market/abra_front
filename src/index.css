@@ -35,11 +35,13 @@
 :root {
   /* -------color------ */
   --black: #000000;
+  --white: #FFFFFF;
   --gray: #C4C4C4;
   --light-gray-kit: #F4F4F4;
   --light-gray: #828282;
   --back: #F5F5F5;
   --front: #FFF;
+  --red: #FC133D;
 
   /* -------fonts------ */
   --fh1: 64px;
