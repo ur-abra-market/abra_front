@@ -70,6 +70,10 @@ export interface ISimilarProduct {
   is_favorite: number;
 }
 
+export interface IShortCardProduct extends ISimilarProduct {
+  image_url?: string;
+}
+
 export interface IResponse<T> {
   result: T;
 }

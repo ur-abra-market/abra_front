@@ -1,26 +1,36 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
-import { productFetch } from '../../services/product.service';
+import { IRequestCategory, productFetch } from '../../services/product.service';
 
-const initialState = {
+export interface MainPageInitialState {
+  products?: { [key: number]: any[] };
+  isLoading: boolean;
+  error: string;
+}
+
+const initialState: MainPageInitialState = {
   products: {},
   isLoading: false,
   error: '',
 };
 
-export const fetchProductList = createAsyncThunk<any, any>(
+export const fetchProductList = createAsyncThunk<any, IRequestCategory>(
   'mainPageProducts/fetchProductsList',
   async (productData, { rejectWithValue }) => {
-    // productData: { type: 'bestsellers' | 'new' | 'rating' | 'hot', category: 1 | 2 | 3 }
     try {
       const response = await productFetch.getList(productData);
 
       return {
         data: response,
-        category: productData.category || 'all',
+        category: productData.category_id,
       };
-    } catch (e) {
-      return rejectWithValue(e);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[fetchProductsList]: ERROR');
     }
   },
 );
@@ -31,7 +41,7 @@ const mainPageSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(fetchProductList.pending, state => {
-      state.isLoading = true;
+      // state.isLoading = true;
       state.error = '';
     });
     builder.addCase(fetchProductList.fulfilled, (state, action) => {

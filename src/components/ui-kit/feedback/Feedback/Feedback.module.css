@@ -1,0 +1,14 @@
+.wrapper {
+  padding: 60px 0 80px;
+  background-color: rgba(252, 19, 61, 0.02);
+}
+
+.container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.social_block{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}

@@ -1,0 +1,31 @@
+.title {
+  margin-bottom: 24px;
+
+  font-family: var(--roboto);
+  font-size: 20px;
+  font-weight: var(--semi-bold);
+  font-style: normal;
+  line-height: 20px;
+  color: var(--black);
+}
+
+.list {
+  display: flex;
+  gap: 12px;
+}
+
+.li {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(180deg, #F3F3F3 0%, #EBEBEB 100%);
+  border-radius: 12px;
+}
+
+.link{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+}

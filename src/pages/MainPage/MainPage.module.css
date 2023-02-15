@@ -1,10 +1,4 @@
 .main_page {
-  display: flex;
-  flex-direction: column;
-
-  height: fit-content;
-  padding: 32px;
-
   background-color: #FFF;
 }
 
@@ -16,9 +10,19 @@
 .main_sliders {
   display: flex;
   flex-direction: column;
-  gap: 96px;
+  gap: 80px;
 
   width: 100%;
   height: fit-content;
-  margin-top: 56px;
+  margin-top: 96px;
+}
+
+.info_block{
+  position: relative;
+}
+
+.info_btn{
+  position: absolute;
+  right: 0;
+  bottom: 32px;
 }

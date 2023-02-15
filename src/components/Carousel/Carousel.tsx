@@ -23,6 +23,7 @@ export const Carousel: FC<PropsWithChildren<CarouselProps>> = ({
 
   const move = (d: number): void => {
     const newleft = left + d;
+    // eslint-disable-next-line no-nested-ternary
     const dLeft = newleft > 0 ? 0 : newleft < dl ? dl : newleft;
 
     setLeft(dLeft);

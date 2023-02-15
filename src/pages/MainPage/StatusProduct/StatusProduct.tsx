@@ -7,12 +7,18 @@ import { status } from '../../../store/reducers/productSlice';
 
 import style from './StatusProduct.module.css';
 
+export enum CategoryType {
+  BESTSELLERS = 'bestsellers',
+  NEW = 'new',
+  RATING = 'rating',
+  HOT = 'hot',
+}
+
 const STATUS_ARRAY = [
-  { label: 'Bestsellers', value: 'bestsellers' },
-  { label: 'New Arrivals', value: 'new' },
-  { label: 'Highest Rating', value: 'rating' },
-  { label: 'Hot Deals', value: 'hot' },
-  { label: 'Popular now', value: 'popular' },
+  { label: 'Bestsellers', value: CategoryType.BESTSELLERS },
+  { label: 'New Arrivals', value: CategoryType.NEW },
+  { label: 'Highest Rating', value: CategoryType.RATING },
+  { label: 'Hot Deals', value: CategoryType.HOT },
 ];
 const StatusProduct = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -25,7 +31,10 @@ const StatusProduct = (): JSX.Element => {
 
   return (
     <>
-      <div className={style.categories}>
+      <div
+        className={style.categories}
+        style={{ gridTemplateColumns: `repeat(${STATUS_ARRAY.length}, 1fr)` }}
+      >
         {STATUS_ARRAY.map(({ label, value }, index) => (
           <div className={style.item} key={value}>
             <button
@@ -43,7 +52,10 @@ const StatusProduct = (): JSX.Element => {
       <div className={style.border_line}>
         <div
           className={style.border_line_active}
-          style={{ transform: `translateX(${100 * indexActiveCategory}%)` }}
+          style={{
+            transform: `translateX(${100 * indexActiveCategory}%)`,
+            width: `${100 / STATUS_ARRAY.length}%`,
+          }}
         />
       </div>
     </>

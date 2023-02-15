@@ -1,6 +1,5 @@
 .categories{
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
   margin-bottom: 16px;
 }
 
@@ -35,11 +34,7 @@
 
 .border_line_active{
   position: relative;
-
-  width: calc(100%/5);
   height: 3px;
-
   background-color: red;
-
   transition: all 0.3s;
 }
