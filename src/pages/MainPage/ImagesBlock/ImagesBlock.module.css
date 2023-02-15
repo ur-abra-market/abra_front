@@ -1,11 +1,22 @@
 .images_box{
   text-transform: uppercase;
 }
-
+/*.images_box img{*/
+/*  display: block;*/
+/*}*/
 .image_box_main{
   position: relative;
+
+  width: 100%;
+  max-width: 1440px;
   height: 388px;
-  margin-bottom: 32px;
+  margin: 0 auto 32px;
+}
+.image_box_main > img {
+  display: block;
+  width: 100%;
+  max-width: 1440px;
+  object-fit: cover;
 }
 
 .grid_item_main_ad {

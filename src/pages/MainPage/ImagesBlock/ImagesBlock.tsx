@@ -7,6 +7,7 @@ import bg1 from '../../../assets/img/test_img/main_1.jpg';
 import bg2 from '../../../assets/img/test_img/main_2.jpg';
 import bg3 from '../../../assets/img/test_img/main_3.jpg';
 import bg4 from '../../../assets/img/test_img/main_4.jpg';
+import { Container } from '../../../components';
 
 import style from './ImagesBlock.module.css';
 import { ImagesBlockProps } from './ImagesBlock.props';
@@ -24,27 +25,29 @@ export const ImagesBlock: FC<ImagesBlockProps> = (props): JSX.Element => {
           <span>/from 100pcs</span>
         </div>
       </div>
-      <div className={style.images_box_grid}>
-        <div className={cn(style.grid_item1)}>
-          <span className={style.grid_item_ad}>AUTUMN SALE</span>
-          <img src={bg1} alt="" />
-        </div>
-        <div className={cn(style.grid_item2)}>
-          <div className={style.grid_item_ad}>
-            <span>special price for</span>
-            <span>sneakers</span>
+      <Container>
+        <div className={style.images_box_grid}>
+          <div className={cn(style.grid_item1)}>
+            <span className={style.grid_item_ad}>AUTUMN SALE</span>
+            <img src={bg1} alt="" />
           </div>
-          <img src={bg2} alt="" />
+          <div className={cn(style.grid_item2)}>
+            <div className={style.grid_item_ad}>
+              <span>special price for</span>
+              <span>sneakers</span>
+            </div>
+            <img src={bg2} alt="" />
+          </div>
+          <div className={cn(style.grid_item3)}>
+            <span className={style.grid_item_ad}>MEN’S CLOTHES</span>
+            <img src={bg3} alt="" />
+          </div>
+          <div className={cn(style.grid_item4)}>
+            <span className={style.grid_item_ad}>WOMEN’S CLOTHES</span>
+            <img src={bg4} alt="" />
+          </div>
         </div>
-        <div className={cn(style.grid_item3)}>
-          <span className={style.grid_item_ad}>MEN’S CLOTHES</span>
-          <img src={bg3} alt="" />
-        </div>
-        <div className={cn(style.grid_item4)}>
-          <span className={style.grid_item_ad}>WOMEN’S CLOTHES</span>
-          <img src={bg4} alt="" />
-        </div>
-      </div>
+      </Container>
     </div>
   );
 };

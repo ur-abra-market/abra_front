@@ -1,26 +1,29 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 
-import { productFetch } from '../../services/product.service';
+import { CategoryType } from '../../pages/MainPage/StatusProduct/StatusProduct';
+import { IRequestCategory, productFetch } from '../../services/product.service';
 
-export const productService = createAsyncThunk(
+export const productService = createAsyncThunk<any, IRequestCategory>(
   'product/productService',
-  async function (productData, { rejectWithValue }) {
+  async (productData, { rejectWithValue }) => {
     try {
       const data = await productFetch.getList(productData);
 
       return data.result;
     } catch (error: unknown) {
-      // @ts-ignore
-      const err = error.response.data.result ? error.response.data.result : error.message;
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
 
-      return rejectWithValue(err);
+      return rejectWithValue('[productService]: ERROR');
     }
   },
 );
 
 const initialState = {
   dataProduct: null,
-  statusProduct: 'bestsellers',
+  statusProduct: 'bestsellers' as CategoryType,
   categoryProduct: 'all',
   sumProduct: 100,
   stateProduct: 'nothing',
@@ -34,16 +37,16 @@ const initialState = {
 export const productSlice = createSlice({
   name: 'product',
   initialState,
-  extraReducers: bulder => {
-    bulder.addCase(productService.pending, state => {
+  extraReducers: builder => {
+    builder.addCase(productService.pending, state => {
       state.dataProduct = null;
       state.stateProduct = 'loading';
     });
-    bulder.addCase(productService.fulfilled, (state, action) => {
+    builder.addCase(productService.fulfilled, (state, action) => {
       state.dataProduct = action.payload;
       state.stateProduct = 'presence';
     });
-    bulder.addCase(productService.rejected, state => {
+    builder.addCase(productService.rejected, state => {
       state.dataProduct = null;
       state.stateProduct = 'nothing';
     });

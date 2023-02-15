@@ -1,3 +1,6 @@
+import { Categories } from '../pages/MainPage/MainPage';
+import { CategoryType } from '../pages/MainPage/StatusProduct/StatusProduct';
+
 import httpService from './http.service';
 
 import {
@@ -9,13 +12,16 @@ import {
   IRequestProduct,
 } from 'interfaces';
 
+export interface IRequestCategory {
+  type: CategoryType;
+  category_id: Categories;
+  page_num: number;
+  page_size: number;
+}
 export const productFetch = {
-  getList: async (productData: any) => {
+  getList: async (productData: IRequestCategory) => {
     const { data } = await httpService.get(`products/compilation/`, {
-      params: {
-        type: productData.type,
-        category_id: productData.category_id || 0,
-      },
+      params: productData,
     });
 
     return data.result;
@@ -63,5 +69,3 @@ export const productFetch = {
     return data;
   },
 };
-
-// export default productFetch

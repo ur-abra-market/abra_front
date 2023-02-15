@@ -1,0 +1,122 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  height: 325px;
+}
+
+.image {
+  cursor: pointer;
+  position: relative;
+  width: 220px;
+  height: 220px;
+}
+
+.image:hover > .hover{
+  z-index: 10;
+  opacity: 1;
+}
+
+.image > img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.flag{
+  position: absolute;
+  z-index: 11;
+  top: 16px;
+  right: 16px;
+}
+
+.hover{
+  position: absolute;
+  z-index: -10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  background: linear-gradient(0deg, rgb(0 0 0 / 20%), rgb(0 0 0 / 20%));
+  border-radius: 8px;
+
+  transition: all 0.5s;
+}
+
+.hover_text{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  font-family: Roboto, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 27px;
+  color: #FFF;
+}
+
+
+.link {
+  color: inherit;
+}
+
+.direction {
+  cursor: pointer;
+
+  width: 100%;
+  height: fit-content;
+  max-height: 40px;
+  margin-top: 12px;
+
+  font-size: var(--fp);
+}
+
+.direction > span {
+  overflow: hidden;
+  display: inline-block;
+  display: -webkit-box;
+
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.16px;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+
+  margin-top: 8px;
+  margin-bottom: 4px;
+
+  font-family: 'SF Pro Display Bold', sans-serif;
+  font-size: var(--fd);
+}
+
+.price > span {
+  display: block;
+  align-self: flex-end;
+
+  font-family: Roboto, sans-serif;
+  font-size: var(--fs);
+  color: #828282;
+}
+
+.amount {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.38px;
+}
