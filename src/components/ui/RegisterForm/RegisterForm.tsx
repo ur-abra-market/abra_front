@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from 'yup'
 
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { registerService } from '../../../store/reducers/registerSlice';
@@ -14,16 +16,31 @@ import TextField from '../../TextField';
 
 import style from './RegisterForm.module.css';
 
+
+
+type ValidateType={
+  email:string
+  password:string
+}
+const schema = yup.object({
+  email: yup.string().email('Ivalid email').required('Email is required'),
+  password: yup.string().min(8).max(32).required(),
+})
+  .required()
 const RegisterForm = (): JSX.Element => {
   const [userStatus, setUserStatus] = useState('suppliers');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const {
     register,
     watch,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm({ mode: 'onChange' });
+  } = useForm<ValidateType>({
+    resolver: yupResolver(schema),
+    mode:'all'
+  });
 
   const watchPasword = watch('password');
 
@@ -41,14 +58,16 @@ const RegisterForm = (): JSX.Element => {
 
   const onSubmit = (data: any) => {
     if (!isValid) return;
-    dispatch(registerService({ ...data, route: userStatus }));
+    dispatch(registerService({ ...data, route: userStatus }))
   };
+
 
   const textFieldClasses = {
     label: `${style.textFieldLabel}`,
     inputWrapper: `${style.inputWrapper}`,
     input: `${style.textFieldInput}`,
   };
+
 
   return (
     <>
@@ -80,39 +99,21 @@ const RegisterForm = (): JSX.Element => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <TextField
-          register={register('email', {
-            required: 'Email is required!',
-            pattern: {
-              value: /^\w+\S+@\w+\S+\.[\w+\S+]{2,}$/g,
-              message: 'Email is incorrect!',
-            },
-          })}
+          {...register('email')}
           label="Email"
           name="email"
           placeholder="Email"
           classes={textFieldClasses}
-          error={errors.email}
+          error={errors.email?.message}
         />
         <TextField
-          register={register('password', {
-            required: 'Password is required!',
-            minLength: {
-              value: 8,
-              message: 'Password must contain at least 8 characters!',
-            },
-            validate: {
-              capitalSymbol: s => /[A-Z]+/g.test(s),
-              digitSymbol: s => /\d+/g.test(s),
-              specialSymbol: s => /[!#+*]/g.test(s),
-              spaceSymbol: s => !/\s/g.test(s),
-            },
-          })}
+          {...register('password')}
           label="Password"
           type="password"
-          id="password"
           name="password"
           placeholder="Password"
           classes={textFieldClasses}
+          error={errors.password?.message}
         />
         <PasswordComplexity valueOfNewPassword={watchPasword} />
         {isLoading && <Loader />}
