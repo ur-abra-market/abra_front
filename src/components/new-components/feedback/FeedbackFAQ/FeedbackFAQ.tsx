@@ -4,9 +4,9 @@ import style from './FeedbackFAQ.module.css';
 
 const FeedbackFAQ = (): JSX.Element => {
   return (
-    <div className={style.feedbackFAQ}>
+    <div className={style.wrapper}>
       <h2>Do you have any questions?</h2>
-      <div className={style.feedbackFAQ__find}>Find answers in the FAQ</div>
+      <div className={style.text}>Find answers in the FAQ</div>
     </div>
   );
 };

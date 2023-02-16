@@ -1,39 +1,41 @@
 import React from 'react';
 
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
+import { Container } from '../Container/Container';
 import HeaderNavMenu from '../HeaderNavMemu/HeaderNavMenu';
-import SelectCurrency from '../SelectCurrency/SelectCurrency';
-import SelectShip from '../SelectShip/SelectShip';
+import { LocationAndCurrencySelection } from '../new-components/LocationAndCurrencySelection/LocationAndCurrencySelection';
+import { Logo } from '../new-components/Logo/Logo';
 
 import style from './Footer.module.css';
 
 const Footer = (): JSX.Element => {
-  const routs = ['personal-account', 'order-history'];
+  const routs = ['personal-account', 'order-history', ''];
   const { pathname } = useLocation();
   const showHeadNav = routs.some(el => el === pathname.split('/')[1]);
 
   return (
     <div className={style.footer}>
       {showHeadNav && (
-        <div className={style.footer__basic}>
-          <div className={style.footer__basic_logo}>Abra</div>
-          <HeaderNavMenu />
-          <div className={style.footer__selects}>
-            <div className={style.dividing_line_2}>|</div>
-            <SelectCurrency />
-            <SelectShip />
+        <Container>
+          <div className={style.top}>
+            <Logo href="/" size="sm" color="black" />
+            <div className={style.inner}>
+              <HeaderNavMenu className={style.nav} />
+              <LocationAndCurrencySelection className={style.selects} />
+            </div>
           </div>
-        </div>
+        </Container>
       )}
 
-      <div className={style.footer__add}>
-        <div className={style.footer__add_text1}>© Copyright 2022</div>
-        <div className={style.footer__add_text2}>
-          <span>Terms & Conditions</span>
-          <span>Privacy Policy</span>
-        </div>
-        <div className={style.footer__add_text1} />
+      <div className={style.bottom}>
+        <Container className={style.flex_box}>
+          <div className={style.links}>
+            <Link to="/">Terms & Conditions</Link>
+            <Link to="/">Privacy Policy</Link>
+          </div>
+          <div className={style.copyright}>© Copyright 2022</div>
+        </Container>
       </div>
     </div>
   );

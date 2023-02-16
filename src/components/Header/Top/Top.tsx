@@ -7,9 +7,8 @@ import { ReactComponent as Favorite } from '../../../assets/img/icons/flag_n.svg
 import { ReactComponent as Auth } from '../../../assets/img/icons/human.svg';
 import { ReactComponent as Note } from '../../../assets/img/icons/note.svg';
 import { useAppSelector } from '../../../store/hooks';
-import { IconButton } from '../../ui-kit/IconButton/IconButton';
-import { Logo } from '../../ui-kit/Logo/Logo';
-import { Search } from '../../ui-kit/Search/Search';
+import { Logo } from '../../new-components/Logo/Logo';
+import { IconButton, Search } from '../../ui-kit';
 
 import style from './Top.module.css';
 

@@ -11,7 +11,7 @@ import style from './MainPage.module.css';
 import { InfoBtn } from 'components/buttons';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
-import Feedback from 'components/ui-kit/feedback/Feedback';
+import Feedback from 'components/new-components/feedback/Feedback';
 import StatusProduct from 'pages/MainPage/StatusProduct';
 import { fetchProductList } from 'store/reducers/mainPageSlice';
 

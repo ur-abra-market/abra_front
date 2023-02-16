@@ -1,0 +1,27 @@
+.logo{
+  font-family: var(--roboto);
+  font-weight: var(--bold);
+  font-style: normal;
+  letter-spacing: 0.38px;
+}
+
+.red{
+  color: var(--red);
+}
+
+.black{
+  color: var(--black);
+}
+
+.md{
+  font-size: 25px;
+  line-height: 25px;
+}
+.sm{
+  font-size: 20px;
+  line-height: 25px;
+}
+
+.logo > a {
+  color: inherit;
+}
