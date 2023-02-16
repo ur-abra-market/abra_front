@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import { Button, Input } from '../../index';
+import { Button, Input } from '../../../ui-kit';
 
 import style from './Subscribe.module.css';
 import { SubscribeProps } from './Subscribe.props';

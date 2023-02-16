@@ -23,25 +23,6 @@
 }
 
 .right{
-  display: flex;
-  gap: 20px;
   padding-left: 16px;
   border-left: 1px solid var(--black);
-}
-
-.select > select{
-  min-width: 0;
-  padding: 0 35px 0 0;
-
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-
-  background: transparent;
-}
-
-.select_box{
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
 }

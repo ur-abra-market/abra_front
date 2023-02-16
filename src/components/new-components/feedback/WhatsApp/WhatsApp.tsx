@@ -11,7 +11,7 @@ const WhatsApp: FC<WhatsAppProps> = (props): JSX.Element => {
   const { className } = props;
 
   return (
-    <div className={cn(style.whatsApp, className)}>
+    <div className={cn(style.wrapper, className)}>
       <div className={style.title}>Contact Us via WhatsApp</div>
       <a
         className={style.link}

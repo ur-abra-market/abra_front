@@ -4,3 +4,6 @@ export * from './Select/Select';
 export * from './InputWithMask/InputWithMask';
 export * from './Button/Button';
 export * from './Checkbox/Checkbox';
+export * from './IconButton/IconButton';
+export * from './InfoBtn/InfoBtn';
+export * from './Search/Search';

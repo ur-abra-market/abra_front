@@ -15,6 +15,7 @@
   width: 100%;
   height: fit-content;
   margin-top: 96px;
+  margin-bottom: 116px;
 }
 
 .info_block{
@@ -23,6 +24,7 @@
 
 .info_btn{
   position: absolute;
+  z-index: 100;
   right: 0;
   bottom: 32px;
 }
