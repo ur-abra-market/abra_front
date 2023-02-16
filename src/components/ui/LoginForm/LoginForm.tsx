@@ -12,7 +12,12 @@ import Loader from '../../Loader';
 import PasswordComplexity from '../../PasswordComplexity';
 import TextField from '../../TextField';
 import style from '../RegisterForm/RegisterForm.module.css';
-
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+const schema = yup.object({
+  email: yup.string().email('Ivalid email').required('Email is required'),
+  password: yup.string().min(8).max(32).required(),
+})
 const LoginForm = (): JSX.Element => {
   const [userStatus, setUserStatus] = useState('suppliers');
   const dispatch = useAppDispatch();
@@ -21,7 +26,10 @@ const LoginForm = (): JSX.Element => {
     watch,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm({ mode: 'onChange' });
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode:'all'
+  });
   const navigate = useNavigate();
   const watchPasword = watch('password');
 
@@ -47,6 +55,8 @@ const LoginForm = (): JSX.Element => {
     inputWrapper: `${style.inputWrapper}`,
     input: `${style.textFieldInput}`,
   };
+  const ref = React.createRef();
+
 
   return (
     <>
@@ -74,18 +84,19 @@ const LoginForm = (): JSX.Element => {
       </div>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <TextField
-          register={register('email', {
-            required: 'Email is required!',
-            pattern: {
-              value: /^\w+\S+@\w+\S+\.[\w+\S+]{2,}$/g,
-              message: 'Email is incorrect!',
-            },
-          })}
+          // register={register('email', {
+          //   required: 'Email is required!',
+          //   pattern: {
+          //     value: /^\w+\S+@\w+\S+\.[\w+\S+]{2,}$/g,
+          //     message: 'Email is incorrect!',
+          //   },
+          // })}
+          {...register('email')}
           label="Email"
           name="email"
           placeholder="Email"
           classes={textFieldClasses}
-          error={errors.email}
+          error={errors.email?.message}
         />
         <TextField
           register={register('password', {

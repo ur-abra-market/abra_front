@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react';
+import React, { DetailedHTMLProps, FC, forwardRef, HTMLAttributes, useState } from 'react';
 
 import eyeHiddenPassword from '../../assets/img/icons/eye_hidden_password.png';
 import eyeVisiblePassword from '../../assets/img/icons/eye_visible_password.png';
@@ -16,9 +16,10 @@ interface TextFieldProps {
   classes?: any;
   defaultValue?: string;
   onChange?: Function;
+
   inputProps?: DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 }
-const TextField: FC<TextFieldProps> = props => {
+const TextField: FC<TextFieldProps> = forwardRef(({ ...props }, ref) => {
   const {
     label,
     id,
@@ -56,6 +57,7 @@ const TextField: FC<TextFieldProps> = props => {
           onChange={onChange}
           type={showPassword ? 'text' : type}
           id={id}
+          ref ={ref}
           defaultValue={defaultValue}
           className={
             // eslint-disable-next-line no-nested-ternary
@@ -93,6 +95,6 @@ const TextField: FC<TextFieldProps> = props => {
       </div>
     </div>
   );
-};
-
+}
+)
 export default TextField;
