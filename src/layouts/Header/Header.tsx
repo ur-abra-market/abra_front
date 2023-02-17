@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import { Container } from '../Container/Container';
-import HeaderNavMenu from '../HeaderNavMemu';
-import { LocationAndCurrencySelection } from '../new-components/LocationAndCurrencySelection/LocationAndCurrencySelection';
+import { Container } from '../../components';
+import HeaderNavMenu from '../../components/HeaderNavMemu';
+import { LocationAndCurrencySelection } from '../../components/new-components/LocationAndCurrencySelection/LocationAndCurrencySelection';
 
 import style from './Header.module.css';
 import { HeaderProps } from './Header.props';
