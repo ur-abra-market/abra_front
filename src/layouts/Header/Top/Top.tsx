@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
 import cn from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { ReactComponent as Cart } from '../../../assets/img/icons/cart_n.svg';
 import { ReactComponent as Favorite } from '../../../assets/img/icons/flag_n.svg';
 import { ReactComponent as Auth } from '../../../assets/img/icons/human.svg';
 import { ReactComponent as Note } from '../../../assets/img/icons/note.svg';
+import Modal from '../../../components/Modal';
 import { IconButton, Search } from '../../../components/ui-kit';
 import { useAppSelector } from '../../../store/hooks';
 import { Logo } from '../../Logo/Logo';
@@ -48,12 +49,33 @@ const PROFILE_MENU = {
 };
 
 const Top = (): JSX.Element => {
+  const navigate = useNavigate();
+
   const isAuth = useAppSelector(state => state.login.isAuth);
   const [menu, setMenu] = useState<string>();
+  const [isShowModal, setIsShowModal] = useState<boolean>(false);
 
   const handleOnClick = (target: string): void => {
-    setMenu(target);
+    if (!isAuth && target === 'account') {
+      return setMenu(target);
+    }
+    if (!isAuth && target !== 'account') {
+      return setIsShowModal(true);
+    }
+    switch (target) {
+      case 'account':
+        return setMenu(target);
+      case 'note':
+        return navigate('/');
+      case 'favorite':
+        return navigate('/');
+      case 'cart':
+        return navigate('/cart');
+      default:
+    }
   };
+
+  const closeModal = (): void => setIsShowModal(false);
 
   const buildProfileMenu = (): JSX.Element[] => {
     const buildMenu = !isAuth ? PROFILE_MENU.UNAUTHORIZED : PROFILE_MENU.AUTHORIZED;
@@ -83,6 +105,13 @@ const Top = (): JSX.Element => {
 
   return (
     <div className={style.wrapper}>
+      {isShowModal && (
+        <Modal active={isShowModal} close={closeModal}>
+          <div>You are not included in...</div>
+
+          <Link to="/auth">Login</Link>
+        </Modal>
+      )}
       <div
         role="presentation"
         onClick={() => setMenu(undefined)}
