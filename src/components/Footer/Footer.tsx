@@ -29,12 +29,14 @@ const Footer = (): JSX.Element => {
       )}
 
       <div className={style.bottom}>
-        <Container className={style.flex_box}>
-          <div className={style.links}>
-            <Link to="/">Terms & Conditions</Link>
-            <Link to="/">Privacy Policy</Link>
+        <Container>
+          <div className={style.flex_box}>
+            <div className={style.links}>
+              <Link to="/terms&conditions">Terms & Conditions</Link>
+              <Link to="/">Privacy Policy</Link>
+            </div>
+            <div className={style.copyright}>© Copyright 2022</div>
           </div>
-          <div className={style.copyright}>© Copyright 2022</div>
         </Container>
       </div>
     </div>

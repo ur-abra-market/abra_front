@@ -10,6 +10,7 @@ import ConfirmEmailPage from '../pages/ConfirmEmailPage';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import ForgotPasswordPage from '../pages/ForgotPasswordPage';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
+import { TermsAndConditions } from '../pages/TermsAndConditionsPage/TermsAndConditions';
 
 import sellerRoute from './sellerRoute';
 import supplierRoute from './supplierRoute';
@@ -52,6 +53,10 @@ const routes = createBrowserRouter([
   {
     path: 'register/email-confirmation',
     element: <ConfirmEmailPage />,
+  },
+  {
+    path: 'terms&conditions',
+    element: <TermsAndConditions />,
   },
 ]);
 
