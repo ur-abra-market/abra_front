@@ -71,7 +71,7 @@
   border: 0;
 }
 
-*::before,
+*, *::before,
 *::after {
   box-sizing: border-box;
 
@@ -93,7 +93,6 @@ input[type='number'] {
 }
 
 body {
-  /* background-color: var(--back); */
   font-family: Roboto, sans-serif;
   font-weight: normal;
   font-style: normal;

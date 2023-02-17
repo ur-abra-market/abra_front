@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
+import { Container } from '../Container/Container';
 import HeaderNavMenu from '../HeaderNavMemu';
 import { LocationAndCurrencySelection } from '../new-components/LocationAndCurrencySelection/LocationAndCurrencySelection';
 
@@ -14,12 +15,14 @@ const Header: FC<HeaderProps> = (props): JSX.Element => {
 
   return (
     <header className={cn(className)} {...restProps}>
-      <Top />
-      <div className={style.wrapper}>
-        <div className={style.left}>All categories</div>
-        <HeaderNavMenu className={style.center} />
-        <LocationAndCurrencySelection className={style.right} />
-      </div>
+      <Container>
+        <Top />
+        <div className={style.wrapper}>
+          <div className={style.left}>All categories</div>
+          <HeaderNavMenu className={style.center} />
+          <LocationAndCurrencySelection className={style.right} />
+        </div>
+      </Container>
     </header>
   );
 };
