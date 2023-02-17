@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
 import CartList from '../../components/ui/TypesView/cart/CartList/CartList';
 import CartOrder from '../../components/ui/TypesView/cart/CartOrder/CartOrder';
+import Footer from '../../layouts/Footer';
+import Header from '../../layouts/Header';
 
 import style from './CartPage.module.css';
 
-const CartPage = () => {
+const CartPage = (): JSX.Element => {
   const [cartItems] = useState([
     {
       id: 13,

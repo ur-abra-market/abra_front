@@ -7,9 +7,9 @@ import style from './SellerAccountPage.module.css';
 import iconImage from 'assets/img/icons/icon-img.png';
 import { ButtonLink, InfoBtn } from 'components/buttons';
 import Checkbox from 'components/Checkbox';
-import Footer from 'components/Footer';
-import Header from 'components/Header';
 import TextField from 'components/TextField';
+import Footer from 'layouts/Footer';
+import Header from 'layouts/Header';
 import {
   profileInfoBtnClasses,
   profileInfo__textFieldClasses,

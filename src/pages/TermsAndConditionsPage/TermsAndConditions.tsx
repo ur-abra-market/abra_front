@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import home from '../../assets/img/icons/build.png';
 import { Container } from '../../components';
-import { Logo } from '../../components/new-components/Logo/Logo';
+import { Logo } from '../../layouts/Logo/Logo';
 
 import styles from './TermsAndConditions.module.css';
 

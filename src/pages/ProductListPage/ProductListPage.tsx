@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 
 import style from './ProductListPage.module.css';
 
-import Footer from 'components/Footer';
-import Header from 'components/Header';
 import ProductFilter from 'components/ui/product/ProductFilter';
 import ProductList from 'components/ui/product/ProductList';
+import Footer from 'layouts/Footer';
+import Header from 'layouts/Header';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { productPaginateService } from 'store/reducers/productPaginateSlice';
 
