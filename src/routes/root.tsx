@@ -2,8 +2,8 @@ import React from 'react';
 
 import { createBrowserRouter } from 'react-router-dom';
 
+import App from '../App';
 import Auth from '../layouts/Auth';
-import Main from '../layouts/Main';
 import ChangeEmailPage from '../pages/ChangeEmailPage';
 import ChangePasswordPage from '../pages/ChangePasswordPage';
 import ConfirmEmailPage from '../pages/ConfirmEmailPage';
@@ -22,7 +22,7 @@ const child = profile ? supplierRoute : sellerRoute;
 const routes = createBrowserRouter([
   {
     path: '/',
-    element: <Main />,
+    element: <App />,
     errorElement: (
       <main style={{ padding: '1rem' }}>
         <ErrorPage />
