@@ -10,14 +10,17 @@ import styleBtn from '../../buttons/Buttons.module.css';
 import Form from '../../Form';
 import Loader from '../../Loader';
 import PasswordComplexity from '../../PasswordComplexity';
-import TextField from '../../TextField';
 import style from '../RegisterForm/RegisterForm.module.css';
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Input, Label } from "../../ui-kit";
+import { FormDataValuesType } from "../../../layouts/Auth/AuthType";
+
 const schema = yup.object({
-  email: yup.string().email('Ivalid email').required('Email is required'),
+  email: yup.string().email('Invalid email').required('Email is required'),
   password: yup.string().min(8).max(32).required(),
 })
+  .required()
 const LoginForm = (): JSX.Element => {
   const [userStatus, setUserStatus] = useState('suppliers');
   const dispatch = useAppDispatch();
@@ -26,7 +29,7 @@ const LoginForm = (): JSX.Element => {
     watch,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm({
+  } = useForm<FormDataValuesType>({
     resolver: yupResolver(schema),
     mode:'all'
   });
@@ -45,18 +48,10 @@ const LoginForm = (): JSX.Element => {
     if (resMessage === 'LOGIN_SUCCESSFUL') navigate('/');
   }, [resMessage]);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FormDataValuesType) => {
     if (!isValid) return;
     dispatch(loginService(data));
   };
-
-  const textFieldClasses = {
-    label: `${style.textFieldLabel}`,
-    inputWrapper: `${style.inputWrapper}`,
-    input: `${style.textFieldInput}`,
-  };
-  const ref = React.createRef();
-
 
   return (
     <>
@@ -83,42 +78,19 @@ const LoginForm = (): JSX.Element => {
         </div>
       </div>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <TextField
-          // register={register('email', {
-          //   required: 'Email is required!',
-          //   pattern: {
-          //     value: /^\w+\S+@\w+\S+\.[\w+\S+]{2,}$/g,
-          //     message: 'Email is incorrect!',
-          //   },
-          // })}
-          {...register('email')}
-          label="Email"
-          name="email"
-          placeholder="Email"
-          classes={textFieldClasses}
-          error={errors.email?.message}
-        />
-        <TextField
-          register={register('password', {
-            required: 'Password is required!',
-            minLength: {
-              value: 8,
-              message: 'Password must contain at least 8 characters!',
-            },
-            validate: {
-              capitalSymbol: s => /[A-Z]+/g.test(s),
-              digitSymbol: s => /\d+/g.test(s),
-              specialSymbol: s => /[!#+*]/g.test(s),
-              spaceSymbol: s => !/\s/g.test(s),
-            },
-          })}
-          label="Password"
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Password"
-          classes={textFieldClasses}
-        />
+        <Label label={'Email'}>
+          <Input
+            {...register('email')}
+            placeholder="Email"
+            error={errors.email?.message}/>
+        </Label>
+        <Label label={"Password"}>
+          <Input
+            {...register('password')}
+            placeholder="Password"
+            type='password'
+            error={errors.password?.message}/>
+        </Label>
         <PasswordComplexity valueOfNewPassword={watchPasword} />
         {isLoading && <Loader />}
         {errMessage && <p>{errMessage}</p>}

@@ -12,19 +12,12 @@ import styleBtn from '../../buttons/Buttons.module.css';
 import Form from '../../Form';
 import Loader from '../../Loader';
 import PasswordComplexity from '../../PasswordComplexity';
-import TextField from '../../TextField';
-
 import style from './RegisterForm.module.css';
 import { Input, Label } from "../../ui-kit";
+import { FormDataValuesType } from "../../../layouts/Auth/AuthType";
 
-
-
-type ValidateType={
-  email:string
-  password:string
-}
 const schema = yup.object({
-  email: yup.string().email('Ivalid email').required('Email is required'),
+  email: yup.string().email('Invalid email').required('Email is required'),
   password: yup.string().min(8).max(32).required(),
 })
   .required()
@@ -38,7 +31,7 @@ const RegisterForm = (): JSX.Element => {
     watch,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm<ValidateType>({
+  } = useForm<FormDataValuesType>({
     resolver: yupResolver(schema),
     mode:'all'
   });
@@ -57,18 +50,10 @@ const RegisterForm = (): JSX.Element => {
     if (resMessage === 'MESSAGE_HAS_BEEN_SENT') navigate('/');
   }, [resMessage]);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FormDataValuesType) => {
     if (!isValid) return;
     dispatch(registerService({ ...data, route: userStatus }))
   };
-
-
-  const textFieldClasses = {
-    label: `${style.textFieldLabel}`,
-    inputWrapper: `${style.inputWrapper}`,
-    input: `${style.textFieldInput}`,
-  };
-
 
   return (
     <>
@@ -112,23 +97,6 @@ const RegisterForm = (): JSX.Element => {
             type='password'
             error={errors.email?.message}/>
         </Label>
-        {/*<TextField*/}
-        {/*  {...register('email')}*/}
-        {/*  label="Email"*/}
-        {/*  name="email"*/}
-        {/*  placeholder="Email"*/}
-        {/*  classes={textFieldClasses}*/}
-        {/*  error={errors.email?.message}*/}
-        {/*/>*/}
-        {/*<TextField*/}
-        {/*  {...register('password')}*/}
-        {/*  label="Password"*/}
-        {/*  type="password"*/}
-        {/*  name="password"*/}
-        {/*  placeholder="Password"*/}
-        {/*  classes={textFieldClasses}*/}
-        {/*  error={errors.password?.message}*/}
-        {/*/>*/}
         <PasswordComplexity valueOfNewPassword={watchPasword} />
         {isLoading && <Loader />}
         {errMessage && <p>{errMessage}</p>}

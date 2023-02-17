@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { FC } from "react";
 
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import style from './LoginPage.module.css';
@@ -9,7 +8,10 @@ import { Button } from 'components/buttons';
 import styleBtn from 'components/buttons/Buttons.module.css';
 import LoginForm from 'components/ui/LoginForm';
 
-const LoginPage = ({ togglePageType }: any) => {
+interface LoginPageProps {
+  togglePageType: Function;
+}
+const LoginPage:FC<LoginPageProps> = ({ togglePageType }):JSX.Element => {
   return (
     <>
       <div className={style.authPage__wrap}>
@@ -30,8 +32,5 @@ const LoginPage = ({ togglePageType }: any) => {
   );
 };
 
-LoginPage.propTypes = {
-  togglePageType: PropTypes.func,
-};
 
 export default LoginPage;
