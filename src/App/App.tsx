@@ -2,19 +2,18 @@ import React from 'react';
 
 import { Outlet } from 'react-router-dom';
 
-import Loader from '../../components/Loader';
-import './Main.css';
-import { useAppSelector } from '../../store/hooks';
+import Loader from '../components/Loader';
+import { useAppSelector } from '../store/hooks';
 
-const Main = (): JSX.Element => {
+const App = (): JSX.Element => {
   const isLoading = useAppSelector(state => state.mainPageProducts.isLoading);
 
   return (
-    <div className="container">
+    <div className="App">
       {isLoading && <Loader />}
       <Outlet />
     </div>
   );
 };
 
-export default Main;
+export default App;

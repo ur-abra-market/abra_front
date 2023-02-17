@@ -1,4 +1,4 @@
-.feedbackFAQ {
+.wrapper {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -7,7 +7,7 @@
   padding: 0 55px;
 }
 
-.feedbackFAQ__find {
+.text {
   display: block;
 
   width: 100%;
@@ -20,6 +20,6 @@
   border: 2px #DDD solid;
 }
 
-.feedbackFAQ__find:hover {
+.text:hover {
   cursor: pointer;
 }
