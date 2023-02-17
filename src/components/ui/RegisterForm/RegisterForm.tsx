@@ -15,6 +15,7 @@ import PasswordComplexity from '../../PasswordComplexity';
 import TextField from '../../TextField';
 
 import style from './RegisterForm.module.css';
+import { Input, Label } from "../../ui-kit";
 
 
 
@@ -98,23 +99,36 @@ const RegisterForm = (): JSX.Element => {
         action="src/components/ui/RegisterForm/RegisterForm"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <TextField
-          {...register('email')}
-          label="Email"
-          name="email"
-          placeholder="Email"
-          classes={textFieldClasses}
-          error={errors.email?.message}
-        />
-        <TextField
-          {...register('password')}
-          label="Password"
-          type="password"
-          name="password"
-          placeholder="Password"
-          classes={textFieldClasses}
-          error={errors.password?.message}
-        />
+        <Label label={'Email'}>
+          <Input
+            {...register('email')}
+            placeholder="Email"
+            error={errors.email?.message}/>
+        </Label>
+        <Label label={"Password"}>
+          <Input
+            {...register('password')}
+            placeholder="Password"
+            type='password'
+            error={errors.email?.message}/>
+        </Label>
+        {/*<TextField*/}
+        {/*  {...register('email')}*/}
+        {/*  label="Email"*/}
+        {/*  name="email"*/}
+        {/*  placeholder="Email"*/}
+        {/*  classes={textFieldClasses}*/}
+        {/*  error={errors.email?.message}*/}
+        {/*/>*/}
+        {/*<TextField*/}
+        {/*  {...register('password')}*/}
+        {/*  label="Password"*/}
+        {/*  type="password"*/}
+        {/*  name="password"*/}
+        {/*  placeholder="Password"*/}
+        {/*  classes={textFieldClasses}*/}
+        {/*  error={errors.password?.message}*/}
+        {/*/>*/}
         <PasswordComplexity valueOfNewPassword={watchPasword} />
         {isLoading && <Loader />}
         {errMessage && <p>{errMessage}</p>}

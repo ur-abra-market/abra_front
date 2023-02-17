@@ -19,7 +19,7 @@ interface TextFieldProps {
 
   inputProps?: DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 }
-const TextField: FC<TextFieldProps> = forwardRef(({ ...props }, ref) => {
+const TextField: FC<TextFieldProps> = (props) => {
   const {
     label,
     id,
@@ -57,7 +57,6 @@ const TextField: FC<TextFieldProps> = forwardRef(({ ...props }, ref) => {
           onChange={onChange}
           type={showPassword ? 'text' : type}
           id={id}
-          ref ={ref}
           defaultValue={defaultValue}
           className={
             // eslint-disable-next-line no-nested-ternary
@@ -96,5 +95,4 @@ const TextField: FC<TextFieldProps> = forwardRef(({ ...props }, ref) => {
     </div>
   );
 }
-)
 export default TextField;
