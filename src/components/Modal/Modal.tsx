@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren } from 'react';
+import React, { FC, PropsWithChildren, useEffect } from 'react';
 
 import { createPortal } from 'react-dom';
 
@@ -9,6 +9,17 @@ interface ModalProps {
   close?: (val: boolean) => void;
 }
 const Modal: FC<PropsWithChildren<ModalProps>> = ({ active, children, close }) => {
+  useEffect(() => {
+    const target = document.body;
+
+    const oldWidth = target.offsetWidth;
+
+    target.style.overflow = 'hidden';
+    target.style.width = `${oldWidth}px`;
+
+    return () => target.removeAttribute('style');
+  }, []);
+
   return createPortal(
     <div
       role="presentation"
@@ -17,8 +28,8 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({ active, children, close }) =
         close?.(false);
       }}
     >
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div
+        role="presentation"
         className={
           active
             ? `${style.modal__content} ${style.modal__content_active}`
