@@ -16,9 +16,9 @@ import { fetchProductList } from 'store/reducers/mainPageSlice';
 
 export enum Categories {
   ALL,
-  WOMEN,
-  MEN,
-  KIDS,
+  CLOTHES,
+  ACCESSORIES,
+  COSMETICS,
 }
 
 type Category = Record<
@@ -35,16 +35,16 @@ const CATEGORIES: Category = {
     category_id: Categories.ALL,
   },
   1: {
-    label: `Women's clothes`,
-    category_id: Categories.WOMEN,
+    label: `Clothes`,
+    category_id: Categories.CLOTHES,
   },
   2: {
-    label: `Men's clothes`,
-    category_id: Categories.MEN,
+    label: `Accessories`,
+    category_id: Categories.ACCESSORIES,
   },
   3: {
-    label: `Kid's clothes`,
-    category_id: Categories.KIDS,
+    label: `Cosmetics and Self Care`,
+    category_id: Categories.COSMETICS,
   },
 };
 const MainPage = (): JSX.Element => {
