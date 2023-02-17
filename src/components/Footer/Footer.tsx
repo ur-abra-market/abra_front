@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 
+import cn from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 
 import { Container } from '../Container/Container';
@@ -8,14 +9,16 @@ import { LocationAndCurrencySelection } from '../new-components/LocationAndCurre
 import { Logo } from '../new-components/Logo/Logo';
 
 import style from './Footer.module.css';
+import { FooterProps } from './Footer.props';
 
-const Footer = (): JSX.Element => {
+const Footer: FC<FooterProps> = (props): JSX.Element => {
+  const { className } = props;
   const routs = ['personal-account', 'order-history', ''];
   const { pathname } = useLocation();
   const showHeadNav = routs.some(el => el === pathname.split('/')[1]);
 
   return (
-    <div className={style.footer}>
+    <div className={cn(style.footer, className)}>
       {showHeadNav && (
         <Container>
           <div className={style.top}>
