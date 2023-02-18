@@ -7,7 +7,15 @@ import styleBtn from '../../buttons/Buttons.module.css';
 import TextField from '../../TextField';
 
 import style from './ForgotPasswordForm.module.css';
+import * as yup from "yup";
+import { FormDataValuesType } from "../../../layouts/Auth/AuthType";
+import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
+import { Input } from "../../ui-kit";
 
+
+const schema = yup.object({
+  email: yup.string().email('Invalid email').required('Email is required'),
+})
 interface ForgotPasswordFormProps {
   togglePageType: any;
 }
@@ -16,8 +24,10 @@ const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => 
     register,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm({ mode: 'onChange' });
-
+  } = useForm<FormDataValuesType>({
+    resolver: yupResolver(schema),
+    mode: 'all'
+  })
   const onSubmit = (data: any): void => {
     console.log(data);
     // eslint-disable-next-line no-useless-return
@@ -37,19 +47,10 @@ const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => 
       onSubmit={handleSubmit(onSubmit)}
       className={style.forgotPasswordForm}
     >
-      <TextField
-        register={register('email', {
-          required: 'Email is required!',
-          pattern: {
-            value: /^\S+@\S+\.\S+$/g,
-            message: 'Email is incorrect!',
-          },
-        })}
-        label="Email"
-        name="email"
+      <Input
+        {...register('email')}
         placeholder="Email"
-        classes={textFieldClasses}
-        error={errors.email}
+        error={errors.email?.message}
       />
       <Button
         value="Reset password"

@@ -10,47 +10,42 @@ import PasswordComplexity from '../../PasswordComplexity';
 import TextField from '../../TextField';
 
 import style from './ResetPasswordForm.module.css';
+import * as yup from "yup";
+import { FormDataValuesType } from "../../../layouts/Auth/AuthType";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Input } from "../../ui-kit";
 
 interface ResetPasswordFormProps {
   handleChangeModalActive: any;
 }
+
+const schema = yup.object({
+  password: yup.string().matches(
+    /^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+    "Password must contain at least 8 characters, one uppercase, one number and one special case character"
+  ).required('Password is required'),})
 const ResetPasswordForm: FC<ResetPasswordFormProps> = ({ handleChangeModalActive }) => {
   const {
     register,
     watch,
-    formState: { isValid },
+    formState: { isValid, errors},
     handleSubmit,
-  } = useForm({ mode: 'onChange' });
+  } = useForm<FormDataValuesType>({
+    resolver: yupResolver(schema),
+    mode:'all'
+  });
   const watchPasword = watch('password');
   const onSubmit = () => {
     if (!isValid) return;
   };
-  const textFieldClasses = {
-    label: `${style.textFieldLabel}`,
-    inputWrapper: `${style.inputWrapper}`,
-    input: `${style.textFieldInput}`,
-  };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className={style.resetPasswordForm}>
-      <TextField
-        register={register('password', {
-          required: 'Password is required!',
-          minLength: {
-            value: 8,
-            message: 'Password must contain at least 8 characters!',
-          },
-          validate: {
-            capitalSymbol: s => /[A-Z]+/g.test(s),
-            digitSymbol: s => /\d+/g.test(s),
-            specialSymbol: s => /[!#+*]/g.test(s),
-          },
-        })}
-        label="Password"
-        type="password"
-        id="password"
-        name="password"
-        classes={textFieldClasses}
+      <Input
+        {...register('password')}
+        placeholder="Password"
+        type='password'
+        error={errors.password?.message}
       />
       <PasswordComplexity valueOfNewPassword={watchPasword} />
       <Button
