@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from 'yup'
 
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { registerService } from '../../../store/reducers/registerSlice';
@@ -10,20 +12,29 @@ import styleBtn from '../../buttons/Buttons.module.css';
 import Form from '../../Form';
 import Loader from '../../Loader';
 import PasswordComplexity from '../../PasswordComplexity';
-import TextField from '../../TextField';
-
 import style from './RegisterForm.module.css';
+import { Input, Label } from "../../ui-kit";
+import { FormDataValuesType } from "../../../layouts/Auth/AuthType";
 
+const schema = yup.object({
+  email: yup.string().email('Invalid email').required('Email is required'),
+  password: yup.string().min(8).max(32).required(),
+})
+  .required()
 const RegisterForm = (): JSX.Element => {
   const [userStatus, setUserStatus] = useState('suppliers');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   const {
     register,
     watch,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm({ mode: 'onChange' });
+  } = useForm<FormDataValuesType>({
+    resolver: yupResolver(schema),
+    mode:'all'
+  });
 
   const watchPasword = watch('password');
 
@@ -39,15 +50,9 @@ const RegisterForm = (): JSX.Element => {
     if (resMessage === 'MESSAGE_HAS_BEEN_SENT') navigate('/');
   }, [resMessage]);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FormDataValuesType) => {
     if (!isValid) return;
-    dispatch(registerService({ ...data, route: userStatus }));
-  };
-
-  const textFieldClasses = {
-    label: `${style.textFieldLabel}`,
-    inputWrapper: `${style.inputWrapper}`,
-    input: `${style.textFieldInput}`,
+    dispatch(registerService({ ...data, route: userStatus }))
   };
 
   return (
@@ -79,41 +84,19 @@ const RegisterForm = (): JSX.Element => {
         action="src/components/ui/RegisterForm/RegisterForm"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <TextField
-          register={register('email', {
-            required: 'Email is required!',
-            pattern: {
-              value: /^\w+\S+@\w+\S+\.[\w+\S+]{2,}$/g,
-              message: 'Email is incorrect!',
-            },
-          })}
-          label="Email"
-          name="email"
-          placeholder="Email"
-          classes={textFieldClasses}
-          error={errors.email}
-        />
-        <TextField
-          register={register('password', {
-            required: 'Password is required!',
-            minLength: {
-              value: 8,
-              message: 'Password must contain at least 8 characters!',
-            },
-            validate: {
-              capitalSymbol: s => /[A-Z]+/g.test(s),
-              digitSymbol: s => /\d+/g.test(s),
-              specialSymbol: s => /[!#+*]/g.test(s),
-              spaceSymbol: s => !/\s/g.test(s),
-            },
-          })}
-          label="Password"
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Password"
-          classes={textFieldClasses}
-        />
+        <Label label={'Email'}>
+          <Input
+            {...register('email')}
+            placeholder="Email"
+            error={errors.email?.message}/>
+        </Label>
+        <Label label={"Password"}>
+          <Input
+            {...register('password')}
+            placeholder="Password"
+            type='password'
+            error={errors.email?.message}/>
+        </Label>
         <PasswordComplexity valueOfNewPassword={watchPasword} />
         {isLoading && <Loader />}
         {errMessage && <p>{errMessage}</p>}
