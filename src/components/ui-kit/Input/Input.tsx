@@ -10,7 +10,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const { className, classNameWrapper, type = 'text', error, ...restProps } = props;
 
     return (
-      <div className={cn(styles.wrapper, classNameWrapper)}>
+      <div className={cn( classNameWrapper)}>
         <input
           className={cn(styles.input, className)}
           ref={ref}
