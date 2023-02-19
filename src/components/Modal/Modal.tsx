@@ -3,6 +3,8 @@ import React, { FC, PropsWithChildren, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import style from './Modal.module.css';
+import { Button } from "../buttons";
+import styleBtn from "../buttons/Buttons.module.css";
 
 interface ModalProps {
   active: boolean;
@@ -28,6 +30,11 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({ active, children, close }) =
         close?.(false);
       }}
     >
+      <Button
+        value='X'
+        className={styleBtn.modalWindewBtnClose}
+
+      />
       <div
         role="presentation"
         className={
@@ -40,6 +47,7 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({ active, children, close }) =
         }}
       >
         {children}
+
       </div>
     </div>,
     document.body,

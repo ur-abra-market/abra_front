@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import iconApple from '../../assets/img/icons/Apple.png';
-import iconGoogle from '../../assets/img/icons/Google.png';
+import iconApple from '../../assets/img/icons/AppleIcon.svg';
+import iconGoogle from '../../assets/img/icons/Goolge.svg';
 import iconVK from '../../assets/img/icons/VK.png';
 import styleBtn from '../../components/buttons/Buttons.module.css';
 import LoginPage from '../../pages/LoginPage';
@@ -21,7 +21,7 @@ const Auth = () => {
   return (
     <div className={style.authPage}>
       <h1 className={style.header}>
-        <Link to="/">Abra</Link>
+        <Link to="/" className={style.link}>Abra</Link>
       </h1>
       <h2 className={style.subheader}>Start buying in bulk now!</h2>
       {pageType === 'register' ? (
@@ -30,21 +30,19 @@ const Auth = () => {
         <LoginPage togglePageType={togglePageType} />
       )}
       <div className={style.socialNetworksWrapper}>
-        <div className={`${styleBtn.commonButton} ${styleBtn.socialNetwork}`}>
+        <div className={styleBtn.socialNetwork}>
           <a href="/src/routes" target="_blank">
             <img src={iconGoogle} alt="Google" />
           </a>
         </div>
-        <div className={`${styleBtn.commonButton} ${styleBtn.socialNetwork}`}>
+        <div className={styleBtn.socialNetwork}>
           <a href="/src/routes" target="_blank">
             <img src={iconApple} alt="Apple" />
           </a>
         </div>
-        <div className={`${styleBtn.commonButton} ${styleBtn.socialNetwork}`}>
-          <a href="/src/routes" target="_blank">
-            <img src={iconVK} alt="VK" />
-          </a>
-        </div>
+      </div>
+      <div>
+        <p className={style.footerText}>© 2023 Abra. Terms & conditions and Privacy policy</p>
       </div>
     </div>
   );

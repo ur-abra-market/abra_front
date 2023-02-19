@@ -1,28 +1,21 @@
-.wrapper{
-  position: relative;
-  display: inline-block;
-}
-
 .input{
-  box-sizing: border-box;
   width: 100%;
-  padding: 12px 10px 15px 16px;
+  padding: 14px 10px 14px 16px;
 
   font-size: 14px;
   color: #000;
 
-  background: #F2F2F2;
-  border: none;
-  border-radius: 4px;
-  outline: none;
-
+  background: #F4F4F4;
+  margin: 10px 0;
+  border-radius: 12px;
 }
+.input:focus{
+  border: 1px solid #FC133D;}
 
 .error{
-  position: absolute;
-  bottom: -15px;
-  left: 0;
+  font-weight: 400;
+  line-height: 12px;
+  font-size: 12px;
+  color: #FC133D;
 
-  font-size: 13px;
-  color: #FF4040;
 }

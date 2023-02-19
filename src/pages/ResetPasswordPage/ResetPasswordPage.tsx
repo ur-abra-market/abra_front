@@ -24,6 +24,7 @@ const ResetPasswordPage = (): JSX.Element => {
             <ResetPasswordForm handleChangeModalActive={handleChangeModalActive} />
           </div>
         </div>
+
       </div>
       <Modal active={modalActive}>
         <div className={style.modalContentWrapper}>
@@ -38,8 +39,11 @@ const ResetPasswordPage = (): JSX.Element => {
             className={styleBtn.modalWindewBtnActive}
             onClick={handleChangeModalActive}
           />
+
         </div>
+
       </Modal>
+
     </>
   );
 };

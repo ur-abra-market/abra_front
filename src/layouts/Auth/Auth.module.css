@@ -1,28 +1,28 @@
 .authPage {
   height: 100vh;
-  margin: 0 auto;
   background: #FFF;
-
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   /* width: 100vw; */
 }
 
 .header {
+  padding-top: 128px;
   width: 86px;
-  height: 40px;
-  margin: 0 auto;
-  padding-top: 168px;
-
+}
+.link{
+  color: #FC133D;
   font-size: 40px;
   font-weight: 700;
   font-style: normal;
-  color: #000;
   letter-spacing: 0.0024em;
 }
 
 .subheader {
   width: 170px;
   height: 24px;
-  margin: 16px auto 20px;
+  margin: 18px auto 22px;
 
   font-size: 15px;
   font-weight: 400;
@@ -39,4 +39,11 @@
   justify-content: center;
 
   margin-top: 48px;
+}
+.footerText{
+  text-align: center;
+  font-size: 13px;
+  line-height: 18px;
+  margin-bottom: 32px;
+  margin-top: 30%;
 }

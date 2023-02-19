@@ -56,7 +56,8 @@ const LoginForm = (): JSX.Element => {
   return (
     <>
       <div className={style.buySellBtnWrappeer}>
-        <div className={style.flexContainer}>
+
+        {errMessage &&  <div className={style.flexContainer}>
           <Button
             value="I'm here to buy"
             className={
@@ -75,23 +76,19 @@ const LoginForm = (): JSX.Element => {
             }
             onClick={toggleUserStatus}
           />
-        </div>
+        </div>}
+
       </div>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Label label={'Email'}>
           <Input
             {...register('email')}
             placeholder="Email"
             error={errors.email?.message}/>
-        </Label>
-        <Label label={"Password"}>
           <Input
             {...register('password')}
             placeholder="Password"
             type='password'
             error={errors.password?.message}/>
-        </Label>
-        <PasswordComplexity valueOfNewPassword={watchPasword} />
         {isLoading && <Loader />}
         {errMessage && <p>{errMessage}</p>}
         <Button

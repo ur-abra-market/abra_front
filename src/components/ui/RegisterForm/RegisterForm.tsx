@@ -18,7 +18,10 @@ import { FormDataValuesType } from "../../../layouts/Auth/AuthType";
 
 const schema = yup.object({
   email: yup.string().email('Invalid email').required('Email is required'),
-  password: yup.string().min(8).max(32).required(),
+  password: yup.string().matches(
+    /^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+    "Password must contain at least 8 characters, one uppercase, one number and one special case character"
+  ).required('Password is required'),
 })
   .required()
 const RegisterForm = (): JSX.Element => {
@@ -84,19 +87,15 @@ const RegisterForm = (): JSX.Element => {
         action="src/components/ui/RegisterForm/RegisterForm"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Label label={'Email'}>
           <Input
             {...register('email')}
             placeholder="Email"
             error={errors.email?.message}/>
-        </Label>
-        <Label label={"Password"}>
           <Input
             {...register('password')}
             placeholder="Password"
             type='password'
-            error={errors.email?.message}/>
-        </Label>
+            error={errors.password?.message}/>
         <PasswordComplexity valueOfNewPassword={watchPasword} />
         {isLoading && <Loader />}
         {errMessage && <p>{errMessage}</p>}
