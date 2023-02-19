@@ -6,7 +6,7 @@ import RegisterForm from 'components/ui/RegisterForm';
 import style from 'pages/RegisterPage/RegisterPage.module.css';
 
 interface RegisterPageProps {
-  togglePageType: Function;
+  togglePageType: ()=>void;
 }
 const RegisterPage: FC<RegisterPageProps> = ({ togglePageType }): JSX.Element => {
   return (
