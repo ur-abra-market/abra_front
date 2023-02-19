@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { Button } from '../../../buttons';
 import styleBtn from '../../../buttons/Buttons.module.css';
 import Form from '../../../Form';
-import PasswordComplexity from '../../../PasswordComplexity';
+import PasswordComplexity from '../../../new-components/PasswordComplexity';
 import TextField from '../../../TextField';
 
 import style from './ChangePasswordForm.module.css';
@@ -23,7 +23,8 @@ const ChangePasswordForm: FC<ChangePasswordFormProps> = ({ handleChangeModalActi
 
   const watchPasword = watch('password');
 
-  const onSubmit = () => {
+  const onSubmit = (): void => {
+    // eslint-disable-next-line no-useless-return
     if (!isValid) return;
   };
   const textFieldClasses = {

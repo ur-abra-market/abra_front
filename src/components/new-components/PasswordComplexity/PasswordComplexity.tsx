@@ -1,50 +1,51 @@
 import React, { FC, useEffect, useState } from 'react';
 
-import PasswordStrengthIndicatorItem from '../PasswordStrengthIndicatorItem';
-
 import style from './PasswordComplexity.module.css';
+import PasswordStrengthIndicatorItem from './PasswordStrengthIndicatorItem';
 
 interface PasswordComplexityProps {
   valueOfNewPassword: string;
 }
+
+interface IPassword {
+  minLength: boolean;
+  digitSymbol: boolean;
+  capitalSymbol: boolean;
+  containsSpecSymbols: boolean;
+}
 const PasswordComplexity: FC<PasswordComplexityProps> = ({ valueOfNewPassword }) => {
-  const [passwordValidyty, setPasswordValidyty] = useState<any>({
-    minLength: null,
-    digitSymbol: null,
-    capitalSymbol: null,
-    containsSpecSymbols: null,
-  });
+  const [passwordValidity, setPasswordValidity] = useState<IPassword>();
 
   useEffect(() => {
     const digitRegExp = /\d/g;
     const capitalRegExp = /[A-Z]/g;
     const specSymbolRegExp = /[!#+*]/g;
 
-    setPasswordValidyty({
+    setPasswordValidity({
       minLength: valueOfNewPassword?.length >= 8,
-      digitSymbol: !!digitRegExp.test(valueOfNewPassword),
-      capitalSymbol: !!capitalRegExp.test(valueOfNewPassword),
-      containsSpecSymbols: !!specSymbolRegExp.test(valueOfNewPassword),
+      digitSymbol: digitRegExp.test(valueOfNewPassword),
+      capitalSymbol: capitalRegExp.test(valueOfNewPassword),
+      containsSpecSymbols: specSymbolRegExp.test(valueOfNewPassword),
     });
   }, [valueOfNewPassword]);
 
   return (
-    <div className={style.requirementsWrapper}>
+    <div className={style.wrapper}>
       <PasswordStrengthIndicatorItem
         text="1 capital letter"
-        isValid={passwordValidyty?.capitalSymbol}
+        isValid={passwordValidity?.capitalSymbol}
       />
       <PasswordStrengthIndicatorItem
         text="1 number"
-        isValid={passwordValidyty?.digitSymbol}
+        isValid={passwordValidity?.digitSymbol}
       />
       <PasswordStrengthIndicatorItem
         text="8 symbols"
-        isValid={passwordValidyty?.minLength}
+        isValid={passwordValidity?.minLength}
       />
       <PasswordStrengthIndicatorItem
         text="!/#/+/*"
-        isValid={passwordValidyty?.containsSpecSymbols}
+        isValid={passwordValidity?.containsSpecSymbols}
       />
     </div>
   );
