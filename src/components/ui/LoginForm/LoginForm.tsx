@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 
+import { FormDataValuesType } from '../../../layouts/Auth/AuthType';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { loginService } from '../../../store/reducers/loginSlice';
 import { Button } from '../../buttons';
@@ -10,17 +13,15 @@ import styleBtn from '../../buttons/Buttons.module.css';
 import Form from '../../Form';
 import Loader from '../../Loader';
 import PasswordComplexity from '../../PasswordComplexity';
+import { Input, Label } from '../../ui-kit';
 import style from '../RegisterForm/RegisterForm.module.css';
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Input, Label } from "../../ui-kit";
-import { FormDataValuesType } from "../../../layouts/Auth/AuthType";
 
-const schema = yup.object({
-  email: yup.string().email('Invalid email').required('Email is required'),
-  password: yup.string().min(8).max(32).required(),
-})
-  .required()
+const schema = yup
+  .object({
+    email: yup.string().email('Invalid email').required('Email is required'),
+    password: yup.string().min(8).max(32).required(),
+  })
+  .required();
 const LoginForm = (): JSX.Element => {
   const [userStatus, setUserStatus] = useState('suppliers');
   const dispatch = useAppDispatch();
@@ -31,14 +32,14 @@ const LoginForm = (): JSX.Element => {
     handleSubmit,
   } = useForm<FormDataValuesType>({
     resolver: yupResolver(schema),
-    mode:'all'
+    mode: 'all',
   });
   const navigate = useNavigate();
   const watchPasword = watch('password');
 
-  const toggleUserStatus = () => {
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const toggleUserStatus = () =>
     setUserStatus(prevState => (prevState === 'suppliers' ? 'sellers' : 'suppliers'));
-  };
 
   const isLoading = useAppSelector(state => state.login.loading);
   const errMessage = useAppSelector(state => state.login.errMessage);
@@ -78,18 +79,20 @@ const LoginForm = (): JSX.Element => {
         </div>
       </div>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <Label label={'Email'}>
+        <Label label="Email">
           <Input
             {...register('email')}
             placeholder="Email"
-            error={errors.email?.message}/>
+            error={errors.email?.message}
+          />
         </Label>
-        <Label label={"Password"}>
+        <Label label="Password">
           <Input
             {...register('password')}
             placeholder="Password"
-            type='password'
-            error={errors.password?.message}/>
+            type="password"
+            error={errors.password?.message}
+          />
         </Label>
         <PasswordComplexity valueOfNewPassword={watchPasword} />
         {isLoading && <Loader />}

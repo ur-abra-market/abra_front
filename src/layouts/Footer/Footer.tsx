@@ -38,7 +38,9 @@ const Footer: FC<FooterProps> = (props): JSX.Element => {
               <Link to="/terms&conditions">Terms & Conditions</Link>
               <Link to="/">Privacy Policy</Link>
             </div>
-            <div className={style.copyright}>© Copyright 2022</div>
+            <div className={style.copyright}>
+              <span>© Copyright 2022</span>
+            </div>
           </div>
         </Container>
       </div>

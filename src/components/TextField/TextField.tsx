@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, FC, forwardRef, HTMLAttributes, useState } from 'react';
+import React, { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react';
 
 import eyeHiddenPassword from '../../assets/img/icons/eye_hidden_password.png';
 import eyeVisiblePassword from '../../assets/img/icons/eye_visible_password.png';
@@ -19,7 +19,7 @@ interface TextFieldProps {
 
   inputProps?: DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 }
-const TextField: FC<TextFieldProps> = (props) => {
+const TextField: FC<TextFieldProps> = props => {
   const {
     label,
     id,
@@ -94,5 +94,6 @@ const TextField: FC<TextFieldProps> = (props) => {
       </div>
     </div>
   );
-}
+};
+
 export default TextField;
