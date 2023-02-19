@@ -5,4 +5,5 @@ export interface InputProps
   classNameWrapper?: string;
   error?: string;
   type?: 'text' | 'textarea' | 'password';
+  variant?: 'primary' | 'password';
 }

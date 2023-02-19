@@ -51,6 +51,7 @@ const LoginForm = (): JSX.Element => {
         placeholder="Password"
         type="password"
         error={errors.password?.message}
+        variant="password"
       />
       <Button
         className={style.button}

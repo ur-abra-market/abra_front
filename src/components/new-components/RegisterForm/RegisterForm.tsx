@@ -74,6 +74,7 @@ const RegisterForm = (): JSX.Element => {
             classNameWrapper={style.input_password}
             placeholder="Password"
             type="password"
+            variant="password"
           />
           <PasswordComplexity valueOfNewPassword={watchPasword} />
         </div>
