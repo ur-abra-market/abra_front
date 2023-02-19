@@ -7,13 +7,12 @@ import * as yup from 'yup'
 
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { registerService } from '../../../store/reducers/registerSlice';
-import { Button } from '../../buttons';
 import styleBtn from '../../buttons/Buttons.module.css';
 import Form from '../../Form';
 import Loader from '../../Loader';
 import PasswordComplexity from '../../PasswordComplexity';
 import style from './RegisterForm.module.css';
-import { Input, Label } from "../../ui-kit";
+import { Button, Input, Label } from "../../ui-kit";
 import { FormDataValuesType } from "../../../layouts/Auth/AuthType";
 
 const schema = yup.object({
@@ -63,7 +62,7 @@ const RegisterForm = (): JSX.Element => {
       <div className={style.buySellBtnWrappeer}>
         <div className={style.flexContainer}>
           <Button
-            value="I'm here to buy"
+            label="I'm here to buy"
             className={
               userStatus === 'sellers'
                 ? styleBtn.userStatusBtnInactive
@@ -72,7 +71,7 @@ const RegisterForm = (): JSX.Element => {
             onClick={toggleUserStatus}
           />
           <Button
-            value="I'm here to sell"
+            label="I'm here to sell"
             className={
               userStatus === 'suppliers'
                 ? styleBtn.userStatusBtnInactive
