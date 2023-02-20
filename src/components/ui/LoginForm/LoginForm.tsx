@@ -5,16 +5,16 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import { FormDataValuesType } from '../../../layouts/Auth/AuthType';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { loginService } from '../../../store/reducers/loginSlice';
 import { Button } from '../../buttons';
 import styleBtn from '../../buttons/Buttons.module.css';
 import Form from '../../Form';
 import Loader from '../../Loader';
-import PasswordComplexity from '../../PasswordComplexity';
 import { Input, Label } from '../../ui-kit';
 import style from '../RegisterForm/RegisterForm.module.css';
+import PasswordComplexity from "../../new-components/PasswordComplexity";
+import { FormDataValuesType } from "../../../pages/AuthPage/AuthType";
 
 const schema = yup
   .object({
