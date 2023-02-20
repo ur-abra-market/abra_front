@@ -26,3 +26,10 @@
   font-size: 13px;
   color: #FF4040;
 }
+
+.button{
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}

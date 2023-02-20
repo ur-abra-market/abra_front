@@ -1,12 +1,11 @@
 import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 
 import { Button } from '../../buttons';
 import styleBtn from '../../buttons/Buttons.module.css';
 import Form from '../../Form';
-import PasswordComplexity from '../../PasswordComplexity';
+import PasswordComplexity from '../../new-components/PasswordComplexity';
 import TextField from '../../TextField';
 
 import style from './ResetPasswordForm.module.css';
@@ -22,7 +21,8 @@ const ResetPasswordForm: FC<ResetPasswordFormProps> = ({ handleChangeModalActive
     handleSubmit,
   } = useForm({ mode: 'onChange' });
   const watchPasword = watch('password');
-  const onSubmit = () => {
+  const onSubmit = (): void => {
+    // eslint-disable-next-line no-useless-return
     if (!isValid) return;
   };
   const textFieldClasses = {

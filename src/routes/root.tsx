@@ -3,7 +3,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 import App from '../App';
-import Auth from '../layouts/Auth';
+import AuthPage from '../pages/AuthPage';
 import ChangeEmailPage from '../pages/ChangeEmailPage';
 import ChangePasswordPage from '../pages/ChangePasswordPage';
 import ConfirmEmailPage from '../pages/ConfirmEmailPage';
@@ -32,7 +32,7 @@ const routes = createBrowserRouter([
   },
   {
     path: 'auth',
-    element: <Auth />,
+    element: <AuthPage />,
   },
   {
     path: 'forgotPassword',
