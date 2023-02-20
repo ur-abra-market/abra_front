@@ -2,32 +2,38 @@ import React, { FC } from 'react';
 
 import { useForm } from 'react-hook-form';
 
-import { Button } from '../../buttons';
+
 import styleBtn from '../../buttons/Buttons.module.css';
 import TextField from '../../TextField';
 
 import style from './ForgotPasswordForm.module.css';
+import * as yup from "yup";
+import { FormDataValuesType } from "../../../pages/AuthPage/AuthType";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Button, Input } from "../../ui-kit";
 
 interface ForgotPasswordFormProps {
   togglePageType: any;
 }
+const schema = yup
+  .object({
+    email: yup.string().email('Invalid email').required('Email is required'),
+  })
+  .required();
 const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => {
   const {
     register,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm({ mode: 'onChange' });
+  } = useForm<FormDataValuesType>({
+    resolver: yupResolver(schema),
+    mode: 'all',
+  });
 
   const onSubmit = (data: any): void => {
     console.log(data);
     // eslint-disable-next-line no-useless-return
     if (!isValid) return;
-  };
-
-  const textFieldClasses = {
-    label: `${style.textFieldLabel}`,
-    inputWrapper: `${style.inputWrapper}`,
-    input: `${style.textFieldInput}`,
   };
 
   return (
@@ -37,27 +43,15 @@ const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => 
       onSubmit={handleSubmit(onSubmit)}
       className={style.forgotPasswordForm}
     >
-      <TextField
-        register={register('email', {
-          required: 'Email is required!',
-          pattern: {
-            value: /^\S+@\S+\.\S+$/g,
-            message: 'Email is incorrect!',
-          },
-        })}
-        label="Email"
-        name="email"
+      <Input
+        {...register('email')}
         placeholder="Email"
-        classes={textFieldClasses}
-        error={errors.email}
-      />
+        error={errors.email?.message}
+        classNameWrapper={style.input_wrapper} />
       <Button
-        value="Reset password"
-        className={
-          !isValid
-            ? `${styleBtn.commonButton} ${styleBtn.logInBtnInactive}`
-            : `${styleBtn.commonButton} ${styleBtn.logInBtnActive}`
-        }
+        label="Reset password"
+        className={style.button}
+        type="submit"
         disabled={!isValid}
         onClick={togglePageType}
       />

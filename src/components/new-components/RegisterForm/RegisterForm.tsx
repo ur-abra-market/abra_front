@@ -12,11 +12,14 @@ import { Button, Input } from '../../ui-kit';
 import PasswordComplexity from '../PasswordComplexity';
 
 import style from './RegisterForm.module.css';
+import Modal from "../../Modal";
 
 const schema = yup
   .object({
     email: yup.string().email('Invalid email').required('Email is required'),
-    password: yup.string().min(8).max(32).required(),
+    password: yup.string().matches(
+      /^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/
+    )
   })
   .required();
 const RegisterForm = (): JSX.Element => {
@@ -66,6 +69,7 @@ const RegisterForm = (): JSX.Element => {
           onClick={() => handleClick('suppliers')}
         />
       </div>
+      {/*{errMessage && <Modal active={}></Modal>}*/}
       <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
         <Input {...register('email')} placeholder="Email" error={errors.email?.message} />
         <div>
@@ -76,7 +80,7 @@ const RegisterForm = (): JSX.Element => {
             type="password"
             variant="password"
           />
-          <PasswordComplexity valueOfNewPassword={watchPasword} />
+          <PasswordComplexity valueOfNewPassword={watchPasword}  />
         </div>
 
         <Button
