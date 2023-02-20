@@ -69,7 +69,6 @@ const RegisterForm = (): JSX.Element => {
           onClick={() => handleClick('suppliers')}
         />
       </div>
-      {/*{errMessage && <Modal active={}></Modal>}*/}
       <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
         <Input {...register('email')} placeholder="Email" error={errors.email?.message} />
         <div>

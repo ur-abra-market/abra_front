@@ -37,7 +37,6 @@ const ResetPasswordPage = (): JSX.Element => {
               className={style.modal_window_btn_active}
               onClick={handleChangeModalActive}
             />
-            <Button label='X'/>
           </div>
         </Modal>
 
