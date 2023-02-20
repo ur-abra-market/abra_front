@@ -21,6 +21,7 @@ const ForgotPasswordPage = () => {
           <ContentMessage
             title="Forgot the password?"
             text="Enter your email address to receive a link to reset your password"
+            className={style.content}
           />
           <div className={style.innerWrapper}>
             <ForgotPasswordForm togglePageType={togglePageType} />

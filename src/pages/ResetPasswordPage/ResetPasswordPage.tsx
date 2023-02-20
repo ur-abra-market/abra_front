@@ -24,7 +24,7 @@ const ResetPasswordPage = (): JSX.Element => {
           </div>
         </div>
       </div>
-        <Modal active={modalActive}>
+        <Modal active={modalActive} className={style.modal_container}>
           <div className={style.modalContentWrapper}>
             <div className={style.modalHeader}>
               Your new password has been successfully saved

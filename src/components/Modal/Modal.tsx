@@ -7,8 +7,9 @@ import style from './Modal.module.css';
 interface ModalProps {
   active: boolean;
   close?: (val: boolean) => void;
+  className?:string
 }
-const Modal: FC<PropsWithChildren<ModalProps>> = ({ active, children, close }) => {
+const Modal: FC<PropsWithChildren<ModalProps>> = ({ active, children, close,className }) => {
   useEffect(() => {
     const target = document.body;
 
@@ -32,7 +33,7 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({ active, children, close }) =
         role="presentation"
         className={
           active
-            ? `${style.modal__content} ${style.modal__content_active}`
+            ? `${style.modal__content} ${style.modal__content_active} ${className}`
             : style.modal__content
         }
         onClick={e => {
