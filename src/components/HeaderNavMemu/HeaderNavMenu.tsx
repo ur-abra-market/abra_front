@@ -10,8 +10,8 @@ const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {
   const { className, ...restProps } = props;
 
   return (
-    <nav className={cn(className)} {...restProps}>
-      <ul className={style.header_nav_list}>
+    <nav {...restProps}>
+      <ul className={cn(style.header_nav_list, className)}>
         <li>
           <Link to="/news">Last News</Link>
         </li>

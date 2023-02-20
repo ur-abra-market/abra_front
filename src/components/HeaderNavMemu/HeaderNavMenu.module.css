@@ -3,12 +3,9 @@
   display: flex;   
   gap: 48px;
   align-items: center;
-
   padding-right: 16px;
   padding-left: 16px;
-
   list-style: none;
-
   transition: 0.4s;
 }
 
@@ -27,12 +24,11 @@
   }  
 }
 
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
     .header_nav_list {
       display: block;
       list-style-type: decimal;
-      column-count: 2;
-      list-style-type: decimal;  
+      column-count: 2;  
       padding: 0px;
     }
 
@@ -40,4 +36,4 @@
       padding-top: 12px;
       padding-right: 30px;
     }
-}
+} */

@@ -70,6 +70,7 @@
   color: var(--red);
 }
 
+
 @media only screen and (max-width: 600px) {
   .top {
     height: auto;
@@ -80,6 +81,17 @@
     gap: 6px;
     margin-top: 25px;
     margin-bottom: 25px;
+  }
+
+  .nav_menu {
+    display: block;
+    list-style-type: decimal;
+    column-count: 2;  
+    padding: 0px;
+  }
+  .nav_menu li {
+    padding-top: 12px;
+    padding-right: 30px;
   }
 
   .bottom {
