@@ -24,7 +24,7 @@ const Footer: FC<FooterProps> = (props): JSX.Element => {
           <div className={style.top}>
             <Logo href="/" size="sm" color="black" />
             <div className={style.inner}>
-              <HeaderNavMenu className={style.nav} />
+              <HeaderNavMenu className={cn(style.nav, style.nav_menu)} />
               <LocationAndCurrencySelection className={style.selects} />
             </div>
           </div>
@@ -38,7 +38,9 @@ const Footer: FC<FooterProps> = (props): JSX.Element => {
               <Link to="/terms&conditions">Terms & Conditions</Link>
               <Link to="/">Privacy Policy</Link>
             </div>
-            <div className={style.copyright}>© Copyright 2022</div>
+            <div className={style.copyright}>
+              <span>© Copyright 2022</span>
+            </div>
           </div>
         </Container>
       </div>
