@@ -3,9 +3,12 @@
   display: flex;   
   gap: 48px;
   align-items: center;
+
   padding-right: 16px;
   padding-left: 16px;
+
   list-style: none;
+
   transition: 0.4s;
 }
 

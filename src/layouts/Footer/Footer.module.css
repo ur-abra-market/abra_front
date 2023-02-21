@@ -7,19 +7,20 @@
 
 .top {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
+
   width: 100%;
   padding: 40px 0;
 }
 
 .inner{
   display: flex;
+  flex-wrap: wrap;
   gap: 74px;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
 }
 
 .nav{
@@ -85,9 +86,9 @@
 
   .nav_menu {
     display: block;
-    list-style-type: decimal;
     column-count: 2;  
     padding: 0px;
+    list-style-type: decimal;
   }
   .nav_menu li {
     padding-top: 12px;
@@ -100,15 +101,15 @@
 
   .flex_box {
     display: block;
-    text-align: center;
     font-size: 15px;
+    text-align: center;
   }
 
   .copyright {
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.4);
     position: static;
     margin-top: 6px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.4);
   }
 
   .links {
@@ -120,8 +121,8 @@
   }
 
   .selects {
+    margin-top: 25px;
     padding: 0;
     border: none;
-    margin-top: 25px;
   }
 }

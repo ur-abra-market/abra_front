@@ -12,7 +12,6 @@ import { Button, Input } from '../../ui-kit';
 import PasswordComplexity from '../PasswordComplexity';
 
 import style from './RegisterForm.module.css';
-import Modal from "../../Modal";
 
 const schema = yup
   .object({

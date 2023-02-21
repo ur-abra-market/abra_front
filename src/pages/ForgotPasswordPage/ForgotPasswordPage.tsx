@@ -15,7 +15,7 @@ const ForgotPasswordPage = () => {
   };
 
   return (
-    <div className={style.pageWrap}>
+    <div className={style.page_wrap}>
       {pageType === 'forgotPassword' ? (
         <>
           <ContentMessage
@@ -23,7 +23,7 @@ const ForgotPasswordPage = () => {
             text="Enter your email address to receive a link to reset your password"
             className={style.content}
           />
-          <div className={style.innerWrapper}>
+          <div className={style.inner_wrapper}>
             <ForgotPasswordForm togglePageType={togglePageType} />
           </div>
         </>

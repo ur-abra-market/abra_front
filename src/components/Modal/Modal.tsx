@@ -3,13 +3,14 @@ import React, { FC, PropsWithChildren, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import style from './Modal.module.css';
+import cn from "classnames";
 
 interface ModalProps {
   active: boolean;
   close?: (val: boolean) => void;
-  className?:string
+  classNameModal?:string
 }
-const Modal: FC<PropsWithChildren<ModalProps>> = ({ active, children, close,className }) => {
+const Modal: FC<PropsWithChildren<ModalProps>> = ({ active, children, close,classNameModal }) => {
   useEffect(() => {
     const target = document.body;
 
@@ -24,18 +25,18 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({ active, children, close,clas
   return createPortal(
     <div
       role="presentation"
-      className={active ? `${style.modal} ${style.modal_active}` : style.modal}
+      className={cn(style.modal,{[style.modal_active]:active})}
       onClick={() => {
         close?.(false);
       }}
     >
       <div
         role="presentation"
-        className={
-          active
-            ? `${style.modal__content} ${style.modal__content_active} ${className}`
-            : style.modal__content
-        }
+        className={cn(style.modal__content, {
+          [style.modal__content_active]:active,
+        },
+          classNameModal
+          )}
         onClick={e => {
           e.stopPropagation();
         }}

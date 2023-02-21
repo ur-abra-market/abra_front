@@ -2,10 +2,6 @@ import React, { FC } from 'react';
 
 import { useForm } from 'react-hook-form';
 
-
-import styleBtn from '../../buttons/Buttons.module.css';
-import TextField from '../../TextField';
-
 import style from './ForgotPasswordForm.module.css';
 import * as yup from "yup";
 import { FormDataValuesType } from "../../../pages/AuthPage/AuthType";
@@ -13,7 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Input } from "../../ui-kit";
 
 interface ForgotPasswordFormProps {
-  togglePageType: any;
+  togglePageType: ()=>void
 }
 const schema = yup
   .object({

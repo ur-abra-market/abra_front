@@ -12,7 +12,7 @@ import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { Button, Input } from "../../ui-kit";
 
 interface ResetPasswordFormProps {
-  handleChangeModalActive: any;
+  handleChangeModalActive: ()=>void;
 }
 const schema = yup
   .object({
