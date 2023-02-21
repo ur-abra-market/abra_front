@@ -11,6 +11,12 @@
   max-width: 404px;
 }
 
+@media screen and (max-width: 768px){
+  .buttons_status{
+    right: 0;
+  }
+}
+
 .form{
   display: flex;
   flex-direction: column;

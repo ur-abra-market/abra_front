@@ -14,22 +14,22 @@ const ResetPasswordPage = (): JSX.Element => {
   return (
     <>
       <div className={style.page}>
-        <div className={style.pageWrap}>
+        <div className={style.page_wrap}>
           <div className={style.header}>Create new password</div>
           <div className={style.subheader}>
             Enter a new password that matches the criteria
           </div>
-          <div className={style.innerWrapper}>
+          <div className={style.inner_wrapper}>
             <ResetPasswordForm handleChangeModalActive={handleChangeModalActive} />
           </div>
         </div>
       </div>
-        <Modal active={modalActive}>
-          <div className={style.modalContentWrapper}>
-            <div className={style.modalHeader}>
+        <Modal active={modalActive} classNameModal={style.modal_container}>
+          <div className={style.modal_content_wrapper}>
+            <div className={style.modal_header}>
               Your new password has been successfully saved
             </div>
-            <div className={style.modalSubHeader}>
+            <div className={style.modal_sub_header}>
               Now you can log in with your new password
             </div>
             <Button
