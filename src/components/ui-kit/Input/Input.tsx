@@ -25,7 +25,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={cn(styles.wrapper, classNameWrapper)}>
         <input
-          className={cn(styles.input, className)}
+          className={cn(
+            styles.input,
+            {
+              [styles.input_error]: error,
+            },
+            className,
+          )}
           ref={ref}
           type={showPassword ? 'text' : type}
           {...restProps}

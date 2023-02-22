@@ -12,10 +12,12 @@ import { Button, Input } from '../../ui-kit';
 
 import style from './LoginForm.module.css';
 
+const MAX_COUNT = 32;
+
 const schema = yup
   .object({
     email: yup.string().email('Invalid email').required('Email is required'),
-    password: yup.string().min(8).max(32).required(),
+    password: yup.string().min(8).max(MAX_COUNT).required(),
   })
   .required();
 const LoginForm = (): JSX.Element => {
@@ -23,6 +25,7 @@ const LoginForm = (): JSX.Element => {
   const {
     register,
     formState: { isValid, errors },
+    setError,
     handleSubmit,
   } = useForm<FormDataValuesType>({
     resolver: yupResolver(schema),
@@ -32,10 +35,15 @@ const LoginForm = (): JSX.Element => {
 
   const { errMessage, loading, resMessage } = useAppSelector(state => state.login);
 
-  console.log(errMessage, loading);
+  console.log(loading);
 
   useEffect(() => {
+    // TODO - удаляем проверку по resMessage = добавляем вместо loading -> status (idle, success, failed, loading)
     if (resMessage === 'LOGIN_SUCCESSFUL') navigate('/');
+    if (errMessage) {
+      setError('password', { message: errMessage });
+      setError('email', { message: errMessage });
+    }
   }, [resMessage]);
 
   const onSubmit = (data: FormDataValuesType): void => {
@@ -57,7 +65,7 @@ const LoginForm = (): JSX.Element => {
         className={style.button}
         label="Continue"
         type="submit"
-        disabled={!isValid}
+        disabled={!isValid || loading}
       />
     </form>
   );

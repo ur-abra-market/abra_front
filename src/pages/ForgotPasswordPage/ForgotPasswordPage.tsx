@@ -5,10 +5,10 @@ import style from './ForgotPasswordPage.module.css';
 import ContentMessage from 'components/ContentMessage';
 import ForgotPasswordForm from 'components/ui/ForgotPasswordForm';
 
-const ForgotPasswordPage = () => {
+const ForgotPasswordPage = (): JSX.Element => {
   const [pageType, setPageType] = useState('forgotPassword');
 
-  const togglePageType = () => {
+  const togglePageType = (): void => {
     setPageType(prevState =>
       prevState === 'forgotPassword' ? 'recoveryEmailIsSent' : 'forgotPassword',
     );

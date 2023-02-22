@@ -1,7 +1,4 @@
-import cookieService from './cookie.service';
 import httpService from './http.service';
-
-const access = cookieService.getAccesToken();
 
 const supplierFetch = {
   getProductProperties: async (categoryId: any) => {
@@ -28,10 +25,7 @@ const supplierFetch = {
     return data;
   },
   addProduct: async (product: any) => {
-    const { data } = await httpService.post(`suppliers/add_product/`, product, {
-      // @ts-ignore
-      headers: { 'X-CSRF-TOKEN': access },
-    });
+    const { data } = await httpService.post(`suppliers/add_product/`, product);
 
     return data;
   },
@@ -41,11 +35,6 @@ const supplierFetch = {
     formData.append('file', img);
 
     const { data } = await httpService.post(`suppliers/upload_image/`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        // @ts-ignore
-        'X-CSRF-TOKEN': access,
-      },
       params: {
         product_id: prodId,
         serial_number: index,

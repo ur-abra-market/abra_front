@@ -1,42 +1,23 @@
-import cookieService from './cookie.service';
 import httpService from './http.service';
-
-const access = cookieService.getAccesToken();
 
 const supplierAccountData = {
   getAccountData: async () => {
-    const { data } = await httpService.get(`suppliers/get_supplier_info/`, {
-      // @ts-ignore
-      headers: { 'X-CSRF-TOKEN': access },
-    });
+    const { data } = await httpService.get(`suppliers/get_supplier_info/`);
 
     return data.result;
   },
   postAccountData: async (personalData: RequestAccountInfo) => {
-    const { data } = await httpService.post(
-      `suppliers/send_account_info/`,
-      personalData,
-      {
-        // @ts-ignore
-        headers: { 'X-CSRF-TOKEN': access },
-      },
-    );
+    const { data } = await httpService.post(`suppliers/send_account_info/`, personalData);
 
     return data;
   },
   getNotifications: async () => {
-    const { data } = await httpService.get(`users/get_notifications/`, {
-      // @ts-ignore
-      headers: { 'X-CSRF-TOKEN': access },
-    });
+    const { data } = await httpService.get(`users/get_notifications/`);
 
     return data;
   },
   postNotifications: async (notifications: INotification) => {
-    const { data } = await httpService.post(`users/update_notification/`, notifications, {
-      // @ts-ignore
-      headers: { 'X-CSRF-TOKEN': access },
-    });
+    const { data } = await httpService.post(`users/update_notification/`, notifications);
 
     return data.result;
   },

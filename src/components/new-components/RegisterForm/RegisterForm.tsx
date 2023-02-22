@@ -16,9 +16,11 @@ import style from './RegisterForm.module.css';
 const schema = yup
   .object({
     email: yup.string().email('Invalid email').required('Email is required'),
-    password: yup.string().matches(
-      /^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/
-    )
+    password: yup
+      .string()
+      .matches(
+        /^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      ),
   })
   .required();
 const RegisterForm = (): JSX.Element => {
@@ -78,7 +80,7 @@ const RegisterForm = (): JSX.Element => {
             type="password"
             variant="password"
           />
-          <PasswordComplexity valueOfNewPassword={watchPasword}  />
+          <PasswordComplexity valueOfNewPassword={watchPasword} />
         </div>
 
         <Button

@@ -1,24 +1,26 @@
 import React, { FC } from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
+import { FormDataValuesType } from '../../../pages/AuthPage/AuthType';
 import Form from '../../Form';
 import PasswordComplexity from '../../new-components/PasswordComplexity';
+import { Button, Input } from '../../ui-kit';
 
 import style from './ResetPasswordForm.module.css';
-import * as yup from "yup";
-import { FormDataValuesType } from "../../../pages/AuthPage/AuthType";
-import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
-import { Button, Input } from "../../ui-kit";
 
 interface ResetPasswordFormProps {
-  handleChangeModalActive: ()=>void;
+  handleChangeModalActive: () => void;
 }
 const schema = yup
   .object({
-    password: yup.string().matches(
-      /^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/
-    )
+    password: yup
+      .string()
+      .matches(
+        /^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      ),
   })
   .required();
 const ResetPasswordForm: FC<ResetPasswordFormProps> = ({ handleChangeModalActive }) => {
@@ -27,7 +29,7 @@ const ResetPasswordForm: FC<ResetPasswordFormProps> = ({ handleChangeModalActive
     watch,
     formState: { isValid },
     handleSubmit,
-  } =  useForm<FormDataValuesType>({
+  } = useForm<FormDataValuesType>({
     resolver: yupResolver(schema),
     mode: 'all',
   });

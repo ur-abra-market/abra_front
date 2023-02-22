@@ -1,14 +1,15 @@
 import React, { FC } from 'react';
 
+import cn from 'classnames';
+
 import style from './ContentMessage.module.css';
-import cn from "classnames";
 
 interface ContentMessageProps {
   title: string;
   text: string;
-  className?:string
+  className?: string;
 }
-const ContentMessage: FC<ContentMessageProps> = ({ title, text,className }) => {
+const ContentMessage: FC<ContentMessageProps> = ({ title, text, className }) => {
   return (
     <>
       <div className={cn(style.header, className)}>{title}</div>

@@ -8,6 +8,7 @@ const authService = {
 
     return data;
   },
+
   login: async ({ email, password }: any) => {
     const { data } = await httpService.post(`login/`, {
       email,
@@ -16,12 +17,15 @@ const authService = {
 
     return data;
   },
-  refresh: async (refresh: any) => {
-    const { data } = await httpService.post(
-      'login/refresh',
-      {},
-      { headers: { 'X-CSRF-TOKEN': refresh } },
-    );
+
+  checkAuth: async () => {
+    const { data } = await httpService.get(`users/get_role`);
+
+    return data;
+  },
+
+  logout: async () => {
+    const { data } = await httpService.delete(`logout`);
 
     return data;
   },

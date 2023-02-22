@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Outlet } from 'react-router-dom';
 
-import Loader from '../components/Loader';
-import { useAppSelector } from '../store/hooks';
+import { useAppDispatch } from '../store/hooks';
+import { checkAuth } from '../store/reducers/loginSlice';
 
 const App = (): JSX.Element => {
-  const isLoading = useAppSelector(state => state.mainPageProducts.isLoading);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
 
   return (
     <div className="App">
-      {isLoading && <Loader />}
       <Outlet />
     </div>
   );

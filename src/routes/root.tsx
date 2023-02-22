@@ -28,35 +28,37 @@ const routes = createBrowserRouter([
         <ErrorPage />
       </main>
     ),
-    children: [...child],
-  },
-  {
-    path: 'auth',
-    element: <AuthPage />,
-  },
-  {
-    path: 'forgotPassword',
-    element: <ForgotPasswordPage />,
-  },
-  {
-    path: 'resetPassword',
-    element: <ResetPasswordPage />,
-  },
-  {
-    path: 'changePassword',
-    element: <ChangePasswordPage />,
-  },
-  {
-    path: 'changeEmail',
-    element: <ChangeEmailPage />,
-  },
-  {
-    path: 'register/email-confirmation',
-    element: <ConfirmEmailPage />,
-  },
-  {
-    path: 'terms&conditions',
-    element: <TermsAndConditions />,
+    children: [
+      ...child,
+      {
+        path: 'auth',
+        element: <AuthPage />,
+      },
+      {
+        path: 'forgotPassword',
+        element: <ForgotPasswordPage />,
+      },
+      {
+        path: 'resetPassword',
+        element: <ResetPasswordPage />,
+      },
+      {
+        path: 'changePassword',
+        element: <ChangePasswordPage />,
+      },
+      {
+        path: 'changeEmail',
+        element: <ChangeEmailPage />,
+      },
+      {
+        path: 'register/email-confirmation',
+        element: <ConfirmEmailPage />,
+      },
+      {
+        path: 'terms&conditions',
+        element: <TermsAndConditions />,
+      },
+    ],
   },
 ]);
 

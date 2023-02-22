@@ -7,7 +7,7 @@ import style from 'pages/ConfirmEmailPage/ConfirmEmailPage.module.css';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { registerService } from 'store/reducers/registerSlice';
 
-const ConfirmEmailPage = () => {
+const ConfirmEmailPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const resServer = useAppSelector(state => state.register.resMessage);
 

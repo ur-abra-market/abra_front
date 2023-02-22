@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import { Container } from '../../components';
 import LoginForm from '../../components/new-components/LoginForm';
 import RegisterForm from '../../components/new-components/RegisterForm';
 import { Button } from '../../components/ui-kit';
+import { useAppSelector } from '../../store/hooks';
 
 import style from './AuthPage.module.css';
 
 const AuthPage = (): JSX.Element => {
   const [pageType, setPageType] = useState<'login' | 'register'>('login');
+  const { isAuth } = useAppSelector(state => state.login);
 
   const selectPage = (pageType: 'login' | 'register'): void => {
     setPageType(pageType);
   };
+
+  if (isAuth) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className={style.wrapper}>

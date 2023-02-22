@@ -1,15 +1,16 @@
 import React, { FC } from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+
+import { FormDataValuesType } from '../../../pages/AuthPage/AuthType';
+import { Button, Input } from '../../ui-kit';
 
 import style from './ForgotPasswordForm.module.css';
-import * as yup from "yup";
-import { FormDataValuesType } from "../../../pages/AuthPage/AuthType";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Input } from "../../ui-kit";
 
 interface ForgotPasswordFormProps {
-  togglePageType: ()=>void
+  togglePageType: () => void;
 }
 const schema = yup
   .object({
@@ -28,22 +29,16 @@ const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => 
 
   const onSubmit = (data: any): void => {
     console.log(data);
-    // eslint-disable-next-line no-useless-return
-    if (!isValid) return;
   };
 
   return (
-    <form
-      action="/src/pages"
-      target="_self"
-      onSubmit={handleSubmit(onSubmit)}
-      className={style.forgotPasswordForm}
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
       <Input
         {...register('email')}
         placeholder="Email"
         error={errors.email?.message}
-        classNameWrapper={style.input_wrapper} />
+        classNameWrapper={style.input}
+      />
       <Button
         label="Reset password"
         className={style.button}

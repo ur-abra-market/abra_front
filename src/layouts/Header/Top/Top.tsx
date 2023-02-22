@@ -9,7 +9,8 @@ import { ReactComponent as Auth } from '../../../assets/img/icons/human.svg';
 import { ReactComponent as Note } from '../../../assets/img/icons/note.svg';
 import Modal from '../../../components/Modal';
 import { IconButton, Search } from '../../../components/ui-kit';
-import { useAppSelector } from '../../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { logout } from '../../../store/reducers/loginSlice';
 import { Logo } from '../../Logo/Logo';
 
 import style from './Top.module.css';
@@ -50,6 +51,7 @@ const PROFILE_MENU = {
 
 const Top = (): JSX.Element => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const isAuth = useAppSelector(state => state.login.isAuth);
   const [menu, setMenu] = useState<string>();
@@ -75,6 +77,10 @@ const Top = (): JSX.Element => {
     }
   };
 
+  const handleClickLogout = (): void => {
+    dispatch(logout());
+  };
+
   const closeModal = (): void => setIsShowModal(false);
 
   const buildProfileMenu = (): JSX.Element[] => {
@@ -83,7 +89,13 @@ const Top = (): JSX.Element => {
     return buildMenu.map(({ href, label }) => {
       return (
         <li key={label} className={style.item}>
-          {href ? <Link to={href}>{label}</Link> : <button type="button">{label}</button>}
+          {href ? (
+            <Link to={href}>{label}</Link>
+          ) : (
+            <button type="button" onClick={handleClickLogout}>
+              {label}
+            </button>
+          )}
         </li>
       );
     });

@@ -52,7 +52,7 @@ const MainPage = (): JSX.Element => {
   const filter = useAppSelector(state => state.product.statusProduct);
   const { products } = useAppSelector(state => state.mainPageProducts);
 
-  const [test] = useState(Array(10).fill(1));
+  // const [test] = useState(Array(10).fill(1));
   const [page] = useState({ page_num: 1, page_size: 10 });
 
   useEffect(() => {
@@ -67,16 +67,16 @@ const MainPage = (): JSX.Element => {
       <Container>
         <StatusProduct />
         <div className={style.main_sliders}>
-          {Object.values(CATEGORIES).map(({ label, category_id }) => (
-            <ProductsPreview key={category_id} title={label}>
-              {test.map(el => (
-                <div
-                  key={el + Math.random()}
-                  style={{ height: 320, width: 220, background: 'red' }}
-                />
-              ))}
-            </ProductsPreview>
-          ))}
+          {/* {Object.values(CATEGORIES).map(({ label, category_id }) => ( */}
+          {/*  <ProductsPreview key={category_id} title={label}> */}
+          {/*    {test.map(el => ( */}
+          {/*      <div */}
+          {/*        key={el + Math.random()} */}
+          {/*        style={{ height: 320, width: 220, background: 'red' }} */}
+          {/*      /> */}
+          {/*    ))} */}
+          {/*  </ProductsPreview> */}
+          {/* ))} */}
           {products &&
             Object.keys(products).map(key => {
               return (
