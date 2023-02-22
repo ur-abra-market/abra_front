@@ -16,6 +16,7 @@
 .left{
   padding-right: 16px;
   border-right: 1px solid var(--black);
+  cursor: pointer;
 }
 
 .center{
