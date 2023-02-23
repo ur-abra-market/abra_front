@@ -35,3 +35,7 @@
   padding-left: 16px;
   border-left: 1px solid var(--black);
 }
+
+.container_position {
+  position: relative;
+}

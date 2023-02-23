@@ -41,7 +41,7 @@ const Header: FC<HeaderProps> = (props): JSX.Element => {
 
   return (
     <header className={cn(className)} {...restProps}>
-      <Container>
+      <Container className={style.container_position}>
         <Top />
         <div className={style.wrapper}>
           <button
