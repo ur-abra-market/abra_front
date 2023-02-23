@@ -11,3 +11,19 @@
 .button{
   margin-top: 10px;
 }
+.link_forgot{
+  font-size: 13px;
+  font-weight: var(--regular);
+  line-height: 18px;
+  color: var(--black);
+
+  transition: all 0.3s;
+}
+
+.link_forgot:hover{
+  color: var(--red);
+}
+
+.link_forgot > a {
+  color: inherit;
+}
