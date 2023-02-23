@@ -43,11 +43,7 @@ const AuthPage = (): JSX.Element => {
           />
         </div>
         {pageType === 'register' ? <RegisterForm /> : <LoginForm />}
-        <div className={style.link_forgot}>
-          <Link to="/forgotPassword">Forgot password?</Link>
-        </div>
       </main>
-
       <footer className={style.footer}>
         <Container className={style.links}>
           © Copyright 2022.
