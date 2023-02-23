@@ -1,12 +1,9 @@
 import httpService from './http.service';
+import { RegisterParamsType } from "./auth.serviceType";
 
 const authService = {
-  register: async ({ route, ...rest }: any) => {
-    const { data } = await httpService.post(`register/${route}/`, {
-      ...rest,
-    });
-
-    return data;
+  register:  ({email, password, route, token}:RegisterParamsType) => {
+    return  httpService.post(`register/${route}`, {email, password, token});
   },
 
   login: async ({ email, password }: any) => {
