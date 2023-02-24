@@ -20,6 +20,9 @@ export type LoginResponseType={
 export type CheckAuthResponseType={
   is_supplier: boolean
 }
+export type ForGotPasswordResponseType={
+  result: string
+}
 export type AsyncThunkConfig = {
   state?: unknown
   dispatch?: Dispatch
