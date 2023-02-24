@@ -9,6 +9,17 @@ export type RegisterParamsType={
 export type RegisterResponseType={
   result: string
 }
+export type LoginParamsType={
+  email: string
+  password: string
+}
+export type LoginResponseType={
+  result: string
+  is_supplier: boolean
+}
+export type CheckAuthResponseType={
+  is_supplier: boolean
+}
 export type AsyncThunkConfig = {
   state?: unknown
   dispatch?: Dispatch
