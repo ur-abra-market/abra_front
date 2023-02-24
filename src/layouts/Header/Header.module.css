@@ -16,6 +16,15 @@
 .left{
   padding-right: 16px;
   border-right: 1px solid var(--black);
+
+  cursor: pointer;
+  background: transparent;
+
+  font-family: var(--roboto);
+  font-size: 15px;
+  font-weight: var(--medium);
+  font-style: normal;
+  line-height: 15px;
 }
 
 .center{
@@ -25,4 +34,8 @@
 .right{
   padding-left: 16px;
   border-left: 1px solid var(--black);
+}
+
+.container_position {
+  position: relative;
 }
