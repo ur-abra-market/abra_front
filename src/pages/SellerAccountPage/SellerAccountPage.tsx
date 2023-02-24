@@ -1,5 +1,6 @@
 import React from 'react';
 
+import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { Container } from '../../components';
@@ -17,18 +18,13 @@ import {
   profileInfo__textFieldClasses,
   accountDetails__textFieldClasses,
   checkboxClasses,
+  addImageBtnClasses,
 } from 'pages/SellerAccountPage/classesStyles';
-import Orders from 'pages/SellerAccountPage/orders';
+import Orders from 'pages/SellerAccountPage/Orders';
 
 const SellerAccountPage = (): JSX.Element => {
-  const addImageBtnClasses = {
-    wrepperButtonLink: `${style.wrepper_button_link}`,
-    btnImg: `${style.btn_img}`,
-    btnName: `${style.btn_name}`,
-  };
-
   return (
-    <>
+    <div className={style.seller_page}>
       <Header />
       <Container>
         <div className={style.seller_cabinet}>
@@ -65,26 +61,26 @@ const SellerAccountPage = (): JSX.Element => {
                   </div>
                 </div>
               </div>
-              <div className={`${style.section} ${style.accountDetails}`}>
-                <div className={style.header__wrapper}>
+              <div className={style.section}>
+                <div className={style.header_wrapper}>
                   <div className={style.header}>Account Details</div>
                 </div>
-                <div className={style.accountDetails__wrapper}>
-                  <div className={style.flexContainer}>
+                <div className={style.account_details_wrapper}>
+                  <div className={style.flex_container}>
                     <TextField
                       label="Email"
                       name="email"
                       classes={accountDetails__textFieldClasses}
                     />
                   </div>
-                  <div className={style.flexContainer}>
+                  <div className={style.flex_container}>
                     <TextField
                       label="Phone number"
                       name="phoneNumber"
                       classes={accountDetails__textFieldClasses}
                     />
                   </div>
-                  <div className={style.flexContainer}>
+                  <div className={style.flex_container}>
                     <TextField
                       label="Password"
                       name="password"
@@ -94,21 +90,21 @@ const SellerAccountPage = (): JSX.Element => {
                   </div>
                 </div>
               </div>
-              <div className={style.removeWrapper}>
-                <Link className={style.removeAccauntLink} to="/">
+              <div className={cn(style.remove_wrapper, style.section)}>
+                <Link className={style.remove_account_link} to="/">
                   Remove the account?
                 </Link>
-                <div className={style.linkDescription}>
+                <div className={style.link_description}>
                   (All your data including order history will be deleted)
                 </div>
-                <InfoBtn />
               </div>
             </div>
 
             <div className={style.center_column}>
-              <div className={`${style.section} ${style.orders}`}>
+              <div className={style.section}>
                 <Orders />
               </div>
+
               <div className={`${style.section} ${style.myAddresses}`}>
                 <div className={style.header__wrapper}>
                   <div className={style.header}>My Addresses</div>
@@ -155,12 +151,13 @@ const SellerAccountPage = (): JSX.Element => {
                   </div>
                 </div>
               </div>
+              <InfoBtn />
             </div>
           </div>
         </div>
-        <Footer />
       </Container>
-    </>
+      <Footer />
+    </div>
   );
 };
 

@@ -1,15 +1,15 @@
 import style from 'pages/SellerAccountPage/SellerAccountPage.module.css';
 
-export const profileInfoBtnClasses = {
-  wrepperBtnImg: `${style.wrepperBtnImgProfile}`,
-  btnImg: `${style.btnImgProfile}`,
-  btnName: `${style.btnNameProfile}`,
+export const addImageBtnClasses = {
+  wrepperButtonLink: `${style.profile_info_wrepper}`,
+  btnImg: `${style.profile_info_btn_img}`,
+  btnName: `${style.profile_info_btn_name}`,
 };
 
 export const ordersCategoryBtnClasses = {
-  wrepperBtnImg: `${style.wrepperBtnImg}`,
-  btnImg: `${style.btnImg}`,
-  btnName: `${style.btnName}`,
+  wrepperButtonLink: `${style.order_wrepper}`,
+  btnImg: `${style.orders_btn_img}`,
+  btnName: `${style.order_btn_name}`,
 };
 
 export const profileInfo__textFieldClasses = {

@@ -17,7 +17,7 @@ import { getCompanyInfoService } from '../../store/reducers/supplierSlice';
 
 import style from './SupplierPage.module.css';
 
-const SupplierPage = () => {
+const SupplierPage = (): JSX.Element => {
   const [isGetCompanyInfo, setIsGetCompanyInfo] = useState(false);
 
   const dispatch = useAppDispatch();

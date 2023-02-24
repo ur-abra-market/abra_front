@@ -1,266 +1,326 @@
+.seller_page {
+    min-height: 100vh;
+
+}
+
 .seller_cabinet {
-  padding: 24px 30px 48px;
-  background: #F5F5F5;
+    padding: 24px 30px 48px;
+    background: #F5F5F5;
 }
 
 .content_wrapper {
-  display: grid;
+    display: grid;
 
-  /* grid-template-columns: 470px 600px 273px; */
+    /* grid-template-columns: 470px 600px 273px; */
 
-  /* grid-template-rows: 26.59vh 34.56vh; */
-  grid-gap: 12px;
-  grid-template-areas: 'left_column center_column right_column';
-  grid-template-columns: 34.2% 43.7% 19.9%;
-  grid-template-rows: minmax(min-content, 26.59vh) minmax(min-content, 34.56vh);
+    /* grid-template-rows: 26.59vh 34.56vh; */
+    grid-gap: 12px;
+    grid-template-areas: 'left_column center_column right_column';
+    grid-template-columns: 34.2% 43.7% 19.9%;
+    /*!*grid-template-rows: minmax(min-content, 26.59vh) minmax(min-content, 34.56vh);**/
 }
 
-.content_wrapper > div{
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.content_wrapper > div {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .left_column {
-  grid-area: left_column;
+    grid-area: left_column;
 
 }
+
 .center_column {
-  grid-area: center_column;
+    grid-area: center_column;
 }
+
 .right_column {
-  grid-area: right_column;
+    grid-area: right_column;
 }
 
 .section {
-  padding: 24px 32px;
-  background: #FFF;
-  border-radius: 8px;
+    padding: 32px;
+    background: #FFF;
+    border-radius: 8px;
 }
 
 .avatar__wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .header_wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .header {
-  font-size: 20px;
-  font-weight: 700;
-  font-style: normal;
-  line-height: 25px;
-  color: #000;
-  text-align: left;
-  letter-spacing: 0.38px;
+    font-size: 20px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 25px;
+    color: #000;
+    text-align: left;
+    letter-spacing: 0.38px;
 }
 
 .logout_button {
-  display: flex;
-  gap: 8px;
-  align-items: center;
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
 .logout_button_text {
-  color: var(--red)
+    color: var(--red)
 }
 
-.wrepper_button_link {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  justify-content: center;
+.profile_info_wrepper {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
 
 }
 
-.btn_name {
-  font-size: 15px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 20px;
+.profile_info_btn_name {
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 20px;
 
-  color: var(--red);
-  text-decoration-line: underline;
-  letter-spacing: -0.24px;
-  cursor: pointer;
+    color: var(--red);
+    text-decoration-line: underline;
+    letter-spacing: -0.24px;
+    cursor: pointer;
 }
 
-.btn_img {
-  display: block;
-  width: 100%;
-  cursor: pointer;
+.profile_info_btn_img {
+    display: block;
+    width: 100%;
+    cursor: pointer;
 }
 
 .profile_info_inputs_wrapper {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
 
-  margin-top: 24px;
+    margin-top: 24px;
 }
 
-.header__link {
-  font-size: 15px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 20px;
-  color: #000;
-  text-decoration-line: underline;
-  letter-spacing: 0.16px;
+.header_link {
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 20px;
+    color: var(--red);
+    text-decoration-line: underline;
+    letter-spacing: 0.16px;
 }
 
 .button_link_container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 
-  margin-top: 24px;
+    margin-top: 24px;
 }
 
 .flex_container {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
 
-  width: 100%;
+    width: 100%;
 }
 
+.account_details_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+
+    max-width: 406px;
+    margin-top: 32px;
+}
+
+.remove_wrapper {
+    display: flex;
+    flex-flow: column;
+}
+
+.remove_account_link,
+.link_description {
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 32px;
+    color: var(--red);
+    text-align: left;
+    letter-spacing: 0.16px;
+}
+
+.link_description {
+    color: var(--black);
+}
+
+.orders_category_wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-top: 24px;
+
+     /*gap: 32px; */
+    /*margin-bottom: 30px;*/
+}
+
+.order_wrepper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.order_btn_img {
+    display: block;
+    width: 48px;
+    cursor: pointer;
+}
+
+.order_btn_name {
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 20px;
+
+    color: var(--black);
+    /*text-decoration-line: underline;*/
+    letter-spacing: -0.24px;
+    cursor: pointer;
+}
 
 .wrepperButtonLinkProfile:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .wrepperBtnImgProfile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  width: 80px;
-  height: 80px;
+    width: 80px;
+    height: 80px;
 
+    background: #E0E0E0;
+    border-radius: 50%;
+
+    /* width: 80px;
+  height: 80px; */
+
+    /* width: calc(80px + 1vw);
+  height: calc(80px + 1vw); */
+
+    /* width: calc(24px + 4vw);
+  height: calc(24px + 4vw);
   background: #E0E0E0;
-  border-radius: 50%;
-
-  /* width: 80px;
-height: 80px; */
-
-  /* width: calc(80px + 1vw); 
-height: calc(80px + 1vw); */
-
-  /* width: calc(24px + 4vw);
-height: calc(24px + 4vw);
-background: #E0E0E0;
-border-radius: 100%; */
+  border-radius: 100%; */
 }
 
 .btnImgProfile,
 .btnImg {
-  display: block;
-  width: 37.5%;
+    display: block;
+    width: 37.5%;
 }
 
 .btnNameProfile {
-  font-size: 15px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 20px;
-  color: #828282;
-  text-decoration-line: underline;
-  letter-spacing: 0.16px;
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 20px;
+    color: #828282;
+    text-decoration-line: underline;
+    letter-spacing: 0.16px;
 }
 
 
-
-
-
 .textFieldLabel {
-  font-size: 13px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 18px;
-  color: #4F4F4F;
-  letter-spacing: -0.08px;
+    font-size: 13px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 18px;
+    color: #4F4F4F;
+    letter-spacing: -0.08px;
 }
 
 .profileInfo__textFieldInput,
 .accountDetails__textFieldInput {
-  height: 42px;
-  padding-left: 12px;
+    height: 42px;
+    padding-left: 12px;
 
-  font-size: 15px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 20px;
-  color: #828282;
-  letter-spacing: -0.24px;
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 20px;
+    color: #828282;
+    letter-spacing: -0.24px;
 
-  background: #F2F2F2;
-  border-radius: 4px;
+    background: #F2F2F2;
+    border-radius: 4px;
 }
 
 .profileInfo__textFieldInput {
-  width: 100%;
+    width: 100%;
 }
 
 .inputWrapper {
-  display: flex;
-  gap: 0;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    gap: 0;
+    align-items: center;
+    justify-content: space-between;
 
-  background: #F2F2F2;
+    background: #F2F2F2;
 
-  /* margin-bottom: 12px; */
-  border: none;
+    /* margin-bottom: 12px; */
+    border: none;
 }
 
 .accountDetails__textFieldInput {
-  width: 100%;
+    width: 100%;
 }
 
 .inputWrapper__inputTextField {
-  width: 100%;
+    width: 100%;
 }
 
 .inputWrapper__inputTextFieldPassword {
-  display: flex;
-  width: 100%;
+    display: flex;
+    width: 100%;
 }
 
 .accountDetails__inputTextFieldPassword {
-  width: 100%;
-  height: 42px;
-  padding-left: 12px;
-  background: #F2F2F2;
-}
-
-.ordersCategory__wrapper {
-  position: relative;
-  top: 0;
-  left: 0;
-
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-
-  margin-top: 44px;
-
-  /* gap: 32px; */
-  margin-bottom: 30px;
+    width: 100%;
+    height: 42px;
+    padding-left: 12px;
+    background: #F2F2F2;
 }
 
 
-.wrepperButtonLink:hover {
-  cursor: pointer;
-}
+
+
+/*.wrepperButtonLink:hover {*/
+/*    cursor: pointer;*/
+/*}*/
 
 /*.wrepperBtnImg {*/
 /*  display: flex;*/
@@ -276,142 +336,113 @@ border-radius: 100%; */
 /*}*/
 
 
-
 .notificationsList {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 16px;
 }
 
 .notificationsList__item {
-  padding-top: 12px;
+    padding-top: 12px;
 }
 
 .notificationsList__item::after {
-  content: '';
+    content: '';
 
-  display: block;
+    display: block;
 
-  height: 1px;
-  margin-top: 12px;
+    height: 1px;
+    margin-top: 12px;
 
-  background: #F2F2F2;
+    background: #F2F2F2;
 }
 
 .notificationsList__item:last-child::after {
-  display: none;
+    display: none;
 }
 
 .labelCheckbox {
-  cursor: pointer;
+    cursor: pointer;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  font-size: 15px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 20px;
-  color: #000;
-  letter-spacing: -0.24px;
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 20px;
+    color: #000;
+    letter-spacing: -0.24px;
 }
 
 .inputCheckbox {
-  cursor: pointer;
+    cursor: pointer;
 
-  position: relative;
+    position: relative;
 
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: left;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: left;
 
-  width: 52px;
-  height: 32px;
-  padding: 1px;
+    width: 52px;
+    height: 32px;
+    padding: 1px;
 
-  appearance: none;
-  background: #F2F2F2;
-  border: none;
-  border-radius: 36.5px;
+    appearance: none;
+    background: #F2F2F2;
+    border: none;
+    border-radius: 36.5px;
 
-  transition: 0.5s;
+    transition: 0.5s;
 }
 
 .inputCheckbox::before,
 .inputCheckbox::after {
-  content: '';
-  position: absolute;
-  display: inline-block;
+    content: '';
+    position: absolute;
+    display: inline-block;
 }
 
 .inputCheckbox::before {
-  transform: matrix(-1, 0, 0, 1, 0, 0);
+    transform: matrix(-1, 0, 0, 1, 0, 0);
 
-  width: 28px;
-  height: 28px;
+    width: 28px;
+    height: 28px;
 
-  background: #FFF;
-  border: 0.5px solid rgb(0 0 0 / 4%);
-  border-radius: 100px;
-  box-shadow: 0 3px 8px rgb(0 0 0 / 15%), 0 1px 1px rgb(0 0 0 / 16%),
+    background: #FFF;
+    border: 0.5px solid rgb(0 0 0 / 4%);
+    border-radius: 100px;
+    box-shadow: 0 3px 8px rgb(0 0 0 / 15%), 0 1px 1px rgb(0 0 0 / 16%),
     0 3px 1px rgb(0 0 0 / 10%);
 }
 
 .inputCheckbox::after {
-  border: 0.5px solid rgb(0 0 0 / 4%);
-  box-shadow: 0 3px 8px rgb(0 0 0 / 15%), 0 1px 1px rgb(0 0 0 / 16%),
+    border: 0.5px solid rgb(0 0 0 / 4%);
+    box-shadow: 0 3px 8px rgb(0 0 0 / 15%), 0 1px 1px rgb(0 0 0 / 16%),
     0 3px 1px rgb(0 0 0 / 10%);
 }
 
 .inputCheckbox:checked {
-  justify-content: right;
-  background: #000;
+    justify-content: right;
+    background: #000;
 }
 
-.accountDetails__wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: center;
-
-  max-width: 406px;
-  margin-top: 32px;
-}
 
 .myAddresses__wrapper {
-  margin-top: 58px;
+    margin-top: 58px;
 }
 
 .noAddress {
-  font-size: 15px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 20px;
-  color: #828282;
-  letter-spacing: 0.16px;
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 20px;
+    color: #828282;
+    letter-spacing: 0.16px;
 }
 
-.removeWrapper {
-  display: flex;
-  flex-flow: column;
-  margin-top: 38px;
-}
 
-.removeAccauntLink,
-.linkDescription {
-  font-size: 15px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 32px;
-  color: #000;
-  text-align: left;
-  text-decoration-line: underline;
-  letter-spacing: 0.16px;
-}
 
-.linkDescription {
-  color: #828282;
-}
