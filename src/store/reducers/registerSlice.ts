@@ -2,22 +2,22 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import authService from '../../services/auth.service';
-import { generateResponseError } from '../../utils/generateResponseError';
+import { AsyncThunkConfig, RegisterParamsType, RegisterResponseType } from "../../services/auth.serviceType";
 
 const initialState = {
-  resMessage: '',
-  errMessage: '',
-  loading: false,
+  resMessage: '' as string,
+  errMessage: '' as string,
+  loading: false as boolean,
 };
 
-export const registerService = createAsyncThunk<any, any>(
+export const registerService = createAsyncThunk<{data:RegisterResponseType },RegisterParamsType,  AsyncThunkConfig >(
   'register/registerService',
   async (dataUser, { rejectWithValue }) => {
     try {
-      const response = await authService.register(dataUser);
+      const response = await authService.register(dataUser );
 
-      return response.result;
-    } catch (error: unknown) {
+      return response.data;
+    } catch (error) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
       }
@@ -36,7 +36,7 @@ const registerSlice = createSlice({
       state.loading = true;
     });
     bulder.addCase(registerService.fulfilled, (state, action) => {
-      state.resMessage = action.payload; // response
+      state.resMessage = action.payload.data.result; // response
       state.loading = false;
     });
     bulder.addCase(registerService.rejected, (state, action) => {
