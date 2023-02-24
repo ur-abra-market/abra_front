@@ -13,21 +13,21 @@ export const ordersCategoryBtnClasses = {
 };
 
 export const profileInfo__textFieldClasses = {
-  label: `${style.textFieldLabel}`,
-  inputWrapper: `${style.inputWrapper}`,
-  input: `${style.profileInfo__textFieldInput}`,
+  label: `${style.text_field_label}`,
+  inputWrapper: `${style.input_wrapper}`,
+  input: `${style.profile_info_text_field_input}`,
 };
 
 export const accountDetails__textFieldClasses = {
-  label: `${style.textFieldLabel}`,
-  inputWrapper: `${style.inputWrapper__inputTextFieldPassword}`,
-  input: `${style.accountDetails__textFieldInput}`,
+  label: `${style.text_field_label}`,
+  inputWrapper: `${style.input_wrapper_input_text_field_password}`,
+  input: `${style.account_details_text_field_input}`,
   password: {
-    inputTextFieldPassword: `${style.accountDetails__inputTextFieldPassword}`,
-    inputWrapper: `${style.inputWrapper__inputTextFieldPassword}`,
+    inputTextFieldPassword: `${style.account_details_input_textfield_password}`,
+    inputWrapper: `${style.input_wrapper_input_text_field_password}`,
   },
 };
 export const checkboxClasses = {
-  labelCheckbox: `${style.labelCheckbox}`,
-  inputCheckbox: `${style.inputCheckbox}`,
+  labelCheckbox: `${style.label_checkbox}`,
+  inputCheckbox: `${style.input_checkbox}`,
 };

@@ -1,14 +1,23 @@
 .seller_page {
-    min-height: 100vh;
+}
 
+.seller_page header > div > div:nth-child(2) {
+    background-color: var(--back);
+    border-bottom: 1px solid #E8E8E8;
+    padding: 20px 32px;
+}
+
+.seller_page header > div > div:first-child {
+    padding: 20px 32px;
 }
 
 .seller_cabinet {
     padding: 24px 30px 48px;
-    background: #F5F5F5;
+    background: var(--back);
 }
 
 .content_wrapper {
+    position: relative;
     display: grid;
 
     /* grid-template-columns: 470px 600px 273px; */
@@ -20,6 +29,7 @@
     /*!*grid-template-rows: minmax(min-content, 26.59vh) minmax(min-content, 34.56vh);**/
 }
 
+
 .content_wrapper > div {
     display: flex;
     flex-direction: column;
@@ -28,7 +38,6 @@
 
 .left_column {
     grid-area: left_column;
-
 }
 
 .center_column {
@@ -41,7 +50,7 @@
 
 .section {
     padding: 32px;
-    background: #FFF;
+    background: var(--front);
     border-radius: 8px;
 }
 
@@ -152,6 +161,7 @@
 .remove_wrapper {
     display: flex;
     flex-flow: column;
+    margin-bottom: 50px;
 }
 
 .remove_account_link,
@@ -210,6 +220,57 @@
     cursor: pointer;
 }
 
+.my_addresses_wrapper {
+    margin-top: 24px;
+}
+
+.no_address {
+    font-size: 15px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 20px;
+    color: var(--black);
+    letter-spacing: 0.16px;
+}
+
+.addresses_container > div {
+    width: 100%;
+    border-radius: 12px;
+
+}
+
+.notifications_list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 16px;
+}
+
+.notifications_item {
+    padding-top: 12px;
+}
+
+.notifications_item::after {
+    content: '';
+
+    display: block;
+
+    height: 1px;
+    margin-top: 12px;
+
+    background: #F2F2F2;
+}
+
+.notifications_item:last-child::after {
+    display: none;
+}
+
+.info_button_positioning {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 .wrepperButtonLinkProfile:hover {
     cursor: pointer;
 }
@@ -254,7 +315,7 @@
 }
 
 
-.textFieldLabel {
+.text_field_label {
     font-size: 13px;
     font-weight: 400;
     font-style: normal;
@@ -263,8 +324,8 @@
     letter-spacing: -0.08px;
 }
 
-.profileInfo__textFieldInput,
-.accountDetails__textFieldInput {
+.profile_info_text_field_input,
+.account_details_text_field_input {
     height: 42px;
     padding-left: 12px;
 
@@ -279,11 +340,11 @@
     border-radius: 4px;
 }
 
-.profileInfo__textFieldInput {
+.profile_info_text_field_input {
     width: 100%;
 }
 
-.inputWrapper {
+.input_wrapper {
     display: flex;
     gap: 0;
     align-items: center;
@@ -295,7 +356,7 @@
     border: none;
 }
 
-.accountDetails__textFieldInput {
+.account_details_text_field_input {
     width: 100%;
 }
 
@@ -303,12 +364,12 @@
     width: 100%;
 }
 
-.inputWrapper__inputTextFieldPassword {
+.input_wrapper_input_text_field_password {
     display: flex;
     width: 100%;
 }
 
-.accountDetails__inputTextFieldPassword {
+.account_details_input_textfield_password {
     width: 100%;
     height: 42px;
     padding-left: 12px;
@@ -336,33 +397,7 @@
 /*}*/
 
 
-.notificationsList {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin-top: 16px;
-}
-
-.notificationsList__item {
-    padding-top: 12px;
-}
-
-.notificationsList__item::after {
-    content: '';
-
-    display: block;
-
-    height: 1px;
-    margin-top: 12px;
-
-    background: #F2F2F2;
-}
-
-.notificationsList__item:last-child::after {
-    display: none;
-}
-
-.labelCheckbox {
+.label_checkbox {
     cursor: pointer;
 
     display: flex;
@@ -377,7 +412,7 @@
     letter-spacing: -0.24px;
 }
 
-.inputCheckbox {
+.input_checkbox {
     cursor: pointer;
 
     position: relative;
@@ -399,14 +434,14 @@
     transition: 0.5s;
 }
 
-.inputCheckbox::before,
-.inputCheckbox::after {
+.input_checkbox::before,
+.input_checkbox::after {
     content: '';
     position: absolute;
     display: inline-block;
 }
 
-.inputCheckbox::before {
+.input_checkbox::before {
     transform: matrix(-1, 0, 0, 1, 0, 0);
 
     width: 28px;
@@ -419,30 +454,20 @@
     0 3px 1px rgb(0 0 0 / 10%);
 }
 
-.inputCheckbox::after {
+.input_checkbox::after {
     border: 0.5px solid rgb(0 0 0 / 4%);
     box-shadow: 0 3px 8px rgb(0 0 0 / 15%), 0 1px 1px rgb(0 0 0 / 16%),
     0 3px 1px rgb(0 0 0 / 10%);
 }
 
-.inputCheckbox:checked {
+.input_checkbox:checked {
     justify-content: right;
-    background: #000;
+    background: var(--red);
 }
 
 
-.myAddresses__wrapper {
-    margin-top: 58px;
-}
 
-.noAddress {
-    font-size: 15px;
-    font-weight: 400;
-    font-style: normal;
-    line-height: 20px;
-    color: #828282;
-    letter-spacing: 0.16px;
-}
+
 
 
 

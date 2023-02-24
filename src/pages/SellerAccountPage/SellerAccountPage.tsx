@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { Container } from '../../components';
+import Address from '../../components/Address';
 
 import LogoutButton from './LogoutButton';
 import style from './SellerAccountPage.module.css';
@@ -23,6 +24,21 @@ import {
 import Orders from 'pages/SellerAccountPage/Orders';
 
 const SellerAccountPage = (): JSX.Element => {
+  const addressExample = {
+    firstname: 'Olga',
+    lastname: 'Andreeva',
+    phone: '+79158448547',
+    street: 'Jaroslava Gasheka 6, building 2',
+    apartment: 'apartment 904',
+    city: 'Moscow',
+    region: '',
+    state: '',
+    country: 'Russian Federation',
+    zipcode: '589964',
+  };
+
+  const addresses = [addressExample];
+
   return (
     <div className={style.seller_page}>
       <Header />
@@ -105,54 +121,65 @@ const SellerAccountPage = (): JSX.Element => {
                 <Orders />
               </div>
 
-              <div className={`${style.section} ${style.myAddresses}`}>
-                <div className={style.header__wrapper}>
+              <div className={style.section}>
+                <div className={style.header_wrapper}>
                   <div className={style.header}>My Addresses</div>
-                  <Link className={style.header__link} to="/">
+                  <Link className={style.header_link} to="/">
                     Add new
                   </Link>
                 </div>
-                <div className={style.myAddresses__wrapper}>
-                  <p className={style.noAddress}>You have not added any address yet.</p>
-                  <p className={style.noAddress}>
-                    Once you place your first order, you will be able to save your
-                    address.
-                  </p>
+                <div className={style.my_addresses_wrapper}>
+                  {addresses ? (
+                    <div className={style.addresses_container}>
+                      <Address address={addressExample} />
+                    </div>
+                  ) : (
+                    <div>
+                      <p className={style.no_address}>
+                        You have not added any address yet.
+                      </p>
+                      <p className={style.no_address}>
+                        Once you place your first order, you will be able to save your
+                        address.
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
 
             <div className={style.right_column}>
-              <div className={`${style.section} ${style.notifications}`}>
-                <div className={style.header__wrapper}>
+              <div className={style.section}>
+                <div className={style.header_wrapper}>
                   <div className={style.header}>Notifications</div>
                 </div>
-                <div className={style.notificationsList}>
-                  <div className={style.notificationsList__item}>
+                <div className={style.notifications_list}>
+                  <div className={style.notifications_item}>
                     <Checkbox label="Discounts & offers" classes={checkboxClasses} />
                   </div>
-                  <div className={style.notificationsList__item}>
+                  <div className={style.notifications_item}>
                     <Checkbox label="Order updates" classes={checkboxClasses} />
                   </div>
-                  <div className={style.notificationsList__item}>
+                  <div className={style.notifications_item}>
                     <Checkbox label="Order reminders" classes={checkboxClasses} />
                   </div>
-                  <div className={style.notificationsList__item}>
+                  <div className={style.notifications_item}>
                     <Checkbox label="On stock again" classes={checkboxClasses} />
                   </div>
-                  <div className={style.notificationsList__item}>
+                  <div className={style.notifications_item}>
                     <Checkbox label="Product is cheaper" classes={checkboxClasses} />
                   </div>
-                  <div className={style.notificationsList__item}>
+                  <div className={style.notifications_item}>
                     <Checkbox label="Your favorites new" classes={checkboxClasses} />
                   </div>
-                  <div className={style.notificationsList__item}>
+                  <div className={style.notifications_item}>
                     <Checkbox label="Account support" classes={checkboxClasses} />
                   </div>
                 </div>
               </div>
-              <InfoBtn />
             </div>
+
+            <InfoBtn className={style.info_button_positioning} />
           </div>
         </div>
       </Container>
