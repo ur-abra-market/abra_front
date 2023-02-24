@@ -1,16 +1,18 @@
-.add_name {
-  display: flex;
-  gap: 15px;
-  margin: 40px 0 16px;
-}
-
 .form_wrapper {
   display: flex;
+  align-items: center;
   justify-content: center;
+  height: 100vh;
 }
 
 .form_container {
   width: 633px;
+}
+
+.add_name {
+  display: flex;
+  gap: 15px;
+  margin: 40px 0 16px;
 }
 
 .phone_number {
