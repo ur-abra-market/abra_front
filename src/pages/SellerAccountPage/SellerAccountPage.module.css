@@ -1,38 +1,35 @@
-.sellerCabinet {
+.seller_cabinet {
   padding: 24px 30px 48px;
   background: #F5F5F5;
 }
 
-.sellerCabinet__contentWrapper {
+.content_wrapper {
   display: grid;
 
   /* grid-template-columns: 470px 600px 273px; */
 
   /* grid-template-rows: 26.59vh 34.56vh; */
-  grid-gap: 16px;
-  grid-template-areas: 'profileInfo orders notifications' 'accountDetails myAddresses notifications';
+  grid-gap: 12px;
+  grid-template-areas: 'left_column center_column right_column';
   grid-template-columns: 34.2% 43.7% 19.9%;
   grid-template-rows: minmax(min-content, 26.59vh) minmax(min-content, 34.56vh);
 }
 
-.profileInfo {
-  grid-area: profileInfo;
+.content_wrapper > div{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.orders {
-  grid-area: orders;
-}
+.left_column {
+  grid-area: left_column;
 
-.notifications {
-  grid-area: notifications;
 }
-
-.accountDetails {
-  grid-area: accountDetails;
+.center_column {
+  grid-area: center_column;
 }
-
-.myAddresses {
-  grid-area: myAddresses;
+.right_column {
+  grid-area: right_column;
 }
 
 .section {
@@ -47,7 +44,7 @@
   justify-content: flex-start;
 }
 
-.header__wrapper {
+.header_wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -63,6 +60,51 @@
   letter-spacing: 0.38px;
 }
 
+.logout_button {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.logout_button_text {
+  color: var(--red)
+}
+
+.wrepper_button_link {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.btn_name {
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+
+  color: var(--red);
+  text-decoration-line: underline;
+  letter-spacing: -0.24px;
+  cursor: pointer;
+}
+
+.btn_img {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+
+.profile_info_inputs_wrapper {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 24px;
+}
+
 .header__link {
   font-size: 15px;
   font-weight: 400;
@@ -73,14 +115,23 @@
   letter-spacing: 0.16px;
 }
 
-.wrepperButtonLinkProfile {
+.button_link_container {
   display: flex;
-  gap: 16px;
   align-items: center;
   justify-content: flex-start;
 
-  margin-top: 20px;
+  margin-top: 24px;
 }
+
+.flex_container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+
+  width: 100%;
+}
+
 
 .wrepperButtonLinkProfile:hover {
   cursor: pointer;
@@ -125,23 +176,9 @@ border-radius: 100%; */
   letter-spacing: 0.16px;
 }
 
-.profileInfo__textFields {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  justify-content: space-between;
 
-  margin-top: 24px;
-}
 
-.flexContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-start;
 
-  width: 100%;
-}
 
 .textFieldLabel {
   font-size: 13px;
@@ -220,42 +257,25 @@ border-radius: 100%; */
   margin-bottom: 30px;
 }
 
-.wrepperButtonLink {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-items: center;
-  justify-content: center;
-}
 
 .wrepperButtonLink:hover {
   cursor: pointer;
 }
 
-.wrepperBtnImg {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+/*.wrepperBtnImg {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
 
-  width: 80px;
-  height: 80px;
+/*  width: 80px;*/
+/*  height: 80px;*/
 
-  background-color: var(--back);
-  border-radius: 50%;
-}
+/*  background-color: var(--back);*/
+/*  border-radius: 50%;*/
+/*}*/
 
-.btnName {
-  font-size: 15px;
-  font-weight: 700;
-  font-style: normal;
-  line-height: 16px;
 
-  /* line-height: 24px; */
-  color: #828282;
-  text-decoration: none;
-  letter-spacing: -0.24px;
-}
 
 .notificationsList {
   display: flex;

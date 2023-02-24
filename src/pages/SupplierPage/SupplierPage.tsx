@@ -26,12 +26,10 @@ const SupplierPage = () => {
   const companyInfo = useAppSelector(state => state.supplier.companyInfo);
 
   useEffect(() => {
-    console.log('nnnnn');
     dispatch(getCompanyInfoService());
     dispatch(getSupplierAccountDataService());
     setIsGetCompanyInfo(true);
   }, []);
-  console.log(isLoading);
 
   const navbarCategoryBtnClasses = {
     wrepperBtnImg: `${style.wrepperBtnImg}`,

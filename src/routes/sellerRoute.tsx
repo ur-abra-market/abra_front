@@ -7,7 +7,7 @@ import OrderDetailsPage from '../pages/OrderDetailsPage';
 import OrderHistoryPage from '../pages/OrderHistoryPage';
 import ProductListPage from '../pages/ProductListPage';
 import ProductPage from '../pages/ProductPage';
-import UserAccountPage from '../pages/SellerAccountPage';
+import SellerAccountPage from '../pages/SellerAccountPage/SellerAccountPage';
 
 const sellerRoute = [
   {
@@ -24,7 +24,7 @@ const sellerRoute = [
   },
   {
     path: 'personal-account',
-    element: <UserAccountPage />,
+    element: <SellerAccountPage />,
   },
   {
     path: 'cart',
