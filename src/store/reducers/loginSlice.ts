@@ -2,13 +2,12 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import authService from '../../services/auth.service';
-import { generateResponseError } from '../../utils/generateResponseError';
 import {
   AsyncThunkConfig,
   CheckAuthResponseType,
   LoginParamsType,
-  LoginResponseType
-} from "../../services/auth.serviceType";
+  LoginResponseType,
+} from '../../services/auth.serviceType';
 
 const initialState = {
   resMessage: '' as string,
@@ -17,48 +16,50 @@ const initialState = {
   isAuth: false as boolean,
 };
 
-export const loginService = createAsyncThunk<{data:LoginResponseType},LoginParamsType, AsyncThunkConfig>(
-  'login/loginService',
-  async (dataUser, { rejectWithValue }) => {
-    try {
-      const response = await authService.login(dataUser);
+export const loginService = createAsyncThunk<
+  { data: LoginResponseType },
+  LoginParamsType,
+  AsyncThunkConfig
+>('login/loginService', async (dataUser, { rejectWithValue }) => {
+  try {
+    const response = await authService.login(dataUser);
 
-      if (response.data.is_supplier) localStorage.setItem('profile', 'supplier');
+    if (response.data.is_supplier) localStorage.setItem('profile', 'supplier');
 
-      return response
-    } catch (error) {
-      // const err = error.response.data.detail ? error.response.data.detail : error.message;
-      // const message = generateResponseError(err);
-      //
-      // return rejectWithValue(message);
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.message);
-      }
-
-      return rejectWithValue('[registerService]: Error');
+    return response;
+  } catch (error) {
+    // const err = error.response.data.detail ? error.response.data.detail : error.message;
+    // const message = generateResponseError(err);
+    //
+    // return rejectWithValue(message);
+    if (error instanceof AxiosError) {
+      return rejectWithValue(error.message);
     }
-  },
-);
 
-export const checkAuth = createAsyncThunk<{data:CheckAuthResponseType},void, AsyncThunkConfig>(
-  'login/checkAuth',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await authService.checkAuth();
+    return rejectWithValue('[registerService]: Error');
+  }
+});
 
-      if (response.data.is_supplier) localStorage.setItem('profile', 'supplier');
+export const checkAuth = createAsyncThunk<
+  { data: CheckAuthResponseType },
+  void,
+  AsyncThunkConfig
+>('login/checkAuth', async (_, { rejectWithValue }) => {
+  try {
+    const response = await authService.checkAuth();
 
-      return response;
-    } catch (error) {
-      localStorage.removeItem('profile');
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.message);
-      }
+    if (response.data.is_supplier) localStorage.setItem('profile', 'supplier');
 
-      return rejectWithValue('[checkAuth]: ERROR');
+    return response;
+  } catch (error) {
+    localStorage.removeItem('profile');
+    if (error instanceof AxiosError) {
+      return rejectWithValue(error.message);
     }
-  },
-);
+
+    return rejectWithValue('[checkAuth]: ERROR');
+  }
+});
 
 export const logout = createAsyncThunk<any, void>(
   'login/logout',

@@ -42,7 +42,7 @@ const AuthPage = (): JSX.Element => {
             label="Sign up"
           />
         </div>
-        {pageType === 'register' ? <RegisterForm/> : <LoginForm />}
+        {pageType === 'register' ? <RegisterForm /> : <LoginForm />}
       </main>
       <footer className={style.footer}>
         <Container className={style.links}>

@@ -9,6 +9,7 @@ import { mainPageReducer } from './reducers/mainPageSlice';
 import manageProductsReducer from './reducers/manageProductsSlice';
 import modalReducer from './reducers/modalSlice';
 import paginateReducer from './reducers/paginateSlice';
+import passwordSlice from './reducers/passwordSlice';
 import { popularProductsReducer } from './reducers/popularProducts';
 import productPaginateReducer from './reducers/productPaginateSlice';
 import productReducer from './reducers/productSlice';
@@ -18,7 +19,6 @@ import supplierAccountReducer from './reducers/supplierAccountSlice';
 import supplierReducer from './reducers/supplierSlice';
 import { targetProductReducer } from './reducers/targetProductSlice';
 import userReducer from './reducers/userSlice';
-import passwordSlice from "./reducers/passwordSlice";
 
 export const store = configureStore({
   reducer: {
@@ -40,7 +40,7 @@ export const store = configureStore({
     modal: modalReducer,
     similarProducts: similarProductsReducer,
     popularProducts: popularProductsReducer,
-    passwordSlice:passwordSlice
+    passwordSlice,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
