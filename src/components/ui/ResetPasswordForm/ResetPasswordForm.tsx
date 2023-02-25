@@ -4,19 +4,28 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { FormDataValuesType } from '../../../pages/AuthPage/AuthType';
+import { ResetPasswordType } from "../../../pages/AuthPage/AuthType";
 import Form from '../../Form';
 import PasswordComplexity from '../../new-components/PasswordComplexity';
 import { Button, Input } from '../../ui-kit';
 
 import style from './ResetPasswordForm.module.css';
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import { resetPassword } from "../../../store/reducers/passwordSlice";
+import { ResetPasswordPayloadType } from "../../../services/auth.serviceType";
 
 interface ResetPasswordFormProps {
   handleChangeModalActive: () => void;
 }
 const schema = yup
   .object({
-    password: yup
+    email: yup.string().email('Invalid email').required('Email is required'),
+    new_password: yup
+      .string()
+      .matches(
+        /^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      ),
+    confirm_password: yup
       .string()
       .matches(
         /^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
@@ -24,27 +33,42 @@ const schema = yup
   })
   .required();
 const ResetPasswordForm: FC<ResetPasswordFormProps> = ({ handleChangeModalActive }) => {
+  const dispatch=useAppDispatch()
   const {
     register,
     watch,
     formState: { isValid },
     handleSubmit,
-  } = useForm<FormDataValuesType>({
+  } = useForm<ResetPasswordPayloadType>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
-  const watchPasword = watch('password');
-  const onSubmit = (): void => {
+  const watchPasword = watch('new_password' || 'confirm_password');
+  const onSubmit = (data:ResetPasswordPayloadType): void => {
     // eslint-disable-next-line no-useless-return
-    if (!isValid) return;
+    // if (!isValid) return;
+    dispatch(resetPassword(data))
   };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className={style.resetPasswordForm}>
       <Input
-        {...register('password')}
+        {...register('email')}
         classNameWrapper={style.input_wrapper}
-        placeholder="Password"
+        placeholder="Email"
+        variant="password"
+      />
+      <Input
+        {...register('new_password')}
+        classNameWrapper={style.input_wrapper}
+        placeholder="New password"
+        type="password"
+        variant="password"
+      />
+      <Input
+        {...register('confirm_password')}
+        classNameWrapper={style.input_wrapper}
+        placeholder="Confirm password"
         type="password"
         variant="password"
       />
@@ -52,6 +76,7 @@ const ResetPasswordForm: FC<ResetPasswordFormProps> = ({ handleChangeModalActive
       <Button
         label="Save"
         className={style.button_save}
+        type='submit'
         disabled={!isValid}
         onClick={handleChangeModalActive}
       />
