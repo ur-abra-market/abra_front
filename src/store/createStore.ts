@@ -18,6 +18,7 @@ import supplierAccountReducer from './reducers/supplierAccountSlice';
 import supplierReducer from './reducers/supplierSlice';
 import { targetProductReducer } from './reducers/targetProductSlice';
 import userReducer from './reducers/userSlice';
+import passwordSlice from "./reducers/passwordSlice";
 
 export const store = configureStore({
   reducer: {
@@ -39,6 +40,7 @@ export const store = configureStore({
     modal: modalReducer,
     similarProducts: similarProductsReducer,
     popularProducts: popularProductsReducer,
+    passwordSlice:passwordSlice
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

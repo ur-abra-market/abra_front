@@ -16,7 +16,7 @@ export const registerService = createAsyncThunk<{data:RegisterResponseType },Reg
     try {
       const response = await authService.register(dataUser );
 
-      return response.data;
+      return response;
     } catch (error) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
