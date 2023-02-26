@@ -1,17 +1,24 @@
 .page {
-  min-height: calc(100vh - 50px - 96px);
-  background: #FFFFFF;
+  background: #FFF;
 }
 
-.pageWrap {
+.page_wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 
   width: 481px;
+  height: 100vh;
   margin: 0 auto;
-  padding-top: 100px;
+  padding: 216px 15px 0;
+}
+
+@media screen and (max-width: 768px){
+  .page_wrap{
+    width: 100%;
+    padding: 230px 15px 0 !important;
+
+  }
 }
 
 .header {
@@ -33,17 +40,23 @@
   color: #636568;
   letter-spacing: 0.16px;
 }
-
-.innerWrapper {
+.inner_wrapper {
   width: 400px;
 }
 
-.modalContentWrapper {
+@media screen and (max-width: 450px) {
+  .inner_wrapper {
+    width: 100%;
+  }
+}
+
+
+.modal_content_wrapper {
   width: 420px;
   text-align: left;
 }
 
-.modalHeader {
+.modal_header {
   margin-bottom: 26px;
 
   font-size: 34px;
@@ -52,16 +65,26 @@
   color: #000000;
   letter-spacing: 0.41px;
 }
+.button_modal{
+  width: 100%;
+}
 
-.forgotPasswordlink {
-  display: block;
-
-  width: fit-content;
-  margin: 0 auto;
-  margin-top: 24px;
-
-  color: #000000;
-  text-align: center;
-  text-decoration: none;
-  letter-spacing: 0.16px;
+@media screen and (max-width: 768px){
+  .header{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+  .modal_container{
+    margin: 0 8px;
+    padding: 16px;
+  }
+  .modal_content_wrapper{
+    width: 100%;
+  }
+  .modal_header{
+    margin-bottom: 16px;
+    font-size: 22px;
+    line-height: 24px;
+  }
 }

@@ -23,12 +23,12 @@ const ChangeEmailPage = () => {
       <HeaderForChangePages />
 
       <div className={style.page}>
-        <div className={style.pageWrap}>
+        <div className={style.page_wrap}>
           <div className={style.header}>Change email</div>
           <div className={style.subheader}>
             Enter your current and new email addresses
           </div>
-          <div className={style.innerWrapper}>
+          <div className={style.inner_wrapper}>
             <ChangeEmailForm handleChangeModalActive={handleChangeModalActive} />
           </div>
         </div>
@@ -37,13 +37,13 @@ const ChangeEmailPage = () => {
       <FooterForSupplierPart />
 
       <Modal active={modalActive}>
-        <div className={style.modalContentWrapper}>
-          <div className={style.modalHeader}>
+        <div className={style.modal_content_wrapper}>
+          <div className={style.modal_header}>
             Your new email has been successfully saved
           </div>
           <Button
             value="Okay"
-            className={styleBtn.modalWindewBtnActive}
+            className={styleBtn.button_modal}
             onClick={() => navigate('/')}
           />
         </div>
