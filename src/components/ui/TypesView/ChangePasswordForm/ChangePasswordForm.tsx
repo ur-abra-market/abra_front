@@ -1,76 +1,74 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 
-import { Button } from '../../../buttons';
-import styleBtn from '../../../buttons/Buttons.module.css';
-import Form from '../../../Form';
-import PasswordComplexity from '../../../new-components/PasswordComplexity';
-import TextField from '../../../TextField';
+import Form from "../../../Form";
+import PasswordComplexity from "../../../new-components/PasswordComplexity";
 
-import style from './ChangePasswordForm.module.css';
+import style from "./ChangePasswordForm.module.css";
+import { Button, Input } from "../../../ui-kit";
+import * as yup from "yup";
+import { ChangePasswordPayloadType } from "../../../../services/auth.serviceType";
+import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
+import { useAppDispatch } from "../../../../store/hooks";
+import { changePassword } from "../../../../store/reducers/passwordSlice";
 
 interface ChangePasswordFormProps {
-  handleChangeModalActive: Function;
+  handleChangeModalActive: () => void;
 }
+
+const schema = yup
+  .object({
+    old_password: yup
+      .string()
+      .matches(
+        /^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      ),
+    new_password: yup
+      .string()
+      .matches(
+        /^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/
+      )
+  })
+  .required();
 const ChangePasswordForm: FC<ChangePasswordFormProps> = ({ handleChangeModalActive }) => {
+  const dispatch=useAppDispatch()
   const {
     register,
     watch,
     formState: { isValid },
-    handleSubmit,
-  } = useForm({ mode: 'onChange' });
+    handleSubmit
+  } = useForm<ChangePasswordPayloadType>({
+    resolver: yupResolver(schema),
+    mode: "all"
+  });
+  const watchPasword = watch("old_password" || "new_password");
 
-  const watchPasword = watch('password');
-
-  const onSubmit = (): void => {
-    // eslint-disable-next-line no-useless-return
-    if (!isValid) return;
-  };
-  const textFieldClasses = {
-    label: `${style.textFieldLabel}`,
-    inputWrapper: `${style.inputWrapper}`,
-    input: `${style.textFieldInput}`,
+  const onSubmit = (data:ChangePasswordPayloadType): void => {
+    dispatch(changePassword(data))
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} className={style.resetPasswordForm}>
-      <TextField
+    <Form onSubmit={handleSubmit(onSubmit)} className={style.reset_password_form}>
+      <Input
+        {...register("old_password")}
+        classNameWrapper={style.input_wrapper}
         placeholder="Current password"
-        label="Password"
         type="password"
-        id="password"
-        name="password"
-        classes={textFieldClasses}
+        variant="password"
       />
-      <TextField
-        register={register('password', {
-          required: 'Password is required!',
-          minLength: {
-            value: 8,
-            message: 'Password must contain at least 8 characters!',
-          },
-          validate: {
-            capitalSymbol: s => /[A-Z]+/g.test(s),
-            digitSymbol: s => /\d+/g.test(s),
-            specialSymbol: s => /[!#+*]/g.test(s),
-          },
-        })}
+      <Input
+        {...register("new_password")}
+        classNameWrapper={style.input_wrapper}
         placeholder="New password"
-        label="Password"
         type="password"
-        id="new-password"
-        name="password"
-        classes={textFieldClasses}
+        variant="password"
       />
       <PasswordComplexity valueOfNewPassword={watchPasword} />
       <Button
-        value="Continue"
-        className={
-          !isValid
-            ? `${styleBtn.commonButton} ${styleBtn.logInBtnInactive}`
-            : `${styleBtn.commonButton} ${styleBtn.logInBtnActive}`
-        }
+        label="Continue"
+        type="submit"
+        className={style.button}
         disabled={!isValid}
         onClick={handleChangeModalActive}
       />

@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
 
-import { Button } from '../../components/buttons';
-import styleBtn from '../../components/buttons/Buttons.module.css';
 import Modal from '../../components/Modal';
 import ChangePasswordForm from '../../components/ui/TypesView/ChangePasswordForm';
 
 import style from './ChangePasswordPage.module.css';
+import { Button } from "../../components/ui-kit";
 
 const ChangePasswordPage = () => {
   const navigate = useNavigate();
@@ -19,30 +18,31 @@ const ChangePasswordPage = () => {
   return (
     <>
       <div className={style.page}>
-        <div className={style.pageWrap}>
+        <div className={style.page_wrap}>
           <div className={style.header}>Change password</div>
           <div className={style.subheader}>Enter your current and new passwords</div>
-          <div className={style.innerWrapper}>
+          <div className={style.inner_wrapper}>
             <ChangePasswordForm handleChangeModalActive={handleChangeModalActive} />
           </div>
+          <Link className={style.link_forgot} to="/forgotPassword">
+            Forgot password?
+          </Link>
         </div>
-        <Link className={style.forgotPasswordlink} to="/forgotPassword">
-          Forgot password?
-        </Link>
+
       </div>
 
-      <Modal active={modalActive}>
-        <div className={style.modalContentWrapper}>
-          <div className={style.modalHeader}>
+      <Modal active={modalActive}  classNameModal={style.modal_container}>
+        <div className={style.modal_content_wrapper}>
+          <div className={style.modal_header}>
             Your new password has been successfully saved
           </div>
-          <div className={style.modalSubHeader}>
+          <div className={style.modal_sub_header}>
             Now you can log in with your new password
           </div>
           <Button
-            value="Okay"
-            className={styleBtn.modalWindewBtnActive}
-            // onClick={() => navigate()}
+            label="Okay"
+            className={style.button_modal}
+            onClick={handleChangeModalActive}
           />
         </div>
       </Modal>
