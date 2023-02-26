@@ -1,4 +1,4 @@
-import { PasswordResponseType, ResetPasswordPayloadType } from "./auth.serviceType";
+import { ChangePasswordPayloadType, PasswordResponseType, ResetPasswordPayloadType } from "./auth.serviceType";
 import httpService from './http.service';
 
 export const passwordService = {
@@ -12,5 +12,8 @@ export const passwordService = {
   },
   resetPassword:(params:ResetPasswordPayloadType)=>{
     return httpService.patch<PasswordResponseType>('password/reset_password/', params)
+  },
+  changePassword:(params:ChangePasswordPayloadType)=>{
+    return httpService.post<PasswordResponseType>('password/change/', params)
   }
 };

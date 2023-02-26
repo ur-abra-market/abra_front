@@ -1,16 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 
-import { ForgotPasswordFormType } from "../../pages/AuthPage/AuthType";
+import { ForgotChangePasswordFormType } from "../../pages/AuthPage/AuthType";
 import {
-  AsyncThunkConfig,
+  AsyncThunkConfig, ChangePasswordPayloadType,
   PasswordResponseType, ResetPasswordPayloadType
 } from "../../services/auth.serviceType";
 import { passwordService } from "../../services/password.service";
 
 export const forgotPassword = createAsyncThunk<
   { data: PasswordResponseType },
-  ForgotPasswordFormType,
+  ForgotChangePasswordFormType,
   AsyncThunkConfig
 >("password/forgotPassword", async (param, { rejectWithValue }) => {
   try {
@@ -61,6 +61,27 @@ export const resetPassword = createAsyncThunk<
     }
   }
 );
+
+export const changePassword = createAsyncThunk<
+  { data: PasswordResponseType },
+  ChangePasswordPayloadType,
+  AsyncThunkConfig
+>(
+  "password/changePassword",
+  async (param, { rejectWithValue }) => {
+    try {
+      const res = await passwordService.changePassword(param);
+      return res
+    }
+    catch (error) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue("[changePassword]: ERROR");
+    }
+  }
+);
 const passwordSlice = createSlice({
   name: "password",
   initialState: {
@@ -77,6 +98,9 @@ const passwordSlice = createSlice({
       state.result = action.payload.data.result;
     });
     builder.addCase(resetPassword.fulfilled,(state, action)=>{
+      state.result= action.payload.data.result
+    });
+    builder.addCase(changePassword.fulfilled,(state, action)=>{
       state.result= action.payload.data.result
     })
   },
