@@ -2,10 +2,10 @@ export type FormDataValuesType = {
   email: string;
   password: string;
 };
-export type ForgotPasswordFormType = {
+export type ForgotChangePasswordFormType = {
   email: string;
 };
-export type ResetPasswordType={
-  newPassword:string
-  confirmPassword:string
-}
+
+
+
+
