@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { ResetPasswordType } from "../../../pages/AuthPage/AuthType";
 import Form from '../../Form';
 import PasswordComplexity from '../../new-components/PasswordComplexity';
 import { Button, Input } from '../../ui-kit';
@@ -45,8 +44,6 @@ const ResetPasswordForm: FC<ResetPasswordFormProps> = ({ handleChangeModalActive
   });
   const watchPasword = watch('new_password' || 'confirm_password');
   const onSubmit = (data:ResetPasswordPayloadType): void => {
-    // eslint-disable-next-line no-useless-return
-    // if (!isValid) return;
     dispatch(resetPassword(data))
   };
 
