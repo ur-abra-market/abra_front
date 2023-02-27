@@ -2,13 +2,12 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import completed from 'assets/img/icons/completed.png';
-import shipped from 'assets/img/icons/shipped.svg';
-import toBeReviewed from 'assets/img/icons/to_be_reviewed.svg';
-import toBeShipped from 'assets/img/icons/to_be_shipped.svg';
-import unpaid from 'assets/img/icons/unpaid.svg';
-import { ButtonLink } from 'components/buttons';
-import { ordersCategoryBtnClasses } from 'pages/SellerAccountPage/classesStyles';
+import { Button } from '../../components/ui-kit';
+
+import { ReactComponent as ShippedIcon } from 'assets/img/icons/shipped.svg';
+import { ReactComponent as ToBeReviewedIcon } from 'assets/img/icons/to_be_reviewed.svg';
+import { ReactComponent as ToBeShippedIcon } from 'assets/img/icons/to_be_shipped.svg';
+import { ReactComponent as UnPaidIcon } from 'assets/img/icons/unpaid.svg';
 import style from 'pages/SellerAccountPage/SellerAccountPage.module.css';
 
 const Orders = (): JSX.Element => {
@@ -21,33 +20,26 @@ const Orders = (): JSX.Element => {
         </Link>
       </div>
       <div className={style.orders_category_wrapper}>
-        <Link to="/order-history">
-          <ButtonLink name="Unpaid" src={unpaid} classes={ordersCategoryBtnClasses} />
-        </Link>
-        <Link to="/order-history">
-          <ButtonLink
-            name="To be shipped"
-            src={toBeShipped}
-            classes={ordersCategoryBtnClasses}
-          />
-        </Link>
-        <Link to="/order-history">
-          <ButtonLink name="Shipped" src={shipped} classes={ordersCategoryBtnClasses} />
-        </Link>
-        <Link to="/order-history">
-          <ButtonLink
-            name="To be reviewed"
-            src={toBeReviewed}
-            classes={ordersCategoryBtnClasses}
-          />
-        </Link>
-        <Link to="/order-history">
-          <ButtonLink
-            name="Completed"
-            src={completed}
-            classes={ordersCategoryBtnClasses}
-          />
-        </Link>
+        <Button color="white" className={style.orders_button}>
+          <div className={style.orders_button_title}>Unpaid</div>
+          <UnPaidIcon />
+        </Button>
+        <Button color="white" className={style.orders_button}>
+          <div className={style.orders_button_title}>To be shipped</div>
+          <ToBeShippedIcon />
+        </Button>
+        <Button color="white" className={style.orders_button}>
+          <div className={style.orders_button_title}>Shipped</div>
+          <ShippedIcon />
+        </Button>
+        <Button color="white" className={style.orders_button}>
+          <div className={style.orders_button_title}>To be reviewed</div>
+          <ToBeReviewedIcon />
+        </Button>
+        <Button color="white" className={style.orders_button}>
+          <div className={style.orders_button_title}>To be reviewed</div>
+          <div className={style.completed_icon} />
+        </Button>
       </div>
     </>
   );

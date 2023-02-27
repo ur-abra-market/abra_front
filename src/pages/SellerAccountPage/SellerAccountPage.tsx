@@ -1,13 +1,13 @@
 import React from 'react';
 
 import cn from 'classnames';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
 import { Container } from '../../components';
 import Address from '../../components/Address';
 import { Button, Checkbox, Input } from '../../components/ui-kit';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppDispatch } from '../../store/hooks';
 import { logout } from '../../store/reducers/loginSlice';
 
 import style from './SellerAccountPage.module.css';
@@ -44,12 +44,12 @@ const SellerAccountPage = (): JSX.Element => {
     dispatch(logout());
   };
 
-  const isAuth = useAppSelector(state => state.login.isAuth);
-  const navigate = useNavigate();
+  // const isAuth = useAppSelector(state => state.login.isAuth);
+  // const navigate = useNavigate();
 
-  if (!isAuth) {
-    navigate('/login');
-  }
+  // if (!isAuth) {
+  //   navigate('/login');
+  // }
 
   return (
     <div className={style.seller_page}>
