@@ -67,16 +67,6 @@ const MainPage = (): JSX.Element => {
       <Container>
         <StatusProduct />
         <div className={style.main_sliders}>
-          {/* {Object.values(CATEGORIES).map(({ label, category_id }) => ( */}
-          {/*  <ProductsPreview key={category_id} title={label}> */}
-          {/*    {test.map(el => ( */}
-          {/*      <div */}
-          {/*        key={el + Math.random()} */}
-          {/*        style={{ height: 320, width: 220, background: 'red' }} */}
-          {/*      /> */}
-          {/*    ))} */}
-          {/*  </ProductsPreview> */}
-          {/* ))} */}
           {products &&
             Object.keys(products).map(key => {
               return (

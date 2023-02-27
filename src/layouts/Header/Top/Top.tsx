@@ -7,7 +7,7 @@ import { ReactComponent as Cart } from '../../../assets/img/icons/cart_n.svg';
 import { ReactComponent as Favorite } from '../../../assets/img/icons/flag_n.svg';
 import { ReactComponent as Auth } from '../../../assets/img/icons/human.svg';
 import { ReactComponent as Note } from '../../../assets/img/icons/note.svg';
-import Modal from '../../../components/Modal';
+import Modal from '../../../components/new-components/Modal';
 import { IconButton, Search } from '../../../components/ui-kit';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { logout } from '../../../store/reducers/loginSlice';

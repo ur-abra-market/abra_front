@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -6,15 +6,15 @@ import { Button } from '../../components/buttons';
 import styleBtn from '../../components/buttons/Buttons.module.css';
 import FooterForSupplierPart from '../../components/FooterForChangePages';
 import HeaderForChangePages from '../../components/HeaderForChangePages';
-import Modal from '../../components/Modal';
+import Modal from '../../components/new-components/Modal';
 import ChangeEmailForm from '../../components/ui/TypesView/ChangeEmailForm';
 
 import style from './ChangeEmailPage.module.css';
 
-const ChangeEmailPage = () => {
+const ChangeEmailPage: FC = () => {
   const navigate = useNavigate();
   const [modalActive, setModalActive] = useState(false);
-  const handleChangeModalActive = () => {
+  const handleChangeModalActive = (): void => {
     setModalActive(prevState => !prevState);
   };
 

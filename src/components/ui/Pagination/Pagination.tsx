@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import { active } from '../../../store/reducers/paginateSlice';

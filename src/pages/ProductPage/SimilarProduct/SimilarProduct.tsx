@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { Carousel } from 'components';
-
 import { ProductCard } from '../../../components/ProductCard/ProductCard';
+import { ProductsPreview } from '../../../components/ProductsPreview/ProductsPreview';
 import { useAppSelector } from '../../../store/hooks';
 
 export const SimilarProduct = (): JSX.Element => {
@@ -18,11 +17,8 @@ export const SimilarProduct = (): JSX.Element => {
   };
 
   return (
-    <Carousel
-      title="Similar products in this category"
-      arrayLength={similarProducts.length}
-    >
+    <ProductsPreview title="Similar products in this category">
       {similarProducts && buildCarouselSimilarProducts()}
-    </Carousel>
+    </ProductsPreview>
   );
 };

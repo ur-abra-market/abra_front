@@ -18,7 +18,7 @@ import viewIcon from 'assets/img/icons/viewIcon.png';
 import Checkbox from 'components/Checkbox/Checkbox';
 import FiltersList from 'components/FiltersList';
 import Loader from 'components/Loader';
-import Modal from 'components/Modal';
+import Modal from 'components/new-components/Modal';
 import Search from 'components/Search';
 import Select from 'components/Select';
 import ShowPage from 'components/ShowPage';
@@ -58,11 +58,11 @@ const ProductsListPage: FC = (): JSX.Element => {
     dispatch(manageProductsService());
   }, []);
 
-  const changeCheckbox = () => {
+  const changeCheckbox = (): void => {
     setChecked(!checked);
   };
 
-  const handleChangeModalActive = () => {
+  const handleChangeModalActive = (): void => {
     setModalActive(!modalActive);
   };
 

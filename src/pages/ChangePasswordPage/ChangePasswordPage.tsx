@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import Modal from '../../components/Modal';
+import Modal from '../../components/new-components/Modal';
 import ChangePasswordForm from '../../components/ui/TypesView/ChangePasswordForm';
+import { Button } from '../../components/ui-kit';
 
 import style from './ChangePasswordPage.module.css';
-import { Button } from "../../components/ui-kit";
 
-const ChangePasswordPage = () => {
-  const navigate = useNavigate();
+const ChangePasswordPage: FC = () => {
   const [modalActive, setModalActive] = useState(false);
-  const handleChangeModalActive = () => {
+  const handleChangeModalActive = (): void => {
     setModalActive(prevState => !prevState);
   };
 
@@ -28,10 +27,9 @@ const ChangePasswordPage = () => {
             Forgot password?
           </Link>
         </div>
-
       </div>
 
-      <Modal active={modalActive}  classNameModal={style.modal_container}>
+      <Modal active={modalActive} classNameModal={style.modal_container}>
         <div className={style.modal_content_wrapper}>
           <div className={style.modal_header}>
             Your new password has been successfully saved

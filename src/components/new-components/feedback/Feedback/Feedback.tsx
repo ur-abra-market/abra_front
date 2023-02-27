@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container } from '../../../Container/Container';
+import { Container } from '../../Container/Container';
 import Social from '../Social';
 import Subscribe from '../Subscribe';
 import WhatsApp from '../WhatsApp';
