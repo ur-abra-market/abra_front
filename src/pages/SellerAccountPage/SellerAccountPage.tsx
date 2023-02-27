@@ -1,24 +1,24 @@
 import React from 'react';
 
 import cn from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
+import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
 import { Container } from '../../components';
 import Address from '../../components/Address';
+import { Button, Checkbox, Input } from '../../components/ui-kit';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { logout } from '../../store/reducers/loginSlice';
 
-import LogoutButton from './LogoutButton';
 import style from './SellerAccountPage.module.css';
 
 import addImgIcon from 'assets/img/icons/add_image.svg';
 import { ButtonLink, InfoBtn } from 'components/buttons';
-import Checkbox from 'components/Checkbox';
 import TextField from 'components/TextField';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 import {
-  profileInfo__textFieldClasses,
   accountDetails__textFieldClasses,
-  checkboxClasses,
   addImageBtnClasses,
 } from 'pages/SellerAccountPage/classesStyles';
 import Orders from 'pages/SellerAccountPage/Orders';
@@ -39,6 +39,18 @@ const SellerAccountPage = (): JSX.Element => {
 
   const addresses = [addressExample];
 
+  const dispatch = useAppDispatch();
+  const onLogoutHandler = (): void => {
+    dispatch(logout());
+  };
+
+  const isAuth = useAppSelector(state => state.login.isAuth);
+  const navigate = useNavigate();
+
+  if (!isAuth) {
+    navigate('/login');
+  }
+
   return (
     <div className={style.seller_page}>
       <Header />
@@ -49,7 +61,14 @@ const SellerAccountPage = (): JSX.Element => {
               <div className={style.section}>
                 <div className={style.header_wrapper}>
                   <div className={style.header}>Profile Info</div>
-                  <LogoutButton />
+                  <Button
+                    color="white"
+                    className={style.logout_button}
+                    onClick={onLogoutHandler}
+                  >
+                    <div className={style.logout_button_title}>Log Out</div>
+                    <LogOutIcon />
+                  </Button>
                 </div>
                 <div className={style.button_link_container}>
                   <ButtonLink
@@ -60,20 +79,16 @@ const SellerAccountPage = (): JSX.Element => {
                 </div>
                 <div className={style.profile_info_inputs_wrapper}>
                   <div className={style.flex_container}>
-                    <TextField
-                      label="First name"
-                      name="firstName"
-                      placeholder="Enter first name"
-                      classes={profileInfo__textFieldClasses}
-                    />
+                    <label htmlFor="firstName" className={style.label}>
+                      First name
+                    </label>
+                    <Input placeholder="Enter first name" id="firstName" />
                   </div>
                   <div className={style.flex_container}>
-                    <TextField
-                      label="Last name"
-                      name="lastName"
-                      placeholder="Enter last name"
-                      classes={profileInfo__textFieldClasses}
-                    />
+                    <label htmlFor="firstName" className={style.label}>
+                      Last name
+                    </label>
+                    <Input placeholder="Enter last name" id="lastName" />
                   </div>
                 </div>
               </div>
@@ -149,31 +164,62 @@ const SellerAccountPage = (): JSX.Element => {
             </div>
 
             <div className={style.right_column}>
-              <div className={style.section}>
+              <div className={cn(style.section, style.section_notifications)}>
                 <div className={style.header_wrapper}>
-                  <div className={style.header}>Notifications</div>
+                  <div className={cn(style.header, style.header_notifications)}>
+                    Notifications
+                  </div>
                 </div>
+
                 <div className={style.notifications_list}>
                   <div className={style.notifications_item}>
-                    <Checkbox label="Discounts & offers" classes={checkboxClasses} />
+                    <Checkbox
+                      variant="notification"
+                      label="Discounts & offers"
+                      className={cn(style.label_checkbox, style.input_checkbox)}
+                    />
                   </div>
                   <div className={style.notifications_item}>
-                    <Checkbox label="Order updates" classes={checkboxClasses} />
+                    <Checkbox
+                      variant="notification"
+                      label="Order updates"
+                      className={cn(style.label_checkbox, style.input_checkbox)}
+                    />
                   </div>
                   <div className={style.notifications_item}>
-                    <Checkbox label="Order reminders" classes={checkboxClasses} />
+                    <Checkbox
+                      variant="notification"
+                      label="Order reminders"
+                      className={cn(style.label_checkbox, style.input_checkbox)}
+                    />
                   </div>
                   <div className={style.notifications_item}>
-                    <Checkbox label="On stock again" classes={checkboxClasses} />
+                    <Checkbox
+                      variant="notification"
+                      label="On stock again"
+                      className={cn(style.label_checkbox, style.input_checkbox)}
+                    />
                   </div>
                   <div className={style.notifications_item}>
-                    <Checkbox label="Product is cheaper" classes={checkboxClasses} />
+                    <Checkbox
+                      variant="notification"
+                      label="Product is cheaper"
+                      className={cn(style.label_checkbox, style.input_checkbox)}
+                    />
                   </div>
                   <div className={style.notifications_item}>
-                    <Checkbox label="Your favorites new" classes={checkboxClasses} />
+                    <Checkbox
+                      variant="notification"
+                      label="Your favorites new"
+                      className={cn(style.label_checkbox, style.input_checkbox)}
+                    />
                   </div>
                   <div className={style.notifications_item}>
-                    <Checkbox label="Account support" classes={checkboxClasses} />
+                    <Checkbox
+                      variant="notification"
+                      label="Account support"
+                      className={cn(style.label_checkbox, style.input_checkbox)}
+                    />
                   </div>
                 </div>
               </div>

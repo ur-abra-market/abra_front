@@ -53,6 +53,9 @@
     background: var(--front);
     border-radius: 8px;
 }
+.section_notifications {
+    padding: 0;
+}
 
 .avatar__wrapper {
     display: flex;
@@ -74,6 +77,10 @@
     color: #000;
     text-align: left;
     letter-spacing: 0.38px;
+}
+
+.header_notifications {
+    padding: 32px 127px 0 32px;
 }
 
 .logout_button {
@@ -146,6 +153,12 @@
     align-items: flex-start;
 
     width: 100%;
+}
+
+.label {
+    font-size: 12px;
+    line-height: 12px;
+    color: var(--light-gray);
 }
 
 .account_details_wrapper {
@@ -243,11 +256,14 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-top: 16px;
 }
 
 .notifications_item {
-    padding-top: 12px;
+    padding: 16px 32px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--light-gray-kit);
 }
 
 .notifications_item::after {
@@ -400,7 +416,7 @@
 .label_checkbox {
     cursor: pointer;
 
-    display: flex;
+    /*display: flex;*/
     align-items: center;
     justify-content: space-between;
 
@@ -410,6 +426,8 @@
     line-height: 20px;
     color: #000;
     letter-spacing: -0.24px;
+    width: 100%;
+
 }
 
 .input_checkbox {
@@ -420,14 +438,14 @@
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    justify-content: left;
+    justify-content: space-between;
 
-    width: 52px;
+    /*width: 52px;*/
     height: 32px;
     padding: 1px;
 
     appearance: none;
-    background: #F2F2F2;
+    /*background: #F2F2F2;*/
     border: none;
     border-radius: 36.5px;
 
@@ -441,18 +459,18 @@
     display: inline-block;
 }
 
-.input_checkbox::before {
-    transform: matrix(-1, 0, 0, 1, 0, 0);
+/*.input_checkbox::before {*/
+/*    transform: matrix(-1, 0, 0, 1, 0, 0);*/
 
-    width: 28px;
-    height: 28px;
+/*    width: 28px;*/
+/*    height: 28px;*/
 
-    background: #FFF;
-    border: 0.5px solid rgb(0 0 0 / 4%);
-    border-radius: 100px;
-    box-shadow: 0 3px 8px rgb(0 0 0 / 15%), 0 1px 1px rgb(0 0 0 / 16%),
-    0 3px 1px rgb(0 0 0 / 10%);
-}
+/*    background: #FFF;*/
+/*    border: 0.5px solid rgb(0 0 0 / 4%);*/
+/*    border-radius: 100px;*/
+/*    box-shadow: 0 3px 8px rgb(0 0 0 / 15%), 0 1px 1px rgb(0 0 0 / 16%),*/
+/*    0 3px 1px rgb(0 0 0 / 10%);*/
+/*}*/
 
 .input_checkbox::after {
     border: 0.5px solid rgb(0 0 0 / 4%);
@@ -465,7 +483,13 @@
     background: var(--red);
 }
 
+.logout_button {
+    display: flex;
+}
 
+.logout_button_title {
+    color: var(--red)
+}
 
 
 
