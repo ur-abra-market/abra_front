@@ -5,13 +5,12 @@ import { Link } from 'react-router-dom';
 
 import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
 import { Container } from '../../components';
-import AddingImageSpot from '../../components/AddingImage/AddingImageSpot/AddingImageSpot';
 import Address from '../../components/Address';
 import { Button, Checkbox, Input } from '../../components/ui-kit';
-import ImmutableInputWithChangeButton from '../../components/ui-kit/ImmutableTextFieldWithChangeButton';
+import AddingImageSpot from '../../components/ui-kit/AddingImageSpot/AddingImageSpot';
+import ImmutableInputWithChangeButton from '../../components/ui-kit/ImmutableInputWithChangeButton/ImmutableInputWithChangeButton';
 import { useAppDispatch } from '../../store/hooks';
 import { logout } from '../../store/reducers/loginSlice';
-import { classesOfLogoImage } from '../SupplierAccountMainPage/constantsOfClassesStyles';
 
 import style from './SellerAccountPage.module.css';
 
@@ -73,7 +72,6 @@ const SellerAccountPage = (): JSX.Element => {
                   <AddingImageSpot
                     images={images}
                     setImages={setImages}
-                    classes={classesOfLogoImage}
                     label="Add image"
                   />
                 </div>

@@ -11,7 +11,6 @@ interface ImmutableTextFieldWithChangeButtonProps {
   id?: string;
   type?: 'email' | 'text' | 'password' | 'tel';
   placeholder?: string;
-  classes?: any;
   defaultValue?: string;
   inputProps?: DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 }
