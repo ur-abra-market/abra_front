@@ -39,3 +39,79 @@
 .button{
   width: 100%;
 }
+
+.modal {
+  width: 698px;
+  position: relative;
+  padding: 32px;
+}
+
+.modal_wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal_header {
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 35px;
+}
+
+.modal_container {
+  margin-bottom: 32px;
+}
+
+.modal_content {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.modal_content:last-child {
+  margin-bottom: 0;
+}
+
+.modal_button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  background-color: transparent;
+  color: #FC133D;
+  text-decoration: underline;
+  flex: 0 1 15%;
+  text-align: end;
+}
+
+.modal_button:hover {
+  cursor: pointer;
+}
+
+.modal_title_item {
+  flex: 0 1 35%;
+  color: #828282;
+}
+
+.modal_middle_item {
+  flex: 0 1 50%;
+}
+
+.modal_icon_plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  content: '';
+  margin: 0 auto;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  right: -56px;
+}
+
+.modal_icon_plus:hover {
+  cursor: pointer;
+}
+
