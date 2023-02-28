@@ -10,7 +10,6 @@ import { AddingImageSpotProps } from './AddingImageSpot.props';
 
 const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
   const {
-    classes,
     error,
     register,
     images,
@@ -54,7 +53,7 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
     <div
       className={cn(
         {
-          [style.wrapperWithLabel]: !!label,
+          [style.wrapper_with_label]: !!label,
           [style.wrapper]: !label,
         },
         className,
@@ -77,30 +76,29 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
             src={imgUrl as string}
             alt="img"
             id="photoImg"
-            className={classes.uploadedImage}
+            className={style.uploaded_image_logo}
           />
-          <button type="button" className={style.photoRemove} onClick={onClose}>
+          <button type="button" className={style.photo_remove} onClick={onClose}>
             <img src={deleteImg} alt="close" />
           </button>
         </div>
       ) : (
-        <div role="presentation" className={classes.background} onClick={handlePickPhoto}>
-          <img
-            src={iconImg}
-            alt="icon img"
-            id="iconImg"
-            className={classes.sampleImage}
-          />
+        <div
+          role="presentation"
+          className={style.profile_logo_background}
+          onClick={handlePickPhoto}
+        >
+          <img src={iconImg} alt="icon img" id="iconImg" className={style.photo_img} />
         </div>
       )}
 
       {label && (
-        <div className={style.labelContainer}>
+        <div className={style.label_container}>
           <label
             role="presentation"
             htmlFor="profileLogo"
             onClick={handlePickPhoto}
-            className={classes ? classes.label : style.label}
+            className={style.photo_description_title}
           >
             {label}
           </label>
@@ -108,7 +106,7 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
           <p className={style.placeholder}>{placeholder}</p>
         </div>
       )}
-      {error && <p className={style.inputError}>&#9888; {error}</p>}
+      {error && <p className={style.input_error}>&#9888; {error}</p>}
     </div>
   );
 };

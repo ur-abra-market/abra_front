@@ -1,151 +1,236 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import cn from 'classnames';
 import { Link } from 'react-router-dom';
+
+import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
+import { Container } from '../../components';
+import Address from '../../components/Address';
+import { Button, Checkbox, Input } from '../../components/ui-kit';
+import AddingImageSpot from '../../components/ui-kit/AddingImageSpot/AddingImageSpot';
+import ImmutableInputWithChangeButton from '../../components/ui-kit/ImmutableInputWithChangeButton/ImmutableInputWithChangeButton';
+import { useAppDispatch } from '../../store/hooks';
+import { logout } from '../../store/reducers/loginSlice';
 
 import style from './SellerAccountPage.module.css';
 
-import iconImage from 'assets/img/icons/icon-img.png';
-import { ButtonLink, InfoBtn } from 'components/buttons';
-import Checkbox from 'components/Checkbox';
-import TextField from 'components/TextField';
+import { InfoBtn } from 'components/buttons';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
-import {
-  profileInfoBtnClasses,
-  profileInfo__textFieldClasses,
-  accountDetails__textFieldClasses,
-  checkboxClasses,
-} from 'pages/SellerAccountPage/classesStyles';
-import Orders from 'pages/SellerAccountPage/orders';
+import Orders from 'pages/SellerAccountPage/Orders';
 
-const UserAccountPage = (): JSX.Element => {
+const SellerAccountPage = (): JSX.Element => {
+  const addressExample = {
+    firstname: 'Olga',
+    lastname: 'Andreeva',
+    phone: '+79158448547',
+    street: 'Jaroslava Gasheka 6, building 2',
+    apartment: 'apartment 904',
+    city: 'Moscow',
+    region: '',
+    state: '',
+    country: 'Russian Federation',
+    zipcode: '589964',
+  };
+
+  const addresses = [addressExample];
+
+  const dispatch = useAppDispatch();
+  const onLogoutHandler = (): void => {
+    dispatch(logout());
+  };
+
+  // const isAuth = useAppSelector(state => state.login.isAuth);
+  // const navigate = useNavigate();
+
+  // if (!isAuth) {
+  //   navigate('/login');
+  // }
+
+  const [images, setImages] = useState([]);
+
   return (
-    <>
+    <div className={style.seller_page}>
       <Header />
-      <div className={style.userCabinet}>
-        <div className={style.userCabinet__contentWrapper}>
-          <div className={`${style.section} ${style.profileInfo}`}>
-            <div className={style.header__wrapper}>
-              <div className={style.header}>Profile Info</div>
-            </div>
-            <div className={style.wrepperButtonLinkProfile}>
-              <ButtonLink
-                name="Add image"
-                src={iconImage}
-                classes={profileInfoBtnClasses}
-              />
-            </div>
-            <div className={style.profileInfo__textFields}>
-              <div className={style.flexContainer}>
-                <TextField
-                  label="First name"
-                  name="firstName"
-                  placeholder="Enter first name"
-                  classes={profileInfo__textFieldClasses}
-                />
+      <Container>
+        <div className={style.seller_cabinet}>
+          <div className={style.content_wrapper}>
+            <div className={style.left_column}>
+              <div className={style.section}>
+                <div className={style.header_wrapper}>
+                  <div className={style.header}>Profile Info</div>
+                  <Button
+                    color="white"
+                    className={style.logout_button}
+                    onClick={onLogoutHandler}
+                  >
+                    <div className={style.logout_button_title}>Log Out</div>
+                    <LogOutIcon />
+                  </Button>
+                </div>
+                <div className={style.button_link_container}>
+                  <AddingImageSpot
+                    images={images}
+                    setImages={setImages}
+                    label="Add image"
+                  />
+                </div>
+                <div className={style.profile_info_inputs_wrapper}>
+                  <div className={style.flex_container}>
+                    <label htmlFor="firstName" className={style.label}>
+                      First name
+                    </label>
+                    <Input placeholder="Enter first name" id="firstName" />
+                  </div>
+                  <div className={style.flex_container}>
+                    <label htmlFor="firstName" className={style.label}>
+                      Last name
+                    </label>
+                    <Input placeholder="Enter last name" id="lastName" />
+                  </div>
+                </div>
               </div>
-              <div className={style.flexContainer}>
-                <TextField
-                  label="Last name"
-                  name="lastName"
-                  placeholder="Enter last name"
-                  classes={profileInfo__textFieldClasses}
-                />
+              <div className={style.section}>
+                <div className={style.header_wrapper}>
+                  <div className={style.header}>Account Details</div>
+                </div>
+                <div className={style.account_details_wrapper}>
+                  <div className={style.flex_container}>
+                    <ImmutableInputWithChangeButton
+                      label="Email"
+                      name="email"
+                      placeholder="Enter your email"
+                    />
+                  </div>
+                  <div className={style.flex_container}>
+                    <ImmutableInputWithChangeButton
+                      label="Phone Number"
+                      type="tel"
+                      name="Phone Number"
+                      placeholder="+7 (900) 000-0000"
+                    />
+                  </div>
+                  <div className={style.flex_container}>
+                    <ImmutableInputWithChangeButton
+                      label="Password"
+                      type="password"
+                      name="password"
+                      placeholder="Enter your password"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className={cn(style.remove_wrapper, style.section)}>
+                <Link className={style.remove_account_link} to="/">
+                  Remove the account?
+                </Link>
+                <div className={style.link_description}>
+                  (All your data including order history will be deleted)
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className={`${style.section} ${style.orders}`}>
-            <Orders />
-          </div>
+            <div className={style.center_column}>
+              <div className={style.section}>
+                <Orders />
+              </div>
 
-          <div className={`${style.section} ${style.notifications}`}>
-            <div className={style.header__wrapper}>
-              <div className={style.header}>Notifications</div>
+              <div className={style.section}>
+                <div className={style.header_wrapper}>
+                  <div className={style.header}>My Addresses</div>
+                  <Link className={style.header_link} to="/">
+                    Add new
+                  </Link>
+                </div>
+                <div className={style.my_addresses_wrapper}>
+                  {addresses ? (
+                    <div className={style.addresses_container}>
+                      <Address address={addressExample} />
+                    </div>
+                  ) : (
+                    <div>
+                      <p className={style.no_address}>
+                        You have not added any address yet.
+                      </p>
+                      <p className={style.no_address}>
+                        Once you place your first order, you will be able to save your
+                        address.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
-            <div className={style.notificationsList}>
-              <div className={style.notificationsList__item}>
-                <Checkbox label="Discounts & offers" classes={checkboxClasses} />
-              </div>
-              <div className={style.notificationsList__item}>
-                <Checkbox label="Order updates" classes={checkboxClasses} />
-              </div>
-              <div className={style.notificationsList__item}>
-                <Checkbox label="Order reminders" classes={checkboxClasses} />
-              </div>
-              <div className={style.notificationsList__item}>
-                <Checkbox label="On stock again" classes={checkboxClasses} />
-              </div>
-              <div className={style.notificationsList__item}>
-                <Checkbox label="Product is cheaper" classes={checkboxClasses} />
-              </div>
-              <div className={style.notificationsList__item}>
-                <Checkbox label="Your favorites new" classes={checkboxClasses} />
-              </div>
-              <div className={style.notificationsList__item}>
-                <Checkbox label="Account support" classes={checkboxClasses} />
-              </div>
-            </div>
-          </div>
 
-          <div className={`${style.section} ${style.accountDetails}`}>
-            <div className={style.header__wrapper}>
-              <div className={style.header}>Account Details</div>
-            </div>
-            <div className={style.accountDetails__wrapper}>
-              <div className={style.flexContainer}>
-                <TextField
-                  label="Email"
-                  name="email"
-                  classes={accountDetails__textFieldClasses}
-                />
-              </div>
-              <div className={style.flexContainer}>
-                <TextField
-                  label="Phone number"
-                  name="phoneNumber"
-                  classes={accountDetails__textFieldClasses}
-                />
-              </div>
-              <div className={style.flexContainer}>
-                <TextField
-                  label="Password"
-                  name="password"
-                  type="password"
-                  classes={accountDetails__textFieldClasses}
-                />
-              </div>
-            </div>
-          </div>
+            <div className={style.right_column}>
+              <div className={cn(style.section, style.section_notifications)}>
+                <div className={style.header_wrapper}>
+                  <div className={cn(style.header, style.header_notifications)}>
+                    Notifications
+                  </div>
+                </div>
 
-          <div className={`${style.section} ${style.myAddresses}`}>
-            <div className={style.header__wrapper}>
-              <div className={style.header}>My Addresses</div>
-              <Link className={style.header__link} to="/">
-                Add new
-              </Link>
+                <div className={style.notifications_list}>
+                  <div className={style.notifications_item}>
+                    <Checkbox
+                      variant="notification"
+                      label="Discounts & offers"
+                      className={cn(style.label_checkbox, style.input_checkbox)}
+                    />
+                  </div>
+                  <div className={style.notifications_item}>
+                    <Checkbox
+                      variant="notification"
+                      label="Order updates"
+                      className={cn(style.label_checkbox, style.input_checkbox)}
+                    />
+                  </div>
+                  <div className={style.notifications_item}>
+                    <Checkbox
+                      variant="notification"
+                      label="Order reminders"
+                      className={cn(style.label_checkbox, style.input_checkbox)}
+                    />
+                  </div>
+                  <div className={style.notifications_item}>
+                    <Checkbox
+                      variant="notification"
+                      label="On stock again"
+                      className={cn(style.label_checkbox, style.input_checkbox)}
+                    />
+                  </div>
+                  <div className={style.notifications_item}>
+                    <Checkbox
+                      variant="notification"
+                      label="Product is cheaper"
+                      className={cn(style.label_checkbox, style.input_checkbox)}
+                    />
+                  </div>
+                  <div className={style.notifications_item}>
+                    <Checkbox
+                      variant="notification"
+                      label="Your favorites new"
+                      className={cn(style.label_checkbox, style.input_checkbox)}
+                    />
+                  </div>
+                  <div className={style.notifications_item}>
+                    <Checkbox
+                      variant="notification"
+                      label="Account support"
+                      className={cn(style.label_checkbox, style.input_checkbox)}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className={style.myAddresses__wrapper}>
-              <p className={style.noAddress}>You have not added any address yet.</p>
-              <p className={style.noAddress}>
-                Once you place your first order, you will be able to save your address.
-              </p>
-            </div>
+
+            <InfoBtn className={style.info_button_positioning} />
           </div>
         </div>
-        <div className={style.removeWrapper}>
-          <Link className={style.removeAccauntLink} to="/">
-            Remove the account?
-          </Link>
-          <div className={style.linkDescription}>
-            (All your data including order history will be deleted)
-          </div>
-          <InfoBtn />
-        </div>
-      </div>
+      </Container>
       <Footer />
-    </>
+    </div>
   );
 };
 
-export default UserAccountPage;
+export default SellerAccountPage;

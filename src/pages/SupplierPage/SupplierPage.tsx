@@ -17,7 +17,7 @@ import { getCompanyInfoService } from '../../store/reducers/supplierSlice';
 
 import style from './SupplierPage.module.css';
 
-const SupplierPage = () => {
+const SupplierPage = (): JSX.Element => {
   const [isGetCompanyInfo, setIsGetCompanyInfo] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -26,12 +26,10 @@ const SupplierPage = () => {
   const companyInfo = useAppSelector(state => state.supplier.companyInfo);
 
   useEffect(() => {
-    console.log('nnnnn');
     dispatch(getCompanyInfoService());
     dispatch(getSupplierAccountDataService());
     setIsGetCompanyInfo(true);
   }, []);
-  console.log(isLoading);
 
   const navbarCategoryBtnClasses = {
     wrepperBtnImg: `${style.wrepperBtnImg}`,
