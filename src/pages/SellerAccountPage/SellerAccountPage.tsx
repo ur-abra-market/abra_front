@@ -1,26 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
 import { Container } from '../../components';
+import AddingImageSpot from '../../components/AddingImage/AddingImageSpot/AddingImageSpot';
 import Address from '../../components/Address';
 import { Button, Checkbox, Input } from '../../components/ui-kit';
+import ImmutableInputWithChangeButton from '../../components/ui-kit/ImmutableTextFieldWithChangeButton';
 import { useAppDispatch } from '../../store/hooks';
 import { logout } from '../../store/reducers/loginSlice';
+import { classesOfLogoImage } from '../SupplierAccountMainPage/constantsOfClassesStyles';
 
 import style from './SellerAccountPage.module.css';
 
-import addImgIcon from 'assets/img/icons/add_image.svg';
-import { ButtonLink, InfoBtn } from 'components/buttons';
-import TextField from 'components/TextField';
+import { InfoBtn } from 'components/buttons';
 import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
-import {
-  accountDetails__textFieldClasses,
-  addImageBtnClasses,
-} from 'pages/SellerAccountPage/classesStyles';
 import Orders from 'pages/SellerAccountPage/Orders';
 
 const SellerAccountPage = (): JSX.Element => {
@@ -51,6 +48,8 @@ const SellerAccountPage = (): JSX.Element => {
   //   navigate('/login');
   // }
 
+  const [images, setImages] = useState([]);
+
   return (
     <div className={style.seller_page}>
       <Header />
@@ -71,10 +70,11 @@ const SellerAccountPage = (): JSX.Element => {
                   </Button>
                 </div>
                 <div className={style.button_link_container}>
-                  <ButtonLink
-                    name="Add image"
-                    src={addImgIcon}
-                    classes={addImageBtnClasses}
+                  <AddingImageSpot
+                    images={images}
+                    setImages={setImages}
+                    classes={classesOfLogoImage}
+                    label="Add image"
                   />
                 </div>
                 <div className={style.profile_info_inputs_wrapper}>
@@ -98,25 +98,26 @@ const SellerAccountPage = (): JSX.Element => {
                 </div>
                 <div className={style.account_details_wrapper}>
                   <div className={style.flex_container}>
-                    <TextField
+                    <ImmutableInputWithChangeButton
                       label="Email"
                       name="email"
-                      classes={accountDetails__textFieldClasses}
+                      placeholder="Enter your email"
                     />
                   </div>
                   <div className={style.flex_container}>
-                    <TextField
-                      label="Phone number"
-                      name="phoneNumber"
-                      classes={accountDetails__textFieldClasses}
+                    <ImmutableInputWithChangeButton
+                      label="Phone Number"
+                      type="tel"
+                      name="Phone Number"
+                      placeholder="+7 (900) 000-0000"
                     />
                   </div>
                   <div className={style.flex_container}>
-                    <TextField
+                    <ImmutableInputWithChangeButton
                       label="Password"
-                      name="password"
                       type="password"
-                      classes={accountDetails__textFieldClasses}
+                      name="password"
+                      placeholder="Enter your password"
                     />
                   </div>
                 </div>
