@@ -108,7 +108,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
     };
   };
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: any): void => {
     const keysData = Object.keys(data);
 
     const properties: any[] = [];

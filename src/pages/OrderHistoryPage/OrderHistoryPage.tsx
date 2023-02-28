@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import style from './OrderHistoryPage.module.css';
 
-const OrderHistoryPage = () => {
+const OrderHistoryPage = (): JSX.Element => {
   const statusLinksList = ['All', 'Preparing', 'In progress', 'Completed'];
   const ordersInfo = [
     {
@@ -43,7 +43,7 @@ const OrderHistoryPage = () => {
   const [check, setCheck] = useState<any[]>([]);
   const [ordersArray, setOrdersArray] = useState(ordersInfo);
 
-  const handleButtonCategoryClick = (index: any, link: any) => {
+  const handleButtonCategoryClick = (index: number, link: string): void => {
     const arrCheck = check.map((e, i) => i === index);
 
     setCheck(arrCheck);
@@ -64,6 +64,7 @@ const OrderHistoryPage = () => {
       <div className={style.links}>
         {statusLinksList.map((link, i) => (
           <button
+            type="button"
             className={style.link}
             style={{
               background: check[i] ? '#000000' : '#D9D9D9',

@@ -8,7 +8,7 @@ const FilterSizes = (): JSX.Element => {
 
   const [check, setCheck] = useState(sizeCheck);
 
-  const changeState = (index: number) => {
+  const changeState = (index: number): void => {
     const arrCheck = check.map((e, i) => (i === index ? !e : e));
 
     setCheck(arrCheck);

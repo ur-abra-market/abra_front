@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
-
 import { StarIcon } from '../../../../assets/img';
 
 import style from './Reward.module.css';

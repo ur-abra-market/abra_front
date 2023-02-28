@@ -1,8 +1,5 @@
 import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-
 import { useAppSelector } from '../../../../store/hooks';
 import ProductQuantityControl from '../../../ProductQuantityControl';
 

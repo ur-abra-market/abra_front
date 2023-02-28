@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './OrderDetails.module.css';
 
-const OrderDetailsPage = () => {
+const OrderDetailsPage = (): JSX.Element => {
   return (
     <div className={style.main}>
       <h1 className={style.title}>Order Details</h1>

@@ -1,4 +1,4 @@
-export const getPriceOneItem = (params: any) => {
+export const getPriceOneItem = (params: any): any => {
   const { price_include_discount, min_quantity } = params;
 
   // заглушка так как нет данных

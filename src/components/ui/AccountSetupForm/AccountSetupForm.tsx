@@ -52,7 +52,6 @@ const AccountSetupForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [active, setActive] = useState(false);
-  /* const [tel, setTel] = useState('') */
   const {
     register,
     formState: { errors, isValid },

@@ -9,7 +9,7 @@ import FilterSort from '../../product_filter/FilterSort';
 
 import style from './ProductFilter.module.css';
 
-const ProductFilter = () => {
+const ProductFilter = (): JSX.Element => {
   return (
     <div className={style.productFilter}>
       <FilterSort />

@@ -20,7 +20,7 @@ const AddressPopup = (): JSX.Element => {
     scale: modal ? '1' : '0',
     zIndex: modal ? '20' : '0',
   };
-  const handlerConfirm = () => {
+  const handlerConfirm = (): void => {
     if (arrAddress.length < 2) dispatch(addAddress(place));
     dispatch(address(false));
   };

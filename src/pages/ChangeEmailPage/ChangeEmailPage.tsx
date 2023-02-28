@@ -11,10 +11,10 @@ import ChangeEmailForm from '../../components/ui/TypesView/ChangeEmailForm';
 
 import style from './ChangeEmailPage.module.css';
 
-const ChangeEmailPage = () => {
+const ChangeEmailPage = (): JSX.Element => {
   const navigate = useNavigate();
   const [modalActive, setModalActive] = useState(false);
-  const handleChangeModalActive = () => {
+  const handleChangeModalActive = (): void => {
     setModalActive(prevState => !prevState);
   };
 

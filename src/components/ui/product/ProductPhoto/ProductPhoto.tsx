@@ -6,7 +6,7 @@ interface ProductPhotoProps {
   photoArray: any[];
 }
 
-const ProductPhoto: FC<ProductPhotoProps> = ({ photoArray }) => {
+const ProductPhoto: FC<ProductPhotoProps> = ({ photoArray }): JSX.Element => {
   const step = 114;
 
   const [len, setLen] = useState(0);
@@ -26,17 +26,17 @@ const ProductPhoto: FC<ProductPhotoProps> = ({ photoArray }) => {
     SetHeight(amountSlide * step - 8);
   }, []);
 
-  const moveDown = () => {
+  const moveDown = (): void => {
     SetTransition('0.5s');
     SetTop(-(2 * step));
   };
 
-  const moveUp = () => {
+  const moveUp = (): void => {
     SetTransition('0.5s');
     SetTop(0);
   };
 
-  const change = () => {
+  const change = (): void => {
     SetTransition('none');
     if (top === 0) SetCount(count === len - 1 ? 0 : count + 1);
     if (top < -step) SetCount(count === 0 ? len - 1 : count - 1);

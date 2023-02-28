@@ -41,7 +41,7 @@ const ProductAbout = (): JSX.Element => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const [height, setHeight] = useState(0);
 
-  const transformKey = (key: any) => {
+  const transformKey = (key: string): string => {
     return key
       .split('_')
       .map((w: string | any[]) => w[0].toUpperCase() + w.slice(1))

@@ -1,13 +1,11 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { priceTo, priceFrom } from '../../../../store/reducers/filterSlice';
+import { priceFrom, priceTo } from '../../../../store/reducers/filterSlice';
 import { productPaginateService } from '../../../../store/reducers/productPaginateSlice';
 import SwitchBox from '../../../SwitchBox';
-// import SwitchDiscount from '../SwitchDiscount'
 
+// import SwitchDiscount from '../SwitchDiscount'
 import style from './FilterPrice.module.css';
 
 const FilterPrice = (): JSX.Element => {
@@ -16,7 +14,7 @@ const FilterPrice = (): JSX.Element => {
   const paginate = useAppSelector(state => state.paginate);
   const data = { ...paginate, ...filter };
 
-  const handlerPriceFrom = (value: string) => {
+  const handlerPriceFrom = (value: string): void => {
     dispatch(priceFrom(+value));
     dispatch(productPaginateService(data));
   };

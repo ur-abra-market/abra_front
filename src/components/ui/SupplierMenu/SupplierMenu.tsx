@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import style from './SupplierMenu.module.css';
 
-const SupplierMenu = () => {
+const SupplierMenu = (): JSX.Element => {
   const menu = [
     { name: 'Dashboard', path: 'dashboard' },
     { name: 'Products List', path: 'products-list' },

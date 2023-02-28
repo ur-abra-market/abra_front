@@ -28,7 +28,9 @@ const CartOrder: FC<CartOrderProps> = ({ info }) => {
         <p>Total</p>
         <p>${info.totalCost}</p>
       </div>
-      <button className={style.cartOrder__button}>Checkout</button>
+      <button type="button" className={style.cartOrder__button}>
+        Checkout
+      </button>
       <p className={style.cartOrder__text_info}>
         Make sure that the quantity of goods and the selected characteristics are correct.
       </p>

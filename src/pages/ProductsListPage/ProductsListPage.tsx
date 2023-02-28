@@ -58,11 +58,11 @@ const ProductsListPage: FC = (): JSX.Element => {
     dispatch(manageProductsService());
   }, []);
 
-  const changeCheckbox = () => {
+  const changeCheckbox = (): void => {
     setChecked(!checked);
   };
 
-  const handleChangeModalActive = () => {
+  const handleChangeModalActive = (): void => {
     setModalActive(!modalActive);
   };
 
@@ -97,17 +97,17 @@ const ProductsListPage: FC = (): JSX.Element => {
     visibility: { path: 'is_active', name: 'Visibility' },
   };
 
-  function getCheckedCheckboxes() {
+  function getCheckedCheckboxes(): void {
     const checkedCheckbox = document.querySelectorAll('input.checkbox:checked');
     const selectedItems = [];
 
-    for (let index = 0; index < checkedCheckbox.length; index++)
+    for (let index = 0; index < checkedCheckbox.length; index += 1)
       selectedItems.push(checkedCheckbox[index].id);
 
     getDeletedItems(selectedItems);
     handleChangeModalActive();
   }
-  const getDeletedItems = (items: any) => {
+  const getDeletedItems = (items: any): void => {
     dispatch(deleteProducts(items));
   };
 
@@ -119,11 +119,11 @@ const ProductsListPage: FC = (): JSX.Element => {
       : `${style.search_photo}`,
   };
 
-  const handleRestFiltersSet = () => {
+  const handleRestFiltersSet = (): void => {
     setRestFilters(!restFilters);
   };
 
-  const handleLayoutSet = () => {
+  const handleLayoutSet = (): void => {
     setLayout(prevState => (prevState === 'tableLayout' ? 'tileLayout' : 'tableLayout'));
   };
   const filters = {
@@ -131,7 +131,7 @@ const ProductsListPage: FC = (): JSX.Element => {
     'On-sale': '1',
     'Off-sale': '0',
   };
-  const handleProductsStatusSelect = (value: any) => {
+  const handleProductsStatusSelect = (value: any): void => {
     let fieldValue = value;
 
     if (value === 'Off-sale') fieldValue = '0';
@@ -139,7 +139,7 @@ const ProductsListPage: FC = (): JSX.Element => {
     setSelectedProductsStatus(fieldValue);
   };
 
-  const handleSort = (item: any) => {
+  const handleSort = (item: any): void => {
     setSortBy(item);
   };
 

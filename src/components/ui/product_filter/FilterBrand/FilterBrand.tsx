@@ -12,7 +12,7 @@ const FilterBrand = (): JSX.Element => {
   // @ts-ignore
   const len = brandList.map(b => brands.includes(b.toLowerCase())).filter(e => !e);
 
-  const changeState = (ctx: any) => {
+  const changeState = (ctx: string): void => {
     const arrCheck = brandList
       // @ts-ignore
       .map(b => brands.includes(b.toLowerCase()))

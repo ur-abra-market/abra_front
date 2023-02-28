@@ -8,17 +8,17 @@ import style from './SearchFilter.module.css';
 interface SearchFilterProps {
   typeSearch: any;
 }
-const SearchFilter: FC<SearchFilterProps> = props => {
+const SearchFilter: FC<SearchFilterProps> = ({ typeSearch }): JSX.Element => {
   const dispatch = useAppDispatch();
   const [text, setText] = useState('');
   const brands = useAppSelector(state => state.filter.brands);
   const materials = useAppSelector(state => state.filter.materials);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: any): void => {
     e.preventDefault();
     if (text.trim() !== '') {
-      if (props.typeSearch === 'material') dispatch(material([...materials, text]));
-      if (props.typeSearch === 'brand') dispatch(brand([...brands, text]));
+      if (typeSearch === 'material') dispatch(material([...materials, text]));
+      if (typeSearch === 'brand') dispatch(brand([...brands, text]));
     }
   };
 

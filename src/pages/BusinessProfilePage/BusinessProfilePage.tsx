@@ -2,7 +2,7 @@ import React from 'react';
 
 import BusinessProfileForm from 'components/ui/BusinessProfileForm';
 
-const BusinessProfilePage = () => {
+const BusinessProfilePage = (): JSX.Element => {
   return (
     <div>
       <BusinessProfileForm />

@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
-
 import TypeBar from '../TypeBar/TypeBar';
 import TypeList from '../TypeList/TypeList';
 

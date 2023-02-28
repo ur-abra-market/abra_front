@@ -1,7 +1,5 @@
 import React, { FC, useState } from 'react';
 
-import PropTypes from 'prop-types';
-
 import RelatedInputs from '../../RelatedInputs';
 
 import style from './MaterialInputs.module.css';
@@ -28,7 +26,7 @@ const MaterialInputs: FC<MaterialInputsProps> = ({
 }) => {
   const [count, setCount] = useState(1);
 
-  const addInputs = () => {
+  const addInputs = (): void => {
     setCount(count + 1);
     fakeArr.push(count);
   };

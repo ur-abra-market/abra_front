@@ -1,8 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import authService from '../../services/auth.service';
-import { generateResponseError } from '../../utils/generateResponseError';
 
 const initialState = {
   resMessage: '',

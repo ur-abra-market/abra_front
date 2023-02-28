@@ -9,10 +9,9 @@ import ChangePasswordForm from '../../components/ui/TypesView/ChangePasswordForm
 
 import style from './ChangePasswordPage.module.css';
 
-const ChangePasswordPage = () => {
-  const navigate = useNavigate();
+const ChangePasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
-  const handleChangeModalActive = () => {
+  const handleChangeModalActive = (): void => {
     setModalActive(prevState => !prevState);
   };
 
