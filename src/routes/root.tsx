@@ -14,6 +14,8 @@ import { TermsAndConditions } from '../pages/TermsAndConditionsPage/TermsAndCond
 
 import sellerRoute from './sellerRoute';
 import supplierRoute from './supplierRoute';
+import LastNews from "../components/News/LastNews";
+import { ContactSupport } from "../components/Contact/ContactSupport";
 
 const profile = localStorage.getItem('profile');
 
@@ -58,6 +60,14 @@ const routes = createBrowserRouter([
         path: 'terms&conditions',
         element: <TermsAndConditions />,
       },
+      {
+        path:'news',
+        element:<LastNews/>
+      },
+      {
+        path:'contact',
+        element:<ContactSupport/>
+      }
     ],
   },
 ]);

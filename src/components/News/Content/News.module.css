@@ -1,0 +1,25 @@
+
+.image{
+    border-radius: 8px;
+    width: 230px;
+    height: 150px;
+}
+.container_content{
+    display: flex;
+    margin-bottom: 16px;
+}
+.text_container{
+    padding-left: 16px;
+}
+.title{
+    letter-spacing: 0.38px;
+    font-size: 20px;
+    line-height: 27px;
+    padding-bottom: 8px;
+    font-weight: 600;
+}
+.text{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
