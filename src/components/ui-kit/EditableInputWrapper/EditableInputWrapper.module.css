@@ -1,0 +1,17 @@
+.wrapper {
+    position: relative;
+}
+
+.input {
+    width: 100%;
+}
+
+.button {
+    position: absolute;
+    padding: 0;
+    right: 0;
+    top: 0;
+    background: red;
+    cursor: pointer;
+    width: 50px;
+}

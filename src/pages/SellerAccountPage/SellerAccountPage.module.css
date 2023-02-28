@@ -165,7 +165,7 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    align-items: center;
+    /*align-items: center;*/
 
     max-width: 406px;
     margin-top: 32px;
@@ -253,32 +253,19 @@
 }
 
 .notifications_list {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    padding: 20px 0 16px 0;
+    width: 277px;
 }
 
 .notifications_item {
     padding: 16px 32px;
-    width: 100%;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid var(--light-gray-kit);
 }
 
-.notifications_item::after {
-    content: '';
-
-    display: block;
-
-    height: 1px;
-    margin-top: 12px;
-
-    background: #F2F2F2;
-}
-
-.notifications_item:last-child::after {
-    display: none;
+.notifications_item:last-child {
+    border-bottom: none;
 }
 
 .info_button_positioning {
@@ -286,50 +273,6 @@
     bottom: 0;
     right: 0;
 }
-
-.wrepperButtonLinkProfile:hover {
-    cursor: pointer;
-}
-
-.wrepperBtnImgProfile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 80px;
-    height: 80px;
-
-    background: #E0E0E0;
-    border-radius: 50%;
-
-    /* width: 80px;
-  height: 80px; */
-
-    /* width: calc(80px + 1vw);
-  height: calc(80px + 1vw); */
-
-    /* width: calc(24px + 4vw);
-  height: calc(24px + 4vw);
-  background: #E0E0E0;
-  border-radius: 100%; */
-}
-
-.btnImgProfile,
-.btnImg {
-    display: block;
-    width: 37.5%;
-}
-
-.btnNameProfile {
-    font-size: 15px;
-    font-weight: 400;
-    font-style: normal;
-    line-height: 20px;
-    color: #828282;
-    text-decoration-line: underline;
-    letter-spacing: 0.16px;
-}
-
 
 .text_field_label {
     font-size: 13px;
@@ -515,6 +458,8 @@
     height: 50px;
     background-image: url("../../assets/img/icons/completed.png");
 }
+
+
 
 
 
