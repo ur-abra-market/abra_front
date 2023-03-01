@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { useSearchParams } from 'react-router-dom';
 
 import { Button } from '../../components/ui-kit';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { checkToken } from '../../store/reducers/passwordSlice';
 
-import Modal from 'components/Modal';
+import Modal from 'components/new-components/Modal';
 import ResetPasswordForm from 'components/ui/ResetPasswordForm';
 import style from 'pages/ResetPasswordPage/ResetPasswordPage.module.css';
 
 const ResetPasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
+  const [searchParams] = useSearchParams();
+  const tokenStatus = useAppSelector(state => state.passwordSlice.result);
+
+  const token = searchParams.get('token');
+  const dispatch = useAppDispatch();
   const handleChangeModalActive = (): void => {
     setModalActive(prevState => !prevState);
   };
+
+  useEffect(() => {
+    dispatch(checkToken(token!));
+  }, [dispatch, token]);
 
   return (
     <>
@@ -21,7 +34,9 @@ const ResetPasswordPage = (): JSX.Element => {
             Enter a new password that matches the criteria
           </div>
           <div className={style.inner_wrapper}>
-            <ResetPasswordForm handleChangeModalActive={handleChangeModalActive} />
+            {tokenStatus === 'TOKEN_IS_ACTIVE' && (
+              <ResetPasswordForm handleChangeModalActive={handleChangeModalActive} />
+            )}
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import style from './CheckoutPage.module.css';
 
@@ -9,7 +9,7 @@ import CheckPayment from 'components/ui/checkout/CheckPayment';
 import AddressPopup from 'components/ui/popup/AddressPopup';
 import PaymentPopup from 'components/ui/popup/PaymentPopup';
 
-const CheckoutPage = () => {
+const CheckoutPage: FC = () => {
   return (
     <div className={style.checkoutPage}>
       <div className={style.checkout}>

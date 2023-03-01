@@ -2,53 +2,64 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import authService from '../../services/auth.service';
-import { generateResponseError } from '../../utils/generateResponseError';
+import {
+  AsyncThunkConfig,
+  CheckAuthResponseType,
+  LoginParamsType,
+  LoginResponseType,
+} from '../../services/auth.serviceType';
 
 const initialState = {
-  resMessage: '',
-  errMessage: '',
-  loading: false,
-  isAuth: false,
+  resMessage: '' as string,
+  errMessage: '' as string,
+  loading: false as boolean,
+  isAuth: false as boolean,
 };
 
-export const loginService = createAsyncThunk<any, any>(
-  'login/loginService',
-  async (dataUser, { rejectWithValue }) => {
-    try {
-      const data = await authService.login(dataUser);
+export const loginService = createAsyncThunk<
+  { data: LoginResponseType },
+  LoginParamsType,
+  AsyncThunkConfig
+>('login/loginService', async (dataUser, { rejectWithValue }) => {
+  try {
+    const response = await authService.login(dataUser);
 
-      if (data.is_supplier) localStorage.setItem('profile', 'supplier');
+    if (response.data.is_supplier) localStorage.setItem('profile', 'supplier');
 
-      return data.result;
-    } catch (error: unknown) {
-      // @ts-ignore
-      const err = error.response.data.detail ? error.response.data.detail : error.message;
-      const message = generateResponseError(err);
-
-      return rejectWithValue(message);
+    return response;
+  } catch (error) {
+    // const err = error.response.data.detail ? error.response.data.detail : error.message;
+    // const message = generateResponseError(err);
+    //
+    // return rejectWithValue(message);
+    if (error instanceof AxiosError) {
+      return rejectWithValue(error.message);
     }
-  },
-);
 
-export const checkAuth = createAsyncThunk<any, void>(
-  'login/checkAuth',
-  async (_, { rejectWithValue }) => {
-    try {
-      const data = await authService.checkAuth();
+    return rejectWithValue('[registerService]: Error');
+  }
+});
 
-      if (data.is_supplier) localStorage.setItem('profile', 'supplier');
+export const checkAuth = createAsyncThunk<
+  { data: CheckAuthResponseType },
+  void,
+  AsyncThunkConfig
+>('login/checkAuth', async (_, { rejectWithValue }) => {
+  try {
+    const response = await authService.checkAuth();
 
-      return data;
-    } catch (error: unknown) {
-      localStorage.removeItem('profile');
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.message);
-      }
+    if (response.data.is_supplier) localStorage.setItem('profile', 'supplier');
 
-      return rejectWithValue('[checkAuth]: ERROR');
+    return response;
+  } catch (error) {
+    localStorage.removeItem('profile');
+    if (error instanceof AxiosError) {
+      return rejectWithValue(error.message);
     }
-  },
-);
+
+    return rejectWithValue('[checkAuth]: ERROR');
+  }
+});
 
 export const logout = createAsyncThunk<any, void>(
   'login/logout',
@@ -79,7 +90,7 @@ const loginSlice = createSlice({
       state.isAuth = false;
     });
     builder.addCase(loginService.fulfilled, (state, action) => {
-      state.resMessage = action.payload; // response
+      state.resMessage = action.payload.data.result; // response
       state.loading = false;
       state.isAuth = true;
     });

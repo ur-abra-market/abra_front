@@ -23,6 +23,7 @@ const schema = yup
       ),
   })
   .required();
+
 const RegisterForm = (): JSX.Element => {
   const [userStatus, setUserStatus] = useState<'sellers' | 'suppliers'>('suppliers');
   const dispatch = useAppDispatch();

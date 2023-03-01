@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { Carousel } from 'components';
-
 import { ProductCard } from '../../../components/ProductCard/ProductCard';
+import { ProductsPreview } from '../../../components/ProductsPreview/ProductsPreview';
 import { useAppSelector } from '../../../store/hooks';
 
 export const PopularProduct = (): JSX.Element => {
@@ -18,11 +17,8 @@ export const PopularProduct = (): JSX.Element => {
   };
 
   return (
-    <Carousel
-      title="Popular products in this category"
-      arrayLength={popularProducts.length}
-    >
+    <ProductsPreview title="Popular products in this category">
       {popularProducts && buildCarouselPopularProducts()}
-    </Carousel>
+    </ProductsPreview>
   );
 };

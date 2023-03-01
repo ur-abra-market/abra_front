@@ -1,2 +1,1 @@
-export * from './Container/Container';
-export * from './Carousel/Carousel';
+export * from './new-components/Container/Container';

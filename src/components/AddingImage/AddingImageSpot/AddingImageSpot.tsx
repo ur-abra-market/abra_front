@@ -3,7 +3,7 @@ import React, { ChangeEvent, FC, useRef, useState } from 'react';
 import cn from 'classnames';
 
 import deleteImg from '../../../assets/img/icons/delete_Img_red.svg';
-import iconImg from '../../../assets/img/icons/icon-img.png';
+import iconImg from '../../../assets/img/icons/photo_icon.svg';
 
 import style from './AddingImageSpot.module.css';
 import { AddingImageSpotProps } from './AddingImageSpot.props';
