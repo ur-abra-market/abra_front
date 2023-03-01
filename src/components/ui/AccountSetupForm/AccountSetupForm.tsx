@@ -98,7 +98,7 @@ const AccountSetupForm = (): JSX.Element => {
           text="This information will not be published. The data will only be used to create your account"
         />
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} id="test">
           <div className={style.add_name}>
             <Label label="First name">
               <Input
@@ -144,6 +144,7 @@ const AccountSetupForm = (): JSX.Element => {
             Use the number of any document authorizing the sale
           </p>
           <Button
+            type="button"
             disabled={!isValid}
             onClick={() => setActive(true)}
             className={style.button}
@@ -174,7 +175,7 @@ const AccountSetupForm = (): JSX.Element => {
                   </button>
                 </div>
               </div>
-              <Button label="Submit" type="submit" />
+              <Button type="submit" label="Submit" form="test" />
             </div>
             <button
               type="button"
