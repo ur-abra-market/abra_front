@@ -1,0 +1,32 @@
+.value{
+
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: 0.41px;
+    color: rgba(252, 19, 61, 0.32);
+    padding: 24px 16px 24px 24px;
+}
+.box{
+    display: flex;
+    border-radius: 12px;
+    background-color: #e3dfdf;
+    margin-bottom: 16px;
+}
+.title_text{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.16px;
+    padding-bottom: 4px;
+}
+.content{
+    padding-top: 28px;
+}
+.content_text{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: 0.16px;
+
+}
