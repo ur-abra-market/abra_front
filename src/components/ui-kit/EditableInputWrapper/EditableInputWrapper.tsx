@@ -10,11 +10,11 @@ import { EditableInputWrapperProps } from './EditableInputWrapper.props';
 const EditableInputWrapper: FC<EditableInputWrapperProps> = (props): JSX.Element => {
   const { className, onChangeValue, value, type, name, onSave } = props;
 
-  const [disabled, setDisabled] = useState<boolean>(true);
+  const [isSaved, setIsSaved] = useState<boolean>(true);
 
   const handleOnClick = (): void => {
-    setDisabled(!disabled);
-    if (!disabled) {
+    setIsSaved(!isSaved);
+    if (!isSaved) {
       onSave?.(value, name);
     }
   };
@@ -24,13 +24,13 @@ const EditableInputWrapper: FC<EditableInputWrapperProps> = (props): JSX.Element
       <Input
         type={type}
         classNameWrapper={style.input}
-        disabled={disabled}
+        disabled={isSaved}
         value={value}
         onChange={event => onChangeValue(event.currentTarget.value)}
         autoFocus
       />
       <button type="button" className={style.button} onClick={handleOnClick}>
-        {disabled ? 'Change' : 'Add'}
+        {isSaved ? 'Change' : 'Add'}
       </button>
     </div>
   );
