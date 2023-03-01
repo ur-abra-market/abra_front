@@ -12,12 +12,12 @@ import { UploadFileProps } from './UploadFile.props';
 const UploadFile: FC<UploadFileProps> = props => {
   const { className, action, image, ...restProps } = props;
 
-  const [file, setImage] = useState<UploadFileData>({ preview: '', raw: '' });
+  const [file, setFile] = useState<UploadFileData>({ preview: '', raw: '' });
   const [status, setStatus] = useState<Status>(Status.Idle);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>): void => {
     if (e.target?.files?.length) {
-      setImage({
+      setFile({
         preview: URL.createObjectURL(e.target.files[0]),
         raw: e.target.files[0],
       });
@@ -39,7 +39,7 @@ const UploadFile: FC<UploadFileProps> = props => {
 
   useEffect(() => {
     if (image) {
-      setImage(prevState => ({ ...prevState, preview: image }));
+      setFile(prevState => ({ ...prevState, preview: image }));
     }
   }, [image]);
 
