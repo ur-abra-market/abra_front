@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 
 import style from './OrderDetails.module.css';
 
+
 import Footer from 'layouts/Footer';
 import Header from '../../layouts/Header';
 
-const OrderDetailsPage = () => {
+const OrderDetailsPage = (): JSX.Element => {
+
   return (
     <>
       <Header />

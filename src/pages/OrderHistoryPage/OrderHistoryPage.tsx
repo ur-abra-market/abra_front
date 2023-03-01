@@ -5,6 +5,7 @@ import cn from 'classnames';
 
 import style from './OrderHistoryPage.module.css';
 
+
 import Footer from 'layouts/Footer';
 import Header from '../../layouts/Header';
 import { Search } from './../../components/ui-kit/Search/Search';
@@ -16,9 +17,10 @@ type OrderType = {
   status: LinkType
 }
 
-const OrderHistoryPage = () => {
+const OrderHistoryPage = (): JSX.Element => {
   const statusLinksList: Array<LinkType> = ['All', 'Preparing', 'In progress', 'Completed'];
   const ordersInfo: Array<OrderType> = [
+
     {
       number: '4784437395989684',
       date: '20.12.2022',
@@ -61,6 +63,7 @@ const OrderHistoryPage = () => {
   };
 
   return (
+
     <>
       <Header />
       <div className={style.wrapper}>

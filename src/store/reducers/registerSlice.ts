@@ -1,7 +1,8 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import authService from '../../services/auth.service';
+
 import {
   AsyncThunkConfig,
   RegisterParamsType,

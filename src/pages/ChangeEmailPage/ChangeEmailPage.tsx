@@ -11,7 +11,8 @@ import ChangeEmailForm from '../../components/ui/TypesView/ChangeEmailForm';
 
 import style from './ChangeEmailPage.module.css';
 
-const ChangeEmailPage: FC = () => {
+
+const ChangeEmailPage = (): JSX.Element => {
   const navigate = useNavigate();
   const [modalActive, setModalActive] = useState(false);
   const handleChangeModalActive = (): void => {

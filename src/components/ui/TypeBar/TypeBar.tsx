@@ -5,13 +5,13 @@ interface TypeBarProps {
   setTypes: any;
 }
 const TypeBar: FC<TypeBarProps> = ({ types, setTypes }): JSX.Element => {
-  const addTypeHandler = () => {
+  const addTypeHandler = (): void => {
     const newType = { id: types.length + 1, selected: true };
 
     setTypes([...types.map(el => ({ ...el, selected: false })), newType]);
   };
 
-  const changeSelectedTypeHandler = (id: any) => {
+  const changeSelectedTypeHandler = (id: any): void => {
     setTypes(
       types.map(el =>
         el.id === id ? { ...el, selected: true } : { ...el, selected: false },

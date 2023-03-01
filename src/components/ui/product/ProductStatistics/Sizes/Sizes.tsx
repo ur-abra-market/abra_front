@@ -9,8 +9,8 @@ const isSizeSelected = ({ size, selectedSizes }: any) => {
   return selectedSizes.some((el: any) => el === size);
 };
 
-const SizeItem = ({ isSelected = false, label, onClick }: any) => {
-  const handleClick = () => onClick?.(label);
+const SizeItem = ({ isSelected = false, label, onClick }: any): JSX.Element => {
+  const handleClick = (): void => onClick?.(label);
 
   return (
     <div
@@ -38,7 +38,7 @@ interface SizesProps {
 export const Sizes: FC<SizesProps> = ({ sizes }) => {
   const [selectedSizes, setSelectedSizes] = useState<any[]>([]);
 
-  const addOrRemoveSize = (size: any) => {
+  const addOrRemoveSize = (size: any): void => {
     if (isSizeSelected({ size, selectedSizes }))
       setSelectedSizes(prevState => prevState.filter(item => item !== size));
     else setSelectedSizes(prevState => [...prevState, size]);

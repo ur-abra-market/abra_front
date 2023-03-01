@@ -31,7 +31,7 @@ const PaginatorProduct = (): JSX.Element => {
     );
   });
 
-  const handlePage = (page: any) => {
+  const handlePage = (page: number): void => {
     dispatch(activeNum(page));
   };
 

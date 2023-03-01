@@ -33,7 +33,7 @@ const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
     );
   });
 
-  const handlePage = (page: any) => {
+  const handlePage = (page: number): void => {
     dispatch(active(page));
   };
 

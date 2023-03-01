@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
-
 import ProductCanvas from '../ProductCanvas';
 
 import style from './ProductStatistics.module.css';

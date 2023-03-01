@@ -8,6 +8,7 @@ import { Button } from '../../components/ui-kit';
 
 import style from './ChangePasswordPage.module.css';
 
+
 const ChangePasswordPage: FC = () => {
   const [modalActive, setModalActive] = useState(false);
   const handleChangeModalActive = (): void => {

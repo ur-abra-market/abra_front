@@ -17,9 +17,9 @@ import SelectFilter from '../SelectFilter';
 
 import style from './FilterSort.module.css';
 
-const FilterSort = () => {
+const FilterSort = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const handlerReset = () => {
+  const handlerReset = (): void => {
     dispatch(category(''));
     dispatch(sort('rating'));
     dispatch(priceFrom(0));

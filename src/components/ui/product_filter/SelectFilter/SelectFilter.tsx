@@ -57,7 +57,7 @@ const SelectFilter: FC<SelectFilterProps> = ({ typeSelect }) => {
     height: listSwitch ? 'fit-content' : '0px',
   };
 
-  const switchList = (e: any) => {
+  const switchList = (e: any): void => {
     e.preventDefault();
     const nameClass = e.relatedTarget.className;
 
@@ -68,7 +68,7 @@ const SelectFilter: FC<SelectFilterProps> = ({ typeSelect }) => {
     }
   };
 
-  const handlerOption = (value: any, index: number) => {
+  const handlerOption = (value: any, index: number): void => {
     if (listSort.includes(value)) dispatch(sort(typeSort[index]));
     if (listCategory.includes(value)) dispatch(category(typeCategory[index]));
     if (remains === 'From High to Low') dispatch(ascending(true));

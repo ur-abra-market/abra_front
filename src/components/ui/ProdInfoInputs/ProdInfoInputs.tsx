@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
-
 import RelatedInputs from '../../RelatedInputs';
 
 import style from './ProdInfoInputs.module.css';

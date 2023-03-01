@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
-
 import style from './CheckItems.module.css';
 
 interface CheckItemsProps {

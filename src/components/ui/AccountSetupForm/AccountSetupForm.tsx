@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
+import { PlusIcon } from '../../../assets/img';
 import { useAppDispatch } from '../../../store/hooks';
 import { setAccountInfo } from '../../../store/reducers/formRegistrationSlice';
 import FormTitle from '../../FormTitle';
+import Modal from '../../Modal';
 import { Input, Label, Select, Button } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
 
@@ -49,12 +51,13 @@ interface IAccountInfoData {
 const AccountSetupForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
+  const [active, setActive] = useState(false);
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
     reset,
+    watch,
   } = useForm<IAccountInfoData>({
     resolver: yupResolver(schema),
     mode: 'all',
@@ -83,6 +86,8 @@ const AccountSetupForm = (): JSX.Element => {
 
     reset();
   };
+
+  const phone = watch('tel');
 
   return (
     <div className={style.form_wrapper}>
@@ -140,10 +145,45 @@ const AccountSetupForm = (): JSX.Element => {
           </p>
           <Button
             disabled={!isValid}
-            type="submit"
+            onClick={() => setActive(true)}
             className={style.button}
             label="Continue"
           />
+          <Modal active={active} close={setActive} classNameModal={style.modal}>
+            <div className={style.modal_wrapper}>
+              <div className={style.modal_header}>Verify your phone number</div>
+              <div className={style.modal_container}>
+                <div className={style.modal_content}>
+                  <div className={style.modal_title_item}>Your phone number</div>
+                  <div className={style.modal_middle_item}>+{phone}</div>
+                  <button
+                    type="button"
+                    className={style.modal_button}
+                    onClick={() => setActive(false)}
+                  >
+                    Change
+                  </button>
+                </div>
+                <div className={style.modal_content}>
+                  <div className={style.modal_title_item}>Verification code</div>
+                  <div className={style.modal_middle_item}>
+                    <Input placeholder="SMS Code" />
+                  </div>
+                  <button type="button" className={style.modal_button}>
+                    Resend
+                  </button>
+                </div>
+              </div>
+              <Button label="Submit" type="submit" />
+            </div>
+            <button
+              type="button"
+              className={style.modal_icon_plus}
+              onClick={() => setActive(false)}
+            >
+              <PlusIcon />
+            </button>
+          </Modal>
         </form>
       </div>
     </div>

@@ -12,7 +12,7 @@ const FilterMaterial = (): JSX.Element => {
   // @ts-ignore
   const len = materialList.map(m => materials.includes(m.toLowerCase())).filter(e => !e);
 
-  const changeState = (ctx: any) => {
+  const changeState = (ctx: any): void => {
     const arrCheck = materialList
       // @ts-ignore
       .map(m => materials.includes(m.toLowerCase()))
