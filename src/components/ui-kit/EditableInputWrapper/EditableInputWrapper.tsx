@@ -27,6 +27,7 @@ const EditableInputWrapper: FC<EditableInputWrapperProps> = (props): JSX.Element
         disabled={disabled}
         value={value}
         onChange={event => onChangeValue(event.currentTarget.value)}
+        autoFocus
       />
       <button type="button" className={style.button} onClick={handleOnClick}>
         {disabled ? 'Change' : 'Add'}

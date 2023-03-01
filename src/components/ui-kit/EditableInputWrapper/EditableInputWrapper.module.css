@@ -9,9 +9,12 @@
 .button {
     position: absolute;
     padding: 0;
-    right: 0;
-    top: 0;
-    background: red;
+    right: 16px;
+    top: 14px;
     cursor: pointer;
-    width: 50px;
+    font-weight: var(--medium);
+    font-size: 12px;
+    line-height: 16px;
+
+    color: var(--light-gray);
 }
