@@ -35,8 +35,6 @@ const LoginForm = (): JSX.Element => {
 
   const { errMessage, loading, resMessage } = useAppSelector(state => state.login);
 
-  console.log(loading);
-
   useEffect(() => {
     // TODO - удаляем проверку по resMessage = добавляем вместо loading -> status (idle, success, failed, loading)
     if (resMessage === 'LOGIN_SUCCESSFUL') navigate('/');

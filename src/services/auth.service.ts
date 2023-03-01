@@ -1,27 +1,27 @@
+import {
+  CheckAuthResponseType,
+  LoginParamsType,
+  LoginResponseType,
+  RegisterParamsType,
+  RegisterResponseType,
+} from './auth.serviceType';
 import httpService from './http.service';
 
 const authService = {
-  register: async ({ route, ...rest }: any) => {
-    const { data } = await httpService.post(`register/${route}/`, {
-      ...rest,
-    });
-
-    return data;
-  },
-
-  login: async ({ email, password }: any) => {
-    const { data } = await httpService.post(`login/`, {
+  register: ({ email, password, route, token }: RegisterParamsType) => {
+    return httpService.post<RegisterResponseType>(`register/${route}`, {
       email,
       password,
+      token,
     });
-
-    return data;
   },
 
-  checkAuth: async () => {
-    const { data } = await httpService.get(`users/get_role`);
+  login: ({ email, password }: LoginParamsType) => {
+    return httpService.post<LoginResponseType>(`login/`, { email, password });
+  },
 
-    return data;
+  checkAuth: () => {
+    return httpService.get<CheckAuthResponseType>(`users/get_role`);
   },
 
   logout: async () => {

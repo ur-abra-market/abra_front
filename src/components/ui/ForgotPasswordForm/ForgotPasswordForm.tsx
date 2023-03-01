@@ -4,7 +4,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { FormDataValuesType } from '../../../pages/AuthPage/AuthType';
+import { ForgotChangePasswordFormType } from '../../../pages/AuthPage/AuthType';
+import { useAppDispatch } from '../../../store/hooks';
+import { forgotPassword } from '../../../store/reducers/passwordSlice';
 import { Button, Input } from '../../ui-kit';
 
 import style from './ForgotPasswordForm.module.css';
@@ -22,13 +24,15 @@ const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => 
     register,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm<FormDataValuesType>({
+  } = useForm<ForgotChangePasswordFormType>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
+  const dispatch = useAppDispatch();
 
-  const onSubmit = (data: any): void => {
-    console.log(data);
+  const onSubmit = (data: ForgotChangePasswordFormType): void => {
+    dispatch(forgotPassword(data));
+    togglePageType();
   };
 
   return (
@@ -44,7 +48,6 @@ const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => 
         className={style.button}
         type="submit"
         disabled={!isValid}
-        onClick={togglePageType}
       />
     </form>
   );
