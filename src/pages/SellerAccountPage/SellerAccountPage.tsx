@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 
 import cn from 'classnames';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
 import { Container } from '../../components';
 import Address from '../../components/Address';
-import { Button, Checkbox, Input } from '../../components/ui-kit';
-import AddingImageSpot from '../../components/ui-kit/AddingImageSpot/AddingImageSpot';
-import ImmutableInputWithChangeButton from '../../components/ui-kit/ImmutableInputWithChangeButton/ImmutableInputWithChangeButton';
+import UploadFile from '../../components/new-components/UploadFile/UploadFile';
+import { Button, Checkbox, Input, Label } from '../../components/ui-kit';
+import EditableInputWrapper from '../../components/ui-kit/EditableInputWrapper/EditableInputWrapper';
+import { Action } from '../../services/user.service';
 import { useAppDispatch } from '../../store/hooks';
 import { logout } from '../../store/reducers/loginSlice';
 
@@ -20,6 +22,10 @@ import Header from 'layouts/Header';
 import Orders from 'pages/SellerAccountPage/Orders';
 
 const SellerAccountPage = (): JSX.Element => {
+  const { watch, setValue, reset } = useForm({});
+
+  const [email, password, phone] = watch(['email', 'password', 'phone']);
+
   const addressExample = {
     firstname: 'Olga',
     lastname: 'Andreeva',
@@ -47,7 +53,9 @@ const SellerAccountPage = (): JSX.Element => {
   //   navigate('/login');
   // }
 
-  const [images, setImages] = useState([]);
+  useEffect(() => {
+    reset({ phone: '123', email: 'test', password: '1234' });
+  }, []);
 
   return (
     <div className={style.seller_page}>
@@ -69,11 +77,7 @@ const SellerAccountPage = (): JSX.Element => {
                   </Button>
                 </div>
                 <div className={style.button_link_container}>
-                  <AddingImageSpot
-                    images={images}
-                    setImages={setImages}
-                    label="Add image"
-                  />
+                  <UploadFile action={Action.UPLOAD_LOGO} />
                 </div>
                 <div className={style.profile_info_inputs_wrapper}>
                   <div className={style.flex_container}>
@@ -95,29 +99,27 @@ const SellerAccountPage = (): JSX.Element => {
                   <div className={style.header}>Account Details</div>
                 </div>
                 <div className={style.account_details_wrapper}>
-                  <div className={style.flex_container}>
-                    <ImmutableInputWithChangeButton
-                      label="Email"
-                      name="email"
-                      placeholder="Enter your email"
+                  <Label label="Email">
+                    <EditableInputWrapper
+                      type="text"
+                      value={email}
+                      onChangeValue={value => setValue('email', value)}
                     />
-                  </div>
-                  <div className={style.flex_container}>
-                    <ImmutableInputWithChangeButton
-                      label="Phone Number"
-                      type="tel"
-                      name="Phone Number"
-                      placeholder="+7 (900) 000-0000"
+                  </Label>
+                  <Label label="Phone Number">
+                    <EditableInputWrapper
+                      type="text"
+                      value={phone}
+                      onChangeValue={value => setValue('phone', value)}
                     />
-                  </div>
-                  <div className={style.flex_container}>
-                    <ImmutableInputWithChangeButton
-                      label="Password"
+                  </Label>
+                  <Label label="Password">
+                    <EditableInputWrapper
                       type="password"
-                      name="password"
-                      placeholder="Enter your password"
+                      value={password}
+                      onChangeValue={value => setValue('password', value)}
                     />
-                  </div>
+                  </Label>
                 </div>
               </div>
               <div className={cn(style.remove_wrapper, style.section)}>
@@ -171,55 +173,41 @@ const SellerAccountPage = (): JSX.Element => {
                 </div>
 
                 <div className={style.notifications_list}>
-                  <div className={style.notifications_item}>
-                    <Checkbox
-                      variant="notification"
-                      label="Discounts & offers"
-                      className={cn(style.label_checkbox, style.input_checkbox)}
-                    />
-                  </div>
-                  <div className={style.notifications_item}>
-                    <Checkbox
-                      variant="notification"
-                      label="Order updates"
-                      className={cn(style.label_checkbox, style.input_checkbox)}
-                    />
-                  </div>
-                  <div className={style.notifications_item}>
-                    <Checkbox
-                      variant="notification"
-                      label="Order reminders"
-                      className={cn(style.label_checkbox, style.input_checkbox)}
-                    />
-                  </div>
-                  <div className={style.notifications_item}>
-                    <Checkbox
-                      variant="notification"
-                      label="On stock again"
-                      className={cn(style.label_checkbox, style.input_checkbox)}
-                    />
-                  </div>
-                  <div className={style.notifications_item}>
-                    <Checkbox
-                      variant="notification"
-                      label="Product is cheaper"
-                      className={cn(style.label_checkbox, style.input_checkbox)}
-                    />
-                  </div>
-                  <div className={style.notifications_item}>
-                    <Checkbox
-                      variant="notification"
-                      label="Your favorites new"
-                      className={cn(style.label_checkbox, style.input_checkbox)}
-                    />
-                  </div>
-                  <div className={style.notifications_item}>
-                    <Checkbox
-                      variant="notification"
-                      label="Account support"
-                      className={cn(style.label_checkbox, style.input_checkbox)}
-                    />
-                  </div>
+                  <Checkbox
+                    variant="notification"
+                    label="Discounts & offers"
+                    className={style.notifications_item}
+                  />
+                  <Checkbox
+                    variant="notification"
+                    label="Order updates"
+                    className={style.notifications_item}
+                  />
+                  <Checkbox
+                    variant="notification"
+                    label="Order reminders"
+                    className={style.notifications_item}
+                  />
+                  <Checkbox
+                    variant="notification"
+                    label="On stock again"
+                    className={style.notifications_item}
+                  />
+                  <Checkbox
+                    variant="notification"
+                    label="Product is cheaper"
+                    className={style.notifications_item}
+                  />
+                  <Checkbox
+                    variant="notification"
+                    label="Your favorites new"
+                    className={style.notifications_item}
+                  />
+                  <Checkbox
+                    variant="notification"
+                    label="Account support"
+                    className={style.notifications_item}
+                  />
                 </div>
               </div>
             </div>

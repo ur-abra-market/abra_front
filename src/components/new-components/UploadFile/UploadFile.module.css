@@ -1,0 +1,50 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: #F4F4F4;
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+
+.img {
+    width: 78px;
+    height: 78px;
+    object-fit: cover;
+    border-radius: 8px;
+
+}
+
+.label {
+    font-family: var(--roboto);
+    font-style: normal;
+    font-weight: var(--regular);
+    font-size: 15px;
+    line-height: 20px;
+
+    display: flex;
+    text-decoration-line: underline;
+
+    color: #FC133D;
+    cursor: pointer;
+}
+
+.input {
+    display: none;
+}
+
+.succes {
+    border: 1px solid green;
+}
+
+.error {
+    border: 1px solid red;
+}
