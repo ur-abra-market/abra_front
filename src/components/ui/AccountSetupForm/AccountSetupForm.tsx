@@ -72,7 +72,7 @@ const AccountSetupForm = (): JSX.Element => {
         user_info: {
           first_name: data.fname,
           last_name: data.lname,
-          phone,
+          user_phone: phone,
         },
         license: {
           license_number: +data.license,

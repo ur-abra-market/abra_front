@@ -24,6 +24,7 @@ const year = date.getFullYear();
 const schema = yup.object({
   storeName: yup.string().required('Field is required'),
   businessSector: yup.string().required('Field is required'),
+  tel: yup.string().required('Field is required'),
   yearEstablished: yup
     .string()
     .min(4, 'Add an existing year')
@@ -37,7 +38,6 @@ interface FormFields {
   textarea: string;
   tel: string;
   yearEstablished: string;
-  phone: string;
   address: string;
   checkbox: boolean;
   numEmployees: string;
@@ -83,7 +83,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
       year_established: +data.yearEstablished,
       number_of_employees: +data.numEmployees,
       description: data.textarea,
-      logo_url: 'string',
+      /* logo_url: 'string', */
       phone,
       business_email: data.email,
       address: data.address,
