@@ -126,12 +126,7 @@ const AccountSetupForm = (): JSX.Element => {
           </Label>
           <div className={style.phone_number}>
             <Label label="Personal phone number">
-              <Select
-                placeholder="Select"
-                className={style.select}
-                options={PHONE_DATA}
-                {...register('code')}
-              />
+              <Select placeholder="Select" options={PHONE_DATA} {...register('code')} />
             </Label>
             <Input
               placeholder="(XXX) XXX - XX - XX"

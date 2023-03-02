@@ -89,3 +89,7 @@
   gap: 16px;
   margin-bottom: 40px;
 }
+
+.button {
+  width: 100%;
+}
