@@ -15,6 +15,7 @@ import SelectLabelAbove from '../../SelectLabelAbove';
 import TextFieldLabelAbove from '../../TextFieldLabelAbove';
 import { Input, Label, Select } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
+import { PHONE_DATA } from '../AccountSetupForm/AccountSetupForm';
 
 import style from './BusinessProfileForm.module.css';
 
@@ -99,8 +100,8 @@ const BusinessProfileForm: FC = (): JSX.Element => {
   if (!accountInfo) return <Navigate to="/account-setup" />;
 
   return (
-    <div className={style.formWrapper}>
-      <div className={style.formContainer}>
+    <div className={style.form_wrapper}>
+      <div className={style.form_container}>
         <FormTitle
           step="Step 2/3"
           title="Business profile"
@@ -109,7 +110,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={style.mainInfo}>
-            <p className={style.mainInfoTitle}>Main info</p>
+            <p className={style.main_info_title}>Main info</p>
 
             <ImageAdding
               imgUrl={imgUrl}
@@ -121,7 +122,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
               register={register('profileLogo')}
             />
 
-            <div className={style.selectInfoInputs}>
+            <div className={style.select_info_inputs}>
               <Label label="Shop name (will be shown on the profile)">
                 <Input
                   {...register('storeName', {
@@ -132,7 +133,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
                 />
               </Label>
 
-              <div className={style.selectEqual}>
+              <div className={style.select_equal}>
                 <Label label="Your main business sector">
                   <Select
                     options={BUSINESS_SECTOR_DATA}
@@ -158,8 +159,8 @@ const BusinessProfileForm: FC = (): JSX.Element => {
           </div>
 
           <div className={style.companyInfo}>
-            <p className={style.mainInfoTitle}>Company Info (optional)</p>
-            <div className={style.selectInfoInputs}>
+            <p className={style.main_info_title}>Company Info (optional)</p>
+            <div className={style.select_info_inputs}>
               <TextFieldLabelAbove
                 register={register('yearEstablished', {
                   minLength: {
@@ -178,7 +179,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
                 placeholder="Enter the year"
               />
 
-              <div className={style.selectEqual}>
+              <div className={style.select_equal}>
                 <SelectLabelAbove
                   register={register('numEmployees')}
                   title="Number of employees"
@@ -196,8 +197,8 @@ const BusinessProfileForm: FC = (): JSX.Element => {
               placeholder="Tell more about your company or business"
             />
 
-            <p className={style.listImgTitle}>Photo of the company or production</p>
-            <div className={style.listImg}>
+            <p className={style.list_img_title}>Photo of the company or production</p>
+            <div className={style.list_img}>
               <ImageAdding />
               <ImageAdding />
               <ImageAdding />
@@ -206,34 +207,21 @@ const BusinessProfileForm: FC = (): JSX.Element => {
             </div>
           </div>
 
-          <div className={style.contactsInfo}>
-            <p className={style.mainInfoTitle}>Contacts (optional)</p>
+          <div>
+            <p className={style.main_info_title}>Contacts (optional)</p>
 
-            <div className={style.phoneNumber}>
-              <SelectLabelAbove
-                register={register('code')}
-                name="code"
-                title="Business phone number"
-                options={['+90', '+44', '+77', '+1']}
+            <div className={style.phone_number}>
+              <Label label="Business phone number">
+                <Select {...register('code')} name="code" options={PHONE_DATA} />
+              </Label>
+              <Input
+                placeholder="(XXX) XXX - XX - XX"
+                {...register('tel')}
+                error={errors?.tel?.message}
               />
-
-              <div className={style.marginFix}>
-                <TextFieldLabelAbove
-                  register={register('tel', {
-                    minLength: {
-                      value: 10,
-                      message: 'Phone number must be 10 digits',
-                    },
-                  })}
-                  error={errors?.tel?.message}
-                  name="tel"
-                  type="tel"
-                  placeholder="(XXX) XXX - XX - XX"
-                />
-              </div>
             </div>
 
-            <div className={style.contactsInputs}>
+            <div className={style.contacts_inputs}>
               <TextFieldLabelAbove
                 register={register('email', {
                   pattern: {

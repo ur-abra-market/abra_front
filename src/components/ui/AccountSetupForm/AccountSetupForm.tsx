@@ -9,7 +9,7 @@ import { PlusIcon } from '../../../assets/img';
 import { useAppDispatch } from '../../../store/hooks';
 import { setAccountInfo } from '../../../store/reducers/formRegistrationSlice';
 import FormTitle from '../../FormTitle';
-import Modal from '../../Modal';
+import Modal from '../../new-components/Modal';
 import { Input, Label, Select, Button } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
 
@@ -21,7 +21,8 @@ const COUNTRY_DATA: IOption[] = [
   { label: 'Brazil', value: 'Brazil' },
   { label: 'France', value: 'France' },
 ];
-const PHONE_DATA: IOption[] = [
+
+export const PHONE_DATA: IOption[] = [
   { label: '+90', value: '+90' },
   { label: '+44', value: '+44' },
   { label: '+77', value: '+77' },
@@ -125,7 +126,12 @@ const AccountSetupForm = (): JSX.Element => {
           </Label>
           <div className={style.phone_number}>
             <Label label="Personal phone number">
-              <Select placeholder="Select" options={PHONE_DATA} {...register('code')} />
+              <Select
+                placeholder="Select"
+                className={style.select}
+                options={PHONE_DATA}
+                {...register('code')}
+              />
             </Label>
             <Input
               placeholder="(XXX) XXX - XX - XX"

@@ -115,3 +115,6 @@
   cursor: pointer;
 }
 
+.select {
+  border-radius: 12px !important;
+}
