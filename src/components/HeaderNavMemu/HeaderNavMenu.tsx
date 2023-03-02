@@ -1,34 +1,48 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 
-import cn from 'classnames';
-import { Link } from 'react-router-dom';
+import cn from "classnames";
+import { NavLink } from "react-router-dom";
 
-import style from './HeaderNavMenu.module.css';
-import { HeaderNavMenuProps } from './HeaderNavMenu.props';
+import style from "./HeaderNavMenu.module.css";
+import { HeaderNavMenuProps } from "./HeaderNavMenu.props";
 
 const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {
   const { className, ...restProps } = props;
-
+  let activeStyle = {
+    color: " var(--red)"
+  };
   return (
     <nav {...restProps}>
       <ul className={cn(style.header_nav_list, className)}>
         <li>
-          <Link to="/news">Last News</Link>
+          <NavLink style={({ isActive }) =>
+            isActive ? activeStyle : undefined
+          } to="/news">Last News</NavLink>
         </li>
         <li>
-          <Link to="/tutorials">Tutorials for Buyers</Link>
+          <NavLink style={({ isActive }) =>
+            isActive ? activeStyle : undefined
+          } to="/tutorials">Tutorials for Buyers</NavLink>
         </li>
         <li>
-          <Link to="/sell">Sell on Abra</Link>
+          <NavLink style={({ isActive }) =>
+            isActive ? activeStyle : undefined
+          } to="/sell">Sell on Abra</NavLink>
         </li>
         <li>
-          <Link to="/contact">Contact Support</Link>
+          <NavLink style={({ isActive }) =>
+            isActive ? activeStyle : undefined
+          } to="/contact">Contact Support</NavLink>
         </li>
         <li>
-          <Link to="/faq">FAQ</Link>
+          <NavLink style={({ isActive }) =>
+            isActive ? activeStyle : undefined
+          } to="/faq">FAQ</NavLink>
         </li>
         <li>
-          <Link to="about">About Us</Link>
+          <NavLink style={({ isActive }) =>
+            isActive ? activeStyle : undefined
+          } to="about">About Us</NavLink>
         </li>
       </ul>
     </nav>

@@ -3,8 +3,6 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 import App from '../App';
-import { ContactSupport } from '../components/Contact/ContactSupport';
-import LastNews from '../components/News/LastNews';
 import AuthPage from '../pages/AuthPage';
 import ChangeEmailPage from '../pages/ChangeEmailPage';
 import ChangePasswordPage from '../pages/ChangePasswordPage';
@@ -16,6 +14,10 @@ import { TermsAndConditions } from '../pages/TermsAndConditionsPage/TermsAndCond
 
 import sellerRoute from './sellerRoute';
 import supplierRoute from './supplierRoute';
+import LastNews from "../components/News/LastNews";
+import { ContactSupport } from "../components/Contact/ContactSupport";
+import { SellAbra } from "../components/SellAbra/SellAbra";
+import Tutorial from "../components/Tutorial/Tutorial";
 
 const profile = localStorage.getItem('profile');
 
@@ -61,13 +63,21 @@ const routes = createBrowserRouter([
         element: <TermsAndConditions />,
       },
       {
-        path: 'news',
-        element: <LastNews />,
+        path:'news',
+        element:<LastNews/>
       },
       {
-        path: 'contact',
-        element: <ContactSupport />,
+        path:'contact',
+        element:<ContactSupport/>
       },
+      {
+        path:'sell',
+        element:<SellAbra/>
+      },
+      {
+        path:'tutorials',
+        element:<Tutorial/>
+      }
     ],
   },
 ]);
