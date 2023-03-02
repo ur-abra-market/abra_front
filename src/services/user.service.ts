@@ -28,6 +28,11 @@ const userFetch = {
 
     return data;
   },
+  getFavoritesProducts: async () => {
+    const { data } = await httpService.get(`/users/show_favorites/`);
+
+    return data;
+  },
 };
 
 export default userFetch;

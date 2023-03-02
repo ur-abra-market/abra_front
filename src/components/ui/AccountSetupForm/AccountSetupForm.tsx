@@ -9,7 +9,7 @@ import { PlusIcon } from '../../../assets/img';
 import { useAppDispatch } from '../../../store/hooks';
 import { setAccountInfo } from '../../../store/reducers/formRegistrationSlice';
 import FormTitle from '../../FormTitle';
-import Modal from '../../Modal';
+import Modal from '../../new-components/Modal';
 import { Input, Label, Select, Button } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
 
