@@ -20,6 +20,9 @@
 .header_nav_list > li > a:hover {
   color: var(--red);
 }
+.nav{
+  color: var(--red);
+}
 
 @media (max-width: 1400px) {
   .header_nav_list {

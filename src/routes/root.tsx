@@ -16,6 +16,8 @@ import sellerRoute from './sellerRoute';
 import supplierRoute from './supplierRoute';
 import LastNews from "../components/News/LastNews";
 import { ContactSupport } from "../components/Contact/ContactSupport";
+import { SellAbra } from "../components/SellAbra/SellAbra";
+import Tutorial from "../components/Tutorial/Tutorial";
 
 const profile = localStorage.getItem('profile');
 
@@ -67,6 +69,14 @@ const routes = createBrowserRouter([
       {
         path:'contact',
         element:<ContactSupport/>
+      },
+      {
+        path:'sell',
+        element:<SellAbra/>
+      },
+      {
+        path:'tutorials',
+        element:<Tutorial/>
       }
     ],
   },
