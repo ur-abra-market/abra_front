@@ -8,6 +8,7 @@ import OrderHistoryPage from '../pages/OrderHistoryPage';
 import ProductListPage from '../pages/ProductListPage';
 import ProductPage from '../pages/ProductPage';
 import SellerAccountPage from '../pages/SellerAccountPage/SellerAccountPage';
+import SellerFavoritesList from '../pages/SellerFavoritesList/SellerFavoritesList';
 
 const sellerRoute = [
   {
@@ -41,6 +42,10 @@ const sellerRoute = [
   {
     path: 'order-history/4784437395989684',
     element: <OrderDetailsPage />,
+  },
+  {
+    path: 'favorites',
+    element: <SellerFavoritesList />,
   },
   {
     path: 'help',

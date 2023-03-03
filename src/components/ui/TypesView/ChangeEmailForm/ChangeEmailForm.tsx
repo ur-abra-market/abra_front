@@ -1,18 +1,17 @@
 import React, { FC } from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
-
+import { FormDataValuesType } from '../../../../pages/AuthPage/AuthType';
 import Form from '../../../Form';
+import { Button, Input } from '../../../ui-kit';
 
 import style from './ChangeEmailForm.module.css';
-import { Button, Input } from "../../../ui-kit";
-import * as yup from "yup";
-import { FormDataValuesType } from "../../../../pages/AuthPage/AuthType";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 interface ChangeEmailFormProps {
-  handleChangeModalActive: ()=>void;
+  handleChangeModalActive: () => void;
 }
 const schema = yup
   .object({
@@ -28,14 +27,22 @@ const ChangeEmailForm: FC<ChangeEmailFormProps> = ({ handleChangeModalActive }) 
     resolver: yupResolver(schema),
     mode: 'all',
   });
-  const onSubmit = () => {
-    if (!isValid) return;
-  };
+  const onSubmit = (): void => {};
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)} className={style.reset_password_form}>
-      <Input {...register('email')} classNameWrapper={style.input_wrapper} placeholder="Current email" error={errors.email?.message} />
-      <Input {...register('email')} placeholder="New email" classNameWrapper={style.input_wrapper} error={errors.email?.message} />
+      <Input
+        {...register('email')}
+        classNameWrapper={style.input_wrapper}
+        placeholder="Current email"
+        error={errors.email?.message}
+      />
+      <Input
+        {...register('email')}
+        placeholder="New email"
+        classNameWrapper={style.input_wrapper}
+        error={errors.email?.message}
+      />
       <Button
         label="Continue"
         disabled={!isValid}

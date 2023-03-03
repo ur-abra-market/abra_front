@@ -23,15 +23,15 @@ export type CheckAuthResponseType = {
 export type PasswordResponseType = {
   result: string;
 };
-export type ResetPasswordPayloadType={
-  new_password:string
-  confirm_password:string
-  email:string
-}
-export type ChangePasswordPayloadType={
-  old_password:string
-  new_password:string
-}
+export type ResetPasswordPayloadType = {
+  new_password: string;
+  confirm_password: string;
+  email: string;
+};
+export type ChangePasswordPayloadType = {
+  old_password: string;
+  new_password: string;
+};
 export type AsyncThunkConfig = {
   state?: unknown;
   dispatch?: Dispatch;

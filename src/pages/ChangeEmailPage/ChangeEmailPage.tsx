@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -10,7 +10,6 @@ import Modal from '../../components/new-components/Modal';
 import ChangeEmailForm from '../../components/ui/TypesView/ChangeEmailForm';
 
 import style from './ChangeEmailPage.module.css';
-
 
 const ChangeEmailPage = (): JSX.Element => {
   const navigate = useNavigate();

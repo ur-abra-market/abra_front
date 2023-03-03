@@ -4,14 +4,14 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { ResetPasswordPayloadType } from '../../../services/auth.serviceType';
+import { useAppDispatch } from '../../../store/hooks';
+import { resetPassword } from '../../../store/reducers/passwordSlice';
 import Form from '../../Form';
 import PasswordComplexity from '../../new-components/PasswordComplexity';
 import { Button, Input } from '../../ui-kit';
 
 import style from './ResetPasswordForm.module.css';
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { resetPassword } from "../../../store/reducers/passwordSlice";
-import { ResetPasswordPayloadType } from "../../../services/auth.serviceType";
 
 interface ResetPasswordFormProps {
   handleChangeModalActive: () => void;
@@ -32,7 +32,7 @@ const schema = yup
   })
   .required();
 const ResetPasswordForm: FC<ResetPasswordFormProps> = ({ handleChangeModalActive }) => {
-  const dispatch=useAppDispatch()
+  const dispatch = useAppDispatch();
   const {
     register,
     watch,
@@ -43,8 +43,8 @@ const ResetPasswordForm: FC<ResetPasswordFormProps> = ({ handleChangeModalActive
     mode: 'all',
   });
   const watchPasword = watch('new_password' || 'confirm_password');
-  const onSubmit = (data:ResetPasswordPayloadType): void => {
-    dispatch(resetPassword(data))
+  const onSubmit = (data: ResetPasswordPayloadType): void => {
+    dispatch(resetPassword(data));
   };
 
   return (
@@ -73,7 +73,7 @@ const ResetPasswordForm: FC<ResetPasswordFormProps> = ({ handleChangeModalActive
       <Button
         label="Save"
         className={style.button_save}
-        type='submit'
+        type="submit"
         disabled={!isValid}
         onClick={handleChangeModalActive}
       />

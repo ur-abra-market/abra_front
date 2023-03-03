@@ -5,7 +5,3 @@ export type FormDataValuesType = {
 export type ForgotChangePasswordFormType = {
   email: string;
 };
-
-
-
-
