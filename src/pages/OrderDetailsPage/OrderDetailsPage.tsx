@@ -1,20 +1,19 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
+
+import Header from '../../layouts/Header';
 
 import style from './OrderDetails.module.css';
 
-
 import Footer from 'layouts/Footer';
-import Header from '../../layouts/Header';
 
 const OrderDetailsPage = (): JSX.Element => {
-
   return (
     <>
       <Header />
       <div className={style.wrapper}>
         <div className={style.main}>
-
           <div className={style.order_details}>
             <h1 className={style.title}>Order Details</h1>
             <div className={style.order_info}>
@@ -35,9 +34,7 @@ const OrderDetailsPage = (): JSX.Element => {
                 <p>$2,000.00</p>
               </div>
             </div>
-            <div className={style.quantity}>
-              2 Delivery
-            </div>
+            <div className={style.quantity}>2 Delivery</div>
           </div>
 
           <ul className={style.order_list}>
@@ -47,7 +44,7 @@ const OrderDetailsPage = (): JSX.Element => {
                   {/* <img src='' /> */}
                   <p>4.1</p>
                   <p>Ningbo Beilun Lonsyne</p>
-                  <span className={style.arrow}></span>
+                  <span className={style.arrow} />
                 </div>
                 <div className={style.description}>
                   <div className={style.image} />
@@ -65,7 +62,7 @@ const OrderDetailsPage = (): JSX.Element => {
                       <p>$780</p>
                       <div className={style.price_details}>
                         <p>300pcs</p>
-                        <span className={style.line}></span>
+                        <span className={style.line} />
                         <p className={style.old_price}>$4.2/1pcs</p>
                         <p className={style.new_price}>$4.0/1pcs</p>
                       </div>
@@ -74,10 +71,12 @@ const OrderDetailsPage = (): JSX.Element => {
                 </div>
               </div>
               <div className={style.track_info}>
-                <p>Track No: <Link to='#'>JKFRIU548694LLJE</Link></p>
-                <span></span>
+                <p>
+                  Track No: <Link to="/#">JKFRIU548694LLJE</Link>
+                </p>
+                <span />
                 <p>Estimated delivery: 27.07.2022</p>
-                <span></span>
+                <span />
                 <p>Delivery method: Abra Shipment</p>
               </div>
             </li>
@@ -87,7 +86,7 @@ const OrderDetailsPage = (): JSX.Element => {
                   {/* <img src='' /> */}
                   <p>4.1</p>
                   <p>Ningbo Beilun Lonsyne</p>
-                  <span className={style.arrow}></span>
+                  <span className={style.arrow} />
                 </div>
                 <div className={style.description}>
                   <div className={style.image} />
@@ -105,7 +104,7 @@ const OrderDetailsPage = (): JSX.Element => {
                       <p>$780</p>
                       <div className={style.price_details}>
                         <p>300pcs</p>
-                        <span className={style.line}></span>
+                        <span className={style.line} />
                         <p className={style.old_price}>$4.2/1pcs</p>
                         <p className={style.new_price}>$4.0/1pcs</p>
                       </div>
@@ -114,10 +113,12 @@ const OrderDetailsPage = (): JSX.Element => {
                 </div>
               </div>
               <div className={style.track_info}>
-                <p>Track No: <Link to='#'>JKFRIU548694LLJE</Link></p>
-                <span></span>
+                <p>
+                  Track No: <Link to="/#">JKFRIU548694LLJE</Link>
+                </p>
+                <span />
                 <p>Estimated delivery: 27.07.2022</p>
-                <span></span>
+                <span />
                 <p>Delivery method: Abra Shipment</p>
               </div>
             </li>
@@ -127,30 +128,37 @@ const OrderDetailsPage = (): JSX.Element => {
             <div className={style.delivery_info}>
               <h2>Delivery Info</h2>
               <p className={style.seller}>Olga Andreeva, +79158448547</p>
-              <div className={style._line}></div>
-              <p className={style.address}>Jaroslava Gasheka 6, building 2, apartment 904, Moscow, Russian Federation, 589964</p>
-              <p className={style.delivery_description}>* The address cannot be changed because the order has already been shipped</p>
+              <div className={style.line_b} />
+              <p className={style.address}>
+                Jaroslava Gasheka 6, building 2, apartment 904, Moscow, Russian
+                Federation, 589964
+              </p>
+              <p className={style.delivery_description}>
+                * The address cannot be changed because the order has already been shipped
+              </p>
             </div>
             <div className={style.price_info}>
               <div className={style.total_count}>
-                <p>Items to Order</p><p>400</p>
+                <p>Items to Order</p>
+                <p>400</p>
               </div>
               <div className={style.total_price_item}>
                 <p>Goods Cost</p>
-                <span className={style.line2}></span>
+                <span className={style.line2} />
                 <p>$1560</p>
               </div>
               <div className={style.total_price_item}>
                 <p>Shipping</p>
-                <span className={style.line2}></span>
+                <span className={style.line2} />
                 <p>$560</p>
               </div>
               <div className={style.price_description}>
                 * This is the final shipping cost
               </div>
-              <div className={style._line}></div>
+              <div className={style.line_b} />
               <div className={style.total_price}>
-                <p>Total</p><p>$2120</p>
+                <p>Total</p>
+                <p>$2120</p>
               </div>
             </div>
           </div>

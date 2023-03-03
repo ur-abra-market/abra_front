@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import authService from '../../services/auth.service';
-
 import {
   AsyncThunkConfig,
   RegisterParamsType,
@@ -21,9 +20,7 @@ export const registerService = createAsyncThunk<
   AsyncThunkConfig
 >('register/registerService', async (dataUser, { rejectWithValue }) => {
   try {
-    const response = await authService.register(dataUser);
-
-    return response;
+    return authService.register(dataUser);
   } catch (error) {
     if (error instanceof AxiosError) {
       return rejectWithValue(error.message);

@@ -1,4 +1,8 @@
-import { ChangePasswordPayloadType, PasswordResponseType, ResetPasswordPayloadType } from "./auth.serviceType";
+import {
+  ChangePasswordPayloadType,
+  PasswordResponseType,
+  ResetPasswordPayloadType,
+} from './auth.serviceType';
 import httpService from './http.service';
 
 export const passwordService = {
@@ -7,13 +11,15 @@ export const passwordService = {
       email,
     });
   },
-  checkToken:(token: string)=>{
-    return httpService.post<PasswordResponseType>('password/check_for_token/' + '?token='+token)
+  checkToken: (token: string) => {
+    return httpService.post<PasswordResponseType>(
+      `password/check_for_token/?token=${token}`,
+    );
   },
-  resetPassword:(params:ResetPasswordPayloadType)=>{
-    return httpService.patch<PasswordResponseType>('password/reset_password/', params)
+  resetPassword: (params: ResetPasswordPayloadType) => {
+    return httpService.patch<PasswordResponseType>('password/reset_password/', params);
   },
-  changePassword:(params:ChangePasswordPayloadType)=>{
-    return httpService.post<PasswordResponseType>('password/change/', params)
-  }
+  changePassword: (params: ChangePasswordPayloadType) => {
+    return httpService.post<PasswordResponseType>('password/change/', params);
+  },
 };

@@ -1,11 +1,11 @@
 .wrapper {
-  background: #f9f9f9;
   padding: 48px 0 128px 0;
+  background: #F9F9F9;
 }
 
 .main {
-  margin: 0 auto;
   max-width: 1176px;
+  margin: 0 auto;
   padding: 0 16px;
 
   font-family: var(--roboto);
@@ -15,8 +15,8 @@
 
 .head {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 .title {
@@ -29,14 +29,13 @@
 }
 
 .empty_message {
-  text-align: center;
-
   width: 916px;
   margin: 80px auto 0 auto;
 
   font-size: 34px;
   font-weight: 700;
   line-height: 41px;
+  text-align: center;
   letter-spacing: 0.41px;
 }
 
@@ -47,25 +46,25 @@
 
 .link {
   cursor: pointer;
+
   display: flex;
+  flex: 0 0 25%;
   align-items: center;
   justify-content: center;
-  flex: 0 0 25%;
 
   padding: 16px 0;
-
-  border-bottom: 3px solid #D4D4D4;
 
   font-size: 20px;
   font-weight: var(--bold);
   color: #000;
 
   background: transparent;
+  border-bottom: 3px solid #D4D4D4;
 }
 
 .link.active {
-  border-color: var(--red);
   color: var(--red);
+  border-color: var(--red);
 }
 
 .list {
@@ -83,17 +82,16 @@
   flex-direction: column;
   gap: 12px;
 
-  border-radius: 12px;
   padding: 32px;
 
-  background: #fff;
+  background: #FFF;
+  border-radius: 12px;
 }
 
 .info {
   display: flex;
   gap: 16px;
   align-items: center;
-
   height: 20px;
 }
 
@@ -112,28 +110,26 @@
 }
 
 .details {
-  flex: 1 1 auto;
   display: flex;
+  flex: 1 1 auto;
   justify-content: flex-end;
 }
 
 .details a {
-  font-weight: 400;
   font-size: 15px;
+  font-weight: 400;
   line-height: 20px;
-  letter-spacing: 0.16px;
-
   color: #FC133D;
   text-decoration-line: underline;
+  letter-spacing: 0.16px;
 }
 
 .status {
-  font-weight: var(--regular);
-
   font-size: 15px;
-  letter-spacing: 0.16px;
+  font-weight: var(--regular);
   line-height: 20px;
   color: #828282;
+  letter-spacing: 0.16px;
 }
 
 .images {
@@ -142,11 +138,13 @@
 }
 
 .image {
+  overflow: hidden;
+
   width: 120px;
   height: 120px;
-  border-radius: 8px;
-  overflow: hidden;
+
   background: #D9D9D9;
+  border-radius: 8px;
 }
 
 .image img {

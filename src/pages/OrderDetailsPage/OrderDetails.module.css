@@ -1,11 +1,11 @@
 .wrapper {
-  background: #f9f9f9;
   padding: 48px 0 96px 0;
+  background: #F9F9F9;
 }
 
 .main {
-  margin: 0 auto;
   max-width: 1176px;
+  margin: 0 auto;
   padding: 0 16px;
 
   font-family: var(--roboto);
@@ -17,9 +17,10 @@
   display: flex;
   justify-content: space-between;
 
+  padding: 32px;
+
   background: #FFFFFF;
   border-radius: 12px;
-  padding: 32px;
 }
 
 .title {
@@ -35,13 +36,12 @@
 }
 
 .order_info_item p:first-child {
-  font-size: var(--fp);
-  line-height: 20px;
-  letter-spacing: 0.16px;
-
   margin: 0 0 8px 0;
 
+  font-size: var(--fp);
+  line-height: 20px;
   color: #828282;
+  letter-spacing: 0.16px;
 }
 
 .order_info_item p:last-child {
@@ -51,19 +51,17 @@
 }
 
 .quantity {
-  font-weight: var(--bold);
   font-size: var(--fh4);
+  font-weight: var(--bold);
   line-height: 24px;
-
   letter-spacing: 0.16px;
 }
 
 .order_list {
+  overflow: hidden;
   margin: 12px 0 0 0;
-
   background: #FFF;
   border-radius: 8px;
-  overflow: hidden;
 }
 
 .product_info {
@@ -77,28 +75,29 @@
 
 .name p {
   margin: 0 4px;
-
   font-size: var(--fp);
   line-height: 20px;
   letter-spacing: 0.16px;
 }
 
 .arrow {
+  position: relative;
   width: 16px;
   height: 16px;
   margin: 0 4px;
-
-  position: relative;
 }
 
 .arrow:after,
 .arrow::before {
   content: "";
+
   position: absolute;
+
   width: 6px;
   height: 1.2px;
-  border-radius: 5px;
+
   background: #000;
+  border-radius: 5px;
 }
 
 .arrow:after {
@@ -112,18 +111,19 @@
 }
 
 .description {
-  margin: 16px 0 0 0;
-
   display: flex;
   gap: 26px;
+  margin: 16px 0 0 0;
 }
 
 .image {
+  overflow: hidden;
+
   width: 120px;
   height: 120px;
-  border-radius: 8px;
-  overflow: hidden;
+
   background: #D9D9D9;
+  border-radius: 8px;
 }
 
 .image img {
@@ -139,17 +139,15 @@
 }
 
 .description p {
-  font-family: Roboto;
+  font-family: var(--roboto);
   font-size: var(--fp);
   font-weight: var(--semi-bold);
-  letter-spacing: 0.16px;
 }
 
 .properties {
-  margin: 12px 0 0 0;
-
   display: flex;
   gap: 12px;
+  margin: 12px 0 0 0;
 }
 
 .properties p {
@@ -164,8 +162,8 @@
 }
 
 .price>p {
-  font-weight: var(--semi-bold);
   font-size: var(--fd);
+  font-weight: var(--semi-bold);
   line-height: 20px;
 }
 
@@ -176,23 +174,25 @@
 }
 
 .line {
-  width: 60px;
-  height: 1px;
-  background: #000;
+  transform: translateY(-4px);
+
   align-self: flex-end;
 
-  transform: translateY(-4px);
+  width: 60px;
+  height: 1px;
+
+  background: #000;
 }
 
 .price_details p {
-  font-weight: var(--medium);
   font-size: var(--fp);
+  font-weight: var(--medium);
   line-height: 20px;
 }
 
 .new_price {
-  color: var(--red);
   margin: 0 0 0 4px;
+  color: var(--red);
 }
 
 .old_price {
@@ -201,13 +201,13 @@
 }
 
 .track_info {
-  background: rgba(252, 19, 61, 0.2);
+  display: flex;
+  gap: 24px;
+  align-items: center;
 
   padding: 12px 32px;
 
-  display: flex;
-  align-items: center;
-  gap: 24px;
+  background: rgba(252, 19, 61, 0.2);
 }
 
 .track_info p {
@@ -224,33 +224,30 @@
 .track_info span {
   width: 3px;
   height: 3px;
-  border-radius: 50%;
   background: #000;
+  border-radius: 50%;
 }
 
 .other_info {
-  margin: 12px 0 0 0;
   display: flex;
   gap: 9px;
+  margin: 12px 0 0 0;
 }
 
 .delivery_info {
   flex: 1 1 auto;
-
   padding: 32px;
+  background: #FFF;
   border-radius: 12px;
-
-  background: #fff;
 }
 
 .delivery_info h2 {
-  font-weight: var(--bold);
+  margin: 0 0 24px 0;
+
   font-size: var(--fd);
+  font-weight: var(--bold);
   line-height: 24px;
   letter-spacing: 0.16px;
-
-
-  margin: 0 0 24px 0;
 }
 
 .seller {
@@ -259,47 +256,42 @@
   letter-spacing: 0.16px;
 }
 
-._line {
+.line_b {
   width: 100%;
   height: 1px;
-  background: rgba(0, 0, 0, 0.14);
-
   margin: 12px 0;
+  background: rgba(0, 0, 0, 0.14);
 }
 
 .address {
-  font-weight: var(--medium);
-  font-size: var(--fp);
-  line-height: 20px;
-
   max-width: 427px;
+  font-size: var(--fp);
+  font-weight: var(--medium);
+  line-height: 20px;
 }
 
 .delivery_description {
+  margin: 16px 0 0 0;
+
   font-size: var(--fp);
   line-height: 20px;
-  letter-spacing: 0.16px;
-
   color: #828282;
-
-  margin: 16px 0 0 0;
+  letter-spacing: 0.16px;
 }
 
 .price_info {
   flex: 0 1 335px;
-
   padding: 24px;
+  background: #FFF;
   border-radius: 12px;
-
-  background: #fff;
 }
 
 .total_count,
 .total_price_item,
 .total_price {
   display: flex;
-  justify-content: space-between;
   gap: 4px;
+  justify-content: space-between;
 }
 
 .total_count {
@@ -307,8 +299,8 @@
 }
 
 .total_count p {
-  font-weight: var(--medium);
   font-size: var(--fp);
+  font-weight: var(--medium);
   line-height: 20px;
 }
 
@@ -323,30 +315,29 @@
 }
 
 .line2 {
+  transform: translateY(-5px);
+
   flex: 1 1 auto;
   align-self: flex-end;
 
   height: 1px;
-  background: #000;
 
-  transform: translateY(-5px);
+  background: #000;
 }
 
 .price_description {
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0.16px;
-
-  color: #828282;
-
   margin: -4px 0 0 0;
   padding: 0 0 12px 0;
+
+  font-size: 12px;
+  line-height: 16px;
+  color: #828282;
+  letter-spacing: 0.16px;
 }
 
 .total_price {
-  font-weight: var(--semi-bold);
-  font-size: var(--fd);
-  line-height: 20px;
-
   padding: 12px 0 0 0;
+  font-size: var(--fd);
+  font-weight: var(--semi-bold);
+  line-height: 20px;
 }
