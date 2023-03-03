@@ -1,0 +1,81 @@
+.ShowPage {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+
+  width: 140px;
+
+  border-radius: 4px;
+}
+
+.ShowPage__select {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  width: calc(100% - 14px);
+  padding-left: 10px;
+}
+
+.ShowPage_img {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  width: 24px;
+  height: 53px;
+  padding-right: 8px;
+  padding-left: 8px;
+
+  object-fit: cover;
+}
+
+.ShowPage_text {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+
+  width: 100%;
+
+  font-family: 'SF Pro Display Medium';
+  font-size: var(--fp);
+}
+
+.ShowPage__list {
+  position: absolute;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  width: 50px;
+  height: fit-content;
+  margin-top: -200px;
+  margin-left: 90px;
+
+  background-color: #FFF;
+  box-shadow: 5px 0 10px rgb(0 0 0 / 25%);
+
+  transition: 0.4s;
+}
+
+.ShowPage__list_item {
+  cursor: pointer;
+
+  display: block;
+
+  width: 48px;
+  height: 40px;
+
+  line-height: 40px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.ShowPage__list_item:hover {
+  color: #FFF;
+  background-color: #000;
+}

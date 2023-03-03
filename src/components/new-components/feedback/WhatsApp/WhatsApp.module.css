@@ -1,0 +1,28 @@
+.wrapper {
+  font-family: var(--roboto);
+  font-weight: var(--semi-bold);
+  font-style: normal;
+  color: var(--black);
+}
+
+.title{
+  margin-bottom: 12px;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.link{
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+
+  font-size: 24px;
+  line-height: 33px;
+  color: inherit;
+}
+
+.icon{
+  width: 25px;
+  height: 25px;
+}
+

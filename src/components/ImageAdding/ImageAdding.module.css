@@ -1,0 +1,111 @@
+.inputFileLabel {
+  cursor: pointer;
+
+  position: absolute;
+  z-index: 2;
+  left: 0;
+
+  width: 88px;
+  height: 88px;
+
+  opacity: 0;
+  border-radius: 50%;
+}
+
+.inputFile {
+  cursor: pointer;
+
+  position: absolute;
+  z-index: 2;
+  left: 0;
+
+  width: 120px;
+  height: 120px;
+
+  opacity: 0;
+}
+
+.iconImgLabel {
+  position: absolute;
+  top: 23.3px;
+  left: 23.3px;
+  width: 42px;
+}
+
+.iconImg {
+  position: absolute;
+  top: 37.7px;
+  left: 37.7px;
+  width: 45.7px;
+}
+
+.avatarImgLabel {
+  position: absolute;
+  left: 0;
+
+  overflow: hidden;
+
+  width: 88px;
+  height: 88px;
+
+  border-radius: 50%;
+}
+
+.avatarImg {
+  position: absolute;
+  left: 0;
+
+  overflow: hidden;
+
+  width: 120px;
+  height: 120px;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.iconBackgroundLabel {
+  width: 88px;
+  height: 88px;
+  margin-right: 16px;
+
+  background: #F2F2F2;
+  border-radius: 50%;
+}
+
+.iconBackground {
+  width: 120px;
+  height: 120px;
+  background: #F2F2F2;
+}
+
+.profileLogoWrapper {
+  display: flex;
+}
+
+.label {
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration-line: underline;
+}
+
+.labelContainer {
+  margin-top: 13px;
+}
+
+.placeholder {
+  max-width: 160px;
+  margin-top: 8px;
+
+  font-size: 11px;
+  color: #828282;
+  text-align: left;
+}
+
+.inputError {
+  position: absolute;
+  font-size: 13px;
+  color: #FF4040;
+  text-align: left;
+}

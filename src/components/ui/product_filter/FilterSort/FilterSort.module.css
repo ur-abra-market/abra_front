@@ -1,0 +1,25 @@
+.filterSort {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.filterSort__title {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  height: 25px;
+}
+
+.filterSort__reset {
+  cursor: pointer;
+
+  height: 20px;
+
+  line-height: 20px;
+  color: #828282;
+  text-decoration: underline;
+}

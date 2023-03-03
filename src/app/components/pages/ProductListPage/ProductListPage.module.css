@@ -1,9 +1,0 @@
-.productListPage {
-  display: flex;
-  flex-direction: row;
-  padding: 32px;
-  padding-top: 48px;
-  width: calc(100% - 64px);
-  gap: 73px;
-  background-color: #ffffff;
-}

@@ -1,0 +1,110 @@
+.wrapper {
+  display: flex;
+}
+
+.wrapperWithLabel {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.hidden {
+  overflow: hidden;
+
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+
+  line-height: 0;
+
+  opacity: 0;
+}
+
+.inputFile {
+  cursor: pointer;
+
+  position: absolute;
+  z-index: 2;
+  left: 0;
+
+  width: 120px;
+  height: 120px;
+
+  opacity: 0;
+}
+
+.iconImg {
+  position: absolute;
+  top: 37.7px;
+  left: 37.7px;
+  width: 45.7px;
+}
+
+.avatarImg {
+  position: absolute;
+  left: 0;
+
+  overflow: hidden;
+
+  width: 120px;
+  height: 120px;
+}
+
+.photo {
+  cursor: pointer;
+  position: relative;
+}
+
+.photoRemove {
+  cursor: pointer;
+
+  position: absolute;
+  z-index: 5;
+  top: 15px;
+  right: 15px;
+
+  display: none;
+
+  background: transparent;
+}
+
+.photoRemove img {
+  width: 20px;
+  height: 20px;
+}
+
+.photo:hover .photoRemove {
+  display: block;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.iconBackground {
+  width: 120px;
+  height: 120px;
+  background: #F2F2F2;
+}
+
+.profileLogoWrapper {
+  display: flex;
+}
+
+.placeholder {
+  max-width: 160px;
+  margin-top: 8px;
+
+  font-size: 11px;
+  color: #828282;
+  text-align: left;
+}
+
+.inputError {
+  position: absolute;
+  font-size: 13px;
+  color: #FF4040;
+  text-align: left;
+}

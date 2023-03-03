@@ -1,0 +1,13 @@
+.BtnNewBest {
+  display: block;
+
+  width: 132px;
+  height: 27px;
+
+  font-size: var(--fp);
+  line-height: 27px;
+  text-align: center;
+
+  background-color: #DDD;
+  border-radius: 3px;
+}

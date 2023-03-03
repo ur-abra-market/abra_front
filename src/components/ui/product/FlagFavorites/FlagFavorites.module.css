@@ -1,0 +1,32 @@
+.flagFavorites {
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+
+.flagFavorites_sign {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: 24px;
+  height: 24px;
+
+  background-color: transparent;
+  border: 1px solid #FC133D;
+  border-radius: 50%;
+}
+
+.flagFavorites_text {
+  font-size: var(--fp);
+  color: #828282;
+  letter-spacing: 0.16px;
+}
+
+.active{
+  fill: #FC133D;
+}

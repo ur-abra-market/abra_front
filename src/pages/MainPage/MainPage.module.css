@@ -1,0 +1,30 @@
+.main_page {
+  background-color: #FFF;
+}
+
+.images_block{
+  margin-bottom: 112px;
+}
+
+
+.main_sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+
+  width: 100%;
+  height: fit-content;
+  margin-top: 96px;
+  margin-bottom: 116px;
+}
+
+.info_block{
+  position: relative;
+}
+
+.info_btn{
+  position: absolute;
+  z-index: 100;
+  right: 0;
+  bottom: 32px;
+}

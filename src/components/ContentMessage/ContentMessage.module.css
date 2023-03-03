@@ -1,0 +1,19 @@
+.header {
+  font-size: 28px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 100%;
+  color: #000;
+  letter-spacing: 0.0024em;
+}
+
+.subheader {
+  margin-top: 16px;
+
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+  color: #636568;
+  letter-spacing: 0.16px;
+}
