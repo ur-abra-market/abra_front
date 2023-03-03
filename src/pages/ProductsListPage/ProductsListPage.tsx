@@ -7,17 +7,13 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 import addImg from "assets/img/icons/addImg.png";
 import additIcon from "assets/img/icons/additIcon.png";
-import arrowDown from "assets/img/icons/arrow-down.png";
-import calendar from "assets/img/icons/calendar.png";
 import deleteImg from "assets/img/icons/deleteImg.png";
-import searchIcon from "assets/img/icons/searchIcon.png";
 import star from "assets/img/icons/Star 1.png";
-import tileLayout from "assets/img/icons/tileLayout.svg";
-import tableLayout from "assets/img/icons/tableLayout.svg";
+import { ReactComponent as TileLayout } from "assets/img/icons/tileLayout.svg";
+import { ReactComponent as TableLayout } from "assets/img/icons/tableLayout.svg";
 import viewIcon from "assets/img/icons/viewIcon.png";
-import vectorUp from "assets/img/icons/Vector.svg";
-import vectorDown from "assets/img/icons/VectorDown.svg";
-import Checkbox from "components/Checkbox/Checkbox";
+import { ReactComponent as VectorUp } from "assets/img/icons/Vector.svg";
+import { ReactComponent as VectorDown } from "assets/img/icons/VectorDown.svg";
 import FiltersList from "components/FiltersList";
 import Loader from "components/Loader";
 import Modal from "components/new-components/Modal";
@@ -35,7 +31,7 @@ import {
   manageProductsService
 } from "store/reducers/manageProductsSlice";
 import { paginate } from "utils/paginate";
-import { Input, Search, Select } from "../../components/ui-kit";
+import { Checkbox, Input, Search, Select } from "../../components/ui-kit";
 
 const ProductsListPage: FC = (): JSX.Element => {
   const navigate = useNavigate();
@@ -153,72 +149,45 @@ const ProductsListPage: FC = (): JSX.Element => {
       <div className={style.searchAndLayout}>
         <div className={style.searchWithRestFilters}>
           <Search
-            // placeholder="Search"
-            // searchIcon={searchIcon}
-            // classes={searchClasses}
-            // onClick={handleRestFiltersSet}
             placeholder="Search by Name or SKU"
             className={style.search}
           />
           <span className={style.rest_filters} onClick={handleRestFiltersSet}>Show filters</span>
           {!restFilters
-            ? <img onClick={handleRestFiltersSet} src={vectorDown} />
+            ? <VectorDown onClick={handleRestFiltersSet} />
             : <>
-              <img onClick={handleRestFiltersSet} src={vectorUp} className={style.vectorUp}/>
+              <VectorUp onClick={handleRestFiltersSet} className={style.vectorUp} />
               <a className={style.reset_link}>Reset Filters</a>
-            </>  }
+            </>}
         </div>
         <div className={style.layouts}>
-          <img
-            role="presentation"
-            className={
-              layout === "tileLayout"
-                ? `${style.activeLayout}`
-                : `${style.inactiveLayout}`
-            }
-            onClick={handleLayoutSet}
-            src={tileLayout}
-            alt="tileLayoutImg"
-          />
-          <img
-            role="presentation"
-            className={
-              layout === "tableLayout"
-                ? `${style.activeLayout}`
-                : `${style.inactiveLayout}`
-            }
-            onClick={handleLayoutSet}
-            src={tableLayout}
-            alt="tableLayoutImg"
-          />
+          <TileLayout onClick={handleLayoutSet} className={layout === "tileLayout"
+            ? `${style.activeLayout}`
+            : `${style.inactiveLayout}`} />
+          <TableLayout onClick={handleLayoutSet} className={layout === "tableLayout"
+            ? `${style.activeLayout}`
+            : `${style.inactiveLayout}`} />
         </div>
       </div>
       {restFilters ? (
         <div className={style.restFiltersWrapper}>
           <div className={style.filter}>
             <div className={style.filter_name}>Creation Date</div>
-            <Input type='date' className={style.filter_input__date} placeholder="Select the Date" />
+            <Input type="date" className={style.filter_input__date} placeholder="Select the Date" />
           </div>
           <div className={style.filter}>
             <div className={style.filter_name}>Sort by:</div>
             <Select
-              // defaultName="Category"
-              // options={[1, 2, 3]}
-              // img={arrowDown}
-              // classes={selectStyles}
-
+              options={[{ label: "dasda", value: 1 }]}
             />
           </div>
 
           <div className={style.filter}>
             <Select
-              // defaultName="Status"
-              // options={['On Sale', 'Off-sale']}
-              // img={arrowDown}
-              // classes={selectStyles}
+               options={[{label:'On Sale', value:'Off-sale'}]}
             />
           </div>
-          <Checkbox label="Include Hidden" classes={checkboxStyles} />
+          <Checkbox label="Include Hidden" variant='notification' />
         </div>
       ) : (
         <></>
@@ -316,7 +285,6 @@ const ProductsListPage: FC = (): JSX.Element => {
         </div>
       )}
       <div className={style.selectAndPaginationWrapper}>
-        <ShowPage />
         <Pagination activePage={activePage} amountPages={amountPages} />
       </div>
     </>
