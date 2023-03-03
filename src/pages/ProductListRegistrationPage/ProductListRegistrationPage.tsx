@@ -32,6 +32,8 @@ const ProductListRegistrationPage = (): JSX.Element => {
     }
   };
 
+  console.log('third childs:', thirdChilds);
+  console.log('third category:', thirdCategory);
   const categoryId =
     thirdChilds && thirdChilds.length
       ? getId(thirdChilds, thirdCategory)

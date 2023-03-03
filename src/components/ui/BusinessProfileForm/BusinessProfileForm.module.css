@@ -1,42 +1,45 @@
-.selectInfoInputs {
+.select_info_inputs {
   display: flex;
   gap: 15px;
   margin: 24px 0 16px;
 }
 
-.formWrapper {
+.form_wrapper {
   display: flex;
   justify-content: center;
 }
 
-.selectEqual {
+.select_equal {
   width: 309px;
 }
 
-.formContainer {
+.form_container {
   width: 633px;
   margin-bottom: 40px;
 }
 
-.phoneNumber {
-  display: flex;
+.phone_number {
+  display: grid;
+  grid-template-columns: 160px 1fr;
   gap: 15px;
+  align-items: flex-end;
+
   margin: 16px 0;
 }
 
-.marginFix {
+.margin_fix {
   width: 100%;
   margin-top: 16px;
 }
 
-.licenseReminder {
+.license_reminder {
   margin: 16px 0 24px;
   font-size: 13px;
   color: #4F4F4F;
   text-align: left;
 }
 
-.mainInfoTitle {
+.main_info_title {
   margin: 40px 0 16px;
   font-size: 20px;
   font-weight: 600;
@@ -67,33 +70,26 @@
   margin-bottom: 40px;
 }
 
-.listImgTitle {
+.list_img_title {
   margin: 16px 0 8px;
   font-size: 13px;
   color: #828282;
   text-align: left;
 }
 
-.listImg {
+.list_img {
   display: flex;
   gap: 8px;
   margin-bottom: 40px;
 }
 
-.phoneNumber {
-  display: flex;
-  gap: 15px;
-  margin: 16px 0;
-}
-
-.marginFix {
-  width: 100%;
-  margin-top: 16px;
-}
-
-.contactsInputs {
+.contacts_inputs {
   display: flex;
   flex-direction: column;
   gap: 16px;
   margin-bottom: 40px;
+}
+
+.button {
+  width: 100%;
 }

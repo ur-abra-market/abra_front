@@ -1,22 +1,36 @@
 import React, { FC, useEffect, useState } from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Navigate, useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 
 import { RequestAccountInfo } from '../../../services/supplierAccount.service';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { accountInfoService } from '../../../store/reducers/formRegistrationSlice';
 import { uploadUserLogoService } from '../../../store/reducers/userSlice';
 import { filterEmptyValues } from '../../../utils/filterEmptyValues';
-import ButtonReg from '../../buttons/ButtonReg/ButtonReg';
 import FormTitle from '../../FormTitle';
 import ImageAdding from '../../ImageAdding';
-import SelectLabelAbove from '../../SelectLabelAbove';
-import TextFieldLabelAbove from '../../TextFieldLabelAbove';
-import { Input, Label, Select } from '../../ui-kit';
+import { Button, Input, Label, Select } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
+import { PHONE_DATA } from '../AccountSetupForm/AccountSetupForm';
 
 import style from './BusinessProfileForm.module.css';
+
+const date = new Date();
+const year = date.getFullYear();
+
+const schema = yup.object({
+  storeName: yup.string().required('Field is required'),
+  businessSector: yup.string().required('Field is required'),
+  tel: yup.string().required('Field is required'),
+  yearEstablished: yup
+    .string()
+    .min(4, 'Add an existing year')
+    .max(year, "this year hasn't come yet"),
+  email: yup.string().email('Invalid email address'),
+});
 
 interface FormFields {
   email: string;
@@ -24,7 +38,6 @@ interface FormFields {
   textarea: string;
   tel: string;
   yearEstablished: string;
-  phone: string;
   address: string;
   checkbox: boolean;
   numEmployees: string;
@@ -33,6 +46,13 @@ interface FormFields {
   businessSector: string;
 }
 
+export const NUMBER_OF_EMPLOYEES_DATA: IOption[] = [
+  { label: '0', value: '0' },
+  { label: '<4', value: '<4' },
+  { label: '<10', value: '<10' },
+  { label: '>10', value: '>10' },
+];
+
 const BUSINESS_SECTOR_DATA: IOption[] = [
   { label: 'Clothes', value: 'Clothes' },
   { label: 'Accessories', value: 'Accessories' },
@@ -40,8 +60,6 @@ const BUSINESS_SECTOR_DATA: IOption[] = [
 ];
 
 const BusinessProfileForm: FC = (): JSX.Element => {
-  const date = new Date();
-  const year = date.getFullYear();
   const [imgUrl, setImgUrl] = useState('');
   const [images, setImages] = useState([]);
 
@@ -54,7 +72,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
     formState: { errors, isValid },
     handleSubmit,
     reset,
-  } = useForm<FormFields>({ mode: 'onChange' });
+  } = useForm<FormFields>({ resolver: yupResolver(schema), mode: 'onChange' });
 
   const onSubmit = (data: any): void => {
     const phone = data.code + data.tel;
@@ -65,7 +83,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
       year_established: +data.yearEstablished,
       number_of_employees: +data.numEmployees,
       description: data.textarea,
-      logo_url: 'string',
+      /* logo_url: 'string', */
       phone,
       business_email: data.email,
       address: data.address,
@@ -99,8 +117,8 @@ const BusinessProfileForm: FC = (): JSX.Element => {
   if (!accountInfo) return <Navigate to="/account-setup" />;
 
   return (
-    <div className={style.formWrapper}>
-      <div className={style.formContainer}>
+    <div className={style.form_wrapper}>
+      <div className={style.form_container}>
         <FormTitle
           step="Step 2/3"
           title="Business profile"
@@ -109,7 +127,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={style.mainInfo}>
-            <p className={style.mainInfoTitle}>Main info</p>
+            <p className={style.main_info_title}>Main info</p>
 
             <ImageAdding
               imgUrl={imgUrl}
@@ -118,28 +136,24 @@ const BusinessProfileForm: FC = (): JSX.Element => {
               setImages={setImages}
               label="Add logo or profile image"
               placeholder="The customers will recognize your store by this image"
-              register={register('profileLogo')}
+              {...register('profileLogo')}
             />
 
-            <div className={style.selectInfoInputs}>
+            <div className={style.select_info_inputs}>
               <Label label="Shop name (will be shown on the profile)">
                 <Input
-                  {...register('storeName', {
-                    required: 'Field is required',
-                  })}
+                  {...register('storeName')}
                   error={errors?.storeName?.message}
                   placeholder="Enter your company or store name"
                 />
               </Label>
 
-              <div className={style.selectEqual}>
+              <div className={style.select_equal}>
                 <Label label="Your main business sector">
                   <Select
                     options={BUSINESS_SECTOR_DATA}
                     placeholder="Select"
-                    {...register('businessSector', {
-                      required: 'Field is required',
-                    })}
+                    {...register('businessSector')}
                     error={errors?.businessSector?.message}
                   />
                 </Label>
@@ -158,46 +172,36 @@ const BusinessProfileForm: FC = (): JSX.Element => {
           </div>
 
           <div className={style.companyInfo}>
-            <p className={style.mainInfoTitle}>Company Info (optional)</p>
-            <div className={style.selectInfoInputs}>
-              <TextFieldLabelAbove
-                register={register('yearEstablished', {
-                  minLength: {
-                    value: 4,
-                    message: 'Add an existing year',
-                  },
-                  max: {
-                    value: year,
-                    message: `this year hasn't come yet`,
-                  },
-                })}
-                error={errors?.yearEstablished?.message}
-                title="Year Established"
-                name="yearEstablished"
-                type="number"
-                placeholder="Enter the year"
-              />
-
-              <div className={style.selectEqual}>
-                <SelectLabelAbove
-                  register={register('numEmployees')}
-                  title="Number of employees"
-                  name="numEmployees"
-                  options={['0', '<4', '<10', '>10']}
-                  placeholder="Select"
+            <p className={style.main_info_title}>Company Info (optional)</p>
+            <div className={style.select_info_inputs}>
+              <Label label="Year established">
+                <Input
+                  {...register('yearEstablished')}
+                  error={errors?.yearEstablished?.message}
+                  placeholder="Enter the year"
                 />
+              </Label>
+
+              <div className={style.select_equal}>
+                <Label label="Number of employees">
+                  <Select
+                    {...register('numEmployees')}
+                    options={NUMBER_OF_EMPLOYEES_DATA}
+                    placeholder="Select"
+                  />
+                </Label>
               </div>
             </div>
 
-            <TextFieldLabelAbove
-              register={register('textarea')}
-              title="About the business"
-              name="textarea"
-              placeholder="Tell more about your company or business"
-            />
+            <Label label="About the business">
+              <Input
+                {...register('textarea')}
+                placeholder="Tell more about your company or business"
+              />
+            </Label>
 
-            <p className={style.listImgTitle}>Photo of the company or production</p>
-            <div className={style.listImg}>
+            <p className={style.list_img_title}>Photo of the company or production</p>
+            <div className={style.list_img}>
               <ImageAdding />
               <ImageAdding />
               <ImageAdding />
@@ -206,58 +210,41 @@ const BusinessProfileForm: FC = (): JSX.Element => {
             </div>
           </div>
 
-          <div className={style.contactsInfo}>
-            <p className={style.mainInfoTitle}>Contacts (optional)</p>
+          <div>
+            <p className={style.main_info_title}>Contacts (optional)</p>
 
-            <div className={style.phoneNumber}>
-              <SelectLabelAbove
-                register={register('code')}
-                name="code"
-                title="Business phone number"
-                options={['+90', '+44', '+77', '+1']}
+            <div className={style.phone_number}>
+              <Label label="Business phone number">
+                <Select {...register('code')} name="code" options={PHONE_DATA} />
+              </Label>
+              <Input
+                placeholder="(XXX) XXX - XX - XX"
+                {...register('tel')}
+                error={errors?.tel?.message}
               />
-
-              <div className={style.marginFix}>
-                <TextFieldLabelAbove
-                  register={register('tel', {
-                    minLength: {
-                      value: 10,
-                      message: 'Phone number must be 10 digits',
-                    },
-                  })}
-                  error={errors?.tel?.message}
-                  name="tel"
-                  type="tel"
-                  placeholder="(XXX) XXX - XX - XX"
-                />
-              </div>
             </div>
 
-            <div className={style.contactsInputs}>
-              <TextFieldLabelAbove
-                register={register('email', {
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Invalid email address',
-                  },
-                })}
-                error={errors?.email?.message}
-                title="Business email address"
-                name="email"
-                type="email"
-                placeholder="business@email.com"
-              />
+            <div className={style.contacts_inputs}>
+              <Label label="Business email address">
+                <Input
+                  {...register('email')}
+                  error={errors?.email?.message}
+                  placeholder="business@email.com"
+                />
+              </Label>
 
-              <TextFieldLabelAbove
-                register={register('address')}
-                title="Main company address"
-                name="address"
-                placeholder="Enter address"
-              />
+              <Label label="Main company address">
+                <Input {...register('address')} placeholder="Enter address" />
+              </Label>
             </div>
           </div>
 
-          <ButtonReg type="submit" value="Continue" isValid={!isValid} />
+          <Button
+            type="submit"
+            label="Continue"
+            disabled={!isValid}
+            className={style.button}
+          />
         </form>
       </div>
     </div>

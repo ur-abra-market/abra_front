@@ -9,7 +9,7 @@ import { PlusIcon } from '../../../assets/img';
 import { useAppDispatch } from '../../../store/hooks';
 import { setAccountInfo } from '../../../store/reducers/formRegistrationSlice';
 import FormTitle from '../../FormTitle';
-import Modal from '../../Modal';
+import Modal from '../../new-components/Modal';
 import { Input, Label, Select, Button } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
 
@@ -21,7 +21,8 @@ const COUNTRY_DATA: IOption[] = [
   { label: 'Brazil', value: 'Brazil' },
   { label: 'France', value: 'France' },
 ];
-const PHONE_DATA: IOption[] = [
+
+export const PHONE_DATA: IOption[] = [
   { label: '+90', value: '+90' },
   { label: '+44', value: '+44' },
   { label: '+77', value: '+77' },
@@ -71,7 +72,7 @@ const AccountSetupForm = (): JSX.Element => {
         user_info: {
           first_name: data.fname,
           last_name: data.lname,
-          phone,
+          user_phone: phone,
         },
         license: {
           license_number: +data.license,
@@ -98,7 +99,7 @@ const AccountSetupForm = (): JSX.Element => {
           text="This information will not be published. The data will only be used to create your account"
         />
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} id="test">
           <div className={style.add_name}>
             <Label label="First name">
               <Input
@@ -144,6 +145,7 @@ const AccountSetupForm = (): JSX.Element => {
             Use the number of any document authorizing the sale
           </p>
           <Button
+            type="button"
             disabled={!isValid}
             onClick={() => setActive(true)}
             className={style.button}
@@ -174,7 +176,7 @@ const AccountSetupForm = (): JSX.Element => {
                   </button>
                 </div>
               </div>
-              <Button label="Submit" type="submit" />
+              <Button type="submit" label="Submit" form="test" />
             </div>
             <button
               type="button"
