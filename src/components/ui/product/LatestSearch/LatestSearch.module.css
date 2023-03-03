@@ -4,7 +4,6 @@
   gap: 24px;
 
   width: 100%;
-  margin-bottom: -96px;
 }
 
 .latestSearch__list {
@@ -19,7 +18,6 @@
 
   display: block;
 
-  width: fit-content;
   height: 27px;
   padding-right: 30px;
   padding-left: 30px;

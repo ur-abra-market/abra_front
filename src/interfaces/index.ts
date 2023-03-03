@@ -66,8 +66,8 @@ export interface ISimilarProduct {
   with_discount: number;
   price_include_discount: string;
   min_quantity: number;
-  value_price: string;
-  is_favorite: number;
+  value_price: number;
+  is_favorite: boolean;
 }
 
 export interface IShortCardProduct extends ISimilarProduct {
