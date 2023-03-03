@@ -6,6 +6,6 @@ export interface IOption {
 }
 export interface SelectProps
   extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
-  options?: IOption[];
+  options?: IOption;
   error?: string;
 }
