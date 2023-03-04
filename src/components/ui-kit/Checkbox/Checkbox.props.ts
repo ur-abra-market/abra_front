@@ -5,7 +5,7 @@ export interface CheckboxProps
     DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
     'type' | 'size'
   > {
-  variant: 'notification';
+  variant?: 'notification';
   label?: string;
   size?: 'md' | 'sm';
 }

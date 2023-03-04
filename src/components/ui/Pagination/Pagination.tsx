@@ -38,16 +38,16 @@ const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
   };
 
   return (
-    <div className={styles.Paginator}>
+    <div className={styles.paginator_product}>
       <div
-        className={styles.Paginator__left}
+        className={styles.paginator_product_left}
         onClick={() => (activePage > 1 ? handlePage(activePage - 1) : false)}
       >
-        <div className={styles.Paginator__left_arrow} />
+        <div className={styles.paginator_product_left_arrow} />
       </div>
-      <div className={styles.Paginator__numbers}>
+      <div className={styles.paginator_product_numbers}>
         <div
-          className={activePage === 1 ? `${styles.activePage}` : `${styles.cursor}`}
+          className={activePage === 1 ? `${styles.active_page}` : `${styles.cursor}`}
           onClick={() => handlePage(1)}
         >
           1
@@ -67,7 +67,7 @@ const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
 
         <div
           className={
-            activePage === amountPages ? `${styles.activePage}` : `${styles.cursor}`
+            activePage === amountPages ? `${styles.active_page}` : `${styles.cursor}`
           }
           onClick={() => handlePage(amountPages)}
         >
@@ -75,10 +75,10 @@ const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
         </div>
       </div>
       <div
-        className={styles.Paginator__right}
+        className={styles.paginator_product_right}
         onClick={() => (activePage < amountPages ? handlePage(activePage + 1) : false)}
       >
-        <div className={styles.Paginator__right_arrow} />
+        <div className={styles.paginator_product_right_arrow} />
       </div>
     </div>
   );

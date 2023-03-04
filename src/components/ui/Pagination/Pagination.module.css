@@ -1,4 +1,4 @@
-.PaginatorProduct {
+.paginator_product {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -7,20 +7,20 @@
   font-size: var(--fp);
   line-height: 24px;
 }
-.PaginatorProduct__left_arrow {
+.paginator_product_left_arrow {
   width: 24px;
   height: 24px; 
   background: url("../../../assets/img/icons/arrow-slide-left.svg");
 }
 
-.PaginatorProduct__right_arrow {
+.paginator_product_right_arrow {
   width: 24px;
   height: 24px;   
   background: url("../../../assets/img/icons/arrow-slide-right.svg");
 }
 
-.PaginatorProduct__left,
-.PaginatorProduct__right {
+.paginator_product_left,
+.paginator_product_right {
   cursor: pointer;
 
   display: flex;
@@ -31,25 +31,23 @@
   height: 24px;
 }
 
-.PaginatorProduct__numbers {
+.paginator_product_numbers {
   display: flex;
   flex-direction: row;
-  gap: 9px;
   justify-content: space-between;
 
   width: fit-content;
 }
-.PaginatorProduct__numbers>div {
+.paginator_product_numbers>div {
   width: 24px;
   height: 25px;
   line-height: 25px;
   text-align: center;
 }
 
-.activePage {
-  color: #FFFFFF;
-  background-color: #000000;
-  border-radius: 3px;
+.active_page {
+  color: #FC133D;
+
 }
 
 .invisible {
