@@ -25,10 +25,10 @@ const Search: FC<SearchProps> = ({
   };
 
   return (
-    <form className={classes.search__wrap} onSubmit={handleSubmit}>
+    <form className={classes.search_wrap} onSubmit={handleSubmit}>
       <input
         type="text"
-        className={classes.search__input}
+        className={classes.search_input}
         value={text}
         placeholder={placeholder}
         onChange={e => setText(e.target.value)}

@@ -1,41 +1,40 @@
 .favorites_page {
-    background-color: var(--white);
+  background-color: var(--white);
 }
 
 .top {
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-
-    padding: 15px 0 36px 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0 36px 0;
+  text-align: center;
 }
 
 .title {
-    font-weight: var(--bold);
-    font-size: 34px;
-    line-height: 34px;
+  font-size: 34px;
+  font-weight: var(--bold);
+  line-height: 34px;
 }
 
 .search {
-    width: 451px;
+  width: 451px;
 }
 
 .main {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    column-gap: 12px;
-    row-gap: 36px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  row-gap: 36px;
+  column-gap: 12px;
 }
 
 .product_card {
-    width: 220px;
-    height: 320px;
-    background-color: red;
+  width: 220px;
+  height: 320px;
+  background-color: red;
 }
 
 .bottom {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0 32px 32px 0;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 32px 32px 0;
 }

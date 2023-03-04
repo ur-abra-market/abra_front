@@ -1,25 +1,22 @@
-.latestSearch {
+.wrapper {
   display: flex;
   flex-direction: column;
   gap: 24px;
-
   width: 100%;
-  margin-bottom: -96px;
 }
 
-.latestSearch__list {
+.list {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   align-items: flex-start;
 }
 
-.latestSearch__list_item {
+.item {
   cursor: pointer;
 
   display: block;
 
-  width: fit-content;
   height: 27px;
   padding-right: 30px;
   padding-left: 30px;

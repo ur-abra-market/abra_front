@@ -1,4 +1,4 @@
-.productStatistics {
+.statistics {
   /* width: 338px; */
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@
   margin-bottom: 70px;
 }
 
-.sizes-title{
+.sizes_title{
   margin-bottom: 8px;
 
   font-family: Roboto, sans-serif;
@@ -18,34 +18,34 @@
   line-height: 20px;
 }
 
-.productStatistics__basic {
+.statistics_basic {
   display: flex;
   flex-direction: row;
   gap: 16px;
   width: 100%;
 }
 
-.productStatistics__demend {
+.statistics_demend {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: fit-content;
+  /*width: fit-content;*/
 }
 
-.productStatistics__demend_parameter {
+.statistics_demend_parameter {
   font-family: Roboto, sans-serif;
   font-size: 15px;
   font-weight: 500;
   line-height: 20px;
 }
 
-.productStatistics__demend_value {
-  font-family: 'SF Pro Display Bold';
+.statistics_demend_value {
+  font-family: 'SF Pro Display Bold', sans-serif;
   font-size: 16px;
   letter-spacing: 0.16px;
 }
 
-.productStatistics__demend_note {
+.statistics_demend_note {
   margin-top: 4px;
 
   font-family: Roboto, sans-serif;
@@ -55,7 +55,7 @@
   color: #828282;
 }
 
-.productStatistics__price {
+.statistics_price {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -66,20 +66,20 @@
   margin-top: 37px;
 }
 
-.productStatistics__price_change {
-  font-family: Roboto;
+.statistics_price_change {
+  font-family: var(--roboto);
   font-size: var(--fp);
   font-weight: 400;
 }
 
-.productStatistics__price_range {
-  font-family: Roboto;
+.statistics_price_range {
+  font-family: var(--roboto);
   font-size: var(--fp);
   font-weight: 400;
   color: #828282;
 }
 
-.productStatistics__condition {
+.statistics_condition {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -88,7 +88,7 @@
   height: 76px;
   margin-top: 55px;
 
-  font-family: Roboto;
+  font-family: var(--roboto);
   font-size: var(--fp);
   font-weight: 400;
   color: #828282;

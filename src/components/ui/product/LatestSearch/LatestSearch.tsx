@@ -7,11 +7,11 @@ interface LatestSearchProps {
 }
 const LatestSearch: FC<LatestSearchProps> = ({ latestSearchData }) => {
   return (
-    <div className={style.latestSearch}>
+    <div className={style.wrapper}>
       <h2>Latest searches</h2>
-      <div className={style.latestSearch__list}>
+      <div className={style.list}>
         {latestSearchData.map(({ search_query }, i) => (
-          <div className={style.latestSearch__list_item} key={`search-${i}`}>
+          <div className={style.item} key={`search-${i}`}>
             {search_query}
           </div>
         ))}

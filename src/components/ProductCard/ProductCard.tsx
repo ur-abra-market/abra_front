@@ -26,6 +26,11 @@ export const ProductCard: FC<ProductCardProps> = (props): JSX.Element => {
     grade_average,
   } = product;
 
+  // {
+  //     "value_price": 0,
+  //     "is_favorite": true
+  // }
+
   return (
     <div className={cn(style.card, className)} {...restProps}>
       <div className={style.image}>

@@ -13,7 +13,7 @@ import { FooterProps } from './Footer.props';
 
 const Footer: FC<FooterProps> = (props): JSX.Element => {
   const { className } = props;
-  const routs = ['personal-account', 'order-history', ''];
+  const routs = ['personal-account', 'product', 'order-history', ''];
   const { pathname } = useLocation();
   const showHeadNav = routs.some(el => el === pathname.split('/')[1]);
 

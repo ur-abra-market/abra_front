@@ -1,44 +1,47 @@
 .container{
-    margin: 98px 148px 78px;
+  margin: 98px 148px 78px;
 }
 .title{
-    font-weight: 600;
-    font-size: 34px;
-    line-height: 120%;
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 120%;
 }
 .contacts{
-    display: flex;
-    align-items: center;
-    margin-bottom: 10%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10%;
 }
 .image{
-    height: 25px;
-    width: 25px;
+  width: 25px;
+  height: 25px;
 }
 .number_phone{
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 33px;
-    letter-spacing: 0.41px;
-    text-decoration-line: underline;
-    padding-left: 10px;
+  padding-left: 10px;
+
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 33px;
+  text-decoration-line: underline;
+  letter-spacing: 0.41px;
 }
 .social_network{
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 20px;
-    letter-spacing: 0.38px;
-    margin-bottom: 24px;
+  margin-bottom: 24px;
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.38px;
 }
 .image_header{
-    width: 100%;
+  width: 100%;
 }
 .social_image{
-    background: linear-gradient(180deg, #F3F3F3 0%, #EBEBEB 100%);
-    border-radius: 12px;
-    padding: 13px;
-    width: 44px;
-    height: 44px;
-    margin-right: 12px;
+  width: 44px;
+  height: 44px;
+  margin-right: 12px;
+  padding: 13px;
+
+  background: linear-gradient(180deg, #F3F3F3 0%, #EBEBEB 100%);
+  border-radius: 12px;
 }

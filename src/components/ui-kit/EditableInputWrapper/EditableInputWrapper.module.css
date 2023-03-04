@@ -1,20 +1,22 @@
 .wrapper {
-    position: relative;
+  position: relative;
 }
 
 .input {
-    width: 100%;
+  width: 100%;
 }
 
 .button {
-    position: absolute;
-    padding: 0;
-    right: 16px;
-    top: 14px;
-    cursor: pointer;
-    font-weight: var(--medium);
-    font-size: 12px;
-    line-height: 16px;
+  cursor: pointer;
 
-    color: var(--light-gray);
+  position: absolute;
+  top: 14px;
+  right: 16px;
+
+  padding: 0;
+
+  font-size: 12px;
+  font-weight: var(--medium);
+  line-height: 16px;
+  color: var(--light-gray);
 }
