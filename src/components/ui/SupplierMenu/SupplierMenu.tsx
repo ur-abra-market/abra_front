@@ -17,7 +17,7 @@ const SupplierMenu = (): JSX.Element => {
   return (
     <ul className={style.wrapper}>
       {menu.map(item => (
-        <li key={item.path} role="button">
+        <li key={item.path}>
           <NavLink
             to={item.path}
             className={({ isActive }) =>
