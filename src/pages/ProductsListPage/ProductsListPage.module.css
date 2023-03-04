@@ -467,3 +467,9 @@
 .modal_button:hover {
   background: #D9D9D9;
 }
+.checkbox{
+  width: 24px;
+  height: 24px;
+  background: #F4F4F4;
+  border-radius: 4px;
+}
