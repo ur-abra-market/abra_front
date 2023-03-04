@@ -10,7 +10,6 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
 
   return (
     <label className={cn(styles.label, className)}>
-      {label}
       <input
         ref={ref}
         type="checkbox"
@@ -21,6 +20,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
         })}
         {...restProps}
       />
+      {label}
     </label>
   );
 });
