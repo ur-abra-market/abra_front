@@ -12,23 +12,30 @@
 
 .searchWithRestFilters {
   display: flex;
-  gap: 15px;
+   align-items: center;
+
+}
+.vectorUp{
+  margin-right: 25px;
+}
+.search{
+  margin-right: 24px;
 }
 
-.search__wrap {
+.search_wrap {
   display: flex;
   align-items: center;
 
-  width: 30%;
+  width: 40%;
   min-width: 300px;
   height: 34px;
   padding: 5px 14px;
 
-  background-color: #FFF;
-  border-radius: 3px;
+  background-color: #F4F4F4;
+  border-radius: 12px;
 }
 
-.search__wrap::before {
+.search_wrap::before {
   content: '';
 
   position: relative;
@@ -64,22 +71,22 @@
   cursor: pointer;
 }
 
-.restFilters {
-  cursor: pointer;
-
-  position: relative;
-  top: 10px;
-  left: 10px;
-
+.rest_filters {
+  font-weight: 500;
   font-size: 15px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 20px;
-  color: #828282;
-  text-decoration-line: underline;
+  line-height: 15px;
   letter-spacing: 0.16px;
+  color: #000000;
+  margin-right: 9px;
 }
-
+.reset_link{
+  color:#FC133D;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0.16px;
+  text-decoration-line: underline;
+}
 .layouts {
   display: flex;
   gap: 12px;
@@ -88,8 +95,7 @@
 }
 
 .inactiveLayout {
-  cursor: pointer;
-  opacity: 0.3;
+  color: #828282;
 }
 
 .restFiltersWrapper {
@@ -202,9 +208,8 @@
   border-radius: 2.37522px;
 }
 
-.activeLayout {
-  pointer-events: none;
-  cursor: default;
+.activeLayout path {
+  fill:#FC133D ;
 }
 
 .selectAndPaginationWrapper {

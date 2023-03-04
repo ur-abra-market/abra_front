@@ -4,7 +4,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 import arrowTriangleImg from '../../assets/img/icons/check-arrow.png';
 import iconImage from '../../assets/img/icons/icon-img.png';
-import bellImg from '../../assets/img/icons/notification-bell.png';
+import bellImg from '../../assets/img/icons/notification-bell.svg';
 import { ButtonLink } from '../../components/buttons';
 import FooterForSupplierPart from '../../components/FooterForSupplierPart';
 import Loader from '../../components/Loader';
@@ -60,10 +60,10 @@ const SupplierPage = (): JSX.Element => {
           <NavBarUniversal
             logo={
               <>
-                <Link to="/">Abra</Link>
+                <Link className={style.text_link} to="/">Abra</Link>
                 <span className={style.verticalLine} />
-                <span className={style.supplierMainPagelink}>
-                  <Link to="/"> SUPPLIER</Link>
+                <span >
+                  <Link className={style.supplierMainPagelink} to="/"> SUPPLIER</Link>
                 </span>
               </>
             }
