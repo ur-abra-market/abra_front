@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import ProductCanvas from '../ProductCanvas';
-
 import style from './ProductStatistics.module.css';
 import { Sizes } from './Sizes/Sizes';
 
@@ -20,9 +18,9 @@ const ProductStatistics: FC<ProductStatisticsProps> = ({
 }) => {
   // const {min_quantity, value} = prices
 
-  const unitPrice = (prices?.value / prices?.min_quantity).toFixed(2);
+  // const unitPrice = (prices?.value / prices?.min_quantity).toFixed(2);
 
-  console.log(unitPrice);
+  console.log(prices);
 
   return (
     <div className={style.productStatistics}>
@@ -50,11 +48,11 @@ const ProductStatistics: FC<ProductStatisticsProps> = ({
           </div>
         </div>
       </div>
-      <div className={style.productStatistics__price}>
-        <div className={style.productStatistics__price_change}>Price changes</div>
-        <div className={style.productStatistics__price_range}>from $8.50 up to $9.99</div>
-      </div>
-      <ProductCanvas />
+      {/* <div className={style.productStatistics__price}> */}
+      {/*  <div className={style.productStatistics__price_change}>Price changes</div> */}
+      {/*  <div className={style.productStatistics__price_range}>from $8.50 up to $9.99</div> */}
+      {/* </div> */}
+      {/* <ProductCanvas /> */}
       {/* <div className={style.productStatistics__condition}> */}
       {/*  <div>Special offer: ≥ <span>{min_quantity}</span> = 1pc/$<span>{unitPrice}</span></div> */}
       {/*  <div>Processing time: 14 day</div> */}
