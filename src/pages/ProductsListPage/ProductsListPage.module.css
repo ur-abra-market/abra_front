@@ -12,7 +12,7 @@
 
 .searchWithRestFilters {
   display: flex;
-   align-items: center;
+  align-items: center;
 
 }
 .vectorUp{
@@ -47,7 +47,7 @@
   background-size: cover;
 }
 
-.search__input {
+.search_input {
   display: block;
 
   width: 100%;
@@ -63,7 +63,7 @@
   opacity: 0.5;
 }
 
-.search_photo__clicked {
+.search_photo_clicked {
   opacity: 1;
 }
 
@@ -72,20 +72,20 @@
 }
 
 .rest_filters {
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 15px;
-  letter-spacing: 0.16px;
-  color: #000000;
   margin-right: 9px;
+
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 15px;
+  color: #000000;
 }
 .reset_link{
-  color:#FC133D;
-  font-weight: 400;
   font-size: 15px;
+  font-weight: 400;
   line-height: 20px;
-  letter-spacing: 0.16px;
+  color:#FC133D;
   text-decoration-line: underline;
+  letter-spacing: 0.16px;
 }
 .layouts {
   display: flex;

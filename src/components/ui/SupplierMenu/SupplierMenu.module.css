@@ -1,4 +1,4 @@
-.supplierMenuSection_wrapper {
+.wrapper {
   display: flex;
   gap: 70px;
   padding-top: 16px;
@@ -16,8 +16,8 @@
   font-style: normal;
   line-height: 16px;
   color: #FC133D;
-  letter-spacing: -0.24px;
   text-decoration: none;
+  letter-spacing: -0.24px;
 }
 
 .menu_item:hover {

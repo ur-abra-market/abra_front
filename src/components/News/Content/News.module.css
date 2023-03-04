@@ -1,25 +1,26 @@
 
 .image{
-    border-radius: 8px;
-    width: 230px;
-    height: 150px;
+  width: 230px;
+  height: 150px;
+  border-radius: 8px;
 }
 .container_content{
-    display: flex;
-    margin-bottom: 16px;
+  display: flex;
+  margin-bottom: 16px;
 }
 .text_container{
-    padding-left: 16px;
+  padding-left: 16px;
 }
 .title{
-    letter-spacing: 0.38px;
-    font-size: 20px;
-    line-height: 27px;
-    padding-bottom: 8px;
-    font-weight: 600;
+  padding-bottom: 8px;
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 27px;
+  letter-spacing: 0.38px;
 }
 .text{
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
 }

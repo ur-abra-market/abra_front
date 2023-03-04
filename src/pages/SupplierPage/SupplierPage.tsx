@@ -32,14 +32,14 @@ const SupplierPage = (): JSX.Element => {
   }, [dispatch]);
 
   const navbarCategoryBtnClasses = {
-    wrepperBtnImg: `${style.wrepperBtnImg}`,
-    btnImg: `${style.btnImg}`,
-    btnName: `${style.btnName}`,
+    wrepperBtnImg: `${style.wrapper_btn_img}`,
+    btnImg: `${style.btn_img}`,
+    btnName: `${style.btn_name}`,
   };
 
   const SelectBussinessClasses = {
-    selectWrapper: `${style.selectWrapper}`,
-    select_headerWrapper: `${style.select_headerWrapper}`,
+    selectWrapper: `${style.select_wrapper}`,
+    select_headerWrapper: `${style.select_header_rapper}`,
     select_header: `${style.select_header}`,
     select_options: `${style.select_options}`,
     option: `${style.option}`,
@@ -63,9 +63,9 @@ const SupplierPage = (): JSX.Element => {
             <Link className={style.text_link} to="/">
               Abra
             </Link>
-            <span className={style.verticalLine} />
+            <span className={style.vertical_Line} />
             <span>
-              <Link className={style.supplierMainPagelink} to="/">
+              <Link className={style.supplier_main_page_link} to="/">
                 {' '}
                 SUPPLIER
               </Link>
@@ -80,7 +80,7 @@ const SupplierPage = (): JSX.Element => {
           {
             // @ts-ignore
             companyInfo?.logo_url ? (
-              <div className={style.logoImg}>
+              <div className={style.logo_img}>
                 <img
                   src={
                     // @ts-ignore
@@ -115,7 +115,7 @@ const SupplierPage = (): JSX.Element => {
           classes={SelectBussinessClasses}
         />
       </NavBarUniversal>
-      <div className={style.pageWrapper}>
+      <div className={style.page_wrapper}>
         <SupplierMenu />
         <Outlet />
       </div>
