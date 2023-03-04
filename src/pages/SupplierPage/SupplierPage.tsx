@@ -29,7 +29,7 @@ const SupplierPage = (): JSX.Element => {
     dispatch(getCompanyInfoService());
     dispatch(getSupplierAccountDataService());
     setIsGetCompanyInfo(true);
-  }, []);
+  }, [dispatch]);
 
   const navbarCategoryBtnClasses = {
     wrepperBtnImg: `${style.wrepperBtnImg}`,
@@ -51,76 +51,75 @@ const SupplierPage = (): JSX.Element => {
       navigate('../account-setup');
   }, [isLoading]);
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <NavBarUniversal
-            logo={
-              <>
-                <Link className={style.text_link} to="/">Abra</Link>
-                <span className={style.verticalLine} />
-                <span >
-                  <Link className={style.supplierMainPagelink} to="/"> SUPPLIER</Link>
-                </span>
-              </>
-            }
-          >
-            <Link to="/">
+      <NavBarUniversal
+        logo={
+          <>
+            <Link className={style.text_link} to="/">
+              Abra
+            </Link>
+            <span className={style.verticalLine} />
+            <span>
+              <Link className={style.supplierMainPagelink} to="/">
+                {' '}
+                SUPPLIER
+              </Link>
+            </span>
+          </>
+        }
+      >
+        <Link to="/">
+          <ButtonLink name="Avatar" src={bellImg} classes={navbarCategoryBtnClasses} />
+        </Link>
+        <Link to="/">
+          {
+            // @ts-ignore
+            companyInfo?.logo_url ? (
+              <div className={style.logoImg}>
+                <img
+                  src={
+                    // @ts-ignore
+                    companyInfo.logo_url
+                  }
+                  alt="logo"
+                />
+              </div>
+            ) : (
               <ButtonLink
-                name="Avatar"
-                src={bellImg}
+                name="logoImg"
+                src={iconImage}
                 classes={navbarCategoryBtnClasses}
               />
-            </Link>
-            <Link to="/">
-              {
-                // @ts-ignore
-                companyInfo?.logo_url ? (
-                  <div className={style.logoImg}>
-                    <img
-                      src={
-                        // @ts-ignore
-                        companyInfo.logo_url
-                      }
-                      alt="logo"
-                    />
-                  </div>
-                ) : (
-                  <ButtonLink
-                    name="logoImg"
-                    src={iconImage}
-                    classes={navbarCategoryBtnClasses}
-                  />
-                )
-              }
-            </Link>
-            <Select
-              defaultValue={
-                // @ts-ignore
-                companyInfo?.name
-              }
-              img={arrowTriangleImg}
-              options={[
-                'Name 1',
-                'Name 2',
-                `${
-                  // @ts-ignore
-                  companyInfo?.name
-                }`,
-              ]}
-              classes={SelectBussinessClasses}
-            />
-          </NavBarUniversal>
-          <div className={style.pageWrapper}>
-            <SupplierMenu />
-            <Outlet />
-          </div>
-          <FooterForSupplierPart />
-        </>
-      )}
+            )
+          }
+        </Link>
+        <Select
+          defaultValue={
+            // @ts-ignore
+            companyInfo?.name
+          }
+          img={arrowTriangleImg}
+          options={[
+            'Name 1',
+            'Name 2',
+            `${
+              // @ts-ignore
+              companyInfo?.name
+            }`,
+          ]}
+          classes={SelectBussinessClasses}
+        />
+      </NavBarUniversal>
+      <div className={style.pageWrapper}>
+        <SupplierMenu />
+        <Outlet />
+      </div>
+      <FooterForSupplierPart />
     </>
   );
 };
