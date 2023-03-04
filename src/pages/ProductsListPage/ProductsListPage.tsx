@@ -17,9 +17,7 @@ import { ReactComponent as VectorDown } from "assets/img/icons/VectorDown.svg";
 import FiltersList from "components/FiltersList";
 import Loader from "components/Loader";
 import Modal from "components/new-components/Modal";
-import ShowPage from "components/ShowPage";
 import Table from "components/table";
-import Pagination from "components/ui/Pagination";
 import {
   checkboxStyles,
   selectStyles,
@@ -32,6 +30,8 @@ import {
 } from "store/reducers/manageProductsSlice";
 import { paginate } from "utils/paginate";
 import { Checkbox, Input, Search, Select } from "../../components/ui-kit";
+import ShowPage from "../../components/ShowPage";
+import Pagination from "../../components/ui/Pagination";
 
 const ProductsListPage: FC = (): JSX.Element => {
   const navigate = useNavigate();
@@ -184,10 +184,10 @@ const ProductsListPage: FC = (): JSX.Element => {
 
           <div className={style.filter}>
             <Select
-               options={[{label:'On Sale', value:'Off-sale'}]}
+               options={[{label:'On Sale', value:6}]}
             />
           </div>
-          <Checkbox label="Include Hidden" variant='notification' />
+          <Checkbox label="Include Hidden"  size='sm' />
         </div>
       ) : (
         <></>
