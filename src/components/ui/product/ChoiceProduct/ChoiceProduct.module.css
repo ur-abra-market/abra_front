@@ -1,4 +1,4 @@
-.choiceProduct {
+.choice_product {
   display: flex;
   flex-direction: column;
 
@@ -6,25 +6,24 @@
   gap: 32px;
 }
 
-.choiceProduct__color_title {
+.choice_product_color_title {
   display: block;
 
   height: 24px;
   margin-bottom: 8px;
 
-  font-family: 'SF Pro Display Medium';
+  font-family: 'SF Pro Display Medium',serif;
   font-size: var(--fp);
   line-height: 24px;
-  letter-spacing: 0.16px;
 }
 
-.choiceProduct__color_buttons {
+.choice_product_color_buttons {
   display: flex;
   flex-direction: row;
   gap: 8px;
 }
 
-.choiceProduct__color_buttons_btn {
+.choice_product_color_buttons_btn {
   cursor: pointer;
 
   display: block;
@@ -35,30 +34,29 @@
   border-radius: 50%;
 }
 
-.choiceProduct__quantity {
+.choice_product_quantity {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.choiceProduct__quantity_block {
+.choice_product_quantity_block {
   display: flex;
   flex-direction: row;
   gap: 4px;
 }
 
-.choiceProduct__quantity_title {
+.choice_product_quantity_title {
   display: block;
 
   height: 24px;
 
-  font-family: 'SF Pro Display Medium';
+  font-family: 'SF Pro Display Medium',serif;
   font-size: var(--fp);
   line-height: 24px;
-  letter-spacing: 0.16px;
 }
 
-.choiceProduct__quantity_max {
+.choice_product_quantity_max {
   cursor: pointer;
 
   display: block;
@@ -67,17 +65,16 @@
   font-size: 8px;
   line-height: 20px;
   color: #828282;
-  letter-spacing: 0.16px;
 }
 
-.choiceProduct__quantity_control {
+.choice_product_quantity_control {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
 }
 
-.choiceProduct__quantity_btn {
+.choice_product_quantity_btn {
   cursor: pointer;
 
   display: flex;
@@ -93,7 +90,7 @@
   border-radius: 4px;
 }
 
-.choiceProduct__quantity_sum {
+.choice_product_quantity_sum {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,18 +100,17 @@
 
   font-size: var(--fp);
   text-align: center;
-  letter-spacing: 0.16px;
 
   border: 2px #DDD solid;
   border-radius: 4px;
 }
 
-.choiceProduct__price {
+.choice_product_price {
   display: grid;
   gap: 12px;
 }
 
-.choiceProduct__price_item {
+.choice_product_price_item {
   display: grid;
   grid-template-columns: auto 1fr auto;
   gap: 4px;
@@ -133,7 +129,7 @@
   color: #000;
 }
 
-.choiceProduct__price_item_line{
+.choice_product_price_item_line{
   position: relative;
   bottom: 4px;
 
@@ -144,7 +140,7 @@
   background-color: #000;
 }
 
-.choiceProduct__price_total {
+.choice_product_price_total {
   display: flex;
   justify-content: space-between;
 
@@ -162,12 +158,11 @@
   color: #000;
 }
 
-.choiceProduct__price span {
+.choice_product_price span {
   overflow: hidden;
 
   width: 100%;
   margin-right: 4px;
   padding-left: 4px;
 
-  letter-spacing: 0.2px;
 }
