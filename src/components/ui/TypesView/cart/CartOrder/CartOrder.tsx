@@ -23,7 +23,7 @@ const CartOrder: FC<CartOrderProps> = ({ info }): JSX.Element => {
       <p className={style.cart_order_text_small}>
         * The final cost will be calculated after you add an address
       </p>
-      <hr className={style.cart_order_hrLine} />
+      <hr className={style.cart_order_hr_line} />
       <div className={style.cart_order_total}>
         <p>Total</p>
         <p>${info.totalCost}</p>
