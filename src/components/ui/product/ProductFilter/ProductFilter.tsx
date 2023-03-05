@@ -1,17 +1,17 @@
-import React from 'react';
+import React from 'react'
 
-import FilterBrand from '../../product_filter/FilterBrand';
-import FilterGrowth from '../../product_filter/FilterGrowth';
-import FilterMaterial from '../../product_filter/FilterMaterial';
-import FilterPrice from '../../product_filter/FilterPrice';
-import FilterSizes from '../../product_filter/FilterSizes';
-import FilterSort from '../../product_filter/FilterSort';
+import FilterBrand from '../../product_filter/FilterBrand'
+import FilterGrowth from '../../product_filter/FilterGrowth'
+import FilterMaterial from '../../product_filter/FilterMaterial'
+import FilterPrice from '../../product_filter/FilterPrice'
+import FilterSizes from '../../product_filter/FilterSizes'
+import FilterSort from '../../product_filter/FilterSort'
 
-import style from './ProductFilter.module.css';
+import style from './ProductFilter.module.css'
 
 const ProductFilter = (): JSX.Element => {
   return (
-    <div className={style.productFilter}>
+    <div className={style.product_filter}>
       <FilterSort />
       <FilterPrice />
       <FilterSizes />
@@ -19,7 +19,7 @@ const ProductFilter = (): JSX.Element => {
       <FilterBrand />
       <FilterMaterial />
     </div>
-  );
-};
+  )
+}
 
-export default ProductFilter;
+export default ProductFilter
