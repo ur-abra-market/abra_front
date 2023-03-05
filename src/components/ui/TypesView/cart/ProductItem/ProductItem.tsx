@@ -1,23 +1,23 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
-import PropTypes from 'prop-types';
-
-import style from './ProductItem.module.css';
+import style from './ProductItem.module.css'
 
 interface ProductItemProps {
-  product: any;
+  product: any
 }
-const ProductItem: FC<ProductItemProps> = ({ product }) => {
-  const changeQuantityHandler = () => {};
+const ProductItem: FC<ProductItemProps> = ({ product }): JSX.Element => {
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const changeQuantityHandler = () => {}
 
-  const changeStatusHandler = () => {};
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const changeStatusHandler = () => {}
 
   return (
-    <div className={style.productItem}>
-      <div className={style.productItem__mainContainer}>
+    <div className={style.product_item}>
+      <div className={style.product_item_main_container}>
         <div>
           <input
-            className={style.productItem__mainContainer_checkbox}
+            className={style.product_item_main_container_checkbox}
             checked={product.checked}
             onChange={changeStatusHandler}
             type="checkbox"
@@ -26,48 +26,56 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
 
         <div>
           <img
-            className={style.productItem__mainContainer_img}
-            src="./assets/image/none.png"
+            className={style.product_item_main_container_img}
+            src="src/assets/img/icons/none.png"
             alt="img"
           />
         </div>
 
         <div>
-          <p className={style.productItem__mainContainer_name}>{product.name}</p>
-          <div className={style.productItem__mainContainer_info}>
+          <p className={style.product_item_main_container_name}>
+            {product.name}
+          </p>
+          <div className={style.product_item_main_container_info}>
             <div>Color: {product.color}</div>
             <div>Size: {product.size}</div>
             <div>Quantity: {product.quantity}</div>
           </div>
-          <div className={style.productItem__mainContainer_price}>
+          <div className={style.product_item_main_container_price}>
             <p>${product.price}</p>
-            <p className={style.productItem__mainContainer_priceSpecial}>
+            <p className={style.product_item_main_container_price_special}>
               Special offer: ≥ 200 = 1pc/$4.25
             </p>
           </div>
         </div>
       </div>
 
-      <div className={style.productItem__quantityContainer}>
-        <div className={style.productItem__quantityContainer_title}>
+      <div className={style.product_item_quantity_container}>
+        <div className={style.product_item_quantity_container_title}>
           Quantity
-          <span className={style.productItem__quantityContainer_titleFrom}>
+          <span className={style.product_item_quantity_container_title_from}>
             /from {product.minQuantity} pcs
           </span>
         </div>
-        <div className={style.productItem__quantityContainer_quantity}>
-          <button className={style.productItem__quantityContainer_button}>-</button>
+        <div className={style.product_item_quantity_container_quantity}>
+          {/* eslint-disable-next-line react/button-has-type */}
+          <button className={style.product_item_quantity_container_button}>
+            -
+          </button>
           <input
-            className={style.productItem__quantityContainer_input}
+            className={style.product_item_quantity_container_input}
             value={product.quantity}
             onChange={changeQuantityHandler}
             type="text"
           />
-          <button className={style.productItem__quantityContainer_button}>+</button>
+          {/* eslint-disable-next-line react/button-has-type */}
+          <button className={style.product_item_quantity_container_button}>
+            +
+          </button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductItem;
+export default ProductItem
