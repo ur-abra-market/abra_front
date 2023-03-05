@@ -1,46 +1,48 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
-import PropTypes from 'prop-types';
+import ProductItem from '../ProductItem/ProductItem'
 
-import ProductItem from '../ProductItem/ProductItem';
-
-import style from './ShopItem.module.css';
+import style from './ShopItem.module.css'
 
 interface ShopItemProps {
-  shopItem: any;
+  shopItem: any
 }
-const ShopItem: FC<ShopItemProps> = ({ shopItem }) => {
-  const changeStatusHandler = () => {};
+const ShopItem: FC<ShopItemProps> = ({ shopItem }): JSX.Element => {
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  const changeStatusHandler = () => {}
 
   return (
-    <div className={style.shopItem}>
-      <div className={style.shopItem__header}>
+    <div className={style.shop_item}>
+      <div className={style.shop_item_header}>
         <div>
           <input
             type="checkbox"
-            className={style.shopItem__header_checkbox}
+            className={style.shop_item_header_checkbox}
             checked={shopItem.checked}
             onChange={changeStatusHandler}
           />
         </div>
-        <div className={style.shopItem__header_star} />
-        <div className={style.shopItem__header_rating}>{shopItem.rating}</div>
+        <div className={style.shop_item_header_star} />
+        <div className={style.shop_item_header_rating}>{shopItem.rating}</div>
         <div>{shopItem.name}</div>
-        <div className={style.shopItem__header_arrowRight} />
+        <div className={style.shop_item_header_arrow_right} />
       </div>
 
       {shopItem.products.map((prodItem: any) => (
         <ProductItem key={prodItem.id} product={prodItem} />
       ))}
 
-      <div className={style.shopItem__footer}>
+      <div className={style.shop_item_footer}>
         <span>Estimated delivery: {shopItem.delivery.date}</span>
-        <div className={style.shopItem__footer_dot} />
+        <div className={style.shop_item_footer_dot} />
         <span>Delivery method:&nbsp;</span>
-        <a className={style.shopItem__footer_method}>{shopItem.delivery.method}</a>
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <a className={style.shop_item_footer_method}>
+          {shopItem.delivery.method}
+        </a>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ShopItem;
+export default ShopItem
