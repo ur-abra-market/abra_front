@@ -605,7 +605,7 @@
 
 .save_changes_button_wrapper {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-top: 10px;
 }
 

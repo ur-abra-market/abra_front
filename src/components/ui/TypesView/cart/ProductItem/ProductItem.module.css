@@ -1,6 +1,6 @@
 .product_item {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: space-between;
 
   width: 100%;
@@ -10,7 +10,7 @@
 .product_item_main_container {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 
 }
 

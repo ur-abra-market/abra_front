@@ -6,7 +6,7 @@
 .shop_item_header {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .shop_item_header_checkbox {
