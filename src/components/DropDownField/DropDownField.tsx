@@ -1,38 +1,38 @@
-import React, { FC, PropsWithChildren, useEffect, useState } from 'react';
+import React, { FC, PropsWithChildren, useEffect, useState } from 'react'
 
-import style from './DropDownField.module.css';
+import style from './DropDownField.module.css'
 
 interface DropDownFieldProps {
-  title: string;
-  isShow: boolean;
+  title: string
+  isShow: boolean
 }
 const DropDownField: FC<PropsWithChildren<DropDownFieldProps>> = ({
   children,
   title,
-  isShow,
+  isShow
 }): JSX.Element => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   const onClick = (): void => {
-    setOpen(!open);
-  };
+    setOpen(!open)
+  }
 
   useEffect(() => {
     if (isShow && !open) {
-      setOpen(!open);
+      setOpen(!open)
     }
-  }, [isShow, open]);
+  }, [isShow, open])
 
   return (
     <div>
       <div role="presentation" className={style.title} onClick={onClick}>
-        <p className={style.titleText}>{title}</p>
-        <span className={open ? style.arrowOn : style.arrowOff}>&#9660;</span>
+        <p className={style.title_text}>{title}</p>
+        <span className={open ? style.arrow_on : style.arrow_off}>&#9660;</span>
       </div>
 
       {open && <div className={style.children}>{children}</div>}
     </div>
-  );
-};
+  )
+}
 
-export default DropDownField;
+export default DropDownField
