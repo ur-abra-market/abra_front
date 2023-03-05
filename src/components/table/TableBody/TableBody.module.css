@@ -1,4 +1,4 @@
-.backgroundImg {
+.background_img {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,6 +11,6 @@
   border-radius: 50%;
 }
 
-.styleImg {
+.style_img {
   width: 40%;
 }
