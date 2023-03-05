@@ -1,22 +1,22 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 
-import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 // import deleteImg from '../../assets/img/icons/delete_Img_red.svg';
-import AddingImageSpot from '../../components/AddingImage/AddingImageSpot/AddingImageSpot';
-import { InfoBtn } from '../../components/buttons';
-import Checkbox from '../../components/Checkbox';
-import ImmutableTextFieldWithChangeButton from '../../components/ImmutableTextFieldWithChangeButton/ImmutableTextFieldWithChangeButton';
-import Loader from '../../components/Loader';
-import PhoneNumFieldWithoutCountryCode from '../../components/PhoneNumFieldWithoutCountryCode';
-import SelectLabelAbove from '../../components/SelectLabelAbove';
-import TextField from '../../components/TextField';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import AddingImageSpot from '../../components/AddingImage/AddingImageSpot/AddingImageSpot'
+import { InfoBtn } from '../../components/buttons'
+import Checkbox from '../../components/Checkbox'
+import ImmutableTextFieldWithChangeButton from '../../components/ImmutableTextFieldWithChangeButton/ImmutableTextFieldWithChangeButton'
+import Loader from '../../components/Loader'
+import PhoneNumFieldWithoutCountryCode from '../../components/PhoneNumFieldWithoutCountryCode'
+import SelectLabelAbove from '../../components/SelectLabelAbove'
+import TextField from '../../components/TextField'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import {
   getSupplierNotifications,
-  postSupplierNotifications,
-} from '../../store/reducers/supplierAccountSlice';
+  postSupplierNotifications
+} from '../../store/reducers/supplierAccountSlice'
 
 import {
   accountDetails__textFieldClasses,
@@ -24,22 +24,22 @@ import {
   classesOfLogoImage,
   inputPhoneClasses,
   notificationCheckboxClasses,
-  textFieldClasses,
-} from './constantsOfClassesStyles';
-import style from './SupplierAccountMainPage.module.css';
+  textFieldClasses
+} from './constantsOfClassesStyles'
+import style from './SupplierAccountMainPage.module.css'
 
 const defaultValue = {
   user_info: {
     first_name: '',
     last_name: '',
     code: '+7',
-    phone: '',
+    phone: ''
   },
   license: {
-    license_number: 0,
+    license_number: 0
   },
   country: {
-    country: '',
+    country: ''
   },
   company_info: {
     logo_url: '',
@@ -52,7 +52,7 @@ const defaultValue = {
     phone: '',
     business_email: '',
     address: '',
-    is_manufacturer: 0,
+    is_manufacturer: 0
   },
   notifications: {
     on_discount: false,
@@ -61,37 +61,33 @@ const defaultValue = {
     on_stock_again: false,
     on_product_is_cheaper: false,
     on_your_favorites_new: false,
-    on_account_support: false,
-  },
-};
+    on_account_support: false
+  }
+}
 const SupplierAccountMainPage = (): JSX.Element => {
-  const dispatch = useAppDispatch();
-  const companyPhotoPicker = useRef(null);
+  const dispatch = useAppDispatch()
+  const companyPhotoPicker = useRef(null)
 
-  const { isLoading, supplierInfo, notifications } = useAppSelector(
-    state => state.supplierAccount,
-  );
-  const [images, setImages] = useState([]);
-  const [selectedCompanyPhoto, setSelectedCompanyPhoto] = useState(null);
-
-  console.log('DATA', supplierInfo);
-  console.log('notifications', notifications);
-  console.log(selectedCompanyPhoto);
+  const { isLoading, notifications } = useAppSelector(
+    (state) => state.supplierAccount
+  )
+  const [images, setImages] = useState([])
+  const [, setSelectedCompanyPhoto] = useState(null)
 
   const {
     register,
     reset,
     setValue,
     formState: { errors },
-    handleSubmit,
+    handleSubmit
   } = useForm({
-    defaultValues: defaultValue,
-  });
+    defaultValues: defaultValue
+  })
 
   const handleChange = (event: any): void => {
-    console.log(event.target.files[0]);
-    if (event.target.files.length > 0) setSelectedCompanyPhoto(event.target.files[0]);
-  };
+    if (event.target.files.length > 0)
+      setSelectedCompanyPhoto(event.target.files[0])
+  }
 
   // const renderPhoto = (photo: any): JSX.Element => {
   //   return (
@@ -113,12 +109,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
   // };
 
   const onSubmitInfo = (updatedData: any): void => {
-    console.log('updatedData', updatedData);
     // const formData = new FormData();
-
-    // formData.append('company_info.photo_url', selectedCompanyPhoto);
-    // console.log('selectedCompanyPhoto', selectedCompanyPhoto);
-
     // const personalDataForDispatch = {
     //   user_info: {
     //     first_name: updatedData.firstName,
@@ -160,38 +151,38 @@ const SupplierAccountMainPage = (): JSX.Element => {
     // dispatch(postSupplierNotifications(notifications));
 
     // dispatch(uploadUserLogoService())
-    dispatch(postSupplierNotifications(updatedData.notifications));
-  };
+    dispatch(postSupplierNotifications(updatedData.notifications))
+  }
 
   useEffect(() => {
     // dispatch(getSupplierAccountDataService());
-    dispatch(getSupplierNotifications());
-  }, [dispatch]);
+    dispatch(getSupplierNotifications())
+  }, [dispatch])
 
   useEffect(() => {
     // dispatch(getSupplierAccountDataService());
-    reset({ notifications: { ...notifications } });
-  }, [notifications, reset]);
+    reset({ notifications: { ...notifications } })
+  }, [notifications, reset])
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Loader />
 
   return (
-    <div className={style.supplierCabinet}>
+    <div className={style.supplier_cabinet}>
       <form onSubmit={handleSubmit(onSubmitInfo)}>
-        <div className={style.supplierCabinet__contentWrapper}>
-          <div className={`${style.section} ${style.profileInfo}`}>
-            <div className={style.header__wrapper}>
+        <div className={style.supplier_cabinet_content_wrapper}>
+          <div className={`${style.section} ${style.profile_info}`}>
+            <div className={style.header_wrapper}>
               <div className={style.header}>Profile Info</div>
             </div>
-            <div className={style.fieldsWrapper}>
-              <div className={style.flexContainer}>
+            <div className={style.fields_wrapper}>
+              <div className={style.flex_container}>
                 <TextField
                   inputProps={register('user_info.first_name', {
                     // required: 'First name is required!',
                     minLength: {
                       value: 2,
-                      message: 'First name contains less than 2 characters!',
-                    },
+                      message: 'First name contains less than 2 characters!'
+                    }
                   })}
                   error={errors?.user_info?.first_name}
                   label="First name"
@@ -199,14 +190,14 @@ const SupplierAccountMainPage = (): JSX.Element => {
                   classes={textFieldClasses}
                 />
               </div>
-              <div className={style.flexContainer}>
+              <div className={style.flex_container}>
                 <TextField
                   inputProps={register('user_info.last_name', {
                     required: 'Last name is required!',
                     minLength: {
                       value: 2,
-                      message: 'Last name contains less than 2 characters!',
-                    },
+                      message: 'Last name contains less than 2 characters!'
+                    }
                   })}
                   error={errors.user_info?.last_name}
                   label="Last name"
@@ -227,7 +218,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
                 placeholder="Select"
               />
             </div>
-            <div className={style.profileInfo__number}>
+            <div className={style.profile_info_number}>
               <div>
                 <SelectLabelAbove
                   onChange={(e: ChangeEvent<HTMLSelectElement>) =>
@@ -245,12 +236,12 @@ const SupplierAccountMainPage = (): JSX.Element => {
                 classes={inputPhoneClasses}
                 // name="phone"
                 inputProps={register('user_info.phone', {
-                  required: 'Phone is required!',
+                  required: 'Phone is required!'
                 })}
                 error={errors.user_info?.phone?.message}
               />
             </div>
-            <div className={style.textFieldWrapper}>
+            <div className={style.text_field_wrapper}>
               <TextField
                 label="License or entrepreneur number"
                 placeholder="000 – 00 – 0000"
@@ -260,11 +251,11 @@ const SupplierAccountMainPage = (): JSX.Element => {
             </div>
           </div>
 
-          <div className={`${style.section} ${style.businessProfile}`}>
-            <div className={style.header__wrapper}>
+          <div className={`${style.section} ${style.business_profile}`}>
+            <div className={style.header_wrapper}>
               <div className={style.header}>Business Profile</div>
             </div>
-            <div className={style.profileLogo}>
+            <div className={style.profile_logo}>
               <AddingImageSpot
                 // logo={business_profile?.logo_url}
                 images={images}
@@ -275,11 +266,11 @@ const SupplierAccountMainPage = (): JSX.Element => {
                 register={register('company_info.logo_url')}
               />
             </div>
-            <div className={style.fieldsWrapper}>
-              <div className={style.flexContainer}>
+            <div className={style.fields_wrapper}>
+              <div className={style.flex_container}>
                 <TextField
                   inputProps={register('company_info.name', {
-                    required: 'Shop name is required!',
+                    required: 'Shop name is required!'
                   })}
                   error={errors.company_info?.name}
                   label="Shop name (will be shown on the profile)"
@@ -288,7 +279,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
                   classes={textFieldClasses}
                 />
               </div>
-              <div className={style.flexContainer}>
+              <div className={style.flex_container}>
                 <SelectLabelAbove
                   onChange={(e: ChangeEvent<HTMLSelectElement>) =>
                     setValue('company_info.business_sector', e.target.value)
@@ -305,19 +296,21 @@ const SupplierAccountMainPage = (): JSX.Element => {
               classes={checkboxClasses}
               {...register('company_info.is_manufacturer')}
             />
-            <div className={style.section_subtitle}>Company Info (optional)</div>
-            <div className={style.fieldsWrapper}>
-              <div className={style.flexContainer}>
+            <div className={style.section_subtitle}>
+              Company Info (optional)
+            </div>
+            <div className={style.fields_wrapper}>
+              <div className={style.flex_container}>
                 <TextField
                   inputProps={register('company_info.year_established', {
                     maxLength: {
                       value: 4,
-                      message: 'Enter a valid year!',
+                      message: 'Enter a valid year!'
                     },
                     pattern: {
                       value: /\d+$/g,
-                      message: 'Year is incorrect!',
-                    },
+                      message: 'Year is incorrect!'
+                    }
                   })}
                   error={errors.company_info?.year_established}
                   label="Year established"
@@ -326,7 +319,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
                   classes={textFieldClasses}
                 />
               </div>
-              <div className={style.flexContainer}>
+              <div className={style.flex_container}>
                 <SelectLabelAbove
                   onChange={(e: ChangeEvent<HTMLSelectElement>) =>
                     setValue('company_info.number_of_employees', e.target.value)
@@ -343,15 +336,17 @@ const SupplierAccountMainPage = (): JSX.Element => {
                 />
               </div>
             </div>
-            <div className={style.textareaName}>About the business</div>
+            <div className={style.textarea_name}>About the business</div>
             <textarea
-              className={style.aboutBusiness}
+              className={style.about_business}
               placeholder="Tell more about your company or business"
               rows={5}
               {...register('company_info.description')}
             />
-            <div className={style.textareaName}>Photo of the company or production</div>
-            <div className={style.companyPhotoWrapper}>
+            <div className={style.textarea_name}>
+              Photo of the company or production
+            </div>
+            <div className={style.company_photo_wrapper}>
               {/* {business_profile.url.length */}
               {/*  ? business_profile.url.map((photo, index) => ( */}
               {/*      <div className={style.photo} key={index}> */}
@@ -388,7 +383,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
             </div>
 
             <div className={style.section_subtitle}>Contacts (optional)</div>
-            <div className={style.profileInfo__number}>
+            <div className={style.profile_info_number}>
               <div className={style.wrapper}>
                 <SelectLabelAbove
                   onChange={(e: ChangeEvent<HTMLSelectElement>) =>
@@ -413,13 +408,13 @@ const SupplierAccountMainPage = (): JSX.Element => {
                 error={errors.company_info?.phone}
               />
             </div>
-            <div className={style.textFieldWrapper}>
+            <div className={style.text_field_wrapper}>
               <TextField
                 inputProps={register('company_info.business_email', {
                   pattern: {
-                    value: /^\w+\S+@\w+\S+\.[\w+\S+]{2,}$/g,
-                    message: 'Email is incorrect!',
-                  },
+                    value: /^\w+\S+@\w+\S+\.[\w+\S]{2,}$/g,
+                    message: 'Email is incorrect!'
+                  }
                 })}
                 error={errors.company_info?.business_email}
                 label="Business email address"
@@ -428,9 +423,9 @@ const SupplierAccountMainPage = (): JSX.Element => {
                 // defaultValue={business_profile.business_email}
               />
             </div>
-            <div className={style.textareaName}>Main company address</div>
+            <div className={style.textarea_name}>Main company address</div>
             <textarea
-              className={style.aboutBusiness}
+              className={style.about_business}
               placeholder="Enter address"
               wrap="hard"
               {...register('company_info.address')}
@@ -438,11 +433,11 @@ const SupplierAccountMainPage = (): JSX.Element => {
           </div>
 
           <div className={`${style.section} ${style.notifications}`}>
-            <div className={style.header__wrapper}>
+            <div className={style.header_wrapper}>
               <div className={style.header}>Notifications</div>
             </div>
-            <div className={style.notificationsList}>
-              <div className={style.notificationsList__item}>
+            <div className={style.notifications_list}>
+              <div className={style.notifications_list_item}>
                 <Checkbox
                   // defaultChecked={notifications?.on_discount}
                   label="Discounts & offers"
@@ -450,7 +445,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
                   inputProps={register('notifications.on_discount')}
                 />
               </div>
-              <div className={style.notificationsList__item}>
+              <div className={style.notifications_list_item}>
                 <Checkbox
                   // defaultChecked={notifications?.on_order_updates}
                   label="Order updates"
@@ -458,7 +453,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
                   inputProps={register('notifications.on_order_updates')}
                 />
               </div>
-              <div className={style.notificationsList__item}>
+              <div className={style.notifications_list_item}>
                 <Checkbox
                   // defaultChecked={notifications?.on_order_reminders}
                   label="Order reminders"
@@ -466,7 +461,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
                   inputProps={register('notifications.on_order_reminders')}
                 />
               </div>
-              <div className={style.notificationsList__item}>
+              <div className={style.notifications_list_item}>
                 <Checkbox
                   // defaultChecked={notifications?.on_stock_again}
                   label="On stock again"
@@ -474,7 +469,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
                   inputProps={register('notifications.on_stock_again')}
                 />
               </div>
-              <div className={style.notificationsList__item}>
+              <div className={style.notifications_list_item}>
                 <Checkbox
                   // defaultChecked={notifications?.on_product_is_cheaper}
                   label="Product is cheaper"
@@ -482,14 +477,14 @@ const SupplierAccountMainPage = (): JSX.Element => {
                   inputProps={register('notifications.on_product_is_cheaper')}
                 />
               </div>
-              <div className={style.notificationsList__item}>
+              <div className={style.notifications_list_item}>
                 <Checkbox
                   label="Your favorites new"
                   classes={notificationCheckboxClasses}
                   inputProps={register('notifications.on_your_favorites_new')}
                 />
               </div>
-              <div className={style.notificationsList__item}>
+              <div className={style.notifications_list_item}>
                 <Checkbox
                   label="Account support"
                   classes={notificationCheckboxClasses}
@@ -499,12 +494,12 @@ const SupplierAccountMainPage = (): JSX.Element => {
             </div>
           </div>
 
-          <div className={`${style.section} ${style.accountDetails}`}>
-            <div className={style.header__wrapper}>
+          <div className={`${style.section} ${style.account_details}`}>
+            <div className={style.header_wrapper}>
               <div className={style.header}>Account Details</div>
             </div>
-            <div className={style.accountDetails__wrapper}>
-              <div className={style.flexContainer}>
+            <div className={style.account_details_wrapper}>
+              <div className={style.flex_container}>
                 <ImmutableTextFieldWithChangeButton
                   label="Email"
                   name="email"
@@ -512,7 +507,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
                   classes={accountDetails__textFieldClasses}
                 />
               </div>
-              <div className={style.flexContainer}>
+              <div className={style.flex_container}>
                 <ImmutableTextFieldWithChangeButton
                   label="Password"
                   name="password"
@@ -527,25 +522,25 @@ const SupplierAccountMainPage = (): JSX.Element => {
         </div>
         <div
           // onClick={(i) => onSubmit(i)}
-          className={style.saveChangesBtnWrapper}
+          className={style.save_changes_button_wrapper}
         >
-          <button type="submit" className={style.saveChangesBtn}>
+          <button type="submit" className={style.save_changes_button}>
             Save changes
           </button>
         </div>
       </form>
 
-      <div className={style.removeWrapper}>
-        <Link className={style.removeAccauntLink} to="/">
+      <div className={style.remove_wrapper}>
+        <Link className={style.remove_account_link} to="/">
           Remove the account?
         </Link>
-        <div className={style.linkDescription}>
+        <div className={style.link_description}>
           (All your data including order history will be deleted)
         </div>
         <InfoBtn />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SupplierAccountMainPage;
+export default SupplierAccountMainPage

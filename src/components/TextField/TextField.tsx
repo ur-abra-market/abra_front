@@ -1,25 +1,28 @@
-import React, { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react';
+import React, { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react'
 
-import eyeHiddenPassword from '../../assets/img/icons/eye_hidden_password.png';
-import eyeVisiblePassword from '../../assets/img/icons/eye_visible_password.png';
+import eyeHiddenPassword from '../../assets/img/icons/eye_hidden_password.png'
+import eyeVisiblePassword from '../../assets/img/icons/eye_visible_password.png'
 
-import style from './TextField.module.css';
+import style from './TextField.module.css'
 
 interface TextFieldProps {
-  label?: string;
-  name?: string;
-  id?: string;
-  type?: string;
-  register?: any;
-  error?: any;
-  placeholder?: string;
-  classes?: any;
-  defaultValue?: string;
-  onChange?: Function;
+  label?: string
+  name?: string
+  id?: string
+  type?: string
+  register?: any
+  error?: any
+  placeholder?: string
+  classes?: any
+  defaultValue?: string
+  onChange?: Function
 
-  inputProps?: DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+  inputProps?: DetailedHTMLProps<
+    HTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >
 }
-const TextField: FC<TextFieldProps> = props => {
+const TextField: FC<TextFieldProps> = (props): JSX.Element => {
   const {
     label,
     id,
@@ -31,23 +34,25 @@ const TextField: FC<TextFieldProps> = props => {
     inputProps,
     classes,
     defaultValue,
-    onChange,
-  } = props;
+    onChange
+  } = props
 
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
   // TODO переделать!!!
-  const toggleShowPassword = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
-    e.preventDefault();
-    setShowPassword(prevState => !prevState);
-    const findPassword = document.getElementById('password');
+  const toggleShowPassword = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ): void => {
+    e.preventDefault()
+    setShowPassword((prevState) => !prevState)
+    const findPassword = document.getElementById('password')
 
     if (findPassword) {
-      findPassword.setAttribute('type', !showPassword ? 'text' : 'password');
+      findPassword.setAttribute('type', !showPassword ? 'text' : 'password')
     }
-  };
+  }
 
   return (
-    <div className={style.fieldWithErrorWrapper}>
+    <div className={style.field_with_error_wrapper}>
       <label htmlFor={name} className={classes.label}>
         {label}
       </label>
@@ -64,7 +69,7 @@ const TextField: FC<TextFieldProps> = props => {
               ? classes.input
               : classes.password
               ? classes.password.inputTextFieldPassword
-              : style.inputTextFieldPassword
+              : style.input_text_field_password
           }
           placeholder={placeholder}
           {...inputProps}
@@ -73,27 +78,27 @@ const TextField: FC<TextFieldProps> = props => {
         {name === 'password' && (
           <div
             role="presentation"
-            className={style.showPasswordBtn}
-            onClick={e => toggleShowPassword(e)}
+            className={style.show_password_btn}
+            onClick={(e) => toggleShowPassword(e)}
           >
             {showPassword ? (
               <img
                 src={eyeVisiblePassword}
                 alt="eyeVisiblePassword"
-                className={style.showPasswordBtn_img}
+                className={style.show_password_btn_img}
               />
             ) : (
               <img
                 src={eyeHiddenPassword}
                 alt="eyeHiddenPassword"
-                className={style.showPasswordBtn_img}
+                className={style.show_password_btn_img}
               />
             )}
           </div>
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TextField;
+export default TextField

@@ -1,4 +1,4 @@
-.cartPage {
+.cart_page {
   display: flex;
   gap: 32px;
   width: calc(100% - 64px);

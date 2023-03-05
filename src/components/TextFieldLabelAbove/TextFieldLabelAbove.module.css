@@ -1,4 +1,4 @@
-.inputTextField {
+.input_text_field {
   box-sizing: border-box;
   width: 100%;
   padding: 12px 10px 15px 16px;
@@ -12,18 +12,18 @@
   outline: none;
 }
 
-.inputWrapper {
+.input_wrapper {
   flex-grow: 1;
 }
 
-.inputTitle {
+.input_title {
   margin-bottom: 8px;
   font-size: 13px;
   color: #828282;
   text-align: left;
 }
 
-.inputError {
+.input_error {
   position: absolute;
   font-size: 13px;
   color: #FF4040;
