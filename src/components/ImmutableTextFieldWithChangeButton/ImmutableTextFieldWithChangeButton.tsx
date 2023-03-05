@@ -1,20 +1,23 @@
-import React, { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react';
+import React, { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react'
 
-import style from './ImmutableTextFieldWithChangeButton.module.css';
+import style from './ImmutableTextFieldWithChangeButton.module.css'
 
 interface ImmutableTextFieldWithChangeButtonProps {
-  label?: string;
-  name?: string;
-  id?: string;
-  type?: 'email' | 'text' | 'password';
-  placeholder?: string;
-  classes?: any;
-  defaultValue?: string;
-  inputProps?: DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+  label?: string
+  name?: string
+  id?: string
+  type?: 'email' | 'text' | 'password'
+  placeholder?: string
+  classes?: any
+  defaultValue?: string
+  inputProps?: DetailedHTMLProps<
+    HTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >
 }
-const ImmutableTextFieldWithChangeButton: FC<ImmutableTextFieldWithChangeButtonProps> = (
-  props,
-): JSX.Element => {
+const ImmutableTextFieldWithChangeButton: FC<
+  ImmutableTextFieldWithChangeButtonProps
+> = (props): JSX.Element => {
   const {
     label,
     id,
@@ -23,10 +26,10 @@ const ImmutableTextFieldWithChangeButton: FC<ImmutableTextFieldWithChangeButtonP
     placeholder,
     classes,
     inputProps,
-    defaultValue,
-  } = props;
+    defaultValue
+  } = props
 
-  const [edit, setEdit] = useState<boolean>(false);
+  const [edit, setEdit] = useState<boolean>(false)
 
   return (
     <>
@@ -44,7 +47,7 @@ const ImmutableTextFieldWithChangeButton: FC<ImmutableTextFieldWithChangeButtonP
               ? classes.input
               : classes.password
               ? classes.password.inputTextFieldPassword
-              : style.inputTextFieldPassword
+              : style.input_text_field_password
           }
           // className={cn()}
           placeholder={placeholder}
@@ -62,7 +65,7 @@ const ImmutableTextFieldWithChangeButton: FC<ImmutableTextFieldWithChangeButtonP
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ImmutableTextFieldWithChangeButton;
+export default ImmutableTextFieldWithChangeButton
