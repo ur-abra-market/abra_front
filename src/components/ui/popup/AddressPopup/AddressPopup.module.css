@@ -1,4 +1,4 @@
-.addressPopup {
+.address_popup {
   position: fixed;
   z-index: 20;
   top: 0;
@@ -18,7 +18,7 @@
   transition: 0.3s;
 }
 
-.addressPopup__modal {
+.address_popup_modal {
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -28,7 +28,7 @@
   background-color: #FFF;
 }
 
-.addressPopup__modal_exit {
+.address_popup_modal_exit {
   cursor: pointer;
 
   position: relative;
@@ -46,7 +46,7 @@
   border-radius: 50%;
 }
 
-.addressPopup__row1 {
+.address_popup_row1 {
   display: flex;
   flex-direction: row;
   align-self: start;
@@ -56,47 +56,46 @@
   margin-top: -80px;
 }
 
-.addressPopup__checkbox {
+.address_popup_checkbox {
   display: flex;
   flex-direction: row;
   gap: 48px;
 }
 
-.addressPopup__block {
+.address_popup_block {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.addressPopup__block_title {
-  font-family: 'SF Pro Display Bold';
+.address_popup_block_title {
+  font-family: 'SF Pro Display Bold', serif;
   font-size: 16px;
-  letter-spacing: 0.38px;
 }
 
-.addressPopup__block_row2 {
+.address_popup_block_row2 {
   display: flex;
   flex-direction: row;
   gap: 15px;
   width: 100%;
 }
 
-.addressPopup__block_row2_box {
+.address_popup_block_row2_box {
   min-width: 309px;
   margin-top: 16px;
   margin-right: 8px;
 }
 
-.addressPopup__block_row2_box_title {
+.address_popup_block_row2_box_title {
   margin-bottom: 8px;
   color: #828282;
 }
 
-.addressPopup__phone {
+.address_popup_phone {
   margin-top: 16px;
 }
 
-.addressPopup__phone_number {
+.address_popup_phone_number {
   display: flex;
   flex-direction: row;
   gap: 23px;
@@ -105,15 +104,15 @@
   margin-top: 8px;
 }
 
-.addressPopup__phone_title {
+.address_popup_phone_title {
   color: #828282;
 }
 
-.addressPopup__phone_number_select {
+.address_popup_phone_number_select {
   width: 160px;
 }
 
-.addressPopup__phone_number > input {
+.address_popup_phone_number > input {
   width: 458px;
   height: 44px;
   padding-left: 16px;
@@ -122,7 +121,7 @@
   border-radius: 4px;
 }
 
-.addressPopup__button {
+.address_popup_button {
   cursor: pointer;
 
   display: flex;
@@ -140,7 +139,7 @@
   transition: 0.3s;
 }
 
-.addressPopup__button:hover {
+.address_popup_button:hover {
   color: #FFF;
   background: #000;
 }

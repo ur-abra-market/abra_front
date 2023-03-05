@@ -1,4 +1,4 @@
-.checkPayment {
+.check_payment {
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -8,14 +8,14 @@
   background-color: #FFF;
 }
 
-.checkPayment__block {
+.check_payment_block {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
 }
 
-.checkPayment__block_kind {
+.check_payment_block_kind {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
@@ -24,7 +24,7 @@
   margin-bottom: -13px;
 }
 
-.checkPayment__block_kind_box {
+.check_payment_block_kind_box {
   z-index: 1;
 
   width: 148px;
@@ -35,14 +35,14 @@
   border-radius: 23px;
 }
 
-.checkPayment__block_kind_cart {
+.check_payment_block_kind_cart {
   width: 475px;
   height: 39px;
   margin-bottom: 2px;
   background: url('../../../../assets/img/icons/payment.png');
 }
 
-.checkPayment_add {
+.check_payment_add {
   cursor: pointer;
 
   display: flex;

@@ -1,4 +1,4 @@
-.paymentPopup {
+.payment_popup {
   position: fixed;
   z-index: 20;
   top: 0;
@@ -18,7 +18,7 @@
   transition: 0.3s;
 }
 
-.paymentPopup__modal {
+.payment_popup_modal {
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -29,7 +29,7 @@
   background-color: #FFF;
 }
 
-.paymentPopup__modal_exit {
+.payment_popup_modal_exit {
   cursor: pointer;
 
   position: relative;
@@ -47,7 +47,7 @@
   border-radius: 50%;
 }
 
-.paymentPopup__row1 {
+.payment_popup_row1 {
   display: flex;
   flex-direction: row;
   align-self: start;
@@ -57,26 +57,25 @@
   margin-top: -80px;
 }
 
-.paymentPopup__block {
+.payment_popup_block {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.paymentPopup__block_title {
-  font-family: 'SF Pro Display Bold';
+.payment_popup_block_title {
+  font-family: 'SF Pro Display Bold', serif;
   font-size: 16px;
-  letter-spacing: 0.38px;
 }
 
-.paymentPopup__block_row2 {
+.payment_popup_block_row2 {
   display: flex;
   flex-direction: row;
   gap: 15px;
   width: 100%;
 }
 
-.paymentPopup__button {
+.payment_popup_button {
   cursor: pointer;
 
   display: flex;
@@ -94,7 +93,7 @@
   transition: 0.3s;
 }
 
-.paymentPopup__button:hover {
+.payment_popup_button:hover {
   color: #FFF;
   background-color: #000;
 }
