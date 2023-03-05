@@ -1,8 +1,8 @@
-.cartItems {
+.cart_items {
   width: 100%;
 }
 
-.cartItems__title {
+.cart_items_title {
   font-family: 'Roboto', sans-serif;
   font-size: 34px;
   font-weight: 700;
