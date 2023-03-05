@@ -1,4 +1,4 @@
-.textWrapper {
+.text_wrapper {
   position: relative;
 }
 
@@ -14,7 +14,7 @@
   text-align: left;
 }
 
-.stepWrapper {
+.step_wrapper {
   position: absolute;
   top: 0;
   right: 0;
