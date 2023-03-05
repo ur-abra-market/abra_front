@@ -1,14 +1,14 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
-import style from './TextFieldLabelAbove.module.css';
+import style from './TextFieldLabelAbove.module.css'
 
 interface TextFieldLabelAboveProps {
-  title?: string;
-  type?: string;
-  placeholder?: string;
-  error?: string;
-  name?: string;
-  register?: any;
+  title?: string
+  type?: string
+  placeholder?: string
+  error?: string
+  name?: string
+  register?: any
 }
 
 const TextFieldLabelAbove: FC<TextFieldLabelAboveProps> = ({
@@ -17,28 +17,32 @@ const TextFieldLabelAbove: FC<TextFieldLabelAboveProps> = ({
   placeholder,
   error,
   name,
-  register,
+  register
 }): JSX.Element => {
   // TODO - переделать
   // eslint-disable-next-line no-return-assign
   const textareaScroll = (e: any): any =>
     // eslint-disable-next-line no-param-reassign
-    (e.target.style.height = `${e.target.scrollHeight}px`);
+    (e.target.style.height = `${e.target.scrollHeight}px`)
 
   if (type === 'tel') {
-    document.getElementById('tel')?.addEventListener('input', e => {
+    document.getElementById('tel')?.addEventListener('input', (e) => {
       // @ts-ignore
-      const x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+      const x = e.target.value
+        .replace(/\D/g, '')
+        .match(/(\d{0,3})(\d{0,3})(\d{0,4})/)
 
       // @ts-ignore
       // eslint-disable-next-line no-param-reassign
-      e.target.value = !x[2] ? x[1] : `(${x[1]}) ${x[2]}${x[3] ? ` - ${x[3]}` : ''}`;
-    });
+      e.target.value = !x[2]
+        ? x[1]
+        : `(${x[1]}) ${x[2]}${x[3] ? ` - ${x[3]}` : ''}`
+    })
   }
 
   return (
-    <div className={style.inputWrapper}>
-      <p className={style.inputTitle}>{title}</p>
+    <div className={style.input_wrapper}>
+      <p className={style.input_title}>{title}</p>
 
       {name === 'textarea' ? (
         <textarea
@@ -47,7 +51,7 @@ const TextFieldLabelAbove: FC<TextFieldLabelAboveProps> = ({
           placeholder={placeholder}
           className={style.textarea}
           rows={1}
-          onInput={e => textareaScroll(e)}
+          onInput={(e) => textareaScroll(e)}
         />
       ) : (
         <input
@@ -56,12 +60,12 @@ const TextFieldLabelAbove: FC<TextFieldLabelAboveProps> = ({
           name={name}
           id={type === 'tel' ? 'tel' : ''}
           placeholder={placeholder}
-          className={style.inputTextField}
+          className={style.input_text_field}
         />
       )}
-      {error && <p className={style.inputError}>&#9888; {error}</p>}
+      {error && <p className={style.input_error}>&#9888; {error}</p>}
     </div>
-  );
-};
+  )
+}
 
-export default TextFieldLabelAbove;
+export default TextFieldLabelAbove
