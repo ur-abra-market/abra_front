@@ -1,23 +1,23 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
-import style from './SupplierCard.module.css';
+import style from './SupplierCard.module.css'
 
 interface SupplierCardProps {
-  supplier: any;
+  supplier: any
 }
-const SupplierCard: FC<SupplierCardProps> = ({ supplier }) => {
+const SupplierCard: FC<SupplierCardProps> = ({ supplier }): JSX.Element => {
   return (
-    <div className={style.supplierCard}>
-      <div className={style.supplierCard__avatar} />
-      <div className={style.supplierCard__info}>
-        <div className={style.supplierCard__info_name}>{supplier?.name}</div>
+    <div className={style.supplier_card}>
+      <div className={style.supplier_card_avatar} />
+      <div className={style.supplier_card_info}>
+        <div className={style.supplier_card_info_name}>{supplier?.name}</div>
         <div
-          className={style.supplierCard__info_deals}
+          className={style.supplier_card_info_deals}
         >{`${supplier?.period} Years : ${supplier?.count} Deals : On-time delivery ${supplier?.value}%`}</div>
       </div>
-      <div className={style.supplierCard__arrow} />
+      <div className={style.supplier_card_arrow} />
     </div>
-  );
-};
+  )
+}
 
-export default SupplierCard;
+export default SupplierCard
