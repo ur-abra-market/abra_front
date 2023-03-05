@@ -37,15 +37,15 @@ const Paginator = (): JSX.Element => {
   };
 
   return (
-    <div className={style.paginator}>
+    <div className={style.wrapper}>
       <div
         role="presentation"
-        className={style.paginator__left}
+        className={style.left}
         onClick={() => (activePage > 1 ? handlePage(activePage - 1) : false)}
       >
-        <div className={style.paginator__left_arrow} />
+        <div className={style.left_arrow} />
       </div>
-      <div className={style.paginator__numbers}>
+      <div className={style.numbers}>
         <div
           role="presentation"
           className={`${style.cursor}${activePage === 1 ? 'activePage' : ''}`}
@@ -69,7 +69,7 @@ const Paginator = (): JSX.Element => {
         <div
           role="presentation"
           className={`${style.cursor} ${
-            activePage === amountPages ? style.activePage : ''
+            activePage === amountPages ? style.active_page : ''
           }`}
           onClick={() => handlePage(amountPages)}
         >
@@ -78,10 +78,10 @@ const Paginator = (): JSX.Element => {
       </div>
       <div
         role="presentation"
-        className={style.paginator__right}
+        className={style.right}
         onClick={() => (activePage < amountPages ? handlePage(activePage + 1) : false)}
       >
-        <div className={style.paginator__right_arrow} />
+        <div className={style.right_arrow} />
       </div>
     </div>
   );

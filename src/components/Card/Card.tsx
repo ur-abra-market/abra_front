@@ -1,23 +1,24 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import { active } from '../../store/reducers/productPaginateSlice'
-import ImgSlider from '../ImgSlider'
-import Stars from '../Stars'
+import { active } from '../../store/reducers/productPaginateSlice';
+import ImgSlider from '../ImgSlider';
+import Stars from '../Stars';
 
-import style from './Card.module.css'
+import style from './Card.module.css';
 
 interface CardProps {
   // images?: any;
   // info?: any;
-  product: any
+  product?: any;
 }
 const Card: FC<CardProps> = (props): JSX.Element => {
-  const { product } = props
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const { product } = props;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // TODO: replace this object using URI-parameters
   const param = {
@@ -30,21 +31,21 @@ const Card: FC<CardProps> = (props): JSX.Element => {
       with_discount: product.with_discount,
       datetime: product.date_added,
       total_reviews: 3,
-      total_orders: product.total_orders
+      total_orders: product.total_orders,
     },
     images: [
       {
         image_url: '$URL',
-        serial_number: 0
-      }
+        serial_number: 0,
+      },
     ],
-    supplier: null
-  }
+    supplier: null,
+  };
 
   const productClickHandler = (): void => {
-    navigate('../product')
-    dispatch(active({ ...param, ...{ sum: 0 } }))
-  }
+    navigate('../product');
+    dispatch(active({ ...param, ...{ sum: 0 } }));
+  };
 
   return (
     <div className={style.ard}>
@@ -62,7 +63,7 @@ const Card: FC<CardProps> = (props): JSX.Element => {
       </div>
       <Stars reward={+product.grade_average} />
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

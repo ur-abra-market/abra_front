@@ -3,7 +3,7 @@
   flex-direction: row;
   gap: 10px;
 
-  font-family: 'SF Pro Display Medium';
+  font-family: 'SF Pro Display Medium', sans-serif;
   font-size: var(--fp);
   line-height: 24px;
 }
@@ -35,7 +35,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
   width: fit-content;
 }
 .paginator_product_numbers>div {
