@@ -8,7 +8,7 @@
   border-radius: 4px;
 }
 
-.select__select {
+.select_select {
   cursor: pointer;
 
   display: flex;
@@ -43,12 +43,12 @@
 
   width: 100%;
 
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-size: 14px;
   font-weight: 400;
 }
 
-.select__list {
+.select_list {
   position: absolute;
 
   overflow: hidden;
@@ -66,7 +66,7 @@
   transition: 0.4s;
 }
 
-.select__list_item {
+.select_list_item {
   cursor: pointer;
 
   display: block;
@@ -75,14 +75,14 @@
   height: 40px;
   padding-left: 10px;
 
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 40px;
   text-decoration: none;
 }
 
-.select__list_item:hover {
+.select_list_item:hover {
   color: #FFF;
   background-color: #000;
 }
