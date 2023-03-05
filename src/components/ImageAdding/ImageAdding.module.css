@@ -1,4 +1,4 @@
-.inputFileLabel {
+.input_file_label {
   cursor: pointer;
 
   position: absolute;
@@ -12,7 +12,7 @@
   border-radius: 50%;
 }
 
-.inputFile {
+.input_file {
   cursor: pointer;
 
   position: absolute;
@@ -25,21 +25,21 @@
   opacity: 0;
 }
 
-.iconImgLabel {
+.icon_img_label {
   position: absolute;
-  top: 23.3px;
-  left: 23.3px;
+  top: 23px;
+  left: 23px;
   width: 42px;
 }
 
-.iconImg {
+.icon_img {
   position: absolute;
-  top: 37.7px;
-  left: 37.7px;
-  width: 45.7px;
+  top: 37px;
+  left: 37px;
+  width: 45px;
 }
 
-.avatarImgLabel {
+.avatar_img_label {
   position: absolute;
   left: 0;
 
@@ -51,7 +51,7 @@
   border-radius: 50%;
 }
 
-.avatarImg {
+.avatar_img {
   position: absolute;
   left: 0;
 
@@ -61,11 +61,11 @@
   height: 120px;
 }
 
-.inputContainer {
+.input_container {
   position: relative;
 }
 
-.iconBackgroundLabel {
+.icon_background_label {
   width: 88px;
   height: 88px;
   margin-right: 16px;
@@ -74,13 +74,13 @@
   border-radius: 50%;
 }
 
-.iconBackground {
+.icon_background {
   width: 120px;
   height: 120px;
   background: #F2F2F2;
 }
 
-.profileLogoWrapper {
+.profile_logo_wrapper {
   display: flex;
 }
 
@@ -90,7 +90,7 @@
   text-decoration-line: underline;
 }
 
-.labelContainer {
+.label_container {
   margin-top: 13px;
 }
 
@@ -103,7 +103,7 @@
   text-align: left;
 }
 
-.inputError {
+.input_error {
   position: absolute;
   font-size: 13px;
   color: #FF4040;
