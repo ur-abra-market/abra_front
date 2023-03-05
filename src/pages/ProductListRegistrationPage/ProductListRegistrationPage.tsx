@@ -24,7 +24,7 @@ const ProductListRegistrationPage = (): JSX.Element => {
   const getSecondCategories = useAppSelector(getCategories(secondsChilds));
   const getThirdCategories = useAppSelector(getCategories(thirdChilds));
 
-  const getId = (date: any, value: any) => {
+  const getId = (date: any, value: any): any => {
     if (date && value) {
       const objCategory = date.find((el: any) => el.name === value);
 

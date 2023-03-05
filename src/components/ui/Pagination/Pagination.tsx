@@ -26,6 +26,7 @@ const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
       <div
         className={`${styles.cursor} ${currentClass}`}
         key={p}
+        role="presentation"
         onClick={() => handlePage(p)}
       >
         {p}
@@ -40,6 +41,7 @@ const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
   return (
     <div className={styles.paginator_product}>
       <div
+        role="presentation"
         className={styles.paginator_product_left}
         onClick={() => (activePage > 1 ? handlePage(activePage - 1) : false)}
       >
@@ -48,6 +50,7 @@ const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
       <div className={styles.paginator_product_numbers}>
         <div
           className={activePage === 1 ? `${styles.active_page}` : `${styles.cursor}`}
+          role="presentation"
           onClick={() => handlePage(1)}
         >
           1
@@ -69,12 +72,14 @@ const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
           className={
             activePage === amountPages ? `${styles.active_page}` : `${styles.cursor}`
           }
+          role="presentation"
           onClick={() => handlePage(amountPages)}
         >
           {amountPages}
         </div>
       </div>
       <div
+        role="presentation"
         className={styles.paginator_product_right}
         onClick={() => (activePage < amountPages ? handlePage(activePage + 1) : false)}
       >

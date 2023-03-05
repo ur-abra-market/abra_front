@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import AccountSetupForm from 'components/ui/AccountSetupForm';
 
-const AccountSetupPage = () => {
+const AccountSetupPage: FC = () => {
   return (
     <div>
       <AccountSetupForm />

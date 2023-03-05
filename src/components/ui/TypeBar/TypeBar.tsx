@@ -4,7 +4,7 @@ interface TypeBarProps {
   types: any[];
   setTypes: any;
 }
-const TypeBar: FC<TypeBarProps> = ({ types, setTypes }): JSX.Element => {
+const TypeBar: FC<TypeBarProps> = ({ types, setTypes }) => {
   const addTypeHandler = (): void => {
     const newType = { id: types.length + 1, selected: true };
 
@@ -23,6 +23,7 @@ const TypeBar: FC<TypeBarProps> = ({ types, setTypes }): JSX.Element => {
     <div style={{ display: 'flex' }}>
       {types.map(type => (
         <div
+          role="presentation"
           key={type.id}
           onClick={() => changeSelectedTypeHandler(type.id)}
           style={{

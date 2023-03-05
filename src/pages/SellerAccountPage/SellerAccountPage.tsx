@@ -99,21 +99,21 @@ const SellerAccountPage = (): JSX.Element => {
                   <div className={style.header}>Account Details</div>
                 </div>
                 <div className={style.account_details_wrapper}>
-                  <Label label="Email">
+                  <Label label="Email" htmlFor="email">
                     <EditableInputWrapper
                       type="text"
                       value={email}
                       onChangeValue={value => setValue('email', value)}
                     />
                   </Label>
-                  <Label label="Phone Number">
+                  <Label label="Phone Number" htmlFor="phone">
                     <EditableInputWrapper
                       type="text"
                       value={phone}
                       onChangeValue={value => setValue('phone', value)}
                     />
                   </Label>
-                  <Label label="Password">
+                  <Label label="Password" htmlFor="password">
                     <EditableInputWrapper
                       type="password"
                       value={password}
