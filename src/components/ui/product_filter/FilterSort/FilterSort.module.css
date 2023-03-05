@@ -1,11 +1,11 @@
-.filterSort {
+.filter_sort {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
 }
 
-.filterSort__title {
+.filter_sort_title {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
@@ -14,7 +14,7 @@
   height: 25px;
 }
 
-.filterSort__reset {
+.filter_sort_reset {
   cursor: pointer;
 
   height: 20px;

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import { useAppDispatch } from '../../../../store/hooks';
+import { useAppDispatch } from '../../../../store/hooks'
 import {
   ascending,
   brand,
@@ -10,40 +10,41 @@ import {
   priceFrom,
   priceTo,
   size,
-  sort,
-} from '../../../../store/reducers/filterSlice';
-import { activeNum } from '../../../../store/reducers/productPaginateSlice';
-import SelectFilter from '../SelectFilter';
+  sort
+} from '../../../../store/reducers/filterSlice'
+import { activeNum } from '../../../../store/reducers/productPaginateSlice'
+import SelectFilter from '../SelectFilter'
 
-import style from './FilterSort.module.css';
+import style from './FilterSort.module.css'
 
 const FilterSort = (): JSX.Element => {
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
   const handlerReset = (): void => {
-    dispatch(category(''));
-    dispatch(sort('rating'));
-    dispatch(priceFrom(0));
-    dispatch(priceTo(0));
-    dispatch(discount(false));
-    dispatch(brand([]));
-    dispatch(material([]));
-    dispatch(size([]));
-    dispatch(ascending(false));
-    dispatch(activeNum(1));
-  };
+    dispatch(category(''))
+    dispatch(sort('rating'))
+    dispatch(priceFrom(0))
+    dispatch(priceTo(0))
+    dispatch(discount(false))
+    dispatch(brand([]))
+    dispatch(material([]))
+    dispatch(size([]))
+    dispatch(ascending(false))
+    dispatch(activeNum(1))
+  }
 
   return (
-    <div className={style.silterSort}>
-      <div className={style.silterSort__title}>
+    <div className={style.filter_sort}>
+      <div className={style.filter_sort_title}>
         <h4>Filters</h4>
-        <span className="FilterSort__reset" onClick={handlerReset}>
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+        <span className={style.filter_sort_reset} onClick={handlerReset}>
           Reset All
         </span>
       </div>
       <SelectFilter typeSelect="sort" />
       <SelectFilter typeSelect="category" />
     </div>
-  );
-};
+  )
+}
 
-export default FilterSort;
+export default FilterSort
