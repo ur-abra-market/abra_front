@@ -1,11 +1,11 @@
-.productQuantityControl {
+.product_quantity_control {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 232px;
 }
 
-.productQuantityControl_btn {
+.product_quantity_control_btn {
   cursor: pointer;
 
   display: flex;
@@ -21,7 +21,7 @@
   border-radius: 4px;
 }
 
-.productQuantityControl_sum {
+.product_quantity_control_sum {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +31,6 @@
 
   font-size: var(--fp);
   text-align: center;
-  letter-spacing: 0.16px;
 
   border: 2px #DDD solid;
   border-radius: 4px;
