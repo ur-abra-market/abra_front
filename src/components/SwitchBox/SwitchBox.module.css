@@ -1,4 +1,4 @@
-.switchBox {
+.switch_box {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -7,14 +7,14 @@
   width: 100%;
 }
 
-.switchBox__label {
+.switch_box_label {
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
 }
 
-.switchBox__box {
+.switch_box_box {
   cursor: pointer;
 
   display: flex;
@@ -33,7 +33,7 @@
   transition: 0.2s;
 }
 
-.switchBox__box_btn {
+.switch_box_box_btn {
   pointer-events: none;
 
   display: block;
