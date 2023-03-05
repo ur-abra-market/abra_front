@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
-import './BtnNewBest.css';
+import React, { FC } from 'react'
+import './BtnNewBest.css'
 
 interface BtnNewBestProps {
-  name: string;
+  name: string
 }
 const BtnNewBest: FC<BtnNewBestProps> = ({ name }) => {
-  return <div className="BtnNewBest">{name}</div>;
-};
+  return <div className="button_new_best">{name}</div>
+}
 
-export default BtnNewBest;
+export default BtnNewBest
