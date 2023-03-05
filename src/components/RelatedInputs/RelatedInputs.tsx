@@ -29,7 +29,7 @@ const RelatedInputs: FC<RelatedInputsProps> = ({
   isRequire,
 }): JSX.Element => {
   return (
-    <div className={style.doubleInputs}>
+    <div className={style.double_inputs}>
       <TextFieldLabelAbove
         register={register(mainName, {
           required: {

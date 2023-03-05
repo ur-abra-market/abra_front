@@ -4,7 +4,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 
 import arrowTriangleImg from '../../assets/img/icons/check-arrow.png';
 import iconImage from '../../assets/img/icons/icon-img.png';
-import bellImg from '../../assets/img/icons/notification-bell.png';
+import bellImg from '../../assets/img/icons/notification-bell.svg';
 import { ButtonLink } from '../../components/buttons';
 import FooterForSupplierPart from '../../components/FooterForSupplierPart';
 import Loader from '../../components/Loader';
@@ -29,17 +29,17 @@ const SupplierPage = (): JSX.Element => {
     dispatch(getCompanyInfoService());
     dispatch(getSupplierAccountDataService());
     setIsGetCompanyInfo(true);
-  }, []);
+  }, [dispatch]);
 
   const navbarCategoryBtnClasses = {
-    wrepperBtnImg: `${style.wrepperBtnImg}`,
-    btnImg: `${style.btnImg}`,
-    btnName: `${style.btnName}`,
+    wrepperBtnImg: `${style.wrapper_btn_img}`,
+    btnImg: `${style.btn_img}`,
+    btnName: `${style.btn_name}`,
   };
 
   const SelectBussinessClasses = {
-    selectWrapper: `${style.selectWrapper}`,
-    select_headerWrapper: `${style.select_headerWrapper}`,
+    selectWrapper: `${style.select_wrapper}`,
+    select_headerWrapper: `${style.select_header_rapper}`,
     select_header: `${style.select_header}`,
     select_options: `${style.select_options}`,
     option: `${style.option}`,
@@ -51,76 +51,75 @@ const SupplierPage = (): JSX.Element => {
       navigate('../account-setup');
   }, [isLoading]);
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <NavBarUniversal
-            logo={
-              <>
-                <Link to="/">Abra</Link>
-                <span className={style.verticalLine} />
-                <span className={style.supplierMainPagelink}>
-                  <Link to="/"> SUPPLIER</Link>
-                </span>
-              </>
-            }
-          >
-            <Link to="/">
+      <NavBarUniversal
+        logo={
+          <>
+            <Link className={style.text_link} to="/">
+              Abra
+            </Link>
+            <span className={style.vertical_Line} />
+            <span>
+              <Link className={style.supplier_main_page_link} to="/">
+                {' '}
+                SUPPLIER
+              </Link>
+            </span>
+          </>
+        }
+      >
+        <Link to="/">
+          <ButtonLink name="Avatar" src={bellImg} classes={navbarCategoryBtnClasses} />
+        </Link>
+        <Link to="/">
+          {
+            // @ts-ignore
+            companyInfo?.logo_url ? (
+              <div className={style.logo_img}>
+                <img
+                  src={
+                    // @ts-ignore
+                    companyInfo.logo_url
+                  }
+                  alt="logo"
+                />
+              </div>
+            ) : (
               <ButtonLink
-                name="Avatar"
-                src={bellImg}
+                name="logoImg"
+                src={iconImage}
                 classes={navbarCategoryBtnClasses}
               />
-            </Link>
-            <Link to="/">
-              {
-                // @ts-ignore
-                companyInfo?.logo_url ? (
-                  <div className={style.logoImg}>
-                    <img
-                      src={
-                        // @ts-ignore
-                        companyInfo.logo_url
-                      }
-                      alt="logo"
-                    />
-                  </div>
-                ) : (
-                  <ButtonLink
-                    name="logoImg"
-                    src={iconImage}
-                    classes={navbarCategoryBtnClasses}
-                  />
-                )
-              }
-            </Link>
-            <Select
-              defaultValue={
-                // @ts-ignore
-                companyInfo?.name
-              }
-              img={arrowTriangleImg}
-              options={[
-                'Name 1',
-                'Name 2',
-                `${
-                  // @ts-ignore
-                  companyInfo?.name
-                }`,
-              ]}
-              classes={SelectBussinessClasses}
-            />
-          </NavBarUniversal>
-          <div className={style.pageWrapper}>
-            <SupplierMenu />
-            <Outlet />
-          </div>
-          <FooterForSupplierPart />
-        </>
-      )}
+            )
+          }
+        </Link>
+        <Select
+          defaultValue={
+            // @ts-ignore
+            companyInfo?.name
+          }
+          img={arrowTriangleImg}
+          options={[
+            'Name 1',
+            'Name 2',
+            `${
+              // @ts-ignore
+              companyInfo?.name
+            }`,
+          ]}
+          classes={SelectBussinessClasses}
+        />
+      </NavBarUniversal>
+      <div className={style.page_wrapper}>
+        <SupplierMenu />
+        <Outlet />
+      </div>
+      <FooterForSupplierPart />
     </>
   );
 };

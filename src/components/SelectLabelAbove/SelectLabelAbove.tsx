@@ -24,7 +24,7 @@ const SelectLabelAbove: FC<SelectLabelAboveProps> = ({
   error,
   selectProps,
   register,
-}) => {
+}): JSX.Element => {
   const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>): void => {
     onChange?.(e);
     onChangeOption?.(e.currentTarget.value);
@@ -32,12 +32,12 @@ const SelectLabelAbove: FC<SelectLabelAboveProps> = ({
 
   return (
     <>
-      <p className={style.selectTitle}>{title}</p>
-      <div className={style.selectContainer}>
+      <p className={style.select_title}>{title}</p>
+      <div className={style.select_container}>
         <select
           name={name}
           onChange={onChangeCallback}
-          className={style.selectField}
+          className={style.select_field}
           {...selectProps}
           {...register}
         >
@@ -49,17 +49,17 @@ const SelectLabelAbove: FC<SelectLabelAboveProps> = ({
           {options
             ? options.map((el, i) => {
                 return (
-                  <option value={el} className={style.selectOption} key={i}>
+                  <option value={el} className={style.select_option} key={i}>
                     {el}
                   </option>
                 );
               })
             : []}
         </select>
-        <span className={style.selectArrow}>&#9660;</span>
+        <span className={style.select_arrow}>&#9660;</span>
       </div>
 
-      {error && <p className={style.selectError}>&#9888; {error}</p>}
+      {error && <p className={style.select_error}>&#9888; {error}</p>}
     </>
   );
 };

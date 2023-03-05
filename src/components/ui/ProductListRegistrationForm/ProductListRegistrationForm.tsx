@@ -51,12 +51,10 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   productProperties,
   productVariations,
   categoryId,
-}) => {
+}): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { productId, loading, companyInfo } = useAppSelector(state => state.supplier);
-
-  console.log('COMPANY', companyInfo);
 
   const [isSubmit, setIsSubmit] = useState(false);
   const [images, setImages] = useState([]);
@@ -72,7 +70,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 
   const values = productProperties?.map(el => el.key);
 
-  const createObjProperty = (el: any, obj: any) => {
+  const createObjProperty = (el: any, obj: any): any => {
     const optional_value = obj[`${el}(optional)`];
     const value = obj[el];
     let finalObj = {
@@ -88,7 +86,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
     return finalObj;
   };
 
-  const createObjVariation = (id: any, data: any) => {
+  const createObjVariation = (id: any, data: any): any => {
     const childs: any[] = [];
 
     productVariations.size?.forEach((el: any) => {
@@ -197,8 +195,8 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 
   // @ts-ignore
   return (
-    <div className={style.formWrapper}>
-      <div className={style.formContainer}>
+    <div className={style.form_wrapper}>
+      <div className={style.form_container}>
         {loading ? (
           <Loader />
         ) : (
@@ -229,8 +227,8 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                     placeholder="Enter the product name"
                   />
 
-                  <div className={style.selectInputs}>
-                    <div className={style.selectEqual}>
+                  <div className={style.select_inputs}>
+                    <div className={style.select_equal}>
                       <SelectLabelAbove
                         // @ts-ignore
                         value={firstCategory}
@@ -246,7 +244,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                       />
                     </div>
 
-                    <div className={style.selectEqual}>
+                    <div className={style.select_equal}>
                       <SelectLabelAbove
                         // @ts-ignore
                         value={secondCategory}
@@ -260,7 +258,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                     </div>
 
                     {thirdStageCategories && !!thirdStageCategories.length && (
-                      <div className={style.selectEqual}>
+                      <div className={style.select_equal}>
                         <SelectLabelAbove
                           // @ts-ignore
                           value={thirdCategory}
@@ -275,9 +273,11 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                     )}
                   </div>
 
-                  <p className={style.listImgTitle}>Photo of the company or production</p>
+                  <p className={style.list_img_title}>
+                    Photo of the company or production
+                  </p>
 
-                  <div className={style.listImg}>
+                  <div className={style.list_img}>
                     {[...new Array(5)].map((el, i) => (
                       <ImagesAdding key={i} images={images} setImages={setImages} />
                     ))}
@@ -298,7 +298,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                   {productProperties &&
                     productProperties.map((el, i) => {
                       // @ts-ignore
-                      const values = [...new Set(el.values.map(el => el.value))];
+                      const values = [...new Set(el.values.map((el: any) => el.value))];
 
                       return (
                         <SelectionsForProperties

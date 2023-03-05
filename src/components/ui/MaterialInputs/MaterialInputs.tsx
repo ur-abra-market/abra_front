@@ -23,7 +23,7 @@ const MaterialInputs: FC<MaterialInputsProps> = ({
   optPlaceholder,
   mainType,
   optType,
-}) => {
+}): JSX.Element => {
   const [count, setCount] = useState(1);
 
   const addInputs = (): void => {
@@ -32,7 +32,7 @@ const MaterialInputs: FC<MaterialInputsProps> = ({
   };
 
   return (
-    <div className={style.inputsContainer}>
+    <div className={style.inputs_container}>
       <RelatedInputs
         register={register}
         mainTitle={mainTitle}
@@ -61,6 +61,7 @@ const MaterialInputs: FC<MaterialInputsProps> = ({
         );
       })}
 
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
       <p className={style.add} onClick={addInputs}>
         + Add material
       </p>

@@ -26,7 +26,7 @@ const CheckboxStyledElem: FC<CheckboxStyledElemProps> = ({
   };
 
   return (
-    <div className={style.sizeWrapper}>
+    <div className={style.size_wrapper}>
       <input
         type="checkbox"
         onClick={e => checkboxHandler(e)}
@@ -34,12 +34,12 @@ const CheckboxStyledElem: FC<CheckboxStyledElemProps> = ({
         className={style.size}
       />
 
-      <div className={`${checked && style.borderContainer} ${style.inputContainer}`}>
-        <p className={style.sizeBlock}>{size}</p>
+      <div className={`${checked && style.border_container} ${style.input_container}`}>
+        <p className={style.size_block}>{size}</p>
 
         <input
           type="number"
-          className={style.inputValue}
+          className={style.input_value}
           {...register}
           placeholder={amount.toString()}
           onInput={onInputHandler}

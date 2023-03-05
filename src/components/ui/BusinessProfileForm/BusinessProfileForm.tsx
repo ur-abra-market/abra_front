@@ -1,8 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Navigate, useNavigate } from 'react-router-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from 'yup';
 
 import { RequestAccountInfo } from '../../../services/supplierAccount.service';
@@ -160,7 +162,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
               </div>
             </div>
 
-            <div className={style.checkboxContainer}>
+            <div className={style.checkbox_container}>
               <input
                 type="checkbox"
                 id="checkbox"

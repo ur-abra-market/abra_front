@@ -1,10 +1,11 @@
 .container{
-    margin: 48px 148px 44px 148px;
+  margin: 48px 148px 44px 148px;
 }
 .title{
-    font-weight: 700;
-    font-size: 34px;
-    line-height: 34px;
-    letter-spacing: 0.41px;
-    margin-bottom: 48px;
+  margin-bottom: 48px;
+
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 34px;
+  letter-spacing: 0.41px;
 }

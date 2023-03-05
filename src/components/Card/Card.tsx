@@ -12,10 +12,11 @@ import style from './Card.module.css';
 interface CardProps {
   // images?: any;
   // info?: any;
-  product: any;
+  product?: any;
 }
 const Card: FC<CardProps> = (props): JSX.Element => {
   const { product } = props;
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -51,12 +52,12 @@ const Card: FC<CardProps> = (props): JSX.Element => {
       <ImgSlider srcArr={[product.image_url]} />
       <div
         role="presentation"
-        className={style.card__direction}
+        className={style.card_direction}
         onClick={productClickHandler}
       >
         <span>{product.name}</span>
       </div>
-      <div className={style.card__price}>
+      <div className={style.card_price}>
         <div className={style.amount}>${product.price_include_discount}/pc</div>
         <span>{`/from ${product.min_quantity} pcs`}</span>
       </div>

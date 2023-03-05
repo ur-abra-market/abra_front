@@ -22,7 +22,7 @@ const ProductReview = (): JSX.Element => {
           <div>no data - error</div>
         ) : (
           <div className={style.grade}>
-            <div className={style['stars-block']}>
+            <div className={style.stars_block}>
               {/* // @ts-ignore */}
               <Stars reward={parseFloat(String(gradesData?.grade_average)) || 0} />
               <span>
@@ -31,11 +31,11 @@ const ProductReview = (): JSX.Element => {
             </div>
             {gradesData?.grade_details.map(({ grade, count }) => {
               return (
-                <div key={grade} className={style['rating-line']}>
+                <div key={grade} className={style.rating_line}>
                   <span>{`${grade} stars`}</span>
                   <span className={style.line}>
                     <span
-                      className={style['line-accent']}
+                      className={style.line_accent}
                       style={{
                         width: getPercentagesOfTotalCountReview({
                           totalCount: gradesData?.grade?.count,
@@ -50,7 +50,7 @@ const ProductReview = (): JSX.Element => {
             })}
           </div>
         )}
-        <div className={style['image-list']}>
+        <div className={style.image_list}>
           <div className={style.image} />
           <div className={style.image} />
           <div className={style.image} />

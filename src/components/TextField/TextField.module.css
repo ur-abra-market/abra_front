@@ -1,10 +1,10 @@
-.fieldWithErrorWrapper {
+.field_with_error_wrapper {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.inputWrapper {
+.input_wrapper {
   display: flex;
   gap: 0;
   align-items: center;
@@ -16,10 +16,12 @@
   border-radius: 4px;
 }
 
-.inputTextFieldPassword {
+.input_text_field_password {
   cursor: pointer;
 
-  width: 368px;
+  display: block;
+
+  width: 330px;
   height: 42px;
   padding-left: 16px;
 
@@ -32,12 +34,7 @@
   outline: none;
 }
 
-.inputTextFieldPassword {
-  display: block;
-  width: 330px;
-}
-
-.showPasswordBtn {
+.show_password_btn {
   cursor: pointer;
 
   display: flex;
@@ -51,7 +48,7 @@
   border: none;
 }
 
-.showPasswordBtn_img {
+.show_password_btn_img {
   width: 21px;
   height: 16px;
   border: none;

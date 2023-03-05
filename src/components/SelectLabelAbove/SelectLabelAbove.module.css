@@ -1,4 +1,4 @@
-.selectField {
+.select_field {
   cursor: pointer;
 
   box-sizing: border-box;
@@ -18,27 +18,27 @@
   outline: none;
 }
 
-.selectTitle {
+.select_title {
   margin-bottom: 8px;
   font-size: 13px;
   color: #828282;
   text-align: left;
 }
 
-.selectError {
+.select_error {
   position: absolute;
   font-size: 13px;
   color: #FF4040;
   text-align: left;
 }
 
-.selectContainer {
+.select_container {
   cursor: pointer;
   position: relative;
   width: 100%;
 }
 
-.selectArrow {
+.select_arrow {
   pointer-events: none;
 
   position: absolute;
@@ -48,7 +48,7 @@
   font-size: 12px;
 }
 
-.selectOption {
+.select_option {
   /* font-size: 24px; */
   background-color: #FFFFFF;
   /* display: flex;

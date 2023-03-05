@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from 'yup';
 
 import { ResetPasswordPayloadType } from '../../../services/auth.serviceType';
@@ -31,7 +33,9 @@ const schema = yup
       ),
   })
   .required();
-const ResetPasswordForm: FC<ResetPasswordFormProps> = ({ handleChangeModalActive }) => {
+const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
+  handleChangeModalActive,
+}): JSX.Element => {
   const dispatch = useAppDispatch();
   const {
     register,
@@ -42,13 +46,13 @@ const ResetPasswordForm: FC<ResetPasswordFormProps> = ({ handleChangeModalActive
     resolver: yupResolver(schema),
     mode: 'all',
   });
-  const watchPasword = watch('new_password' || 'confirm_password');
+  const watchPassword = watch('new_password' || 'confirm_password');
   const onSubmit = (data: ResetPasswordPayloadType): void => {
     dispatch(resetPassword(data));
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} className={style.resetPasswordForm}>
+    <Form onSubmit={handleSubmit(onSubmit)} className={style.reset_password_form}>
       <Input
         {...register('email')}
         classNameWrapper={style.input_wrapper}
@@ -69,7 +73,7 @@ const ResetPasswordForm: FC<ResetPasswordFormProps> = ({ handleChangeModalActive
         type="password"
         variant="password"
       />
-      <PasswordComplexity valueOfNewPassword={watchPasword} />
+      <PasswordComplexity valueOfNewPassword={watchPassword} />
       <Button
         label="Save"
         className={style.button_save}

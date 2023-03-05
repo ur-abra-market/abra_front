@@ -15,12 +15,13 @@ const FilterSizes = (): JSX.Element => {
   };
 
   return (
-    <div className={style.filterSizes}>
+    <div className={style.filter_sizes}>
       <h4>Sizes</h4>
-      <div className={style.filterSizes__list}>
+      <div className={style.filter_sizes_list}>
         {sizeList.map((s, i) => (
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
           <div
-            className={style.filterSizes__list_item}
+            className={style.filter_sizes_list_item}
             style={{
               background: check[i] ? '#000000' : '#ffffff',
               color: check[i] ? '#ffffff' : '#000000',

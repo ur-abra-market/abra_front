@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import PropTypes, { string } from 'prop-types';
-
 import style from './RadioField.module.css';
 
 interface RadioFieldProps {
@@ -18,7 +16,7 @@ const RadioField: FC<RadioFieldProps> = ({
   value,
 }): JSX.Element => {
   return (
-    <div className={style.labelWrapper}>
+    <div className={style.label_wrapper}>
       {options.map(option => (
         <div key={`${option.name}_${option.value}`}>
           <input

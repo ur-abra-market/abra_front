@@ -12,9 +12,10 @@ interface ProductPathProps {
 // TODO - to - обязательеный параметр
 const ProductPath: FC<ProductPathProps> = ({ pathArr }): JSX.Element => {
   return (
-    <div className={style.productPath}>
+    <div className={style.product_path}>
       {pathArr.map(route => (
-        <Link key={`path_${route}`} className={style.productPath__item} to="#">
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid
+        <Link key={`path_${route}`} className={style.product_path_item} to="#">
           {route.replace('/', '')}
           <span>
             <ArrowRightBreadCrumbs />

@@ -9,7 +9,7 @@ import style from './SwitchBox.module.css';
 interface SwitchBoxProps {
   label: string;
 }
-const SwitchBox: FC<SwitchBoxProps> = ({ label }) => {
+const SwitchBox: FC<SwitchBoxProps> = ({ label }): JSX.Element => {
   const dispatch = useDispatch();
 
   const [check, setCheck] = useState(false);
@@ -38,15 +38,15 @@ const SwitchBox: FC<SwitchBoxProps> = ({ label }) => {
   };
 
   return (
-    <div className={style.switchBox}>
-      <div className={style.switchBox__label}>{label}</div>
+    <div className={style.switch_box}>
+      <div className={style.switch_box_label}>{label}</div>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div
-        className={style.switchBox__box}
+        className={style.switch_box_box}
         style={{ background, justifyContent }}
         onClick={() => handlerSwitch()}
       >
-        <div className={style.switchBox__box_btn} />
+        <div className={style.switch_box_box_btn} />
       </div>
     </div>
   );

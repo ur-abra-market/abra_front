@@ -9,9 +9,9 @@ import CheckPayment from 'components/ui/checkout/CheckPayment';
 import AddressPopup from 'components/ui/popup/AddressPopup';
 import PaymentPopup from 'components/ui/popup/PaymentPopup';
 
-const CheckoutPage: FC = () => {
+const CheckoutPage: FC = (): JSX.Element => {
   return (
-    <div className={style.checkoutPage}>
+    <div className={style.checkout_page}>
       <div className={style.checkout}>
         <CheckDelivery />
         <CheckPayment />

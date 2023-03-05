@@ -4,6 +4,6 @@ export interface InputProps
   extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   classNameWrapper?: string;
   error?: string;
-  type?: 'text' | 'textarea' | 'password';
+  type?: 'text' | 'textarea' | 'password' | 'date';
   variant?: 'primary' | 'password';
 }

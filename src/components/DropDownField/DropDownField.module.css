@@ -10,7 +10,7 @@
   padding-right: 16px;
 }
 
-.titleText {
+.title_text {
   font-size: 20px;
   font-weight: 700;
 }
@@ -25,11 +25,11 @@
   text-align: left;
 }
 
-.arrowOn,
-.arrowOff {
+.arrow_on,
+.arrow_off {
   font-size: 12px;
 }
 
-.arrowOn {
+.arrow_on {
   transform: rotate(180deg) translate(0, 5px);
 }

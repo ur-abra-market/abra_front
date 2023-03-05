@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import PropTypes from 'prop-types';
-
 // import Analytics from '../analytics';
 // import Dashboard from '../dashboard';
 // import FeedbackAndQuestions from '../feedbackAndQuestions';
@@ -16,7 +14,7 @@ interface SupplierSectionProps {
   // onSectionChange?: string;
 }
 // TODO нет импортов !!! разобраться
-const SupplierSection: FC<SupplierSectionProps> = ({ pageID }) => {
+const SupplierSection: FC<SupplierSectionProps> = ({ pageID }): JSX.Element => {
   const sectionsArray: any[] = [
     // <Dashboard />,
     // <ProductsList />,
@@ -26,13 +24,15 @@ const SupplierSection: FC<SupplierSectionProps> = ({ pageID }) => {
     // <FeedbackAndQuestions />,
   ];
 
-  const detachmentId = (section: any) => {
+  const detachmentId = (section: any): any => {
     return section.type.name.split(/(?=[A-Z])/)[0];
   };
 
-  const renderSection = (pageID: any, sectionsArray: any[]) => {
+  const renderSection = (pageID: any, sectionsArray: any[]): any => {
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < sectionsArray.length; i++) {
       if (detachmentId(sectionsArray[i]) === pageID) {
+        // eslint-disable-next-line react/jsx-no-useless-fragment
         return <>{sectionsArray[i]}</>;
       }
     }
@@ -41,7 +41,7 @@ const SupplierSection: FC<SupplierSectionProps> = ({ pageID }) => {
   };
 
   return (
-    <div className={style.sectionWrapper}>{renderSection(pageID, sectionsArray)}</div>
+    <div className={style.section_wrapper}>{renderSection(pageID, sectionsArray)}</div>
   );
 };
 

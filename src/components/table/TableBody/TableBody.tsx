@@ -10,7 +10,7 @@ interface TableBodyProps {
   classes: any;
   columns: any;
 }
-const TableBody: FC<TableBodyProps> = ({ data, columns, classes }) => {
+const TableBody: FC<TableBodyProps> = ({ data, columns, classes }): JSX.Element => {
   const renderCompont = (item: any, column: any): any => {
     if (columns[column].component) {
       const { component } = columns[column];

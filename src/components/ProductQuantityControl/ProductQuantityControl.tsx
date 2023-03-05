@@ -11,7 +11,9 @@ const min = 100;
 interface ProductQuantityControlProps {
   obj: any;
 }
-const ProductQuantityControl: FC<ProductQuantityControlProps> = ({ obj }) => {
+const ProductQuantityControl: FC<ProductQuantityControlProps> = ({
+  obj,
+}): JSX.Element => {
   const dispatch = useAppDispatch();
   // const [value, setValue] = useState(obj.sum)
   const [value, setValue] = useState(min);
@@ -47,16 +49,16 @@ const ProductQuantityControl: FC<ProductQuantityControlProps> = ({ obj }) => {
   };
 
   return (
-    <div className={style.productQuantityControl}>
+    <div className={style.product_quantity_control}>
       <div
         role="presentation"
-        className={style.productQuantityControl_btn}
+        className={style.product_quantity_control_btn}
         onClick={() => handlerQuantity(-1)}
       >
         —
       </div>
       <input
-        className={style.productQuantityControl_sum}
+        className={style.product_quantity_control_sum}
         type="number"
         // max={max}
         min={min}
@@ -67,7 +69,7 @@ const ProductQuantityControl: FC<ProductQuantityControlProps> = ({ obj }) => {
       />
       <div
         role="presentation"
-        className={style.productQuantityControl_btn}
+        className={style.product_quantity_control_btn}
         onClick={() => handlerQuantity(1)}
       >
         +

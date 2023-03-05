@@ -1,27 +1,28 @@
-.supplierMenuSection_wrapper {
+.wrapper {
   display: flex;
   gap: 70px;
   padding-top: 16px;
   padding-bottom: 16px;
 }
 
-.menu_item,
-.menu_item__active {
+.menu_item{
+  color: #000000;
+}
+.menu_item_active {
   cursor: pointer;
 
   font-size: 15px;
   font-weight: 400;
   font-style: normal;
   line-height: 16px;
-  color: #000;
+  color: #FC133D;
+  text-decoration: none;
   letter-spacing: -0.24px;
 }
 
 .menu_item:hover {
-  font-weight: 500;
+  color: #FC133D;
+
 }
 
-.menu_item__active {
-  cursor: default;
-  text-decoration: underline;
-}
+

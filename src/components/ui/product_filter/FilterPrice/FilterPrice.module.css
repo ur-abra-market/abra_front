@@ -1,25 +1,25 @@
-.filterPrice {
+.filter_price {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.filterPrice__range {
+.filter_price_range {
   display: flex;
   flex-direction: row;
   width: 100%;
 }
 
-.filterPrice__range_from,
-.filterPrice__range_to {
+.filter_price_range_from,
+.filter_price_range_to {
   display: flex;
   flex-direction: column;
   width: 50%;
   margin-top: 8px;
 }
 
-.filterPrice__range_from_text,
-.filterPrice__range_to_text {
+.filter_price_range_from_text,
+.filter_price_range_to_text {
   display: flex;
   flex-direction: column;
   align-self: start;
@@ -34,8 +34,8 @@
   color: #828282;
 }
 
-.filterPrice__range_from_input,
-.filterPrice__range_to_input {
+.filter_price_range_from_input,
+.filter_price_range_to_input {
   display: flex;
   flex-direction: column;
 
@@ -53,15 +53,15 @@
   border: 2px #E5E5E5 solid;
 }
 
-.filterPrice__range_from_input {
+.filter_price_range_from_input {
   border-radius: 4px 0 0 4px;
 }
 
-.filterPrice__range_to_input {
+.filter_price_range_to_input {
   border-radius: 0 4px 4px 0;
 }
 
-.filterPrice__discount {
+.filter_price_discount {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -70,9 +70,8 @@
   margin-top: 13px;
 }
 
-.filterPrice__discount_text {
+.filter_price_discount_text {
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   font-weight: 400;
-  letter-spacing: 0.16px;
 }

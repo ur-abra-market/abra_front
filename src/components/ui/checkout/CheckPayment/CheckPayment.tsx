@@ -10,15 +10,16 @@ const CheckPayment = (): JSX.Element => {
   const dispatch = useDispatch();
 
   return (
-    <div className={style.checkPayment}>
-      <div className={style.checkPayment__block}>
+    <div className={style.check_payment}>
+      <div className={style.check_payment_block}>
         <h4>Payment Method</h4>
-        <div className={style.checkPayment__block_kind}>
-          <div className={style.checkPayment__block_kind_box} />
-          <div className={style.checkPayment__block_kind_cart} />
+        <div className={style.check_payment_block_kind}>
+          <div className={style.check_payment_block_kind_box} />
+          <div className={style.check_payment_block_kind_cart} />
         </div>
       </div>
-      <div className={style.checkPayment_add} onClick={() => dispatch(payment(true))}>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+      <div className={style.check_payment_add} onClick={() => dispatch(payment(true))}>
         + Add a credit or debit card
       </div>
     </div>

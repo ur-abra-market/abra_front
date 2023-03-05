@@ -16,7 +16,7 @@ const TableHeader: FC<TableHeaderProps> = ({
   selectedSort,
   columns,
   classes,
-}) => {
+}): JSX.Element => {
   const handleSort = (item: any): any => {
     if (selectedSort.path === item) {
       onSort({
@@ -35,7 +35,7 @@ const TableHeader: FC<TableHeaderProps> = ({
             className={classes.tableHeader}
             onClick={
               // @ts-ignore
-              columns[column].path ? () => handleSort(columns[column].path) : undefined
+              columns[column].path ? () => handleSort(columns[+column].path) : undefined
             }
             // @ts-ignore
             {...{ role: columns[column].path && 'button' }}
@@ -49,7 +49,7 @@ const TableHeader: FC<TableHeaderProps> = ({
             {
               // @ts-ignore
               !(columns[column].name === 'Detail') && columns[column].path && (
-                <span className={style.arrowWrapper}>
+                <span className={style.arrow_wrapper}>
                   <img src={arrowUp} alt="arrowUp" />
                   <img src={arrowDown} alt="arrowDown" />
                 </span>

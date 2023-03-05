@@ -13,7 +13,7 @@ import style from './ProductsPreview.module.css';
 import { ProductsPreviewProps } from './ProductsPreview.props';
 
 export const ProductsPreview: FC<ProductsPreviewProps> = props => {
-  const { className, title, href = '/', children, ...restProps } = props;
+  const { className, title, href, children, ...restProps } = props;
   const swiperEl = useRef<SwiperType>();
 
   const handlePrev = useCallback((): void => {
@@ -34,9 +34,11 @@ export const ProductsPreview: FC<ProductsPreviewProps> = props => {
       <div className={style.inner}>
         <div className={style.title_box}>
           <h2 className={style.title}>{title}</h2>
-          <Link className={style.link} to={href}>
-            See all
-          </Link>
+          {href && (
+            <Link className={style.link} to={href}>
+              See all
+            </Link>
+          )}
         </div>
         <div className={style.buttons}>
           <IconButton>

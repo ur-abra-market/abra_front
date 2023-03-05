@@ -1,5 +1,6 @@
 import React, { FC, PropsWithChildren, useEffect } from 'react';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import cn from 'classnames';
 import { createPortal } from 'react-dom';
 
@@ -15,7 +16,7 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
   children,
   close,
   classNameModal,
-}) => {
+}): JSX.Element => {
   useEffect(() => {
     const target = document.body;
 
@@ -38,9 +39,9 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
       <div
         role="presentation"
         className={cn(
-          style.modal__content,
+          style.modal_content,
           {
-            [style.modal__content_active]: active,
+            [style.modal_content_active]: active,
           },
           classNameModal,
         )}

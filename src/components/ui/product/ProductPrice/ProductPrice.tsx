@@ -7,9 +7,9 @@ interface ProductPriceProps {
   quantity: string;
 }
 
-const ProductPrice: FC<ProductPriceProps> = ({ price, quantity }) => {
+const ProductPrice: FC<ProductPriceProps> = ({ price, quantity }): JSX.Element => {
   return (
-    <div className={style.productPrice}>
+    <div className={style.product_price}>
       <div className="amount">${price}/pc</div>
       <span>{`/from ${quantity} pcs`}</span>
     </div>

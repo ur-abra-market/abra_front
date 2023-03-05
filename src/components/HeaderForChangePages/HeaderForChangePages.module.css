@@ -1,4 +1,4 @@
-.header__basic {
+.header_basic {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -11,7 +11,7 @@
   border-bottom: 1px solid var(--gray);
 }
 
-.header__basic_logo {
+.header_basic_logo {
   display: block;
 
   width: 45px;
@@ -22,11 +22,11 @@
   font-family: 'SF Pro Display Bold', serif;
   font-size: 20px;
   line-height: 25px;
-  color: var(--accentColor);
+  color: var(--red);
   text-align: center;
 }
 
-.wrepperButtonLink {
+.wrapper_button_link {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -37,12 +37,12 @@
 
 }
 
-.wrepperButtonLink button {
+.wrapper_button_link button {
   width: 144px;
   margin: 0;
 }
 
-.wrepperBtnImg {
+.wrapper_btn_img {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,12 +55,12 @@
   border-radius: 50%;
 }
 
-.btnImg {
+.button_img {
   display: block;
   width: 20px;
 }
 
-.btnName {
+.button_name {
   font-size: var(--fs);
   line-height: 16px;
   letter-spacing: -0.24px;

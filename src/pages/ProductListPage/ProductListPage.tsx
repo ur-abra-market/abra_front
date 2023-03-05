@@ -22,7 +22,7 @@ const ProductListPage = (): JSX.Element => {
   return (
     <>
       <Header />
-      <div className={style.productListPage}>
+      <div className={style.product_list_page}>
         <ProductFilter />
         <ProductList />
       </div>

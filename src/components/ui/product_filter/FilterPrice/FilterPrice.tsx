@@ -25,22 +25,22 @@ const FilterPrice = (): JSX.Element => {
   };
 
   return (
-    <div className={style.filterPrice}>
+    <div className={style.filter_price}>
       <h4>Price, $</h4>
-      <div className={style.filterPrice__range}>
-        <div className={style.filterPrice__range_from}>
-          <div className={style.filterPrice__range_from_text}>From</div>
+      <div className={style.filter_price_range}>
+        <div className={style.filter_price_range_from}>
+          <div className={style.filter_price_range_from_text}>From</div>
           <input
-            className={style.filterPrice__range_from_input}
+            className={style.filter_price_range_from_input}
             type="number"
             value={filter.price_from}
             onChange={e => handlerPriceFrom(e.target.value)}
           />
         </div>
-        <div className={style.filterPrice__range_to}>
-          <div className={style.filterPrice__range_to_text}>Up To</div>
+        <div className={style.filter_price_range_to}>
+          <div className={style.filter_price_range_to_text}>Up To</div>
           <input
-            className={style.filterPrice__range_to_input}
+            className={style.filter_price_range_to_input}
             type="number"
             value={filter.price_to}
             onChange={e => handlerPriceTo(e.target.value)}

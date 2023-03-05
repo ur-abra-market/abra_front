@@ -26,8 +26,8 @@ const DropDownField: FC<PropsWithChildren<DropDownFieldProps>> = ({
   return (
     <div>
       <div role="presentation" className={style.title} onClick={onClick}>
-        <p className={style.titleText}>{title}</p>
-        <span className={open ? style.arrowOn : style.arrowOff}>&#9660;</span>
+        <p className={style.title_text}>{title}</p>
+        <span className={open ? style.arrow_on : style.arrow_off}>&#9660;</span>
       </div>
 
       {open && <div className={style.children}>{children}</div>}

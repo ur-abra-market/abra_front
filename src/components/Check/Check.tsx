@@ -32,10 +32,10 @@ const Check: FC<CheckProps> = ({ label }): JSX.Element => {
 
   return (
     <div role="presentation" className={style.check} onClick={() => handlerCheck()}>
-      <div className={style.check__box} style={{ background }}>
-        {check && <div className={style.check__box_mark} />}
+      <div className={style.check_box} style={{ background }}>
+        {check && <div className={style.check_box_mark} />}
       </div>
-      <div className={style.check__label}>{label}</div>
+      <div className={style.check_label}>{label}</div>
     </div>
   );
 };

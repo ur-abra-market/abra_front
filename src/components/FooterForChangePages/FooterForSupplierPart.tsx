@@ -7,7 +7,7 @@ import style from './FooterForSupplierPart.module.css';
 const FooterForSupplierPart = (): JSX.Element => {
   return (
     <div className={style.footer}>
-      <div className={style.footer_linksWrapper}>
+      <div className={style.footer_links_wrapper}>
         <div className={style.footer_copyright}>© 2022 Abra. </div>
         <Link to="/" className={style.footer_link}>
           Terms & Conditions

@@ -27,7 +27,7 @@
 @media (max-width: 1400px) {
   .header_nav_list {
     gap: calc(7vw - 45px);
-  }  
+  }
 }
 
 /* @media (max-width: 600px) {

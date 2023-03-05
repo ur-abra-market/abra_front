@@ -9,9 +9,10 @@ import style from './SelectFilter.module.css';
 interface SelectFilterProps {
   typeSelect: any;
 }
-const SelectFilter: FC<SelectFilterProps> = ({ typeSelect }) => {
+const SelectFilter: FC<SelectFilterProps> = ({ typeSelect }): JSX.Element => {
   const dispatch = useAppDispatch();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const listSort = [
     'Sort By Rating (From High to Low)',
     'Sort By Rating (From Low to High)',
@@ -20,6 +21,7 @@ const SelectFilter: FC<SelectFilterProps> = ({ typeSelect }) => {
   ];
   const typeSort = ['rating', 'rating', 'price', 'price'];
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const listCategory = ['All Categories', 'Clothes and Accessories'];
   const typeCategory = ['', '1'];
 
@@ -34,8 +36,9 @@ const SelectFilter: FC<SelectFilterProps> = ({ typeSelect }) => {
     if (typeSelect === 'sort') setList(listSort);
 
     if (typeSelect === 'category') setList(listCategory);
-  }, []);
+  }, [listSort, listCategory, typeSelect]);
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const option = () => {
     if (typeSelect === 'sort') {
       if (choiceSort === 'rating') return !choiceAscending ? listSort[0] : listSort[1];
@@ -76,25 +79,28 @@ const SelectFilter: FC<SelectFilterProps> = ({ typeSelect }) => {
   };
 
   return (
-    <div className={style.selectFilter} onMouseOut={e => switchList(e)}>
+    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
+    <div className={style.select_filter} onMouseOut={e => switchList(e)}>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div
-        className={style.selectFilter__select}
+        className={style.select_filter_select}
         onClick={() => setListSwitch(!listSwitch)}
       >
-        <div className={style.selectFilter_text}>
+        <div className={style.select_filter_text}>
           <div>{basic}</div>
-          <div className={style.selectFilter_text_remains}>
+          <div className={style.select_filter_text_remains}>
             {remains ? `(${remains})` : ''}
           </div>
         </div>
-        <div className={style.selectFilter_img}>
+        <div className={style.select_filter_img}>
           <img src={arrowDown} alt="arrow-down" />
         </div>
       </div>
-      <ul className={style.selectFilter__list} style={styleList}>
+      <ul className={style.select_filter_list} style={styleList}>
         {list.map((e, i) => (
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
           <li
-            className={style.selectFilter__list_item}
+            className={style.select_filter_list_item}
             key={`option_${e}`}
             onClick={() => handlerOption(e, i)}
           >

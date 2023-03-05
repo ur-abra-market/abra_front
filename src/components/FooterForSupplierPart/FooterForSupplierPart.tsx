@@ -10,7 +10,7 @@ const Footer = (): JSX.Element => {
       <Link to="/" className={style.footer_logo}>
         Abra
       </Link>
-      <div className={style.footer_linksWrapper}>
+      <div className={style.footer_links_wrapper}>
         <Link to="/" className={style.footer_link}>
           Contact Support
         </Link>

@@ -1,4 +1,4 @@
-.sizeWrapper {
+.size_wrapper {
   position: relative;
 }
 
@@ -15,7 +15,7 @@
   opacity: 0;
 }
 
-.inputContainer {
+.input_container {
   box-sizing: border-box;
   width: 64px;
   height: 57px;
@@ -24,12 +24,12 @@
   border-radius: 4px;
 }
 
-.borderContainer {
+.border_container {
   color: #000;
   border: #000 2px solid;
 }
 
-.sizeBlock {
+.size_block {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,7 +44,7 @@
   border-radius: 2px;
 }
 
-.inputValue {
+.input_value {
   width: 44px;
   margin-left: 7px;
 

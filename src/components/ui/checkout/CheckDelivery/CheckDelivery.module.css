@@ -1,4 +1,4 @@
-.checkDelivery {
+.check_delivery {
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -8,7 +8,7 @@
   background-color: #FFF;
 }
 
-.checkDelivery_add {
+.check_delivery_add {
   cursor: pointer;
 
   display: flex;
@@ -24,7 +24,7 @@
   border: 1px dashed #828282;
 }
 
-.checkDelivery_address {
+.check_delivery_address {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

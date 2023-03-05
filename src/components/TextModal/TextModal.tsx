@@ -19,7 +19,7 @@ interface TextModalProps {
   title: string;
   placeholder: string;
 }
-const TextModal: FC<TextModalProps> = ({ title, placeholder }) => {
+const TextModal: FC<TextModalProps> = ({ title, placeholder }): JSX.Element => {
   const dispatch = useDispatch();
   const [input, setInput] = useState('');
 
@@ -56,10 +56,10 @@ const TextModal: FC<TextModalProps> = ({ title, placeholder }) => {
   };
 
   return (
-    <div className={style.textModal}>
-      <div className={style.textModal_title}>{title}</div>
+    <div className={style.text_modal}>
+      <div className={style.text_modal_title}>{title}</div>
       <input
-        className={style.textModal_input}
+        className={style.text_modal_input}
         type="text"
         placeholder={placeholder}
         value={input}

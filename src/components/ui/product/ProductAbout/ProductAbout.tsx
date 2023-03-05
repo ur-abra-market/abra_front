@@ -53,30 +53,28 @@ const ProductAbout = (): JSX.Element => {
   }, [targetRef]);
 
   return (
-    <div className={style.productAbout}>
+    <div className={style.wrapper}>
       <h2>About the product</h2>
-      <div className={style.productAbout__container}>
-        <div className={style.productAbout__specifications}>
+      <div className={style.container}>
+        <div className={style.specifications}>
           {Object.entries(specification).map(d => (
-            <div className={style.product__specifications} key={d[0]}>
-              <div className={style.product__specifications_key}>
-                {transformKey(d[0])}
-              </div>
-              <div className={style.product__specifications_value}>{d[1]}</div>
+            <div className={style.specifications} key={d[0]}>
+              <div className={style.specifications_key}>{transformKey(d[0])}</div>
+              <div className={style.specifications_value}>{d[1]}</div>
             </div>
           ))}
         </div>
-        <div className={style.productAbout__property}>
+        <div className={style.property}>
           {Object.entries(property).map(d => (
-            <div className={style.product__property} key={d[0]}>
-              <div className={style.product__property_key}>{transformKey(d[0])}</div>
-              <div className={style.product__property_value} ref={targetRef}>
+            <div className={style.property} key={d[0]}>
+              <div className={style.property_key}>{transformKey(d[0])}</div>
+              <div className={style.property_value} ref={targetRef}>
                 {d[1]}
               </div>
               <div
                 className={
                   height > 115 && d[0] === 'description'
-                    ? `${style.product__property_more}`
+                    ? `${style.property_more}`
                     : 'none'
                 }
               />

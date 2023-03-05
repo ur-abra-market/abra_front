@@ -19,13 +19,13 @@ const RadiosFor: FC<RadiosForProps> = ({
   title,
   name,
   typeId,
-}) => {
+}): JSX.Element => {
   const [choice, setChoice] = useState(state);
 
   return (
     <div>
       <p className={style.title}>{title}</p>
-      <div className={style.radioWrapper}>
+      <div className={style.radio_wrapper}>
         {array &&
           array.map((el: any, i: number) => {
             return (

@@ -7,10 +7,8 @@ import styles from './ErrorPage.module.css';
 export const ErrorPage = (): JSX.Element => {
   const error = useRouteError();
 
-  console.error(error);
-
   return (
-    <div id="error-page" className={styles.errorPage}>
+    <div id="error-page" className={styles.error_page}>
       <h1>Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
       <p>

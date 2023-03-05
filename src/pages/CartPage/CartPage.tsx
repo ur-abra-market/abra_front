@@ -68,7 +68,7 @@ const CartPage = (): JSX.Element => {
   return (
     <>
       <Header />
-      <div className={style.cartPage}>
+      <div className={style.cart_page}>
         <CartList cartItems={cartItems} />
         <CartOrder info={orderInfo} />
       </div>

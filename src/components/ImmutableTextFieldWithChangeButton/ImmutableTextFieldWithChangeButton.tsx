@@ -44,7 +44,7 @@ const ImmutableTextFieldWithChangeButton: FC<ImmutableTextFieldWithChangeButtonP
               ? classes.input
               : classes.password
               ? classes.password.inputTextFieldPassword
-              : style.inputTextFieldPassword
+              : style.input_text_field_password
           }
           // className={cn()}
           placeholder={placeholder}

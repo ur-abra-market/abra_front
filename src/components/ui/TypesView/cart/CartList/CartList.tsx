@@ -9,8 +9,8 @@ interface CartListProps {
 }
 const CartList: FC<CartListProps> = ({ cartItems }): JSX.Element => {
   return (
-    <div className={style.cartItems}>
-      <span className={style.cartItems__title}>My Cart (3 Items)</span>
+    <div className={style.cart_items}>
+      <span className={style.cart_items_title}>My Cart (3 Items)</span>
       {cartItems && cartItems.map(item => <ShopItem key={item.id} shopItem={item} />)}
     </div>
   );

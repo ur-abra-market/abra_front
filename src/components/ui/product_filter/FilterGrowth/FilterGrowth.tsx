@@ -27,12 +27,13 @@ const FilterGrowth = (): JSX.Element => {
   };
 
   return (
-    <div className={style.filterGrowth}>
+    <div className={style.filter_growth}>
       <h4>Growth, cm</h4>
-      <div className={style.filterGrowth__list}>
+      <div className={style.filter_growth_list}>
         {growthList.map((s, i) => (
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
           <div
-            className={style.filterGrowth__list_item}
+            className={style.filter_growth_list_item}
             style={{
               background: check[i] ? '#000000' : '#ffffff',
               color: check[i] ? '#ffffff' : '#000000',

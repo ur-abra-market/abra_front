@@ -37,8 +37,8 @@ const TextFieldLabelAbove: FC<TextFieldLabelAboveProps> = ({
   }
 
   return (
-    <div className={style.inputWrapper}>
-      <p className={style.inputTitle}>{title}</p>
+    <div className={style.input_wrapper}>
+      <p className={style.input_title}>{title}</p>
 
       {name === 'textarea' ? (
         <textarea
@@ -56,10 +56,10 @@ const TextFieldLabelAbove: FC<TextFieldLabelAboveProps> = ({
           name={name}
           id={type === 'tel' ? 'tel' : ''}
           placeholder={placeholder}
-          className={style.inputTextField}
+          className={style.input_text_field}
         />
       )}
-      {error && <p className={style.inputError}>&#9888; {error}</p>}
+      {error && <p className={style.input_error}>&#9888; {error}</p>}
     </div>
   );
 };

@@ -17,20 +17,18 @@ const CheckboxFor: FC<CheckboxForProps> = ({
   title,
   getValues,
   typeId,
-}) => {
+}): JSX.Element => {
   const validate = useCallback(() => {
     const values = getValues(array.map(el => `${typeId}-${el}`));
 
-    const isValid = values.some((el: any) => el);
-
-    return isValid;
-  }, []);
+    return values.some((el: any) => el);
+  }, [typeId, array, getValues]);
 
   return (
     <div>
       <p className={style.title}>{title}</p>
 
-      <div className={style.checkboxWrapper}>
+      <div className={style.checkbox_wrapper}>
         {array &&
           array.map(el => {
             return (

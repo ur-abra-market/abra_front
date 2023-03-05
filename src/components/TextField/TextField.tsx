@@ -19,7 +19,7 @@ interface TextFieldProps {
 
   inputProps?: DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 }
-const TextField: FC<TextFieldProps> = props => {
+const TextField: FC<TextFieldProps> = (props): JSX.Element => {
   const {
     label,
     id,
@@ -47,7 +47,7 @@ const TextField: FC<TextFieldProps> = props => {
   };
 
   return (
-    <div className={style.fieldWithErrorWrapper}>
+    <div className={style.field_with_error_wrapper}>
       <label htmlFor={name} className={classes.label}>
         {label}
       </label>
@@ -64,7 +64,7 @@ const TextField: FC<TextFieldProps> = props => {
               ? classes.input
               : classes.password
               ? classes.password.inputTextFieldPassword
-              : style.inputTextFieldPassword
+              : style.input_text_field_password
           }
           placeholder={placeholder}
           {...inputProps}
@@ -73,20 +73,20 @@ const TextField: FC<TextFieldProps> = props => {
         {name === 'password' && (
           <div
             role="presentation"
-            className={style.showPasswordBtn}
+            className={style.show_password_btn}
             onClick={e => toggleShowPassword(e)}
           >
             {showPassword ? (
               <img
                 src={eyeVisiblePassword}
                 alt="eyeVisiblePassword"
-                className={style.showPasswordBtn_img}
+                className={style.show_password_btn_img}
               />
             ) : (
               <img
                 src={eyeHiddenPassword}
                 alt="eyeHiddenPassword"
-                className={style.showPasswordBtn_img}
+                className={style.show_password_btn_img}
               />
             )}
           </div>

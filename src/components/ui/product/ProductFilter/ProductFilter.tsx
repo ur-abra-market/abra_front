@@ -11,7 +11,7 @@ import style from './ProductFilter.module.css';
 
 const ProductFilter = (): JSX.Element => {
   return (
-    <div className={style.productFilter}>
+    <div className={style.product_filter}>
       <FilterSort />
       <FilterPrice />
       <FilterSizes />

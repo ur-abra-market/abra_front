@@ -23,10 +23,10 @@ const SearchFilter: FC<SearchFilterProps> = ({ typeSearch }): JSX.Element => {
   };
 
   return (
-    <form className={style.searchFilter} onSubmit={handleSubmit}>
+    <form className={style.search_filter} onSubmit={handleSubmit}>
       <input
         type="text"
-        className={style.searchFilter__text}
+        className={style.search_filter_text}
         value={text}
         placeholder="Search"
         onChange={e => setText(e.target.value)}

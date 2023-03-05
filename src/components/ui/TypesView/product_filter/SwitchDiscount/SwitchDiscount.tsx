@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-// import { discount } from '../../../../store/reducers/filterSlice';
-import './SwitchDiscount.css';
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks';
 import { discount } from '../../../../../store/reducers/filterSlice';
 
-const SwitchDiscount = () => {
+import styles from './SwitchDiscount.module.css';
+
+const SwitchDiscount: FC = () => {
   const dispatch = useAppDispatch();
 
   const choiceDiscount = useAppSelector(state => state.filter.discount);
@@ -13,14 +13,15 @@ const SwitchDiscount = () => {
   const justifyContent = choiceDiscount ? 'end' : 'flex-start';
 
   return (
-    <div className="SwitchDiscount">
-      <div className="SwitchDiscount__label">Only discounted items</div>
+    <div className={styles.wrapper}>
+      <div className={styles.label}>Only discounted items</div>
       <div
-        className="SwitchDiscount__box"
+        role="presentation"
+        className={styles.box}
         style={{ background, justifyContent }}
         onClick={() => dispatch(discount(!choiceDiscount))}
       >
-        <div className="SwitchDiscount__box_btn" />
+        <div className={styles.box_btn} />
       </div>
     </div>
   );

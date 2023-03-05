@@ -16,9 +16,9 @@ const ImgSlider: FC<ImgSliderProps> = ({ srcArr }): JSX.Element => {
   const images = (): JSX.Element => {
     if (!Array.isArray(srcArr)) {
       return (
-        <div className={style.imgSlider__window_list} style={{ marginLeft: '0%' }}>
+        <div className={style.img_slider_window_list} style={{ marginLeft: '0%' }}>
           <img
-            className={style.imgSlider__window_list_img}
+            className={style.img_slider_window_list_img}
             src={srcArr || nonePng}
             alt="img"
           />
@@ -27,10 +27,10 @@ const ImgSlider: FC<ImgSliderProps> = ({ srcArr }): JSX.Element => {
     }
 
     return (
-      <div className={style.imgSlider__window_list} style={{ marginLeft: `${pos}%` }}>
+      <div className={style.img_slider_window_list} style={{ marginLeft: `${pos}%` }}>
         {srcArr.map((src, i) => (
           <img
-            className={style.imgSlider__window_list_img}
+            className={style.img_slider_window_list_img}
             key={`card_slide_${i}`}
             src={src === '$URL' ? './assets/image/none.png' : src}
             alt="img"
@@ -42,11 +42,11 @@ const ImgSlider: FC<ImgSliderProps> = ({ srcArr }): JSX.Element => {
   const control = (): JSX.Element => {
     if (Array.isArray(srcArr) && srcArr.length > 1) {
       return (
-        <div className={style.imgSlider_control}>
+        <div className={style.img_slider_control}>
           {srcArr.map((_, i) => (
             <div
               role="presentation"
-              className={style.imgSlider_control_slide}
+              className={style.img_slider_control_slide}
               key={`card_photo_${i}`}
               onClick={() => setSlide(i)}
               style={{ background: i === slide ? '#000000' : '#828282' }}
@@ -56,12 +56,12 @@ const ImgSlider: FC<ImgSliderProps> = ({ srcArr }): JSX.Element => {
       );
     }
 
-    return <div className={style.imgSlider_control} />;
+    return <div className={style.img_slider_control} />;
   };
 
   return (
-    <div className={style.imgSlider}>
-      <div className={style.imgSlider__window}>
+    <div className={style.img_slider}>
+      <div className={style.img_slider_window}>
         <Flag />
         {images()}
       </div>

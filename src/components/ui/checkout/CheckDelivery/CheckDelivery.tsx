@@ -11,14 +11,15 @@ const CheckDelivery = (): JSX.Element => {
   const addresses = useAppSelector(state => state.modal.addresses);
 
   return (
-    <div className={style.checkDelivery}>
+    <div className={style.check_delivery}>
       <h4>Delivery Address</h4>
-      <div className={style.checkDelivery_address}>
+      <div className={style.check_delivery_address}>
         {addresses.map((a: any, i: number) => (
           <Address key={`address_${i}`} address={a} />
         ))}
       </div>
-      <div className={style.checkDelivery_add} onClick={() => dispatch(address(true))}>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+      <div className={style.check_delivery_add} onClick={() => dispatch(address(true))}>
         + Add an address
       </div>
     </div>

@@ -33,10 +33,11 @@ const FilterSort = (): JSX.Element => {
   };
 
   return (
-    <div className={style.silterSort}>
-      <div className={style.silterSort__title}>
+    <div className={style.filter_sort}>
+      <div className={style.filter_sort_title}>
         <h4>Filters</h4>
-        <span className="FilterSort__reset" onClick={handlerReset}>
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+        <span className={style.filter_sort_reset} onClick={handlerReset}>
           Reset All
         </span>
       </div>

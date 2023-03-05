@@ -1,4 +1,4 @@
-.searchFilter {
+.search_filter {
   display: flex;
   align-items: center;
 
@@ -11,7 +11,7 @@
   border-radius: 4px;
 }
 
-.searchFilter__text {
+.search_filter_text {
   display: block;
 
   width: 100%;
@@ -21,7 +21,7 @@
   font-size: var(--fp);
 }
 
-.searchFilter::before {
+.search_filter::before {
   content: '';
 
   position: relative;

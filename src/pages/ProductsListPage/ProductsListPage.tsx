@@ -3,32 +3,25 @@ import React, { FC, useEffect, useState } from 'react';
 import _ from 'lodash';
 import { useNavigate } from 'react-router-dom';
 
+import { Checkbox, Input, Search, Select } from '../../components/ui-kit';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 import addImg from 'assets/img/icons/addImg.png';
-import additIcon from 'assets/img/icons/additIcon.png';
-import arrowDown from 'assets/img/icons/arrow-down.png';
-import calendar from 'assets/img/icons/calendar.png';
+import editIcon from 'assets/img/icons/additIcon.png';
 import deleteImg from 'assets/img/icons/deleteImg.png';
-import searchIcon from 'assets/img/icons/searchIcon.png';
 import star from 'assets/img/icons/Star 1.png';
-import tableLayout from 'assets/img/icons/tableLayout.png';
-import tileLayout from 'assets/img/icons/tileLayout.png';
+import { ReactComponent as TableLayout } from 'assets/img/icons/tableLayout.svg';
+import { ReactComponent as TileLayout } from 'assets/img/icons/tileLayout.svg';
+import { ReactComponent as VectorUp } from 'assets/img/icons/Vector.svg';
+import { ReactComponent as VectorDown } from 'assets/img/icons/VectorDown.svg';
 import viewIcon from 'assets/img/icons/viewIcon.png';
-import Checkbox from 'components/Checkbox/Checkbox';
 import FiltersList from 'components/FiltersList';
 import Loader from 'components/Loader';
 import Modal from 'components/new-components/Modal';
-import Search from 'components/Search';
-import Select from 'components/Select';
 import ShowPage from 'components/ShowPage';
 import Table from 'components/table';
 import Pagination from 'components/ui/Pagination';
-import {
-  checkboxStyles,
-  selectStyles,
-  tableStyleClasses,
-} from 'pages/ProductsListPage/constantsOfClassesStyles';
+import { tableStyleClasses } from 'pages/ProductsListPage/constantsOfClassesStyles';
 import style from 'pages/ProductsListPage/ProductsListPage.module.css';
 import {
   deleteProducts,
@@ -46,46 +39,35 @@ const ProductsListPage: FC = (): JSX.Element => {
   const [sortBy, setSortBy] = useState({
     path: 'is_active',
     direction: 'desc',
-  });
+  } as const);
   const [layout, setLayout] = useState('tableLayout');
   const [restFilters, setRestFilters] = useState(false);
   const [modalActive, setModalActive] = useState(false);
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
   const dispatch = useAppDispatch();
   const { isLoading, products } = useAppSelector(state => state.manageProducts);
 
   useEffect(() => {
     dispatch(manageProductsService());
-  }, []);
-
-  const changeCheckbox = (): void => {
-    setChecked(!checked);
-  };
+  }, [dispatch]);
 
   const handleChangeModalActive = (): void => {
     setModalActive(!modalActive);
   };
 
-  const handleSwitchMainCheckbox = (tagret: any) => {
-    // TODO переделать
-    // const inputs = document.querySelectorAll('.checkbox');
-    //
-    // inputs.forEach(input => {
-    //   input.checked = tagret.checked;
-    // });
-  };
+  const handleSwitchMainCheckbox = (): void => {};
 
   const columns = {
     check: {
-      name: <input type="checkbox" onClick={e => handleSwitchMainCheckbox(e.target)} />,
-      component: (product: any) => (
-        <input
-          type="checkbox"
-          className="checkbox"
-          onClick={changeCheckbox}
-          id={product.id}
-        />
-      ),
+      name: <input type="checkbox" onClick={handleSwitchMainCheckbox} />,
+      // component: (product: any) => (
+      //   <input
+      //     type="checkbox"
+      //     className="checkbox"
+      //     onClick={changeCheckbox}
+      //     id={product.id}
+      //   />
+      // ),
     },
     orderNumber: { path: 'id', name: 'SKU' },
     detail: { path: 'image_url', name: 'Picture' },
@@ -107,16 +89,9 @@ const ProductsListPage: FC = (): JSX.Element => {
     getDeletedItems(selectedItems);
     handleChangeModalActive();
   }
+
   const getDeletedItems = (items: any): void => {
     dispatch(deleteProducts(items));
-  };
-
-  const searchClasses = {
-    search__wrap: `${style.search__wrap}`,
-    search__input: `${style.search__input}`,
-    search_photo: restFilters
-      ? `${style.search_photo__clicked}`
-      : `${style.search_photo}`,
   };
 
   const handleRestFiltersSet = (): void => {
@@ -150,98 +125,92 @@ const ProductsListPage: FC = (): JSX.Element => {
     selectedProductsStatus === 'All Products'
       ? [...prod].sort((prev, next) => prev.is_active - next.is_active)
       : prod.filter(order => order.with_discount.toString() === selectedProductsStatus);
-  // @ts-ignore
   const sortedProducts = _.orderBy(filteredProducts, [sortBy.path], [sortBy.direction]);
   const orderCrop = paginate(sortedProducts, activePage, pageSize);
 
   return (
     <>
-      <div className={style.searchAndLayout}>
-        <div className={style.searchWithRestFilters}>
-          <Search
-            placeholder="Search"
-            searchIcon={searchIcon}
-            classes={searchClasses}
+      <div className={style.search_and_layout}>
+        <div className={style.search_with_rest_filters}>
+          <Search placeholder="Search by Name or SKU" className={style.search} />
+          <span
+            role="presentation"
+            className={style.rest_filters}
             onClick={handleRestFiltersSet}
-          />
-          {restFilters && <span className={style.restFilters}>Reset Filters</span>}
+          >
+            Show filters
+          </span>
+          {!restFilters ? (
+            <VectorDown onClick={handleRestFiltersSet} />
+          ) : (
+            <>
+              <VectorUp onClick={handleRestFiltersSet} className={style.vector_up} />
+              <div className={style.reset_link}>Reset Filters</div>
+            </>
+          )}
         </div>
         <div className={style.layouts}>
-          <img
-            role="presentation"
+          <TileLayout
+            onClick={handleLayoutSet}
             className={
               layout === 'tileLayout'
-                ? `${style.activeLayout}`
-                : `${style.inactiveLayout}`
+                ? `${style.active_layout}`
+                : `${style.inactive_layout}`
             }
-            onClick={handleLayoutSet}
-            src={tileLayout}
-            alt="tileLayoutImg"
           />
-          <img
-            role="presentation"
+          <TableLayout
+            onClick={handleLayoutSet}
             className={
               layout === 'tableLayout'
-                ? `${style.activeLayout}`
-                : `${style.inactiveLayout}`
+                ? `${style.active_layout}`
+                : `${style.inactive_layout}`
             }
-            onClick={handleLayoutSet}
-            src={tableLayout}
-            alt="tableLayoutImg"
           />
         </div>
       </div>
-      {restFilters ? (
-        <div className={style.restFiltersWrapper}>
+      {restFilters && (
+        <div className={style.rest_filters_wrapper}>
           <div className={style.filter}>
             <div className={style.filter_name}>Creation Date</div>
-            <div className={style.filter_input}>
-              <input className={style.filter_input__date} placeholder="Select the Date" />
-              <img className={style.selectDate_img} src={calendar} alt="calendar" />
-            </div>
+            <Input
+              type="date"
+              className={style.filter_input_date}
+              placeholder="Select the Date"
+            />
           </div>
-
           <div className={style.filter}>
             <div className={style.filter_name}>Sort by:</div>
-            <Select
-              defaultName="Category"
-              options={[1, 2, 3]}
-              img={arrowDown}
-              classes={selectStyles}
-            />
+            <Select options={[{ label: 'dasda', value: 1 }]} />
           </div>
 
           <div className={style.filter}>
-            <Select
-              defaultName="Status"
-              options={['On Sale', 'Off-sale']}
-              img={arrowDown}
-              classes={selectStyles}
-            />
+            <Select options={[{ label: 'On Sale', value: 'Off-sale' }]} />
           </div>
-          <Checkbox label="Include Hidden" classes={checkboxStyles} />
+          <Checkbox label="Include Hidden" variant="notification" />
         </div>
-      ) : (
-        <></>
       )}
-      <div className={style.selectAndPaginationWrapper}>
+      <div className={style.select_and_pagination_wrapper}>
         <ShowPage />
         <Pagination activePage={activePage} amountPages={amountPages} />
       </div>
       {layout === 'tableLayout' ? (
-        <div className={style.contentWrapper}>
-          <div className={style.contentHeader}>
-            <div className={style.filtersWrapper}>
+        <div className={style.content_wrapper}>
+          <div className={style.content_header}>
+            <div className={style.filters_wrapper}>
               <FiltersList
                 filters={filters}
-                className={style.filteredProducts}
-                activeClassName={style.filteredProducts__active}
+                className={style.filtered_products}
+                activeClassName={style.filtered_products_active}
                 onItemSelect={handleProductsStatusSelect}
                 selectedItem={selectedProductsStatus}
               />
             </div>
-            <div className={style.actionsWrapper}>
-              <div className={style.action} onClick={handleChangeModalActive}>
+            <div className={style.actions_wrapper}>
+              <div
+                role="presentation"
+                className={style.action}
+                onClick={handleChangeModalActive}
+              >
                 Delete items
               </div>
               <div className={style.action}>
@@ -270,39 +239,47 @@ const ProductsListPage: FC = (): JSX.Element => {
             classes={tableStyleClasses}
           />
           <Modal active={modalActive}>
-            <h1 className={style.modalHeader}>
+            <h1 className={style.modal_header}>
               Are you sure you want to delete the selected items?
             </h1>
             <div className={style.buttons_wrapper}>
-              <div className={style.modal_button} onClick={getCheckedCheckboxes}>
+              <div
+                role="presentation"
+                className={style.modal_button}
+                onClick={getCheckedCheckboxes}
+              >
                 YES
               </div>
-              <div className={style.modal_button} onClick={handleChangeModalActive}>
+              <div
+                role="presentation"
+                className={style.modal_button}
+                onClick={handleChangeModalActive}
+              >
                 NO
               </div>
             </div>
           </Modal>
         </div>
       ) : (
-        <div className={style.cardsWrapper}>
+        <div className={style.cards_wrapper}>
           {products?.map(item => (
-            <div className={style.productCard} key={item.id}>
+            <div className={style.product_card} key={item.id}>
               {/* <img src={item.picture} alt='product img'></img> */}
               <div className={style.picture} />
-              <div className={style.viewAndAdditWrapper}>
-                <div className={style.iconBackground}>
+              <div className={style.view_and_edit_wrapper}>
+                <div className={style.icon_background}>
                   <img src={viewIcon} alt="viewIcon" />
                 </div>
-                <div className={style.iconBackground}>
-                  <img src={additIcon} alt="additIcon" />
+                <div className={style.icon_background}>
+                  <img src={editIcon} alt="editIcon" />
                 </div>
               </div>
-              <div className={style.productName}>{item.name}</div>
-              <div className={style.priceAndConditions}>
-                <div className={style.productPrice}>{item.price}</div>
+              <div className={style.product_name}>{item.name}</div>
+              <div className={style.price_and_conditions}>
+                <div className={style.product_price}>{item.price}</div>
                 <div className={style.condition}>/from 4 pcs</div>
               </div>
-              <div className={style.otherInfo}>
+              <div className={style.other_info}>
                 <div className={style.rating}>
                   <img src={star} alt="star" />
                   <img src={star} alt="star" />
@@ -310,14 +287,13 @@ const ProductsListPage: FC = (): JSX.Element => {
                   <img src={star} alt="star" />
                   <img src={star} alt="star" />
                 </div>
-                <div className={style.productCreationDate}>{item.creationDate}</div>
+                <div className={style.product_creation_date}>{item.creationDate}</div>
               </div>
             </div>
           ))}
         </div>
       )}
-      <div className={style.selectAndPaginationWrapper}>
-        <ShowPage />
+      <div className={style.select_and_pagination_wrapper}>
         <Pagination activePage={activePage} amountPages={amountPages} />
       </div>
     </>

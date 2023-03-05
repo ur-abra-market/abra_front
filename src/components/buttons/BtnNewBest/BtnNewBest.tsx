@@ -5,7 +5,7 @@ interface BtnNewBestProps {
   name: string;
 }
 const BtnNewBest: FC<BtnNewBestProps> = ({ name }) => {
-  return <div className="BtnNewBest">{name}</div>;
+  return <div className="button_new_best">{name}</div>;
 };
 
 export default BtnNewBest;

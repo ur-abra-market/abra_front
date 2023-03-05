@@ -13,7 +13,7 @@ const ButtonReg: FC<ButtonRegProps> = ({ type, value, isValid }): JSX.Element =>
       <button
         /* eslint-disable-next-line react/button-has-type */
         type={type}
-        className={isValid ? style.buttonOff : style.buttonOn}
+        className={isValid ? style.button_off : style.button_on}
         disabled={isValid}
       >
         {value}

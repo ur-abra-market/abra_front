@@ -4,7 +4,7 @@
   color: #828282;
 }
 
-.radioWrapper {
+.radio_wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 17px;

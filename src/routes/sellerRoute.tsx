@@ -23,6 +23,11 @@ const sellerRoute = [
     path: 'product/:productId',
     element: <ProductPage />,
   },
+
+  // {
+  //   path: 'product',
+  //   element: <ProductPage />,
+  // },
   {
     path: 'personal-account',
     element: <SellerAccountPage />,

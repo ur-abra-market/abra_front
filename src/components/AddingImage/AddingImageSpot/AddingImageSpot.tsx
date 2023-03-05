@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, useRef, useState } from 'react';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import cn from 'classnames';
 
 import deleteImg from '../../../assets/img/icons/delete_Img_red.svg';
@@ -54,7 +55,7 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
     <div
       className={cn(
         {
-          [style.wrapperWithLabel]: !!label,
+          [style.wrapper_with_label]: !!label,
           [style.wrapper]: !label,
         },
         className,
@@ -79,7 +80,7 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
             id="photoImg"
             className={classes.uploadedImage}
           />
-          <button type="button" className={style.photoRemove} onClick={onClose}>
+          <button type="button" className={style.photo_remove} onClick={onClose}>
             <img src={deleteImg} alt="close" />
           </button>
         </div>
@@ -95,7 +96,7 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
       )}
 
       {label && (
-        <div className={style.labelContainer}>
+        <div className={style.label_container}>
           <label
             role="presentation"
             htmlFor="profileLogo"
@@ -108,7 +109,7 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
           <p className={style.placeholder}>{placeholder}</p>
         </div>
       )}
-      {error && <p className={style.inputError}>&#9888; {error}</p>}
+      {error && <p className={style.input_error}>&#9888; {error}</p>}
     </div>
   );
 };

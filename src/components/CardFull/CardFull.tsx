@@ -48,11 +48,11 @@ const CardFull: FC<CardFullProps> = ({ props }): JSX.Element => {
   };
 
   return (
-    <div className={style.cardFull}>
+    <div className={style.card_full}>
       <ImgSlider srcArr={propsNew.images} />
-      <div className={style.cardFull__info}>
-        <div className={style.cardFull__block1}>
-          <div className={style.cardFull__direction}>
+      <div className={style.card_full_info}>
+        <div className={style.card_full_block1}>
+          <div className={style.card_full_direction}>
             {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
             <h4
               onClick={() => {
@@ -66,31 +66,31 @@ const CardFull: FC<CardFullProps> = ({ props }): JSX.Element => {
           </div>
           <ProductPath pathArr={[]} />
         </div>
-        <div className={style.cardFull__block2}>
+        <div className={style.card_full_block2}>
           <div
-            className={style.cardFull__price_stars}
+            className={style.card_full_price_stars}
             style={propsNew.sum === 0 ? style1 : style2}
           >
             <ProductPrice
               price={propsNew.info.value_price}
               quantity={propsNew.info.quantity}
             />
-            <div className={style.cardFull__stars_reviews}>
+            <div className={style.card_full_stars_reviews}>
               <Stars reward={+propsNew.info.grade_average} />
               <span>{`/${propsNew.info.total_reviews} reviews`}</span>
             </div>
           </div>
           <div
-            className={style.cardFull__orders}
+            className={style.card_full_orders}
           >{`${propsNew.info.total_orders} Orders`}</div>
         </div>
-        <div className={style.cardFull__block3}>
+        <div className={style.card_full_block3}>
           {propsNew.sum > 0 ? (
             <ProductQuantityControl obj={propsNew} />
           ) : (
             <div
               role="presentation"
-              className={style.cardFull__basket}
+              className={style.card_full_basket}
               onClick={() => handlerBasket()}
             >
               <div />

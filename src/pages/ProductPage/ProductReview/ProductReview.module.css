@@ -10,7 +10,6 @@
   font-style: normal;
   line-height: 34px;
   color: #000;
-  letter-spacing: 0.41px;
 }
 
 .link {
@@ -37,7 +36,7 @@
 
 }
 
-.stars-block{
+.stars_block{
   display: flex;
   justify-content: space-between;
 
@@ -55,11 +54,9 @@
   color: #828282;
 
   /* identical to box height, or 133% */
-
-  letter-spacing: 0.16px;
 }
 
-.rating-line{
+.rating_line{
   display: flex;
   gap: 15px;
   align-items: center;
@@ -70,10 +67,9 @@
   font-style: normal;
   line-height: 20px;
   color: #000;
-  letter-spacing: 0.16px;
 }
 
-.line, .line-accent{
+.line, .line_accent{
   display: inline-block;
   height: 4px;
   border-radius: 8px;
@@ -85,13 +81,13 @@
   background: #D4D4D4;
 }
 
-.line-accent{
+.line_accent{
   position: absolute;
   background: #FC133D;
 }
 
 
-.image-list {
+.image_list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 13px;

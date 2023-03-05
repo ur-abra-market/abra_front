@@ -1,20 +1,20 @@
-.checkItems {
+.check_items {
   background-color: #FFF;
 }
 
-.checkItems > h4 {
+.check_items > h4 {
   margin-top: 32px;
   margin-bottom: -8px;
 }
 
-.checkItems {
+.check_items {
   display: flex;
   flex-direction: column;
   padding: 0 32px;
   background-color: #FFF;
 }
 
-.checkItems__block {
+.check_items_block {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -23,22 +23,21 @@
   height: 20px;
   margin-top: 24px;
 
-  font-family: Roboto;
+  font-family: Roboto serif;
   font-size: var(--fp);
   line-height: 20px;
-  letter-spacing: 0.16px;
 }
 
-.checkItems__block_seller {
+.check_items_block_seller {
   color: #828282;
 }
 
-.checkItems__block_note {
+.check_items_block_note {
   cursor: pointer;
   text-decoration: underline;
 }
 
-.checkItems__product {
+.check_items_product {
   display: flex;
   flex-direction: row;
   gap: 24px;
@@ -49,30 +48,29 @@
   margin-bottom: 32px;
 }
 
-.checkItems__product_photo {
+.check_items_product_photo {
   width: 120px;
   height: 120px;
   background-color: #D9D9D9;
 }
 
-.checkItems__product_info {
+.check_items_product_info {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-.checkItems__product_info_name {
+.check_items_product_info_name {
   display: flex;
   justify-self: flex-start;
 
   width: 100%;
 
-  font-family: 'SF Pro Display Bold';
+  font-family: 'SF Pro Display Bold', serif;
   font-size: 16px;
-  letter-spacing: 0.38px;
 }
 
-.checkItems__product_info_property {
+.check_items_product_info_property {
   display: flex;
   flex-direction: row;
   gap: 12px;
@@ -81,29 +79,27 @@
   height: 24px;
   margin-top: 8px;
 
-  font-family: Roboto;
+  font-family: Roboto serif;
   font-size: var(--fp);
   line-height: 24px;
-  letter-spacing: 0.16px;
 }
 
-.checkItems__product_info_price {
+.check_items_product_info_price {
   margin-top: auto;
-  font-family: 'SF Pro Display Bold';
+  font-family: 'SF Pro Display Bold', serif;
   font-size: var(--fd);
 }
 
-.checkItems__product_info_offer {
+.check_items_product_info_offer {
   height: 20px;
 
-  font-family: Roboto;
+  font-family: Roboto serif;
   font-size: var(--fp);
   line-height: 20px;
   color: #828282;
-  letter-spacing: 0.16px;
 }
 
-.checkItems__delivery {
+.check_items_delivery {
   display: flex;
   flex-direction: row;
   gap: 16px;
@@ -119,17 +115,16 @@
   background-color: #F6F6F6;
 }
 
-.checkItems__delivery_info {
+.check_items_delivery_info {
   height: 20px;
 
-  font-family: Roboto;
+  font-family: Roboto serif;
   font-size: var(--fp);
   line-height: 20px;
   color: #828282;
-  letter-spacing: 0.16px;
 }
 
-.checkItems__delivery_point {
+.check_items_delivery_point {
   width: 20px;
   height: 20px;
   background: url('../../../../assets/img/icons/dot.svg');

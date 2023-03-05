@@ -1,17 +1,17 @@
-.imgSlider {
+.img_slider {
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
 
-.imgSlider__window {
+.img_slider_window {
   overflow: hidden;
   width: 220px;
   height: 220px;
 }
 
-.imgSlider__window_list {
+.img_slider_window_list {
   display: flex;
   flex-direction: row;
 
@@ -21,7 +21,7 @@
   transition: 0.4s;
 }
 
-.imgSlider__window_list_img {
+.img_slider_window_list_img {
   display: block;
 
   min-width: 220px;
@@ -31,7 +31,7 @@
   background-color: #F0F0F0;
 }
 
-.imgSlider_control {
+.img_slider_control {
   position: relative;
   top: 12px;
 
@@ -39,7 +39,7 @@
   flex-direction: row;
   gap: 12px;
 }
-.imgSlider_control_slide {
+.img_slider_control_slide {
   cursor: pointer;
 
   width: 8px;

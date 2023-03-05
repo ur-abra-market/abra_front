@@ -1,4 +1,4 @@
-.selectFilter {
+.select_filter {
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -8,7 +8,7 @@
   border-radius: 4px;
 }
 
-.selectFilter__select {
+.select_filter_select {
   cursor: pointer;
 
   display: flex;
@@ -23,7 +23,7 @@
   border-radius: 4px;
 }
 
-.selectFilter_img {
+.select_filter_img {
   display: flex;
   align-items: center;
 
@@ -35,7 +35,7 @@
   object-fit: cover;
 }
 
-.selectFilter_text {
+.select_filter_text {
   display: flex;
   flex-direction: row;
   gap: 4px;
@@ -48,11 +48,11 @@
   font-weight: 400;
 }
 
-.selectFilter_text_remains {
+.select_filter_text_remains {
   color: #828282;
 }
 
-.selectFilter__list {
+.select_filter_list {
   position: absolute;
 
   overflow: hidden;
@@ -70,7 +70,7 @@
   transition: 0.4s;
 }
 
-.selectFilter__list_item {
+.select_filter_list_item {
   cursor: pointer;
 
   display: block;
@@ -83,7 +83,7 @@
   text-decoration: none;
 }
 
-.selectFilter__list_item:hover {
+.select_filter_list_item:hover {
   color: #FFF;
   background-color: #000;
 }

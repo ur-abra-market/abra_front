@@ -30,7 +30,7 @@ const RadioStyledElem: FC<RadioStyledElemProps> = ({
   };
 
   return (
-    <div className={style.colorWrapper}>
+    <div className={style.color_wrapper}>
       <input
         type="radio"
         {...register(`${typeId}-${name}`, {
@@ -43,15 +43,15 @@ const RadioStyledElem: FC<RadioStyledElemProps> = ({
 
       {name === 'color' && (
         <div
-          className={`${value === choice && style.borderContainer} ${
-            style.colorContainer
+          className={`${value === choice && style.border_container} ${
+            style.color_container
           }`}
         >
           <div
             style={{ background: `${valueStr}` }}
-            className={`${style.colorBlock}  `}
+            className={`${style.color_block}  `}
           />
-          <p className={style.colorValue}>{colorValue}</p>
+          <p className={style.color_value}>{colorValue}</p>
         </div>
       )}
 

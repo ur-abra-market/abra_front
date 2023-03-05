@@ -8,10 +8,10 @@ interface ProdInfoInputsProps {
   register: any;
 }
 
-const ProdInfoInputs: FC<ProdInfoInputsProps> = ({ register }) => {
+const ProdInfoInputs: FC<ProdInfoInputsProps> = ({ register }): JSX.Element => {
   return (
     <div>
-      <div className={style.prodInfoContainer}>
+      <div className={style.prod_info_container}>
         <RelatedInputs
           register={register}
           isRequire

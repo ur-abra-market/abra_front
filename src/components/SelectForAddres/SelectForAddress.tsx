@@ -10,7 +10,7 @@ import style from './SelectForAddres.module.css';
 interface SelectForAddressProps {
   list: any[];
 }
-const SelectForAddres: FC<SelectForAddressProps> = ({ list }): JSX.Element => {
+const SelectForAddress: FC<SelectForAddressProps> = ({ list }): JSX.Element => {
   const dispatch = useDispatch();
 
   const listPhone = ['+7', '+90'];
@@ -50,7 +50,7 @@ const SelectForAddres: FC<SelectForAddressProps> = ({ list }): JSX.Element => {
     <div className={style.select} onMouseOut={e => switchList(e)}>
       <div
         role="presentation"
-        className={style.select__select}
+        className={style.select_select}
         onClick={() => setListSwitch(!listSwitch)}
       >
         <div
@@ -65,11 +65,11 @@ const SelectForAddres: FC<SelectForAddressProps> = ({ list }): JSX.Element => {
           <img src={arrowDown} alt="arrow-down" />
         </div>
       </div>
-      <ul className={style.select__list} style={styleList}>
+      <ul className={style.select_list} style={styleList}>
         {list.map((e, i) => (
           <li
             role="presentation"
-            className={style.select__list_item}
+            className={style.select_list_item}
             key={`option_${e}`}
             onClick={() => handlerOption(e, i)}
           >
@@ -81,4 +81,4 @@ const SelectForAddres: FC<SelectForAddressProps> = ({ list }): JSX.Element => {
   );
 };
 
-export default SelectForAddres;
+export default SelectForAddress;

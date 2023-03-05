@@ -1,4 +1,4 @@
-.statusSeller {
+.status_seller {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -7,13 +7,13 @@
   width: 100%;
 }
 
-.statusSeller__basic {
+.status_seller_basic {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.statusSeller__avatar {
+.status_seller_avatar {
   width: 64px;
   height: 64px;
   margin-right: 16px;
@@ -22,23 +22,23 @@
   border-radius: 50%;
 }
 
-.statusSeller__person {
+.status_seller_person {
   display: flex;
   flex-direction: column;
   height: 50px;
 }
 
-.statusSeller__person_name{
+.status_seller_person_name{
   margin-bottom: 6px;
 }
 
-.statusSeller__person_reward {
+.status_seller_person_reward {
   display: flex;
   flex-direction: row;
   gap: 8px;
 }
 
-.statusSeller__numbers {
+.status_seller_numbers {
   display: flex;
   flex-direction: row;
 
@@ -47,7 +47,7 @@
   color: #828282;
 }
 
-.statusSeller__status {
+.status_seller_status {
   display: flex;
   flex-direction: row;
 
@@ -56,12 +56,12 @@
   color: #828282;
 }
 
-.statusSeller__activity {
+.status_seller_activity {
   display: flex;
   flex-direction: column;
 }
 
-.statusSeller__deals {
+.status_seller_deals {
   display: flex;
   flex-direction: row;
   gap: 16px;
@@ -73,7 +73,7 @@
   color: #828282;
 }
 
-.statusSeller__delivery {
+.status_seller_delivery {
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -83,7 +83,7 @@
   color: #828282;
 }
 
-.statusSeller__btn {
+.status_seller_btn {
   cursor: pointer;
   width: 40px;
   height: 40px;

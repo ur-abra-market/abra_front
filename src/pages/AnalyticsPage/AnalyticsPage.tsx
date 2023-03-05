@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-const AnalyticsPage = () => {
+const AnalyticsPage: FC = () => {
   return <h2>AnalyticsPage</h2>;
 };
 
