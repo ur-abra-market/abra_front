@@ -1,5 +1,7 @@
 import React from 'react';
 
+import cn from 'classnames';
+
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks';
 import { activeNum } from '../../../../../store/reducers/productPaginateSlice';
 
@@ -17,11 +19,12 @@ const PaginatorProduct = (): JSX.Element => {
   const buttons = pages.map(p => {
     let currentClass = '';
 
-    if (activePage === p) currentClass = style.activePage;
+    if (activePage === p) currentClass = style.active_page;
     if (Math.abs(activePage - p) > 2) currentClass = style.invisible;
 
     return (
       <div
+        role="presentation"
         className={`${style.cursor}${currentClass}`}
         key={p}
         onClick={() => handlePage(p)}
@@ -36,44 +39,52 @@ const PaginatorProduct = (): JSX.Element => {
   };
 
   return (
-    <div className="PaginatorProduct">
+    <div className={style.wrapper}>
       <div
-        className="PaginatorProduct__left"
+        role="presentation"
+        className={style.left}
         onClick={() => (activePage > 1 ? handlePage(activePage - 1) : false)}
       >
-        <div className="PaginatorProduct__left_arrow" />
+        <div className={style.left_arrow} />
       </div>
-      <div className="PaginatorProduct__numbers">
+      <div className={style.numbers}>
         <div
-          className={`cursor ${activePage === 1 ? 'activePage' : ''}`}
+          role="presentation"
+          className={cn(style.cursor, { [style.active_page]: activePage === 1 })}
           onClick={() => handlePage(1)}
         >
           1
         </div>
-        <div className={amountPages < 5 || activePage < 5 ? 'invisible' : ''}>...</div>
+        <div className={cn({ [style.invisible]: amountPages < 5 || activePage < 5 })}>
+          ...
+        </div>
         {buttons}
         <div
-          className={amountPages < 5 || amountPages - activePage < 4 ? 'invisible' : ''}
+          className={cn({
+            [style.invisible]: amountPages < 5 || amountPages - activePage < 4,
+          })}
         >
           ...
         </div>
 
-        {amountPages > 1 ? (
+        {amountPages > 1 && (
           <div
-            className={`cursor ${activePage === amountPages ? 'activePage' : ''}`}
+            role="presentation"
+            className={cn(style.cursor, {
+              [style.active_page]: activePage === amountPages,
+            })}
             onClick={() => handlePage(amountPages)}
           >
             {amountPages}
           </div>
-        ) : (
-          <></>
         )}
       </div>
       <div
-        className="PaginatorProduct__right"
+        role="presentation"
+        className={style.right}
         onClick={() => (activePage < amountPages ? handlePage(activePage + 1) : false)}
       >
-        <div className="PaginatorProduct__right_arrow" />
+        <div className={style.right_arrow} />
       </div>
     </div>
   );

@@ -14,25 +14,25 @@ const ProductList = (): JSX.Element => {
   const [list, setList] = useState(true);
 
   return (
-    <div className={style.productList}>
-      <div className={style.productList__control}>
-        <div className={style.productList__control_btns}>
+    <div className={style.wrapper}>
+      <div className={style.control}>
+        <div className={style.control_btns}>
           <div
-            className={style.productList__control_blocks}
+            role="presentation"
+            className={style.control_blocks}
             onClick={() => setList(false)}
           />
           <div
-            className={style.productList__control_list}
+            role="presentation"
+            className={style.control_list}
             onClick={() => setList(true)}
           />
 
-          <div
-            className={style.productList__control_category}
-          >{`< Clothes and Accessories`}</div>
+          <div className={style.control_category}>{`< Clothes and Accessories`}</div>
         </div>
         <PaginatorProduct />
       </div>
-      <div className={style.productList__list}>
+      <div className={style.list}>
         {dataArr.map((data, index) =>
           list ? (
             <CardFull key={`product-${index}`} props={data} />
@@ -42,11 +42,11 @@ const ProductList = (): JSX.Element => {
           ),
         )}
       </div>
-      <div className="ProductList__control">
+      <div className="control">
         {/* <ShowPageProduct /> */}
         <PaginatorProduct />
       </div>
-      <div className={style.productList__InfoBtn}>
+      <div className={style.info_btn}>
         <InfoBtn />
       </div>
     </div>
