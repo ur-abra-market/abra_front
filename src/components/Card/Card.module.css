@@ -5,7 +5,7 @@
   height: 325px;
 }
 
-.card__direction {
+.card_direction {
   cursor: pointer;
 
   width: 100%;
@@ -16,7 +16,7 @@
   font-size: var(--fp);
 }
 
-.card__price {
+.card_price {
   display: flex;
   flex-direction: row;
   gap: 4px;
@@ -24,13 +24,11 @@
   margin-top: 8px;
   margin-bottom: 4px;
 
-  font-family: 'SF Pro Display Bold';
   font-size: var(--fd);
 }
 
-.card__price > span {
+.card_price > span {
   display: block;
   align-self: flex-end;
-  font-family: Roboto;
   font-size: var(--fs);
 }
