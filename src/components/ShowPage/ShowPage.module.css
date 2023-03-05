@@ -1,4 +1,4 @@
-.ShowPage {
+.show_page {
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -8,7 +8,7 @@
   border-radius: 4px;
 }
 
-.ShowPage__select {
+.show_page_select {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -18,7 +18,7 @@
   padding-left: 10px;
 }
 
-.ShowPage_img {
+.show_page_img {
   cursor: pointer;
 
   display: flex;
@@ -32,18 +32,18 @@
   object-fit: cover;
 }
 
-.ShowPage_text {
+.show_page_text {
   display: flex;
   gap: 4px;
   align-items: center;
 
   width: 100%;
 
-  font-family: 'SF Pro Display Medium';
+  font-family: SF Pro Display Medium serif;
   font-size: var(--fp);
 }
 
-.ShowPage__list {
+.show_page_list {
   position: absolute;
 
   overflow: hidden;
@@ -62,7 +62,7 @@
   transition: 0.4s;
 }
 
-.ShowPage__list_item {
+.show_page_list_item {
   cursor: pointer;
 
   display: block;
@@ -75,7 +75,7 @@
   text-decoration: none;
 }
 
-.ShowPage__list_item:hover {
+.show_page_list_item:hover {
   color: #FFF;
   background-color: #000;
 }
