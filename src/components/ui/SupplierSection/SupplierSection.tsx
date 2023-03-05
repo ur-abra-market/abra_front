@@ -1,6 +1,4 @@
-import React, { FC } from 'react';
-
-import PropTypes from 'prop-types';
+import React, { FC } from 'react'
 
 // import Analytics from '../analytics';
 // import Dashboard from '../dashboard';
@@ -9,14 +7,14 @@ import PropTypes from 'prop-types';
 // import PriceManagement from '../priceManagement';
 // import ProductsList from '../productsList/productsList';
 
-import style from './SupplierSection.module.css';
+import style from './SupplierSection.module.css'
 
 interface SupplierSectionProps {
-  pageID: string;
+  pageID: string
   // onSectionChange?: string;
 }
 // TODO нет импортов !!! разобраться
-const SupplierSection: FC<SupplierSectionProps> = ({ pageID }) => {
+const SupplierSection: FC<SupplierSectionProps> = ({ pageID }): JSX.Element => {
   const sectionsArray: any[] = [
     // <Dashboard />,
     // <ProductsList />,
@@ -24,25 +22,29 @@ const SupplierSection: FC<SupplierSectionProps> = ({ pageID }) => {
     // <PriceManagement />,
     // <Analytics />,
     // <FeedbackAndQuestions />,
-  ];
+  ]
 
-  const detachmentId = (section: any) => {
-    return section.type.name.split(/(?=[A-Z])/)[0];
-  };
+  const detachmentId = (section: any): any => {
+    return section.type.name.split(/(?=[A-Z])/)[0]
+  }
 
-  const renderSection = (pageID: any, sectionsArray: any[]) => {
+  const renderSection = (pageID: any, sectionsArray: any[]): any => {
+    // eslint-disable-next-line no-plusplus
     for (let i = 0; i < sectionsArray.length; i++) {
       if (detachmentId(sectionsArray[i]) === pageID) {
-        return <>{sectionsArray[i]}</>;
+        // eslint-disable-next-line react/jsx-no-useless-fragment
+        return <>{sectionsArray[i]}</>
       }
     }
 
-    return false;
-  };
+    return false
+  }
 
   return (
-    <div className={style.sectionWrapper}>{renderSection(pageID, sectionsArray)}</div>
-  );
-};
+    <div className={style.section_wrapper}>
+      {renderSection(pageID, sectionsArray)}
+    </div>
+  )
+}
 
-export default SupplierSection;
+export default SupplierSection
