@@ -1,17 +1,17 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
-import RelatedInputs from '../../RelatedInputs';
+import RelatedInputs from '../../RelatedInputs'
 
-import style from './ProdInfoInputs.module.css';
+import style from './ProdInfoInputs.module.css'
 
 interface ProdInfoInputsProps {
-  register: any;
+  register: any
 }
 
-const ProdInfoInputs: FC<ProdInfoInputsProps> = ({ register }) => {
+const ProdInfoInputs: FC<ProdInfoInputsProps> = ({ register }): JSX.Element => {
   return (
     <div>
-      <div className={style.prodInfoContainer}>
+      <div className={style.prod_info_container}>
         <RelatedInputs
           register={register}
           isRequire
@@ -39,10 +39,11 @@ const ProdInfoInputs: FC<ProdInfoInputsProps> = ({ register }) => {
       </div>
 
       <p className={style.description}>
-        You can set a discount per piece for the buyer from a certain amount of goods
+        You can set a discount per piece for the buyer from a certain amount of
+        goods
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default ProdInfoInputs;
+export default ProdInfoInputs

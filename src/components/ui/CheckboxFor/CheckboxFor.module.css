@@ -4,7 +4,7 @@
   color: #828282;
 }
 
-.checkboxWrapper {
+.checkbox_wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 17px;

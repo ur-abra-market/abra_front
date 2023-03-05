@@ -1,41 +1,43 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
-import arrowDown from '../../../assets/img/icons/SortArrowDown.png';
-import arrowUp from '../../../assets/img/icons/SortArrowUp.png';
+import arrowDown from '../../../assets/img/icons/SortArrowDown.png'
+import arrowUp from '../../../assets/img/icons/SortArrowUp.png'
 
-import style from './TableHeader.module.css';
+import style from './TableHeader.module.css'
 
 interface TableHeaderProps {
-  columns: any[];
-  selectedSort: any;
-  onSort: any;
-  classes?: any;
+  columns: any[]
+  selectedSort: any
+  onSort: any
+  classes?: any
 }
 const TableHeader: FC<TableHeaderProps> = ({
   onSort,
   selectedSort,
   columns,
-  classes,
-}) => {
+  classes
+}): JSX.Element => {
   const handleSort = (item: any): any => {
     if (selectedSort.path === item) {
       onSort({
         ...selectedSort,
-        direction: selectedSort.direction === 'asc' ? 'desc' : 'asc',
-      });
-    } else onSort({ path: item, order: 'asc' });
-  };
+        direction: selectedSort.direction === 'asc' ? 'desc' : 'asc'
+      })
+    } else onSort({ path: item, order: 'asc' })
+  }
 
   return (
     <thead>
       <tr>
-        {Object.keys(columns).map(column => (
+        {Object.keys(columns).map((column) => (
           <th
             key={column}
             className={classes.tableHeader}
             onClick={
               // @ts-ignore
-              columns[column].path ? () => handleSort(columns[column].path) : undefined
+              columns[column].path
+                ? () => handleSort(columns[+column].path)
+                : undefined
             }
             // @ts-ignore
             {...{ role: columns[column].path && 'button' }}
@@ -49,7 +51,7 @@ const TableHeader: FC<TableHeaderProps> = ({
             {
               // @ts-ignore
               !(columns[column].name === 'Detail') && columns[column].path && (
-                <span className={style.arrowWrapper}>
+                <span className={style.arrow_wrapper}>
                   <img src={arrowUp} alt="arrowUp" />
                   <img src={arrowDown} alt="arrowDown" />
                 </span>
@@ -59,7 +61,7 @@ const TableHeader: FC<TableHeaderProps> = ({
         ))}
       </tr>
     </thead>
-  );
-};
+  )
+}
 
-export default TableHeader;
+export default TableHeader

@@ -1,58 +1,59 @@
-import React, { FC, PropsWithChildren, useEffect } from 'react';
+import React, { FC, PropsWithChildren, useEffect } from 'react'
 
-import cn from 'classnames';
-import { createPortal } from 'react-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import cn from 'classnames'
+import { createPortal } from 'react-dom'
 
-import style from './Modal.module.css';
+import style from './Modal.module.css'
 
 interface ModalProps {
-  active: boolean;
-  close?: (val: boolean) => void;
-  classNameModal?: string;
+  active: boolean
+  close?: (val: boolean) => void
+  classNameModal?: string
 }
 const Modal: FC<PropsWithChildren<ModalProps>> = ({
   active,
   children,
   close,
-  classNameModal,
-}) => {
+  classNameModal
+}): JSX.Element => {
   useEffect(() => {
-    const target = document.body;
+    const target = document.body
 
-    const oldWidth = target.offsetWidth;
+    const oldWidth = target.offsetWidth
 
-    target.style.overflow = 'hidden';
-    target.style.width = `${oldWidth}px`;
+    target.style.overflow = 'hidden'
+    target.style.width = `${oldWidth}px`
 
-    return () => target.removeAttribute('style');
-  }, []);
+    return () => target.removeAttribute('style')
+  }, [])
 
   return createPortal(
     <div
       role="presentation"
       className={cn(style.modal, { [style.modal_active]: active })}
       onClick={() => {
-        close?.(false);
+        close?.(false)
       }}
     >
       <div
         role="presentation"
         className={cn(
-          style.modal__content,
+          style.modal_content,
           {
-            [style.modal__content_active]: active,
+            [style.modal_content_active]: active
           },
-          classNameModal,
+          classNameModal
         )}
-        onClick={e => {
-          e.stopPropagation();
+        onClick={(e) => {
+          e.stopPropagation()
         }}
       >
         {children}
       </div>
     </div>,
-    document.body,
-  );
-};
+    document.body
+  )
+}
 
-export default Modal;
+export default Modal

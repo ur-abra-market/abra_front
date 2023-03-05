@@ -1,4 +1,4 @@
-.navBarWrapper {
+.nav_bar_wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,7 +9,7 @@
   background: #FFF;
 }
 
-.logoSection {
+.logo_section {
   font-size: 20px;
   font-weight: 700;
   font-style: normal;
@@ -18,7 +18,7 @@
   letter-spacing: 0.38px;
 }
 
-.linksSection {
+.links_section {
   display: flex;
   gap: 25px;
 }

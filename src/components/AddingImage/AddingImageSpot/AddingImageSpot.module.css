@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.wrapperWithLabel {
+.wrapper_with_label {
   display: flex;
   gap: 16px;
   align-items: center;
@@ -22,7 +22,7 @@
   opacity: 0;
 }
 
-.inputFile {
+.input_file {
   cursor: pointer;
 
   position: absolute;
@@ -35,14 +35,14 @@
   opacity: 0;
 }
 
-.iconImg {
+.icon_img {
   position: absolute;
-  top: 37.7px;
-  left: 37.7px;
-  width: 45.7px;
+  top: 38px;
+  left: 38px;
+  width: 46px;
 }
 
-.avatarImg {
+.avatar_img {
   position: absolute;
   left: 0;
 
@@ -57,7 +57,7 @@
   position: relative;
 }
 
-.photoRemove {
+.photo_remove {
   cursor: pointer;
 
   position: absolute;
@@ -70,26 +70,26 @@
   background: transparent;
 }
 
-.photoRemove img {
+.photo_remove img {
   width: 20px;
   height: 20px;
 }
 
-.photo:hover .photoRemove {
+.photo:hover .photo_remove {
   display: block;
 }
 
-.inputContainer {
+.input_container {
   position: relative;
 }
 
-.iconBackground {
+.icon_background {
   width: 120px;
   height: 120px;
   background: #F2F2F2;
 }
 
-.profileLogoWrapper {
+.profile_logo_wrapper {
   display: flex;
 }
 
@@ -102,7 +102,7 @@
   text-align: left;
 }
 
-.inputError {
+.input_error {
   position: absolute;
   font-size: 13px;
   color: #FF4040;

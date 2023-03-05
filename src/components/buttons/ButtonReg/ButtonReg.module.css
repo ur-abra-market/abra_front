@@ -1,5 +1,5 @@
-.buttonOff,
-.buttonOn {
+.button_off,
+.button_on {
   cursor: pointer;
 
   box-sizing: border-box;
@@ -13,12 +13,12 @@
   outline: none;
 }
 
-.buttonOn {
+.button_on {
   color: #FFF;
   background: #000;
 }
 
-.buttonOff {
+.button_off {
   color: #828282;
   background: #F2F2F2;
 }

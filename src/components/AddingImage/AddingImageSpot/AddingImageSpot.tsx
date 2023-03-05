@@ -1,12 +1,13 @@
-import React, { ChangeEvent, FC, useRef, useState } from 'react';
+import React, { ChangeEvent, FC, useRef, useState } from 'react'
 
-import cn from 'classnames';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import cn from 'classnames'
 
-import deleteImg from '../../../assets/img/icons/delete_Img_red.svg';
-import iconImg from '../../../assets/img/icons/photo_icon.svg';
+import deleteImg from '../../../assets/img/icons/delete_Img_red.svg'
+import iconImg from '../../../assets/img/icons/photo_icon.svg'
 
-import style from './AddingImageSpot.module.css';
-import { AddingImageSpotProps } from './AddingImageSpot.props';
+import style from './AddingImageSpot.module.css'
+import { AddingImageSpotProps } from './AddingImageSpot.props'
 
 const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
   const {
@@ -20,44 +21,44 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
     placeholder,
     className,
     ...restProps
-  } = props;
+  } = props
   // TODO поправить str 54
-  const [imgUrl, setImgUrl] = useState<string | ArrayBuffer | null>(logo || '');
+  const [imgUrl, setImgUrl] = useState<string | ArrayBuffer | null>(logo || '')
 
-  const photoPicker = useRef<HTMLInputElement | null>(null);
+  const photoPicker = useRef<HTMLInputElement | null>(null)
 
   const handlePickPhoto = (): void => {
     if (photoPicker.current !== null) {
-      photoPicker.current.click();
+      photoPicker.current.click()
     }
-  };
+  }
 
   const imgChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    const reader = new FileReader();
+    const reader = new FileReader()
 
     reader.onload = () => {
-      setImgUrl(reader?.result);
-    };
-    if (e.target.files !== null && e.target.files[0]) {
-      reader.readAsDataURL(e.target.files[0]);
-      setImages([...images, e.target.files[0]]);
+      setImgUrl(reader?.result)
     }
-  };
+    if (e.target.files !== null && e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0])
+      setImages([...images, e.target.files[0]])
+    }
+  }
 
   const onClose = (): void => {
     // e.preventDefault();
-    setImgUrl(imgUrl);
-    setImages(images.splice(images.length - 1));
-  };
+    setImgUrl(imgUrl)
+    setImages(images.splice(images.length - 1))
+  }
 
   return (
     <div
       className={cn(
         {
-          [style.wrapperWithLabel]: !!label,
-          [style.wrapper]: !label,
+          [style.wrapper_with_label]: !!label,
+          [style.wrapper]: !label
         },
-        className,
+        className
       )}
       {...restProps}
     >
@@ -79,12 +80,20 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
             id="photoImg"
             className={classes.uploadedImage}
           />
-          <button type="button" className={style.photoRemove} onClick={onClose}>
+          <button
+            type="button"
+            className={style.photo_remove}
+            onClick={onClose}
+          >
             <img src={deleteImg} alt="close" />
           </button>
         </div>
       ) : (
-        <div role="presentation" className={classes.background} onClick={handlePickPhoto}>
+        <div
+          role="presentation"
+          className={classes.background}
+          onClick={handlePickPhoto}
+        >
           <img
             src={iconImg}
             alt="icon img"
@@ -95,7 +104,7 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
       )}
 
       {label && (
-        <div className={style.labelContainer}>
+        <div className={style.label_container}>
           <label
             role="presentation"
             htmlFor="profileLogo"
@@ -108,9 +117,9 @@ const AddingImageSpot: FC<AddingImageSpotProps> = (props): JSX.Element => {
           <p className={style.placeholder}>{placeholder}</p>
         </div>
       )}
-      {error && <p className={style.inputError}>&#9888; {error}</p>}
+      {error && <p className={style.input_error}>&#9888; {error}</p>}
     </div>
-  );
-};
+  )
+}
 
-export default AddingImageSpot;
+export default AddingImageSpot
