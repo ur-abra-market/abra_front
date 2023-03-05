@@ -1,16 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
-import { ucFirst } from '../../utils/ucFirst';
+import { ucFirst } from '../../utils/ucFirst'
 
-import style from './RadioStyledElem.module.css';
+import style from './RadioStyledElem.module.css'
 
 interface RadioStyledElemProps {
-  name: string;
-  value: string;
-  choice: string;
-  register?: any;
-  setChoice: any;
-  typeId: number;
+  name: string
+  value: string
+  choice: string
+  register?: any
+  setChoice: any
+  typeId: number
 }
 const RadioStyledElem: FC<RadioStyledElemProps> = ({
   name,
@@ -18,23 +18,23 @@ const RadioStyledElem: FC<RadioStyledElemProps> = ({
   choice,
   register,
   setChoice,
-  typeId,
+  typeId
 }): JSX.Element => {
-  const colorValue = ucFirst(value);
+  const colorValue = ucFirst(value)
 
-  const valueStr = value.split(' ').join('');
+  const valueStr = value.split(' ').join('')
 
   // TODO - переделать!!!
   const onClickChoiceColorHandler = (e: any): void => {
-    setChoice(e.target.value);
-  };
+    setChoice(e.target.value)
+  }
 
   return (
-    <div className={style.colorWrapper}>
+    <div className={style.color_wrapper}>
       <input
         type="radio"
         {...register(`${typeId}-${name}`, {
-          required: true,
+          required: true
         })}
         onClick={onClickChoiceColorHandler}
         value={value}
@@ -43,15 +43,15 @@ const RadioStyledElem: FC<RadioStyledElemProps> = ({
 
       {name === 'color' && (
         <div
-          className={`${value === choice && style.borderContainer} ${
-            style.colorContainer
+          className={`${value === choice && style.border_container} ${
+            style.color_container
           }`}
         >
           <div
             style={{ background: `${valueStr}` }}
-            className={`${style.colorBlock}  `}
+            className={`${style.color_block}  `}
           />
-          <p className={style.colorValue}>{colorValue}</p>
+          <p className={style.color_value}>{colorValue}</p>
         </div>
       )}
 
@@ -59,7 +59,7 @@ const RadioStyledElem: FC<RadioStyledElemProps> = ({
                 <p className={style.growthValue}>{colorValue}</p>
             </div>} */}
     </div>
-  );
-};
+  )
+}
 
-export default RadioStyledElem;
+export default RadioStyledElem
