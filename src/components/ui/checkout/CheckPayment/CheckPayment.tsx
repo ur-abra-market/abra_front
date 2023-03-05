@@ -1,13 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 
-import { payment } from '../../../../store/reducers/modalSlice'
+import { payment } from '../../../../store/reducers/modalSlice';
 
-import style from './CheckPayment.module.css'
+import style from './CheckPayment.module.css';
 
 const CheckPayment = (): JSX.Element => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
     <div className={style.check_payment}>
@@ -19,14 +19,11 @@ const CheckPayment = (): JSX.Element => {
         </div>
       </div>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-      <div
-        className={style.check_payment_add}
-        onClick={() => dispatch(payment(true))}
-      >
+      <div className={style.check_payment_add} onClick={() => dispatch(payment(true))}>
         + Add a credit or debit card
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CheckPayment
+export default CheckPayment;

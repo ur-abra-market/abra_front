@@ -1,19 +1,19 @@
-import React from 'react'
+import React from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
-import { payment } from '../../../../store/reducers/modalSlice'
-import Check from '../../../Check'
-import TextModal from '../../../TextModal'
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { payment } from '../../../../store/reducers/modalSlice';
+import Check from '../../../Check';
+import TextModal from '../../../TextModal';
 
-import style from './PaymentPopup.module.css'
+import style from './PaymentPopup.module.css';
 
 const PaymentPopup = (): JSX.Element => {
-  const dispatch = useAppDispatch()
-  const modal = useAppSelector((state) => state.modal.isPayment)
+  const dispatch = useAppDispatch();
+  const modal = useAppSelector(state => state.modal.isPayment);
   const styles = {
     scale: modal ? '1' : '0',
-    zIndex: modal ? '20' : '0'
-  }
+    zIndex: modal ? '20' : '0',
+  };
 
   return (
     <div className={style.payment_popup} style={styles}>
@@ -30,10 +30,7 @@ const PaymentPopup = (): JSX.Element => {
         <div className={style.payment_popup_block}>
           <div className={style.payment_popup_block_title}>Card Info</div>
           <TextModal title="Card number" placeholder="Enter a card number" />
-          <TextModal
-            title="Card Holder"
-            placeholder="Enter the first and last name"
-          />
+          <TextModal title="Card Holder" placeholder="Enter the first and last name" />
           <div className={style.payment_popup_block_row2}>
             <TextModal title="Expiration date" placeholder="MM/YY" />
             <TextModal title="CVV/CSC" placeholder="Enter a 3-4 digits code" />
@@ -42,7 +39,7 @@ const PaymentPopup = (): JSX.Element => {
         <div className={style.payment_popup_button}>Confirm</div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PaymentPopup
+export default PaymentPopup;

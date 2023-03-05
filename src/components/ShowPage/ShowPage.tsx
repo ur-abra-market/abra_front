@@ -1,36 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 
-import arrowDown from '../../assets/img/icons/arrow-slide-down.svg'
-import { amount } from '../../store/reducers/paginateSlice'
+import arrowDown from '../../assets/img/icons/arrow-slide-down.svg';
+import { amount } from '../../store/reducers/paginateSlice';
 
-import style from './ShowPage.module.css'
+import style from './ShowPage.module.css';
 
 const ShowPage = (): JSX.Element => {
-  const dispatch = useDispatch()
-  const list = ['20', '40', '60', '80', '100']
-  const [option, setOption] = useState(list[0])
-  const [listSwitch, setListSwitch] = useState(false)
+  const dispatch = useDispatch();
+  const list = ['20', '40', '60', '80', '100'];
+  const [option, setOption] = useState(list[0]);
+  const [listSwitch, setListSwitch] = useState(false);
   const styleList = {
-    height: listSwitch ? 'fit-content' : '0px'
-  }
+    height: listSwitch ? 'fit-content' : '0px',
+  };
 
   const switchList = (e: any): void => {
-    e.preventDefault()
-    const nameClass = e.relatedTarget.className
+    e.preventDefault();
+    const nameClass = e.relatedTarget.className;
 
     // TODO !!!!!
     if (!nameClass.includes('ShowPage')) {
       setTimeout(() => {
-        setListSwitch(false)
-      }, 100)
+        setListSwitch(false);
+      }, 100);
     }
-  }
+  };
 
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-    <div className={style.show_page} onMouseOut={(e) => switchList(e)}>
+    <div className={style.show_page} onMouseOut={e => switchList(e)}>
       <div className={style.show_page_select}>
         <div className={style.show_page_text}>{`Show by ${option}`}</div>
         <div
@@ -42,15 +42,15 @@ const ShowPage = (): JSX.Element => {
         </div>
       </div>
       <ul className={style.show_page_list} style={styleList}>
-        {list.map((e) => (
+        {list.map(e => (
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
           <li
             className={style.show_page_list_item}
             key={`option_${e}`}
             onClick={() => {
-              setOption(e)
-              setListSwitch(!listSwitch)
-              dispatch(amount(+e))
+              setOption(e);
+              setListSwitch(!listSwitch);
+              dispatch(amount(+e));
             }}
           >
             {e}
@@ -58,7 +58,7 @@ const ShowPage = (): JSX.Element => {
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default ShowPage
+export default ShowPage;

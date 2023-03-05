@@ -1,18 +1,18 @@
-import React, { ChangeEvent, FC } from 'react'
+import React, { ChangeEvent, FC } from 'react';
 
-import iconImg from '../../assets/img/icons/icon-img.png'
+import iconImg from '../../assets/img/icons/icon-img.png';
 
-import style from './ImageAdding.module.css'
+import style from './ImageAdding.module.css';
 
 interface ImageAddingProps {
-  label?: string
-  placeholder?: string
-  error?: string
-  imgUrl?: string
-  setImgUrl?: any
-  images?: any[]
-  setImages?: any
-  register?: any
+  label?: string;
+  placeholder?: string;
+  error?: string;
+  imgUrl?: string;
+  setImgUrl?: any;
+  images?: any[];
+  setImages?: any;
+  register?: any;
 }
 const ImageAdding: FC<ImageAddingProps> = ({
   label,
@@ -22,23 +22,23 @@ const ImageAdding: FC<ImageAddingProps> = ({
   imgUrl,
   setImgUrl,
   images,
-  setImages
+  setImages,
 }): JSX.Element => {
   const imgChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    const reader = new FileReader()
+    const reader = new FileReader();
 
     reader.onload = () => {
-      setImgUrl(reader?.result)
-    }
+      setImgUrl(reader?.result);
+    };
 
-    if (!e.target.files) return
+    if (!e.target.files) return;
 
     // TODO - заглущка проверка на images
     if (e.target.files[0] && images) {
-      reader.readAsDataURL(e.target.files[0])
-      setImages([...images, e.target.files[0]])
+      reader.readAsDataURL(e.target.files[0]);
+      setImages([...images, e.target.files[0]]);
     }
-  }
+  };
 
   return (
     <div className={style.profile_logo_wrapper}>
@@ -86,7 +86,7 @@ const ImageAdding: FC<ImageAddingProps> = ({
 
       {error && <p className={style.input_error}>&#9888; {error}</p>}
     </div>
-  )
-}
+  );
+};
 
-export default ImageAdding
+export default ImageAdding;

@@ -1,39 +1,33 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState } from 'react';
 
-import nonePng from '../../assets/img/icons/none.png'
-import Flag from '../Flag'
+import nonePng from '../../assets/img/icons/none.png';
+import Flag from '../Flag';
 
-import style from './ImgSlider.module.css'
+import style from './ImgSlider.module.css';
 
 interface ImgSliderProps {
-  srcArr: any[]
+  srcArr: any[];
 }
 const ImgSlider: FC<ImgSliderProps> = ({ srcArr }): JSX.Element => {
   // const photos = ['./assets/image/products/1.png', './assets/image/products/2.png', './assets/image/products/3.png', './assets/image/products/4.png']
   // const arrPhoto = [...photos.slice(-1), ...photos, photos[0]];
-  const [slide, setSlide] = useState(0)
-  const pos = 0 - slide * 100
+  const [slide, setSlide] = useState(0);
+  const pos = 0 - slide * 100;
   const images = (): JSX.Element => {
     if (!Array.isArray(srcArr)) {
       return (
-        <div
-          className={style.img_slider_window_list}
-          style={{ marginLeft: '0%' }}
-        >
+        <div className={style.img_slider_window_list} style={{ marginLeft: '0%' }}>
           <img
             className={style.img_slider_window_list_img}
             src={srcArr || nonePng}
             alt="img"
           />
         </div>
-      )
+      );
     }
 
     return (
-      <div
-        className={style.img_slider_window_list}
-        style={{ marginLeft: `${pos}%` }}
-      >
+      <div className={style.img_slider_window_list} style={{ marginLeft: `${pos}%` }}>
         {srcArr.map((src, i) => (
           <img
             className={style.img_slider_window_list_img}
@@ -43,8 +37,8 @@ const ImgSlider: FC<ImgSliderProps> = ({ srcArr }): JSX.Element => {
           />
         ))}
       </div>
-    )
-  }
+    );
+  };
   const control = (): JSX.Element => {
     if (Array.isArray(srcArr) && srcArr.length > 1) {
       return (
@@ -59,11 +53,11 @@ const ImgSlider: FC<ImgSliderProps> = ({ srcArr }): JSX.Element => {
             />
           ))}
         </div>
-      )
+      );
     }
 
-    return <div className={style.img_slider_control} />
-  }
+    return <div className={style.img_slider_control} />;
+  };
 
   return (
     <div className={style.img_slider}>
@@ -73,7 +67,7 @@ const ImgSlider: FC<ImgSliderProps> = ({ srcArr }): JSX.Element => {
       </div>
       {control()}
     </div>
-  )
-}
+  );
+};
 
-export default ImgSlider
+export default ImgSlider;

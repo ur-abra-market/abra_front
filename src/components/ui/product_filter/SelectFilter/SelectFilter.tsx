@@ -1,92 +1,86 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react';
 
-import arrowDown from '../../../../assets/img/icons/arrow-down.png'
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
-import {
-  ascending,
-  category,
-  sort
-} from '../../../../store/reducers/filterSlice'
+import arrowDown from '../../../../assets/img/icons/arrow-down.png';
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { ascending, category, sort } from '../../../../store/reducers/filterSlice';
 
-import style from './SelectFilter.module.css'
+import style from './SelectFilter.module.css';
 
 interface SelectFilterProps {
-  typeSelect: any
+  typeSelect: any;
 }
 const SelectFilter: FC<SelectFilterProps> = ({ typeSelect }): JSX.Element => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const listSort = [
     'Sort By Rating (From High to Low)',
     'Sort By Rating (From Low to High)',
     'Sort By Price (From High to Low)',
-    'Sort By Price (From Low to High)'
-  ]
-  const typeSort = ['rating', 'rating', 'price', 'price']
+    'Sort By Price (From Low to High)',
+  ];
+  const typeSort = ['rating', 'rating', 'price', 'price'];
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const listCategory = ['All Categories', 'Clothes and Accessories']
-  const typeCategory = ['', '1']
+  const listCategory = ['All Categories', 'Clothes and Accessories'];
+  const typeCategory = ['', '1'];
 
-  const [listSwitch, setListSwitch] = useState(false)
-  const [list, setList] = useState<any[]>([])
+  const [listSwitch, setListSwitch] = useState(false);
+  const [list, setList] = useState<any[]>([]);
 
-  const choiceSort = useAppSelector((state) => state.filter.sort_type)
-  const choiceCategory = useAppSelector((state) => state.filter.category)
-  const choiceAscending = useAppSelector((state) => state.filter.ascending)
+  const choiceSort = useAppSelector(state => state.filter.sort_type);
+  const choiceCategory = useAppSelector(state => state.filter.category);
+  const choiceAscending = useAppSelector(state => state.filter.ascending);
 
   useEffect(() => {
-    if (typeSelect === 'sort') setList(listSort)
+    if (typeSelect === 'sort') setList(listSort);
 
-    if (typeSelect === 'category') setList(listCategory)
-  }, [listSort, listCategory, typeSelect])
+    if (typeSelect === 'category') setList(listCategory);
+  }, [listSort, listCategory, typeSelect]);
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const option = () => {
     if (typeSelect === 'sort') {
-      if (choiceSort === 'rating')
-        return !choiceAscending ? listSort[0] : listSort[1]
+      if (choiceSort === 'rating') return !choiceAscending ? listSort[0] : listSort[1];
 
-      if (choiceSort === 'price')
-        return !choiceAscending ? listSort[2] : listSort[3]
+      if (choiceSort === 'price') return !choiceAscending ? listSort[2] : listSort[3];
     }
     if (typeSelect === 'category') {
-      const index = typeCategory.findIndex((e) => e === choiceCategory)
+      const index = typeCategory.findIndex(e => e === choiceCategory);
 
-      return index < 0 ? listCategory[0] : listCategory[index]
+      return index < 0 ? listCategory[0] : listCategory[index];
     }
-    setListSwitch(false)
-  }
+    setListSwitch(false);
+  };
 
-  const basic = option()?.split(/[()]/)[0]
-  const remains = option()?.split(/[()]/)[1]
+  const basic = option()?.split(/[()]/)[0];
+  const remains = option()?.split(/[()]/)[1];
 
   const styleList = {
-    height: listSwitch ? 'fit-content' : '0px'
-  }
+    height: listSwitch ? 'fit-content' : '0px',
+  };
 
   const switchList = (e: any): void => {
-    e.preventDefault()
-    const nameClass = e.relatedTarget.className
+    e.preventDefault();
+    const nameClass = e.relatedTarget.className;
 
     if (!nameClass.includes('SelectFilter')) {
       setTimeout(() => {
-        setListSwitch(false)
-      }, 100)
+        setListSwitch(false);
+      }, 100);
     }
-  }
+  };
 
   const handlerOption = (value: any, index: number): void => {
-    if (listSort.includes(value)) dispatch(sort(typeSort[index]))
-    if (listCategory.includes(value)) dispatch(category(typeCategory[index]))
-    if (remains === 'From High to Low') dispatch(ascending(true))
-    if (remains === 'From Low to High') dispatch(ascending(false))
-  }
+    if (listSort.includes(value)) dispatch(sort(typeSort[index]));
+    if (listCategory.includes(value)) dispatch(category(typeCategory[index]));
+    if (remains === 'From High to Low') dispatch(ascending(true));
+    if (remains === 'From Low to High') dispatch(ascending(false));
+  };
 
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-    <div className={style.select_filter} onMouseOut={(e) => switchList(e)}>
+    <div className={style.select_filter} onMouseOut={e => switchList(e)}>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
       <div
         className={style.select_filter_select}
@@ -115,7 +109,7 @@ const SelectFilter: FC<SelectFilterProps> = ({ typeSelect }): JSX.Element => {
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default SelectFilter
+export default SelectFilter;

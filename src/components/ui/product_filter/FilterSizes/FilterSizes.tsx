@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import style from './FilterSizes.module.css'
+import style from './FilterSizes.module.css';
 
 const FilterSizes = (): JSX.Element => {
-  const sizeList = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'XXXXL']
-  const sizeCheck = sizeList.map(() => false)
+  const sizeList = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'XXXXL'];
+  const sizeCheck = sizeList.map(() => false);
 
-  const [check, setCheck] = useState(sizeCheck)
+  const [check, setCheck] = useState(sizeCheck);
 
   const changeState = (index: number): void => {
-    const arrCheck = check.map((e, i) => (i === index ? !e : e))
+    const arrCheck = check.map((e, i) => (i === index ? !e : e));
 
-    setCheck(arrCheck)
-  }
+    setCheck(arrCheck);
+  };
 
   return (
     <div className={style.filter_sizes}>
@@ -24,7 +24,7 @@ const FilterSizes = (): JSX.Element => {
             className={style.filter_sizes_list_item}
             style={{
               background: check[i] ? '#000000' : '#ffffff',
-              color: check[i] ? '#ffffff' : '#000000'
+              color: check[i] ? '#ffffff' : '#000000',
             }}
             onClick={() => changeState(i)}
             key={`size_${s}`}
@@ -34,7 +34,7 @@ const FilterSizes = (): JSX.Element => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FilterSizes
+export default FilterSizes;

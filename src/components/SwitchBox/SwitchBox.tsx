@@ -1,41 +1,41 @@
-import React, { useState, useEffect, FC } from 'react'
+import React, { useState, useEffect, FC } from 'react';
 
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 
-import { discount } from '../../store/reducers/filterSlice'
+import { discount } from '../../store/reducers/filterSlice';
 
-import style from './SwitchBox.module.css'
+import style from './SwitchBox.module.css';
 
 interface SwitchBoxProps {
-  label: string
+  label: string;
 }
 const SwitchBox: FC<SwitchBoxProps> = ({ label }): JSX.Element => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const [check, setCheck] = useState(false)
-  const [background, setBackground] = useState('#e0e0e0')
-  const [justifyContent, setJustifyContent] = useState('flex-start')
+  const [check, setCheck] = useState(false);
+  const [background, setBackground] = useState('#e0e0e0');
+  const [justifyContent, setJustifyContent] = useState('flex-start');
 
   useEffect(() => {
     if (!check) {
-      setBackground('#e0e0e0')
-      setJustifyContent('flex-start')
+      setBackground('#e0e0e0');
+      setJustifyContent('flex-start');
     } else {
-      setBackground('#000000')
-      setJustifyContent('end')
+      setBackground('#000000');
+      setJustifyContent('end');
     }
-  }, [check])
+  }, [check]);
 
   const handlerSwitch = (): void => {
-    setCheck(!check)
+    setCheck(!check);
     switch (label) {
       case 'Only discounted items':
-        dispatch(discount(!check))
-        break
+        dispatch(discount(!check));
+        break;
       default:
-        break
+        break;
     }
-  }
+  };
 
   return (
     <div className={style.switch_box}>
@@ -49,7 +49,7 @@ const SwitchBox: FC<SwitchBoxProps> = ({ label }): JSX.Element => {
         <div className={style.switch_box_box_btn} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SwitchBox
+export default SwitchBox;

@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import style from './FooterForSupplierPart.module.css'
+import style from './FooterForSupplierPart.module.css';
 
 const Footer = (): JSX.Element => {
   return (
@@ -26,7 +26,7 @@ const Footer = (): JSX.Element => {
       </div>
       <div className={style.footer_copyright}>© Copyright 2022</div>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

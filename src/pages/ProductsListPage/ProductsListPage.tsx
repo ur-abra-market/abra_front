@@ -1,68 +1,65 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react';
 
-import _ from 'lodash'
-import { useNavigate } from 'react-router-dom'
+import _ from 'lodash';
+import { useNavigate } from 'react-router-dom';
 
-import { Checkbox, Input, Search, Select } from '../../components/ui-kit'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { Checkbox, Input, Search, Select } from '../../components/ui-kit';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
-import addImg from 'assets/img/icons/addImg.png'
-import editIcon from 'assets/img/icons/additIcon.png'
-import deleteImg from 'assets/img/icons/deleteImg.png'
-import star from 'assets/img/icons/Star 1.png'
-import { ReactComponent as TableLayout } from 'assets/img/icons/tableLayout.svg'
-import { ReactComponent as TileLayout } from 'assets/img/icons/tileLayout.svg'
-import { ReactComponent as VectorUp } from 'assets/img/icons/Vector.svg'
-import { ReactComponent as VectorDown } from 'assets/img/icons/VectorDown.svg'
-import viewIcon from 'assets/img/icons/viewIcon.png'
-import FiltersList from 'components/FiltersList'
-import Loader from 'components/Loader'
-import Modal from 'components/new-components/Modal'
-import ShowPage from 'components/ShowPage'
-import Table from 'components/table'
-import Pagination from 'components/ui/Pagination'
-import { tableStyleClasses } from 'pages/ProductsListPage/constantsOfClassesStyles'
-import style from 'pages/ProductsListPage/ProductsListPage.module.css'
+import addImg from 'assets/img/icons/addImg.png';
+import editIcon from 'assets/img/icons/additIcon.png';
+import deleteImg from 'assets/img/icons/deleteImg.png';
+import star from 'assets/img/icons/Star 1.png';
+import { ReactComponent as TableLayout } from 'assets/img/icons/tableLayout.svg';
+import { ReactComponent as TileLayout } from 'assets/img/icons/tileLayout.svg';
+import { ReactComponent as VectorUp } from 'assets/img/icons/Vector.svg';
+import { ReactComponent as VectorDown } from 'assets/img/icons/VectorDown.svg';
+import viewIcon from 'assets/img/icons/viewIcon.png';
+import FiltersList from 'components/FiltersList';
+import Loader from 'components/Loader';
+import Modal from 'components/new-components/Modal';
+import ShowPage from 'components/ShowPage';
+import Table from 'components/table';
+import Pagination from 'components/ui/Pagination';
+import { tableStyleClasses } from 'pages/ProductsListPage/constantsOfClassesStyles';
+import style from 'pages/ProductsListPage/ProductsListPage.module.css';
 import {
   deleteProducts,
-  manageProductsService
-} from 'store/reducers/manageProductsSlice'
-import { paginate } from 'utils/paginate'
+  manageProductsService,
+} from 'store/reducers/manageProductsSlice';
+import { paginate } from 'utils/paginate';
 
 const ProductsListPage: FC = (): JSX.Element => {
-  const navigate = useNavigate()
-  const activePage = useAppSelector((state) => state.paginate.page_num)
-  const amountPages = useAppSelector((state) => state.paginate.amountPages)
-  const pageSize = useAppSelector((state) => state.paginate.page_size)
+  const navigate = useNavigate();
+  const activePage = useAppSelector(state => state.paginate.page_num);
+  const amountPages = useAppSelector(state => state.paginate.amountPages);
+  const pageSize = useAppSelector(state => state.paginate.page_size);
 
-  const [selectedProductsStatus, setSelectedProductsStatus] =
-    useState('All Products')
+  const [selectedProductsStatus, setSelectedProductsStatus] = useState('All Products');
   const [sortBy, setSortBy] = useState({
     path: 'is_active',
-    direction: 'desc'
-  } as const)
-  const [layout, setLayout] = useState('tableLayout')
-  const [restFilters, setRestFilters] = useState(false)
-  const [modalActive, setModalActive] = useState(false)
+    direction: 'desc',
+  } as const);
+  const [layout, setLayout] = useState('tableLayout');
+  const [restFilters, setRestFilters] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
   // const [checked, setChecked] = useState(false);
-  const dispatch = useAppDispatch()
-  const { isLoading, products } = useAppSelector(
-    (state) => state.manageProducts
-  )
+  const dispatch = useAppDispatch();
+  const { isLoading, products } = useAppSelector(state => state.manageProducts);
 
   useEffect(() => {
-    dispatch(manageProductsService())
-  }, [dispatch])
+    dispatch(manageProductsService());
+  }, [dispatch]);
 
   const handleChangeModalActive = (): void => {
-    setModalActive(!modalActive)
-  }
+    setModalActive(!modalActive);
+  };
 
-  const handleSwitchMainCheckbox = (): void => {}
+  const handleSwitchMainCheckbox = (): void => {};
 
   const columns = {
     check: {
-      name: <input type="checkbox" onClick={handleSwitchMainCheckbox} />
+      name: <input type="checkbox" onClick={handleSwitchMainCheckbox} />,
       // component: (product: any) => (
       //   <input
       //     type="checkbox"
@@ -79,74 +76,63 @@ const ProductsListPage: FC = (): JSX.Element => {
     status: { path: 'with_discount', name: 'Status' },
     price: { path: 'price', name: 'Price' },
     balaceUnits: { path: 'balance', name: 'Balace, units' },
-    visibility: { path: 'is_active', name: 'Visibility' }
-  }
+    visibility: { path: 'is_active', name: 'Visibility' },
+  };
 
   function getCheckedCheckboxes(): void {
-    const checkedCheckbox = document.querySelectorAll('input.checkbox:checked')
-    const selectedItems = []
+    const checkedCheckbox = document.querySelectorAll('input.checkbox:checked');
+    const selectedItems = [];
 
     for (let index = 0; index < checkedCheckbox.length; index += 1)
-      selectedItems.push(checkedCheckbox[index].id)
+      selectedItems.push(checkedCheckbox[index].id);
 
-    getDeletedItems(selectedItems)
-    handleChangeModalActive()
+    getDeletedItems(selectedItems);
+    handleChangeModalActive();
   }
 
   const getDeletedItems = (items: any): void => {
-    dispatch(deleteProducts(items))
-  }
+    dispatch(deleteProducts(items));
+  };
 
   const handleRestFiltersSet = (): void => {
-    setRestFilters(!restFilters)
-  }
+    setRestFilters(!restFilters);
+  };
 
   const handleLayoutSet = (): void => {
-    setLayout((prevState) =>
-      prevState === 'tableLayout' ? 'tileLayout' : 'tableLayout'
-    )
-  }
+    setLayout(prevState => (prevState === 'tableLayout' ? 'tileLayout' : 'tableLayout'));
+  };
   const filters = {
     'All Products': 'All Products',
     'On-sale': '1',
-    'Off-sale': '0'
-  }
+    'Off-sale': '0',
+  };
   const handleProductsStatusSelect = (value: any): void => {
-    let fieldValue = value
+    let fieldValue = value;
 
-    if (value === 'Off-sale') fieldValue = '0'
-    if (value === 'On-sale') fieldValue = '1'
-    setSelectedProductsStatus(fieldValue)
-  }
+    if (value === 'Off-sale') fieldValue = '0';
+    if (value === 'On-sale') fieldValue = '1';
+    setSelectedProductsStatus(fieldValue);
+  };
 
   const handleSort = (item: any): void => {
-    setSortBy(item)
-  }
+    setSortBy(item);
+  };
 
-  if (isLoading) return <Loader />
+  if (isLoading) return <Loader />;
 
-  const prod = products || []
+  const prod = products || [];
   const filteredProducts =
     selectedProductsStatus === 'All Products'
       ? [...prod].sort((prev, next) => prev.is_active - next.is_active)
-      : prod.filter(
-          (order) => order.with_discount.toString() === selectedProductsStatus
-        )
-  const sortedProducts = _.orderBy(
-    filteredProducts,
-    [sortBy.path],
-    [sortBy.direction]
-  )
-  const orderCrop = paginate(sortedProducts, activePage, pageSize)
+      : prod.filter(order => order.with_discount.toString() === selectedProductsStatus);
+  const sortedProducts = _.orderBy(filteredProducts, [sortBy.path], [sortBy.direction]);
+  const orderCrop = paginate(sortedProducts, activePage, pageSize);
 
   return (
     <>
       <div className={style.search_and_layout}>
         <div className={style.search_with_rest_filters}>
-          <Search
-            placeholder="Search by Name or SKU"
-            className={style.search}
-          />
+          <Search placeholder="Search by Name or SKU" className={style.search} />
           <span
             role="presentation"
             className={style.rest_filters}
@@ -158,10 +144,7 @@ const ProductsListPage: FC = (): JSX.Element => {
             <VectorDown onClick={handleRestFiltersSet} />
           ) : (
             <>
-              <VectorUp
-                onClick={handleRestFiltersSet}
-                className={style.vector_up}
-              />
+              <VectorUp onClick={handleRestFiltersSet} className={style.vector_up} />
               <div className={style.reset_link}>Reset Filters</div>
             </>
           )}
@@ -236,7 +219,7 @@ const ProductsListPage: FC = (): JSX.Element => {
                   role="presentation"
                   className={style.subtitle}
                   onClick={() => {
-                    navigate('../add-product')
+                    navigate('../add-product');
                   }}
                 >
                   Add a new product
@@ -279,7 +262,7 @@ const ProductsListPage: FC = (): JSX.Element => {
         </div>
       ) : (
         <div className={style.cards_wrapper}>
-          {products?.map((item) => (
+          {products?.map(item => (
             <div className={style.product_card} key={item.id}>
               {/* <img src={item.picture} alt='product img'></img> */}
               <div className={style.picture} />
@@ -304,9 +287,7 @@ const ProductsListPage: FC = (): JSX.Element => {
                   <img src={star} alt="star" />
                   <img src={star} alt="star" />
                 </div>
-                <div className={style.product_creation_date}>
-                  {item.creationDate}
-                </div>
+                <div className={style.product_creation_date}>{item.creationDate}</div>
               </div>
             </div>
           ))}
@@ -316,7 +297,7 @@ const ProductsListPage: FC = (): JSX.Element => {
         <Pagination activePage={activePage} amountPages={amountPages} />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ProductsListPage
+export default ProductsListPage;

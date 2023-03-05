@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import { useAppSelector } from '../../../store/hooks'
+import { useAppSelector } from '../../../store/hooks';
 
-import Stars from 'components/Stars'
-import { getPercentagesOfTotalCountReview } from 'pages/ProductPage/helpers/getPercentagesOfTotalCountReview'
-import style from 'pages/ProductPage/ProductReview/ProductReview.module.css'
+import Stars from 'components/Stars';
+import { getPercentagesOfTotalCountReview } from 'pages/ProductPage/helpers/getPercentagesOfTotalCountReview';
+import style from 'pages/ProductPage/ProductReview/ProductReview.module.css';
 
 const ProductReview = (): JSX.Element => {
-  const { gradesData } = useAppSelector((state) => state.targetProduct)
+  const { gradesData } = useAppSelector(state => state.targetProduct);
 
   return (
     <section>
@@ -24,9 +24,7 @@ const ProductReview = (): JSX.Element => {
           <div className={style.grade}>
             <div className={style.stars_block}>
               {/* // @ts-ignore */}
-              <Stars
-                reward={parseFloat(String(gradesData?.grade_average)) || 0}
-              />
+              <Stars reward={parseFloat(String(gradesData?.grade_average)) || 0} />
               <span>
                 {`${gradesData?.grade?.grade_average} / ${gradesData?.grade?.count} reviews`}
               </span>
@@ -41,14 +39,14 @@ const ProductReview = (): JSX.Element => {
                       style={{
                         width: getPercentagesOfTotalCountReview({
                           totalCount: gradesData?.grade?.count,
-                          itemCount: count
-                        })
+                          itemCount: count,
+                        }),
                       }}
                     />
                   </span>
                   <span>{count}</span>
                 </div>
-              )
+              );
             })}
           </div>
         )}
@@ -59,7 +57,7 @@ const ProductReview = (): JSX.Element => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ProductReview
+export default ProductReview;

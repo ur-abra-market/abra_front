@@ -1,53 +1,53 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState } from 'react';
 
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
 
-import arrowDown from '../../assets/img/icons/select-down-arrow.svg'
-import { category, sort } from '../../store/reducers/filterSlice'
+import arrowDown from '../../assets/img/icons/select-down-arrow.svg';
+import { category, sort } from '../../store/reducers/filterSlice';
 
-import style from './SelectForAddres.module.css'
+import style from './SelectForAddres.module.css';
 
 interface SelectForAddressProps {
-  list: any[]
+  list: any[];
 }
 const SelectForAddress: FC<SelectForAddressProps> = ({ list }): JSX.Element => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const listPhone = ['+7', '+90']
-  const typeSort = ['rating', 'price_high_to_low)', 'price_low_to_high)']
+  const listPhone = ['+7', '+90'];
+  const typeSort = ['rating', 'price_high_to_low)', 'price_low_to_high)'];
 
-  const listCountry = ['Select a country', 'Russia', 'Turkey']
-  const typeCategory = ['all', 'clothes']
+  const listCountry = ['Select a country', 'Russia', 'Turkey'];
+  const typeCategory = ['all', 'clothes'];
 
-  const [option, setOption] = useState(list[0])
-  const [listSwitch, setListSwitch] = useState(false)
+  const [option, setOption] = useState(list[0]);
+  const [listSwitch, setListSwitch] = useState(false);
   const styleList = {
     height: listSwitch ? 'fit-content' : '0px',
-    width: list[0] === '+7' ? '166px' : '318px'
-  }
+    width: list[0] === '+7' ? '166px' : '318px',
+  };
 
   // TODO - исправить - нрязь только через useEffect
   const switchList = (e: any): void => {
-    e.preventDefault()
-    const nameClass = e.relatedTarget.className
+    e.preventDefault();
+    const nameClass = e.relatedTarget.className;
 
     if (!nameClass.includes('Select')) {
       setTimeout(() => {
-        setListSwitch(false)
-      }, 100)
+        setListSwitch(false);
+      }, 100);
     }
-  }
+  };
 
   const handlerOption = (value: any, index: number): void => {
-    setOption(value)
-    setListSwitch(!listSwitch)
-    if (listPhone.includes(value)) dispatch(sort(typeSort[index]))
-    if (listCountry.includes(value)) dispatch(category(typeCategory[index]))
-  }
+    setOption(value);
+    setListSwitch(!listSwitch);
+    if (listPhone.includes(value)) dispatch(sort(typeSort[index]));
+    if (listCountry.includes(value)) dispatch(category(typeCategory[index]));
+  };
 
   return (
     // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-    <div className={style.select} onMouseOut={(e) => switchList(e)}>
+    <div className={style.select} onMouseOut={e => switchList(e)}>
       <div
         role="presentation"
         className={style.select_select}
@@ -56,7 +56,7 @@ const SelectForAddress: FC<SelectForAddressProps> = ({ list }): JSX.Element => {
         <div
           className={style.select_text}
           style={{
-            color: option === 'Select a country' ? '#828282' : '#000000'
+            color: option === 'Select a country' ? '#828282' : '#000000',
           }}
         >
           {option}
@@ -78,7 +78,7 @@ const SelectForAddress: FC<SelectForAddressProps> = ({ list }): JSX.Element => {
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default SelectForAddress
+export default SelectForAddress;

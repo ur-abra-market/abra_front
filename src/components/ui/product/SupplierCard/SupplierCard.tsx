@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import style from './SupplierCard.module.css'
+import style from './SupplierCard.module.css';
 
 interface SupplierCardProps {
-  supplier: any
+  supplier: any;
 }
 const SupplierCard: FC<SupplierCardProps> = ({ supplier }): JSX.Element => {
   return (
@@ -17,7 +17,7 @@ const SupplierCard: FC<SupplierCardProps> = ({ supplier }): JSX.Element => {
       </div>
       <div className={style.supplier_card_arrow} />
     </div>
-  )
-}
+  );
+};
 
-export default SupplierCard
+export default SupplierCard;

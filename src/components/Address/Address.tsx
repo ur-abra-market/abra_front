@@ -1,15 +1,15 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import style from './Address.module.css'
+import style from './Address.module.css';
 
 interface AddressProps {
-  address: any
+  address: any;
 }
 const Address: FC<AddressProps> = ({ address }): JSX.Element => {
   const styles = {
     background: address.isMain ? '#f2f2f2' : '#ffffff',
-    border: address.isMain ? '2px #000000 solid' : '2px #d6d6d6 solid'
-  }
+    border: address.isMain ? '2px #000000 solid' : '2px #d6d6d6 solid',
+  };
   const arrAddress = [
     address.street,
     address.apartment,
@@ -17,9 +17,9 @@ const Address: FC<AddressProps> = ({ address }): JSX.Element => {
     address.region,
     address.state,
     address.country,
-    address.zipcode
-  ]
-  const arrFilter = arrAddress.filter((e) => e !== '')
+    address.zipcode,
+  ];
+  const arrFilter = arrAddress.filter(e => e !== '');
 
   return (
     <div className={style.address} style={styles}>
@@ -38,7 +38,7 @@ const Address: FC<AddressProps> = ({ address }): JSX.Element => {
         <div className={style.address_main_mark} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Address
+export default Address;

@@ -1,9 +1,9 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import style from './CartOrder.module.css'
+import style from './CartOrder.module.css';
 
 interface CartOrderProps {
-  info: any
+  info: any;
 }
 const CartOrder: FC<CartOrderProps> = ({ info }): JSX.Element => {
   return (
@@ -32,11 +32,10 @@ const CartOrder: FC<CartOrderProps> = ({ info }): JSX.Element => {
         Checkout
       </button>
       <p className={style.cart_order_text_info}>
-        Make sure that the quantity of goods and the selected characteristics
-        are correct.
+        Make sure that the quantity of goods and the selected characteristics are correct.
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default CartOrder
+export default CartOrder;

@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-import { useRouteError } from 'react-router-dom'
+import { useRouteError } from 'react-router-dom';
 
-import styles from './ErrorPage.module.css'
+import styles from './ErrorPage.module.css';
 
 export const ErrorPage = (): JSX.Element => {
-  const error = useRouteError()
+  const error = useRouteError();
 
   return (
     <div id="error-page" className={styles.error_page}>
@@ -16,7 +16,7 @@ export const ErrorPage = (): JSX.Element => {
         <i>{error?.statusText || error?.message}</i>
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default ErrorPage
+export default ErrorPage;

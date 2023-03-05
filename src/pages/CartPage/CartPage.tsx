@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import CartList from '../../components/ui/TypesView/cart/CartList/CartList'
-import CartOrder from '../../components/ui/TypesView/cart/CartOrder/CartOrder'
-import Footer from '../../layouts/Footer'
-import Header from '../../layouts/Header'
+import CartList from '../../components/ui/TypesView/cart/CartList/CartList';
+import CartOrder from '../../components/ui/TypesView/cart/CartOrder/CartOrder';
+import Footer from '../../layouts/Footer';
+import Header from '../../layouts/Header';
 
-import style from './CartPage.module.css'
+import style from './CartPage.module.css';
 
 const CartPage = (): JSX.Element => {
   const [cartItems] = useState([
@@ -24,9 +24,9 @@ const CartPage = (): JSX.Element => {
           size: 'S',
           minQuantity: 100,
           quantity: 100,
-          price: 780
-        }
-      ]
+          price: 780,
+        },
+      ],
     },
     {
       id: 14,
@@ -43,7 +43,7 @@ const CartPage = (): JSX.Element => {
           size: 'S',
           minQuantity: 100,
           quantity: 100,
-          price: 650
+          price: 650,
         },
         {
           id: 333,
@@ -53,17 +53,17 @@ const CartPage = (): JSX.Element => {
           size: 'S',
           minQuantity: 100,
           quantity: 100,
-          price: 950
-        }
-      ]
-    }
-  ])
+          price: 950,
+        },
+      ],
+    },
+  ]);
   const [orderInfo] = useState({
     items: 600,
     goodsCost: 1560,
     shipping: 440,
-    totalCost: 2000
-  })
+    totalCost: 2000,
+  });
 
   return (
     <>
@@ -74,7 +74,7 @@ const CartPage = (): JSX.Element => {
       </div>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default CartPage
+export default CartPage;

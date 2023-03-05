@@ -1,22 +1,22 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 
-import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 // import deleteImg from '../../assets/img/icons/delete_Img_red.svg';
-import AddingImageSpot from '../../components/AddingImage/AddingImageSpot/AddingImageSpot'
-import { InfoBtn } from '../../components/buttons'
-import Checkbox from '../../components/Checkbox'
-import ImmutableTextFieldWithChangeButton from '../../components/ImmutableTextFieldWithChangeButton/ImmutableTextFieldWithChangeButton'
-import Loader from '../../components/Loader'
-import PhoneNumFieldWithoutCountryCode from '../../components/PhoneNumFieldWithoutCountryCode'
-import SelectLabelAbove from '../../components/SelectLabelAbove'
-import TextField from '../../components/TextField'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import AddingImageSpot from '../../components/AddingImage/AddingImageSpot/AddingImageSpot';
+import { InfoBtn } from '../../components/buttons';
+import Checkbox from '../../components/Checkbox';
+import ImmutableTextFieldWithChangeButton from '../../components/ImmutableTextFieldWithChangeButton/ImmutableTextFieldWithChangeButton';
+import Loader from '../../components/Loader';
+import PhoneNumFieldWithoutCountryCode from '../../components/PhoneNumFieldWithoutCountryCode';
+import SelectLabelAbove from '../../components/SelectLabelAbove';
+import TextField from '../../components/TextField';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
   getSupplierNotifications,
-  postSupplierNotifications
-} from '../../store/reducers/supplierAccountSlice'
+  postSupplierNotifications,
+} from '../../store/reducers/supplierAccountSlice';
 
 import {
   accountDetails__textFieldClasses,
@@ -24,22 +24,22 @@ import {
   classesOfLogoImage,
   inputPhoneClasses,
   notificationCheckboxClasses,
-  textFieldClasses
-} from './constantsOfClassesStyles'
-import style from './SupplierAccountMainPage.module.css'
+  textFieldClasses,
+} from './constantsOfClassesStyles';
+import style from './SupplierAccountMainPage.module.css';
 
 const defaultValue = {
   user_info: {
     first_name: '',
     last_name: '',
     code: '+7',
-    phone: ''
+    phone: '',
   },
   license: {
-    license_number: 0
+    license_number: 0,
   },
   country: {
-    country: ''
+    country: '',
   },
   company_info: {
     logo_url: '',
@@ -52,7 +52,7 @@ const defaultValue = {
     phone: '',
     business_email: '',
     address: '',
-    is_manufacturer: 0
+    is_manufacturer: 0,
   },
   notifications: {
     on_discount: false,
@@ -61,33 +61,30 @@ const defaultValue = {
     on_stock_again: false,
     on_product_is_cheaper: false,
     on_your_favorites_new: false,
-    on_account_support: false
-  }
-}
+    on_account_support: false,
+  },
+};
 const SupplierAccountMainPage = (): JSX.Element => {
-  const dispatch = useAppDispatch()
-  const companyPhotoPicker = useRef(null)
+  const dispatch = useAppDispatch();
+  const companyPhotoPicker = useRef(null);
 
-  const { isLoading, notifications } = useAppSelector(
-    (state) => state.supplierAccount
-  )
-  const [images, setImages] = useState([])
-  const [, setSelectedCompanyPhoto] = useState(null)
+  const { isLoading, notifications } = useAppSelector(state => state.supplierAccount);
+  const [images, setImages] = useState([]);
+  const [, setSelectedCompanyPhoto] = useState(null);
 
   const {
     register,
     reset,
     setValue,
     formState: { errors },
-    handleSubmit
+    handleSubmit,
   } = useForm({
-    defaultValues: defaultValue
-  })
+    defaultValues: defaultValue,
+  });
 
   const handleChange = (event: any): void => {
-    if (event.target.files.length > 0)
-      setSelectedCompanyPhoto(event.target.files[0])
-  }
+    if (event.target.files.length > 0) setSelectedCompanyPhoto(event.target.files[0]);
+  };
 
   // const renderPhoto = (photo: any): JSX.Element => {
   //   return (
@@ -151,20 +148,20 @@ const SupplierAccountMainPage = (): JSX.Element => {
     // dispatch(postSupplierNotifications(notifications));
 
     // dispatch(uploadUserLogoService())
-    dispatch(postSupplierNotifications(updatedData.notifications))
-  }
+    dispatch(postSupplierNotifications(updatedData.notifications));
+  };
 
   useEffect(() => {
     // dispatch(getSupplierAccountDataService());
-    dispatch(getSupplierNotifications())
-  }, [dispatch])
+    dispatch(getSupplierNotifications());
+  }, [dispatch]);
 
   useEffect(() => {
     // dispatch(getSupplierAccountDataService());
-    reset({ notifications: { ...notifications } })
-  }, [notifications, reset])
+    reset({ notifications: { ...notifications } });
+  }, [notifications, reset]);
 
-  if (isLoading) return <Loader />
+  if (isLoading) return <Loader />;
 
   return (
     <div className={style.supplier_cabinet}>
@@ -181,8 +178,8 @@ const SupplierAccountMainPage = (): JSX.Element => {
                     // required: 'First name is required!',
                     minLength: {
                       value: 2,
-                      message: 'First name contains less than 2 characters!'
-                    }
+                      message: 'First name contains less than 2 characters!',
+                    },
                   })}
                   error={errors?.user_info?.first_name}
                   label="First name"
@@ -196,8 +193,8 @@ const SupplierAccountMainPage = (): JSX.Element => {
                     required: 'Last name is required!',
                     minLength: {
                       value: 2,
-                      message: 'Last name contains less than 2 characters!'
-                    }
+                      message: 'Last name contains less than 2 characters!',
+                    },
                   })}
                   error={errors.user_info?.last_name}
                   label="Last name"
@@ -236,7 +233,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
                 classes={inputPhoneClasses}
                 // name="phone"
                 inputProps={register('user_info.phone', {
-                  required: 'Phone is required!'
+                  required: 'Phone is required!',
                 })}
                 error={errors.user_info?.phone?.message}
               />
@@ -270,7 +267,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
               <div className={style.flex_container}>
                 <TextField
                   inputProps={register('company_info.name', {
-                    required: 'Shop name is required!'
+                    required: 'Shop name is required!',
                   })}
                   error={errors.company_info?.name}
                   label="Shop name (will be shown on the profile)"
@@ -296,21 +293,19 @@ const SupplierAccountMainPage = (): JSX.Element => {
               classes={checkboxClasses}
               {...register('company_info.is_manufacturer')}
             />
-            <div className={style.section_subtitle}>
-              Company Info (optional)
-            </div>
+            <div className={style.section_subtitle}>Company Info (optional)</div>
             <div className={style.fields_wrapper}>
               <div className={style.flex_container}>
                 <TextField
                   inputProps={register('company_info.year_established', {
                     maxLength: {
                       value: 4,
-                      message: 'Enter a valid year!'
+                      message: 'Enter a valid year!',
                     },
                     pattern: {
                       value: /\d+$/g,
-                      message: 'Year is incorrect!'
-                    }
+                      message: 'Year is incorrect!',
+                    },
                   })}
                   error={errors.company_info?.year_established}
                   label="Year established"
@@ -343,9 +338,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
               rows={5}
               {...register('company_info.description')}
             />
-            <div className={style.textarea_name}>
-              Photo of the company or production
-            </div>
+            <div className={style.textarea_name}>Photo of the company or production</div>
             <div className={style.company_photo_wrapper}>
               {/* {business_profile.url.length */}
               {/*  ? business_profile.url.map((photo, index) => ( */}
@@ -413,8 +406,8 @@ const SupplierAccountMainPage = (): JSX.Element => {
                 inputProps={register('company_info.business_email', {
                   pattern: {
                     value: /^\w+\S+@\w+\S+\.[\w+\S]{2,}$/g,
-                    message: 'Email is incorrect!'
-                  }
+                    message: 'Email is incorrect!',
+                  },
                 })}
                 error={errors.company_info?.business_email}
                 label="Business email address"
@@ -540,7 +533,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
         <InfoBtn />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SupplierAccountMainPage
+export default SupplierAccountMainPage;

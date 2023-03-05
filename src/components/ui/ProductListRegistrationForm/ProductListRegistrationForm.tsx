@@ -1,42 +1,42 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react';
 
-import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import {
   addProductService,
   getCompanyInfoService,
-  uploadImageService
-} from '../../../store/reducers/supplierSlice'
-import ButtonReg from '../../buttons/ButtonReg/ButtonReg'
-import DropDownField from '../../DropDownField'
-import Form from '../../Form'
-import FormTitle from '../../FormTitle'
-import { ImagesAdding } from '../../ImageAdding/ImagesAdding'
-import Loader from '../../Loader'
-import SelectLabelAbove from '../../SelectLabelAbove'
-import TextFieldLabelAbove from '../../TextFieldLabelAbove'
-import MaterialInputs from '../MaterialInputs'
-import ProdInfoInputs from '../ProdInfoInputs'
-import SelectionsForProperties from '../SelectionsForProperties/SelectionsForProperties'
-import TypesPage from '../TypesView/TypesPage'
+  uploadImageService,
+} from '../../../store/reducers/supplierSlice';
+import ButtonReg from '../../buttons/ButtonReg/ButtonReg';
+import DropDownField from '../../DropDownField';
+import Form from '../../Form';
+import FormTitle from '../../FormTitle';
+import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
+import Loader from '../../Loader';
+import SelectLabelAbove from '../../SelectLabelAbove';
+import TextFieldLabelAbove from '../../TextFieldLabelAbove';
+import MaterialInputs from '../MaterialInputs';
+import ProdInfoInputs from '../ProdInfoInputs';
+import SelectionsForProperties from '../SelectionsForProperties/SelectionsForProperties';
+import TypesPage from '../TypesView/TypesPage';
 
-import style from './ProductListRegistrationForm.module.css'
+import style from './ProductListRegistrationForm.module.css';
 
 interface ProductListRegistrationFormProps {
-  firstCategory: string
-  secondCategory: string
-  thirdCategory: string
-  setSecondCategory: any
-  setFirstCategory: any
-  setThirdCategory: any
-  firstStageCategories?: any[]
-  thirdStageCategories?: any[]
-  secondStageCategories?: any[]
-  productProperties?: any[] | null
-  productVariations: any
-  categoryId?: any
+  firstCategory: string;
+  secondCategory: string;
+  thirdCategory: string;
+  setSecondCategory: any;
+  setFirstCategory: any;
+  setThirdCategory: any;
+  firstStageCategories?: any[];
+  thirdStageCategories?: any[];
+  secondStageCategories?: any[];
+  productProperties?: any[] | null;
+  productVariations: any;
+  categoryId?: any;
 }
 const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   firstCategory,
@@ -50,128 +50,126 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   secondStageCategories,
   productProperties,
   productVariations,
-  categoryId
+  categoryId,
 }): JSX.Element => {
-  const dispatch = useAppDispatch()
-  const navigate = useNavigate()
-  const { productId, loading, companyInfo } = useAppSelector(
-    (state) => state.supplier
-  )
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { productId, loading, companyInfo } = useAppSelector(state => state.supplier);
 
-  const [isSubmit, setIsSubmit] = useState(false)
-  const [images, setImages] = useState([])
-  const [types, setTypes] = useState([{ id: 1, selected: true }])
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [images, setImages] = useState([]);
+  const [types, setTypes] = useState([{ id: 1, selected: true }]);
 
   const {
     register,
     formState: { isValid, errors },
     handleSubmit,
     reset,
-    getValues
-  } = useForm({ mode: 'onChange' })
+    getValues,
+  } = useForm({ mode: 'onChange' });
 
-  const values = productProperties?.map((el) => el.key)
+  const values = productProperties?.map(el => el.key);
 
   const createObjProperty = (el: any, obj: any): any => {
-    const optional_value = obj[`${el}(optional)`]
-    const value = obj[el]
+    const optional_value = obj[`${el}(optional)`];
+    const value = obj[el];
     let finalObj = {
       name: el,
-      value
-    }
+      value,
+    };
 
     if (optional_value) {
       // @ts-ignore
-      finalObj = { ...finalObj, optional_value }
+      finalObj = { ...finalObj, optional_value };
     }
 
-    return finalObj
-  }
+    return finalObj;
+  };
 
   const createObjVariation = (id: any, data: any): any => {
-    const childs: any[] = []
+    const childs: any[] = [];
 
     productVariations.size?.forEach((el: any) => {
       if (data[`${id}-${el}`]) {
         childs.push({
           name: 'size',
           value: el,
-          count: data[`${id}-${el}`]
-        })
+          count: data[`${id}-${el}`],
+        });
       }
-    })
+    });
 
     return {
       name: 'color',
       value: data[`${id}-color`],
-      childs
-    }
-  }
+      childs,
+    };
+  };
 
   const onSubmit = (data: any): void => {
-    const keysData = Object.keys(data)
+    const keysData = Object.keys(data);
 
-    const properties: any[] = []
+    const properties: any[] = [];
 
-    values?.forEach((el) => {
-      properties.push(createObjProperty(el, data))
-    })
+    values?.forEach(el => {
+      properties.push(createObjProperty(el, data));
+    });
 
-    const variations: any[] = []
+    const variations: any[] = [];
 
-    types.forEach((el) => {
-      variations.push(createObjVariation(el.id, data))
-    })
+    types.forEach(el => {
+      variations.push(createObjVariation(el.id, data));
+    });
 
-    const addedMaterialKeys: any[] = []
-    const addedMaterialValues: any[] = []
+    const addedMaterialKeys: any[] = [];
+    const addedMaterialValues: any[] = [];
 
-    keysData.forEach((el) => {
-      if (el.slice(0, 3) === 'opt') addedMaterialKeys.push(el)
+    keysData.forEach(el => {
+      if (el.slice(0, 3) === 'opt') addedMaterialKeys.push(el);
 
-      if (el.slice(0, 4) === 'main') addedMaterialValues.push(el)
-    })
+      if (el.slice(0, 4) === 'main') addedMaterialValues.push(el);
+    });
     addedMaterialKeys.forEach((el, i) => {
       if (data[addedMaterialValues[i]] && data[el]) {
         properties.push({
           name: `material:${i}`,
           value: data[addedMaterialValues[i]],
-          optional_value: data[el]
-        })
+          optional_value: data[el],
+        });
       }
-    })
+    });
 
     const prices = [
       {
         value: data.mainPrice,
-        quantity: data.mainQuantity
-      }
-    ]
+        quantity: data.mainQuantity,
+      },
+    ];
 
     if (data.specPrice && data.specQuantity) {
       prices.push({
         value: data.specPrice,
-        quantity: data.specQuantity
-      })
+        quantity: data.specQuantity,
+      });
     }
 
     const productInfo = {
       product_info: {
         product_name: data.prodName,
         category_id: categoryId,
-        description: data.textarea
+        description: data.textarea,
       },
       properties,
       variations,
-      prices
-    }
+      prices,
+    };
 
-    dispatch(addProductService({ product: productInfo }))
-    setIsSubmit(true)
-    reset()
-  }
+    dispatch(addProductService({ product: productInfo }));
+    setIsSubmit(true);
+    reset();
+  };
 
-  const variations = productVariations || {}
+  const variations = productVariations || {};
 
   useEffect(() => {
     if (productId && isSubmit) {
@@ -181,19 +179,19 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
             rest: {
               img: el,
               index: i,
-              prodId: productId
-            }
-          })
-        )
-      })
+              prodId: productId,
+            },
+          }),
+        );
+      });
 
-      navigate('/')
+      navigate('/');
     }
-  }, [dispatch, images, isSubmit, navigate, productId])
+  }, [dispatch, images, isSubmit, navigate, productId]);
 
   useEffect(() => {
-    dispatch(getCompanyInfoService())
-  }, [dispatch])
+    dispatch(getCompanyInfoService());
+  }, [dispatch]);
 
   // @ts-ignore
   return (
@@ -219,7 +217,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                 <DropDownField isShow title="Main Product Info">
                   <TextFieldLabelAbove
                     register={register('prodName', {
-                      required: 'Field is required'
+                      required: 'Field is required',
                     })}
                     // @ts-ignore
                     error={errors?.prodName?.message}
@@ -238,7 +236,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                         // @ts-ignore
                         options={firstStageCategories}
                         register={register('category', {
-                          required: true
+                          required: true,
                         })}
                         title="Category *"
                         name="category"
@@ -281,11 +279,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 
                   <div className={style.list_img}>
                     {[...new Array(5)].map((el, i) => (
-                      <ImagesAdding
-                        key={i}
-                        images={images}
-                        setImages={setImages}
-                      />
+                      <ImagesAdding key={i} images={images} setImages={setImages} />
                     ))}
                   </div>
 
@@ -304,9 +298,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                   {productProperties &&
                     productProperties.map((el, i) => {
                       // @ts-ignore
-                      const values = [
-                        ...new Set(el.values.map((el: any) => el.value))
-                      ]
+                      const values = [...new Set(el.values.map((el: any) => el.value))];
 
                       return (
                         <SelectionsForProperties
@@ -316,7 +308,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                           register={register}
                           // placeholder="Select"
                         />
-                      )
+                      );
                     })}
 
                   <MaterialInputs
@@ -352,7 +344,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductListRegistrationForm
+export default ProductListRegistrationForm;

@@ -1,16 +1,16 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import { ucFirst } from '../../utils/ucFirst'
+import { ucFirst } from '../../utils/ucFirst';
 
-import style from './RadioStyledElem.module.css'
+import style from './RadioStyledElem.module.css';
 
 interface RadioStyledElemProps {
-  name: string
-  value: string
-  choice: string
-  register?: any
-  setChoice: any
-  typeId: number
+  name: string;
+  value: string;
+  choice: string;
+  register?: any;
+  setChoice: any;
+  typeId: number;
 }
 const RadioStyledElem: FC<RadioStyledElemProps> = ({
   name,
@@ -18,23 +18,23 @@ const RadioStyledElem: FC<RadioStyledElemProps> = ({
   choice,
   register,
   setChoice,
-  typeId
+  typeId,
 }): JSX.Element => {
-  const colorValue = ucFirst(value)
+  const colorValue = ucFirst(value);
 
-  const valueStr = value.split(' ').join('')
+  const valueStr = value.split(' ').join('');
 
   // TODO - переделать!!!
   const onClickChoiceColorHandler = (e: any): void => {
-    setChoice(e.target.value)
-  }
+    setChoice(e.target.value);
+  };
 
   return (
     <div className={style.color_wrapper}>
       <input
         type="radio"
         {...register(`${typeId}-${name}`, {
-          required: true
+          required: true,
         })}
         onClick={onClickChoiceColorHandler}
         value={value}
@@ -59,7 +59,7 @@ const RadioStyledElem: FC<RadioStyledElemProps> = ({
                 <p className={style.growthValue}>{colorValue}</p>
             </div>} */}
     </div>
-  )
-}
+  );
+};
 
-export default RadioStyledElem
+export default RadioStyledElem;

@@ -1,23 +1,23 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import style from './RadioField.module.css'
+import style from './RadioField.module.css';
 
 interface RadioFieldProps {
-  options: any[]
-  name: string
-  onChange: any
-  value: string
+  options: any[];
+  name: string;
+  onChange: any;
+  value: string;
 }
 
 const RadioField: FC<RadioFieldProps> = ({
   options,
   name,
   onChange,
-  value
+  value,
 }): JSX.Element => {
   return (
     <div className={style.label_wrapper}>
-      {options.map((option) => (
+      {options.map(option => (
         <div key={`${option.name}_${option.value}`}>
           <input
             type="radio"
@@ -27,13 +27,11 @@ const RadioField: FC<RadioFieldProps> = ({
             checked={option.value === value}
             onChange={onChange}
           />
-          <label htmlFor={`${option.name}_${option.value}`}>
-            {option.name}
-          </label>
+          <label htmlFor={`${option.name}_${option.value}`}>{option.name}</label>
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default RadioField
+export default RadioField;

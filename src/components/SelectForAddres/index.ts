@@ -1,3 +1,3 @@
-import SelectForAddress from './SelectForAddress'
+import SelectForAddress from './SelectForAddress';
 
-export default SelectForAddress
+export default SelectForAddress;

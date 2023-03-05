@@ -1,38 +1,36 @@
-import React from 'react'
+import React from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
-import { brand } from '../../../../store/reducers/filterSlice'
-import SearchFilter from '../SearchFilter'
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { brand } from '../../../../store/reducers/filterSlice';
+import SearchFilter from '../SearchFilter';
 
-import style from './FilterBrand.module.css'
+import style from './FilterBrand.module.css';
 
 const FilterBrand = (): JSX.Element => {
-  const dispatch = useAppDispatch()
-  const brands = useAppSelector((state) => state.filter.brands)
+  const dispatch = useAppDispatch();
+  const brands = useAppSelector(state => state.filter.brands);
   const brandList: string[] = [
     'Mavi',
     'Kotton',
     'LC Waikiki',
     'Colin’s',
     'DeFacto',
-    'Ipekyol'
-  ]
+    'Ipekyol',
+  ];
   const len = brandList
     // @ts-ignore
-    .map((b) => brands.includes(b.toLowerCase()))
-    .filter((e) => !e)
+    .map(b => brands.includes(b.toLowerCase()))
+    .filter(e => !e);
 
   const changeState = (ctx: string): void => {
     const arrCheck = brandList
       // @ts-ignore
-      .map((b) => brands.includes(b.toLowerCase()))
-      .map((e, i) => (brandList[i] === ctx ? !e : e))
-    const brandArr = brandList
-      .filter((_, i) => arrCheck[i])
-      .map((b) => b.toLowerCase())
+      .map(b => brands.includes(b.toLowerCase()))
+      .map((e, i) => (brandList[i] === ctx ? !e : e));
+    const brandArr = brandList.filter((_, i) => arrCheck[i]).map(b => b.toLowerCase());
 
-    dispatch(brand(brandArr))
-  }
+    dispatch(brand(brandArr));
+  };
 
   return (
     <div className={style.filter_brand}>
@@ -46,13 +44,11 @@ const FilterBrand = (): JSX.Element => {
         <div className={style.filter_brand_list}>
           {brandList
             // @ts-ignore
-            .filter((b) => brands.includes(b.toLowerCase()))
-            .map((b) => (
+            .filter(b => brands.includes(b.toLowerCase()))
+            .map(b => (
               // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
               <div
-                className={
-                  style.filter_brand_list_item && style.filter_item_active
-                }
+                className={style.filter_brand_list_item && style.filter_item_active}
                 style={{ background: '#000000', color: '#ffffff' }}
                 onClick={() => changeState(b)}
                 key={`brand_${b}`}
@@ -64,8 +60,8 @@ const FilterBrand = (): JSX.Element => {
         <div className={len ? style.filter_brand_list : 'none'}>
           {brandList
             // @ts-ignore
-            .filter((b) => !brands.includes(b.toLowerCase()))
-            .map((b) => (
+            .filter(b => !brands.includes(b.toLowerCase()))
+            .map(b => (
               // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
               <div
                 className={style.filter_brand_list_item}
@@ -79,7 +75,7 @@ const FilterBrand = (): JSX.Element => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FilterBrand
+export default FilterBrand;

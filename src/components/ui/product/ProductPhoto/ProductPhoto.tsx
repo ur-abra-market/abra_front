@@ -1,47 +1,47 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react';
 
-import style from './ProductPhoto.module.css'
+import style from './ProductPhoto.module.css';
 
 interface ProductPhotoProps {
-  photoArray: any[]
+  photoArray: any[];
 }
 
 const ProductPhoto: FC<ProductPhotoProps> = ({ photoArray }): JSX.Element => {
-  const step = 114
+  const step = 114;
 
-  const [len, setLen] = useState(0)
-  const [count, SetCount] = useState(0)
-  const [height, SetHeight] = useState(step * 5 - 8)
-  const [top, SetTop] = useState(-step)
-  const [transition, SetTransition] = useState('0.5s')
+  const [len, setLen] = useState(0);
+  const [count, SetCount] = useState(0);
+  const [height, SetHeight] = useState(step * 5 - 8);
+  const [top, SetTop] = useState(-step);
+  const [transition, SetTransition] = useState('0.5s');
 
-  const slides = [photoArray[len - 1], ...photoArray, photoArray[0]]
-  const slidesHalf1 = slides.slice(len - count, len + 1)
-  const slidesHalf2 = slides.slice(1, len + 1)
+  const slides = [photoArray[len - 1], ...photoArray, photoArray[0]];
+  const slidesHalf1 = slides.slice(len - count, len + 1);
+  const slidesHalf2 = slides.slice(1, len + 1);
 
   useEffect(() => {
-    setLen(photoArray.length)
-    const amountSlide = photoArray.length < 6 ? photoArray.length - 1 : 5
+    setLen(photoArray.length);
+    const amountSlide = photoArray.length < 6 ? photoArray.length - 1 : 5;
 
-    SetHeight(amountSlide * step - 8)
-  }, [photoArray.length])
+    SetHeight(amountSlide * step - 8);
+  }, [photoArray.length]);
 
   const moveDown = (): void => {
-    SetTransition('0.5s')
-    SetTop(-(2 * step))
-  }
+    SetTransition('0.5s');
+    SetTop(-(2 * step));
+  };
 
   const moveUp = (): void => {
-    SetTransition('0.5s')
-    SetTop(0)
-  }
+    SetTransition('0.5s');
+    SetTop(0);
+  };
 
   const change = (): void => {
-    SetTransition('none')
-    if (top === 0) SetCount(count === len - 1 ? 0 : count + 1)
-    if (top < -step) SetCount(count === 0 ? len - 1 : count - 1)
-    SetTop(-step)
-  }
+    SetTransition('none');
+    if (top === 0) SetCount(count === len - 1 ? 0 : count + 1);
+    if (top < -step) SetCount(count === 0 ? len - 1 : count - 1);
+    SetTop(-step);
+  };
 
   return (
     <div className={style.product_photo}>
@@ -82,7 +82,7 @@ const ProductPhoto: FC<ProductPhotoProps> = ({ photoArray }): JSX.Element => {
         <img src={`${slides[len + 1 - count]?.image_url}`} alt="product" />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductPhoto
+export default ProductPhoto;

@@ -1,13 +1,13 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import style from './CheckoutPage.module.css'
+import style from './CheckoutPage.module.css';
 
-import CheckDelivery from 'components/ui/checkout/CheckDelivery'
-import CheckItems from 'components/ui/checkout/CheckItems'
-import CheckOrder from 'components/ui/checkout/CheckOrder'
-import CheckPayment from 'components/ui/checkout/CheckPayment'
-import AddressPopup from 'components/ui/popup/AddressPopup'
-import PaymentPopup from 'components/ui/popup/PaymentPopup'
+import CheckDelivery from 'components/ui/checkout/CheckDelivery';
+import CheckItems from 'components/ui/checkout/CheckItems';
+import CheckOrder from 'components/ui/checkout/CheckOrder';
+import CheckPayment from 'components/ui/checkout/CheckPayment';
+import AddressPopup from 'components/ui/popup/AddressPopup';
+import PaymentPopup from 'components/ui/popup/PaymentPopup';
 
 const CheckoutPage: FC = (): JSX.Element => {
   return (
@@ -24,7 +24,7 @@ const CheckoutPage: FC = (): JSX.Element => {
       <AddressPopup />
       <PaymentPopup />
     </div>
-  )
-}
+  );
+};
 
-export default CheckoutPage
+export default CheckoutPage;

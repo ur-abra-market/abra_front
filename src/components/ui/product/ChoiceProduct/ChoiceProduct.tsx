@@ -1,33 +1,33 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import { useAppSelector } from '../../../../store/hooks'
-import ProductQuantityControl from '../../../ProductQuantityControl'
+import { useAppSelector } from '../../../../store/hooks';
+import ProductQuantityControl from '../../../ProductQuantityControl';
 
-import style from './ChoiceProduct.module.css'
+import style from './ChoiceProduct.module.css';
 
 interface ChoiceProductProps {
-  colors: any[]
+  colors: any[];
 }
 const ChoiceProduct: FC<ChoiceProductProps> = ({ colors }): JSX.Element => {
   // const price = +productData.info.value_price
   // const quantity = +productData.info.quantity
-  const price = 123
-  const quantity = 1
-  const product_id = 34
-  const max = 100
+  const price = 123;
+  const quantity = 1;
+  const product_id = 34;
+  const max = 100;
   // const max = useSelector((state) => state.product.max)
 
-  const basket = useAppSelector((state) => state.basket.basketProduct)
+  const basket = useAppSelector(state => state.basket.basketProduct);
   // const product = basket.find(
   //   (obj) => obj.product_id === product_id
   // )
   // const propsNew = product ? product : productData
-  const propsNew = basket.find((obj) => obj.product_id === product_id)
+  const propsNew = basket.find(obj => obj.product_id === product_id);
 
-  const discount = 0
-  const amount = price * quantity
-  const ship = 220
-  const total = discount + ship
+  const discount = 0;
+  const amount = price * quantity;
+  const ship = 220;
+  const total = discount + ship;
 
   return (
     <div className={style.choice_product}>
@@ -53,10 +53,7 @@ const ChoiceProduct: FC<ChoiceProductProps> = ({ colors }): JSX.Element => {
           {/*  /from {propsNew?.info.quantity} pcs */}
           {/* </span> */}
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-          <span
-            className={style.choice_product_quantity_max}
-            onClick={() => {}}
-          >
+          <span className={style.choice_product_quantity_max} onClick={() => {}}>
             /from {100} pcs
           </span>
         </div>
@@ -90,7 +87,7 @@ const ChoiceProduct: FC<ChoiceProductProps> = ({ colors }): JSX.Element => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ChoiceProduct
+export default ChoiceProduct;

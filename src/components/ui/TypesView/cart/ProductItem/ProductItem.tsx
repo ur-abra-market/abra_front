@@ -1,16 +1,16 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import style from './ProductItem.module.css'
+import style from './ProductItem.module.css';
 
 interface ProductItemProps {
-  product: any
+  product: any;
 }
 const ProductItem: FC<ProductItemProps> = ({ product }): JSX.Element => {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const changeQuantityHandler = () => {}
+  const changeQuantityHandler = () => {};
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const changeStatusHandler = () => {}
+  const changeStatusHandler = () => {};
 
   return (
     <div className={style.product_item}>
@@ -33,9 +33,7 @@ const ProductItem: FC<ProductItemProps> = ({ product }): JSX.Element => {
         </div>
 
         <div>
-          <p className={style.product_item_main_container_name}>
-            {product.name}
-          </p>
+          <p className={style.product_item_main_container_name}>{product.name}</p>
           <div className={style.product_item_main_container_info}>
             <div>Color: {product.color}</div>
             <div>Size: {product.size}</div>
@@ -59,9 +57,7 @@ const ProductItem: FC<ProductItemProps> = ({ product }): JSX.Element => {
         </div>
         <div className={style.product_item_quantity_container_quantity}>
           {/* eslint-disable-next-line react/button-has-type */}
-          <button className={style.product_item_quantity_container_button}>
-            -
-          </button>
+          <button className={style.product_item_quantity_container_button}>-</button>
           <input
             className={style.product_item_quantity_container_input}
             value={product.quantity}
@@ -69,13 +65,11 @@ const ProductItem: FC<ProductItemProps> = ({ product }): JSX.Element => {
             type="text"
           />
           {/* eslint-disable-next-line react/button-has-type */}
-          <button className={style.product_item_quantity_container_button}>
-            +
-          </button>
+          <button className={style.product_item_quantity_container_button}>+</button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductItem
+export default ProductItem;

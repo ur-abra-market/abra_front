@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks'
-import { address } from '../../../../store/reducers/modalSlice'
-import Address from '../../../Address'
+import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { address } from '../../../../store/reducers/modalSlice';
+import Address from '../../../Address';
 
-import style from './CheckDelivery.module.css'
+import style from './CheckDelivery.module.css';
 
 const CheckDelivery = (): JSX.Element => {
-  const dispatch = useAppDispatch()
-  const addresses = useAppSelector((state) => state.modal.addresses)
+  const dispatch = useAppDispatch();
+  const addresses = useAppSelector(state => state.modal.addresses);
 
   return (
     <div className={style.check_delivery}>
@@ -19,14 +19,11 @@ const CheckDelivery = (): JSX.Element => {
         ))}
       </div>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-      <div
-        className={style.check_delivery_add}
-        onClick={() => dispatch(address(true))}
-      >
+      <div className={style.check_delivery_add} onClick={() => dispatch(address(true))}>
         + Add an address
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CheckDelivery
+export default CheckDelivery;

@@ -1,17 +1,13 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import style from './ButtonReg.module.css'
+import style from './ButtonReg.module.css';
 
 interface ButtonRegProps {
-  type: 'button' | 'submit'
-  value: string
-  isValid: boolean
+  type: 'button' | 'submit';
+  value: string;
+  isValid: boolean;
 }
-const ButtonReg: FC<ButtonRegProps> = ({
-  type,
-  value,
-  isValid
-}): JSX.Element => {
+const ButtonReg: FC<ButtonRegProps> = ({ type, value, isValid }): JSX.Element => {
   return (
     <div>
       <button
@@ -23,7 +19,7 @@ const ButtonReg: FC<ButtonRegProps> = ({
         {value}
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default ButtonReg
+export default ButtonReg;

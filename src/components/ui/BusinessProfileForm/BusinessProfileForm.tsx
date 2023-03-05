@@ -1,27 +1,27 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm } from 'react-hook-form'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import { Navigate, useNavigate } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import * as yup from 'yup'
+import * as yup from 'yup';
 
-import { RequestAccountInfo } from '../../../services/supplierAccount.service'
-import { useAppDispatch, useAppSelector } from '../../../store/hooks'
-import { accountInfoService } from '../../../store/reducers/formRegistrationSlice'
-import { uploadUserLogoService } from '../../../store/reducers/userSlice'
-import { filterEmptyValues } from '../../../utils/filterEmptyValues'
-import FormTitle from '../../FormTitle'
-import ImageAdding from '../../ImageAdding'
-import { Button, Input, Label, Select } from '../../ui-kit'
-import { IOption } from '../../ui-kit/Select/Select.props'
-import { PHONE_DATA } from '../AccountSetupForm/AccountSetupForm'
+import { RequestAccountInfo } from '../../../services/supplierAccount.service';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { accountInfoService } from '../../../store/reducers/formRegistrationSlice';
+import { uploadUserLogoService } from '../../../store/reducers/userSlice';
+import { filterEmptyValues } from '../../../utils/filterEmptyValues';
+import FormTitle from '../../FormTitle';
+import ImageAdding from '../../ImageAdding';
+import { Button, Input, Label, Select } from '../../ui-kit';
+import { IOption } from '../../ui-kit/Select/Select.props';
+import { PHONE_DATA } from '../AccountSetupForm/AccountSetupForm';
 
-import style from './BusinessProfileForm.module.css'
+import style from './BusinessProfileForm.module.css';
 
-const date = new Date()
-const year = date.getFullYear()
+const date = new Date();
+const year = date.getFullYear();
 
 const schema = yup.object({
   storeName: yup.string().required('Field is required'),
@@ -31,55 +31,53 @@ const schema = yup.object({
     .string()
     .min(4, 'Add an existing year')
     .max(year, "this year hasn't come yet"),
-  email: yup.string().email('Invalid email address')
-})
+  email: yup.string().email('Invalid email address'),
+});
 
 interface FormFields {
-  email: string
-  code: string
-  textarea: string
-  tel: string
-  yearEstablished: string
-  address: string
-  checkbox: boolean
-  numEmployees: string
-  profileLogo: string
-  storeName: string
-  businessSector: string
+  email: string;
+  code: string;
+  textarea: string;
+  tel: string;
+  yearEstablished: string;
+  address: string;
+  checkbox: boolean;
+  numEmployees: string;
+  profileLogo: string;
+  storeName: string;
+  businessSector: string;
 }
 
 export const NUMBER_OF_EMPLOYEES_DATA: IOption[] = [
   { label: '0', value: '0' },
   { label: '<4', value: '<4' },
   { label: '<10', value: '<10' },
-  { label: '>10', value: '>10' }
-]
+  { label: '>10', value: '>10' },
+];
 
 const BUSINESS_SECTOR_DATA: IOption[] = [
   { label: 'Clothes', value: 'Clothes' },
   { label: 'Accessories', value: 'Accessories' },
-  { label: 'Electronics', value: 'Electronics' }
-]
+  { label: 'Electronics', value: 'Electronics' },
+];
 
 const BusinessProfileForm: FC = (): JSX.Element => {
-  const [imgUrl, setImgUrl] = useState('')
-  const [images, setImages] = useState([])
+  const [imgUrl, setImgUrl] = useState('');
+  const [images, setImages] = useState([]);
 
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
-  const { resMessage, accountInfo } = useAppSelector(
-    (state) => state.formRegistration
-  )
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { resMessage, accountInfo } = useAppSelector(state => state.formRegistration);
 
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
-    reset
-  } = useForm<FormFields>({ resolver: yupResolver(schema), mode: 'onChange' })
+    reset,
+  } = useForm<FormFields>({ resolver: yupResolver(schema), mode: 'onChange' });
 
   const onSubmit = (data: any): void => {
-    const phone = data.code + data.tel
+    const phone = data.code + data.tel;
 
     const info = {
       name: data.storeName,
@@ -90,12 +88,12 @@ const BusinessProfileForm: FC = (): JSX.Element => {
       /* logo_url: 'string', */
       phone,
       business_email: data.email,
-      address: data.address
-    }
+      address: data.address,
+    };
 
-    const accountInfoForRequest = filterEmptyValues(info)
+    const accountInfoForRequest = filterEmptyValues(info);
 
-    dispatch(uploadUserLogoService(images[0]))
+    dispatch(uploadUserLogoService(images[0]));
 
     dispatch(
       accountInfoService({
@@ -104,21 +102,21 @@ const BusinessProfileForm: FC = (): JSX.Element => {
           ...accountInfo,
           company_info: {
             ...accountInfoForRequest,
-            is_manufacturer: data.checkbox ? 1 : 0
-          }
-        } as RequestAccountInfo
-      })
-    )
+            is_manufacturer: data.checkbox ? 1 : 0,
+          },
+        } as RequestAccountInfo,
+      }),
+    );
 
-    reset()
-  }
+    reset();
+  };
 
   useEffect(() => {
     if (resMessage === 'DATA_HAS_BEEN_SENT')
-      navigate('../add-product', { replace: true })
-  }, [resMessage, navigate])
+      navigate('../add-product', { replace: true });
+  }, [resMessage, navigate]);
 
-  if (!accountInfo) return <Navigate to="/account-setup" />
+  if (!accountInfo) return <Navigate to="/account-setup" />;
 
   return (
     <div className={style.form_wrapper}>
@@ -204,9 +202,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
               />
             </Label>
 
-            <p className={style.list_img_title}>
-              Photo of the company or production
-            </p>
+            <p className={style.list_img_title}>Photo of the company or production</p>
             <div className={style.list_img}>
               <ImageAdding />
               <ImageAdding />
@@ -221,11 +217,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
 
             <div className={style.phone_number}>
               <Label label="Business phone number">
-                <Select
-                  {...register('code')}
-                  name="code"
-                  options={PHONE_DATA}
-                />
+                <Select {...register('code')} name="code" options={PHONE_DATA} />
               </Label>
               <Input
                 placeholder="(XXX) XXX - XX - XX"
@@ -258,7 +250,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BusinessProfileForm
+export default BusinessProfileForm;

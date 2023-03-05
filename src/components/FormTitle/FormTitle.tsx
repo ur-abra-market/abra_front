@@ -1,14 +1,14 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import style from './FormTitle.module.css'
+import style from './FormTitle.module.css';
 
 interface FormTitleProps {
-  title?: string
-  text?: string
-  step?: string
-  link?: string
+  title?: string;
+  text?: string;
+  step?: string;
+  link?: string;
 }
 const FormTitle: FC<FormTitleProps> = ({ title, text, step, link }) => {
   return (
@@ -23,7 +23,7 @@ const FormTitle: FC<FormTitleProps> = ({ title, text, step, link }) => {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FormTitle
+export default FormTitle;

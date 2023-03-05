@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import style from './CheckOrder.module.css'
+import style from './CheckOrder.module.css';
 
 const CheckOrder = (): JSX.Element => {
   return (
@@ -34,7 +34,7 @@ const CheckOrder = (): JSX.Element => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CheckOrder
+export default CheckOrder;

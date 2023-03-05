@@ -1,19 +1,19 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState } from 'react';
 
-import RelatedInputs from '../../RelatedInputs'
+import RelatedInputs from '../../RelatedInputs';
 
-import style from './MaterialInputs.module.css'
+import style from './MaterialInputs.module.css';
 
-const fakeArr: number[] = []
+const fakeArr: number[] = [];
 
 interface MaterialInputsProps {
-  register: any
-  mainTitle: string
-  optTitle: string
-  mainPlaceholder: string
-  optPlaceholder: string
-  mainType: string
-  optType: string
+  register: any;
+  mainTitle: string;
+  optTitle: string;
+  mainPlaceholder: string;
+  optPlaceholder: string;
+  mainType: string;
+  optType: string;
 }
 const MaterialInputs: FC<MaterialInputsProps> = ({
   register,
@@ -22,14 +22,14 @@ const MaterialInputs: FC<MaterialInputsProps> = ({
   mainPlaceholder,
   optPlaceholder,
   mainType,
-  optType
+  optType,
 }): JSX.Element => {
-  const [count, setCount] = useState(1)
+  const [count, setCount] = useState(1);
 
   const addInputs = (): void => {
-    setCount(count + 1)
-    fakeArr.push(count)
-  }
+    setCount(count + 1);
+    fakeArr.push(count);
+  };
 
   return (
     <div className={style.inputs_container}>
@@ -45,7 +45,7 @@ const MaterialInputs: FC<MaterialInputsProps> = ({
         optPlaceholder={optPlaceholder}
       />
 
-      {fakeArr.map((e) => {
+      {fakeArr.map(e => {
         return (
           <div key={e}>
             <RelatedInputs
@@ -58,7 +58,7 @@ const MaterialInputs: FC<MaterialInputsProps> = ({
               optPlaceholder={optPlaceholder}
             />
           </div>
-        )
+        );
       })}
 
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions */}
@@ -66,7 +66,7 @@ const MaterialInputs: FC<MaterialInputsProps> = ({
         + Add material
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default MaterialInputs
+export default MaterialInputs;

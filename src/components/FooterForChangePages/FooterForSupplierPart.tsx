@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-import style from './FooterForSupplierPart.module.css'
+import style from './FooterForSupplierPart.module.css';
 
 const FooterForSupplierPart = (): JSX.Element => {
   return (
@@ -18,7 +18,7 @@ const FooterForSupplierPart = (): JSX.Element => {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FooterForSupplierPart
+export default FooterForSupplierPart;
