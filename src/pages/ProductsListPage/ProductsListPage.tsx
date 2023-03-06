@@ -1,24 +1,25 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import _ from 'lodash';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
+import ShowPage from '../../components/ShowPage';
 import { Checkbox, Input, Search, Select } from '../../components/ui-kit';
+import { IOption } from '../../components/ui-kit/Select/Select.props';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
-import addImg from 'assets/img/icons/addImg.png';
+// import addImg from 'assets/img/icons/addImg.png';
 import editIcon from 'assets/img/icons/additIcon.png';
-import deleteImg from 'assets/img/icons/deleteImg.png';
+// import deleteImg from 'assets/img/icons/deleteImg.png';
 import star from 'assets/img/icons/Star 1.png';
 import { ReactComponent as TableLayout } from 'assets/img/icons/tableLayout.svg';
 import { ReactComponent as TileLayout } from 'assets/img/icons/tileLayout.svg';
 import { ReactComponent as VectorUp } from 'assets/img/icons/Vector.svg';
 import { ReactComponent as VectorDown } from 'assets/img/icons/VectorDown.svg';
 import viewIcon from 'assets/img/icons/viewIcon.png';
-import FiltersList from 'components/FiltersList';
+// import FiltersList from 'components/FiltersList';
 import Loader from 'components/Loader';
 import Modal from 'components/new-components/Modal';
-import ShowPage from 'components/ShowPage';
 import Table from 'components/table';
 import Pagination from 'components/ui/Pagination';
 import { tableStyleClasses } from 'pages/ProductsListPage/constantsOfClassesStyles';
@@ -29,13 +30,23 @@ import {
 } from 'store/reducers/manageProductsSlice';
 import { paginate } from 'utils/paginate';
 
+export const CATEGORY_SELECT: IOption[] = [
+  { label: 'S', value: '1' },
+  { label: 'M', value: '2' },
+  { label: 'L', value: '3' },
+  { label: 'XL', value: '4' },
+];
+export const STATUS_SELECT: IOption[] = [
+  { label: 'On Sale', value: '1' },
+  { label: 'Off-sale', value: '2' },
+];
 const ProductsListPage: FC = (): JSX.Element => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const activePage = useAppSelector(state => state.paginate.page_num);
   const amountPages = useAppSelector(state => state.paginate.amountPages);
   const pageSize = useAppSelector(state => state.paginate.page_size);
 
-  const [selectedProductsStatus, setSelectedProductsStatus] = useState('All Products');
+  const [selectedProductsStatus] = useState('All Products');
   const [sortBy, setSortBy] = useState({
     path: 'is_active',
     direction: 'desc',
@@ -101,18 +112,18 @@ const ProductsListPage: FC = (): JSX.Element => {
   const handleLayoutSet = (): void => {
     setLayout(prevState => (prevState === 'tableLayout' ? 'tileLayout' : 'tableLayout'));
   };
-  const filters = {
-    'All Products': 'All Products',
-    'On-sale': '1',
-    'Off-sale': '0',
-  };
-  const handleProductsStatusSelect = (value: any): void => {
-    let fieldValue = value;
-
-    if (value === 'Off-sale') fieldValue = '0';
-    if (value === 'On-sale') fieldValue = '1';
-    setSelectedProductsStatus(fieldValue);
-  };
+  // const filters = {
+  //   'All Products': 'All Products',
+  //   'On-sale': '1',
+  //   'Off-sale': '0',
+  // };
+  // const handleProductsStatusSelect = (value: any): void => {
+  //   let fieldValue = value;
+  //
+  //   if (value === 'Off-sale') fieldValue = '0';
+  //   if (value === 'On-sale') fieldValue = '1';
+  //   setSelectedProductsStatus(fieldValue);
+  // };
 
   const handleSort = (item: any): void => {
     setSortBy(item);
@@ -180,13 +191,17 @@ const ProductsListPage: FC = (): JSX.Element => {
           </div>
           <div className={style.filter}>
             <div className={style.filter_name}>Sort by:</div>
-            <Select options={[{ label: 'dasda', value: 1 }]} />
+            <Select options={CATEGORY_SELECT} />
           </div>
 
           <div className={style.filter}>
-            <Select options={[{ label: 'On Sale', value: 'Off-sale' }]} />
+            <Select options={STATUS_SELECT} />
           </div>
-          <Checkbox label="Include Hidden" variant="notification" />
+          <Checkbox
+            label="Include Hidden"
+            variant="notification"
+            className={style.checkbox}
+          />
         </div>
       )}
       <div className={style.select_and_pagination_wrapper}>
@@ -195,42 +210,42 @@ const ProductsListPage: FC = (): JSX.Element => {
       </div>
       {layout === 'tableLayout' ? (
         <div className={style.content_wrapper}>
-          <div className={style.content_header}>
-            <div className={style.filters_wrapper}>
-              <FiltersList
-                filters={filters}
-                className={style.filtered_products}
-                activeClassName={style.filtered_products_active}
-                onItemSelect={handleProductsStatusSelect}
-                selectedItem={selectedProductsStatus}
-              />
-            </div>
-            <div className={style.actions_wrapper}>
-              <div
-                role="presentation"
-                className={style.action}
-                onClick={handleChangeModalActive}
-              >
-                Delete items
-              </div>
-              <div className={style.action}>
-                <img src={addImg} alt="img" />
-                <div
-                  role="presentation"
-                  className={style.subtitle}
-                  onClick={() => {
-                    navigate('../add-product');
-                  }}
-                >
-                  Add a new product
-                </div>
-              </div>
-              <div className={style.action}>
-                <img src={deleteImg} alt="img" />
-                <div className={style.subtitle}>Recently deleted</div>
-              </div>
-            </div>
-          </div>
+          {/* <div className={style.content_header}> */}
+          {/*  <div className={style.filters_wrapper}> */}
+          {/*    <FiltersList */}
+          {/*      filters={filters} */}
+          {/*      className={style.filtered_products} */}
+          {/*      activeClassName={style.filtered_products_active} */}
+          {/*      onItemSelect={handleProductsStatusSelect} */}
+          {/*      selectedItem={selectedProductsStatus} */}
+          {/*    /> */}
+          {/*  </div> */}
+          {/*  <div className={style.actions_wrapper}> */}
+          {/*    <div */}
+          {/*      role="presentation" */}
+          {/*      className={style.action} */}
+          {/*      onClick={handleChangeModalActive} */}
+          {/*    > */}
+          {/*      Delete items */}
+          {/*    </div> */}
+          {/*    <div className={style.action}> */}
+          {/*      <img src={addImg} alt="img" /> */}
+          {/*      <div */}
+          {/*        role="presentation" */}
+          {/*        className={style.subtitle} */}
+          {/*        onClick={() => { */}
+          {/*          navigate('../add-product'); */}
+          {/*        }} */}
+          {/*      > */}
+          {/*        Add a new product */}
+          {/*      </div> */}
+          {/*    </div> */}
+          {/*    <div className={style.action}> */}
+          {/*      <img src={deleteImg} alt="img" /> */}
+          {/*      <div className={style.subtitle}>Recently deleted</div> */}
+          {/*    </div> */}
+          {/*  </div> */}
+          {/* </div> */}
           <Table
             onSort={handleSort}
             selectedSort={sortBy}
