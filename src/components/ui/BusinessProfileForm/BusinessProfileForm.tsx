@@ -187,9 +187,10 @@ const BusinessProfileForm: FC = (): JSX.Element => {
               <div className={style.select_equal}>
                 <Label label="Number of employees">
                   <Select
-                    {...register('numEmployees')}
                     options={NUMBER_OF_EMPLOYEES_DATA}
                     placeholder="Select"
+                    {...register('numEmployees')}
+                    error={errors?.numEmployees?.message}
                   />
                 </Label>
               </div>
