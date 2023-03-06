@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+import { Status } from '../../enums/status.enum';
 import categoryFetch from '../../services/category.service';
 
 const initialState = {
   dateCategories: null,
   errMessage: '',
-  loading: false,
+  loading: Status.Idle as Status,
 };
 
 export const categoryService = createAsyncThunk<any, void>(
@@ -31,18 +32,18 @@ const categorySlice = createSlice({
     builder
       .addCase(categoryService.pending, state => {
         state.dateCategories = null;
-        state.loading = true;
+        state.loading = Status.Loading;
       })
       .addCase(categoryService.fulfilled, (state, action) => {
         state.dateCategories = action.payload;
-        state.loading = false;
+        state.loading = Status.Success;
       })
       .addCase(categoryService.rejected, (state, action) => {
         // @ts-ignore
         state.dateCategories = action.payload;
         // @ts-ignore
         state.errMessage = action.payload;
-        state.loading = false;
+        state.loading = Status.Failed;
       });
   },
   reducers: {},

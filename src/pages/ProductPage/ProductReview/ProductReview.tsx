@@ -26,7 +26,6 @@ const ProductReview: FC<ProductReviewProps> = props => {
         ) : (
           <div className={style.grade}>
             <div className={style.stars_block}>
-              {/* // @ts-ignore */}
               <Stars reward={parseFloat(String(gradesData?.grade_average)) || 0} />
               <span>
                 {`${gradesData?.grade?.grade_average} / ${gradesData?.grade?.count} reviews`}
