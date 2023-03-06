@@ -62,9 +62,9 @@
   display: block;
   align-self: flex-end;
 
-  font-size: 8px;
-  line-height: 20px;
-  color: #828282;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--light-gray);
 }
 
 .choice_product_quantity_control {
@@ -164,4 +164,8 @@
   margin-right: 4px;
   padding-left: 4px;
 
+}
+
+.active {
+  border: 3px solid var(--red)
 }
