@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 
 import { ProductCard } from '../../../components/ProductCard/ProductCard';
 import { ProductsPreview } from '../../../components/ProductsPreview/ProductsPreview';
-import { IPopularProduct } from '../../../interfaces';
+import { IShortCardProduct } from '../../../interfaces';
 import style from '../ProductPage.module.css';
 
 export const PopularProduct = (): JSX.Element => {
   // const { popularProducts } = useAppSelector(state => state.popularProducts);
 
-  const product: IPopularProduct = {
+  const product: IShortCardProduct = {
     id: 12,
     name: 'shirt',
     description: 'shirt description',
@@ -20,6 +20,8 @@ export const PopularProduct = (): JSX.Element => {
     min_quantity: 5,
     value_price: 10,
     is_favorite: true,
+    image_url:
+      'https://images.asos-media.com/products/asos-design-skinny-trousers-in-check-with-elasticated-waist/21339425-1-black?$n_640w$&wid=513&fit=constrain',
   };
 
   const [popularProducts] = useState(Array(10).fill(product));
