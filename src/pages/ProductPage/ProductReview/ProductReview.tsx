@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../../../store/hooks';
 
+import { ProductReviewProps } from './ProductReview.props';
+
 import Stars from 'components/Stars';
 import { getPercentagesOfTotalCountReview } from 'pages/ProductPage/helpers/getPercentagesOfTotalCountReview';
 import style from 'pages/ProductPage/ProductReview/ProductReview.module.css';
 
-const ProductReview = (): JSX.Element => {
+const ProductReview: FC<ProductReviewProps> = props => {
+  const { className } = props;
   const { gradesData } = useAppSelector(state => state.targetProduct);
 
   return (
-    <section>
+    <section className={className}>
       <h2 className={style.title}>Feedbacks</h2>
       <Link to="/" className={style.link}>
         See all

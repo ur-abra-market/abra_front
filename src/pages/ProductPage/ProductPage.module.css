@@ -84,3 +84,15 @@
   background-color: #DDD;
 }
 
+.review_wrapper {
+  margin-bottom: 85px;
+}
+
+.similar_products_wrapper {
+  margin-bottom: 80px;
+}
+
+.popular_products_wrapper {
+  margin-bottom: 90px;
+}
+
