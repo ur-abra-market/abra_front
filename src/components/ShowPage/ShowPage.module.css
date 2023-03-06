@@ -26,8 +26,7 @@
 
   width: 24px;
   height: 53px;
-  padding-right: 8px;
-  padding-left: 8px;
+
 
   object-fit: cover;
 }
@@ -39,8 +38,9 @@
 
   width: 100%;
 
-  font-family: SF Pro Display Medium serif;
-  font-size: var(--fp);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
 }
 
 .show_page_list {
@@ -53,7 +53,7 @@
 
   width: 50px;
   height: fit-content;
-  margin-top: -200px;
+  margin-top: 45px;
   margin-left: 90px;
 
   background-color: #FFF;
@@ -77,5 +77,5 @@
 
 .show_page_list_item:hover {
   color: #FFF;
-  background-color: #000;
+  background-color: #FC133D;
 }
