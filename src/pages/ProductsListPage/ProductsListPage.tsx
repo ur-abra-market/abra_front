@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import EditIcon from 'assets/img/icons/editIcon.svg';
 // import deleteImg from 'assets/img/icons/deleteImg.png';
 import imageProduct from 'assets/img/icons/imageProduct.svg';
-import star from 'assets/img/icons/Star 1.png';
+import star from 'assets/img/icons/Star 5].svg';
 import { ReactComponent as TableLayout } from 'assets/img/icons/tableLayout.svg';
 import { ReactComponent as TileLayout } from 'assets/img/icons/tileLayout.svg';
 import { ReactComponent as VectorUp } from 'assets/img/icons/Vector.svg';
@@ -265,7 +265,6 @@ const ProductsListPage: FC = (): JSX.Element => {
           {data?.map(item => (
             <div className={style.product_card} key={item.id}>
               <img src={item.image} alt="product img" />
-              {/* <div className={style.picture} /> */}
               <div className={style.view_and_edit_wrapper}>
                 <div className={style.icon_background}>
                   <img src={ViewIcon} alt="ViewIcon" />
@@ -276,7 +275,7 @@ const ProductsListPage: FC = (): JSX.Element => {
               </div>
               <div className={style.product_name}>{item.name}</div>
               <div className={style.price_and_conditions}>
-                <div className={style.product_price}>{item.price}</div>
+                <div className={style.product_price}>{`$${item.price}/pc`}</div>
                 <div className={style.condition}>/from 4 pcs</div>
               </div>
               <div className={style.other_info}>
@@ -287,12 +286,12 @@ const ProductsListPage: FC = (): JSX.Element => {
                   <img src={star} alt="star" />
                   <img src={star} alt="star" />
                 </div>
-                {/* <div className={style.product_creation_date}>{item.creationDate}</div> */}
               </div>
             </div>
           ))}
         </div>
       )}
+      <ShowPage />
       <div className={style.select_and_pagination_wrapper}>
         <Pagination activePage={activePage} amountPages={amountPages} />
       </div>

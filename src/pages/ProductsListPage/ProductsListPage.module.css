@@ -372,25 +372,19 @@
 }
 
 .product_name {
-  overflow: hidden;
-
-  height: 48px;
-  margin-top: 15px;
-
-  font-size: 18px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 24px;
-  color: #828282;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
 }
 
 .price_and_conditions {
   display: flex;
-  gap: 10px;
+  gap: 4px;
   align-items: flex-end;
   justify-content: flex-start;
 
   margin-top: 10px;
+  margin-bottom: 4px;
 }
 
 .product_price {
@@ -400,10 +394,9 @@
 }
 
 .condition {
-  font-size: 10px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 19px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
   color: #828282;
 }
 
