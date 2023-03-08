@@ -14,6 +14,7 @@ import { uploadUserLogoService } from '../../../store/reducers/userSlice';
 import { filterEmptyValues } from '../../../utils/filterEmptyValues';
 import FormTitle from '../../FormTitle';
 import ImageAdding from '../../ImageAdding';
+import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 import { Button, Input, Label, Select } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
 import { PHONE_DATA } from '../AccountSetupForm/AccountSetupForm';
@@ -205,11 +206,14 @@ const BusinessProfileForm: FC = (): JSX.Element => {
 
             <p className={style.list_img_title}>Photo of the company or production</p>
             <div className={style.list_img}>
+              {[...new Array(5)].map((el, i) => (
+                <ImagesAdding key={i} images={images} setImages={setImages} />
+              ))}
+              {/* <ImageAdding />
               <ImageAdding />
               <ImageAdding />
               <ImageAdding />
-              <ImageAdding />
-              <ImageAdding />
+              <ImageAdding /> */}
             </div>
           </div>
 

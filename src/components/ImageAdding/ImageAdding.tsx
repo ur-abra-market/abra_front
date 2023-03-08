@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC } from 'react';
 
-import iconImg from '../../assets/img/icons/icon-img.png';
+import AddImg from '../../assets/img/icons/add_image.svg';
 
 import style from './ImageAdding.module.css';
 
@@ -61,8 +61,12 @@ const ImageAdding: FC<ImageAddingProps> = ({
             className={label ? style.avatar_img_label : style.avatar_img}
           />
         ) : (
+          /* <AddImg
+            id="iconImg"
+            className={label ? style.icon_img_label : style.icon_img}
+          /> */
           <img
-            src={iconImg}
+            src={AddImg}
             alt="icon img"
             id="iconImg"
             className={label ? style.icon_img_label : style.icon_img}

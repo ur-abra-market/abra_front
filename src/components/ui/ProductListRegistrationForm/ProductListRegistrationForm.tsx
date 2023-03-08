@@ -1,7 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import {
@@ -9,20 +11,38 @@ import {
   getCompanyInfoService,
   uploadImageService,
 } from '../../../store/reducers/supplierSlice';
-import ButtonReg from '../../buttons/ButtonReg/ButtonReg';
 import DropDownField from '../../DropDownField';
 import Form from '../../Form';
 import FormTitle from '../../FormTitle';
 import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 import Loader from '../../Loader';
 import SelectLabelAbove from '../../SelectLabelAbove';
-import TextFieldLabelAbove from '../../TextFieldLabelAbove';
+import { Button, Input, Label } from '../../ui-kit';
 import MaterialInputs from '../MaterialInputs';
 import ProdInfoInputs from '../ProdInfoInputs';
 import SelectionsForProperties from '../SelectionsForProperties/SelectionsForProperties';
 import TypesPage from '../TypesView/TypesPage';
 
 import style from './ProductListRegistrationForm.module.css';
+
+const schema = yup.object({
+  prodName: yup.string().required('Field is required'),
+  businessSector: yup.string().required('Field is required'),
+  tel: yup.string().required('Field is required'),
+  yearEstablished: yup
+    .string()
+    .min(4, 'Add an existing year')
+    .max(5, "this year hasn't come yet"),
+  email: yup.string().email('Invalid email address'),
+});
+
+interface ProductData {
+  prodName: string;
+  textarea: string;
+  category: string;
+  type1: string;
+  type2: string;
+}
 
 interface ProductListRegistrationFormProps {
   firstCategory: string;
@@ -66,7 +86,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
     handleSubmit,
     reset,
     getValues,
-  } = useForm({ mode: 'onChange' });
+  } = useForm<ProductData>({ resolver: yupResolver(schema), mode: 'onChange' });
 
   const values = productProperties?.map(el => el.key);
 
@@ -215,18 +235,13 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
             >
               <div className={style.form}>
                 <DropDownField isShow title="Main Product Info">
-                  <TextFieldLabelAbove
-                    register={register('prodName', {
-                      required: 'Field is required',
-                    })}
-                    // @ts-ignore
-                    error={errors?.prodName?.message}
-                    title="Product name *"
-                    name="prodName"
-                    type="text"
-                    placeholder="Enter the product name"
-                  />
-
+                  <Label label="Product name *">
+                    <Input
+                      {...register('prodName')}
+                      error={errors?.prodName?.message}
+                      placeholder="Enter the product name"
+                    />
+                  </Label>
                   <div className={style.select_inputs}>
                     <div className={style.select_equal}>
                       <SelectLabelAbove
@@ -282,13 +297,12 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                       <ImagesAdding key={i} images={images} setImages={setImages} />
                     ))}
                   </div>
-
-                  <TextFieldLabelAbove
-                    register={register('textarea')}
-                    title="Description"
-                    name="textarea"
-                    placeholder="Enter the description of your product"
-                  />
+                  <Label label="Description">
+                    <Input
+                      {...register('textarea')}
+                      placeholder="Enter the description of your product"
+                    />
+                  </Label>
                 </DropDownField>
 
                 <DropDownField
@@ -337,7 +351,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                   <ProdInfoInputs register={register} />
                 </DropDownField>
 
-                <ButtonReg type="submit" value="Continue" isValid={!isValid} />
+                <Button type="submit" label="Continue" disabled={!isValid} />
               </div>
             </Form>
           </>
