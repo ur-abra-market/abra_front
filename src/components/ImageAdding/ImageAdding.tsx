@@ -61,10 +61,6 @@ const ImageAdding: FC<ImageAddingProps> = ({
             className={label ? style.avatar_img_label : style.avatar_img}
           />
         ) : (
-          /* <AddImg
-            id="iconImg"
-            className={label ? style.icon_img_label : style.icon_img}
-          /> */
           <img
             src={AddImg}
             alt="icon img"

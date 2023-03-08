@@ -84,6 +84,7 @@
 .label {
   cursor: pointer;
   font-size: 14px;
+  color: #FC133D;
   text-decoration-line: underline;
 }
 

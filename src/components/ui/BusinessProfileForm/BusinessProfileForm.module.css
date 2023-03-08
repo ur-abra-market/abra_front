@@ -59,9 +59,11 @@
 }
 
 .checkbox:checked {
-  background-image: url('../../../assets/img/icons/check-mark.png');
+  background-color: #FC133D;
+  background-image: url('../../../assets/img/icons/check.svg');
   background-repeat: no-repeat;
   background-position: center;
+  border: none;
 }
 
 .checkbox_container {
