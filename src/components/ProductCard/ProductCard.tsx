@@ -4,10 +4,10 @@ import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { getPriceOneItem } from '../../pages/ProductPage/helpers/getPriceOneItem';
-import style from '../../pages/ProductPage/ProductPage.module.css';
 import Flag from '../Flag';
 import Stars from '../Stars';
 
+import style from './ProductCard.module.css';
 import { ProductCardProps } from './ProductCard.props';
 
 import { ReactComponent as LoupeIcon } from 'assets/img/icons/loupe.svg';
@@ -24,17 +24,17 @@ export const ProductCard: FC<ProductCardProps> = (props): JSX.Element => {
     id,
     min_quantity,
     grade_average,
+    is_favorite,
   } = product;
 
   // {
   //     "value_price": 0,
-  //     "is_favorite": true
   // }
 
   return (
     <div className={cn(style.card, className)} {...restProps}>
       <div className={style.image}>
-        <Flag className={style.flag} />
+        <Flag className={style.flag} isFavorite={is_favorite} />
         <img src={image_url || ''} alt={name} />
         <span className={style.hover}>
           <span className={style.hover_text}>
