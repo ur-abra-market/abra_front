@@ -107,3 +107,31 @@
   color: #FF4040;
   text-align: left;
 }
+
+.btn_plus {
+  content: '';
+
+  position: absolute;
+
+  /*background: white;
+  border-radius: 50%;*/
+  z-index: 3;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 23px;
+  height: 23px;
+  margin: 0 auto;
+  padding: 0;
+
+  background-color: transparent;
+  border: none;
+}
+
+.btn_plus:hover {
+  cursor: pointer;
+}

@@ -209,11 +209,6 @@ const BusinessProfileForm: FC = (): JSX.Element => {
               {[...new Array(5)].map((el, i) => (
                 <ImagesAdding key={i} images={images} setImages={setImages} />
               ))}
-              {/* <ImageAdding />
-              <ImageAdding />
-              <ImageAdding />
-              <ImageAdding />
-              <ImageAdding /> */}
             </div>
           </div>
 

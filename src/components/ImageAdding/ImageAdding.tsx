@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC } from 'react';
 
+import { PlusIcon } from '../../assets/img';
 import AddImg from '../../assets/img/icons/add_image.svg';
 
 import style from './ImageAdding.module.css';
@@ -54,12 +55,21 @@ const ImageAdding: FC<ImageAddingProps> = ({
         />
 
         {imgUrl ? (
-          <img
-            src={imgUrl}
-            alt="avatar img"
-            id="avatarImg"
-            className={label ? style.avatar_img_label : style.avatar_img}
-          />
+          <>
+            <img
+              src={imgUrl}
+              alt="avatar img"
+              id="avatarImg"
+              className={label ? style.avatar_img_label : style.avatar_img}
+            />
+            <button
+              type="button"
+              className={style.btn_plus}
+              onClick={() => setImgUrl('')}
+            >
+              <PlusIcon />
+            </button>
+          </>
         ) : (
           <img
             src={AddImg}
