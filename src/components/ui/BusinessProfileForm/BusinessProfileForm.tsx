@@ -14,6 +14,7 @@ import { uploadUserLogoService } from '../../../store/reducers/userSlice';
 import { filterEmptyValues } from '../../../utils/filterEmptyValues';
 import FormTitle from '../../FormTitle';
 import ImageAdding from '../../ImageAdding';
+import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 import { Button, Input, Label, Select } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
 import { PHONE_DATA } from '../AccountSetupForm/AccountSetupForm';
@@ -187,9 +188,10 @@ const BusinessProfileForm: FC = (): JSX.Element => {
               <div className={style.select_equal}>
                 <Label label="Number of employees">
                   <Select
-                    {...register('numEmployees')}
                     options={NUMBER_OF_EMPLOYEES_DATA}
                     placeholder="Select"
+                    {...register('numEmployees')}
+                    error={errors?.numEmployees?.message}
                   />
                 </Label>
               </div>
@@ -204,11 +206,9 @@ const BusinessProfileForm: FC = (): JSX.Element => {
 
             <p className={style.list_img_title}>Photo of the company or production</p>
             <div className={style.list_img}>
-              <ImageAdding />
-              <ImageAdding />
-              <ImageAdding />
-              <ImageAdding />
-              <ImageAdding />
+              {[...new Array(5)].map((el, i) => (
+                <ImagesAdding key={i} images={images} setImages={setImages} />
+              ))}
             </div>
           </div>
 

@@ -12,5 +12,6 @@
 .add {
   cursor: pointer;
   font-size: 15px;
+  color: #FC133D;
   text-decoration-line: underline;
 }

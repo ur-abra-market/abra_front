@@ -27,16 +27,13 @@
 
 .icon_img_label {
   position: absolute;
-  top: 23px;
-  left: 23px;
-  width: 42px;
+  width: 88px;
+  border-radius: 50%;
 }
 
 .icon_img {
   position: absolute;
-  top: 37px;
-  left: 37px;
-  width: 45px;
+  width: 120px;
 }
 
 .avatar_img_label {
@@ -87,6 +84,7 @@
 .label {
   cursor: pointer;
   font-size: 14px;
+  color: #FC133D;
   text-decoration-line: underline;
 }
 
@@ -108,4 +106,32 @@
   font-size: 13px;
   color: #FF4040;
   text-align: left;
+}
+
+.btn_plus {
+  content: '';
+
+  position: absolute;
+
+  /*background: white;
+  border-radius: 50%;*/
+  z-index: 3;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 23px;
+  height: 23px;
+  margin: 0 auto;
+  padding: 0;
+
+  background-color: transparent;
+  border: none;
+}
+
+.btn_plus:hover {
+  cursor: pointer;
 }
