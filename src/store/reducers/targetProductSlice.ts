@@ -67,7 +67,7 @@ const product = {
   product_name: 'Womens clothes',
   is_favorite: true,
   tags: ['tags', 'tags'],
-  colors: ['red', 'white', 'green', 'blue'],
+  colors: ['black', 'green', 'blue', 'red'],
   sizes: ['xs', 's', 'm', 'l', 'xl'],
   monthly_actual_demand: 100,
   daily_actual_demand: 10,

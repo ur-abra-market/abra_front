@@ -7,9 +7,10 @@ import { ReactComponent as FlagIcon } from './flag.svg';
 
 interface FlagProps {
   className?: string;
+  isFavorite?: boolean;
 }
-const Flag: FC<FlagProps> = ({ className }): JSX.Element => {
-  const [flag, setFlag] = useState(false);
+const Flag: FC<FlagProps> = ({ className, isFavorite }): JSX.Element => {
+  const [flag, setFlag] = useState(isFavorite || false);
 
   return (
     <div

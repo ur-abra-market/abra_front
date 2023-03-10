@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-
-import { useDispatch } from 'react-redux';
+import React, { useState, MouseEvent } from 'react';
 
 import arrowDown from '../../assets/img/icons/arrow-slide-down.svg';
+import { useAppDispatch } from '../../store/hooks';
 import { amount } from '../../store/reducers/paginateSlice';
 
 import style from './ShowPage.module.css';
 
 const ShowPage = (): JSX.Element => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const list = ['20', '40', '60', '80', '100'];
   const [option, setOption] = useState(list[0]);
   const [listSwitch, setListSwitch] = useState(false);
@@ -16,9 +15,9 @@ const ShowPage = (): JSX.Element => {
     height: listSwitch ? 'fit-content' : '0px',
   };
 
-  const switchList = (e: any): void => {
+  const switchList = (e: MouseEvent<HTMLDivElement>): void => {
     e.preventDefault();
-    const nameClass = e.relatedTarget.className;
+    const nameClass = e.currentTarget.className;
 
     // TODO !!!!!
     if (!nameClass.includes('ShowPage')) {
@@ -29,8 +28,7 @@ const ShowPage = (): JSX.Element => {
   };
 
   return (
-    // eslint-disable-next-line jsx-a11y/mouse-events-have-key-events
-    <div className={style.show_page} onMouseOut={e => switchList(e)}>
+    <div className={style.show_page} onMouseOut={e => switchList(e)} onBlur={() => 0}>
       <div className={style.show_page_select}>
         <div className={style.show_page_text}>{`Show by ${option}`}</div>
         <div

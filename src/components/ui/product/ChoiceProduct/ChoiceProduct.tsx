@@ -1,14 +1,19 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+
+import cn from 'classnames';
 
 import { useAppSelector } from '../../../../store/hooks';
 import ProductQuantityControl from '../../../ProductQuantityControl';
+import { Button } from '../../../ui-kit';
 
 import style from './ChoiceProduct.module.css';
 
 interface ChoiceProductProps {
-  colors: any[];
+  colors: string[];
 }
 const ChoiceProduct: FC<ChoiceProductProps> = ({ colors }): JSX.Element => {
+  const [activeColor, setActiveColor] = useState<string>(colors[0]);
+
   // const price = +productData.info.value_price
   // const quantity = +productData.info.quantity
   const price = 123;
@@ -35,8 +40,12 @@ const ChoiceProduct: FC<ChoiceProductProps> = ({ colors }): JSX.Element => {
         <div className={style.choice_product_color_title}>Select color</div>
         <div className={style.choice_product_color_buttons}>
           {colors.map((background, i) => (
-            <div
-              className={style.choice_product_color_buttons_btn}
+            <Button
+              color="white"
+              className={cn(style.choice_product_color_buttons_btn, {
+                [style.active]: activeColor === background,
+              })}
+              onClick={() => setActiveColor(background)}
               key={`color-${i}`}
               style={{ background }}
             />
