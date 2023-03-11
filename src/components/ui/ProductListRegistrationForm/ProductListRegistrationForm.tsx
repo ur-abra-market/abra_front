@@ -217,7 +217,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   return (
     <div className={style.form_wrapper}>
       <div className={style.form_container}>
-        {loading ? (
+        {loading === 'loading' ? (
           <Loader />
         ) : (
           <>
