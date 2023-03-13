@@ -1,37 +1,37 @@
 import React, { FC } from 'react';
 
+import { Button } from '../../../../ui-kit';
+
 import style from './CartOrder.module.css';
 
 interface CartOrderProps {
   info: any;
 }
-const CartOrder: FC<CartOrderProps> = ({ info }): JSX.Element => {
+const CartOrder: FC<CartOrderProps> = ({ info }) => {
   return (
-    <div className={style.cart_order}>
-      <div className={style.cart_order_items}>
+    <div className={style.container}>
+      <div className={style.items}>
         <p>Items to Order</p>
         <p>{info.items}</p>
       </div>
-      <div className={style.cart_order_price}>
+      <div className={style.price}>
         <p>Goods Cost</p>
         <p>${info.goodsCost}</p>
       </div>
-      <div className={style.cart_order_shipping}>
+      <div className={style.shipping}>
         <p>Shipping~</p>
         <p>${info.shipping}</p>
       </div>
-      <p className={style.cart_order_text_small}>
+      <p className={style.text_small}>
         * The final cost will be calculated after you add an address
       </p>
-      <hr className={style.cart_order_hr_line} />
-      <div className={style.cart_order_total}>
+      <hr className={style.hr} />
+      <div className={style.total}>
         <p>Total</p>
         <p>${info.totalCost}</p>
       </div>
-      <button type="button" className={style.cart_order_button}>
-        Checkout
-      </button>
-      <p className={style.cart_order_text_info}>
+      <Button className={style.button}>Checkout</Button>
+      <p className={style.info}>
         Make sure that the quantity of goods and the selected characteristics are correct.
       </p>
     </div>
