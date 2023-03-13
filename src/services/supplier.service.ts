@@ -2,20 +2,16 @@ import httpService from './http.service';
 
 const supplierFetch = {
   getProductProperties: async (categoryId: any) => {
-    const { data } = await httpService.get(`/suppliers/get_product_properties/`, {
-      params: {
-        category_id: categoryId,
-      },
-    });
+    const { data } = await httpService.get(
+      `/suppliers/get_product_properties/${categoryId}`,
+    );
 
     return data;
   },
   getProductVariations: async (categoryId: any) => {
-    const { data } = await httpService.get(`suppliers/get_product_variations/`, {
-      params: {
-        category_id: categoryId,
-      },
-    });
+    const { data } = await httpService.get(
+      `suppliers/get_product_variations/${categoryId}`,
+    );
 
     return data;
   },
