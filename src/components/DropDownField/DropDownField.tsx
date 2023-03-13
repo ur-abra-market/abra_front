@@ -8,16 +8,21 @@ import style from './DropDownField.module.css';
 interface DropDownFieldProps {
   title: string;
   isShow: boolean;
+  foo?: (value: boolean) => void;
 }
 const DropDownField: FC<PropsWithChildren<DropDownFieldProps>> = ({
   children,
   title,
   isShow,
+  foo,
 }): JSX.Element => {
   const [open, setOpen] = useState(false);
 
   const onClick = (): void => {
     setOpen(!open);
+    if (foo) {
+      foo(false);
+    }
   };
 
   useEffect(() => {

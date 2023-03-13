@@ -8,4 +8,5 @@ export interface SelectProps
   extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
   options?: IOption[];
   error?: string;
+  onChangeOption?: Function;
 }
