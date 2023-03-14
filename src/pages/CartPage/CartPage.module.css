@@ -1,6 +1,6 @@
 .cart_page {
   display: flex;
   gap: 32px;
-  width: calc(100% - 64px);
-  padding-top: 48px;
+  justify-content: space-between;
+  margin-top: 48px;
 }
