@@ -17,15 +17,19 @@
   height: 24px;
 
   background-color: transparent;
-  border: 1px solid #FC133D;
+  border: 1px solid var(--red);
   border-radius: 50%;
 }
 
 .flag_favorites_text {
   font-size: var(--fp);
-  color: #828282;
+  /*color: var(--light-gray);*/
+}
+
+.not_active {
+  color: var(--light-gray);
 }
 
 .active{
-  fill: #FC133D;
+  fill: var(--red);
 }

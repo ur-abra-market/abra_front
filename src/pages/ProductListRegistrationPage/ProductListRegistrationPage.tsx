@@ -67,9 +67,9 @@ const ProductListRegistrationPage = (): JSX.Element => {
         setSecondCategory={setSecondCategory}
         thirdCategory={thirdCategory}
         setThirdCategory={setThirdCategory}
-        firstStageCategories={getFirstCategories}
-        secondStageCategories={getSecondCategories}
-        thirdStageCategories={getThirdCategories}
+        firstStageCategories={getFirstCategories as any[]}
+        secondStageCategories={getSecondCategories as any[]}
+        thirdStageCategories={getThirdCategories as any[]}
         productProperties={productProperties}
         productVariations={productVariations}
         categoryId={categoryId}

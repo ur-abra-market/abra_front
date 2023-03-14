@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
+import { Container } from '../../components';
 import CartList from '../../components/ui/TypesView/cart/CartList/CartList';
 import CartOrder from '../../components/ui/TypesView/cart/CartOrder/CartOrder';
-import Footer from '../../layouts/Footer';
-import Header from '../../layouts/Header';
+import { WithLayout } from '../../hocs/WithLayout';
 
 import style from './CartPage.module.css';
 
@@ -66,15 +66,11 @@ const CartPage = (): JSX.Element => {
   });
 
   return (
-    <>
-      <Header />
-      <div className={style.cart_page}>
-        <CartList cartItems={cartItems} />
-        <CartOrder info={orderInfo} />
-      </div>
-      <Footer />
-    </>
+    <Container className={style.cart_page}>
+      <CartList cartItems={cartItems} />
+      <CartOrder info={orderInfo} />
+    </Container>
   );
 };
 
-export default CartPage;
+export default WithLayout(CartPage);

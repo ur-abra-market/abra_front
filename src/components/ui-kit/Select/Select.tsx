@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { ChangeEvent, forwardRef } from 'react';
 
 import cn from 'classnames';
 
@@ -8,15 +8,24 @@ import styles from './Select.module.css';
 import { SelectProps } from './Select.props';
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
-  const { className, options, error, children, ...restProps } = props;
+  const { className, options, error, children, onChangeOption, ...restProps } = props;
+
+  const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>): void => {
+    onChangeOption?.(e.currentTarget.value);
+  };
 
   return (
     <div className={cn(styles.wrapper, className)}>
-      <select ref={ref} className={styles.select} {...restProps}>
+      <select
+        ref={ref}
+        className={styles.select}
+        {...restProps}
+        onChange={onChangeCallback}
+      >
         {options &&
-          options.map(({ label, value }) => {
+          options.map(({ label, value }, i) => {
             return (
-              <option className={styles.option} key={`${label}`} value={value}>
+              <option className={styles.option} key={i} value={value}>
                 {label}
               </option>
             );

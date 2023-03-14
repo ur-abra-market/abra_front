@@ -27,7 +27,7 @@ const TypeBar: FC<TypeBarProps> = ({ types, setTypes }) => {
   };
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div className={style.container}>
       {types.map(type => (
         <button
           key={type.id}

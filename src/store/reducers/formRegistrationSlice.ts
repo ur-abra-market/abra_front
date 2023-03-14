@@ -1,6 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
+import { Status } from '../../enums/status.enum';
 import formRegistrationService from '../../services/formRegistration.service';
 import { RequestAccountInfo } from '../../services/supplierAccount.service';
 
@@ -8,14 +9,14 @@ interface IFormRegistrationInitialState {
   accountInfo: null | {};
   resMessage: string;
   errMessage: string;
-  loading: boolean;
+  loading: Status;
 }
 
 const initialState: IFormRegistrationInitialState = {
   accountInfo: null,
   resMessage: '',
   errMessage: '',
-  loading: false,
+  loading: Status.Idle,
 };
 
 export const accountInfoService = createAsyncThunk<
@@ -58,16 +59,16 @@ const formRegistrationSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(accountInfoService.pending, state => {
       state.resMessage = '';
-      state.loading = true;
+      state.loading = Status.Idle;
     });
     builder.addCase(accountInfoService.fulfilled, (state, action) => {
       state.resMessage = action.payload; // response
-      state.loading = false;
+      state.loading = Status.Success;
     });
     builder.addCase(accountInfoService.rejected, (state, action) => {
       state.resMessage = action.payload as string;
       state.errMessage = action.payload as string;
-      state.loading = false;
+      state.loading = Status.Failed;
     });
   },
   reducers: {

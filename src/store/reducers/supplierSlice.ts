@@ -1,14 +1,24 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
+import { Status } from '../../enums/status.enum';
 import supplierFetch from '../../services/supplier.service';
+
+interface ProductObj {
+  key: string;
+  values: Array<{ value: string; optional_value: string }>;
+}
+
+export interface ProductProperties {
+  result: ProductObj[];
+}
 
 const initialState = {
   productId: null,
   productProperties: null,
   productVariations: null,
   errMessage: '',
-  loading: false,
+  loading: Status.Idle as Status,
   companyInfo: null,
 };
 
@@ -102,70 +112,70 @@ const categorySlice = createSlice({
       .addCase(addProductService.pending, state => {
         state.productId = null;
         state.errMessage = '';
-        state.loading = true;
+        state.loading = Status.Loading;
       })
       .addCase(addProductService.fulfilled, (state, action) => {
         state.productId = action.payload;
         state.errMessage = '';
-        state.loading = false;
+        state.loading = Status.Success;
       })
       .addCase(addProductService.rejected, (state, action) => {
         state.productId = null;
         state.errMessage = action.payload as string;
-        state.loading = false;
+        state.loading = Status.Failed;
       });
 
     builder
       .addCase(getPropertiesService.pending, state => {
         state.productProperties = null;
         state.errMessage = '';
-        state.loading = true;
+        state.loading = Status.Loading;
       })
       .addCase(getPropertiesService.fulfilled, (state, action) => {
         state.productProperties = action.payload;
         state.errMessage = '';
-        state.loading = false;
+        state.loading = Status.Success;
       })
       .addCase(getPropertiesService.rejected, (state, action) => {
         // @ts-ignore
         state.productProperties = action.payload;
         state.errMessage = action.payload as string;
-        state.loading = false;
+        state.loading = Status.Failed;
       });
 
     builder
       .addCase(getCompanyInfoService.pending, state => {
         state.companyInfo = null;
         state.errMessage = '';
-        state.loading = true;
+        state.loading = Status.Loading;
       })
       .addCase(getCompanyInfoService.fulfilled, (state, action) => {
         state.companyInfo = action.payload;
         state.errMessage = '';
-        state.loading = false;
+        state.loading = Status.Success;
       })
       .addCase(getCompanyInfoService.rejected, (state, action) => {
         state.companyInfo = null;
         state.errMessage = action.payload as string;
-        state.loading = false;
+        state.loading = Status.Failed;
       });
 
     builder
       .addCase(getVariationsService.pending, state => {
         state.productVariations = null;
         state.errMessage = '';
-        state.loading = true;
+        state.loading = Status.Loading;
       })
       .addCase(getVariationsService.fulfilled, (state, action) => {
         state.productVariations = action.payload;
         state.errMessage = '';
-        state.loading = false;
+        state.loading = Status.Success;
       })
       .addCase(getVariationsService.rejected, (state, action) => {
         // @ts-ignore
         state.productVariations = action.payload;
         state.errMessage = action.payload as string;
-        state.loading = false;
+        state.loading = Status.Failed;
       });
   },
   reducers: {},

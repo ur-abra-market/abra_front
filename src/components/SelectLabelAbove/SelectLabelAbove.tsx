@@ -22,8 +22,7 @@ const SelectLabelAbove: FC<SelectLabelAboveProps> = ({
   placeholder,
   options,
   error,
-  selectProps,
-  register,
+  ...restProps
 }): JSX.Element => {
   const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>): void => {
     onChange?.(e);
@@ -36,10 +35,9 @@ const SelectLabelAbove: FC<SelectLabelAboveProps> = ({
       <div className={style.select_container}>
         <select
           name={name}
-          onChange={onChangeCallback}
           className={style.select_field}
-          {...selectProps}
-          {...register}
+          onChange={onChangeCallback}
+          {...restProps}
         >
           {placeholder && (
             <option value="" disabled hidden>

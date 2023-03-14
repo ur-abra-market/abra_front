@@ -42,7 +42,7 @@ const LoginForm = (): JSX.Element => {
       setError('password', { message: errMessage });
       setError('email', { message: errMessage });
     }
-  }, [resMessage]);
+  }, [errMessage, navigate, setError, resMessage]);
 
   const onSubmit = (data: FormDataValuesType): void => {
     if (!isValid) return;

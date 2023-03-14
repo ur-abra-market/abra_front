@@ -125,7 +125,7 @@ const ProductPage = (): JSX.Element => {
       </div>
 
       <ProductAbout />
-      <ProductReview />
+      <ProductReview className={style.review_wrapper} />
       <SimilarProduct />
       <PopularProduct />
       <LatestSearch latestSearchData={latestSearchData || []} />
