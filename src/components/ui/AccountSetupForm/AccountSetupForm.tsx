@@ -136,9 +136,9 @@ const AccountSetupForm = (): JSX.Element => {
           </div>
           <Label label="License or entrepreneur number">
             <Input
+              placeholder="000 – 00 – 0000"
               {...register('license')}
               error={errors?.license?.message}
-              placeholder="000 – 00 – 0000"
             />
           </Label>
           <p className={style.license_reminder}>

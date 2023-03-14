@@ -1,7 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import {
@@ -9,14 +11,13 @@ import {
   getCompanyInfoService,
   uploadImageService,
 } from '../../../store/reducers/supplierSlice';
-import ButtonReg from '../../buttons/ButtonReg/ButtonReg';
 import DropDownField from '../../DropDownField';
 import Form from '../../Form';
 import FormTitle from '../../FormTitle';
 import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 import Loader from '../../Loader';
-import SelectLabelAbove from '../../SelectLabelAbove';
-import TextFieldLabelAbove from '../../TextFieldLabelAbove';
+import { Button, Input, Label, Select } from '../../ui-kit';
+import { IOption } from '../../ui-kit/Select/Select.props';
 import MaterialInputs from '../MaterialInputs';
 import ProdInfoInputs from '../ProdInfoInputs';
 import SelectionsForProperties from '../SelectionsForProperties/SelectionsForProperties';
@@ -24,24 +25,43 @@ import TypesPage from '../TypesView/TypesPage';
 
 import style from './ProductListRegistrationForm.module.css';
 
+const schema = yup.object({
+  prodName: yup.string().required('Field is required'),
+  businessSector: yup.string().required('Field is required'),
+  tel: yup.string().required('Field is required'),
+  yearEstablished: yup
+    .string()
+    .min(4, 'Add an existing year')
+    .max(5, "this year hasn't come yet"),
+  email: yup.string().email('Invalid email address'),
+  category: yup.string().required('Field is required'),
+  type1: yup.string().required('Field is required'),
+  type2: yup.string().required('Field is required'),
+});
+
+interface ProductData {
+  prodName: string;
+  textarea: string;
+  category: string;
+  type1: string;
+  type2: string;
+}
+
 interface ProductListRegistrationFormProps {
   firstCategory: string;
   secondCategory: string;
   thirdCategory: string;
-  setSecondCategory: any;
-  setFirstCategory: any;
-  setThirdCategory: any;
-  firstStageCategories?: any[];
-  thirdStageCategories?: any[];
-  secondStageCategories?: any[];
+  setSecondCategory: (value: string) => void;
+  setFirstCategory: (value: string) => void;
+  setThirdCategory: (value: string) => void;
+  firstStageCategories: any[];
+  thirdStageCategories: any[];
+  secondStageCategories: any[];
   productProperties?: any[] | null;
   productVariations: any;
   categoryId?: any;
 }
 const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
-  firstCategory,
-  secondCategory,
-  thirdCategory,
   setSecondCategory,
   setFirstCategory,
   setThirdCategory,
@@ -59,6 +79,17 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   const [isSubmit, setIsSubmit] = useState(false);
   const [images, setImages] = useState([]);
   const [types, setTypes] = useState([{ id: 1, selected: true }]);
+  const [showMainProductInfo, setShowMainProductInfo] = useState(true);
+
+  const FIRST_CATEGORIES_DATA: IOption[] = firstStageCategories?.map(el => {
+    return { label: el, value: el };
+  });
+  const SECOND_CATEGORIES_DATA: IOption[] = secondStageCategories?.map(el => {
+    return { label: el, value: el };
+  });
+  const THIRD_CATEGORIES_DATA: IOption[] = thirdStageCategories?.map(el => {
+    return { label: el, value: el };
+  });
 
   const {
     register,
@@ -66,7 +97,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
     handleSubmit,
     reset,
     getValues,
-  } = useForm({ mode: 'onChange' });
+  } = useForm<ProductData>({ resolver: yupResolver(schema), mode: 'onChange' });
 
   const values = productProperties?.map(el => el.key);
 
@@ -197,7 +228,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   return (
     <div className={style.form_wrapper}>
       <div className={style.form_container}>
-        {loading ? (
+        {loading === 'loading' ? (
           <Loader />
         ) : (
           <>
@@ -214,61 +245,54 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className={style.form}>
-                <DropDownField isShow title="Main Product Info">
-                  <TextFieldLabelAbove
-                    register={register('prodName', {
-                      required: 'Field is required',
-                    })}
-                    // @ts-ignore
-                    error={errors?.prodName?.message}
-                    title="Product name *"
-                    name="prodName"
-                    type="text"
-                    placeholder="Enter the product name"
-                  />
-
+                <DropDownField
+                  title="Main Product Info"
+                  isShow={showMainProductInfo}
+                  foo={setShowMainProductInfo}
+                >
+                  <Label label="Product name *">
+                    <Input
+                      {...register('prodName')}
+                      error={errors?.prodName?.message}
+                      placeholder="Enter the product name"
+                    />
+                  </Label>
                   <div className={style.select_inputs}>
                     <div className={style.select_equal}>
-                      <SelectLabelAbove
-                        // @ts-ignore
-                        value={firstCategory}
-                        onChangeOption={setFirstCategory}
-                        // @ts-ignore
-                        options={firstStageCategories}
-                        register={register('category', {
-                          required: true,
-                        })}
-                        title="Category *"
-                        name="category"
-                        placeholder="Select"
-                      />
+                      <Label label="Category *">
+                        <Select
+                          {...register('category')}
+                          error={errors?.category?.message}
+                          placeholder="Select"
+                          onChangeOption={setFirstCategory}
+                          options={FIRST_CATEGORIES_DATA}
+                        />
+                      </Label>
                     </div>
 
                     <div className={style.select_equal}>
-                      <SelectLabelAbove
-                        // @ts-ignore
-                        value={secondCategory}
-                        onChangeOption={setSecondCategory}
-                        options={secondStageCategories}
-                        register={register('type1', {})}
-                        title="Type 1 *"
-                        name="type1"
-                        placeholder="Select"
-                      />
+                      <Label label="Type 1 *">
+                        <Select
+                          {...register('type1')}
+                          error={errors?.type1?.message}
+                          placeholder="Select"
+                          onChangeOption={setSecondCategory}
+                          options={SECOND_CATEGORIES_DATA}
+                        />
+                      </Label>
                     </div>
 
                     {thirdStageCategories && !!thirdStageCategories.length && (
                       <div className={style.select_equal}>
-                        <SelectLabelAbove
-                          // @ts-ignore
-                          value={thirdCategory}
-                          onChangeOption={setThirdCategory}
-                          options={thirdStageCategories}
-                          register={register('type2')}
-                          title="Type 2 *"
-                          name="type2"
-                          placeholder="Select"
-                        />
+                        <Label label="Type 2 *">
+                          <Select
+                            {...register('type2')}
+                            error={errors?.type2?.message}
+                            placeholder="Select"
+                            onChangeOption={setThirdCategory}
+                            options={THIRD_CATEGORIES_DATA}
+                          />
+                        </Label>
                       </div>
                     )}
                   </div>
@@ -282,13 +306,12 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                       <ImagesAdding key={i} images={images} setImages={setImages} />
                     ))}
                   </div>
-
-                  <TextFieldLabelAbove
-                    register={register('textarea')}
-                    title="Description"
-                    name="textarea"
-                    placeholder="Enter the description of your product"
-                  />
+                  <Label label="Description">
+                    <Input
+                      {...register('textarea')}
+                      placeholder="Enter the description of your product"
+                    />
+                  </Label>
                 </DropDownField>
 
                 <DropDownField
@@ -337,7 +360,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                   <ProdInfoInputs register={register} />
                 </DropDownField>
 
-                <ButtonReg type="submit" value="Continue" isValid={!isValid} />
+                <Button type="submit" label="Continue" disabled={!isValid} />
               </div>
             </Form>
           </>

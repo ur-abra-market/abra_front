@@ -4,6 +4,15 @@ import { AxiosError } from 'axios';
 import { Status } from '../../enums/status.enum';
 import supplierFetch from '../../services/supplier.service';
 
+interface ProductObj {
+  key: string;
+  values: Array<{ value: string; optional_value: string }>;
+}
+
+export interface ProductProperties {
+  result: ProductObj[];
+}
+
 const initialState = {
   productId: null,
   productProperties: null,

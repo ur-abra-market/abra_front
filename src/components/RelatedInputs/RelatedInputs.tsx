@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import TextFieldLabelAbove from '../TextFieldLabelAbove';
+import { Input, Label } from '../ui-kit';
 
 import style from './RelatedInputs.module.css';
 
@@ -30,7 +30,20 @@ const RelatedInputs: FC<RelatedInputsProps> = ({
 }): JSX.Element => {
   return (
     <div className={style.double_inputs}>
-      <TextFieldLabelAbove
+      <Label label={mainTitle as string}>
+        <Input
+          {...register(mainName, {
+            required: {
+              value: isRequire,
+              message: 'Field is required',
+            },
+          })}
+          type={mainType}
+          placeholder={mainPlaceholder}
+        />
+      </Label>
+
+      {/* <TextFieldLabelAbove
         register={register(mainName, {
           required: {
             value: isRequire,
@@ -41,9 +54,22 @@ const RelatedInputs: FC<RelatedInputsProps> = ({
         name={mainName}
         type={mainType}
         placeholder={mainPlaceholder}
-      />
+      /> */}
 
-      <TextFieldLabelAbove
+      <Label label={optTitle as string}>
+        <Input
+          {...register(optName, {
+            required: {
+              value: isRequire,
+              message: 'Field is required',
+            },
+          })}
+          type={optType}
+          placeholder={optPlaceholder}
+        />
+      </Label>
+
+      {/* <TextFieldLabelAbove
         register={register(optName, {
           required: {
             value: isRequire,
@@ -54,7 +80,7 @@ const RelatedInputs: FC<RelatedInputsProps> = ({
         name={optName}
         type={optType}
         placeholder={optPlaceholder}
-      />
+      /> */}
     </div>
   );
 };

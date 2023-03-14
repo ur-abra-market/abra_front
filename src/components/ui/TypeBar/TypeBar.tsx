@@ -1,8 +1,15 @@
 import React, { FC } from 'react';
 
+import style from './TypeBar.module.css';
+
+interface Types {
+  id: number;
+  selected: boolean;
+}
+
 interface TypeBarProps {
-  types: any[];
-  setTypes: any;
+  types: Types[];
+  setTypes: (arr: Types[]) => void;
 }
 const TypeBar: FC<TypeBarProps> = ({ types, setTypes }) => {
   const addTypeHandler = (): void => {
@@ -20,32 +27,19 @@ const TypeBar: FC<TypeBarProps> = ({ types, setTypes }) => {
   };
 
   return (
-    <div style={{ display: 'flex' }}>
+    <div className={style.container}>
       {types.map(type => (
-        <div
-          role="presentation"
+        <button
           key={type.id}
           onClick={() => changeSelectedTypeHandler(type.id)}
-          style={{
-            cursor: 'pointer',
-            backgroundColor: type.selected ? 'grey' : 'lightgrey',
-            padding: 5,
-            marginRight: 10,
-          }}
+          type="button"
+          className={type.selected ? style.btn_active : style.btn}
         >
           Type {type.id}
-        </div>
+        </button>
       ))}
 
-      <button
-        type="button"
-        style={{
-          cursor: 'pointer',
-          backgroundColor: 'lightgrey',
-          padding: 5,
-        }}
-        onClick={addTypeHandler}
-      >
+      <button type="button" className={style.btn_plus} onClick={addTypeHandler}>
         +
       </button>
     </div>

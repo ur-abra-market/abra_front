@@ -32,8 +32,6 @@ const ProductListRegistrationPage = (): JSX.Element => {
     }
   };
 
-  console.log('third childs:', thirdChilds);
-  console.log('third category:', thirdCategory);
   const categoryId =
     thirdChilds && thirdChilds.length
       ? getId(thirdChilds, thirdCategory)
@@ -50,7 +48,7 @@ const ProductListRegistrationPage = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(categoryService());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (categoryId) {
@@ -58,7 +56,7 @@ const ProductListRegistrationPage = (): JSX.Element => {
       dispatch(getPropertiesService({ id: categoryId }));
       dispatch(getVariationsService({ id: categoryId }));
     }
-  }, [categoryId]);
+  }, [dispatch, categoryId]);
 
   return (
     <div>
@@ -69,9 +67,9 @@ const ProductListRegistrationPage = (): JSX.Element => {
         setSecondCategory={setSecondCategory}
         thirdCategory={thirdCategory}
         setThirdCategory={setThirdCategory}
-        firstStageCategories={getFirstCategories}
-        secondStageCategories={getSecondCategories}
-        thirdStageCategories={getThirdCategories}
+        firstStageCategories={getFirstCategories as any[]}
+        secondStageCategories={getSecondCategories as any[]}
+        thirdStageCategories={getThirdCategories as any[]}
         productProperties={productProperties}
         productVariations={productVariations}
         categoryId={categoryId}
