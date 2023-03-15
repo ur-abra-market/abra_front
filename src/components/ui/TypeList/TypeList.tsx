@@ -4,8 +4,8 @@ import CheckboxFor from '../CheckboxFor';
 import RadiosFor from '../RadiosFor';
 
 interface TypeListProps {
-  colors: any[];
-  sizes: any[];
+  colors: string[];
+  sizes: string[];
   getValues: any;
   register: any;
   types: any[];

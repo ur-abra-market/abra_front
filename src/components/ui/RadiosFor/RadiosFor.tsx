@@ -27,7 +27,7 @@ const RadiosFor: FC<RadiosForProps> = ({
       <p className={style.title}>{title}</p>
       <div className={style.radio_wrapper}>
         {array &&
-          array.map((el: any, i: number) => {
+          array.map((el: string, i: number) => {
             return (
               <RadioStyledElem
                 key={i}

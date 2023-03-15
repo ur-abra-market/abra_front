@@ -1,75 +1,75 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
-import { ucFirst } from '../../../utils/ucFirst';
-import s from '../../SelectLabelAbove/SelectLabelAbove.module.css';
+import { Label, Select } from '../../ui-kit';
+import { IOption } from '../../ui-kit/Select/Select.props';
 import style from '../ProductListRegistrationForm/ProductListRegistrationForm.module.css';
 
 interface SelectionsForPropertiesProps {
   element: any;
   register: any;
-  options: any[];
+  options: IOption[];
 }
 const SelectionsForProperties: FC<SelectionsForPropertiesProps> = ({
   element,
   register,
   options,
 }) => {
-  const [currentValue, setCurrentValue] = useState('');
+  /* const [currentValue, setCurrentValue] = useState('');
 
-  const arrFilteredOptValues = element.values
+   const arrFilteredOptValues = element.values
     .filter(
       (el: { value: string; optional_value: null }) =>
         el.value === currentValue && el.optional_value !== null,
     )
-    .map((el: { optional_value: any }) => el.optional_value);
+    .map((el: { optional_value: any }) => el.optional_value); */
+
+  /* <Select
+    placeholder="Select"
+    options={options}
+    {...register(`${element.key}`, {
+      required: true,
+      onChange: (e: any) => {
+        setCurrentValue(e.target.value);
+      },
+    })}
+  /> */
 
   return (
-    <div className={style.selectInputs}>
-      <div className={style.selectEqual}>
-        <p className={s.selectTitle}>{ucFirst(`${element.key}`)}</p>
-        <div className={s.selectContainer}>
-          <select
-            {...register(`${element.key}`, {
-              required: true,
-              onChange: (e: any) => {
-                setCurrentValue(e.target.value);
-              },
-            })}
-            className={s.selectField}
-          >
-            <option hidden value="">
-              Select
-            </option>
-
-            {options.map((el, i) => (
-              <option key={i} className={s.selectOption} value={el}>
-                {el}
-              </option>
-            ))}
-          </select>
-          <span className={s.selectArrow}>&#9660;</span>
+    <div className={style.select_inputs}>
+      <div className={style.select_equal}>
+        {/* <p className={s.select_title}>{ucFirst(`${element.key}`)}</p> */}
+        <div className={style.select_container}>
+          <Label label={`${element.key}`}>
+            <Select
+              placeholder="Select"
+              options={options}
+              {...register(`${element.key}`, {
+                required: true,
+              })}
+            />
+          </Label>
         </div>
       </div>
 
-      {!!arrFilteredOptValues.length && (
-        <div className={style.selectEqual}>
-          <p className={s.selectTitle}>{ucFirst(`${element.key}(optional)`)}</p>
-          <div className={s.selectContainer}>
-            <select {...register(`${element.key}(optional)`)} className={s.selectField}>
+      {/* {!!arrFilteredOptValues.length && (
+        <div className={style.select_equal}>
+          <p className={s.select_title}>{ucFirst(`${element.key}(optional)`)}</p>
+          <div className={s.select_container}>
+            <select {...register(`${element.key}(optional)`)} className={s.select_field}>
               <option hidden value="">
                 Select
               </option>
 
               {arrFilteredOptValues.map((el: any, i: number) => (
-                <option key={i} className={s.selectOption} value={el}>
+                <option key={i} className={s.select_option} value={el}>
                   {el}
                 </option>
               ))}
             </select>
-            <span className={s.selectArrow}>&#9660;</span>
+            <span className={s.select_arrow}>&#9660;</span>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

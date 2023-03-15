@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 
+import { ProductVariations } from '../ProductListRegistrationForm/ProductListRegistrationForm';
 import TypeBar from '../TypeBar/TypeBar';
 import TypeList from '../TypeList/TypeList';
 
 interface TypesPageProps {
-  variations: any;
+  variations: ProductVariations;
   getValues: any;
   register: any;
   setTypes: any;
@@ -17,7 +18,7 @@ const TypesPage: FC<TypesPageProps> = ({
   setTypes,
   types,
 }) => {
-  const [sizes, colors] = [variations.size, variations.color];
+  const [sizes, colors] = [variations.Size, variations.Color];
 
   return (
     <>
