@@ -36,8 +36,6 @@ export const getSupplierNotifications = createAsyncThunk(
     try {
       const notifications = await supplierAccountData.getNotifications();
 
-      console.log('REDUCER-NOT', notifications);
-
       return notifications;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
