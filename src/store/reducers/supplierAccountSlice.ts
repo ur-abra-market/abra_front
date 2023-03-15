@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import supplierAccountData, {
@@ -14,11 +14,7 @@ export const getSupplierAccountDataService = createAsyncThunk(
 
   async (data, { rejectWithValue }) => {
     try {
-      const data = await supplierAccountData.getAccountData();
-
-      console.log('data', data);
-
-      return data;
+      return supplierAccountData.getAccountData();
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         rejectWithValue(error.message);
@@ -34,9 +30,7 @@ export const getSupplierNotifications = createAsyncThunk(
   'supplierAccount/getNotifications',
   async (_, { rejectWithValue }) => {
     try {
-      const notifications = await supplierAccountData.getNotifications();
-
-      return notifications;
+      return supplierAccountData.getNotifications();
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         rejectWithValue(error.message);
@@ -53,24 +47,6 @@ export const postSupplierNotifications = createAsyncThunk<any, INotification>(
   async (data, { rejectWithValue }) => {
     try {
       return supplierAccountData.postNotifications(data);
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        rejectWithValue(error.message);
-      }
-
-      return rejectWithValue('[getSupplierNotifications]: Error');
-    }
-  },
-);
-
-// TODO - not use
-export const postSupplierAccountDataService = createAsyncThunk<any, any>(
-  'supplierAccount/postAccountData',
-  async (personalData, { rejectWithValue }) => {
-    try {
-      const data = await supplierAccountData.postAccountData(personalData);
-
-      return data;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         rejectWithValue(error.message);
