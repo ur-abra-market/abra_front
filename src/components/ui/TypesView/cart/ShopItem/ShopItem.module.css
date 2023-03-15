@@ -1,71 +1,66 @@
-.shop_item {
+.container {
   width: 100%;
   padding-top: 34px;
 }
 
-.shop_item_header {
+.header {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
 
-.shop_item_header_checkbox {
+.checkbox {
   width: 24px;
   height: 24px;
   margin-right: 34px;
+  accent-color: var(--red);
 }
 
-.shop_item_header_star {
+.star {
   width: 16px;
-  height:16px;
+  height: 16px;
   margin-right: 8px;
 
-  background-image: url('../../../../../assets/img/icons/Star 1.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.shop_item_header_rating {
+.rating {
   margin-right: 8px;
 }
 
-.shop_item_header_arrow_right {
+.arrow_right {
   width: 5px;
-  height:10px;
+  height: 10px;
   margin-left: 14px;
 
-  background-image: url('../../../../../assets/img/icons/arrowRight.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.shop_item_footer {
+.footer {
   display: flex;
 
   margin-top: 32px;
   padding: 12px 32px;
 
-  font-family: 'Roboto', sans-serif;
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--fp);
+  font-weight: var(--regular);
   font-style: normal;
-  line-height: 20px;
-  color: #000000;
+  line-height: var(--fh4);
+  color: var(--black);
 
   background-color: rgba(252, 19, 61, 0.2);
   border-radius: 8px;
 }
 
-.shop_item_footer_dot {
+.dot {
   width: 24px;
   height: 20px;
-
-  background-image: url('../../../../../assets/img/icons/dot.svg');
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
-.shop_item_footer_method {
+.method {
   cursor: pointer;
+  color: var(--black);
   text-decoration: underline;
 }

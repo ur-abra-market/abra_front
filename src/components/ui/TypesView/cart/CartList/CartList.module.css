@@ -2,11 +2,10 @@
   width: 100%;
 }
 
-.cart_items_title {
-  font-family: 'Roboto', sans-serif;
-  font-size: 34px;
-  font-weight: 700;
+.title {
+  font-size: var(--fh2);
+  font-weight: var(--bold);
   font-style: normal;
   line-height: 34px;
-  color: #000000;
+  color: var(--black);
 }

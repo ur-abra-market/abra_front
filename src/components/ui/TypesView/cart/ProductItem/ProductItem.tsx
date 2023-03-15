@@ -1,71 +1,65 @@
 import React, { FC } from 'react';
 
+import { Button, Checkbox, Input } from '../../../../ui-kit';
+
 import style from './ProductItem.module.css';
 
 interface ProductItemProps {
   product: any;
 }
-const ProductItem: FC<ProductItemProps> = ({ product }): JSX.Element => {
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const changeQuantityHandler = () => {};
+const ProductItem: FC<ProductItemProps> = ({ product }) => {
+  const changeQuantityHandler = (): void => {};
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const changeStatusHandler = () => {};
+  const changeStatusHandler = (): void => {};
 
   return (
-    <div className={style.product_item}>
-      <div className={style.product_item_main_container}>
-        <div>
-          <input
-            className={style.product_item_main_container_checkbox}
-            checked={product.checked}
-            onChange={changeStatusHandler}
-            type="checkbox"
-          />
-        </div>
+    <div className={style.container}>
+      <div className={style.item_container}>
+        <Checkbox
+          className={style.checkbox}
+          checked={product.checked}
+          onChange={changeStatusHandler}
+        />
 
         <div>
           <img
-            className={style.product_item_main_container_img}
+            className={style.container_img}
             src="src/assets/img/icons/none.png"
             alt="img"
           />
         </div>
 
         <div>
-          <p className={style.product_item_main_container_name}>{product.name}</p>
-          <div className={style.product_item_main_container_info}>
+          <p className={style.name}>{product.name}</p>
+          <div className={style.info}>
             <div>Color: {product.color}</div>
             <div>Size: {product.size}</div>
             <div>Quantity: {product.quantity}</div>
           </div>
-          <div className={style.product_item_main_container_price}>
+          <div className={style.price}>
             <p>${product.price}</p>
-            <p className={style.product_item_main_container_price_special}>
-              Special offer: ≥ 200 = 1pc/$4.25
-            </p>
+            <p className={style.special_offer}>Special offer: ≥ 200 = 1pc/$4.25</p>
           </div>
         </div>
       </div>
 
-      <div className={style.product_item_quantity_container}>
-        <div className={style.product_item_quantity_container_title}>
+      <div className={style.quantity_container}>
+        <div className={style.quantity_title}>
           Quantity
-          <span className={style.product_item_quantity_container_title_from}>
-            /from {product.minQuantity} pcs
-          </span>
+          <span className={style.quantity_from}>/from {product.minQuantity} pcs</span>
         </div>
-        <div className={style.product_item_quantity_container_quantity}>
-          {/* eslint-disable-next-line react/button-has-type */}
-          <button className={style.product_item_quantity_container_button}>-</button>
-          <input
-            className={style.product_item_quantity_container_input}
+        <div className={style.quantity_counter}>
+          <Button color="white" className={style.button}>
+            -
+          </Button>
+          <Input
+            className={style.input}
             value={product.quantity}
             onChange={changeQuantityHandler}
-            type="text"
           />
-          {/* eslint-disable-next-line react/button-has-type */}
-          <button className={style.product_item_quantity_container_button}>+</button>
+          <Button color="white" className={style.button}>
+            +
+          </Button>
         </div>
       </div>
     </div>
