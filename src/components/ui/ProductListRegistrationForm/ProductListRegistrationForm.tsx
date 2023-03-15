@@ -25,6 +25,16 @@ import TypesPage from '../TypesView/TypesPage';
 
 import style from './ProductListRegistrationForm.module.css';
 
+interface ProductProperties {
+  key: string;
+  values: Array<PropertiesValues>;
+}
+
+interface PropertiesValues {
+  value: string;
+  optional_value: string | null;
+}
+
 const schema = yup.object({
   prodName: yup.string().required('Field is required'),
   businessSector: yup.string().required('Field is required'),
@@ -319,17 +329,22 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                   title="Properties"
                 >
                   {productProperties &&
-                    productProperties.map((el, i) => {
+                    productProperties.map((el: ProductProperties, i) => {
                       // @ts-ignore
-                      const values = [...new Set(el.values.map((el: any) => el.value))];
+                      const values = [
+                        ...new Set(el.values.map((el: PropertiesValues) => el.value)),
+                      ];
+
+                      const options: IOption[] = values.map((el: any) => {
+                        return { label: el, value: el };
+                      });
 
                       return (
                         <SelectionsForProperties
                           key={i}
                           element={el}
-                          options={values}
+                          options={options}
                           register={register}
-                          // placeholder="Select"
                         />
                       );
                     })}
