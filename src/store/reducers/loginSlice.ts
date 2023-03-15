@@ -48,7 +48,9 @@ export const checkAuth = createAsyncThunk<
   try {
     const response = await authService.checkAuth();
 
-    if (response.data.is_supplier) localStorage.setItem('profile', 'supplier');
+    if (response.data.is_supplier) {
+      localStorage.setItem('profile', 'supplier');
+    }
 
     return response;
   } catch (error) {

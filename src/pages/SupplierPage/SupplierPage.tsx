@@ -11,6 +11,7 @@ import Loader from '../../components/Loader';
 import Select from '../../components/Select';
 import NavBarUniversal from '../../components/ui/NavBarUniversal/NavBarUniversal';
 import SupplierMenu from '../../components/ui/SupplierMenu/SupplierMenu';
+import { Status } from '../../enums/status.enum';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getSupplierAccountDataService } from '../../store/reducers/supplierAccountSlice';
 import { getCompanyInfoService } from '../../store/reducers/supplierSlice';
@@ -46,12 +47,11 @@ const SupplierPage = (): JSX.Element => {
   };
 
   useEffect(() => {
-    // @ts-ignore
-    if (isGetCompanyInfo && !isLoading && !companyInfo?.name)
-      navigate('../account-setup');
-  }, [isLoading]);
+    // FIXME - обязательно затипизировать supplierSlice!!!! и поправить проверку
+    if (isGetCompanyInfo && !isLoading && !companyInfo) navigate('../account-setup');
+  }, [companyInfo, isGetCompanyInfo, isLoading, navigate]);
 
-  if (isLoading) {
+  if (isLoading === Status.Loading) {
     return <Loader />;
   }
 
@@ -63,10 +63,9 @@ const SupplierPage = (): JSX.Element => {
             <Link className={style.text_link} to="/">
               Abra
             </Link>
-            <span className={style.vertical_Line} />
+            <span className={style.vertical_line} />
             <span>
               <Link className={style.supplier_main_page_link} to="/">
-                {' '}
                 SUPPLIER
               </Link>
             </span>
