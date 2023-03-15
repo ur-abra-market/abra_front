@@ -1,13 +1,11 @@
 import React, { FC } from 'react';
 
+import { ProductVariations } from '../ProductListRegistrationForm/ProductListRegistrationForm';
 import TypeBar from '../TypeBar/TypeBar';
 import TypeList from '../TypeList/TypeList';
 
 interface TypesPageProps {
-  variations: {
-    Color: string[];
-    Size: string[];
-  };
+  variations: ProductVariations;
   getValues: any;
   register: any;
   setTypes: any;

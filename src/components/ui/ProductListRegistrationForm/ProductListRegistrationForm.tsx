@@ -35,6 +35,11 @@ interface PropertiesValues {
   optional_value: string | null;
 }
 
+export interface ProductVariations {
+  Color: string[];
+  Size: string[];
+}
+
 const schema = yup.object({
   prodName: yup.string().required('Field is required'),
   businessSector: yup.string().required('Field is required'),
@@ -64,12 +69,12 @@ interface ProductListRegistrationFormProps {
   setSecondCategory: (value: string) => void;
   setFirstCategory: (value: string) => void;
   setThirdCategory: (value: string) => void;
-  firstStageCategories: any[];
-  thirdStageCategories: any[];
-  secondStageCategories: any[];
-  productProperties?: any[] | null;
-  productVariations: any;
-  categoryId?: any;
+  firstStageCategories: string[];
+  thirdStageCategories: string[];
+  secondStageCategories: string[];
+  productProperties?: ProductProperties[] | null;
+  productVariations: ProductVariations | null;
+  categoryId?: number;
 }
 const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   setSecondCategory,
@@ -130,7 +135,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   const createObjVariation = (id: any, data: any): any => {
     const childs: any[] = [];
 
-    productVariations.size?.forEach((el: any) => {
+    productVariations?.Size?.forEach((el: any) => {
       if (data[`${id}-${el}`]) {
         childs.push({
           name: 'size',
@@ -360,7 +365,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                   />
 
                   <TypesPage
-                    variations={variations}
+                    variations={variations as ProductVariations}
                     register={register}
                     setTypes={setTypes}
                     types={types}
