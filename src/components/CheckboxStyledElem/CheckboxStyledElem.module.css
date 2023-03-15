@@ -21,12 +21,13 @@
   height: 57px;
 
   border: #D8D8D8 1px solid;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .border_container {
   color: #000;
   border: #000 2px solid;
+  border-radius: 8px;
 }
 
 .size_block {
@@ -41,7 +42,7 @@
   color: #828282;
 
   border-bottom: 1px solid #D8D8D8;
-  border-radius: 2px;
+  border-radius: 8px;
 }
 
 .input_value {
