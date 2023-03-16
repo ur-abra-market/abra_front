@@ -6,12 +6,12 @@ import arrowTriangleImg from '../../assets/img/icons/check-arrow.png';
 import iconImage from '../../assets/img/icons/icon-img.png';
 import bellImg from '../../assets/img/icons/notification-bell.svg';
 import { ButtonLink } from '../../components/buttons';
-import FooterForSupplierPart from '../../components/FooterForSupplierPart';
 import Loader from '../../components/Loader';
 import Select from '../../components/Select';
 import NavBarUniversal from '../../components/ui/NavBarUniversal/NavBarUniversal';
 import SupplierMenu from '../../components/ui/SupplierMenu/SupplierMenu';
 import { Status } from '../../enums/status.enum';
+import Footer from '../../layouts/Footer';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getSupplierAccountDataService } from '../../store/reducers/supplierAccountSlice';
 import { getCompanyInfoService } from '../../store/reducers/supplierSlice';
@@ -118,7 +118,7 @@ const SupplierPage = (): JSX.Element => {
         <SupplierMenu />
         <Outlet />
       </div>
-      <FooterForSupplierPart />
+      <Footer />
     </>
   );
 };
