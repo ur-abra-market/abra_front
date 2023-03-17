@@ -40,26 +40,27 @@ export const loginService = createAsyncThunk<
   }
 });
 
-export const checkAuth = createAsyncThunk<
-  { data: CheckAuthResponseType },
-  void,
-  AsyncThunkConfig
->('login/checkAuth', async (_, { rejectWithValue }) => {
-  try {
-    const response = await authService.checkAuth();
+export const checkAuth = createAsyncThunk<CheckAuthResponseType, void, AsyncThunkConfig>(
+  'login/checkAuth',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await authService.checkAuth();
 
-    if (response.data.is_supplier) localStorage.setItem('profile', 'supplier');
+      if (response.data.is_supplier) {
+        localStorage.setItem('profile', 'supplier');
+      }
 
-    return response;
-  } catch (error) {
-    localStorage.removeItem('profile');
-    if (error instanceof AxiosError) {
-      return rejectWithValue(error.message);
+      return response.data;
+    } catch (error) {
+      localStorage.removeItem('profile');
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[checkAuth]: ERROR');
     }
-
-    return rejectWithValue('[checkAuth]: ERROR');
-  }
-});
+  },
+);
 
 export const logout = createAsyncThunk<any, void>(
   'login/logout',

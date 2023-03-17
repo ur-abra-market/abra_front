@@ -1,4 +1,4 @@
-import React, { ChangeEvent, DetailedHTMLProps, FC, HTMLAttributes } from 'react';
+import React, { ChangeEvent, DetailedHTMLProps, FC, SelectHTMLAttributes } from 'react';
 
 import style from './SelectLabelAbove.module.css';
 
@@ -10,9 +10,16 @@ interface SelectLabelAboveProps {
   placeholder?: string;
   options?: any[];
   error?: string;
+
   restProps?: any;
+  // FIXme - не будет работать!!!!
   register?: any;
-  selectProps?: DetailedHTMLProps<HTMLAttributes<HTMLSelectElement>, HTMLSelectElement>;
+
+  // FIXme - не правильно!!!
+  selectProps?: DetailedHTMLProps<
+    SelectHTMLAttributes<HTMLSelectElement>,
+    HTMLSelectElement
+  >;
 }
 const SelectLabelAbove: FC<SelectLabelAboveProps> = ({
   onChange,
@@ -22,7 +29,7 @@ const SelectLabelAbove: FC<SelectLabelAboveProps> = ({
   placeholder,
   options,
   error,
-  ...restProps
+  selectProps,
 }): JSX.Element => {
   const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>): void => {
     onChange?.(e);
@@ -37,7 +44,7 @@ const SelectLabelAbove: FC<SelectLabelAboveProps> = ({
           name={name}
           className={style.select_field}
           onChange={onChangeCallback}
-          {...restProps}
+          {...selectProps}
         >
           {placeholder && (
             <option value="" disabled hidden>

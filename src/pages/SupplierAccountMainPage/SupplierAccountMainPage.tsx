@@ -365,7 +365,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
               {/*        classes={classesOfCompanyImages} */}
               {/*      /> */}
               {/*    ))} */}
-
+              {/* FIXME - есть отдельный компонент зашрузки фото */}
               <input
                 className={style.hidden}
                 type="file"
@@ -402,6 +402,7 @@ const SupplierAccountMainPage = (): JSX.Element => {
               />
             </div>
             <div className={style.text_field_wrapper}>
+              {/* FIXME -TextField удаляем из проекта */}
               <TextField
                 inputProps={register('company_info.business_email', {
                   pattern: {
