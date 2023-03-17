@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import cn from 'classnames';
-import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
 import { Container } from '../../components';
 import Address from '../../components/Address';
 import UploadFile from '../../components/new-components/UploadFile/UploadFile';
-import { Button, Checkbox, Input, Label } from '../../components/ui-kit';
-import EditableInputWrapper from '../../components/ui-kit/EditableInputWrapper/EditableInputWrapper';
+import { Button, Checkbox, Input, InputWithMask, Select } from '../../components/ui-kit';
+import { IOption } from '../../components/ui-kit/Select/Select.props';
 import { Action } from '../../services/user.service';
 import { useAppDispatch } from '../../store/hooks';
 import { logout } from '../../store/reducers/loginSlice';
@@ -22,9 +21,9 @@ import Header from 'layouts/Header';
 import Orders from 'pages/SellerAccountPage/Orders';
 
 const SellerAccountPage = (): JSX.Element => {
-  const { watch, setValue, reset } = useForm({});
+  // const { watch, setValue, reset } = useForm({});
 
-  const [email, password, phone] = watch(['email', 'password', 'phone']);
+  // const [email, password, phone] = watch(['email', 'password', 'phone']);
 
   const addressExample = {
     firstname: 'Olga',
@@ -53,9 +52,25 @@ const SellerAccountPage = (): JSX.Element => {
   //   navigate('/login');
   // }
 
-  useEffect(() => {
-    reset({ phone: '123', email: 'test', password: '1234' });
-  }, []);
+  // export interface IOption {
+  //   label: string;
+  //   value: string | number;
+  // }
+  // export interface SelectProps
+  //     extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
+  //   options?: IOption[];
+  //   error?: string;
+  //   onChangeOption?: Function;
+  // }
+
+  const options: IOption[] = [
+    { label: '+90', value: '+90' },
+    { label: '+7', value: '+7' },
+  ];
+
+  // useEffect(() => {
+  //   reset({ phone: '123', email: 'test', password: '1234' });
+  // }, []);
 
   return (
     <div className={style.seller_page}>
@@ -79,49 +94,40 @@ const SellerAccountPage = (): JSX.Element => {
                 <div className={style.button_link_container}>
                   <UploadFile action={Action.UPLOAD_LOGO} />
                 </div>
-                <div className={style.profile_info_inputs_wrapper}>
-                  <div className={style.flex_container}>
-                    <label htmlFor="firstName" className={style.label}>
-                      First name
-                    </label>
-                    <Input placeholder="Enter first name" id="firstName" />
+                <form>
+                  <div className={style.names_container}>
+                    <div className={style.flex_container}>
+                      <label htmlFor="firstName" className={style.label}>
+                        First name
+                      </label>
+                      <Input placeholder="Enter first name" id="firstName" />
+                    </div>
+                    <div className={style.flex_container}>
+                      <label htmlFor="lastName" className={style.label}>
+                        Last name
+                      </label>
+                      <Input placeholder="Enter last name" id="lastName" />
+                    </div>
                   </div>
-                  <div className={style.flex_container}>
-                    <label htmlFor="firstName" className={style.label}>
-                      Last name
-                    </label>
-                    <Input placeholder="Enter last name" id="lastName" />
+                  <div className={style.phone_container}>
+                    <div className={style.phone_code}>
+                      <label htmlFor="phoneCode" className={style.label}>
+                        Personal phone number
+                      </label>
+                      <Select options={options} />
+                    </div>
+                    <div className={style.phone}>
+                      <InputWithMask
+                        mask="(999) 999-9999"
+                        placeholder="(XXX) XXX-XXXX"
+                        className={style.mask}
+                      />
+                    </div>
                   </div>
-                </div>
+                  <Button className={style.save_button}>Save</Button>
+                </form>
               </div>
-              <div className={style.section}>
-                <div className={style.header_wrapper}>
-                  <div className={style.header}>Account Details</div>
-                </div>
-                <div className={style.account_details_wrapper}>
-                  <Label label="Email" htmlFor="email">
-                    <EditableInputWrapper
-                      type="text"
-                      value={email}
-                      onChangeValue={value => setValue('email', value)}
-                    />
-                  </Label>
-                  <Label label="Phone Number" htmlFor="phone">
-                    <EditableInputWrapper
-                      type="text"
-                      value={phone}
-                      onChangeValue={value => setValue('phone', value)}
-                    />
-                  </Label>
-                  <Label label="Password" htmlFor="password">
-                    <EditableInputWrapper
-                      type="password"
-                      value={password}
-                      onChangeValue={value => setValue('password', value)}
-                    />
-                  </Label>
-                </div>
-              </div>
+
               <div className={cn(style.remove_wrapper, style.section)}>
                 <Link className={style.remove_account_link} to="/">
                   Remove the account?

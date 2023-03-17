@@ -54,6 +54,7 @@
   background: var(--front);
   border-radius: 8px;
 }
+
 .section_notifications {
   padding: 0;
 }
@@ -119,14 +120,46 @@
   width: 100%;
 }
 
-.profile_info_inputs_wrapper {
+.names_container {
   display: flex;
   gap: 16px;
   align-items: center;
   justify-content: space-between;
 
   margin-top: 24px;
+  margin-bottom: 16px;
 }
+
+.phone_container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 32px;
+}
+
+.phone_code {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 50%;
+}
+
+.phone {
+  width: 50%;
+  margin-top: 20px;
+}
+
+.mask {
+  border-radius: 12px;
+}
+
+.save_button {
+  width: 100%;
+}
+
+
 
 .header_link {
   font-size: 15px;
@@ -135,7 +168,7 @@
   line-height: 20px;
   color: var(--red);
   text-decoration-line: underline;
-  
+
 }
 
 .button_link_container {
@@ -151,7 +184,7 @@
   gap: 8px;
   align-items: flex-start;
 
-  width: 100%;
+  width: 50%;
 }
 
 .label {
@@ -184,7 +217,7 @@
   line-height: 32px;
   color: var(--red);
   text-align: left;
-  
+
 }
 
 .link_description {
@@ -242,7 +275,7 @@
   font-style: normal;
   line-height: 20px;
   color: var(--black);
-  
+
 }
 
 .addresses_container > div {
@@ -258,8 +291,11 @@
 
 .notifications_item {
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
+
   padding: 16px 32px;
+
   border-bottom: 1px solid var(--light-gray-kit);
 }
 
@@ -317,7 +353,6 @@
 .account_details_text_field_input {
   width: 100%;
 }
-
 
 
 .input_wrapper_input_text_field_password {
@@ -429,7 +464,7 @@
   line-height: 20px;
   /* identical to box height, or 133% */
 
-  
+
 }
 
 .completed_icon {
