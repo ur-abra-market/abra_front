@@ -42,13 +42,6 @@ export interface ProductVariations {
 
 const schema = yup.object({
   prodName: yup.string().required('Field is required'),
-  businessSector: yup.string().required('Field is required'),
-  tel: yup.string().required('Field is required'),
-  yearEstablished: yup
-    .string()
-    .min(4, 'Add an existing year')
-    .max(5, "this year hasn't come yet"),
-  email: yup.string().email('Invalid email address'),
   category: yup.string().required('Field is required'),
   type1: yup.string().required('Field is required'),
   type2: yup.string().required('Field is required'),
@@ -132,7 +125,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
     return finalObj;
   };
 
-  const createObjVariation = (id: any, data: any): any => {
+  const createObjVariation = (id: number, data: any): any => {
     const childs: any[] = [];
 
     productVariations?.Size?.forEach((el: any) => {
@@ -144,6 +137,10 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
         });
       }
     });
+
+    /* console.log('childs: ', childs);
+    console.log('productVariations: ', productVariations);
+    console.log('productProperties: ', productProperties); */
 
     return {
       name: 'color',
