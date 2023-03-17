@@ -138,10 +138,6 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
       }
     });
 
-    /* console.log('childs: ', childs);
-    console.log('productVariations: ', productVariations);
-    console.log('productProperties: ', productProperties); */
-
     return {
       name: 'color',
       value: data[`${id}-color`],
