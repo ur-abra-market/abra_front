@@ -41,16 +41,15 @@ const RegisterForm = (): JSX.Element => {
 
   const watchPasword = watch('password');
 
-  const { loading, errMessage, resMessage } = useAppSelector(state => state.register);
+  const { resMessage } = useAppSelector(state => state.register);
 
-  console.log(loading, errMessage);
   const handleClick = (userStatus: 'sellers' | 'suppliers'): void => {
     setUserStatus(userStatus);
   };
 
   useEffect(() => {
     if (resMessage === 'MESSAGE_HAS_BEEN_SENT') navigate('/');
-  }, [resMessage]);
+  }, [navigate, resMessage]);
 
   const onSubmit = (data: FormDataValuesType): void => {
     if (!isValid) return;
