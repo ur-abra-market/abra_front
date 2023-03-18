@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
@@ -10,8 +10,9 @@ import UploadFile from '../../components/new-components/UploadFile/UploadFile';
 import { Button, Checkbox, Input, InputWithMask, Select } from '../../components/ui-kit';
 import { IOption } from '../../components/ui-kit/Select/Select.props';
 import { Action } from '../../services/user.service';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { logout } from '../../store/reducers/loginSlice';
+import { getSellerInfoService } from '../../store/reducers/sellerSlice';
 
 import style from './SellerAccountPage.module.css';
 
@@ -24,6 +25,11 @@ const SellerAccountPage = (): JSX.Element => {
   // const { watch, setValue, reset } = useForm({});
 
   // const [email, password, phone] = watch(['email', 'password', 'phone']);
+
+  const dispatch = useAppDispatch();
+
+  const fisrtName = useAppSelector(state => state.seller.userProfileInfo.first_name);
+  const lastName = useAppSelector(state => state.seller.userProfileInfo.last_name);
 
   const addressExample = {
     firstname: 'Olga',
@@ -40,7 +46,6 @@ const SellerAccountPage = (): JSX.Element => {
 
   const addresses = [addressExample];
 
-  const dispatch = useAppDispatch();
   const onLogoutHandler = (): void => {
     dispatch(logout());
   };
@@ -62,6 +67,10 @@ const SellerAccountPage = (): JSX.Element => {
   //   error?: string;
   //   onChangeOption?: Function;
   // }
+
+  useEffect(() => {
+    dispatch(getSellerInfoService());
+  }, []);
 
   const options: IOption[] = [
     { label: '+90', value: '+90' },
@@ -100,13 +109,21 @@ const SellerAccountPage = (): JSX.Element => {
                       <label htmlFor="firstName" className={style.label}>
                         First name
                       </label>
-                      <Input placeholder="Enter first name" id="firstName" />
+                      <Input
+                        placeholder="Enter first name"
+                        id="firstName"
+                        value={fisrtName && fisrtName}
+                      />
                     </div>
                     <div className={style.flex_container}>
                       <label htmlFor="lastName" className={style.label}>
                         Last name
                       </label>
-                      <Input placeholder="Enter last name" id="lastName" />
+                      <Input
+                        placeholder="Enter last name"
+                        id="lastName"
+                        value={lastName && lastName}
+                      />
                     </div>
                   </div>
                   <div className={style.phone_container}>
