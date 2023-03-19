@@ -18,7 +18,6 @@ import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 import Loader from '../../Loader';
 import { Button, Input, Label, Select } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
-import MaterialInputs from '../MaterialInputs';
 import ProdInfoInputs from '../ProdInfoInputs';
 import SelectionsForProperties from '../SelectionsForProperties/SelectionsForProperties';
 import TypesPage from '../TypesView/TypesPage';
@@ -133,7 +132,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
         childs.push({
           name: 'size',
           value: el,
-          count: data[`${id}-${el}`],
+          count: Number(data[`${id}-${el}`]),
         });
       }
     });
@@ -180,15 +179,15 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 
     const prices = [
       {
-        value: data.mainPrice,
-        quantity: data.mainQuantity,
+        value: Number(data.mainPrice),
+        quantity: Number(data.mainQuantity),
       },
     ];
 
     if (data.specPrice && data.specQuantity) {
       prices.push({
-        value: data.specPrice,
-        quantity: data.specQuantity,
+        value: Number(data.specPrice),
+        quantity: Number(data.specQuantity),
       });
     }
 
@@ -347,7 +346,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                       );
                     })}
 
-                  <MaterialInputs
+                  {/* <MaterialInputs
                     register={register}
                     mainTitle="Material (optional)"
                     optTitle="% (optional)"
@@ -355,7 +354,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                     optPlaceholder="Enter percentage of material"
                     mainType="text"
                     optType="number"
-                  />
+                  /> */}
 
                   <TypesPage
                     variations={variations as ProductVariations}

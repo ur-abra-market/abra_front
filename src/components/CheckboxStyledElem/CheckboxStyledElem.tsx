@@ -18,7 +18,7 @@ const CheckboxStyledElem: FC<CheckboxStyledElemProps> = ({
   const checkboxHandler = (e: ChangeEvent<any>): void => {
     setChecked(e.target.checked);
     // TODO переделать!!!!!!
-    // document.getElementById(size + typeId).focus();
+    document.getElementById(size + typeId)?.focus();
   };
 
   const onInputHandler = (e: ChangeEvent<HTMLInputElement>): void => {

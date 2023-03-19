@@ -32,7 +32,7 @@
 }
 
 .border_container {
-  border: #000 2px solid;
+  border: #FC133D 1px solid;
 }
 
 .growth_container {
@@ -46,7 +46,7 @@
   height: 30px;
 
   border-bottom: 1px solid #D8D8D8;
-  border-radius: 8px;
+  border-radius: 7px;
 }
 
 .color_value,
