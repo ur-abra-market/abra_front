@@ -29,9 +29,9 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>((props, ref) =>
         className={styles.select}
         {...restProps}
         onChange={onChangeCallback}
-        placeholder={placeholder}
+        defaultValue={placeholder}
       >
-        <option value="" disabled selected>
+        <option value={placeholder} disabled>
           {placeholder}
         </option>
         {options &&
