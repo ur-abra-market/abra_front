@@ -2,22 +2,26 @@ import httpService from './http.service';
 
 export const sellerFetch = {
   getSellerInfo: async () => {
-    const { data } = await httpService.get<SellerFetchType>('sellers/get_seller_info');
+    const { data } = await httpService.get<ISellerInfoFetch>('sellers/get_seller_info');
 
     return data;
   },
-  sendSellerInfo: async (sellerData: SellerProfileSendType) => {
-    const { data } = await httpService.post<SellerSendType, any, SellerProfileSendType>(
-      'sellers/send_seller_info',
-      sellerData,
-    );
+  // sendSellerInfo: async (sellerData: SellerProfileSendType) => {
+  //   const { data } = await httpService.post<SellerSendType, any, SellerProfileSendType>(
+  //     'sellers/send_seller_info',
+  //     sellerData,
+  //   );
 
-    return data;
-  },
+  // return data;
+  // },
 };
 
-export interface SellerFetchType {
-  user_profile_info: SellerProfileFetchType;
+export interface ISellerInfoFetch {
+  result: ISellerResultFetch;
+}
+
+export interface ISellerResultFetch {
+  user_profile_info: ISellerProfile;
   user_adresses: {};
   notifications: {
     on_discount: boolean;
@@ -32,13 +36,12 @@ export interface SellerFetchType {
     null: null;
   };
 }
-
-interface SellerProfileFetchType {
+interface ISellerProfile {
   first_name: string;
   last_name: string;
   email: string;
   phone: string;
 }
 
-interface SellerSendType extends Partial<SellerFetchType> {}
-export interface SellerProfileSendType extends Partial<SellerProfileFetchType> {}
+// interface SellerSendType extends Partial<ISellerInfoFetch> {}
+// export interface SellerProfileSendType extends Partial<ISellerProfile> {}

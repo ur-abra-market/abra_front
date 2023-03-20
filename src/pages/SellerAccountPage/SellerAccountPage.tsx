@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import cn from 'classnames';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
@@ -22,14 +23,20 @@ import Header from 'layouts/Header';
 import Orders from 'pages/SellerAccountPage/Orders';
 
 const SellerAccountPage = (): JSX.Element => {
-  // const { watch, setValue, reset } = useForm({});
+  const firstName = useAppSelector(state => state.seller.userProfileInfo.first_name);
+  const lastName = useAppSelector(state => state.seller.userProfileInfo.last_name);
 
-  // const [email, password, phone] = watch(['email', 'password', 'phone']);
+  const { setValue, watch, reset } = useForm({
+    defaultValues: {
+      firstName,
+      lastName,
+    },
+  });
+
+  const [name1, name2] = watch(['firstName', 'lastName']);
+  // const [firstName, lastName] = watch(['firstName', 'lastName']);
 
   const dispatch = useAppDispatch();
-
-  const fisrtName = useAppSelector(state => state.seller.userProfileInfo.first_name);
-  const lastName = useAppSelector(state => state.seller.userProfileInfo.last_name);
 
   const addressExample = {
     firstname: 'Olga',
@@ -57,29 +64,18 @@ const SellerAccountPage = (): JSX.Element => {
   //   navigate('/login');
   // }
 
-  // export interface IOption {
-  //   label: string;
-  //   value: string | number;
-  // }
-  // export interface SelectProps
-  //     extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement> {
-  //   options?: IOption[];
-  //   error?: string;
-  //   onChangeOption?: Function;
-  // }
-
-  useEffect(() => {
-    dispatch(getSellerInfoService());
-  }, []);
-
   const options: IOption[] = [
     { label: '+90', value: '+90' },
     { label: '+7', value: '+7' },
   ];
 
-  // useEffect(() => {
-  //   reset({ phone: '123', email: 'test', password: '1234' });
-  // }, []);
+  useEffect(() => {
+    dispatch(getSellerInfoService());
+  }, []);
+
+  useEffect(() => {
+    reset({ firstName, lastName });
+  }, [firstName, lastName]);
 
   return (
     <div className={style.seller_page}>
@@ -112,7 +108,10 @@ const SellerAccountPage = (): JSX.Element => {
                       <Input
                         placeholder="Enter first name"
                         id="firstName"
-                        value={fisrtName && fisrtName}
+                        value={name1}
+                        onChange={value => {
+                          setValue('firstName', value.currentTarget.value);
+                        }}
                       />
                     </div>
                     <div className={style.flex_container}>
@@ -122,7 +121,10 @@ const SellerAccountPage = (): JSX.Element => {
                       <Input
                         placeholder="Enter last name"
                         id="lastName"
-                        value={lastName && lastName}
+                        value={name2}
+                        onChange={value => {
+                          setValue('lastName', value.currentTarget.value);
+                        }}
                       />
                     </div>
                   </div>

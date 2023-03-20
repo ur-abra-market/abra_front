@@ -2,15 +2,15 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { Status } from '../../enums/status.enum';
-import { sellerFetch, SellerFetchType } from '../../services/seller.service';
+import { ISellerResultFetch, sellerFetch } from '../../services/seller.service';
 
-export const getSellerInfoService = createAsyncThunk<SellerFetchType, void>(
+export const getSellerInfoService = createAsyncThunk<ISellerResultFetch, void>(
   'seller/getSellerInfoService',
   async function (_, { rejectWithValue }) {
     try {
       const data = await sellerFetch.getSellerInfo();
 
-      return data;
+      return data.result;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
@@ -54,7 +54,6 @@ const sellerSlice = createSlice({
     });
     builder.addCase(getSellerInfoService.fulfilled, (state, action) => {
       state.loading = Status.Success;
-
       state.userProfileInfo = action.payload.user_profile_info;
       state.userAdresses = action.payload.user_adresses;
       state.notifications = action.payload.notifications;
