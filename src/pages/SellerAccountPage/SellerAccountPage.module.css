@@ -72,11 +72,11 @@
 }
 
 .header {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--fd);
+  font-weight: var(--bold);
   font-style: normal;
-  line-height: 25px;
-  color: #000;
+  line-height: var(--fh3);
+  color: var(--black);
   text-align: left;
 }
 
@@ -102,23 +102,6 @@
 
 }
 
-.profile_info_btn_name {
-  cursor: pointer;
-
-  font-size: 15px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 20px;
-  color: var(--red);
-  text-decoration-line: underline;
-  letter-spacing: -0.24px;
-}
-
-.profile_info_btn_img {
-  cursor: pointer;
-  display: block;
-  width: 100%;
-}
 
 .names_container {
   display: flex;
@@ -159,13 +142,11 @@
   width: 100%;
 }
 
-
-
 .header_link {
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--fp);
+  font-weight: var(--regular);
   font-style: normal;
-  line-height: 20px;
+  line-height: var(--fh4);
   color: var(--red);
   text-decoration-line: underline;
 
@@ -197,34 +178,35 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  /*align-items: center;*/
 
   max-width: 406px;
   margin-top: 32px;
 }
 
-.remove_wrapper {
+.link_wrapper {
   display: flex;
   flex-flow: column;
-  margin-bottom: 50px;
 }
 
-.remove_account_link,
+.link,
 .link_description {
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--fp);
+  font-weight: var(--regular);
   font-style: normal;
-  line-height: 32px;
+  line-height: var(--fh4);
   color: var(--red);
   text-align: left;
+}
 
+.link {
+  text-decoration: underline;
 }
 
 .link_description {
   color: var(--black);
 }
 
-.orders_category_wrapper {
+.category_wrapper {
   position: relative;
   top: 0;
   left: 0;
@@ -236,8 +218,6 @@
 
   margin-top: 24px;
 
-  /*gap: 32px; */
-  /*margin-bottom: 30px;*/
 }
 
 .order_wrepper {
@@ -251,18 +231,6 @@
   cursor: pointer;
   display: block;
   width: 48px;
-}
-
-.order_btn_name {
-  cursor: pointer;
-
-  font-size: 15px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 20px;
-  color: var(--black);
-  /*text-decoration-line: underline;*/
-  letter-spacing: -0.24px;
 }
 
 .my_addresses_wrapper {
@@ -354,20 +322,6 @@
   width: 100%;
 }
 
-
-.input_wrapper_input_text_field_password {
-  display: flex;
-  width: 100%;
-}
-
-.account_details_input_textfield_password {
-  width: 100%;
-  height: 42px;
-  padding-left: 12px;
-  background: #F2F2F2;
-}
-
-
 .label_checkbox {
   cursor: pointer;
 
@@ -456,12 +410,12 @@
   padding: 0;
 }
 
-.orders_button_title {
+.button_title {
   font-family: var(--roboto);
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--fp);
+  font-weight: var(--regular);
   font-style: normal;
-  line-height: 20px;
+  line-height: var(--fd);
   /* identical to box height, or 133% */
 
 

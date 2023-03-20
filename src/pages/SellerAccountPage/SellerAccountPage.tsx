@@ -163,8 +163,24 @@ const SellerAccountPage = (): JSX.Element => {
                 </form>
               </div>
 
-              <div className={cn(style.remove_wrapper, style.section)}>
-                <Link className={style.remove_account_link} to="/">
+              <div className={cn(style.link_wrapper, style.section)}>
+                <Link className={style.link} to="/changeEmail">
+                  Change your email
+                </Link>
+                <div className={style.link_description}>
+                  (All your data including order history will be deleted)
+                </div>
+              </div>
+              <div className={cn(style.link_wrapper, style.section)}>
+                <Link className={style.link} to="/changePassword">
+                  Change your password
+                </Link>
+                <div className={style.link_description}>
+                  (All your data including order history will be deleted)
+                </div>
+              </div>
+              <div className={cn(style.link_wrapper, style.section)}>
+                <Link className={style.link} to="/">
                   Remove the account?
                 </Link>
                 <div className={style.link_description}>
