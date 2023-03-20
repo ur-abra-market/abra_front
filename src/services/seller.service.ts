@@ -22,7 +22,7 @@ export const sellerFetch = {
   },
 };
 
-// get seller info
+// get seller info interfaces
 
 export interface IUserInfoFetch {
   result: IUserResultFetch;
@@ -43,7 +43,7 @@ interface IUserProfile {
   phone: string;
 }
 
-// send seller info
+// send seller info interfaces
 
 interface IErrorDetail {
   loc: [string, number];

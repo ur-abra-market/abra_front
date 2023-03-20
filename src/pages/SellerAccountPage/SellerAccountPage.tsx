@@ -25,12 +25,19 @@ import Footer from 'layouts/Footer';
 import Header from 'layouts/Header';
 import Orders from 'pages/SellerAccountPage/Orders';
 
+type FormValues = {
+  firstName: string;
+  lastName: string;
+};
+
 const SellerAccountPage = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const firstName = useAppSelector(state => state.seller.userProfileInfo.first_name);
   const lastName = useAppSelector(state => state.seller.userProfileInfo.last_name);
+
   // const notifications = useAppSelector(state => state.seller.notifications);
 
-  const { setValue, watch, reset, handleSubmit } = useForm({
+  const { setValue, watch, reset, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       firstName,
       lastName,
@@ -39,13 +46,11 @@ const SellerAccountPage = (): JSX.Element => {
 
   const [fistNameWatched, lastNameWatched] = watch(['firstName', 'lastName']);
 
-  const onSubmit = (data: any): void => {
+  const onSubmit = (data: FormValues): void => {
     dispatch(
       sendSellerInfoService({ first_name: data.firstName, last_name: data.lastName }),
     );
   };
-
-  const dispatch = useAppDispatch();
 
   const addressExample = {
     firstname: 'Olga',
