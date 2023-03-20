@@ -13,7 +13,10 @@ import { IOption } from '../../components/ui-kit/Select/Select.props';
 import { Action } from '../../services/user.service';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { logout } from '../../store/reducers/loginSlice';
-import { getSellerInfoService } from '../../store/reducers/sellerSlice';
+import {
+  getSellerInfoService,
+  sendSellerInfoService,
+} from '../../store/reducers/sellerSlice';
 
 import style from './SellerAccountPage.module.css';
 
@@ -25,16 +28,22 @@ import Orders from 'pages/SellerAccountPage/Orders';
 const SellerAccountPage = (): JSX.Element => {
   const firstName = useAppSelector(state => state.seller.userProfileInfo.first_name);
   const lastName = useAppSelector(state => state.seller.userProfileInfo.last_name);
+  // const notifications = useAppSelector(state => state.seller.notifications);
 
-  const { setValue, watch, reset } = useForm({
+  const { setValue, watch, reset, handleSubmit } = useForm({
     defaultValues: {
       firstName,
       lastName,
     },
   });
 
-  const [name1, name2] = watch(['firstName', 'lastName']);
-  // const [firstName, lastName] = watch(['firstName', 'lastName']);
+  const [fistNameWatched, lastNameWatched] = watch(['firstName', 'lastName']);
+
+  const onSubmit = (data: any): void => {
+    dispatch(
+      sendSellerInfoService({ first_name: data.firstName, last_name: data.lastName }),
+    );
+  };
 
   const dispatch = useAppDispatch();
 
@@ -99,7 +108,7 @@ const SellerAccountPage = (): JSX.Element => {
                 <div className={style.button_link_container}>
                   <UploadFile action={Action.UPLOAD_LOGO} />
                 </div>
-                <form>
+                <form onSubmit={handleSubmit(onSubmit)}>
                   <div className={style.names_container}>
                     <div className={style.flex_container}>
                       <label htmlFor="firstName" className={style.label}>
@@ -108,7 +117,7 @@ const SellerAccountPage = (): JSX.Element => {
                       <Input
                         placeholder="Enter first name"
                         id="firstName"
-                        value={name1}
+                        value={fistNameWatched}
                         onChange={value => {
                           setValue('firstName', value.currentTarget.value);
                         }}
@@ -121,7 +130,7 @@ const SellerAccountPage = (): JSX.Element => {
                       <Input
                         placeholder="Enter last name"
                         id="lastName"
-                        value={name2}
+                        value={lastNameWatched}
                         onChange={value => {
                           setValue('lastName', value.currentTarget.value);
                         }}
@@ -143,7 +152,9 @@ const SellerAccountPage = (): JSX.Element => {
                       />
                     </div>
                   </div>
-                  <Button className={style.save_button}>Save</Button>
+                  <Button className={style.save_button} type="submit">
+                    Save
+                  </Button>
                 </form>
               </div>
 

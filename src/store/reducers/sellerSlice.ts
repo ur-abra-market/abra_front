@@ -2,13 +2,35 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { Status } from '../../enums/status.enum';
-import { ISellerResultFetch, sellerFetch } from '../../services/seller.service';
+import {
+  ISellerData,
+  IUserResultFetch,
+  sellerFetch,
+  SendSellerResponse,
+} from '../../services/seller.service';
 
-export const getSellerInfoService = createAsyncThunk<ISellerResultFetch, void>(
+export const getSellerInfoService = createAsyncThunk<IUserResultFetch, void>(
   'seller/getSellerInfoService',
   async function (_, { rejectWithValue }) {
     try {
       const data = await sellerFetch.getSellerInfo();
+
+      return data.result;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[getSellerInfoService]: Error');
+    }
+  },
+);
+
+export const sendSellerInfoService = createAsyncThunk<SendSellerResponse, ISellerData>(
+  'seller/sendSellerInfoService',
+  async function (param: { first_name: string; last_name: string }, { rejectWithValue }) {
+    try {
+      const data = await sellerFetch.sendSellerInfo(param);
 
       return data.result;
     } catch (error: unknown) {
