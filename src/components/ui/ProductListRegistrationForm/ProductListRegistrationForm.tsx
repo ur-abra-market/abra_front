@@ -55,18 +55,15 @@ interface ProductData {
 }
 
 interface ProductListRegistrationFormProps {
-  firstCategory: string;
-  secondCategory: string;
-  thirdCategory: string;
   setSecondCategory: (value: string) => void;
   setFirstCategory: (value: string) => void;
   setThirdCategory: (value: string) => void;
   firstStageCategories: string[];
   thirdStageCategories: string[];
   secondStageCategories: string[];
-  productProperties?: ProductProperties[] | null;
+  productProperties: ProductProperties[] | null;
   productVariations: ProductVariations | null;
-  categoryId?: number;
+  categoryId: number;
 }
 const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   setSecondCategory,
@@ -86,7 +83,8 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   const [isSubmit, setIsSubmit] = useState(false);
   const [images, setImages] = useState([]);
   const [types, setTypes] = useState([{ id: 1, selected: true }]);
-  const [showMainProductInfo, setShowMainProductInfo] = useState(true);
+
+  const [openDropDownField, setOpenDropDownField] = useState<null | number>(null);
 
   const FIRST_CATEGORIES_DATA: IOption[] = firstStageCategories?.map(el => {
     return { label: el, value: el };
@@ -254,8 +252,9 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
               <div className={style.form}>
                 <DropDownField
                   title="Main Product Info"
-                  isShow={showMainProductInfo}
-                  foo={setShowMainProductInfo}
+                  id={1}
+                  open={openDropDownField}
+                  setOpen={setOpenDropDownField}
                 >
                   <Label label="Product name *">
                     <Input
@@ -322,8 +321,10 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                 </DropDownField>
 
                 <DropDownField
-                  isShow={!!productProperties && !!productVariations}
+                  id={2}
                   title="Properties"
+                  open={openDropDownField}
+                  setOpen={setOpenDropDownField}
                 >
                   {productProperties &&
                     productProperties.map((el: ProductProperties, i) => {
@@ -366,8 +367,10 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                 </DropDownField>
 
                 <DropDownField
-                  isShow={!!productProperties && !!productVariations}
+                  id={3}
                   title="Additional Product Info"
+                  open={openDropDownField}
+                  setOpen={setOpenDropDownField}
                 >
                   <ProdInfoInputs register={register} />
                 </DropDownField>
