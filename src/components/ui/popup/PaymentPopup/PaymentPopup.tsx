@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { payment } from '../../../../store/reducers/modalSlice';
-import Check from '../../../Check';
 import TextModal from '../../../TextModal';
+import { Button } from '../../../ui-kit';
 
 import style from './PaymentPopup.module.css';
 
@@ -18,14 +19,12 @@ const PaymentPopup = (): JSX.Element => {
   return (
     <div className={style.payment_popup} style={styles}>
       <div className={style.payment_popup_modal}>
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-        <div
-          className={style.payment_popup_modal_exit}
-          onClick={() => dispatch(payment(false))}
-        />
         <div className={style.payment_popup_row1}>
-          <h4>Add payment</h4>
-          <Check label="Save the card for next orders" />
+          <h4 className={style.payment_popup_title_text}>Add Payment Card</h4>
+          <Exit
+            className={style.payment_popup_modal_exit}
+            onClick={() => dispatch(payment(false))}
+          />
         </div>
         <div className={style.payment_popup_block}>
           <div className={style.payment_popup_block_title}>Card Info</div>
@@ -36,7 +35,7 @@ const PaymentPopup = (): JSX.Element => {
             <TextModal title="CVV/CSC" placeholder="Enter a 3-4 digits code" />
           </div>
         </div>
-        <div className={style.payment_popup_button}>Confirm</div>
+        <Button className={style.payment_popup_button}>Confirm</Button>
       </div>
     </div>
   );
