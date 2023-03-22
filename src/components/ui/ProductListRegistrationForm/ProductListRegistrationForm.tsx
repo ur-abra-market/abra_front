@@ -15,17 +15,14 @@ import DropDownField from '../../DropDownField';
 import Form from '../../Form';
 import FormTitle from '../../FormTitle';
 import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
-// import Loader from '../../Loader';
+import Loader from '../../Loader';
 import { Button, Input, Label, Select } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
-import MaterialInputs from '../MaterialInputs';
 import ProdInfoInputs from '../ProdInfoInputs';
 import SelectionsForProperties from '../SelectionsForProperties/SelectionsForProperties';
 import TypesPage from '../TypesView/TypesPage';
 
 import style from './ProductListRegistrationForm.module.css';
-
-// import { Status } from 'enums/status.enum';
 
 interface ProductProperties {
   key: string;
@@ -44,13 +41,6 @@ export interface ProductVariations {
 
 const schema = yup.object({
   prodName: yup.string().required('Field is required'),
-  businessSector: yup.string().required('Field is required'),
-  tel: yup.string().required('Field is required'),
-  yearEstablished: yup
-    .string()
-    .min(4, 'Add an existing year')
-    .max(5, "this year hasn't come yet"),
-  email: yup.string().email('Invalid email address'),
   category: yup.string().required('Field is required'),
   type1: yup.string().required('Field is required'),
   type2: yup.string().required('Field is required'),
@@ -65,18 +55,15 @@ interface ProductData {
 }
 
 interface ProductListRegistrationFormProps {
-  firstCategory: string;
-  secondCategory: string;
-  thirdCategory: string;
   setSecondCategory: (value: string) => void;
   setFirstCategory: (value: string) => void;
   setThirdCategory: (value: string) => void;
   firstStageCategories: string[];
   thirdStageCategories: string[];
   secondStageCategories: string[];
-  productProperties?: ProductProperties[] | null;
+  productProperties: ProductProperties[] | null;
   productVariations: ProductVariations | null;
-  categoryId?: number;
+  categoryId: number;
 }
 const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   setSecondCategory,
@@ -91,12 +78,13 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { productId, companyInfo } = useAppSelector(state => state.supplier);
+  const { productId, loading, companyInfo } = useAppSelector(state => state.supplier);
 
   const [isSubmit, setIsSubmit] = useState(false);
   const [images, setImages] = useState([]);
   const [types, setTypes] = useState([{ id: 1, selected: true }]);
-  const [showMainProductInfo, setShowMainProductInfo] = useState(true);
+
+  const [openDropDownField, setOpenDropDownField] = useState<null | number>(null);
 
   const FIRST_CATEGORIES_DATA: IOption[] = firstStageCategories?.map(el => {
     return { label: el, value: el };
@@ -134,7 +122,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
     return finalObj;
   };
 
-  const createObjVariation = (id: any, data: any): any => {
+  const createObjVariation = (id: number, data: any): any => {
     const childs: any[] = [];
 
     productVariations?.Size?.forEach((el: any) => {
@@ -142,7 +130,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
         childs.push({
           name: 'size',
           value: el,
-          count: data[`${id}-${el}`],
+          count: Number(data[`${id}-${el}`]),
         });
       }
     });
@@ -189,15 +177,15 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 
     const prices = [
       {
-        value: data.mainPrice,
-        quantity: data.mainQuantity,
+        value: Number(data.mainPrice),
+        quantity: Number(data.mainQuantity),
       },
     ];
 
     if (data.specPrice && data.specQuantity) {
       prices.push({
-        value: data.specPrice,
-        quantity: data.specQuantity,
+        value: Number(data.specPrice),
+        quantity: Number(data.specQuantity),
       });
     }
 
@@ -245,144 +233,153 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   return (
     <div className={style.form_wrapper}>
       <div className={style.form_container}>
-        {/* {loading === Status.Loading ? ( */}
-        {/*   <Loader /> */}
-        {/* ) : ( */}
-        <FormTitle
-          // @ts-ignore
-          step={companyInfo?.name ? '' : 'Step 3/3'}
-          // @ts-ignore
-          link={companyInfo?.name ? 'Back' : 'Skip and Get started'}
-          title="Product list"
-          text="Enter the information about your first product"
-        />
-        <Form
-          action="src/components/ui/ProductListRegistrationForm/ProductListRegistrationForm"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className={style.form}>
-            <DropDownField
-              title="Main Product Info"
-              isShow={showMainProductInfo}
-              foo={setShowMainProductInfo}
+        {loading === 'loading' ? (
+          <Loader />
+        ) : (
+          <>
+            <FormTitle
+              // @ts-ignore
+              step={companyInfo?.name ? '' : 'Step 3/3'}
+              // @ts-ignore
+              link={companyInfo?.name ? 'Back' : 'Skip and Get started'}
+              title="Product list"
+              text="Enter the information about your first product"
+            />
+            <Form
+              action="src/components/ui/ProductListRegistrationForm/ProductListRegistrationForm"
+              onSubmit={handleSubmit(onSubmit)}
             >
-              <Label label="Product name *">
-                <Input
-                  {...register('prodName')}
-                  error={errors?.prodName?.message}
-                  placeholder="Enter the product name"
-                />
-              </Label>
-              <div className={style.select_inputs}>
-                <div className={style.select_equal}>
-                  <Label label="Category *">
-                    <Select
-                      {...register('category')}
-                      error={errors?.category?.message}
-                      placeholder="Select"
-                      onChangeOption={setFirstCategory}
-                      options={FIRST_CATEGORIES_DATA}
+              <div className={style.form}>
+                <DropDownField
+                  title="Main Product Info"
+                  id={1}
+                  open={openDropDownField}
+                  setOpen={setOpenDropDownField}
+                >
+                  <Label label="Product name *">
+                    <Input
+                      {...register('prodName')}
+                      error={errors?.prodName?.message}
+                      placeholder="Enter the product name"
                     />
                   </Label>
-                </div>
+                  <div className={style.select_inputs}>
+                    <div className={style.select_equal}>
+                      <Label label="Category *">
+                        <Select
+                          {...register('category')}
+                          error={errors?.category?.message}
+                          placeholder="Select"
+                          onChangeOption={setFirstCategory}
+                          options={FIRST_CATEGORIES_DATA}
+                        />
+                      </Label>
+                    </div>
 
-                <div className={style.select_equal}>
-                  <Label label="Type 1 *">
-                    <Select
-                      {...register('type1')}
-                      error={errors?.type1?.message}
-                      placeholder="Select"
-                      onChangeOption={setSecondCategory}
-                      options={SECOND_CATEGORIES_DATA}
-                    />
-                  </Label>
-                </div>
+                    <div className={style.select_equal}>
+                      <Label label="Type 1 *">
+                        <Select
+                          {...register('type1')}
+                          error={errors?.type1?.message}
+                          placeholder="Select"
+                          onChangeOption={setSecondCategory}
+                          options={SECOND_CATEGORIES_DATA}
+                        />
+                      </Label>
+                    </div>
 
-                {thirdStageCategories && !!thirdStageCategories.length && (
-                  <div className={style.select_equal}>
-                    <Label label="Type 2 *">
-                      <Select
-                        {...register('type2')}
-                        error={errors?.type2?.message}
-                        placeholder="Select"
-                        onChangeOption={setThirdCategory}
-                        options={THIRD_CATEGORIES_DATA}
-                      />
-                    </Label>
+                    {thirdStageCategories && !!thirdStageCategories.length && (
+                      <div className={style.select_equal}>
+                        <Label label="Type 2 *">
+                          <Select
+                            {...register('type2')}
+                            error={errors?.type2?.message}
+                            placeholder="Select"
+                            onChangeOption={setThirdCategory}
+                            options={THIRD_CATEGORIES_DATA}
+                          />
+                        </Label>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
 
-              <p className={style.list_img_title}>Photo of the company or production</p>
+                  <p className={style.list_img_title}>
+                    Photo of the company or production
+                  </p>
 
-              <div className={style.list_img}>
-                {[...new Array(5)].map((el, i) => (
-                  <ImagesAdding key={i} images={images} setImages={setImages} />
-                ))}
-              </div>
-              <Label label="Description">
-                <Input
-                  {...register('textarea')}
-                  placeholder="Enter the description of your product"
-                />
-              </Label>
-            </DropDownField>
-
-            <DropDownField
-              isShow={!!productProperties && !!productVariations}
-              title="Properties"
-            >
-              {productProperties &&
-                productProperties.map((el: ProductProperties, i) => {
-                  // @ts-ignore
-                  const values = [
-                    ...new Set(el.values.map((el: PropertiesValues) => el.value)),
-                  ];
-
-                  const options: IOption[] = values.map((el: any) => {
-                    return { label: el, value: el };
-                  });
-
-                  return (
-                    <SelectionsForProperties
-                      key={i}
-                      element={el}
-                      options={options}
-                      register={register}
+                  <div className={style.list_img}>
+                    {[...new Array(5)].map((el, i) => (
+                      <ImagesAdding key={i} images={images} setImages={setImages} />
+                    ))}
+                  </div>
+                  <Label label="Description">
+                    <Input
+                      {...register('textarea')}
+                      placeholder="Enter the description of your product"
                     />
-                  );
-                })}
+                  </Label>
+                </DropDownField>
 
-              <MaterialInputs
-                register={register}
-                mainTitle="Material (optional)"
-                optTitle="% (optional)"
-                mainPlaceholder="Enter the material name"
-                optPlaceholder="Enter percentage of material"
-                mainType="text"
-                optType="number"
-              />
+                <DropDownField
+                  id={2}
+                  title="Properties"
+                  open={openDropDownField}
+                  setOpen={setOpenDropDownField}
+                >
+                  {productProperties &&
+                    productProperties.map((el: ProductProperties, i) => {
+                      // @ts-ignore
+                      const values = [
+                        ...new Set(el.values.map((el: PropertiesValues) => el.value)),
+                      ];
 
-              <TypesPage
-                variations={variations as ProductVariations}
-                register={register}
-                setTypes={setTypes}
-                types={types}
-                getValues={getValues}
-              />
-            </DropDownField>
+                      const options: IOption[] = values.map((el: any) => {
+                        return { label: el, value: el };
+                      });
 
-            <DropDownField
-              isShow={!!productProperties && !!productVariations}
-              title="Additional Product Info"
-            >
-              <ProdInfoInputs register={register} />
-            </DropDownField>
+                      return (
+                        <SelectionsForProperties
+                          key={i}
+                          element={el}
+                          options={options}
+                          register={register}
+                        />
+                      );
+                    })}
 
-            <Button type="submit" label="Continue" disabled={!isValid} />
-          </div>
-        </Form>
-        )
+                  {/* <MaterialInputs
+                    register={register}
+                    mainTitle="Material (optional)"
+                    optTitle="% (optional)"
+                    mainPlaceholder="Enter the material name"
+                    optPlaceholder="Enter percentage of material"
+                    mainType="text"
+                    optType="number"
+                  /> */}
+
+                  <TypesPage
+                    variations={variations as ProductVariations}
+                    register={register}
+                    setTypes={setTypes}
+                    types={types}
+                    getValues={getValues}
+                  />
+                </DropDownField>
+
+                <DropDownField
+                  id={3}
+                  title="Additional Product Info"
+                  open={openDropDownField}
+                  setOpen={setOpenDropDownField}
+                >
+                  <ProdInfoInputs register={register} />
+                </DropDownField>
+
+                <Button type="submit" label="Continue" disabled={!isValid} />
+              </div>
+            </Form>
+          </>
+        )}
       </div>
     </div>
   );

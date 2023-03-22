@@ -53,16 +53,13 @@ const SupplierTop = (): JSX.Element => {
     });
   };
 
-  // TODO companyInfo.logo_url
-  const companyInfo = null;
-
   return (
     <div className={style.wrapper}>
       <div
         role="presentation"
         onClick={() => setIsMenu(false)}
         className={cn(style.menu_wrapper, {
-          [style.menu_active]: !!isMenu,
+          [style.menu_active]: isMenu,
         })}
       />
       <div className={style.logo}>
@@ -80,29 +77,20 @@ const SupplierTop = (): JSX.Element => {
             <img src={bellImg} alt="btn-header" />
           </IconButton>
         </Link>
-        <button type="button" className={style.btn_menu} onClick={() => setIsMenu(true)}>
+        <div
+          role="presentation"
+          className={style.btn_menu}
+          onClick={() => setIsMenu(true)}
+        >
           <div className={style.btn_menu_img}>
-            {
-              // @ts-ignore
-              companyInfo?.logo_url ? (
-                <img
-                  src={
-                    // @ts-ignore
-                    companyInfo.logo_url
-                  }
-                  alt="logo"
-                />
-              ) : (
-                <img src={bellImg} alt="logo" />
-              )
-            }
+            <img src={bellImg} alt="logo" />
           </div>
           <span>Business Name</span>
           <span className={style.icon}>
             <Arrow className={style.arrow} />
           </span>
           {isMenu && <ul className={style.menu}>{buildMenu()}</ul>}
-        </button>
+        </div>
       </div>
     </div>
   );

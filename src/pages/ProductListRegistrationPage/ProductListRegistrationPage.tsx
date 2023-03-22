@@ -20,9 +20,9 @@ const ProductListRegistrationPage = (): JSX.Element => {
   const secondsChilds = useAppSelector(getChilds(firstCategory, allCategories));
   const thirdChilds = useAppSelector(getChilds(secondCategory, secondsChilds));
 
-  const getFirstCategories = useAppSelector(getCategories(allCategories));
-  const getSecondCategories = useAppSelector(getCategories(secondsChilds));
-  const getThirdCategories = useAppSelector(getCategories(thirdChilds));
+  const getFirstCategories = useAppSelector(getCategories(allCategories)) || [];
+  const getSecondCategories = useAppSelector(getCategories(secondsChilds)) || [];
+  const getThirdCategories = useAppSelector(getCategories(thirdChilds)) || [];
 
   const getId = (date: any, value: any): any => {
     if (date && value) {
@@ -61,15 +61,12 @@ const ProductListRegistrationPage = (): JSX.Element => {
   return (
     <div>
       <ProductListRegistrationForm
-        firstCategory={firstCategory}
         setFirstCategory={setFirstCategory}
-        secondCategory={secondCategory}
         setSecondCategory={setSecondCategory}
-        thirdCategory={thirdCategory}
         setThirdCategory={setThirdCategory}
-        firstStageCategories={getFirstCategories as any[]}
-        secondStageCategories={getSecondCategories as any[]}
-        thirdStageCategories={getThirdCategories as any[]}
+        firstStageCategories={getFirstCategories}
+        secondStageCategories={getSecondCategories}
+        thirdStageCategories={getThirdCategories}
         productProperties={productProperties}
         productVariations={productVariations}
         categoryId={categoryId}

@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useEffect, useState } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 
 import { ReactComponent as Arrow } from '../../assets/img/icons/arrowRight.svg';
 import styles from '../ui-kit/Select/Select.module.css';
@@ -7,40 +7,33 @@ import style from './DropDownField.module.css';
 
 interface DropDownFieldProps {
   title: string;
-  isShow: boolean;
-  foo?: (value: boolean) => void;
+  /* isShow: boolean; */
+  id: number;
+  open: number | null;
+  setOpen: (value: number | null) => void;
+  /* foo?: (value: boolean) => void; */
 }
 const DropDownField: FC<PropsWithChildren<DropDownFieldProps>> = ({
   children,
   title,
-  isShow,
-  foo,
+  id,
+  open,
+  setOpen,
 }): JSX.Element => {
-  const [open, setOpen] = useState(false);
-
-  const onClick = (): void => {
-    setOpen(!open);
-    if (foo) {
-      foo(false);
-    }
+  const onClick = (accordionNum: number): void => {
+    setOpen(open === accordionNum ? null : accordionNum);
   };
-
-  useEffect(() => {
-    if (isShow && !open) {
-      setOpen(!open);
-    }
-  }, [isShow, open]);
 
   return (
     <div>
-      <div role="presentation" className={style.title} onClick={onClick}>
+      <div role="presentation" className={style.title} onClick={() => onClick(id)}>
         <p className={style.title_text}>{title}</p>
         <span className={open ? style.arrow_on : style.arrow_off}>
           <Arrow className={styles.arrow} />
         </span>
       </div>
 
-      {open && <div className={style.children}>{children}</div>}
+      {open === id && <div className={style.children}>{children}</div>}
     </div>
   );
 };

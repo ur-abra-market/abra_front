@@ -8,7 +8,15 @@ import styles from './Select.module.css';
 import { SelectProps } from './Select.props';
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>((props, ref) => {
-  const { className, options, error, children, onChangeOption, ...restProps } = props;
+  const {
+    className,
+    options,
+    error,
+    children,
+    onChangeOption,
+    placeholder,
+    ...restProps
+  } = props;
 
   const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>): void => {
     onChangeOption?.(e.currentTarget.value);
@@ -21,7 +29,11 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>((props, ref) =>
         className={styles.select}
         {...restProps}
         onChange={onChangeCallback}
+        defaultValue={placeholder}
       >
+        <option value={placeholder} disabled>
+          {placeholder}
+        </option>
         {options &&
           options.map(({ label, value }, i) => {
             return (
