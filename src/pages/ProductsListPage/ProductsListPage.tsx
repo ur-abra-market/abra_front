@@ -103,7 +103,8 @@ const ProductsListPage: FC = (): JSX.Element => {
   // eslint-disable-next-line no-magic-numbers
   const price = [8.5];
   const data: { image: string; price: number; name: string; id: number }[] = [
-    ...Array(100),
+    // eslint-disable-next-line no-magic-numbers
+    ...Array(20),
   ].map((_, index) => ({
     id: index + 1,
     name: name[index % name.length],
