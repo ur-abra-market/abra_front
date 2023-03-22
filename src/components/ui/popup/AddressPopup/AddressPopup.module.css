@@ -19,41 +19,42 @@
 }
 
 .address_popup_modal {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-
   padding: 32px;
-
   background-color: #FFF;
+  border-radius: 12px;
+
 }
 
 .address_popup_modal_exit {
   cursor: pointer;
 
-  position: relative;
-  top: -32px;
-  left: calc(100% + 96px);
+  position: absolute;
+  top: -33px;
+  right: -88px;
 
-  width: 48px;
-  height: 48px;
-  margin-left: -48px;
+  width: 40px;
+  height: 40px;
+  padding: 12px;
 
-  background-color: #FFF;
-  background-image: url('../../../../assets/img/icons/exit-modal.svg');
-  background-position: center;
-  background-size: auto;
+  background: #FFFFFF;
   border-radius: 50%;
 }
 
+.address_popup_add_address{
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
 .address_popup_row1 {
+  position: relative;
+
   display: flex;
   flex-direction: row;
   align-self: start;
   justify-content: space-between;
 
   width: 100%;
-  margin-top: -80px;
+  margin-bottom: 32px;
 }
 
 .address_popup_checkbox {
@@ -66,28 +67,42 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin: 15px 0;
 }
 
 .address_popup_block_title {
-  font-family: 'SF Pro Display Bold', serif;
   font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
 }
 
 .address_popup_block_row2 {
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  gap: 16px;
   width: 100%;
+
 }
 
+.address_popup_input_number{
+  width: 458px;
+  height: 44px;
+  padding-left: 16px;
+
+  background: #F4F4F4;
+  border-radius: 12px;
+}
 .address_popup_block_row2_box {
   min-width: 309px;
   margin-top: 16px;
-  margin-right: 8px;
 }
 
 .address_popup_block_row2_box_title {
   margin-bottom: 8px;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
   color: #828282;
 }
 
@@ -98,13 +113,16 @@
 .address_popup_phone_number {
   display: flex;
   flex-direction: row;
-  gap: 23px;
+  gap: 16px;
 
   width: 100%;
   margin-top: 8px;
 }
 
 .address_popup_phone_title {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
   color: #828282;
 }
 
@@ -112,34 +130,7 @@
   width: 160px;
 }
 
-.address_popup_phone_number > input {
-  width: 458px;
-  height: 44px;
-  padding-left: 16px;
-
-  background-color: #F2F2F2;
-  border-radius: 4px;
-}
-
 .address_popup_button {
   cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  height: 44px;
-
-  color: #828282;
-
-  background: #F2F2F2;
-  border-radius: 4px;
-
-  transition: 0.3s;
 }
 
-.address_popup_button:hover {
-  color: #FFF;
-  background: #000;
-}

@@ -1,10 +1,12 @@
 import React from 'react';
 
+import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import { addAddress, address } from '../../../../store/reducers/modalSlice';
 import Check from '../../../Check';
 import SelectForAddress from '../../../SelectForAddres';
 import TextModal from '../../../TextModal';
+import { Button } from '../../../ui-kit';
 
 import style from './AddressPopup.module.css';
 
@@ -28,17 +30,16 @@ const AddressPopup = (): JSX.Element => {
   return (
     <div className={style.address_popup} style={styles}>
       <div className={style.address_popup_modal}>
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-        <div
-          className={style.address_popup_modal_exit}
-          onClick={() => dispatch(address(false))}
-        />
         <div className={style.address_popup_row1}>
-          <h4>Add Address</h4>
+          <h4 className={style.address_popup_add_address}>Add Address</h4>
           <div className={style.address_popup_checkbox}>
             <Check label="Main Address" />
             <Check label="Save the address for next orders" />
           </div>
+          <Exit
+            className={style.address_popup_modal_exit}
+            onClick={() => dispatch(address(false))}
+          />
         </div>
         <div className={style.address_popup_block}>
           <div className={style.address_popup_block_title}>Recipient Info</div>
@@ -52,7 +53,11 @@ const AddressPopup = (): JSX.Element => {
               <div className={style.address_popup_phone_number_select}>
                 <SelectForAddress list={listPhone} />
               </div>
-              <input type="text" placeholder="(XXX) XXX - XX - XX" />
+              <input
+                className={style.address_popup_input_number}
+                type="text"
+                placeholder="(XXX) XXX - XX - XX"
+              />
             </div>
           </div>
         </div>
@@ -92,10 +97,9 @@ const AddressPopup = (): JSX.Element => {
             <TextModal title="Zip Code" placeholder="Enter a postal code" />
           </div>
         </div>
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-        <div className={style.address_popup_button} onClick={() => handlerConfirm()}>
+        <Button className={style.address_popup_button} onClick={() => handlerConfirm()}>
           Confirm
-        </div>
+        </Button>
       </div>
     </div>
   );
