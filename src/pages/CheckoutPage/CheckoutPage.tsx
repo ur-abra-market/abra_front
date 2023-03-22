@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 
+import HeaderForChangePages from '../../components/HeaderForChangePages';
+
 import style from './CheckoutPage.module.css';
 
 import CheckDelivery from 'components/ui/checkout/CheckDelivery';
@@ -11,19 +13,23 @@ import PaymentPopup from 'components/ui/popup/PaymentPopup';
 
 const CheckoutPage: FC = (): JSX.Element => {
   return (
-    <div className={style.checkout_page}>
-      <div className={style.checkout}>
-        <CheckDelivery />
-        <CheckPayment />
-        <div className={style.checkout_items}>
-          <CheckItems index="0" />
-          <CheckItems index="1" />
+    <>
+      <HeaderForChangePages />
+
+      <div className={style.checkout_page}>
+        <div className={style.checkout}>
+          <CheckDelivery />
+          <CheckPayment />
+          <div className={style.checkout_items}>
+            <CheckItems index="0" />
+            <CheckItems index="1" />
+          </div>
         </div>
+        <CheckOrder />
+        <AddressPopup />
+        <PaymentPopup />
       </div>
-      <CheckOrder />
-      <AddressPopup />
-      <PaymentPopup />
-    </div>
+    </>
   );
 };
 

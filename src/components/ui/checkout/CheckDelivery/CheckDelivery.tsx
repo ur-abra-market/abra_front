@@ -12,7 +12,7 @@ const CheckDelivery = (): JSX.Element => {
 
   return (
     <div className={style.check_delivery}>
-      <h4>Delivery Address</h4>
+      <h4 className={style.check_delivery_title}>Delivery Address</h4>
       <div className={style.check_delivery_address}>
         {addresses.map((a: any, i: number) => (
           <Address key={`address_${i}`} address={a} />
