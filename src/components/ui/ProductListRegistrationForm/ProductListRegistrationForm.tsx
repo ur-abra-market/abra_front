@@ -18,7 +18,6 @@ import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 import Loader from '../../Loader';
 import { Button, Input, Label, Select } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
-import MaterialInputs from '../MaterialInputs';
 import ProdInfoInputs from '../ProdInfoInputs';
 import SelectionsForProperties from '../SelectionsForProperties/SelectionsForProperties';
 import TypesPage from '../TypesView/TypesPage';
@@ -42,13 +41,6 @@ export interface ProductVariations {
 
 const schema = yup.object({
   prodName: yup.string().required('Field is required'),
-  businessSector: yup.string().required('Field is required'),
-  tel: yup.string().required('Field is required'),
-  yearEstablished: yup
-    .string()
-    .min(4, 'Add an existing year')
-    .max(5, "this year hasn't come yet"),
-  email: yup.string().email('Invalid email address'),
   category: yup.string().required('Field is required'),
   type1: yup.string().required('Field is required'),
   type2: yup.string().required('Field is required'),
@@ -63,18 +55,15 @@ interface ProductData {
 }
 
 interface ProductListRegistrationFormProps {
-  firstCategory: string;
-  secondCategory: string;
-  thirdCategory: string;
   setSecondCategory: (value: string) => void;
   setFirstCategory: (value: string) => void;
   setThirdCategory: (value: string) => void;
   firstStageCategories: string[];
   thirdStageCategories: string[];
   secondStageCategories: string[];
-  productProperties?: ProductProperties[] | null;
+  productProperties: ProductProperties[] | null;
   productVariations: ProductVariations | null;
-  categoryId?: number;
+  categoryId: number;
 }
 const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   setSecondCategory,
@@ -94,7 +83,8 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   const [isSubmit, setIsSubmit] = useState(false);
   const [images, setImages] = useState([]);
   const [types, setTypes] = useState([{ id: 1, selected: true }]);
-  const [showMainProductInfo, setShowMainProductInfo] = useState(true);
+
+  const [openDropDownField, setOpenDropDownField] = useState<null | number>(null);
 
   const FIRST_CATEGORIES_DATA: IOption[] = firstStageCategories?.map(el => {
     return { label: el, value: el };
@@ -132,7 +122,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
     return finalObj;
   };
 
-  const createObjVariation = (id: any, data: any): any => {
+  const createObjVariation = (id: number, data: any): any => {
     const childs: any[] = [];
 
     productVariations?.Size?.forEach((el: any) => {
@@ -140,7 +130,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
         childs.push({
           name: 'size',
           value: el,
-          count: data[`${id}-${el}`],
+          count: Number(data[`${id}-${el}`]),
         });
       }
     });
@@ -187,15 +177,15 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 
     const prices = [
       {
-        value: data.mainPrice,
-        quantity: data.mainQuantity,
+        value: Number(data.mainPrice),
+        quantity: Number(data.mainQuantity),
       },
     ];
 
     if (data.specPrice && data.specQuantity) {
       prices.push({
-        value: data.specPrice,
-        quantity: data.specQuantity,
+        value: Number(data.specPrice),
+        quantity: Number(data.specQuantity),
       });
     }
 
@@ -262,8 +252,9 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
               <div className={style.form}>
                 <DropDownField
                   title="Main Product Info"
-                  isShow={showMainProductInfo}
-                  foo={setShowMainProductInfo}
+                  id={1}
+                  open={openDropDownField}
+                  setOpen={setOpenDropDownField}
                 >
                   <Label label="Product name *">
                     <Input
@@ -330,8 +321,10 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                 </DropDownField>
 
                 <DropDownField
-                  isShow={!!productProperties && !!productVariations}
+                  id={2}
                   title="Properties"
+                  open={openDropDownField}
+                  setOpen={setOpenDropDownField}
                 >
                   {productProperties &&
                     productProperties.map((el: ProductProperties, i) => {
@@ -354,7 +347,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                       );
                     })}
 
-                  <MaterialInputs
+                  {/* <MaterialInputs
                     register={register}
                     mainTitle="Material (optional)"
                     optTitle="% (optional)"
@@ -362,7 +355,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                     optPlaceholder="Enter percentage of material"
                     mainType="text"
                     optType="number"
-                  />
+                  /> */}
 
                   <TypesPage
                     variations={variations as ProductVariations}
@@ -374,8 +367,10 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                 </DropDownField>
 
                 <DropDownField
-                  isShow={!!productProperties && !!productVariations}
+                  id={3}
                   title="Additional Product Info"
+                  open={openDropDownField}
+                  setOpen={setOpenDropDownField}
                 >
                   <ProdInfoInputs register={register} />
                 </DropDownField>
