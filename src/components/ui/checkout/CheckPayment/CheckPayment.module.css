@@ -1,11 +1,13 @@
 .check_payment {
   display: flex;
   flex-direction: column;
-  gap: 32px;
 
+  margin: 12px 12px 12px 32px;
   padding: 32px;
 
   background-color: #FFF;
+  border-radius: 12px;
+
 }
 
 .check_payment_block {
@@ -17,11 +19,8 @@
 
 .check_payment_block_kind {
   display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-
-  margin-top: -13px;
-  margin-bottom: -13px;
+  align-items: center;
+  height: 25px;
 }
 
 .check_payment_block_kind_box {
@@ -50,10 +49,29 @@
   justify-content: center;
 
   width: 100%;
-  padding-top: 30px;
-  padding-bottom: 29px;
+  padding: 30px 0;
 
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #FC133D;
   text-decoration: underline;
 
-  border: 1px dashed #828282;
+
+  border: 1px solid #D4D4D4;
+  border-radius: 12px;
+}
+.check_payment_title{
+  margin-bottom: 32px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.icon{
+  margin-right: 32px;
+}
+.transfer_text{
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 120%;
 }

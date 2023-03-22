@@ -1,5 +1,9 @@
 import React, { FC } from 'react';
 
+import { ReactComponent as Product } from '../../../../assets/img/icons/Rectangle.svg';
+import { ReactComponent as Start } from '../../../../assets/img/icons/Star 5].svg';
+import { ReactComponent as Vector } from '../../../../assets/img/icons/VectorRight.svg';
+
 import style from './CheckItems.module.css';
 
 interface CheckItemsProps {
@@ -10,30 +14,43 @@ const CheckItems: FC<CheckItemsProps> = ({ index }): JSX.Element => {
   return (
     <div className={style.check_items}>
       {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
-      {+index ? <></> : <h4>Items to Order</h4>}
-      <div className={style.check_items_block}>
-        <div className={style.check_items_block_seller}>Ningbo Beilun Lonsyne</div>
-        <div className={style.check_items_block_note}>+ Add a note</div>
-      </div>
-      <div className={style.check_items_product}>
-        <div className={style.check_items_product_photo} />
-        <div className={style.check_items_product_info}>
-          <div className={style.check_items_product_info_name}>
-            Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes
+      <div className={style.check_items_container}>
+        {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
+        {+index ? <></> : <h4>Items to Order</h4>}
+        <div className={style.check_items_block}>
+          <div className={style.check_items_block_rating}>
+            <Start className={style.check_items_start} />
+            <span className={style.check_items_rating}>4.1</span>
+            <div className={style.check_items_block_seller}>Ningbo Beilun Lonsyne</div>
+            <Vector />
           </div>
-          <div className={style.check_items_product_info_property}>
-            <span>Color: Silver</span>
-            <span>Quantity: 100</span>
-          </div>
-          <div className={style.check_items_product_info_price}>$780</div>
-          <div className={style.check_items_product_info_offer}>
-            Special offer: ≥ 100 = 1pc/$7.80
+
+          <div className={style.check_items_block_note}>+ Add a note</div>
+        </div>
+        <div className={style.check_items_product}>
+          <Product />
+          <div className={style.check_items_product_info}>
+            <div className={style.check_items_product_info_name}>
+              Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes
+            </div>
+            <div className={style.check_items_product_info_property}>
+              <span className={style.check_items_text_product}>Color: Silver</span>
+              <span className={style.check_items_text_product}>Size: S</span>
+              <span className={style.check_items_text_product}>Quantity: 100</span>
+            </div>
+            <div className={style.check_items_product_info_price}>$780</div>
+            <div className={style.check_items_product_info_offer}>
+              <span>300pcs</span>
+              <span className={style.check_items_line} />
+              <span className={style.check_items_line_new_price} />
+              <span>$4.2/1pcs</span>
+              <span className={style.check_items_new_price}>4.0$/1pcs</span>
+            </div>
           </div>
         </div>
       </div>
+
       <div className={style.check_items_delivery}>
-        <div className={style.check_items_delivery_info}>Processing time: 14 day</div>
-        <div className={style.check_items_delivery_point} />
         <div className={style.check_items_delivery_info}>
           Estimated delivery: 27.07.2022
         </div>

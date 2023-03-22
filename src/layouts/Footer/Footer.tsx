@@ -15,7 +15,8 @@ const Footer: FC<FooterProps> = (props): JSX.Element => {
   const { className } = props;
   const routs = ['personal-account', 'product', 'order-history', ''];
   const { pathname } = useLocation();
-  const showHeadNav = routs.some(el => el === pathname.split('/')[1]);
+  const isSupplier = !!localStorage.getItem('profile');
+  const showHeadNav = !isSupplier && routs.some(el => el === pathname.split('/')[1]);
 
   return (
     <div className={cn(style.footer, className)}>
