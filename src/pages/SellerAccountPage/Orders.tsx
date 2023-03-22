@@ -19,25 +19,25 @@ const Orders = (): JSX.Element => {
           View All
         </Link>
       </div>
-      <div className={style.orders_category_wrapper}>
+      <div className={style.category_wrapper}>
         <Button color="white" className={style.orders_button}>
-          <div className={style.orders_button_title}>Unpaid</div>
+          <div className={style.button_title}>Unpaid</div>
           <UnPaidIcon />
         </Button>
         <Button color="white" className={style.orders_button}>
-          <div className={style.orders_button_title}>To be shipped</div>
+          <div className={style.button_title}>To be shipped</div>
           <ToBeShippedIcon />
         </Button>
         <Button color="white" className={style.orders_button}>
-          <div className={style.orders_button_title}>Shipped</div>
+          <div className={style.button_title}>Shipped</div>
           <ShippedIcon />
         </Button>
         <Button color="white" className={style.orders_button}>
-          <div className={style.orders_button_title}>To be reviewed</div>
+          <div className={style.button_title}>To be reviewed</div>
           <ToBeReviewedIcon />
         </Button>
         <Button color="white" className={style.orders_button}>
-          <div className={style.orders_button_title}>To be reviewed</div>
+          <div className={style.button_title}>To be reviewed</div>
           <div className={style.completed_icon} />
         </Button>
       </div>

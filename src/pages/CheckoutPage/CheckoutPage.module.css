@@ -1,22 +1,21 @@
 .checkout_page {
   display: flex;
   flex-direction: row;
-  gap: 8px;
-  width: calc(100% - 64px);
+  width: 100%;
+  background: #F9F9F9;
 }
 
 .checkout {
   display: flex;
   flex-direction: column;
-  gap: 8px;
   width: 100%;
 }
 
 .checkout_items {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  width: 100%;
+  margin: 0 12px 97px 32px;
+
 }
 
 .checkout_items > h4 {
@@ -24,31 +23,3 @@
   padding-left: 32px;
   background-color: #FFFFFF;
 }
-
-
-/*.checkoutPage {*/
-/*  display: flex;*/
-/*  flex-direction: row;*/
-/*  gap: 8px;*/
-/*  width: calc(100% - 64px);*/
-/*}*/
-
-/*.checkout {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  gap: 8px;*/
-/*  width: 100%;*/
-/*}*/
-
-/*.checkout_items {*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  gap: 0;*/
-/*  width: 100%;*/
-/*}*/
-
-/*.checkout_items > h4 {*/
-/*  padding-top: 32px;*/
-/*  padding-left: 32px;*/
-/*  background-color: #FFF;*/
-/*}*/
