@@ -12,6 +12,7 @@ import {
   state,
   zipcode,
 } from '../../store/reducers/modalSlice';
+import { Input } from '../ui-kit';
 
 import style from './TextModal.module.css';
 
@@ -58,8 +59,8 @@ const TextModal: FC<TextModalProps> = ({ title, placeholder }): JSX.Element => {
   return (
     <div className={style.text_modal}>
       <div className={style.text_modal_title}>{title}</div>
-      <input
-        className={style.text_modal_input}
+      <Input
+        classNameWrapper={style.text_modal_input}
         type="text"
         placeholder={placeholder}
         value={input}

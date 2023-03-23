@@ -20,6 +20,12 @@ export const sellerFetch = {
 
     return data;
   },
+  addAddress: ({ seller_data, seller_address_data }: ISellerProfile) => {
+    return httpService.post<ISellerProfile>('sellers/send_seller_info', {
+      seller_data,
+      seller_address_data,
+    });
+  },
 };
 
 // get seller info interfaces

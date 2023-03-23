@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import HeaderForChangePages from '../../components/HeaderForChangePages';
+import Footer from '../../layouts/Footer';
 
 import style from './CheckoutPage.module.css';
 
@@ -29,6 +30,7 @@ const CheckoutPage: FC = (): JSX.Element => {
         <AddressPopup />
         <PaymentPopup />
       </div>
+      <Footer />
     </>
   );
 };

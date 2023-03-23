@@ -86,11 +86,6 @@
 
 .address_popup_input_number{
   width: 458px;
-  height: 44px;
-  padding-left: 16px;
-
-  background: #F4F4F4;
-  border-radius: 12px;
 }
 .address_popup_block_row2_box {
   min-width: 309px;
@@ -132,5 +127,6 @@
 
 .address_popup_button {
   cursor: pointer;
+  width: 100%;
 }
 
