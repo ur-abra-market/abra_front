@@ -20,6 +20,11 @@ export const sellerFetch = {
 
     return data;
   },
+  getSellerAddresses: async () => {
+    const { data } = await httpService.get<IGetAddressesResponse>('sellers/addresses/');
+
+    return data;
+  },
 };
 
 // get seller info interfaces
@@ -60,7 +65,7 @@ export interface ISellerData {
   last_name: string;
 }
 
-interface ISellerAddressData {
+export interface ISellerAddressData {
   country: string;
   area: string;
   city: string;
@@ -70,7 +75,7 @@ interface ISellerAddressData {
   postal_code: string;
 }
 
-interface ISellerNotificationsData {
+export interface ISellerNotificationsData {
   on_discount: boolean;
   on_order_updates: boolean;
   on_order_reminders: boolean;
@@ -87,3 +92,13 @@ export interface ISellerProfile {
 }
 
 export type SendSellerResponse = string | ISendSellerErrorResponse;
+
+// get addresses
+
+export interface IGetAddressesResponse {
+  result: IGetAddressesResult;
+}
+
+export interface IGetAddressesResult {
+  seller_address: ISellerAddressData[];
+}

@@ -14,6 +14,7 @@ import { Action } from '../../services/user.service';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { logout } from '../../store/reducers/loginSlice';
 import {
+  getSellerAddressesService,
   getSellerInfoService,
   sendSellerInfoService,
 } from '../../store/reducers/sellerSlice';
@@ -85,11 +86,12 @@ const SellerAccountPage = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(getSellerInfoService());
-  }, []);
+    dispatch(getSellerAddressesService());
+  }, [dispatch]);
 
   useEffect(() => {
     reset({ firstName, lastName });
-  }, [firstName, lastName]);
+  }, [firstName, lastName, reset]);
 
   return (
     <div className={style.seller_page}>
