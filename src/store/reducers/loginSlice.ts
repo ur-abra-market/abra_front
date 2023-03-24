@@ -17,7 +17,7 @@ const initialState = {
 };
 
 export const loginService = createAsyncThunk<
-  { data: LoginResponseType },
+  LoginResponseType,
   LoginParamsType,
   AsyncThunkConfig
 >('login/loginService', async (dataUser, { rejectWithValue }) => {
@@ -26,7 +26,7 @@ export const loginService = createAsyncThunk<
 
     if (response.data.is_supplier) localStorage.setItem('profile', 'supplier');
 
-    return response;
+    return response.data;
   } catch (error) {
     // const err = error.response.data.detail ? error.response.data.detail : error.message;
     // const message = generateResponseError(err);
@@ -91,7 +91,7 @@ const loginSlice = createSlice({
       state.isAuth = false;
     });
     builder.addCase(loginService.fulfilled, (state, action) => {
-      state.resMessage = action.payload.data.result; // response
+      state.resMessage = action.payload.result; // response
       state.loading = false;
       state.isAuth = true;
     });

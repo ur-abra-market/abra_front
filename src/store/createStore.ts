@@ -14,6 +14,7 @@ import { popularProductsReducer } from './reducers/popularProducts';
 import productPaginateReducer from './reducers/productPaginateSlice';
 import productReducer from './reducers/productSlice';
 import registerReducer from './reducers/registerSlice';
+import sellerSlice from './reducers/sellerSlice';
 import { similarProductsReducer } from './reducers/similarProducts';
 import supplierAccountReducer from './reducers/supplierAccountSlice';
 import supplierReducer from './reducers/supplierSlice';
@@ -40,6 +41,7 @@ export const store = configureStore({
     modal: modalReducer,
     similarProducts: similarProductsReducer,
     popularProducts: popularProductsReducer,
+    seller: sellerSlice,
     passwordSlice,
   },
   devTools: process.env.NODE_ENV !== 'production',

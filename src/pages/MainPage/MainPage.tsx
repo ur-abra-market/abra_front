@@ -59,7 +59,7 @@ const MainPage = (): JSX.Element => {
     Object.values(CATEGORIES).forEach(({ category_id }) => {
       dispatch(fetchProductList({ type: filter, category_id, ...page }));
     });
-  }, [filter]);
+  }, [dispatch, filter]);
 
   return (
     <div className={style.main_page}>
@@ -71,8 +71,8 @@ const MainPage = (): JSX.Element => {
             Object.keys(products).map(key => {
               return (
                 <ProductsPreview key={key} title={CATEGORIES[+key].label}>
-                  {products[+key].map(product => (
-                    <ProductCard key={`${key}-category-section`} product={product} />
+                  {products[+key].map((product, i) => (
+                    <ProductCard key={`${key}-${i}`} product={product} />
                   ))}
                 </ProductsPreview>
               );
