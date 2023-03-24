@@ -1,6 +1,7 @@
 import { IUserNotificationsData } from '../store/reducers/userSlice';
 
 import httpService from './http.service';
+import { IErrorResponse } from './seller.service';
 
 export enum Action {
   UPLOAD_LOGO = 'users/upload_logo_image/',
@@ -38,6 +39,14 @@ const userFetch = {
   getNotifications: async () => {
     const { data } = await httpService.get<IUserNotificationsData>(
       `/users/get_notifications/`,
+    );
+
+    return data;
+  },
+  updateNotification: async (updatedData: IUserNotificationsData) => {
+    const { data } = await httpService.patch<string | IErrorResponse>(
+      `/users/update_notification/`,
+      updatedData,
     );
 
     return data;

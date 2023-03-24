@@ -3,6 +3,7 @@ import { AxiosError } from 'axios';
 
 import { Status } from '../../enums/status.enum';
 import userFetch from '../../services/user.service';
+import { RootState } from '../createStore';
 
 export const uploadUserLogoService = createAsyncThunk<any, any>(
   'user/uploadUserLogoService',
@@ -45,6 +46,35 @@ export const getUserNotificationsService = createAsyncThunk<IUserNotificationsDa
       const data = await userFetch.getNotifications();
 
       return data;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[getUserNotificationsService]: Error');
+    }
+  },
+);
+
+export const updateUserNotificationService = createAsyncThunk<
+  void,
+  { id: string; isChecked: boolean }
+>(
+  'user/updateUserNotificationService',
+  async (
+    param: { id: string; isChecked: boolean },
+    { rejectWithValue, getState, dispatch },
+  ) => {
+    try {
+      const state = getState() as RootState;
+      const { notifications } = state.user;
+
+      if (notifications) {
+        const notificationsCopy = { ...notifications, [param.id]: param.isChecked };
+
+        await userFetch.updateNotification(notificationsCopy);
+        dispatch(getUserNotificationsService());
+      }
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

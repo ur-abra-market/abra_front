@@ -62,7 +62,7 @@ interface IErrorDetail {
   type: string;
 }
 
-interface ISendSellerErrorResponse {
+export interface IErrorResponse {
   detail: IErrorDetail[];
 }
 
@@ -87,7 +87,7 @@ export interface ISellerProfile {
   seller_notifications_data: IUserNotificationsData;
 }
 
-export type SendSellerResponse = string | ISendSellerErrorResponse;
+export type SendSellerResponse = string | IErrorResponse;
 
 // get addresses
 
