@@ -23,7 +23,7 @@ export const uploadUserLogoService = createAsyncThunk<any, any>(
 
 export const getFavoritesProductsService = createAsyncThunk<any, void>(
   'user/getFavoritesProductsService',
-  async function (_, { rejectWithValue }) {
+  async (_, { rejectWithValue }) => {
     try {
       const data = await userFetch.getFavoritesProducts();
 
@@ -38,11 +38,29 @@ export const getFavoritesProductsService = createAsyncThunk<any, void>(
   },
 );
 
+export const getUserNotificationsService = createAsyncThunk<IUserNotificationsData, void>(
+  'user/getUserNotificationsService',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await userFetch.getNotifications();
+
+      return data;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[getUserNotificationsService]: Error');
+    }
+  },
+);
+
 const initialState: InitialStateType = {
   logoUrl: null,
   errMessage: '',
   loading: Status.Idle,
   favoritesProducts: [],
+  notifications: null,
 };
 
 const userSlice = createSlice({
@@ -75,6 +93,16 @@ const userSlice = createSlice({
       })
       .addCase(getFavoritesProductsService.rejected, state => {
         state.loading = Status.Failed;
+      })
+      .addCase(getUserNotificationsService.pending, state => {
+        state.loading = Status.Loading;
+      })
+      .addCase(getUserNotificationsService.fulfilled, (state, action) => {
+        state.loading = Status.Success;
+        state.notifications = action.payload;
+      })
+      .addCase(getUserNotificationsService.rejected, state => {
+        state.loading = Status.Failed;
       });
   },
 });
@@ -84,6 +112,17 @@ export default userSlice.reducer;
 type InitialStateType = {
   logoUrl: null | string;
   errMessage: string;
-  loading: 'idle' | 'loading' | 'success' | 'failed';
+  loading: Status;
   favoritesProducts: any[];
+  notifications: IUserNotificationsData | null;
 };
+
+export interface IUserNotificationsData {
+  on_discount: boolean;
+  on_order_updates: boolean;
+  on_order_reminders: boolean;
+  on_stock_again: boolean;
+  on_product_is_cheaper: boolean;
+  on_your_favorites_new: boolean;
+  on_account_support: boolean;
+}

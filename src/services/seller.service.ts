@@ -1,3 +1,7 @@
+import { AxiosResponse } from 'axios';
+
+import { IUserNotificationsData } from '../store/reducers/userSlice';
+
 import httpService from './http.service';
 
 export const sellerFetch = {
@@ -7,14 +11,16 @@ export const sellerFetch = {
     return data;
   },
   sendSellerInfo: async (sellerData: ISellerData) => {
+    const { first_name, last_name } = sellerData;
+
     const { data } = await httpService.post<
-      SendSellerResponse,
-      any,
+      '',
+      AxiosResponse<SendSellerResponse>,
       Partial<ISellerProfile>
     >('sellers/send_seller_info', {
       seller_data: {
-        first_name: sellerData.first_name,
-        last_name: sellerData.last_name,
+        first_name,
+        last_name,
       },
     });
 
@@ -36,7 +42,7 @@ export interface IUserInfoFetch {
 export interface IUserResultFetch {
   user_profile_info: IUserProfile;
   user_adresses: {};
-  notifications: ISellerNotificationsData;
+  notifications: IUserNotificationsData;
   profile_image: {
     null: null;
   };
@@ -75,20 +81,10 @@ export interface ISellerAddressData {
   postal_code: string;
 }
 
-export interface ISellerNotificationsData {
-  on_discount: boolean;
-  on_order_updates: boolean;
-  on_order_reminders: boolean;
-  on_stock_again: boolean;
-  on_product_is_cheaper: boolean;
-  on_your_favorites_new: boolean;
-  on_account_support: boolean;
-}
-
 export interface ISellerProfile {
   seller_data: ISellerData;
   seller_address_data: ISellerAddressData;
-  seller_notifications_data: ISellerNotificationsData;
+  seller_notifications_data: IUserNotificationsData;
 }
 
 export type SendSellerResponse = string | ISendSellerErrorResponse;

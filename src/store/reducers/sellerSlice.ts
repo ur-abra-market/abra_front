@@ -33,7 +33,7 @@ export const sendSellerInfoService = createAsyncThunk<SendSellerResponse, ISelle
     try {
       const data = await sellerFetch.sendSellerInfo(param);
 
-      return data.result;
+      return data;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

@@ -18,6 +18,7 @@ import {
   getSellerInfoService,
   sendSellerInfoService,
 } from '../../store/reducers/sellerSlice';
+import { getUserNotificationsService } from '../../store/reducers/userSlice';
 
 import style from './SellerAccountPage.module.css';
 
@@ -29,6 +30,13 @@ import Orders from 'pages/SellerAccountPage/Orders';
 type FormValues = {
   firstName: string;
   lastName: string;
+  onDiscount: boolean;
+  onOrderUpdates: boolean;
+  onOrderReminders: boolean;
+  onStockAgain: boolean;
+  onProductIsCheaper: boolean;
+  onYourFavoritesNew: boolean;
+  onAccauntSupport: boolean;
 };
 
 const SellerAccountPage = (): JSX.Element => {
@@ -36,12 +44,46 @@ const SellerAccountPage = (): JSX.Element => {
   const firstName = useAppSelector(state => state.seller.userProfileInfo.first_name);
   const lastName = useAppSelector(state => state.seller.userProfileInfo.last_name);
 
-  // const notifications = useAppSelector(state => state.seller.notifications);
+  const onDiscount = useAppSelector(state => state.user.notifications?.on_discount);
+  const onOrderUpdates = useAppSelector(
+    state => state.user.notifications?.on_order_updates,
+  );
+  const onOrderReminders = useAppSelector(
+    state => state.user.notifications?.on_order_reminders,
+  );
+  const onStockAgain = useAppSelector(state => state.user.notifications?.on_stock_again);
+  const onProductIsCheaper = useAppSelector(
+    state => state.user.notifications?.on_product_is_cheaper,
+  );
+  const onYourFavoritesNew = useAppSelector(
+    state => state.user.notifications?.on_your_favorites_new,
+  );
+  const onAccauntSupport = useAppSelector(
+    state => state.user.notifications?.on_account_support,
+  );
 
+  // const notifications = useAppSelector(state => state.seller.notifications);
+  // const notifications = useAppSelector(state => state.seller.notifications);
+  // console.log(
+  //   onDiscount,
+  //   onOrderUpdates,
+  //   onOrderReminders,
+  //   onStockAgain,
+  //   onProductIsCheaper,
+  //   onYourFavoritesNew,
+  //   onAccauntSupport,
+  // );
   const { setValue, watch, reset, handleSubmit } = useForm<FormValues>({
     defaultValues: {
       firstName,
       lastName,
+      onDiscount,
+      onOrderUpdates,
+      onOrderReminders,
+      onStockAgain,
+      onProductIsCheaper,
+      onYourFavoritesNew,
+      onAccauntSupport,
     },
   });
 
@@ -87,6 +129,7 @@ const SellerAccountPage = (): JSX.Element => {
   useEffect(() => {
     dispatch(getSellerInfoService());
     dispatch(getSellerAddressesService());
+    dispatch(getUserNotificationsService());
   }, [dispatch]);
 
   useEffect(() => {
@@ -236,36 +279,43 @@ const SellerAccountPage = (): JSX.Element => {
                     variant="notification"
                     label="Discounts & offers"
                     className={style.notifications_item}
+                    checked={onDiscount}
                   />
                   <Checkbox
                     variant="notification"
                     label="Order updates"
                     className={style.notifications_item}
+                    checked={onOrderUpdates}
                   />
                   <Checkbox
                     variant="notification"
                     label="Order reminders"
                     className={style.notifications_item}
+                    checked={onOrderReminders}
                   />
                   <Checkbox
                     variant="notification"
                     label="On stock again"
                     className={style.notifications_item}
+                    checked={onStockAgain}
                   />
                   <Checkbox
                     variant="notification"
                     label="Product is cheaper"
                     className={style.notifications_item}
+                    checked={onProductIsCheaper}
                   />
                   <Checkbox
                     variant="notification"
                     label="Your favorites new"
                     className={style.notifications_item}
+                    checked={onYourFavoritesNew}
                   />
                   <Checkbox
                     variant="notification"
                     label="Account support"
                     className={style.notifications_item}
+                    checked={onAccauntSupport}
                   />
                 </div>
               </div>

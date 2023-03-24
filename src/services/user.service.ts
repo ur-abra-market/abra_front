@@ -1,3 +1,5 @@
+import { IUserNotificationsData } from '../store/reducers/userSlice';
+
 import httpService from './http.service';
 
 export enum Action {
@@ -30,6 +32,13 @@ const userFetch = {
   },
   getFavoritesProducts: async () => {
     const { data } = await httpService.get(`/users/show_favorites/`);
+
+    return data;
+  },
+  getNotifications: async () => {
+    const { data } = await httpService.get<IUserNotificationsData>(
+      `/users/get_notifications/`,
+    );
 
     return data;
   },
