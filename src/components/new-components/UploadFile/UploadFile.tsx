@@ -10,7 +10,16 @@ import style from './UploadFile.module.css';
 import { UploadFileProps } from './UploadFile.props';
 
 const UploadFile: FC<UploadFileProps> = props => {
-  const { className, action, image, ...restProps } = props;
+  const {
+    className,
+    action,
+    image,
+    variant = 'square',
+    label = 'add image',
+    size = 'small',
+    text,
+    ...restProps
+  } = props;
 
   const [file, setFile] = useState<UploadFileData>({ preview: '', raw: '' });
   const [status, setStatus] = useState<Status>(Status.Idle);
@@ -49,18 +58,36 @@ const UploadFile: FC<UploadFileProps> = props => {
         className={cn(style.image, {
           [style.succes]: status === Status.Success,
           [style.error]: status === Status.Failed,
+          [style.square]: variant === 'square',
+          [style.circle]: variant === 'circle',
+          [style.image_middle_size]: size === 'middle',
         })}
       >
         {file.preview ? (
-          <img className={style.img} src={file.preview} alt="" />
+          <>
+            <img
+              className={cn(style.img, {
+                [style.img_round]: variant === 'circle',
+                [style.img_middle_size]: size === 'middle',
+              })}
+              src={file.preview}
+              alt=""
+            />
+            {/* <button type="button" className={style.delete_img_btn}>
+              <PlusIcon />
+            </button> */}
+          </>
         ) : (
           <Photo />
         )}
       </div>
-      <label className={style.label}>
-        add image
-        <input type="file" className={style.input} onChange={handleOnChange} />
-      </label>
+      <div>
+        <label className={style.label}>
+          {label}
+          <input type="file" className={style.input} onChange={handleOnChange} />
+        </label>
+        {text && <div className={style.text}>{text}</div>}
+      </div>
     </div>
   );
 };
