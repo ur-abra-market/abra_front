@@ -104,6 +104,27 @@
 .address_popup_phone {
   margin-top: 16px;
 }
+.text_modal {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.text_modal_input {
+  position: unset;
+  display: block;
+}
+
+.text_modal_title {
+  margin-top: 16px;
+  margin-bottom: 8px;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  color: #828282;
+}
+
 
 .address_popup_phone_number {
   display: flex;

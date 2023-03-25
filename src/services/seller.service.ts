@@ -76,6 +76,11 @@ interface ISellerAddressData {
   postal_code: string;
 }
 
+export interface AddAddressFormData {
+  seller_data: ISellerData;
+  seller_address_data: ISellerAddressData;
+}
+
 interface ISellerNotificationsData {
   on_discount: boolean;
   on_order_updates: boolean;

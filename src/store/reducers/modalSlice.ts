@@ -1,28 +1,27 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  isAddress: false,
-  isPayment: false,
-  address: {
-    isMain: false,
-    firstname: '',
-    lastname: '',
-    phone: '',
-    street: '',
-    building: '',
-    apartment: '',
-    city: '',
-    region: '',
-    state: '',
-    country: '',
-    zipcode: '',
-  },
-  addresses: [],
-};
-
 export const modalSlice = createSlice({
   name: 'modal',
-  initialState,
+  initialState: {
+    isAddress: false as boolean,
+    isPayment: false as boolean,
+    address: {
+      isMain: false as boolean,
+      firstname: '' as string,
+      lastname: '' as string,
+      phone: '' as string,
+      street: '' as string,
+      building: '' as string,
+      apartment: '' as string,
+      city: '' as string,
+      region: '' as string,
+      state: '' as string,
+      country: '' as string,
+      zipcode: '' as string,
+    },
+    addresses: [],
+  },
+
   reducers: {
     address: (state, action) => {
       state.isAddress = action.payload;

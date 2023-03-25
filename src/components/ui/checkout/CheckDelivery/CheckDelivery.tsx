@@ -8,7 +8,7 @@ import style from './CheckDelivery.module.css';
 
 const CheckDelivery = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const addresses = useAppSelector(state => state.modal.addresses);
+  const addresses = useAppSelector(state => state.sellerCheckout.addressData);
 
   return (
     <div className={style.check_delivery}>
