@@ -7,7 +7,7 @@ import { main } from '../../store/reducers/modalSlice';
 import style from './Check.module.css';
 
 interface CheckProps {
-  label: string;
+  label?: string;
 }
 const Check: FC<CheckProps> = ({ label }): JSX.Element => {
   const [check, setCheck] = useState(false);

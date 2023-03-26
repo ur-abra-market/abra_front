@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
 import { AddAddressFormData } from '../../../../services/seller.service';
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { address } from '../../../../store/reducers/modalSlice';
+import { useAppDispatch } from '../../../../store/hooks';
 import Check from '../../../Check';
 import { Button, Input, Select } from '../../../ui-kit';
 
@@ -13,7 +12,11 @@ import style from './AddressPopup.module.css';
 
 import { addAddress } from 'store/reducers/seller.checkoutSlice';
 
-const AddressPopup = (): JSX.Element => {
+interface AddressPopupType {
+  modal: boolean;
+  setModal: (modal: boolean) => void;
+}
+const AddressPopup: FC<AddressPopupType> = ({ modal, setModal }): JSX.Element => {
   const dispatch = useAppDispatch();
   const listPhone = [
     { label: '+7', value: '+7' },
@@ -23,8 +26,6 @@ const AddressPopup = (): JSX.Element => {
     { label: 'Russia', value: 'Russia' },
     { label: 'Turkey', value: 'Turkey' },
   ];
-  const modal = useAppSelector(state => state.modal.isAddress);
-
   const styles = {
     scale: modal ? '1' : '0',
     zIndex: modal ? '20' : '0',
@@ -34,15 +35,19 @@ const AddressPopup = (): JSX.Element => {
     register,
     handleSubmit,
     formState: { isValid },
-  } = useForm<AddAddressFormData>();
-  // const handlerConfirm = (): void => {
-  //   if (arrAddress.length < 2) dispatch(addAddress(place));
-  //   dispatch(address(false));
-  // };
+  } = useForm<AddAddressFormData>({
+    mode: 'all',
+  });
 
-  const onSubmit: SubmitHandler<AddAddressFormData> = (data: AddAddressFormData) => {
+  const onSubmit: SubmitHandler<AddAddressFormData> = (
+    data: AddAddressFormData,
+  ): void => {
     if (!isValid) return;
     dispatch(addAddress(data));
+    setModal(false);
+  };
+  const onClickModalHandler = (): void => {
+    setModal(false);
   };
 
   return (
@@ -56,17 +61,12 @@ const AddressPopup = (): JSX.Element => {
           </div>
           <Exit
             className={style.address_popup_modal_exit}
-            onClick={() => dispatch(address(false))}
+            onClick={onClickModalHandler}
           />
         </div>
         <div className={style.address_popup_block}>
           <div className={style.address_popup_block_title}>Recipient Info</div>
           <div className={style.address_popup_block_row2}>
-            {/* <TextModal */}
-            {/*  {...register('seller_data.first_name')} */}
-            {/*  title="First name" */}
-            {/*  placeholder="Recipient’s first name" */}
-            {/* /> */}
             <div className={style.text_modal}>
               <div className={style.text_modal_title}>First name</div>
               <Input
@@ -83,11 +83,6 @@ const AddressPopup = (): JSX.Element => {
                 placeholder="Recipient’s first name"
               />
             </div>
-            {/* <TextModal */}
-            {/*  {...register('seller_data.last_name')} */}
-            {/*  title="Last name" */}
-            {/*  placeholder="Recipient’s last name" */}
-            {/* /> */}
           </div>
           <div className={style.address_popup_phone}>
             <div className={style.address_popup_phone_title}>Personal phone number</div>

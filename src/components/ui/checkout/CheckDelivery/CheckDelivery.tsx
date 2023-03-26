@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import { address } from '../../../../store/reducers/modalSlice';
+import { useAppSelector } from '../../../../store/hooks';
 import Address from '../../../Address';
+import AddressPopup from '../../popup/AddressPopup';
 
 import style from './CheckDelivery.module.css';
 
 const CheckDelivery = (): JSX.Element => {
-  const dispatch = useAppDispatch();
-  const addresses = useAppSelector(state => state.sellerCheckout.addressData);
+  // const addresses = useAppSelector(state => state.sellerCheckout.addressData); ниже заглушка пока нет данных с сервера
+  const addresses = useAppSelector(state => state.modal.addresses);
+  const [modal, setModal] = useState(false);
+
+  const onClick = (): void => {
+    setModal(true);
+  };
 
   return (
     <div className={style.check_delivery}>
@@ -17,11 +22,13 @@ const CheckDelivery = (): JSX.Element => {
         {addresses.map((a: any, i: number) => (
           <Address key={`address_${i}`} address={a} />
         ))}
+
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
+        <div className={style.check_delivery_add} onClick={onClick}>
+          + Add an address
+        </div>
       </div>
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-      <div className={style.check_delivery_add} onClick={() => dispatch(address(true))}>
-        + Add an address
-      </div>
+      <AddressPopup modal={modal} setModal={setModal} />
     </div>
   );
 };

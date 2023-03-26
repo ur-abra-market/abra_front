@@ -1,5 +1,8 @@
 import React, { FC } from 'react';
 
+import { ReactComponent as Edit } from '../../assets/img/icons/edit.svg';
+import Check from '../Check';
+
 import style from './Address.module.css';
 
 interface AddressProps {
@@ -7,8 +10,7 @@ interface AddressProps {
 }
 const Address: FC<AddressProps> = ({ address }): JSX.Element => {
   const styles = {
-    background: address.isMain ? '#f2f2f2' : '#ffffff',
-    border: address.isMain ? '2px #000000 solid' : '2px #d6d6d6 solid',
+    border: address.isMain ? '1px solid #FC133D' : '1px solid #D4D4D4',
   };
   const arrAddress = [
     address.street,
@@ -27,15 +29,18 @@ const Address: FC<AddressProps> = ({ address }): JSX.Element => {
         <div className={style.address_content_text}>
           {address.firstname} {address.lastname}, {address.phone}
         </div>
-        <div className={style.address_content_edit} />
+        <Edit className={style.address_content_edit} />
       </div>
-      <div className={style.address_place}>{arrFilter.join(', ')}</div>
+      <span className={style.address_content_line} />
+      <div className={style.address_place}>{arrFilter.join(' ')}</div>
       <div
         className={style.address_main}
-        style={{ display: address.isMain ? 'flex' : 'none' }}
+        style={{
+          display: address.isMain ? 'flex' : 'none',
+        }}
       >
         <div className={style.address_main_text}>Main Address</div>
-        <div className={style.address_main_mark} />
+        <Check />
       </div>
     </div>
   );
