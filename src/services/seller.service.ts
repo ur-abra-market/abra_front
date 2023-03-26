@@ -66,7 +66,7 @@ export interface ISellerData {
   last_name: string;
 }
 
-interface ISellerAddressData {
+export interface ISellerAddressData {
   country: string;
   area: string;
   city: string;
