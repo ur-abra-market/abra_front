@@ -9,7 +9,7 @@ import httpService from './http.service';
 
 const authService = {
   register: ({ email, password, route, token }: RegisterParamsType) => {
-    return httpService.post<RegisterResponseType>(`register/${route}`, {
+    return httpService.post<RegisterResponseType>(`register/${route}/`, {
       email,
       password,
       token,
