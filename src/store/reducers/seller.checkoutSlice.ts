@@ -25,16 +25,17 @@ const sellerCheckoutSlice = createSlice({
     addressData: [
       {
         seller_data: {
-          first_name: '' as string,
-          last_name: '' as string,
+          first_name: 'Никита' as string,
+          last_name: 'Лойко' as string,
         },
         seller_address_data: {
-          country: '' as string,
-          area: '' as string,
-          city: '' as string,
-          street: '' as string,
-          appartment: '' as string,
-          postal_code: '' as string,
+          country: 'Беларуст' as string,
+          area: 'Минская' as string,
+          city: 'Минск' as string,
+          street: 'Бровки' as string,
+          appartment: 'вффыв' as string,
+          postal_code: '332' as string,
+          building: '14' as string,
         },
       },
     ],

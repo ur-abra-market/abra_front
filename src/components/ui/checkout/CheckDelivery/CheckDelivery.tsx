@@ -7,8 +7,8 @@ import AddressPopup from '../../popup/AddressPopup';
 import style from './CheckDelivery.module.css';
 
 const CheckDelivery = (): JSX.Element => {
-  // const addresses = useAppSelector(state => state.sellerCheckout.addressData); ниже заглушка пока нет данных с сервера
-  const addresses = useAppSelector(state => state.modal.addresses);
+  const addresses = useAppSelector(state => state.sellerCheckout.addressData); // ниже заглушка пока нет данных с сервера
+  // const addresses = useAppSelector(state => state.modal.addresses);
   const [modal, setModal] = useState(false);
 
   const onClick = (): void => {

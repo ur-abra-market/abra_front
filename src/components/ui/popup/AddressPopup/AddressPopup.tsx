@@ -80,7 +80,7 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setModal }): JSX.Element =>
               <Input
                 {...register('seller_data.last_name')}
                 classNameWrapper={style.text_modal_input}
-                placeholder="Recipient’s first name"
+                placeholder="Recipient’s last name"
               />
             </div>
           </div>
