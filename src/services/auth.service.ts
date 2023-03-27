@@ -21,11 +21,11 @@ const authService = {
   },
 
   checkAuth: () => {
-    return httpService.get<CheckAuthResponseType>(`users/get_role`);
+    return httpService.get<CheckAuthResponseType>(`users/get_role/`);
   },
 
   logout: async () => {
-    const { data } = await httpService.delete(`logout`);
+    const { data } = await httpService.delete(`logout/`);
 
     return data;
   },
