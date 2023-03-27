@@ -1,5 +1,9 @@
 import React, { FC } from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+
 import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
 import { Button, Input } from '../../../ui-kit';
 
@@ -9,12 +13,31 @@ interface AddNoteType {
   modal: boolean;
   setModal: (modal: boolean) => void;
 }
+const schema = yup
+  .object({
+    note: yup.string().required('Note is required'),
+  })
+  .required();
+
 export const AddNotePopup: FC<AddNoteType> = ({ modal, setModal }) => {
   const styles = {
     scale: modal ? '1' : '0',
     zIndex: modal ? '20' : '0',
   };
   const onClickModalHandler = (): void => {
+    setModal(false);
+  };
+  const {
+    register,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: 'all',
+  });
+
+  const onSubmit = (): void => {
+    if (!isValid) return;
     setModal(false);
   };
 
@@ -25,16 +48,17 @@ export const AddNotePopup: FC<AddNoteType> = ({ modal, setModal }) => {
           <h4 className={style.title}>Add a Note</h4>
           <Exit className={style.add_note_modal_exit} onClick={onClickModalHandler} />
         </div>
-        <div className={style.content_box}>
+        <form onSubmit={handleSubmit(onSubmit)} className={style.content_box}>
           <span className={style.text}>Notes for Supplier</span>
           <Input
+            {...register('note')}
             classNameWrapper={style.input}
             className={style.input_note}
             type="textarea"
             placeholder="You can leave wishes on the configuration and characteristics of the order"
           />
-          <Button label="Save" />
-        </div>
+          <Button label="Save" type="submit" disabled={!isValid} />
+        </form>
       </div>
     </div>
   );
