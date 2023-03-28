@@ -9,7 +9,7 @@ import httpService from './http.service';
 
 const authService = {
   register: ({ email, password, route, token }: RegisterParamsType) => {
-    return httpService.post<RegisterResponseType>(`register/${route}`, {
+    return httpService.post<RegisterResponseType>(`register/${route}/`, {
       email,
       password,
       token,
@@ -21,11 +21,11 @@ const authService = {
   },
 
   checkAuth: () => {
-    return httpService.get<CheckAuthResponseType>(`users/get_role`);
+    return httpService.get<CheckAuthResponseType>(`users/get_role/`);
   },
 
   logout: async () => {
-    const { data } = await httpService.delete(`logout`);
+    const { data } = await httpService.delete(`logout/`);
 
     return data;
   },
