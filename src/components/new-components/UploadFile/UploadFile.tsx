@@ -2,7 +2,6 @@ import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
-import { PlusIcon } from '../../../assets/img';
 import { ReactComponent as Photo } from '../../../assets/img/icons/photo_icon.svg';
 import { Status } from '../../../enums/status.enum';
 import userFetch from '../../../services/user.service';
@@ -11,16 +10,7 @@ import style from './UploadFile.module.css';
 import { UploadFileProps } from './UploadFile.props';
 
 const UploadFile: FC<UploadFileProps> = props => {
-  const {
-    className,
-    action,
-    image,
-    variant = 'square',
-    label = 'add image',
-    size = 'small',
-    text,
-    ...restProps
-  } = props;
+  const { className, action, image, ...restProps } = props;
 
   const [file, setFile] = useState<UploadFileData>({ preview: '', raw: '' });
   const [status, setStatus] = useState<Status>(Status.Idle);
@@ -34,14 +24,6 @@ const UploadFile: FC<UploadFileProps> = props => {
     }
   };
 
-  const deleteFile = (): void => {
-    setFile({
-      preview: '',
-      raw: '',
-    });
-    setStatus(Status.Idle);
-  };
-
   useEffect(() => {
     if (file.raw) {
       userFetch
@@ -53,7 +35,7 @@ const UploadFile: FC<UploadFileProps> = props => {
           setStatus(Status.Failed);
         });
     }
-  }, [action, file.raw]);
+  }, [file.raw]);
 
   useEffect(() => {
     if (image) {
@@ -67,45 +49,18 @@ const UploadFile: FC<UploadFileProps> = props => {
         className={cn(style.image, {
           [style.succes]: status === Status.Success,
           [style.error]: status === Status.Failed,
-          [style.square]: variant === 'square',
-          [style.circle]: variant === 'circle',
-          [style.image_middle_size]: size === 'middle',
         })}
       >
         {file.preview ? (
-          <>
-            <img
-              className={cn(style.img, {
-                [style.img_round]: variant === 'circle',
-                [style.img_middle_size]: size === 'middle',
-              })}
-              src={file.preview}
-              alt=""
-            />
-            <button
-              type="button"
-              className={cn(style.delete_img_btn, {
-                [style.delete_img_btn_none]: variant === 'circle',
-              })}
-              onClick={deleteFile}
-            >
-              <PlusIcon />
-            </button>
-          </>
+          <img className={style.img} src={file.preview} alt="" />
         ) : (
-          <label className={style.label}>
-            <Photo />
-            <input type="file" className={style.input} onChange={handleOnChange} />
-          </label>
+          <Photo />
         )}
       </div>
-      <div>
-        <label className={style.label}>
-          {label}
-          <input type="file" className={style.input} onChange={handleOnChange} />
-        </label>
-        {text && <div className={style.text}>{text}</div>}
-      </div>
+      <label className={style.label}>
+        add image
+        <input type="file" className={style.input} onChange={handleOnChange} />
+      </label>
     </div>
   );
 };

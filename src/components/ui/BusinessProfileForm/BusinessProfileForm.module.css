@@ -85,10 +85,6 @@
   margin-bottom: 40px;
 }
 
-.images {
-  display: block;
-}
-
 .contacts_inputs {
   display: flex;
   flex-direction: column;
