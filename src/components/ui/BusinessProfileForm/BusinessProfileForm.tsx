@@ -1,19 +1,15 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Navigate, useNavigate } from 'react-router-dom';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from 'yup';
 
 import { RequestAccountInfo } from '../../../services/supplierAccount.service';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { accountInfoService } from '../../../store/reducers/formRegistrationSlice';
-import { uploadUserLogoService } from '../../../store/reducers/userSlice';
 import { filterEmptyValues } from '../../../utils/filterEmptyValues';
 import FormTitle from '../../FormTitle';
-import ImageAdding from '../../ImageAdding';
 import UploadFile from '../../new-components/UploadFile/UploadFile';
 import { Button, Input, Label, Select } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
@@ -66,9 +62,6 @@ const BUSINESS_SECTOR_DATA: IOption[] = [
 ];
 
 const BusinessProfileForm: FC = (): JSX.Element => {
-  const [imgUrl, setImgUrl] = useState('');
-  const [images, setImages] = useState([]);
-
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { resMessage, accountInfo } = useAppSelector(state => state.formRegistration);
@@ -89,21 +82,12 @@ const BusinessProfileForm: FC = (): JSX.Element => {
       year_established: +data.yearEstablished,
       number_of_employees: +data.numEmployees,
       description: data.textarea,
-      /* logo_url: 'string', */
       phone,
       business_email: data.email,
       address: data.address,
     };
 
     const accountInfoForRequest = filterEmptyValues(info);
-
-    dispatch(uploadUserLogoService(images[0]));
-
-    /* await dispatch(uploadUserLogoService(images[0])).then(({ meta }) => {
-      if (meta.requestStatus === 'fulfilled') {
-
-      }
-    }); */
 
     dispatch(
       accountInfoService({
@@ -140,18 +124,9 @@ const BusinessProfileForm: FC = (): JSX.Element => {
           <div className={style.mainInfo}>
             <p className={style.main_info_title}>Main info</p>
 
-            <ImageAdding
-              imgUrl={imgUrl}
-              setImgUrl={setImgUrl}
-              images={images}
-              setImages={setImages}
-              label="Add logo or profile image"
-              placeholder="The customers will recognize your store by this image"
-              {...register('profileLogo')}
-            />
             <UploadFile
               variant="circle"
-              action="zapolnit`"
+              action="users/upload_logo_image"
               label="Add logo or profile image"
               text="The customers will recognize your store by this image"
             />
@@ -220,13 +195,10 @@ const BusinessProfileForm: FC = (): JSX.Element => {
 
             <p className={style.list_img_title}>Photo of the company or production</p>
             <div className={style.list_img}>
-              {/* {[...new Array(5)].map((el, i) => (
-                <ImagesAdding key={i} images={images} setImages={setImages} />
-              ))} */}
               {[...new Array(5)].map((el, i) => (
                 <UploadFile
                   key={i}
-                  action="zapolnit`"
+                  action="!!!!!"
                   className={style.images}
                   label=""
                   size="middle"
@@ -240,7 +212,12 @@ const BusinessProfileForm: FC = (): JSX.Element => {
 
             <div className={style.phone_number}>
               <Label label="Business phone number">
-                <Select {...register('code')} name="code" options={PHONE_DATA} />
+                <Select
+                  {...register('code')}
+                  name="code"
+                  options={PHONE_DATA}
+                  placeholder="Select"
+                />
               </Label>
               <Input
                 placeholder="(XXX) XXX - XX - XX"
