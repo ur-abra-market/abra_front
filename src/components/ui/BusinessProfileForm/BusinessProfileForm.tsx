@@ -1,20 +1,16 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Navigate, useNavigate } from 'react-router-dom';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from 'yup';
 
 import { RequestAccountInfo } from '../../../services/supplierAccount.service';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { accountInfoService } from '../../../store/reducers/formRegistrationSlice';
-import { uploadUserLogoService } from '../../../store/reducers/userSlice';
 import { filterEmptyValues } from '../../../utils/filterEmptyValues';
 import FormTitle from '../../FormTitle';
-import ImageAdding from '../../ImageAdding';
-import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
+import UploadFile from '../../new-components/UploadFile/UploadFile';
 import { Button, Input, Label, Select } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
 import { PHONE_DATA } from '../AccountSetupForm/AccountSetupForm';
@@ -33,6 +29,9 @@ const schema = yup.object({
     .min(4, 'Add an existing year')
     .max(year, "this year hasn't come yet"),
   email: yup.string().email('Invalid email address'),
+  address: yup.string().required('Field is required'),
+  numEmployees: yup.string().required('Field is required'),
+  textarea: yup.string().required('Field is required'),
 });
 
 interface FormFields {
@@ -44,7 +43,7 @@ interface FormFields {
   address: string;
   checkbox: boolean;
   numEmployees: string;
-  profileLogo: string;
+  profileLogo: string | undefined;
   storeName: string;
   businessSector: string;
 }
@@ -63,9 +62,6 @@ const BUSINESS_SECTOR_DATA: IOption[] = [
 ];
 
 const BusinessProfileForm: FC = (): JSX.Element => {
-  const [imgUrl, setImgUrl] = useState('');
-  const [images, setImages] = useState([]);
-
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { resMessage, accountInfo } = useAppSelector(state => state.formRegistration);
@@ -77,7 +73,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
     reset,
   } = useForm<FormFields>({ resolver: yupResolver(schema), mode: 'onChange' });
 
-  const onSubmit = (data: any): void => {
+  const onSubmit = (data: FormFields): void => {
     const phone = data.code + data.tel;
 
     const info = {
@@ -86,15 +82,12 @@ const BusinessProfileForm: FC = (): JSX.Element => {
       year_established: +data.yearEstablished,
       number_of_employees: +data.numEmployees,
       description: data.textarea,
-      /* logo_url: 'string', */
       phone,
       business_email: data.email,
       address: data.address,
     };
 
     const accountInfoForRequest = filterEmptyValues(info);
-
-    dispatch(uploadUserLogoService(images[0]));
 
     dispatch(
       accountInfoService({
@@ -113,8 +106,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (resMessage === 'DATA_HAS_BEEN_SENT')
-      navigate('../add-product', { replace: true });
+    if (resMessage === 'DATA_HAS_BEEN_SENT') navigate('/add-product', { replace: true });
   }, [resMessage, navigate]);
 
   if (!accountInfo) return <Navigate to="/account-setup" />;
@@ -132,14 +124,11 @@ const BusinessProfileForm: FC = (): JSX.Element => {
           <div className={style.mainInfo}>
             <p className={style.main_info_title}>Main info</p>
 
-            <ImageAdding
-              imgUrl={imgUrl}
-              setImgUrl={setImgUrl}
-              images={images}
-              setImages={setImages}
+            <UploadFile
+              variant="circle"
+              action="users/upload_logo_image"
               label="Add logo or profile image"
-              placeholder="The customers will recognize your store by this image"
-              {...register('profileLogo')}
+              text="The customers will recognize your store by this image"
             />
 
             <div className={style.select_info_inputs}>
@@ -207,7 +196,13 @@ const BusinessProfileForm: FC = (): JSX.Element => {
             <p className={style.list_img_title}>Photo of the company or production</p>
             <div className={style.list_img}>
               {[...new Array(5)].map((el, i) => (
-                <ImagesAdding key={i} images={images} setImages={setImages} />
+                <UploadFile
+                  key={i}
+                  action="!!!!!"
+                  className={style.images}
+                  label=""
+                  size="middle"
+                />
               ))}
             </div>
           </div>
@@ -217,7 +212,12 @@ const BusinessProfileForm: FC = (): JSX.Element => {
 
             <div className={style.phone_number}>
               <Label label="Business phone number">
-                <Select {...register('code')} name="code" options={PHONE_DATA} />
+                <Select
+                  {...register('code')}
+                  name="code"
+                  options={PHONE_DATA}
+                  placeholder="Select"
+                />
               </Label>
               <Input
                 placeholder="(XXX) XXX - XX - XX"
