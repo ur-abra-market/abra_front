@@ -14,8 +14,8 @@ import {
 import DropDownField from '../../DropDownField';
 import Form from '../../Form';
 import FormTitle from '../../FormTitle';
-import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 import Loader from '../../Loader';
+import UploadFile from '../../new-components/UploadFile/UploadFile';
 import { Button, Input, Label, Select } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
 import ProdInfoInputs from '../ProdInfoInputs';
@@ -128,10 +128,10 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   const { productId, loading, companyInfo } = useAppSelector(state => state.supplier);
 
   const [isSubmit, setIsSubmit] = useState(false);
-  const [images, setImages] = useState([]);
+  const [images] = useState([]);
   const [types, setTypes] = useState([{ id: 1, selected: true }]);
 
-  const [openDropDownField, setOpenDropDownField] = useState<null | number>(null);
+  const [openDropDownField, setOpenDropDownField] = useState<null | number>(1);
 
   const FIRST_CATEGORIES_DATA: IOption[] = firstStageCategories?.map(el => {
     return { label: el, value: el };
@@ -367,7 +367,13 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 
                   <div className={style.list_img}>
                     {[...new Array(5)].map((el, i) => (
-                      <ImagesAdding key={i} images={images} setImages={setImages} />
+                      <UploadFile
+                        key={i}
+                        action="!!!!!"
+                        className={style.images}
+                        label=""
+                        size="middle"
+                      />
                     ))}
                   </div>
                   <Label label="Description">
