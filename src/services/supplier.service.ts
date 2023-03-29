@@ -10,7 +10,7 @@ const supplierFetch = {
   },
   getProductVariations: async (categoryId: any) => {
     const { data } = await httpService.get(
-      `suppliers/get_product_variations/${categoryId}`,
+      `suppliers/get_product_variations/${categoryId}/`,
     );
 
     return data;
