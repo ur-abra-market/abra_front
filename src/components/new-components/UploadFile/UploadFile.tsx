@@ -2,6 +2,7 @@ import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
+import { PlusIcon } from '../../../assets/img';
 import { ReactComponent as Photo } from '../../../assets/img/icons/photo_icon.svg';
 import { Status } from '../../../enums/status.enum';
 import userFetch from '../../../services/user.service';
@@ -33,6 +34,14 @@ const UploadFile: FC<UploadFileProps> = props => {
     }
   };
 
+  const deleteFile = (): void => {
+    setFile({
+      preview: '',
+      raw: '',
+    });
+    setStatus(Status.Idle);
+  };
+
   useEffect(() => {
     if (file.raw) {
       userFetch
@@ -44,7 +53,7 @@ const UploadFile: FC<UploadFileProps> = props => {
           setStatus(Status.Failed);
         });
     }
-  }, [file.raw]);
+  }, [action, file.raw]);
 
   useEffect(() => {
     if (image) {
@@ -73,12 +82,21 @@ const UploadFile: FC<UploadFileProps> = props => {
               src={file.preview}
               alt=""
             />
-            {/* <button type="button" className={style.delete_img_btn}>
+            <button
+              type="button"
+              className={cn(style.delete_img_btn, {
+                [style.delete_img_btn_none]: variant === 'circle',
+              })}
+              onClick={deleteFile}
+            >
               <PlusIcon />
-            </button> */}
+            </button>
           </>
         ) : (
-          <Photo />
+          <label className={style.label}>
+            <Photo />
+            <input type="file" className={style.input} onChange={handleOnChange} />
+          </label>
         )}
       </div>
       <div>

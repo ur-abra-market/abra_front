@@ -5,6 +5,8 @@
 }
 
 .image {
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -74,6 +76,10 @@
 
 .delete_img_btn:hover {
   cursor: pointer;
+}
+
+.delete_img_btn_none {
+  display: none;
 }
 
 .label {
