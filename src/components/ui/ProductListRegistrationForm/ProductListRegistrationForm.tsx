@@ -54,7 +54,6 @@ interface ProductData {
   type2: string;
 }
 
-// --------------------     Под вопросом ключи в кавычках в объекте ниже!!!    ------------------
 interface PropertiesAndVariationsObj {
   '1-10': string;
   '1-20': string;
@@ -81,7 +80,6 @@ interface PropertiesAndVariationsObj {
   type2: string;
 }
 
-// --------------------     Под вопросом ключи повторение ключей в интерфейсах ниже!!!    ------------------
 interface ObjWithProperties {
   name: string;
   value: string;
