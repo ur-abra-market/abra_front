@@ -15,7 +15,6 @@
   width: 24px;
   height: 24px;
 
-  background: #DDD;
   border-radius: 4px;
 }
 
@@ -24,4 +23,9 @@
   height: 16px;
   background: url('../../assets/img/icons/check.svg') center;
   background-size: cover;
+}
+.check_label{
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
 }

@@ -1,7 +1,5 @@
 import { AxiosResponse } from 'axios';
 
-import { IUserNotificationsData } from '../store/reducers/userSlice';
-
 import httpService from './http.service';
 
 export const sellerFetch = {
@@ -14,7 +12,7 @@ export const sellerFetch = {
     const { first_name, last_name } = sellerData;
 
     const { data } = await httpService.post<
-      '',
+      SendSellerResponse,
       AxiosResponse<SendSellerResponse>,
       Partial<ISellerProfile>
     >('sellers/send_seller_info', {
@@ -31,6 +29,12 @@ export const sellerFetch = {
 
     return data;
   },
+  addAddress: ({ seller_data, seller_address_data }: ISellerProfile) => {
+    return httpService.post<ISellerProfile>('sellers/send_seller_info', {
+      seller_data,
+      seller_address_data,
+    });
+  },
 };
 
 // get seller info interfaces
@@ -42,7 +46,7 @@ export interface IUserInfoFetch {
 export interface IUserResultFetch {
   user_profile_info: IUserProfile;
   user_adresses: {};
-  notifications: IUserNotificationsData;
+  notifications: ISellerNotificationsData; // notifications: IUserNotificationsData;
   profile_image: {
     null: null;
   };
@@ -62,6 +66,7 @@ interface IErrorDetail {
   type: string;
 }
 
+// TODO - одинаковые с ISendSellerErrorResponse
 export interface IErrorResponse {
   detail: IErrorDetail[];
 }
@@ -81,10 +86,26 @@ export interface ISellerAddressData {
   postal_code: string;
 }
 
+export interface AddAddressFormData {
+  seller_data: ISellerData;
+  seller_address_data: ISellerAddressData;
+}
+
+interface ISellerNotificationsData {
+  on_discount: boolean;
+  on_order_updates: boolean;
+  on_order_reminders: boolean;
+  on_stock_again: boolean;
+  on_product_is_cheaper: boolean;
+  on_your_favorites_new: boolean;
+  on_account_support: boolean;
+}
+
 export interface ISellerProfile {
   seller_data: ISellerData;
   seller_address_data: ISellerAddressData;
-  seller_notifications_data: IUserNotificationsData;
+  seller_notifications_data: ISellerNotificationsData;
+  // seller_notifications_data: IUserNotificationsData;
 }
 
 export type SendSellerResponse = string | IErrorResponse;

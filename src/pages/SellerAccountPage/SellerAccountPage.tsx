@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
 import { Container } from '../../components';
-import Address from '../../components/Address';
+// import Address from '../../components/Address';
 import UploadFile from '../../components/new-components/UploadFile/UploadFile';
 import { Button, Checkbox, Input, InputWithMask, Select } from '../../components/ui-kit';
 import { IOption } from '../../components/ui-kit/Select/Select.props';
@@ -76,6 +76,7 @@ const SellerAccountPage = (): JSX.Element => {
 
   const onSubmit = (data: FormValues): void => {
     dispatch(
+      // TODO - почему не создать deafultValue first_name and last_name
       sendSellerInfoService({ first_name: data.firstName, last_name: data.lastName }),
     );
   };
@@ -102,7 +103,7 @@ const SellerAccountPage = (): JSX.Element => {
   const onNotificationChange = (id: string, isChecked: boolean): void => {
     dispatch(updateUserNotificationService({ id, isChecked }));
   };
-
+  // FIXME - подключайте логику
   // const isAuth = useAppSelector(state => state.login.isAuth);
   // const navigate = useNavigate();
 
@@ -241,7 +242,7 @@ const SellerAccountPage = (): JSX.Element => {
                 <div className={style.my_addresses_wrapper}>
                   {addresses ? (
                     <div className={style.addresses_container}>
-                      <Address address={addressExample} />
+                      {/* <Address address={addressExample} /> */}
                     </div>
                   ) : (
                     <div>

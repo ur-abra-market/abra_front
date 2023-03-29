@@ -14,8 +14,8 @@ import {
 import DropDownField from '../../DropDownField';
 import Form from '../../Form';
 import FormTitle from '../../FormTitle';
-import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 import Loader from '../../Loader';
+import UploadFile from '../../new-components/UploadFile/UploadFile';
 import { Button, Input, Label, Select } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
 import ProdInfoInputs from '../ProdInfoInputs';
@@ -43,7 +43,7 @@ const schema = yup.object({
   prodName: yup.string().required('Field is required'),
   category: yup.string().required('Field is required'),
   type1: yup.string().required('Field is required'),
-  type2: yup.string().required('Field is required'),
+  type2: yup.string(),
 });
 
 interface ProductData {
@@ -52,6 +52,50 @@ interface ProductData {
   category: string;
   type1: string;
   type2: string;
+}
+
+interface PropertiesAndVariationsObj {
+  '1-10': string;
+  '1-20': string;
+  '1-30': string;
+  '1-40': string;
+  '1-50': string;
+  '1-60': string;
+  '1-70': string;
+  '1-80': string;
+  '1-color': string;
+  'Age Group': string;
+  Gender: string;
+  Material: string;
+  'Material(optional)': string;
+  Technics: string;
+  category: string;
+  mainPrice: string;
+  mainQuantity: string;
+  prodName: string;
+  specPrice: string;
+  specQuantity: string;
+  textarea: string;
+  type1: string;
+  type2: string;
+}
+
+interface ObjWithProperties {
+  name: string;
+  value: string;
+  optional_value?: string;
+}
+
+interface ObjWithVariations {
+  name: string;
+  value: string;
+  childs: ChildElementObj[];
+}
+
+interface ChildElementObj {
+  name: string;
+  value: string;
+  count: number;
 }
 
 interface ProductListRegistrationFormProps {
@@ -65,6 +109,7 @@ interface ProductListRegistrationFormProps {
   productVariations: ProductVariations | null;
   categoryId: number;
 }
+
 const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   setSecondCategory,
   setFirstCategory,
@@ -81,10 +126,10 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   const { productId, loading, companyInfo } = useAppSelector(state => state.supplier);
 
   const [isSubmit, setIsSubmit] = useState(false);
-  const [images, setImages] = useState([]);
+  const [images] = useState([]);
   const [types, setTypes] = useState([{ id: 1, selected: true }]);
 
-  const [openDropDownField, setOpenDropDownField] = useState<null | number>(null);
+  const [openDropDownField, setOpenDropDownField] = useState<null | number>(1);
 
   const FIRST_CATEGORIES_DATA: IOption[] = firstStageCategories?.map(el => {
     return { label: el, value: el };
@@ -106,9 +151,12 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 
   const values = productProperties?.map(el => el.key);
 
-  const createObjProperty = (el: any, obj: any): any => {
-    const optional_value = obj[`${el}(optional)`];
-    const value = obj[el];
+  const createObjProperty = (
+    el: string,
+    obj: PropertiesAndVariationsObj,
+  ): ObjWithProperties => {
+    const optional_value = obj[`${el}(optional)` as keyof PropertiesAndVariationsObj];
+    const value = obj[el as keyof PropertiesAndVariationsObj];
     let finalObj = {
       name: el,
       value,
@@ -122,43 +170,46 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
     return finalObj;
   };
 
-  const createObjVariation = (id: number, data: any): any => {
-    const childs: any[] = [];
+  const createObjVariation = (
+    id: number,
+    data: PropertiesAndVariationsObj,
+  ): ObjWithVariations => {
+    const childs: ChildElementObj[] = [];
 
-    productVariations?.Size?.forEach((el: any) => {
-      if (data[`${id}-${el}`]) {
+    productVariations?.Size?.forEach((el: string) => {
+      if (data[`${id}-${el}` as keyof PropertiesAndVariationsObj]) {
         childs.push({
           name: 'size',
           value: el,
-          count: Number(data[`${id}-${el}`]),
+          count: Number(data[`${id}-${el}` as keyof PropertiesAndVariationsObj]),
         });
       }
     });
 
     return {
       name: 'color',
-      value: data[`${id}-color`],
+      value: data[`${id}-color` as keyof PropertiesAndVariationsObj],
       childs,
     };
   };
 
-  const onSubmit = (data: any): void => {
+  const onSubmit = (data: any /*   PropertiesAndVariationsObj ????  */): void => {
     const keysData = Object.keys(data);
 
-    const properties: any[] = [];
+    const properties: ObjWithProperties[] = [];
 
     values?.forEach(el => {
       properties.push(createObjProperty(el, data));
     });
 
-    const variations: any[] = [];
+    const variations: ObjWithVariations[] = [];
 
     types.forEach(el => {
       variations.push(createObjVariation(el.id, data));
     });
 
-    const addedMaterialKeys: any[] = [];
-    const addedMaterialValues: any[] = [];
+    const addedMaterialKeys: string[] = [];
+    const addedMaterialValues: string[] = [];
 
     keysData.forEach(el => {
       if (el.slice(0, 3) === 'opt') addedMaterialKeys.push(el);
@@ -166,11 +217,14 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
       if (el.slice(0, 4) === 'main') addedMaterialValues.push(el);
     });
     addedMaterialKeys.forEach((el, i) => {
-      if (data[addedMaterialValues[i]] && data[el]) {
+      if (
+        data[addedMaterialValues[i] as keyof PropertiesAndVariationsObj] &&
+        data[el as keyof PropertiesAndVariationsObj]
+      ) {
         properties.push({
           name: `material:${i}`,
-          value: data[addedMaterialValues[i]],
-          optional_value: data[el],
+          value: data[addedMaterialValues[i] as keyof PropertiesAndVariationsObj],
+          optional_value: data[el as keyof PropertiesAndVariationsObj],
         });
       }
     });
@@ -255,6 +309,8 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                   id={1}
                   open={openDropDownField}
                   setOpen={setOpenDropDownField}
+                  /* isShow={showMainProductInfo}
+                  foo={setShowMainProductInfo} */
                 >
                   <Label label="Product name *">
                     <Input
@@ -309,7 +365,13 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 
                   <div className={style.list_img}>
                     {[...new Array(5)].map((el, i) => (
-                      <ImagesAdding key={i} images={images} setImages={setImages} />
+                      <UploadFile
+                        key={i}
+                        action="!!!!!"
+                        className={style.images}
+                        label=""
+                        size="middle"
+                      />
                     ))}
                   </div>
                   <Label label="Description">
@@ -321,6 +383,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                 </DropDownField>
 
                 <DropDownField
+                  /* isShow={!!productProperties && !!productVariations} */
                   id={2}
                   title="Properties"
                   open={openDropDownField}
@@ -347,16 +410,6 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                       );
                     })}
 
-                  {/* <MaterialInputs
-                    register={register}
-                    mainTitle="Material (optional)"
-                    optTitle="% (optional)"
-                    mainPlaceholder="Enter the material name"
-                    optPlaceholder="Enter percentage of material"
-                    mainType="text"
-                    optType="number"
-                  /> */}
-
                   <TypesPage
                     variations={variations as ProductVariations}
                     register={register}
@@ -367,6 +420,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                 </DropDownField>
 
                 <DropDownField
+                  /* isShow={!!productProperties && !!productVariations} */
                   id={3}
                   title="Additional Product Info"
                   open={openDropDownField}

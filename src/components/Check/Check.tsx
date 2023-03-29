@@ -7,7 +7,7 @@ import { main } from '../../store/reducers/modalSlice';
 import style from './Check.module.css';
 
 interface CheckProps {
-  label: string;
+  label?: string;
 }
 const Check: FC<CheckProps> = ({ label }): JSX.Element => {
   const [check, setCheck] = useState(false);
@@ -15,8 +15,8 @@ const Check: FC<CheckProps> = ({ label }): JSX.Element => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!check) setBackground('#dddddd');
-    else setBackground('#000000');
+    if (!check) setBackground('#F4F4F4');
+    else setBackground('#FC133D');
   }, [check]);
 
   const handlerCheck = (): void => {

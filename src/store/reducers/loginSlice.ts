@@ -28,10 +28,6 @@ export const loginService = createAsyncThunk<
 
     return response.data;
   } catch (error) {
-    // const err = error.response.data.detail ? error.response.data.detail : error.message;
-    // const message = generateResponseError(err);
-    //
-    // return rejectWithValue(message);
     if (error instanceof AxiosError) {
       return rejectWithValue(error.message);
     }
