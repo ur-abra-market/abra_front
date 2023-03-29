@@ -20,6 +20,12 @@ export const sellerFetch = {
 
     return data;
   },
+  addAddress: ({ seller_data, seller_address_data }: ISellerProfile) => {
+    return httpService.post<ISellerProfile>('sellers/send_seller_info', {
+      seller_data,
+      seller_address_data,
+    });
+  },
 };
 
 // get seller info interfaces
@@ -60,7 +66,7 @@ export interface ISellerData {
   last_name: string;
 }
 
-interface ISellerAddressData {
+export interface ISellerAddressData {
   country: string;
   area: string;
   city: string;
@@ -68,6 +74,11 @@ interface ISellerAddressData {
   building: string;
   appartment: string;
   postal_code: string;
+}
+
+export interface AddAddressFormData {
+  seller_data: ISellerData;
+  seller_address_data: ISellerAddressData;
 }
 
 interface ISellerNotificationsData {
