@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import cn from 'classnames';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
 import { Container } from '../../components';
@@ -43,10 +43,8 @@ type FormValues = {
 };
 
 const SellerAccountPage = (): JSX.Element => {
-  // const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
-  // const isAuth = useAppSelector(state => state.login.isAuth);
+  const isAuth = useAppSelector(state => state.login.isAuth);
 
   const { first_name, last_name } = useAppSelector(state => state.seller.userProfileInfo);
 
@@ -101,7 +99,6 @@ const SellerAccountPage = (): JSX.Element => {
   const onNotificationChange = (id: string, isChecked: boolean): void => {
     dispatch(updateUserNotificationService({ id, isChecked }));
   };
-  // FIXME - подключайте логику
 
   const options: IOption[] = [
     { label: '+90', value: '+90' },
@@ -122,11 +119,9 @@ const SellerAccountPage = (): JSX.Element => {
     });
   }, [first_name, last_name]);
 
-  // useEffect(() => {
-  //   if (!isAuth) {
-  //     navigate('/auth');
-  //   }
-  // }, [isAuth]);
+  if (!isAuth) {
+    return <Navigate to="/auth" />;
+  }
 
   return (
     <div className={style.seller_page}>
