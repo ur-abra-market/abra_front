@@ -19,7 +19,7 @@ import {
 import { IOption } from '../../components/ui-kit/Select/Select.props';
 import { Action } from '../../services/user.service';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { checkAuth, logout } from '../../store/reducers/loginSlice';
+import { logout } from '../../store/reducers/loginSlice';
 import {
   getSellerAddressesService,
   getSellerInfoService,
@@ -109,7 +109,7 @@ const SellerAccountPage = (): JSX.Element => {
     dispatch(getSellerInfoService());
     dispatch(getSellerAddressesService());
     dispatch(getUserNotificationsService());
-    dispatch(checkAuth());
+    // dispatch(checkAuth());
   }, [dispatch]);
 
   useEffect(() => {

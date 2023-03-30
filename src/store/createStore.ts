@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import { appReducer } from './reducers/app';
 import basketReducer from './reducers/basketSlice';
 import categoryReducer from './reducers/categorySlice';
 import filterReducer from './reducers/filterSlice';
@@ -24,6 +25,7 @@ import userReducer from './reducers/userSlice';
 
 export const store = configureStore({
   reducer: {
+    app: appReducer,
     login: loginReducer,
     register: registerReducer,
     product: productReducer,
