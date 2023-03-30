@@ -3,15 +3,16 @@ import { AxiosError } from 'axios';
 
 import { Status } from '../../enums/status.enum';
 import {
+  ISellerAddressData,
   ISellerData,
   IUserResultFetch,
   sellerFetch,
-  SendSellerResponse,
+  ISendSellerResponse,
 } from '../../services/seller.service';
 
 export const getSellerInfoService = createAsyncThunk<IUserResultFetch, void>(
   'seller/getSellerInfoService',
-  async function (_, { rejectWithValue }) {
+  async (_, { rejectWithValue }) => {
     try {
       const data = await sellerFetch.getSellerInfo();
 
@@ -26,19 +27,36 @@ export const getSellerInfoService = createAsyncThunk<IUserResultFetch, void>(
   },
 );
 
-export const sendSellerInfoService = createAsyncThunk<SendSellerResponse, ISellerData>(
+export const sendSellerInfoService = createAsyncThunk<ISendSellerResponse, ISellerData>(
   'seller/sendSellerInfoService',
-  async function (param: { first_name: string; last_name: string }, { rejectWithValue }) {
+  async (sellerData, { rejectWithValue }) => {
     try {
-      const data = await sellerFetch.sendSellerInfo(param);
+      const data = await sellerFetch.sendSellerInfo(sellerData);
 
-      return data.result;
+      return data;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
       }
 
-      return rejectWithValue('[getSellerInfoService]: Error');
+      return rejectWithValue('[sendSellerInfoService]: Error');
+    }
+  },
+);
+
+export const getSellerAddressesService = createAsyncThunk<ISellerAddressData[], void>(
+  'seller/getSellerAddressesService',
+  async (_, { rejectWithValue }) => {
+    try {
+      const data = await sellerFetch.getSellerAddresses();
+
+      return data.result.seller_address;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[getSellerAddressesService]: Error');
     }
   },
 );
@@ -64,6 +82,7 @@ const initialState = {
   profileImage: {
     null: null as null | string,
   },
+  sellerAddress: null as null | ISellerAddressData[],
 };
 
 const sellerSlice = createSlice({
@@ -82,6 +101,17 @@ const sellerSlice = createSlice({
       state.profileImage = action.payload.profile_image;
     });
     builder.addCase(getSellerInfoService.rejected, state => {
+      state.loading = Status.Failed;
+    });
+
+    builder.addCase(getSellerAddressesService.pending, state => {
+      state.loading = Status.Loading;
+    });
+    builder.addCase(getSellerAddressesService.fulfilled, (state, action) => {
+      state.loading = Status.Success;
+      state.sellerAddress = action.payload;
+    });
+    builder.addCase(getSellerAddressesService.rejected, state => {
       state.loading = Status.Failed;
     });
   },

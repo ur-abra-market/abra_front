@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { ReactComponent as Delete } from '../../../../assets/img/icons/delete.svg';
+// import { ReactComponent as Delete } from '../../../../assets/img/icons/delete.svg';
 import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
 import { AddAddressFormData } from '../../../../services/seller.service';
 import { useAppDispatch } from '../../../../store/hooks';
@@ -65,7 +65,8 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
           <div className={style.edit_address_checkbox}>
             <Check label="Main Address" />
             <div className={style.edit_address_icon_box}>
-              <Delete />
+              {/* //FIXME в репе нет иконки - у тебя в git ignore скорее стоит */}
+              {/* <Delete /> */}
               <span>Remove Address</span>
             </div>
           </div>

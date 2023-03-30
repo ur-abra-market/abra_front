@@ -2,21 +2,33 @@ import React, { useEffect } from 'react';
 
 import cn from 'classnames';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
 import { Container } from '../../components';
 import Address from '../../components/Address';
 import UploadFile from '../../components/new-components/UploadFile/UploadFile';
-import { Button, Checkbox, Input, InputWithMask, Select } from '../../components/ui-kit';
+import {
+  Button,
+  Checkbox,
+  Input,
+  InputWithMask,
+  Label,
+  Select,
+} from '../../components/ui-kit';
 import { IOption } from '../../components/ui-kit/Select/Select.props';
 import { Action } from '../../services/user.service';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { logout } from '../../store/reducers/loginSlice';
+import { checkAuth, logout } from '../../store/reducers/loginSlice';
 import {
+  getSellerAddressesService,
   getSellerInfoService,
   sendSellerInfoService,
 } from '../../store/reducers/sellerSlice';
+import {
+  getUserNotificationsService,
+  updateUserNotificationService,
+} from '../../store/reducers/userSlice';
 
 import style from './SellerAccountPage.module.css';
 
@@ -26,43 +38,56 @@ import Header from 'layouts/Header';
 import Orders from 'pages/SellerAccountPage/Orders';
 
 type FormValues = {
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
 };
 
 const SellerAccountPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const firstName = useAppSelector(state => state.seller.userProfileInfo.first_name);
-  const lastName = useAppSelector(state => state.seller.userProfileInfo.last_name);
+  const isAuth = useAppSelector(state => state.login.isAuth);
 
-  // const notifications = useAppSelector(state => state.seller.notifications);
+  const { first_name, last_name } = useAppSelector(state => state.seller.userProfileInfo);
 
-  const { setValue, watch, reset, handleSubmit } = useForm<FormValues>({
+  const notifications = useAppSelector(state => state.user.notifications);
+  const {
+    on_discount,
+    on_order_updates,
+    on_order_reminders,
+    on_stock_again,
+    on_product_is_cheaper,
+    on_your_favorites_new,
+    on_account_support,
+  } = notifications ?? {};
+
+  const { register, handleSubmit, reset } = useForm<FormValues>({
     defaultValues: {
-      firstName,
-      lastName,
+      first_name,
+      last_name,
     },
   });
 
-  const [fistNameWatched, lastNameWatched] = watch(['firstName', 'lastName']);
-
   const onSubmit = (data: FormValues): void => {
-    dispatch(
-      sendSellerInfoService({ first_name: data.firstName, last_name: data.lastName }),
-    );
+    dispatch(sendSellerInfoService(data));
+  };
+
+  const userData = {
+    first_name: 'Olga',
+    last_name: 'Andreeva',
+  };
+
+  const userAddress = {
+    country: 'Russian Federation',
+    area: 'Moscow',
+    city: 'Moscow',
+    street: 'Jaroslava Gasheka 6',
+    building: '2',
+    appartment: 'apartment 904',
+    postal_code: '589964',
   };
 
   const addressExample = {
-    firstname: 'Olga',
-    lastname: 'Andreeva',
-    phone: '+79158448547',
-    street: 'Jaroslava Gasheka 6, building 2',
-    apartment: 'apartment 904',
-    city: 'Moscow',
-    region: '',
-    state: '',
-    country: 'Russian Federation',
-    zipcode: '589964',
+    seller_data: userData,
+    seller_address_data: userAddress,
   };
 
   const addresses = [addressExample];
@@ -71,12 +96,9 @@ const SellerAccountPage = (): JSX.Element => {
     dispatch(logout());
   };
 
-  // const isAuth = useAppSelector(state => state.login.isAuth);
-  // const navigate = useNavigate();
-
-  // if (!isAuth) {
-  //   navigate('/login');
-  // }
+  const onNotificationChange = (id: string, isChecked: boolean): void => {
+    dispatch(updateUserNotificationService({ id, isChecked }));
+  };
 
   const options: IOption[] = [
     { label: '+90', value: '+90' },
@@ -85,11 +107,21 @@ const SellerAccountPage = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(getSellerInfoService());
-  }, []);
+    dispatch(getSellerAddressesService());
+    dispatch(getUserNotificationsService());
+    dispatch(checkAuth());
+  }, [dispatch]);
 
   useEffect(() => {
-    reset({ firstName, lastName });
-  }, [firstName, lastName]);
+    reset({
+      first_name,
+      last_name,
+    });
+  }, [first_name, last_name]);
+
+  if (!isAuth) {
+    return <Navigate to="/auth" />;
+  }
 
   return (
     <div className={style.seller_page}>
@@ -116,30 +148,20 @@ const SellerAccountPage = (): JSX.Element => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className={style.names_container}>
                     <div className={style.flex_container}>
-                      <label htmlFor="firstName" className={style.label}>
-                        First name
-                      </label>
-                      <Input
-                        placeholder="Enter first name"
-                        id="firstName"
-                        value={fistNameWatched}
-                        onChange={value => {
-                          setValue('firstName', value.currentTarget.value);
-                        }}
+                      <Label
+                        htmlFor="firstName"
+                        className={style.label}
+                        label="First name"
                       />
+                      <Input placeholder="Enter first name" {...register('first_name')} />
                     </div>
                     <div className={style.flex_container}>
-                      <label htmlFor="lastName" className={style.label}>
-                        Last name
-                      </label>
-                      <Input
-                        placeholder="Enter last name"
-                        id="lastName"
-                        value={lastNameWatched}
-                        onChange={value => {
-                          setValue('lastName', value.currentTarget.value);
-                        }}
+                      <Label
+                        htmlFor="lastName"
+                        className={style.label}
+                        label="Last name"
                       />
+                      <Input placeholder="Enter last name" {...register('last_name')} />
                     </div>
                   </div>
                   <div className={style.phone_container}>
@@ -231,39 +253,95 @@ const SellerAccountPage = (): JSX.Element => {
 
                 <div className={style.notifications_list}>
                   <Checkbox
+                    id="on_discount"
                     variant="notification"
                     label="Discounts & offers"
                     className={style.notifications_item}
+                    checked={on_discount || false}
+                    onChange={event =>
+                      onNotificationChange(
+                        event.currentTarget.id,
+                        event.currentTarget.checked,
+                      )
+                    }
                   />
                   <Checkbox
+                    id="on_order_updates"
                     variant="notification"
                     label="Order updates"
                     className={style.notifications_item}
+                    checked={on_order_updates || false}
+                    onChange={event =>
+                      onNotificationChange(
+                        event.currentTarget.id,
+                        event.currentTarget.checked,
+                      )
+                    }
                   />
                   <Checkbox
+                    id="on_order_reminders"
                     variant="notification"
                     label="Order reminders"
                     className={style.notifications_item}
+                    checked={on_order_reminders || false}
+                    onChange={event =>
+                      onNotificationChange(
+                        event.currentTarget.id,
+                        event.currentTarget.checked,
+                      )
+                    }
                   />
                   <Checkbox
+                    id="on_stock_again"
                     variant="notification"
                     label="On stock again"
                     className={style.notifications_item}
+                    checked={on_stock_again || false}
+                    onChange={event =>
+                      onNotificationChange(
+                        event.currentTarget.id,
+                        event.currentTarget.checked,
+                      )
+                    }
                   />
                   <Checkbox
+                    id="on_product_is_cheaper"
                     variant="notification"
                     label="Product is cheaper"
                     className={style.notifications_item}
+                    checked={on_product_is_cheaper || false}
+                    onChange={event =>
+                      onNotificationChange(
+                        event.currentTarget.id,
+                        event.currentTarget.checked,
+                      )
+                    }
                   />
                   <Checkbox
+                    id="on_your_favorites_new"
                     variant="notification"
                     label="Your favorites new"
                     className={style.notifications_item}
+                    checked={on_your_favorites_new || false}
+                    onChange={event =>
+                      onNotificationChange(
+                        event.currentTarget.id,
+                        event.currentTarget.checked,
+                      )
+                    }
                   />
                   <Checkbox
+                    id="on_account_support"
                     variant="notification"
                     label="Account support"
                     className={style.notifications_item}
+                    checked={on_account_support || false}
+                    onChange={event =>
+                      onNotificationChange(
+                        event.currentTarget.id,
+                        event.currentTarget.checked,
+                      )
+                    }
                   />
                 </div>
               </div>
