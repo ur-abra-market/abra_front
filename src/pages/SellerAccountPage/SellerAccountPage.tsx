@@ -6,13 +6,20 @@ import { Link } from 'react-router-dom';
 
 import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
 import { Container } from '../../components';
-// import Address from '../../components/Address';
+import Address from '../../components/Address';
 import UploadFile from '../../components/new-components/UploadFile/UploadFile';
-import { Button, Checkbox, Input, InputWithMask, Select } from '../../components/ui-kit';
+import {
+  Button,
+  Checkbox,
+  Input,
+  InputWithMask,
+  Label,
+  Select,
+} from '../../components/ui-kit';
 import { IOption } from '../../components/ui-kit/Select/Select.props';
 import { Action } from '../../services/user.service';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { logout } from '../../store/reducers/loginSlice';
+import { checkAuth, logout } from '../../store/reducers/loginSlice';
 import {
   getSellerAddressesService,
   getSellerInfoService,
@@ -31,67 +38,58 @@ import Header from 'layouts/Header';
 import Orders from 'pages/SellerAccountPage/Orders';
 
 type FormValues = {
-  firstName: string;
-  lastName: string;
-  onDiscount: boolean;
-  onOrderUpdates: boolean;
-  onOrderReminders: boolean;
-  onStockAgain: boolean;
-  onProductIsCheaper: boolean;
-  onYourFavoritesNew: boolean;
-  onAccauntSupport: boolean;
+  first_name: string;
+  last_name: string;
 };
 
 const SellerAccountPage = (): JSX.Element => {
+  // const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
-  const firstName = useAppSelector(state => state.seller.userProfileInfo.first_name);
-  const lastName = useAppSelector(state => state.seller.userProfileInfo.last_name);
+  // const isAuth = useAppSelector(state => state.login.isAuth);
 
-  const onDiscount = useAppSelector(state => state.user.notifications?.on_discount);
-  const onOrderUpdates = useAppSelector(
-    state => state.user.notifications?.on_order_updates,
-  );
-  const onOrderReminders = useAppSelector(
-    state => state.user.notifications?.on_order_reminders,
-  );
-  const onStockAgain = useAppSelector(state => state.user.notifications?.on_stock_again);
-  const onProductIsCheaper = useAppSelector(
-    state => state.user.notifications?.on_product_is_cheaper,
-  );
-  const onYourFavoritesNew = useAppSelector(
-    state => state.user.notifications?.on_your_favorites_new,
-  );
-  const onAccauntSupport = useAppSelector(
-    state => state.user.notifications?.on_account_support,
-  );
+  const { first_name, last_name } = useAppSelector(state => state.seller.userProfileInfo);
 
-  const { setValue, watch, reset, handleSubmit } = useForm<FormValues>({
+  const notifications = useAppSelector(state => state.user.notifications);
+  const {
+    on_discount,
+    on_order_updates,
+    on_order_reminders,
+    on_stock_again,
+    on_product_is_cheaper,
+    on_your_favorites_new,
+    on_account_support,
+  } = notifications ?? {};
+
+  const { register, handleSubmit, reset } = useForm<FormValues>({
     defaultValues: {
-      firstName,
-      lastName,
+      first_name,
+      last_name,
     },
   });
 
-  const [fistNameWatched, lastNameWatched] = watch(['firstName', 'lastName']);
-
   const onSubmit = (data: FormValues): void => {
-    dispatch(
-      // TODO - почему не создать deafultValue first_name and last_name
-      sendSellerInfoService({ first_name: data.firstName, last_name: data.lastName }),
-    );
+    dispatch(sendSellerInfoService(data));
+  };
+
+  const userData = {
+    first_name: 'Olga',
+    last_name: 'Andreeva',
+  };
+
+  const userAddress = {
+    country: 'Russian Federation',
+    area: 'Moscow',
+    city: 'Moscow',
+    street: 'Jaroslava Gasheka 6',
+    building: '2',
+    appartment: 'apartment 904',
+    postal_code: '589964',
   };
 
   const addressExample = {
-    firstname: 'Olga',
-    lastname: 'Andreeva',
-    phone: '+79158448547',
-    street: 'Jaroslava Gasheka 6, building 2',
-    apartment: 'apartment 904',
-    city: 'Moscow',
-    region: '',
-    state: '',
-    country: 'Russian Federation',
-    zipcode: '589964',
+    seller_data: userData,
+    seller_address_data: userAddress,
   };
 
   const addresses = [addressExample];
@@ -104,12 +102,6 @@ const SellerAccountPage = (): JSX.Element => {
     dispatch(updateUserNotificationService({ id, isChecked }));
   };
   // FIXME - подключайте логику
-  // const isAuth = useAppSelector(state => state.login.isAuth);
-  // const navigate = useNavigate();
-
-  // if (!isAuth) {
-  //   navigate('/login');
-  // }
 
   const options: IOption[] = [
     { label: '+90', value: '+90' },
@@ -120,14 +112,21 @@ const SellerAccountPage = (): JSX.Element => {
     dispatch(getSellerInfoService());
     dispatch(getSellerAddressesService());
     dispatch(getUserNotificationsService());
+    dispatch(checkAuth());
   }, [dispatch]);
 
   useEffect(() => {
     reset({
-      firstName,
-      lastName,
+      first_name,
+      last_name,
     });
-  }, [firstName, lastName, reset]);
+  }, [first_name, last_name]);
+
+  // useEffect(() => {
+  //   if (!isAuth) {
+  //     navigate('/auth');
+  //   }
+  // }, []);
 
   return (
     <div className={style.seller_page}>
@@ -154,30 +153,20 @@ const SellerAccountPage = (): JSX.Element => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className={style.names_container}>
                     <div className={style.flex_container}>
-                      <label htmlFor="firstName" className={style.label}>
-                        First name
-                      </label>
-                      <Input
-                        placeholder="Enter first name"
-                        id="firstName"
-                        value={fistNameWatched}
-                        onChange={value => {
-                          setValue('firstName', value.currentTarget.value);
-                        }}
+                      <Label
+                        htmlFor="firstName"
+                        className={style.label}
+                        label="First name"
                       />
+                      <Input placeholder="Enter first name" {...register('first_name')} />
                     </div>
                     <div className={style.flex_container}>
-                      <label htmlFor="lastName" className={style.label}>
-                        Last name
-                      </label>
-                      <Input
-                        placeholder="Enter last name"
-                        id="lastName"
-                        value={lastNameWatched}
-                        onChange={value => {
-                          setValue('lastName', value.currentTarget.value);
-                        }}
+                      <Label
+                        htmlFor="lastName"
+                        className={style.label}
+                        label="Last name"
                       />
+                      <Input placeholder="Enter last name" {...register('last_name')} />
                     </div>
                   </div>
                   <div className={style.phone_container}>
@@ -242,7 +231,7 @@ const SellerAccountPage = (): JSX.Element => {
                 <div className={style.my_addresses_wrapper}>
                   {addresses ? (
                     <div className={style.addresses_container}>
-                      {/* <Address address={addressExample} /> */}
+                      <Address address={addressExample} />
                     </div>
                   ) : (
                     <div>
@@ -273,7 +262,7 @@ const SellerAccountPage = (): JSX.Element => {
                     variant="notification"
                     label="Discounts & offers"
                     className={style.notifications_item}
-                    checked={onDiscount || false}
+                    checked={on_discount || false}
                     onChange={event =>
                       onNotificationChange(
                         event.currentTarget.id,
@@ -286,7 +275,7 @@ const SellerAccountPage = (): JSX.Element => {
                     variant="notification"
                     label="Order updates"
                     className={style.notifications_item}
-                    checked={onOrderUpdates || false}
+                    checked={on_order_updates || false}
                     onChange={event =>
                       onNotificationChange(
                         event.currentTarget.id,
@@ -299,7 +288,7 @@ const SellerAccountPage = (): JSX.Element => {
                     variant="notification"
                     label="Order reminders"
                     className={style.notifications_item}
-                    checked={onOrderReminders || false}
+                    checked={on_order_reminders || false}
                     onChange={event =>
                       onNotificationChange(
                         event.currentTarget.id,
@@ -312,7 +301,7 @@ const SellerAccountPage = (): JSX.Element => {
                     variant="notification"
                     label="On stock again"
                     className={style.notifications_item}
-                    checked={onStockAgain || false}
+                    checked={on_stock_again || false}
                     onChange={event =>
                       onNotificationChange(
                         event.currentTarget.id,
@@ -325,7 +314,7 @@ const SellerAccountPage = (): JSX.Element => {
                     variant="notification"
                     label="Product is cheaper"
                     className={style.notifications_item}
-                    checked={onProductIsCheaper || false}
+                    checked={on_product_is_cheaper || false}
                     onChange={event =>
                       onNotificationChange(
                         event.currentTarget.id,
@@ -338,7 +327,7 @@ const SellerAccountPage = (): JSX.Element => {
                     variant="notification"
                     label="Your favorites new"
                     className={style.notifications_item}
-                    checked={onYourFavoritesNew || false}
+                    checked={on_your_favorites_new || false}
                     onChange={event =>
                       onNotificationChange(
                         event.currentTarget.id,
@@ -351,7 +340,7 @@ const SellerAccountPage = (): JSX.Element => {
                     variant="notification"
                     label="Account support"
                     className={style.notifications_item}
-                    checked={onAccauntSupport || false}
+                    checked={on_account_support || false}
                     onChange={event =>
                       onNotificationChange(
                         event.currentTarget.id,

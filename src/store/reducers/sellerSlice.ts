@@ -7,7 +7,7 @@ import {
   ISellerData,
   IUserResultFetch,
   sellerFetch,
-  SendSellerResponse,
+  ISendSellerResponse,
 } from '../../services/seller.service';
 
 export const getSellerInfoService = createAsyncThunk<IUserResultFetch, void>(
@@ -27,11 +27,11 @@ export const getSellerInfoService = createAsyncThunk<IUserResultFetch, void>(
   },
 );
 
-export const sendSellerInfoService = createAsyncThunk<SendSellerResponse, ISellerData>(
+export const sendSellerInfoService = createAsyncThunk<ISendSellerResponse, ISellerData>(
   'seller/sendSellerInfoService',
-  async (param: { first_name: string; last_name: string }, { rejectWithValue }) => {
+  async (sellerData, { rejectWithValue }) => {
     try {
-      const data = await sellerFetch.sendSellerInfo(param);
+      const data = await sellerFetch.sendSellerInfo(sellerData);
 
       return data;
     } catch (error: unknown) {
