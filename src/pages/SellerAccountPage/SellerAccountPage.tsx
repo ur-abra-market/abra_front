@@ -126,7 +126,7 @@ const SellerAccountPage = (): JSX.Element => {
   //   if (!isAuth) {
   //     navigate('/auth');
   //   }
-  // }, []);
+  // }, [isAuth]);
 
   return (
     <div className={style.seller_page}>
