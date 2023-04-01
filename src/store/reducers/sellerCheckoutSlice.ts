@@ -59,6 +59,22 @@ export const getAddress = createAsyncThunk<ResponseAddressData, void, AsyncThunk
     }
   },
 );
+export const deleteAddress = createAsyncThunk<string, number, AsyncThunkConfig>(
+  'modal/deleteAddress',
+  async (id, { rejectWithValue }) => {
+    try {
+      const { data } = await sellerFetch.deleteAddress(id);
+
+      return data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[modalSlice]: Error');
+    }
+  },
+);
 const sellerCheckoutSlice = createSlice({
   name: 'seller-checkout',
   initialState: {
@@ -74,8 +90,6 @@ const sellerCheckoutSlice = createSlice({
       },
     ],
     loading: Status.Idle as Status,
-    isAddress: false as boolean,
-    isPayment: false as boolean,
   },
   reducers: {},
   extraReducers: builder => {
@@ -105,6 +119,15 @@ const sellerCheckoutSlice = createSlice({
       state.loading = Status.Success;
     });
     builder.addCase(editAddress.rejected, state => {
+      state.loading = Status.Failed;
+    });
+    builder.addCase(deleteAddress.pending, state => {
+      state.loading = Status.Loading;
+    });
+    builder.addCase(deleteAddress.fulfilled, state => {
+      state.loading = Status.Success;
+    });
+    builder.addCase(deleteAddress.rejected, state => {
       state.loading = Status.Failed;
     });
   },

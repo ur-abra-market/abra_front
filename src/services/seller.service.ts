@@ -43,6 +43,9 @@ export const sellerFetch = {
       params,
     );
   },
+  deleteAddress: (id: number) => {
+    return httpService.delete<string>(`sellers/remove_address/${id}`);
+  },
 };
 
 // get seller info interfaces
