@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
 
+import { Navigate } from 'react-router-dom';
+
 import HeaderForChangePages from '../../components/HeaderForChangePages';
 import Footer from '../../layouts/Footer';
+import { useAppSelector } from '../../store/hooks';
 
 import style from './CheckoutPage.module.css';
 
@@ -11,6 +14,12 @@ import CheckOrder from 'components/ui/checkout/CheckOrder';
 import CheckPayment from 'components/ui/checkout/CheckPayment';
 
 const CheckoutPage: FC = (): JSX.Element => {
+  const { isAuth } = useAppSelector(state => state.login);
+
+  if (!isAuth) {
+    return <Navigate to="/auth" />;
+  }
+
   return (
     <>
       <HeaderForChangePages />
