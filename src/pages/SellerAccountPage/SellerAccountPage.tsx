@@ -47,6 +47,7 @@ const SellerAccountPage = (): JSX.Element => {
   const isAuth = useAppSelector(state => state.login.isAuth);
 
   const { first_name, last_name } = useAppSelector(state => state.seller.userProfileInfo);
+  const addresses = useAppSelector(state => state.sellerCheckout.seller_address); // фиксил ошибки, заглушка
 
   const notifications = useAppSelector(state => state.user.notifications);
   const {
@@ -70,27 +71,26 @@ const SellerAccountPage = (): JSX.Element => {
     dispatch(sendSellerInfoService(data));
   };
 
-  const userData = {
-    first_name: 'Olga',
-    last_name: 'Andreeva',
-  };
+  // const userData = {
+  //   first_name: 'Olga',
+  //   last_name: 'Andreeva',
+  // };
 
-  const userAddress = {
-    country: 'Russian Federation',
-    area: 'Moscow',
-    city: 'Moscow',
-    street: 'Jaroslava Gasheka 6',
-    building: '2',
-    appartment: 'apartment 904',
-    postal_code: '589964',
-  };
+  // const userAddress = {
+  //   country: 'Russian Federation',
+  //   area: 'Moscow',
+  //   city: 'Moscow',
+  //   street: 'Jaroslava Gasheka 6',
+  //   building: '2',
+  //   appartment: 'apartment 904',
+  //   postal_code: '589964',
+  // };
+  //
+  // const addressExample = {
+  //   seller_address: userAddress,
+  // };
 
-  const addressExample = {
-    seller_data: userData,
-    seller_address_data: userAddress,
-  };
-
-  const addresses = [addressExample];
+  // const addresses = [addressExample];
 
   const onLogoutHandler = (): void => {
     dispatch(logout());
@@ -117,7 +117,7 @@ const SellerAccountPage = (): JSX.Element => {
       first_name,
       last_name,
     });
-  }, [first_name, last_name]);
+  }, [first_name, last_name, reset]);
 
   if (!isAuth) {
     return <Navigate to="/auth" />;
@@ -226,7 +226,9 @@ const SellerAccountPage = (): JSX.Element => {
                 <div className={style.my_addresses_wrapper}>
                   {addresses ? (
                     <div className={style.addresses_container}>
-                      <Address address={addressExample} />
+                      {addresses.map((a: any, i: number) => (
+                        <Address key={`address_${i}`} address={a} />
+                      ))}
                     </div>
                   ) : (
                     <div>

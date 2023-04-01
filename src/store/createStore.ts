@@ -15,7 +15,7 @@ import { popularProductsReducer } from './reducers/popularProducts';
 import productPaginateReducer from './reducers/productPaginateSlice';
 import productReducer from './reducers/productSlice';
 import registerReducer from './reducers/registerSlice';
-import sellerCheckoutSlice from './reducers/seller.checkoutSlice';
+import sellerCheckoutSlice from './reducers/sellerCheckoutSlice';
 import sellerSlice from './reducers/sellerSlice';
 import { similarProductsReducer } from './reducers/similarProducts';
 import supplierAccountReducer from './reducers/supplierAccountSlice';
