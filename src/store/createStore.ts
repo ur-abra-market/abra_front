@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import { appReducer } from './reducers/app';
 import basketReducer from './reducers/basketSlice';
 import categoryReducer from './reducers/categorySlice';
 import filterReducer from './reducers/filterSlice';
@@ -14,6 +15,7 @@ import { popularProductsReducer } from './reducers/popularProducts';
 import productPaginateReducer from './reducers/productPaginateSlice';
 import productReducer from './reducers/productSlice';
 import registerReducer from './reducers/registerSlice';
+import sellerCheckoutSlice from './reducers/seller.checkoutSlice';
 import sellerSlice from './reducers/sellerSlice';
 import { similarProductsReducer } from './reducers/similarProducts';
 import supplierAccountReducer from './reducers/supplierAccountSlice';
@@ -23,6 +25,7 @@ import userReducer from './reducers/userSlice';
 
 export const store = configureStore({
   reducer: {
+    app: appReducer,
     login: loginReducer,
     register: registerReducer,
     product: productReducer,
@@ -42,6 +45,7 @@ export const store = configureStore({
     similarProducts: similarProductsReducer,
     popularProducts: popularProductsReducer,
     seller: sellerSlice,
+    sellerCheckout: sellerCheckoutSlice,
     passwordSlice,
   },
   devTools: process.env.NODE_ENV !== 'production',

@@ -2,12 +2,10 @@
   display: flex;
   flex-direction: column;
 
-  width: 435px;
-  height: 108px;
-  padding: 16px 16px 16px 24px;
+  width: 447px;
+  padding: 16px 16px 21px 16px;
 
-  background: #F2F2F2;
-  border: 2px #000 solid;
+  border-radius: 12px;
 }
 
 .address_content {
@@ -17,23 +15,19 @@
 }
 
 .address_content_text {
+  padding-bottom: 12px;
   font-size: 15px;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 20px;
 }
 
 .address_content_edit {
   cursor: pointer;
 
-  width: 20px;
-  height: 20px;
-
-  background: url('../../assets/img/icons/edit.svg');
-  background-size: cover;
 }
 
 .address_place {
-  margin-top: 8px;
+  margin:12px 0 17px 0;
 
   font-size: 15px;
   font-weight: 700;
@@ -48,18 +42,14 @@
   align-items: center;
   justify-content: space-between;
 
-  margin-top: auto;
-}
-
-.address_main_mark {
-  width: 16px;
-  height: 16px;
-  background: url('../../assets/img/icons/check-mark.svg');
-  background-size: cover;
 }
 
 .address_main_text {
-  font-size: var(--fs);
-  line-height: 18px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
   color: #828282;
+}
+.address_content_line{
+  border: 1px solid rgba(0, 0, 0, 0.14);
 }
