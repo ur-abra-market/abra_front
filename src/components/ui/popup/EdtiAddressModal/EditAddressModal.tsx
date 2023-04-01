@@ -14,7 +14,7 @@ import { Button, Input, Select } from '../../../ui-kit';
 
 import style from './EditAddressModal.module.css';
 
-import { editAddress } from 'store/reducers/sellerCheckoutSlice';
+import { deleteAddress, editAddress } from 'store/reducers/sellerCheckoutSlice';
 
 interface EditAddressModalType {
   modal: boolean;
@@ -58,6 +58,9 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
   const onClickModalHandler = (): void => {
     setModal(false);
   };
+  const removeAddress = (): void => {
+    dispatch(deleteAddress(1)); // заглушка
+  };
 
   return (
     <div className={style.edit_address} style={styles}>
@@ -67,7 +70,7 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
           <div className={style.edit_address_checkbox}>
             <Check label="Main Address" />
             <div className={style.edit_address_icon_box}>
-              <Delete />
+              <Delete onClick={removeAddress} />
               <span>Remove Address</span>
             </div>
           </div>

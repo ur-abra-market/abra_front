@@ -15,7 +15,7 @@ const Address: FC<AddressProps> = ({ address }): JSX.Element => {
   const { first_name, last_name, phone } = useAppSelector(
     state => state.seller.userProfileInfo,
   );
-  const [isMain] = useState(false);
+  const [isMain, setIsMain] = useState(false);
   const styles = {
     border: isMain ? '1px solid #FC133D' : '1px solid #D4D4D4',
   };
@@ -35,9 +35,13 @@ const Address: FC<AddressProps> = ({ address }): JSX.Element => {
   const onClickModal = (): void => {
     setModal(true);
   };
+  const ocClickMain = (): void => {
+    setIsMain(!isMain);
+  };
 
   return (
-    <div className={style.address} style={styles}>
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+    <div className={style.address} style={styles} onClick={ocClickMain}>
       <div className={style.address_content}>
         <div className={style.address_content_text}>
           {first_name} {last_name},{phone}
