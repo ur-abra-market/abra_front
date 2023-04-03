@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { Status } from '../../enums/status.enum';
@@ -90,8 +90,13 @@ const sellerCheckoutSlice = createSlice({
       },
     ],
     loading: Status.Idle as Status,
+    selected: false as boolean,
   },
-  reducers: {},
+  reducers: {
+    changeSelected(state, action: PayloadAction<{ selected: boolean }>) {
+      state.selected = action.payload.selected;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(addAddress.pending, state => {
       state.loading = Status.Loading;
@@ -132,5 +137,7 @@ const sellerCheckoutSlice = createSlice({
     });
   },
 });
+
+export const { changeSelected } = sellerCheckoutSlice.actions;
 
 export default sellerCheckoutSlice.reducer;

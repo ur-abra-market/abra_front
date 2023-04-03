@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import { Navigate } from 'react-router-dom';
 
 import HeaderForChangePages from '../../components/HeaderForChangePages';
+import InfoBtn from '../../components/ui-kit/InfoBtn/InfoBtn';
 import Footer from '../../layouts/Footer';
 import { useAppSelector } from '../../store/hooks';
 
@@ -21,7 +22,7 @@ const CheckoutPage: FC = (): JSX.Element => {
   }
 
   return (
-    <>
+    <div className={style.container}>
       <HeaderForChangePages />
 
       <div className={style.checkout_page}>
@@ -35,8 +36,9 @@ const CheckoutPage: FC = (): JSX.Element => {
         </div>
         <CheckOrder />
       </div>
+      <InfoBtn className={style.info_bottom} />
       <Footer />
-    </>
+    </div>
   );
 };
 

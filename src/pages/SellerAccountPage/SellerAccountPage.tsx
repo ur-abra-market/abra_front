@@ -227,7 +227,7 @@ const SellerAccountPage = (): JSX.Element => {
                   {addresses ? (
                     <div className={style.addresses_container}>
                       {addresses.map((a: any, i: number) => (
-                        <Address key={`address_${i}`} address={a} />
+                        <Address key={`address_${i}`} address={a} id={i} />
                       ))}
                     </div>
                   ) : (

@@ -27,7 +27,7 @@ const CheckDelivery = (): JSX.Element => {
       <h4 className={style.check_delivery_title}>Delivery Address</h4>
       <div className={style.check_delivery_address}>
         {addresses.map((a, i) => (
-          <Address key={`address_${i}`} address={a} />
+          <Address key={`address_${i}`} address={a} id={i} />
         ))}
 
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}

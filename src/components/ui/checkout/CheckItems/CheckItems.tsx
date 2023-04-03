@@ -23,7 +23,7 @@ const CheckItems: FC<CheckItemsProps> = ({ index }): JSX.Element => {
       {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
       <div className={style.check_items_container}>
         {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
-        {+index ? <></> : <h4>Items to Order</h4>}
+        {+index ? <></> : <h4 className={style.check_items_title}>Items to Order</h4>}
         <div className={style.check_items_block}>
           <div className={style.check_items_block_rating}>
             <Start className={style.check_items_start} />

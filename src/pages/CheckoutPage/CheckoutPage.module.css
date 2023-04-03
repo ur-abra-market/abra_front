@@ -1,3 +1,6 @@
+.container{
+  position: relative;
+}
 .checkout_page {
   display: flex;
   flex-direction: row;
@@ -22,4 +25,10 @@
   padding-top: 32px;
   padding-left: 32px;
   background-color: #FFFFFF;
+}
+.info_bottom{
+  position: absolute;
+  right: 32px;
+  bottom: 74px;
+
 }
