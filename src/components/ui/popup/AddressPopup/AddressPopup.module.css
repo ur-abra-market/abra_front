@@ -19,7 +19,7 @@
 }
 
 .address_popup_modal {
-  padding: 32px;
+  padding: 32px 32px 17px 32px;  /*временно*/
   background-color: #FFF;
   border-radius: 12px;
 
@@ -149,5 +149,6 @@
 .address_popup_button {
   cursor: pointer;
   width: 100%;
+  margin-top: 15px;
 }
 

@@ -1,11 +1,18 @@
 import React from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { ReactComponent as Lock } from '../../../../assets/img/icons/lock.svg';
 import { Button } from '../../../ui-kit';
 
 import style from './CheckOrder.module.css';
 
 const CheckOrder = (): JSX.Element => {
+  const navigate = useNavigate();
+  const onClickNavigate = (): void => {
+    return navigate('/checkout-success');
+  };
+
   return (
     <div className={style.check_order}>
       <div className={style.check_order_title}>
@@ -30,7 +37,7 @@ const CheckOrder = (): JSX.Element => {
         <div>Total</div>
         <div>$1000</div>
       </div>
-      <Button label="Place Order" />
+      <Button label="Place Order" onClick={onClickNavigate} />
       <div className={style.check_order_text}>
         Please make sure the information entered is correct before proceeding.
       </div>

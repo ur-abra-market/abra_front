@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { CheckoutSuccess } from '../components/ui/checkout/CheckoutSuccess/CheckoutSuccess';
 import CartPage from '../pages/CartPage';
 import CheckoutPage from '../pages/CheckoutPage/CheckoutPage';
 import MainPage from '../pages/MainPage';
@@ -39,6 +40,10 @@ const sellerRoute = [
   {
     path: 'checkout',
     element: <CheckoutPage />,
+  },
+  {
+    path: 'checkout-success',
+    element: <CheckoutSuccess />,
   },
   {
     path: 'order-history',
