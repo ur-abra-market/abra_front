@@ -7,6 +7,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
 import { Container } from '../../components';
 import Address from '../../components/Address';
+import FeedbackForm from '../../components/new-components/feedback/FeedbackForm';
 import UploadFile from '../../components/new-components/UploadFile/UploadFile';
 import {
   Button,
@@ -45,6 +46,7 @@ type FormValues = {
 const SellerAccountPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector(state => state.login.isAuth);
+  const isFeedbackOpen = useAppSelector(state => state.app.isFeedbackOpen);
 
   const { first_name, last_name } = useAppSelector(state => state.seller.userProfileInfo);
   const addresses = useAppSelector(state => state.sellerCheckout.seller_address); // фиксил ошибки, заглушка
@@ -348,7 +350,7 @@ const SellerAccountPage = (): JSX.Element => {
                 </div>
               </div>
             </div>
-
+            <FeedbackForm isFeedbackOpen={isFeedbackOpen} />
             <InfoBtn className={style.info_button_positioning} />
           </div>
         </div>
