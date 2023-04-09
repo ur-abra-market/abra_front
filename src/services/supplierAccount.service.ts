@@ -6,8 +6,11 @@ const supplierAccountData = {
 
     return data.result;
   },
-  postAccountData: async (personalData: RequestAccountInfo) => {
-    const { data } = await httpService.post(`suppliers/send_account_info/`, personalData);
+  sendAccountData: async (personalData: RequestAccountInfo) => {
+    const { data } = await httpService.patch(
+      `suppliers/send_account_info/`,
+      personalData,
+    );
 
     return data;
   },
@@ -17,7 +20,7 @@ const supplierAccountData = {
     return data;
   },
   postNotifications: async (notifications: INotification) => {
-    const { data } = await httpService.post(`users/update_notification/`, notifications);
+    const { data } = await httpService.patch(`users/update_notification/`, notifications);
 
     return data.result;
   },
@@ -29,6 +32,7 @@ export interface UserInfo {
   first_name: string;
   last_name: string;
   phone: string;
+  license: number;
 }
 
 export interface License {
@@ -36,12 +40,11 @@ export interface License {
 }
 
 export interface CompanyInfo {
-  logo_url: string;
   name: string;
   business_sector: string;
   is_manufacturer: number;
   year_established: number;
-  number_of_employees?: number;
+  number_of_employees: number;
   description: string;
   phone: string;
   business_email: string;
@@ -53,10 +56,23 @@ export interface Country {
 }
 
 export interface RequestAccountInfo {
-  user_info: UserInfo;
+  user_info: {
+    first_name: string;
+    last_name?: string;
+    user_phone?: string;
+  };
   license: License;
-  company_info: CompanyInfo;
-  country: Country;
+  company_info: {
+    name: string;
+    business_sector: string;
+    is_manufacturer: number;
+    year_established?: number;
+    number_of_employees?: number;
+    description?: string;
+    phone?: string;
+    business_email?: string;
+    address?: string;
+  };
 }
 
 export interface INotification {
