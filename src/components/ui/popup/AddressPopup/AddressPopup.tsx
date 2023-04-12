@@ -26,7 +26,7 @@ const schema = yup
     city: yup.string().required('City is required'),
     street: yup.string().required('Street is required'),
     building: yup.string().required('Building is required'),
-    appartment: yup.string().required('Appartment is required'),
+    apartment: yup.string().required('Apartment is required'),
     postal_code: yup.string().required('Postal code is required'),
   })
   .required();
@@ -166,7 +166,7 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setModal }): JSX.Element =>
             <div className={style.text_modal}>
               <div className={style.text_modal_title}>Apt, suite, office (optional)</div>
               <Input
-                {...register('appartment')}
+                {...register('apartment')}
                 classNameWrapper={style.text_modal_input}
                 placeholder="Enter a number or a letter"
               />

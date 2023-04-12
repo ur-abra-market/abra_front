@@ -32,19 +32,19 @@ export const sellerFetch = {
     return data;
   },
   addAddress: (params: ISellerAddressData) => {
-    return httpService.post<ResponseAddAddress>('sellers/add_address', params);
+    return httpService.post<ResponseAddAddress>('sellers/addAddress', params);
   },
   getAddress: () => {
     return httpService.get<ResponseAddressData>('sellers/addresses');
   },
   editAddress: (id: number, params: ISellerAddressData) => {
-    return httpService.patch<ISellerAddressData>(
-      `sellers/update_address?address_id=${id}`,
+    return httpService.patch<ResponseUpdateAddress>(
+      `sellers/updateAddress?address_id=${id}`,
       params,
     );
   },
   deleteAddress: (id: number) => {
-    return httpService.delete<string>(`sellers/remove_address/${id}`);
+    return httpService.delete<ResponseDeleteAddress>(`sellers/removeAddress/${id}`);
   },
 };
 
@@ -93,29 +93,40 @@ export interface ISellerAddressData {
   city: string;
   street: string;
   building: string;
-  appartment: string;
+  apartment: string;
   postal_code: string;
 }
-
-export interface ResponseAddressData {
-  result: {
-    seller_address: ISellerAddressData[];
-  };
-}
-export interface ResponseAddAddress {
-  result: {
-    address_id: number;
-  };
-}
 export interface PayloadEditAddress {
+  id: number;
+  params: ISellerAddressData;
+}
+export interface ResponseSellerAddressData {
+  id: number;
+  user_id: number;
   country: string;
   area: string;
   city: string;
   street: string;
   building: string;
-  appartment: string;
+  apartment: string;
   postal_code: string;
-  address_id: number;
+}
+
+export interface ResponseAddressData {
+  ok: boolean;
+  result: ResponseSellerAddressData[];
+}
+export interface ResponseAddAddress {
+  ok: boolean;
+  result: ResponseSellerAddressData[];
+}
+export interface ResponseUpdateAddress {
+  ok: boolean;
+  result: ResponseSellerAddressData[];
+}
+export interface ResponseDeleteAddress {
+  ok: boolean;
+  result: boolean;
 }
 
 export interface ISellerProfile {

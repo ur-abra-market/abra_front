@@ -5,8 +5,11 @@ import { Status } from '../../enums/status.enum';
 import { AsyncThunkConfig } from '../../services/auth.serviceType';
 import {
   ISellerAddressData,
+  PayloadEditAddress,
   ResponseAddAddress,
   ResponseAddressData,
+  ResponseDeleteAddress,
+  ResponseUpdateAddress,
   sellerFetch,
 } from '../../services/seller.service';
 
@@ -14,9 +17,11 @@ export const addAddress = createAsyncThunk<
   ResponseAddAddress,
   ISellerAddressData,
   AsyncThunkConfig
->('modal/addAddress', async (params, { rejectWithValue }) => {
+>('modal/addAddress', async (params, { dispatch, rejectWithValue }) => {
   try {
     const { data } = await sellerFetch.addAddress(params);
+
+    dispatch(getAddress());
 
     return data;
   } catch (error) {
@@ -27,22 +32,25 @@ export const addAddress = createAsyncThunk<
     return rejectWithValue('[modalSlice]: Error');
   }
 });
-export const editAddress = createAsyncThunk<ISellerAddressData, any, AsyncThunkConfig>(
-  'modal/editAddress',
-  async ({ address_id, param }, { rejectWithValue }) => {
-    try {
-      const { data } = await sellerFetch.editAddress(address_id, param);
+export const editAddress = createAsyncThunk<
+  ResponseUpdateAddress,
+  PayloadEditAddress,
+  AsyncThunkConfig
+>('modal/editAddress', async (params, { dispatch, rejectWithValue }) => {
+  try {
+    const { data } = await sellerFetch.editAddress(params.id, params.params);
 
-      return data;
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.message);
-      }
+    dispatch(getAddress());
 
-      return rejectWithValue('[modalSlice]: Error');
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      return rejectWithValue(error.message);
     }
-  },
-);
+
+    return rejectWithValue('[modalSlice]: Error');
+  }
+});
 export const getAddress = createAsyncThunk<ResponseAddressData, void, AsyncThunkConfig>(
   'modal/getAddress',
   async (_, { rejectWithValue }) => {
@@ -59,32 +67,37 @@ export const getAddress = createAsyncThunk<ResponseAddressData, void, AsyncThunk
     }
   },
 );
-export const deleteAddress = createAsyncThunk<string, number, AsyncThunkConfig>(
-  'modal/deleteAddress',
-  async (id, { rejectWithValue }) => {
-    try {
-      const { data } = await sellerFetch.deleteAddress(id);
+export const deleteAddress = createAsyncThunk<
+  ResponseDeleteAddress,
+  number,
+  AsyncThunkConfig
+>('modal/deleteAddress', async (id, { dispatch, rejectWithValue }) => {
+  try {
+    const { data } = await sellerFetch.deleteAddress(id);
 
-      return data;
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.message);
-      }
+    dispatch(getAddress());
 
-      return rejectWithValue('[modalSlice]: Error');
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      return rejectWithValue(error.message);
     }
-  },
-);
+
+    return rejectWithValue('[modalSlice]: Error');
+  }
+});
 const sellerCheckoutSlice = createSlice({
   name: 'seller-checkout',
   initialState: {
     seller_address: [
       {
+        id: 0 as number,
+        user_id: 0 as number,
         country: '' as string,
         area: '' as string,
         city: '' as string,
         street: '' as string,
-        appartment: '' as string,
+        apartment: '' as string,
         postal_code: '' as string,
         building: '' as string,
       },
@@ -112,7 +125,7 @@ const sellerCheckoutSlice = createSlice({
     });
     builder.addCase(getAddress.fulfilled, (state, action) => {
       state.loading = Status.Success;
-      state.seller_address = action.payload.result.seller_address;
+      state.seller_address = action.payload.result;
     });
     builder.addCase(getAddress.rejected, state => {
       state.loading = Status.Failed;

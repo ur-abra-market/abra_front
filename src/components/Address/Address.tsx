@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 
 import { ReactComponent as Edit } from '../../assets/img/icons/edit.svg';
-import { ISellerAddressData } from '../../services/seller.service';
+import { ResponseSellerAddressData } from '../../services/seller.service';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { changeSelected } from '../../store/reducers/sellerCheckoutSlice';
 import Check from '../Check';
@@ -10,7 +10,7 @@ import { EditAddressModal } from '../ui/popup/EdtiAddressModal/EditAddressModal'
 import style from './Address.module.css';
 
 interface AddressProps {
-  address: ISellerAddressData;
+  address: ResponseSellerAddressData;
   id: number;
 }
 const Address: FC<AddressProps> = ({ address, id }): JSX.Element => {
@@ -29,9 +29,11 @@ const Address: FC<AddressProps> = ({ address, id }): JSX.Element => {
     address.street,
     address.country,
     address.area,
-    address.appartment,
+    address.apartment,
     address.postal_code,
     address.building,
+    address.id,
+    address.user_id,
   ];
   const arrFilter = arrAddress.filter(e => e !== '');
   const [modal, setModal] = useState(false);
@@ -64,7 +66,7 @@ const Address: FC<AddressProps> = ({ address, id }): JSX.Element => {
         <div className={style.address_main_text}>Main Address</div>
         <Check />
       </div>
-      <EditAddressModal modal={modal} setModal={setModal} data={address} />
+      <EditAddressModal modal={modal} setModal={setModal} dataArr={address} />
     </div>
   );
 };
