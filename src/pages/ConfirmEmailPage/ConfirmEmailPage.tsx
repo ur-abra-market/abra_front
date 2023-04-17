@@ -17,7 +17,7 @@ const ConfirmEmailPage = (): JSX.Element => {
   useEffect(() => {
     const token = searchParams.get('token');
 
-    if (token) dispatch(registerService({ route: 'email_confirmation_result', token }));
+    if (token) dispatch(registerService({ route: 'confirmEmail', token }));
   }, [searchParams]);
 
   useEffect(() => {
