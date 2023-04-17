@@ -4,12 +4,17 @@ import { checkAuth } from './loginSlice';
 
 const initialState = {
   isInitialized: false,
+  isFeedbackOpen: false,
 };
 
 export const appSlice = createSlice({
   name: 'app',
   initialState,
-  reducers: {},
+  reducers: {
+    toggleInfoForm(state) {
+      state.isFeedbackOpen = !state.isFeedbackOpen;
+    },
+  },
   extraReducers: builder => {
     builder.addCase(checkAuth.fulfilled, state => {
       state.isInitialized = true;
@@ -21,3 +26,5 @@ export const appSlice = createSlice({
 });
 
 export const appReducer = appSlice.reducer;
+
+export const { toggleInfoForm } = appSlice.actions;

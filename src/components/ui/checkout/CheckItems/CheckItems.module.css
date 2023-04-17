@@ -11,6 +11,9 @@
   padding: 0 32px;
 
 }
+.check_items_title{
+  padding-top: 29px;
+}
 .check_items {
   display: flex;
   flex-direction: column;

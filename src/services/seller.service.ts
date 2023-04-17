@@ -31,11 +31,20 @@ export const sellerFetch = {
 
     return data;
   },
-  addAddress: ({ seller_data, seller_address_data }: ISellerProfile) => {
-    return httpService.post<ISellerProfile>('sellers/send_seller_info', {
-      seller_data,
-      seller_address_data,
-    });
+  addAddress: (params: ISellerAddressData) => {
+    return httpService.post<ResponseAddAddress>('sellers/add_address', params);
+  },
+  getAddress: () => {
+    return httpService.get<ResponseAddressData>('sellers/addresses');
+  },
+  editAddress: (id: number, params: ISellerAddressData) => {
+    return httpService.patch<ISellerAddressData>(
+      `sellers/update_address?address_id=${id}`,
+      params,
+    );
+  },
+  deleteAddress: (id: number) => {
+    return httpService.delete<string>(`sellers/remove_address/${id}`);
   },
 };
 
@@ -88,9 +97,25 @@ export interface ISellerAddressData {
   postal_code: string;
 }
 
-export interface AddAddressFormData {
-  seller_data: ISellerData;
-  seller_address_data: ISellerAddressData;
+export interface ResponseAddressData {
+  result: {
+    seller_address: ISellerAddressData[];
+  };
+}
+export interface ResponseAddAddress {
+  result: {
+    address_id: number;
+  };
+}
+export interface PayloadEditAddress {
+  country: string;
+  area: string;
+  city: string;
+  street: string;
+  building: string;
+  appartment: string;
+  postal_code: string;
+  address_id: number;
 }
 
 export interface ISellerProfile {
