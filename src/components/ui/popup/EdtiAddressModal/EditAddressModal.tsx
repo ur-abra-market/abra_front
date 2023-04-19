@@ -59,7 +59,8 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
     setModal(false);
   };
   const removeAddress = (): void => {
-    dispatch(deleteAddress(dataArr.id)); // заглушка
+    dispatch(deleteAddress(dataArr.id));
+    setModal(false);
   };
 
   return (
@@ -71,7 +72,7 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
             <Check label="Main Address" />
             <div className={style.edit_address_icon_box}>
               <Delete onClick={removeAddress} />
-              <span>Remove Address</span>
+              <span className={style.delete_address}>Remove Address</span>
             </div>
           </div>
           <Exit className={style.edit_address_modal_exit} onClick={onClickModalHandler} />

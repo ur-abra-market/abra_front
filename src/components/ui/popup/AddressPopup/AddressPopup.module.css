@@ -63,6 +63,12 @@
   gap: 48px;
 }
 
+.checkbox{
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
 .address_popup_block {
   display: flex;
   flex-direction: column;

@@ -49,7 +49,7 @@ const SellerAccountPage = (): JSX.Element => {
   const isFeedbackOpen = useAppSelector(state => state.app.isFeedbackOpen);
 
   const { first_name, last_name } = useAppSelector(state => state.seller.userProfileInfo);
-  const addresses = useAppSelector(state => state.sellerCheckout.seller_address); // фиксил ошибки, заглушка
+  const addresses = useAppSelector(state => state.sellerCheckout.addresses); // фиксил ошибки, заглушка
 
   const notifications = useAppSelector(state => state.user.notifications);
   const {
@@ -229,7 +229,7 @@ const SellerAccountPage = (): JSX.Element => {
                   {addresses ? (
                     <div className={style.addresses_container}>
                       {addresses.map((a: any, i: number) => (
-                        <Address key={`address_${i}`} address={a} id={i} />
+                        <Address key={`address_${i}`} address={a} />
                       ))}
                     </div>
                   ) : (

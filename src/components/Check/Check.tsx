@@ -1,9 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
 
-import { useDispatch } from 'react-redux';
-
-import { main } from '../../store/reducers/modalSlice';
-
 import style from './Check.module.css';
 
 interface CheckProps {
@@ -12,7 +8,6 @@ interface CheckProps {
 const Check: FC<CheckProps> = ({ label }): JSX.Element => {
   const [check, setCheck] = useState(false);
   const [background, setBackground] = useState('');
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!check) setBackground('#F4F4F4');
@@ -23,7 +18,7 @@ const Check: FC<CheckProps> = ({ label }): JSX.Element => {
     setCheck(!check);
     switch (label) {
       case 'Main Address':
-        dispatch(main(!check));
+        setCheck(!check);
         break;
       default:
         break;

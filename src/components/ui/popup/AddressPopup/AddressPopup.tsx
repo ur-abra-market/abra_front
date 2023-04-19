@@ -7,8 +7,7 @@ import * as yup from 'yup';
 import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
 import { ISellerAddressData } from '../../../../services/seller.service';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
-import Check from '../../../Check';
-import { Button, Input, Select } from '../../../ui-kit';
+import { Button, Checkbox, Input, Select } from '../../../ui-kit';
 
 import style from './AddressPopup.module.css';
 
@@ -16,7 +15,7 @@ import { addAddress } from 'store/reducers/sellerCheckoutSlice';
 
 interface AddressPopupType {
   modal: boolean;
-  setModal: (modal: boolean) => void;
+  setAddModal: (modal: boolean) => void;
 }
 
 const schema = yup
@@ -30,7 +29,7 @@ const schema = yup
     postal_code: yup.string().required('Postal code is required'),
   })
   .required();
-const AddressPopup: FC<AddressPopupType> = ({ modal, setModal }): JSX.Element => {
+const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element => {
   const { last_name, first_name } = useAppSelector(state => state.seller.userProfileInfo);
   const dispatch = useAppDispatch();
   const listPhone = [
@@ -58,10 +57,10 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setModal }): JSX.Element =>
   const onSubmit = (data: ISellerAddressData): void => {
     if (!isValid) return;
     dispatch(addAddress(data));
-    setModal(false);
+    setAddModal(false);
   };
   const onClickModalHandler = (): void => {
-    setModal(false);
+    setAddModal(false);
   };
 
   return (
@@ -70,8 +69,12 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setModal }): JSX.Element =>
         <div className={style.address_popup_row1}>
           <h4 className={style.address_popup_add_address}>Add Address</h4>
           <div className={style.address_popup_checkbox}>
-            <Check label="Main Address" />
-            <Check label="Save the address for next orders" />
+            <Checkbox className={style.checkbox} variant="default" label="Main Address" />
+            <Checkbox
+              className={style.checkbox}
+              variant="default"
+              label="Save the address for next orders"
+            />
           </div>
           <Exit
             className={style.address_popup_modal_exit}

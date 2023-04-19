@@ -3,10 +3,14 @@
   flex-direction: column;
 
   width: 447px;
-  padding: 16px 16px 21px 16px;
+  height: 145px;
+  padding: 16px 16px 0 16px;
 
   border: 1px solid #D4D4D4;
   border-radius: 12px;
+}
+.selected{
+  border: 1px solid #FC133D;
 }
 .address_content {
   display: flex;
