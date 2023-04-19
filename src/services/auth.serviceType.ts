@@ -18,7 +18,7 @@ export type LoginResponseType = {
   is_supplier: boolean;
 };
 export type CheckAuthResponseType = {
-  is_supplier: boolean;
+  result: { is_supplier: boolean };
 };
 export type PasswordResponseType = {
   result: string;
@@ -42,3 +42,4 @@ export type AsyncThunkConfig = {
   fulfilledMeta?: unknown;
   rejectedMeta?: unknown;
 };
+export type userRoleType = null | 'supplier' | 'seller' | 'admin';

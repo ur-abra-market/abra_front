@@ -5,17 +5,24 @@ import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 
 import reportWebVitals from './reportWebVitals';
-import routes from './routes/root';
-// import App from './App';
+import { createRoutes } from './routes/root';
 import { store } from './store/createStore';
+
+import { useAppSelector } from 'store/hooks';
 import './styles/index.css';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
 
+const RenderRoutes = (): JSX.Element => {
+  const userRole = useAppSelector(state => state.login.userRole);
+
+  return <RouterProvider router={createRoutes(userRole)} />;
+};
+
 root.render(
   <Provider store={store}>
-    <RouterProvider router={routes} />
+    <RenderRoutes />
   </Provider>,
 );
 reportWebVitals();

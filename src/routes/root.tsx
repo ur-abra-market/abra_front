@@ -19,67 +19,65 @@ import { TermsAndConditions } from '../pages/TermsAndConditionsPage/TermsAndCond
 import sellerRoute from './sellerRoute';
 import supplierRoute from './supplierRoute';
 
-const profile = localStorage.getItem('profile');
+export function createRoutes(userRole: any): any {
+  const child = userRole === 'supplier' ? supplierRoute : sellerRoute;
 
-const child = profile ? supplierRoute : sellerRoute;
-
-const routes = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    errorElement: (
-      <main style={{ padding: '1rem' }}>
-        <ErrorPage />
-      </main>
-    ),
-    children: [
-      ...child,
-      {
-        path: 'auth',
-        element: <AuthPage />,
-      },
-      {
-        path: 'forgotPassword',
-        element: <ForgotPasswordPage />,
-      },
-      {
-        path: 'resetPassword',
-        element: <ResetPasswordPage />,
-      },
-      {
-        path: 'changePassword',
-        element: <ChangePasswordPage />,
-      },
-      {
-        path: 'changeEmail',
-        element: <ChangeEmailPage />,
-      },
-      {
-        path: 'register/email-confirmation',
-        element: <ConfirmEmailPage />,
-      },
-      {
-        path: 'terms&conditions',
-        element: <TermsAndConditions />,
-      },
-      {
-        path: 'news',
-        element: <LastNews />,
-      },
-      {
-        path: 'contact',
-        element: <ContactSupport />,
-      },
-      {
-        path: 'sell',
-        element: <SellAbra />,
-      },
-      {
-        path: 'tutorials',
-        element: <Tutorial />,
-      },
-    ],
-  },
-]);
-
-export default routes;
+  return createBrowserRouter([
+    {
+      path: '/',
+      element: <App />,
+      errorElement: (
+        <main style={{ padding: '1rem' }}>
+          <ErrorPage />
+        </main>
+      ),
+      children: [
+        ...child,
+        {
+          path: 'auth',
+          element: <AuthPage />,
+        },
+        {
+          path: 'forgotPassword',
+          element: <ForgotPasswordPage />,
+        },
+        {
+          path: 'resetPassword',
+          element: <ResetPasswordPage />,
+        },
+        {
+          path: 'changePassword',
+          element: <ChangePasswordPage />,
+        },
+        {
+          path: 'changeEmail',
+          element: <ChangeEmailPage />,
+        },
+        {
+          path: 'register/email-confirmation',
+          element: <ConfirmEmailPage />,
+        },
+        {
+          path: 'terms&conditions',
+          element: <TermsAndConditions />,
+        },
+        {
+          path: 'news',
+          element: <LastNews />,
+        },
+        {
+          path: 'contact',
+          element: <ContactSupport />,
+        },
+        {
+          path: 'sell',
+          element: <SellAbra />,
+        },
+        {
+          path: 'tutorials',
+          element: <Tutorial />,
+        },
+      ],
+    },
+  ]);
+}
