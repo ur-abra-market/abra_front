@@ -6,6 +6,7 @@ import {
   AsyncThunkConfig,
   CheckAuthResponseType,
   LoginParamsType,
+  userRoleType,
   LoginResponseType,
 } from '../../services/auth.serviceType';
 
@@ -14,17 +15,18 @@ const initialState = {
   errMessage: '' as string,
   loading: false as boolean,
   isAuth: false as boolean,
+  userRole: null as userRoleType,
 };
 
 export const loginService = createAsyncThunk<
   LoginResponseType,
   LoginParamsType,
   AsyncThunkConfig
->('login/loginService', async (dataUser, { rejectWithValue }) => {
+>('login/loginService', async (dataUser, { rejectWithValue, dispatch }) => {
   try {
     const response = await authService.login(dataUser);
 
-    if (response.data.is_supplier) localStorage.setItem('profile', 'supplier');
+    await dispatch(checkAuth());
 
     return response.data;
   } catch (error) {
@@ -42,7 +44,7 @@ export const checkAuth = createAsyncThunk<CheckAuthResponseType, void, AsyncThun
     try {
       const response = await authService.checkAuth();
 
-      if (response.data.is_supplier) {
+      if (response.data.result.is_supplier) {
         localStorage.setItem('profile', 'supplier');
       }
 
@@ -100,9 +102,10 @@ const loginSlice = createSlice({
     builder.addCase(checkAuth.pending, state => {
       state.loading = true;
     });
-    builder.addCase(checkAuth.fulfilled, state => {
+    builder.addCase(checkAuth.fulfilled, (state, action) => {
       state.loading = false;
       state.isAuth = true;
+      state.userRole = action.payload.result.is_supplier ? 'supplier' : 'seller';
     });
     builder.addCase(checkAuth.rejected, state => {
       state.loading = false;
@@ -114,6 +117,7 @@ const loginSlice = createSlice({
     builder.addCase(logout.fulfilled, state => {
       state.loading = false;
       state.isAuth = false;
+      state.userRole = null;
     });
     builder.addCase(logout.rejected, (state, action) => {
       state.resMessage = action.payload as string;

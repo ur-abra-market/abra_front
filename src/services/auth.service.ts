@@ -27,7 +27,7 @@ const authService = {
   },
 
   checkAuth: () => {
-    return httpService.get<CheckAuthResponseType>(`users/get_role/`);
+    return httpService.get<CheckAuthResponseType>(`users/getMe/`);
   },
 
   logout: async () => {
