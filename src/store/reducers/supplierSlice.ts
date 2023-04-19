@@ -3,10 +3,7 @@ import { AxiosError } from 'axios';
 
 import { Status } from '../../enums/status.enum';
 import supplierFetch from '../../services/supplier.service';
-
-import supplierAccountData, {
-  CompanyInfo
-} from '../../services/supplierAccount.service';
+import { CompanyInfo } from '../../services/supplierAccount.service';
 
 interface ProductObj {
   key: string;

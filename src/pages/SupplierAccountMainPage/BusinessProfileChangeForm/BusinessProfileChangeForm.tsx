@@ -94,10 +94,11 @@ const BusinessProfileChangeForm: FC = (): JSX.Element => {
       code: acc_code || undefined,
       textarea: companyInfo.description,
       tel: acc_tel,
-      yearEstablished: '' + companyInfo.year_established,
+      yearEstablished: `${companyInfo.year_established}`,
       address: companyInfo.address,
       checkbox: companyInfo.is_manufacturer === 1,
-      numEmployees: '' + companyInfo?.number_of_employees || undefined,
+      // eslint-disable-next-line no-unsafe-optional-chaining
+      numEmployees: `${companyInfo?.number_of_employees}` || undefined,
       profileLogo: '',
       storeName: companyInfo.name,
       businessSector: companyInfo.business_sector || undefined,

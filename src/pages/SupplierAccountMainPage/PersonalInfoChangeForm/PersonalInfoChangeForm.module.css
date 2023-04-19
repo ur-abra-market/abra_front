@@ -5,8 +5,8 @@
 }
 
 .form_title {
-  font-weight: var(--bold);
   font-size: var(--fd);
+  font-weight: var(--bold);
   line-height: 24px;
   letter-spacing: 0.16px;
 }
