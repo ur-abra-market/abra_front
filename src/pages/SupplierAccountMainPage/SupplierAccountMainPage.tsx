@@ -1,57 +1,58 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React from 'react';
 
-import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+// import { useForm } from 'react-hook-form';
+// import { Link, useNavigate } from 'react-router-dom';
 
 // import deleteImg from '../../assets/img/icons/delete_Img_red.svg';
-import AddingImageSpot from '../../components/AddingImage/AddingImageSpot/AddingImageSpot';
-import { InfoBtn } from '../../components/buttons';
-import Checkbox from '../../components/Checkbox';
-import ImmutableTextFieldWithChangeButton from '../../components/ImmutableTextFieldWithChangeButton/ImmutableTextFieldWithChangeButton';
+// import AddingImageSpot from '../../components/AddingImage/AddingImageSpot/AddingImageSpot';
+// import { InfoBtn } from '../../components/buttons';
+// import Checkbox from '../../components/Checkbox';
+// import ImmutableTextFieldWithChangeButton from '../../components/ImmutableTextFieldWithChangeButton/ImmutableTextFieldWithChangeButton';
 import Loader from '../../components/Loader';
-import PersonalInfoChangeForm from './PersonalInfoChangeForm/PersonalInfoChangeForm';
-import PhoneNumFieldWithoutCountryCode from '../../components/PhoneNumFieldWithoutCountryCode';
-import SelectLabelAbove from '../../components/SelectLabelAbove';
-import TextField from '../../components/TextField';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import {
-  getSupplierNotifications,
-  updateSupplierNotifications,
-} from '../../store/reducers/supplierAccountSlice';
+// import PhoneNumFieldWithoutCountryCode from '../../components/PhoneNumFieldWithoutCountryCode';
+// import SelectLabelAbove from '../../components/SelectLabelAbove';
+// import TextField from '../../components/TextField';
+import { useAppSelector } from '../../store/hooks';
+// import {
+//   getSupplierNotifications,
+//   updateSupplierNotifications,
+//   getSupplierAccountDataService,
+// } from '../../store/reducers/supplierAccountSlice';
 
-import {
-  accountDetails__textFieldClasses,
-  checkboxClasses,
-  classesOfLogoImage,
-  inputPhoneClasses,
-  notificationCheckboxClasses,
-  textFieldClasses,
-} from './constantsOfClassesStyles';
-import style from './SupplierAccountMainPage.module.css';
 import BusinessProfileChangeForm from './BusinessProfileChangeForm/BusinessProfileChangeForm';
-import { getSupplierAccountDataService } from '../../store/reducers/supplierAccountSlice';
+// import {
+//   accountDetails__textFieldClasses,
+//   checkboxClasses,
+//   classesOfLogoImage,
+//   inputPhoneClasses,
+//   notificationCheckboxClasses,
+//   textFieldClasses,
+// } from './constantsOfClassesStyles';
 import NotificationsChangeForm from './NotificationsChangeForm/NotificationsChangeForm';
-import { getUserNotificationsService } from 'store/reducers/userSlice';
+import PersonalInfoChangeForm from './PersonalInfoChangeForm/PersonalInfoChangeForm';
+import style from './SupplierAccountMainPage.module.css';
 
-const defaultValue = {
-  notifications: {
-    on_discount: false,
-    on_order_updates: false,
-    on_order_reminders: false,
-    on_stock_again: false,
-    on_product_is_cheaper: false,
-    on_your_favorites_new: false,
-    on_account_support: false,
-  },
-};
+// import { getUserNotificationsService } from 'store/reducers/userSlice';
+
+// const defaultValue = {
+//   notifications: {
+//     on_discount: false,
+//     on_order_updates: false,
+//     on_order_reminders: false,
+//     on_stock_again: false,
+//     on_product_is_cheaper: false,
+//     on_your_favorites_new: false,
+//     on_account_support: false,
+//   },
+// };
 const SupplierAccountMainPage = (): JSX.Element => {
-  const dispatch = useAppDispatch();
-  const companyPhotoPicker = useRef(null);
-  const navigate = useNavigate();
+  // const dispatch = useAppDispatch();
+  // const companyPhotoPicker = useRef(null);
+  // const navigate = useNavigate();
 
   const { isLoading } = useAppSelector(state => state.supplierAccount);
-  const [images, setImages] = useState([]);
-  const [, setSelectedCompanyPhoto] = useState(null);
+  // const [images, setImages] = useState([]);
+  // const [, setSelectedCompanyPhoto] = useState(null);
 
   // const {
   //   register,
@@ -63,9 +64,9 @@ const SupplierAccountMainPage = (): JSX.Element => {
   //   defaultValues: defaultValue,
   // });
 
-  const handleChange = (event: any): void => {
-    if (event.target.files.length > 0) setSelectedCompanyPhoto(event.target.files[0]);
-  };
+  // const handleChange = (event: any): void => {
+  //   if (event.target.files.length > 0) setSelectedCompanyPhoto(event.target.files[0]);
+  // };
 
   // const renderPhoto = (photo: any): JSX.Element => {
   //   return (
@@ -86,51 +87,51 @@ const SupplierAccountMainPage = (): JSX.Element => {
   //   );
   // };
 
-  const onSubmitInfo = (updatedData: any): void => {
-    // const formData = new FormData();
-    // const personalDataForDispatch = {
-    //   user_info: {
-    //     first_name: updatedData.firstName,
-    //     last_name: updatedData.lastName,
-    //     phone: updatedData.code + updatedData.phone,
-    //   },
-    //   license: {
-    //     license_number: updatedData.license,
-    //   },
-    //   company_info: {
-    //     logo_url: 'https://mySite.ru',
-    //     name: updatedData.shopName,
-    //     business_sector: updatedData.businessSector,
-    //     is_manufacturer: updatedData.is_manufacturer === true ? 1 : 0,
-    //     year_established: +updatedData.yearEstablished,
-    //     number_of_employees: 12, // updatedData.numberOfEmployees,
-    //     description: updatedData.aboutBusiness,
-    //     phone: updatedData.businessPhoneCode + updatedData.businessPhone,
-    //     business_email: updatedData.businessEmail,
-    //     address: updatedData.businessAdress,
-    //   },
-    //   country: {
-    //     country: updatedData.country,
-    //   },
-    // };
-    // const notifications = {
-    //   on_discount: updatedData.discountsOffers,
-    //   on_order_updates: updatedData.orderUpdates,
-    //   on_order_reminders: updatedData.orderReminders,
-    //   on_stock_again: updatedData.onStockAgain,
-    //   on_product_is_cheaper: updatedData.productIsCheaper,
-    //   on_your_favorites_new: updatedData.yourFavoritesNew,
-    //   on_account_support: updatedData.accountSupport,
-    // };
-    //
-    // console.log(' dataForDispatch', personalDataForDispatch);
-    // console.log(' notificationsForDispatch', notifications);
-    // dispatch(postSupplierAccountDataService(personalDataForDispatch));
-    // dispatch(postSupplierNotifications(notifications));
+  // const onSubmitInfo = (updatedData: any): void => {
+  // const formData = new FormData();
+  // const personalDataForDispatch = {
+  //   user_info: {
+  //     first_name: updatedData.firstName,
+  //     last_name: updatedData.lastName,
+  //     phone: updatedData.code + updatedData.phone,
+  //   },
+  //   license: {
+  //     license_number: updatedData.license,
+  //   },
+  //   company_info: {
+  //     logo_url: 'https://mySite.ru',
+  //     name: updatedData.shopName,
+  //     business_sector: updatedData.businessSector,
+  //     is_manufacturer: updatedData.is_manufacturer === true ? 1 : 0,
+  //     year_established: +updatedData.yearEstablished,
+  //     number_of_employees: 12, // updatedData.numberOfEmployees,
+  //     description: updatedData.aboutBusiness,
+  //     phone: updatedData.businessPhoneCode + updatedData.businessPhone,
+  //     business_email: updatedData.businessEmail,
+  //     address: updatedData.businessAdress,
+  //   },
+  //   country: {
+  //     country: updatedData.country,
+  //   },
+  // };
+  // const notifications = {
+  //   on_discount: updatedData.discountsOffers,
+  //   on_order_updates: updatedData.orderUpdates,
+  //   on_order_reminders: updatedData.orderReminders,
+  //   on_stock_again: updatedData.onStockAgain,
+  //   on_product_is_cheaper: updatedData.productIsCheaper,
+  //   on_your_favorites_new: updatedData.yourFavoritesNew,
+  //   on_account_support: updatedData.accountSupport,
+  // };
+  //
+  // console.log(' dataForDispatch', personalDataForDispatch);
+  // console.log(' notificationsForDispatch', notifications);
+  // dispatch(postSupplierAccountDataService(personalDataForDispatch));
+  // dispatch(postSupplierNotifications(notifications));
 
-    // dispatch(uploadUserLogoService())
-    dispatch(updateSupplierNotifications(updatedData.notifications));
-  };
+  // dispatch(uploadUserLogoService())
+  //   dispatch(updateSupplierNotifications(updatedData.notifications));
+  // };
 
   // useEffect(() => {
   //   dispatch(getSupplierAccountDataService());
@@ -521,15 +522,15 @@ const SupplierAccountMainPage = (): JSX.Element => {
         </div>
         <div className={style.account_details}>
           <div className={style.details_block}>
-            <button>Change your email</button>
+            <button type="button">Change your email</button>
             <p>(All your data including order history will be deleted)</p>
           </div>
           <div className={style.details_block}>
-            <button>Change your password</button>
+            <button type="button">Change your password</button>
             <p>(All your data including order history will be deleted)</p>
           </div>
           <div className={style.details_block}>
-            <button>Remove the account?</button>
+            <button type="button">Remove the account?</button>
             <p>(All your data including order history will be deleted)</p>
           </div>
         </div>

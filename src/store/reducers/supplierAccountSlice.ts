@@ -6,8 +6,8 @@ import supplierAccountData, {
   CompanyInfo,
   INotification,
   UserInfo,
+  RequestAccountInfo,
 } from '../../services/supplierAccount.service';
-import { RequestAccountInfo } from '../../services/supplierAccount.service';
 
 import { RootState } from 'store/createStore';
 
@@ -29,21 +29,18 @@ export const getSupplierAccountDataService = createAsyncThunk(
 export const updateSupplierAccountDataService = createAsyncThunk<
   void,
   RequestAccountInfo
->(
-  'supplierAccount/updateAccountData',
-  async (data, { rejectWithValue, dispatch }) => {
-    try {
-      await supplierAccountData.sendAccountData(data);
-      dispatch(getSupplierAccountDataService());
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        rejectWithValue(error.message);
-      }
-
-      return rejectWithValue('[updateAccountData]: Error');
+>('supplierAccount/updateAccountData', async (data, { rejectWithValue, dispatch }) => {
+  try {
+    await supplierAccountData.sendAccountData(data);
+    dispatch(getSupplierAccountDataService());
+  } catch (error: unknown) {
+    if (error instanceof AxiosError) {
+      rejectWithValue(error.message);
     }
+
+    return rejectWithValue('[updateAccountData]: Error');
   }
-);
+});
 
 export const getSupplierNotifications = createAsyncThunk(
   'supplierAccount/getNotifications',
@@ -62,8 +59,9 @@ export const getSupplierNotifications = createAsyncThunk(
 
 export const updateSupplierNotifications = createAsyncThunk<
   void,
-  { id: string; value: boolean; }
->('supplierAccount/postNotifications',
+  { id: string; value: boolean }
+>(
+  'supplierAccount/postNotifications',
   async (param, { rejectWithValue, getState, dispatch }) => {
     try {
       const state = getState() as RootState;

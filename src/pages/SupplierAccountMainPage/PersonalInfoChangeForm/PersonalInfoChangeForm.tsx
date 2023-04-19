@@ -185,8 +185,8 @@ const PersonalInfoChangeForm: FC = (): JSX.Element => {
               label="Save"
             />
           ) : null}
-          {
-            active && (<Modal active={active} close={setActive} classNameModal={style.modal}>
+          {active && (
+            <Modal active={active} close={setActive} classNameModal={style.modal}>
               <div className={style.modal_wrapper}>
                 <div className={style.modal_header}>Verify your phone number</div>
                 <div className={style.modal_container}>
