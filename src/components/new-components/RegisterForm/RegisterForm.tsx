@@ -25,7 +25,7 @@ const schema = yup
   .required();
 
 const RegisterForm = (): JSX.Element => {
-  const [userStatus, setUserStatus] = useState<'sellers' | 'suppliers'>('suppliers');
+  const [userStatus, setUserStatus] = useState<'seller' | 'supplier'>('supplier');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -43,7 +43,7 @@ const RegisterForm = (): JSX.Element => {
 
   const { resMessage } = useAppSelector(state => state.register);
 
-  const handleClick = (userStatus: 'sellers' | 'suppliers'): void => {
+  const handleClick = (userStatus: 'seller' | 'supplier'): void => {
     setUserStatus(userStatus);
   };
 
@@ -60,14 +60,14 @@ const RegisterForm = (): JSX.Element => {
     <>
       <div className={style.buttons_status}>
         <Button
-          color={userStatus === 'sellers' ? 'red' : 'light-red'}
+          color={userStatus === 'seller' ? 'red' : 'light-red'}
           label="I'm here to buy"
-          onClick={() => handleClick('sellers')}
+          onClick={() => handleClick('seller')}
         />
         <Button
-          color={userStatus === 'suppliers' ? 'red' : 'light-red'}
+          color={userStatus === 'supplier' ? 'red' : 'light-red'}
           label="I'm here to sell"
-          onClick={() => handleClick('suppliers')}
+          onClick={() => handleClick('supplier')}
         />
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={style.form}>

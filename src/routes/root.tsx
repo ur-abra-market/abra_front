@@ -2,7 +2,6 @@ import React from 'react';
 
 import { createBrowserRouter } from 'react-router-dom';
 
-import App from '../App';
 import { ContactSupport } from '../components/Contact/ContactSupport';
 import LastNews from '../components/News/LastNews';
 import { SellAbra } from '../components/SellAbra/SellAbra';
@@ -25,7 +24,6 @@ export function createRoutes(userRole: any): any {
   return createBrowserRouter([
     {
       path: '/',
-      element: <App />,
       errorElement: (
         <main style={{ padding: '1rem' }}>
           <ErrorPage />
