@@ -5,7 +5,10 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import Loader from '../../components/Loader';
 import { Status } from '../../enums/status.enum';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { getSupplierAccountDataService } from '../../store/reducers/supplierAccountSlice';
+import {
+  getSupplierAccountDataService,
+  getSupplierNotifications,
+} from '../../store/reducers/supplierAccountSlice';
 import { getCompanyInfoService } from '../../store/reducers/supplierSlice';
 
 // import style from './SupplierPage.module.css';
@@ -17,12 +20,13 @@ const SupplierPage = (): JSX.Element => {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isLoading = useAppSelector(state => state.supplier.loading);
-  const companyInfo = useAppSelector(state => state.supplier.companyInfo);
+  const isLoading = useAppSelector(state => state.supplierAccount.isLoading);
+  const supplierInfo = useAppSelector(state => state.supplierAccount.supplierInfo);
 
   useEffect(() => {
     dispatch(getCompanyInfoService());
     dispatch(getSupplierAccountDataService());
+    dispatch(getSupplierNotifications());
     setIsGetCompanyInfo(true);
   }, [dispatch]);
 
@@ -41,9 +45,8 @@ const SupplierPage = (): JSX.Element => {
   // };
 
   useEffect(() => {
-    // FIXME - обязательно затипизировать supplierSlice!!!! и поправить проверку
-    if (isGetCompanyInfo && !isLoading && !companyInfo) navigate('../account-setup');
-  }, [companyInfo, isGetCompanyInfo, isLoading, navigate]);
+    if (isGetCompanyInfo && isLoading && !supplierInfo) navigate('../account-setup');
+  }, [supplierInfo, isGetCompanyInfo, isLoading, navigate]);
 
   if (isLoading === Status.Loading) {
     return <Loader />;
