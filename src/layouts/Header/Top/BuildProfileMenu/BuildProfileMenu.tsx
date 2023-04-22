@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { Button } from '../../../../components/ui-kit';
 import style from '../Top.module.css';
 
 import { BuildProfileMenuProps } from './BuildProfileMenu.props';
@@ -15,12 +16,17 @@ const buildProfileMenu: FC<BuildProfileMenuProps> = props => {
     <ul className={style.menu}>
       {buildMenu.map(({ href, label }) => (
         <li key={label} className={style.item}>
-          {href ? (
+          {href !== '/logout' ? (
             <Link to={href}>{label}</Link>
           ) : (
-            <button type="button" onClick={handleClickLogout}>
+            <Button
+              type="button"
+              onClick={handleClickLogout}
+              color="white"
+              className={style.logout_btn}
+            >
               {label}
-            </button>
+            </Button>
           )}
         </li>
       ))}

@@ -46,7 +46,7 @@ const PROFILE_MENU = {
     },
     {
       label: 'Log Out',
-      href: '/',
+      href: '/logout',
     },
   ],
 } as const;
