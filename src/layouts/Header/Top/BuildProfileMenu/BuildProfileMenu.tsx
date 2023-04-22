@@ -17,7 +17,9 @@ const buildProfileMenu: FC<BuildProfileMenuProps> = props => {
       {buildMenu.map(({ href, label }) => (
         <li key={label} className={style.item}>
           {href !== '/logout' ? (
-            <Link to={href}>{label}</Link>
+            <Link to={href} state={label}>
+              {label}
+            </Link>
           ) : (
             <Button
               type="button"
