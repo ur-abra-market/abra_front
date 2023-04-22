@@ -13,16 +13,17 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { logout } from '../../../store/reducers/loginSlice';
 import { Logo } from '../../Logo/Logo';
 
+import BuildProfileMenu from './BuildProfileMenu/BuildProfileMenu';
 import style from './Top.module.css';
 
 const PROFILE_MENU = {
   UNAUTHORIZED: [
     {
-      label: 'Login',
+      label: 'Log In',
       href: '/auth',
     },
     {
-      label: 'Registration',
+      label: 'Sign Up',
       href: '/auth',
     },
   ],
@@ -45,9 +46,10 @@ const PROFILE_MENU = {
     },
     {
       label: 'Log Out',
+      href: '/',
     },
   ],
-};
+} as const;
 
 const Top = (): JSX.Element => {
   const navigate = useNavigate();
@@ -82,24 +84,6 @@ const Top = (): JSX.Element => {
   };
 
   const closeModal = (): void => setIsShowModal(false);
-
-  const buildProfileMenu = (): JSX.Element[] => {
-    const buildMenu = !isAuth ? PROFILE_MENU.UNAUTHORIZED : PROFILE_MENU.AUTHORIZED;
-
-    return buildMenu.map(({ href, label }) => {
-      return (
-        <li key={label} className={style.item}>
-          {href ? (
-            <Link to={href}>{label}</Link>
-          ) : (
-            <button type="button" onClick={handleClickLogout}>
-              {label}
-            </button>
-          )}
-        </li>
-      );
-    });
-  };
 
   // TODO вынести в отдельеый компонент
   useEffect(() => {
@@ -139,7 +123,13 @@ const Top = (): JSX.Element => {
           <IconButton onClick={() => handleOnClick('account')}>
             <Auth />
           </IconButton>
-          {menu === 'account' && <ul className={style.menu}>{buildProfileMenu()}</ul>}
+          {menu === 'account' && (
+            <BuildProfileMenu
+              isAuth={isAuth}
+              PROFILE_MENU={PROFILE_MENU}
+              handleClickLogout={handleClickLogout}
+            />
+          )}
         </div>
 
         <IconButton onClick={() => handleOnClick('note')}>
@@ -155,5 +145,7 @@ const Top = (): JSX.Element => {
     </div>
   );
 };
+
+export type ProfileMenu = typeof PROFILE_MENU;
 
 export default Top;
