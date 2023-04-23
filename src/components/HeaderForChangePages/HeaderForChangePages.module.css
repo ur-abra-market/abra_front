@@ -6,6 +6,7 @@
   width: 100%;
 
   background-color: var(--front);
+  border-bottom: 1px solid #E8E8E8;
 }
 
 .header_basic_logo {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Link, Navigate } from 'react-router-dom';
 
-import { Container } from '../../components';
+import { FooterForAuth } from '../../components/FooterForAuth/FooterForAuth';
 import LoginForm from '../../components/new-components/LoginForm';
 import RegisterForm from '../../components/new-components/RegisterForm';
 import { Button } from '../../components/ui-kit';
@@ -44,14 +44,7 @@ const AuthPage = (): JSX.Element => {
         </div>
         {pageType === 'register' ? <RegisterForm /> : <LoginForm />}
       </main>
-      <footer className={style.footer}>
-        <Container className={style.links}>
-          © Copyright 2022.
-          <Link to="/"> Terms & Conditions </Link>
-          and
-          <Link to="/"> Privacy Policy</Link>
-        </Container>
-      </footer>
+      <FooterForAuth />
     </div>
   );
 };

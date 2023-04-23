@@ -1,0 +1,17 @@
+.footer{
+  padding: 32px 0;
+}
+.links{
+  font-family: var(--roboto);
+  font-size: 13px;
+  font-weight: var(--medium);
+  font-style: normal;
+  line-height: 18px;
+  color: var(--black);
+  text-align: center;
+}
+
+.links > a{
+  color: var(--red);
+  text-decoration-line: underline;
+}
