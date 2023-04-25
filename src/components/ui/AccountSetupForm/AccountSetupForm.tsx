@@ -64,7 +64,7 @@ const AccountSetupForm = (): JSX.Element => {
     mode: 'all',
   });
 
-  const onSubmit = (data: IAccountInfoData): void => {
+  const onSubmit = (data: any): void => {
     const phone = data.code + data.tel;
 
     dispatch(

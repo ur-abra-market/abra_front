@@ -3,6 +3,7 @@ import { AxiosError } from 'axios';
 
 import { Status } from '../../enums/status.enum';
 import supplierFetch from '../../services/supplier.service';
+import { CompanyInfo } from '../../services/supplierAccount.service';
 
 interface ProductObj {
   key: string;
@@ -14,12 +15,12 @@ export interface ProductProperties {
 }
 
 const initialState = {
-  productId: null,
+  productId: null as number | null,
   productProperties: null,
   productVariations: null,
   errMessage: '',
   loading: Status.Idle as Status,
-  companyInfo: null,
+  companyInfo: null as CompanyInfo | null,
 };
 
 export const getPropertiesService = createAsyncThunk<any, any>(

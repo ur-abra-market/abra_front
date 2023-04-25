@@ -3,23 +3,22 @@ import React, { FC, useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { Navigate, useNavigate } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from 'yup';
 
-import { RequestAccountInfo } from '../../../services/supplierAccount.service';
+import { PHONE_DATA } from '../../../components/ui/AccountSetupForm/AccountSetupForm';
+import { CompanyInfo } from '../../../services/supplierAccount.service';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { accountInfoService } from '../../../store/reducers/formRegistrationSlice';
+import { updateSupplierAccountDataService } from '../../../store/reducers/supplierAccountSlice';
 import { uploadUserLogoService } from '../../../store/reducers/userSlice';
 import { filterEmptyValues } from '../../../utils/filterEmptyValues';
-import FormTitle from '../../FormTitle';
-import ImageAdding from '../../ImageAdding';
-import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
-import { Button, Input, Label, Select } from '../../ui-kit';
-import { IOption } from '../../ui-kit/Select/Select.props';
-import { PHONE_DATA } from '../AccountSetupForm/AccountSetupForm';
 
-import style from './BusinessProfileForm.module.css';
+import style from './BusinessProfileChangeForm.module.css';
+
+import ImageAdding from 'components/ImageAdding';
+import { ImagesAdding } from 'components/ImageAdding/ImagesAdding';
+import { Button, Input, Label, Select } from 'components/ui-kit';
+import { IOption } from 'components/ui-kit/Select/Select.props';
 
 const date = new Date();
 const year = date.getFullYear();
@@ -34,6 +33,13 @@ const schema = yup.object({
     .max(year, "this year hasn't come yet"),
   email: yup.string().email('Invalid email address'),
 });
+
+const phoneNumberSplit = (phone: string): [code: string, tel: string] => {
+  const reg = /(\+(?:90|44|77|1))(\d+)/;
+  const reg_exec = reg.exec(phone) || '';
+
+  return reg_exec.length > 2 ? [reg_exec[1], reg_exec[2]] : ['', ''];
+};
 
 interface FormFields {
   email: string;
@@ -62,22 +68,44 @@ const BUSINESS_SECTOR_DATA: IOption[] = [
   { label: 'Electronics', value: 'Electronics' },
 ];
 
-const BusinessProfileForm: FC = (): JSX.Element => {
+const BusinessProfileChangeForm: FC = (): JSX.Element => {
   const [imgUrl, setImgUrl] = useState('');
   const [images, setImages] = useState([]);
 
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { resMessage, accountInfo } = useAppSelector(state => state.formRegistration);
+  const [saveBtnActive, setSaveBtnActive] = useState(false);
+  const accountInfo = useAppSelector(state => state.supplierAccount.supplierInfo);
+
+  // @ts-ignore
+  const companyInfo = accountInfo?.company_info || ({} as CompanyInfo);
+
+  const [acc_code, acc_tel] = phoneNumberSplit(companyInfo.phone);
 
   const {
     register,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
     handleSubmit,
     reset,
-  } = useForm<FormFields>({ resolver: yupResolver(schema), mode: 'onChange' });
+  } = useForm<FormFields>({
+    resolver: yupResolver(schema),
+    mode: 'onChange',
+    defaultValues: {
+      email: companyInfo?.business_email,
+      code: acc_code || undefined,
+      textarea: companyInfo.description,
+      tel: acc_tel,
+      yearEstablished: `${companyInfo.year_established}`,
+      address: companyInfo.address,
+      checkbox: companyInfo.is_manufacturer === 1,
+      // eslint-disable-next-line no-unsafe-optional-chaining
+      numEmployees: `${companyInfo?.number_of_employees}` || undefined,
+      profileLogo: '',
+      storeName: companyInfo.name,
+      businessSector: companyInfo.business_sector || undefined,
+    },
+  });
 
-  const onSubmit = (data: any): void => {
+  const onSubmit = (data: FormFields): void => {
     const phone = data.code + data.tel;
 
     const info = {
@@ -86,10 +114,10 @@ const BusinessProfileForm: FC = (): JSX.Element => {
       year_established: +data.yearEstablished,
       number_of_employees: +data.numEmployees,
       description: data.textarea,
-      /* logo_url: 'string', */
       phone,
       business_email: data.email,
       address: data.address,
+      is_manufacturer: data.checkbox ? 1 : 0,
     };
 
     const accountInfoForRequest = filterEmptyValues(info);
@@ -97,15 +125,15 @@ const BusinessProfileForm: FC = (): JSX.Element => {
     dispatch(uploadUserLogoService(images[0]));
 
     dispatch(
-      accountInfoService({
-        path: 'send_account_info',
-        rest: {
-          ...accountInfo,
-          company_info: {
-            ...accountInfoForRequest,
-            is_manufacturer: data.checkbox ? 1 : 0,
-          },
-        } as RequestAccountInfo,
+      updateSupplierAccountDataService({
+        ...accountInfo,
+        license: {
+          // @ts-ignore
+          license_number: accountInfo?.user_info.license,
+        },
+        company_info: {
+          ...accountInfoForRequest,
+        },
       }),
     );
 
@@ -113,24 +141,15 @@ const BusinessProfileForm: FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (resMessage === 'DATA_HAS_BEEN_SENT')
-      navigate('../add-product', { replace: true });
-  }, [resMessage, navigate]);
-
-  if (!accountInfo) return <Navigate to="/account-setup" />;
+    if (isDirty) setSaveBtnActive(true);
+  }, [isDirty]);
 
   return (
     <div className={style.form_wrapper}>
       <div className={style.form_container}>
-        <FormTitle
-          step="Step 2/3"
-          title="Business profile"
-          text="Enter the information you want to show on your store profile"
-        />
-
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={style.mainInfo}>
-            <p className={style.main_info_title}>Main info</p>
+            <p className={style.main_info_title}>Business Profile</p>
 
             <ImageAdding
               imgUrl={imgUrl}
@@ -240,17 +259,18 @@ const BusinessProfileForm: FC = (): JSX.Element => {
               </Label>
             </div>
           </div>
-
-          <Button
-            type="submit"
-            label="Continue"
-            disabled={!isValid}
-            className={style.button}
-          />
+          {saveBtnActive ? (
+            <Button
+              type="submit"
+              label="Save"
+              disabled={!isValid}
+              className={style.button}
+            />
+          ) : null}
         </form>
       </div>
     </div>
   );
 };
 
-export default BusinessProfileForm;
+export default BusinessProfileChangeForm;

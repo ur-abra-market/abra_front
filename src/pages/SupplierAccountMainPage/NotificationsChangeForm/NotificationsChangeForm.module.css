@@ -1,0 +1,33 @@
+.notifications {
+  background: #FFF;
+  border-radius: 12px;
+}
+
+.title {
+  padding: 32px 32px 8px 32px;
+
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.16px;
+}
+
+.notifications_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.notifications_item {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+
+  padding: 16px 32px;
+
+  border-bottom: 1px solid var(--light-gray-kit);
+}
+
+.notifications_item:last-child {
+  border: none;
+}

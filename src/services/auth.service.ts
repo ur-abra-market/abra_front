@@ -9,6 +9,12 @@ import httpService from './http.service';
 
 const authService = {
   register: ({ email, password, route, token }: RegisterParamsType) => {
+    if (route === 'confirmEmail') {
+      return httpService.get<RegisterResponseType>(
+        `register/confirmEmail/?token=${token}`,
+      );
+    }
+
     return httpService.post<RegisterResponseType>(`register/${route}/`, {
       email,
       password,
@@ -21,7 +27,7 @@ const authService = {
   },
 
   checkAuth: () => {
-    return httpService.get<CheckAuthResponseType>(`users/get_role/`);
+    return httpService.get<CheckAuthResponseType>(`users/getMe/`);
   },
 
   logout: async () => {
