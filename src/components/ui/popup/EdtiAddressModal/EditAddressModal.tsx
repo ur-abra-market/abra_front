@@ -6,7 +6,7 @@ import { ReactComponent as Delete } from '../../../../assets/img/icons/delete.sv
 import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
 import {
   ISellerAddressData,
-  PayloadEditAddress,
+  ResponseSellerAddressData,
 } from '../../../../services/seller.service';
 import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
 import Check from '../../../Check';
@@ -19,10 +19,10 @@ import { deleteAddress, editAddress } from 'store/reducers/sellerCheckoutSlice';
 interface EditAddressModalType {
   modal: boolean;
   setModal: (modal: boolean) => void;
-  data: ISellerAddressData;
+  dataArr: ResponseSellerAddressData;
 }
 export const EditAddressModal: FC<EditAddressModalType> = ({
-  data,
+  dataArr,
   modal,
   setModal,
 }): JSX.Element => {
@@ -46,20 +46,21 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
     register,
     handleSubmit,
     formState: { isValid },
-  } = useForm<PayloadEditAddress>({
+  } = useForm<ISellerAddressData>({
     mode: 'all',
   });
 
-  const onSubmit = (data: PayloadEditAddress): void => {
+  const onSubmit = (data: ISellerAddressData): void => {
     if (!isValid) return;
-    dispatch(editAddress(data));
+    dispatch(editAddress({ id: dataArr.id, params: data }));
     setModal(false);
   };
   const onClickModalHandler = (): void => {
     setModal(false);
   };
   const removeAddress = (): void => {
-    dispatch(deleteAddress(1)); // заглушка
+    dispatch(deleteAddress(dataArr.id));
+    setModal(false);
   };
 
   return (
@@ -71,7 +72,7 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
             <Check label="Main Address" />
             <div className={style.edit_address_icon_box}>
               <Delete onClick={removeAddress} />
-              <span>Remove Address</span>
+              <span className={style.delete_address}>Remove Address</span>
             </div>
           </div>
           <Exit className={style.edit_address_modal_exit} onClick={onClickModalHandler} />
@@ -123,7 +124,7 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
                 {...register('country')}
                 options={listCountry}
                 placeholder="Select a country"
-                defaultValue={data.country}
+                defaultValue={dataArr.country}
               />
             </div>
             <div className={style.edit_address_text_modal}>
@@ -134,7 +135,7 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
                 {...register('area')}
                 classNameWrapper={style.edit_address_text_modal_input}
                 placeholder="Enter a state or province name"
-                defaultValue={data.area}
+                defaultValue={dataArr.area}
               />
             </div>
           </div>
@@ -145,7 +146,7 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
                 {...register('city')}
                 classNameWrapper={style.edit_address_text_modal_input}
                 placeholder="Enter a city or town name"
-                defaultValue={data.city}
+                defaultValue={dataArr.city}
               />
             </div>
             <div className={style.edit_address_text_modal}>
@@ -154,7 +155,7 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
                 {...register('area')}
                 classNameWrapper={style.edit_address_text_modal_input}
                 placeholder="Enter a state or region name"
-                defaultValue={data.area}
+                defaultValue={dataArr.area}
               />
             </div>
           </div>
@@ -164,7 +165,7 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
               {...register('street')}
               classNameWrapper={style.edit_address_text_modal_input}
               placeholder="Enter a street name and number"
-              defaultValue={data.street}
+              defaultValue={dataArr.street}
             />
           </div>
           <div className={style.edit_address_block_row2}>
@@ -173,10 +174,10 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
                 Apt, suite, office (optional)
               </div>
               <Input
-                {...register('appartment')}
+                {...register('apartment')}
                 classNameWrapper={style.edit_address_text_modal_input}
                 placeholder="Enter a number or a letter"
-                defaultValue={data.appartment}
+                defaultValue={dataArr.apartment}
               />
             </div>
             <div className={style.edit_address_text_modal}>
@@ -185,7 +186,7 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
                 {...register('postal_code')}
                 classNameWrapper={style.edit_address_text_modal_input}
                 placeholder="Enter a postal code"
-                defaultValue={data.postal_code}
+                defaultValue={dataArr.postal_code}
               />
             </div>
           </div>

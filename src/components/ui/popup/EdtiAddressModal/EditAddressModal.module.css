@@ -156,4 +156,11 @@
   gap: 12px;
   align-items: center;
 }
+.delete_address{
+  cursor: pointer;
 
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #828282;
+}

@@ -63,6 +63,38 @@
   background: #FC133D;
 }
 
+.input_default{
+  cursor: pointer;
+
+  position: relative;
+
+  width: 24px;
+  height: 24px;
+
+
+  appearance: none;
+  background: #F4F4F4;
+  border: none;
+  border-radius: 4px;
+
+  transition: 0.5s;
+}
+.input_default:checked{
+  background: #FC133D;
+}
+.input_default:checked::after{
+  content:'';
+
+  position: absolute;
+  top:0;
+
+  display: block;
+
+  width: 24px;
+  height: 24px;
+
+  background: url('../../../assets/img/icons/check2.svg') no-repeat center;
+}
 
 .md{
   width: 52px;

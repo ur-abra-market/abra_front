@@ -37,10 +37,10 @@ const Footer: FC<FooterProps> = (props): JSX.Element => {
           <div className={style.flex_box}>
             <div className={style.links}>
               <Link to="/terms&conditions">Terms & Conditions</Link>
-              <Link to="/">Privacy Policy</Link>
+              <Link to="/privacy&policy">Privacy Policy</Link>
             </div>
             <div className={style.copyright}>
-              <span>© Copyright 2022</span>
+              <span>© Copyright 2023</span>
             </div>
           </div>
         </Container>

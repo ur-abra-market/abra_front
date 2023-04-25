@@ -15,8 +15,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref)
         type="checkbox"
         className={cn({
           [styles.input_notification]: variant === 'notification',
-          [styles.md]: size === 'md',
-          [styles.sm]: size === 'sm',
+          [styles.input_default]: variant === 'default',
+          [styles.md]: variant === 'notification' && size === 'md',
+          [styles.sm]: variant === 'notification' && size === 'sm',
         })}
         {...restProps}
       />
