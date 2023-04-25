@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 
 import { Container } from '../../components';
 import LoginForm from '../../components/new-components/LoginForm';
@@ -11,7 +11,12 @@ import { useAppSelector } from '../../store/hooks';
 import style from './AuthPage.module.css';
 
 const AuthPage = (): JSX.Element => {
-  const [pageType, setPageType] = useState<'login' | 'register'>('login');
+  const location = useLocation();
+  const locationData = location.state;
+
+  const authorizationMethod = locationData === 'Log In' ? 'login' : 'register';
+
+  const [pageType, setPageType] = useState<'login' | 'register'>(authorizationMethod);
   const { isAuth } = useAppSelector(state => state.login);
 
   const selectPage = (pageType: 'login' | 'register'): void => {
