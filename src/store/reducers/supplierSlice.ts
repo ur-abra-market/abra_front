@@ -25,7 +25,7 @@ const initialState = {
 
 export const getPropertiesService = createAsyncThunk<any, any>(
   'supplier/getPropertiesService',
-  async function ({ id }, { rejectWithValue }) {
+  async ({ id }, { rejectWithValue }) => {
     try {
       const data = await supplierFetch.getProductProperties(id);
 
@@ -58,7 +58,7 @@ export const getCompanyInfoService = createAsyncThunk<any, void>(
 
 export const getVariationsService = createAsyncThunk<any, any>(
   'supplier/getVariationsService',
-  async function ({ id }, { rejectWithValue }) {
+  async ({ id }, { rejectWithValue }) => {
     try {
       const data = await supplierFetch.getProductVariations(id);
 
