@@ -4,19 +4,16 @@ import { AxiosError } from 'axios';
 import { Status } from '../../enums/status.enum';
 import { AsyncThunkConfig } from '../../services/auth.serviceType';
 import {
-  ISellerAddressData,
-  PayloadEditAddress,
-  ResponseAddAddress,
+  EditAddressData,
   ResponseAddressData,
   ResponseDeleteAddress,
-  ResponseSellerAddressData,
-  ResponseUpdateAddress,
+  SellerAddressData,
   sellerFetch,
 } from '../../services/seller.service';
 
 export const addAddress = createAsyncThunk<
-  ResponseAddAddress,
-  ISellerAddressData,
+  ResponseAddressData,
+  SellerAddressData,
   AsyncThunkConfig
 >('modal/addAddress', async (params, { dispatch, rejectWithValue }) => {
   try {
@@ -34,12 +31,12 @@ export const addAddress = createAsyncThunk<
   }
 });
 export const editAddress = createAsyncThunk<
-  ResponseUpdateAddress,
-  PayloadEditAddress,
+  ResponseAddressData,
+  EditAddressData,
   AsyncThunkConfig
 >('modal/editAddress', async (params, { dispatch, rejectWithValue }) => {
   try {
-    const { data } = await sellerFetch.editAddress(params.id, params.params);
+    const { data } = await sellerFetch.editAddress(params.id, params.data);
 
     dispatch(getAddress());
 
@@ -87,13 +84,8 @@ export const deleteAddress = createAsyncThunk<
     return rejectWithValue('[modalSlice]: Error');
   }
 });
-export interface IAddress extends ResponseSellerAddressData {
-  first_name: string;
-  last_name: string;
-  phone: string;
-}
 interface IInitialState {
-  addresses: IAddress[];
+  addresses: SellerAddressData[];
 
   loading: Status;
 }
@@ -120,13 +112,7 @@ const sellerCheckoutSlice = createSlice({
       state.loading = Status.Loading;
     });
     builder.addCase(getAddress.fulfilled, (state, action) => {
-      const data = {
-        first_name: 'TestFirst',
-        last_name: 'TestLast',
-        phone: '111111111',
-      };
-
-      state.addresses = action.payload.result.map(el => ({ ...el, ...data }));
+      state.addresses = action.payload.result;
       state.loading = Status.Success;
     });
     builder.addCase(getAddress.rejected, state => {

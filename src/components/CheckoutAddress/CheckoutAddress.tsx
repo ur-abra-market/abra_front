@@ -3,14 +3,14 @@ import React, { FC } from 'react';
 import cn from 'classnames';
 
 import { ReactComponent as Edit } from '../../assets/img/icons/edit.svg';
-import { IAddress } from '../../store/reducers/sellerCheckoutSlice';
+import { SellerAddressData } from '../../services/seller.service';
 import { EditAddressModal } from '../ui/popup/EdtiAddressModal/EditAddressModal';
 import { Checkbox } from '../ui-kit';
 
 import style from './CheckoutAddress.module.css';
 
 interface AddressProps {
-  address: IAddress;
+  address: SellerAddressData;
   onClick: () => void;
   selected: boolean;
   openModal: () => void;
@@ -27,7 +27,7 @@ const CheckoutAddress: FC<AddressProps> = ({
     apartment,
     first_name,
     last_name,
-    phone,
+    phone_number,
     country,
     building,
     city,
@@ -46,7 +46,7 @@ const CheckoutAddress: FC<AddressProps> = ({
     >
       <div className={style.address_content}>
         <div className={style.address_content_text}>
-          {first_name} {last_name},{phone}
+          {first_name} {last_name},{phone_number}
           {address.building}
         </div>
         <Edit className={style.address_content_edit} onClick={openModal} />

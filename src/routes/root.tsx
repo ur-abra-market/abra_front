@@ -61,6 +61,10 @@ export function createRoutes(userRole: any): any {
           element: <TermsAndConditions />,
         },
         {
+          path: 'privacy&policy',
+          element: <PrivacyPolicy />,
+        },
+        {
           path: 'news',
           element: <LastNews />,
         },
