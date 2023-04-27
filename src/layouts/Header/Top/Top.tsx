@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import cn from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
@@ -82,22 +82,7 @@ const Top = (): JSX.Element => {
   const handleClickLogout = (): void => {
     dispatch(logout());
   };
-
   const closeModal = (): void => setIsShowModal(false);
-
-  // TODO вынести в отдельеый компонент
-  useEffect(() => {
-    const target = document.body;
-
-    if (menu) {
-      const oldWidth = target.offsetWidth;
-
-      target.style.overflow = 'hidden';
-      target.style.width = `${oldWidth}px`;
-    } else {
-      target.removeAttribute('style');
-    }
-  }, [menu]);
 
   return (
     <div className={style.wrapper}>

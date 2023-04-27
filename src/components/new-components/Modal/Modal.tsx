@@ -1,6 +1,5 @@
 import React, { FC, PropsWithChildren, useEffect } from 'react';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
 import cn from 'classnames';
 import { createPortal } from 'react-dom';
 
@@ -25,7 +24,9 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
     target.style.overflow = 'hidden';
     target.style.width = `${oldWidth}px`;
 
-    return () => target.removeAttribute('style');
+    return () => {
+      target.removeAttribute('style');
+    };
   }, []);
 
   return createPortal(
