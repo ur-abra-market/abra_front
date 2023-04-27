@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import ContentMessage from 'components/ContentMessage';
 import style from 'pages/ConfirmEmailPage/ConfirmEmailPage.module.css';
@@ -18,11 +18,11 @@ const ConfirmEmailPage = (): JSX.Element => {
     const token = searchParams.get('token');
 
     if (token) dispatch(registerService({ route: 'confirmEmail', token }));
-  }, [searchParams]);
+  }, [dispatch, searchParams]);
 
   useEffect(() => {
     if (resServer === 'REGISTRATION_SUCCESSFUL') navigate('/', { replace: true });
-  }, [resServer]);
+  }, [navigate, resServer]);
 
   return (
     <div className={style.container}>

@@ -12,7 +12,6 @@ import ChangePasswordPage from '../pages/ChangePasswordPage';
 import ConfirmEmailPage from '../pages/ConfirmEmailPage';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import ForgotPasswordPage from '../pages/ForgotPasswordPage';
-import { PrivacyPolicy } from '../pages/PrivacyPolicyPage/PrivacyPolicy';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
 import { TermsAndConditions } from '../pages/TermsAndConditionsPage/TermsAndConditions';
 
