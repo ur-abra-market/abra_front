@@ -18,6 +18,8 @@ import { TermsAndConditions } from '../pages/TermsAndConditionsPage/TermsAndCond
 import sellerRoute from './sellerRoute';
 import supplierRoute from './supplierRoute';
 
+import { PrivacyPolicy } from 'pages/PrivacyPolicyPage/PrivacyPolicy';
+
 export function createRoutes(userRole: any): any {
   const child = userRole === 'supplier' ? supplierRoute : sellerRoute;
 
