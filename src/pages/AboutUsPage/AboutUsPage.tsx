@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 
-import { Layout } from '../../layouts/Layout/Layout';
+import HeaderForChangePages from '../../components/HeaderForChangePages';
 
 import style from './AboutUsPage.module.css';
 
 const AboutUsPage: FC = () => {
   return (
-    <Layout>
+    <div>
+      <HeaderForChangePages />
       <div className={style.container}>
         <h1 className={style.title}>About Us</h1>
         <div className={style.container_text}>
@@ -92,7 +93,7 @@ const AboutUsPage: FC = () => {
           </p>
         </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 
