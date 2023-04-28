@@ -43,19 +43,6 @@ const RelatedInputs: FC<RelatedInputsProps> = ({
         />
       </Label>
 
-      {/* <TextFieldLabelAbove
-        register={register(mainName, {
-          required: {
-            value: isRequire,
-            message: 'Field is required',
-          },
-        })}
-        title={mainTitle}
-        name={mainName}
-        type={mainType}
-        placeholder={mainPlaceholder}
-      /> */}
-
       <Label label={optTitle as string}>
         <Input
           {...register(optName, {
@@ -68,19 +55,6 @@ const RelatedInputs: FC<RelatedInputsProps> = ({
           placeholder={optPlaceholder}
         />
       </Label>
-
-      {/* <TextFieldLabelAbove
-        register={register(optName, {
-          required: {
-            value: isRequire,
-            message: 'Field is required',
-          },
-        })}
-        title={optTitle}
-        name={optName}
-        type={optType}
-        placeholder={optPlaceholder}
-      /> */}
     </div>
   );
 };
