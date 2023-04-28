@@ -42,4 +42,4 @@ export type AsyncThunkConfig = {
   fulfilledMeta?: unknown;
   rejectedMeta?: unknown;
 };
-export type userRoleType = null | 'supplier' | 'seller' | 'admin';
+export type userRoleType = null | 'supplier' | 'seller';

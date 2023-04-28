@@ -14,11 +14,12 @@ import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import ForgotPasswordPage from '../pages/ForgotPasswordPage';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
 import { TermsAndConditions } from '../pages/TermsAndConditionsPage/TermsAndConditions';
+import { userRoleType } from '../services/auth.serviceType';
 
 import sellerRoute from './sellerRoute';
 import supplierRoute from './supplierRoute';
 
-export function createRoutes(userRole: any): any {
+export function createRoutes(userRole: userRoleType): Routes {
   const child = userRole === 'supplier' ? supplierRoute : sellerRoute;
 
   return createBrowserRouter([
@@ -79,3 +80,5 @@ export function createRoutes(userRole: any): any {
     },
   ]);
 }
+
+type Routes = ReturnType<typeof createBrowserRouter>;

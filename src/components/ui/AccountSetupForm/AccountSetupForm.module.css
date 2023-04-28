@@ -12,7 +12,7 @@
 .add_name {
   display: flex;
   gap: 15px;
-  margin: 40px 0 16px;
+  margin: 40px 0 18px;
 }
 
 .phone_number {
@@ -21,7 +21,7 @@
   gap: 15px;
   align-items: flex-end;
 
-  margin: 16px 0;
+  margin: 16px 0 18px 0;
 }
 
 .margin_fix {
@@ -30,7 +30,7 @@
 }
 
 .license_reminder {
-  margin: 12px 0 24px;
+  margin: 18px 0 24px;
   font-size: 13px;
   color: #4F4F4F;
   text-align: left;

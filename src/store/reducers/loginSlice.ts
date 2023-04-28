@@ -4,18 +4,25 @@ import { AxiosError } from 'axios';
 import authService from '../../services/auth.service';
 import {
   AsyncThunkConfig,
-  CheckAuthResponseType,
   LoginParamsType,
   userRoleType,
   LoginResponseType,
 } from '../../services/auth.serviceType';
 
-const initialState = {
-  resMessage: '' as string,
-  errMessage: '' as string,
-  loading: false as boolean,
-  isAuth: false as boolean,
-  userRole: null as userRoleType,
+interface IInitialState {
+  resMessage: string;
+  errMessage: string;
+  loading: boolean;
+  isAuth: boolean;
+  userRole: userRoleType;
+}
+
+const initialState: IInitialState = {
+  resMessage: '',
+  errMessage: '',
+  loading: false,
+  isAuth: false,
+  userRole: null,
 };
 
 export const loginService = createAsyncThunk<
@@ -38,19 +45,14 @@ export const loginService = createAsyncThunk<
   }
 });
 
-export const checkAuth = createAsyncThunk<CheckAuthResponseType, void, AsyncThunkConfig>(
+export const checkAuth = createAsyncThunk<boolean, void, AsyncThunkConfig>(
   'login/checkAuth',
   async (_, { rejectWithValue }) => {
     try {
       const response = await authService.checkAuth();
 
-      if (response.data.result.is_supplier) {
-        localStorage.setItem('profile', 'supplier');
-      }
-
-      return response.data;
+      return response.data.result.is_supplier;
     } catch (error) {
-      localStorage.removeItem('profile');
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
       }
@@ -64,11 +66,9 @@ export const logout = createAsyncThunk<any, void>(
   'login/logout',
   async (_, { rejectWithValue }) => {
     try {
-      const data = await authService.logout();
+      const response = await authService.logout();
 
-      localStorage.removeItem('profile');
-
-      return data;
+      return response;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
@@ -103,9 +103,9 @@ const loginSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(checkAuth.fulfilled, (state, action) => {
-      state.loading = false;
       state.isAuth = true;
-      state.userRole = action.payload.result.is_supplier ? 'supplier' : 'seller';
+      state.userRole = action.payload ? 'supplier' : 'seller';
+      state.loading = false;
     });
     builder.addCase(checkAuth.rejected, state => {
       state.loading = false;

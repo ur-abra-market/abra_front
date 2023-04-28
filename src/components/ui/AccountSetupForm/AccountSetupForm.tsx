@@ -31,18 +31,32 @@ export const PHONE_DATA: IOption[] = [
 
 const schema = yup
   .object({
-    fname: yup.string().min(2, 'Name should have at least a 2 symbols').required(),
-    lname: yup.string().min(2, 'Name should have at least a 2 symbols').required(),
-    license: yup.string().min(9, 'Min length is 9').required(),
+    firstName: yup
+      .string()
+      .min(2, 'First name should have at least 2 characters')
+      .max(50, 'First name should have at most 50 characters'),
+    lastName: yup
+      .string()
+      .min(2, 'Last name should have at least 2 characters')
+      .max(50, 'Last name should have at most 50 characters'),
+    license: yup
+      .string()
+      .min(6, 'License should have at least 6 characters')
+      .max(30, 'License can have at most 30 characters'),
     country: yup.string().required(),
     code: yup.string().required('Field is required'),
-    tel: yup.string().required('Field is required'),
+    tel: yup
+      .string()
+      .matches(/^[0-9]*$/, 'Please enter only digits')
+      .min(5, 'Number should have at least 5 digits')
+      .max(14, 'Number can have no more than 14 digits')
+      .typeError('Please enter only digits'),
   })
   .required();
 
 interface IAccountInfoData {
-  fname: string;
-  lname: string;
+  firstName: string;
+  lastName: string;
   license: string;
   country: string;
   tel: string;
@@ -64,14 +78,14 @@ const AccountSetupForm = (): JSX.Element => {
     mode: 'all',
   });
 
-  const onSubmit = (data: any): void => {
+  const onSubmit = (data: IAccountInfoData): void => {
     const phone = data.code + data.tel;
 
     dispatch(
       setAccountInfo({
         user_info: {
-          first_name: data.fname,
-          last_name: data.lname,
+          first_name: data.firstName,
+          last_name: data.lastName,
           phone,
         },
         license: {
@@ -104,15 +118,15 @@ const AccountSetupForm = (): JSX.Element => {
             <Label label="First name">
               <Input
                 placeholder="John"
-                {...register('fname')}
-                error={errors.fname?.message}
+                {...register('firstName')}
+                error={errors.firstName?.message}
               />
             </Label>
             <Label label="Last name">
               <Input
                 placeholder="Johnson"
-                {...register('lname')}
-                error={errors.lname?.message}
+                {...register('lastName')}
+                error={errors.lastName?.message}
               />
             </Label>
           </div>
@@ -145,12 +159,15 @@ const AccountSetupForm = (): JSX.Element => {
             Use the number of any document authorizing the sale
           </p>
           <Button
-            type="button"
+            type="submit"
             disabled={!isValid}
-            onClick={() => setActive(true)}
+            onClick={() => {
+              // setActive(true) //временно, пока подтверждение номера телефона не готово на беке, вместо открытия модального окна будет продолжение регистрации
+            }}
             className={style.button}
             label="Continue"
           />
+
           <Modal active={active} close={setActive} classNameModal={style.modal}>
             <div className={style.modal_wrapper}>
               <div className={style.modal_header}>Verify your phone number</div>
