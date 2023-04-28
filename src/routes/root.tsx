@@ -6,6 +6,7 @@ import { ContactSupport } from '../components/Contact/ContactSupport';
 import LastNews from '../components/News/LastNews';
 import { SellAbra } from '../components/SellAbra/SellAbra';
 import Tutorial from '../components/Tutorial/Tutorial';
+import AboutUsPage from '../pages/AboutUsPage/AboutUsPage';
 import AuthPage from '../pages/AuthPage';
 import ChangeEmailPage from '../pages/ChangeEmailPage';
 import ChangePasswordPage from '../pages/ChangePasswordPage';
@@ -81,6 +82,10 @@ export function createRoutes(userRole: userRoleType): Routes {
         {
           path: 'tutorials',
           element: <Tutorial />,
+        },
+        {
+          path: 'about',
+          element: <AboutUsPage />,
         },
       ],
     },
