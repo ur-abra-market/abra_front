@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
-import { ISellerAddressData } from '../../../../services/seller.service';
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { SellerAddressData } from '../../../../services/seller.service';
+import { useAppDispatch } from '../../../../store/hooks';
 import { Button, Checkbox, Input, Select } from '../../../ui-kit';
 
 import style from './AddressPopup.module.css';
@@ -20,6 +20,10 @@ interface AddressPopupType {
 
 const schema = yup
   .object({
+    phone_country_code: yup.string().required('phone_country_code is required'),
+    phone_number: yup.string().required('phone_number is required'),
+    first_name: yup.string().required('first_name is required'),
+    last_name: yup.string().required('last_name is required'),
     country: yup.string().required('Country is required'),
     area: yup.string().required('Area is required'),
     city: yup.string().required('City is required'),
@@ -30,7 +34,6 @@ const schema = yup
   })
   .required();
 const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element => {
-  const { last_name, first_name } = useAppSelector(state => state.seller.userProfileInfo);
   const dispatch = useAppDispatch();
   const listPhone = [
     { label: '+7', value: '+7' },
@@ -47,16 +50,18 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: { isValid },
-  } = useForm<ISellerAddressData>({
+  } = useForm<SellerAddressData>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
 
-  const onSubmit = (data: ISellerAddressData): void => {
+  const onSubmit = (data: SellerAddressData): void => {
     if (!isValid) return;
     dispatch(addAddress(data));
+    reset();
     setAddModal(false);
   };
   const onClickModalHandler = (): void => {
@@ -65,7 +70,7 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
 
   return (
     <div className={style.address_popup} style={styles}>
-      <div className={style.address_popup_modal}>
+      <form onSubmit={handleSubmit(onSubmit)} className={style.address_popup_modal}>
         <div className={style.address_popup_row1}>
           <h4 className={style.address_popup_add_address}>Add Address</h4>
           <div className={style.address_popup_checkbox}>
@@ -87,17 +92,18 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
             <div className={style.text_modal}>
               <div className={style.text_modal_title}>First name</div>
               <Input
+                {...register('first_name')}
                 classNameWrapper={style.text_modal_input}
                 placeholder="Recipient’s first name"
-                defaultValue={first_name}
+                defaultValue=""
               />
             </div>
             <div className={style.text_modal}>
               <div className={style.text_modal_title}>Last name</div>
               <Input
+                {...register('last_name')}
                 classNameWrapper={style.text_modal_input}
                 placeholder="Recipient’s last name"
-                defaultValue={last_name}
               />
             </div>
           </div>
@@ -105,16 +111,17 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
             <div className={style.address_popup_phone_title}>Personal phone number</div>
             <div className={style.address_popup_phone_number}>
               <div className={style.address_popup_phone_number_select}>
-                <Select options={listPhone} />
+                <Select options={listPhone} {...register('phone_country_code')} />
               </div>
               <Input
+                {...register('phone_number')}
                 classNameWrapper={style.address_popup_input_number}
                 placeholder="(XXX) XXX - XX - XX"
               />
             </div>
           </div>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className={style.address_popup_block}>
+        <div className={style.address_popup_block}>
           <div className={style.address_popup_block_title}>Where to deliver</div>
           <div className={style.address_popup_block_row2}>
             <div className={style.address_popup_block_row2_box}>
@@ -182,15 +189,15 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
                 placeholder="Enter a postal code"
               />
             </div>
-          </div>{' '}
+          </div>
           <Button
             className={style.address_popup_button}
             type="submit"
             label="Confirm"
             disabled={!isValid}
           />
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };

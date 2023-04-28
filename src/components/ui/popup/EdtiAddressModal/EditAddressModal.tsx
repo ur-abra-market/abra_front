@@ -4,11 +4,8 @@ import { useForm } from 'react-hook-form';
 
 import { ReactComponent as Delete } from '../../../../assets/img/icons/delete.svg';
 import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
-import {
-  ISellerAddressData,
-  ResponseSellerAddressData,
-} from '../../../../services/seller.service';
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { SellerAddressData } from '../../../../services/seller.service';
+import { useAppDispatch } from '../../../../store/hooks';
 import Check from '../../../Check';
 import { Button, Input, Select } from '../../../ui-kit';
 
@@ -19,7 +16,7 @@ import { deleteAddress, editAddress } from 'store/reducers/sellerCheckoutSlice';
 interface EditAddressModalType {
   modal: boolean;
   setModal: (modal: boolean) => void;
-  dataArr: ResponseSellerAddressData;
+  dataArr: SellerAddressData;
 }
 export const EditAddressModal: FC<EditAddressModalType> = ({
   dataArr,
@@ -27,7 +24,6 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
   setModal,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { last_name, first_name } = useAppSelector(state => state.seller.userProfileInfo);
   const listPhone = [
     { label: '+7', value: '+7' },
     { label: '+90', value: '+90' },
@@ -46,13 +42,13 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
     register,
     handleSubmit,
     formState: { isValid },
-  } = useForm<ISellerAddressData>({
+  } = useForm<SellerAddressData>({
     mode: 'all',
   });
 
-  const onSubmit = (data: ISellerAddressData): void => {
+  const onSubmit = (data: SellerAddressData): void => {
     if (!isValid) return;
-    dispatch(editAddress({ id: dataArr.id, params: data }));
+    dispatch(editAddress({ id: dataArr.id, data }));
     setModal(false);
   };
   const onClickModalHandler = (): void => {
@@ -65,7 +61,7 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
 
   return (
     <div className={style.edit_address} style={styles}>
-      <div className={style.edit_address_modal}>
+      <form onSubmit={handleSubmit(onSubmit)} className={style.edit_address_modal}>
         <div className={style.edit_address_row1}>
           <h4 className={style.edit_address_edit_address}>Edit Address</h4>
           <div className={style.edit_address_checkbox}>
@@ -83,17 +79,19 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
             <div className={style.edit_address_text_modal}>
               <div className={style.edit_address_text_modal_title}>First name</div>
               <Input
+                {...register('first_name')}
                 classNameWrapper={style.edit_address_text_modal_input}
                 placeholder="Recipient’s first name"
-                defaultValue={first_name}
+                defaultValue={dataArr.first_name}
               />
             </div>
             <div className={style.edit_address_text_modal}>
               <div className={style.edit_address_text_modal_title}>Last name</div>
               <Input
+                {...register('last_name')}
                 classNameWrapper={style.edit_address_text_modal_input}
                 placeholder="Recipient’s last name"
-                defaultValue={last_name}
+                defaultValue={dataArr.last_name}
               />
             </div>
           </div>
@@ -101,16 +99,18 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
             <div className={style.edit_address_phone_title}>Personal phone number</div>
             <div className={style.edit_address_phone_number}>
               <div className={style.edit_address_phone_number_select}>
-                <Select options={listPhone} />
+                <Select options={listPhone} {...register('phone_country_code')} />
               </div>
               <Input
+                {...register('phone_number')}
                 classNameWrapper={style.edit_address_input_number}
                 placeholder="(XXX) XXX - XX - XX"
+                defaultValue={dataArr.phone_number}
               />
             </div>
           </div>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)} className={style.edit_address_block}>
+        <div className={style.edit_address_block}>
           <div className={style.edit_address_block_title}>Where to deliver</div>
           <div className={style.edit_address_block_row2}>
             <div className={style.edit_address_block_row2_box}>
@@ -196,8 +196,8 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
             label="Confirm"
             disabled={!isValid}
           />
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };
