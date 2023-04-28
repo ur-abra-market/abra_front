@@ -58,7 +58,7 @@ const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {
         <li>
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            to="about"
+            to="/about"
           >
             About Us
           </NavLink>
