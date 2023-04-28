@@ -6,6 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Container } from '../../components';
 import HeaderNavMenu from '../../components/HeaderNavMemu/HeaderNavMenu';
 import { LocationAndCurrencySelection } from '../../components/new-components/LocationAndCurrencySelection/LocationAndCurrencySelection';
+import { useAppSelector } from '../../store/hooks';
 import { Logo } from '../Logo/Logo';
 
 import style from './Footer.module.css';
@@ -15,8 +16,9 @@ const Footer: FC<FooterProps> = (props): JSX.Element => {
   const { className } = props;
   const routs = ['personal-account', 'product', 'order-history', ''];
   const { pathname } = useLocation();
-  const isSupplier = !!localStorage.getItem('profile');
-  const showHeadNav = !isSupplier && routs.some(el => el === pathname.split('/')[1]);
+  const isSupplier = useAppSelector(state => state.login.userRole);
+  const showHeadNav =
+    isSupplier === 'seller' && routs.some(el => el === pathname.split('/')[1]);
 
   return (
     <div className={cn(style.footer, className)}>
