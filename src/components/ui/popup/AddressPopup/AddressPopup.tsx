@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
 import { SellerAddressData } from '../../../../services/seller.service';
-import { useAppDispatch, useAppSelector } from '../../../../store/hooks';
+import { useAppDispatch } from '../../../../store/hooks';
 import { Button, Checkbox, Input, Select } from '../../../ui-kit';
 
 import style from './AddressPopup.module.css';
@@ -34,7 +34,6 @@ const schema = yup
   })
   .required();
 const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element => {
-  const { last_name, first_name } = useAppSelector(state => state.seller.userProfileInfo);
   const dispatch = useAppDispatch();
   const listPhone = [
     { label: '+7', value: '+7' },
@@ -51,6 +50,7 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
 
   const {
     register,
+    reset,
     handleSubmit,
     formState: { isValid },
   } = useForm<SellerAddressData>({
@@ -61,6 +61,7 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
   const onSubmit = (data: SellerAddressData): void => {
     if (!isValid) return;
     dispatch(addAddress(data));
+    reset();
     setAddModal(false);
   };
   const onClickModalHandler = (): void => {
@@ -94,7 +95,7 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
                 {...register('first_name')}
                 classNameWrapper={style.text_modal_input}
                 placeholder="Recipient’s first name"
-                defaultValue={first_name}
+                defaultValue=""
               />
             </div>
             <div className={style.text_modal}>
@@ -103,7 +104,6 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
                 {...register('last_name')}
                 classNameWrapper={style.text_modal_input}
                 placeholder="Recipient’s last name"
-                defaultValue={last_name}
               />
             </div>
           </div>
@@ -189,7 +189,7 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
                 placeholder="Enter a postal code"
               />
             </div>
-          </div>{' '}
+          </div>
           <Button
             className={style.address_popup_button}
             type="submit"

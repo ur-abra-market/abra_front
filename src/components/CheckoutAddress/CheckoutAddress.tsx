@@ -64,7 +64,7 @@ const CheckoutAddress: FC<AddressProps> = ({
       >
         <EditAddressModal modal={modal} setModal={openModal} dataArr={address} />
         <div className={style.address_main_text}>Main Address</div>
-        <Checkbox variant="default" checked />
+        <Checkbox variant="default" checked={selected} readOnly />
       </div>
     </div>
   );
