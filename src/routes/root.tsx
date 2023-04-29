@@ -20,7 +20,10 @@ import { userRoleType } from '../services/auth.serviceType';
 import sellerRoute from './sellerRoute';
 import supplierRoute from './supplierRoute';
 
+import { PrivacyPolicy } from 'pages/PrivacyPolicyPage/PrivacyPolicy';
+
 export function createRoutes(userRole: userRoleType): Routes {
+
   const child = userRole === 'supplier' ? supplierRoute : sellerRoute;
 
   return createBrowserRouter([
@@ -60,6 +63,10 @@ export function createRoutes(userRole: userRoleType): Routes {
         {
           path: 'terms&conditions',
           element: <TermsAndConditions />,
+        },
+        {
+          path: 'privacy&policy',
+          element: <PrivacyPolicy />,
         },
         {
           path: 'news',

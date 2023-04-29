@@ -14,7 +14,6 @@ const CheckDelivery = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const [AddModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
-
   const onClick = (): void => {
     setAddModal(!AddModal);
   };

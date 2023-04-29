@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 
 import { ReactComponent as Edit } from '../../assets/img/icons/edit.svg';
-import { ResponseSellerAddressData } from '../../services/seller.service';
+import { SellerAddressData } from '../../services/seller.service';
 import { useAppSelector } from '../../store/hooks';
 import Check from '../Check';
 import { EditAddressModal } from '../ui/popup/EdtiAddressModal/EditAddressModal';
@@ -9,7 +9,7 @@ import { EditAddressModal } from '../ui/popup/EdtiAddressModal/EditAddressModal'
 import style from './Address.module.css';
 
 interface AddressProps {
-  address: ResponseSellerAddressData;
+  address: SellerAddressData;
 }
 const Address: FC<AddressProps> = ({ address }): JSX.Element => {
   const { first_name, last_name, phone } = useAppSelector(

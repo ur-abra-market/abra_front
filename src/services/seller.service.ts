@@ -31,14 +31,14 @@ export const sellerFetch = {
 
     return data;
   },
-  addAddress: (params: ISellerAddressData) => {
-    return httpService.post<ResponseAddAddress>('sellers/addAddress', params);
+  addAddress: (params: SellerAddressData) => {
+    return httpService.post<ResponseAddressData>('sellers/addAddress', params);
   },
   getAddress: () => {
     return httpService.get<ResponseAddressData>('sellers/addresses');
   },
-  editAddress: (id: number, params: ISellerAddressData) => {
-    return httpService.patch<ResponseUpdateAddress>(
+  editAddress: (id: number, params: SellerAddressData) => {
+    return httpService.patch<ResponseAddressData>(
       `sellers/updateAddress?address_id=${id}`,
       params,
     );
@@ -100,9 +100,12 @@ export interface PayloadEditAddress {
   id: number;
   params: ISellerAddressData;
 }
-export interface ResponseSellerAddressData {
+export interface SellerAddressData {
+  phone_country_code: string;
+  phone_number: string;
+  first_name: string;
+  last_name: string;
   id: number;
-  user_id: number;
   country: string;
   area: string;
   city: string;
@@ -111,18 +114,13 @@ export interface ResponseSellerAddressData {
   apartment: string;
   postal_code: string;
 }
-
+export interface EditAddressData {
+  id: number;
+  data: SellerAddressData;
+}
 export interface ResponseAddressData {
   ok: boolean;
-  result: ResponseSellerAddressData[];
-}
-export interface ResponseAddAddress {
-  ok: boolean;
-  result: ResponseSellerAddressData[];
-}
-export interface ResponseUpdateAddress {
-  ok: boolean;
-  result: ResponseSellerAddressData[];
+  result: SellerAddressData[];
 }
 export interface ResponseDeleteAddress {
   ok: boolean;
