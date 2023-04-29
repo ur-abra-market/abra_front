@@ -3,6 +3,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 import { ContactSupport } from '../components/Contact/ContactSupport';
+import FAQ from '../components/FAQ/FAQ';
 import LastNews from '../components/News/LastNews';
 import { SellAbra } from '../components/SellAbra/SellAbra';
 import Tutorial from '../components/Tutorial/Tutorial';
@@ -75,6 +76,10 @@ export function createRoutes(userRole: userRoleType): Routes {
         {
           path: 'tutorials',
           element: <Tutorial />,
+        },
+        {
+          path: 'faq',
+          element: <FAQ />,
         },
       ],
     },
