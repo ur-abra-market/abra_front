@@ -16,13 +16,11 @@ const AboutUsPage: FC = () => {
           </div>
           <div className={style.title_block}>Introduction</div>
           <p className={style.text}>
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            Abra Bulk Marketplace, based in the heart of Turkey, is an industry-leading
+            {`Abra Bulk Marketplace, based in the heart of Turkey, is an industry-leading
             wholesale platform that brings together the finest Turkish products under one
             virtual roof. Our mission is to provide businesses worldwide with easy access
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
             to the best of Turkey's offerings, while ensuring a seamless and hassle-free
-            shopping experience.
+            shopping experience.`}
           </p>
           <p className={style.text}>
             Our diverse product range, combined with our commitment to excellence in
@@ -33,12 +31,12 @@ const AboutUsPage: FC = () => {
           <p className={style.text}>
             <ul>
               <li>
-                <b>1.</b> Wide Range of Products: We pride ourselves on offering an
+                <b>1.</b>
+                {`Wide Range of Products: We pride ourselves on offering an
                 extensive product range, from textiles and apparel to food and beverages,
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
                 home décor, and more. Our carefully curated selection ensures that you'll
                 find the perfect product for your business, no matter your industry or
-                niche.
+                niche.`}
               </li>
               <li>
                 <b>2.</b> Unmatched Quality: At Abra Bulk Marketplace, quality is our top
@@ -81,15 +79,13 @@ const AboutUsPage: FC = () => {
             growing your business. By choosing Abra Bulk
           </p>
           <p className={style.default_text}>
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            Marketplace, you're not only investing in quality Turkish products, but also
-            in a partnership that values your success and satisfaction.
+            {`Marketplace, you're not only investing in quality Turkish products, but also
+            in a partnership that values your success and satisfaction.`}
           </p>
           <p className={style.default_text}>
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            Join us today and experience the Abra Bulk Marketplace difference. Let's
+            {`Join us today and experience the Abra Bulk Marketplace difference. Let's
             embark on a journey of mutual growth and success, bringing the best of Turkey
-            to the world.
+            to the world.`}
           </p>
         </div>
       </div>
