@@ -4,7 +4,7 @@ import { Layout } from '../../layouts/Layout/Layout';
 
 import style from './UnderConstruction.module.css';
 
-export const UnderConstruction: FC = () => {
+const UnderConstruction: FC = () => {
   return (
     <Layout>
       <div className={style.container}>
@@ -18,3 +18,5 @@ export const UnderConstruction: FC = () => {
     </Layout>
   );
 };
+
+export default UnderConstruction;
