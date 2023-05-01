@@ -2,25 +2,22 @@ import httpService from './http.service';
 
 const supplierAccountData = {
   getAccountData: async () => {
-    const { data } = await httpService.get(`suppliers/get_supplier_info/`);
+    const { data } = await httpService.get(`suppliers/getSupplierInfo/`);
 
     return data.result;
   },
-  sendAccountData: async (personalData: RequestAccountInfo) => {
-    const { data } = await httpService.patch(
-      `suppliers/send_account_info/`,
-      personalData,
-    );
+  sendAccountData: async (personalData: any) => {
+    const { data } = await httpService.post(`suppliers/sendAccountInfo/`, personalData);
 
     return data;
   },
   getNotifications: async () => {
-    const { data } = await httpService.get(`users/get_notifications/`);
+    const { data } = await httpService.get(`users/getNotifications/`);
 
     return data;
   },
   postNotifications: async (notifications: INotification) => {
-    const { data } = await httpService.patch(`users/update_notification/`, notifications);
+    const { data } = await httpService.patch(`users/updateNotification/`, notifications);
 
     return data.result;
   },

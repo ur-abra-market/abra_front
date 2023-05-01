@@ -98,7 +98,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
 
     dispatch(
       accountInfoService({
-        path: 'send_account_info',
+        path: 'sendAccountInfo',
         rest: {
           ...accountInfo,
           company_info: {

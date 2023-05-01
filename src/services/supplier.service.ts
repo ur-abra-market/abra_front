@@ -3,25 +3,25 @@ import httpService from './http.service';
 const supplierFetch = {
   getProductProperties: async (categoryId: any) => {
     const { data } = await httpService.get(
-      `/suppliers/get_product_properties/${categoryId}`,
+      `/suppliers/getCategoryProperties/${categoryId}`,
     );
 
     return data;
   },
   getProductVariations: async (categoryId: any) => {
     const { data } = await httpService.get(
-      `suppliers/get_product_variations/${categoryId}/`,
+      `suppliers/getCategoryVariations/${categoryId}/`,
     );
 
     return data;
   },
   getSupplierCompanyInfo: async () => {
-    const { data } = await httpService.get(`suppliers/company_info/`);
+    const { data } = await httpService.get(`suppliers/companyInfo/`);
 
     return data;
   },
   addProduct: async (product: any) => {
-    const { data } = await httpService.post(`suppliers/add_product/`, product);
+    const { data } = await httpService.post(`suppliers/addProduct/`, product);
 
     return data;
   },
@@ -30,10 +30,10 @@ const supplierFetch = {
 
     formData.append('file', img);
 
-    const { data } = await httpService.post(`suppliers/upload_image/`, formData, {
+    const { data } = await httpService.post(`suppliers/uploadProductImage/`, formData, {
       params: {
         product_id: prodId,
-        serial_number: index,
+        order: index,
       },
     });
 
