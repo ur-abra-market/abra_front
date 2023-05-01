@@ -1,16 +1,14 @@
 import React from 'react';
 
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+
+import { Button } from '../../components/ui-kit';
+import { personalSupplierInfoValidationSchema } from '../../constants/personalSupplierInfoValidationSchema';
+
 import BusinessProfileChangeForm from './BusinessProfileChangeForm/BusinessProfileChangeForm';
-// import {
-//   accountDetails__textFieldClasses,
-//   checkboxClasses,
-//   classesOfLogoImage,
-//   inputPhoneClasses,
-//   notificationCheckboxClasses,
-//   textFieldClasses,
-// } from './constantsOfClassesStyles';
 import NotificationsChangeForm from './NotificationsChangeForm/NotificationsChangeForm';
-import PersonalInfoChangeForm from './PersonalInfoChangeForm/PersonalInfoChangeForm';
+import { PersonalInfoChangeForm } from './PersonalInfoChangeForm/PersonalInfoChangeForm';
 import style from './SupplierAccountMainPage.module.css';
 
 // import { getUserNotificationsService } from 'store/reducers/userSlice';
@@ -26,11 +24,19 @@ import style from './SupplierAccountMainPage.module.css';
 //     on_account_support: false,
 //   },
 // };
+
+interface IAccountInfoData {
+  firstName: string;
+  lastName: string;
+  license: string;
+  country: string;
+  tel: string;
+  code: string;
+}
 const SupplierAccountMainPage = (): JSX.Element => {
   // const dispatch = useAppDispatch();
   // const companyPhotoPicker = useRef(null);
   // const navigate = useNavigate();
-  // TODO нужен
   // const { isLoading } = useAppSelector(state => state.supplierAccount);
   // const [images, setImages] = useState([]);
   // const [, setSelectedCompanyPhoto] = useState(null);
@@ -121,12 +127,36 @@ const SupplierAccountMainPage = (): JSX.Element => {
 
   // if (isLoading) return <Loader />;
 
+  const {
+    register,
+    formState: { errors, isValid },
+    handleSubmit,
+    reset,
+  } = useForm<IAccountInfoData>({
+    resolver: yupResolver(personalSupplierInfoValidationSchema),
+    mode: 'all',
+  });
+
+  const onSubmit = (data: IAccountInfoData): void => {
+    console.log(data); // todo
+    reset();
+  };
+
   return (
     <div className={style.supplier_cabinet}>
       <div className={style.supplier_cabinet_content_wrapper}>
         <div className={style.personal_info}>
-          <PersonalInfoChangeForm />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <PersonalInfoChangeForm register={register} errors={errors} />
+            <Button
+              type="submit"
+              disabled={!isValid}
+              className={style.personal_info_submit_btn}
+              label="Save"
+            />
+          </form>
         </div>
+
         <div className={style.business_profile}>
           <BusinessProfileChangeForm />
         </div>

@@ -9,26 +9,6 @@
   width: 633px;
 }
 
-.add_name {
-  display: flex;
-  gap: 15px;
-  margin: 40px 0 18px;
-}
-
-.phone_number {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 15px;
-  align-items: flex-end;
-
-  margin: 16px 0 18px 0;
-}
-
-.margin_fix {
-  width: 100%;
-  margin-top: 16px;
-}
-
 .license_reminder {
   margin: 18px 0 24px;
   font-size: 13px;
@@ -46,79 +26,4 @@
   padding: 32px;
 }
 
-.modal_wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.modal_header {
-  margin-bottom: 35px;
-  font-size: 23px;
-  font-weight: bold;
-}
-
-.modal_container {
-  margin-bottom: 32px;
-}
-
-.modal_content {
-  display: flex;
-  align-items: center;
-  margin-bottom: 24px;
-}
-
-.modal_content:last-child {
-  margin-bottom: 0;
-}
-
-.modal_button {
-  flex: 0 1 15%;
-
-  padding: 0;
-
-  font: inherit;
-  color: #FC133D;
-  text-align: end;
-  text-decoration: underline;
-
-  background-color: transparent;
-  border: none;
-}
-
-.modal_button:hover {
-  cursor: pointer;
-}
-
-.modal_title_item {
-  flex: 0 1 35%;
-  color: #828282;
-}
-
-.modal_middle_item {
-  flex: 0 1 50%;
-}
-
-.modal_icon_plus {
-  content: '';
-
-  position: absolute;
-  top: 0;
-  right: -56px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 40px;
-  height: 40px;
-  margin: 0 auto;
-  padding: 10px;
-
-  background: white;
-  border-radius: 50%;
-}
-
-.modal_icon_plus:hover {
-  cursor: pointer;
-}
 

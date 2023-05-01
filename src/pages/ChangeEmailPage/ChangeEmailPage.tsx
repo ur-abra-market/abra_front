@@ -36,7 +36,7 @@ const ChangeEmailPage = (): JSX.Element => {
 
       <FooterForSupplierPart />
 
-      <Modal active={modalActive}>
+      <Modal showModal={modalActive}>
         <div className={style.modal_content_wrapper}>
           <div className={style.modal_header}>
             Your new email has been successfully saved

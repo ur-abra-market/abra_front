@@ -29,7 +29,7 @@ const ChangePasswordPage: FC = () => {
         </div>
       </div>
 
-      <Modal active={modalActive} classNameModal={style.modal_container}>
+      <Modal showModal={modalActive} classNameModal={style.modal_container}>
         <div className={style.modal_content_wrapper}>
           <div className={style.modal_header}>
             Your new password has been successfully saved

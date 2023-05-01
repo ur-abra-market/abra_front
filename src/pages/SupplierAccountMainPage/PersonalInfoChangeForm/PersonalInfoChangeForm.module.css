@@ -1,3 +1,4 @@
+/*
 .form_wrapper {
   display: flex;
   align-items: center;
@@ -122,4 +123,19 @@
 
 .modal_icon_plus:hover {
   cursor: pointer;
+}*/
+
+.add_name {
+  display: flex;
+  gap: 15px;
+  margin: 40px 0 18px;
+}
+
+.phone_number {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 15px;
+  align-items: flex-end;
+
+  margin: 16px 0 18px 0;
 }

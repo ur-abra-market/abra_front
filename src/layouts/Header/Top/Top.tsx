@@ -82,17 +82,14 @@ const Top = (): JSX.Element => {
   const handleClickLogout = (): void => {
     dispatch(logout());
   };
-  const closeModal = (): void => setIsShowModal(false);
 
   return (
     <div className={style.wrapper}>
-      {isShowModal && (
-        <Modal active={isShowModal} close={closeModal}>
-          <div>You are not included in...</div>
+      <Modal showModal={isShowModal} closeModal={setIsShowModal}>
+        <div>You are not included in...</div>
+        <Link to="/auth">Login</Link>
+      </Modal>
 
-          <Link to="/auth">Login</Link>
-        </Modal>
-      )}
       <div
         role="presentation"
         onClick={() => setMenu(undefined)}

@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from 'yup';
 
-import { PHONE_DATA } from '../../../components/ui/AccountSetupForm/AccountSetupForm';
+import { PHONE_DATA } from '../../../constants/phone_data';
 import { CompanyInfo } from '../../../services/supplierAccount.service';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { updateSupplierAccountDataService } from '../../../store/reducers/supplierAccountSlice';

@@ -7,6 +7,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from 'yup';
 
+import { PHONE_DATA } from '../../../constants/phone_data';
 import { RequestAccountInfo } from '../../../services/supplierAccount.service';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { accountInfoService } from '../../../store/reducers/formRegistrationSlice';
@@ -17,7 +18,6 @@ import ImageAdding from '../../ImageAdding';
 import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 import { Button, Input, Label, Select } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
-import { PHONE_DATA } from '../AccountSetupForm/AccountSetupForm';
 
 import style from './BusinessProfileForm.module.css';
 

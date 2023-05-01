@@ -18,7 +18,7 @@ const FeedbackForm: React.FC<Props> = ({ isFeedbackOpen }) => {
 
   return (
     <div>
-      <Modal active={isFeedbackOpen} classNameModal={style.modal}>
+      <Modal showModal={isFeedbackOpen} classNameModal={style.modal}>
         <Button color="white" className={style.btn} onClick={onToggleInfoForm}>
           ✕
         </Button>
