@@ -42,11 +42,7 @@ export const productFetch = {
   },
 
   getProductImagesById: async ({ product_id }: IRequestProduct) => {
-    const { data } = await httpService.get(`products/images/`, {
-      params: {
-        product_id,
-      },
-    });
+    const { data } = await httpService.get(`products/${product_id}/images/`, {});
 
     return data.result;
   },

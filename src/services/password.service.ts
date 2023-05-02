@@ -7,17 +7,15 @@ import httpService from './http.service';
 
 export const passwordService = {
   forgotPassword: (email: string) => {
-    return httpService.post<PasswordResponseType>('password/forgot_password/', {
+    return httpService.post<PasswordResponseType>('password/forgot/', {
       email,
     });
   },
   checkToken: (token: string) => {
-    return httpService.post<PasswordResponseType>(
-      `password/check_for_token/?token=${token}`,
-    );
+    return httpService.get<PasswordResponseType>(`password/checkToken/?token=${token}`);
   },
   resetPassword: (params: ResetPasswordPayloadType) => {
-    return httpService.patch<PasswordResponseType>('password/reset_password/', params);
+    return httpService.post<PasswordResponseType>('password/reset/', params);
   },
   changePassword: (params: ChangePasswordPayloadType) => {
     return httpService.post<PasswordResponseType>('password/change/', params);

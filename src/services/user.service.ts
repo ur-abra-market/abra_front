@@ -4,7 +4,7 @@ import httpService from './http.service';
 import { IErrorResponse } from './seller.service';
 
 export enum Action {
-  UPLOAD_LOGO = 'users/upload_logo_image/',
+  UPLOAD_LOGO = 'users/uploadLogoImage/',
 }
 
 const userFetch = {
@@ -13,7 +13,7 @@ const userFetch = {
 
     formData.append('file', img);
 
-    const { data } = await httpService.post('users/upload_logo_image/', formData);
+    const { data } = await httpService.post('users/uploadLogoImage/', formData);
 
     return data;
   },
@@ -32,20 +32,20 @@ const userFetch = {
     return data;
   },
   getFavoritesProducts: async () => {
-    const { data } = await httpService.get(`/users/show_favorites/`);
+    const { data } = await httpService.get(`/users/showFavorites/`);
 
     return data;
   },
   getNotifications: async () => {
     const { data } = await httpService.get<IUserNotificationsData>(
-      `/users/get_notifications/`,
+      `/users/getNotifications/`,
     );
 
     return data;
   },
   updateNotification: async (updatedData: IUserNotificationsData) => {
     const { data } = await httpService.patch<string | IErrorResponse>(
-      `/users/update_notification/`,
+      `/users/updateNotifications/`,
       updatedData,
     );
 
