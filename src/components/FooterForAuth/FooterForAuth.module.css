@@ -15,3 +15,9 @@
   color: var(--red);
   text-decoration-line: underline;
 }
+
+.is_disabled {
+  cursor: not-allowed;
+  text-decoration: none;
+  opacity: 0.5;
+}

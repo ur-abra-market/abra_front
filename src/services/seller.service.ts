@@ -6,7 +6,7 @@ import httpService from './http.service';
 
 export const sellerFetch = {
   getSellerInfo: async () => {
-    const { data } = await httpService.get<IUserInfoFetch>('sellers/get_seller_info');
+    const { data } = await httpService.get<IUserInfoFetch>('sellers/getSellerInfo');
 
     return data;
   },
@@ -17,7 +17,7 @@ export const sellerFetch = {
       ISendSellerResponse,
       AxiosResponse<ISendSellerResponse>,
       Partial<ISellerProfile>
-    >('sellers/send_seller_info', {
+    >('sellers/sendSellerInfo', {
       seller_data: {
         first_name,
         last_name,
@@ -38,10 +38,10 @@ export const sellerFetch = {
     return httpService.get<ResponseAddressData>('sellers/addresses');
   },
   editAddress: (id: number, params: SellerAddressData) => {
-    return httpService.patch<ResponseAddressData>(
-      `sellers/updateAddress?address_id=${id}`,
-      params,
-    );
+    return httpService.patch<ResponseAddressData>(`sellers/updateAddress`, {
+      ...params,
+      id,
+    });
   },
   deleteAddress: (id: number) => {
     return httpService.delete<ResponseDeleteAddress>(`sellers/removeAddress/${id}`);
@@ -100,9 +100,11 @@ export interface PayloadEditAddress {
   id: number;
   params: ISellerAddressData;
 }
+
 export interface SellerAddressData {
   phone_country_code: string;
   phone_number: string;
+  address_id: number;
   first_name: string;
   last_name: string;
   id: number;
@@ -114,6 +116,7 @@ export interface SellerAddressData {
   apartment: string;
   postal_code: string;
 }
+
 export interface EditAddressData {
   id: number;
   data: SellerAddressData;
