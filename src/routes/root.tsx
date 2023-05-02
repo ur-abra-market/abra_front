@@ -23,7 +23,6 @@ import supplierRoute from './supplierRoute';
 import { PrivacyPolicy } from 'pages/PrivacyPolicyPage/PrivacyPolicy';
 
 export function createRoutes(userRole: userRoleType): Routes {
-
   const child = userRole === 'supplier' ? supplierRoute : sellerRoute;
 
   return createBrowserRouter([
