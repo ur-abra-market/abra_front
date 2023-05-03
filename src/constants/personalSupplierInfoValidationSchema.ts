@@ -18,12 +18,6 @@ export const personalSupplierInfoValidationSchema = yup
       .test('no-spaces', 'Please enter a valid name', value => {
         return value === undefined || value.trim() !== '';
       }),
-    license: yup
-      .string()
-      .required('Field is required')
-      .min(6, 'License should have at least 6 characters')
-      .max(30, 'License can have at most 30 characters'),
-    country: yup.string().required(),
     code: yup.string().required('Field is required'),
     tel: yup
       .string()
