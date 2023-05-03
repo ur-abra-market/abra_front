@@ -9,7 +9,7 @@
     'personal_info business_profile notifications'
     'account_details business_profile notifications';
   grid-template-columns: minmax(auto, 450px) minmax(auto, 622px) minmax(auto, 280px);
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto 1fr;
 
   max-width: 1440px;
   margin: 0 auto;
@@ -24,9 +24,18 @@
   border-radius: 12px;
 }
 
+.personal_info_title {
+  margin-bottom: 24px;
+
+  font-size: 20px;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: 0.16px;
+}
+
 .personal_info_submit_btn {
   width: 100%;
-  margin-top: 32px;
+  margin-top: 12px;
 }
 
 .personal_info {

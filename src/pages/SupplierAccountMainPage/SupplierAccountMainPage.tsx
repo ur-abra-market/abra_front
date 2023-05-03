@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 
 import { Button } from '../../components/ui-kit';
 import { personalSupplierInfoValidationSchema } from '../../constants/personalSupplierInfoValidationSchema';
+import { IAccountInfoData } from '../../interfaces';
+import { useAppSelector } from '../../store/hooks';
 
 import BusinessProfileChangeForm from './BusinessProfileChangeForm/BusinessProfileChangeForm';
 import NotificationsChangeForm from './NotificationsChangeForm/NotificationsChangeForm';
@@ -12,7 +14,6 @@ import { PersonalInfoChangeForm } from './PersonalInfoChangeForm/PersonalInfoCha
 import style from './SupplierAccountMainPage.module.css';
 
 // import { getUserNotificationsService } from 'store/reducers/userSlice';
-
 // const defaultValue = {
 //   notifications: {
 //     on_discount: false,
@@ -25,14 +26,19 @@ import style from './SupplierAccountMainPage.module.css';
 //   },
 // };
 
-interface IAccountInfoData {
+interface IPersonalInfoDefaultValues {
+  [key: string]: string;
   firstName: string;
   lastName: string;
-  license: string;
-  country: string;
+  code: string;
+  tel: string;
+}
+type WatchedValues = {
+  firstName: string;
+  lastName: string;
   tel: string;
   code: string;
-}
+};
 const SupplierAccountMainPage = (): JSX.Element => {
   // const dispatch = useAppDispatch();
   // const companyPhotoPicker = useRef(null);
@@ -126,15 +132,27 @@ const SupplierAccountMainPage = (): JSX.Element => {
   // }, [dispatch]);
 
   // if (isLoading) return <Loader />;
+  // const dispatch = useAppDispatch();
+  // const supplierInfo = useAppSelector(state => state.supplierAccount.supplierInfo);
 
+  const profileInfo = useAppSelector(state => state.supplierAccount.supplierInfo);
+
+  const personalInfoDefaultValues: IPersonalInfoDefaultValues = {
+    firstName: profileInfo.first_name,
+    lastName: profileInfo.last_name,
+    code: profileInfo.phone_country_code,
+    tel: profileInfo.phone_number,
+  };
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
     reset,
+    watch,
   } = useForm<IAccountInfoData>({
     resolver: yupResolver(personalSupplierInfoValidationSchema),
     mode: 'all',
+    defaultValues: personalInfoDefaultValues,
   });
 
   const onSubmit = (data: IAccountInfoData): void => {
@@ -142,15 +160,24 @@ const SupplierAccountMainPage = (): JSX.Element => {
     reset();
   };
 
+  const watchedPersonalInfoValues: WatchedValues = watch();
+
+  const hasChanges = Object.keys(personalInfoDefaultValues).some(
+    // @ts-ignore // todo fix types
+    key => personalInfoDefaultValues[key] !== watchedPersonalInfoValues[key],
+  );
+
   return (
     <div className={style.supplier_cabinet}>
       <div className={style.supplier_cabinet_content_wrapper}>
         <div className={style.personal_info}>
+          <h3 className={style.personal_info_title}>Personal Info</h3>
+
           <form onSubmit={handleSubmit(onSubmit)}>
             <PersonalInfoChangeForm register={register} errors={errors} />
             <Button
               type="submit"
-              disabled={!isValid}
+              disabled={!isValid || !hasChanges}
               className={style.personal_info_submit_btn}
               label="Save"
             />

@@ -25,13 +25,6 @@ const supplierAccountData = {
 
 export default supplierAccountData;
 
-export interface UserInfo {
-  first_name: string;
-  last_name: string;
-  phone: string;
-  license: number;
-}
-
 export interface License {
   license_number: number;
 }
@@ -46,10 +39,6 @@ export interface CompanyInfo {
   phone: string;
   business_email: string;
   address: string;
-}
-
-export interface Country {
-  country: string;
 }
 
 export interface RequestAccountInfo {
