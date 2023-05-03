@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { DeepMap, FieldError } from 'react-hook-form';
+import { DeepMap, FieldError, UseFormRegister } from 'react-hook-form';
 
 import { Input, Label, Select } from '../../../components/ui-kit';
-import { COUNTRY_DATA } from '../../../constants/country_data';
-import { PHONE_DATA } from '../../../constants/phone_data';
+import { PHONE_DATA } from '../../../constants/phone_data'; // todo get phone numbers from backend
+import { IAccountInfoData } from '../../../interfaces';
 
 import style from './PersonalInfoChangeForm.module.css';
 
 interface IPersonalInfoChangeForm {
-  register: any; // todo
+  register: UseFormRegister<IAccountInfoData>;
   errors: DeepMap<Record<string, any>, FieldError>;
 }
 
@@ -19,7 +19,7 @@ export const PersonalInfoChangeForm = ({
 }: IPersonalInfoChangeForm): JSX.Element => {
   return (
     <>
-      <div className={style.add_name}>
+      <div className={style.name_container}>
         <Label label="First name">
           <Input
             placeholder="John"
@@ -27,6 +27,7 @@ export const PersonalInfoChangeForm = ({
             error={errors.firstName?.message}
           />
         </Label>
+
         <Label label="Last name">
           <Input
             placeholder="Johnson"
@@ -35,14 +36,7 @@ export const PersonalInfoChangeForm = ({
           />
         </Label>
       </div>
-      <Label label="Country of company registration">
-        <Select
-          placeholder="Select"
-          options={COUNTRY_DATA}
-          {...register('country')}
-          error={errors?.country?.message}
-        />
-      </Label>
+
       <div className={style.phone_number}>
         <Label label="Personal phone number">
           <Select placeholder="Select" options={PHONE_DATA} {...register('code')} />
@@ -53,13 +47,6 @@ export const PersonalInfoChangeForm = ({
           error={errors?.tel?.message}
         />
       </div>
-      <Label label="License or entrepreneur number">
-        <Input
-          placeholder="000 – 00 – 0000"
-          {...register('license')}
-          error={errors?.license?.message}
-        />
-      </Label>
     </>
   );
 };
