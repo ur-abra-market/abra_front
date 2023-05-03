@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { personalSupplierInfoValidationSchema } from '../../../constants/personalSupplierInfoValidationSchema';
+import { IAccountInfoData } from '../../../interfaces';
 import { PersonalInfoChangeForm } from '../../../pages/SupplierAccountMainPage/PersonalInfoChangeForm/PersonalInfoChangeForm';
 import { useAppDispatch } from '../../../store/hooks';
 import { setAccountInfo } from '../../../store/reducers/formRegistrationSlice';
@@ -14,15 +15,6 @@ import { ModalChildPhoneCheck } from '../../new-components/Modal/ModalChildPhone
 import { Button } from '../../ui-kit';
 
 import style from './AccountSetupForm.module.css';
-
-interface IAccountInfoData {
-  firstName: string;
-  lastName: string;
-  license: string;
-  country: string;
-  tel: string;
-  code: string;
-}
 
 export const AccountSetupForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -48,12 +40,6 @@ export const AccountSetupForm = (): JSX.Element => {
           last_name: data.lastName,
           phone: data.code + data.tel,
         },
-        license: {
-          license_number: +data.license,
-        },
-        country: {
-          country: data.country,
-        },
       }),
     );
 
@@ -70,12 +56,8 @@ export const AccountSetupForm = (): JSX.Element => {
           title="Account Info"
           text="This information will not be published. The data will only be used to create your account"
         />
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
           <PersonalInfoChangeForm register={register} errors={errors} />
-
-          <p className={style.license_reminder}>
-            Use the number of any document authorizing the sale
-          </p>
 
           <Button
             type="submit"
@@ -83,7 +65,7 @@ export const AccountSetupForm = (): JSX.Element => {
             onClick={() => {
               // setShowModal(true); //временно, пока подтверждение номера телефона не готово на беке, вместо открытия модального окна будет продолжение регистрации
             }}
-            className={style.button}
+            className={style.submit_btn}
             label="Continue"
           />
         </form>
