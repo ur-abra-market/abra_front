@@ -5,15 +5,15 @@ import { RouterProvider } from 'react-router-dom';
 import Loader from '../components/Loader';
 import { createRoutes } from '../routes/root';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { checkAuth } from '../store/reducers/loginSlice';
+import { getCurrentUserInfo } from '../store/reducers/loginSlice';
 
 const App = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { isInitialized } = useAppSelector(state => state.app);
+  const isInitialized = useAppSelector(state => state.app.isInitialized);
   const userRole = useAppSelector(state => state.login.userRole);
 
   useEffect(() => {
-    dispatch(checkAuth());
+    dispatch(getCurrentUserInfo());
   }, [dispatch]);
 
   if (!isInitialized) {

@@ -26,6 +26,10 @@ const authService = {
     return httpService.post<LoginResponseType>(`login/`, { email, password });
   },
 
+  loginCurrentUser: () => {
+    return httpService.get(`/login/current/`); // todo добавить типизацию
+  },
+
   checkAuth: () => {
     return httpService.get<CheckAuthResponseType>(`users/getMe/`);
   },

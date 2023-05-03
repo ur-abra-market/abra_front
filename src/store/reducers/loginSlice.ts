@@ -29,11 +29,9 @@ export const loginService = createAsyncThunk<
   LoginResponseType,
   LoginParamsType,
   AsyncThunkConfig
->('login/loginService', async (dataUser, { rejectWithValue, dispatch }) => {
+>('login/loginService', async (dataUser, { rejectWithValue }) => {
   try {
     const response = await authService.login(dataUser);
-
-    await dispatch(checkAuth());
 
     return response.data;
   } catch (error) {
@@ -45,19 +43,19 @@ export const loginService = createAsyncThunk<
   }
 });
 
-export const checkAuth = createAsyncThunk<boolean, void, AsyncThunkConfig>(
-  'login/checkAuth',
+export const getCurrentUserInfo = createAsyncThunk<any, void, AsyncThunkConfig>(
+  'login/getCurrentUserInfo',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await authService.checkAuth();
+      const response = await authService.loginCurrentUser();
 
-      return response.data.result.is_supplier;
+      return response.data;
     } catch (error) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
       }
 
-      return rejectWithValue('[checkAuth]: ERROR');
+      return rejectWithValue('[getCurrentUserInfo]: ERROR');
     }
   },
 );
@@ -66,9 +64,7 @@ export const logout = createAsyncThunk<any, void>(
   'login/logout',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await authService.logout();
-
-      return response;
+      return await authService.logout();
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
@@ -99,15 +95,14 @@ const loginSlice = createSlice({
       state.loading = false;
       state.isAuth = false;
     });
-    builder.addCase(checkAuth.pending, state => {
+    builder.addCase(getCurrentUserInfo.pending, state => {
       state.loading = true;
     });
-    builder.addCase(checkAuth.fulfilled, (state, action) => {
-      state.isAuth = true;
-      state.userRole = action.payload ? 'supplier' : 'seller';
+    builder.addCase(getCurrentUserInfo.fulfilled, (state, action) => {
+      state.userRole = action.payload.result.is_supplier ? 'supplier' : 'seller';
       state.loading = false;
     });
-    builder.addCase(checkAuth.rejected, state => {
+    builder.addCase(getCurrentUserInfo.rejected, state => {
       state.loading = false;
       state.isAuth = false;
     });

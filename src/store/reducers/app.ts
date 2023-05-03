@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { checkAuth } from './loginSlice';
+import { getCurrentUserInfo } from './loginSlice';
 
 const initialState = {
   isInitialized: false,
@@ -16,10 +16,10 @@ export const appSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(checkAuth.fulfilled, state => {
+    builder.addCase(getCurrentUserInfo.fulfilled, state => {
       state.isInitialized = true;
     });
-    builder.addCase(checkAuth.rejected, state => {
+    builder.addCase(getCurrentUserInfo.rejected, state => {
       state.isInitialized = true;
     });
   },
