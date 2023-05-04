@@ -29,9 +29,11 @@ export const loginService = createAsyncThunk<
   LoginResponseType,
   LoginParamsType,
   AsyncThunkConfig
->('login/loginService', async (dataUser, { rejectWithValue }) => {
+>('login/loginService', async (dataUser, { rejectWithValue, dispatch }) => {
   try {
     const response = await authService.login(dataUser);
+
+    dispatch(getCurrentUserInfo());
 
     return response.data;
   } catch (error) {
@@ -39,7 +41,7 @@ export const loginService = createAsyncThunk<
       return rejectWithValue(error.message);
     }
 
-    return rejectWithValue('[registerService]: Error');
+    return rejectWithValue('[loginService]: ERROR');
   }
 });
 
@@ -79,31 +81,19 @@ const loginSlice = createSlice({
   name: 'login',
   initialState,
   extraReducers: builder => {
-    builder.addCase(loginService.pending, state => {
-      state.resMessage = '';
-      state.loading = true;
-      state.isAuth = false;
-    });
     builder.addCase(loginService.fulfilled, (state, action) => {
-      state.resMessage = action.payload.result; // response
-      state.loading = false;
+      state.resMessage = action.payload.result;
       state.isAuth = true;
     });
     builder.addCase(loginService.rejected, (state, action) => {
       state.resMessage = action.payload as string;
       state.errMessage = action.payload as string;
-      state.loading = false;
       state.isAuth = false;
-    });
-    builder.addCase(getCurrentUserInfo.pending, state => {
-      state.loading = true;
     });
     builder.addCase(getCurrentUserInfo.fulfilled, (state, action) => {
       state.userRole = action.payload.result.is_supplier ? 'supplier' : 'seller';
-      state.loading = false;
     });
     builder.addCase(getCurrentUserInfo.rejected, state => {
-      state.loading = false;
       state.isAuth = false;
     });
     builder.addCase(logout.pending, state => {

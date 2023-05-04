@@ -113,13 +113,19 @@ const supplierAccountSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: builder => {
+    builder.addCase(getCurrentUserInfo.pending, state => {
+      state.isLoading = Status.Loading;
+    });
     builder.addCase(getCurrentUserInfo.fulfilled, (state, action) => {
       if (action.payload.result.is_supplier) {
         if (action.payload.detail.has_profile) {
           state.hasProfile = true;
           state.supplierInfo = action.payload.result;
+        } else {
+          state.hasProfile = false;
         }
       }
+      state.isLoading = Status.Success;
     });
     builder.addCase(getSupplierAccountDataService.pending, state => {
       state.isLoading = Status.Loading;
