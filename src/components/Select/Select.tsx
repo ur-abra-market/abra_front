@@ -1,48 +1,50 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useRef, useState } from 'react';
 
 import UseOnClickOutside from '../../hooks/useOnClickOutside';
-import { IOption } from '../ui-kit/Select/Select.props';
+import useOnHoverOutside from '../../hooks/useOnHoverOutside';
 
 import styles from './Select.module.css';
 import SelectHeader from './SelectHeader/SelectHeader';
 import SelectItem from './SelectItem/SelectItem';
 import SelectMenu from './SelectMenu/SelectMenu';
 
-type SelectPropsType = {
-  options: IOption[];
-  defaultValue?: string;
+const SPACE_KEYBOARD = 'Space';
+const ENTER_KEYBOARD = 'Enter';
+const ARROW_UP_KEYBOARD = 'ArrowUp';
+const ARROW_DOWN_KEYBOARD = 'ArrowDown';
+
+export type SelectPropsType = {
+  options: OptionType[];
   onChange?: () => void;
+  error?: string;
+  children?: ReactNode;
+  placeholder?: string | undefined;
 };
-function useOnHoverOutside(ref: any, handler: (event: Event) => void): void {
-  useEffect(() => {
-    const listener = (event: Event): void => {
-      if (!ref.current || ref.current.contains(event.target)) {
-        return;
-      }
-      handler(event);
-    };
 
-    document.addEventListener('mouseover', listener);
+export type OptionType = {
+  label: string;
+  value: string | number;
+};
 
-    return () => {
-      document.removeEventListener('mouseout', listener);
-    };
-  }, [ref, handler]);
-}
-
-const CustomSelect: FC<SelectPropsType> = ({ options, defaultValue, onChange }) => {
-  const defaultSelectedValue = defaultValue || options[0].label;
+const CustomSelect: FC<SelectPropsType> = ({
+  options,
+  placeholder,
+  onChange,
+  error,
+  children,
+}) => {
+  const defaultSelectedValue = placeholder || options[0].label;
   const [selectedValue, setSelectedVale] = useState<string>(defaultSelectedValue);
 
   const handleSetSelectedValue = (value: string): void => {
     if (value === selectedValue) {
-      handleCloseSelect();
+      handleCloseSelectMenu();
     } else {
       setSelectedVale(value);
       if (onChange) {
         onChange();
       }
-      handleCloseSelect();
+      handleCloseSelectMenu();
     }
   };
 
@@ -51,7 +53,7 @@ const CustomSelect: FC<SelectPropsType> = ({ options, defaultValue, onChange }) 
   const handleChangeSelectState = (): void => {
     setIsOpen(!isOpen);
   };
-  const handleCloseSelect = (): void => {
+  const handleCloseSelectMenu = (): void => {
     setIsOpen(false);
   };
 
@@ -65,7 +67,7 @@ const CustomSelect: FC<SelectPropsType> = ({ options, defaultValue, onChange }) 
     };
   });
 
-  UseOnClickOutside(squareBoxRef, handleCloseSelect);
+  UseOnClickOutside(squareBoxRef, handleCloseSelectMenu);
 
   // if the menu is open and the user tries to scroll behind the menu, then we add the ability to scroll and hide the menu
   const mappedSelectItems = options.map(el => (
@@ -79,43 +81,61 @@ const CustomSelect: FC<SelectPropsType> = ({ options, defaultValue, onChange }) 
 
   // disable scrolling by click on space or arrows on keyboard
   useEffect(() => {
+    let number = 0;
+
     if (isOpen) {
       const test = window.scrollY;
 
       window.onscroll = () => {
         window.scroll(0, test);
       };
-      document.onkeydown = function (e) {
-        const keyCode = e.keyCode || e.charCode;
+      document.onkeydown = e => {
+        const keyCode = e.code;
 
-        console.log(keyCode);
-        if (keyCode === 32) e.preventDefault();
-        if (keyCode === 38) e.preventDefault();
-        if (keyCode === 40) e.preventDefault();
+        if (keyCode === ENTER_KEYBOARD) {
+          handleCloseSelectMenu();
+        }
+
+        if (keyCode === ARROW_UP_KEYBOARD && options[number - 1]) {
+          e.preventDefault();
+          number -= 1;
+        }
+        if (keyCode === ARROW_DOWN_KEYBOARD && options[number + 1]) {
+          e.preventDefault();
+          number += 1;
+        }
+
+        if (keyCode === SPACE_KEYBOARD) e.preventDefault();
+
+        setSelectedVale(options[number].label);
       };
     } else {
-      document.onkeydown = function (e) {
-        const keyCode = e.keyCode || e.charCode;
+      document.onkeydown = e => {
+        const keyCode = e.code;
 
-        if (keyCode === 32) return true;
-        if (keyCode === 38) return true;
-        if (keyCode === 40) return true;
+        if (keyCode === SPACE_KEYBOARD) return true;
+        if (keyCode === ARROW_UP_KEYBOARD) return true;
+        if (keyCode === ARROW_DOWN_KEYBOARD) return true;
       };
       window.onscroll = () => {
         return true;
       };
     }
-  }, [isOpen]);
+  }, [isOpen, options]);
 
   return (
-    <div className={styles.main} ref={squareBoxRef}>
+    <div className={styles.main} ref={squareBoxRef} role="presentation">
       <SelectHeader
         className={headerClassname}
         currentSelectedValue={selectedValue}
         isOpenMenu={isOpen}
         onClick={handleChangeSelectState}
       />
-      <SelectMenu isOpen={isOpen}>{mappedSelectItems}</SelectMenu>
+      <span className={styles.error}>{error}</span>
+      <SelectMenu isOpen={isOpen}>
+        {mappedSelectItems}
+        {children}
+      </SelectMenu>
     </div>
   );
 };

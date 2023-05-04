@@ -1,12 +1,14 @@
 import React, { FC, useState } from 'react';
 
-import { IOption } from '../../ui-kit/Select/Select.props';
+import cn from 'classnames';
+
+import { OptionType } from '../Select';
 
 import styles from './SelectedItem.module.css';
 
 type SelectItemPropsType = {
   currentSelectedItem: string;
-  value: IOption;
+  value: OptionType;
   onClick: (value: string) => void;
 };
 
@@ -34,7 +36,7 @@ const SelectItem: FC<SelectItemPropsType> = ({ currentSelectedItem, value, onCli
 
   const isSelectedItem =
     currentSelectedItem === value.label
-      ? `${styles.item_selected} ${currentClassName}`
+      ? cn(styles.item_selected, currentClassName)
       : currentClassName;
 
   return (
