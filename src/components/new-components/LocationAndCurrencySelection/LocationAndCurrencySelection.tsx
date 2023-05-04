@@ -35,15 +35,15 @@ export const LocationAndCurrencySelection: FC<
   return (
     <div className={cn(style.wrapper, className)}>
       {/* <Select options={CURRENCY_DATA} className={style.select} /> */}
-      <CustomSelect options={CURRENCY_DATA} onChange={handleSelectOption} />
+      <CustomSelect
+        options={CURRENCY_DATA}
+        onChange={handleSelectOption}
+        menuHeight="200px"
+        width="150px"
+      />
       <div className={style.select_box}>
         <span>Ship to</span>
-        <Select
-          options={COUNTRY_DATA}
-          className={style.select}
-          error="tesd"
-          placeholder="test"
-        />
+        <Select options={COUNTRY_DATA} className={style.select} />
       </div>
     </div>
   );

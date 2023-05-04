@@ -1,5 +1,7 @@
 import React, { FC, ReactNode, useEffect, useRef, useState } from 'react';
 
+import cn from 'classnames';
+
 import UseOnClickOutside from '../../hooks/useOnClickOutside';
 import useOnHoverOutside from '../../hooks/useOnHoverOutside';
 
@@ -13,12 +15,18 @@ const ENTER_KEYBOARD = 'Enter';
 const ARROW_UP_KEYBOARD = 'ArrowUp';
 const ARROW_DOWN_KEYBOARD = 'ArrowDown';
 
+const PREV = 1;
+const NEXT = 1;
+
 export type SelectPropsType = {
   options: OptionType[];
   onChange?: (value: OptionType) => void;
   error?: string;
   children?: ReactNode;
   placeholder?: string | undefined;
+  menuHeight?: string;
+  width?: string;
+  className?: string | undefined;
 };
 
 export type OptionType = {
@@ -32,19 +40,22 @@ const CustomSelect: FC<SelectPropsType> = ({
   onChange,
   error,
   children,
+  menuHeight,
+  width,
+  className,
 }) => {
   const placeholderObj = placeholder ? { label: placeholder, value: placeholder } : null;
 
   const defaultSelectedValue = placeholderObj || options[0];
   const [selectedValue, setSelectedVale] = useState<OptionType>(defaultSelectedValue);
 
-  const handleSetSelectedValue = (value: OptionType): void => {
-    if (value === selectedValue) {
+  const handleSetSelectedValue = (incomingData: OptionType): void => {
+    if (incomingData === selectedValue) {
       handleCloseSelectMenu();
     } else {
-      setSelectedVale(value);
+      setSelectedVale(incomingData);
       if (onChange) {
-        onChange(value);
+        onChange(incomingData);
       }
       handleCloseSelectMenu();
     }
@@ -83,7 +94,7 @@ const CustomSelect: FC<SelectPropsType> = ({
 
   // disable scrolling by click on space or arrows on keyboard
   useEffect(() => {
-    let number = 0;
+    let currentItemId = 0;
 
     if (isOpen) {
       const test = window.scrollY;
@@ -98,18 +109,18 @@ const CustomSelect: FC<SelectPropsType> = ({
           handleCloseSelectMenu();
         }
 
-        if (keyCode === ARROW_UP_KEYBOARD && options[number - 1]) {
+        if (keyCode === ARROW_UP_KEYBOARD && options[currentItemId - PREV]) {
           e.preventDefault();
-          number -= 1;
+          currentItemId -= PREV;
         }
-        if (keyCode === ARROW_DOWN_KEYBOARD && options[number + 1]) {
+        if (keyCode === ARROW_DOWN_KEYBOARD && options[currentItemId + NEXT]) {
           e.preventDefault();
-          number += 1;
+          currentItemId += NEXT;
         }
 
         if (keyCode === SPACE_KEYBOARD) e.preventDefault();
 
-        setSelectedVale(options[number]);
+        setSelectedVale(options[currentItemId]);
       };
     } else {
       document.onkeydown = e => {
@@ -125,8 +136,15 @@ const CustomSelect: FC<SelectPropsType> = ({
     }
   }, [isOpen, options]);
 
+  const SelectWidth = width ? { width } : {};
+
   return (
-    <div className={styles.main} ref={squareBoxRef} role="presentation">
+    <div
+      style={SelectWidth}
+      className={cn(styles.main, className)}
+      ref={squareBoxRef}
+      role="presentation"
+    >
       <SelectHeader
         className={headerClassname}
         currentSelectedValue={selectedValue}
@@ -134,7 +152,7 @@ const CustomSelect: FC<SelectPropsType> = ({
         onClick={handleChangeSelectState}
       />
       <span className={styles.error}>{error}</span>
-      <SelectMenu isOpen={isOpen}>
+      <SelectMenu isOpen={isOpen} height={menuHeight}>
         {mappedSelectItems}
         {children}
       </SelectMenu>
