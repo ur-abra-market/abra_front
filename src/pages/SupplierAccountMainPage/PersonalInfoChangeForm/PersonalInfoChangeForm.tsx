@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { DeepMap, FieldError, UseFormRegister } from 'react-hook-form';
 
 import { Input, Label, Select } from '../../../components/ui-kit';
-import { PHONE_DATA } from '../../../constants/phone_data'; // todo get phone numbers from backend
+import { IOption } from '../../../components/ui-kit/Select/Select.props';
 import { IAccountInfoData } from '../../../interfaces';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { getCountries } from '../../../store/reducers/commonSlice';
 
 import style from './PersonalInfoChangeForm.module.css';
 
@@ -17,6 +19,23 @@ export const PersonalInfoChangeForm = ({
   register,
   errors,
 }: IPersonalInfoChangeForm): JSX.Element => {
+  const countries = useAppSelector(state => state.common.countries);
+  const [countriesCodes, setCountriesCodes] = useState<IOption[]>([]);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const validCountriesCodes = countries.map(c => ({
+      label: `+${c.country_code}`,
+      value: `+${c.country_code}`,
+    }));
+
+    setCountriesCodes(validCountriesCodes);
+  }, [countries]);
+
+  useEffect(() => {
+    dispatch(getCountries());
+  }, []);
+
   return (
     <>
       <div className={style.name_container}>
@@ -39,7 +58,7 @@ export const PersonalInfoChangeForm = ({
 
       <div className={style.phone_number}>
         <Label label="Personal phone number">
-          <Select placeholder="Select" options={PHONE_DATA} {...register('code')} />
+          <Select placeholder="Select" options={countriesCodes} {...register('code')} />
         </Label>
         <Input
           placeholder="(XXX) XXX - XX - XX"

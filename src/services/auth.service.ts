@@ -1,5 +1,4 @@
 import {
-  CheckAuthResponseType,
   LoginParamsType,
   LoginResponseType,
   RegisterParamsType,
@@ -28,10 +27,6 @@ const authService = {
 
   loginCurrentUser: () => {
     return httpService.get(`/login/current/`); // todo добавить типизацию
-  },
-
-  checkAuth: () => {
-    return httpService.get<CheckAuthResponseType>(`users/getMe/`);
   },
 
   logout: async () => {
