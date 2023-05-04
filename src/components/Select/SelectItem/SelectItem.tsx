@@ -7,27 +7,27 @@ import { OptionType } from '../Select';
 import styles from './SelectedItem.module.css';
 
 type SelectItemPropsType = {
-  currentSelectedItem: string;
+  currentSelectedItem: OptionType;
   value: OptionType;
-  onClick: (value: string) => void;
+  onClick: (value: OptionType) => void;
 };
 
 const SelectItem: FC<SelectItemPropsType> = ({ currentSelectedItem, value, onClick }) => {
   const handleClickOnItem = (): void => {
-    onClick(value.label);
+    onClick(value);
   };
 
   const [currentClassName, setCurrentClassName] = useState(styles.main);
 
   const handleHoverOnItem = (): void => {
-    if (currentSelectedItem === value.label) {
+    if (currentSelectedItem.label === value.label) {
       //
     } else {
       setCurrentClassName(styles.main_hover);
     }
   };
   const handleLeaveHoverOnItem = (): void => {
-    if (currentSelectedItem === value.label) {
+    if (currentSelectedItem.label === value.label) {
       //
     } else {
       setCurrentClassName(styles.main);
@@ -35,7 +35,7 @@ const SelectItem: FC<SelectItemPropsType> = ({ currentSelectedItem, value, onCli
   };
 
   const isSelectedItem =
-    currentSelectedItem === value.label
+    currentSelectedItem.label === value.label
       ? cn(styles.item_selected, currentClassName)
       : currentClassName;
 

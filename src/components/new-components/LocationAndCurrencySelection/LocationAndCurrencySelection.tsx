@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import cn from 'classnames';
 
 import CustomSelect from '../../Select';
+import { OptionType } from '../../Select/Select';
 import { Select } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
 
@@ -27,7 +28,9 @@ export const LocationAndCurrencySelection: FC<
 > = props => {
   const { className } = props;
 
-  const handleSelectOption = (): void => {};
+  const handleSelectOption = (value: OptionType): void => {
+    console.log(value);
+  };
 
   return (
     <div className={cn(style.wrapper, className)}>

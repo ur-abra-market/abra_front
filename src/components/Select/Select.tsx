@@ -15,7 +15,7 @@ const ARROW_DOWN_KEYBOARD = 'ArrowDown';
 
 export type SelectPropsType = {
   options: OptionType[];
-  onChange?: () => void;
+  onChange?: (value: OptionType) => void;
   error?: string;
   children?: ReactNode;
   placeholder?: string | undefined;
@@ -33,16 +33,18 @@ const CustomSelect: FC<SelectPropsType> = ({
   error,
   children,
 }) => {
-  const defaultSelectedValue = placeholder || options[0].label;
-  const [selectedValue, setSelectedVale] = useState<string>(defaultSelectedValue);
+  const placeholderObj = placeholder ? { label: placeholder, value: placeholder } : null;
 
-  const handleSetSelectedValue = (value: string): void => {
+  const defaultSelectedValue = placeholderObj || options[0];
+  const [selectedValue, setSelectedVale] = useState<OptionType>(defaultSelectedValue);
+
+  const handleSetSelectedValue = (value: OptionType): void => {
     if (value === selectedValue) {
       handleCloseSelectMenu();
     } else {
       setSelectedVale(value);
       if (onChange) {
-        onChange();
+        onChange(value);
       }
       handleCloseSelectMenu();
     }
@@ -107,7 +109,7 @@ const CustomSelect: FC<SelectPropsType> = ({
 
         if (keyCode === SPACE_KEYBOARD) e.preventDefault();
 
-        setSelectedVale(options[number].label);
+        setSelectedVale(options[number]);
       };
     } else {
       document.onkeydown = e => {

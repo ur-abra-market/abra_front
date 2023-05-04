@@ -2,10 +2,11 @@ import React, { FC } from 'react';
 
 import ArrowDownLogo from '../../../assets/img/icons/arrow-slide-down.svg';
 import ArrowUpLogo from '../../../assets/img/icons/arrow-slide-up.svg';
+import { OptionType } from '../Select';
 
 type SelectHeaderPropsType = {
   isOpenMenu: boolean;
-  currentSelectedValue: string;
+  currentSelectedValue: OptionType;
   onClick: () => void;
   className: string | undefined;
 };
@@ -20,7 +21,7 @@ const SelectHeader: FC<SelectHeaderPropsType> = ({
 
   return (
     <div onClick={onClick} role="presentation" className={className}>
-      {currentSelectedValue}
+      {currentSelectedValue.label}
       <img src={currentArrowLogo} alt="currentArrowLogo" />
     </div>
   );
