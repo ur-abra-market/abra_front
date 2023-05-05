@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { Container } from '../../components';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
@@ -11,6 +11,7 @@ import style from './MainPage.module.css';
 
 import { InfoBtn } from 'components/buttons';
 import Feedback from 'components/new-components/feedback/Feedback';
+import { OrderParams } from 'enums/orderParams.enum';
 import StatusProduct from 'pages/MainPage/StatusProduct';
 import { fetchProductList } from 'store/reducers/mainPageSlice';
 
@@ -53,11 +54,18 @@ const MainPage = (): JSX.Element => {
   const { products } = useAppSelector(state => state.mainPageProducts);
 
   // const [test] = useState(Array(10).fill(1));
-  const [page] = useState({ page_num: 1, page_size: 10 });
+  // const [page] = useState({ page_num: 1, page_size: 10 });
 
   useEffect(() => {
     Object.values(CATEGORIES).forEach(({ category_id }) => {
-      dispatch(fetchProductList({ type: filter, category_id, ...page }));
+      dispatch(
+        fetchProductList({
+          offset: 0,
+          limit: 100,
+          category_id,
+          order_by: OrderParams.DATE,
+        }),
+      );
     });
   }, [dispatch, filter]);
 
