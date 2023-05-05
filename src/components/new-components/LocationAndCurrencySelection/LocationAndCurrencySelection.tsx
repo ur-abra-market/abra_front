@@ -13,7 +13,7 @@ import { LocationAndCurrencySelectionProps } from './LocationAndCurrencySelectio
 const CURRENCY_DATA: IOption[] = [
   { label: 'English / USD', value: 'usd' },
   { label: 'Russian / RUB', value: 'ru' },
-  { label: 'Ukrainedddddddddddd / RUB', value: 'ua' },
+  { label: 'Ukrainian / RUB', value: 'ua' },
   { label: 'Poland / RUB', value: 'pl' },
   { label: 'Latvia / RUB', value: 'lv' },
 ];
@@ -34,12 +34,12 @@ export const LocationAndCurrencySelection: FC<
 
   return (
     <div className={cn(style.wrapper, className)}>
-      {/* <Select options={CURRENCY_DATA} className={style.select} /> */}
       <CustomSelect
         options={CURRENCY_DATA}
         onChange={handleSelectOption}
         menuHeight="200px"
         width="150px"
+        placeholder="undefined"
       />
       <div className={style.select_box}>
         <span>Ship to</span>
