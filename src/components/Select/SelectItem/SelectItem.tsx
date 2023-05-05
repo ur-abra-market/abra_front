@@ -34,10 +34,10 @@ const SelectItem: FC<SelectItemPropsType> = ({ currentSelectedItem, value, onCli
     }
   };
 
-  const isSelectedItem =
-    currentSelectedItem.label === value.label
-      ? cn(styles.item_selected, currentClassName)
-      : currentClassName;
+  const isSelectedItem = cn(
+    currentSelectedItem.label === value.label && styles.item_selected,
+    currentClassName,
+  );
 
   return (
     <div

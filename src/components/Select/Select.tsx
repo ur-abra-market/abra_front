@@ -23,10 +23,10 @@ export type SelectPropsType = {
   onChange?: (value: OptionType) => void;
   error?: string;
   children?: ReactNode;
-  placeholder?: string | undefined;
+  placeholder?: string;
   menuHeight?: string;
   width?: string;
-  className?: string | undefined;
+  className?: string;
 };
 
 export type OptionType = {
@@ -51,14 +51,14 @@ const CustomSelect: FC<SelectPropsType> = ({
 
   const handleSetSelectedValue = (incomingData: OptionType): void => {
     if (incomingData === selectedValue) {
-      handleCloseSelectMenu();
+      //
     } else {
       setSelectedVale(incomingData);
       if (onChange) {
         onChange(incomingData);
       }
-      handleCloseSelectMenu();
     }
+    handleCloseSelectMenu();
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -136,15 +136,10 @@ const CustomSelect: FC<SelectPropsType> = ({
     }
   }, [isOpen, options]);
 
-  const SelectWidth = width ? { width } : {};
+  const selectWidth = width ? { width } : {};
 
   return (
-    <div
-      style={SelectWidth}
-      className={cn(styles.main, className)}
-      ref={squareBoxRef}
-      role="presentation"
-    >
+    <div style={selectWidth} className={cn(styles.main, className)} ref={squareBoxRef}>
       <SelectHeader
         className={headerClassname}
         currentSelectedValue={selectedValue}
