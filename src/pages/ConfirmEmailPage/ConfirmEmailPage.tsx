@@ -26,7 +26,7 @@ const ConfirmEmailPage = (): JSX.Element => {
   return (
     <div className={style.container}>
       <div className={style.wrapper}>
-        <ContentMessage title="Email has checked." text="Moving to main page..." />
+        <ContentMessage title="Email confirmed." text="Moving to main page..." />
       </div>
     </div>
   );
