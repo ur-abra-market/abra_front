@@ -34,6 +34,7 @@ const RegisterForm = (): JSX.Element => {
     watch,
     formState: { isValid, errors },
     handleSubmit,
+    setError,
   } = useForm<FormDataValuesType>({
     resolver: yupResolver(schema),
     mode: 'all',
@@ -41,19 +42,23 @@ const RegisterForm = (): JSX.Element => {
 
   const watchPasword = watch('password');
 
-  const { resMessage } = useAppSelector(state => state.register);
+  const { errMessage } = useAppSelector(state => state.register);
 
   const handleClick = (userStatus: 'seller' | 'supplier'): void => {
     setUserStatus(userStatus);
   };
 
   useEffect(() => {
-    if (resMessage === 'MESSAGE_HAS_BEEN_SENT') navigate('/');
-  }, [navigate, resMessage]);
+    setError('email', { message: errMessage, type: 'server' });
+  }, [errMessage, setError]);
 
   const onSubmit = (data: FormDataValuesType): void => {
     if (!isValid) return;
-    dispatch(registerService({ ...data, route: userStatus }));
+    dispatch(registerService({ ...data, route: userStatus })).then(
+      ({ meta: { requestStatus } }) => {
+        if (requestStatus === 'fulfilled') navigate('/register/checkEmail');
+      },
+    );
   };
 
   return (

@@ -4,12 +4,11 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import ContentMessage from 'components/ContentMessage';
 import style from 'pages/ConfirmEmailPage/ConfirmEmailPage.module.css';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { registerService } from 'store/reducers/registerSlice';
+import { useAppDispatch } from 'store/hooks';
+import { clearState, registerService } from 'store/reducers/registerSlice';
 
 const ConfirmEmailPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const resServer = useAppSelector(state => state.register.resMessage);
 
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -17,20 +16,17 @@ const ConfirmEmailPage = (): JSX.Element => {
   useEffect(() => {
     const token = searchParams.get('token');
 
-    if (token) dispatch(registerService({ route: 'confirmEmail', token }));
-  }, [dispatch, searchParams]);
-
-  useEffect(() => {
-    if (resServer === 'REGISTRATION_SUCCESSFUL') navigate('/', { replace: true });
-  }, [navigate, resServer]);
+    if (token)
+      dispatch(registerService({ route: 'confirmEmail', token })).then(() => {
+        dispatch(clearState());
+        navigate('/');
+      });
+  }, [dispatch, searchParams, navigate]);
 
   return (
     <div className={style.container}>
       <div className={style.wrapper}>
-        <ContentMessage
-          title="A link for sign up has been sent to your email address."
-          text="Make sure the email you received is indeed from Abra platform and follow the link to create a new password."
-        />
+        <ContentMessage title="Email has checked." text="Moving to main page..." />
       </div>
     </div>
   );
