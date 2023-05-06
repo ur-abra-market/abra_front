@@ -1,16 +1,15 @@
 import { Categories } from '../pages/MainPage/MainPage';
-// import { CategoryType } from '../pages/MainPage/StatusProduct/StatusProduct';
 
 import httpService from './http.service';
 
 import { OrderParams } from 'enums/orderParams.enum';
 import {
-  IResponse,
   IGradeProduct,
   IGradeProductRequest,
   IProduct,
   IRequestPopularProduct,
   IRequestProduct,
+  IResponse,
 } from 'interfaces';
 
 export interface IRequestCategory {
@@ -18,9 +17,6 @@ export interface IRequestCategory {
   limit: number;
   category_id: Categories;
   order_by: OrderParams;
-  // type: CategoryType;
-  // page_num: number;
-  // page_size: number;
 }
 export const productFetch = {
   getList: async (productData: IRequestCategory) => {

@@ -53,9 +53,6 @@ const MainPage = (): JSX.Element => {
   const filter = useAppSelector(state => state.product.statusProduct);
   const { products } = useAppSelector(state => state.mainPageProducts);
 
-  // const [test] = useState(Array(10).fill(1));
-  // const [page] = useState({ page_num: 1, page_size: 10 });
-
   useEffect(() => {
     Object.values(CATEGORIES).forEach(({ category_id }) => {
       dispatch(
