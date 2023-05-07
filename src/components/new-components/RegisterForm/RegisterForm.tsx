@@ -49,7 +49,12 @@ const RegisterForm = (): JSX.Element => {
   };
 
   useEffect(() => {
-    setError('email', { message: errMessage, type: 'server' });
+    if (errMessage === 'Try another email') {
+      setError('email', { message: errMessage });
+    } else {
+      setError('password', { message: errMessage });
+      setError('email', { message: errMessage });
+    }
   }, [errMessage, setError]);
 
   const onSubmit = (data: FormDataValuesType): void => {
@@ -84,6 +89,7 @@ const RegisterForm = (): JSX.Element => {
             placeholder="Password"
             type="password"
             variant="password"
+            error={errors.password?.message}
           />
           <PasswordComplexity valueOfNewPassword={watchPasword} />
         </div>

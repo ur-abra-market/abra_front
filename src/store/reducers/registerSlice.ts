@@ -25,7 +25,9 @@ export const registerService = createAsyncThunk<
     return { data };
   } catch (error) {
     if (error instanceof AxiosError) {
-      const errorMessage = error.response?.data?.error;
+      const responseError = error.response?.data?.error;
+
+      const errorMessage = responseError || error.message;
 
       return rejectWithValue(errorMessage);
     }
