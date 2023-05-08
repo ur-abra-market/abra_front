@@ -9,7 +9,7 @@ import {
 } from '../../services/auth.serviceType';
 
 const initialState = {
-  errMessage: '' as string | undefined,
+  errMessage: '' as string,
   isValidRegistrationData: null as null | boolean,
   loading: false as boolean,
 };
