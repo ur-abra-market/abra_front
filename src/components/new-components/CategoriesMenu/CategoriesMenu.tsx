@@ -1,10 +1,14 @@
-import React, { ForwardedRef, forwardRef, useState } from 'react';
+import React, { ForwardedRef, forwardRef, useEffect, useState } from 'react';
 
 import cn from 'classnames';
+
+import { categoryService } from '../../../store/reducers/categorySlice';
 
 import style from './CategoriesMenu.module.css';
 import { CategoriesMenuProps } from './CategoriesMenu.props';
 import { Items } from './CategoryItems';
+
+import { useAppDispatch } from 'store/hooks';
 
 export const CategoriesMenu = forwardRef(
   (props: CategoriesMenuProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
@@ -14,6 +18,14 @@ export const CategoriesMenu = forwardRef(
     const menItems = ['Hoodies', 'T-shirts', 'Shorts', 'Blazers', 'Jeans', 'Skirts'];
 
     const isClothes = activeCategories === 'clothes';
+
+    // const categories = useAppSelector(state => state.category.dateCategories);
+
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+      dispatch(categoryService());
+    }, [dispatch]);
 
     return (
       <div ref={ref} className={cn(style.menu_container)}>
