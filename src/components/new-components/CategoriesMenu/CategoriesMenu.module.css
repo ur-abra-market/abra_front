@@ -1,14 +1,14 @@
 .menu_container {
   position: absolute;
   z-index: 1;
-  bottom: -324px;
+  bottom: -464px;
   left: 0;
 
   display: flex;
   gap: 64px;
 
   min-width: 559px;
-  height: 324px;
+  min-height: 464px;
   padding: 32px;
 
   background-color: var(--white);
@@ -39,6 +39,10 @@
   font-weight: var(--regular);
   font-style: normal;
   line-height: 24px;
+  color: var(--black);
+}
+
+.items_container > li > a {
   color: var(--black);
 }
 
