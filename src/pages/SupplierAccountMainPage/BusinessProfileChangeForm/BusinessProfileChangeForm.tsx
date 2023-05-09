@@ -6,13 +6,12 @@ import { useForm } from 'react-hook-form';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from 'yup';
 
-import { PHONE_DATA } from '../../../constants/phone_data';
 import { CompanyInfo } from '../../../services/supplierAccount.service';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 // import { updateSupplierAccountDataService } from '../../../store/reducers/supplierAccountSlice';
 import { uploadUserLogoService } from '../../../store/reducers/userSlice';
-// import { filterEmptyValues } from '../../../utils/filterEmptyValues';
 
+// import { filterEmptyValues } from '../../../utils/filterEmptyValues';
 import style from './BusinessProfileChangeForm.module.css';
 
 import ImageAdding from 'components/ImageAdding';
@@ -106,7 +105,7 @@ const BusinessProfileChangeForm: FC = (): JSX.Element => {
   });
 
   const onSubmit = (data: FormFields): void => {
-    console.log(data);
+    console.log(data); // todo fix
     // const phone = data.code + data.tel;
 
     // const info = {
@@ -236,14 +235,15 @@ const BusinessProfileChangeForm: FC = (): JSX.Element => {
             <p className={style.main_info_title}>Contacts (optional)</p>
 
             <div className={style.phone_number}>
-              <Label label="Business phone number">
+              {/*      <Label label="Business phone number">
                 <Select {...register('code')} name="code" options={PHONE_DATA} />
               </Label>
-              <Input
-                placeholder="(XXX) XXX - XX - XX"
-                {...register('tel')}
-                error={errors?.tel?.message}
-              />
+                <Input
+                  placeholder="(XXX) XXX - XX - XX"
+                  {...register('tel')}
+                  error={errors?.tel?.message}
+                /> */}
+              {/* todo заменить на PhoneInput */}
             </div>
 
             <div className={style.contacts_inputs}>

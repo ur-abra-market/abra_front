@@ -12,7 +12,7 @@ export const getCountries = createAsyncThunk<CountryType[], void, AsyncThunkConf
     try {
       const response = await commonService.getCountry();
 
-      return response.result;
+      return response.data.result;
     } catch (error) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

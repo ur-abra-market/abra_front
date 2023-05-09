@@ -8,7 +8,8 @@ import { personalSupplierInfoValidationSchema } from '../../../constants/persona
 import { IAccountInfoData } from '../../../interfaces';
 import { PersonalInfoChangeForm } from '../../../pages/SupplierAccountMainPage/PersonalInfoChangeForm/PersonalInfoChangeForm';
 import { useAppDispatch } from '../../../store/hooks';
-import { setAccountInfo } from '../../../store/reducers/formRegistrationSlice';
+import { sendUserAccountInfo } from '../../../store/reducers/formRegistrationSlice';
+import { parsePhoneNumber } from '../../../utils/parsePhoneNumber';
 import FormTitle from '../../FormTitle';
 import Modal from '../../new-components/Modal';
 import { ModalChildPhoneCheck } from '../../new-components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
@@ -25,25 +26,26 @@ export const AccountSetupForm = (): JSX.Element => {
     register,
     formState: { errors, isValid },
     handleSubmit,
-    reset,
     watch,
+    control,
+    reset,
   } = useForm<IAccountInfoData>({
     resolver: yupResolver(personalSupplierInfoValidationSchema),
     mode: 'all',
   });
 
   const onSubmit = (data: IAccountInfoData): void => {
+    const { countryCode, phoneNumber } = parsePhoneNumber(data.tel);
+
     dispatch(
-      setAccountInfo({
-        user_info: {
-          first_name: data.firstName,
-          last_name: data.lastName,
-          phone: data.code + data.tel,
-        },
+      sendUserAccountInfo({
+        first_name: data.firstName,
+        last_name: data.lastName,
+        phone_country_code: countryCode,
+        phone_number: phoneNumber,
       }),
     );
-
-    navigate('/business-profile', { replace: true });
+    navigate('/business-profile');
 
     reset();
   };
@@ -57,7 +59,7 @@ export const AccountSetupForm = (): JSX.Element => {
           text="This information will not be published. The data will only be used to create your account"
         />
         <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-          <PersonalInfoChangeForm register={register} errors={errors} />
+          <PersonalInfoChangeForm register={register} errors={errors} control={control} />
 
           <Button
             type="submit"

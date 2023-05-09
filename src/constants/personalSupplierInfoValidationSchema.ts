@@ -18,13 +18,6 @@ export const personalSupplierInfoValidationSchema = yup
       .test('no-spaces', 'Please enter a valid name', value => {
         return value === undefined || value.trim() !== '';
       }),
-    code: yup.string().required('Field is required'),
-    tel: yup
-      .string()
-      .required('Field is required')
-      .matches(/^[0-9]*$/, 'Please enter only digits')
-      .min(5, 'Please enter at least 5 digits')
-      .max(14, 'Please limit to 14 digits')
-      .typeError('Please enter only digits'),
+    tel: yup.string().required('Field is required'),
   })
   .required();

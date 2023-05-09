@@ -1,9 +1,11 @@
-export type CountriesType = {
-  ok: boolean;
-  result: CountryType[];
-  detail: string;
-  error: string;
-  error_code: number;
+export type BaseResponseType<R> = {
+  data: {
+    ok: true;
+    result: R;
+    detail: 'string';
+    error: 'string';
+    error_code: 0;
+  };
 };
 
 export type CountryType = {
