@@ -13,6 +13,9 @@ import PasswordComplexity from '../PasswordComplexity';
 
 import style from './RegisterForm.module.css';
 
+const MATCHED_ERROR_MESSAGE =
+  'password must match the following: "/^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/"';
+
 const schema = yup
   .object({
     email: yup.string().email('Invalid email').required('Email is required'),
@@ -89,7 +92,11 @@ const RegisterForm = (): JSX.Element => {
             placeholder="Password"
             type="password"
             variant="password"
-            error={errors.password?.message}
+            error={
+              errors.password?.message !== MATCHED_ERROR_MESSAGE
+                ? errors.password?.message
+                : ''
+            }
           />
           <PasswordComplexity valueOfNewPassword={watchPasword} />
         </div>
