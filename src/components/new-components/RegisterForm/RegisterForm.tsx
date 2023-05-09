@@ -34,6 +34,7 @@ const RegisterForm = (): JSX.Element => {
     watch,
     formState: { isValid, errors },
     handleSubmit,
+    setError,
   } = useForm<FormDataValuesType>({
     resolver: yupResolver(schema),
     mode: 'all',
@@ -41,19 +42,28 @@ const RegisterForm = (): JSX.Element => {
 
   const watchPasword = watch('password');
 
-  const { resMessage } = useAppSelector(state => state.register);
+  const { errMessage } = useAppSelector(state => state.register);
 
   const handleClick = (userStatus: 'seller' | 'supplier'): void => {
     setUserStatus(userStatus);
   };
 
   useEffect(() => {
-    if (resMessage === 'MESSAGE_HAS_BEEN_SENT') navigate('/');
-  }, [navigate, resMessage]);
+    if (errMessage === 'Try another email') {
+      setError('email', { message: errMessage });
+    } else {
+      setError('password', { message: errMessage });
+      setError('email', { message: errMessage });
+    }
+  }, [errMessage, setError]);
 
   const onSubmit = (data: FormDataValuesType): void => {
     if (!isValid) return;
-    dispatch(registerService({ ...data, route: userStatus }));
+    dispatch(registerService({ ...data, route: userStatus })).then(
+      ({ meta: { requestStatus } }) => {
+        if (requestStatus === 'fulfilled') navigate('/register/checkEmail');
+      },
+    );
   };
 
   return (
@@ -79,6 +89,7 @@ const RegisterForm = (): JSX.Element => {
             placeholder="Password"
             type="password"
             variant="password"
+            error={errors.password?.message}
           />
           <PasswordComplexity valueOfNewPassword={watchPasword} />
         </div>
