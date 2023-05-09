@@ -168,7 +168,7 @@ const AccountSetupForm = (): JSX.Element => {
             label="Continue"
           />
 
-          <Modal active={active} close={setActive} classNameModal={style.modal}>
+          <Modal showModal={active} closeModal={setActive} classNameModal={style.modal}>
             <div className={style.modal_wrapper}>
               <div className={style.modal_header}>Verify your phone number</div>
               <div className={style.modal_container}>
