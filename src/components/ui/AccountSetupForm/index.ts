@@ -1,3 +1,3 @@
-import AccountSetupForm from './AccountSetupForm';
+import { AccountSetupForm } from './AccountSetupForm';
 
 export default AccountSetupForm;

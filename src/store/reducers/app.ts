@@ -1,9 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { checkAuth } from './loginSlice';
+import { Status } from '../../enums/status.enum';
 
-const initialState = {
+import { getCurrentUserInfo, loginService } from './loginSlice';
+
+interface IInitialState {
+  isInitialized: boolean;
+  isLoading: Status;
+  isFeedbackOpen: boolean;
+}
+
+const initialState: IInitialState = {
   isInitialized: false,
+  isLoading: Status.Idle,
   isFeedbackOpen: false,
 };
 
@@ -16,11 +25,23 @@ export const appSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(checkAuth.fulfilled, state => {
-      state.isInitialized = true;
+    builder.addCase(loginService.pending, state => {
+      state.isLoading = Status.Loading;
     });
-    builder.addCase(checkAuth.rejected, state => {
+    builder.addCase(loginService.rejected, state => {
+      state.isLoading = Status.Failed;
+    });
+
+    builder.addCase(getCurrentUserInfo.pending, state => {
+      state.isLoading = Status.Loading;
+    });
+    builder.addCase(getCurrentUserInfo.fulfilled, state => {
       state.isInitialized = true;
+      state.isLoading = Status.Success;
+    });
+    builder.addCase(getCurrentUserInfo.rejected, state => {
+      state.isInitialized = true;
+      state.isLoading = Status.Failed;
     });
   },
 });

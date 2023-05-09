@@ -1,36 +1,21 @@
 import React, { useEffect } from 'react';
 
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import Loader from '../../components/Loader';
 import { Status } from '../../enums/status.enum';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import {
-  getSupplierAccountDataService,
-  getSupplierNotifications,
-} from '../../store/reducers/supplierAccountSlice';
-import { getCompanyInfoService } from '../../store/reducers/supplierSlice';
+import { useAppSelector } from '../../store/hooks';
 
 import { SupplierLayout } from 'layouts/SupplierLayout/SupplierLayout';
 
 const SupplierPage = (): JSX.Element => {
-  // const [isGetCompanyInfo, setIsGetCompanyInfo] = useState(false);
-
-  const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
   const isLoading = useAppSelector(state => state.supplierAccount.isLoading);
-  // const supplierInfo = useAppSelector(state => state.supplierAccount.supplierInfo);
+  const hasProfile = useAppSelector(state => state.supplierAccount.hasProfile);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getCompanyInfoService());
-    dispatch(getSupplierAccountDataService());
-    dispatch(getSupplierNotifications());
-    // setIsGetCompanyInfo(true);
-  }, [dispatch]);
-
-  // useEffect(() => {
-  //   if (isGetCompanyInfo && isLoading && !supplierInfo) navigate('../account-setup');
-  // }, [supplierInfo, isGetCompanyInfo, isLoading, navigate]);
+    if (!hasProfile) navigate('../account-setup');
+  }, [hasProfile]);
 
   if (isLoading === Status.Loading) {
     return <Loader />;
