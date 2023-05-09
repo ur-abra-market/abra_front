@@ -2,30 +2,69 @@ import React, { ForwardedRef, forwardRef, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
-import { categoryService } from '../../../store/reducers/categorySlice';
+import {
+  categoryService,
+  ResponseCategoryType,
+} from '../../../store/reducers/categorySlice';
 
 import style from './CategoriesMenu.module.css';
 import { CategoriesMenuProps } from './CategoriesMenu.props';
 import { Items } from './CategoryItems';
 
-import { useAppDispatch } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+
+const filteredCategories: FilteredCategoriesType = {
+  all: [
+    'Clothing',
+    'Sportswear',
+    'Swimwear',
+    'Underwear',
+    'Home clothes',
+    'Outerwear',
+    'Bags',
+    'Accessories',
+    'Shoes',
+    'Jewellery',
+    'For girls',
+    'For boys',
+  ],
+  accessories: ['Bags', 'Accessories', 'Jewellery'],
+  clothes: [
+    'Clothing',
+    'Sportswear',
+    'Swimwear',
+    'Underwear',
+    'Home clothes',
+    'Outerwear',
+    'Shoes',
+    'For girls',
+    'For boys',
+  ],
+  cosmetics: [],
+};
 
 export const CategoriesMenu = forwardRef(
   (props: CategoriesMenuProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [activeCategories, setActiveCategories] = useState<Categroies>('all');
 
-    const womenItems = ['Dresses', 'T-shirts', 'Tops', 'Blazers', 'Jeans', 'Skirts'];
-    const menItems = ['Hoodies', 'T-shirts', 'Shorts', 'Blazers', 'Jeans', 'Skirts'];
+    const categories = useAppSelector(state => state.category.dateCategories);
 
-    const isClothes = activeCategories === 'clothes';
-
-    // const categories = useAppSelector(state => state.category.dateCategories);
+    const wearerCategory = categories ? categories.filter(c => c.level === 1) : [];
 
     const dispatch = useAppDispatch();
 
+    const filterCategories = (
+      category?: ResponseCategoryType[],
+    ): ResponseCategoryType[] | [] => {
+      return category
+        ? category.filter(c => filteredCategories[activeCategories].includes(c.name))
+        : [];
+    };
+
     useEffect(() => {
-      dispatch(categoryService());
-    }, [dispatch]);
+      // prevent unnecessary requests for following rerenderings
+      if (!categories) dispatch(categoryService());
+    }, [dispatch, categories]);
 
     return (
       <div ref={ref} className={cn(style.menu_container)}>
@@ -75,8 +114,9 @@ export const CategoriesMenu = forwardRef(
             </button>
           </li>
         </ul>
-        <Items gender="Women" items={isClothes ? womenItems : []} />
-        <Items gender="Men" items={isClothes ? menItems : []} />
+        {wearerCategory.map(c => (
+          <Items key={c.id} gender={c.name} items={filterCategories(c.children)} />
+        ))}
       </div>
     );
   },
@@ -84,7 +124,11 @@ export const CategoriesMenu = forwardRef(
 
 export interface ItemsProps {
   gender: string;
-  items?: string[];
+  items?: ResponseCategoryType[];
 }
 
 type Categroies = 'all' | 'clothes' | 'accessories' | 'cosmetics';
+
+type FilteredCategoriesType = {
+  [key in Categroies]: string[];
+};
