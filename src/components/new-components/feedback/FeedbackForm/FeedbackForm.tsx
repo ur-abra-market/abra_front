@@ -1,30 +1,32 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { useAppDispatch } from '../../../../store/hooks';
 import { toggleInfoForm } from '../../../../store/reducers/app';
-import { Button } from '../../../ui-kit';
-import Modal from '../../Modal';
-import Social from '../Social';
-import WhatsApp from '../WhatsApp';
+// import { Button } from '../../../ui-kit';
+// import Modal from '../../Modal';
+// import Social from '../Social';
+// import WhatsApp from '../WhatsApp';
+//
+// import style from './FeedbackForm.module.css';
 
-import style from './FeedbackForm.module.css';
-
-const FeedbackForm: React.FC<Props> = ({ isFeedbackOpen }) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const FeedbackForm: FC<Props> = ({ isFeedbackOpen }) => {
   const dispatch = useAppDispatch();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onToggleInfoForm = (): void => {
     dispatch(toggleInfoForm());
   };
 
   return (
     <div>
-      <Modal showModal={isFeedbackOpen} classNameModal={style.modal}>
-        <Button color="white" className={style.btn} onClick={onToggleInfoForm}>
-          ✕
-        </Button>
-        <WhatsApp className={style.whatsapp} />
-        <Social />
-      </Modal>
+      {/* <Modal showModal={isFeedbackOpen} classNameModal={style.modal}> */}
+      {/*  <Button color="white" className={style.btn} onClick={onToggleInfoForm}> */}
+      {/*    ✕ */}
+      {/*  </Button> */}
+      {/*  <WhatsApp className={style.whatsapp} /> */}
+      {/*  <Social /> */}
+      {/* </Modal> */}
     </div>
   );
 };

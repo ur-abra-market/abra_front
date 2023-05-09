@@ -7,11 +7,11 @@ import style from './Modal.module.css';
 
 interface ModalProps {
   showModal: boolean;
-  closeModal?: (value: boolean) => void;
+  closeModal: (value: boolean) => void;
   classNameModal?: string;
 }
 
-const Modal: FC<PropsWithChildren<ModalProps>> = ({
+export const Modal: FC<PropsWithChildren<ModalProps>> = ({
   showModal,
   children,
   closeModal,
@@ -35,13 +35,7 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
 
   return createPortal(
     showModal && (
-      <div
-        role="presentation"
-        className={style.modal}
-        onClick={() => {
-          closeModal?.(false);
-        }}
-      >
+      <div role="presentation" className={style.modal} onClick={() => closeModal(false)}>
         <div
           role="presentation"
           className={cn(style.modal_content, classNameModal)}
@@ -56,5 +50,3 @@ const Modal: FC<PropsWithChildren<ModalProps>> = ({
     document.body,
   );
 };
-
-export default Modal;

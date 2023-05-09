@@ -99,7 +99,7 @@ const Top = (): JSX.Element => {
       />
 
       <Logo href="/" />
-      <Search placeholder="Search" isPhotoSearch />
+      <Search placeholder="Search" />
       <div className={style.inner_buttons}>
         <div className={style.wrapper_btn}>
           <IconButton onClick={() => handleOnClick('account')}>
