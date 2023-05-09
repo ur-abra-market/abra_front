@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ import { Button } from '../../components/ui-kit';
 
 import style from './ChangePasswordPage.module.css';
 
-const ChangePasswordPage: FC = () => {
+const ChangePasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
   const handleChangeModalActive = (): void => {
     setModalActive(prevState => !prevState);
@@ -29,7 +29,11 @@ const ChangePasswordPage: FC = () => {
         </div>
       </div>
 
-      <Modal active={modalActive} classNameModal={style.modal_container}>
+      <Modal
+        showModal={modalActive}
+        closeModal={setModalActive}
+        classNameModal={style.modal_container}
+      >
         <div className={style.modal_content_wrapper}>
           <div className={style.modal_header}>
             Your new password has been successfully saved

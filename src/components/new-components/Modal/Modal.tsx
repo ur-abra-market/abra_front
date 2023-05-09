@@ -6,55 +6,47 @@ import { createPortal } from 'react-dom';
 import style from './Modal.module.css';
 
 interface ModalProps {
-  active: boolean;
-  close?: (val: boolean) => void;
+  showModal: boolean;
+  closeModal: (value: boolean) => void;
   classNameModal?: string;
 }
-const Modal: FC<PropsWithChildren<ModalProps>> = ({
-  active,
+
+export const Modal: FC<PropsWithChildren<ModalProps>> = ({
+  showModal,
   children,
-  close,
+  closeModal,
   classNameModal,
 }): JSX.Element => {
   useEffect(() => {
     const target = document.body;
-
     const oldWidth = target.offsetWidth;
 
-    target.style.overflow = 'hidden';
-    target.style.width = `${oldWidth}px`;
+    if (showModal) {
+      target.style.overflow = 'hidden';
+      target.style.width = `${oldWidth}px`;
+    } else {
+      target.removeAttribute('style');
+    }
 
     return () => {
       target.removeAttribute('style');
     };
-  }, []);
+  }, [showModal]);
 
   return createPortal(
-    <div
-      role="presentation"
-      className={cn(style.modal, { [style.modal_active]: active })}
-      onClick={() => {
-        close?.(false);
-      }}
-    >
-      <div
-        role="presentation"
-        className={cn(
-          style.modal_content,
-          {
-            [style.modal_content_active]: active,
-          },
-          classNameModal,
-        )}
-        onClick={e => {
-          e.stopPropagation();
-        }}
-      >
-        {children}
+    showModal && (
+      <div role="presentation" className={style.modal} onClick={() => closeModal(false)}>
+        <div
+          role="presentation"
+          className={cn(style.modal_content, classNameModal)}
+          onClick={e => {
+            e.stopPropagation();
+          }}
+        >
+          {children}
+        </div>
       </div>
-    </div>,
+    ),
     document.body,
   );
 };
-
-export default Modal;
