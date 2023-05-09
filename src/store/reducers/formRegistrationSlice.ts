@@ -2,6 +2,9 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { Status } from '../../enums/status.enum';
+import authService from '../../services/auth.service';
+import { SendUserAccountInfoParamsType } from '../../services/auth.serviceType';
+import { BaseResponseType } from '../../services/common.serviceType';
 import formRegistrationService from '../../services/formRegistration.service';
 import { RequestAccountInfo } from '../../services/supplierAccount.service';
 
@@ -36,22 +39,31 @@ export const accountInfoService = createAsyncThunk<
   }
 });
 
-// export const getAccountInfo = createAsyncThunk(
-//   'formRegistration/getAccountInfo',
-//   async (_, { rejectWithValue }) => {
-//     try {
-//       const response = await supplierAccountData.getAccountData();
-//
-//       console.log('SLICE - NEW', response);
-//
-//       return response.result;
-//     } catch (error) {
-//       const err = error.response.data.result ? error.response.data.result : error.message;
-//
-//       return rejectWithValue(err);
-//     }
-//   },
-// );
+export const sendUserAccountInfo = createAsyncThunk<
+  BaseResponseType<boolean>,
+  SendUserAccountInfoParamsType
+>(
+  'formRegistration/sendUserAccountInfo',
+  async (
+    { first_name, last_name, phone_country_code, phone_number },
+    { rejectWithValue },
+  ) => {
+    try {
+      return await authService.sendUserAccountInfo({
+        first_name,
+        last_name,
+        phone_country_code,
+        phone_number,
+      });
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[sendUserAccountInfo]: ERROR');
+    }
+  },
+);
 
 const formRegistrationSlice = createSlice({
   name: 'formRegistration',
@@ -71,12 +83,7 @@ const formRegistrationSlice = createSlice({
       state.loading = Status.Failed;
     });
   },
-  reducers: {
-    setAccountInfo: (state, action) => {
-      state.accountInfo = action.payload;
-    },
-  },
+  reducers: {},
 });
 
-export const { setAccountInfo } = formRegistrationSlice.actions;
 export default formRegistrationSlice.reducer;

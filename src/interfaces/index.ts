@@ -1,3 +1,9 @@
+export interface IAccountInfoData {
+  firstName: string;
+  lastName: string;
+  tel: string;
+}
+
 export interface IProduct {
   grade: IGrade;
   category_id: number;

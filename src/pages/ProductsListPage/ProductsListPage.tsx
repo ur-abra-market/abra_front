@@ -239,7 +239,7 @@ const ProductsListPage: FC = (): JSX.Element => {
             data={data}
             classes={tableStyleClasses}
           />
-          <Modal active={modalActive}>
+          <Modal showModal={modalActive} closeModal={setModalActive}>
             <h1 className={style.modal_header}>
               Are you sure you want to delete the selected items?
             </h1>

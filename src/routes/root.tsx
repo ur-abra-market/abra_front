@@ -11,6 +11,7 @@ import AboutUsPage from '../pages/AboutUsPage/AboutUsPage';
 import AuthPage from '../pages/AuthPage';
 import ChangeEmailPage from '../pages/ChangeEmailPage';
 import ChangePasswordPage from '../pages/ChangePasswordPage';
+import CheckEmailPage from '../pages/CheckEmailPage/CheckEmailPage';
 import ConfirmEmailPage from '../pages/ConfirmEmailPage';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import ForgotPasswordPage from '../pages/ForgotPasswordPage';
@@ -57,8 +58,12 @@ export function createRoutes(userRole: userRoleType): Routes {
           element: <ChangeEmailPage />,
         },
         {
-          path: 'register/email-confirmation',
+          path: 'register/confirmEmail',
           element: <ConfirmEmailPage />,
+        },
+        {
+          path: 'register/checkEmail',
+          element: <CheckEmailPage />,
         },
         {
           path: 'terms&conditions',

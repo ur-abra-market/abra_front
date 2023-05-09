@@ -9,8 +9,8 @@ import {
 } from '../../services/auth.serviceType';
 
 const initialState = {
-  resMessage: '' as string,
   errMessage: '' as string,
+  isValidRegistrationData: null as null | boolean,
   loading: false as boolean,
 };
 
@@ -20,10 +20,16 @@ export const registerService = createAsyncThunk<
   AsyncThunkConfig
 >('register/registerService', async (dataUser, { rejectWithValue }) => {
   try {
-    return authService.register(dataUser);
+    const { data } = await authService.register(dataUser);
+
+    return { data };
   } catch (error) {
     if (error instanceof AxiosError) {
-      return rejectWithValue(error.message);
+      const responseError = error.response?.data?.error;
+
+      const errorMessage = responseError || error.message;
+
+      return rejectWithValue(errorMessage);
     }
 
     return rejectWithValue('[registerService]: Error');
@@ -35,20 +41,28 @@ const registerSlice = createSlice({
   initialState,
   extraReducers: bulder => {
     bulder.addCase(registerService.pending, state => {
-      state.resMessage = '';
+      state.errMessage = '';
       state.loading = true;
     });
-    bulder.addCase(registerService.fulfilled, (state, action) => {
-      state.resMessage = action.payload.data.result; // response
+    bulder.addCase(registerService.fulfilled, state => {
+      state.isValidRegistrationData = true;
       state.loading = false;
     });
     bulder.addCase(registerService.rejected, (state, action) => {
-      state.resMessage = action.payload as string;
       state.errMessage = action.payload as string;
+      state.isValidRegistrationData = false;
       state.loading = false;
     });
   },
-  reducers: {},
+  reducers: {
+    clearState: state => {
+      state.errMessage = '';
+      state.isValidRegistrationData = null;
+      state.loading = false;
+    },
+  },
 });
+
+export const { clearState } = registerSlice.actions;
 
 export default registerSlice.reducer;

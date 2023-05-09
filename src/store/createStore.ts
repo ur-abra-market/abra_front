@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { appReducer } from './reducers/app';
 import basketReducer from './reducers/basketSlice';
 import categoryReducer from './reducers/categorySlice';
+import commonSlice from './reducers/commonSlice';
 import filterReducer from './reducers/filterSlice';
 import formRegistrationReducer from './reducers/formRegistrationSlice';
 import loginReducer from './reducers/loginSlice';
@@ -47,6 +48,7 @@ export const store = configureStore({
     seller: sellerSlice,
     sellerCheckout: sellerCheckoutSlice,
     passwordSlice,
+    common: commonSlice,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

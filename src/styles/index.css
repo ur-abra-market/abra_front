@@ -120,3 +120,13 @@ h4 {
   font-size: var(--fh4);
   letter-spacing: 0.38px;
 }
+
+/* стили перебивают дефолтные для PhoneInput из бибилиотеки react-phone-input-2*/
+/* stylelint-disable */
+.react-tel-input .selected-flag:hover , .react-tel-input .flag-dropdown.open, .react-tel-input .flag-dropdown.open .selected-flag {
+  background:#F2F2F2;
+}
+
+.react-tel-input .flag-dropdown.open {
+  border-radius: 12px 0 0 12px;
+}
