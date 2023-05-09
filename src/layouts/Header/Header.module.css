@@ -25,7 +25,6 @@
   line-height: 15px;
 
   background: transparent;
-  border-right: 1px solid var(--black);
 }
 
 .center{
@@ -34,7 +33,6 @@
 
 .right{
   padding-left: 16px;
-  border-left: 1px solid var(--black);
 }
 
 .container_position {

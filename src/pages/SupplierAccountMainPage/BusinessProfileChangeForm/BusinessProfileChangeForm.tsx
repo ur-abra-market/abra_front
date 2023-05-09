@@ -6,13 +6,12 @@ import { useForm } from 'react-hook-form';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from 'yup';
 
-import { PHONE_DATA } from '../../../components/ui/AccountSetupForm/AccountSetupForm';
 import { CompanyInfo } from '../../../services/supplierAccount.service';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { updateSupplierAccountDataService } from '../../../store/reducers/supplierAccountSlice';
+// import { updateSupplierAccountDataService } from '../../../store/reducers/supplierAccountSlice';
 import { uploadUserLogoService } from '../../../store/reducers/userSlice';
-import { filterEmptyValues } from '../../../utils/filterEmptyValues';
 
+// import { filterEmptyValues } from '../../../utils/filterEmptyValues';
 import style from './BusinessProfileChangeForm.module.css';
 
 import ImageAdding from 'components/ImageAdding';
@@ -106,36 +105,37 @@ const BusinessProfileChangeForm: FC = (): JSX.Element => {
   });
 
   const onSubmit = (data: FormFields): void => {
-    const phone = data.code + data.tel;
+    console.log(data); // todo fix
+    // const phone = data.code + data.tel;
 
-    const info = {
-      name: data.storeName,
-      business_sector: data.businessSector,
-      year_established: +data.yearEstablished,
-      number_of_employees: +data.numEmployees,
-      description: data.textarea,
-      phone,
-      business_email: data.email,
-      address: data.address,
-      is_manufacturer: data.checkbox ? 1 : 0,
-    };
+    // const info = {
+    //   name: data.storeName,
+    //   business_sector: data.businessSector,
+    //   year_established: +data.yearEstablished,
+    //   number_of_employees: +data.numEmployees,
+    //   description: data.textarea,
+    //   phone,
+    //   business_email: data.email,
+    //   address: data.address,
+    //   is_manufacturer: data.checkbox ? 1 : 0,
+    // };
 
-    const accountInfoForRequest = filterEmptyValues(info);
+    // const accountInfoForRequest = filterEmptyValues(info);
 
     dispatch(uploadUserLogoService(images[0]));
 
-    dispatch(
-      updateSupplierAccountDataService({
-        ...accountInfo,
-        license: {
-          // @ts-ignore
-          license_number: accountInfo?.user_info.license,
-        },
-        company_info: {
-          ...accountInfoForRequest,
-        },
-      }),
-    );
+    // dispatch(
+    //   updateSupplierAccountDataService({
+    //     ...accountInfo,
+    //     license: {
+    //       // @ts-ignore
+    //       license_number: accountInfo?.user_info.license,
+    //     },
+    //     company_info: {
+    //       ...accountInfoForRequest,
+    //     },
+    //   }),
+    // );
 
     reset();
   };
@@ -235,14 +235,15 @@ const BusinessProfileChangeForm: FC = (): JSX.Element => {
             <p className={style.main_info_title}>Contacts (optional)</p>
 
             <div className={style.phone_number}>
-              <Label label="Business phone number">
+              {/*      <Label label="Business phone number">
                 <Select {...register('code')} name="code" options={PHONE_DATA} />
               </Label>
-              <Input
-                placeholder="(XXX) XXX - XX - XX"
-                {...register('tel')}
-                error={errors?.tel?.message}
-              />
+                <Input
+                  placeholder="(XXX) XXX - XX - XX"
+                  {...register('tel')}
+                  error={errors?.tel?.message}
+                /> */}
+              {/* todo заменить на PhoneInput */}
             </div>
 
             <div className={style.contacts_inputs}>

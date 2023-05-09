@@ -3,7 +3,7 @@ import React, { FC, useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from 'yup';
 
@@ -17,7 +17,6 @@ import ImageAdding from '../../ImageAdding';
 import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 import { Button, Input, Label, Select } from '../../ui-kit';
 import { IOption } from '../../ui-kit/Select/Select.props';
-import { PHONE_DATA } from '../AccountSetupForm/AccountSetupForm';
 
 import style from './BusinessProfileForm.module.css';
 
@@ -117,8 +116,6 @@ const BusinessProfileForm: FC = (): JSX.Element => {
       navigate('../add-product', { replace: true });
   }, [resMessage, navigate]);
 
-  if (!accountInfo) return <Navigate to="/account-setup" />;
-
   return (
     <div className={style.form_wrapper}>
       <div className={style.form_container}>
@@ -216,14 +213,15 @@ const BusinessProfileForm: FC = (): JSX.Element => {
             <p className={style.main_info_title}>Contacts (optional)</p>
 
             <div className={style.phone_number}>
-              <Label label="Business phone number">
+              {/*              <Label label="Business phone number">
                 <Select {...register('code')} name="code" options={PHONE_DATA} />
               </Label>
               <Input
                 placeholder="(XXX) XXX - XX - XX"
                 {...register('tel')}
                 error={errors?.tel?.message}
-              />
+              /> */}
+              {/* todo заменить на PhoneInput */}
             </div>
 
             <div className={style.contacts_inputs}>
