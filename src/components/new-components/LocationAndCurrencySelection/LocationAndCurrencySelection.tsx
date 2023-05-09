@@ -13,9 +13,9 @@ import { LocationAndCurrencySelectionProps } from './LocationAndCurrencySelectio
 const CURRENCY_DATA: IOption[] = [
   { label: 'English / USD', value: 'usd' },
   { label: 'Russian / RUB', value: 'ru' },
-  { label: 'Ukrainian / RUB', value: 'ua' },
-  { label: 'Poland / RUB', value: 'pl' },
-  { label: 'Latvia / RUB', value: 'lv' },
+  // { label: 'Ukrainian / RUB', value: 'ua' },
+  // { label: 'Poland / RUB', value: 'pl' },
+  // { label: 'Latvia / RUB', value: 'lv' },
 ];
 
 const COUNTRY_DATA: IOption[] = [
@@ -37,9 +37,8 @@ export const LocationAndCurrencySelection: FC<
       <CustomSelect
         options={CURRENCY_DATA}
         onChange={handleSelectOption}
-        menuHeight="200px"
+        menuHeight="100px"
         width="150px"
-        placeholder="undefined"
       />
       <div className={style.select_box}>
         <span>Ship to</span>

@@ -2,13 +2,14 @@ import React, { FC } from 'react';
 
 import ArrowDownLogo from '../../../assets/img/icons/arrow-slide-down.svg';
 import ArrowUpLogo from '../../../assets/img/icons/arrow-slide-up.svg';
-import { OptionType } from '../Select';
+import { OptionType, PositionType } from '../Select';
 
 type SelectHeaderPropsType = {
   isOpenMenu: boolean;
   currentSelectedValue: OptionType;
   onClick: () => void;
   className: string | undefined;
+  position?: PositionType;
 };
 
 const SelectHeader: FC<SelectHeaderPropsType> = ({
@@ -16,8 +17,16 @@ const SelectHeader: FC<SelectHeaderPropsType> = ({
   onClick,
   className,
   isOpenMenu,
+  position = 'down',
 }) => {
-  const currentArrowLogo = isOpenMenu ? ArrowUpLogo : ArrowDownLogo;
+  let currentArrowLogo;
+
+  if (position === 'up') {
+    currentArrowLogo = isOpenMenu ? ArrowDownLogo : ArrowUpLogo;
+  }
+  if (position === 'down') {
+    currentArrowLogo = isOpenMenu ? ArrowUpLogo : ArrowDownLogo;
+  }
 
   return (
     <div onClick={onClick} role="presentation" className={className}>

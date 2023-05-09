@@ -27,22 +27,36 @@ export type SelectPropsType = {
   menuHeight?: string;
   width?: string;
   className?: string;
+  position?: PositionType;
+  header?: boolean;
 };
+
+export type PositionType = 'up' | 'down';
 
 export type OptionType = {
   label: string;
   value: string | number;
 };
 
+/**
+ *
+ * Props:
+ * - To add header use --> Header={true}
+ * - To set select menu height use --> menuHeight={"100px"} you can use any string ("100px","100%")
+ * - To position the menu above or below the header --> use position={"up" or "down"}
+ *
+ */
 const CustomSelect: FC<SelectPropsType> = ({
   options,
   placeholder,
   onChange,
   error,
   children,
-  menuHeight,
+  menuHeight = '200px',
   width,
   className,
+  position = 'down',
+  header = false,
 }) => {
   const placeholderObj = placeholder ? { label: placeholder, value: placeholder } : null;
 
@@ -62,7 +76,12 @@ const CustomSelect: FC<SelectPropsType> = ({
   };
 
   const [isOpen, setIsOpen] = useState(false);
-  const headerClassname = isOpen ? styles.header_active : styles.header;
+  let headerClassname = styles.header;
+
+  if (header) {
+    headerClassname = isOpen ? styles.header_active : styles.header;
+  }
+
   const handleChangeSelectState = (): void => {
     setIsOpen(!isOpen);
   };
@@ -137,17 +156,35 @@ const CustomSelect: FC<SelectPropsType> = ({
   }, [isOpen, options]);
 
   const selectWidth = width ? { width } : {};
+  const [currentMenuHeight, setCurrentMenuHeight] = useState(0);
+  const handleGetMenuHeight = (height: number): void => {
+    setCurrentMenuHeight(height);
+  };
+
+  const menuStyles = {
+    top: position === 'up' ? `-${currentMenuHeight}px` : 'unset',
+    borderRadius: header ? undefined : '8px',
+    boxShadow: header
+      ? undefined
+      : 'rgba(0, 0, 0, 0.2) 7px 6px 5px,rgba(0, 0, 0, 0.2) -4px 6px 5px,rgba(0, 0, 0, 0.2) 0 -4px 5px', // <-- box shadow
+  };
 
   return (
     <div style={selectWidth} className={cn(styles.main, className)} ref={squareBoxRef}>
       <SelectHeader
+        position={position}
         className={headerClassname}
         currentSelectedValue={selectedValue}
         isOpenMenu={isOpen}
         onClick={handleChangeSelectState}
       />
       <span className={styles.error}>{error}</span>
-      <SelectMenu isOpen={isOpen} height={menuHeight}>
+      <SelectMenu
+        isOpen={isOpen}
+        height={menuHeight}
+        style={menuStyles}
+        onChangeHeight={handleGetMenuHeight}
+      >
         {mappedSelectItems}
         {children}
       </SelectMenu>
