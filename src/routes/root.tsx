@@ -58,7 +58,7 @@ export function createRoutes(userRole: userRoleType): Routes {
           element: <ChangeEmailPage />,
         },
         {
-          path: 'register/email-confirmation',
+          path: 'register/confirmEmail',
           element: <ConfirmEmailPage />,
         },
         {
