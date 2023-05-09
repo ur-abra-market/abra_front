@@ -1,10 +1,11 @@
 import {
-  CheckAuthResponseType,
   LoginParamsType,
   LoginResponseType,
   RegisterParamsType,
   RegisterResponseType,
+  SendUserAccountInfoParamsType,
 } from './auth.serviceType';
+import { BaseResponseType } from './common.serviceType';
 import httpService from './http.service';
 
 const authService = {
@@ -22,12 +23,31 @@ const authService = {
     });
   },
 
+  sendUserAccountInfo: async ({
+    first_name,
+    last_name,
+    phone_country_code,
+    phone_number,
+  }: SendUserAccountInfoParamsType) => {
+    const { data } = await httpService.post<BaseResponseType<boolean>>(
+      `/register/account/sendInfo/`,
+      {
+        first_name,
+        last_name,
+        phone_country_code,
+        phone_number,
+      },
+    );
+
+    return data;
+  },
+
   login: ({ email, password }: LoginParamsType) => {
     return httpService.post<LoginResponseType>(`login/`, { email, password });
   },
 
-  checkAuth: () => {
-    return httpService.get<CheckAuthResponseType>(`users/getMe/`);
+  loginCurrentUser: () => {
+    return httpService.get(`/login/current/`); // todo добавить типизацию
   },
 
   logout: async () => {

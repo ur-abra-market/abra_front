@@ -3,106 +3,52 @@ import React, { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import * as yup from 'yup';
 
-import { PlusIcon } from '../../../assets/img';
+import { personalSupplierInfoValidationSchema } from '../../../constants/personalSupplierInfoValidationSchema';
+import { IAccountInfoData } from '../../../interfaces';
+import { PersonalInfoChangeForm } from '../../../pages/SupplierAccountMainPage/PersonalInfoChangeForm/PersonalInfoChangeForm';
 import { useAppDispatch } from '../../../store/hooks';
-import { setAccountInfo } from '../../../store/reducers/formRegistrationSlice';
+import { sendUserAccountInfo } from '../../../store/reducers/formRegistrationSlice';
+import { parsePhoneNumber } from '../../../utils/parsePhoneNumber';
 import FormTitle from '../../FormTitle';
 import Modal from '../../new-components/Modal';
-import { Input, Label, Select, Button } from '../../ui-kit';
-import { IOption } from '../../ui-kit/Select/Select.props';
+import { ModalChildPhoneCheck } from '../../new-components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
+import { Button } from '../../ui-kit';
 
 import style from './AccountSetupForm.module.css';
 
-const COUNTRY_DATA: IOption[] = [
-  { label: 'USA', value: 'USA' },
-  { label: 'Germany', value: 'Germany' },
-  { label: 'Brazil', value: 'Brazil' },
-  { label: 'France', value: 'France' },
-];
-
-export const PHONE_DATA: IOption[] = [
-  { label: '+90', value: '+90' },
-  { label: '+44', value: '+44' },
-  { label: '+77', value: '+77' },
-  { label: '+1', value: '+1' },
-];
-
-const schema = yup
-  .object({
-    firstName: yup
-      .string()
-      .min(2, 'First name should have at least 2 characters')
-      .max(50, 'First name should have at most 50 characters'),
-    lastName: yup
-      .string()
-      .min(2, 'Last name should have at least 2 characters')
-      .max(50, 'Last name should have at most 50 characters'),
-    license: yup
-      .string()
-      .min(6, 'License should have at least 6 characters')
-      .max(30, 'License can have at most 30 characters'),
-    country: yup.string().required(),
-    code: yup.string().required('Field is required'),
-    tel: yup
-      .string()
-      .matches(/^[0-9]*$/, 'Please enter only digits')
-      .min(5, 'Number should have at least 5 digits')
-      .max(14, 'Number can have no more than 14 digits')
-      .typeError('Please enter only digits'),
-  })
-  .required();
-
-interface IAccountInfoData {
-  firstName: string;
-  lastName: string;
-  license: string;
-  country: string;
-  tel: string;
-  code: string;
-}
-
-const AccountSetupForm = (): JSX.Element => {
+export const AccountSetupForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [active, setActive] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   const {
     register,
     formState: { errors, isValid },
     handleSubmit,
-    reset,
     watch,
+    control,
+    reset,
   } = useForm<IAccountInfoData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(personalSupplierInfoValidationSchema),
     mode: 'all',
   });
 
   const onSubmit = (data: IAccountInfoData): void => {
-    const phone = data.code + data.tel;
+    const { countryCode, phoneNumber } = parsePhoneNumber(data.tel);
 
     dispatch(
-      setAccountInfo({
-        user_info: {
-          first_name: data.firstName,
-          last_name: data.lastName,
-          phone,
-        },
-        license: {
-          license_number: +data.license,
-        },
-        country: {
-          country: data.country,
-        },
+      sendUserAccountInfo({
+        first_name: data.firstName,
+        last_name: data.lastName,
+        phone_country_code: countryCode,
+        phone_number: phoneNumber,
       }),
     );
-
-    navigate('/business-profile', { replace: true });
+    navigate('/business-profile');
 
     reset();
   };
-
-  const phone = watch('tel');
 
   return (
     <div className={style.form_wrapper}>
@@ -112,101 +58,28 @@ const AccountSetupForm = (): JSX.Element => {
           title="Account Info"
           text="This information will not be published. The data will only be used to create your account"
         />
+        <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
+          <PersonalInfoChangeForm register={register} errors={errors} control={control} />
 
-        <form onSubmit={handleSubmit(onSubmit)} id="test">
-          <div className={style.add_name}>
-            <Label label="First name">
-              <Input
-                placeholder="John"
-                {...register('firstName')}
-                error={errors.firstName?.message}
-              />
-            </Label>
-            <Label label="Last name">
-              <Input
-                placeholder="Johnson"
-                {...register('lastName')}
-                error={errors.lastName?.message}
-              />
-            </Label>
-          </div>
-          <Label label="Country of company registration">
-            <Select
-              placeholder="Select"
-              options={COUNTRY_DATA}
-              {...register('country')}
-              error={errors?.country?.message}
-            />
-          </Label>
-          <div className={style.phone_number}>
-            <Label label="Personal phone number">
-              <Select placeholder="Select" options={PHONE_DATA} {...register('code')} />
-            </Label>
-            <Input
-              placeholder="(XXX) XXX - XX - XX"
-              {...register('tel')}
-              error={errors?.tel?.message}
-            />
-          </div>
-          <Label label="License or entrepreneur number">
-            <Input
-              placeholder="000 – 00 – 0000"
-              {...register('license')}
-              error={errors?.license?.message}
-            />
-          </Label>
-          <p className={style.license_reminder}>
-            Use the number of any document authorizing the sale
-          </p>
           <Button
             type="submit"
             disabled={!isValid}
             onClick={() => {
-              // setActive(true) //временно, пока подтверждение номера телефона не готово на беке, вместо открытия модального окна будет продолжение регистрации
+              // setShowModal(true); //временно, пока подтверждение номера телефона не готово на беке, вместо открытия модального окна будет продолжение регистрации
             }}
-            className={style.button}
+            className={style.submit_btn}
             label="Continue"
           />
-
-          <Modal showModal={active} closeModal={setActive} classNameModal={style.modal}>
-            <div className={style.modal_wrapper}>
-              <div className={style.modal_header}>Verify your phone number</div>
-              <div className={style.modal_container}>
-                <div className={style.modal_content}>
-                  <div className={style.modal_title_item}>Your phone number</div>
-                  <div className={style.modal_middle_item}>+{phone}</div>
-                  <button
-                    type="button"
-                    className={style.modal_button}
-                    onClick={() => setActive(false)}
-                  >
-                    Change
-                  </button>
-                </div>
-                <div className={style.modal_content}>
-                  <div className={style.modal_title_item}>Verification code</div>
-                  <div className={style.modal_middle_item}>
-                    <Input placeholder="SMS Code" />
-                  </div>
-                  <button type="button" className={style.modal_button}>
-                    Resend
-                  </button>
-                </div>
-              </div>
-              <Button type="submit" label="Submit" form="test" />
-            </div>
-            <button
-              type="button"
-              className={style.modal_icon_plus}
-              onClick={() => setActive(false)}
-            >
-              <PlusIcon />
-            </button>
-          </Modal>
         </form>
+
+        <Modal
+          showModal={showModal}
+          closeModal={setShowModal}
+          classNameModal={style.modal}
+        >
+          <ModalChildPhoneCheck setShowModal={setShowModal} phone={watch('tel')} />
+        </Modal>
       </div>
     </div>
   );
 };
-
-export default AccountSetupForm;

@@ -3,11 +3,11 @@ import { AxiosError } from 'axios';
 
 import { Status } from '../../enums/status.enum';
 import supplierAccountData, {
-  CompanyInfo,
   INotification,
-  UserInfo,
   RequestAccountInfo,
 } from '../../services/supplierAccount.service';
+
+import { getCurrentUserInfo } from './loginSlice';
 
 import { RootState } from 'store/createStore';
 
@@ -88,32 +88,52 @@ export interface ISupplierAccountSlice {
   isLoading: Status;
   error: string | null;
   notifications?: INotification;
-
-  supplierInfo?: {
-    user_info: UserInfo;
-    company_info: CompanyInfo;
+  hasProfile: boolean;
+  supplierInfo: {
+    first_name: string;
+    last_name: string;
+    phone_country_code: string;
+    phone_number: string;
   };
 }
 const initialState: ISupplierAccountSlice = {
   isLoading: Status.Idle,
   error: null,
-  supplierInfo: undefined,
-  notifications: undefined,
+  hasProfile: false,
+  supplierInfo: {
+    first_name: '',
+    last_name: '',
+    phone_country_code: '',
+    phone_number: '',
+  },
 };
 
 const supplierAccountSlice = createSlice({
   name: 'supplierAccount',
   initialState,
-
   reducers: {},
   extraReducers: builder => {
+    builder.addCase(getCurrentUserInfo.pending, state => {
+      state.isLoading = Status.Loading;
+    });
+    builder.addCase(getCurrentUserInfo.fulfilled, (state, action) => {
+      if (action.payload.result.is_supplier) {
+        if (action.payload.detail.has_profile) {
+          state.hasProfile = true;
+          state.supplierInfo = action.payload.result;
+        } else {
+          state.hasProfile = false;
+        }
+      }
+      state.isLoading = Status.Success;
+    });
     builder.addCase(getSupplierAccountDataService.pending, state => {
       state.isLoading = Status.Loading;
       state.error = null;
     });
     builder.addCase(getSupplierAccountDataService.fulfilled, (state, action) => {
-      state.isLoading = Status.Success;
       state.supplierInfo = action.payload.result;
+      state.isLoading = Status.Success;
     });
     builder.addCase(getSupplierAccountDataService.rejected, (state, action) => {
       state.isLoading = Status.Failed;
