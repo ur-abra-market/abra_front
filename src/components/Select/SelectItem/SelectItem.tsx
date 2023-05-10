@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { CSSProperties, FC, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -10,9 +10,15 @@ type SelectItemPropsType = {
   currentSelectedItem: OptionType;
   value: OptionType;
   onClick: (value: OptionType) => void;
+  style?: CSSProperties;
 };
 
-const SelectItem: FC<SelectItemPropsType> = ({ currentSelectedItem, value, onClick }) => {
+const SelectItem: FC<SelectItemPropsType> = ({
+  currentSelectedItem,
+  value,
+  onClick,
+  style,
+}) => {
   const handleClickOnItem = (): void => {
     onClick(value);
   };
@@ -46,6 +52,7 @@ const SelectItem: FC<SelectItemPropsType> = ({ currentSelectedItem, value, onCli
       className={isSelectedItem}
       onMouseEnter={handleHoverOnItem}
       onMouseLeave={handleLeaveHoverOnItem}
+      style={style}
     >
       {value.label}
     </div>

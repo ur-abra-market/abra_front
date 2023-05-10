@@ -17,6 +17,13 @@
 }
 
 
+div > .header_active_up{
+  border-top-left-radius: unset;
+  border-top-right-radius: unset;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
 .header_active{
   cursor: pointer;
   user-select:none;

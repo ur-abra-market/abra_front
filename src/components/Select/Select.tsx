@@ -29,6 +29,7 @@ export type SelectPropsType = {
   className?: string;
   position?: PositionType;
   header?: boolean;
+  padding?: string;
 };
 
 export type PositionType = 'up' | 'down';
@@ -46,7 +47,7 @@ export type OptionType = {
  * - To position the menu above or below the header --> use position={"up" or "down"}
  *
  */
-const CustomSelect: FC<SelectPropsType> = ({
+const Select: FC<SelectPropsType> = ({
   options,
   placeholder,
   onChange,
@@ -57,6 +58,7 @@ const CustomSelect: FC<SelectPropsType> = ({
   className,
   position = 'down',
   header = false,
+  padding = '15px',
 }) => {
   const placeholderObj = placeholder ? { label: placeholder, value: placeholder } : null;
 
@@ -78,8 +80,13 @@ const CustomSelect: FC<SelectPropsType> = ({
   const [isOpen, setIsOpen] = useState(false);
   let headerClassname = styles.header;
 
-  if (header) {
+  if (header && position === 'down') {
     headerClassname = isOpen ? styles.header_active : styles.header;
+  }
+  if (header && position === 'up') {
+    headerClassname = isOpen
+      ? cn(styles.header_active, styles.header_active_up)
+      : styles.header;
   }
 
   const handleChangeSelectState = (): void => {
@@ -108,6 +115,7 @@ const CustomSelect: FC<SelectPropsType> = ({
       value={el}
       onClick={handleSetSelectedValue}
       currentSelectedItem={selectedValue}
+      style={{ padding }}
     />
   ));
 
@@ -161,13 +169,29 @@ const CustomSelect: FC<SelectPropsType> = ({
     setCurrentMenuHeight(height);
   };
 
-  const menuStyles = {
+  // CHANGE TYPE!!
+  const menuStyles: any = {
     top: position === 'up' ? `-${currentMenuHeight}px` : 'unset',
     borderRadius: header ? undefined : '8px',
     boxShadow: header
       ? undefined
-      : 'rgba(0, 0, 0, 0.2) 7px 6px 5px,rgba(0, 0, 0, 0.2) -4px 6px 5px,rgba(0, 0, 0, 0.2) 0 -4px 5px', // <-- box shadow
+      : 'rgba(0, 0, 0, 0.2) 7px 6px 5px,rgba(0, 0, 0, 0.2) -4px 6px 5px,rgba(0, 0, 0, 0.2) 0 -4px 5px',
   };
+
+  const HeaderStyles: any = {
+    padding,
+  };
+
+  if (header && position === 'up' && isOpen) {
+    menuStyles.borderBottomRightRadius = 'unset';
+    menuStyles.borderBottomLeftRadius = 'unset';
+    menuStyles.borderTopLeftRadius = '8px';
+    menuStyles.borderTopRightRadius = '8px';
+    menuStyles.boxShadow =
+      'rgba(0, 0, 0, 0.2) -4px -2px 5px, rgba(0, 0, 0, 0.2) 4px -2px 5px';
+    HeaderStyles.boxShadow =
+      'rgba(0, 0, 0, 0.2) 4px -6px 5px, rgba(0, 0, 0, 0.2) -4px -6px 5px';
+  }
 
   return (
     <div style={selectWidth} className={cn(styles.main, className)} ref={squareBoxRef}>
@@ -177,6 +201,7 @@ const CustomSelect: FC<SelectPropsType> = ({
         currentSelectedValue={selectedValue}
         isOpenMenu={isOpen}
         onClick={handleChangeSelectState}
+        style={HeaderStyles}
       />
       <span className={styles.error}>{error}</span>
       <SelectMenu
@@ -192,4 +217,4 @@ const CustomSelect: FC<SelectPropsType> = ({
   );
 };
 
-export default CustomSelect;
+export default Select;

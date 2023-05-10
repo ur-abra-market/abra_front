@@ -2,9 +2,7 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import CustomSelect from '../../Select';
-import { OptionType } from '../../Select/Select';
-import { Select } from '../../ui-kit';
+import Select from '../../Select';
 import { IOption } from '../../ui-kit/Select/Select.props';
 
 import style from './LocationAndCurrencySelection.module.css';
@@ -13,9 +11,6 @@ import { LocationAndCurrencySelectionProps } from './LocationAndCurrencySelectio
 const CURRENCY_DATA: IOption[] = [
   { label: 'English / USD', value: 'usd' },
   { label: 'Russian / RUB', value: 'ru' },
-  // { label: 'Ukrainian / RUB', value: 'ua' },
-  // { label: 'Poland / RUB', value: 'pl' },
-  // { label: 'Latvia / RUB', value: 'lv' },
 ];
 
 const COUNTRY_DATA: IOption[] = [
@@ -28,21 +23,12 @@ export const LocationAndCurrencySelection: FC<
 > = props => {
   const { className } = props;
 
-  const handleSelectOption = (value: OptionType): void => {
-    console.log(value);
-  };
-
   return (
     <div className={cn(style.wrapper, className)}>
-      <CustomSelect
-        options={CURRENCY_DATA}
-        onChange={handleSelectOption}
-        menuHeight="100px"
-        width="150px"
-      />
+      <Select options={CURRENCY_DATA} menuHeight="100px" width="150px" header />
       <div className={style.select_box}>
         <span>Ship to</span>
-        <Select options={COUNTRY_DATA} className={style.select} />
+        <Select options={COUNTRY_DATA} className={style.select} header width="120px" />
       </div>
     </div>
   );

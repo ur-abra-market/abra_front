@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { CSSProperties, FC } from 'react';
 
 import ArrowDownLogo from '../../../assets/img/icons/arrow-slide-down.svg';
 import ArrowUpLogo from '../../../assets/img/icons/arrow-slide-up.svg';
@@ -10,6 +10,7 @@ type SelectHeaderPropsType = {
   onClick: () => void;
   className: string | undefined;
   position?: PositionType;
+  style?: CSSProperties;
 };
 
 const SelectHeader: FC<SelectHeaderPropsType> = ({
@@ -18,6 +19,7 @@ const SelectHeader: FC<SelectHeaderPropsType> = ({
   className,
   isOpenMenu,
   position = 'down',
+  style,
 }) => {
   let currentArrowLogo;
 
@@ -29,7 +31,7 @@ const SelectHeader: FC<SelectHeaderPropsType> = ({
   }
 
   return (
-    <div onClick={onClick} role="presentation" className={className}>
+    <div onClick={onClick} role="presentation" className={className} style={style}>
       {currentSelectedValue.label}
       <img src={currentArrowLogo} alt="currentArrowLogo" />
     </div>
