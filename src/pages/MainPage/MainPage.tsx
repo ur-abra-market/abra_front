@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { Container } from '../../components';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
 import { ProductsPreview } from '../../components/ProductsPreview/ProductsPreview';
+import { ProductSortType } from '../../enums/productSortType.enum';
 import { WithLayout } from '../../hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
@@ -11,7 +12,6 @@ import style from './MainPage.module.css';
 
 import { InfoBtn } from 'components/buttons';
 import Feedback from 'components/new-components/feedback/Feedback';
-import { OrderParams } from 'enums/orderParams.enum';
 import StatusProduct from 'pages/MainPage/StatusProduct';
 import { fetchProductList } from 'store/reducers/mainPageSlice';
 
@@ -60,7 +60,8 @@ const MainPage = (): JSX.Element => {
           offset: 0,
           limit: 100,
           category_id,
-          order_by: OrderParams.DATE,
+          sort_type: ProductSortType.DATE,
+          ascending: false,
         }),
       );
     });

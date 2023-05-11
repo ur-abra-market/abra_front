@@ -1,8 +1,8 @@
+import { ProductSortType } from '../enums/productSortType.enum';
 import { Categories } from '../pages/MainPage/MainPage';
 
 import httpService from './http.service';
 
-import { OrderParams } from 'enums/orderParams.enum';
 import {
   IGradeProduct,
   IGradeProductRequest,
@@ -16,13 +16,25 @@ export interface IRequestCategory {
   offset: number;
   limit: number;
   category_id: Categories;
-  order_by: OrderParams;
+  sort_type: ProductSortType;
+  ascending: boolean;
 }
 export const productFetch = {
-  getList: async (productData: IRequestCategory) => {
-    const { data } = await httpService.get(`products/compilation/`, {
-      params: productData,
-    });
+  getList: async ({
+    offset,
+    limit,
+    category_id,
+    sort_type,
+    ascending,
+  }: IRequestCategory) => {
+    const { data } = await httpService.post(
+      `products/compilation/?offset=${offset}&limit=${limit}`,
+      {
+        category_id,
+        sort_type,
+        ascending,
+      },
+    );
 
     return data.result;
   },
