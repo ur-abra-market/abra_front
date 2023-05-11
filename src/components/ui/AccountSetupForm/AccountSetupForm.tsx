@@ -21,10 +21,11 @@ export const AccountSetupForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
+  const [isPhoneComplete, setIsPhoneComplete] = useState(false);
 
   const {
     register,
-    formState: { errors, isValid },
+    formState: { errors },
     handleSubmit,
     watch,
     control,
@@ -50,6 +51,8 @@ export const AccountSetupForm = (): JSX.Element => {
     reset();
   };
 
+  // const phoneNumber = watch('tel');
+
   return (
     <div className={style.form_wrapper}>
       <div className={style.form_container}>
@@ -59,16 +62,22 @@ export const AccountSetupForm = (): JSX.Element => {
           text="This information will not be published. The data will only be used to create your account"
         />
         <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-          <PersonalInfoChangeForm register={register} errors={errors} control={control} />
+          <PersonalInfoChangeForm
+            register={register}
+            errors={errors}
+            control={control}
+            setIsPhoneComplete={setIsPhoneComplete}
+          />
 
           <Button
             type="submit"
-            disabled={!isValid}
+            // disabled={!isValid}
             onClick={() => {
               // setShowModal(true); //временно, пока подтверждение номера телефона не готово на беке, вместо открытия модального окна будет продолжение регистрации
             }}
             className={style.submit_btn}
             label="Continue"
+            disabled={!isPhoneComplete}
           />
         </form>
 

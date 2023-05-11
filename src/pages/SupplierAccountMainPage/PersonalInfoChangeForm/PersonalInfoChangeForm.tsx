@@ -19,12 +19,14 @@ interface IPersonalInfoChangeForm {
   register: UseFormRegister<IAccountInfoData>;
   errors: DeepMap<Record<string, any>, FieldError>;
   control: Control<IAccountInfoData>;
+  setIsPhoneComplete?: (isComplete: boolean) => void;
 }
 
 export const PersonalInfoChangeForm = ({
   register,
   errors,
   control,
+  setIsPhoneComplete,
 }: IPersonalInfoChangeForm): JSX.Element => {
   return (
     <>
@@ -61,9 +63,31 @@ export const PersonalInfoChangeForm = ({
                 country="us"
                 value={field.value}
                 onChange={(value, data, event, formattedValue) => {
-                  if ('format' in data && data.format) {
-                    if (data.format.length === formattedValue.length) {
-                      field.onChange(formattedValue);
+                  // if ('format' in data && data.format) {
+                  //   if (data.format.length === formattedValue.length) {
+                  //     field.onChange(formattedValue);
+                  //   }
+                  // }
+                  const isFormatted = 'format' in data && data.format !== null;
+                  const isComplete =
+                    isFormatted && data.format.length === formattedValue.length;
+
+                  // @ts-ignore
+                  console.log(
+                    isFormatted,
+                    isComplete,
+                    // @ts-ignore
+                    data.format.length,
+                    formattedValue.length,
+                    data,
+                    value,
+                  );
+                  field.onChange(value);
+                  if (setIsPhoneComplete) {
+                    if (isComplete) {
+                      setIsPhoneComplete(isComplete);
+                    } else {
+                      setIsPhoneComplete(false);
                     }
                   }
                 }}
