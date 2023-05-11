@@ -60,7 +60,7 @@ export const PersonalInfoChangeForm = ({
                 buttonClass={style.phone_flag}
                 country="us"
                 value={field.value}
-                onChange={(value, data, formattedValue) => {
+                onChange={(value, data, event, formattedValue) => {
                   field.onChange(formattedValue);
                 }}
               />
