@@ -11,10 +11,16 @@ export type ResponseCategoryType = {
   parent_id?: number;
 };
 
-const initialState = {
-  dateCategories: null as null | ResponseCategoryType[],
+interface IInitialState {
+  dateCategories: null | ResponseCategoryType[];
+  errMessage: string;
+  loading: Status;
+}
+
+const initialState: IInitialState = {
+  dateCategories: null,
   errMessage: '',
-  loading: Status.Idle as Status,
+  loading: Status.Idle,
 };
 
 export const categoryService = createAsyncThunk<any, void>(
