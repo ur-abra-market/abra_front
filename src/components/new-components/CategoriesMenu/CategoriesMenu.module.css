@@ -17,20 +17,6 @@
 
 }
 
-.menu_container > ul > li > button {
-  cursor: pointer;
-
-  margin-bottom: 32px;
-
-  font-family: var(--roboto);
-  font-size: 20px;
-  font-weight: var(--semi-bold);
-  font-style: normal;
-  line-height: 20px;
-
-  background: transparent;
-}
-
 .items_container > li {
   margin-top: 16px;
   margin-bottom: 16px;
@@ -43,8 +29,4 @@
 
 .items_container > li > a {
   color: var(--black);
-}
-
-.active_button {
-  color: var(--red)
 }

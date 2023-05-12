@@ -10,42 +10,69 @@ import {
 import style from './CategoriesMenu.module.css';
 import { CategoriesMenuProps } from './CategoriesMenu.props';
 import { Items } from './CategoryItems';
+import { FilterButton } from './FilterButton/FilterButton';
 
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 
+export interface ItemsProps {
+  gender: string;
+  items?: ResponseCategoryType[];
+}
+
+export type Categories = 'all' | 'clothes' | 'accessories' | 'cosmetics';
+
+type FilteredCategoriesType = {
+  [key in Categories]: {
+    title: string;
+    categories: string[];
+  };
+};
+
 const filteredCategories: FilteredCategoriesType = {
-  all: [
-    'Clothing',
-    'Sportswear',
-    'Swimwear',
-    'Underwear',
-    'Home clothes',
-    'Outerwear',
-    'Bags',
-    'Accessories',
-    'Shoes',
-    'Jewellery',
-    'For girls',
-    'For boys',
-  ],
-  accessories: ['Bags', 'Accessories', 'Jewellery'],
-  clothes: [
-    'Clothing',
-    'Sportswear',
-    'Swimwear',
-    'Underwear',
-    'Home clothes',
-    'Outerwear',
-    'Shoes',
-    'For girls',
-    'For boys',
-  ],
-  cosmetics: [],
+  all: {
+    title: 'All categories',
+    categories: [
+      'Clothing',
+      'Sportswear',
+      'Swimwear',
+      'Underwear',
+      'Home clothes',
+      'Outerwear',
+      'Bags',
+      'Accessories',
+      'Shoes',
+      'Jewellery',
+      'For girls',
+      'For boys',
+    ],
+  },
+  accessories: {
+    title: 'Clothes',
+    categories: ['Bags', 'Accessories', 'Jewellery'],
+  },
+  clothes: {
+    title: 'Accessories',
+    categories: [
+      'Clothing',
+      'Sportswear',
+      'Swimwear',
+      'Underwear',
+      'Home clothes',
+      'Outerwear',
+      'Shoes',
+      'For girls',
+      'For boys',
+    ],
+  },
+  cosmetics: {
+    title: 'Cosmetics and Self Care',
+    categories: [],
+  },
 };
 
 export const CategoriesMenu = forwardRef(
   (props: CategoriesMenuProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
-    const [activeCategories, setActiveCategories] = useState<Categroies>('all');
+    const [activeCategories, setActiveCategories] = useState<Categories>('all');
 
     const categories = useAppSelector(state => state.category.dateCategories);
 
@@ -57,7 +84,9 @@ export const CategoriesMenu = forwardRef(
       category?: ResponseCategoryType[],
     ): ResponseCategoryType[] | [] => {
       return category
-        ? category.filter(c => filteredCategories[activeCategories].includes(c.name))
+        ? category.filter(c =>
+            filteredCategories[activeCategories].categories.includes(c.name),
+          )
         : [];
     };
 
@@ -68,51 +97,17 @@ export const CategoriesMenu = forwardRef(
 
     return (
       <div ref={ref} className={cn(style.menu_container)}>
-        <ul role="menu">
-          <li>
-            <button
-              type="button"
-              onClick={() => setActiveCategories('all')}
-              className={cn({
-                [style.active_button]: activeCategories === 'all',
-              })}
+        <ul>
+          {(Object.keys(filteredCategories) as Categories[]).map((c, index) => (
+            <FilterButton
+              key={index}
+              value={c}
+              activeValue={activeCategories}
+              callback={setActiveCategories}
             >
-              All categories
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              onClick={() => setActiveCategories('clothes')}
-              className={cn({
-                [style.active_button]: activeCategories === 'clothes',
-              })}
-            >
-              Clothes
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              onClick={() => setActiveCategories('accessories')}
-              className={cn({
-                [style.active_button]: activeCategories === 'accessories',
-              })}
-            >
-              Accessories
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              onClick={() => setActiveCategories('cosmetics')}
-              className={cn({
-                [style.active_button]: activeCategories === 'cosmetics',
-              })}
-            >
-              Cosmetics and Self Care
-            </button>
-          </li>
+              {filteredCategories[c].title}
+            </FilterButton>
+          ))}
         </ul>
         {wearerCategory.map(c => (
           <Items key={c.id} gender={c.name} items={filterCategories(c.children)} />
@@ -121,14 +116,3 @@ export const CategoriesMenu = forwardRef(
     );
   },
 );
-
-export interface ItemsProps {
-  gender: string;
-  items?: ResponseCategoryType[];
-}
-
-type Categroies = 'all' | 'clothes' | 'accessories' | 'cosmetics';
-
-type FilteredCategoriesType = {
-  [key in Categroies]: string[];
-};
