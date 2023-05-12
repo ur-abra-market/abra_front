@@ -1,7 +1,7 @@
 import React, { CSSProperties, FC } from 'react';
 
-import ArrowDownLogo from '../../../assets/img/icons/arrow-slide-down.svg';
-import ArrowUpLogo from '../../../assets/img/icons/arrow-slide-up.svg';
+import ArrowDownLogo from '../../../../assets/img/icons/arrow-slide-down.svg';
+import ArrowUpLogo from '../../../../assets/img/icons/arrow-slide-up.svg';
 import { IOption, PositionType } from '../Select';
 
 type SelectHeaderPropsType = {

@@ -4,8 +4,7 @@ import React, { FC, useEffect, useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 
 import ShowPage from '../../components/ShowPage';
-import { Checkbox, Input, Search, Select } from '../../components/ui-kit';
-import { IOption } from '../../components/ui-kit/Select/Select.props';
+import { Checkbox, Input, Search, Select, IOption } from '../../components/ui-kit';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 
 // import addImg from 'assets/img/icons/addImg.png';
@@ -213,11 +212,11 @@ const ProductsListPage: FC = (): JSX.Element => {
           </div>
           <div className={style.filter}>
             <div className={style.filter_name}>Sort by:</div>
-            <Select options={CATEGORY_SELECT} />
+            <Select options={CATEGORY_SELECT} padding="23px" className={style.select} />
           </div>
 
           <div className={style.filter}>
-            <Select options={STATUS_SELECT} />
+            <Select options={STATUS_SELECT} padding="23px" className={style.select} />
           </div>
           <Checkbox
             label="Include Hidden"

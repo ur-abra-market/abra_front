@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
@@ -49,6 +49,7 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
   };
 
   const {
+    control,
     register,
     reset,
     handleSubmit,
@@ -111,7 +112,20 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
             <div className={style.address_popup_phone_title}>Personal phone number</div>
             <div className={style.address_popup_phone_number}>
               <div className={style.address_popup_phone_number_select}>
-                <Select options={listPhone} {...register('phone_country_code')} />
+                <Controller
+                  control={control}
+                  name="phone_country_code"
+                  render={({ field }) => (
+                    <Select
+                      options={listPhone}
+                      padding="23px"
+                      className={style.select}
+                      onChange={value => {
+                        field.onChange(value.value);
+                      }}
+                    />
+                  )}
+                />
               </div>
               <Input
                 {...register('phone_number')}
@@ -131,10 +145,20 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
               >
                 Country
               </div>
-              <Select
-                {...register('country')}
-                options={listCountry}
-                placeholder="Select a country"
+              <Controller
+                control={control}
+                name="country"
+                render={({ field }) => (
+                  <Select
+                    options={listCountry}
+                    placeholder="Select a country"
+                    padding="23px"
+                    className={style.select}
+                    onChange={value => {
+                      field.onChange(value.value);
+                    }}
+                  />
+                )}
               />
             </div>
             <div className={style.text_modal}>

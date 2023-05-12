@@ -1,17 +1,21 @@
 import React, { FC, useState } from 'react';
 
-import { Label, Select } from '../../ui-kit';
-import { IOption } from '../../ui-kit/Select/Select.props';
+import { Controller } from 'react-hook-form';
+
+import { Label, Select, IOption } from '../../ui-kit';
 import style from '../ProductListRegistrationForm/ProductListRegistrationForm.module.css';
 
+import styles from './SelectionsForProperties.module.css';
+
 interface SelectionsForPropertiesProps {
+  control: any;
   element: any;
-  register: any;
   options: IOption[];
 }
+
 const SelectionsForProperties: FC<SelectionsForPropertiesProps> = ({
+  control,
   element,
-  register,
   options,
 }) => {
   const [currentValue, setCurrentValue] = useState('');
@@ -27,36 +31,55 @@ const SelectionsForProperties: FC<SelectionsForPropertiesProps> = ({
     return { label: el, value: el };
   });
 
+  const handleSetCurrentValue = (value: string): void => {
+    setCurrentValue(value);
+  };
+
   return (
     <div className={style.select_inputs}>
       <div className={style.select_equal}>
         {/* <p className={s.select_title}>{ucFirst(`${element.key}`)}</p> */}
         <div className={style.select_container}>
-          <Label label={`${element.key}`}>
-            <Select
-              options={options}
-              {...register(`${element.key}`, {
-                required: true,
-              })}
-              onChangeOption={setCurrentValue}
-              placeholder="Select"
-            />
-          </Label>
+          <Controller
+            control={control}
+            name={element.key}
+            render={({ field }) => (
+              <Label label={`${element.key}`}>
+                <Select
+                  options={options}
+                  placeholder="Select"
+                  padding="23px"
+                  className={styles.select}
+                  onChange={value => {
+                    field.onChange(value.value);
+                    handleSetCurrentValue(value.label);
+                  }}
+                />
+              </Label>
+            )}
+          />
         </div>
       </div>
-
       {!!arrFilteredOptValues.length && (
         <div className={style.select_equal}>
           <div className={style.select_container}>
-            <Label label={`${element.key}(optional)`}>
-              <Select
-                placeholder="Select"
-                options={OPTIONAL_PROPERTIES_DATA}
-                {...register(`${element.key}(optional)`, {
-                  required: true,
-                })}
-              />
-            </Label>
+            <Controller
+              control={control}
+              name={`${element.key}(optional)`}
+              render={({ field }) => (
+                <Label label={`${element.key}(optional)`}>
+                  <Select
+                    options={OPTIONAL_PROPERTIES_DATA}
+                    placeholder="Select"
+                    padding="23px"
+                    className={styles.select}
+                    onChange={value => {
+                      field.onChange(value.value);
+                    }}
+                  />
+                </Label>
+              )}
+            />
           </div>
         </div>
       )}

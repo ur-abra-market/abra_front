@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import cn from 'classnames';
 
 import Select from '../../Select';
-import { IOption } from '../../ui-kit/Select/Select.props';
+import { IOption } from '../../ui-kit';
 
 import style from './LocationAndCurrencySelection.module.css';
 import { LocationAndCurrencySelectionProps } from './LocationAndCurrencySelection.props';

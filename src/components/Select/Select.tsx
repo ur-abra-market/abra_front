@@ -18,9 +18,9 @@ const ARROW_DOWN_KEYBOARD = 'ArrowDown';
 const PREV = 1;
 const NEXT = 1;
 
-export type SelectPropsType = {
-  options: OptionType[];
-  onChange?: (value: OptionType) => void;
+export type SelectProps = {
+  options: IOption[];
+  onChange?: (value: IOption) => void;
   error?: string;
   children?: ReactNode;
   placeholder?: string;
@@ -34,7 +34,7 @@ export type SelectPropsType = {
 
 export type PositionType = 'up' | 'down';
 
-export type OptionType = {
+export type IOption = {
   label: string;
   value: string | number;
 };
@@ -47,7 +47,7 @@ export type OptionType = {
  * - To position the menu above or below the header --> use position={"up" or "down"}
  *
  */
-const Select: FC<SelectPropsType> = ({
+const Select: FC<SelectProps> = ({
   options,
   placeholder,
   onChange,
@@ -63,9 +63,9 @@ const Select: FC<SelectPropsType> = ({
   const placeholderObj = placeholder ? { label: placeholder, value: placeholder } : null;
 
   const defaultSelectedValue = placeholderObj || options[0];
-  const [selectedValue, setSelectedVale] = useState<OptionType>(defaultSelectedValue);
+  const [selectedValue, setSelectedVale] = useState<IOption>(defaultSelectedValue);
 
-  const handleSetSelectedValue = (incomingData: OptionType): void => {
+  const handleSetSelectedValue = (incomingData: IOption): void => {
     if (incomingData === selectedValue) {
       //
     } else {
