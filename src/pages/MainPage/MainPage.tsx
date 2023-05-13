@@ -58,7 +58,7 @@ const MainPage = (): JSX.Element => {
       dispatch(
         fetchProductList({
           offset: 0,
-          limit: 100,
+          limit: 24,
           category_id,
           sort_type: ProductSortType.DATE,
           ascending: false,

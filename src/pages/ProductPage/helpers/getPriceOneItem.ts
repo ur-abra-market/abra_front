@@ -1,10 +1,10 @@
 export const getPriceOneItem = (params: any): any => {
-  const { price_include_discount, min_quantity } = params;
+  const { prices } = params;
 
   // заглушка так как нет данных
-  if (!price_include_discount || !min_quantity) return 'not data';
+  if (!prices[0].discount || !prices[0].min_quantity) return 'not data';
 
-  const price = parseFloat(price_include_discount.replace(/,/g, '')) / min_quantity;
+  const price = parseFloat(prices[0].discount) / prices[0].min_quantity;
 
   return price.toFixed(2);
 };

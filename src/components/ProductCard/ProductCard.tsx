@@ -12,29 +12,30 @@ import { ProductCardProps } from './ProductCard.props';
 
 import { ReactComponent as LoupeIcon } from 'assets/img/icons/loupe.svg';
 
-export const ProductCard: FC<ProductCardProps> = (props): JSX.Element => {
-  const { product, className, ...restProps } = props;
+interface Example extends ProductCardProps {
+  image_url?: string;
+}
+
+export const ProductCard: FC<Example> = (props): JSX.Element => {
+  const { product, className, image_url, ...restProps } = props;
   const {
     name,
-    price_include_discount,
-    // total_orders,
-    image_url,
-    // supplier_id,
+    prices,
     description,
     id,
-    min_quantity,
     grade_average,
-    is_favorite,
+    is_active, // before fix "is_favorite"
   } = product;
+  let min_quantity;
 
-  // {
-  //     "value_price": 0,
-  // }
+  if (prices) {
+    min_quantity = prices[0].min_quantity;
+  }
 
   return (
     <div className={cn(style.card, className)} {...restProps}>
       <div className={style.image}>
-        <Flag className={style.flag} isFavorite={is_favorite} />
+        <Flag className={style.flag} isFavorite={is_active} />
         <img src={image_url || ''} alt={name} />
         <span className={style.hover}>
           <span className={style.hover_text}>
@@ -50,12 +51,10 @@ export const ProductCard: FC<ProductCardProps> = (props): JSX.Element => {
         </div>
       </Link>
       <div className={style.price}>
-        <div className={style.amount}>
-          {getPriceOneItem({ price_include_discount, min_quantity })}/pc
-        </div>
+        <div className={style.amount}>{getPriceOneItem({ prices })}/pc</div>
         <span>{`/from ${min_quantity} pcs`}</span>
       </div>
-      <Stars reward={parseFloat(grade_average) || 0} />
+      <Stars reward={parseFloat(grade_average.toString()) || 0} />
     </div>
   );
 };
