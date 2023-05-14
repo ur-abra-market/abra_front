@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { personalSupplierInfoValidationSchema } from '../../../constants/personalSupplierInfoValidationSchema';
@@ -22,17 +22,11 @@ export const AccountSetupForm = (): JSX.Element => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
-  const {
-    register,
-    formState: { errors, isValid },
-    handleSubmit,
-    watch,
-    control,
-    reset,
-  } = useForm<IAccountInfoData>({
+  const formMethods = useForm<IAccountInfoData>({
     resolver: yupResolver(personalSupplierInfoValidationSchema),
     mode: 'all',
   });
+  const { reset, handleSubmit, formState, watch } = formMethods;
 
   const onSubmit = (data: IAccountInfoData): void => {
     const { countryCode, phoneNumber } = parsePhoneNumber(data.tel);
@@ -46,7 +40,6 @@ export const AccountSetupForm = (): JSX.Element => {
       }),
     );
     navigate('/business-profile');
-
     reset();
   };
 
@@ -58,20 +51,21 @@ export const AccountSetupForm = (): JSX.Element => {
           title="Account Info"
           text="This information will not be published. The data will only be used to create your account"
         />
-        <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-          <PersonalInfoChangeForm register={register} errors={errors} control={control} />
+        <FormProvider {...formMethods}>
+          <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
+            <PersonalInfoChangeForm />
 
-          <Button
-            type="submit"
-            disabled={!isValid}
-            onClick={() => {
-              // setShowModal(true); //временно, пока подтверждение номера телефона не готово на беке, вместо открытия модального окна будет продолжение регистрации
-            }}
-            className={style.submit_btn}
-            label="Continue"
-          />
-        </form>
-
+            <Button
+              type="submit"
+              disabled={!formState.isValid}
+              onClick={() => {
+                // setShowModal(true); //временно, пока подтверждение номера телефона не готово на беке, вместо открытия модального окна будет продолжение регистрации
+              }}
+              className={style.submit_btn}
+              label="Continue"
+            />
+          </form>
+        </FormProvider>
         <Modal
           showModal={showModal}
           closeModal={setShowModal}

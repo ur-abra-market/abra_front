@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import { Button } from '../../components/ui-kit';
 import { personalSupplierInfoValidationSchema } from '../../constants/personalSupplierInfoValidationSchema';
@@ -33,18 +33,13 @@ const SupplierAccountMainPage = (): JSX.Element => {
     code: profileInfo.phone_country_code,
     tel: profileInfo.phone_number,
   };
-  const {
-    register,
-    formState: { errors, isValid },
-    handleSubmit,
-    reset,
-    watch,
-    control,
-  } = useForm<IAccountInfoData>({
+
+  const formMethods = useForm<IAccountInfoData>({
     resolver: yupResolver(personalSupplierInfoValidationSchema),
     mode: 'all',
     defaultValues: personalInfoDefaultValues,
   });
+  const { watch, reset, handleSubmit, formState } = formMethods;
 
   const onSubmit = (data: IAccountInfoData): void => {
     console.log(data); // todo fix
@@ -64,19 +59,17 @@ const SupplierAccountMainPage = (): JSX.Element => {
         <div className={style.personal_info}>
           <h3 className={style.personal_info_title}>Personal Info</h3>
 
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <PersonalInfoChangeForm
-              register={register}
-              errors={errors}
-              control={control}
-            />
-            <Button
-              type="submit"
-              disabled={!isValid || !hasChanges}
-              className={style.personal_info_submit_btn}
-              label="Save"
-            />
-          </form>
+          <FormProvider {...formMethods}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <PersonalInfoChangeForm />
+              <Button
+                type="submit"
+                disabled={!formState.isValid || !hasChanges}
+                className={style.personal_info_submit_btn}
+                label="Save"
+              />
+            </form>
+          </FormProvider>
         </div>
 
         <div className={style.business_profile}>
