@@ -26,7 +26,12 @@ export const AccountSetupForm = (): JSX.Element => {
     resolver: yupResolver(personalSupplierInfoValidationSchema),
     mode: 'all',
   });
-  const { reset, handleSubmit, formState, watch } = formMethods;
+  const {
+    reset,
+    handleSubmit,
+    formState: { isValid },
+    watch,
+  } = formMethods;
 
   const onSubmit = (data: IAccountInfoData): void => {
     const { countryCode, phoneNumber } = parsePhoneNumber(data.tel);
@@ -57,7 +62,7 @@ export const AccountSetupForm = (): JSX.Element => {
 
             <Button
               type="submit"
-              disabled={!formState.isValid}
+              disabled={!isValid}
               onClick={() => {
                 // setShowModal(true); //временно, пока подтверждение номера телефона не готово на беке, вместо открытия модального окна будет продолжение регистрации
               }}
