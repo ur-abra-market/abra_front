@@ -13,9 +13,27 @@ import style from './ProductsPreview.module.css';
 import { ProductsPreviewProps } from './ProductsPreview.props';
 
 export const ProductsPreview: FC<ProductsPreviewProps> = props => {
-  const { className, title, href, children, ...restProps } = props;
+  const {
+    className,
+    title,
+    href,
+    children,
+    category,
+    changeCategoryOffset,
+    ...restProps
+  } = props;
   const swiperEl = useRef<SwiperType>();
 
+  const handleSlideChange = (): void => {
+    const slideProgress = swiperEl.current?.progress;
+    const maxScroll = 0.95;
+
+    if (slideProgress && category && changeCategoryOffset) {
+      if (slideProgress >= maxScroll) {
+        changeCategoryOffset(+category);
+      }
+    }
+  };
   const handlePrev = useCallback((): void => {
     swiperEl.current?.slidePrev();
   }, []);
@@ -50,6 +68,7 @@ export const ProductsPreview: FC<ProductsPreviewProps> = props => {
         </div>
       </div>
       <Carousel
+        handleSlideChange={handleSlideChange}
         onBeforeInit={onBeforeInit}
         spaceBetween={11}
         slidesPerView="auto"
