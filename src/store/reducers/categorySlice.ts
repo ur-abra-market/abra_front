@@ -3,10 +3,24 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Status } from '../../enums/status.enum';
 import categoryFetch from '../../services/category.service';
 
-const initialState = {
+export type ResponseCategoryType = {
+  id: number;
+  name: string;
+  level: number;
+  children?: ResponseCategoryType[] | [];
+  parent_id?: number;
+};
+
+interface IInitialState {
+  dateCategories: null | ResponseCategoryType[];
+  errMessage: string;
+  loading: Status;
+}
+
+const initialState: IInitialState = {
   dateCategories: null,
   errMessage: '',
-  loading: Status.Idle as Status,
+  loading: Status.Idle,
 };
 
 export const categoryService = createAsyncThunk<any, void>(

@@ -17,7 +17,7 @@ const sellerRoute = [
     element: <MainPage />,
   },
   {
-    path: 'products-list',
+    path: 'products-list/*',
     element: <ProductListPage />,
   },
   {
