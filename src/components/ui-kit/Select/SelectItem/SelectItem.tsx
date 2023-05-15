@@ -26,16 +26,12 @@ const SelectItem: FC<SelectItemPropsType> = ({
   const [currentClassName, setCurrentClassName] = useState(styles.main);
 
   const handleHoverOnItem = (): void => {
-    if (currentSelectedItem.label === value.label) {
-      //
-    } else {
+    if (currentSelectedItem.label !== value.label) {
       setCurrentClassName(styles.main_hover);
     }
   };
   const handleLeaveHoverOnItem = (): void => {
-    if (currentSelectedItem.label === value.label) {
-      //
-    } else {
+    if (currentSelectedItem.label !== value.label) {
       setCurrentClassName(styles.main);
     }
   };

@@ -78,6 +78,7 @@ export const Select: FC<SelectProps> = ({
 
   const [isOpen, setIsOpen] = useState(false);
   let headerClassname = styles.header;
+  let menuClassname;
 
   if (header && menuItemsPosition === 'down') {
     headerClassname = isOpen ? styles.header_active : styles.header;
@@ -86,6 +87,13 @@ export const Select: FC<SelectProps> = ({
     headerClassname = isOpen
       ? cn(styles.header_active, styles.header_active_up)
       : styles.header;
+  }
+  if (header && menuItemsPosition === 'up' && isOpen) {
+    menuClassname = styles.opened_menu_up_pos;
+    headerClassname = cn(headerClassname, styles.opened_menu_up_pos_header);
+  }
+  if (!header) {
+    menuClassname = cn(menuClassname, styles.closed_menu);
   }
 
   const handleChangeSelectState = (): void => {
@@ -168,29 +176,13 @@ export const Select: FC<SelectProps> = ({
     setCurrentMenuHeight(height);
   };
 
-  // CHANGE TYPE!!
-  const menuStyles: any = {
+  const menuStyles: { top: string } = {
     top: menuItemsPosition === 'up' ? `-${currentMenuHeight}px` : 'unset',
-    borderRadius: header ? undefined : '8px',
-    boxShadow: header
-      ? undefined
-      : 'rgba(0, 0, 0, 0.2) 7px 6px 5px,rgba(0, 0, 0, 0.2) -4px 6px 5px,rgba(0, 0, 0, 0.2) 0 -4px 5px',
   };
 
-  const HeaderStyles: any = {
+  const HeaderStyles: { padding: string } = {
     padding,
   };
-
-  if (header && menuItemsPosition === 'up' && isOpen) {
-    menuStyles.borderBottomRightRadius = 'unset';
-    menuStyles.borderBottomLeftRadius = 'unset';
-    menuStyles.borderTopLeftRadius = '8px';
-    menuStyles.borderTopRightRadius = '8px';
-    menuStyles.boxShadow =
-      'rgba(0, 0, 0, 0.2) -4px -2px 5px, rgba(0, 0, 0, 0.2) 4px -2px 5px';
-    HeaderStyles.boxShadow =
-      'rgba(0, 0, 0, 0.2) 4px -6px 5px, rgba(0, 0, 0, 0.2) -4px -6px 5px';
-  }
 
   return (
     <div style={selectWidth} className={cn(styles.main, className)} ref={mainDivRef}>
@@ -207,6 +199,7 @@ export const Select: FC<SelectProps> = ({
         isOpen={isOpen}
         height={menuHeight}
         style={menuStyles}
+        className={menuClassname}
         onChangeHeight={handleGetMenuHeight}
       >
         {mappedSelectItems}

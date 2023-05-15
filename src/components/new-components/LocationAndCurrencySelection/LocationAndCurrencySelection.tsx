@@ -24,7 +24,7 @@ export const LocationAndCurrencySelection: FC<
 
   return (
     <div className={cn(style.wrapper, className)}>
-      <Select options={CURRENCY_DATA} header width="150px" />
+      <Select options={CURRENCY_DATA} width="150px" header />
       <div className={style.select_box}>
         <span>Ship to</span>
         <Select options={COUNTRY_DATA} header width="120px" />

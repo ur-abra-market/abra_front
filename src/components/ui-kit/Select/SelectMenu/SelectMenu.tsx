@@ -25,7 +25,7 @@ const SelectMenu: FC<SelectMenuPropsType> = ({
 
   useEffect(() => {
     if (ref.current) onChangeHeight(ref.current.clientHeight);
-  });
+  }, [onChangeHeight]);
 
   const inlineStyles = height ? { maxHeight: height, ...style } : { ...style };
 
