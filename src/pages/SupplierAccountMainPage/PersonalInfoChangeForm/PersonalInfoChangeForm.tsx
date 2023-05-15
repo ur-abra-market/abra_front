@@ -1,12 +1,6 @@
 import React from 'react';
 
-import {
-  Control,
-  Controller,
-  DeepMap,
-  FieldError,
-  UseFormRegister,
-} from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
 import PhoneInput from 'react-phone-input-2';
 
 import 'react-phone-input-2/lib/style.css';
@@ -15,17 +9,13 @@ import { IAccountInfoData } from '../../../interfaces';
 
 import style from './PersonalInfoChangeForm.module.css';
 
-interface IPersonalInfoChangeForm {
-  register: UseFormRegister<IAccountInfoData>;
-  errors: DeepMap<Record<string, any>, FieldError>;
-  control: Control<IAccountInfoData>;
-}
+export const PersonalInfoChangeForm = (): JSX.Element => {
+  const {
+    register,
+    formState: { errors },
+    control,
+  } = useFormContext<IAccountInfoData>();
 
-export const PersonalInfoChangeForm = ({
-  register,
-  errors,
-  control,
-}: IPersonalInfoChangeForm): JSX.Element => {
   return (
     <>
       <div className={style.name_container}>
