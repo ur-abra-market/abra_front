@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import { IOption } from '../Select';
 
-import styles from './SelectedItem.module.css';
+import styles from './SelectItem.module.css';
 
 type SelectItemPropsType = {
   currentSelectedItem: IOption;

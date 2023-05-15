@@ -9,7 +9,7 @@ type SelectHeaderPropsType = {
   currentSelectedValue: IOption;
   onClick: () => void;
   className: string | undefined;
-  position?: PositionType;
+  menuItemsPosition?: PositionType;
   style?: CSSProperties;
 };
 
@@ -18,15 +18,15 @@ const SelectHeader: FC<SelectHeaderPropsType> = ({
   onClick,
   className,
   isOpenMenu,
-  position = 'down',
+  menuItemsPosition = 'down',
   style,
 }) => {
   let currentArrowLogo;
 
-  if (position === 'up') {
+  if (menuItemsPosition === 'up') {
     currentArrowLogo = isOpenMenu ? ArrowDownLogo : ArrowUpLogo;
   }
-  if (position === 'down') {
+  if (menuItemsPosition === 'down') {
     currentArrowLogo = isOpenMenu ? ArrowUpLogo : ArrowDownLogo;
   }
 

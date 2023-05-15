@@ -27,7 +27,7 @@ export type SelectProps = {
   menuHeight?: string;
   width?: string;
   className?: string;
-  position?: PositionType;
+  menuItemsPosition?: PositionType;
   header?: boolean;
   padding?: string;
 };
@@ -43,8 +43,7 @@ export type IOption = {
  *
  * Props:
  * - To add header use --> Header={true}
- * - To set select menu height use --> menuHeight={"100px"} you can use any string ("100px","100%")
- * - To position the menu above or below the header --> use position={"up" or "down"}
+ *
  *
  */
 export const Select: FC<SelectProps> = ({
@@ -56,7 +55,7 @@ export const Select: FC<SelectProps> = ({
   menuHeight = '200px',
   width,
   className,
-  position = 'down',
+  menuItemsPosition = 'down',
   header = false,
   padding = '15px',
 }) => {
@@ -80,10 +79,10 @@ export const Select: FC<SelectProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   let headerClassname = styles.header;
 
-  if (header && position === 'down') {
+  if (header && menuItemsPosition === 'down') {
     headerClassname = isOpen ? styles.header_active : styles.header;
   }
-  if (header && position === 'up') {
+  if (header && menuItemsPosition === 'up') {
     headerClassname = isOpen
       ? cn(styles.header_active, styles.header_active_up)
       : styles.header;
@@ -96,9 +95,9 @@ export const Select: FC<SelectProps> = ({
     setIsOpen(false);
   };
 
-  const squareBoxRef = useRef<HTMLDivElement>(null);
+  const mainDivRef = useRef<HTMLDivElement>(null);
 
-  useOnHoverOutside(squareBoxRef, () => {
+  useOnHoverOutside(mainDivRef, () => {
     window.onscroll = () => {
       setIsOpen(false);
 
@@ -106,7 +105,7 @@ export const Select: FC<SelectProps> = ({
     };
   });
 
-  UseOnClickOutside(squareBoxRef, handleCloseSelectMenu);
+  UseOnClickOutside(mainDivRef, handleCloseSelectMenu);
 
   // if the menu is open and the user tries to scroll behind the menu, then we add the ability to scroll and hide the menu
   const mappedSelectItems = options.map(el => (
@@ -171,7 +170,7 @@ export const Select: FC<SelectProps> = ({
 
   // CHANGE TYPE!!
   const menuStyles: any = {
-    top: position === 'up' ? `-${currentMenuHeight}px` : 'unset',
+    top: menuItemsPosition === 'up' ? `-${currentMenuHeight}px` : 'unset',
     borderRadius: header ? undefined : '8px',
     boxShadow: header
       ? undefined
@@ -182,7 +181,7 @@ export const Select: FC<SelectProps> = ({
     padding,
   };
 
-  if (header && position === 'up' && isOpen) {
+  if (header && menuItemsPosition === 'up' && isOpen) {
     menuStyles.borderBottomRightRadius = 'unset';
     menuStyles.borderBottomLeftRadius = 'unset';
     menuStyles.borderTopLeftRadius = '8px';
@@ -194,9 +193,9 @@ export const Select: FC<SelectProps> = ({
   }
 
   return (
-    <div style={selectWidth} className={cn(styles.main, className)} ref={squareBoxRef}>
+    <div style={selectWidth} className={cn(styles.main, className)} ref={mainDivRef}>
       <SelectHeader
-        position={position}
+        menuItemsPosition={menuItemsPosition}
         className={headerClassname}
         currentSelectedValue={selectedValue}
         isOpenMenu={isOpen}

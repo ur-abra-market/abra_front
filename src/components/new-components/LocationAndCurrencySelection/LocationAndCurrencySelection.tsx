@@ -2,15 +2,14 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import Select from '../../Select';
-import { IOption } from '../../ui-kit';
+import { IOption, Select } from '../../ui-kit';
 
 import style from './LocationAndCurrencySelection.module.css';
 import { LocationAndCurrencySelectionProps } from './LocationAndCurrencySelection.props';
 
 const CURRENCY_DATA: IOption[] = [
-  { label: 'English / USD', value: 'usd' },
   { label: 'Russian / RUB', value: 'ru' },
+  { label: 'English / USD', value: 'usd' },
 ];
 
 const COUNTRY_DATA: IOption[] = [
@@ -25,10 +24,10 @@ export const LocationAndCurrencySelection: FC<
 
   return (
     <div className={cn(style.wrapper, className)}>
-      <Select options={CURRENCY_DATA} menuHeight="100px" width="150px" header />
+      <Select options={CURRENCY_DATA} header width="150px" />
       <div className={style.select_box}>
         <span>Ship to</span>
-        <Select options={COUNTRY_DATA} className={style.select} header width="120px" />
+        <Select options={COUNTRY_DATA} header width="120px" />
       </div>
     </div>
   );
