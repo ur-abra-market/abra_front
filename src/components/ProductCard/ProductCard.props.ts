@@ -1,8 +1,8 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 
-import { IShortCardProduct } from '../../interfaces';
+import { ISimilarProduct } from '../../interfaces';
 
 export interface ProductCardProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  product: IShortCardProduct;
+  product: ISimilarProduct;
 }
