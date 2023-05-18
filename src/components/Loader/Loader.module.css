@@ -18,8 +18,8 @@
   width: 80px;
   height: 80px; /* Safari */
 
-  border: 10px solid var(--front);
-  border-top: 10px solid var(--gray);
+  border: 10px solid var(--color-white);
+  border-top: 10px solid var(--color-gray);
   border-radius: 50%;
 
   animation: spin 2s linear infinite;

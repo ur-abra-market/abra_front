@@ -34,14 +34,17 @@
 
 :root {
   /* -------color------ */
-  --black: #000000;
-  --white: #FFFFFF;
-  --gray: #C4C4C4;
-  --light-gray-kit: #F4F4F4;
-  --light-gray: #828282;
-  --back: #F5F5F5;
-  --front: #FFF;
-  --red: #FC133D;
+  --color-black: #000000;
+  --color-dark-gray: #4E4E4E;
+  --color-medium-gray: #828282;
+  --color-grey-innactive: #999999;
+  --color-gray: #D4D4D4;
+  --color-light-gray: #F4F4F4;
+  --color-super-light-gray: #F9F9F9;
+  --color-white: #FFFFFF;
+  --color-rating-star:#FFAB5E;
+  --color-accent: #FC133D;
+  --color-green:#34E145;
 
   /* -------fonts------ */
   --fh1: 64px;

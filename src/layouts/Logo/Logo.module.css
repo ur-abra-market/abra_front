@@ -6,11 +6,11 @@
 }
 
 .red{
-  color: var(--red);
+  color: var(--color-accent);
 }
 
 .black{
-  color: var(--black);
+  color: var(--color-black);
 }
 
 .md{

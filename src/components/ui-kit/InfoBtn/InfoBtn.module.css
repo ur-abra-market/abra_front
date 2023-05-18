@@ -9,7 +9,7 @@
   width: 80px;
   height: 80px;
 
-  background: var(--white);
+  background: var(--color-white);
   border-radius: 50%;
   box-shadow: 0 4px 16px rgb(0 0 0 / 32%);
 

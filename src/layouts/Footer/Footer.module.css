@@ -29,18 +29,18 @@
   font-weight: var(--medium);
   font-style: normal;
   line-height: 15px;
-  color: var(--black);
+  color: var(--color-black);
 }
 
 .selects{
   padding-left: 16px;
-  border-left: 1px solid var(--black);
+  border-left: 1px solid var(--color-black);
 }
 
 .bottom {
   padding: 14px 0;
-  color: var(--white);
-  background: var(--black);
+  color: var(--color-white);
+  background: var(--color-black);
 
 }
 
@@ -67,7 +67,7 @@
 }
 
 .links > a:hover {
-  color: var(--red);
+  color: var(--color-accent);
 }
 
 

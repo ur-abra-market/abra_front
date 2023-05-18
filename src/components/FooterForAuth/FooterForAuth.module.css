@@ -7,12 +7,12 @@
   font-weight: var(--medium);
   font-style: normal;
   line-height: 18px;
-  color: var(--black);
+  color: var(--color-black);
   text-align: center;
 }
 
 .links > a{
-  color: var(--red);
+  color: var(--color-accent);
   text-decoration-line: underline;
 }
 

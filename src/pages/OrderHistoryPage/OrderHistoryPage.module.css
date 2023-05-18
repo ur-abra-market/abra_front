@@ -63,8 +63,8 @@
 }
 
 .link.active {
-  color: var(--red);
-  border-color: var(--red);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 .list {

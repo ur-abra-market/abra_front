@@ -25,7 +25,7 @@
 
   padding: 16px 32px;
 
-  border-bottom: 1px solid var(--light-gray-kit);
+  border-bottom: 1px solid var(--color-light-gray);
 }
 
 .notifications_item:last-child {

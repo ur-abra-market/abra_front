@@ -12,7 +12,7 @@
   font-size: 34px;
   font-weight: 700;
   line-height: 34px;
-  color: var(--red);
+  color: var(--color-accent);
   text-align: center;
   letter-spacing: 0.41px;
 }

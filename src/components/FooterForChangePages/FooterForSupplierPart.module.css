@@ -6,7 +6,7 @@
   margin-top: auto;
   padding: 12px 32px;
 
-  background: var(--front);
+  background: var(--color-white);
 }
 
 .footer_links_wrapper {
@@ -21,12 +21,12 @@
   font-size: 15px;
   font-weight: 400;
   line-height: 24px;
-  color: var(--black);
+  color: #F5F5F5;
 }
 
 .footer_link {
   font-size: 15px;
   font-weight: 400;
   line-height: 24px;
-  color: var(--red);
+  color: var(--color-accent);
 }

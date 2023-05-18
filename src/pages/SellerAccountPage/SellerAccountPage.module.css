@@ -3,7 +3,7 @@
 
 .seller_page header > div > div:nth-child(2) {
   padding: 20px 32px;
-  background-color: var(--back);
+  background-color: #F5F5F5;
   border-bottom: 1px solid #E8E8E8;
 }
 
@@ -13,7 +13,7 @@
 
 .seller_cabinet {
   padding: 24px 30px 48px;
-  background: var(--back);
+  background: #F5F5F5;
 }
 
 .content_wrapper {
@@ -51,7 +51,7 @@
 
 .section {
   padding: 32px;
-  background: var(--front);
+  background: var(--color-white);
   border-radius: 8px;
 }
 
@@ -76,7 +76,7 @@
   font-weight: var(--bold);
   font-style: normal;
   line-height: var(--fh3);
-  color: var(--black);
+  color: var(--color-black);
   text-align: left;
 }
 
@@ -91,7 +91,7 @@
 }
 
 .logout_button_text {
-  color: var(--red)
+  color: var(--color-accent)
 }
 
 .profile_info_wrepper {
@@ -147,7 +147,7 @@
   font-weight: var(--regular);
   font-style: normal;
   line-height: var(--fh4);
-  color: var(--red);
+  color: var(--color-accent);
   text-decoration-line: underline;
 
 }
@@ -171,7 +171,7 @@
 .label {
   font-size: 12px;
   line-height: 12px;
-  color: var(--light-gray);
+  color: var(--color-medium-gray);
 }
 
 .account_details_wrapper {
@@ -194,7 +194,7 @@
   font-weight: var(--regular);
   font-style: normal;
   line-height: var(--fh4);
-  color: var(--red);
+  color: var(--color-accent);
   text-align: left;
 }
 
@@ -203,7 +203,7 @@
 }
 
 .link_description {
-  color: var(--black);
+  color: var(--color-black);
 }
 
 .category_wrapper {
@@ -242,7 +242,7 @@
   font-weight: 400;
   font-style: normal;
   line-height: 20px;
-  color: var(--black);
+  color: var(--color-black);
 
 }
 
@@ -264,7 +264,7 @@
 
   padding: 16px 32px;
 
-  border-bottom: 1px solid var(--light-gray-kit);
+  border-bottom: 1px solid var(--color-light-gray);
 }
 
 .notifications_item:last-child {
@@ -390,7 +390,7 @@
 
 .input_checkbox:checked {
   justify-content: right;
-  background: var(--red);
+  background: var(--color-accent);
 }
 
 .logout_button {
@@ -398,7 +398,7 @@
 }
 
 .logout_button_title {
-  color: var(--red)
+  color: var(--color-accent)
 }
 
 .orders_button {
