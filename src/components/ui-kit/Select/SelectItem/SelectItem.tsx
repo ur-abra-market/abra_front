@@ -6,14 +6,14 @@ import { IOption } from '../Select';
 
 import styles from './SelectItem.module.css';
 
-type SelectItemPropsType = {
+interface ISelectItemPropsType {
   currentSelectedItem: IOption;
   value: IOption;
   onClick: (value: IOption) => void;
   style?: CSSProperties;
-};
+}
 
-const SelectItem: FC<SelectItemPropsType> = ({
+const SelectItem: FC<ISelectItemPropsType> = ({
   currentSelectedItem,
   value,
   onClick,

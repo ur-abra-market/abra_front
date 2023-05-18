@@ -4,16 +4,16 @@ import ArrowDownLogo from '../../../../assets/img/icons/arrow-slide-down.svg';
 import ArrowUpLogo from '../../../../assets/img/icons/arrow-slide-up.svg';
 import { IOption, PositionType } from '../Select';
 
-type SelectHeaderPropsType = {
+interface ISelectHeaderPropsType {
   isOpenMenu: boolean;
   currentSelectedValue: IOption;
   onClick: () => void;
   className: string | undefined;
   menuItemsPosition?: PositionType;
   style?: CSSProperties;
-};
+}
 
-const SelectHeader: FC<SelectHeaderPropsType> = ({
+const SelectHeader: FC<ISelectHeaderPropsType> = ({
   currentSelectedValue,
   onClick,
   className,

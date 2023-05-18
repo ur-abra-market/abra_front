@@ -1,19 +1,19 @@
 import React, { FC, useState } from 'react';
 
-import { Controller } from 'react-hook-form';
+import { Control, Controller } from 'react-hook-form';
 
-import { Label, Select, IOption } from '../../ui-kit';
+import { IOption, Label, Select } from '../../ui-kit';
 import style from '../ProductListRegistrationForm/ProductListRegistrationForm.module.css';
 
 import styles from './SelectionsForProperties.module.css';
 
-interface SelectionsForPropertiesProps {
-  control: any;
+interface ISelectionsForPropertiesProps {
+  control: Control<any>;
   element: any;
   options: IOption[];
 }
 
-const SelectionsForProperties: FC<SelectionsForPropertiesProps> = ({
+const SelectionsForProperties: FC<ISelectionsForPropertiesProps> = ({
   control,
   element,
   options,

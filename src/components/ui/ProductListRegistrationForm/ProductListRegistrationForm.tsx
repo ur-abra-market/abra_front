@@ -229,17 +229,13 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
     dispatch(getCompanyInfoService());
   }, [dispatch]);
 
-  const handleSetFirstCategory = (value: string): void => {
-    setFirstCategory(value);
-  };
-  const handleSetSecondCategory = (value: string): void => {
-    setSecondCategory(value);
-  };
-  const handleSetThirdCategory = (value: string): void => {
-    setThirdCategory(value);
+  const handleSetCategory = (
+    value: string,
+    onChangeCallback: (value: string) => void,
+  ): void => {
+    onChangeCallback(value);
   };
 
-  // @ts-ignore
   return (
     <div className={style.form_wrapper}>
       <div className={style.form_container}>
@@ -288,7 +284,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                               error={errors?.category?.message}
                               onChange={value => {
                                 field.onChange(value.value);
-                                handleSetFirstCategory(value.label);
+                                handleSetCategory(value.label, setFirstCategory);
                               }}
                             />
                           </Label>
@@ -310,7 +306,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                               className={style.select}
                               onChange={value => {
                                 field.onChange(value.value);
-                                handleSetSecondCategory(value.label);
+                                handleSetCategory(value.label, setSecondCategory);
                               }}
                             />
                           </Label>
@@ -332,7 +328,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                                 className={style.select}
                                 onChange={value => {
                                   field.onChange(value.value);
-                                  handleSetThirdCategory(value.label);
+                                  handleSetCategory(value.label, setThirdCategory);
                                 }}
                               />
                             </Label>

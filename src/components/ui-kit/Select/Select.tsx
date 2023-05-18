@@ -18,7 +18,7 @@ const ARROW_DOWN_KEYBOARD = 'ArrowDown';
 const PREV = 1;
 const NEXT = 1;
 
-export type SelectProps = {
+export interface ISelectProps {
   options: IOption[];
   onChange?: (value: IOption) => void;
   error?: string;
@@ -30,14 +30,14 @@ export type SelectProps = {
   menuItemsPosition?: PositionType;
   header?: boolean;
   padding?: string;
-};
+}
 
 export type PositionType = 'up' | 'down';
 
-export type IOption = {
+export interface IOption {
   label: string;
   value: string | number;
-};
+}
 
 /**
  *
@@ -46,7 +46,7 @@ export type IOption = {
  *
  *
  */
-export const Select: FC<SelectProps> = ({
+export const Select: FC<ISelectProps> = ({
   options,
   placeholder,
   onChange,
@@ -65,9 +65,7 @@ export const Select: FC<SelectProps> = ({
   const [selectedValue, setSelectedVale] = useState<IOption>(defaultSelectedValue);
 
   const handleSetSelectedValue = (incomingData: IOption): void => {
-    if (incomingData === selectedValue) {
-      //
-    } else {
+    if (incomingData !== selectedValue) {
       setSelectedVale(incomingData);
       if (onChange) {
         onChange(incomingData);

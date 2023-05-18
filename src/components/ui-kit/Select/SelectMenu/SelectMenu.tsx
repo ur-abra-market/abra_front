@@ -4,16 +4,16 @@ import cn from 'classnames';
 
 import styles from './SelectMenu.module.css';
 
-type SelectMenuPropsType = {
+interface ISelectMenuPropsType {
   isOpen: boolean;
   children: ReactNode;
   height?: string;
   className?: string;
   style?: CSSProperties;
   onChangeHeight: (height: number) => void;
-};
+}
 
-const SelectMenu: FC<SelectMenuPropsType> = ({
+const SelectMenu: FC<ISelectMenuPropsType> = ({
   children,
   isOpen,
   height,
