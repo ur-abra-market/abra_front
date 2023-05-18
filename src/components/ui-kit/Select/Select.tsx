@@ -25,6 +25,7 @@ export interface ISelectProps {
   children?: ReactNode;
   placeholder?: string;
   menuHeight?: string;
+  defaultValue?: string;
   width?: string;
   className?: string;
   menuItemsPosition?: PositionType;
@@ -58,11 +59,20 @@ export const Select: FC<ISelectProps> = ({
   menuItemsPosition = 'down',
   header = false,
   padding = '15px',
+  defaultValue,
 }) => {
   const placeholderObj = placeholder ? { label: placeholder, value: placeholder } : null;
 
   const defaultSelectedValue = placeholderObj || options[0];
   const [selectedValue, setSelectedVale] = useState<IOption>(defaultSelectedValue);
+
+  useEffect(() => {
+    if (defaultValue) {
+      const currentValue = options.find(el => el.label === defaultValue);
+
+      if (currentValue) setSelectedVale(currentValue);
+    }
+  }, [defaultValue, options]);
 
   const handleSetSelectedValue = (incomingData: IOption): void => {
     if (incomingData !== selectedValue) {
@@ -74,38 +84,32 @@ export const Select: FC<ISelectProps> = ({
     handleCloseSelectMenu();
   };
 
-  const [isOpen, setIsOpen] = useState(false);
-  let headerClassname = styles.header;
-  let menuClassname;
+  const [isOpenItemsMenu, setIsOpenItemsMenu] = useState(false);
 
-  if (header && menuItemsPosition === 'down') {
-    headerClassname = isOpen ? styles.header_active : styles.header;
-  }
-  if (header && menuItemsPosition === 'up') {
-    headerClassname = isOpen
-      ? cn(styles.header_active, styles.header_active_up)
-      : styles.header;
-  }
-  if (header && menuItemsPosition === 'up' && isOpen) {
-    menuClassname = styles.opened_menu_up_pos;
-    headerClassname = cn(headerClassname, styles.opened_menu_up_pos_header);
-  }
-  if (!header) {
-    menuClassname = cn(menuClassname, styles.closed_menu);
-  }
+  const headerClassname = cn(styles.header, {
+    [styles.opened_menu_up_pos_header]:
+      header && menuItemsPosition === 'up' && isOpenItemsMenu,
+    [styles.header_active]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
+    [styles.header_active_up]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
+    [styles.header_active]: header && menuItemsPosition === 'down' && isOpenItemsMenu,
+  });
+  const menuClassname = cn({
+    [styles.closed_menu]: !header,
+    [styles.opened_menu_up_pos]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
+  });
 
   const handleChangeSelectState = (): void => {
-    setIsOpen(!isOpen);
+    setIsOpenItemsMenu(!isOpenItemsMenu);
   };
   const handleCloseSelectMenu = (): void => {
-    setIsOpen(false);
+    setIsOpenItemsMenu(false);
   };
 
   const mainDivRef = useRef<HTMLDivElement>(null);
 
   useOnHoverOutside(mainDivRef, () => {
     window.onscroll = () => {
-      setIsOpen(false);
+      setIsOpenItemsMenu(false);
 
       return true;
     };
@@ -128,7 +132,7 @@ export const Select: FC<ISelectProps> = ({
   useEffect(() => {
     let currentItemId = 0;
 
-    if (isOpen) {
+    if (isOpenItemsMenu) {
       const test = window.scrollY;
 
       window.onscroll = () => {
@@ -166,7 +170,7 @@ export const Select: FC<ISelectProps> = ({
         return true;
       };
     }
-  }, [isOpen, options]);
+  }, [isOpenItemsMenu, options]);
 
   const selectWidth = width ? { width } : {};
   const [currentMenuHeight, setCurrentMenuHeight] = useState(0);
@@ -188,13 +192,13 @@ export const Select: FC<ISelectProps> = ({
         menuItemsPosition={menuItemsPosition}
         className={headerClassname}
         currentSelectedValue={selectedValue}
-        isOpenMenu={isOpen}
+        isOpenMenu={isOpenItemsMenu}
         onClick={handleChangeSelectState}
         style={HeaderStyles}
       />
       <span className={styles.error}>{error}</span>
       <SelectMenu
-        isOpen={isOpen}
+        isOpen={isOpenItemsMenu}
         height={menuHeight}
         style={menuStyles}
         className={menuClassname}
