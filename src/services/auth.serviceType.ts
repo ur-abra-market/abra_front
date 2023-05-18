@@ -1,5 +1,7 @@
 import { Dispatch } from '@reduxjs/toolkit';
 
+export type userRoleType = null | 'supplier' | 'seller';
+
 export type RegisterParamsType = {
   email?: string;
   password?: string;
@@ -51,11 +53,22 @@ export type AsyncThunkConfig = {
   rejectedMeta?: unknown;
 };
 
-export type SendUserAccountInfoParamsType = {
+export interface ISendAccountPersonalInfo {
   first_name: string;
   last_name: string;
   phone_country_code: string;
   phone_number: string;
-};
+}
 
-export type userRoleType = null | 'supplier' | 'seller';
+export interface ISendAccountPersonalInfoResponse {
+  ok: boolean;
+  result?: true;
+  detail?: string;
+  error: [
+    {
+      msg: string;
+      type: string;
+    },
+  ];
+  error_code: number;
+}
