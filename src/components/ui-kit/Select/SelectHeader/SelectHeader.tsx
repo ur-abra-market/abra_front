@@ -8,7 +8,7 @@ interface ISelectHeaderPropsType {
   isOpenMenu: boolean;
   currentSelectedValue: IOption;
   onClick: () => void;
-  className: string | undefined;
+  className: string;
   menuItemsPosition?: PositionType;
   style?: CSSProperties;
 }
