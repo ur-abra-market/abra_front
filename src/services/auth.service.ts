@@ -3,9 +3,11 @@ import {
   LoginResponseType,
   RegisterParamsType,
   RegisterResponseType,
-  SendUserAccountInfoParamsType,
 } from './auth.serviceType';
-import { BaseResponseType } from './common.serviceType';
+import {
+  IAccountPersonalInfoRequest,
+  IAccountPersonalInfoResponse,
+} from './common.serviceType';
 import httpService from './http.service';
 
 const authService = {
@@ -23,13 +25,13 @@ const authService = {
     });
   },
 
-  sendUserAccountInfo: async ({
+  sendAccountPersonalInfo: async ({
     first_name,
     last_name,
     phone_country_code,
     phone_number,
-  }: SendUserAccountInfoParamsType) => {
-    const { data } = await httpService.post<BaseResponseType<boolean>>(
+  }: IAccountPersonalInfoRequest) => {
+    const { data } = await httpService.post<IAccountPersonalInfoResponse>(
       `/register/account/sendInfo/`,
       {
         first_name,

@@ -1,5 +1,9 @@
 import { IUserNotificationsData } from '../store/reducers/userSlice';
 
+import {
+  IAccountPersonalInfoRequest,
+  IAccountPersonalInfoResponse,
+} from './common.serviceType';
 import httpService from './http.service';
 import { IErrorResponse } from './seller.service';
 
@@ -7,7 +11,26 @@ export enum Action {
   UPLOAD_LOGO = 'users/uploadLogoImage/',
 }
 
-const userFetch = {
+const userService = {
+  updateAccountPersonalInfo: async ({
+    first_name,
+    last_name,
+    phone_country_code,
+    phone_number,
+  }: IAccountPersonalInfoRequest) => {
+    const { data } = await httpService.patch<IAccountPersonalInfoResponse>(
+      `/users/account/update/`,
+      {
+        first_name,
+        last_name,
+        phone_country_code,
+        phone_number,
+      },
+    );
+
+    return data;
+  },
+
   uploadLogoImage: async (img: any) => {
     const formData = new FormData();
 
@@ -53,4 +76,4 @@ const userFetch = {
   },
 };
 
-export default userFetch;
+export default userService;

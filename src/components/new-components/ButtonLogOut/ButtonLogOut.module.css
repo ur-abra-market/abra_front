@@ -1,0 +1,9 @@
+.button {
+  display: flex;
+  column-gap: 5px;
+  align-items: center;
+}
+
+.button_title {
+  color: var(--color-accent)
+}

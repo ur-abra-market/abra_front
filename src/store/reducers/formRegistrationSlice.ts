@@ -3,10 +3,15 @@ import { AxiosError } from 'axios';
 
 import { Status } from '../../enums/status.enum';
 import authService from '../../services/auth.service';
-import { SendUserAccountInfoParamsType } from '../../services/auth.serviceType';
-import { BaseResponseType } from '../../services/common.serviceType';
+import {
+  IAccountPersonalInfoRequest,
+  IAccountPersonalInfoResponse,
+} from '../../services/common.serviceType';
 import formRegistrationService from '../../services/formRegistration.service';
 import { RequestAccountInfo } from '../../services/supplierAccount.service';
+import userService from '../../services/user.service';
+
+import { getCurrentUserInfo } from './loginSlice';
 
 interface IFormRegistrationInitialState {
   accountInfo: null | {};
@@ -39,9 +44,9 @@ export const accountInfoService = createAsyncThunk<
   }
 });
 
-export const sendUserAccountInfo = createAsyncThunk<
-  BaseResponseType<boolean>,
-  SendUserAccountInfoParamsType
+export const sendAccountPersonalInfo = createAsyncThunk<
+  IAccountPersonalInfoResponse,
+  IAccountPersonalInfoRequest
 >(
   'formRegistration/sendUserAccountInfo',
   async (
@@ -49,7 +54,7 @@ export const sendUserAccountInfo = createAsyncThunk<
     { rejectWithValue },
   ) => {
     try {
-      return await authService.sendUserAccountInfo({
+      return await authService.sendAccountPersonalInfo({
         first_name,
         last_name,
         phone_country_code,
@@ -61,6 +66,38 @@ export const sendUserAccountInfo = createAsyncThunk<
       }
 
       return rejectWithValue('[sendUserAccountInfo]: ERROR');
+    }
+  },
+);
+
+export const updateAccountPersonalInfo = createAsyncThunk<
+  IAccountPersonalInfoResponse,
+  IAccountPersonalInfoRequest
+>(
+  'formRegistration/updateAccountPersonalInfo',
+  async (
+    { first_name, last_name, phone_country_code, phone_number },
+    { dispatch, rejectWithValue },
+  ) => {
+    try {
+      const response = await userService.updateAccountPersonalInfo({
+        first_name,
+        last_name,
+        phone_country_code,
+        phone_number,
+      });
+
+      if (response.result) {
+        dispatch(getCurrentUserInfo());
+      }
+
+      return response;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[updateAccountPersonalInfo]: ERROR');
     }
   },
 );

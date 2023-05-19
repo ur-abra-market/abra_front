@@ -1,20 +1,65 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import { Controller, useFormContext } from 'react-hook-form';
-import PhoneInput from 'react-phone-input-2';
+import cn from 'classnames';
+import { isValidNumber } from 'libphonenumber-js';
+import { useFormContext } from 'react-hook-form';
+import PhoneInput, { CountryData } from 'react-phone-input-2';
 
 import 'react-phone-input-2/lib/style.css';
 import { Input, Label } from '../../../components/ui-kit';
-import { IAccountInfoData } from '../../../interfaces';
+import { IAccountPersonalInfo } from '../../../interfaces';
 
 import style from './PersonalInfoChangeForm.module.css';
 
-export const PersonalInfoChangeForm = (): JSX.Element => {
+interface IPersonalInfoChangeForm {
+  phoneInputClass?: string;
+}
+
+export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
+  phoneInputClass,
+}): JSX.Element => {
   const {
     register,
+    setError,
+    clearErrors,
+    setValue,
+    watch,
     formState: { errors },
-    control,
-  } = useFormContext<IAccountInfoData>();
+  } = useFormContext<IAccountPersonalInfo>();
+
+  const phoneNumberValue = watch('phoneNumber');
+  const phoneNumberError = errors.phoneNumber?.message;
+
+  const handlePhoneInputOnChange = (
+    value: string,
+    data: {} | CountryData,
+    event: React.ChangeEvent<HTMLInputElement>,
+    formattedValue: string,
+  ): void => {
+    setValue('phoneNumber', formattedValue);
+    const isPhoneNumberValid = isValidNumber(formattedValue);
+
+    if (!isPhoneNumberValid) {
+      setError('phoneNumber', {
+        type: 'manual',
+        message: 'Please enter a valid phone number',
+      });
+    } else {
+      clearErrors('phoneNumber');
+      setValue('phoneNumber', formattedValue, { shouldValidate: true });
+    }
+  };
+
+  const phoneInputClasses = cn({
+    [style.phone]: true,
+    ...(phoneInputClass ? { [phoneInputClass]: true } : {}),
+    [style.phone_error]: Boolean(phoneNumberError),
+  });
+
+  const phoneButtonClasses = cn({
+    [style.phone_flag]: true,
+    [style.phone_flag_error]: Boolean(phoneNumberError),
+  });
 
   return (
     <>
@@ -40,24 +85,15 @@ export const PersonalInfoChangeForm = (): JSX.Element => {
 
       <div className={style.phone_number}>
         <Label label="Personal phone number" htmlFor="tel">
-          <Controller
-            name="tel"
-            control={control}
-            defaultValue=""
-            render={({ field }) => (
-              <PhoneInput
-                inputClass={style.phone}
-                buttonClass={style.phone_flag}
-                country="us"
-                value={field.value}
-                onChange={(value, data, event, formattedValue) => {
-                  field.onChange(formattedValue);
-                }}
-              />
-            )}
+          <PhoneInput
+            inputClass={phoneInputClasses}
+            buttonClass={phoneButtonClasses}
+            country="us"
+            value={phoneNumberValue}
+            onChange={handlePhoneInputOnChange}
           />
         </Label>
-        {errors.tel?.message && <span className={style.error}>{errors.tel.message}</span>}
+        {phoneNumberError && <span className={style.error}>{phoneNumberError}</span>}
       </div>
     </>
   );

@@ -25,7 +25,7 @@
   font-weight: var(--bold);
   font-style: normal;
   line-height: 34px;
-  color: var(--black);
+  color: var(--color-black);
 }
 
 .link {
@@ -35,7 +35,7 @@
   font-size: 15px;
   font-weight: var(--regular);
   line-height: 20px;
-  color:var(--red);
+  color:var(--color-accent);
   text-decoration: underline;
 }
 

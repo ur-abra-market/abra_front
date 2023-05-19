@@ -192,12 +192,12 @@
 
 .new_price {
   margin: 0 0 0 4px;
-  color: var(--red);
+  color: var(--color-accent);
 }
 
 .old_price {
   text-decoration: line-through;
-  text-decoration-color: var(--red);
+  text-decoration-color: var(--color-accent);
 }
 
 .track_info {

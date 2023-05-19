@@ -24,9 +24,14 @@
   border-radius: 12px;
 }
 
-.personal_info_title {
+.personal_info_title_logout_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 24px;
+}
 
+.personal_info_title {
   font-size: 20px;
   font-weight: 700;
   color: #000000;
@@ -399,7 +404,7 @@
   width: 95px;
   height: 95px;
 
-  background: var(--light-gray-kit);
+  background: var(--color-light-gray);
   border-radius: 50%;
 }
 

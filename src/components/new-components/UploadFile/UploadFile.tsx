@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import { ReactComponent as Photo } from '../../../assets/img/icons/photo_icon.svg';
 import { Status } from '../../../enums/status.enum';
-import userFetch from '../../../services/user.service';
+import userService from '../../../services/user.service';
 
 import style from './UploadFile.module.css';
 import { UploadFileProps } from './UploadFile.props';
@@ -26,7 +26,7 @@ const UploadFile: FC<UploadFileProps> = props => {
 
   useEffect(() => {
     if (file.raw) {
-      userFetch
+      userService
         .uploadFile({ action, file: file.raw as File })
         .then(() => {
           setStatus(Status.Success);

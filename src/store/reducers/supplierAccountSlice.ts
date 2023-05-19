@@ -4,7 +4,6 @@ import { AxiosError } from 'axios';
 import { Status } from '../../enums/status.enum';
 import supplierAccountData, {
   INotification,
-  RequestAccountInfo,
 } from '../../services/supplierAccount.service';
 
 import { getCurrentUserInfo } from './loginSlice';
@@ -25,22 +24,6 @@ export const getSupplierAccountDataService = createAsyncThunk(
     }
   },
 );
-
-export const updateSupplierAccountDataService = createAsyncThunk<
-  void,
-  RequestAccountInfo
->('supplierAccount/updateAccountData', async (data, { rejectWithValue, dispatch }) => {
-  try {
-    await supplierAccountData.sendAccountData(data);
-    dispatch(getSupplierAccountDataService());
-  } catch (error: unknown) {
-    if (error instanceof AxiosError) {
-      rejectWithValue(error.message);
-    }
-
-    return rejectWithValue('[updateAccountData]: Error');
-  }
-});
 
 export const getSupplierNotifications = createAsyncThunk(
   'supplierAccount/getNotifications',
@@ -83,28 +66,28 @@ export const updateSupplierNotifications = createAsyncThunk<
   },
 );
 
-// TODO - пересмотреть типизацию
 export interface ISupplierAccountSlice {
   isLoading: Status;
   error: string | null;
   notifications?: INotification;
   hasProfile: boolean;
   supplierInfo: {
-    first_name: string;
-    last_name: string;
-    phone_country_code: string;
-    phone_number: string;
+    firstName: string;
+    lastName: string;
+    phoneCountryCode: string;
+    phoneNumberBody: string;
   };
 }
+
 const initialState: ISupplierAccountSlice = {
   isLoading: Status.Idle,
   error: null,
   hasProfile: false,
   supplierInfo: {
-    first_name: '',
-    last_name: '',
-    phone_country_code: '',
-    phone_number: '',
+    firstName: '',
+    lastName: '',
+    phoneCountryCode: '',
+    phoneNumberBody: '',
   },
 };
 
@@ -117,14 +100,20 @@ const supplierAccountSlice = createSlice({
       state.isLoading = Status.Loading;
     });
     builder.addCase(getCurrentUserInfo.fulfilled, (state, action) => {
-      if (action.payload.result.is_supplier) {
+      const response = action.payload.result;
+
+      if (response.is_supplier) {
         if (action.payload.detail.has_profile) {
           state.hasProfile = true;
-          state.supplierInfo = action.payload.result;
+          state.supplierInfo.firstName = response.first_name;
+          state.supplierInfo.lastName = response.last_name;
+          state.supplierInfo.phoneCountryCode = response.phone_country_code;
+          state.supplierInfo.phoneNumberBody = response.phone_number;
         } else {
           state.hasProfile = false;
         }
       }
+
       state.isLoading = Status.Success;
     });
     builder.addCase(getSupplierAccountDataService.pending, state => {
@@ -139,7 +128,6 @@ const supplierAccountSlice = createSlice({
       state.isLoading = Status.Failed;
       state.error = action.payload as string;
     });
-
     builder.addCase(getSupplierNotifications.pending, state => {
       state.isLoading = Status.Loading;
     });

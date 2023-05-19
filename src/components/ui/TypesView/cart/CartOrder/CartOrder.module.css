@@ -66,7 +66,7 @@
   font-weight: var(--regular);
   font-style: normal;
   line-height: var(--fd);
-  color: var(--light-gray);
+  color: var(--color-medium-gray);
 }
 
 .text_small {
@@ -74,6 +74,6 @@
   font-weight: var(--regular);
   font-style: normal;
   line-height: 16px;
-  color: var(--light-gray);
+  color: var(--color-medium-gray);
 }
 

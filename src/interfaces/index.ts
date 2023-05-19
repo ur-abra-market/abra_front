@@ -1,7 +1,7 @@
-export interface IAccountInfoData {
+export interface IAccountPersonalInfo {
   firstName: string;
   lastName: string;
-  tel: string;
+  phoneNumber: string;
 }
 
 export interface IProduct {

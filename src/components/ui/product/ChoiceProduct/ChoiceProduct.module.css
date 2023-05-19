@@ -64,7 +64,7 @@
 
   font-size: 12px;
   line-height: 16px;
-  color: var(--light-gray);
+  color: var(--color-medium-gray);
 }
 
 .choice_product_quantity_control {
@@ -167,5 +167,5 @@
 }
 
 .active {
-  border: 3px solid var(--red)
+  border: 3px solid var(--color-accent)
 }

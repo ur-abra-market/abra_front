@@ -4,11 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { personalSupplierInfoValidationSchema } from '../../../constants/personalSupplierInfoValidationSchema';
-import { IAccountInfoData } from '../../../interfaces';
+import { accountPersonalInfoValidationSchema } from '../../../constants/accountPersonalInfoValidationSchema';
+import { IAccountPersonalInfo } from '../../../interfaces';
 import { PersonalInfoChangeForm } from '../../../pages/SupplierAccountMainPage/PersonalInfoChangeForm/PersonalInfoChangeForm';
 import { useAppDispatch } from '../../../store/hooks';
-import { sendUserAccountInfo } from '../../../store/reducers/formRegistrationSlice';
+import { sendAccountPersonalInfo } from '../../../store/reducers/formRegistrationSlice';
 import { parsePhoneNumber } from '../../../utils/parsePhoneNumber';
 import FormTitle from '../../FormTitle';
 import Modal from '../../new-components/Modal';
@@ -22,8 +22,8 @@ export const AccountSetupForm = (): JSX.Element => {
   const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
-  const formMethods = useForm<IAccountInfoData>({
-    resolver: yupResolver(personalSupplierInfoValidationSchema),
+  const formMethods = useForm<IAccountPersonalInfo>({
+    resolver: yupResolver(accountPersonalInfoValidationSchema),
     mode: 'all',
   });
   const {
@@ -33,19 +33,26 @@ export const AccountSetupForm = (): JSX.Element => {
     watch,
   } = formMethods;
 
-  const onSubmit = (data: IAccountInfoData): void => {
-    const { countryCode, phoneNumber } = parsePhoneNumber(data.tel);
+  const onSubmit = async (data: IAccountPersonalInfo): Promise<void> => {
+    const { countryCode, numberBody } = parsePhoneNumber(data.phoneNumber);
 
-    dispatch(
-      sendUserAccountInfo({
-        first_name: data.firstName,
-        last_name: data.lastName,
-        phone_country_code: countryCode,
-        phone_number: phoneNumber,
-      }),
-    );
-    navigate('/business-profile');
-    reset();
+    try {
+      const response = (await dispatch(
+        sendAccountPersonalInfo({
+          first_name: data.firstName,
+          last_name: data.lastName,
+          phone_country_code: countryCode,
+          phone_number: numberBody,
+        }),
+      )) as { payload: { result: boolean } };
+
+      if (response.payload.result) {
+        navigate('/business-profile');
+        reset();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -56,9 +63,10 @@ export const AccountSetupForm = (): JSX.Element => {
           title="Account Info"
           text="This information will not be published. The data will only be used to create your account"
         />
+
         <FormProvider {...formMethods}>
           <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-            <PersonalInfoChangeForm />
+            <PersonalInfoChangeForm phoneInputClass={style.phone_input} />
 
             <Button
               type="submit"
@@ -71,12 +79,16 @@ export const AccountSetupForm = (): JSX.Element => {
             />
           </form>
         </FormProvider>
+
         <Modal
           showModal={showModal}
           closeModal={setShowModal}
           classNameModal={style.modal}
         >
-          <ModalChildPhoneCheck setShowModal={setShowModal} phone={watch('tel')} />
+          <ModalChildPhoneCheck
+            setShowModal={setShowModal}
+            phone={watch('phoneNumber')}
+          />
         </Modal>
       </div>
     </div>

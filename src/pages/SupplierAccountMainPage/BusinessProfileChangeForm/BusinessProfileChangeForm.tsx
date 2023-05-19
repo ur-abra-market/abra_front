@@ -180,7 +180,6 @@ const BusinessProfileChangeForm: FC = (): JSX.Element => {
                       <Select
                         options={BUSINESS_SECTOR_DATA}
                         placeholder="Select"
-                        padding="23px"
                         className={style.select}
                         error={errors?.businessSector?.message}
                         onChange={value => {
@@ -224,7 +223,6 @@ const BusinessProfileChangeForm: FC = (): JSX.Element => {
                       <Select
                         options={NUMBER_OF_EMPLOYEES_DATA}
                         placeholder="Select"
-                        padding="23px"
                         className={style.select}
                         error={errors?.numEmployees?.message}
                         onChange={value => {

@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const personalSupplierInfoValidationSchema = yup
+export const accountPersonalInfoValidationSchema = yup
   .object({
     firstName: yup
       .string()
@@ -18,6 +18,6 @@ export const personalSupplierInfoValidationSchema = yup
       .test('no-spaces', 'Please enter a valid name', value => {
         return value === undefined || value.trim() !== '';
       }),
-    tel: yup.string().required('Field is required'),
+    phoneNumber: yup.string().required('Field is required'),
   })
   .required();

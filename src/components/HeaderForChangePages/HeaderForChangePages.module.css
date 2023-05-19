@@ -5,7 +5,7 @@
 
   width: 100%;
 
-  background-color: var(--front);
+  background-color: var(--color-white);
   border-bottom: 1px solid #E8E8E8;
 }
 
@@ -17,7 +17,7 @@
   font-size: 25px;
   font-weight: 700;
   line-height: 25px;
-  color: var(--red);
+  color: var(--color-accent);
 
 }
 
@@ -46,7 +46,7 @@
   width: 40px;
   height: 40px;
 
-  background-color: var(--back);
+  background-color: #F5F5F5;
   border-radius: 50%;
 }
 

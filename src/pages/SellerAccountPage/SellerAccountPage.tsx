@@ -4,9 +4,9 @@ import cn from 'classnames';
 import { useForm } from 'react-hook-form';
 import { Link, Navigate } from 'react-router-dom';
 
-import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
 import { Container } from '../../components';
 import Address from '../../components/Address';
+import { ButtonLogOut } from '../../components/new-components/ButtonLogOut/ButtonLogOut';
 import FeedbackForm from '../../components/new-components/feedback/FeedbackForm';
 import UploadFile from '../../components/new-components/UploadFile/UploadFile';
 import {
@@ -20,7 +20,6 @@ import {
 } from '../../components/ui-kit';
 import { Action } from '../../services/user.service';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { logout } from '../../store/reducers/loginSlice';
 import {
   getSellerAddressesService,
   getSellerInfoService,
@@ -94,10 +93,6 @@ const SellerAccountPage = (): JSX.Element => {
 
   // const addresses = [addressExample];
 
-  const onLogoutHandler = (): void => {
-    dispatch(logout());
-  };
-
   const onNotificationChange = (id: string, isChecked: boolean): void => {
     dispatch(updateUserNotificationService({ id, isChecked }));
   };
@@ -135,14 +130,7 @@ const SellerAccountPage = (): JSX.Element => {
               <div className={style.section}>
                 <div className={style.header_wrapper}>
                   <div className={style.header}>Profile Info</div>
-                  <Button
-                    color="white"
-                    className={style.logout_button}
-                    onClick={onLogoutHandler}
-                  >
-                    <div className={style.logout_button_title}>Log Out</div>
-                    <LogOutIcon />
-                  </Button>
+                  <ButtonLogOut />
                 </div>
                 <div className={style.button_link_container}>
                   <UploadFile action={Action.UPLOAD_LOGO} />

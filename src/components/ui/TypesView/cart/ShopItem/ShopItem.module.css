@@ -13,7 +13,7 @@
   width: 24px;
   height: 24px;
   margin-right: 34px;
-  accent-color: var(--red);
+  accent-color: var(--color-accent);
 }
 
 .star {
@@ -48,7 +48,7 @@
   font-weight: var(--regular);
   font-style: normal;
   line-height: var(--fh4);
-  color: var(--black);
+  color: var(--color-black);
 
   background-color: rgba(252, 19, 61, 0.2);
   border-radius: 8px;
@@ -61,6 +61,6 @@
 
 .method {
   cursor: pointer;
-  color: var(--black);
+  color: var(--color-black);
   text-decoration: underline;
 }

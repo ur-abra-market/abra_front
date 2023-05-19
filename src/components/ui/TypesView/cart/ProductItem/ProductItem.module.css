@@ -18,7 +18,7 @@
   width: 24px;
   height: 24px;
   margin-right: 34px;
-  accent-color: var(--red);
+  accent-color: var(--color-accent);
 }
 
 .container_img {
@@ -67,7 +67,7 @@
   font-weight: var(--regular);
   font-style: normal;
   line-height: var(--fd);
-  color: var(--light-gray);
+  color: var(--color-medium-gray);
 }
 
 .quantity_container {
@@ -81,7 +81,7 @@
   font-weight: var(--regular);
   font-style: normal;
   line-height: var(--fd);
-  color: var(--black);
+  color: var(--color-black);
 }
 
 .quantity_from {
@@ -113,7 +113,7 @@
   text-align: center;
 
   background-color: transparent;
-  border: 1px solid var(--light-gray);
+  border: 1px solid var(--color-medium-gray);
   border-radius: 8px;
 }
 
@@ -125,6 +125,6 @@
   width: 32px;
   height: 32px;
 
-  border: 1px solid var(--light-gray);
+  border: 1px solid var(--color-medium-gray);
   border-radius: 8px;
 }

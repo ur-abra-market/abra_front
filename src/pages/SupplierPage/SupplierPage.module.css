@@ -13,7 +13,7 @@
   width: 40px;
   height: 40px;
 
-  background-color: var(--back);
+  background-color: #F5F5F5;
   border-radius: 50%;
 }
 
@@ -24,17 +24,17 @@
   height: 17px;
   margin: 0 12px;
 
-  background-color: #000000;
+  background-color: var(--color-black);
 }
 
 .supplier_main_page_link {
   cursor: pointer;
-  color: #000000;
+  color: var(--color-black);
 }
 
 .title {
   padding-right: 17px;
-  border-right: 3px solid #000000;
+  border-right: 3px solid var(--color-black);
 }
 
 .btn_img {
@@ -67,7 +67,7 @@
   font-weight: 400;
   font-style: normal;
   line-height: 25px;
-  color: #000000;
+  color: var(--color-black);
   letter-spacing: 0.38px;
 }
 
@@ -84,7 +84,7 @@
   height: fit-content;
   margin-top: 26px;
 
-  background-color: #FFFFFF;
+  background-color: var(--color-white);
   border-radius: 3px;
 
   transition: 0.4s;
@@ -100,5 +100,5 @@
   border-radius: 50%;
 }
 .text_link{
-  color:#FC133D
+  color: var(--color-accent)
 }
