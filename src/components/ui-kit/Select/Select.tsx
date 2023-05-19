@@ -29,7 +29,7 @@ export interface ISelectProps {
   width?: string;
   className?: string;
   menuItemsPosition?: PositionType;
-  header?: boolean;
+  header?: boolean; // to add header use --> header={true}
   padding?: string;
 }
 
@@ -40,13 +40,6 @@ export interface IOption {
   value: string | number;
 }
 
-/**
- *
- * Props:
- * - To add header use --> Header={true}
- *
- *
- */
 export const Select: FC<ISelectProps> = ({
   options,
   placeholder,
@@ -58,7 +51,7 @@ export const Select: FC<ISelectProps> = ({
   className,
   menuItemsPosition = 'down',
   header = false,
-  padding = '15px',
+  padding = '14px',
   defaultValue,
 }) => {
   const placeholderObj = placeholder ? { label: placeholder, value: placeholder } : null;
@@ -182,10 +175,6 @@ export const Select: FC<ISelectProps> = ({
     top: menuItemsPosition === 'up' ? `-${currentMenuHeight}px` : 'unset',
   };
 
-  const HeaderStyles: { padding: string } = {
-    padding,
-  };
-
   return (
     <div style={selectWidth} className={cn(styles.main, className)} ref={mainDivRef}>
       <SelectHeader
@@ -194,7 +183,6 @@ export const Select: FC<ISelectProps> = ({
         currentSelectedValue={selectedValue}
         isOpenMenu={isOpenItemsMenu}
         onClick={handleChangeSelectState}
-        style={HeaderStyles}
       />
       <span className={styles.error}>{error}</span>
       <SelectMenu
