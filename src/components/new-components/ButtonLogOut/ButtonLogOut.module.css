@@ -1,0 +1,7 @@
+.button {
+  display: flex;
+}
+
+.button_title {
+  color: var(--color-accent)
+}

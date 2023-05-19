@@ -393,14 +393,6 @@
   background: var(--color-accent);
 }
 
-.logout_button {
-  display: flex;
-}
-
-.logout_button_title {
-  color: var(--color-accent)
-}
-
 .orders_button {
   display: flex;
   flex-direction: column-reverse;
@@ -416,9 +408,6 @@
   font-weight: var(--regular);
   font-style: normal;
   line-height: var(--fd);
-  /* identical to box height, or 133% */
-
-
 }
 
 .completed_icon {
