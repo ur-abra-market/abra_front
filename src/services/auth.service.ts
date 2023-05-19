@@ -1,11 +1,13 @@
 import {
-  ISendAccountPersonalInfo,
-  ISendAccountPersonalInfoResponse,
   LoginParamsType,
   LoginResponseType,
   RegisterParamsType,
   RegisterResponseType,
 } from './auth.serviceType';
+import {
+  IAccountPersonalInfoRequest,
+  IAccountPersonalInfoResponse,
+} from './common.serviceType';
 import httpService from './http.service';
 
 const authService = {
@@ -28,8 +30,8 @@ const authService = {
     last_name,
     phone_country_code,
     phone_number,
-  }: ISendAccountPersonalInfo) => {
-    const { data } = await httpService.post<ISendAccountPersonalInfoResponse>(
+  }: IAccountPersonalInfoRequest) => {
+    const { data } = await httpService.post<IAccountPersonalInfoResponse>(
       `/register/account/sendInfo/`,
       {
         first_name,

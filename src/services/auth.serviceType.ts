@@ -52,23 +52,3 @@ export type AsyncThunkConfig = {
   fulfilledMeta?: unknown;
   rejectedMeta?: unknown;
 };
-
-export interface ISendAccountPersonalInfo {
-  first_name: string;
-  last_name: string;
-  phone_country_code: string;
-  phone_number: string;
-}
-
-export interface ISendAccountPersonalInfoResponse {
-  ok: boolean;
-  result?: true;
-  detail?: string;
-  error: [
-    {
-      msg: string;
-      type: string;
-    },
-  ];
-  error_code: number;
-}

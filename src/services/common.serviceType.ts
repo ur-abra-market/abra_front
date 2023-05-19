@@ -13,3 +13,23 @@ export type CountryType = {
   country: string;
   country_code: string;
 };
+
+export interface IAccountPersonalInfoRequest {
+  first_name: string;
+  last_name: string;
+  phone_country_code: string;
+  phone_number: string;
+}
+
+export interface IAccountPersonalInfoResponse {
+  ok: boolean;
+  result?: true;
+  detail?: string;
+  error: [
+    {
+      msg: string;
+      type: string;
+    },
+  ];
+  error_code: number;
+}

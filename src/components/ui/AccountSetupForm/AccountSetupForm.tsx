@@ -34,7 +34,7 @@ export const AccountSetupForm = (): JSX.Element => {
   } = formMethods;
 
   const onSubmit = async (data: IAccountPersonalInfo): Promise<void> => {
-    const { countryCode, phoneNumberBody } = parsePhoneNumber(data.phoneNumber);
+    const { countryCode, numberBody } = parsePhoneNumber(data.phoneNumber);
 
     try {
       const response = (await dispatch(
@@ -42,7 +42,7 @@ export const AccountSetupForm = (): JSX.Element => {
           first_name: data.firstName,
           last_name: data.lastName,
           phone_country_code: countryCode,
-          phone_number: phoneNumberBody,
+          phone_number: numberBody,
         }),
       )) as { payload: { result: boolean } };
 

@@ -2,14 +2,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { Status } from '../../enums/status.enum';
-import userFetch from '../../services/user.service';
+import userService from '../../services/user.service';
 import { RootState } from '../createStore';
 
 export const uploadUserLogoService = createAsyncThunk<any, any>(
   'user/uploadUserLogoService',
   async (image, { rejectWithValue }) => {
     try {
-      const data = await userFetch.uploadLogoImage(image);
+      const data = await userService.uploadLogoImage(image);
 
       return data.result;
     } catch (error: unknown) {
@@ -26,7 +26,7 @@ export const getFavoritesProductsService = createAsyncThunk<any, void>(
   'user/getFavoritesProductsService',
   async (_, { rejectWithValue }) => {
     try {
-      const data = await userFetch.getFavoritesProducts();
+      const data = await userService.getFavoritesProducts();
 
       return data.result;
     } catch (error: unknown) {
@@ -43,7 +43,7 @@ export const getUserNotificationsService = createAsyncThunk<IUserNotificationsDa
   'user/getUserNotificationsService',
   async (_, { rejectWithValue }) => {
     try {
-      const data = await userFetch.getNotifications();
+      const data = await userService.getNotifications();
 
       return data;
     } catch (error: unknown) {
@@ -72,7 +72,7 @@ export const updateUserNotificationService = createAsyncThunk<
       if (notifications) {
         const notificationsCopy = { ...notifications, [param.id]: param.isChecked };
 
-        await userFetch.updateNotification(notificationsCopy);
+        await userService.updateNotification(notificationsCopy);
         dispatch(getUserNotificationsService());
       }
     } catch (error: unknown) {
