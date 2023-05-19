@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
@@ -16,8 +16,7 @@ import Form from '../../Form';
 import FormTitle from '../../FormTitle';
 import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 import Loader from '../../Loader';
-import { Button, Input, Label, Select } from '../../ui-kit';
-import { IOption } from '../../ui-kit/Select/Select.props';
+import { Button, Input, Label, Select, IOption } from '../../ui-kit';
 import ProdInfoInputs from '../ProdInfoInputs';
 import SelectionsForProperties from '../SelectionsForProperties/SelectionsForProperties';
 import TypesPage from '../TypesView/TypesPage';
@@ -97,6 +96,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   });
 
   const {
+    control,
     register,
     formState: { isValid, errors },
     handleSubmit,
@@ -229,7 +229,13 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
     dispatch(getCompanyInfoService());
   }, [dispatch]);
 
-  // @ts-ignore
+  const handleSetCategory = (
+    value: string,
+    onChangeCallback: (value: string) => void,
+  ): void => {
+    onChangeCallback(value);
+  };
+
   return (
     <div className={style.form_wrapper}>
       <div className={style.form_container}>
@@ -265,40 +271,69 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                   </Label>
                   <div className={style.select_inputs}>
                     <div className={style.select_equal}>
-                      <Label label="Category *">
-                        <Select
-                          {...register('category')}
-                          error={errors?.category?.message}
-                          placeholder="Select"
-                          onChangeOption={setFirstCategory}
-                          options={FIRST_CATEGORIES_DATA}
-                        />
-                      </Label>
+                      <Controller
+                        control={control}
+                        name="category"
+                        render={({ field }) => (
+                          <Label label="Category *">
+                            <Select
+                              options={FIRST_CATEGORIES_DATA}
+                              placeholder="Select"
+                              padding="23px"
+                              className={style.select}
+                              error={errors?.category?.message}
+                              onChange={value => {
+                                field.onChange(value.value);
+                                handleSetCategory(value.label, setFirstCategory);
+                              }}
+                            />
+                          </Label>
+                        )}
+                      />
                     </div>
 
                     <div className={style.select_equal}>
-                      <Label label="Type 1 *">
-                        <Select
-                          {...register('type1')}
-                          error={errors?.type1?.message}
-                          placeholder="Select"
-                          onChangeOption={setSecondCategory}
-                          options={SECOND_CATEGORIES_DATA}
-                        />
-                      </Label>
+                      <Controller
+                        control={control}
+                        name="type1"
+                        render={({ field }) => (
+                          <Label label="Type 1 *">
+                            <Select
+                              options={SECOND_CATEGORIES_DATA}
+                              placeholder="Select"
+                              error={errors?.type1?.message}
+                              padding="23px"
+                              className={style.select}
+                              onChange={value => {
+                                field.onChange(value.value);
+                                handleSetCategory(value.label, setSecondCategory);
+                              }}
+                            />
+                          </Label>
+                        )}
+                      />
                     </div>
 
                     {thirdStageCategories && !!thirdStageCategories.length && (
                       <div className={style.select_equal}>
-                        <Label label="Type 2 *">
-                          <Select
-                            {...register('type2')}
-                            error={errors?.type2?.message}
-                            placeholder="Select"
-                            onChangeOption={setThirdCategory}
-                            options={THIRD_CATEGORIES_DATA}
-                          />
-                        </Label>
+                        <Controller
+                          control={control}
+                          name="type2"
+                          render={({ field }) => (
+                            <Label label="Type 2 *">
+                              <Select
+                                options={THIRD_CATEGORIES_DATA}
+                                placeholder="Select"
+                                error={errors?.type2?.message}
+                                className={style.select}
+                                onChange={value => {
+                                  field.onChange(value.value);
+                                  handleSetCategory(value.label, setThirdCategory);
+                                }}
+                              />
+                            </Label>
+                          )}
+                        />
                       </div>
                     )}
                   </div>
@@ -319,7 +354,6 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                     />
                   </Label>
                 </DropDownField>
-
                 <DropDownField
                   id={2}
                   title="Properties"
@@ -342,7 +376,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                           key={i}
                           element={el}
                           options={options}
-                          register={register}
+                          control={control}
                         />
                       );
                     })}
@@ -365,7 +399,6 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                     getValues={getValues}
                   />
                 </DropDownField>
-
                 <DropDownField
                   id={3}
                   title="Additional Product Info"
@@ -374,7 +407,6 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                 >
                   <ProdInfoInputs register={register} />
                 </DropDownField>
-
                 <Button type="submit" label="Continue" disabled={!isValid} />
               </div>
             </Form>

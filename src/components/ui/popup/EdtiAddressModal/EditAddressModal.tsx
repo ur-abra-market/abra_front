@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 import { ReactComponent as Delete } from '../../../../assets/img/icons/delete.svg';
 import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
@@ -39,6 +39,7 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
   };
 
   const {
+    control,
     register,
     handleSubmit,
     formState: { isValid },
@@ -99,7 +100,20 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
             <div className={style.edit_address_phone_title}>Personal phone number</div>
             <div className={style.edit_address_phone_number}>
               <div className={style.edit_address_phone_number_select}>
-                <Select options={listPhone} {...register('phone_country_code')} />
+                <Controller
+                  control={control}
+                  name="phone_country_code"
+                  render={({ field }) => (
+                    <Select
+                      options={listPhone}
+                      padding="23px"
+                      className={style.select}
+                      onChange={value => {
+                        field.onChange(value.value);
+                      }}
+                    />
+                  )}
+                />
               </div>
               <Input
                 {...register('phone_number')}
@@ -120,11 +134,20 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
               >
                 Country
               </div>
-              <Select
-                {...register('country')}
-                options={listCountry}
-                placeholder="Select a country"
-                defaultValue={dataArr.country}
+              <Controller
+                control={control}
+                name="country"
+                render={({ field }) => (
+                  <Select
+                    options={listCountry}
+                    placeholder="Select a country"
+                    padding="23px"
+                    className={style.select}
+                    onChange={value => {
+                      field.onChange(value.value);
+                    }}
+                  />
+                )}
               />
             </div>
             <div className={style.edit_address_text_modal}>
