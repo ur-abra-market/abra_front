@@ -78,6 +78,15 @@ interface IErrorDetail {
 }
 
 // TODO - одинаковые с ISendSellerErrorResponse
+
+export interface ISuccessResponse {
+  ok: boolean;
+  result: boolean;
+  detail: string;
+  error: string;
+  error_code: number;
+}
+
 export interface IErrorResponse {
   detail: IErrorDetail[];
 }

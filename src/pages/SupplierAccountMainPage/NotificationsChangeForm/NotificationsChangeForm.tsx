@@ -1,32 +1,72 @@
-import React, { FC } from 'react';
+import React from 'react';
 
-import { INotification } from '../../../services/supplierAccount.service';
+import { updateSupplierNotifications } from '../../../store/reducers/supplierAccountSlice';
 
 import style from './NotificationsChangeForm.module.css';
 
 import { Checkbox } from 'components/ui-kit';
-import { useAppSelector, useAppDispatch } from 'store/hooks';
-import { updateSupplierNotifications } from 'store/reducers/supplierAccountSlice';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 // import { getSupplierNotifications } from '../../../store/reducers/supplierAccountSlice';
 
 // TODO - с бэка приходят notifications seller'a
-const NOTIFICATIONS_DATA: { id: keyof INotification; label: string }[] = [
-  { id: 'on_discount', label: 'Discounts & offers' },
-  { id: 'on_order_updates', label: 'Order updates' },
-  { id: 'on_order_reminders', label: 'Order reminders' },
-  { id: 'on_stock_again', label: 'On stock again' },
-  { id: 'on_product_is_cheaper', label: 'Product is cheaper' },
-  { id: 'on_your_favorites_new', label: 'Your favorites new' },
-  { id: 'on_account_support', label: 'Account support' },
-];
 
-const NotificationsChangeForm: FC = (): JSX.Element => {
-  const notifications =
-    useAppSelector(state => state.supplierAccount.notifications) || null;
+const NotificationsChangeForm = (): JSX.Element => {
+  const notifications = useAppSelector(state => state.login.notifications);
+
   const dispatch = useAppDispatch();
 
-  const onNotificationChange = (id: string, value: boolean): void => {
+  const keys = Object.keys(notifications ?? []);
+
+  const NOTIFICATIONS_DATA: { id: string; value: boolean; label: string }[] = [
+    {
+      id: keys[1],
+      value: notifications ? notifications.on_advertising_campaigns : false,
+      label: 'Advertising campaigns',
+    },
+    {
+      id: keys[2],
+      value: notifications ? notifications.on_order_updates : false,
+      label: 'Order updates',
+    },
+    {
+      id: keys[3],
+      value: notifications ? notifications.on_order_reminders : false,
+      label: 'Order reminders',
+    },
+    {
+      id: keys[4],
+      value: notifications ? notifications.on_product_updates : false,
+      label: 'Product updates',
+    },
+    {
+      id: keys[5],
+      value: notifications ? notifications.on_product_reminders : false,
+      label: 'Product reminders',
+    },
+    {
+      id: keys[6],
+      value: notifications ? notifications.on_reviews_of_products : false,
+      label: 'Reviews of products',
+    },
+    {
+      id: keys[7],
+      value: notifications ? notifications.on_change_in_demand : false,
+      label: 'Change in demand',
+    },
+    {
+      id: keys[8],
+      value: notifications ? notifications.on_advice_from_abra : false,
+      label: 'Advice from Abra',
+    },
+    {
+      id: keys[9],
+      value: notifications ? notifications.on_account_support : false,
+      label: 'Account support',
+    },
+  ];
+
+  const handleNotificationChange = (id: string, value: boolean): void => {
     dispatch(updateSupplierNotifications({ id, value }));
   };
 
@@ -34,17 +74,20 @@ const NotificationsChangeForm: FC = (): JSX.Element => {
     <div className={style.notifications}>
       <div className={style.title}>Notifications</div>
       <div className={style.notifications_list}>
-        {NOTIFICATIONS_DATA.map(el => {
+        {NOTIFICATIONS_DATA.map((el, i) => {
           return (
             <Checkbox
               id={el.id}
-              key={el.id}
+              key={i}
               variant="notification"
               label={el.label}
               className={style.notifications_item}
-              checked={notifications ? notifications[`${el.id}`] : false}
+              checked={el.value}
               onChange={event =>
-                onNotificationChange(event.currentTarget.id, event.currentTarget.checked)
+                handleNotificationChange(
+                  event.currentTarget.id,
+                  event.currentTarget.checked,
+                )
               }
             />
           );

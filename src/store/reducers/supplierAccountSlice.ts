@@ -3,9 +3,9 @@ import { AxiosError } from 'axios';
 
 import { Status } from '../../enums/status.enum';
 import supplierAccountData, {
-  INotification,
   RequestAccountInfo,
 } from '../../services/supplierAccount.service';
+import userService from '../../services/user.service';
 
 import { getCurrentUserInfo } from './loginSlice';
 
@@ -42,21 +42,6 @@ export const updateSupplierAccountDataService = createAsyncThunk<
   }
 });
 
-export const getSupplierNotifications = createAsyncThunk(
-  'supplierAccount/getNotifications',
-  async (_, { rejectWithValue }) => {
-    try {
-      return supplierAccountData.getNotifications();
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        rejectWithValue(error.message);
-      }
-
-      return rejectWithValue('[getSupplierNotifications]: Error');
-    }
-  },
-);
-
 export const updateSupplierNotifications = createAsyncThunk<
   void,
   { id: string; value: boolean }
@@ -65,13 +50,38 @@ export const updateSupplierNotifications = createAsyncThunk<
   async (param, { rejectWithValue, getState, dispatch }) => {
     try {
       const state = getState() as RootState;
-      const { notifications } = state.supplierAccount;
+      const { notifications } = state.login;
 
       if (notifications) {
-        const new_notifications = { ...notifications, [param.id]: param.value };
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { id, ...rest } = notifications;
 
-        await supplierAccountData.postNotifications(new_notifications);
-        dispatch(getSupplierNotifications());
+        const notification_data_request = { ...rest, [param.id]: param.value };
+
+        const requestData = {
+          supplier_data_request: {
+            // Remove when the supplier page is ready
+            license_number: '1',
+          },
+          company_data_request: {
+            // Remove when the supplier page is ready
+            phone_country_code: '1',
+            phone_number: 'string',
+            name: 'string',
+            is_manufacturer: false,
+            year_established: 2000,
+            number_employees: 0,
+            description: 'string',
+            address: 'string',
+            logo_url: 'string',
+            business_sector: 'string',
+            business_email: 'user@example.com',
+          },
+          notification_data_request,
+        };
+
+        await userService.updateSupplierNotification(requestData);
+        dispatch(getCurrentUserInfo());
       }
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
@@ -87,7 +97,6 @@ export const updateSupplierNotifications = createAsyncThunk<
 export interface ISupplierAccountSlice {
   isLoading: Status;
   error: string | null;
-  notifications?: INotification;
   hasProfile: boolean;
   supplierInfo: {
     first_name: string;
@@ -136,18 +145,6 @@ const supplierAccountSlice = createSlice({
       state.isLoading = Status.Success;
     });
     builder.addCase(getSupplierAccountDataService.rejected, (state, action) => {
-      state.isLoading = Status.Failed;
-      state.error = action.payload as string;
-    });
-
-    builder.addCase(getSupplierNotifications.pending, state => {
-      state.isLoading = Status.Loading;
-    });
-    builder.addCase(getSupplierNotifications.fulfilled, (state, action) => {
-      state.isLoading = Status.Success;
-      state.notifications = action.payload;
-    });
-    builder.addCase(getSupplierNotifications.rejected, (state, action) => {
       state.isLoading = Status.Failed;
       state.error = action.payload as string;
     });

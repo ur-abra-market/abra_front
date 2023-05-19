@@ -11,11 +11,6 @@ const supplierAccountData = {
 
     return data;
   },
-  getNotifications: async () => {
-    const { data } = await httpService.get(`users/getNotifications/`);
-
-    return data;
-  },
   postNotifications: async (notifications: INotification) => {
     const { data } = await httpService.patch(`users/updateNotification/`, notifications);
 
@@ -69,4 +64,18 @@ export interface INotification {
   on_product_is_cheaper: boolean;
   on_your_favorites_new: boolean;
   on_account_support: boolean;
+}
+
+export interface ISupplierNotification {
+  id: number;
+  on_advertising_campaigns: boolean;
+  on_order_updates: boolean;
+  on_order_reminders: boolean;
+  on_product_updates: boolean;
+  on_product_reminders: boolean;
+  on_reviews_of_products: boolean;
+  on_change_in_demand: boolean;
+  on_advice_from_abra: boolean;
+  on_account_support: boolean;
+  supplier: string;
 }

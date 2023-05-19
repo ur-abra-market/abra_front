@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import cn from 'classnames';
 import { useForm } from 'react-hook-form';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
 import { Container } from '../../components';
@@ -45,7 +45,7 @@ type FormValues = {
 
 const SellerAccountPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const isAuth = useAppSelector(state => state.login.isAuth);
+  // const isAuth = useAppSelector(state => state.login.isAuth);
   const isFeedbackOpen = useAppSelector(state => state.app.isFeedbackOpen);
 
   const { first_name, last_name } = useAppSelector(state => state.seller.userProfileInfo);
@@ -121,9 +121,9 @@ const SellerAccountPage = (): JSX.Element => {
     });
   }, [first_name, last_name, reset]);
 
-  if (!isAuth) {
-    return <Navigate to="/auth" />;
-  }
+  // if (!isAuth) {
+  //   return <Navigate to="/auth" />;
+  // }
 
   return (
     <div className={style.seller_page}>

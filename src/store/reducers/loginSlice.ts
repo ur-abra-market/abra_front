@@ -8,6 +8,7 @@ import {
   userRoleType,
   LoginResponseType,
 } from '../../services/auth.serviceType';
+import { ISupplierNotification } from '../../services/supplierAccount.service';
 
 interface IInitialState {
   resMessage: string;
@@ -15,6 +16,7 @@ interface IInitialState {
   loading: boolean;
   isAuth: boolean;
   userRole: userRoleType;
+  notifications: ISupplierNotification | null;
 }
 
 const initialState: IInitialState = {
@@ -23,6 +25,7 @@ const initialState: IInitialState = {
   loading: false,
   isAuth: false,
   userRole: null,
+  notifications: null,
 };
 
 export const loginService = createAsyncThunk<
@@ -91,7 +94,10 @@ const loginSlice = createSlice({
       state.isAuth = false;
     });
     builder.addCase(getCurrentUserInfo.fulfilled, (state, action) => {
-      state.userRole = action.payload.result.is_supplier ? 'supplier' : 'seller';
+      const userRole = action.payload.result.is_supplier ? 'supplier' : 'seller';
+
+      state.userRole = userRole;
+      state.notifications = action.payload.result[userRole].notifications;
     });
     builder.addCase(getCurrentUserInfo.rejected, state => {
       state.isAuth = false;
