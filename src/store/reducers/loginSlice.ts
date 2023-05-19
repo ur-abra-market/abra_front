@@ -8,7 +8,7 @@ import {
   userRoleType,
   LoginResponseType,
 } from '../../services/auth.serviceType';
-import { ISupplierNotification } from '../../services/supplierAccount.service';
+import { ISupplierNotificationsResponse } from '../../services/supplierAccount.service';
 
 interface IInitialState {
   resMessage: string;
@@ -16,7 +16,7 @@ interface IInitialState {
   loading: boolean;
   isAuth: boolean;
   userRole: userRoleType;
-  notifications: ISupplierNotification | null;
+  notifications: ISupplierNotificationsResponse | null;
 }
 
 const initialState: IInitialState = {

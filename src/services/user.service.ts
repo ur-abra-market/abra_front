@@ -7,6 +7,38 @@ export enum Action {
   UPLOAD_LOGO = 'users/uploadLogoImage/',
 }
 
+interface INotificationSupplierRequest {
+  on_advertising_campaigns: boolean;
+  on_order_updates: boolean;
+  on_order_reminders: boolean;
+  on_product_updates: boolean;
+  on_product_reminders: boolean;
+  on_reviews_of_products: boolean;
+  on_change_in_demand: boolean;
+  on_advice_from_abra: boolean;
+  on_account_support: boolean;
+}
+
+export interface ISupplierUpdateRequest {
+  supplier_data_request: {
+    license_number: string;
+  };
+  company_data_request: {
+    phone_country_code: string;
+    phone_number: string;
+    name: string;
+    is_manufacturer: boolean;
+    year_established: number;
+    number_employees: number;
+    description: string;
+    address: string;
+    logo_url: string;
+    business_sector: string;
+    business_email: string;
+  };
+  notification_data_request: INotificationSupplierRequest;
+}
+
 const userFetch = {
   uploadLogoImage: async (img: any) => {
     const formData = new FormData();
@@ -54,35 +86,3 @@ const userFetch = {
 };
 
 export default userFetch;
-
-interface INotificationSupplierRequest {
-  on_advertising_campaigns: boolean;
-  on_order_updates: boolean;
-  on_order_reminders: boolean;
-  on_product_updates: boolean;
-  on_product_reminders: boolean;
-  on_reviews_of_products: boolean;
-  on_change_in_demand: boolean;
-  on_advice_from_abra: boolean;
-  on_account_support: boolean;
-}
-
-export interface ISupplierUpdateRequest {
-  supplier_data_request: {
-    license_number: string;
-  };
-  company_data_request: {
-    phone_country_code: string;
-    phone_number: string;
-    name: string;
-    is_manufacturer: boolean;
-    year_established: number;
-    number_employees: number;
-    description: string;
-    address: string;
-    logo_url: string;
-    business_sector: string;
-    business_email: string;
-  };
-  notification_data_request: INotificationSupplierRequest;
-}
