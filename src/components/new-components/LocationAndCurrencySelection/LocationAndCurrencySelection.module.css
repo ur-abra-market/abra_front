@@ -10,16 +10,6 @@
   color: var(--color-black);
 }
 
-.select > select{
-  min-width: 0;
-  padding: 0 35px 0 0;
-
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-
-  background: transparent;
-}
 
 .select_box{
   display: inline-flex;

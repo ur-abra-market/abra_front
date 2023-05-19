@@ -415,7 +415,11 @@
   height: 50px;
   background-image: url("../../assets/img/icons/completed.png");
 }
-
+.select{
+  font-size: 14px;
+  background: #F2F2F2;
+  border-radius: 12px;
+}
 
 
 

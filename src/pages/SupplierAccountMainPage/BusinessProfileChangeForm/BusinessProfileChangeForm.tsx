@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as yup from 'yup';
 
@@ -17,7 +17,7 @@ import style from './BusinessProfileChangeForm.module.css';
 import ImageAdding from 'components/ImageAdding';
 import { ImagesAdding } from 'components/ImageAdding/ImagesAdding';
 import { Button, Input, Label, Select } from 'components/ui-kit';
-import { IOption } from 'components/ui-kit/Select/Select.props';
+import { IOption } from 'components/ui-kit/Select/Select';
 
 const date = new Date();
 const year = date.getFullYear();
@@ -81,6 +81,7 @@ const BusinessProfileChangeForm: FC = (): JSX.Element => {
   const [acc_code, acc_tel] = phoneNumberSplit(companyInfo.phone);
 
   const {
+    control,
     register,
     formState: { errors, isValid, isDirty },
     handleSubmit,
@@ -171,14 +172,24 @@ const BusinessProfileChangeForm: FC = (): JSX.Element => {
               </Label>
 
               <div className={style.select_equal}>
-                <Label label="Your main business sector">
-                  <Select
-                    options={BUSINESS_SECTOR_DATA}
-                    placeholder="Select"
-                    {...register('businessSector')}
-                    error={errors?.businessSector?.message}
-                  />
-                </Label>
+                <Controller
+                  control={control}
+                  name="businessSector"
+                  render={({ field }) => (
+                    <Label label="Your main business sector">
+                      <Select
+                        options={BUSINESS_SECTOR_DATA}
+                        placeholder="Select"
+                        padding="23px"
+                        className={style.select}
+                        error={errors?.businessSector?.message}
+                        onChange={value => {
+                          field.onChange(value.value);
+                        }}
+                      />
+                    </Label>
+                  )}
+                />
               </div>
             </div>
 
@@ -205,14 +216,24 @@ const BusinessProfileChangeForm: FC = (): JSX.Element => {
               </Label>
 
               <div className={style.select_equal}>
-                <Label label="Number of employees">
-                  <Select
-                    options={NUMBER_OF_EMPLOYEES_DATA}
-                    placeholder="Select"
-                    {...register('numEmployees')}
-                    error={errors?.numEmployees?.message}
-                  />
-                </Label>
+                <Controller
+                  control={control}
+                  name="numEmployees"
+                  render={({ field }) => (
+                    <Label label="Number of employees">
+                      <Select
+                        options={NUMBER_OF_EMPLOYEES_DATA}
+                        placeholder="Select"
+                        padding="23px"
+                        className={style.select}
+                        error={errors?.numEmployees?.message}
+                        onChange={value => {
+                          field.onChange(value.value);
+                        }}
+                      />
+                    </Label>
+                  )}
+                />
               </div>
             </div>
 

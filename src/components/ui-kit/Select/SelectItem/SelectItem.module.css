@@ -1,0 +1,19 @@
+.main{
+  cursor: pointer;
+  padding: 24px;
+  word-break: break-word;
+}
+.main_hover{
+  cursor: pointer;
+
+  padding: 24px;
+
+  color: white;
+  word-break: break-word;
+
+  background-color: #4F4F4F;
+}
+.item_selected{
+  color: white;
+  background-color: dimgrey;
+}

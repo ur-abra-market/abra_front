@@ -16,8 +16,8 @@ import {
   InputWithMask,
   Label,
   Select,
+  IOption,
 } from '../../components/ui-kit';
-import { IOption } from '../../components/ui-kit/Select/Select.props';
 import { Action } from '../../services/user.service';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
@@ -159,7 +159,7 @@ const SellerAccountPage = (): JSX.Element => {
                       <label htmlFor="phoneCode" className={style.label}>
                         Personal phone number
                       </label>
-                      <Select options={options} />
+                      <Select options={options} padding="23px" className={style.select} />
                     </div>
                     <div className={style.phone}>
                       <InputWithMask
