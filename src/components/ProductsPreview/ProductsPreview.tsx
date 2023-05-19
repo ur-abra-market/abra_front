@@ -12,38 +12,31 @@ import { IconButton } from '../ui-kit';
 import style from './ProductsPreview.module.css';
 import { ProductsPreviewProps } from './ProductsPreview.props';
 
+const SPEED_TRANSITION = 1000;
+
 export const ProductsPreview: FC<ProductsPreviewProps> = props => {
-  const {
-    className,
-    title,
-    href,
-    children,
-    category,
-    changeCategoryOffset,
-    ...restProps
-  } = props;
+  const { className, title, href, children, ...restProps } = props;
   const swiperEl = useRef<SwiperType>();
 
-  const handleSlideChange = (): void => {
-    const slideProgress = swiperEl.current?.progress;
-    const maxScroll = 0.95;
-
-    if (slideProgress && category && changeCategoryOffset) {
-      if (slideProgress >= maxScroll) {
-        changeCategoryOffset(+category);
-      }
-    }
-  };
   const handlePrev = useCallback((): void => {
-    swiperEl.current?.slidePrev();
+    const startSlide = swiperEl.current?.isBeginning;
+
+    if (startSlide) {
+      return;
+    }
+    swiperEl.current?.slidePrev(SPEED_TRANSITION);
   }, []);
 
   const handleNext = useCallback((): void => {
-    swiperEl.current?.slideNext();
+    const endSlide = swiperEl.current?.isEnd;
+
+    if (endSlide) {
+      return;
+    }
+    swiperEl.current?.slideNext(SPEED_TRANSITION);
   }, []);
 
   const onBeforeInit = (swiper: SwiperType): void => {
-    if (!swiper) return;
     swiperEl.current = swiper;
   };
 
@@ -60,18 +53,28 @@ export const ProductsPreview: FC<ProductsPreviewProps> = props => {
         </div>
         <div className={style.buttons}>
           <IconButton>
-            <ArrowLeft className={style.icon_left} onClick={handlePrev} />
+            <ArrowLeft
+              className={cn(style.icon_left, {
+                [style.disable]: swiperEl.current?.isBeginning,
+              })}
+              onClick={handlePrev}
+            />
           </IconButton>
-          <IconButton>
-            <ArrowRight className={style.icon_right} onClick={handleNext} />
+          <IconButton onClick={handleNext}>
+            <ArrowRight
+              className={cn(style.icon_right, {
+                [style.disable]: swiperEl.current?.isEnd,
+              })}
+              onClick={handleNext}
+            />
           </IconButton>
         </div>
       </div>
       <Carousel
-        handleSlideChange={handleSlideChange}
         onBeforeInit={onBeforeInit}
         spaceBetween={11}
         slidesPerView="auto"
+        slidesPerGroup={6}
         slideProps={{ style: { width: 220 } }}
       >
         {children}

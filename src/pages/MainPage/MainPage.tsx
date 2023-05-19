@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { Container } from '../../components';
 import { ProductCard } from '../../components/ProductCard/ProductCard';
@@ -29,13 +29,6 @@ type Category = Record<
     category_id: Categories;
   }
 >;
-type CategoryPagesType = { [key: number]: CategoryPageDataType };
-type CategoryPageDataType = {
-  offset: number;
-  limit: number;
-  sort_type: ProductSortType;
-  ascending: boolean;
-};
 
 const CATEGORIES: Category = {
   0: {
@@ -55,53 +48,21 @@ const CATEGORIES: Category = {
     category_id: Categories.COSMETICS,
   },
 };
-const OFFSET_VALUE = 12;
-const DEFAULT_CONFIG = {
-  offset: 0,
-  limit: OFFSET_VALUE,
-  sort_type: ProductSortType.DATE,
-  ascending: false,
-};
+
 const MainPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const filter = useAppSelector(state => state.product.statusProduct);
   const { products } = useAppSelector(state => state.mainPageProducts);
-  const [categoryPages, setCategoryPages] = useState<CategoryPagesType>({
-    [Categories.ALL]: DEFAULT_CONFIG,
-    [Categories.CLOTHES]: DEFAULT_CONFIG,
-    [Categories.ACCESSORIES]: DEFAULT_CONFIG,
-    [Categories.COSMETICS]: DEFAULT_CONFIG,
-  });
-  const changeCategoryOffset = (category_id: number): void => {
-    const currentCategory: CategoryPageDataType = categoryPages[category_id];
-
-    setCategoryPages({
-      ...categoryPages,
-      [category_id]: {
-        ...currentCategory,
-        limit: currentCategory.limit + OFFSET_VALUE,
-      },
-    });
-    dispatch(
-      fetchProductList({
-        offset: currentCategory.offset,
-        limit: currentCategory.limit + OFFSET_VALUE,
-        category_id,
-        sort_type: currentCategory.sort_type,
-        ascending: currentCategory.ascending,
-      }),
-    );
-  };
 
   useEffect(() => {
     Object.values(CATEGORIES).forEach(({ category_id }) => {
       dispatch(
         fetchProductList({
-          offset: categoryPages[category_id].offset,
-          limit: categoryPages[category_id].limit,
+          offset: 0,
+          limit: 23,
           category_id,
-          sort_type: categoryPages[category_id].sort_type,
-          ascending: categoryPages[category_id].ascending,
+          sort_type: ProductSortType.DATE,
+          ascending: false,
         }),
       );
     });
@@ -116,14 +77,9 @@ const MainPage = (): JSX.Element => {
           {products &&
             Object.keys(products).map(key => {
               return (
-                <ProductsPreview
-                  key={key}
-                  title={CATEGORIES[+key].label}
-                  category={CATEGORIES[+key].category_id.toString()}
-                  changeCategoryOffset={changeCategoryOffset}
-                >
-                  {products[+key].map((product, i) => (
-                    <ProductCard key={`${key}-${i}`} product={product} />
+                <ProductsPreview key={key} title={CATEGORIES[+key].label}>
+                  {products[+key].map(product => (
+                    <ProductCard key={product.uuid} product={product} />
                   ))}
                 </ProductsPreview>
               );

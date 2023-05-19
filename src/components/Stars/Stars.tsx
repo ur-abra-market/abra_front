@@ -2,11 +2,10 @@ import React, { FC } from 'react';
 
 import style from './Stars.module.css';
 
-interface StarsProps {
-  reward: number;
-}
+import Star from 'components/Stars/Star';
+import { IStarsProps } from 'components/Stars/Stars.props';
 
-const Stars: FC<StarsProps> = ({ reward }): JSX.Element => {
+const Stars: FC<IStarsProps> = ({ reward }): JSX.Element => {
   const value = `${100 * (reward - Math.floor(reward))}%`;
   let percent = ['100%', '100%', '100%', '100%', '100%'];
 
@@ -39,96 +38,9 @@ const Stars: FC<StarsProps> = ({ reward }): JSX.Element => {
 
   return (
     <div className={style.stars}>
-      <svg
-        width="16"
-        height="15"
-        viewBox="0 0 16 15"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M8 15L9.79611 9.47214H15.6085L10.9062 6.05573L12.7023 0.527864L8 3.94427L3.29772 0.527864L5.09383 6.05573L0.391548 9.47214H6.20389L8 15Z"
-          fill="url('#StarGradient0')"
-        />
-        <linearGradient id="StarGradient0">
-          <stop stopColor="#FFAB5E" />
-          <stop offset={percent[0]} stopColor="#FFAB5E" />
-          <stop offset={percent[0]} stopColor="#B6B6B6" />
-          <stop offset="100%" stopColor="#B6B6B6" />
-        </linearGradient>
-      </svg>
-      <svg
-        width="16"
-        height="15"
-        viewBox="0 0 16 15"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M8 15L9.79611 9.47214H15.6085L10.9062 6.05573L12.7023 0.527864L8 3.94427L3.29772 0.527864L5.09383 6.05573L0.391548 9.47214H6.20389L8 15Z"
-          fill="url('#StarGradient1')"
-        />
-        <linearGradient id="StarGradient1">
-          <stop stopColor="#FFAB5E" />
-          <stop offset={percent[1]} stopColor="#FFAB5E" />
-          <stop offset={percent[1]} stopColor="#B6B6B6" />
-          <stop offset="100%" stopColor="#B6B6B6" />
-        </linearGradient>
-      </svg>
-      <svg
-        width="16"
-        height="15"
-        viewBox="0 0 16 15"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M8 15L9.79611 9.47214H15.6085L10.9062 6.05573L12.7023 0.527864L8 3.94427L3.29772 0.527864L5.09383 6.05573L0.391548 9.47214H6.20389L8 15Z"
-          fill="url('#StarGradient2')"
-        />
-        <linearGradient id="StarGradient2">
-          <stop stopColor="#FFAB5E" />
-          <stop offset={percent[2]} stopColor="#FFAB5E" />
-          <stop offset={percent[2]} stopColor="#B6B6B6" />
-          <stop offset="100%" stopColor="#B6B6B6" />
-        </linearGradient>
-      </svg>
-      <svg
-        width="16"
-        height="15"
-        viewBox="0 0 16 15"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M8 15L9.79611 9.47214H15.6085L10.9062 6.05573L12.7023 0.527864L8 3.94427L3.29772 0.527864L5.09383 6.05573L0.391548 9.47214H6.20389L8 15Z"
-          fill="url('#StarGradient3')"
-        />
-        <linearGradient id="StarGradient3">
-          <stop stopColor="#FFAB5E" />
-          <stop offset={percent[3]} stopColor="#FFAB5E" />
-          <stop offset={percent[3]} stopColor="#B6B6B6" />
-          <stop offset="100%" stopColor="#B6B6B6" />
-        </linearGradient>
-      </svg>
-      <svg
-        width="16"
-        height="15"
-        viewBox="0 0 16 15"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M8 15L9.79611 9.47214H15.6085L10.9062 6.05573L12.7023 0.527864L8 3.94427L3.29772 0.527864L5.09383 6.05573L0.391548 9.47214H6.20389L8 15Z"
-          fill="url('#StarGradient4')"
-        />
-        <linearGradient id="StarGradient4">
-          <stop stopColor="#000000" />
-          <stop offset={percent[4]} stopColor="#FFAB5E" />
-          <stop offset={percent[4]} stopColor="#B6B6B6" />
-          <stop offset="100%" stopColor="#B6B6B6" />
-        </linearGradient>
-      </svg>
+      {percent.map((p, i) => {
+        return <Star key={i} percent={p} />;
+      })}
     </div>
   );
 };

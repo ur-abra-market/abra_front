@@ -71,7 +71,7 @@ export interface ISimilarProduct {
   description: string;
   grade_average: number;
   id: number;
-  images?: IImageProd[];
+  images: IImageProd[];
   is_active: boolean;
   name: string;
   prices: IPriceProd[];

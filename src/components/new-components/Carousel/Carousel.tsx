@@ -7,10 +7,10 @@ import 'swiper/swiper.min.css';
 import { CarouselProps } from './Carousel.props';
 
 export const Carousel: FC<CarouselProps> = props => {
-  const { className, children, slideProps, handleSlideChange, ...restProps } = props;
+  const { className, children, slideProps, ...restProps } = props;
 
   return (
-    <Swiper className={cn(className)} {...restProps} onSlideChange={handleSlideChange}>
+    <Swiper className={cn(className)} {...restProps}>
       {children &&
         Children.map(children, child => {
           return <SwiperSlide {...slideProps}>{child}</SwiperSlide>;

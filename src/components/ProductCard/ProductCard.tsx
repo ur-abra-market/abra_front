@@ -19,7 +19,7 @@ export const ProductCard: FC<ProductCardProps> = ({
 }): JSX.Element => {
   const { name, prices, description, images, id, grade_average, is_active } = product;
   const { min_quantity } = prices[0];
-  const image_url = images && images[0]?.image_url;
+  const image_url = images[0]?.image_url;
 
   return (
     <div className={cn(style.card, className)} {...restProps}>
@@ -43,7 +43,7 @@ export const ProductCard: FC<ProductCardProps> = ({
         <div className={style.amount}>{getPriceOneItem(prices)}/pc</div>
         <span>{`/from ${min_quantity} pcs`}</span>
       </div>
-      <Stars reward={parseFloat(grade_average.toString()) || 0} />
+      <Stars reward={grade_average || 0} />
     </div>
   );
 };
