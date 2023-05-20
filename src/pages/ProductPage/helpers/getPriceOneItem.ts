@@ -1,10 +1,11 @@
-export const getPriceOneItem = (params: any): any => {
-  const { price_include_discount, min_quantity } = params;
+import { IProductPrice } from 'interfaces';
 
-  // заглушка так как нет данных
-  if (!price_include_discount || !min_quantity) return 'not data';
+export const getPriceOneItem = (params: IProductPrice[]): any => {
+  const { discount, min_quantity } = params[0];
 
-  const price = parseFloat(price_include_discount.replace(/,/g, '')) / min_quantity;
+  if (!discount || !min_quantity) return 'no data available';
+
+  const price = parseFloat(discount.toString()) / min_quantity;
 
   return price.toFixed(2);
 };

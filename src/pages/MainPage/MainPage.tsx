@@ -48,6 +48,7 @@ const CATEGORIES: Category = {
     category_id: Categories.COSMETICS,
   },
 };
+
 const MainPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const filter = useAppSelector(state => state.product.statusProduct);
@@ -58,7 +59,7 @@ const MainPage = (): JSX.Element => {
       dispatch(
         fetchProductList({
           offset: 0,
-          limit: 100,
+          limit: 23,
           category_id,
           sort_type: ProductSortType.DATE,
           ascending: false,
@@ -77,8 +78,8 @@ const MainPage = (): JSX.Element => {
             Object.keys(products).map(key => {
               return (
                 <ProductsPreview key={key} title={CATEGORIES[+key].label}>
-                  {products[+key].map((product, i) => (
-                    <ProductCard key={`${key}-${i}`} product={product} />
+                  {products[+key].map(product => (
+                    <ProductCard key={product.uuid} product={product} />
                   ))}
                 </ProductsPreview>
               );

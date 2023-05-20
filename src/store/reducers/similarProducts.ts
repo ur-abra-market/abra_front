@@ -2,11 +2,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { Status } from 'enums/status.enum';
-import { IRequestSimilarProduct, ISimilarProduct } from 'interfaces';
+import { IRequestSimilarProduct, IProductCompilation } from 'interfaces';
 import { getSimilarProductsService } from 'services/getSimilarProducts.service';
 
 export const getSimilarProducts = createAsyncThunk<
-  ISimilarProduct[],
+  IProductCompilation[],
   IRequestSimilarProduct
 >('similarProducts/getSimilarProducts', async (payload, { rejectWithValue }) => {
   try {
@@ -23,7 +23,7 @@ export const getSimilarProducts = createAsyncThunk<
 });
 
 const initialState = {
-  similarProducts: [] as ISimilarProduct[],
+  similarProducts: [] as IProductCompilation[],
   status: Status.Idle,
 };
 

@@ -62,25 +62,54 @@ export interface IGradeProductRequest extends IRequestProduct {}
 export interface IImageProductRequest extends IRequestProduct {}
 export interface IRequestSimilarProduct extends IRequestPopularProduct {}
 
-export interface ISimilarProduct {
-  id: number;
-  name: string;
-  description: string;
-  total_orders: number;
-  grade_average: string;
-  date_added: string;
-  with_discount: number;
-  price_include_discount: string;
-  min_quantity: number;
-  value_price: number;
-  is_favorite: boolean;
-}
-
-export interface IShortCardProduct extends ISimilarProduct {
-  image_url?: string;
-}
-
 export interface IResponse<T> {
   result: T;
 }
-export interface IPopularProduct extends ISimilarProduct {}
+
+export interface IProductCompilation {
+  datetime: string;
+  description: string;
+  grade_average: number;
+  id: number;
+  images: IProductImage[];
+  is_active: boolean;
+  name: string;
+  prices: IProductPrice[];
+  supplier?: IProductSupplier;
+  total_orders: number;
+  uuid?: string;
+}
+export interface IProductImage {
+  id?: number;
+  image_url?: string;
+  order?: number;
+  product?: string;
+}
+export interface IProductPrice {
+  discount: number;
+  end_date: string;
+  id: number;
+  min_quantity: number;
+  start_date: string;
+  value?: number;
+}
+export interface IProductSupplier {
+  additional_info: string;
+  grade_average: number;
+  id: number;
+  license_number: string;
+  user: IProductUser;
+}
+export interface IProductUser {
+  datetime: string;
+  email: string;
+  first_name: string;
+  full_name: string;
+  id: number;
+  is_deleted: boolean;
+  is_supplier: boolean;
+  is_verified: boolean;
+  last_name: string;
+  phone_country_code: string;
+  phone_number: string;
+}
