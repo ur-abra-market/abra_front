@@ -1,8 +1,8 @@
 import React, { FC, useId } from 'react';
 
-import { IStarProps } from 'components/Stars/Star/Star.props';
+import { IStar } from 'components/Stars/Star/Star.props';
 
-const Star: FC<IStarProps> = ({ percent }) => {
+const Star: FC<IStar> = ({ percent }) => {
   const uniqueId = useId();
 
   return (

@@ -1,3 +1,3 @@
-export interface IStarsProps {
+export interface IStars {
   reward: number;
 }

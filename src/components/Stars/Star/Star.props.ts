@@ -1,3 +1,3 @@
-export interface IStarProps {
+export interface IStar {
   percent: string;
 }

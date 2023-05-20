@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 import { ProductCard } from '../../../components/ProductCard/ProductCard';
 import { ProductsPreview } from '../../../components/ProductsPreview/ProductsPreview';
-import { ISimilarProduct } from '../../../interfaces';
+import { IProductCompilation } from '../../../interfaces';
 import style from '../ProductPage.module.css';
 
 export const PopularProduct = (): JSX.Element => {
-  const product: ISimilarProduct = {
+  const product: IProductCompilation = {
     datetime: '2023-03-06',
     description: 'shirt description',
     grade_average: 4.2,

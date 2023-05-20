@@ -1,6 +1,6 @@
-import { IPriceProd } from 'interfaces';
+import { IProductPrice } from 'interfaces';
 
-export const getPriceOneItem = (params: IPriceProd[]): any => {
+export const getPriceOneItem = (params: IProductPrice[]): any => {
   const { discount, min_quantity } = params[0];
 
   if (!discount || !min_quantity) return 'no data available';

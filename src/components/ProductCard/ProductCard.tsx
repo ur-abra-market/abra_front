@@ -8,11 +8,11 @@ import Flag from '../Flag';
 import Stars from '../Stars';
 
 import style from './ProductCard.module.css';
-import { ProductCardProps } from './ProductCard.props';
+import { IProductCard } from './ProductCard.props';
 
 import { ReactComponent as LoupeIcon } from 'assets/img/icons/loupe.svg';
 
-export const ProductCard: FC<ProductCardProps> = ({
+export const ProductCard: FC<IProductCard> = ({
   product,
   className,
   ...restProps

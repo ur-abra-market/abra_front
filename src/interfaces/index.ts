@@ -66,26 +66,26 @@ export interface IResponse<T> {
   result: T;
 }
 
-export interface ISimilarProduct {
+export interface IProductCompilation {
   datetime: string;
   description: string;
   grade_average: number;
   id: number;
-  images: IImageProd[];
+  images: IProductImage[];
   is_active: boolean;
   name: string;
-  prices: IPriceProd[];
-  supplier?: ISupplierProd;
+  prices: IProductPrice[];
+  supplier?: IProductSupplier;
   total_orders: number;
   uuid?: string;
 }
-export interface IImageProd {
+export interface IProductImage {
   id?: number;
   image_url?: string;
   order?: number;
   product?: string;
 }
-export interface IPriceProd {
+export interface IProductPrice {
   discount: number;
   end_date: string;
   id: number;
@@ -93,14 +93,14 @@ export interface IPriceProd {
   start_date: string;
   value?: number;
 }
-export interface ISupplierProd {
+export interface IProductSupplier {
   additional_info: string;
   grade_average: number;
   id: number;
   license_number: string;
-  user: IUserProd;
+  user: IProductUser;
 }
-export interface IUserProd {
+export interface IProductUser {
   datetime: string;
   email: string;
   first_name: string;

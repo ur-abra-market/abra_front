@@ -3,9 +3,9 @@ import React, { FC } from 'react';
 import style from './Stars.module.css';
 
 import Star from 'components/Stars/Star';
-import { IStarsProps } from 'components/Stars/Stars.props';
+import { IStars } from 'components/Stars/Stars.props';
 
-const Stars: FC<IStarsProps> = ({ reward }): JSX.Element => {
+const Stars: FC<IStars> = ({ reward }): JSX.Element => {
   const value = `${100 * (reward - Math.floor(reward))}%`;
   let percent = ['100%', '100%', '100%', '100%', '100%'];
 
