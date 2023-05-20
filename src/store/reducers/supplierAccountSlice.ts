@@ -42,7 +42,7 @@ export const updateSupplierAccountDataService = createAsyncThunk<
   }
 });
 
-export const updateSupplierNotifications = createAsyncThunk<
+export const updateSupplierNotificationsService = createAsyncThunk<
   void,
   { id: string; value: boolean }
 >(
@@ -80,7 +80,7 @@ export const updateSupplierNotifications = createAsyncThunk<
           notification_data_request,
         };
 
-        await userService.updateSupplierNotification(requestData);
+        await userService.updateSupplierNotifications(requestData);
         dispatch(getCurrentUserInfo());
       }
     } catch (error: unknown) {

@@ -9,6 +9,10 @@ import {
   sellerFetch,
   ISendSellerResponse,
 } from '../../services/seller.service';
+import userFetch from '../../services/user.service';
+import { RootState } from '../createStore';
+
+import { getCurrentUserInfo } from './loginSlice';
 
 export const getSellerInfoService = createAsyncThunk<IUserResultFetch, void>(
   'seller/getSellerInfoService',
@@ -61,6 +65,32 @@ export const getSellerAddressesService = createAsyncThunk<ISellerAddressData[], 
   },
 );
 
+export const updateSellerNotificationsService = createAsyncThunk<
+  void,
+  { id: string; value: boolean }
+>(
+  'user/updateUserNotificationService',
+  async (param, { rejectWithValue, getState, dispatch }) => {
+    try {
+      const state = getState() as RootState;
+      const { notifications } = state.login;
+
+      if (notifications) {
+        const notificationsCopy = { ...notifications, [param.id]: param.value };
+
+        await userFetch.updateSellerNotifications(notificationsCopy);
+        dispatch(getCurrentUserInfo());
+      }
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[getUserNotificationsService]: Error');
+    }
+  },
+);
+
 const initialState = {
   loading: Status.Idle as Status,
   userProfileInfo: {
@@ -70,15 +100,6 @@ const initialState = {
     phone: null as null | string,
   },
   userAdresses: {},
-  notifications: {
-    on_discount: true as boolean,
-    on_order_updates: true as boolean,
-    on_order_reminders: true as boolean,
-    on_stock_again: true as boolean,
-    on_product_is_cheaper: true as boolean,
-    on_your_favorites_new: true as boolean,
-    on_account_support: true as boolean,
-  },
   profileImage: {
     null: null as null | string,
   },
@@ -97,7 +118,6 @@ const sellerSlice = createSlice({
       state.loading = Status.Success;
       state.userProfileInfo = action.payload.user_profile_info;
       state.userAdresses = action.payload.user_adresses;
-      state.notifications = action.payload.notifications;
       state.profileImage = action.payload.profile_image;
     });
     builder.addCase(getSellerInfoService.rejected, state => {

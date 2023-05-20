@@ -5,10 +5,13 @@ import authService from '../../services/auth.service';
 import {
   AsyncThunkConfig,
   LoginParamsType,
-  userRoleType,
   LoginResponseType,
+  userRoleType,
 } from '../../services/auth.serviceType';
-import { ISupplierNotificationsResponse } from '../../services/supplierAccount.service';
+import {
+  ISellerNotificationsResponse,
+  ISupplierNotificationsResponse,
+} from '../../services/user.service';
 
 interface IInitialState {
   resMessage: string;
@@ -16,7 +19,7 @@ interface IInitialState {
   loading: boolean;
   isAuth: boolean;
   userRole: userRoleType;
-  notifications: ISupplierNotificationsResponse | null;
+  notifications: (ISupplierNotificationsResponse & ISellerNotificationsResponse) | null;
 }
 
 const initialState: IInitialState = {

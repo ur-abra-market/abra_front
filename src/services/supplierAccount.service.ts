@@ -1,19 +1,5 @@
 import httpService from './http.service';
 
-export interface ISupplierNotificationsResponse {
-  id: number;
-  on_advertising_campaigns: boolean;
-  on_order_updates: boolean;
-  on_order_reminders: boolean;
-  on_product_updates: boolean;
-  on_product_reminders: boolean;
-  on_reviews_of_products: boolean;
-  on_change_in_demand: boolean;
-  on_advice_from_abra: boolean;
-  on_account_support: boolean;
-  supplier: string;
-}
-
 export interface License {
   license_number: number;
 }

@@ -8,28 +8,18 @@ import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg
 import { Container } from '../../components';
 import Address from '../../components/Address';
 import FeedbackForm from '../../components/new-components/feedback/FeedbackForm';
+import Notifications from '../../components/new-components/Notifications';
+import { INotificationsItem } from '../../components/new-components/Notifications/Notifications';
 import UploadFile from '../../components/new-components/UploadFile/UploadFile';
-import {
-  Button,
-  Checkbox,
-  Input,
-  InputWithMask,
-  Label,
-  Select,
-} from '../../components/ui-kit';
+import { Button, Input, InputWithMask, Label, Select } from '../../components/ui-kit';
 import { IOption } from '../../components/ui-kit/Select/Select.props';
 import { Action } from '../../services/user.service';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { logout } from '../../store/reducers/loginSlice';
 import {
   getSellerAddressesService,
-  getSellerInfoService,
   sendSellerInfoService,
 } from '../../store/reducers/sellerSlice';
-import {
-  getUserNotificationsService,
-  updateUserNotificationService,
-} from '../../store/reducers/userSlice';
 
 import style from './SellerAccountPage.module.css';
 
@@ -51,16 +41,7 @@ const SellerAccountPage = (): JSX.Element => {
   const { first_name, last_name } = useAppSelector(state => state.seller.userProfileInfo);
   const addresses = useAppSelector(state => state.sellerCheckout.addresses); // фиксил ошибки, заглушка
 
-  const notifications = useAppSelector(state => state.user.notifications);
-  const {
-    on_discount,
-    on_order_updates,
-    on_order_reminders,
-    on_stock_again,
-    on_product_is_cheaper,
-    on_your_favorites_new,
-    on_account_support,
-  } = notifications ?? {};
+  const notifications = useAppSelector(state => state.login.notifications);
 
   const { register, handleSubmit, reset } = useForm<FormValues>({
     defaultValues: {
@@ -73,34 +54,49 @@ const SellerAccountPage = (): JSX.Element => {
     dispatch(sendSellerInfoService(data));
   };
 
-  // const userData = {
-  //   first_name: 'Olga',
-  //   last_name: 'Andreeva',
-  // };
-
-  // const userAddress = {
-  //   country: 'Russian Federation',
-  //   area: 'Moscow',
-  //   city: 'Moscow',
-  //   street: 'Jaroslava Gasheka 6',
-  //   building: '2',
-  //   appartment: 'apartment 904',
-  //   postal_code: '589964',
-  // };
-  //
-  // const addressExample = {
-  //   seller_address: userAddress,
-  // };
-
-  // const addresses = [addressExample];
-
   const onLogoutHandler = (): void => {
     dispatch(logout());
   };
 
-  const onNotificationChange = (id: string, isChecked: boolean): void => {
-    dispatch(updateUserNotificationService({ id, isChecked }));
-  };
+  const notificationsKeys = Object.keys(notifications ?? []);
+
+  const NOTIFICATIONS_DATA: INotificationsItem[] = [
+    {
+      id: notificationsKeys[1],
+      value: notifications ? notifications.on_discount : false,
+      label: 'Discounts & offers',
+    },
+    {
+      id: notificationsKeys[2],
+      value: notifications ? notifications.on_order_updates : false,
+      label: 'Order updates',
+    },
+    {
+      id: notificationsKeys[3],
+      value: notifications ? notifications.on_order_reminders : false,
+      label: 'Order reminders',
+    },
+    {
+      id: notificationsKeys[4],
+      value: notifications ? notifications.on_stock_again : false,
+      label: 'On stock again',
+    },
+    {
+      id: notificationsKeys[5],
+      value: notifications ? notifications.on_product_is_cheaper : false,
+      label: 'Product is cheaper',
+    },
+    {
+      id: notificationsKeys[6],
+      value: notifications ? notifications.on_your_favorites_new : false,
+      label: 'Your favorites new',
+    },
+    {
+      id: notificationsKeys[7],
+      value: notifications ? notifications.on_account_support : false,
+      label: 'Account support',
+    },
+  ];
 
   const options: IOption[] = [
     { label: '+90', value: '+90' },
@@ -108,9 +104,7 @@ const SellerAccountPage = (): JSX.Element => {
   ];
 
   useEffect(() => {
-    dispatch(getSellerInfoService());
     dispatch(getSellerAddressesService());
-    dispatch(getUserNotificationsService());
     // dispatch(checkAuth());
   }, [dispatch]);
 
@@ -256,97 +250,7 @@ const SellerAccountPage = (): JSX.Element => {
                 </div>
 
                 <div className={style.notifications_list}>
-                  <Checkbox
-                    id="on_discount"
-                    variant="notification"
-                    label="Discounts & offers"
-                    className={style.notifications_item}
-                    checked={on_discount || false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_order_updates"
-                    variant="notification"
-                    label="Order updates"
-                    className={style.notifications_item}
-                    checked={on_order_updates || false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_order_reminders"
-                    variant="notification"
-                    label="Order reminders"
-                    className={style.notifications_item}
-                    checked={on_order_reminders || false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_stock_again"
-                    variant="notification"
-                    label="On stock again"
-                    className={style.notifications_item}
-                    checked={on_stock_again || false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_product_is_cheaper"
-                    variant="notification"
-                    label="Product is cheaper"
-                    className={style.notifications_item}
-                    checked={on_product_is_cheaper || false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_your_favorites_new"
-                    variant="notification"
-                    label="Your favorites new"
-                    className={style.notifications_item}
-                    checked={on_your_favorites_new || false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_account_support"
-                    variant="notification"
-                    label="Account support"
-                    className={style.notifications_item}
-                    checked={on_account_support || false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
+                  <Notifications notificationsData={NOTIFICATIONS_DATA} />
                 </div>
               </div>
             </div>

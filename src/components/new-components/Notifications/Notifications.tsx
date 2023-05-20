@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
 
-import { updateSupplierNotifications } from '../../../store/reducers/supplierAccountSlice';
+import { updateSellerNotificationsService } from '../../../store/reducers/sellerSlice';
+import { updateSupplierNotificationsService } from '../../../store/reducers/supplierAccountSlice';
 
 import style from './Notifications.module.css';
 
 import { Checkbox } from 'components/ui-kit';
-import { useAppDispatch } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 
 interface INotificationsProps {
   notificationsData: INotificationsItem[];
@@ -20,10 +21,15 @@ export interface INotificationsItem {
 const Notifications: FC<INotificationsProps> = props => {
   const { notificationsData } = props;
 
+  const userRole = useAppSelector(state => state.login.userRole);
   const dispatch = useAppDispatch();
 
   const handleNotificationChange = (id: string, value: boolean): void => {
-    dispatch(updateSupplierNotifications({ id, value }));
+    if (userRole === 'seller') {
+      dispatch(updateSellerNotificationsService({ id, value }));
+    } else {
+      dispatch(updateSupplierNotificationsService({ id, value }));
+    }
   };
 
   return (
