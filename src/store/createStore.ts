@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { appReducer } from './reducers/app';
+import { appReducer } from './reducers/appSlice';
 import basketReducer from './reducers/basketSlice';
 import categoryReducer from './reducers/categorySlice';
 import commonSlice from './reducers/commonSlice';

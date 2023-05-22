@@ -1,0 +1,44 @@
+.wrapper{
+  position: relative;
+  display: inline-block;
+}
+
+.input{
+  cursor: pointer;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: 13px 35px 13px 48px;
+
+  font-family: var(--roboto);
+  font-size: 15px;
+  font-weight: var(--medium);
+  font-style: normal;
+  line-height: 15px;
+
+
+  background: #F4F4F4 url("../../assets/img/icons/search.png") no-repeat 17px center;
+  border-radius: 12px;
+  outline: none;
+}
+
+.input::placeholder{
+  color: #828282;
+}
+
+.button{
+  cursor: pointer;
+
+  position: absolute;
+  top: 14px;
+  right: 19px;
+
+  width: 18px;
+  height: 16px;
+
+  background-image: url("../../assets/img/icons/photo.png");
+}
+
+.photo_search{
+  display: none;
+}

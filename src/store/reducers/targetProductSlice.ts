@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { Status } from 'enums/status.enum';
+import { Status } from 'common/types/enums/status.enum';
 import {
   IGradeProduct,
   IGradeProductRequest,
@@ -9,7 +9,7 @@ import {
   IImageProductRequest,
   IProduct,
   IRequestProduct,
-} from 'interfaces';
+} from 'common/types/interfaces';
 import { productFetch } from 'services/product.service';
 
 export const getProductById = createAsyncThunk<IProduct, IRequestProduct>(

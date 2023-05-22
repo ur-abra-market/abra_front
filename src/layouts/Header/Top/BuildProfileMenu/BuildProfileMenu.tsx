@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { Button } from '../../../../components/ui-kit';
+import { Button } from '../../../../ui-kit';
 import style from '../Top.module.css';
 
 import { BuildProfileMenuProps } from './BuildProfileMenu.props';

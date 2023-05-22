@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { ForgotChangePasswordFormType } from '../../pages/AuthPage/AuthType';
+import { ForgotChangePasswordFormType } from '../../pages/commonPages/AuthPage/AuthType';
 import {
   AsyncThunkConfig,
   ChangePasswordPayloadType,

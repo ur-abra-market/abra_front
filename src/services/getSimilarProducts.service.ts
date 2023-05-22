@@ -1,6 +1,10 @@
 import httpService from './http.service';
 
-import { IRequestSimilarProduct, IProductCompilation, IResponse } from 'interfaces';
+import {
+  IRequestSimilarProduct,
+  IProductCompilation,
+  IResponse,
+} from 'common/types/interfaces';
 
 export const getSimilarProductsService = {
   get: async (payload: IRequestSimilarProduct) => {

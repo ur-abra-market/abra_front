@@ -1,17 +1,18 @@
 import React from 'react';
 
-import { CheckoutSuccess } from '../components/ui/checkout/CheckoutSuccess/CheckoutSuccess';
-import CartPage from '../pages/CartPage';
-import CheckoutPage from '../pages/CheckoutPage/CheckoutPage';
-import MainPage from '../pages/MainPage';
-import OrderDetailsPage from '../pages/OrderDetailsPage';
-import OrderHistoryPage from '../pages/OrderHistoryPage';
-import ProductListPage from '../pages/ProductListPage';
-import ProductPage from '../pages/ProductPage';
-import SellerAccountPage from '../pages/SellerAccountPage/SellerAccountPage';
-import SellerFavoritesList from '../pages/SellerFavoritesList/SellerFavoritesList';
+import { CheckoutSuccess } from '../old-components/ui/checkout/CheckoutSuccess/CheckoutSuccess';
+import CartPage from '../pages/sellerPages/CartPage';
+import CheckoutPage from '../pages/sellerPages/CheckoutPage/CheckoutPage';
+import OrderDetailsPage from '../pages/sellerPages/OrderDetailsPage';
+import OrderHistoryPage from '../pages/sellerPages/OrderHistoryPage';
+import ProductPage from '../pages/sellerPages/ProductPage';
+import { SellerAccountPage } from '../pages/sellerPages/SellerAccountPage';
+import SellerFavoritesList from '../pages/sellerPages/SellerFavoritesList/SellerFavoritesList';
+import ProductListPage from '../pages/supplierPages/ProductListPage';
 
-const sellerRoute = [
+import { MainPage } from 'pages/sellerPages';
+
+export const sellerRoute = [
   {
     path: '/',
     element: <MainPage />,
@@ -24,11 +25,6 @@ const sellerRoute = [
     path: 'product/:productId',
     element: <ProductPage />,
   },
-
-  // {
-  //   path: 'product',
-  //   element: <ProductPage />,
-  // },
   {
     path: 'personal-account',
     element: <SellerAccountPage />,
@@ -62,5 +58,3 @@ const sellerRoute = [
     element: <p> Help </p>,
   },
 ];
-
-export default sellerRoute;

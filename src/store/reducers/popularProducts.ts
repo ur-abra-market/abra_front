@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { Status } from 'enums/status.enum';
-import { IRequestPopularProduct } from 'interfaces';
+import { Status } from 'common/types/enums/status.enum';
+import { IRequestPopularProduct } from 'common/types/interfaces';
 import { productFetch } from 'services/product.service';
 
 export const getPopularProductsById = createAsyncThunk<[], IRequestPopularProduct>(

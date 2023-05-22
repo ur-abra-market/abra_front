@@ -2,10 +2,10 @@ import React, { FC, RefObject, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
-import { Container } from '../../components';
-import HeaderNavMenu from '../../components/HeaderNavMemu';
-import { CategoriesMenu } from '../../components/new-components/CategoriesMenu/CategoriesMenu';
-import { LocationAndCurrencySelection } from '../../components/new-components/LocationAndCurrencySelection/LocationAndCurrencySelection';
+import { CategoriesMenu } from '../../components/CategoriesMenu/CategoriesMenu';
+import { LocationAndCurrencySelection } from '../../components/LocationAndCurrencySelection/LocationAndCurrencySelection';
+import { Container } from '../../old-components';
+import HeaderNavMenu from '../../old-components/HeaderNavMemu';
 
 import style from './Header.module.css';
 import { HeaderProps } from './Header.props';

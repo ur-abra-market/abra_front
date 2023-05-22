@@ -3,10 +3,10 @@ import React, { FC } from 'react';
 import cn from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 
-import { Container } from '../../components';
-import HeaderNavMenu from '../../components/HeaderNavMemu/HeaderNavMenu';
-import { LocationAndCurrencySelection } from '../../components/new-components/LocationAndCurrencySelection/LocationAndCurrencySelection';
-import { useAppSelector } from '../../store/hooks';
+import { useAppSelector } from '../../common/hooks/useAppSelector';
+import { LocationAndCurrencySelection } from '../../components/LocationAndCurrencySelection/LocationAndCurrencySelection';
+import { Container } from '../../old-components';
+import HeaderNavMenu from '../../old-components/HeaderNavMemu/HeaderNavMenu';
 import { Logo } from '../Logo/Logo';
 
 import style from './Footer.module.css';

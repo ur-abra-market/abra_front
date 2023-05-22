@@ -1,0 +1,1 @@
+export { SellerAccountPage } from './SellerAccountPage';

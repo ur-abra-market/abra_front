@@ -1,5 +1,5 @@
-import { ProductSortType } from '../enums/productSortType.enum';
-import { Categories } from '../pages/MainPage/MainPage';
+import { ProductSortType } from '../common/types/enums/productSortType.enum';
+import { Categories } from '../pages/sellerPages/MainPage/MainPage';
 
 import httpService from './http.service';
 
@@ -10,7 +10,7 @@ import {
   IRequestPopularProduct,
   IRequestProduct,
   IResponse,
-} from 'interfaces';
+} from 'common/types/interfaces';
 
 export interface IRequestCategory {
   offset: number;

@@ -5,16 +5,15 @@ import { Link } from 'react-router-dom';
 
 import { ReactComponent as Arrow } from '../../../assets/img/icons/arrowRight.svg';
 import bellImg from '../../../assets/img/icons/notification-bell.svg';
-import { useAppDispatch } from '../../../store/hooks';
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { logout } from '../../../store/reducers/loginSlice';
 import { Logo } from '../../Logo/Logo';
 
 import style from './SupplierTop.module.css';
 
-import { IconButton } from 'components/ui-kit';
+import { ButtonIcon } from 'ui-kit';
 
 const SupplierTop = (): JSX.Element => {
-  // const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const [isMenu, setIsMenu] = useState(false);
@@ -73,9 +72,9 @@ const SupplierTop = (): JSX.Element => {
       </div>
       <div className={style.inner_buttons}>
         <Link to="/">
-          <IconButton>
+          <ButtonIcon>
             <img src={bellImg} alt="btn-header" />
-          </IconButton>
+          </ButtonIcon>
         </Link>
         <div
           role="presentation"

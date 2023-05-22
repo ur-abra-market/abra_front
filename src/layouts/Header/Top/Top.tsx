@@ -7,10 +7,11 @@ import { ReactComponent as Cart } from '../../../assets/img/icons/cart_n.svg';
 import { ReactComponent as Favorite } from '../../../assets/img/icons/flag_n.svg';
 import { ReactComponent as Auth } from '../../../assets/img/icons/human.svg';
 import { ReactComponent as Note } from '../../../assets/img/icons/note.svg';
-import Modal from '../../../components/new-components/Modal';
-import { IconButton, Search } from '../../../components/ui-kit';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import Modal from '../../../components/Modal';
 import { logout } from '../../../store/reducers/loginSlice';
+import { ButtonIcon, Search } from '../../../ui-kit';
 import { Logo } from '../../Logo/Logo';
 
 import BuildProfileMenu from './BuildProfileMenu/BuildProfileMenu';
@@ -102,9 +103,9 @@ const Top = (): JSX.Element => {
       <Search placeholder="Search" />
       <div className={style.inner_buttons}>
         <div className={style.wrapper_btn}>
-          <IconButton onClick={() => handleOnClick('account')}>
+          <ButtonIcon onClick={() => handleOnClick('account')}>
             <Auth />
-          </IconButton>
+          </ButtonIcon>
           {menu === 'account' && (
             <BuildProfileMenu
               isAuth={isAuth}
@@ -114,15 +115,15 @@ const Top = (): JSX.Element => {
           )}
         </div>
 
-        <IconButton onClick={() => handleOnClick('note')}>
+        <ButtonIcon onClick={() => handleOnClick('note')}>
           <Note />
-        </IconButton>
-        <IconButton onClick={() => handleOnClick('favorite')}>
+        </ButtonIcon>
+        <ButtonIcon onClick={() => handleOnClick('favorite')}>
           <Favorite />
-        </IconButton>
-        <IconButton onClick={() => handleOnClick('cart')}>
+        </ButtonIcon>
+        <ButtonIcon onClick={() => handleOnClick('cart')}>
           <Cart />
-        </IconButton>
+        </ButtonIcon>
       </div>
     </div>
   );

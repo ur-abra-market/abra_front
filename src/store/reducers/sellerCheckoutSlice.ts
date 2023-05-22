@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { Status } from '../../enums/status.enum';
+import { Status } from '../../common/types/enums/status.enum';
 import { AsyncThunkConfig } from '../../services/auth.serviceType';
 import {
   EditAddressData,
@@ -49,6 +49,7 @@ export const editAddress = createAsyncThunk<
     return rejectWithValue('[modalSlice]: Error');
   }
 });
+
 export const getAddress = createAsyncThunk<ResponseAddressData, void, AsyncThunkConfig>(
   'modal/getAddress',
   async (_, { rejectWithValue }) => {
@@ -65,6 +66,7 @@ export const getAddress = createAsyncThunk<ResponseAddressData, void, AsyncThunk
     }
   },
 );
+
 export const deleteAddress = createAsyncThunk<
   ResponseDeleteAddress,
   number,
@@ -84,11 +86,12 @@ export const deleteAddress = createAsyncThunk<
     return rejectWithValue('[modalSlice]: Error');
   }
 });
+
 interface IInitialState {
   addresses: SellerAddressData[];
-
   loading: Status;
 }
+
 const initialState: IInitialState = {
   addresses: [],
   loading: Status.Idle,

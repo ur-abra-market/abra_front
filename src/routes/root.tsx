@@ -2,27 +2,29 @@ import React from 'react';
 
 import { createBrowserRouter } from 'react-router-dom';
 
-import { ContactSupport } from '../components/Contact/ContactSupport';
-import FAQ from '../components/FAQ/FAQ';
-import LastNews from '../components/News/LastNews';
-import { SellAbra } from '../components/SellAbra/SellAbra';
-import Tutorial from '../components/Tutorial/Tutorial';
-import AboutUsPage from '../pages/AboutUsPage/AboutUsPage';
-import AuthPage from '../pages/AuthPage';
-import ChangeEmailPage from '../pages/ChangeEmailPage';
-import ChangePasswordPage from '../pages/ChangePasswordPage';
-import CheckEmailPage from '../pages/CheckEmailPage/CheckEmailPage';
-import ConfirmEmailPage from '../pages/ConfirmEmailPage';
-import ErrorPage from '../pages/ErrorPage/ErrorPage';
-import ForgotPasswordPage from '../pages/ForgotPasswordPage';
-import ResetPasswordPage from '../pages/ResetPasswordPage';
-import { TermsAndConditions } from '../pages/TermsAndConditionsPage/TermsAndConditions';
+import AboutUsPage from '../pages/commonPages/AboutUsPage/AboutUsPage';
+import AuthPage from '../pages/commonPages/AuthPage';
+import ChangeEmailPage from '../pages/commonPages/ChangeEmailPage';
+import ChangePasswordPage from '../pages/commonPages/ChangePasswordPage';
+import CheckEmailPage from '../pages/commonPages/CheckEmailPage/CheckEmailPage';
+import ConfirmEmailPage from '../pages/commonPages/ConfirmEmailPage';
+import { ContactSupportPage } from '../pages/commonPages/ContactSupportPage/ContactSupportPage';
+import ErrorPage from '../pages/commonPages/ErrorPage/ErrorPage';
+import FAQPage from '../pages/commonPages/FAQPage/FAQPage';
+import ForgotPasswordPage from '../pages/commonPages/ForgotPasswordPage';
+import LastNewsPage from '../pages/commonPages/LastNewsPage/LastNewsPage';
+import ResetPasswordPage from '../pages/commonPages/ResetPasswordPage';
+import { SellAbraPage } from '../pages/commonPages/SellAbraPage/SellAbra';
+import { TermsAndConditionsPage } from '../pages/commonPages/TermsAndConditionsPage/TermsAndConditionsPage';
+import TutorialPage from '../pages/commonPages/TutorialPage/TutorialPage';
 import { userRoleType } from '../services/auth.serviceType';
 
-import sellerRoute from './sellerRoute';
-import supplierRoute from './supplierRoute';
+import { sellerRoute } from './sellerRoute';
+import { supplierRoute } from './supplierRoute';
 
-import { PrivacyPolicy } from 'pages/PrivacyPolicyPage/PrivacyPolicy';
+import { PrivacyPolicyPage } from 'pages/commonPages/PrivacyPolicyPage/PrivacyPolicyPage';
+
+type Routes = ReturnType<typeof createBrowserRouter>;
 
 export function createRoutes(userRole: userRoleType): Routes {
   const child = userRole === 'supplier' ? supplierRoute : sellerRoute;
@@ -67,27 +69,27 @@ export function createRoutes(userRole: userRoleType): Routes {
         },
         {
           path: 'terms&conditions',
-          element: <TermsAndConditions />,
+          element: <TermsAndConditionsPage />,
         },
         {
           path: 'privacy&policy',
-          element: <PrivacyPolicy />,
+          element: <PrivacyPolicyPage />,
         },
         {
           path: 'news',
-          element: <LastNews />,
+          element: <LastNewsPage />,
         },
         {
           path: 'contact',
-          element: <ContactSupport />,
+          element: <ContactSupportPage />,
         },
         {
           path: 'sell',
-          element: <SellAbra />,
+          element: <SellAbraPage />,
         },
         {
           path: 'tutorials',
-          element: <Tutorial />,
+          element: <TutorialPage />,
         },
         {
           path: 'about',
@@ -95,11 +97,9 @@ export function createRoutes(userRole: userRoleType): Routes {
         },
         {
           path: 'faq',
-          element: <FAQ />,
+          element: <FAQPage />,
         },
       ],
     },
   ]);
 }
-
-type Routes = ReturnType<typeof createBrowserRouter>;

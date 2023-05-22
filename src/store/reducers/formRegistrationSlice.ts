@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { Status } from '../../enums/status.enum';
+import { Status } from '../../common/types/enums/status.enum';
 import authService from '../../services/auth.service';
 import {
   IAccountPersonalInfoRequest,

@@ -1,0 +1,87 @@
+.select_equal {
+  width: 309px;
+}
+
+.phone_number {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 15px;
+  align-items: flex-end;
+
+  margin: 16px 0;
+}
+
+.margin_fix {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.license_reminder {
+  margin: 16px 0 24px;
+  font-size: 13px;
+  color: #4F4F4F;
+  text-align: left;
+}
+
+.main_info_title {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.checkbox {
+  cursor: pointer;
+
+  width: 20px;
+  height: 20px;
+  margin: 0 16px 0 0;
+
+  appearance: none;
+  border: 1px solid #828282;
+  border-radius: 4px;
+}
+
+.checkbox:checked {
+  background-color: #FC133D;
+  background-image: url('../../../../assets/img/icons/check.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
+
+.checkbox_container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.list_img_title {
+  margin: 16px 0 8px;
+  font-size: 13px;
+  color: #828282;
+  text-align: left;
+}
+
+.list_img {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.contacts_inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.button {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.select{
+  font-size: 14px;
+  background: #F2F2F2;
+  border-radius: 12px;
+}

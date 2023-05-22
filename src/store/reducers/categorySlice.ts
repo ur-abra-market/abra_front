@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { Status } from '../../enums/status.enum';
+import { Status } from '../../common/types/enums/status.enum';
 import categoryFetch from '../../services/category.service';
 
 export type ResponseCategoryType = {
