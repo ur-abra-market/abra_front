@@ -20,6 +20,7 @@ const STATUS_ARRAY = [
   { label: 'Highest Rating', value: CategoryType.RATING },
   { label: 'Hot Deals', value: CategoryType.HOT },
 ];
+
 const StatusProduct = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const [indexActiveCategory, setIndexActiveCategory] = useState<number>(0);

@@ -72,6 +72,7 @@ export const MainPage = WithLayout(() => {
   return (
     <div className={style.main_page}>
       <ImagesBlock className={style.images_block} />
+
       <Container>
         <StatusProduct />
         <div className={style.main_sliders}>

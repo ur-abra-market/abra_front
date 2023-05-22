@@ -12,9 +12,10 @@ import { Container } from '../../../../old-components';
 import style from './ImagesBlock.module.css';
 import { ImagesBlockProps } from './ImagesBlock.props';
 
-export const ImagesBlock: FC<ImagesBlockProps> = (props): JSX.Element => {
-  const { className, ...restProps } = props;
-
+export const ImagesBlock: FC<ImagesBlockProps> = ({
+  className,
+  ...restProps
+}): JSX.Element => {
   return (
     <div className={cn(style.images_box, className)} {...restProps}>
       <div className={style.image_box_main}>

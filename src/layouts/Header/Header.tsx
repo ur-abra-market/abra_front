@@ -1,4 +1,12 @@
-import React, { FC, RefObject, useEffect, useRef, useState } from 'react';
+import React, {
+  FC,
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+  DetailedHTMLProps,
+  HTMLAttributes,
+} from 'react';
 
 import cn from 'classnames';
 
@@ -8,11 +16,12 @@ import { Container } from '../../old-components';
 import HeaderNavMenu from '../../old-components/HeaderNavMemu';
 
 import style from './Header.module.css';
-import { HeaderProps } from './Header.props';
 import Top from './Top/Top';
 
-const Header: FC<HeaderProps> = (props): JSX.Element => {
-  const { className, ...restProps } = props;
+export interface IHeader
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
+
+const Header: FC<IHeader> = ({ className, ...restProps }): JSX.Element => {
   const [categoriesIsOpen, setCategoriesIsOpen] = useState(false);
 
   const categoriesRef = useRef() as RefObject<HTMLDivElement>;
