@@ -52,7 +52,7 @@
 }
 
 .disable path {
-  fill: var(--gray);
+  fill: var(--color-gray);
 }
 
 

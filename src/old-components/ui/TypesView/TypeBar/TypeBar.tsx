@@ -22,7 +22,8 @@ const TypeBar: FC<TypeBarProps> = ({ types, setTypes }): JSX.Element => {
   return (
     <div style={{ display: 'flex' }}>
       {types.map(type => (
-        <div
+        <button
+          type="button"
           key={type.id}
           onClick={() => changeSelectedTypeHandler(type.id)}
           style={{
@@ -33,7 +34,7 @@ const TypeBar: FC<TypeBarProps> = ({ types, setTypes }): JSX.Element => {
           }}
         >
           Type {type.id}
-        </div>
+        </button>
       ))}
 
       <button
