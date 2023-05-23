@@ -1,5 +1,4 @@
 import { ProductSortType } from '../../common/types/enums/productSortType.enum';
-import { IProductUser } from '../../common/types/interfaces';
 import { Categories } from '../../pages/sellerPages/MainPage/MainPage';
 
 export interface IResponse<T> {
@@ -20,6 +19,20 @@ export interface IGradeProduct {
   grade_average(grade_average: any): number;
   grade: IGrade;
   grade_details: GradeDetail[];
+}
+
+export interface IProductUser {
+  datetime: string;
+  email: string;
+  first_name: string;
+  full_name: string;
+  id: number;
+  is_deleted: boolean;
+  is_supplier: boolean;
+  is_verified: boolean;
+  last_name: string;
+  phone_country_code: string;
+  phone_number: string;
 }
 
 export interface IRequestPopularProduct {
