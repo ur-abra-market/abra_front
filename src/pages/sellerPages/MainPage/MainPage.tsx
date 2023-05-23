@@ -4,16 +4,13 @@ import { WithLayout } from '../../../common/hocs/WithLayout';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ProductSortType } from '../../../common/types/enums/productSortType.enum';
-import { Container } from '../../../old-components';
-import { ProductCard } from '../../../old-components/ProductCard/ProductCard';
-import { ProductsPreview } from '../../../old-components/ProductsPreview/ProductsPreview';
-import { ButtonInfo } from '../../../ui-kit';
+import { Feedback, ProductCard, ProductsPreview } from '../../../components';
+import { ButtonInfo, Container } from '../../../ui-kit';
 
-import { ImagesBlock } from './ImagesBlock/ImagesBlock';
 import style from './MainPage.module.css';
 
-import Feedback from 'components/feedback/Feedback';
-import StatusProduct from 'pages/sellerPages/MainPage/StatusProduct';
+import { ImagesBlock, StatusProduct } from './index';
+
 import { fetchProductList } from 'store/reducers/mainPageSlice';
 
 export enum Categories {
@@ -50,7 +47,7 @@ const CATEGORIES: Category = {
   },
 };
 
-export const MainPage = WithLayout(() => {
+export const MainPage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();
   const filter = useAppSelector(state => state.product.statusProduct);
   const { products } = useAppSelector(state => state.mainPageProducts);

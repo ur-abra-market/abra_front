@@ -17,7 +17,7 @@ type OrderType = {
   status: LinkType;
 };
 
-const OrderHistoryPage = (): JSX.Element => {
+export const OrderHistoryPage = (): JSX.Element => {
   const statusLinksList: Array<LinkType> = [
     'All',
     'Preparing',
@@ -124,5 +124,3 @@ const OrderHistoryPage = (): JSX.Element => {
     </>
   );
 };
-
-export default OrderHistoryPage;

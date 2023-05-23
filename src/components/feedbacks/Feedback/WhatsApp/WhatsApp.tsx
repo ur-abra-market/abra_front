@@ -1,13 +1,15 @@
-import React, { FC } from 'react';
+import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import { ReactComponent as WhatsAppIcon } from '../../../assets/img/icons/whatsapp.svg';
+import { ReactComponent as WhatsAppIcon } from '../../../../assets/img/icons/whatsapp.svg';
 
 import style from './WhatsApp.module.css';
-import { WhatsAppProps } from './WhatsApp.props';
 
-const WhatsApp: FC<WhatsAppProps> = (props): JSX.Element => {
+export interface IWhatsApp
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
+
+export const WhatsApp: FC<IWhatsApp> = (props): JSX.Element => {
   const { className } = props;
 
   return (
@@ -25,5 +27,3 @@ const WhatsApp: FC<WhatsAppProps> = (props): JSX.Element => {
     </div>
   );
 };
-
-export default WhatsApp;

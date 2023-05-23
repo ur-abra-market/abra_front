@@ -1,16 +1,17 @@
 import React from 'react';
 
-import { CheckoutSuccess } from '../old-components/ui/checkout/CheckoutSuccess/CheckoutSuccess';
-import CartPage from '../pages/sellerPages/CartPage';
-import CheckoutPage from '../pages/sellerPages/CheckoutPage/CheckoutPage';
-import OrderDetailsPage from '../pages/sellerPages/OrderDetailsPage';
-import OrderHistoryPage from '../pages/sellerPages/OrderHistoryPage';
-import ProductPage from '../pages/sellerPages/ProductPage';
-import { SellerAccountPage } from '../pages/sellerPages/SellerAccountPage';
-import SellerFavoritesList from '../pages/sellerPages/SellerFavoritesList/SellerFavoritesList';
-import ProductListPage from '../pages/supplierPages/ProductListPage';
-
-import { MainPage } from 'pages/sellerPages';
+import {
+  MainPage,
+  CartPage,
+  ProductPage,
+  CheckoutPage,
+  OrderDetailsPage,
+  OrderHistoryPage,
+  SellerAccountPage,
+  SellerFavoritesList,
+  ProductListPage,
+  CheckoutSuccessPage,
+} from 'pages/sellerPages';
 
 export const sellerRoute = [
   {
@@ -39,7 +40,7 @@ export const sellerRoute = [
   },
   {
     path: 'checkout-success',
-    element: <CheckoutSuccess />,
+    element: <CheckoutSuccessPage />,
   },
   {
     path: 'order-history',

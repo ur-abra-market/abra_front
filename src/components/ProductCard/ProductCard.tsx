@@ -3,9 +3,9 @@ import React, { FC } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
+import Flag from '../../old-components/Flag';
 import { getPriceOneItem } from '../../pages/sellerPages/ProductPage/helpers/getPriceOneItem';
 import { Stars } from '../../ui-kit';
-import Flag from '../Flag';
 
 import style from './ProductCard.module.css';
 import { IProductCard } from './ProductCard.props';

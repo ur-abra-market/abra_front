@@ -7,11 +7,10 @@ import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { Status } from '../../../common/types/enums/status.enum';
 import { IImageProduct } from '../../../common/types/interfaces';
 import ProductCarousel from '../../../components/ProductCarousel/ProductCarousel';
-import { Container } from '../../../old-components';
 import { getPopularProductsById } from '../../../store/reducers/popularProducts';
 import { getSimilarProducts } from '../../../store/reducers/similarProducts';
 import { getGradesByProductId } from '../../../store/reducers/targetProductSlice';
-import { Button, Loader } from '../../../ui-kit';
+import { Button, Loader, Container } from '../../../ui-kit';
 
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import ChoiceProduct from 'old-components/ui/product/ChoiceProduct';
@@ -45,7 +44,7 @@ const latestSearchData = [
   { search_query: 'Tag 15', datetime: '' },
 ];
 
-const ProductPage = (): JSX.Element => {
+export const ProductPage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();
   const { productId } = useParams<string>();
 
@@ -131,6 +130,4 @@ const ProductPage = (): JSX.Element => {
       <LatestSearch latestSearchData={latestSearchData || []} />
     </Container>
   );
-};
-
-export default WithLayout(ProductPage);
+});

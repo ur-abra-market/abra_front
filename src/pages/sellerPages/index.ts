@@ -1,1 +1,10 @@
 export { MainPage } from './MainPage/MainPage';
+export { CartPage } from './CartPage/CartPage';
+export { ProductPage } from './ProductPage/ProductPage';
+export { SellerAccountPage } from './SellerAccountPage/SellerAccountPage';
+export { SellerFavoritesList } from './SellerFavoritesList/SellerFavoritesList';
+export { ProductListPage } from './ProductListPage/ProductListPage';
+export { OrderDetailsPage } from './OrderDetailsPage/OrderDetailsPage';
+export { OrderHistoryPage } from './OrderHistoryPage/OrderHistoryPage';
+export { CheckoutPage } from './CheckoutPage/CheckoutPage';
+export { CheckoutSuccessPage } from './CheckoutSuccessPage/CheckoutSuccessPage';

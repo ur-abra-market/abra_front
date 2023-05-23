@@ -1,14 +1,14 @@
 import React from 'react';
 
-import Feedback from '../../../components/feedback/Feedback';
+import { Feedback } from 'components';
+
 import Footer from '../../../layouts/Footer';
 import Header from '../../../layouts/Header';
-import { Container } from '../../../old-components';
-import { ButtonInfo, Search } from '../../../ui-kit';
+import { ButtonInfo, Container, Search } from '../../../ui-kit';
 
 import style from './SellerFavoritesList.module.css';
 
-const SellerFavoritesList = (): JSX.Element => {
+export const SellerFavoritesList = (): JSX.Element => {
   const arr = [];
 
   // const product: IShortCardProduct = {
@@ -57,5 +57,3 @@ const SellerFavoritesList = (): JSX.Element => {
     </div>
   );
 };
-
-export default SellerFavoritesList;

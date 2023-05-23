@@ -1,14 +1,16 @@
-import React, { FC } from 'react';
+import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import { ReactComponent as Google } from '../../../assets/img/icons/google_c.svg';
-import { ReactComponent as Instagram } from '../../../assets/img/icons/instagram_c.svg';
-import { ReactComponent as Telegram } from '../../../assets/img/icons/telegram_c.svg';
-import { ReactComponent as Vk } from '../../../assets/img/icons/vk_c.svg';
+import { ReactComponent as Google } from '../../../../assets/img/icons/google_c.svg';
+import { ReactComponent as Instagram } from '../../../../assets/img/icons/instagram_c.svg';
+import { ReactComponent as Telegram } from '../../../../assets/img/icons/telegram_c.svg';
+import { ReactComponent as Vk } from '../../../../assets/img/icons/vk_c.svg';
 
 import style from './Social.module.css';
-import { SocialProps } from './Social.props';
+
+export interface SocialProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 const LINKS = [
   { href: 'https://telegram.com', icon: Telegram },
@@ -16,8 +18,8 @@ const LINKS = [
   { href: 'https://vk.com', icon: Vk },
   { href: 'https://google.com', icon: Google },
 ];
-const Social: FC<SocialProps> = (props): JSX.Element => {
-  const { className } = props;
+
+export const Social: FC<SocialProps> = ({ className }): JSX.Element => {
   const buildLinkList = (): JSX.Element[] => {
     return LINKS.map(({ href, icon: Icon }) => {
       return (
@@ -37,5 +39,3 @@ const Social: FC<SocialProps> = (props): JSX.Element => {
     </div>
   );
 };
-
-export default Social;

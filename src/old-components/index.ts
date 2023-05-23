@@ -1,1 +1,1 @@
-export * from '../components/Container/Container';
+export * from '../ui-kit/Container/Container';

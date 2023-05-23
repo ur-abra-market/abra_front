@@ -3,7 +3,7 @@ import React, { MouseEvent } from 'react';
 import cn from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 
-import { Container } from '../../components/Container/Container';
+import { Container } from '../../ui-kit';
 
 import style from './FooterForAuth.module.css';
 

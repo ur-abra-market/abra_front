@@ -6,8 +6,8 @@ import { Swiper as SwiperType } from 'swiper';
 
 import { ReactComponent as ArrowLeft } from '../../assets/img/icons/arrow-slide-left.svg';
 import { ReactComponent as ArrowRight } from '../../assets/img/icons/arrow-slide-right.svg';
-import { Carousel } from '../../components/Carousel/Carousel';
 import { ButtonIcon } from '../../ui-kit';
+import { Carousel } from '../Carousel/Carousel';
 
 import style from './ProductsPreview.module.css';
 import { ProductsPreviewProps } from './ProductsPreview.props';

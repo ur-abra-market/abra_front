@@ -7,9 +7,8 @@ import { Link, Navigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
-import FeedbackForm from '../../../components/feedback/FeedbackForm';
+import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
 import UploadFile from '../../../components/UploadFile/UploadFile';
-import { Container } from '../../../old-components';
 import { Action } from '../../../services/user.service';
 import {
   getSellerAddressesService,
@@ -28,6 +27,7 @@ import {
   ISelectOption,
   Label,
   Select,
+  Container,
 } from '../../../ui-kit';
 
 import { Address } from './Address/Address';

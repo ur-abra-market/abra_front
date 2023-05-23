@@ -65,9 +65,9 @@ const FAQData = [
   },
   {
     id: nanoid(),
-    question: '10 How can I leave feedback for a seller?',
+    question: '10 How can I leave feedbacks for a seller?',
     answer:
-      'After receiving your order, you can leave feedback for the seller by visiting the "My Orders" section in your account. Click on the "Leave Feedback" button and rate the seller based on your experience. Your feedback helps other buyers make informed decisions and contributes to the overall quality of our marketplace.',
+      'After receiving your order, you can leave feedbacks for the seller by visiting the "My Orders" section in your account. Click on the "Leave Feedback" button and rate the seller based on your experience. Your feedbacks helps other buyers make informed decisions and contributes to the overall quality of our marketplace.',
   },
   {
     id: nanoid(),

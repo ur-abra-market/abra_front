@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
@@ -7,10 +7,12 @@ import bg1 from '../../../../assets/img/test_img/main_1.jpg';
 import bg2 from '../../../../assets/img/test_img/main_2.jpg';
 import bg3 from '../../../../assets/img/test_img/main_3.jpg';
 import bg4 from '../../../../assets/img/test_img/main_4.jpg';
-import { Container } from '../../../../old-components';
+import { Container } from '../../../../ui-kit';
 
 import style from './ImagesBlock.module.css';
-import { ImagesBlockProps } from './ImagesBlock.props';
+
+export interface ImagesBlockProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 export const ImagesBlock: FC<ImagesBlockProps> = ({
   className,
@@ -26,6 +28,7 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
           <span>/from 100pcs</span>
         </div>
       </div>
+
       <Container>
         <div className={style.images_box_grid}>
           <div className={cn(style.grid_item1)}>

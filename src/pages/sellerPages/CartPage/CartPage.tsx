@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
 import { WithLayout } from '../../../common/hocs/WithLayout';
-import { Container } from '../../../old-components';
 import CartList from '../../../old-components/ui/TypesView/cart/CartList/CartList';
 import CartOrder from '../../../old-components/ui/TypesView/cart/CartOrder/CartOrder';
 
 import style from './CartPage.module.css';
 
-const CartPage = (): JSX.Element => {
+import { Container } from 'ui-kit';
+
+export const CartPage = WithLayout((): JSX.Element => {
   const [cartItems] = useState([
     {
       id: 13,
@@ -71,6 +72,4 @@ const CartPage = (): JSX.Element => {
       <CartOrder info={orderInfo} />
     </Container>
   );
-};
-
-export default WithLayout(CartPage);
+});

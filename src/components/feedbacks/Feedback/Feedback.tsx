@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { Container } from '../../Container/Container';
-import Social from '../Social';
-import Subscribe from '../Subscribe';
-import WhatsApp from '../WhatsApp';
+import { Container } from '../../../ui-kit';
 
 import style from './Feedback.module.css';
 
-const Feedback = (): JSX.Element => {
+import { Social, Subscribe, WhatsApp } from './index';
+
+export const Feedback = (): JSX.Element => {
   return (
     <div className={style.wrapper}>
       <Container className={style.container}>
@@ -22,5 +21,3 @@ const Feedback = (): JSX.Element => {
     </div>
   );
 };
-
-export default Feedback;

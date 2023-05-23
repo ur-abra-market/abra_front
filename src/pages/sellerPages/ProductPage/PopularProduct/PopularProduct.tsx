@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
 import { IProductCompilation } from '../../../../common/types/interfaces';
-import { ProductCard } from '../../../../old-components/ProductCard/ProductCard';
-import { ProductsPreview } from '../../../../old-components/ProductsPreview/ProductsPreview';
+import { ProductCard, ProductsPreview } from '../../../../components';
 import style from '../ProductPage.module.css';
 
 export const PopularProduct = (): JSX.Element => {

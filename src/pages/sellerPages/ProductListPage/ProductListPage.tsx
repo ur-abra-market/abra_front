@@ -11,7 +11,7 @@ import ProductFilter from 'old-components/ui/product/ProductFilter';
 import ProductList from 'old-components/ui/product/ProductList';
 import { productPaginateService } from 'store/reducers/productPaginateSlice';
 
-const ProductListPage = (): JSX.Element => {
+export const ProductListPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const paginate = useAppSelector(state => state.paginate);
   const filter = useAppSelector(state => state.filter);
@@ -32,5 +32,3 @@ const ProductListPage = (): JSX.Element => {
     </>
   );
 };
-
-export default ProductListPage;

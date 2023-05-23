@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import { Navigate } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ import CheckOrder from 'old-components/ui/checkout/CheckOrder';
 import CheckPayment from 'old-components/ui/checkout/CheckPayment';
 import { ButtonInfo } from 'ui-kit';
 
-const CheckoutPage: FC = (): JSX.Element => {
+export const CheckoutPage = (): JSX.Element => {
   const { isAuth } = useAppSelector(state => state.login);
 
   if (!isAuth) {
@@ -41,5 +41,3 @@ const CheckoutPage: FC = (): JSX.Element => {
     </div>
   );
 };
-
-export default CheckoutPage;

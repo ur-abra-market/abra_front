@@ -21,7 +21,7 @@ const STATUS_ARRAY = [
   { label: 'Hot Deals', value: CategoryType.HOT },
 ];
 
-const StatusProduct = (): JSX.Element => {
+export const StatusProduct = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const [indexActiveCategory, setIndexActiveCategory] = useState<number>(0);
 
@@ -62,5 +62,3 @@ const StatusProduct = (): JSX.Element => {
     </>
   );
 };
-
-export default StatusProduct;

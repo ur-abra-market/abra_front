@@ -2,12 +2,12 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { Layout } from '../../../../layouts/Layout/Layout';
-import { Button } from '../../../../ui-kit';
+import { Layout } from '../../../layouts/Layout/Layout';
+import { Button } from '../../../ui-kit';
 
-import style from './CheckoutSuccess.module.css';
+import style from './CheckoutSuccessPage.module.css';
 
-export const CheckoutSuccess = (): JSX.Element => {
+export const CheckoutSuccessPage = (): JSX.Element => {
   const navigate = useNavigate();
   const onClickMain = (): void => {
     return navigate('/');

@@ -1,1 +1,0 @@
-export { SellerAccountPage } from './SellerAccountPage';

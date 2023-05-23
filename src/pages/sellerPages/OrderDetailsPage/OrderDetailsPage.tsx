@@ -8,7 +8,7 @@ import style from './OrderDetails.module.css';
 
 import Footer from 'layouts/Footer';
 
-const OrderDetailsPage = (): JSX.Element => {
+export const OrderDetailsPage = (): JSX.Element => {
   return (
     <>
       <Header />
@@ -168,5 +168,3 @@ const OrderDetailsPage = (): JSX.Element => {
     </>
   );
 };
-
-export default OrderDetailsPage;
