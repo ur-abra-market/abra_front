@@ -4,7 +4,7 @@ import { ReactComponent as Edit } from '../../../../assets/img/icons/edit.svg';
 import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import Check from '../../../../old-components/Check';
 import { EditAddressModal } from '../../../../old-components/ui/popup/EdtiAddressModal/EditAddressModal';
-import { SellerAddressData } from '../../../../services/seller.service';
+import { SellerAddressData } from '../../../../services/seller/seller.serviceTypes';
 
 import style from './Address.module.css';
 

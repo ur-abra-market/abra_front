@@ -1,11 +1,10 @@
-import { IUserNotificationsData } from '../store/reducers/userSlice';
-
+import { IUserNotificationsData } from '../../store/reducers/userSlice';
+import baseConfigService from '../baseConfig.service';
 import {
   IAccountPersonalInfoRequest,
   IAccountPersonalInfoResponse,
-} from './common.serviceType';
-import httpService from './http.service';
-import { IErrorResponse } from './seller.service';
+} from '../common/common.serviceTypes';
+import { IErrorResponse } from '../seller/seller.serviceTypes';
 
 export enum Action {
   UPLOAD_LOGO = 'users/uploadLogoImage/',
@@ -18,7 +17,7 @@ const userService = {
     phone_country_code,
     phone_number,
   }: IAccountPersonalInfoRequest) => {
-    const { data } = await httpService.patch<IAccountPersonalInfoResponse>(
+    const { data } = await baseConfigService.patch<IAccountPersonalInfoResponse>(
       `/users/account/update/`,
       {
         first_name,
@@ -36,10 +35,11 @@ const userService = {
 
     formData.append('file', img);
 
-    const { data } = await httpService.post('users/uploadLogoImage/', formData);
+    const { data } = await baseConfigService.post('users/uploadLogoImage/', formData);
 
     return data;
   },
+
   uploadFile: async (payload: {
     action: string;
     file: File;
@@ -50,24 +50,27 @@ const userService = {
 
     formData.append('file', file);
 
-    const { data } = await httpService.post(action, formData, { params: quaries });
+    const { data } = await baseConfigService.post(action, formData, { params: quaries });
 
     return data;
   },
+
   getFavoritesProducts: async () => {
-    const { data } = await httpService.get(`/users/showFavorites/`);
+    const { data } = await baseConfigService.get(`/users/showFavorites/`);
 
     return data;
   },
+
   getNotifications: async () => {
-    const { data } = await httpService.get<IUserNotificationsData>(
+    const { data } = await baseConfigService.get<IUserNotificationsData>(
       `/users/getNotifications/`,
     );
 
     return data;
   },
+
   updateNotification: async (updatedData: IUserNotificationsData) => {
-    const { data } = await httpService.patch<string | IErrorResponse>(
+    const { data } = await baseConfigService.patch<string | IErrorResponse>(
       `/users/updateNotifications/`,
       updatedData,
     );

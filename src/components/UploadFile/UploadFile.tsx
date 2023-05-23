@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import { ReactComponent as Photo } from '../../assets/img/icons/photo_icon.svg';
 import { Status } from '../../common/types/enums/status.enum';
-import userService from '../../services/user.service';
+import userService from '../../services/user/user.service';
 
 import style from './UploadFile.module.css';
 import { UploadFileProps } from './UploadFile.props';

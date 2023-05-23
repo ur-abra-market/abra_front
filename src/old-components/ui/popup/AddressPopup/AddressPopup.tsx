@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { SellerAddressData } from '../../../../services/seller.service';
+import { SellerAddressData } from '../../../../services/seller/seller.serviceTypes';
 import { Button, Checkbox, Input, Select } from '../../../../ui-kit';
 
 import style from './AddressPopup.module.css';

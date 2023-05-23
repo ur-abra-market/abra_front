@@ -1,22 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { Status } from 'common/types/enums/status.enum';
+import { IImageProduct } from '../../common/types/interfaces';
 import {
   IGradeProduct,
   IGradeProductRequest,
-  IImageProduct,
   IImageProductRequest,
   IProduct,
   IRequestProduct,
-} from 'common/types/interfaces';
-import { productFetch } from 'services/product.service';
+} from '../../services/product/product.serviceTypes';
+
+import { Status } from 'common/types/enums/status.enum';
+import { productService } from 'services/product/product.service';
 
 export const getProductById = createAsyncThunk<IProduct, IRequestProduct>(
   'targetProduct/getProductById',
   async (payload, { rejectWithValue }) => {
     try {
-      return productFetch.getProductById(payload);
+      return productService.getProductById(payload);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.response?.data);
@@ -31,7 +32,7 @@ export const getGradesByProductId = createAsyncThunk<IGradeProduct, IGradeProduc
   'targetProduct/getGradesByProductId',
   async ({ product_id }, { rejectWithValue }) => {
     try {
-      return await productFetch.getGradesByProductId({ product_id });
+      return await productService.getGradesByProductId({ product_id });
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.response?.data);
@@ -47,7 +48,7 @@ export const getImagesByProductId = createAsyncThunk<
   IImageProductRequest
 >('targetProduct/getImagesByProductId', async ({ product_id }, { rejectWithValue }) => {
   try {
-    return await productFetch.getProductImagesById({ product_id });
+    return await productService.getProductImagesById({ product_id });
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
       return rejectWithValue(error.response?.data);

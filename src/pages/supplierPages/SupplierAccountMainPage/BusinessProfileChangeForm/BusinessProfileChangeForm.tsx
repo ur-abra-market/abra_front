@@ -6,7 +6,6 @@ import * as yup from 'yup';
 
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../../common/hooks/useAppSelector';
-import { CompanyInfo } from '../../../../services/supplierAccount.service';
 import { uploadUserLogoService } from '../../../../store/reducers/userSlice';
 
 import style from './BusinessProfileChangeForm.module.css';
@@ -73,7 +72,7 @@ export const BusinessProfileChangeForm: FC = (): JSX.Element => {
   const accountInfo = useAppSelector(state => state.supplierAccount.supplierInfo);
 
   // @ts-ignore
-  const companyInfo = accountInfo?.company_info || ({} as CompanyInfo);
+  const companyInfo = accountInfo?.company_info || {};
 
   const [acc_code, acc_tel] = phoneNumberSplit(companyInfo.phone);
 

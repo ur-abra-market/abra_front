@@ -2,15 +2,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { Status } from '../../common/types/enums/status.enum';
-import fetchDeletedProducts from '../../services/deleteProducts.service';
-import fetchManageProducts from '../../services/manageProducts.service';
+import { productService } from '../../services/product/product.service';
 
 export const manageProductsService = createAsyncThunk<any, void>(
   'manageProducts/manageProductsService',
 
   async (_, { rejectWithValue }) => {
     try {
-      const data = await fetchManageProducts.getList();
+      const data = await productService.getListManageProducts();
 
       return data;
     } catch (error: unknown) {
@@ -27,7 +26,7 @@ export const deleteProducts = createAsyncThunk<any, any>(
   'manageProducts/deleteProducts',
   async (id, { rejectWithValue, dispatch }) => {
     try {
-      const response = await fetchDeletedProducts.deleteList(id);
+      const response = await productService.deleteList(id);
 
       dispatch(removeProducts(id));
 

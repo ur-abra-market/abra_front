@@ -2,9 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { Status } from '../../common/types/enums/status.enum';
-import supplierAccountData, {
-  INotification,
-} from '../../services/supplierAccount.service';
+import supplierService from '../../services/supplier/supplier.service';
+import { INotification } from '../../services/supplier/supplier.serviceTypes';
 
 import { getCurrentUserInfo } from './loginSlice';
 
@@ -14,7 +13,7 @@ export const getSupplierAccountDataService = createAsyncThunk(
   'supplierAccount/getAccountData',
   async (_, { rejectWithValue }) => {
     try {
-      return supplierAccountData.getAccountData();
+      return supplierService.getAccountData();
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         rejectWithValue(error.message);
@@ -29,7 +28,7 @@ export const getSupplierNotifications = createAsyncThunk(
   'supplierAccount/getNotifications',
   async (_, { rejectWithValue }) => {
     try {
-      return supplierAccountData.getNotifications();
+      return supplierService.getNotifications();
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         rejectWithValue(error.message);
@@ -53,7 +52,7 @@ export const updateSupplierNotifications = createAsyncThunk<
       if (notifications) {
         const new_notifications = { ...notifications, [param.id]: param.value };
 
-        await supplierAccountData.postNotifications(new_notifications);
+        await supplierService.postNotifications(new_notifications);
         dispatch(getSupplierNotifications());
       }
     } catch (error: unknown) {

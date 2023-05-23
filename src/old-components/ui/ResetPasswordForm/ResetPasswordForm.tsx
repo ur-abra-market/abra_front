@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import PasswordComplexity from '../../../components/PasswordComplexity';
-import { ResetPasswordPayloadType } from '../../../services/auth.serviceType';
+import { ResetPasswordPayloadType } from '../../../services/auth/auth.serviceTypes';
 import { resetPassword } from '../../../store/reducers/passwordSlice';
 import { Button, Input } from '../../../ui-kit';
 import Form from '../../Form';

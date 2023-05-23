@@ -5,16 +5,17 @@ import { Status } from '../../common/types/enums/status.enum';
 import {
   ISellerAddressData,
   ISellerData,
-  IUserResultFetch,
-  sellerFetch,
   ISendSellerResponse,
-} from '../../services/seller.service';
+  IUserResultFetch,
+} from '../../services/seller/seller.serviceTypes';
+
+import { sellerService } from 'services/seller/seller.service';
 
 export const getSellerInfoService = createAsyncThunk<IUserResultFetch, void>(
   'seller/getSellerInfoService',
   async (_, { rejectWithValue }) => {
     try {
-      const data = await sellerFetch.getSellerInfo();
+      const data = await sellerService.getSellerInfo();
 
       return data.result;
     } catch (error: unknown) {
@@ -31,7 +32,7 @@ export const sendSellerInfoService = createAsyncThunk<ISendSellerResponse, ISell
   'seller/sendSellerInfoService',
   async (sellerData, { rejectWithValue }) => {
     try {
-      const data = await sellerFetch.sendSellerInfo(sellerData);
+      const data = await sellerService.sendSellerInfo(sellerData);
 
       return data;
     } catch (error: unknown) {
@@ -48,7 +49,7 @@ export const getSellerAddressesService = createAsyncThunk<ISellerAddressData[], 
   'seller/getSellerAddressesService',
   async (_, { rejectWithValue }) => {
     try {
-      const data = await sellerFetch.getSellerAddresses();
+      const data = await sellerService.getSellerAddresses();
 
       return data.result.seller_address;
     } catch (error: unknown) {

@@ -5,7 +5,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { ReactComponent as Delete } from '../../../../assets/img/icons/delete.svg';
 import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { SellerAddressData } from '../../../../services/seller.service';
+import { SellerAddressData } from '../../../../services/seller/seller.serviceTypes';
 import { Button, Input, Select } from '../../../../ui-kit';
 import Check from '../../../Check';
 

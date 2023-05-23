@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import productPaginateFetch from '../../services/productPaginate.service';
+import { productService } from '../../services/product/product.service';
 
 const initialState = {
   productsPage: [],
@@ -17,7 +17,7 @@ export const productPaginateService = createAsyncThunk<any, any>(
   'productPaginate/productPaginateService',
   async (productPaginateData, { rejectWithValue }) => {
     try {
-      const data = await productPaginateFetch.getProductPaginateList(productPaginateData);
+      const data = await productService.getProductPaginateList(productPaginateData);
 
       return data;
     } catch (error: unknown) {

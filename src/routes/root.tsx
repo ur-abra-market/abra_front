@@ -24,7 +24,7 @@ import {
 import { sellerRoute } from './sellerRoute';
 import { supplierRoute } from './supplierRoute';
 
-import { userRoleType } from 'services/auth.serviceType';
+import { userRoleType } from 'services/auth/auth.serviceTypes';
 
 type Routes = ReturnType<typeof createBrowserRouter>;
 

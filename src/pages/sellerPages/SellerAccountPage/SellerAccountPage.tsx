@@ -9,7 +9,7 @@ import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
 import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
 import UploadFile from '../../../components/UploadFile/UploadFile';
-import { Action } from '../../../services/user.service';
+import { Action } from '../../../services/user/user.service';
 import {
   getSellerAddressesService,
   getSellerInfoService,

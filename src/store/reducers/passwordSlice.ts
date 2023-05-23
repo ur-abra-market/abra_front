@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
+import authService from '../../services/auth/auth.service';
 import {
   AsyncThunkConfig,
   ChangePasswordPayloadType,
   PasswordResponseType,
   ResetPasswordPayloadType,
-} from '../../services/auth.serviceType';
-import { passwordService } from '../../services/password.service';
+} from '../../services/auth/auth.serviceTypes';
 
 export type ForgotChangePasswordFormType = {
   email: string;
@@ -19,7 +19,7 @@ export const forgotPassword = createAsyncThunk<
   AsyncThunkConfig
 >('password/forgotPassword', async (param, { rejectWithValue }) => {
   try {
-    return await passwordService.forgotPassword(param.email);
+    return await authService.forgotPassword(param.email);
   } catch (error) {
     if (error instanceof AxiosError) {
       return rejectWithValue(error.message);
@@ -35,7 +35,7 @@ export const checkToken = createAsyncThunk<
   AsyncThunkConfig
 >('password/checkToken', async (token, { rejectWithValue }) => {
   try {
-    return await passwordService.checkToken(token);
+    return await authService.checkToken(token);
   } catch (error) {
     if (error instanceof AxiosError) {
       return rejectWithValue(error.message);
@@ -51,7 +51,7 @@ export const resetPassword = createAsyncThunk<
   AsyncThunkConfig
 >('password/resetPassword', async (param, { rejectWithValue }) => {
   try {
-    return passwordService.resetPassword(param);
+    return authService.resetPassword(param);
   } catch (error) {
     if (error instanceof AxiosError) {
       return rejectWithValue(error.message);
@@ -67,7 +67,7 @@ export const changePassword = createAsyncThunk<
   AsyncThunkConfig
 >('password/changePassword', async (param, { rejectWithValue }) => {
   try {
-    return passwordService.changePassword(param);
+    return authService.changePassword(param);
   } catch (error) {
     if (error instanceof AxiosError) {
       return rejectWithValue(error.message);

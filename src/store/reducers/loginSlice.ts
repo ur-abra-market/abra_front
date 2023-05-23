@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import authService from '../../services/auth.service';
+import authService from '../../services/auth/auth.service';
 import {
   AsyncThunkConfig,
   LoginParamsType,
   userRoleType,
   LoginResponseType,
-} from '../../services/auth.serviceType';
+} from '../../services/auth/auth.serviceTypes';
 
 interface IInitialState {
   resMessage: string;

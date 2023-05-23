@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { Status } from '../../common/types/enums/status.enum';
-import categoryFetch from '../../services/category.service';
+import commonService from '../../services/common/common.service';
 
 export type ResponseCategoryType = {
   id: number;
@@ -27,7 +27,7 @@ export const categoryService = createAsyncThunk<any, void>(
   'category/categoryService',
   async function (_, { rejectWithValue }) {
     try {
-      const data = await categoryFetch.getAllCategories();
+      const data = await commonService.getAllCategories();
 
       return data.result;
     } catch (error: unknown) {

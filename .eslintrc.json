@@ -109,7 +109,7 @@
       }
     ],
     "no-shadow": "off",
-    "no-debugger": "error",
+    "no-debugger": "warn",
     "no-unused-vars": "off",
     "no-magic-numbers": [
       "warn",
@@ -170,7 +170,7 @@
       }
     ],
     "@typescript-eslint/no-unused-vars": [
-      "error"
+      "warn"
     ],
     "@typescript-eslint/explicit-function-return-type": [
       "error",

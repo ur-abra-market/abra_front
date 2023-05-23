@@ -1,15 +1,13 @@
 import React, { FC } from 'react';
 
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { INotification } from '../../../../services/supplierAccount.service';
+import { INotification } from '../../../../services/supplier/supplier.serviceTypes';
 
 import style from './NotificationsChangeForm.module.css';
 
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { updateSupplierNotifications } from 'store/reducers/supplierAccountSlice';
 import { Checkbox } from 'ui-kit';
-
-// import { getSupplierNotifications } from '../../../store/reducers/supplierAccountSlice';
 
 // TODO - с бэка приходят notifications seller'a
 const NOTIFICATIONS_DATA: { id: keyof INotification; label: string }[] = [

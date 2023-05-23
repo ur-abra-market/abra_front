@@ -2,8 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { Status } from '../../common/types/enums/status.enum';
-import supplierFetch from '../../services/supplier.service';
-import { CompanyInfo } from '../../services/supplierAccount.service';
+import supplierFetch from '../../services/supplier/supplier.service';
+import { CompanyInfo } from '../../services/supplier/supplier.serviceTypes';
 
 interface ProductObj {
   key: string;

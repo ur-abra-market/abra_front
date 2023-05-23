@@ -7,9 +7,6 @@ import * as yup from 'yup';
 
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import { filterEmptyValues } from '../../../common/utils/filterEmptyValues';
-import { RequestAccountInfo } from '../../../services/supplierAccount.service';
-import { accountInfoService } from '../../../store/reducers/formRegistrationSlice';
 import { uploadUserLogoService } from '../../../store/reducers/userSlice';
 import { Button, Input, ISelectOption, Label, Select } from '../../../ui-kit';
 import FormTitle from '../../FormTitle';
@@ -65,7 +62,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { resMessage, accountInfo } = useAppSelector(state => state.formRegistration);
+  const { resMessage } = useAppSelector(state => state.formRegistration);
 
   const {
     control,
@@ -76,36 +73,21 @@ const BusinessProfileForm: FC = (): JSX.Element => {
   } = useForm<FormFields>({ resolver: yupResolver(schema), mode: 'onChange' });
 
   const onSubmit = (data: any): void => {
-    const phone = data.code + data.tel;
-
-    const info = {
-      name: data.storeName,
-      business_sector: data.businessSector,
-      year_established: +data.yearEstablished,
-      number_of_employees: +data.numEmployees,
-      description: data.textarea,
-      /* logo_url: 'string', */
-      phone,
-      business_email: data.email,
-      address: data.address,
-    };
-
-    const accountInfoForRequest = filterEmptyValues(info);
+    console.log(data);
+    // const phone = data.code + data.tel;
+    // const info = {
+    //   name: data.storeName,
+    //   business_sector: data.businessSector,
+    //   year_established: +data.yearEstablished,
+    //   number_of_employees: +data.numEmployees,
+    //   description: data.textarea,
+    //   /* logo_url: 'string', */
+    //   phone,
+    //   business_email: data.email,
+    //   address: data.address,
+    // };
 
     dispatch(uploadUserLogoService(images[0]));
-
-    dispatch(
-      accountInfoService({
-        path: 'sendAccountInfo',
-        rest: {
-          ...accountInfo,
-          company_info: {
-            ...accountInfoForRequest,
-            is_manufacturer: data.checkbox ? 1 : 0,
-          },
-        } as RequestAccountInfo,
-      }),
-    );
 
     reset();
   };

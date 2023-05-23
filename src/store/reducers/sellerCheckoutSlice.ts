@@ -2,14 +2,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { Status } from '../../common/types/enums/status.enum';
-import { AsyncThunkConfig } from '../../services/auth.serviceType';
+import { AsyncThunkConfig } from '../../services/auth/auth.serviceTypes';
+import { sellerService } from '../../services/seller/seller.service';
 import {
   EditAddressData,
   ResponseAddressData,
   ResponseDeleteAddress,
   SellerAddressData,
-  sellerFetch,
-} from '../../services/seller.service';
+} from '../../services/seller/seller.serviceTypes';
 
 export const addAddress = createAsyncThunk<
   ResponseAddressData,
@@ -17,7 +17,7 @@ export const addAddress = createAsyncThunk<
   AsyncThunkConfig
 >('modal/addAddress', async (params, { dispatch, rejectWithValue }) => {
   try {
-    const { data } = await sellerFetch.addAddress(params);
+    const { data } = await sellerService.addAddress(params);
 
     dispatch(getAddress());
 
@@ -36,7 +36,7 @@ export const editAddress = createAsyncThunk<
   AsyncThunkConfig
 >('modal/editAddress', async (params, { dispatch, rejectWithValue }) => {
   try {
-    const { data } = await sellerFetch.editAddress(params.id, params.data);
+    const { data } = await sellerService.editAddress(params.id, params.data);
 
     dispatch(getAddress());
 
@@ -54,7 +54,7 @@ export const getAddress = createAsyncThunk<ResponseAddressData, void, AsyncThunk
   'modal/getAddress',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await sellerFetch.getAddress();
+      const { data } = await sellerService.getAddress();
 
       return data;
     } catch (error) {
@@ -73,7 +73,7 @@ export const deleteAddress = createAsyncThunk<
   AsyncThunkConfig
 >('modal/deleteAddress', async (id, { dispatch, rejectWithValue }) => {
   try {
-    const { data } = await sellerFetch.deleteAddress(id);
+    const { data } = await sellerService.deleteAddress(id);
 
     dispatch(getAddress());
 

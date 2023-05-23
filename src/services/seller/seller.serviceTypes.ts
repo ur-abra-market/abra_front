@@ -1,54 +1,6 @@
-import { AxiosResponse } from 'axios';
-
-import { IUserNotificationsData } from '../store/reducers/userSlice';
-
-import httpService from './http.service';
-
-export const sellerFetch = {
-  getSellerInfo: async () => {
-    const { data } = await httpService.get<IUserInfoFetch>('sellers/getSellerInfo');
-
-    return data;
-  },
-  sendSellerInfo: async (sellerData: ISellerData) => {
-    const { first_name, last_name } = sellerData;
-
-    const { data } = await httpService.post<
-      ISendSellerResponse,
-      AxiosResponse<ISendSellerResponse>,
-      Partial<ISellerProfile>
-    >('sellers/sendSellerInfo', {
-      seller_data: {
-        first_name,
-        last_name,
-      },
-    });
-
-    return data;
-  },
-  getSellerAddresses: async () => {
-    const { data } = await httpService.get<IGetAddressesResponse>('sellers/addresses/');
-
-    return data;
-  },
-  addAddress: (params: SellerAddressData) => {
-    return httpService.post<ResponseAddressData>('sellers/addAddress', params);
-  },
-  getAddress: () => {
-    return httpService.get<ResponseAddressData>('sellers/addresses');
-  },
-  editAddress: (id: number, params: SellerAddressData) => {
-    return httpService.patch<ResponseAddressData>(`sellers/updateAddress`, {
-      ...params,
-      id,
-    });
-  },
-  deleteAddress: (id: number) => {
-    return httpService.delete<ResponseDeleteAddress>(`sellers/removeAddress/${id}`);
-  },
-};
-
 // get seller info interfaces
+
+import { IUserNotificationsData } from '../../store/reducers/userSlice';
 
 export interface IUserInfoFetch {
   result: IUserResultFetch;

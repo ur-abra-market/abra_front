@@ -1,16 +1,20 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
+import { productService } from '../../services/product/product.service';
+import {
+  IProductCompilation,
+  IRequestSimilarProduct,
+} from '../../services/product/product.serviceTypes';
+
 import { Status } from 'common/types/enums/status.enum';
-import { IRequestSimilarProduct, IProductCompilation } from 'common/types/interfaces';
-import { getSimilarProductsService } from 'services/getSimilarProducts.service';
 
 export const getSimilarProducts = createAsyncThunk<
   IProductCompilation[],
   IRequestSimilarProduct
 >('similarProducts/getSimilarProducts', async (payload, { rejectWithValue }) => {
   try {
-    const { result } = await getSimilarProductsService.get(payload);
+    const { result } = await productService.getSimilarProducts(payload);
 
     return result;
   } catch (error: unknown) {

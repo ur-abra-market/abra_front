@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { AsyncThunkConfig } from '../../services/auth.serviceType';
-import { CountryType } from '../../services/common.serviceType';
+import { AsyncThunkConfig } from '../../services/auth/auth.serviceTypes';
+import { CountryType } from '../../services/common/common.serviceTypes';
 
-import commonService from 'services/common.service';
+import commonService from 'services/common/common.service';
 
 export const getCountries = createAsyncThunk<CountryType[], void, AsyncThunkConfig>(
   'common/getCountries',

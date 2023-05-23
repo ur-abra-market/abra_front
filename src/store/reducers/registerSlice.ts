@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import authService from '../../services/auth.service';
+import authService from '../../services/auth/auth.service';
 import {
   AsyncThunkConfig,
   RegisterParamsType,
   RegisterResponseType,
-} from '../../services/auth.serviceType';
+} from '../../services/auth/auth.serviceTypes';
 
 const initialState = {
   errMessage: '' as string,

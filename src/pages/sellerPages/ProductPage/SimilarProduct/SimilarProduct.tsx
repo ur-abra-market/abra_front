@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { IProductCompilation } from '../../../../common/types/interfaces';
 import { ProductCard, ProductsPreview } from '../../../../components';
+import { IProductCompilation } from '../../../../services/product/product.serviceTypes';
 import style from '../ProductPage.module.css';
 
 export const SimilarProduct = (): JSX.Element => {
