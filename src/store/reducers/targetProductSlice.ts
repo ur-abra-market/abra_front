@@ -10,7 +10,7 @@ import {
   IRequestProduct,
 } from '../../services/product/product.serviceTypes';
 
-import { Status } from 'common/types/enums/status.enum';
+import { LoadingStatus } from 'common/types/enums/status.enum';
 import { productService } from 'services/product/product.service';
 
 export const getProductById = createAsyncThunk<IProduct, IRequestProduct>(
@@ -133,15 +133,15 @@ const targetProductSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addCase(getProductById.pending, state => {
-      state.status = Status.Loading;
+      state.status = LoadingStatus.Loading;
     });
     builder.addCase(getProductById.fulfilled, (state, action) => {
       state.product = action.payload;
 
-      state.status = Status.Success;
+      state.status = LoadingStatus.Success;
     });
     builder.addCase(getProductById.rejected, state => {
-      state.status = Status.Failed;
+      state.status = LoadingStatus.Failed;
     });
     builder.addCase(getGradesByProductId.fulfilled, (state, action) => {
       state.gradesData = action.payload;

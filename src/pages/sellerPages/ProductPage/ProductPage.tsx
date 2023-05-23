@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { WithLayout } from '../../../common/hocs/WithLayout';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { Status } from '../../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../../common/types/enums/status.enum';
 import { IImageProduct } from '../../../common/types/interfaces';
 import ProductCarousel from '../../../components/ProductCarousel/ProductCarousel';
 import { getPopularProductsById } from '../../../store/reducers/popularProducts';
@@ -71,7 +71,8 @@ export const ProductPage = WithLayout((): JSX.Element => {
     // добавление в избранное логика
   };
 
-  if (status === Status.Loading || status === Status.Idle) return <Loader />;
+  if (status === LoadingStatus.Loading || status === LoadingStatus.Idle)
+    return <Loader />;
 
   return (
     <Container>

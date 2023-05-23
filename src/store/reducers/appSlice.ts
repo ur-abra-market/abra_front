@@ -1,18 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { Status } from '../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../common/types/enums/status.enum';
 
 import { getCurrentUserInfo, loginService } from './loginSlice';
 
 interface IInitialState {
   isInitialized: boolean;
-  isLoading: Status;
+  isLoading: LoadingStatus;
   isFeedbackOpen: boolean;
 }
 
 const initialState: IInitialState = {
   isInitialized: false,
-  isLoading: Status.Idle,
+  isLoading: LoadingStatus.Idle,
   isFeedbackOpen: false,
 };
 
@@ -26,22 +26,22 @@ export const appSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(loginService.pending, state => {
-      state.isLoading = Status.Loading;
+      state.isLoading = LoadingStatus.Loading;
     });
     builder.addCase(loginService.rejected, state => {
-      state.isLoading = Status.Failed;
+      state.isLoading = LoadingStatus.Failed;
     });
 
     builder.addCase(getCurrentUserInfo.pending, state => {
-      state.isLoading = Status.Loading;
+      state.isLoading = LoadingStatus.Loading;
     });
     builder.addCase(getCurrentUserInfo.fulfilled, state => {
       state.isInitialized = true;
-      state.isLoading = Status.Success;
+      state.isLoading = LoadingStatus.Success;
     });
     builder.addCase(getCurrentUserInfo.rejected, state => {
       state.isInitialized = true;
-      state.isLoading = Status.Failed;
+      state.isLoading = LoadingStatus.Failed;
     });
   },
 });

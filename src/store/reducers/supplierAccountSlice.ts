@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { Status } from '../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../common/types/enums/status.enum';
 import supplierService from '../../services/supplier/supplier.service';
 import { INotification } from '../../services/supplier/supplier.serviceTypes';
 
@@ -66,7 +66,7 @@ export const updateSupplierNotifications = createAsyncThunk<
 );
 
 export interface ISupplierAccountSlice {
-  isLoading: Status;
+  isLoading: LoadingStatus;
   error: string | null;
   notifications?: INotification;
   hasProfile: boolean;
@@ -79,7 +79,7 @@ export interface ISupplierAccountSlice {
 }
 
 const initialState: ISupplierAccountSlice = {
-  isLoading: Status.Idle,
+  isLoading: LoadingStatus.Idle,
   error: null,
   hasProfile: false,
   supplierInfo: {
@@ -96,7 +96,7 @@ const supplierAccountSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(getCurrentUserInfo.pending, state => {
-      state.isLoading = Status.Loading;
+      state.isLoading = LoadingStatus.Loading;
     });
     builder.addCase(getCurrentUserInfo.fulfilled, (state, action) => {
       const response = action.payload.result;
@@ -113,29 +113,29 @@ const supplierAccountSlice = createSlice({
         }
       }
 
-      state.isLoading = Status.Success;
+      state.isLoading = LoadingStatus.Success;
     });
     builder.addCase(getSupplierAccountDataService.pending, state => {
-      state.isLoading = Status.Loading;
+      state.isLoading = LoadingStatus.Loading;
       state.error = null;
     });
     builder.addCase(getSupplierAccountDataService.fulfilled, (state, action) => {
       state.supplierInfo = action.payload.result;
-      state.isLoading = Status.Success;
+      state.isLoading = LoadingStatus.Success;
     });
     builder.addCase(getSupplierAccountDataService.rejected, (state, action) => {
-      state.isLoading = Status.Failed;
+      state.isLoading = LoadingStatus.Failed;
       state.error = action.payload as string;
     });
     builder.addCase(getSupplierNotifications.pending, state => {
-      state.isLoading = Status.Loading;
+      state.isLoading = LoadingStatus.Loading;
     });
     builder.addCase(getSupplierNotifications.fulfilled, (state, action) => {
-      state.isLoading = Status.Success;
+      state.isLoading = LoadingStatus.Success;
       state.notifications = action.payload;
     });
     builder.addCase(getSupplierNotifications.rejected, (state, action) => {
-      state.isLoading = Status.Failed;
+      state.isLoading = LoadingStatus.Failed;
       state.error = action.payload as string;
     });
   },

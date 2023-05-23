@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 
 import { useAppDispatch } from '../common/hooks/useAppDispatch';
 import { useAppSelector } from '../common/hooks/useAppSelector';
-import { Status } from '../common/types/enums/status.enum';
+import { LoadingStatus } from '../common/types/enums/status.enum';
 import { createRoutes } from '../routes/root';
 import { getCurrentUserInfo } from '../store/reducers/loginSlice';
 import { Loader } from '../ui-kit';
@@ -19,7 +19,7 @@ export const App = (): JSX.Element => {
     dispatch(getCurrentUserInfo());
   }, []);
 
-  if (!isInitialized || isLoading === Status.Loading) {
+  if (!isInitialized || isLoading === LoadingStatus.Loading) {
     return <Loader />;
   }
 

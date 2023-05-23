@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { Status } from '../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../common/types/enums/status.enum';
 import {
   ISellerAddressData,
   ISellerData,
@@ -63,7 +63,7 @@ export const getSellerAddressesService = createAsyncThunk<ISellerAddressData[], 
 );
 
 const initialState = {
-  loading: Status.Idle as Status,
+  loading: LoadingStatus.Idle as LoadingStatus,
   userProfileInfo: {
     first_name: '' as string,
     last_name: '' as string,
@@ -92,28 +92,28 @@ const sellerSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(getSellerInfoService.pending, state => {
-      state.loading = Status.Loading;
+      state.loading = LoadingStatus.Loading;
     });
     builder.addCase(getSellerInfoService.fulfilled, (state, action) => {
-      state.loading = Status.Success;
+      state.loading = LoadingStatus.Success;
       state.userProfileInfo = action.payload.user_profile_info;
       state.userAdresses = action.payload.user_adresses;
       state.notifications = action.payload.notifications;
       state.profileImage = action.payload.profile_image;
     });
     builder.addCase(getSellerInfoService.rejected, state => {
-      state.loading = Status.Failed;
+      state.loading = LoadingStatus.Failed;
     });
 
     builder.addCase(getSellerAddressesService.pending, state => {
-      state.loading = Status.Loading;
+      state.loading = LoadingStatus.Loading;
     });
     builder.addCase(getSellerAddressesService.fulfilled, (state, action) => {
-      state.loading = Status.Success;
+      state.loading = LoadingStatus.Success;
       state.sellerAddress = action.payload;
     });
     builder.addCase(getSellerAddressesService.rejected, state => {
-      state.loading = Status.Failed;
+      state.loading = LoadingStatus.Failed;
     });
   },
 });

@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 
 import { IRequestPopularProduct } from '../../services/product/product.serviceTypes';
 
-import { Status } from 'common/types/enums/status.enum';
+import { LoadingStatus } from 'common/types/enums/status.enum';
 import { productService } from 'services/product/product.service';
 
 export const getPopularProductsById = createAsyncThunk<[], IRequestPopularProduct>(
@@ -25,7 +25,7 @@ export const getPopularProductsById = createAsyncThunk<[], IRequestPopularProduc
 
 const initialState = {
   popularProducts: [],
-  status: Status.Idle,
+  status: LoadingStatus.Idle,
 };
 
 export const popularProductsSlice = createSlice({
@@ -33,15 +33,15 @@ export const popularProductsSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addCase(getPopularProductsById.pending, state => {
-      state.status = Status.Loading;
+      state.status = LoadingStatus.Loading;
     });
     builder.addCase(getPopularProductsById.fulfilled, (state, action) => {
       state.popularProducts = action.payload;
-      state.status = Status.Success;
+      state.status = LoadingStatus.Success;
     });
     builder.addCase(getPopularProductsById.rejected, state => {
       state.popularProducts = [];
-      state.status = Status.Failed;
+      state.status = LoadingStatus.Failed;
     });
   },
   reducers: {},

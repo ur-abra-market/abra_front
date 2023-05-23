@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { Status } from '../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../common/types/enums/status.enum';
 import { AsyncThunkConfig } from '../../services/auth/auth.serviceTypes';
 import { sellerService } from '../../services/seller/seller.service';
 import {
@@ -89,12 +89,12 @@ export const deleteAddress = createAsyncThunk<
 
 interface IInitialState {
   addresses: SellerAddressData[];
-  loading: Status;
+  loading: LoadingStatus;
 }
 
 const initialState: IInitialState = {
   addresses: [],
-  loading: Status.Idle,
+  loading: LoadingStatus.Idle,
 };
 
 const sellerCheckoutSlice = createSlice({
@@ -103,41 +103,41 @@ const sellerCheckoutSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(addAddress.pending, state => {
-      state.loading = Status.Loading;
+      state.loading = LoadingStatus.Loading;
     });
     builder.addCase(addAddress.fulfilled, state => {
-      state.loading = Status.Success;
+      state.loading = LoadingStatus.Success;
     });
     builder.addCase(addAddress.rejected, state => {
-      state.loading = Status.Failed;
+      state.loading = LoadingStatus.Failed;
     });
     builder.addCase(getAddress.pending, state => {
-      state.loading = Status.Loading;
+      state.loading = LoadingStatus.Loading;
     });
     builder.addCase(getAddress.fulfilled, (state, action) => {
       state.addresses = action.payload.result;
-      state.loading = Status.Success;
+      state.loading = LoadingStatus.Success;
     });
     builder.addCase(getAddress.rejected, state => {
-      state.loading = Status.Failed;
+      state.loading = LoadingStatus.Failed;
     });
     builder.addCase(editAddress.pending, state => {
-      state.loading = Status.Loading;
+      state.loading = LoadingStatus.Loading;
     });
     builder.addCase(editAddress.fulfilled, state => {
-      state.loading = Status.Success;
+      state.loading = LoadingStatus.Success;
     });
     builder.addCase(editAddress.rejected, state => {
-      state.loading = Status.Failed;
+      state.loading = LoadingStatus.Failed;
     });
     builder.addCase(deleteAddress.pending, state => {
-      state.loading = Status.Loading;
+      state.loading = LoadingStatus.Loading;
     });
     builder.addCase(deleteAddress.fulfilled, state => {
-      state.loading = Status.Success;
+      state.loading = LoadingStatus.Success;
     });
     builder.addCase(deleteAddress.rejected, state => {
-      state.loading = Status.Failed;
+      state.loading = LoadingStatus.Failed;
     });
   },
 });

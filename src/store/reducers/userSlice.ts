@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { Status } from '../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../common/types/enums/status.enum';
 import userService from '../../services/user/user.service';
 import { RootState } from '../createStore';
 
@@ -88,7 +88,7 @@ export const updateUserNotificationService = createAsyncThunk<
 const initialState: InitialStateType = {
   logoUrl: null,
   errMessage: '',
-  loading: Status.Idle,
+  loading: LoadingStatus.Idle,
   favoritesProducts: [],
   notifications: null,
 };
@@ -102,37 +102,37 @@ const userSlice = createSlice({
       .addCase(uploadUserLogoService.pending, state => {
         state.logoUrl = null;
         state.errMessage = '';
-        state.loading = Status.Loading;
+        state.loading = LoadingStatus.Loading;
       })
       .addCase(uploadUserLogoService.fulfilled, (state, action) => {
         state.logoUrl = action.payload;
         state.errMessage = '';
-        state.loading = Status.Success;
+        state.loading = LoadingStatus.Success;
       })
       .addCase(uploadUserLogoService.rejected, (state, action) => {
         state.logoUrl = null;
         state.errMessage = action.payload as string;
-        state.loading = Status.Failed;
+        state.loading = LoadingStatus.Failed;
       })
       .addCase(getFavoritesProductsService.pending, state => {
-        state.loading = Status.Loading;
+        state.loading = LoadingStatus.Loading;
       })
       .addCase(getFavoritesProductsService.fulfilled, (state, action) => {
         state.favoritesProducts = action.payload;
-        state.loading = Status.Success;
+        state.loading = LoadingStatus.Success;
       })
       .addCase(getFavoritesProductsService.rejected, state => {
-        state.loading = Status.Failed;
+        state.loading = LoadingStatus.Failed;
       })
       .addCase(getUserNotificationsService.pending, state => {
-        state.loading = Status.Loading;
+        state.loading = LoadingStatus.Loading;
       })
       .addCase(getUserNotificationsService.fulfilled, (state, action) => {
-        state.loading = Status.Success;
+        state.loading = LoadingStatus.Success;
         state.notifications = action.payload;
       })
       .addCase(getUserNotificationsService.rejected, state => {
-        state.loading = Status.Failed;
+        state.loading = LoadingStatus.Failed;
       });
   },
 });
@@ -142,7 +142,7 @@ export default userSlice.reducer;
 type InitialStateType = {
   logoUrl: null | string;
   errMessage: string;
-  loading: Status;
+  loading: LoadingStatus;
   favoritesProducts: any[];
   notifications: IUserNotificationsData | null;
 };

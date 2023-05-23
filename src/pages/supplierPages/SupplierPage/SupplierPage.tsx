@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import { Status } from '../../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../../common/types/enums/status.enum';
 import { Loader } from '../../../ui-kit';
 
 import { SupplierLayout } from 'layouts/SupplierLayout/SupplierLayout';
@@ -17,7 +17,7 @@ export const SupplierPage = (): JSX.Element => {
     if (!hasProfile) navigate('../account-setup');
   }, [hasProfile]);
 
-  if (isLoading === Status.Loading) {
+  if (isLoading === LoadingStatus.Loading) {
     return <Loader />;
   }
 

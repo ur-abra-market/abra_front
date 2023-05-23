@@ -7,7 +7,7 @@ import {
   IRequestSimilarProduct,
 } from '../../services/product/product.serviceTypes';
 
-import { Status } from 'common/types/enums/status.enum';
+import { LoadingStatus } from 'common/types/enums/status.enum';
 
 export const getSimilarProducts = createAsyncThunk<
   IProductCompilation[],
@@ -28,7 +28,7 @@ export const getSimilarProducts = createAsyncThunk<
 
 const initialState = {
   similarProducts: [] as IProductCompilation[],
-  status: Status.Idle,
+  status: LoadingStatus.Idle,
 };
 
 export const similarProductsSlice = createSlice({
@@ -36,15 +36,15 @@ export const similarProductsSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addCase(getSimilarProducts.pending, state => {
-      state.status = Status.Loading;
+      state.status = LoadingStatus.Loading;
     });
     builder.addCase(getSimilarProducts.fulfilled, (state, action) => {
       state.similarProducts = action.payload;
-      state.status = Status.Success;
+      state.status = LoadingStatus.Success;
     });
     builder.addCase(getSimilarProducts.rejected, state => {
       state.similarProducts = [];
-      state.status = Status.Failed;
+      state.status = LoadingStatus.Failed;
     });
   },
   reducers: {},

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { Status } from '../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../common/types/enums/status.enum';
 import commonService from '../../services/common/common.service';
 
 export type ResponseCategoryType = {
@@ -14,13 +14,13 @@ export type ResponseCategoryType = {
 interface IInitialState {
   dateCategories: null | ResponseCategoryType[];
   errMessage: string;
-  loading: Status;
+  loading: LoadingStatus;
 }
 
 const initialState: IInitialState = {
   dateCategories: null,
   errMessage: '',
-  loading: Status.Idle,
+  loading: LoadingStatus.Idle,
 };
 
 export const categoryService = createAsyncThunk<any, void>(
@@ -46,18 +46,18 @@ const categorySlice = createSlice({
     builder
       .addCase(categoryService.pending, state => {
         state.dateCategories = null;
-        state.loading = Status.Loading;
+        state.loading = LoadingStatus.Loading;
       })
       .addCase(categoryService.fulfilled, (state, action) => {
         state.dateCategories = action.payload;
-        state.loading = Status.Success;
+        state.loading = LoadingStatus.Success;
       })
       .addCase(categoryService.rejected, (state, action) => {
         // @ts-ignore
         state.dateCategories = action.payload;
         // @ts-ignore
         state.errMessage = action.payload;
-        state.loading = Status.Failed;
+        state.loading = LoadingStatus.Failed;
       });
   },
   reducers: {},

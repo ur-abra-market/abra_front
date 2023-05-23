@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { Status } from '../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../common/types/enums/status.enum';
 import supplierFetch from '../../services/supplier/supplier.service';
 import { CompanyInfo } from '../../services/supplier/supplier.serviceTypes';
 
@@ -19,7 +19,7 @@ const initialState = {
   productProperties: null,
   productVariations: null,
   errMessage: '',
-  loading: Status.Idle as Status,
+  loading: LoadingStatus.Idle as LoadingStatus,
   companyInfo: null as CompanyInfo | null,
 };
 
@@ -113,70 +113,70 @@ const categorySlice = createSlice({
       .addCase(addProductService.pending, state => {
         state.productId = null;
         state.errMessage = '';
-        state.loading = Status.Loading;
+        state.loading = LoadingStatus.Loading;
       })
       .addCase(addProductService.fulfilled, (state, action) => {
         state.productId = action.payload;
         state.errMessage = '';
-        state.loading = Status.Success;
+        state.loading = LoadingStatus.Success;
       })
       .addCase(addProductService.rejected, (state, action) => {
         state.productId = null;
         state.errMessage = action.payload as string;
-        state.loading = Status.Failed;
+        state.loading = LoadingStatus.Failed;
       });
 
     builder
       .addCase(getPropertiesService.pending, state => {
         state.productProperties = null;
         state.errMessage = '';
-        state.loading = Status.Loading;
+        state.loading = LoadingStatus.Loading;
       })
       .addCase(getPropertiesService.fulfilled, (state, action) => {
         state.productProperties = action.payload;
         state.errMessage = '';
-        state.loading = Status.Success;
+        state.loading = LoadingStatus.Success;
       })
       .addCase(getPropertiesService.rejected, (state, action) => {
         // @ts-ignore
         state.productProperties = action.payload;
         state.errMessage = action.payload as string;
-        state.loading = Status.Failed;
+        state.loading = LoadingStatus.Failed;
       });
 
     builder
       .addCase(getCompanyInfoService.pending, state => {
         state.companyInfo = null;
         state.errMessage = '';
-        state.loading = Status.Loading;
+        state.loading = LoadingStatus.Loading;
       })
       .addCase(getCompanyInfoService.fulfilled, (state, action) => {
         state.companyInfo = action.payload;
         state.errMessage = '';
-        state.loading = Status.Success;
+        state.loading = LoadingStatus.Success;
       })
       .addCase(getCompanyInfoService.rejected, (state, action) => {
         state.companyInfo = null;
         state.errMessage = action.payload as string;
-        state.loading = Status.Failed;
+        state.loading = LoadingStatus.Failed;
       });
 
     builder
       .addCase(getVariationsService.pending, state => {
         state.productVariations = null;
         state.errMessage = '';
-        state.loading = Status.Loading;
+        state.loading = LoadingStatus.Loading;
       })
       .addCase(getVariationsService.fulfilled, (state, action) => {
         state.productVariations = action.payload;
         state.errMessage = '';
-        state.loading = Status.Success;
+        state.loading = LoadingStatus.Success;
       })
       .addCase(getVariationsService.rejected, (state, action) => {
         // @ts-ignore
         state.productVariations = action.payload;
         state.errMessage = action.payload as string;
-        state.loading = Status.Failed;
+        state.loading = LoadingStatus.Failed;
       });
   },
   reducers: {},

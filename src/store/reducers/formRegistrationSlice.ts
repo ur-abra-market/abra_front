@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { Status } from '../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../common/types/enums/status.enum';
 import authService from '../../services/auth/auth.service';
 import {
   IAccountPersonalInfoRequest,
@@ -15,14 +15,14 @@ interface IFormRegistrationInitialState {
   accountInfo: null | {};
   resMessage: string;
   errMessage: string;
-  loading: Status;
+  loading: LoadingStatus;
 }
 
 const initialState: IFormRegistrationInitialState = {
   accountInfo: null,
   resMessage: '',
   errMessage: '',
-  loading: Status.Idle,
+  loading: LoadingStatus.Idle,
 };
 
 export const sendAccountPersonalInfo = createAsyncThunk<

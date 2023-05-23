@@ -3,7 +3,7 @@ import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import cn from 'classnames';
 
 import { ReactComponent as Photo } from '../../assets/img/icons/photo_icon.svg';
-import { Status } from '../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../common/types/enums/status.enum';
 import userService from '../../services/user/user.service';
 
 import style from './UploadFile.module.css';
@@ -13,7 +13,7 @@ const UploadFile: FC<UploadFileProps> = props => {
   const { className, action, image, ...restProps } = props;
 
   const [file, setFile] = useState<UploadFileData>({ preview: '', raw: '' });
-  const [status, setStatus] = useState<Status>(Status.Idle);
+  const [status, setStatus] = useState<LoadingStatus>(LoadingStatus.Idle);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>): void => {
     if (e.target?.files?.length) {
@@ -29,10 +29,10 @@ const UploadFile: FC<UploadFileProps> = props => {
       userService
         .uploadFile({ action, file: file.raw as File })
         .then(() => {
-          setStatus(Status.Success);
+          setStatus(LoadingStatus.Success);
         })
         .catch(() => {
-          setStatus(Status.Failed);
+          setStatus(LoadingStatus.Failed);
         });
     }
   }, [file.raw]);
@@ -47,8 +47,8 @@ const UploadFile: FC<UploadFileProps> = props => {
     <div className={cn(style.wrapper, className)} {...restProps}>
       <div
         className={cn(style.image, {
-          [style.succes]: status === Status.Success,
-          [style.error]: status === Status.Failed,
+          [style.succes]: status === LoadingStatus.Success,
+          [style.error]: status === LoadingStatus.Failed,
         })}
       >
         {file.preview ? (

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { Status } from '../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../common/types/enums/status.enum';
 import { productService } from '../../services/product/product.service';
 
 export const manageProductsService = createAsyncThunk<any, void>(
@@ -43,13 +43,13 @@ export const deleteProducts = createAsyncThunk<any, any>(
 
 interface IManageProductsItialState {
   products: any[] | null;
-  isLoading: Status;
+  isLoading: LoadingStatus;
   error: string | null;
 }
 
 const initialState: IManageProductsItialState = {
   products: null,
-  isLoading: Status.Idle,
+  isLoading: LoadingStatus.Idle,
   // isStarted: false,
   error: null,
 };
@@ -60,30 +60,30 @@ const manageProductsSlice = createSlice({
 
   extraReducers: builder => {
     builder.addCase(manageProductsService.pending, state => {
-      state.isLoading = Status.Loading;
+      state.isLoading = LoadingStatus.Loading;
       // state.isStarted = true
       state.error = null;
     });
     builder.addCase(manageProductsService.fulfilled, (state, action) => {
-      state.isLoading = Status.Success;
+      state.isLoading = LoadingStatus.Success;
       state.products = action.payload;
     });
     builder.addCase(manageProductsService.rejected, (state, action) => {
-      state.isLoading = Status.Failed;
+      state.isLoading = LoadingStatus.Failed;
       state.error = action.payload as string;
     });
 
     builder.addCase(deleteProducts.pending, state => {
-      state.isLoading = Status.Loading;
+      state.isLoading = LoadingStatus.Loading;
       // state.isStarted = true
       state.error = null;
     });
     builder.addCase(deleteProducts.fulfilled, (state, action) => {
-      state.isLoading = Status.Success;
+      state.isLoading = LoadingStatus.Success;
       state.products = action.payload;
     });
     builder.addCase(deleteProducts.rejected, (state, action) => {
-      state.isLoading = Status.Failed;
+      state.isLoading = LoadingStatus.Failed;
       state.error = action.payload as string;
     });
   },
