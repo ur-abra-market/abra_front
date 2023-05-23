@@ -64,7 +64,7 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
   { label: 'Electronics', value: 'Electronics' },
 ];
 
-const BusinessProfileChangeForm: FC = (): JSX.Element => {
+export const BusinessProfileChangeForm: FC = (): JSX.Element => {
   const [imgUrl, setImgUrl] = useState('');
   const [images, setImages] = useState([]);
 
@@ -289,5 +289,3 @@ const BusinessProfileChangeForm: FC = (): JSX.Element => {
     </div>
   );
 };
-
-export default BusinessProfileChangeForm;

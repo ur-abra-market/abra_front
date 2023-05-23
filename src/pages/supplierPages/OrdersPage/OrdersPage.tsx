@@ -15,7 +15,7 @@ import React from 'react';
 // import arrowDown from "../../../../assets/img/icons/arrow-down.png";
 // import Loader from "../../../common/Loader";
 
-const OrdersPage = (): JSX.Element => {
+export const OrdersPage = (): JSX.Element => {
   return <h2>OrdersPage</h2>;
 
   // const activePage = useSelector((state) => state.paginate.page_num);
@@ -205,5 +205,3 @@ const OrdersPage = (): JSX.Element => {
   //   );
   // }
 };
-
-export default OrdersPage;

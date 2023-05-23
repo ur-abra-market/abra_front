@@ -1,16 +1,18 @@
 import React from 'react';
 
-import AccountSetupPage from '../pages/supplierPages/AccountSetupPage';
-import AnalyticsPage from '../pages/supplierPages/AnalyticsPage';
-import BusinessProfilePage from '../pages/supplierPages/BusinessProfilePage';
-import DashboardPage from '../pages/supplierPages/DashboardPage';
-import FeedbackAndQuestionsPage from '../pages/supplierPages/FeedbackAndQuestionsPage';
-import OrdersPage from '../pages/supplierPages/OrdersPage';
-import PriceManagementPage from '../pages/supplierPages/PriceManagementPage';
-import ProductListRegistrationPage from '../pages/supplierPages/ProductListRegistrationPage';
-import ProductsListPage from '../pages/supplierPages/ProductsListPage';
-import SupplierAccountPage from '../pages/supplierPages/SupplierAccountMainPage';
-import SupplierPage from '../pages/supplierPages/SupplierPage';
+import {
+  AccountSetupPage,
+  AnalyticsPage,
+  BusinessProfilePage,
+  DashboardPage,
+  FeedbackAndQuestionsPage,
+  OrdersPage,
+  PriceManagementPage,
+  ProductListRegistrationPage,
+  ProductsListPage,
+  SupplierAccountMainPage,
+  SupplierPage,
+} from '../pages/supplierPages';
 
 export const supplierRoute = [
   {
@@ -19,7 +21,7 @@ export const supplierRoute = [
     children: [
       {
         path: '/',
-        element: <SupplierAccountPage />,
+        element: <SupplierAccountMainPage />,
       },
       {
         path: 'dashboard',

@@ -1,7 +1,5 @@
-import React, { FC } from 'react';
+import React from 'react';
 
-const AnalyticsPage: FC = () => {
+export const AnalyticsPage = (): JSX.Element => {
   return <h2>AnalyticsPage</h2>;
 };
-
-export default AnalyticsPage;

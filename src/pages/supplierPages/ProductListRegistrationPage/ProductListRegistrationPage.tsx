@@ -7,7 +7,7 @@ import ProductListRegistrationForm from 'old-components/ui/ProductListRegistrati
 import { categoryService, getCategories, getChilds } from 'store/reducers/categorySlice';
 import { getPropertiesService, getVariationsService } from 'store/reducers/supplierSlice';
 
-const ProductListRegistrationPage = (): JSX.Element => {
+export const ProductListRegistrationPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const [firstCategory, setFirstCategory] = useState('');
@@ -75,5 +75,3 @@ const ProductListRegistrationPage = (): JSX.Element => {
     </div>
   );
 };
-
-export default ProductListRegistrationPage;

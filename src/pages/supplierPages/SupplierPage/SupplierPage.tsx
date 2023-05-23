@@ -8,7 +8,7 @@ import { Loader } from '../../../ui-kit';
 
 import { SupplierLayout } from 'layouts/SupplierLayout/SupplierLayout';
 
-const SupplierPage = (): JSX.Element => {
+export const SupplierPage = (): JSX.Element => {
   const isLoading = useAppSelector(state => state.supplierAccount.isLoading);
   const hasProfile = useAppSelector(state => state.supplierAccount.hasProfile);
   const navigate = useNavigate();
@@ -27,5 +27,3 @@ const SupplierPage = (): JSX.Element => {
     </SupplierLayout>
   );
 };
-
-export default SupplierPage;

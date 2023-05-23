@@ -12,12 +12,15 @@ import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
 import { updateAccountPersonalInfo } from '../../../store/reducers/formRegistrationSlice';
 import { Button } from '../../../ui-kit';
 
-import BusinessProfileChangeForm from './BusinessProfileChangeForm/BusinessProfileChangeForm';
-import NotificationsChangeForm from './NotificationsChangeForm/NotificationsChangeForm';
-import { PersonalInfoChangeForm } from './PersonalInfoChangeForm/PersonalInfoChangeForm';
 import style from './SupplierAccountMainPage.module.css';
 
-const SupplierAccountMainPage = (): JSX.Element => {
+import {
+  BusinessProfileChangeForm,
+  NotificationsChangeForm,
+  PersonalInfoChangeForm,
+} from './index';
+
+export const SupplierAccountMainPage = (): JSX.Element => {
   const { lastName, firstName, phoneCountryCode, phoneNumberBody } = useAppSelector(
     state => state.supplierAccount.supplierInfo,
   );
@@ -112,5 +115,3 @@ const SupplierAccountMainPage = (): JSX.Element => {
     </div>
   );
 };
-
-export default SupplierAccountMainPage;

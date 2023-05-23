@@ -22,7 +22,7 @@ const NOTIFICATIONS_DATA: { id: keyof INotification; label: string }[] = [
   { id: 'on_account_support', label: 'Account support' },
 ];
 
-const NotificationsChangeForm: FC = (): JSX.Element => {
+export const NotificationsChangeForm: FC = (): JSX.Element => {
   const notifications =
     useAppSelector(state => state.supplierAccount.notifications) || null;
   const dispatch = useAppDispatch();
@@ -54,5 +54,3 @@ const NotificationsChangeForm: FC = (): JSX.Element => {
     </div>
   );
 };
-
-export default NotificationsChangeForm;

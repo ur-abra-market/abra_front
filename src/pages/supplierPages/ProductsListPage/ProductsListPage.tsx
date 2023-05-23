@@ -39,7 +39,7 @@ export const STATUS_SELECT: ISelectOption[] = [
 //   image: string;
 //   name: string;
 // }
-const ProductsListPage: FC = (): JSX.Element => {
+export const ProductsListPage: FC = (): JSX.Element => {
   // const navigate = useNavigate();
   const activePage = useAppSelector(state => state.paginate.page_num);
   const amountPages = useAppSelector(state => state.paginate.amountPages);
@@ -289,5 +289,3 @@ const ProductsListPage: FC = (): JSX.Element => {
     </>
   );
 };
-
-export default ProductsListPage;

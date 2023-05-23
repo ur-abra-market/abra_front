@@ -1,3 +1,3 @@
-import AboutUsPage from 'pages/supplierPages/AccountSetupPage/AccountSetupPage';
+import AboutUsPage from './AboutUsPage';
 
 export default AboutUsPage;
