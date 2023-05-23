@@ -2,8 +2,9 @@ import React, { FC } from 'react';
 
 import { Layout } from '../../../layouts/Layout/Layout';
 
-import { ContentBox } from './Content/ContentBox';
 import style from './SellAbra.module.css';
+
+import { ContentBox } from './index';
 
 export const SellAbraPage: FC = () => {
   return (

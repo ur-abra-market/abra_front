@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import { FooterForAuth } from '../../../old-components/FooterForAuth/FooterForAuth';
 import HeaderForChangePages from '../../../old-components/HeaderForChangePages';
 
 import style from './TermsAndConditions.module.css';
 
-export const TermsAndConditionsPage: FC = () => {
+export const TermsAndConditionsPage = (): JSX.Element => {
   return (
     <div>
       <HeaderForChangePages />
@@ -17,19 +17,16 @@ export const TermsAndConditionsPage: FC = () => {
           <div className={style.title_block}>Last Updated: 4/18/2023</div>
           <p className={style.text}>
             Welcome to the Bulk Marketplace in Turkey (hereinafter referred to as
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            "Platform"). The Platform is operated by Abra (hereinafter referred to as
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            "we", "us", or "our"), a company incorporated under the laws of Turkey.
+            &quot;Platform&quot;). The Platform is operated by Abra (hereinafter referred
+            to as &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), a company
+            incorporated under the laws of Turkey.
           </p>
           <p className={style.text}>
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            These Terms of Use (the "Terms") govern your access to and use of our Platform
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            and services (collectively, the "Services"). By accessing or using our
-            Services, you agree to be bound by these Terms, our Privacy Policy, and any
-            additional terms, conditions, policies, or agreements that may be applicable
-            to specific features or sections of our Services.
+            These Terms of Use (the &quot;Terms&quot;) govern your access to and use of
+            our Platform and services (collectively, the &quot;Services&quot;). By
+            accessing or using our Services, you agree to be bound by these Terms, our
+            Privacy Policy, and any additional terms, conditions, policies, or agreements
+            that may be applicable to specific features or sections of our Services.
           </p>
           <div className={style.title_block}>1. Eligibility</div>
           <p className={style.text}>
@@ -132,12 +129,10 @@ export const TermsAndConditionsPage: FC = () => {
             You agree to indemnify, defend, and hold harmless us and our affiliates,
             officers, employees, agents, suppliers, and licensors from and against any and
             all claims, liabilities, damages, losses, expenses, and costs (including
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            reasonable attorneys' fees) arising out of or in connection with your access
-            to or use of our Services, your violation of these Terms, your infringement of
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            any third party's rights, or any disputes between you and other users of our
-            Services.
+            reasonable attorneys&apos; fees) arising out of or in connection with your
+            access to or use of our Services, your violation of these Terms, your
+            infringement of any third party&apos;s rights, or any disputes between you and
+            other users of our Services.
           </p>
           <div className={style.title_block}>7. Termination</div>
           <p className={style.text}>
@@ -169,10 +164,8 @@ export const TermsAndConditionsPage: FC = () => {
           <div className={style.title_block}>9. Changes to These Terms</div>
           <p className={style.text}>
             We may modify or update these Terms at any time at our sole discretion. When
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            we do so, we will post the updated Terms on our Platform, and the "Last
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            Updated" date at the top of these Terms will be revised. It is your
+            we do so, we will post the updated Terms on our Platform, and the &quot;Last
+            Updated&quot; date at the top of these Terms will be revised. It is your
             responsibility to review these Terms periodically. Your continued use of our
             Services after the posting of the revised Terms constitutes your acceptance of
             the changes.
@@ -221,8 +214,7 @@ export const TermsAndConditionsPage: FC = () => {
                     objectionable.
                   </li>
                   <li>
-                    {/* eslint-disable-next-line react/no-unescaped-entities */}
-                    b. Violate any third party's rights, including but not limited to
+                    b. Violate any third party&apos;s rights, including but not limited to
                     intellectual property rights, privacy rights, or other proprietary
                     rights.
                   </li>
@@ -377,11 +369,11 @@ export const TermsAndConditionsPage: FC = () => {
           <p className={style.text}>
             <ul>
               <li className={style.li}>
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                28.1. Our Services are provided on an "as-is" and "as-available" basis. To
-                the fullest extent permitted by law, we disclaim all warranties, express
-                or implied, including but not limited to implied warranties of
-                merchantability, fitness for a particular purpose, and non-infringement.
+                28.1. Our Services are provided on an &quot;as-is&quot; and
+                &quot;as-available&quot; basis. To the fullest extent permitted by law, we
+                disclaim all warranties, express or implied, including but not limited to
+                implied warranties of merchantability, fitness for a particular purpose,
+                and non-infringement.
               </li>
               <li className={style.li}>
                 28.2. We do not warrant that our Services will be uninterrupted,
@@ -493,8 +485,7 @@ export const TermsAndConditionsPage: FC = () => {
             You agree to defend, indemnify, and hold harmless [Company Name], its
             affiliates, and their respective officers, directors, employees, and agents
             from and against any and all claims, damages, obligations, losses,
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            liabilities, costs, and expenses (including but not limited to attorney's
+            liabilities, costs, and expenses (including but not limited to attorney&apos;s
             fees) arising from:
             <ul>
               <li className={style.li}>37.1. Your use of and access to our Services;</li>
@@ -569,8 +560,7 @@ export const TermsAndConditionsPage: FC = () => {
               <li className={style.li}>
                 41.5. A statement by you, made under penalty of perjury, that the above
                 information in your notice is accurate and that you are the copyright
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                owner or authorized to act on the copyright owner's behalf.
+                owner or authorized to act on the copyright owner&apos;s behalf.
               </li>
               Our designated Copyright Agent for notice of claims of copyright
               infringement on our Services can be reached at the contact information
@@ -600,11 +590,10 @@ export const TermsAndConditionsPage: FC = () => {
                 arbitration organization in Turkey. The arbitration shall be conducted by
                 a single arbitrator mutually agreed upon by the parties, or, if the
                 parties cannot agree on an arbitrator, an arbitrator appointed by the
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                president of the applicable arbitration organization. The arbitrator's
-                decision shall be final and binding on the parties, and judgment upon the
-                award rendered by the arbitrator may be entered in any court having
-                jurisdiction thereof.
+                president of the applicable arbitration organization. The
+                arbitrator&apos;s decision shall be final and binding on the parties, and
+                judgment upon the award rendered by the arbitrator may be entered in any
+                court having jurisdiction thereof.
               </li>
             </ul>
           </p>
@@ -619,10 +608,9 @@ export const TermsAndConditionsPage: FC = () => {
               <li className={style.li}>
                 44.2. If any provision of these Terms is found by a court of competent
                 jurisdiction to be invalid, the parties nevertheless agree that the court
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                should endeavor to give effect to the parties' intentions as reflected in
-                the provision, and the other provisions of these Terms remain in full
-                force and effect.
+                should endeavor to give effect to the parties&apos; intentions as
+                reflected in the provision, and the other provisions of these Terms remain
+                in full force and effect.
               </li>
               <li className={style.li}>
                 44.3. Our failure to exercise or enforce any right or provision of these
@@ -638,8 +626,7 @@ export const TermsAndConditionsPage: FC = () => {
           <div className={style.title_block}>45. Changes to These Terms</div>
           <p className={style.text}>
             We reserve the right, at our sole discretion, to modify or replace these Terms
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            at any time. If a revision is material, we will provide at least 30 days'
+            at any time. If a revision is material, we will provide at least 30 days&apos;
             notice prior to any new terms taking effect. What constitutes a material
             change will be determined at our sole discretion.
           </p>
@@ -756,9 +743,8 @@ export const TermsAndConditionsPage: FC = () => {
             court of competent jurisdiction, that provision will be deemed severable from
             these Terms and will not affect the validity and enforceability of the
             remaining provisions. The parties agree to negotiate in good faith a valid,
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            enforceable substitute provision that most nearly affects the parties' intent
-            in entering into these Terms.
+            enforceable substitute provision that most nearly affects the parties&apos;
+            intent in entering into these Terms.
           </p>
           <div className={style.title_block}>59. No Waiver</div>
           <p className={style.text}>
@@ -773,13 +759,12 @@ export const TermsAndConditionsPage: FC = () => {
           <div className={style.title_block}>60. Feedback and Suggestions</div>
           <p className={style.text}>
             We welcome and encourage you to provide feedback, suggestions, and ideas for
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            improvements to our Services ("Feedback"). You acknowledge and agree that any
-            Feedback you provide will be the sole and exclusive property of Abra and you
-            hereby irrevocably assign to us all of your right, title, and interest in and
-            to all Feedback, including without limitation all worldwide patent, copyright,
-            trade secret, moral, and other proprietary or intellectual property rights
-            therein.
+            improvements to our Services (&quot;Feedback&quot;). You acknowledge and agree
+            that any Feedback you provide will be the sole and exclusive property of Abra
+            and you hereby irrevocably assign to us all of your right, title, and interest
+            in and to all Feedback, including without limitation all worldwide patent,
+            copyright, trade secret, moral, and other proprietary or intellectual property
+            rights therein.
           </p>
           <div className={style.title_block}>61. Mobile Devices</div>
           <p className={style.text}>
@@ -792,13 +777,12 @@ export const TermsAndConditionsPage: FC = () => {
           <div className={style.title_block}>62. Beta Features</div>
           <p className={style.text}>
             From time to time, we may make new features or functionality available on a
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            test or "beta" basis as part of our Services. You acknowledge and agree that
-            such beta features or functionality may be subject to additional terms and
-            conditions, which will be made available to you before you access or use such
-            features or functionality. Your use of any beta features or functionality is
-            at your own risk and may be subject to greater risks and uncertainties than
-            our generally available Services.
+            test or &quot;beta&quot; basis as part of our Services. You acknowledge and
+            agree that such beta features or functionality may be subject to additional
+            terms and conditions, which will be made available to you before you access or
+            use such features or functionality. Your use of any beta features or
+            functionality is at your own risk and may be subject to greater risks and
+            uncertainties than our generally available Services.
           </p>
           <div className={style.title_block}>63. Local Laws</div>
           <p className={style.text}>

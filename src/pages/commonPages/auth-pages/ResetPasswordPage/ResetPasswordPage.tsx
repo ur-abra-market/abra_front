@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import { checkToken } from '../../../store/reducers/passwordSlice';
-import { Button } from '../../../ui-kit';
+import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
+import { useAppSelector } from '../../../../common/hooks/useAppSelector';
+import { checkToken } from '../../../../store/reducers/passwordSlice';
+import { Button } from '../../../../ui-kit';
+
+import style from './ResetPasswordPage.module.css';
 
 import Modal from 'components/Modal';
 import ResetPasswordForm from 'old-components/ui/ResetPasswordForm';
-import style from 'pages/commonPages/ResetPasswordPage/ResetPasswordPage.module.css';
 
-const ResetPasswordPage = (): JSX.Element => {
+export const ResetPasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
   const [searchParams] = useSearchParams();
   const tokenStatus = useAppSelector(state => state.passwordSlice.result);
@@ -63,5 +64,3 @@ const ResetPasswordPage = (): JSX.Element => {
     </>
   );
 };
-
-export default ResetPasswordPage;

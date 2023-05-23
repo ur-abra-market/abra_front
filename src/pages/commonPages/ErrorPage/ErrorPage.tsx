@@ -18,5 +18,3 @@ export const ErrorPage = (): JSX.Element => {
     </div>
   );
 };
-
-export default ErrorPage;

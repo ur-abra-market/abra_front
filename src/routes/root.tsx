@@ -2,27 +2,29 @@ import React from 'react';
 
 import { createBrowserRouter } from 'react-router-dom';
 
-import AboutUsPage from '../pages/commonPages/AboutUsPage/AboutUsPage';
-import AuthPage from '../pages/commonPages/AuthPage';
-import ChangeEmailPage from '../pages/commonPages/ChangeEmailPage';
-import ChangePasswordPage from '../pages/commonPages/ChangePasswordPage';
-import CheckEmailPage from '../pages/commonPages/CheckEmailPage/CheckEmailPage';
-import ConfirmEmailPage from '../pages/commonPages/ConfirmEmailPage';
-import { ContactSupportPage } from '../pages/commonPages/ContactSupportPage/ContactSupportPage';
-import ErrorPage from '../pages/commonPages/ErrorPage/ErrorPage';
-import FAQPage from '../pages/commonPages/FAQPage/FAQPage';
-import ForgotPasswordPage from '../pages/commonPages/ForgotPasswordPage';
-import LastNewsPage from '../pages/commonPages/LastNewsPage/LastNewsPage';
-import ResetPasswordPage from '../pages/commonPages/ResetPasswordPage';
-import { SellAbraPage } from '../pages/commonPages/SellAbraPage/SellAbra';
-import { TermsAndConditionsPage } from '../pages/commonPages/TermsAndConditionsPage/TermsAndConditionsPage';
-import TutorialPage from '../pages/commonPages/TutorialPage/TutorialPage';
-import { userRoleType } from '../services/auth.serviceType';
+import {
+  AboutUsPage,
+  AuthPage,
+  ChangeEmailPage,
+  ChangePasswordPage,
+  ConfirmEmailPage,
+  ContactSupportPage,
+  ErrorPage,
+  FAQPage,
+  ForgotPasswordPage,
+  LastNewsPage,
+  PrivacyPolicyPage,
+  ResetPasswordPage,
+  SellAbraPage,
+  TermsAndConditionsPage,
+  TutorialPage,
+  CheckEmailPage,
+} from '../pages/commonPages';
 
 import { sellerRoute } from './sellerRoute';
 import { supplierRoute } from './supplierRoute';
 
-import { PrivacyPolicyPage } from 'pages/commonPages/PrivacyPolicyPage/PrivacyPolicyPage';
+import { userRoleType } from 'services/auth.serviceType';
 
 type Routes = ReturnType<typeof createBrowserRouter>;
 

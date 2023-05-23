@@ -5,11 +5,14 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { ForgotChangePasswordFormType } from '../../../pages/commonPages/AuthPage/AuthType';
 import { forgotPassword } from '../../../store/reducers/passwordSlice';
 import { Button, Input } from '../../../ui-kit';
 
 import style from './ForgotPasswordForm.module.css';
+
+export type ForgotChangePasswordFormType = {
+  email: string;
+};
 
 interface ForgotPasswordFormProps {
   togglePageType: () => void;
@@ -19,6 +22,7 @@ const schema = yup
     email: yup.string().email('Invalid email').required('Email is required'),
   })
   .required();
+
 const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => {
   const {
     register,
@@ -53,5 +57,4 @@ const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => 
   );
 };
 
-ForgotPasswordForm.propTypes = {};
 export default ForgotPasswordForm;

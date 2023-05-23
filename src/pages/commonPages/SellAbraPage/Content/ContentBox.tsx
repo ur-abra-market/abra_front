@@ -7,6 +7,7 @@ type ContentBoxType = {
   titleText: string;
   content: string;
 };
+
 export const ContentBox: FC<ContentBoxType> = props => {
   const { value, content, titleText } = props;
 

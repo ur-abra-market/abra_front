@@ -7,12 +7,16 @@ import * as yup from 'yup';
 
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
-import { FormDataValuesType } from '../../pages/commonPages/AuthPage/AuthType';
 import { registerService } from '../../store/reducers/registerSlice';
 import { Button, Input } from '../../ui-kit';
 import PasswordComplexity from '../PasswordComplexity';
 
 import style from './RegisterForm.module.css';
+
+export type FormDataValuesType = {
+  email: string;
+  password: string;
+};
 
 const MATCHED_ERROR_MESSAGE =
   'password must match the following: "/^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/"';

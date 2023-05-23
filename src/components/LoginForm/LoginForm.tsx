@@ -7,7 +7,6 @@ import * as yup from 'yup';
 
 import { useAppDispatch } from '../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
-import { FormDataValuesType } from '../../pages/commonPages/AuthPage/AuthType';
 import { loginService } from '../../store/reducers/loginSlice';
 import { Button, Input } from '../../ui-kit';
 
@@ -21,6 +20,12 @@ const schema = yup
     password: yup.string().min(8).max(MAX_COUNT).required(),
   })
   .required();
+
+export type FormDataValuesType = {
+  email: string;
+  password: string;
+};
+
 const LoginForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const {

@@ -1,11 +1,12 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 
 import { Layout } from '../../../layouts/Layout/Layout';
 
-import { News } from './Content/News';
 import style from './LastNews.module.css';
 
-const LastNewsPage: FC = () => {
+import { News } from './index';
+
+export const LastNewsPage = (): JSX.Element => {
   const [text] = useState([
     {
       title: 'This is news title',
@@ -34,5 +35,3 @@ const LastNewsPage: FC = () => {
     </Layout>
   );
 };
-
-export default LastNewsPage;

@@ -3,8 +3,9 @@ import React from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import { Link } from 'react-router-dom';
 
-import ContentBox from './Content/ContentBox';
 import style from './FAQ.module.css';
+
+import { ContentBox } from './index';
 
 import { Layout } from 'layouts/Layout/Layout';
 
@@ -95,5 +96,3 @@ export const FAQPage = (): JSX.Element => {
     </Layout>
   );
 };
-
-export default FAQPage;

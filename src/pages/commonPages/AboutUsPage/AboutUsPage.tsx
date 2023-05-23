@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import HeaderForChangePages from '../../../old-components/HeaderForChangePages';
 
 import style from './AboutUsPage.module.css';
 
-const AboutUsPage: FC = () => {
+export const AboutUsPage = (): JSX.Element => {
   return (
     <div>
       <HeaderForChangePages />
@@ -92,5 +92,3 @@ const AboutUsPage: FC = () => {
     </div>
   );
 };
-
-export default AboutUsPage;

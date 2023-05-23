@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import { Layout } from '../../../layouts/Layout/Layout';
 
 import style from './Tutorial.module.css';
 
-const TutorialPage: FC = () => {
+export const TutorialPage = (): JSX.Element => {
   return (
     <Layout>
       <div className={style.container}>
@@ -13,5 +13,3 @@ const TutorialPage: FC = () => {
     </Layout>
   );
 };
-
-export default TutorialPage;

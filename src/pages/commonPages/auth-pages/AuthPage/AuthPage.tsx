@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 
 import { Link, Navigate, useLocation } from 'react-router-dom';
 
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import LoginForm from '../../../components/LoginForm';
-import RegisterForm from '../../../components/RegisterForm';
-import { FooterForAuth } from '../../../old-components/FooterForAuth/FooterForAuth';
-import { Button } from '../../../ui-kit';
+import { useAppSelector } from '../../../../common/hooks/useAppSelector';
+import LoginForm from '../../../../components/LoginForm';
+import RegisterForm from '../../../../components/RegisterForm';
+import { FooterForAuth } from '../../../../old-components/FooterForAuth/FooterForAuth';
+import { Button } from '../../../../ui-kit';
 
 import style from './AuthPage.module.css';
 
-const AuthPage = (): JSX.Element => {
+export const AuthPage = (): JSX.Element => {
   const location = useLocation();
   const locationData = location.state;
 
@@ -53,5 +53,3 @@ const AuthPage = (): JSX.Element => {
     </div>
   );
 };
-
-export default AuthPage;

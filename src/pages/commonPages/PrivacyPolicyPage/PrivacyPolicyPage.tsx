@@ -11,17 +11,15 @@ export const PrivacyPolicyPage = (): JSX.Element => {
       <div className={style.container}>
         <h1 className={style.title}>Privacy Policy</h1>
         <div className={style.container_text}>
-          {/* eslint-disable-next-line react/no-unescaped-entities */}
-          <div className={style.title_block}>Abra's Privacy Policy</div>
+          <div className={style.title_block}>Abra&apos;s Privacy Policy</div>
           <div className={style.title_block}>Last updated: 04/11/2023</div>
           <p className={style.text}>
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            Welcome to Abra's Marketplace (hereinafter referred to as "Marketplace", "we",
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            "us" or "our"). We are committed to protecting your privacy, and this Privacy
-            Policy explains how we collect, use, and disclose your personal information
-            when you access or use our Marketplace. Please read this Privacy Policy
-            carefully before using our Marketplace.
+            Welcome to Abra&apos;s Marketplace (hereinafter referred to as
+            &quot;Marketplace&quot;, &quot;we&quot;, &quot;us&quot; or &quot;our&quot;).
+            We are committed to protecting your privacy, and this Privacy Policy explains
+            how we collect, use, and disclose your personal information when you access or
+            use our Marketplace. Please read this Privacy Policy carefully before using
+            our Marketplace.
           </p>
           <p className={style.text}>
             By using our Marketplace, you consent to the collection, use, and disclosure
@@ -113,9 +111,9 @@ export const PrivacyPolicyPage = (): JSX.Element => {
                 your account or contacting us at service@abra.com.
               </li>
               <li>
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                b. Opt-out of marketing communications by clicking the "unsubscribe" link
-                in any promotional email or contacting us at service@abra.com.
+                b. Opt-out of marketing communications by clicking the
+                &quot;unsubscribe&quot; link in any promotional email or contacting us at
+                service@abra.com.
               </li>
               <li>
                 c. Disable cookies in your browser settings, although this may affect your
@@ -156,16 +154,14 @@ export const PrivacyPolicyPage = (): JSX.Element => {
             measures to ensure that your personal information is treated securely and in
             accordance with this Privacy Policy.
           </p>
-          {/* eslint-disable-next-line react/no-unescaped-entities */}
-          <div className={style.title_block}>9. Children's Privacy</div>
+          <div className={style.title_block}>9. Children&apos;s Privacy</div>
           <p className={style.text}>
             Our Marketplace is not intended for individuals under the age of 13 (or the
             minimum age required in your jurisdiction). We do not knowingly collect
             personal information from children under the age of 13. If you become aware
             that a child has provided us with personal information without parental
             consent, please contact us at service@abra.com, and we will take steps to
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            remove such information and terminate the child's account.
+            remove such information and terminate the child&apos;s account.
           </p>
           <div className={style.title_block}>10. Third-Party Websites and Services</div>
           <p className={style.text}>

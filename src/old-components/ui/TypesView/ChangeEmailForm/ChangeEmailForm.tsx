@@ -4,11 +4,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { FormDataValuesType } from '../../../../pages/commonPages/AuthPage/AuthType';
 import { Button, Input } from '../../../../ui-kit';
 import Form from '../../../Form';
 
 import style from './ChangeEmailForm.module.css';
+
+export type FormDataValuesType = {
+  email: string;
+  password: string;
+};
 
 interface ChangeEmailFormProps {
   handleChangeModalActive: () => void;

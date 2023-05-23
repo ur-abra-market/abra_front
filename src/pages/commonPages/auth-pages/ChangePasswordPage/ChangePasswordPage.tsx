@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import Modal from '../../../components/Modal';
-import ChangePasswordForm from '../../../old-components/ui/TypesView/ChangePasswordForm';
-import { Button } from '../../../ui-kit';
+import Modal from '../../../../components/Modal';
+import ChangePasswordForm from '../../../../old-components/ui/TypesView/ChangePasswordForm';
+import { Button } from '../../../../ui-kit';
 
 import style from './ChangePasswordPage.module.css';
 
-const ChangePasswordPage = (): JSX.Element => {
+export const ChangePasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
   const handleChangeModalActive = (): void => {
     setModalActive(prevState => !prevState);
@@ -51,5 +51,3 @@ const ChangePasswordPage = (): JSX.Element => {
     </>
   );
 };
-
-export default ChangePasswordPage;

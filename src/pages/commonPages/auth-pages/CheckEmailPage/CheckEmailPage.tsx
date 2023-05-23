@@ -1,9 +1,9 @@
 import React from 'react';
 
 import ContentMessage from 'components/ContentMessage';
-import style from 'pages/commonPages/ConfirmEmailPage/ConfirmEmailPage.module.css';
+import style from 'pages/commonPages/auth-pages/ConfirmEmailPage/ConfirmEmailPage.module.css';
 
-const CheckEmailPage = (): JSX.Element => {
+export const CheckEmailPage = (): JSX.Element => {
   return (
     <div className={style.container}>
       <div className={style.wrapper}>
@@ -15,5 +15,3 @@ const CheckEmailPage = (): JSX.Element => {
     </div>
   );
 };
-
-export default CheckEmailPage;

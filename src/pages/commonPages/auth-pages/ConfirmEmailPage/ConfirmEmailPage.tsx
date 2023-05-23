@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import { Link, useSearchParams } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { Loader } from '../../../ui-kit';
+import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
+import { Loader } from '../../../../ui-kit';
 
 import ContentMessage from 'components/ContentMessage';
-import style from 'pages/commonPages/ConfirmEmailPage/ConfirmEmailPage.module.css';
+import style from 'pages/commonPages/auth-pages/ConfirmEmailPage/ConfirmEmailPage.module.css';
 import { clearState, registerService } from 'store/reducers/registerSlice';
 
-const ConfirmEmailPage = (): JSX.Element => {
+export const ConfirmEmailPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const [searchParams] = useSearchParams();
@@ -50,5 +50,3 @@ const ConfirmEmailPage = (): JSX.Element => {
     </div>
   );
 };
-
-export default ConfirmEmailPage;

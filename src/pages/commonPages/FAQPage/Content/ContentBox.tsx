@@ -2,12 +2,12 @@ import React, { FC } from 'react';
 
 import style from './ContentBox.module.css';
 
-type ContentBoxType = {
+interface IContentBox {
   question: string;
   answer: string;
-};
+}
 
-const ContentBox: FC<ContentBoxType> = ({ question, answer }): JSX.Element => {
+export const ContentBox: FC<IContentBox> = ({ question, answer }): JSX.Element => {
   return (
     <div className={style.box}>
       <p className={style.question_text}>{question}</p>
@@ -15,5 +15,3 @@ const ContentBox: FC<ContentBoxType> = ({ question, answer }): JSX.Element => {
     </div>
   );
 };
-
-export default ContentBox;

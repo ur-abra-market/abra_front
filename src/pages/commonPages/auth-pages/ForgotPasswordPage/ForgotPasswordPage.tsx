@@ -5,7 +5,7 @@ import style from './ForgotPasswordPage.module.css';
 import ContentMessage from 'components/ContentMessage';
 import ForgotPasswordForm from 'old-components/ui/ForgotPasswordForm';
 
-const ForgotPasswordPage = (): JSX.Element => {
+export const ForgotPasswordPage = (): JSX.Element => {
   const [pageType, setPageType] = useState('forgotPassword');
 
   const togglePageType = (): void => {
@@ -42,5 +42,3 @@ const ForgotPasswordPage = (): JSX.Element => {
     </div>
   );
 };
-
-export default ForgotPasswordPage;
