@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ProductSortType } from '../../../common/types/enums/productSortType.enum';
 import { Feedback, ProductCard, ProductsPreview } from '../../../components';
-import { ButtonInfo, Container } from '../../../ui-kit';
+import { ButtonInfo, Container, ViewMore } from '../../../ui-kit';
 
 import style from './MainPage.module.css';
 
@@ -80,6 +80,7 @@ export const MainPage = WithLayout((): JSX.Element => {
                   {products[+key].map(product => (
                     <ProductCard key={product.uuid} product={product} />
                   ))}
+                  <ViewMore />
                 </ProductsPreview>
               );
             })}
