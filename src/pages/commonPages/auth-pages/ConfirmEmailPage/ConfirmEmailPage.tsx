@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
+import { registerUser } from '../../../../store/reducers/authSlice/asyncThunks';
+import { clearState } from '../../../../store/reducers/authSlice/slice';
 import { Loader } from '../../../../ui-kit';
 
 import ContentMessage from 'components/ContentMessage';
 import style from 'pages/commonPages/auth-pages/ConfirmEmailPage/ConfirmEmailPage.module.css';
-import { clearState, registerService } from 'store/reducers/registerSlice';
 
 export const ConfirmEmailPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -22,7 +23,7 @@ export const ConfirmEmailPage = (): JSX.Element => {
     const token = searchParams.get('token');
 
     if (token)
-      dispatch(registerService({ route: 'confirmEmail', token })).then(({ meta }) => {
+      dispatch(registerUser({ route: 'confirmEmail', token })).then(({ meta }) => {
         if (meta.requestStatus === 'fulfilled') {
           setEmailStatus('confirmed');
         }

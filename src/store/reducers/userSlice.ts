@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 
 import { LoadingStatus } from '../../common/types/enums/status.enum';
 import userService from '../../services/user/user.service';
-import { RootState } from '../createStore';
+import { RootStateType } from '../createStore';
 
 export const uploadUserLogoService = createAsyncThunk<any, any>(
   'user/uploadUserLogoService',
@@ -66,7 +66,7 @@ export const updateUserNotificationService = createAsyncThunk<
     { rejectWithValue, getState, dispatch },
   ) => {
     try {
-      const state = getState() as RootState;
+      const state = getState() as RootStateType;
       const { notifications } = state.user;
 
       if (notifications) {

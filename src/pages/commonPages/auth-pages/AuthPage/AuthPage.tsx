@@ -4,7 +4,6 @@ import { Link, Navigate, useLocation } from 'react-router-dom';
 
 import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import LoginForm from '../../../../components/LoginForm';
-import RegisterForm from '../../../../components/RegisterForm';
 import { FooterForAuth } from '../../../../old-components/FooterForAuth/FooterForAuth';
 import { Button } from '../../../../ui-kit';
 
@@ -47,7 +46,7 @@ export const AuthPage = (): JSX.Element => {
             label="Sign up"
           />
         </div>
-        {pageType === 'register' ? <RegisterForm /> : <LoginForm />}
+        {pageType === 'register' && <LoginForm />}
       </main>
       <FooterForAuth />
     </div>

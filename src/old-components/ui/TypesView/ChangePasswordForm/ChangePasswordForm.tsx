@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import PasswordComplexity from '../../../../components/PasswordComplexity';
+import { PasswordComplexity } from '../../../../pages/commonPages/auth-pages/assets';
 import { ChangePasswordPayloadType } from '../../../../services/auth/auth.serviceTypes';
 import { changePassword } from '../../../../store/reducers/passwordSlice';
 import { Button, Input } from '../../../../ui-kit';
@@ -64,7 +64,7 @@ const ChangePasswordForm: FC<ChangePasswordFormProps> = ({ handleChangeModalActi
         type="password"
         variant="password"
       />
-      <PasswordComplexity valueOfNewPassword={watchPasword} />
+      <PasswordComplexity password={watchPasword} />
       <Button
         label="Continue"
         type="submit"

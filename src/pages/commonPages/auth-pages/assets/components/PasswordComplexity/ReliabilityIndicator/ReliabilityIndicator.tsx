@@ -2,13 +2,14 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './PasswordStrengthIndicatorItem.module.css';
+import style from './ReliabilityIndicator.module.scss';
 
-interface PasswordStrengthIndicatorItemProps {
+interface IReliabilityIndicator {
   isValid?: boolean;
   text: string;
 }
-const PasswordStrengthIndicatorItem: FC<PasswordStrengthIndicatorItemProps> = ({
+
+export const ReliabilityIndicator: FC<IReliabilityIndicator> = ({
   isValid = false,
   text,
 }): JSX.Element => {
@@ -24,5 +25,3 @@ const PasswordStrengthIndicatorItem: FC<PasswordStrengthIndicatorItemProps> = ({
     </div>
   );
 };
-
-export default PasswordStrengthIndicatorItem;

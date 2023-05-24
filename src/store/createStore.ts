@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { appReducer } from './reducers/appSlice';
+import { authReducer } from './reducers/authSlice/.index';
 import basketReducer from './reducers/basketSlice';
 import categoryReducer from './reducers/categorySlice';
 import commonSlice from './reducers/commonSlice';
@@ -15,7 +16,6 @@ import passwordSlice from './reducers/passwordSlice';
 import { popularProductsReducer } from './reducers/popularProducts';
 import productPaginateReducer from './reducers/productPaginateSlice';
 import productReducer from './reducers/productSlice';
-import registerReducer from './reducers/registerSlice';
 import sellerCheckoutSlice from './reducers/sellerCheckoutSlice';
 import sellerSlice from './reducers/sellerSlice';
 import { similarProductsReducer } from './reducers/similarProducts';
@@ -28,7 +28,7 @@ export const store = configureStore({
   reducer: {
     app: appReducer,
     login: loginReducer,
-    register: registerReducer,
+    auth: authReducer,
     product: productReducer,
     targetProduct: targetProductReducer,
     paginate: paginateReducer,
@@ -53,5 +53,5 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type RootStateType = ReturnType<typeof store.getState>;
+export type AppDispatchType = typeof store.dispatch;

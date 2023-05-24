@@ -20,6 +20,7 @@ import {
   TutorialPage,
   CheckEmailPage,
 } from '../pages/commonPages';
+import { RegisterPage } from '../pages/commonPages/auth-pages/RegisterPage/RegisterPage';
 
 import { sellerRoute } from './sellerRoute';
 import { supplierRoute } from './supplierRoute';
@@ -44,6 +45,10 @@ export function createRoutes(userRole: userRoleType): Routes {
         {
           path: 'auth',
           element: <AuthPage />,
+        },
+        {
+          path: 'register',
+          element: <RegisterPage />,
         },
         {
           path: 'forgotPassword',
