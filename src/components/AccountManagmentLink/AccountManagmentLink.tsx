@@ -1,23 +1,25 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { SimpleLink } from '../../ui-kit/SimpleLink/SimpleLink';
 
-import style from './AccountManagmentLink.module.css';
+import style from './AccountManagmentLink.module.scss';
 
-interface IProps {
+interface IAccountManagementLink {
   linkLabel: string;
   path: string;
   description: string;
 }
 
-export const AccountManagementLink: React.FC<IProps> = props => {
-  const { linkLabel, path, description } = props;
-
+export const AccountManagementLink: React.FC<IAccountManagementLink> = ({
+  linkLabel,
+  path,
+  description,
+}) => {
   return (
     <div className={style.link_container}>
-      <Link className={style.link} to={path}>
+      <SimpleLink className={style.link} to={path}>
         {linkLabel}
-      </Link>
+      </SimpleLink>
       <div className={style.link_description}>{description}</div>
     </div>
   );

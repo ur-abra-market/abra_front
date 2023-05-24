@@ -99,16 +99,16 @@ export const SupplierAccountMainPage = (): JSX.Element => {
           <AccountManagementLink
             linkLabel="Change your email"
             path="/changeEmail"
-            description="(All your data including order history will be deleted)" // clarify description
+            description="(You will have to confirm a new email)"
           />
           <AccountManagementLink
             linkLabel=" Change your password"
             path="/changePassword"
-            description="(All your data including order history will be deleted)" // clarify description
+            description="(In case if you forgot a current password or need a stronger one)"
           />
           <AccountManagementLink
             linkLabel=" Remove the account?"
-            path="/" // ??
+            path="/" // todo fix
             description="(All your data including order history will be deleted)"
           />
         </div>
