@@ -2,17 +2,13 @@ import React, { useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { WithLayout } from '../../../common/hocs/WithLayout';
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { LoadingStatus } from '../../../common/types/enums/status.enum';
-import { IImageProduct } from '../../../common/types/interfaces';
 import ProductCarousel from '../../../components/ProductCarousel/ProductCarousel';
-import { getPopularProductsById } from '../../../store/reducers/popularProducts';
-import { getSimilarProducts } from '../../../store/reducers/similarProducts';
-import { getGradesByProductId } from '../../../store/reducers/targetProductSlice';
-import { Button, Loader, Container } from '../../../ui-kit';
 
+import { WithLayout } from 'common/hocs/WithLayout';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
+import { LoadingStatus } from 'common/types/enums/status.enum';
+import { IImageProduct } from 'common/types/interfaces';
 import ChoiceProduct from 'old-components/ui/product/ChoiceProduct';
 import FlagFavorites from 'old-components/ui/product/FlagFavorites';
 import LatestSearch from 'old-components/ui/product/LatestSearch';
@@ -25,6 +21,10 @@ import { PopularProduct } from 'pages/sellerPages/ProductPage/PopularProduct/Pop
 import style from 'pages/sellerPages/ProductPage/ProductPage.module.css';
 import ProductReview from 'pages/sellerPages/ProductPage/ProductReview/ProductReview';
 import { SimilarProduct } from 'pages/sellerPages/ProductPage/SimilarProduct/SimilarProduct';
+import { getPopularProductsById } from 'store/reducers/popularProducts';
+import { getSimilarProducts } from 'store/reducers/similarProducts';
+import { getGradesByProductId } from 'store/reducers/targetProductSlice';
+import { Button, Loader, Container } from 'ui-kit';
 
 const latestSearchData = [
   { search_query: 'Tag 1', datetime: '' },

@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/swiper.min.css';
-import { CarouselProps } from './Carousel.props';
+import { CarouselProps } from 'modules/ProductsPreview/Carousel/Carousel.props';
 
 export const Carousel: FC<CarouselProps> = props => {
   const { className, children, slideProps, ...restProps } = props;
