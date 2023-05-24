@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 
 import { Star } from './Star/Star';
-
-import style from 'ui-kit/Stars/Stars.module.scss';
+import style from './Stars.module.css';
 
 export interface IStars {
   reward: number;

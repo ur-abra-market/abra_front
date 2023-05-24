@@ -1,17 +1,16 @@
-import React, { FC, SyntheticEvent } from 'react';
+import React, { FC } from 'react';
 
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
 import Flag from '../../old-components/Flag';
+import { getPriceOneItem } from '../../pages/sellerPages/ProductPage/helpers/getPriceOneItem';
+import { Stars } from '../../ui-kit';
 
+import style from './ProductCard.module.css';
 import { IProductCard } from './ProductCard.props';
 
 import { ReactComponent as LoupeIcon } from 'assets/img/icons/loupe.svg';
-import NoneImage from 'assets/img/icons/none.png';
-import style from 'components/ProductCard/ProductCard.module.scss';
-import { getPriceOneItem } from 'pages/sellerPages/ProductPage/helpers/getPriceOneItem';
-import { Stars } from 'ui-kit';
 
 export const ProductCard: FC<IProductCard> = ({
   product,
@@ -21,17 +20,12 @@ export const ProductCard: FC<IProductCard> = ({
   const { name, prices, description, images, id, grade_average, is_active } = product;
   const { min_quantity } = prices[0];
   const image_url = images[0]?.image_url;
-  const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
-    const newEvent = { ...event };
-
-    newEvent.currentTarget.src = NoneImage;
-  };
 
   return (
     <div className={cn(style.card, className)} {...restProps}>
       <div className={style.image}>
         <Flag className={style.flag} isFavorite={is_active} />
-        <img src={image_url || ''} alt={name} onError={handleImageError} />
+        <img src={image_url || ''} alt={name} />
         <span className={style.hover}>
           <span className={style.hover_text}>
             <LoupeIcon />
