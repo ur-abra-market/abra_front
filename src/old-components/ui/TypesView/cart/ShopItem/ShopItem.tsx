@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { ReactComponent as ArrowRight } from '../../../../../assets/img/icons/arrowRight.svg';
+import { ReactComponent as ArrowRight } from '../../../../../assets/img/icons/arrow-right.svg'; // 5 10px
 import { ReactComponent as Dot } from '../../../../../assets/img/icons/dot.svg';
 import { ReactComponent as Star } from '../../../../../assets/img/icons/Star 1.svg';
 import { Checkbox } from '../../../../../ui-kit';

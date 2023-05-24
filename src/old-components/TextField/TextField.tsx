@@ -1,7 +1,7 @@
 import React, { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react';
 
-import eyeHiddenPassword from '../../assets/img/icons/eye_hidden_password.png';
-import eyeVisiblePassword from '../../assets/img/icons/eye_visible_password.png';
+import eyeHiddenPassword from '../../assets/img/icons/eye-hidden.svg';
+import eyeVisiblePassword from '../../assets/img/icons/eye-visible.svg';
 
 import style from './TextField.module.css';
 

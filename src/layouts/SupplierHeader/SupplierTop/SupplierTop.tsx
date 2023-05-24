@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { ReactComponent as Arrow } from '../../../assets/img/icons/arrowRight.svg';
+import { ReactComponent as Arrow } from '../../../assets/img/icons/arrow-right.svg'; // 5 10px
 import bellImg from '../../../assets/img/icons/notification-bell.svg';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { logout } from '../../../store/reducers/loginSlice';

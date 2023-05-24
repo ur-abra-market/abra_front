@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren } from 'react';
 
-import { ReactComponent as Arrow } from '../../assets/img/icons/arrowRight.svg';
+import { ReactComponent as Arrow } from '../../assets/img/icons/arrow-right.svg'; // 5 10px
 import styles from '../../ui-kit/Select/Select.module.css';
 
 import style from './DropDownField.module.css';

@@ -4,8 +4,8 @@ import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import { Swiper as SwiperType } from 'swiper';
 
-import { ReactComponent as ArrowLeft } from '../../assets/img/icons/arrow-slide-left.svg';
-import { ReactComponent as ArrowRight } from '../../assets/img/icons/arrow-slide-right.svg';
+import { ReactComponent as ArrowLeft } from '../../assets/img/icons/arrow-left.svg'; // 24px
+import { ReactComponent as ArrowRight } from '../../assets/img/icons/arrow-right.svg'; // 24px
 import { ButtonIcon } from '../../ui-kit';
 import { Carousel } from '../Carousel/Carousel';
 

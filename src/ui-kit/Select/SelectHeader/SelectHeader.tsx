@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import ArrowDownLogo from '../../../assets/img/icons/arrow-slide-down.svg';
-import ArrowUpLogo from '../../../assets/img/icons/arrow-slide-up.svg';
+import ArrowDownLogo from '../../../assets/img/icons/arrow-down.svg'; // 24px
+import ArrowUpLogo from '../../../assets/img/icons/arrow-up.svg'; // 24px
 
 import { ISelectOption, SelectPositionType } from 'ui-kit';
 

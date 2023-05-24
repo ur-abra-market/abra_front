@@ -5,7 +5,7 @@ import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import ShowPage from '../../../old-components/ShowPage';
 import { Checkbox, Input, ISelectOption, Search, Select } from '../../../ui-kit';
 
-import EditIcon from 'assets/img/icons/editIcon.svg';
+import EditIcon from 'assets/img/icons/edit-pencil-in-circle.svg';
 import imageProduct from 'assets/img/icons/imageProduct.svg';
 import star from 'assets/img/icons/Star 5].svg';
 import { ReactComponent as TableLayout } from 'assets/img/icons/tableLayout.svg';

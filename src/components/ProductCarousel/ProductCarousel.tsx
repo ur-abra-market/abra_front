@@ -6,8 +6,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/swiper-bundle.min.css';
 
-import { ReactComponent as ArrowDownIcon } from '../../assets/img/icons/arrow-slide-down.svg';
-import { ReactComponent as ArrowUpIcon } from '../../assets/img/icons/arrow-slide-up.svg';
+import { ReactComponent as ArrowDownIcon } from '../../assets/img/icons/arrow-down.svg'; // 24px
+import { ReactComponent as ArrowUpIcon } from '../../assets/img/icons/arrow-up.svg'; // 24px
 import { Button } from '../../ui-kit';
 
 import style from './ProductCarousel.module.css';

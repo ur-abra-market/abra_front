@@ -44,14 +44,14 @@
   align-self: center;
   width: 24px;
   height: 24px;
-  background-image: url('../../../../assets/img/icons/arrow-slide-up.svg');
+  background-image: url('../../../../assets/img/icons/arrow-up.svg'); /* 24px */
 }
 
 .photo_slider_btn_down {
   align-self: center;
   width: 24px;
   height: 24px;
-  background-image: url('../../../../assets/img/icons/arrow-slide-down.svg');
+  background-image: url('../../../../assets/img/icons/arrow-down.svg'); /* 24px */
 }
 
 .photo_slider_btn_up:hover,

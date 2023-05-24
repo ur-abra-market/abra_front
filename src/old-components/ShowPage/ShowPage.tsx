@@ -1,6 +1,6 @@
 import React, { useState, MouseEvent } from 'react';
 
-import arrowDown from '../../assets/img/icons/arrow-slide-down.svg';
+import arrowDown from '../../assets/img/icons/arrow-down.svg'; // 24px
 import { amount } from '../../store/reducers/paginateSlice';
 
 import style from './ShowPage.module.css';

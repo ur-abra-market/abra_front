@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { ReactComponent as ApplePay } from '../../../../assets/img/icons/applepay.svg';
+import { ReactComponent as ApplePay } from '../../../../assets/img/icons/apple-pay.svg';
 import { ReactComponent as GooglePay } from '../../../../assets/img/icons/gpay.svg';
 import { ReactComponent as MasterCard } from '../../../../assets/img/icons/mastercard.svg';
 import { ReactComponent as PayPal } from '../../../../assets/img/icons/pay.svg';

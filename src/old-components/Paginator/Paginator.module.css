@@ -11,13 +11,13 @@
 .left_arrow {
   width: 24px;
   height: 24px;
-  background: url('../../assets/img/icons/arrow-slide-left.svg');
+  background: url('../../assets/img/icons/arrow-left.svg'); /* 24px */
 }
 
 .right_arrow {
   width: 24px;
   height: 24px;
-  background: url('../../assets/img/icons/arrow-slide-right.svg');
+  background: url('../../assets/img/icons/arrow-right.svg'); /* 24px */
 }
 
 .left,

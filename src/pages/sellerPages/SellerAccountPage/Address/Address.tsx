@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import { ReactComponent as Edit } from '../../../../assets/img/icons/edit.svg';
+import { ReactComponent as Edit } from '../../../../assets/img/icons/pencil-edit.svg';
 import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import Check from '../../../../old-components/Check';
 import { EditAddressModal } from '../../../../old-components/ui/popup/EdtiAddressModal/EditAddressModal';

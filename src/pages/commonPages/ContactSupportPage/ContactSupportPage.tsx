@@ -1,6 +1,6 @@
 import React from 'react';
 
-import headerContact from '../../../assets/img/icons/bacgrountContact.svg';
+import headerContact from '../../../assets/images/bacgrountContact.png';
 import google from '../../../assets/img/icons/google_c.svg';
 import vk from '../../../assets/img/icons/vk_c.svg';
 import whatsApp from '../../../assets/img/icons/whatsapp.svg';

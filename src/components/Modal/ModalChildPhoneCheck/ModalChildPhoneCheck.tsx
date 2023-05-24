@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PlusIcon } from '../../../assets/img';
+import { PlusIcon } from '../../../assets/images';
 import { Button, Input } from '../../../ui-kit';
 
 import style from './ModalChildPhoneCheck.module.css';

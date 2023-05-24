@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
+import { ReactComponent as Exit } from '../../../../assets/img/icons/cross-red.svg'; // 16px
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
 import { SellerAddressData } from '../../../../services/seller/seller.serviceTypes';
 import { Button, Checkbox, Input, Select } from '../../../../ui-kit';

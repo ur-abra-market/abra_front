@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { HangerIcon, StarIcon } from '../../../../assets/img';
+import { HangerIcon, StarIcon } from '../../../../assets/images';
 
 import style from './StatusSeller.module.css';
 

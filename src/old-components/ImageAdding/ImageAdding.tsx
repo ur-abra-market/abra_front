@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC } from 'react';
 
-import { PlusIcon } from '../../assets/img';
-import AddImg from '../../assets/img/icons/add_image.svg';
+import { PlusIcon } from '../../assets/images';
+import AddImg from '../../assets/img/icons/image-picker.svg';
 
 import style from './ImageAdding.module.css';
 

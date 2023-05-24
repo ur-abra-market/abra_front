@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import { ReactComponent as Edit } from '../../assets/img/icons/edit.svg';
+import { ReactComponent as Edit } from '../../assets/img/icons/edit-pencil.svg';
 import { SellerAddressData } from '../../services/seller/seller.serviceTypes';
 import { Checkbox } from '../../ui-kit';
 import { EditAddressModal } from '../ui/popup/EdtiAddressModal/EditAddressModal';

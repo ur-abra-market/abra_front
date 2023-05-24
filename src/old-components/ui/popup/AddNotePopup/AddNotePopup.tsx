@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
+import { ReactComponent as Exit } from '../../../../assets/img/icons/cross-red.svg'; // 16px
 import { Button, Input } from '../../../../ui-kit';
 
 import style from './AddNotePopup.module.css';

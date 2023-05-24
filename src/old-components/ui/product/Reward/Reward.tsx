@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { StarIcon } from '../../../../assets/img';
+import { StarIcon } from '../../../../assets/images';
 
 import style from './Reward.module.css';
 

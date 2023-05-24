@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { ArrowRightBreadCrumbs } from '../../../../assets/img';
+import { ArrowRightBreadCrumbs } from '../../../../assets/images';
 
 import style from './ProductPath.module.css';
 
