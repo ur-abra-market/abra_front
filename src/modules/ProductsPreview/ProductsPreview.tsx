@@ -1,16 +1,30 @@
-import React, { FC, useCallback, useRef, useState } from 'react';
+import React, {
+  DetailedHTMLProps,
+  FC,
+  HTMLAttributes,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
 
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import { Swiper as SwiperType } from 'swiper';
 
-import { ReactComponent as ArrowLeft } from '../../assets/img/icons/arrow-slide-left.svg';
-import { ReactComponent as ArrowRight } from '../../assets/img/icons/arrow-slide-right.svg';
-import { ButtonIcon } from '../../ui-kit';
-import { Carousel } from '../Carousel/Carousel';
+import { Carousel } from './index';
 
-import style from './ProductsPreview.module.css';
-import { ProductsPreviewProps } from './ProductsPreview.props';
+import { ReactComponent as ArrowLeft } from 'assets/img/icons/arrow-slide-left.svg';
+import { ReactComponent as ArrowRight } from 'assets/img/icons/arrow-slide-right.svg';
+import style from 'modules/ProductsPreview/ProductsPreview.module.scss';
+import { ButtonIcon } from 'ui-kit';
+
+export interface ProductsPreviewProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  title: string;
+  category?: string;
+  changeCategoryOffset?: (category_id: number) => void;
+  href?: string;
+}
 
 const SPEED_TRANSITION = 1000;
 

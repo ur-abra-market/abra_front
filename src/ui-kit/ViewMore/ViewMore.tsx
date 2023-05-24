@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import style from './ViewMore.module.css';
+import style from 'ui-kit/ViewMore/ViewMore.module.css';
 
 export const ViewMore = (): JSX.Element => {
   return (
