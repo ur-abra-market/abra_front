@@ -24,8 +24,8 @@ const PROFILE_MENU = {
       href: '/auth',
     },
     {
-      label: 'Sign Up',
-      href: '/auth',
+      label: 'Register',
+      href: '/register',
     },
   ],
   AUTHORIZED: [

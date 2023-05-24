@@ -68,7 +68,6 @@ export const RegisterForm = (): JSX.Element => {
   }, [errorMessage, setError]);
 
   const onSubmit = (data: FormDataValuesType): void => {
-    // if (!isValid) return;
     dispatch(registerUser({ ...data, route: userRole })).then(
       ({ meta: { requestStatus } }) => {
         if (requestStatus === 'fulfilled') navigate('/register/checkEmail');
