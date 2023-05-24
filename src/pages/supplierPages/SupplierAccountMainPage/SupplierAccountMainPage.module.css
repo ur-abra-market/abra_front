@@ -17,8 +17,7 @@
 }
 
 .personal_info,
-.business_profile,
-.details_block {
+.business_profile {
   padding: 32px;
   background: #FFF;
   border-radius: 12px;
