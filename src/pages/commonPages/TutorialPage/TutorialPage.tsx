@@ -1,15 +1,13 @@
 import React from 'react';
 
-import { Layout } from '../../../layouts/Layout/Layout';
+import { WithLayout } from '../../../common/hocs/WithLayout';
 
 import style from './Tutorial.module.css';
 
-export const TutorialPage = (): JSX.Element => {
+export const TutorialPage = WithLayout((): JSX.Element => {
   return (
-    <Layout>
-      <div className={style.container}>
-        <p className={style.title}>Tutorial for Buyers</p>
-      </div>
-    </Layout>
+    <div className={style.container}>
+      <p className={style.title}>Tutorial for Buyers</p>
+    </div>
   );
-};
+});

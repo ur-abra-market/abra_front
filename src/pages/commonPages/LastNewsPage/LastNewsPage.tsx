@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-import { Layout } from '../../../layouts/Layout/Layout';
+import { WithLayout } from '../../../common/hocs/WithLayout';
 
 import style from './LastNews.module.css';
 
 import { News } from './index';
 
-export const LastNewsPage = (): JSX.Element => {
+export const LastNewsPage = WithLayout((): JSX.Element => {
   const [text] = useState([
     {
       title: 'This is news title',
@@ -17,21 +17,19 @@ export const LastNewsPage = (): JSX.Element => {
   ]);
 
   return (
-    <Layout>
-      <div className={style.container}>
-        <p className={style.last_news}>Last News</p>
-        <div className={style.container_block}>
-          {text.map((el, index) => {
-            return (
-              <div key={index}>
-                <News text={el.text} title={el.title} image={el.image} />
-                <News text={el.text} title={el.title} image={el.image} />
-                <News text={el.text} title={el.title} image={el.image} />
-              </div>
-            );
-          })}
-        </div>
+    <div className={style.container}>
+      <p className={style.last_news}>Last News</p>
+      <div className={style.container_block}>
+        {text.map((el, index) => {
+          return (
+            <div key={index}>
+              <News text={el.text} title={el.title} image={el.image} />
+              <News text={el.text} title={el.title} image={el.image} />
+              <News text={el.text} title={el.title} image={el.image} />
+            </div>
+          );
+        })}
       </div>
-    </Layout>
+    </div>
   );
-};
+});

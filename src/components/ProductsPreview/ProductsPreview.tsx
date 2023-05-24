@@ -51,6 +51,7 @@ export const ProductsPreview: FC<ProductsPreviewProps> = props => {
             </Link>
           )}
         </div>
+
         <div className={style.buttons}>
           <ButtonIcon>
             <ArrowLeft
@@ -60,6 +61,7 @@ export const ProductsPreview: FC<ProductsPreviewProps> = props => {
               onClick={handlePrev}
             />
           </ButtonIcon>
+
           <ButtonIcon onClick={handleNext}>
             <ArrowRight
               className={cn(style.icon_right, {
@@ -70,6 +72,7 @@ export const ProductsPreview: FC<ProductsPreviewProps> = props => {
           </ButtonIcon>
         </div>
       </div>
+
       <Carousel
         onBeforeInit={onBeforeInit}
         spaceBetween={11}

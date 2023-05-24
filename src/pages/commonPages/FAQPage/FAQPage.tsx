@@ -3,11 +3,11 @@ import React from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import { Link } from 'react-router-dom';
 
+import { WithLayout } from '../../../common/hocs/WithLayout';
+
 import style from './FAQ.module.css';
 
 import { ContentBox } from './index';
-
-import { Layout } from 'layouts/Layout/Layout';
 
 const FAQData = [
   {
@@ -78,21 +78,19 @@ const FAQData = [
   },
 ];
 
-export const FAQPage = (): JSX.Element => {
+export const FAQPage = WithLayout((): JSX.Element => {
   return (
-    <Layout>
-      <div className={style.container}>
-        <p className={style.title}>FAQs</p>
-        <div className={style.content}>
-          {FAQData.map(el => (
-            <ContentBox key={el.id} question={el.question} answer={el.answer} />
-          ))}
-        </div>
-        <p>
-          For any further questions, please visit our Help Center or{' '}
-          <Link to="../contact">contact</Link> our Customer Support Team
-        </p>
+    <div className={style.container}>
+      <p className={style.title}>FAQs</p>
+      <div className={style.content}>
+        {FAQData.map(el => (
+          <ContentBox key={el.id} question={el.question} answer={el.answer} />
+        ))}
       </div>
-    </Layout>
+      <p>
+        For any further questions, please visit our Help Center or{' '}
+        <Link to="../contact">contact</Link> our Customer Support Team
+      </p>
+    </div>
   );
-};
+});
