@@ -1,4 +1,11 @@
-import React, { FC, useCallback, useRef } from 'react';
+import React, {
+  DetailedHTMLProps,
+  FC,
+  HTMLAttributes,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
 
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
@@ -6,36 +13,42 @@ import { Swiper as SwiperType } from 'swiper';
 
 import { ReactComponent as ArrowLeft } from '../../assets/img/icons/arrow-slide-left.svg';
 import { ReactComponent as ArrowRight } from '../../assets/img/icons/arrow-slide-right.svg';
-import { ButtonIcon } from '../../ui-kit';
-import { Carousel } from '../Carousel/Carousel';
 
-import style from './ProductsPreview.module.css';
-import { ProductsPreviewProps } from './ProductsPreview.props';
+import style from './ProductsPreview.module.scss';
 
+import { Carousel } from './index';
+
+import { ButtonIcon } from 'ui-kit';
+
+interface IProductsPreview
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  title: string;
+  href?: string;
+}
 const SPEED_TRANSITION = 1000;
 
-export const ProductsPreview: FC<ProductsPreviewProps> = props => {
+export const ProductsPreview: FC<IProductsPreview> = props => {
   const { className, title, href, children, ...restProps } = props;
   const swiperEl = useRef<SwiperType>();
-
-  const handlePrev = useCallback((): void => {
-    const startSlide = swiperEl.current?.isBeginning;
-
-    if (startSlide) {
-      return;
+  const [disableLeftArrow, setDisableLeftArrow] = useState(true);
+  const [disableRightArrow, setDisableRightArrow] = useState(false);
+  const handleInitialSlide = (): void => {
+    if (swiperEl.current?.isEnd) {
+      setDisableRightArrow(true);
     }
+  };
+  const handleChangeSlide = (): void => {
+    if (swiperEl.current?.isBeginning) setDisableLeftArrow(true);
+    else setDisableLeftArrow(false);
+    if (swiperEl.current?.isEnd) setDisableRightArrow(true);
+    else setDisableRightArrow(false);
+  };
+  const handlePrev = useCallback((): void => {
     swiperEl.current?.slidePrev(SPEED_TRANSITION);
   }, []);
-
   const handleNext = useCallback((): void => {
-    const endSlide = swiperEl.current?.isEnd;
-
-    if (endSlide) {
-      return;
-    }
     swiperEl.current?.slideNext(SPEED_TRANSITION);
   }, []);
-
   const onBeforeInit = (swiper: SwiperType): void => {
     swiperEl.current = swiper;
   };
@@ -51,30 +64,27 @@ export const ProductsPreview: FC<ProductsPreviewProps> = props => {
             </Link>
           )}
         </div>
-
         <div className={style.buttons}>
-          <ButtonIcon>
+          <ButtonIcon disabled={disableLeftArrow} onClick={handlePrev}>
             <ArrowLeft
               className={cn(style.icon_left, {
-                [style.disable]: swiperEl.current?.isBeginning,
+                [style.disable_button]: swiperEl.current?.isBeginning,
               })}
-              onClick={handlePrev}
             />
           </ButtonIcon>
-
-          <ButtonIcon onClick={handleNext}>
+          <ButtonIcon disabled={disableRightArrow} onClick={handleNext}>
             <ArrowRight
               className={cn(style.icon_right, {
-                [style.disable]: swiperEl.current?.isEnd,
+                [style.disable_button]: swiperEl.current?.isEnd,
               })}
-              onClick={handleNext}
             />
           </ButtonIcon>
         </div>
       </div>
-
       <Carousel
+        onAfterInit={handleInitialSlide}
         onBeforeInit={onBeforeInit}
+        onSlideChange={handleChangeSlide}
         spaceBetween={11}
         slidesPerView="auto"
         slidesPerGroup={6}
