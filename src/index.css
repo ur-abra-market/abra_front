@@ -71,7 +71,7 @@
   --fz-xxl2: 34px;   /* Extra Extra Large 2 */
   --fz-xxxl: 40px;   /* Extra Extra Extra Large */
 
-  /* -------font------ */
+  /* -------font-weights------ */
   --roboto: 'Roboto';
   --light: 300;
   --regular: 400;
@@ -114,7 +114,7 @@ input[type='number'] {
 
 body {
   font-family: Roboto, sans-serif;
-  font-weight: normal;
+  font-weight: var(--regular);
   font-style: normal;
 
   -webkit-font-smoothing: antialiased;
@@ -131,7 +131,7 @@ h1 {
 }
 
 h2 {
-  font-size: var(--fh2);
+  font-size:  var(--fz-xxl2);
   letter-spacing: 0.41px;
 }
 

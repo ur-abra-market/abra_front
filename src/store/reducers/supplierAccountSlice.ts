@@ -7,7 +7,7 @@ import { INotification } from '../../services/supplier/supplier.serviceTypes';
 
 import { getCurrentUserInfo } from './loginSlice';
 
-import { RootState } from 'store/createStore';
+import { RootStateType } from 'store/createStore';
 
 export const getSupplierAccountDataService = createAsyncThunk(
   'supplierAccount/getAccountData',
@@ -46,7 +46,7 @@ export const updateSupplierNotifications = createAsyncThunk<
   'supplierAccount/postNotifications',
   async (param, { rejectWithValue, getState, dispatch }) => {
     try {
-      const state = getState() as RootState;
+      const state = getState() as RootStateType;
       const { notifications } = state.supplierAccount;
 
       if (notifications) {

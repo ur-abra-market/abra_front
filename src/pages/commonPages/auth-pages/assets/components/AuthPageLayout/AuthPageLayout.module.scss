@@ -1,0 +1,13 @@
+.wrapper {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  height: 100vh;
+}
+
+.subtitle {
+  margin: 18px 0 22px;
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
+  color: var(--color-dark-gray);
+}
