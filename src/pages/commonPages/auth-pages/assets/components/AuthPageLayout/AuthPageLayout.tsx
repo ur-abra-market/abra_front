@@ -1,8 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 
-import { Link } from 'react-router-dom';
-
-import { MainLogo } from '../../../../../../ui-kit';
+import { MainLogo, SimpleLink } from '../../../../../../ui-kit';
 
 import style from './AuthPageLayout.module.scss';
 
@@ -22,7 +20,9 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
       <MainLogo />
       <div className={style.subtitle}>Start buying in bulk now!</div>
       {children}
-      <Link to={footerLink}>{footerTitle}</Link>
+      <SimpleLink to={footerLink} color="accent">
+        {footerTitle}
+      </SimpleLink>
     </div>
   );
 };
