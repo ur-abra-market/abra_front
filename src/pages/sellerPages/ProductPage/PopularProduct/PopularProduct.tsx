@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import { ProductCard, ProductsPreview } from '../../../../components';
+import { ProductCard } from '../../../../components';
+import { ProductsPreview } from '../../../../modules';
 import { IProductCompilation } from '../../../../services/product/product.serviceTypes';
 import style from '../ProductPage.module.css';
 
