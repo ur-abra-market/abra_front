@@ -8,7 +8,7 @@ import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { IAccountPersonalInfo } from '../../../common/types/interfaces';
 import { parsePhoneNumber } from '../../../common/utils/parsePhoneNumber';
-import { AccountManagementLink } from '../../../components/AccountManagmentLink/AccountManagmentLink';
+import { AccountManagementLink } from '../../../components';
 import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
 import { updateAccountPersonalInfo } from '../../../store/reducers/formRegistrationSlice';
 import { Button } from '../../../ui-kit';

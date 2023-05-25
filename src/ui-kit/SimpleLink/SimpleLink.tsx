@@ -6,13 +6,13 @@ import { Link, LinkProps } from 'react-router-dom';
 import styles from './SimpleLink.module.scss';
 
 export interface ISimpleLink extends LinkProps {
-  color?: 'accent' | 'default';
-  classname?: string;
+  color: 'accent' | 'default';
+  className?: string;
   children: ReactNode;
 }
 
 export const SimpleLink = forwardRef<LinkProps, ISimpleLink>(
-  ({ to, className, color = 'default', children, ...restProps }, ref) => {
+  ({ to, className, color, children, ...restProps }, ref) => {
     return (
       <Link
         to={to}

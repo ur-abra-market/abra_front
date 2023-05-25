@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import { AccountManagementLink } from '../../../components/AccountManagmentLink/AccountManagmentLink';
+import { AccountManagementLink } from '../../../components';
 import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
 import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
 import UploadFile from '../../../components/UploadFile/UploadFile';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SimpleLink } from '../../ui-kit/SimpleLink/SimpleLink';
+import { SimpleLink } from '../../ui-kit';
 
 import style from './AccountManagmentLink.module.scss';
 
@@ -17,7 +17,7 @@ export const AccountManagementLink: React.FC<IAccountManagementLink> = ({
 }) => {
   return (
     <div className={style.link_container}>
-      <SimpleLink className={style.link} to={path}>
+      <SimpleLink className={style.link} to={path} color="default">
         {linkLabel}
       </SimpleLink>
       <div className={style.link_description}>{description}</div>

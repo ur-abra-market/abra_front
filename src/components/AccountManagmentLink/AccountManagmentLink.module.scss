@@ -7,18 +7,16 @@
   background: var(--color-white);
   border-radius: 8px;
 
-  .link_description {
-    font-size: var(--fp);
-    font-weight: var(--regular);
-    font-style: normal;
-    line-height: var(--fh4);
-    color: var(--color-black);
-    text-align: left;
-  }
+}
 
-  .link {
-    text-decoration: underline;
-  }
+.link_description {
+  font-size: var(--fz-s2);
+  line-height: var(--fh4);
+  color: var(--color-black);
+  text-align: left;
+}
 
+.link {
+  text-decoration: underline;
 }
 
