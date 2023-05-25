@@ -13,19 +13,17 @@ export interface ISimpleLink extends LinkProps {
 
 export const SimpleLink = forwardRef<LinkProps, ISimpleLink>(
   ({ to, className, color, children, ...restProps }, ref) => {
+    const linkClasses = cn(
+      styles.link,
+      {
+        [styles.default]: color === 'default',
+        [styles.accent]: color === 'accent',
+      },
+      className,
+    );
+
     return (
-      <Link
-        to={to}
-        className={cn(
-          styles.link,
-          {
-            [styles.default]: color === 'default',
-            [styles.accent]: color === 'accent',
-          },
-          className,
-        )}
-        {...restProps}
-      >
+      <Link to={to} className={linkClasses} {...restProps}>
         {children}
       </Link>
     );

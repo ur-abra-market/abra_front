@@ -1,9 +1,10 @@
 .link {
   font-size: var(--fz-s2);
   font-weight: var(--regular);
-  font-style: normal;
   line-height: 20px;
   text-align: left;
+
+  transition: all 0.3s;
 }
 
 .default {
