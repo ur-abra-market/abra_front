@@ -27,8 +27,13 @@ interface IProductsPreview
 }
 const SPEED_TRANSITION = 1000;
 
-export const ProductsPreview: FC<IProductsPreview> = props => {
-  const { className, title, href, children, ...restProps } = props;
+export const ProductsPreview: FC<IProductsPreview> = ({
+  className,
+  title,
+  href,
+  children,
+  ...restProps
+}) => {
   const swiperEl = useRef<SwiperType>();
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);
   const [disableRightArrow, setDisableRightArrow] = useState(false);
