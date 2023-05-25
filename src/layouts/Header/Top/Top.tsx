@@ -20,8 +20,8 @@ import style from './Top.module.css';
 const PROFILE_MENU = {
   UNAUTHORIZED: [
     {
-      label: 'Log In',
-      href: '/auth',
+      label: 'Log in',
+      href: '/login',
     },
     {
       label: 'Register',

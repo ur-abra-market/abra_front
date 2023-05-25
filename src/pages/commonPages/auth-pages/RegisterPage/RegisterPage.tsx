@@ -6,7 +6,7 @@ import { RegisterForm } from './index';
 
 export const RegisterPage = (): JSX.Element => {
   return (
-    <AuthPageLayout footerLink="/auth">
+    <AuthPageLayout footerLink="/login" footerTitle="Log in">
       <RegisterForm />
     </AuthPageLayout>
   );

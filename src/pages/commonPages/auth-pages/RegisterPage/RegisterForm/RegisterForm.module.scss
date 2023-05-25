@@ -1,3 +1,13 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 100%;
+  max-width: 396px;
+  margin-bottom: 24px;
+}
+
 .buttons_container_user_role {
   display: flex;
   width: 100%;
@@ -7,16 +17,6 @@
 
 .button_user_role {
   width: 50%;
-}
-
-.form{
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-
-  width: 100%;
-  max-width: 396px;
-  margin-bottom: 24px;
 }
 
 .input_password {

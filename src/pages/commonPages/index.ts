@@ -1,5 +1,4 @@
 export { AboutUsPage } from './AboutUsPage/AboutUsPage';
-export { AuthPage } from './auth-pages/AuthPage/AuthPage';
 export { ChangeEmailPage } from './auth-pages/ChangeEmailPage/ChangeEmailPage';
 export { ChangePasswordPage } from './auth-pages/ChangePasswordPage/ChangePasswordPage';
 export { CheckEmailPage } from './auth-pages/CheckEmailPage/CheckEmailPage';
@@ -14,3 +13,5 @@ export { ResetPasswordPage } from './auth-pages/ResetPasswordPage/ResetPasswordP
 export { SellAbraPage } from './SellAbraPage/SellAbra';
 export { TermsAndConditionsPage } from './TermsAndConditionsPage/TermsAndConditionsPage';
 export { TutorialPage } from './TutorialPage/TutorialPage';
+export { LoginPage } from './auth-pages/LoginPage/LoginPage';
+export { RegisterPage } from './auth-pages/RegisterPage/RegisterPage';
