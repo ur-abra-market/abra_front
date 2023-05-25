@@ -1,0 +1,22 @@
+.link {
+  color: inherit;
+}
+
+.view_more {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 220px;
+  height: 220px;
+
+  font-size: 25px;
+}
+
+.view_more:hover{
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15));
+  border-radius: 8px;
+  transition: all 0.5s;
+}
