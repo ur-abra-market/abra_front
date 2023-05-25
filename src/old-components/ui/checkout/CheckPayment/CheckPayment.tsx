@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 
 import { ReactComponent as ApplePay } from '../../../../assets/img/icons/apple-pay.svg';
-import { ReactComponent as GooglePay } from '../../../../assets/img/icons/gpay.svg';
+import { ReactComponent as GooglePay } from '../../../../assets/img/icons/google-pay.svg';
 import { ReactComponent as MasterCard } from '../../../../assets/img/icons/mastercard.svg';
-import { ReactComponent as PayPal } from '../../../../assets/img/icons/pay.svg';
-import { ReactComponent as T_T } from '../../../../assets/img/icons/T.svg';
+import { ReactComponent as PayPal } from '../../../../assets/img/icons/paypal.svg';
 import { ReactComponent as Visa } from '../../../../assets/img/icons/visa.svg';
 import PaymentPopup from '../../popup/PaymentPopup';
 
@@ -24,7 +23,6 @@ const CheckPayment = (): JSX.Element => {
         <div className={style.check_payment_block_kind}>
           <Visa className={style.icon} />
           <MasterCard className={style.icon} />
-          <T_T className={style.icon} />
           <PayPal className={style.icon} />
           <GooglePay className={style.icon} />
           <ApplePay className={style.icon} />

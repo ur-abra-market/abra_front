@@ -2,7 +2,7 @@ import { forwardRef, useState, DetailedHTMLProps, InputHTMLAttributes } from 're
 
 import cn from 'classnames';
 
-import { ReactComponent as Ice } from '../../assets/img/icons/ice_c.svg';
+import { ReactComponent as Ice } from '../../assets/img/icons/eye_hidden.svg';
 import { ButtonIcon } from '../buttons/ButtonIcon/ButtonIcon';
 
 import styles from './Input.module.css';

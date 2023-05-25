@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import arrowDown from '../../../assets/img/icons/SortArrowDown.png';
-import arrowUp from '../../../assets/img/icons/SortArrowUp.png';
+import arrowDown from '../../../assets/img/icons/sort-arrow-down.svg';
+import arrowUp from '../../../assets/img/icons/sort-arrow-up.svg';
 
 import style from './TableHeader.module.css';
 

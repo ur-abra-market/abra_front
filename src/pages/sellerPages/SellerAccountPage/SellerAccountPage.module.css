@@ -413,7 +413,7 @@
 .completed_icon {
   width: 50px;
   height: 50px;
-  background-image: url("../../../assets/img/icons/completed.png");
+  background-image: url("../../../assets/img/icons/order-status-completed.svg");
 }
 .select{
   font-size: 14px;

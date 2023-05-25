@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import nonePng from '../../assets/img/icons/none.png';
+import nonePng from '../../assets/images/none.png';
 import Flag from '../Flag';
 
 import style from './ImgSlider.module.css';
@@ -32,7 +32,7 @@ const ImgSlider: FC<ImgSliderProps> = ({ srcArr }): JSX.Element => {
           <img
             className={style.img_slider_window_list_img}
             key={`card_slide_${i}`}
-            src={src === '$URL' ? './assets/image/none.png' : src}
+            src={src === '$URL' ? './assets/images/none.png' : src}
             alt="img"
           />
         ))}

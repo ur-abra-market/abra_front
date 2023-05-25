@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
+import { ReactComponent as LogOutIcon } from '../../assets/img/icons/logout.svg';
 import { logout } from '../../store/reducers/loginSlice';
 import { Button } from '../../ui-kit';
 

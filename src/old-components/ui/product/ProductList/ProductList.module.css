@@ -22,14 +22,14 @@
   cursor: pointer;
   width: 24px;
   height: 24px;
-  background: url('../../../../assets/img/icons/grid-view.svg');
+  background: url('../../../../assets/img/icons/view-grid-disabled.svg');
 }
 
 .control_list {
   cursor: pointer;
   width: 24px;
   height: 24px;
-  background: url('../../../../assets/img/icons/list.svg');
+  background: url('../../../../assets/img/icons/view-list-disabled.svg');
 }
 
 .control_category {

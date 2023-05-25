@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react';
 
-import { ReactComponent as Product } from '../../../../assets/img/icons/Rectangle.svg';
-import { ReactComponent as Start } from '../../../../assets/img/icons/Star 5].svg';
-import { ReactComponent as Vector } from '../../../../assets/img/icons/VectorRight.svg';
+import { ReactComponent as Product } from '../../../../assets/images/product1.png';
+import { ReactComponent as Start } from '../../../../assets/img/icons/star-filled.svg';
+import { ReactComponent as Vector } from '../../../../assets/img/icons/arrow-right.svg'; // 5 10px
 import { AddNotePopup } from '../../popup/AddNotePopup/AddNotePopup';
 
 import style from './CheckItems.module.css';

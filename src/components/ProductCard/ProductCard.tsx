@@ -10,7 +10,7 @@ import { Stars } from '../../ui-kit';
 import style from './ProductCard.module.css';
 import { IProductCard } from './ProductCard.props';
 
-import { ReactComponent as LoupeIcon } from 'assets/img/icons/loupe.svg';
+import { ReactComponent as LoupeIcon } from 'assets/img/icons/magnifier-light-grey.svg';
 
 export const ProductCard: FC<IProductCard> = ({
   product,

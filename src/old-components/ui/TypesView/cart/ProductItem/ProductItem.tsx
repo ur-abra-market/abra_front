@@ -24,7 +24,7 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
         <div>
           <img
             className={style.container_img}
-            src="src/assets/img/icons/none.png"
+            src="src/assets/images/none.png"
             alt="img"
           />
         </div>

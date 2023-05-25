@@ -4,9 +4,9 @@ import cn from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { ReactComponent as Cart } from '../../../assets/img/icons/cart_n.svg';
-import { ReactComponent as Favorite } from '../../../assets/img/icons/flag_n.svg';
-import { ReactComponent as Auth } from '../../../assets/img/icons/human.svg';
-import { ReactComponent as Note } from '../../../assets/img/icons/note.svg';
+import { ReactComponent as Favorite } from '../../../assets/img/icons/header-favourites.svg';
+import { ReactComponent as Auth } from '../../../assets/img/icons/header-profile.svg';
+import { ReactComponent as Note } from '../../../assets/img/icons/header-notifications.svg';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import Modal from '../../../components/Modal';

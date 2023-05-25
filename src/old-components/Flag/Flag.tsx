@@ -3,7 +3,7 @@ import React, { FC, useState } from 'react';
 import cn from 'classnames';
 
 import style from './Flag.module.css';
-import { ReactComponent as FlagIcon } from './flag.svg';
+import { ReactComponent as FlagIcon } from 'assets/icons/favourites-add-to.svg';
 
 interface FlagProps {
   className?: string;

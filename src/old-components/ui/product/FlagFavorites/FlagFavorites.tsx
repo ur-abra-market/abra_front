@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import cn from 'classnames';
 
 import { Button } from '../../../../ui-kit';
-import { ReactComponent as FlagIcon } from '../../../Flag/flag.svg';
+import { ReactComponent as FlagIcon } from 'assets/icons/favorites-add-to.svg';
 
 import style from './FlagFavorites.module.css';
 

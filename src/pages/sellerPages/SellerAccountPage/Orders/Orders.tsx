@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 import { Button } from '../../../../ui-kit';
 
-import { ReactComponent as ShippedIcon } from 'assets/img/icons/shipped.svg';
-import { ReactComponent as ToBeReviewedIcon } from 'assets/img/icons/to_be_reviewed.svg';
-import { ReactComponent as ToBeShippedIcon } from 'assets/img/icons/to_be_shipped.svg';
-import { ReactComponent as UnPaidIcon } from 'assets/img/icons/unpaid.svg';
+import { ReactComponent as ShippedIcon } from 'assets/img/icons/order-status-shipped.svg';
+import { ReactComponent as ToBeReviewedIcon } from 'assets/img/icons/order-status-to-be-reviewed.svg';
+import { ReactComponent as ToBeShippedIcon } from 'assets/img/icons/order-status-to-be-shipped.svg';
+import { ReactComponent as UnPaidIcon } from 'assets/img/icons/order-status-unpaid.svg';
 import style from 'pages/sellerPages/SellerAccountPage/SellerAccountPage.module.css';
 
 const Orders = (): JSX.Element => {

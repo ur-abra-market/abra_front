@@ -1,8 +1,8 @@
 import React from 'react';
 
 import headerContact from '../../../assets/images/bacgrountContact.png';
-import google from '../../../assets/img/icons/google_c.svg';
-import vk from '../../../assets/img/icons/vk_c.svg';
+import google from '../../../assets/img/icons/google.svg';
+import vk from '../../../assets/img/icons/vk.svg';
 import whatsApp from '../../../assets/img/icons/whatsapp.svg';
 import { WithLayout } from '../../../common/hocs/WithLayout';
 

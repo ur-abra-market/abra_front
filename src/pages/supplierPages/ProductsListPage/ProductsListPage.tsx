@@ -6,13 +6,13 @@ import ShowPage from '../../../old-components/ShowPage';
 import { Checkbox, Input, ISelectOption, Search, Select } from '../../../ui-kit';
 
 import EditIcon from 'assets/img/icons/edit-pencil-in-circle.svg';
-import imageProduct from 'assets/img/icons/imageProduct.svg';
-import star from 'assets/img/icons/Star 5].svg';
-import { ReactComponent as TableLayout } from 'assets/img/icons/tableLayout.svg';
-import { ReactComponent as TileLayout } from 'assets/img/icons/tileLayout.svg';
-import { ReactComponent as VectorUp } from 'assets/img/icons/Vector.svg';
-import { ReactComponent as VectorDown } from 'assets/img/icons/VectorDown.svg';
-import ViewIcon from 'assets/img/icons/viewIcon.svg';
+import imageProduct from 'assets/images/product.png';
+import star from 'assets/img/icons/star-filled.svg';
+import { ReactComponent as TableLayout } from 'assets/img/icons/view-list-disabled.svg';
+import { ReactComponent as TileLayout } from 'assets/img/icons/view-grid-disabled.svg';
+import { ReactComponent as VectorUp } from 'assets/img/icons/arrow-up.svg'; // 14 8px
+import { ReactComponent as VectorDown } from 'assets/img/icons/arrow-down.svg'; // 14 8px
+import ViewIcon from 'assets/img/icons/eye-hidden.svg';
 import Modal from 'components/Modal';
 import Table from 'old-components/table';
 import Pagination from 'old-components/ui/Pagination';

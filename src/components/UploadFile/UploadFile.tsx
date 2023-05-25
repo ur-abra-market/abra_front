@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
-import { ReactComponent as Photo } from '../../assets/img/icons/photo_icon.svg';
+import { ReactComponent as Photo } from '../../assets/img/icons/image_picker.svg';
 import { LoadingStatus } from '../../common/types/enums/status.enum';
 import userService from '../../services/user/user.service';
 

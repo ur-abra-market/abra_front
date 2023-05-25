@@ -2,10 +2,10 @@ import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import { ReactComponent as Google } from '../../../../assets/img/icons/google_c.svg';
-import { ReactComponent as Instagram } from '../../../../assets/img/icons/instagram_c.svg';
-import { ReactComponent as Telegram } from '../../../../assets/img/icons/telegram_c.svg';
-import { ReactComponent as Vk } from '../../../../assets/img/icons/vk_c.svg';
+import { ReactComponent as Google } from '../../../../assets/img/icons/google.svg';
+import { ReactComponent as Instagram } from '../../../../assets/img/icons/instagram.svg';
+import { ReactComponent as Telegram } from '../../../../assets/img/icons/telegram.svg';
+import { ReactComponent as Vk } from '../../../../assets/img/icons/vk.svg';
 
 import style from './Social.module.css';
 
