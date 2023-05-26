@@ -4,10 +4,11 @@ import { WithLayout } from '../../../common/hocs/WithLayout';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ProductSortType } from '../../../common/types/enums/productSortType.enum';
-import { Feedback, ProductCard, ProductsPreview } from '../../../components';
-import { ButtonInfo, Container } from '../../../ui-kit';
+import { Feedback, ProductCard } from '../../../components';
+import { ProductsPreview } from '../../../modules';
+import { ButtonInfo, Container, ViewMoreProducts } from '../../../ui-kit';
 
-import style from './MainPage.module.css';
+import style from './MainPage.module.scss';
 
 import { ImagesBlock, StatusProduct } from './index';
 
@@ -69,7 +70,6 @@ export const MainPage = WithLayout((): JSX.Element => {
   return (
     <div className={style.main_page}>
       <ImagesBlock className={style.images_block} />
-
       <Container>
         <StatusProduct />
         <div className={style.main_sliders}>
@@ -80,6 +80,7 @@ export const MainPage = WithLayout((): JSX.Element => {
                   {products[+key].map(product => (
                     <ProductCard key={product.uuid} product={product} />
                   ))}
+                  <ViewMoreProducts />
                 </ProductsPreview>
               );
             })}

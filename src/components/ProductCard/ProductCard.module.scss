@@ -44,7 +44,7 @@
   justify-content: center;
 
   opacity: 0;
-  background: linear-gradient(0deg, rgb(0 0 0 / 20%), rgb(0 0 0 / 20%));
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
   border-radius: 8px;
 
   transition: all 0.5s;
@@ -82,12 +82,15 @@
 .direction > span {
   overflow: hidden;
   display: inline-block;
-  display: -webkit-box;
+
+  width: 100%;
 
   font-size: 15px;
   font-weight: 500;
   line-height: 20px;
+  text-overflow: ellipsis;
   letter-spacing: 0.16px;
+  white-space: nowrap;
 
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;

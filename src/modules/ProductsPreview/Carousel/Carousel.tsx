@@ -2,11 +2,13 @@ import { FC, Children } from 'react';
 
 import cn from 'classnames';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { SwiperProps, SwiperSlideProps } from 'swiper/react/swiper-react';
 
-import 'swiper/swiper.min.css';
-import { CarouselProps } from './Carousel.props';
+interface ICarousel extends SwiperProps {
+  slideProps?: SwiperSlideProps;
+}
 
-export const Carousel: FC<CarouselProps> = props => {
+export const Carousel: FC<ICarousel> = props => {
   const { className, children, slideProps, ...restProps } = props;
 
   return (
