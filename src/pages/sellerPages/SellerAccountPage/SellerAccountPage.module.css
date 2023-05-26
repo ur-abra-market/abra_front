@@ -182,29 +182,6 @@
   margin-top: 32px;
 }
 
-.link_wrapper {
-  display: flex;
-  flex-flow: column;
-}
-
-.link,
-.link_description {
-  font-size: var(--fp);
-  font-weight: var(--regular);
-  font-style: normal;
-  line-height: var(--fh4);
-  color: var(--color-accent);
-  text-align: left;
-}
-
-.link {
-  text-decoration: underline;
-}
-
-.link_description {
-  color: var(--color-black);
-}
-
 .category_wrapper {
   position: relative;
   top: 0;

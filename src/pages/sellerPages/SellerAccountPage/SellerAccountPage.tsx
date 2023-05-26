@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import cn from 'classnames';
 import { useForm } from 'react-hook-form';
-import { Link, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
@@ -10,6 +10,7 @@ import { ButtonLogOut } from 'components/ButtonLogOut/ButtonLogOut';
 import FeedbackForm from 'components/feedbacks/FeedbackForm';
 import UploadFile from 'components/UploadFile/UploadFile';
 import { Action } from 'services/user/user.service';
+import { AccountManagementLink } from 'components';
 import {
   getSellerAddressesService,
   getSellerInfoService,
@@ -23,11 +24,11 @@ import {
   Button,
   ButtonInfo,
   Checkbox,
+  Container,
   Input,
   ISelectOption,
   Label,
   Select,
-  Container,
 } from 'ui-kit';
 
 import { Address } from './Address/Address';
@@ -44,7 +45,7 @@ type FormValues = {
 
 export const SellerAccountPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const isAuth = useAppSelector(state => state.login.isAuth);
+  // const isAuth = useAppSelector(state => state.login.isAuth);
   const isFeedbackOpen = useAppSelector(state => state.app.isFeedbackOpen);
 
   const { first_name, last_name } = useAppSelector(state => state.seller.userProfileInfo);
@@ -116,9 +117,9 @@ export const SellerAccountPage = (): JSX.Element => {
     });
   }, [first_name, last_name, reset]);
 
-  if (!isAuth) {
-    return <Navigate to="/auth" />;
-  }
+  // if (!isAuth) {
+  //   return <Navigate to="/auth" />;
+  // }
 
   return (
     <div className={style.seller_page}>
@@ -175,30 +176,21 @@ export const SellerAccountPage = (): JSX.Element => {
                 </form>
               </div>
 
-              <div className={cn(style.link_wrapper, style.section)}>
-                <Link className={style.link} to="/changeEmail">
-                  Change your email
-                </Link>
-                <div className={style.link_description}>
-                  (All your data including order history will be deleted)
-                </div>
-              </div>
-              <div className={cn(style.link_wrapper, style.section)}>
-                <Link className={style.link} to="/changePassword">
-                  Change your password
-                </Link>
-                <div className={style.link_description}>
-                  (All your data including order history will be deleted)
-                </div>
-              </div>
-              <div className={cn(style.link_wrapper, style.section)}>
-                <Link className={style.link} to="/">
-                  Remove the account?
-                </Link>
-                <div className={style.link_description}>
-                  (All your data including order history will be deleted)
-                </div>
-              </div>
+              <AccountManagementLink
+                linkLabel="Change your email"
+                path="/changeEmail"
+                description="(You will have to confirm a new email)"
+              />
+              <AccountManagementLink
+                linkLabel=" Change your password"
+                path="/changePassword"
+                description="(In case if you forgot a current password or need a stronger one)"
+              />
+              <AccountManagementLink
+                linkLabel=" Remove the account?"
+                path="/" // todo fix
+                description="(All your data including order history will be deleted)"
+              />
             </div>
 
             <div className={style.center_column}>

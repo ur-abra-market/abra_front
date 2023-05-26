@@ -34,14 +34,14 @@
 
 :root {
   /* -------colors------ */
-  --color-black: #000000;
+  --color-black: #000;
   --color-dark-gray: #4E4E4E;
   --color-medium-gray: #828282;
-  --color-grey-innactive: #999999;
+  --color-grey-innactive: #999;
   --color-gray: #D4D4D4;
   --color-light-gray: #F4F4F4;
   --color-super-light-gray: #F9F9F9;
-  --color-white: #FFFFFF;
+  --color-white: #FFF;
   --color-rating-star:#FFAB5E;
   --color-accent: #FC133D;
   --color-green:#34E145;
@@ -55,7 +55,23 @@
   --fp: 15px;
   --fs: 13px;
 
-  /* -------font------ */
+  /* -------font-sizes------ */
+  --fz-xxs: 10px;    /* Extra Extra Small */
+  --fz-xs: 12px;     /* Extra Small */
+  --fz-xs2: 13px;    /* Extra Small 2 */
+  --fz-s: 14px;      /* Small */
+  --fz-s2: 15px;     /* Small 2 */
+  --fz-m: 16px;      /* Medium */
+  --fz-m2: 17px;     /* Medium 2 */
+  --fz-l: 18px;      /* Large */
+  --fz-l2: 20px;     /* Large 2 */
+  --fz-xl: 24px;     /* Extra Large */
+  --fz-xl2: 25px;    /* Extra Large 2 */
+  --fz-xxl: 28px;    /* Extra Extra Large */
+  --fz-xxl2: 34px;   /* Extra Extra Large 2 */
+  --fz-xxxl: 40px;   /* Extra Extra Extra Large */
+
+  /* -------font-weights------ */
   --roboto: 'Roboto';
   --light: 300;
   --regular: 400;
@@ -91,26 +107,31 @@ input::-webkit-inner-spin-button {
   appearance: none;
 }
 
+/* stylelint-disable selector-no-qualifying-type */
 input[type='number'] {
   appearance: textfield;
 }
 
 body {
   font-family: Roboto, sans-serif;
-  font-weight: normal;
+  font-weight: var(--regular);
   font-style: normal;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3, h4, h5, h6, p, span, a, div {
+  line-height: 100%;
+}
+
 h1 {
-  font-size: var(--fh1);
+  font-size: var(--fz-xxxl);
   letter-spacing: 0.41px;
 }
 
 h2 {
-  font-size: var(--fh2);
+  font-size:  var(--fz-xxl2);
   letter-spacing: 0.41px;
 }
 

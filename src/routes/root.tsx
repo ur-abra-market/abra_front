@@ -4,7 +4,6 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import {
   AboutUsPage,
-  AuthPage,
   ChangeEmailPage,
   ChangePasswordPage,
   ConfirmEmailPage,
@@ -19,6 +18,8 @@ import {
   TermsAndConditionsPage,
   TutorialPage,
   CheckEmailPage,
+  LoginPage,
+  RegisterPage,
 } from '../pages/commonPages';
 
 import { sellerRoute } from './sellerRoute';
@@ -42,8 +43,12 @@ export function createRoutes(userRole: userRoleType): Routes {
       children: [
         ...child,
         {
-          path: 'auth',
-          element: <AuthPage />,
+          path: 'register',
+          element: <RegisterPage />,
+        },
+        {
+          path: 'login',
+          element: <LoginPage />,
         },
         {
           path: 'forgotPassword',

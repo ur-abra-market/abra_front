@@ -1,0 +1,29 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 100%;
+  max-width: 396px;
+  margin-bottom: 24px;
+}
+
+.buttons_container_user_role {
+  display: flex;
+  width: 100%;
+  border: 1px solid var(--color-gray);
+  border-radius: 12px;
+}
+
+.button_user_role {
+  width: 50%;
+}
+
+.input_password {
+  width: 100%;
+  margin-bottom: 14px;
+}
+
+.button_submit {
+  margin-top: 10px;
+}
