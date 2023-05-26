@@ -1,12 +1,12 @@
-import React from 'react';
-
 import cn from 'classnames';
 
-import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
-import { activeNum } from '../../../../../store/reducers/productPaginateSlice';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { activeNum } from 'store/reducers/productPaginateSlice';
 
 import style from './PaginatorProduct.module.css';
+
+import { ArrowLeftIcon, ArrowRightIcon } from 'assets/icons'; // 24px
 
 const PaginatorProduct = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -46,7 +46,7 @@ const PaginatorProduct = (): JSX.Element => {
         className={style.left}
         onClick={() => (activePage > 1 ? handlePage(activePage - 1) : false)}
       >
-        <div className={style.left_arrow} />
+        <ArrowLeftIcon className={style.left_arrow} />
       </div>
       <div className={style.numbers}>
         <div
@@ -85,7 +85,7 @@ const PaginatorProduct = (): JSX.Element => {
         className={style.right}
         onClick={() => (activePage < amountPages ? handlePage(activePage + 1) : false)}
       >
-        <div className={style.right_arrow} />
+        <ArrowRightIcon className={style.right_arrow} />
       </div>
     </div>
   );

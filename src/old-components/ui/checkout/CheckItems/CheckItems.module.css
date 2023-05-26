@@ -3,17 +3,20 @@
   border-radius: 12px;
 }
 
-.check_items > h4 {
+.check_items>h4 {
   margin-top: 32px;
   margin-bottom: -8px;
 }
-.check_items_container{
+
+.check_items_container {
   padding: 0 32px;
 
 }
-.check_items_title{
+
+.check_items_title {
   padding-top: 29px;
 }
+
 .check_items {
   display: flex;
   flex-direction: column;
@@ -63,8 +66,6 @@
   margin-top: 20px;
   margin-bottom: 32px;
 }
-
-
 
 .check_items_product_info {
   display: flex;
@@ -120,33 +121,36 @@
   width: 4px;
   height: 4px;
   margin: 0 24px;
-
-  background: url('../../../../assets/img/icons/dot.svg');
   border-radius: 50%;
-
 }
-.check_items_block_rating{
+
+.check_items_block_rating {
   display: flex;
   align-items: center;
 }
-.check_items_start{
+
+.check_items_start {
   margin-right: 4px;
 }
-.check_items_rating{
+
+.check_items_rating {
   margin-right: 8px;
 }
-.check_items_text_product{
+
+.check_items_text_product {
   padding-right: 12px;
   font-size: 15px;
   font-weight: 400;
   line-height: 20px;
 }
-.check_items_line{
+
+.check_items_line {
   width: 58%;
   margin-bottom: 5px;
   border-bottom: 1px solid #000000;
 }
-.check_items_line_new_price{
+
+.check_items_line_new_price {
   position: absolute;
   right: 77px;
   bottom: 9px;
@@ -155,7 +159,8 @@
 
   border-bottom: 1px solid #FC133D;
 }
-.check_items_new_price{
+
+.check_items_new_price {
   padding-left: 8px;
 
   font-size: 15px;

@@ -1,18 +1,10 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import ShowPage from '../../../old-components/ShowPage';
 import { Checkbox, Input, ISelectOption, Search, Select } from '../../../ui-kit';
 
-import EditIcon from 'assets/img/icons/edit-pencil-in-circle.svg';
-import imageProduct from 'assets/images/product.png';
-import star from 'assets/img/icons/star-filled.svg';
-import { ReactComponent as TableLayout } from 'assets/img/icons/view-list-disabled.svg';
-import { ReactComponent as TileLayout } from 'assets/img/icons/view-grid-disabled.svg';
-import { ReactComponent as VectorUp } from 'assets/img/icons/arrow-up.svg'; // 14 8px
-import { ReactComponent as VectorDown } from 'assets/img/icons/arrow-down.svg'; // 14 8px
-import ViewIcon from 'assets/img/icons/eye-hidden.svg';
 import Modal from 'components/Modal';
 import Table from 'old-components/table';
 import Pagination from 'old-components/ui/Pagination';
@@ -22,6 +14,9 @@ import {
   deleteProducts,
   manageProductsService,
 } from 'store/reducers/manageProductsSlice';
+
+import imageProduct from 'assets/images/files/banner2.png'; //! need to rewrite
+import { EditPencilInCircleIcon, ViewListDisabledIcon, ViewGridDisabledIcon, ArrowUpIcon, ArrowDownIcon, EyeHiddenIcon, StarFilledIcon } from 'assets/icons';
 
 export const CATEGORY_SELECT: ISelectOption[] = [
   { label: 'S', value: '1' },
@@ -164,16 +159,16 @@ export const ProductsListPage: FC = (): JSX.Element => {
             Show filters
           </span>
           {!restFilters ? (
-            <VectorDown onClick={handleRestFiltersSet} />
+            <ArrowDownIcon onClick={handleRestFiltersSet} />
           ) : (
             <>
-              <VectorUp onClick={handleRestFiltersSet} className={style.vector_up} />
+              <ArrowUpIcon onClick={handleRestFiltersSet} className={style.vector_up} />
               <div className={style.reset_link}>Reset Filters</div>
             </>
           )}
         </div>
         <div className={style.layouts}>
-          <TileLayout
+          <ViewGridDisabledIcon
             onClick={handleLayoutSet}
             className={
               layout === 'tileLayout'
@@ -181,7 +176,7 @@ export const ProductsListPage: FC = (): JSX.Element => {
                 : `${style.inactive_layout}`
             }
           />
-          <TableLayout
+          <ViewListDisabledIcon
             onClick={handleLayoutSet}
             className={
               layout === 'tableLayout'
@@ -258,10 +253,10 @@ export const ProductsListPage: FC = (): JSX.Element => {
               <img src={item.image} alt="product img" />
               <div className={style.view_and_edit_wrapper}>
                 <div className={style.icon_background}>
-                  <img src={ViewIcon} alt="ViewIcon" />
+                  <EyeHiddenIcon />
                 </div>
                 <div className={style.icon_background}>
-                  <img src={EditIcon} alt="EditIcon" />
+                  <EditPencilInCircleIcon />
                 </div>
               </div>
               <div className={style.product_name}>{item.name}</div>
@@ -271,11 +266,11 @@ export const ProductsListPage: FC = (): JSX.Element => {
               </div>
               <div className={style.other_info}>
                 <div className={style.rating}>
-                  <img src={star} alt="star" />
-                  <img src={star} alt="star" />
-                  <img src={star} alt="star" />
-                  <img src={star} alt="star" />
-                  <img src={star} alt="star" />
+                  <StarFilledIcon />
+                  <StarFilledIcon />
+                  <StarFilledIcon />
+                  <StarFilledIcon />
+                  <StarFilledIcon />
                 </div>
               </div>
             </div>

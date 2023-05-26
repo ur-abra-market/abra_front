@@ -1,9 +1,8 @@
-import React, { FC } from 'react';
-
-import arrowDown from '../../../assets/img/icons/sort-arrow-down.svg';
-import arrowUp from '../../../assets/img/icons/sort-arrow-up.svg';
+import { FC } from 'react';
 
 import style from './TableHeader.module.css';
+
+import { SortArrowDownIcon, SortArrowUpIcon } from 'assets/icons';
 
 interface TableHeaderProps {
   columns: any[];
@@ -50,8 +49,8 @@ const TableHeader: FC<TableHeaderProps> = ({
               // @ts-ignore
               !(columns[column].name === 'Detail') && columns[column].path && (
                 <span className={style.arrow_wrapper}>
-                  <img src={arrowUp} alt="arrowUp" />
-                  <img src={arrowDown} alt="arrowDown" />
+                  <SortArrowUpIcon />
+                  <SortArrowDownIcon />
                 </span>
               )
             }

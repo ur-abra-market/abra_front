@@ -1,9 +1,8 @@
 import React, { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react';
 
-import eyeHiddenPassword from '../../assets/img/icons/eye-hidden.svg';
-import eyeVisiblePassword from '../../assets/img/icons/eye-visible.svg';
-
 import style from './TextField.module.css';
+
+import { EyeHiddenIcon, EyeVisibleIcon } from 'assets/icons';
 
 interface TextFieldProps {
   label?: string;
@@ -63,8 +62,8 @@ const TextField: FC<TextFieldProps> = (props): JSX.Element => {
             name !== 'password'
               ? classes.input
               : classes.password
-              ? classes.password.inputTextFieldPassword
-              : style.input_text_field_password
+                ? classes.password.inputTextFieldPassword
+                : style.input_text_field_password
           }
           placeholder={placeholder}
           {...inputProps}
@@ -77,15 +76,11 @@ const TextField: FC<TextFieldProps> = (props): JSX.Element => {
             onClick={e => toggleShowPassword(e)}
           >
             {showPassword ? (
-              <img
-                src={eyeVisiblePassword}
-                alt="eyeVisiblePassword"
+              <EyeHiddenIcon
                 className={style.show_password_btn_img}
               />
             ) : (
-              <img
-                src={eyeHiddenPassword}
-                alt="eyeHiddenPassword"
+              <EyeVisibleIcon
                 className={style.show_password_btn_img}
               />
             )}

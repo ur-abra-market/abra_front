@@ -1,11 +1,9 @@
-import React from 'react';
-
 import { useNavigate } from 'react-router-dom';
 
-import { ReactComponent as Lock } from '../../../../assets/img/icons/lock.svg';
 import { Button } from '../../../../ui-kit';
-
 import style from './CheckOrder.module.css';
+
+import { LockIcon } from 'assets/icons';
 
 const CheckOrder = (): JSX.Element => {
   const navigate = useNavigate();
@@ -42,7 +40,7 @@ const CheckOrder = (): JSX.Element => {
         Please make sure the information entered is correct before proceeding.
       </div>
       <div className={style.check_order_security}>
-        <Lock className={style.check_order_security_lock} />
+        <LockIcon className={style.check_order_security_lock} />
         <span className={style.check_order_security_text}>
           Your data and orders are secured
         </span>

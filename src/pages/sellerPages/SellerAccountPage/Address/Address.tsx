@@ -1,12 +1,12 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 
-import { ReactComponent as Edit } from '../../../../assets/img/icons/pencil-edit.svg';
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
-import Check from '../../../../old-components/Check';
-import { EditAddressModal } from '../../../../old-components/ui/popup/EdtiAddressModal/EditAddressModal';
-import { SellerAddressData } from '../../../../services/seller/seller.serviceTypes';
-
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import Check from 'old-components/Check';
+import { EditAddressModal } from 'old-components/ui/popup/EdtiAddressModal/EditAddressModal';
+import { SellerAddressData } from 'services/seller/seller.serviceTypes';
 import style from './Address.module.css';
+
+import { EditPencilIcon } from 'assets/icons';
 
 interface AddressProps {
   address: SellerAddressData;
@@ -43,7 +43,7 @@ export const Address: FC<AddressProps> = ({ address }): JSX.Element => {
           {first_name} {last_name},{phone}
           {address.building}
         </div>
-        <Edit className={style.address_content_edit} onClick={onClickModal} />
+        <EditPencilIcon className={style.address_content_edit} onClick={onClickModal} />
       </div>
       <span className={style.address_content_line} />
       <div className={style.address_place}>{arrFilter.join(' ')}</div>

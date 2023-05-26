@@ -60,7 +60,7 @@
 
 .checkbox:checked {
   background-color: #FC133D;
-  background-image: url('../../../assets/img/icons/check-mark-white.svg');
+  background-image: url('../../../assets/icons/files/check-mark-white.svg');
   background-repeat: no-repeat;
   background-position: center;
   border: none;

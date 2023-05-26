@@ -10,7 +10,7 @@ import { Stars } from '../../ui-kit';
 import style from './ProductCard.module.css';
 import { IProductCard } from './ProductCard.props';
 
-import { ReactComponent as LoupeIcon } from 'assets/img/icons/magnifier-light-grey.svg';
+import { MagnifierLightGreyIcon } from 'assets/icons';
 
 export const ProductCard: FC<IProductCard> = ({
   product,
@@ -28,7 +28,7 @@ export const ProductCard: FC<IProductCard> = ({
         <img src={image_url || ''} alt={name} />
         <span className={style.hover}>
           <span className={style.hover_text}>
-            <LoupeIcon />
+            <MagnifierLightGreyIcon />
             <span>Quick View</span>
           </span>
         </span>

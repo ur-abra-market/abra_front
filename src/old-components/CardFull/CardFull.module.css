@@ -96,15 +96,6 @@
   border-radius: 4px;
 }
 
-.card_full_basket > div {
-  width: 24px;
-  height: 24px;
-
-  background-image: url('../../assets/img/icons/header-cart.svg');
-  background-position: center;
-  background-size: 24px;
-}
-
 .button_new_best {
   display: block;
 

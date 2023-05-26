@@ -2,10 +2,7 @@ import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import { ReactComponent as Google } from '../../../../assets/img/icons/google.svg';
-import { ReactComponent as Instagram } from '../../../../assets/img/icons/instagram.svg';
-import { ReactComponent as Telegram } from '../../../../assets/img/icons/telegram.svg';
-import { ReactComponent as Vk } from '../../../../assets/img/icons/vk.svg';
+import { GoogleIcon, InstagramIcon, TelegramIcon, VkIcon } from 'assets/icons';
 
 import style from './Social.module.css';
 
@@ -13,10 +10,10 @@ export interface SocialProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 const LINKS = [
-  { href: 'https://telegram.com', icon: Telegram },
-  { href: 'https://instagram.com', icon: Instagram },
-  { href: 'https://vk.com', icon: Vk },
-  { href: 'https://google.com', icon: Google },
+  { href: 'https://telegram.com', icon: TelegramIcon },
+  { href: 'https://instagram.com', icon: InstagramIcon },
+  { href: 'https://vk.com', icon: VkIcon },
+  { href: 'https://google.com', icon: GoogleIcon },
 ];
 
 export const Social: FC<SocialProps> = ({ className }): JSX.Element => {

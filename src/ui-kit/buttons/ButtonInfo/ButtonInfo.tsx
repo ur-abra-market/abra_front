@@ -1,11 +1,12 @@
-import React, { FC, ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+import { FC, ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { toggleInfoForm } from 'store/reducers/appSlice';
 
 import cn from 'classnames';
-
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { toggleInfoForm } from '../../../store/reducers/appSlice';
-
 import styles from './ButtonInfo.module.css';
+
+import { ContactUsQuestionMarkIcon } from 'assets/icons';
 
 export interface IButtonInfo
   extends Omit<
@@ -23,7 +24,7 @@ export const ButtonInfo: FC<IButtonInfo> = ({ className, ...restProps }): JSX.El
       onClick={() => dispatch(toggleInfoForm())}
       {...restProps}
     >
-      <div className={styles.icon} />
+      <ContactUsQuestionMarkIcon className={styles.icon} />
     </button>
   );
 };

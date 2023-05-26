@@ -1,24 +1,24 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import cn from 'classnames';
 import { useForm } from 'react-hook-form';
 import { Link, Navigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
-import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
-import UploadFile from '../../../components/UploadFile/UploadFile';
-import { Action } from '../../../services/user/user.service';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { ButtonLogOut } from 'components/ButtonLogOut/ButtonLogOut';
+import FeedbackForm from 'components/feedbacks/FeedbackForm';
+import UploadFile from 'components/UploadFile/UploadFile';
+import { Action } from 'services/user/user.service';
 import {
   getSellerAddressesService,
   getSellerInfoService,
   sendSellerInfoService,
-} from '../../../store/reducers/sellerSlice';
+} from 'store/reducers/sellerSlice';
 import {
   getUserNotificationsService,
   updateUserNotificationService,
-} from '../../../store/reducers/userSlice';
+} from 'store/reducers/userSlice';
 import {
   Button,
   ButtonInfo,
@@ -28,7 +28,7 @@ import {
   Label,
   Select,
   Container,
-} from '../../../ui-kit';
+} from 'ui-kit';
 
 import { Address } from './Address/Address';
 import style from './SellerAccountPage.module.css';

@@ -1,8 +1,9 @@
-import React, { FC } from 'react';
-
-import { HangerIcon, StarIcon } from '../../../../assets/images';
+import { FC } from 'react';
 
 import style from './StatusSeller.module.css';
+
+import { HangerImage } from 'assets/images';
+import { StarEmptyIcon, ArrowRightIcon } from 'assets/icons';
 
 interface StatusSellerProps {
   supplierInfo: any;
@@ -14,13 +15,13 @@ const StatusSeller: FC<StatusSellerProps> = ({ supplierInfo }): JSX.Element => {
     <div className={style.status_seller}>
       <div className={style.status_seller_basic}>
         <div className={style.status_seller_avatar}>
-          <HangerIcon />
+          <HangerImage />
         </div>
         <div className={style.status_seller_person}>
           <h4 className={style.status_seller_person_name}>{supplierInfo?.name}</h4>
           <div className={style.status_seller_person_reward}>
             <div className={style.status_seller_status}>
-              <StarIcon />
+              <StarEmptyIcon />
             </div>
             <div className={style.status_seller_numbers}>
               {supplierInfo?.grade_average}
@@ -36,7 +37,7 @@ const StatusSeller: FC<StatusSellerProps> = ({ supplierInfo }): JSX.Element => {
         {/*  <p>{total_deals} Deals</p> */}
         {/* </div> */}
       </div>
-      <div className={style.status_seller_btn} />
+      <ArrowRightIcon className={style.status_seller_btn} />
     </div>
   );
 };

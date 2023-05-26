@@ -1,6 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import style from './Check.module.css';
+
+import { CheckMarkWhiteIcon } from 'assets/icons';
 
 interface CheckProps {
   label?: string;
@@ -28,7 +30,7 @@ const Check: FC<CheckProps> = ({ label }): JSX.Element => {
   return (
     <div role="presentation" className={style.check} onClick={() => handlerCheck()}>
       <div className={style.check_box} style={{ background }}>
-        {check && <div className={style.check_box_mark} />}
+        {check && <CheckMarkWhiteIcon className={style.check_box_mark} />}
       </div>
       <div className={style.check_label}>{label}</div>
     </div>

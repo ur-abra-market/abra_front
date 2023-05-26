@@ -7,16 +7,15 @@
   font-size: var(--fp);
   line-height: 24px;
 }
+
 .left_arrow {
   width: 24px;
   height: 24px;
-  background: url('../../../../../assets/img/icons/arrow-left.svg'); /* 24px */
 }
 
 .right_arrow {
   width: 24px;
   height: 24px;
-  background: url('../../../../../assets/img/icons/arrow-right.svg'); /* 24px */
 }
 
 .left,
@@ -39,7 +38,8 @@
 
   width: fit-content;
 }
-.numbers > div {
+
+.numbers>div {
   width: 24px;
   height: 25px;
   line-height: 25px;

@@ -1,14 +1,14 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { ReactComponent as Exit } from '../../../../assets/img/icons/cross-red.svg'; // 16px
-import { Button, Input } from '../../../../ui-kit';
+import { Button, Input } from 'ui-kit';
 import Check from '../../../Check';
-
 import style from './PaymentPopup.module.css';
+
+import { CrossRedIcon } from 'assets/icons'; // 16px
 
 interface FormCardType {
   card_number: number;
@@ -57,7 +57,7 @@ const PaymentPopup: FC<PaymentPopupType> = ({ modal, setModal }): JSX.Element =>
         <div className={style.payment_popup_row1}>
           <h4 className={style.payment_popup_title_text}>Add Payment Card</h4>
           <Check label="Save the address for next orders" />
-          <Exit
+          <CrossRedIcon
             className={style.payment_popup_modal_exit}
             onClick={onClickModalHandler}
           />

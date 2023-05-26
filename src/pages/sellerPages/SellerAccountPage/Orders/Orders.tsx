@@ -1,14 +1,8 @@
-import React from 'react';
-
 import { Link } from 'react-router-dom';
-
-import { Button } from '../../../../ui-kit';
-
-import { ReactComponent as ShippedIcon } from 'assets/img/icons/order-status-shipped.svg';
-import { ReactComponent as ToBeReviewedIcon } from 'assets/img/icons/order-status-to-be-reviewed.svg';
-import { ReactComponent as ToBeShippedIcon } from 'assets/img/icons/order-status-to-be-shipped.svg';
-import { ReactComponent as UnPaidIcon } from 'assets/img/icons/order-status-unpaid.svg';
+import { Button } from 'ui-kit';
 import style from 'pages/sellerPages/SellerAccountPage/SellerAccountPage.module.css';
+
+import { OrderStatusShippedIcon, OrderStatusToBeReviewedIcon, OrderStatusToBeShippedIcon, OrderStatusUnpaidIcon, OrderStatusCompletedIcon } from 'assets/icons';
 
 const Orders = (): JSX.Element => {
   return (
@@ -22,23 +16,23 @@ const Orders = (): JSX.Element => {
       <div className={style.category_wrapper}>
         <Button color="white" className={style.orders_button}>
           <div className={style.button_title}>Unpaid</div>
-          <UnPaidIcon />
+          <OrderStatusUnpaidIcon />
         </Button>
         <Button color="white" className={style.orders_button}>
           <div className={style.button_title}>To be shipped</div>
-          <ToBeShippedIcon />
+          <OrderStatusToBeShippedIcon />
         </Button>
         <Button color="white" className={style.orders_button}>
           <div className={style.button_title}>Shipped</div>
-          <ShippedIcon />
+          <OrderStatusShippedIcon />
         </Button>
         <Button color="white" className={style.orders_button}>
           <div className={style.button_title}>To be reviewed</div>
-          <ToBeReviewedIcon />
+          <OrderStatusToBeReviewedIcon />
         </Button>
         <Button color="white" className={style.orders_button}>
           <div className={style.button_title}>To be reviewed</div>
-          <div className={style.completed_icon} />
+          <OrderStatusCompletedIcon className={style.completed_icon} />
         </Button>
       </div>
     </>

@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { useDispatch } from 'react-redux';
-
 import { active } from '../../../store/reducers/paginateSlice';
-
 import styles from './Pagination.module.css';
+
+import { ArrowLeftIcon, ArrowRightIcon } from 'assets/icons'; // 24px
+
 
 interface PaginationProps {
   activePage: number;
@@ -45,7 +46,7 @@ const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
         className={styles.paginator_product_left}
         onClick={() => (activePage > 1 ? handlePage(activePage - 1) : false)}
       >
-        <div className={styles.paginator_product_left_arrow} />
+        <ArrowLeftIcon className={styles.paginator_product_left_arrow} />
       </div>
       <div className={styles.paginator_product_numbers}>
         <div
@@ -83,7 +84,7 @@ const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
         className={styles.paginator_product_right}
         onClick={() => (activePage < amountPages ? handlePage(activePage + 1) : false)}
       >
-        <div className={styles.paginator_product_right_arrow} />
+        <ArrowRightIcon className={styles.paginator_product_right_arrow} />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import { ReactComponent as WhatsAppIcon } from '../../../../assets/img/icons/whatsapp.svg';
+import { WhatsappIcon } from 'assets/icons';
 
 import style from './WhatsApp.module.css';
 
@@ -21,7 +21,7 @@ export const WhatsApp: FC<IWhatsApp> = (props): JSX.Element => {
         target="_blank"
         rel="noreferrer"
       >
-        <WhatsAppIcon className={style.icon} />
+        <WhatsappIcon className={style.icon} />
         <span>+79385656431</span>
       </a>
     </div>

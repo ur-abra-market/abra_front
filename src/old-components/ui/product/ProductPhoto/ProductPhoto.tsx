@@ -1,6 +1,8 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import style from './ProductPhoto.module.css';
+
+import { ArrowUpIcon, ArrowDownIcon } from 'assets/icons'; // 24px
 
 interface ProductPhotoProps {
   photoArray: any[];
@@ -47,7 +49,7 @@ const ProductPhoto: FC<ProductPhotoProps> = ({ photoArray }): JSX.Element => {
     <div className={style.product_photo}>
       <div className={style.photo_slider}>
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-        <div className={style.photo_slider_btn_up} onClick={moveUp} />
+        <ArrowUpIcon className={style.photo_slider_btn_up} onClick={moveUp} />
         <div className={style.photo_slider_slides} style={{ height }}>
           <div
             className={style.photo_slider_list}
@@ -75,7 +77,7 @@ const ProductPhoto: FC<ProductPhotoProps> = ({ photoArray }): JSX.Element => {
           </div>
         </div>
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-        <div className={style.photo_slider_btn_down} onClick={moveDown} />
+        <ArrowDownIcon className={style.photo_slider_btn_down} onClick={moveDown} />
       </div>
       <div className={style.photo_image}>
         {/* <img src={`${baseurl}/${slides[len + 1 - count]}`} alt="ptoduct" /> */}

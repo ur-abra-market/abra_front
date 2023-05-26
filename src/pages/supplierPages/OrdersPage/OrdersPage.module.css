@@ -24,7 +24,7 @@
   width: 16px;
   height: 16px;
 
-  background: url('../../../assets/img/icons/magnifier-dark-grey.svg');
+  background: url('../../../assets/icons/files/magnifier-dark-grey.svg'); /* using pseudoelement, need to rewrite I think */
   background-size: cover;
 }
 

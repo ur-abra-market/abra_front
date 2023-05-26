@@ -1,9 +1,9 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 
 import cn from 'classnames';
-
 import style from './Flag.module.css';
-import { ReactComponent as FlagIcon } from 'assets/icons/favourites-add-to.svg';
+
+import { FavouriteAddedToIcon } from 'assets/icons';
 
 interface FlagProps {
   className?: string;
@@ -21,7 +21,7 @@ const Flag: FC<FlagProps> = ({ className, isFavorite }): JSX.Element => {
         setFlag(!flag);
       }}
     >
-      <FlagIcon className={flag ? style.active : ''} />
+      <FavouriteAddedToIcon className={flag ? style.active : ''} />
     </div>
   );
 };

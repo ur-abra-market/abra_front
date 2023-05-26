@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
-import { ButtonInfo } from '../../../../ui-kit';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { ButtonInfo } from 'ui-kit';
 import Card from '../../../Card';
 import CardFull from '../../../CardFull';
 import PaginatorProduct from '../../TypesView/product/PaginatorProduct';
 
 import style from './ProductList.module.css';
+
+import { ViewGridDisabledIcon, ViewListDisabledIcon } from 'assets/icons';
 
 const ProductList = (): JSX.Element => {
   const dataArr = useAppSelector(state => state.productPaginate.productsPage);
@@ -17,12 +19,12 @@ const ProductList = (): JSX.Element => {
     <div className={style.wrapper}>
       <div className={style.control}>
         <div className={style.control_btns}>
-          <div
+          <ViewGridDisabledIcon
             role="presentation"
             className={style.control_blocks}
             onClick={() => setList(false)}
           />
-          <div
+          <ViewListDisabledIcon
             role="presentation"
             className={style.control_list}
             onClick={() => setList(true)}

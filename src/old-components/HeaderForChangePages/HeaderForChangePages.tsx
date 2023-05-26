@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { Link } from 'react-router-dom';
 
-// import imgBtnHeader from '../../assets/img/icons/check-mark.svg';
+// import imgBtnHeader from 'assets/icons/files/check-mark.svg';
 // import { useAppSelector } from '../../store/hooks';
 // import { ButtonLink } from '../buttons';
 

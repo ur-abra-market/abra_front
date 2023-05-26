@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import { ReactComponent as ApplePay } from '../../../../assets/img/icons/apple-pay.svg';
-import { ReactComponent as GooglePay } from '../../../../assets/img/icons/google-pay.svg';
-import { ReactComponent as MasterCard } from '../../../../assets/img/icons/mastercard.svg';
-import { ReactComponent as PayPal } from '../../../../assets/img/icons/paypal.svg';
-import { ReactComponent as Visa } from '../../../../assets/img/icons/visa.svg';
 import PaymentPopup from '../../popup/PaymentPopup';
-
 import style from './CheckPayment.module.css';
+
+import { ApplePayIcon, GooglePayIcon, MastercardIcon, PaypalIcon, VisaIcon } from 'assets/icons';
 
 const CheckPayment = (): JSX.Element => {
   const [modal, setModal] = useState(false);
@@ -21,11 +17,11 @@ const CheckPayment = (): JSX.Element => {
       <div className={style.check_payment_block}>
         <h4 className={style.check_payment_title}>Payment Method</h4>
         <div className={style.check_payment_block_kind}>
-          <Visa className={style.icon} />
-          <MasterCard className={style.icon} />
-          <PayPal className={style.icon} />
-          <GooglePay className={style.icon} />
-          <ApplePay className={style.icon} />
+          <VisaIcon className={style.icon} />
+          <MastercardIcon className={style.icon} />
+          <PaypalIcon className={style.icon} />
+          <GooglePayIcon className={style.icon} />
+          <ApplePayIcon className={style.icon} />
           <span className={style.transfer_text}>Online Transfer</span>
         </div>
       </div>

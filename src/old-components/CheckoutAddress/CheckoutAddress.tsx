@@ -1,13 +1,13 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import cn from 'classnames';
 
-import { ReactComponent as Edit } from '../../assets/img/icons/edit-pencil.svg';
 import { SellerAddressData } from '../../services/seller/seller.serviceTypes';
 import { Checkbox } from '../../ui-kit';
 import { EditAddressModal } from '../ui/popup/EdtiAddressModal/EditAddressModal';
 
 import style from './CheckoutAddress.module.css';
+import { EditPencilIcon } from 'assets/icons';
 
 interface AddressProps {
   address: SellerAddressData;
@@ -49,7 +49,7 @@ const CheckoutAddress: FC<AddressProps> = ({
           {first_name} {last_name},{phone_number}
           {address.building}
         </div>
-        <Edit className={style.address_content_edit} onClick={openModal} />
+        <EditPencilIcon className={style.address_content_edit} onClick={openModal} />
       </div>
       <span className={style.address_content_line} />
       <span className={style.address_place}>

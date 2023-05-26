@@ -1,11 +1,10 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 
-import { ReactComponent as Product } from '../../../../assets/images/product1.png';
-import { ReactComponent as Start } from '../../../../assets/img/icons/star-filled.svg';
-import { ReactComponent as Vector } from '../../../../assets/img/icons/arrow-right.svg'; // 5 10px
 import { AddNotePopup } from '../../popup/AddNotePopup/AddNotePopup';
-
 import style from './CheckItems.module.css';
+
+import { Banner1Image } from 'assets/images';
+import { StarFilledIcon, ArrowRightIcon, DotIcon } from 'assets/icons';  // 5 10px for ArrowRightIcon
 
 interface CheckItemsProps {
   index: string;
@@ -26,10 +25,10 @@ const CheckItems: FC<CheckItemsProps> = ({ index }): JSX.Element => {
         {+index ? <></> : <h4 className={style.check_items_title}>Items to Order</h4>}
         <div className={style.check_items_block}>
           <div className={style.check_items_block_rating}>
-            <Start className={style.check_items_start} />
+            <StarFilledIcon />
             <span className={style.check_items_rating}>4.1</span>
             <div className={style.check_items_block_seller}>Ningbo Beilun Lonsyne</div>
-            <Vector />
+            <ArrowRightIcon />
           </div>
 
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
@@ -39,7 +38,7 @@ const CheckItems: FC<CheckItemsProps> = ({ index }): JSX.Element => {
           <AddNotePopup modal={modal} setModal={setModal} />
         </div>
         <div className={style.check_items_product}>
-          <Product />
+          <img src={Banner1Image} />
           <div className={style.check_items_product_info}>
             <div className={style.check_items_product_info_name}>
               Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes
@@ -65,7 +64,7 @@ const CheckItems: FC<CheckItemsProps> = ({ index }): JSX.Element => {
         <div className={style.check_items_delivery_info}>
           Estimated delivery: 27.07.2022
         </div>
-        <div className={style.check_items_delivery_point} />
+        <DotIcon className={style.check_items_delivery_point} />
         <div className={style.check_items_delivery_info}>
           Delivery method: Abra Shipment
         </div>

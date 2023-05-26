@@ -4,8 +4,7 @@ import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import { Swiper as SwiperType } from 'swiper';
 
-import { ReactComponent as ArrowLeft } from '../../assets/img/icons/arrow-left.svg'; // 24px
-import { ReactComponent as ArrowRight } from '../../assets/img/icons/arrow-right.svg'; // 24px
+import { ArrowLeftIcon, ArrowRightIcon } from 'assets/icons'; // 24px
 import { ButtonIcon } from '../../ui-kit';
 import { Carousel } from '../Carousel/Carousel';
 
@@ -54,7 +53,7 @@ export const ProductsPreview: FC<ProductsPreviewProps> = props => {
 
         <div className={style.buttons}>
           <ButtonIcon>
-            <ArrowLeft
+            <ArrowLeftIcon
               className={cn(style.icon_left, {
                 [style.disable]: swiperEl.current?.isBeginning,
               })}
@@ -63,7 +62,7 @@ export const ProductsPreview: FC<ProductsPreviewProps> = props => {
           </ButtonIcon>
 
           <ButtonIcon onClick={handleNext}>
-            <ArrowRight
+            <ArrowRightIcon
               className={cn(style.icon_right, {
                 [style.disable]: swiperEl.current?.isEnd,
               })}

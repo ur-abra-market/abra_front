@@ -1,9 +1,8 @@
-import React, { FC } from 'react';
-
-import ArrowDownLogo from '../../../assets/img/icons/arrow-down.svg'; // 24px
-import ArrowUpLogo from '../../../assets/img/icons/arrow-up.svg'; // 24px
+import { FC } from 'react';
 
 import { ISelectOption, SelectPositionType } from 'ui-kit';
+
+import { ArrowDownIcon, ArrowUpIcon } from 'assets/icons'; // 24px
 
 interface ISelectHeaderPropsType {
   isOpenMenu: boolean;
@@ -19,20 +18,9 @@ export const SelectHeader: FC<ISelectHeaderPropsType> = ({
   className,
   isOpenMenu,
   menuItemsPosition = 'down',
-}) => {
-  let currentArrowLogo;
-
-  if (menuItemsPosition === 'up') {
-    currentArrowLogo = isOpenMenu ? ArrowDownLogo : ArrowUpLogo;
-  }
-  if (menuItemsPosition === 'down') {
-    currentArrowLogo = isOpenMenu ? ArrowUpLogo : ArrowDownLogo;
-  }
-
-  return (
-    <div onClick={onClick} role="presentation" className={className}>
-      {currentSelectedValue.label}
-      <img src={currentArrowLogo} alt="currentArrowLogo" />
-    </div>
-  );
-};
+}) => (
+  <div onClick={onClick} role="presentation" className={className}>
+    {currentSelectedValue.label}
+    {isOpenMenu ? (menuItemsPosition === 'up' ? <ArrowDownIcon /> : <ArrowUpIcon />) : null}
+  </div>
+);

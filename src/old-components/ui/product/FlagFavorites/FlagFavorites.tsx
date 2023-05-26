@@ -1,11 +1,10 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import cn from 'classnames';
-
-import { Button } from '../../../../ui-kit';
-import { ReactComponent as FlagIcon } from 'assets/icons/favorites-add-to.svg';
+import { Button } from 'ui-kit';
 
 import style from './FlagFavorites.module.css';
+import { FavouriteAddedToIcon } from 'assets/icons';
 
 interface FlagFavoritesProps {
   onClick: any;
@@ -19,7 +18,7 @@ const FlagFavorites: FC<FlagFavoritesProps> = ({ active, onClick }): JSX.Element
       onClick={() => onClick(!active)}
     >
       <div className={style.flag_favorites_sign}>
-        <FlagIcon className={cn({ [style.active]: active })} />
+        <FavouriteAddedToIcon className={cn({ [style.active]: active })} />
       </div>
       <div
         className={style.flag_favorites_text}

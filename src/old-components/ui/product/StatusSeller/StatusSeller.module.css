@@ -28,7 +28,7 @@
   height: 50px;
 }
 
-.status_seller_person_name{
+.status_seller_person_name {
   margin-bottom: 6px;
 }
 
@@ -87,5 +87,4 @@
   cursor: pointer;
   width: 40px;
   height: 40px;
-  background: url('../../../../assets/img/icons/arrow-right.svg');
 }

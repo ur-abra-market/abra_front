@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
-
-import { StarIcon } from '../../../../assets/images';
+import { FC } from 'react';
 
 import style from './Reward.module.css';
+
+import { StarEmptyIcon } from 'assets/icons';
 
 interface RewardProps {
   star: boolean;
@@ -22,7 +22,7 @@ const Reward: FC<RewardProps> = ({ star, grade }) => {
   return (
     <div className={style.reward}>
       <div className={star ? `${style.reward_star}` : 'none-star'}>
-        <StarIcon />
+        <StarEmptyIcon />
       </div>
       <div
         className={style.reward_numbers}
