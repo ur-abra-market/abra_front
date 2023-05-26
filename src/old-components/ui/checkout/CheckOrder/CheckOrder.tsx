@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Button } from '../../../../ui-kit';
+
 import style from './CheckOrder.module.css';
 
 import { LockIcon } from 'assets/icons';

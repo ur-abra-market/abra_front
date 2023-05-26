@@ -4,14 +4,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import style from './AddressPopup.module.css';
+
+import { CrossRedIcon } from 'assets/icons'; // 16px
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { SellerAddressData } from 'services/seller/seller.serviceTypes';
-import { Button, Checkbox, Input, Select } from 'ui-kit';
 import { addAddress } from 'store/reducers/sellerCheckoutSlice';
-
-import style from './AddressPopup.module.css';
-import { CrossRedIcon } from 'assets/icons'; // 16px
-
+import { Button, Checkbox, Input, Select } from 'ui-kit';
 
 interface AddressPopupType {
   modal: boolean;

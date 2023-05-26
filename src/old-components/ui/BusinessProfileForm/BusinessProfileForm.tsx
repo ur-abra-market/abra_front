@@ -5,15 +5,16 @@ import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { useAppSelector } from 'common/hooks/useAppSelector';
-import { uploadUserLogoService } from 'store/reducers/userSlice';
-import { Button, Input, ISelectOption, Label, Select } from 'ui-kit';
 import FormTitle from '../../FormTitle';
 import ImageAdding from '../../ImageAdding';
 import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 
 import style from './BusinessProfileForm.module.css';
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { uploadUserLogoService } from 'store/reducers/userSlice';
+import { Button, Input, ISelectOption, Label, Select } from 'ui-kit';
 
 const date = new Date();
 const year = date.getFullYear();

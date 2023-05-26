@@ -1,10 +1,11 @@
 import { FC } from 'react';
 
 import cn from 'classnames';
-import { Button } from 'ui-kit';
 
 import style from './FlagFavorites.module.css';
+
 import { FavouriteAddedToIcon } from 'assets/icons';
+import { Button } from 'ui-kit';
 
 interface FlagFavoritesProps {
   onClick: any;

@@ -2,15 +2,15 @@ import { FC } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { SellerAddressData } from 'services/seller/seller.serviceTypes';
-import { Button, Input, Select } from 'ui-kit';
 import Check from '../../../Check';
-import { deleteAddress, editAddress } from 'store/reducers/sellerCheckoutSlice';
 
 import style from './EditAddressModal.module.css';
-import { DeleteTrashCanIcon, CrossRedIcon } from 'assets/icons'; // 16px for CrossRedIcon
 
+import { DeleteTrashCanIcon, CrossRedIcon } from 'assets/icons'; // 16px for CrossRedIcon
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { SellerAddressData } from 'services/seller/seller.serviceTypes';
+import { deleteAddress, editAddress } from 'store/reducers/sellerCheckoutSlice';
+import { Button, Input, Select } from 'ui-kit';
 
 interface EditAddressModalType {
   modal: boolean;
@@ -71,7 +71,10 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
               <span className={style.delete_address}>Remove Address</span>
             </div>
           </div>
-          <CrossRedIcon className={style.edit_address_modal_exit} onClick={onClickModalHandler} />
+          <CrossRedIcon
+            className={style.edit_address_modal_exit}
+            onClick={onClickModalHandler}
+          />
         </div>
         <div className={style.edit_address_block}>
           <div className={style.edit_address_block_title}>Recipient Info</div>

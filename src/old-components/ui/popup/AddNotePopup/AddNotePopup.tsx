@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { Button, Input } from '../../../../ui-kit';
+
 import style from './AddNotePopup.module.css';
 
 import { CrossRedIcon } from 'assets/icons'; // 16px
@@ -46,7 +47,10 @@ export const AddNotePopup: FC<AddNoteType> = ({ modal, setModal }) => {
       <div className={style.container}>
         <div className={style.header_container}>
           <h4 className={style.title}>Add a Note</h4>
-          <CrossRedIcon className={style.add_note_modal_exit} onClick={onClickModalHandler} />
+          <CrossRedIcon
+            className={style.add_note_modal_exit}
+            onClick={onClickModalHandler}
+          />
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className={style.content_box}>
           <span className={style.text}>Notes for Supplier</span>
