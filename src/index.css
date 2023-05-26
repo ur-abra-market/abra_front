@@ -46,15 +46,6 @@
   --color-accent: #FC133D;
   --color-green:#34E145;
 
-  /* -------fonts------ */
-  --fh1: 64px;
-  --fh2: 34px;
-  --fh3: 25px;
-  --fh4: 20px;
-  --fd: 20px;
-  --fp: 15px;
-  --fs: 13px;
-
   /* -------font-sizes------ */
   --fz-xxs: 10px;    /* Extra Extra Small */
   --fz-xs: 12px;     /* Extra Small */
@@ -136,11 +127,11 @@ h2 {
 }
 
 h3 {
-  font-size: var(--fh3);
+  font-size: var(--fz-xl2);
   letter-spacing: 0.38px;
 }
 
 h4 {
-  font-size: var(--fh4);
+  font-size: var(--fz-l2);
   letter-spacing: 0.38px;
 }

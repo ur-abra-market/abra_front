@@ -9,7 +9,7 @@
 .menu_item_active {
   cursor: pointer;
 
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: var(--medium);
   color: #000;
   letter-spacing: 0.16px;

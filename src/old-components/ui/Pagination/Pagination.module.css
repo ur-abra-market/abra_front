@@ -4,7 +4,7 @@
   gap: 10px;
 
   font-family: 'SF Pro Display Medium', sans-serif;
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   line-height: 24px;
 }
 

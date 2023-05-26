@@ -44,10 +44,10 @@
   margin-top: 32px;
   padding: 12px 32px;
 
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: var(--regular);
   font-style: normal;
-  line-height: var(--fh4);
+  line-height: var(--fz-l2);
   color: var(--color-black);
 
   background-color: rgba(252, 19, 61, 0.2);
