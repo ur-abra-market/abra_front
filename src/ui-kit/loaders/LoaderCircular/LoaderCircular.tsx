@@ -1,8 +1,8 @@
 import React from 'react';
 
-import style from './Loader.module.css';
+import style from './LoaderCircular.module.css';
 
-export const Loader = (): JSX.Element => {
+export const LoaderCircular = (): JSX.Element => {
   return (
     <div className={style.loader}>
       <div className={style.loader_indicator} />
