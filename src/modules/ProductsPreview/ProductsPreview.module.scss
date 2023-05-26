@@ -51,7 +51,11 @@
   height: 24px;
 }
 
-.disable path {
+.disable_button {
+  cursor: default;
+}
+
+.disable_button path {
   fill: var(--color-gray);
 }
 

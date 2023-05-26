@@ -10,5 +10,6 @@ export { Search } from './Search/Search';
 export { Loader } from './Loader/Loader';
 export { Stars } from './Stars/Stars';
 export { Container } from './Container/Container';
+export { ViewMoreProducts } from './ViewMoreProducts/ViewMoreProducts';
 export { SimpleLink } from './SimpleLink/SimpleLink';
 export { MainLogo } from './MainLogo/MainLogo';
