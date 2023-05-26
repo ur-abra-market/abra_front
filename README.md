@@ -1,20 +1,42 @@
-### Начало работы:
-- клонируйте проект: `git clone git@github.com:ur-org/abra_front.git`
-- если у вас еще не установлен Yarn, [установите](https://yarnpkg.com)
-- в проекте переключитесь на ветку dev: `git checkout dev`
-- установите зависимости проекта командой `yarn`
-- после установки зависимостей вы можете запустить проект командой `yarn start`
-- проект запускается по адресу http://localhost:3000
+### **Getting started**
+- clone the project: 
+```shell
+  git clone git@github.com:ur-org/abra_front.git
+```
+- if you haven't installed **yarn** yet, please [install](https://yarnpkg.com)
+- switch to **dev** branch: 
+```shell
+  git checkout dev
+```
+- install project dependencies: 
+```shell
+  yarn
+```
+- run the project: 
+```shell
+  yarn start
+```
+- the project is hosting and available on http://localhost:3000
+<br />
+<br />
+<br />
 
-### Рабочий процесс
-- Разработка ведется от ветки `dev`
-- Для начала работы над задачей создайте новую ветку от ветки `dev`, назовите ее по названию задачи. После завершения работы обновите ветку `dev` и сделайте мерж актуальной ветки `dev` в вашу рабочую ветку. Затем откройте `pull request`
-- Если вам требуется установить дополнительную библиотеку, используйте команду `yarn add <название библиотеки>`
-- Коммиты в git пишем по [этому гайдлайну](https://www.conventionalcommits.org/en/v1.0.0/)    
-  Кратко: названия коммитов начинаются с префиксов, их пишем с маленькой буквы, после знака двоеточия нужен пробел.    
-  Чаще всего это будут такие префиксы:
-    + feat: – реализованная новая функциональность:  добавил footer, добавил карточку продукта, добавил запрос или логику в компонент и т.д.
-    + fix: – исправил ошибку в ранее реализованной функциональности.
-    + refactor: – новой функциональности не добавлял/поведения не менял. Файлы в другие места положил, удалил, добавил. Изменил форматирование кода (white-space, formatting, missing semi-colons, etc). Улучшил алгоритм, без изменения функциональности.
 
-  Если эти префиксы не отражают суть вашей работы - можно использовать другие из гайдлайна (например delete, style и т.д.)
+### **Development**
+- all development is focused in **dev** branch
+- to start your task you have to create a new branch from the **dev** branch. A name for this branch gotta reflect your current task. When the task is done you must commit to your current branch, then switch to **dev** and pull all changes from it. Resolve merge conflicts, if there are any. Then create a new **pull request**.<br />
+❗ Don't forget to check if you're actually pointing to the **dev** branch!
+- if you need to install a third-party library, type: 
+```shell
+  yarn add <название библиотеки>
+```
+- Follow [this guide](https://www.conventionalcommits.org/en/v1.0.0/) to write the commit messages in the right way! <br />
+Briefly: add prefixes to the commit names, start them with a small letter and put the colon with the space (`': '`) after it at the end.<br />
+For example:
+  + **feat:** – new feature implemented (added footer, product card, some api request or component logic etc.)
+  + **fix:** – fixed some error(s).
+  + **refactor:** – removed, added or moved files, edited code formatting (white-space, formatting, missing semi-colons, etc), improved some algorithms etc.
+<br />
+<br />
+
+  See more prefixes in the guide above.
