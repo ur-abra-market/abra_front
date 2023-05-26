@@ -17,7 +17,7 @@
   line-height: 15px;
 
 
-  background: #F4F4F4 url("../../assets/icons/files/magnifier-dark-grey.svg") no-repeat 17px center;
+  background: #F4F4F4 url("~assets/icons/files/magnifier-dark-grey.svg") no-repeat 17px center;
   border-radius: 12px;
   outline: none;
 }
@@ -36,7 +36,7 @@
   width: 18px;
   height: 16px;
 
-  background-image: url("../../assets/icons/files/header-search-bar-image.svg");
+  background-image: url("~assets/icons/files/header-search-bar-image.svg");
 }
 
 .photo_search {

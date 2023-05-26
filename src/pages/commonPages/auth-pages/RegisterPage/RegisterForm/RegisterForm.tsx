@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import {
-  emailValidationSchema,
-  passwordValidationSchema,
-} from '../../../../../common/constants';
-import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
-import { registerUser } from '../../../../../store/reducers/authSlice/asyncThunks';
-import { Button, Input } from '../../../../../ui-kit';
 import { PasswordComplexity } from '../../assets';
 
 import style from './RegisterForm.module.scss';
 
+import { emailValidationSchema, passwordValidationSchema } from 'common/constants';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
 import { errorMessageSelector } from 'store/reducers/authSlice/.index';
+import { registerUser } from 'store/reducers/authSlice/asyncThunks';
+import { Button, Input } from 'ui-kit';
 
 const MATCHED_ERROR_MESSAGE =
   'password must match the following: "/^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/"'; // todo fix error messages on backend

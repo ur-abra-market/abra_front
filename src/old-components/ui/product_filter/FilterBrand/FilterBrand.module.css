@@ -52,7 +52,7 @@
   height: 16px;
   margin-left: 8px;
 
-  background: url('../../../../assets/icons/files/cross-white.svg'); /* using pseudoelement, need to rewrite I think */
+  background: url('~assets/icons/files/cross-white.svg'); /* using pseudoelement, need to rewrite I think */
   background-size: cover;
 }
 

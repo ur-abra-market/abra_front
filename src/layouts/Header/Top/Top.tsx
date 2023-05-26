@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import cn from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
@@ -13,7 +13,12 @@ import { Logo } from '../../Logo/Logo';
 import BuildProfileMenu from './BuildProfileMenu/BuildProfileMenu';
 import style from './Top.module.css';
 
-import { HeaderCartIcon, HeaderFavouritesIcon, HeaderNotificationsIcon, HeaderProfileIcon } from 'assets/icons';
+import {
+  HeaderCartIcon,
+  HeaderFavouritesIcon,
+  HeaderNotificationsIcon,
+  HeaderProfileIcon,
+} from 'assets/icons';
 
 const PROFILE_MENU = {
   UNAUTHORIZED: [
