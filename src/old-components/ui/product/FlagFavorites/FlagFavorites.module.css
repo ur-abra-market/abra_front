@@ -22,7 +22,7 @@
 }
 
 .flag_favorites_text {
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
 }
 
 .not_active {

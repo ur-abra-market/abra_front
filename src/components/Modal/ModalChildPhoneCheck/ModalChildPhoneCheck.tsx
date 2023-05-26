@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { CrossRedIcon } from 'assets/icons';
 import { Button, Input } from '../../../ui-kit';
 
 import style from './ModalChildPhoneCheck.module.css';
+
+import { CrossRedIcon } from 'assets/icons';
 
 export const ModalChildPhoneCheck = ({ phone, setShowModal }: any): JSX.Element => {
   return (

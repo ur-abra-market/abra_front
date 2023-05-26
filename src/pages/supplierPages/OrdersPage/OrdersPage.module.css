@@ -35,7 +35,7 @@
   height: 100%;
   padding-left: 6px;
 
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
 
   background-color: inherit;
 }

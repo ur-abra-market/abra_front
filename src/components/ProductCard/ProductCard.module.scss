@@ -76,7 +76,7 @@
   max-height: 40px;
   margin-top: 12px;
 
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
 }
 
 .direction > span {
@@ -105,7 +105,7 @@
   margin-bottom: 4px;
 
   font-family: 'SF Pro Display Bold', sans-serif;
-  font-size: var(--fd);
+  font-size: var(--fz-l2);
 }
 
 .price > span {
@@ -113,7 +113,7 @@
   align-self: flex-end;
 
   font-family: Roboto, sans-serif;
-  font-size: var(--fs);
+  font-size: var(--fz-xs2);
   color: #828282;
 }
 

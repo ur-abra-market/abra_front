@@ -17,10 +17,10 @@
 
   margin-bottom: 16px;
 
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: var(--medium);
   font-style: normal;
-  line-height: var(--fd);
+  line-height: var(--fz-l2);
 }
 
 .price,
@@ -30,10 +30,10 @@
 
   margin: 6px 0;
 
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: var(--regular);
   font-style: normal;
-  line-height: var(--fd);
+  line-height: var(--fz-l2);
 }
 
 .hr {
@@ -51,10 +51,10 @@
 
   margin-bottom: 8px;
 
-  font-size: var(--fd);
+  font-size: var(--fz-l2);
   font-weight: var(--semi-bold);
   font-style: normal;
-  line-height: var(--fh4);
+  line-height: var(--fz-l2);
 }
 
 .button {
@@ -62,10 +62,10 @@
 }
 
 .info {
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: var(--regular);
   font-style: normal;
-  line-height: var(--fd);
+  line-height: var(--fz-l2);
   color: var(--color-medium-gray);
 }
 

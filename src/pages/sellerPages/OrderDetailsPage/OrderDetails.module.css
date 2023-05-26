@@ -24,7 +24,7 @@
 }
 
 .title {
-  font-size: var(--fh2);
+  font-size: var(--fz-xxl2);
   font-weight: var(--bold);
   line-height: 25px;
   letter-spacing: 0.41px;
@@ -38,20 +38,20 @@
 .order_info_item p:first-child {
   margin: 0 0 8px;
 
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   line-height: 20px;
   color: #828282;
   letter-spacing: 0.16px;
 }
 
 .order_info_item p:last-child {
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   line-height: 20px;
   letter-spacing: 0.16px;
 }
 
 .quantity {
-  font-size: var(--fh4);
+  font-size: var(--fz-l2);
   font-weight: var(--bold);
   line-height: 24px;
   letter-spacing: 0.16px;
@@ -75,7 +75,7 @@
 
 .name p {
   margin: 0 4px;
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   line-height: 20px;
   letter-spacing: 0.16px;
 }
@@ -140,7 +140,7 @@
 
 .description p {
   font-family: var(--roboto);
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: var(--semi-bold);
 }
 
@@ -151,7 +151,7 @@
 }
 
 .properties p {
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: var(--regular);
   line-height: 20px;
   letter-spacing: 0.16px;
@@ -162,7 +162,7 @@
 }
 
 .price>p {
-  font-size: var(--fd);
+  font-size: var(--fz-l2);
   font-weight: var(--semi-bold);
   line-height: 20px;
 }
@@ -185,7 +185,7 @@
 }
 
 .price_details p {
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: var(--medium);
   line-height: 20px;
 }
@@ -211,7 +211,7 @@
 }
 
 .track_info p {
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   line-height: 20px;
   letter-spacing: 0.16px;
 }
@@ -244,14 +244,14 @@
 .delivery_info h2 {
   margin: 0 0 24px;
 
-  font-size: var(--fd);
+  font-size: var(--fz-l2);
   font-weight: var(--bold);
   line-height: 24px;
   letter-spacing: 0.16px;
 }
 
 .seller {
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   line-height: 20px;
   letter-spacing: 0.16px;
 }
@@ -265,7 +265,7 @@
 
 .address {
   max-width: 427px;
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: var(--medium);
   line-height: 20px;
 }
@@ -273,7 +273,7 @@
 .delivery_description {
   margin: 16px 0 0;
 
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   line-height: 20px;
   color: #828282;
   letter-spacing: 0.16px;
@@ -299,7 +299,7 @@
 }
 
 .total_count p {
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: var(--medium);
   line-height: 20px;
 }
@@ -309,7 +309,7 @@
 }
 
 .total_price_item p {
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   line-height: 20px;
   letter-spacing: 0.16px;
 }
@@ -337,7 +337,7 @@
 
 .total_price {
   padding: 12px 0 0;
-  font-size: var(--fd);
+  font-size: var(--fz-l2);
   font-weight: var(--semi-bold);
   line-height: 20px;
 }

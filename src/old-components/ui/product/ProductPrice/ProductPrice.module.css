@@ -6,7 +6,7 @@
   margin-top: 8px;
 
   font-family: 'SF Pro Display Bold',serif;
-  font-size: var(--fd);
+  font-size: var(--fz-l2);
 }
 
 .product_price > span {

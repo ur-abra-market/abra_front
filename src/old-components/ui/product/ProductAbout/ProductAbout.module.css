@@ -42,7 +42,7 @@
   width: 100%;
 
   font-family: var(--roboto);
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
 }
 
 .specifications_key,
@@ -52,7 +52,7 @@
   height: 24px;
 
   font-family: var(--roboto);
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: 400;
   line-height: 24px;
 }
@@ -78,7 +78,7 @@
   min-height: fit-content;
 
   font-family: var(--roboto);
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.16px;
@@ -92,7 +92,7 @@
   width: fit-content;
 
   font-family: var(--roboto);
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: 400;
   line-height: 24px;
   color: #828282;

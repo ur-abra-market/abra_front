@@ -70,10 +70,10 @@
 }
 
 .header {
-  font-size: var(--fd);
+  font-size: var(--fz-l2);
   font-weight: var(--bold);
   font-style: normal;
-  line-height: var(--fh3);
+  line-height: var(--fz-xl2);
   color: var(--color-black);
   text-align: left;
 }
@@ -141,10 +141,10 @@
 }
 
 .header_link {
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: var(--regular);
   font-style: normal;
-  line-height: var(--fh4);
+  line-height: var(--fz-l2);
   color: var(--color-accent);
   text-decoration-line: underline;
 
@@ -379,10 +379,10 @@
 
 .button_title {
   font-family: var(--roboto);
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: var(--regular);
   font-style: normal;
-  line-height: var(--fd);
+  line-height: var(--fz-l2);
 }
 
 .completed_icon {

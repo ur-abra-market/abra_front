@@ -13,7 +13,7 @@
   margin-bottom: 8px;
 
   font-family: 'SF Pro Display Medium',serif;
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   line-height: 24px;
 }
 
@@ -52,7 +52,7 @@
   height: 24px;
 
   font-family: 'SF Pro Display Medium',serif;
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   line-height: 24px;
 }
 
@@ -84,7 +84,7 @@
   width: 40px;
   height: 40px;
 
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
 
   border: 2px #DDD solid;
   border-radius: 4px;
@@ -98,7 +98,7 @@
   width: 132px;
   height: 40px;
 
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   text-align: center;
 
   border: 2px #DDD solid;

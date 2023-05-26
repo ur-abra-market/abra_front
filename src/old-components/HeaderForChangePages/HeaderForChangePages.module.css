@@ -56,7 +56,7 @@
 }
 
 .button_name {
-  font-size: var(--fs);
+  font-size: var(--fz-xs2);
   line-height: 16px;
   letter-spacing: -0.24px;
 }

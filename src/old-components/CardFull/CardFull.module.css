@@ -85,7 +85,7 @@
 .card_full_orders {
   display: flex;
   align-self: end;
-  font-size: var(--fs);
+  font-size: var(--fz-xs2);
   color: #828282;
 }
 
@@ -102,7 +102,7 @@
   width: 132px;
   height: 27px;
 
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   line-height: 27px;
   text-align: center;
 

@@ -68,13 +68,13 @@
 
 .statistics_price_change {
   font-family: var(--roboto);
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: 400;
 }
 
 .statistics_price_range {
   font-family: var(--roboto);
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: 400;
   color: #828282;
 }
@@ -89,7 +89,7 @@
   margin-top: 55px;
 
   font-family: var(--roboto);
-  font-size: var(--fp);
+  font-size: var(--fz-s2);
   font-weight: 400;
   color: #828282;
 }
