@@ -1,13 +1,11 @@
-.seller_page {
-}
-
-.seller_page header > div > div:nth-child(2) {
+/* stylelint-disable selector-max-compound-selectors */
+.seller_page header>div>div:nth-child(2) {
   padding: 20px 32px;
   background-color: #F5F5F5;
   border-bottom: 1px solid #E8E8E8;
 }
 
-.seller_page header > div > div:first-child {
+.seller_page header>div>div:first-child {
   padding: 20px 32px;
 }
 
@@ -31,7 +29,7 @@
 }
 
 
-.content_wrapper > div {
+.content_wrapper>div {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -223,7 +221,7 @@
 
 }
 
-.addresses_container > div {
+.addresses_container>div {
   width: 100%;
   border-radius: 12px;
 
@@ -231,7 +229,7 @@
 
 .notifications_list {
   width: 277px;
-  padding: 20px 0 16px 0;
+  padding: 20px 0 16px;
 }
 
 .notifications_item {
@@ -390,15 +388,10 @@
 .completed_icon {
   width: 50px;
   height: 50px;
-  background-image: url("../../../assets/img/icons/completed.png");
 }
-.select{
+
+.select {
   font-size: 14px;
   background: #F2F2F2;
   border-radius: 12px;
 }
-
-
-
-
-

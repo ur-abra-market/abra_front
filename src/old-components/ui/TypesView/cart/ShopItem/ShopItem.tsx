@@ -1,12 +1,10 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
-import { ReactComponent as ArrowRight } from '../../../../../assets/img/icons/arrowRight.svg';
-import { ReactComponent as Dot } from '../../../../../assets/img/icons/dot.svg';
-import { ReactComponent as Star } from '../../../../../assets/img/icons/Star 1.svg';
-import { Checkbox } from '../../../../../ui-kit';
+import { Checkbox } from 'ui-kit';
 import ProductItem from '../ProductItem/ProductItem';
-
 import style from './ShopItem.module.css';
+
+import { ArrowRightIcon, DotIcon, StarEmptyIcon } from 'assets/icons'; // 5 10px for ArrowRightIcon
 
 interface ShopItemProps {
   shopItem: any;
@@ -23,10 +21,10 @@ const ShopItem: FC<ShopItemProps> = ({ shopItem }) => {
           checked={shopItem.checked}
           onChange={changeStatusHandler}
         />
-        <Star className={style.star} />
+        <StarEmptyIcon className={style.star} />
         <div className={style.rating}>{shopItem.rating}</div>
         <div>{shopItem.name}</div>
-        <ArrowRight className={style.arrow_right} />
+        <ArrowRightIcon className={style.arrow_right} />
       </div>
 
       {shopItem.products.map((prodItem: any) => (
@@ -35,7 +33,7 @@ const ShopItem: FC<ShopItemProps> = ({ shopItem }) => {
 
       <div className={style.footer}>
         <span>Estimated delivery: {shopItem.delivery.date}</span>
-        <Dot className={style.dot} />
+        <DotIcon className={style.dot} />
         <span>Delivery method:&nbsp;</span>
         <a href="/#" className={style.method}>
           {shopItem.delivery.method}

@@ -1,8 +1,8 @@
-import React, { FC, ReactNode } from 'react';
-
-import { MainLogo, SimpleLink } from '../../../../../../ui-kit';
+import { FC, ReactNode } from 'react';
 
 import style from './AuthPageLayout.module.scss';
+
+import { MainLogo, SimpleLink } from 'ui-kit';
 
 interface IAuthPageLayout {
   children: ReactNode;

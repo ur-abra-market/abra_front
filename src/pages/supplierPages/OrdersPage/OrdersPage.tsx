@@ -5,14 +5,14 @@ import React from 'react';
 // import style from "./orders.module.css";
 // import _ from "lodash";
 // import Pagination from "../../../ui/pagination/pagination";
-// import { paginate } from "../../../../utils/paginate";
+// import { paginate } from "utils/paginate";
 // import { useSelector } from "react-redux";
 // import ShowPage from "../../../common/ShowPage";
 // import Search from "../../../common/Search";
 // import Select from "../../../common/select";
-// import searchIcon from "../../../../assets/img/icons/searchIcon.png";
-// import calendar from "../../../../assets/img/icons/calendar.png";
-// import arrowDown from "../../../../assets/img/icons/arrow-down.png";
+// import searchIcon from "assets/icons/files/searchIcon.png";
+// import calendar from "assets/icons/files/calendar.png";
+// import arrowDown from "assets/icons/files/arrow-down.png";
 // import Loader from "../../../common/Loader";
 
 export const OrdersPage = (): JSX.Element => {

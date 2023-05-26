@@ -1,11 +1,10 @@
-import React from 'react';
-
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
-import { brand } from '../../../../store/reducers/filterSlice';
 import SearchFilter from '../SearchFilter';
 
 import style from './FilterBrand.module.css';
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { brand } from 'store/reducers/filterSlice';
 
 const FilterBrand = (): JSX.Element => {
   const dispatch = useAppDispatch();

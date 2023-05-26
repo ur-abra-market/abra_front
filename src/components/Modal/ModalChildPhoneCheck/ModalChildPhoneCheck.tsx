@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PlusIcon } from '../../../assets/img';
+import { CrossRedIcon } from 'assets/icons';
 import { Button, Input } from '../../../ui-kit';
 
 import style from './ModalChildPhoneCheck.module.css';
@@ -39,7 +39,7 @@ export const ModalChildPhoneCheck = ({ phone, setShowModal }: any): JSX.Element 
         className={style.modal_icon_plus}
         onClick={() => setShowModal(false)}
       >
-        <PlusIcon />
+        <CrossRedIcon />
       </button>
     </>
   );

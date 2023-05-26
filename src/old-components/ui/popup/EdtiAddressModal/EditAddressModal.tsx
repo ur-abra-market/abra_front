@@ -1,17 +1,16 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 
-import { ReactComponent as Delete } from '../../../../assets/img/icons/delete.svg';
-import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { SellerAddressData } from '../../../../services/seller/seller.serviceTypes';
-import { Button, Input, Select } from '../../../../ui-kit';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { SellerAddressData } from 'services/seller/seller.serviceTypes';
+import { Button, Input, Select } from 'ui-kit';
 import Check from '../../../Check';
+import { deleteAddress, editAddress } from 'store/reducers/sellerCheckoutSlice';
 
 import style from './EditAddressModal.module.css';
+import { DeleteTrashCanIcon, CrossRedIcon } from 'assets/icons'; // 16px for CrossRedIcon
 
-import { deleteAddress, editAddress } from 'store/reducers/sellerCheckoutSlice';
 
 interface EditAddressModalType {
   modal: boolean;
@@ -68,11 +67,11 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
           <div className={style.edit_address_checkbox}>
             <Check label="Main Address" />
             <div className={style.edit_address_icon_box}>
-              <Delete onClick={removeAddress} />
+              <DeleteTrashCanIcon onClick={removeAddress} />
               <span className={style.delete_address}>Remove Address</span>
             </div>
           </div>
-          <Exit className={style.edit_address_modal_exit} onClick={onClickModalHandler} />
+          <CrossRedIcon className={style.edit_address_modal_exit} onClick={onClickModalHandler} />
         </div>
         <div className={style.edit_address_block}>
           <div className={style.edit_address_block_title}>Recipient Info</div>

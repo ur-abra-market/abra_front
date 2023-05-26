@@ -1,15 +1,17 @@
-import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
+import { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import bg_main from '../../../../assets/img/test_img/main-bg.jpg';
-import bg1 from '../../../../assets/img/test_img/main_1.jpg';
-import bg2 from '../../../../assets/img/test_img/main_2.jpg';
-import bg3 from '../../../../assets/img/test_img/main_3.jpg';
-import bg4 from '../../../../assets/img/test_img/main_4.jpg';
-import { Container } from '../../../../ui-kit';
-
 import style from './ImagesBlock.module.css';
+
+import {
+  Banner0Image,
+  Banner4Image,
+  Banner5Image,
+  Banner6Image,
+  Banner7Image,
+} from 'assets/images';
+import { Container } from 'ui-kit';
 
 export interface ImagesBlockProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
@@ -21,7 +23,7 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
   return (
     <div className={cn(style.images_box, className)} {...restProps}>
       <div className={style.image_box_main}>
-        <img src={bg_main} alt="" />
+        <img src={Banner0Image} alt="" />
         <div className={style.grid_item_main_ad}>
           <span>GLASSES</span>
           <span>$8.50/pc </span>
@@ -33,22 +35,25 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
         <div className={style.images_box_grid}>
           <div className={cn(style.grid_item1)}>
             <span className={style.grid_item_ad}>AUTUMN SALE</span>
-            <img src={bg1} alt="" />
+            <img src={Banner4Image} alt="" />
           </div>
+
           <div className={cn(style.grid_item2)}>
             <div className={style.grid_item_ad}>
               <span>special price for</span>
               <span>sneakers</span>
             </div>
-            <img src={bg2} alt="" />
+            <img src={Banner5Image} alt="" />
           </div>
+
           <div className={cn(style.grid_item3)}>
             <span className={style.grid_item_ad}>MEN’S CLOTHES</span>
-            <img src={bg3} alt="" />
+            <img src={Banner6Image} alt="" />
           </div>
+
           <div className={cn(style.grid_item4)}>
             <span className={style.grid_item_ad}>WOMEN’S CLOTHES</span>
-            <img src={bg4} alt="" />
+            <img src={Banner7Image} alt="" />
           </div>
         </div>
       </Container>

@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 48px 0 128px 0;
+  padding: 48px 0 128px;
   background: #F9F9F9;
 }
 
@@ -30,7 +30,7 @@
 
 .empty_message {
   width: 916px;
-  margin: 80px auto 0 auto;
+  margin: 80px auto 0;
 
   font-size: 34px;
   font-weight: 700;
@@ -74,7 +74,7 @@
   align-items: stretch;
   justify-content: center;
 
-  margin: 48px 0 0 0;
+  margin: 48px 0 0;
 }
 
 .item {

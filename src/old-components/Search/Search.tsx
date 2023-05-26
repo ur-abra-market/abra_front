@@ -2,8 +2,6 @@ import React, { FC, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-// import photo from '../../../assets/img/icons/ic_baseline-photo-camera.png'
-
 interface SearchProps {
   placeholder: string;
   searchIcon: string;

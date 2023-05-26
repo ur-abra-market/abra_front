@@ -1,12 +1,9 @@
-import React from 'react';
-
-import { ReactComponent as LogOutIcon } from '../../assets/img/icons/log_out.svg';
-import { logout } from '../../store/reducers/loginSlice';
-import { Button } from '../../ui-kit';
-
 import style from './ButtonLogOut.module.css';
 
+import { LogoutIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { logout } from 'store/reducers/loginSlice';
+import { Button } from 'ui-kit';
 
 export const ButtonLogOut = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -14,7 +11,7 @@ export const ButtonLogOut = (): JSX.Element => {
   return (
     <Button color="white" className={style.button} onClick={() => dispatch(logout())}>
       <div className={style.button_title}>Log Out</div>
-      <LogOutIcon />
+      <LogoutIcon />
     </Button>
   );
 };

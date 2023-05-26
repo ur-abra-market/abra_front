@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
-import { ReactComponent as Photo } from '../../assets/img/icons/photo_icon.svg';
+import { ImagePickerIcon } from 'assets/icons';
 import { LoadingStatus } from '../../common/types/enums/status.enum';
 import userService from '../../services/user/user.service';
 
@@ -54,7 +54,7 @@ const UploadFile: FC<UploadFileProps> = props => {
         {file.preview ? (
           <img className={style.img} src={file.preview} alt="" />
         ) : (
-          <Photo />
+          <ImagePickerIcon />
         )}
       </div>
       <label className={style.label}>

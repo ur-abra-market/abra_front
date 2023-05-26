@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import cn from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { ReactComponent as Cart } from '../../../assets/img/icons/cart_n.svg';
-import { ReactComponent as Favorite } from '../../../assets/img/icons/flag_n.svg';
-import { ReactComponent as Auth } from '../../../assets/img/icons/human.svg';
-import { ReactComponent as Note } from '../../../assets/img/icons/note.svg';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import Modal from '../../../components/Modal';
@@ -16,6 +12,13 @@ import { Logo } from '../../Logo/Logo';
 
 import BuildProfileMenu from './BuildProfileMenu/BuildProfileMenu';
 import style from './Top.module.css';
+
+import {
+  HeaderCartIcon,
+  HeaderFavouritesIcon,
+  HeaderNotificationsIcon,
+  HeaderProfileIcon,
+} from 'assets/icons';
 
 const PROFILE_MENU = {
   UNAUTHORIZED: [
@@ -104,7 +107,7 @@ const Top = (): JSX.Element => {
       <div className={style.inner_buttons}>
         <div className={style.wrapper_btn}>
           <ButtonIcon onClick={() => handleOnClick('account')}>
-            <Auth />
+            <HeaderProfileIcon />
           </ButtonIcon>
           {menu === 'account' && (
             <BuildProfileMenu
@@ -116,13 +119,13 @@ const Top = (): JSX.Element => {
         </div>
 
         <ButtonIcon onClick={() => handleOnClick('note')}>
-          <Note />
+          <HeaderNotificationsIcon />
         </ButtonIcon>
         <ButtonIcon onClick={() => handleOnClick('favorite')}>
-          <Favorite />
+          <HeaderFavouritesIcon />
         </ButtonIcon>
         <ButtonIcon onClick={() => handleOnClick('cart')}>
-          <Cart />
+          <HeaderCartIcon />
         </ButtonIcon>
       </div>
     </div>

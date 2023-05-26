@@ -1,7 +1,6 @@
 .button {
   cursor: pointer;
 
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,9 +19,8 @@
   display: block;
   width: 40px;
   height: 40px;
-  background-image: url('../../../assets/img/icons/info.svg');
 }
 
 .button:active {
-  box-shadow:0 0 4px rgb(0 0 0 / 32%);
+  box-shadow: 0 0 4px rgb(0 0 0 / 32%);
 }

@@ -7,6 +7,10 @@
   "rules": {
     "indentation": 2,
     "color-hex-case": "upper",
-    "selector-class-pattern": "^([a-z][a-z0-9]*)(_[a-z0-9]+)*$"
+    "selector-class-pattern": "^([a-z][a-z0-9]*)(_[a-z0-9]+)*$",
+    "declaration-property-value-disallowed-list": {
+      "border": []
+    },
+    "property-no-vendor-prefix": null
   }
 }

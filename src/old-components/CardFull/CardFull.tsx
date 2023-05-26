@@ -14,6 +14,7 @@ import ProductPrice from '../ui/product/ProductPrice';
 import SupplierCard from '../ui/product/SupplierCard';
 
 import style from './CardFull.module.css';
+import { HeaderCartIcon } from 'assets/icons';
 
 interface CardFullProps {
   props: any;
@@ -95,7 +96,7 @@ const CardFull: FC<CardFullProps> = ({ props }): JSX.Element => {
             className={style.card_full_basket}
             onClick={() => handlerBasket()}
           >
-            <div />
+            <HeaderCartIcon />
           </div>
         )}
         <SupplierCard supplier={propsNew.supplier} />

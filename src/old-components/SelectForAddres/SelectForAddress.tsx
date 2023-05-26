@@ -1,11 +1,11 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { ReactComponent as ArrowDown } from '../../assets/img/icons/VectorDown.svg';
 import { category, sort } from '../../store/reducers/filterSlice';
 
 import style from './SelectForAddres.module.css';
+import { ArrowDownIcon } from 'assets/icons';
 
 interface SelectForAddressProps {
   list: any[];
@@ -62,7 +62,7 @@ const SelectForAddress: FC<SelectForAddressProps> = ({ list }): JSX.Element => {
           {option}
         </div>
         <div className={style.select_img}>
-          <ArrowDown />
+          <ArrowDownIcon />
         </div>
       </div>
       <ul className={style.select_list} style={styleList}>

@@ -1,30 +1,26 @@
-import React from 'react';
-
-import headerContact from '../../../assets/img/icons/bacgrountContact.svg';
-import google from '../../../assets/img/icons/google_c.svg';
-import vk from '../../../assets/img/icons/vk_c.svg';
-import whatsApp from '../../../assets/img/icons/whatsapp.svg';
-import { WithLayout } from '../../../common/hocs/WithLayout';
-
 import style from './ContactSupport.module.css';
+
+import { GoogleIcon, VkIcon, WhatsappIcon } from 'assets/icons';
+import { Banner3Image } from 'assets/images';
+import { WithLayout } from 'common/hocs/WithLayout';
 
 export const ContactSupportPage = WithLayout(() => {
   return (
     <div>
-      <img className={style.image_header} src={headerContact} alt="" />
+      <img className={style.image_header} src={Banner3Image} alt="" />
       <div className={style.container}>
         <p className={style.title}>Got any questions? Contact us via Whatsapp</p>
         <div className={style.contacts}>
-          <img src={whatsApp} className={style.image} alt="" />
+          <WhatsappIcon className={style.image} />
           <p className={style.number_phone}>+79385656431</p>
         </div>
         <div>
           <p className={style.social_network}>We in social media</p>
           <a href="/">
-            <img className={style.social_image} src={vk} alt="" />
+            <VkIcon className={style.social_image} />
           </a>
           <a href="/">
-            <img className={style.social_image} src={google} alt="" />
+            <GoogleIcon className={style.social_image} />
           </a>
         </div>
       </div>

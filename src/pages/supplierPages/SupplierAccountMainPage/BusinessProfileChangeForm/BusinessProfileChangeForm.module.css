@@ -44,7 +44,7 @@
 
 .checkbox:checked {
   background-color: #FC133D;
-  background-image: url('../../../../assets/img/icons/check.svg');
+  background-image: url('~assets/icons/files/check-mark-white.svg');
   background-repeat: no-repeat;
   background-position: center;
   border: none;
@@ -80,7 +80,7 @@
   margin-top: 40px;
 }
 
-.select{
+.select {
   font-size: 14px;
   background: #F2F2F2;
   border-radius: 12px;

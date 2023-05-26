@@ -1,9 +1,6 @@
-import React from 'react';
-
 import { Link } from 'react-router-dom';
 
-// import imgBtnHeader from '../../assets/img/icons/check-mark.svg';
-import { ReactComponent as Home } from '../../assets/img/icons/Home.svg';
+// import imgBtnHeader from 'assets/icons/files/check-mark.svg';
 // import { useAppSelector } from '../../store/hooks';
 // import { ButtonLink } from '../buttons';
 
@@ -23,9 +20,6 @@ const HeaderForChangePages = (): JSX.Element => {
     <nav className={style.header_basic}>
       <Link className={style.header_basic_logo} to="/">
         Abra
-      </Link>
-      <Link to="/">
-        <Home className={style.icon_home} />
       </Link>
       {/* {isAuth && ( */}
       {/*  <Link to="/personal-account"> */}

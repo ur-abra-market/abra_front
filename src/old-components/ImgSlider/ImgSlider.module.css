@@ -39,6 +39,7 @@
   flex-direction: row;
   gap: 12px;
 }
+
 .img_slider_control_slide {
   cursor: pointer;
 

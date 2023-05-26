@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { ArrowRightBreadCrumbs } from '../../../../assets/img';
-
 import style from './ProductPath.module.css';
+
+import { BreadcrumbsArrowIcon } from 'assets/icons';
 
 interface ProductPathProps {
   pathArr: string[];
@@ -18,7 +18,7 @@ const ProductPath: FC<ProductPathProps> = ({ pathArr }): JSX.Element => {
         <Link key={`path_${route}`} className={style.product_path_item} to="#">
           {route.replace('/', '')}
           <span>
-            <ArrowRightBreadCrumbs />
+            <BreadcrumbsArrowIcon />
           </span>
         </Link>
       ))}

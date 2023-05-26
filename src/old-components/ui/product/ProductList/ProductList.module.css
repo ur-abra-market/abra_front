@@ -22,14 +22,12 @@
   cursor: pointer;
   width: 24px;
   height: 24px;
-  background: url('../../../../assets/img/icons/blocks.svg');
 }
 
 .control_list {
   cursor: pointer;
   width: 24px;
   height: 24px;
-  background: url('../../../../assets/img/icons/list.svg');
 }
 
 .control_category {

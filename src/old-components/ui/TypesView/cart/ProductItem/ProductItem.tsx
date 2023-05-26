@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
-import { Button, Checkbox, Input } from '../../../../../ui-kit';
+import { Button, Checkbox, Input } from 'ui-kit';
 
 import style from './ProductItem.module.css';
 
@@ -24,7 +24,7 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
         <div>
           <img
             className={style.container_img}
-            src="src/assets/img/icons/none.png"
+            src="src/assets/images/files/image-default.png"
             alt="img"
           />
         </div>

@@ -1,16 +1,17 @@
-import React, { FC, useState } from 'react';
-
-import { ReactComponent as Edit } from '../../../../assets/img/icons/edit.svg';
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
-import Check from '../../../../old-components/Check';
-import { EditAddressModal } from '../../../../old-components/ui/popup/EdtiAddressModal/EditAddressModal';
-import { SellerAddressData } from '../../../../services/seller/seller.serviceTypes';
+import { FC, useState } from 'react';
 
 import style from './Address.module.css';
+
+import { EditPencilIcon } from 'assets/icons';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import Check from 'old-components/Check';
+import { EditAddressModal } from 'old-components/ui/popup/EdtiAddressModal/EditAddressModal';
+import { SellerAddressData } from 'services/seller/seller.serviceTypes';
 
 interface AddressProps {
   address: SellerAddressData;
 }
+
 export const Address: FC<AddressProps> = ({ address }): JSX.Element => {
   const { first_name, last_name, phone } = useAppSelector(
     state => state.seller.userProfileInfo,
@@ -43,7 +44,7 @@ export const Address: FC<AddressProps> = ({ address }): JSX.Element => {
           {first_name} {last_name},{phone}
           {address.building}
         </div>
-        <Edit className={style.address_content_edit} onClick={onClickModal} />
+        <EditPencilIcon className={style.address_content_edit} onClick={onClickModal} />
       </div>
       <span className={style.address_content_line} />
       <div className={style.address_place}>{arrFilter.join(' ')}</div>
@@ -56,6 +57,7 @@ export const Address: FC<AddressProps> = ({ address }): JSX.Element => {
         <div className={style.address_main_text}>Main Address</div>
         <Check />
       </div>
+
       <EditAddressModal modal={modal} setModal={setModal} dataArr={address} />
     </div>
   );

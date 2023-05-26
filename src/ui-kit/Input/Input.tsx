@@ -2,10 +2,11 @@ import { forwardRef, useState, DetailedHTMLProps, InputHTMLAttributes } from 're
 
 import cn from 'classnames';
 
-import { ReactComponent as Ice } from '../../assets/img/icons/ice_c.svg';
 import { ButtonIcon } from '../buttons/ButtonIcon/ButtonIcon';
 
 import styles from './Input.module.css';
+
+import { EyeHiddenIcon } from 'assets/icons';
 
 export interface IInput
   extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
@@ -45,7 +46,7 @@ export const Input = forwardRef<HTMLInputElement, IInput>((props, ref): JSX.Elem
       {error && <span className={styles.error}>{error}</span>}
       {variant === 'password' && (
         <ButtonIcon className={styles.button} onClick={handleClickButton}>
-          <Ice />
+          <EyeHiddenIcon />
         </ButtonIcon>
       )}
     </div>

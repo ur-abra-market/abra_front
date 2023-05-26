@@ -1,11 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
-
-import arrowDown from '../../../../assets/img/icons/arrow-down.png';
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
-import { ascending, category, sort } from '../../../../store/reducers/filterSlice';
+import { FC, useEffect, useState } from 'react';
 
 import style from './SelectFilter.module.css';
+
+import { ArrowDownIcon } from 'assets/icons';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { ascending, category, sort } from 'store/reducers/filterSlice';
 
 interface SelectFilterProps {
   typeSelect: any;
@@ -91,7 +91,7 @@ const SelectFilter: FC<SelectFilterProps> = ({ typeSelect }): JSX.Element => {
           </div>
         </div>
         <div className={style.select_filter_img}>
-          <img src={arrowDown} alt="arrow-down" />
+          <ArrowDownIcon />
         </div>
       </div>
       <ul className={style.select_filter_list} style={styleList}>

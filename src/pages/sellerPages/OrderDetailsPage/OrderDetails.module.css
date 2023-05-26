@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 48px 0 96px 0;
+  padding: 48px 0 96px;
   background: #F9F9F9;
 }
 
@@ -19,7 +19,7 @@
 
   padding: 32px;
 
-  background: #FFFFFF;
+  background: #FFF;
   border-radius: 12px;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .order_info_item p:first-child {
-  margin: 0 0 8px 0;
+  margin: 0 0 8px;
 
   font-size: var(--fp);
   line-height: 20px;
@@ -59,7 +59,7 @@
 
 .order_list {
   overflow: hidden;
-  margin: 12px 0 0 0;
+  margin: 12px 0 0;
   background: #FFF;
   border-radius: 8px;
 }
@@ -87,7 +87,7 @@
   margin: 0 4px;
 }
 
-.arrow:after,
+.arrow::after,
 .arrow::before {
   content: "";
 
@@ -100,7 +100,7 @@
   border-radius: 5px;
 }
 
-.arrow:after {
+.arrow::after {
   top: 5.25px;
   transform: rotate(50deg);
 }
@@ -113,7 +113,7 @@
 .description {
   display: flex;
   gap: 26px;
-  margin: 16px 0 0 0;
+  margin: 16px 0 0;
 }
 
 .image {
@@ -147,7 +147,7 @@
 .properties {
   display: flex;
   gap: 12px;
-  margin: 12px 0 0 0;
+  margin: 12px 0 0;
 }
 
 .properties p {
@@ -158,7 +158,7 @@
 }
 
 .price {
-  margin: 25px 0 0 0;
+  margin: 25px 0 0;
 }
 
 .price>p {
@@ -170,7 +170,7 @@
 .price_details {
   display: flex;
   gap: 4px;
-  margin: 4px 0 0 0;
+  margin: 4px 0 0;
 }
 
 .line {
@@ -231,7 +231,7 @@
 .other_info {
   display: flex;
   gap: 9px;
-  margin: 12px 0 0 0;
+  margin: 12px 0 0;
 }
 
 .delivery_info {
@@ -242,7 +242,7 @@
 }
 
 .delivery_info h2 {
-  margin: 0 0 24px 0;
+  margin: 0 0 24px;
 
   font-size: var(--fd);
   font-weight: var(--bold);
@@ -271,7 +271,7 @@
 }
 
 .delivery_description {
-  margin: 16px 0 0 0;
+  margin: 16px 0 0;
 
   font-size: var(--fp);
   line-height: 20px;
@@ -295,7 +295,7 @@
 }
 
 .total_count {
-  margin: 0 0 24px 0;
+  margin: 0 0 24px;
 }
 
 .total_count p {
@@ -305,7 +305,7 @@
 }
 
 .total_price_item {
-  margin: 0 0 12px 0;
+  margin: 0 0 12px;
 }
 
 .total_price_item p {
@@ -326,8 +326,8 @@
 }
 
 .price_description {
-  margin: -4px 0 0 0;
-  padding: 0 0 12px 0;
+  margin: -4px 0 0;
+  padding: 0 0 12px;
 
   font-size: 12px;
   line-height: 16px;
@@ -336,7 +336,7 @@
 }
 
 .total_price {
-  padding: 12px 0 0 0;
+  padding: 12px 0 0;
   font-size: var(--fd);
   font-weight: var(--semi-bold);
   line-height: 20px;

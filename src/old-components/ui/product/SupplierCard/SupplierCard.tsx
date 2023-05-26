@@ -1,6 +1,8 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import style from './SupplierCard.module.css';
+
+import { ArrowRightIcon } from 'assets/icons'; // 24px
 
 interface SupplierCardProps {
   supplier: any;
@@ -15,7 +17,7 @@ const SupplierCard: FC<SupplierCardProps> = ({ supplier }): JSX.Element => {
           className={style.supplier_card_info_deals}
         >{`${supplier?.period} Years : ${supplier?.count} Deals : On-time delivery ${supplier?.value}%`}</div>
       </div>
-      <div className={style.supplier_card_arrow} />
+      <ArrowRightIcon className={style.supplier_card_arrow} />
     </div>
   );
 };

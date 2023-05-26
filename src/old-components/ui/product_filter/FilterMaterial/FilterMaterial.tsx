@@ -1,15 +1,14 @@
-import React from 'react';
-
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
-import { material } from '../../../../store/reducers/filterSlice';
 import SearchFilter from '../SearchFilter';
 
 import style from './FilterMaterial.module.css';
 
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { material } from 'store/reducers/filterSlice';
+
 const FilterMaterial = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const materialList = ['Cotton', 'Chiffon', 'Linen', 'Biflex', 'Silk', 'Satin'];
+  const materialList = ['Cotton', 'Chiffon', 'Linen', 'Bif-lex', 'Silk', 'Satin'];
   const materials = useAppSelector(state => state.filter.materials);
   const len = materialList
     // @ts-ignore

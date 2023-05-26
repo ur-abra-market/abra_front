@@ -19,7 +19,7 @@
 }
 
 .edit_address_modal {
-  padding: 32px 32px 17px 32px; /*временно*/
+  padding: 32px 32px 17px; /*временно*/
   background-color: #FFF;
   border-radius: 12px;
 
@@ -36,7 +36,7 @@
   height: 40px;
   padding: 12px;
 
-  background: #FFFFFF;
+  background: #FFF;
   border-radius: 50%;
 }
 
@@ -45,6 +45,7 @@
   font-weight: 700;
   line-height: 24px;
 }
+
 .edit_address_row1 {
   position: relative;
 
@@ -87,6 +88,7 @@
 .edit_address_input_number{
   width: 458px;
 }
+
 .edit_address_block_row2_box {
   min-width: 309px;
   margin-top: 16px;
@@ -104,6 +106,7 @@
 .edit_address_phone {
   margin-top: 16px;
 }
+
 .edit_address_text_modal {
   width: 100%;
   font-size: 14px;
@@ -124,7 +127,6 @@
   line-height: 12px;
   color: #828282;
 }
-
 
 .edit_address_phone_number {
   display: flex;
@@ -151,11 +153,13 @@
   width: 100%;
   margin-top: 15px;
 }
+
 .edit_address_icon_box{
   display: flex;
   gap: 12px;
   align-items: center;
 }
+
 .delete_address{
   cursor: pointer;
 

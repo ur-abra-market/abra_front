@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { ReactComponent as Arrow } from '../../../assets/img/icons/arrowRight.svg';
-import bellImg from '../../../assets/img/icons/notification-bell.svg';
+import { ArrowRightIcon, HeaderNotificationsIcon } from 'assets/icons'; // 5 10px for ArrowRightIcon
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { logout } from '../../../store/reducers/loginSlice';
 import { Logo } from '../../Logo/Logo';
 
 import style from './SupplierTop.module.css';
-
-import { ButtonIcon } from 'ui-kit';
 
 const SupplierTop = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -72,9 +69,7 @@ const SupplierTop = (): JSX.Element => {
       </div>
       <div className={style.inner_buttons}>
         <Link to="/">
-          <ButtonIcon>
-            <img src={bellImg} alt="btn-header" />
-          </ButtonIcon>
+          <HeaderNotificationsIcon />
         </Link>
         <div
           role="presentation"
@@ -82,11 +77,11 @@ const SupplierTop = (): JSX.Element => {
           onClick={() => setIsMenu(true)}
         >
           <div className={style.btn_menu_img}>
-            <img src={bellImg} alt="logo" />
+            <HeaderNotificationsIcon />
           </div>
           <span>Business Name</span>
           <span className={style.icon}>
-            <Arrow className={style.arrow} />
+            <ArrowRightIcon className={style.arrow} />
           </span>
           {isMenu && <ul className={style.menu}>{buildMenu()}</ul>}
         </div>

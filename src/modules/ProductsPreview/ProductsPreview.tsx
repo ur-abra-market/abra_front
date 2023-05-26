@@ -11,8 +11,7 @@ import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import { Swiper as SwiperType } from 'swiper';
 
-import { ReactComponent as ArrowLeft } from '../../assets/img/icons/arrow-slide-left.svg';
-import { ReactComponent as ArrowRight } from '../../assets/img/icons/arrow-slide-right.svg';
+import { ArrowLeftIcon, ArrowRightIcon } from '../../assets/icons'; // 24px
 
 import style from './ProductsPreview.module.scss';
 
@@ -37,23 +36,28 @@ export const ProductsPreview: FC<IProductsPreview> = ({
   const swiperEl = useRef<SwiperType>();
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);
   const [disableRightArrow, setDisableRightArrow] = useState(false);
+
   const handleInitialSlide = (): void => {
     if (swiperEl.current?.isEnd) {
       setDisableRightArrow(true);
     }
   };
+
   const handleChangeSlide = (): void => {
     if (swiperEl.current?.isBeginning) setDisableLeftArrow(true);
     else setDisableLeftArrow(false);
     if (swiperEl.current?.isEnd) setDisableRightArrow(true);
     else setDisableRightArrow(false);
   };
+
   const handlePrev = useCallback((): void => {
     swiperEl.current?.slidePrev(SPEED_TRANSITION);
   }, []);
+
   const handleNext = useCallback((): void => {
     swiperEl.current?.slideNext(SPEED_TRANSITION);
   }, []);
+
   const onBeforeInit = (swiper: SwiperType): void => {
     swiperEl.current = swiper;
   };
@@ -69,16 +73,18 @@ export const ProductsPreview: FC<IProductsPreview> = ({
             </Link>
           )}
         </div>
+
         <div className={style.buttons}>
           <ButtonIcon disabled={disableLeftArrow} onClick={handlePrev}>
-            <ArrowLeft
+            <ArrowLeftIcon
               className={cn(style.icon_left, {
                 [style.disable_button]: swiperEl.current?.isBeginning,
               })}
             />
           </ButtonIcon>
+
           <ButtonIcon disabled={disableRightArrow} onClick={handleNext}>
-            <ArrowRight
+            <ArrowRightIcon
               className={cn(style.icon_right, {
                 [style.disable_button]: swiperEl.current?.isEnd,
               })}
@@ -86,6 +92,7 @@ export const ProductsPreview: FC<IProductsPreview> = ({
           </ButtonIcon>
         </div>
       </div>
+
       <Carousel
         onAfterInit={handleInitialSlide}
         onBeforeInit={onBeforeInit}

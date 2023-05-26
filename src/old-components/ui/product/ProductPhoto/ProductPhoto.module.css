@@ -44,14 +44,12 @@
   align-self: center;
   width: 24px;
   height: 24px;
-  background-image: url('../../../../assets/img/icons/arrow-slide-up.svg');
 }
 
 .photo_slider_btn_down {
   align-self: center;
   width: 24px;
   height: 24px;
-  background-image: url('../../../../assets/img/icons/arrow-slide-down.svg');
 }
 
 .photo_slider_btn_up:hover,
@@ -65,7 +63,7 @@
   height: 756px;
 }
 
-.photo_image > img {
+.photo_image>img {
   display: block;
   width: 100%;
   height: 100%;

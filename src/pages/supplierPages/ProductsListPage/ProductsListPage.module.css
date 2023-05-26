@@ -15,9 +15,11 @@
   align-items: center;
 
 }
+
 .vector_up{
   margin-right: 25px;
 }
+
 .search{
   margin-right: 24px;
 }
@@ -43,7 +45,7 @@
   width: 16px;
   height: 16px;
 
-  background: url('../../../assets/img/icons/search.png');
+  background: url('../../../assets/icons/files/magnifier-dark-grey.svg');
   background-size: cover;
 }
 
@@ -77,15 +79,17 @@
   font-size: 15px;
   font-weight: 500;
   line-height: 15px;
-  color: #000000;
+  color: #000;
 }
-.reset_link{
+
+.reset_link {
   font-size: 15px;
   font-weight: 400;
   line-height: 20px;
   color:#FC133D;
   text-decoration-line: underline;
 }
+
 .layouts {
   display: flex;
   gap: 12px;
@@ -446,6 +450,7 @@
 .modal_button:hover {
   background: #D9D9D9;
 }
+
 .checkbox{
   padding-bottom: 3px;
 }

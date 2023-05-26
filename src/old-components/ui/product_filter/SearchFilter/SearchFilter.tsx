@@ -1,10 +1,10 @@
-import React, { FC, useState } from 'react';
-
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
-import { brand, material } from '../../../../store/reducers/filterSlice';
+import { FC, useState } from 'react';
 
 import style from './SearchFilter.module.css';
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { brand, material } from 'store/reducers/filterSlice';
 
 interface SearchFilterProps {
   typeSearch: any;

@@ -1,14 +1,17 @@
 .slider {
   overflow: hidden;
 }
+
 .slider .swiper_container1 {
   width: 100%;
   height: 100%;
 }
+
 .slider .swiper_container2 {
   width: 100%;
   height: 100%;
 }
+
 .flex_container {
   display: flex;
 }

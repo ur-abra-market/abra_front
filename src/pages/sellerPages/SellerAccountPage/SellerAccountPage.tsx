@@ -1,25 +1,31 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import cn from 'classnames';
+import { AccountManagementLink } from 'components';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import { AccountManagementLink } from '../../../components';
-import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
-import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
-import UploadFile from '../../../components/UploadFile/UploadFile';
-import { Action } from '../../../services/user/user.service';
+import { Address } from './Address/Address';
+import style from './SellerAccountPage.module.css';
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import { ButtonLogOut } from 'components/ButtonLogOut/ButtonLogOut';
+import FeedbackForm from 'components/feedbacks/FeedbackForm';
+import UploadFile from 'components/UploadFile/UploadFile';
+import Footer from 'layouts/Footer';
+import Header from 'layouts/Header';
+import Orders from 'pages/sellerPages/SellerAccountPage/Orders/Orders';
+import { Action } from 'services/user/user.service';
 import {
   getSellerAddressesService,
   getSellerInfoService,
   sendSellerInfoService,
-} from '../../../store/reducers/sellerSlice';
+} from 'store/reducers/sellerSlice';
 import {
   getUserNotificationsService,
   updateUserNotificationService,
-} from '../../../store/reducers/userSlice';
+} from 'store/reducers/userSlice';
 import {
   Button,
   ButtonInfo,
@@ -29,14 +35,7 @@ import {
   ISelectOption,
   Label,
   Select,
-} from '../../../ui-kit';
-
-import { Address } from './Address/Address';
-import style from './SellerAccountPage.module.css';
-
-import Footer from 'layouts/Footer';
-import Header from 'layouts/Header';
-import Orders from 'pages/sellerPages/SellerAccountPage/Orders/Orders';
+} from 'ui-kit';
 
 type FormValues = {
   first_name: string;

@@ -3,7 +3,7 @@ import React, { DetailedHTMLProps, FC, HTMLAttributes, SyntheticEvent } from 're
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import NoneImage from '../../assets/img/icons/none.png';
+import { DefaultProductImage } from '../../assets/images';
 import Flag from '../../old-components/Flag';
 import { getPriceOneItem } from '../../pages/sellerPages/ProductPage/helpers/getPriceOneItem';
 import { IProductCompilation } from '../../services/product/product.serviceTypes';
@@ -11,7 +11,7 @@ import { Stars } from '../../ui-kit';
 
 import style from './ProductCard.module.scss';
 
-import { ReactComponent as LoupeIcon } from 'assets/img/icons/loupe.svg';
+import { MagnifierLightGreyIcon } from 'assets/icons';
 
 interface IProductCard
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -29,7 +29,7 @@ export const ProductCard: FC<IProductCard> = ({
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
     const newEvent = { ...event };
 
-    newEvent.currentTarget.src = NoneImage;
+    newEvent.currentTarget.src = DefaultProductImage;
   };
 
   return (
@@ -39,7 +39,7 @@ export const ProductCard: FC<IProductCard> = ({
         <img src={image_url || ''} alt={name} onError={handleImageError} />
         <span className={style.hover}>
           <span className={style.hover_text}>
-            <LoupeIcon />
+            <MagnifierLightGreyIcon />
             <span>Quick View</span>
           </span>
         </span>

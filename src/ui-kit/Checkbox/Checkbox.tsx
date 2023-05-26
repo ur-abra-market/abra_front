@@ -1,4 +1,4 @@
-import React, { forwardRef, DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import { forwardRef, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
 import cn from 'classnames';
 

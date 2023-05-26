@@ -1,17 +1,17 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { ReactComponent as Exit } from '../../../../assets/img/icons/exit-modal.svg';
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { SellerAddressData } from '../../../../services/seller/seller.serviceTypes';
-import { Button, Checkbox, Input, Select } from '../../../../ui-kit';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { SellerAddressData } from 'services/seller/seller.serviceTypes';
+import { Button, Checkbox, Input, Select } from 'ui-kit';
+import { addAddress } from 'store/reducers/sellerCheckoutSlice';
 
 import style from './AddressPopup.module.css';
+import { CrossRedIcon } from 'assets/icons'; // 16px
 
-import { addAddress } from 'store/reducers/sellerCheckoutSlice';
 
 interface AddressPopupType {
   modal: boolean;
@@ -82,7 +82,7 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
               label="Save the address for next orders"
             />
           </div>
-          <Exit
+          <CrossRedIcon
             className={style.address_popup_modal_exit}
             onClick={onClickModalHandler}
           />

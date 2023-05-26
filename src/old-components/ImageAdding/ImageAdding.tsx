@@ -1,9 +1,8 @@
-import React, { ChangeEvent, FC } from 'react';
-
-import { PlusIcon } from '../../assets/img';
-import AddImg from '../../assets/img/icons/add_image.svg';
+import { ChangeEvent, FC } from 'react';
 
 import style from './ImageAdding.module.css';
+
+import { CrossRedIcon, ImagePickerIcon } from 'assets/icons';
 
 interface ImageAddingProps {
   label?: string;
@@ -67,14 +66,11 @@ const ImageAdding: FC<ImageAddingProps> = ({
               className={style.btn_plus}
               onClick={() => setImgUrl('')}
             >
-              <PlusIcon />
+              <CrossRedIcon />
             </button>
           </>
         ) : (
-          <img
-            src={AddImg}
-            alt="icon img"
-            id="iconImg"
+          <ImagePickerIcon
             className={label ? style.icon_img_label : style.icon_img}
           />
         )}

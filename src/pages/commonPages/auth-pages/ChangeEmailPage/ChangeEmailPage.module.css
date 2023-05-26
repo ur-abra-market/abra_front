@@ -26,7 +26,7 @@
   font-weight: 700;
   font-style: normal;
   line-height: 100%;
-  color: #000000;
+  color: #000;
   letter-spacing: 0.0024em;
 }
 
@@ -40,6 +40,7 @@
   color: #636568;
   letter-spacing: 0.16px;
 }
+
 .inner_wrapper {
   width: 400px;
 }
@@ -49,7 +50,6 @@
     width: 100%;
   }
 }
-
 
 .modal_content_wrapper {
   width: 420px;
@@ -62,9 +62,10 @@
   font-size: 34px;
   font-weight: 700;
   line-height: 41px;
-  color: #000000;
+  color: #000;
   letter-spacing: 0.41px;
 }
+
 .button_modal{
   width: 100%;
 }
@@ -75,13 +76,16 @@
     font-weight: 600;
     line-height: 24px;
   }
+
   .modal_container{
     margin: 0 8px;
     padding: 16px;
   }
+
   .modal_content_wrapper{
     width: 100%;
   }
+
   .modal_header{
     margin-bottom: 16px;
     font-size: 22px;
