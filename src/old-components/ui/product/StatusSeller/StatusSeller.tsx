@@ -2,8 +2,8 @@ import { FC } from 'react';
 
 import style from './StatusSeller.module.css';
 
-import { HangerImage } from 'assets/images';
 import { StarEmptyIcon, ArrowRightIcon } from 'assets/icons';
+import { HangerImage } from 'assets/images';
 
 interface StatusSellerProps {
   supplierInfo: any;

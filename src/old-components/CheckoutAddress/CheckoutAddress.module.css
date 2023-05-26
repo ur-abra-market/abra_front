@@ -4,14 +4,16 @@
 
   width: 447px;
   height: 145px;
-  padding: 16px 16px 0 16px;
+  padding: 16px 16px 0;
 
   border: 1px solid #D4D4D4;
   border-radius: 12px;
 }
+
 .selected{
   border: 1px solid #FC133D;
 }
+
 .address_content {
   display: flex;
   flex-direction: row;
@@ -31,7 +33,7 @@
 }
 
 .address_place {
-  margin:12px 0 17px 0;
+  margin:12px 0 17px;
 
   font-size: 15px;
   font-weight: 700;
@@ -54,6 +56,7 @@
   line-height: 20px;
   color: #828282;
 }
+
 .address_content_line{
   border: 1px solid rgba(0, 0, 0, 0.14);
 }

@@ -9,7 +9,7 @@
   font-weight: 400;
   font-style: normal;
   line-height: 20px;
-  color: #000000;
+  color: #000;
   letter-spacing: -0.24px;
 }
 
@@ -42,7 +42,7 @@
 .input_notification::before {
   transform: matrix(-1, 0, 0, 1, 0, 0);
 
-  background: #FFFFFF;
+  background: #FFF;
   border: 1px solid rgba(0, 0, 0, 0.04);
   border-radius: 100px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.16),
@@ -91,7 +91,7 @@
   width: 24px;
   height: 24px;
 
-  background: url('assets/icons/files/check-mark-white.svg') no-repeat center; /* using pseudoelement, need to rewrite I think */
+  background: url('../../assets/icons/files/check-mark-white.svg') no-repeat center;
 }
 
 .md {

@@ -1,7 +1,9 @@
 import { forwardRef, useState, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
 import cn from 'classnames';
+
 import { ButtonIcon } from '../buttons/ButtonIcon/ButtonIcon';
+
 import styles from './Input.module.css';
 
 import { EyeHiddenIcon } from 'assets/icons';

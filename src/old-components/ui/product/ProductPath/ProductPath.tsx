@@ -3,8 +3,8 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import style from './ProductPath.module.css';
-import { BreadcrumbsArrowIcon } from 'assets/icons';
 
+import { BreadcrumbsArrowIcon } from 'assets/icons';
 
 interface ProductPathProps {
   pathArr: string[];

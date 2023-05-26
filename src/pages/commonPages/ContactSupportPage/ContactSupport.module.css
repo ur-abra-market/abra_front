@@ -1,21 +1,25 @@
 .container{
   margin: 98px 148px 78px;
 }
+
 .title{
   margin-bottom: 20px;
   font-size: 34px;
   font-weight: 600;
   line-height: 120%;
 }
+
 .contacts{
   display: flex;
   align-items: center;
   margin-bottom: 10%;
 }
+
 .image{
   width: 25px;
   height: 25px;
 }
+
 .number_phone{
   padding-left: 10px;
 
@@ -25,6 +29,7 @@
   text-decoration-line: underline;
   letter-spacing: 0.41px;
 }
+
 .social_network{
   margin-bottom: 24px;
 
@@ -33,9 +38,11 @@
   line-height: 20px;
   letter-spacing: 0.38px;
 }
+
 .image_header{
   width: 100%;
 }
+
 .social_image{
   width: 44px;
   height: 44px;

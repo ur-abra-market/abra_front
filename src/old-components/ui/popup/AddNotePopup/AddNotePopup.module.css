@@ -1,4 +1,4 @@
-.add_note{
+.add_note {
   position: fixed;
   z-index: 20;
   top: 0;
@@ -17,12 +17,14 @@
 
   transition: 0.3s;
 }
-.title{
+
+.title {
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
 }
-.container{
+
+.container {
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -33,7 +35,8 @@
   background-color: #FFF;
   border-radius: 12px;
 }
-.add_note_modal_exit{
+
+.add_note_modal_exit {
   cursor: pointer;
 
   position: absolute;
@@ -44,12 +47,14 @@
   height: 40px;
   padding: 12px;
 
-  background: #FFFFFF;
+  background: var(--color-white);
   border-radius: 50%;
 }
+
 .header_container{
   position: relative;
 }
+
 .text{
   margin-bottom: 8px;
 
@@ -58,18 +63,20 @@
   line-height: 12px;
   color: #828282;
 }
+
 .content_box{
   display: flex;
   flex-direction: column;
 }
+
 .input{
   display: block;
   margin-bottom: 16px;
 }
+
 .input_note{
   padding: 16px;
   font-size: 12px;
   font-weight: 400;
   line-height: 12px;
-
 }

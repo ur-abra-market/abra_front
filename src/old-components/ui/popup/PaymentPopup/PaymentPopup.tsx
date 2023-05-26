@@ -4,11 +4,12 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { Button, Input } from 'ui-kit';
 import Check from '../../../Check';
+
 import style from './PaymentPopup.module.css';
 
 import { CrossRedIcon } from 'assets/icons'; // 16px
+import { Button, Input } from 'ui-kit';
 
 interface FormCardType {
   card_number: number;
@@ -28,6 +29,7 @@ const schema = yup
     cvv: yup.number().required('CVV/CSC is required'),
   })
   .required();
+
 const PaymentPopup: FC<PaymentPopupType> = ({ modal, setModal }): JSX.Element => {
   const styles = {
     scale: modal ? '1' : '0',

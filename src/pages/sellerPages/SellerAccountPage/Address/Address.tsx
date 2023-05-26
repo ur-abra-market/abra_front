@@ -1,16 +1,17 @@
 import { FC, useState } from 'react';
 
+import style from './Address.module.css';
+
+import { EditPencilIcon } from 'assets/icons';
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import Check from 'old-components/Check';
 import { EditAddressModal } from 'old-components/ui/popup/EdtiAddressModal/EditAddressModal';
 import { SellerAddressData } from 'services/seller/seller.serviceTypes';
-import style from './Address.module.css';
-
-import { EditPencilIcon } from 'assets/icons';
 
 interface AddressProps {
   address: SellerAddressData;
 }
+
 export const Address: FC<AddressProps> = ({ address }): JSX.Element => {
   const { first_name, last_name, phone } = useAppSelector(
     state => state.seller.userProfileInfo,
@@ -56,6 +57,7 @@ export const Address: FC<AddressProps> = ({ address }): JSX.Element => {
         <div className={style.address_main_text}>Main Address</div>
         <Check />
       </div>
+
       <EditAddressModal modal={modal} setModal={setModal} dataArr={address} />
     </div>
   );

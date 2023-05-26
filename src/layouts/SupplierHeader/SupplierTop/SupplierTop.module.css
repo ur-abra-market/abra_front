@@ -6,7 +6,7 @@
   width: 100%;
   padding: 26px 0;
 
-  background-color: #FFFFFF;
+  background-color: #FFF;
   border-bottom: 1px solid var(--color-light-gray);
 }
 
@@ -22,13 +22,13 @@
   height: 17px;
   margin: 0 12px;
 
-  background-color: #000000;
+  background-color: #000;
 }
 
 .supplier_link {
   font-size: 20px;
   font-weight: var(--semi-bold);
-  color: #000000;
+  color: #000;
   letter-spacing: 0.38px;
 }
 

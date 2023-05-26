@@ -19,7 +19,7 @@
 }
 
 .address_popup_modal {
-  padding: 32px 32px 17px 32px;  /*временно*/
+  padding: 32px 32px 17px;  /*временно*/
   background-color: #FFF;
   border-radius: 12px;
 
@@ -36,7 +36,7 @@
   height: 40px;
   padding: 12px;
 
-  background: #FFFFFF;
+  background: var(--color-white);
   border-radius: 50%;
 }
 
@@ -45,6 +45,7 @@
   font-weight: 700;
   line-height: 24px;
 }
+
 .address_popup_row1 {
   position: relative;
 
@@ -93,6 +94,7 @@
 .address_popup_input_number{
   width: 458px;
 }
+
 .address_popup_block_row2_box {
   min-width: 309px;
   margin-top: 16px;
@@ -110,6 +112,7 @@
 .address_popup_phone {
   margin-top: 16px;
 }
+
 .text_modal {
   width: 100%;
   font-size: 14px;
@@ -130,7 +133,6 @@
   line-height: 12px;
   color: #828282;
 }
-
 
 .address_popup_phone_number {
   display: flex;

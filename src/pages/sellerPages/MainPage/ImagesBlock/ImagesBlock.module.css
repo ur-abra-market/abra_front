@@ -10,6 +10,7 @@
   height: auto;
   margin: 0 auto 32px;
 }
+
 .image_box_main > img {
   display: block;
 
@@ -80,9 +81,11 @@
 
   border-radius: 12px;
 }
+
 .grid_item_ad{
   position: absolute;
 }
+
 .grid_item1{
   grid-area: item1;
 }

@@ -5,6 +5,16 @@ import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import ShowPage from '../../../old-components/ShowPage';
 import { Checkbox, Input, ISelectOption, Search, Select } from '../../../ui-kit';
 
+import {
+  EditPencilInCircleIcon,
+  ViewListDisabledIcon,
+  ViewGridDisabledIcon,
+  ArrowUpIcon,
+  ArrowDownIcon,
+  EyeHiddenIcon,
+  StarFilledIcon,
+} from 'assets/icons';
+import imageProduct from 'assets/images/files/banner2.png'; //! need to rewrite
 import Modal from 'components/Modal';
 import Table from 'old-components/table';
 import Pagination from 'old-components/ui/Pagination';
@@ -14,9 +24,6 @@ import {
   deleteProducts,
   manageProductsService,
 } from 'store/reducers/manageProductsSlice';
-
-import imageProduct from 'assets/images/files/banner2.png'; //! need to rewrite
-import { EditPencilInCircleIcon, ViewListDisabledIcon, ViewGridDisabledIcon, ArrowUpIcon, ArrowDownIcon, EyeHiddenIcon, StarFilledIcon } from 'assets/icons';
 
 export const CATEGORY_SELECT: ISelectOption[] = [
   { label: 'S', value: '1' },
@@ -80,7 +87,7 @@ export const ProductsListPage: FC = (): JSX.Element => {
     creationDate: { path: 'datetime', name: 'Creation Date' },
     status: { path: 'with_discount', name: 'Status' },
     price: { path: 'price', name: 'Price' },
-    balaceUnits: { path: 'balance', name: 'Balace, units' },
+    balanceUnits: { path: 'balance', name: 'Balance, units' },
     visibility: { path: 'is_active', name: 'Visibility' },
   };
 

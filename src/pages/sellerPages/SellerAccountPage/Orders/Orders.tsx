@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom';
-import { Button } from 'ui-kit';
-import style from 'pages/sellerPages/SellerAccountPage/SellerAccountPage.module.css';
 
-import { OrderStatusShippedIcon, OrderStatusToBeReviewedIcon, OrderStatusToBeShippedIcon, OrderStatusUnpaidIcon, OrderStatusCompletedIcon } from 'assets/icons';
+import {
+  OrderStatusShippedIcon,
+  OrderStatusToBeReviewedIcon,
+  OrderStatusToBeShippedIcon,
+  OrderStatusUnpaidIcon,
+  OrderStatusCompletedIcon,
+} from 'assets/icons';
+import style from 'pages/sellerPages/SellerAccountPage/SellerAccountPage.module.css';
+import { Button } from 'ui-kit';
 
 const Orders = (): JSX.Element => {
   return (

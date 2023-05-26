@@ -1,5 +1,4 @@
-.seller_page {}
-
+/* stylelint-disable selector-max-compound-selectors */
 .seller_page header>div>div:nth-child(2) {
   padding: 20px 32px;
   background-color: #F5F5F5;
@@ -230,7 +229,7 @@
 
 .notifications_list {
   width: 277px;
-  padding: 20px 0 16px 0;
+  padding: 20px 0 16px;
 }
 
 .notifications_item {

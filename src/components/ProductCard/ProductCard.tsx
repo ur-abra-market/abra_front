@@ -3,7 +3,7 @@ import React, { DetailedHTMLProps, FC, HTMLAttributes, SyntheticEvent } from 're
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-// import NoneImage from '../../assets/img/icons/none.png';
+import { DefaultProductImage } from '../../assets/images';
 import Flag from '../../old-components/Flag';
 import { getPriceOneItem } from '../../pages/sellerPages/ProductPage/helpers/getPriceOneItem';
 import { IProductCompilation } from '../../services/product/product.serviceTypes';
@@ -29,8 +29,7 @@ export const ProductCard: FC<IProductCard> = ({
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
     const newEvent = { ...event };
 
-    // newEvent.currentTarget.src = NoneImage;
-    newEvent.currentTarget.src = '';
+    newEvent.currentTarget.src = DefaultProductImage;
   };
 
   return (

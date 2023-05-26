@@ -3,11 +3,12 @@
   flex-direction: column;
 
   width: 447px;
-  padding: 16px 16px 21px 16px;
+  padding: 16px 16px 21px;
 
   border: 1px solid #D4D4D4;
   border-radius: 12px;
 }
+
 .address_content {
   display: flex;
   flex-direction: row;
@@ -23,11 +24,10 @@
 
 .address_content_edit {
   cursor: pointer;
-
 }
 
 .address_place {
-  margin:12px 0 17px 0;
+  margin: 12px 0 17px;
 
   font-size: 15px;
   font-weight: 700;
@@ -35,13 +35,11 @@
   line-height: 24px;
 }
 
-
 .address_main {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
 }
 
 .address_main_text {
@@ -50,6 +48,7 @@
   line-height: 20px;
   color: #828282;
 }
+
 .address_content_line{
   border: 1px solid rgba(0, 0, 0, 0.14);
 }

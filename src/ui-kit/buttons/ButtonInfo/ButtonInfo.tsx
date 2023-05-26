@@ -1,12 +1,12 @@
 import { FC, ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { toggleInfoForm } from 'store/reducers/appSlice';
-
 import cn from 'classnames';
+
 import styles from './ButtonInfo.module.css';
 
 import { ContactUsQuestionMarkIcon } from 'assets/icons';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { toggleInfoForm } from 'store/reducers/appSlice';
 
 export interface IButtonInfo
   extends Omit<

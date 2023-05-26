@@ -43,7 +43,7 @@
   font-size: 15px;
   font-weight: 400;
   line-height: 20px;
-  color: #000000;
+  color: #000;
 }
 
 .check_items_block_note {
@@ -114,7 +114,7 @@
   font-size: 15px;
   font-weight: 400;
   line-height: 20px;
-  color: #000000;
+  color: #000;
 }
 
 .check_items_delivery_point {
@@ -147,7 +147,7 @@
 .check_items_line {
   width: 58%;
   margin-bottom: 5px;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #000;
 }
 
 .check_items_line_new_price {

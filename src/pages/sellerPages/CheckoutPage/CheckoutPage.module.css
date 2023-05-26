@@ -1,6 +1,7 @@
 .container{
   position: relative;
 }
+
 .checkout_page {
   display: flex;
   flex-direction: row;
@@ -24,8 +25,9 @@
 .checkout_items > h4 {
   padding-top: 32px;
   padding-left: 32px;
-  background-color: #FFFFFF;
+  background-color: #FFF;
 }
+
 .info_bottom{
   position: absolute;
   right: 32px;

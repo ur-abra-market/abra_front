@@ -1,6 +1,7 @@
 .container{
-  margin: 48px 150px 44px 150px;
+  margin: 48px 150px 44px;
 }
+
 .last_news{
   margin-bottom: 28px;
 
@@ -9,6 +10,7 @@
   line-height: 34px;
   letter-spacing: 0.41px;
 }
+
 .container_block{
   padding: 32px;
   background-color: #F4F4F4;

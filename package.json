@@ -41,6 +41,7 @@
     "stylelint-fix": "stylelint \"**/*.css\" --fix"
   },
   "lint-staged": {
+
     "**/*.css": [
       "stylelint --fix"
     ],
