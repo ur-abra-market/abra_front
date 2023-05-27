@@ -10,7 +10,7 @@ import ProductCarousel from '../../../components/ProductCarousel/ProductCarousel
 import { getPopularProductsById } from '../../../store/reducers/popularProducts';
 import { getSimilarProducts } from '../../../store/reducers/similarProducts';
 import { getGradesByProductId } from '../../../store/reducers/targetProductSlice';
-import { Button, Loader, Container } from '../../../ui-kit';
+import { Button, LoaderCircular, Container } from '../../../ui-kit';
 
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import ChoiceProduct from 'old-components/ui/product/ChoiceProduct';
@@ -72,7 +72,7 @@ export const ProductPage = WithLayout((): JSX.Element => {
   };
 
   if (status === LoadingStatus.Loading || status === LoadingStatus.Idle)
-    return <Loader />;
+    return <LoaderCircular />;
 
   return (
     <Container>

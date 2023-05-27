@@ -7,7 +7,7 @@ import { useAppSelector } from '../common/hooks/useAppSelector';
 import { LoadingStatus } from '../common/types/enums/status.enum';
 import { createRoutes } from '../routes/root';
 import { getCurrentUserInfo } from '../store/reducers/loginSlice';
-import { Loader } from '../ui-kit';
+import { LoaderCircular } from '../ui-kit';
 
 export const App = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -20,7 +20,7 @@ export const App = (): JSX.Element => {
   }, []);
 
   if (!isInitialized || isLoading === LoadingStatus.Loading) {
-    return <Loader />;
+    return <LoaderCircular />;
   }
 
   return (

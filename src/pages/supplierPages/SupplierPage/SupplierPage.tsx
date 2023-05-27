@@ -4,7 +4,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { LoadingStatus } from '../../../common/types/enums/status.enum';
-import { Loader } from '../../../ui-kit';
+import { LoaderCircular } from '../../../ui-kit';
 
 import { SupplierLayout } from 'layouts/SupplierLayout/SupplierLayout';
 
@@ -18,7 +18,7 @@ export const SupplierPage = (): JSX.Element => {
   }, [hasProfile]);
 
   if (isLoading === LoadingStatus.Loading) {
-    return <Loader />;
+    return <LoaderCircular />;
   }
 
   return (

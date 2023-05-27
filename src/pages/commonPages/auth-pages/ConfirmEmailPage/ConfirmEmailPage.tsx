@@ -5,7 +5,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
 import { registerUser } from '../../../../store/reducers/authSlice/asyncThunks';
 import { clearState } from '../../../../store/reducers/authSlice/slice';
-import { Loader } from '../../../../ui-kit';
+import { LoaderCircular } from '../../../../ui-kit';
 
 import ContentMessage from 'components/ContentMessage';
 import style from 'pages/commonPages/auth-pages/ConfirmEmailPage/ConfirmEmailPage.module.css';
@@ -32,7 +32,7 @@ export const ConfirmEmailPage = (): JSX.Element => {
       });
   }, [dispatch, searchParams]);
 
-  if (!emailStatus) return <Loader />;
+  if (!emailStatus) return <LoaderCircular />;
 
   return (
     <div className={style.container}>

@@ -12,7 +12,14 @@ import {
   getCompanyInfoService,
   uploadImageService,
 } from '../../../store/reducers/supplierSlice';
-import { Button, Input, ISelectOption, Label, Loader, Select } from '../../../ui-kit';
+import {
+  Button,
+  Input,
+  ISelectOption,
+  Label,
+  LoaderCircular,
+  Select,
+} from '../../../ui-kit';
 import DropDownField from '../../DropDownField';
 import Form from '../../Form';
 import FormTitle from '../../FormTitle';
@@ -241,7 +248,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
     <div className={style.form_wrapper}>
       <div className={style.form_container}>
         {loading === 'loading' ? (
-          <Loader />
+          <LoaderCircular />
         ) : (
           <>
             <FormTitle

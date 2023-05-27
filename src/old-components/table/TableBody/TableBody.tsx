@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 
-import { Loader } from '../../../ui-kit';
+import { LoaderCircular } from '../../../ui-kit';
 
 interface TableBodyProps {
   data: any[];
@@ -69,7 +69,7 @@ const TableBody: FC<TableBodyProps> = ({ data, columns, classes }): JSX.Element 
           ))
         )
       ) : (
-        <Loader />
+        <LoaderCircular />
       )}
     </tbody>
   );
