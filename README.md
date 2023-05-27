@@ -17,10 +17,7 @@
   yarn start
 ```
 - the project is hosting and available on http://localhost:3000
-<br />
-<br />
-<br />
-
+<br/>
 
 ### **Development**
 - all development is focused in **dev** branch
@@ -28,15 +25,12 @@
 ❗ Don't forget to check if you're actually pointing to the **dev** branch!
 - if you need to install a third-party library, type: 
 ```shell
-  yarn add <название библиотеки>
+  yarn add <library name>
 ```
 - Follow [this guide](https://www.conventionalcommits.org/en/v1.0.0/) to write the commit messages in the right way! <br />
 Briefly: add prefixes to the commit names, start them with a small letter and put the colon with the space (`': '`) after it at the end.<br />
 For example:
   + **feat:** – new feature implemented (added footer, product card, some api request or component logic etc.)
   + **fix:** – fixed some error(s).
-  + **refactor:** – removed, added or moved files, edited code formatting (white-space, formatting, missing semi-colons, etc), improved some algorithms etc.
-<br />
-<br />
-
-  See more prefixes in the guide above.
+  + **refactor:** – removed, added or moved files, edited code formatting (white-space, formatting, missing semi-colons, etc), improved some algorithms etc.    
+See more prefixes in the guide above.
