@@ -4,20 +4,20 @@ import cn from 'classnames';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { AccountManagementLink } from '../../../components';
+import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
+import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
+import UploadFile from '../../../components/UploadFile/UploadFile';
+import Footer from '../../../layouts/Footer';
+import Header from '../../../layouts/Header';
+import { Action } from '../../../services/user/user.service';
 
 import { Address } from './Address/Address';
+import Orders from './Orders/Orders';
 import style from './SellerAccountPage.module.css';
 
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { useAppSelector } from 'common/hooks/useAppSelector';
-import { ButtonLogOut } from 'components/ButtonLogOut/ButtonLogOut';
-import FeedbackForm from 'components/feedbacks/FeedbackForm';
-import UploadFile from 'components/UploadFile/UploadFile';
-import Footer from 'layouts/Footer';
-import Header from 'layouts/Header';
-import Orders from 'pages/sellerPages/SellerAccountPage/Orders/Orders';
-import { Action } from 'services/user/user.service';
 import {
   getSellerAddressesService,
   getSellerInfoService,
