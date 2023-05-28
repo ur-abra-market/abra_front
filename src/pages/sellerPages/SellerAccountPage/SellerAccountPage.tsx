@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 
 import cn from 'classnames';
-import { AccountManagementLink } from 'components';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+
+import { AccountManagementLink } from '../../../components';
 
 import { Address } from './Address/Address';
 import style from './SellerAccountPage.module.css';
