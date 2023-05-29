@@ -38,18 +38,18 @@ const PROFILE_MENU = {
     },
     {
       label: 'Edit Profile',
-      href: '/auth',
+      href: '/personal-account',
     },
     {
       label: 'Settings',
-      href: '/auth',
+      href: '/personal-account',
     },
     {
       label: 'My Orders',
-      href: '/auth',
+      href: '/personal-account',
     },
     {
-      label: 'Log Out',
+      label: 'Log out',
       href: '/logout',
     },
   ],
