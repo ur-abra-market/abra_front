@@ -42,7 +42,7 @@ const mainPageSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(fetchProductList.pending, state => {
-      // state.isLoading = true;
+      state.isLoading = true;
       state.error = '';
     });
     builder.addCase(fetchProductList.fulfilled, (state, action) => {
