@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import { LocationAndCurrencySelection } from '../../components/LocationAndCurrencySelection/LocationAndCurrencySelection';
 import { Container } from '../../old-components';
-import HeaderNavMenu from '../../old-components/HeaderNavMemu/HeaderNavMenu';
+import HeaderNavMenu from '../../old-components/HeaderNavMemu';
 import { Logo } from '../Logo/Logo';
 
 import style from './Footer.module.css';
