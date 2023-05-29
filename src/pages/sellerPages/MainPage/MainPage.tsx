@@ -6,7 +6,7 @@ import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ProductSortType } from '../../../common/types/enums/productSortType.enum';
 import { Feedback, ProductCard } from '../../../components';
 import { ProductsPreview } from '../../../modules';
-import { ButtonInfo, Container, ViewMoreProducts } from '../../../ui-kit';
+import { ButtonInfo, Container, LoaderCircular, ViewMoreProducts } from '../../../ui-kit';
 
 import style from './MainPage.module.scss';
 
@@ -51,7 +51,7 @@ const CATEGORIES: Category = {
 export const MainPage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();
   const filter = useAppSelector(state => state.product.statusProduct);
-  const { products } = useAppSelector(state => state.mainPageProducts);
+  const { products, isLoading } = useAppSelector(state => state.mainPageProducts);
 
   useEffect(() => {
     Object.values(CATEGORIES).forEach(({ category_id }) => {
@@ -69,27 +69,32 @@ export const MainPage = WithLayout((): JSX.Element => {
 
   return (
     <div className={style.main_page}>
-      <ImagesBlock className={style.images_block} />
-      <Container>
-        <StatusProduct />
-        <div className={style.main_sliders}>
-          {products &&
-            Object.keys(products).map(key => {
-              return (
-                <ProductsPreview key={key} title={CATEGORIES[+key].label}>
-                  {products[+key].map(product => (
-                    <ProductCard key={product.uuid} product={product} />
-                  ))}
-                  <ViewMoreProducts />
-                </ProductsPreview>
-              );
-            })}
+      {isLoading === true && <LoaderCircular variant="circular-min" />}
+      {isLoading === false && (
+        <div>
+          <ImagesBlock className={style.images_block} />
+          <Container>
+            <StatusProduct />
+            <div className={style.main_sliders}>
+              {products &&
+                Object.keys(products).map(key => {
+                  return (
+                    <ProductsPreview key={key} title={CATEGORIES[+key].label}>
+                      {products[+key].map(product => (
+                        <ProductCard key={product.uuid} product={product} />
+                      ))}
+                      <ViewMoreProducts />
+                    </ProductsPreview>
+                  );
+                })}
+            </div>
+            <div className={style.info_block}>
+              <ButtonInfo className={style.info_btn} />
+            </div>
+          </Container>
+          <Feedback />
         </div>
-        <div className={style.info_block}>
-          <ButtonInfo className={style.info_btn} />
-        </div>
-      </Container>
-      <Feedback />
+      )}
     </div>
   );
 });
