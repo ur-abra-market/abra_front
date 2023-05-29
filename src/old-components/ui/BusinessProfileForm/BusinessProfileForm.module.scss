@@ -1,21 +1,54 @@
+.form_wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.form_container {
+  width: 634px;
+  padding: 67px 0 32px;
+}
+
+.form_update_container {
+  width: 548px;
+  padding: 0 0 32px 0;
+}
+
+.info_step {
+  margin-bottom: 40px;
+}
+
+.main_info_title {
+  font-size: var(--fz-l2);
+  font-weight: var(--bold);
+  text-align: left;
+}
+
+.image_adding {
+  margin-top: 24px;
+}
+
 .select_info_inputs {
   display: flex;
   gap: 15px;
   margin: 24px 0 16px;
 }
 
-.form_wrapper {
-  display: flex;
-  justify-content: center;
-}
-
 .select_equal {
   width: 309px;
 }
 
-.form_container {
-  width: 633px;
+.select_company {
   margin-bottom: 40px;
+}
+
+.select_update_company {
+  margin-bottom: 36px;
+}
+
+.select{
+  font-size: 14px;
+  background: #F2F2F2;
+  border-radius: 12px;
 }
 
 .phone_number {
@@ -36,13 +69,6 @@
   margin: 16px 0 24px;
   font-size: 13px;
   color: #4F4F4F;
-  text-align: left;
-}
-
-.main_info_title {
-  margin: 40px 0 16px;
-  font-size: 20px;
-  font-weight: 600;
   text-align: left;
 }
 
@@ -69,7 +95,7 @@
 .checkbox_container {
   display: flex;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 
 .list_img_title {
@@ -96,8 +122,7 @@
   width: 100%;
 }
 
-.select{
-  font-size: 14px;
-  background: #F2F2F2;
-  border-radius: 12px;
+.explanatory_form {
+  margin-top: 10px;
 }
+

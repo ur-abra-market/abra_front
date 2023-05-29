@@ -1,6 +1,7 @@
-import { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
+import cn from 'classnames';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
@@ -9,10 +10,9 @@ import FormTitle from '../../FormTitle';
 import ImageAdding from '../../ImageAdding';
 import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 
-import style from './BusinessProfileForm.module.css';
-
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
+import style from 'old-components/ui/BusinessProfileForm/BusinessProfileForm.module.scss';
 import { uploadUserLogoService } from 'store/reducers/userSlice';
 import { Button, Input, ISelectOption, Label, Select } from 'ui-kit';
 
@@ -29,6 +29,13 @@ const schema = yup.object({
     .max(year, "this year hasn't come yet"),
   email: yup.string().email('Invalid email address'),
 });
+
+const phoneNumberSplit = (phone: string): [code: string, tel: string] => {
+  const reg = /(\+(?:90|44|77|1))(\d+)/;
+  const reg_exec = reg.exec(phone) || '';
+
+  return reg_exec.length > 2 ? [reg_exec[1], reg_exec[2]] : ['', ''];
+};
 
 interface FormFields {
   email: string;
@@ -57,38 +64,82 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
   { label: 'Electronics', value: 'Electronics' },
 ];
 
-const BusinessProfileForm: FC = (): JSX.Element => {
+interface IBusinessProfileForm {
+  updateForm?: boolean;
+}
+
+const BusinessProfileForm: FC<IBusinessProfileForm> = ({ updateForm }): JSX.Element => {
   const [imgUrl, setImgUrl] = useState('');
   const [images, setImages] = useState([]);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [saveBtnActive, setSaveBtnActive] = useState(false);
   const { resMessage } = useAppSelector(state => state.formRegistration);
+  const accountInfo = useAppSelector(state => state.supplierAccount.supplierInfo);
+
+  // @ts-ignore
+  const companyInfo = accountInfo?.company_info || {};
+
+  const [acc_code, acc_tel] = phoneNumberSplit(companyInfo.phone);
 
   const {
     control,
     register,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
     handleSubmit,
     reset,
-  } = useForm<FormFields>({ resolver: yupResolver(schema), mode: 'onChange' });
+  } = useForm<FormFields>({
+    resolver: yupResolver(schema),
+    mode: 'onChange',
+    defaultValues: {
+      email: companyInfo?.business_email,
+      code: acc_code || undefined,
+      textarea: companyInfo.description,
+      tel: acc_tel,
+      yearEstablished: `${companyInfo.year_established}`,
+      address: companyInfo.address,
+      checkbox: companyInfo.is_manufacturer === 1,
+      // eslint-disable-next-line no-unsafe-optional-chaining
+      numEmployees: `${companyInfo?.number_of_employees}` || undefined,
+      profileLogo: '',
+      storeName: companyInfo.name,
+      businessSector: companyInfo.business_sector || undefined,
+    },
+  });
 
   const onSubmit = (data: any): void => {
     console.log(data);
     // const phone = data.code + data.tel;
+
     // const info = {
     //   name: data.storeName,
     //   business_sector: data.businessSector,
     //   year_established: +data.yearEstablished,
     //   number_of_employees: +data.numEmployees,
     //   description: data.textarea,
-    //   /* logo_url: 'string', */
     //   phone,
     //   business_email: data.email,
     //   address: data.address,
+    //   is_manufacturer: data.checkbox ? 1 : 0,
     // };
 
+    // const accountInfoForRequest = filterEmptyValues(info);
+
     dispatch(uploadUserLogoService(images[0]));
+
+    // dispatch(
+    //   updateSupplierAccountDataService({
+    //     ...accountInfo,
+    //     license: {
+    //       // @ts-ignore
+    //       license_number: accountInfo?.user_info.license,
+    //     },
+    //     company_info: {
+    //       ...accountInfoForRequest,
+    //     },
+    //   }),
+    // );
 
     reset();
   };
@@ -98,29 +149,43 @@ const BusinessProfileForm: FC = (): JSX.Element => {
       navigate('../add-product', { replace: true });
   }, [resMessage, navigate]);
 
+  useEffect(() => {
+    if (isDirty) setSaveBtnActive(true);
+  }, [isDirty]);
+
   return (
     <div className={style.form_wrapper}>
-      <div className={style.form_container}>
-        <FormTitle
-          step="Step 2/3"
-          title="Business profile"
-          text="Enter the information you want to show on your store profile"
-        />
+      <div
+        className={cn(style.form_container, {
+          [style.form_update_container]: updateForm,
+        })}
+      >
+        {!updateForm && (
+          <div className={style.info_step}>
+            <FormTitle
+              step="Step 2/3"
+              title="Business profile"
+              text="Enter the information you want to show on your store profile"
+            />
+          </div>
+        )}
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={style.mainInfo}>
-            <p className={style.main_info_title}>Main info</p>
-
-            <ImageAdding
-              imgUrl={imgUrl}
-              setImgUrl={setImgUrl}
-              images={images}
-              setImages={setImages}
-              label="Add logo or profile image"
-              placeholder="The customers will recognize your store by this image"
-              {...register('profileLogo')}
-            />
-
+            <p className={style.main_info_title}>
+              {updateForm ? 'Business Profile' : 'Main info'}
+            </p>
+            <div className={style.image_adding}>
+              <ImageAdding
+                imgUrl={imgUrl}
+                setImgUrl={setImgUrl}
+                images={images}
+                setImages={setImages}
+                label="Add logo or profile image"
+                placeholder="The customers will recognize your store by this image"
+                {...register('profileLogo')}
+              />
+            </div>
             <div className={style.select_info_inputs}>
               <Label label="Shop name (will be shown on the profile)">
                 <Input
@@ -151,15 +216,27 @@ const BusinessProfileForm: FC = (): JSX.Element => {
                 />
               </div>
             </div>
+            <div
+              className={cn(style.select_company, {
+                [style.select_update_company]: updateForm,
+              })}
+            >
+              <div className={style.checkbox_container}>
+                <input
+                  type="checkbox"
+                  id="checkbox"
+                  className={style.checkbox}
+                  {...register('checkbox')}
+                />
+                <label htmlFor="checkbox">I am a manufacturer</label>
+              </div>
 
-            <div className={style.checkbox_container}>
-              <input
-                type="checkbox"
-                id="checkbox"
-                className={style.checkbox}
-                {...register('checkbox')}
-              />
-              <label htmlFor="checkbox">I am a manufacturer</label>
+              <Label label="License or entrepreneur number">
+                <Input placeholder="000 – 00 – 0000" />
+              </Label>
+              <p className={style.explanatory_form}>
+                Use the number of any document authorizing the sale
+              </p>
             </div>
           </div>
 
@@ -212,7 +289,9 @@ const BusinessProfileForm: FC = (): JSX.Element => {
           </div>
 
           <div>
-            <p className={style.main_info_title}>Contacts (optional)</p>
+            <p className={style.main_info_title}>
+              {updateForm ? 'Contacts (optional)' : 'Contacts'}
+            </p>
 
             <div className={style.phone_number}>
               {/* <Label label="Business phone number">
@@ -240,13 +319,14 @@ const BusinessProfileForm: FC = (): JSX.Element => {
               </Label>
             </div>
           </div>
-
-          <Button
-            type="submit"
-            label="Continue"
-            disabled={!isValid}
-            className={style.button}
-          />
+          {saveBtnActive ? (
+            <Button
+              type="submit"
+              label="Save"
+              disabled={!isValid}
+              className={style.button}
+            />
+          ) : null}
         </form>
       </div>
     </div>

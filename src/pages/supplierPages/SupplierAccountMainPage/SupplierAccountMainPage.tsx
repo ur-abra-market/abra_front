@@ -13,11 +13,9 @@ import { Button } from '../../../ui-kit';
 
 import style from './SupplierAccountMainPage.module.css';
 
-import {
-  BusinessProfileChangeForm,
-  NotificationsChangeForm,
-  PersonalInfoChangeForm,
-} from './index';
+import { NotificationsChangeForm, PersonalInfoChangeForm } from './index';
+
+import BusinessProfileForm from 'old-components/ui/BusinessProfileForm';
 
 export const SupplierAccountMainPage = (): JSX.Element => {
   const { lastName, firstName, phoneCountryCode, phoneNumberBody } = useAppSelector(
@@ -91,7 +89,7 @@ export const SupplierAccountMainPage = (): JSX.Element => {
         </div>
 
         <div className={style.business_profile}>
-          <BusinessProfileChangeForm />
+          <BusinessProfileForm updateForm />
         </div>
         <div className={style.account_details}>
           <AccountManagementLink
