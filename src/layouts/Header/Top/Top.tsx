@@ -34,7 +34,7 @@ const PROFILE_MENU = {
   AUTHORIZED: [
     {
       label: 'My Profile',
-      href: '/auth',
+      href: '/personal-account',
     },
     {
       label: 'Edit Profile',
