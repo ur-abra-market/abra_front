@@ -10,7 +10,7 @@
 
 .form_update_container {
   width: 548px;
-  padding: 0 0 32px 0;
+  padding: 0 0 32px;
 }
 
 .info_step {
@@ -70,32 +70,6 @@
   font-size: 13px;
   color: #4F4F4F;
   text-align: left;
-}
-
-.checkbox {
-  cursor: pointer;
-
-  width: 20px;
-  height: 20px;
-  margin: 0 16px 0 0;
-
-  appearance: none;
-  border: 1px solid #828282;
-  border-radius: 4px;
-}
-
-.checkbox:checked {
-  background-color: #FC133D;
-  background-image: url('~assets/icons/files/check-mark-white.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  border: none;
-}
-
-.checkbox_container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 24px;
 }
 
 .list_img_title {

@@ -8,14 +8,13 @@ import { IAccountPersonalInfo } from '../../../common/types/interfaces';
 import { parsePhoneNumber } from '../../../common/utils/parsePhoneNumber';
 import { AccountManagementLink } from '../../../components';
 import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
+import { SupplierBusinessProfileForm } from '../../../modules';
 import { updateAccountPersonalInfo } from '../../../store/reducers/formRegistrationSlice';
 import { Button } from '../../../ui-kit';
 
 import style from './SupplierAccountMainPage.module.css';
 
 import { NotificationsChangeForm, PersonalInfoChangeForm } from './index';
-
-import BusinessProfileForm from 'old-components/ui/BusinessProfileForm';
 
 export const SupplierAccountMainPage = (): JSX.Element => {
   const { lastName, firstName, phoneCountryCode, phoneNumberBody } = useAppSelector(
@@ -89,8 +88,9 @@ export const SupplierAccountMainPage = (): JSX.Element => {
         </div>
 
         <div className={style.business_profile}>
-          <BusinessProfileForm updateForm />
+          <SupplierBusinessProfileForm updateForm />
         </div>
+
         <div className={style.account_details}>
           <AccountManagementLink
             linkLabel="Change your email"
@@ -108,6 +108,7 @@ export const SupplierAccountMainPage = (): JSX.Element => {
             description="(All your data including order history will be deleted)"
           />
         </div>
+
         <div className={style.notifications}>
           <NotificationsChangeForm />
         </div>

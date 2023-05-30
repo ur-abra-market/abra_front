@@ -6,13 +6,14 @@ import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import FormTitle from '../../FormTitle';
-import ImageAdding from '../../ImageAdding';
-import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
+import { ImagesAdding } from '../../../old-components/ImageAdding/ImagesAdding';
+
+import style from './SupplierBusinessProfileForm.module.scss';
 
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import style from 'old-components/ui/BusinessProfileForm/BusinessProfileForm.module.scss';
+import FormTitle from 'old-components/FormTitle/FormTitle';
+import ImageAdding from 'old-components/ImageAdding/ImageAdding';
 import { uploadUserLogoService } from 'store/reducers/userSlice';
 import { Button, Input, ISelectOption, Label, Select } from 'ui-kit';
 
@@ -68,7 +69,9 @@ interface IBusinessProfileForm {
   updateForm?: boolean;
 }
 
-const BusinessProfileForm: FC<IBusinessProfileForm> = ({ updateForm }): JSX.Element => {
+export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
+  updateForm,
+}): JSX.Element => {
   const [imgUrl, setImgUrl] = useState('');
   const [images, setImages] = useState([]);
 
@@ -333,4 +336,4 @@ const BusinessProfileForm: FC<IBusinessProfileForm> = ({ updateForm }): JSX.Elem
   );
 };
 
-export default BusinessProfileForm;
+export default SupplierBusinessProfileForm;
