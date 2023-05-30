@@ -6,16 +6,22 @@ import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import { ImagesAdding } from '../../../old-components/ImageAdding/ImagesAdding';
-
 import style from './SupplierBusinessProfileForm.module.scss';
 
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import FormTitle from 'old-components/FormTitle/FormTitle';
 import ImageAdding from 'old-components/ImageAdding/ImageAdding';
+import { ImagesAdding } from 'old-components/ImageAdding/ImagesAdding';
 import { uploadUserLogoService } from 'store/reducers/userSlice';
-import { Button, Input, ISelectOption, Label, Select } from 'ui-kit';
+import {
+  Button,
+  Checkbox,
+  Input,
+  ISelectOption,
+  Label,
+  Select,
+  SupplierRegisterFormStep,
+} from 'ui-kit';
 
 const date = new Date();
 const year = date.getFullYear();
@@ -77,7 +83,6 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [saveBtnActive, setSaveBtnActive] = useState(false);
   const { resMessage } = useAppSelector(state => state.formRegistration);
   const accountInfo = useAppSelector(state => state.supplierAccount.supplierInfo);
 
@@ -89,7 +94,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
   const {
     control,
     register,
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isValid },
     handleSubmit,
     reset,
   } = useForm<FormFields>({
@@ -152,10 +157,6 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
       navigate('../add-product', { replace: true });
   }, [resMessage, navigate]);
 
-  useEffect(() => {
-    if (isDirty) setSaveBtnActive(true);
-  }, [isDirty]);
-
   return (
     <div className={style.form_wrapper}>
       <div
@@ -165,11 +166,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
       >
         {!updateForm && (
           <div className={style.info_step}>
-            <FormTitle
-              step="Step 2/3"
-              title="Business profile"
-              text="Enter the information you want to show on your store profile"
-            />
+            <SupplierRegisterFormStep step={2} />
           </div>
         )}
 
@@ -224,16 +221,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
                 [style.select_update_company]: updateForm,
               })}
             >
-              <div className={style.checkbox_container}>
-                <input
-                  type="checkbox"
-                  id="checkbox"
-                  className={style.checkbox}
-                  {...register('checkbox')}
-                />
-                <label htmlFor="checkbox">I am a manufacturer</label>
-              </div>
-
+              <Checkbox className={style.checkbox} label="I am a manufacturer" />
               <Label label="License or entrepreneur number">
                 <Input placeholder="000 – 00 – 0000" />
               </Label>
@@ -322,18 +310,14 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
               </Label>
             </div>
           </div>
-          {saveBtnActive ? (
-            <Button
-              type="submit"
-              label="Save"
-              disabled={!isValid}
-              className={style.button}
-            />
-          ) : null}
+          <Button
+            type="submit"
+            className={style.button}
+            label="Save"
+            disabled={!isValid}
+          />
         </form>
       </div>
     </div>
   );
 };
-
-export default SupplierBusinessProfileForm;

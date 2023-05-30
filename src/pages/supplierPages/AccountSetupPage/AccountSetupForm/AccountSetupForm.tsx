@@ -4,18 +4,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { accountPersonalInfoValidationSchema } from '../../../common/constants/accountPersonalInfoValidationSchema';
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { IAccountPersonalInfo } from '../../../common/types/interfaces';
-import { parsePhoneNumber } from '../../../common/utils/parsePhoneNumber';
-import Modal from '../../../components/Modal';
-import { ModalChildPhoneCheck } from '../../../components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
-import { PersonalInfoChangeForm } from '../../../pages/supplierPages/SupplierAccountMainPage/PersonalInfoChangeForm/PersonalInfoChangeForm';
-import { sendAccountPersonalInfo } from '../../../store/reducers/formRegistrationSlice';
-import { Button } from '../../../ui-kit';
-import FormTitle from '../../FormTitle';
-
-import style from './AccountSetupForm.module.css';
+import { accountPersonalInfoValidationSchema } from 'common/constants/accountPersonalInfoValidationSchema';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { IAccountPersonalInfo } from 'common/types/interfaces';
+import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import Modal from 'components/Modal';
+import { ModalChildPhoneCheck } from 'components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
+import style from 'pages/supplierPages/AccountSetupPage/AccountSetupForm/AccountSetupForm.module.scss';
+import { PersonalInfoChangeForm } from 'pages/supplierPages/SupplierAccountMainPage/PersonalInfoChangeForm/PersonalInfoChangeForm';
+import { sendAccountPersonalInfo } from 'store/reducers/formRegistrationSlice';
+import { Button, SupplierRegisterFormStep } from 'ui-kit';
 
 export const AccountSetupForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -58,11 +56,7 @@ export const AccountSetupForm = (): JSX.Element => {
   return (
     <div className={style.form_wrapper}>
       <div className={style.form_container}>
-        <FormTitle
-          step="Step 1/3"
-          title="Account Info"
-          text="This information will not be published. The data will only be used to create your account"
-        />
+        <SupplierRegisterFormStep step={1} />
 
         <FormProvider {...formMethods}>
           <form onSubmit={handleSubmit(onSubmit)} className={style.form}>

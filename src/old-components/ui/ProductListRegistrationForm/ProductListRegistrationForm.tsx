@@ -5,30 +5,23 @@ import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import {
-  addProductService,
-  getCompanyInfoService,
-  uploadImageService,
-} from '../../../store/reducers/supplierSlice';
-import {
-  Button,
-  Input,
-  ISelectOption,
-  Label,
-  LoaderCircular,
-  Select,
-} from '../../../ui-kit';
 import DropDownField from '../../DropDownField';
 import Form from '../../Form';
-import FormTitle from '../../FormTitle';
 import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 import ProdInfoInputs from '../ProdInfoInputs';
 import SelectionsForProperties from '../SelectionsForProperties/SelectionsForProperties';
 import TypesPage from '../TypesView/TypesPage';
 
 import style from './ProductListRegistrationForm.module.css';
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
+import {
+  addProductService,
+  getCompanyInfoService,
+  uploadImageService,
+} from 'store/reducers/supplierSlice';
+import { Button, Input, ISelectOption, Label, LoaderCircular, Select } from 'ui-kit';
 
 interface ProductProperties {
   key: string;
@@ -85,7 +78,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { productId, loading, companyInfo } = useAppSelector(state => state.supplier);
+  const { productId, loading } = useAppSelector(state => state.supplier);
 
   const [isSubmit, setIsSubmit] = useState(false);
   const [images, setImages] = useState([]);
@@ -250,146 +243,135 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
         {loading === 'loading' ? (
           <LoaderCircular />
         ) : (
-          <>
-            <FormTitle
-              // @ts-ignore
-              step={companyInfo?.name ? '' : 'Step 3/3'}
-              // @ts-ignore
-              link={companyInfo?.name ? 'Back' : 'Skip and Get started'}
-              title="Product list"
-              text="Enter the information about your first product"
-            />
-            <Form
-              action="src/old-components/ui/ProductListRegistrationForm/ProductListRegistrationForm"
-              onSubmit={handleSubmit(onSubmit)}
-            >
-              <div className={style.form}>
-                <DropDownField
-                  title="Main Product Info"
-                  id={1}
-                  open={openDropDownField}
-                  setOpen={setOpenDropDownField}
-                >
-                  <Label label="Product name *">
-                    <Input
-                      {...register('prodName')}
-                      error={errors?.prodName?.message}
-                      placeholder="Enter the product name"
+          <Form
+            action="src/old-components/ui/ProductListRegistrationForm/ProductListRegistrationForm"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className={style.form}>
+              <DropDownField
+                title="Main Product Info"
+                id={1}
+                open={openDropDownField}
+                setOpen={setOpenDropDownField}
+              >
+                <Label label="Product name *">
+                  <Input
+                    {...register('prodName')}
+                    error={errors?.prodName?.message}
+                    placeholder="Enter the product name"
+                  />
+                </Label>
+                <div className={style.select_inputs}>
+                  <div className={style.select_equal}>
+                    <Controller
+                      control={control}
+                      name="category"
+                      render={({ field }) => (
+                        <Label label="Category *">
+                          <Select
+                            options={FIRST_CATEGORIES_DATA}
+                            placeholder="Select"
+                            padding="23px"
+                            className={style.select}
+                            error={errors?.category?.message}
+                            onChange={value => {
+                              field.onChange(value.value);
+                              handleSetCategory(value.label, setFirstCategory);
+                            }}
+                          />
+                        </Label>
+                      )}
                     />
-                  </Label>
-                  <div className={style.select_inputs}>
+                  </div>
+
+                  <div className={style.select_equal}>
+                    <Controller
+                      control={control}
+                      name="type1"
+                      render={({ field }) => (
+                        <Label label="Type 1 *">
+                          <Select
+                            options={SECOND_CATEGORIES_DATA}
+                            placeholder="Select"
+                            error={errors?.type1?.message}
+                            padding="23px"
+                            className={style.select}
+                            onChange={value => {
+                              field.onChange(value.value);
+                              handleSetCategory(value.label, setSecondCategory);
+                            }}
+                          />
+                        </Label>
+                      )}
+                    />
+                  </div>
+
+                  {thirdStageCategories && !!thirdStageCategories.length && (
                     <div className={style.select_equal}>
                       <Controller
                         control={control}
-                        name="category"
+                        name="type2"
                         render={({ field }) => (
-                          <Label label="Category *">
+                          <Label label="Type 2 *">
                             <Select
-                              options={FIRST_CATEGORIES_DATA}
+                              options={THIRD_CATEGORIES_DATA}
                               placeholder="Select"
-                              padding="23px"
+                              error={errors?.type2?.message}
                               className={style.select}
-                              error={errors?.category?.message}
                               onChange={value => {
                                 field.onChange(value.value);
-                                handleSetCategory(value.label, setFirstCategory);
+                                handleSetCategory(value.label, setThirdCategory);
                               }}
                             />
                           </Label>
                         )}
                       />
                     </div>
+                  )}
+                </div>
 
-                    <div className={style.select_equal}>
-                      <Controller
+                <p className={style.list_img_title}>Photo of the company or production</p>
+
+                <div className={style.list_img}>
+                  {[...new Array(5)].map((el, i) => (
+                    <ImagesAdding key={i} images={images} setImages={setImages} />
+                  ))}
+                </div>
+                <Label label="Description">
+                  <Input
+                    {...register('textarea')}
+                    placeholder="Enter the description of your product"
+                  />
+                </Label>
+              </DropDownField>
+              <DropDownField
+                id={2}
+                title="Properties"
+                open={openDropDownField}
+                setOpen={setOpenDropDownField}
+              >
+                {productProperties &&
+                  productProperties.map((el: ProductProperties, i) => {
+                    // @ts-ignore
+                    const values = [
+                      ...new Set(el.values.map((el: PropertiesValues) => el.value)),
+                    ];
+
+                    const options: ISelectOption[] = values.map((el: any) => {
+                      return { label: el, value: el };
+                    });
+
+                    return (
+                      <SelectionsForProperties
+                        key={i}
+                        element={el}
+                        options={options}
                         control={control}
-                        name="type1"
-                        render={({ field }) => (
-                          <Label label="Type 1 *">
-                            <Select
-                              options={SECOND_CATEGORIES_DATA}
-                              placeholder="Select"
-                              error={errors?.type1?.message}
-                              padding="23px"
-                              className={style.select}
-                              onChange={value => {
-                                field.onChange(value.value);
-                                handleSetCategory(value.label, setSecondCategory);
-                              }}
-                            />
-                          </Label>
-                        )}
                       />
-                    </div>
+                    );
+                  })}
 
-                    {thirdStageCategories && !!thirdStageCategories.length && (
-                      <div className={style.select_equal}>
-                        <Controller
-                          control={control}
-                          name="type2"
-                          render={({ field }) => (
-                            <Label label="Type 2 *">
-                              <Select
-                                options={THIRD_CATEGORIES_DATA}
-                                placeholder="Select"
-                                error={errors?.type2?.message}
-                                className={style.select}
-                                onChange={value => {
-                                  field.onChange(value.value);
-                                  handleSetCategory(value.label, setThirdCategory);
-                                }}
-                              />
-                            </Label>
-                          )}
-                        />
-                      </div>
-                    )}
-                  </div>
-
-                  <p className={style.list_img_title}>
-                    Photo of the company or production
-                  </p>
-
-                  <div className={style.list_img}>
-                    {[...new Array(5)].map((el, i) => (
-                      <ImagesAdding key={i} images={images} setImages={setImages} />
-                    ))}
-                  </div>
-                  <Label label="Description">
-                    <Input
-                      {...register('textarea')}
-                      placeholder="Enter the description of your product"
-                    />
-                  </Label>
-                </DropDownField>
-                <DropDownField
-                  id={2}
-                  title="Properties"
-                  open={openDropDownField}
-                  setOpen={setOpenDropDownField}
-                >
-                  {productProperties &&
-                    productProperties.map((el: ProductProperties, i) => {
-                      // @ts-ignore
-                      const values = [
-                        ...new Set(el.values.map((el: PropertiesValues) => el.value)),
-                      ];
-
-                      const options: ISelectOption[] = values.map((el: any) => {
-                        return { label: el, value: el };
-                      });
-
-                      return (
-                        <SelectionsForProperties
-                          key={i}
-                          element={el}
-                          options={options}
-                          control={control}
-                        />
-                      );
-                    })}
-
-                  {/* <MaterialInputs
+                {/* <MaterialInputs
                     register={register}
                     mainTitle="Material (optional)"
                     optTitle="% (optional)"
@@ -399,26 +381,25 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                     optType="number"
                   /> */}
 
-                  <TypesPage
-                    variations={variations as ProductVariations}
-                    register={register}
-                    setTypes={setTypes}
-                    types={types}
-                    getValues={getValues}
-                  />
-                </DropDownField>
-                <DropDownField
-                  id={3}
-                  title="Additional Product Info"
-                  open={openDropDownField}
-                  setOpen={setOpenDropDownField}
-                >
-                  <ProdInfoInputs register={register} />
-                </DropDownField>
-                <Button type="submit" label="Continue" disabled={!isValid} />
-              </div>
-            </Form>
-          </>
+                <TypesPage
+                  variations={variations as ProductVariations}
+                  register={register}
+                  setTypes={setTypes}
+                  types={types}
+                  getValues={getValues}
+                />
+              </DropDownField>
+              <DropDownField
+                id={3}
+                title="Additional Product Info"
+                open={openDropDownField}
+                setOpen={setOpenDropDownField}
+              >
+                <ProdInfoInputs register={register} />
+              </DropDownField>
+              <Button type="submit" label="Continue" disabled={!isValid} />
+            </div>
+          </Form>
         )}
       </div>
     </div>
