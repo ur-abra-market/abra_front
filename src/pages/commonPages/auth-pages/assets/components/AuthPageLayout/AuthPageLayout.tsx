@@ -1,8 +1,11 @@
 import { FC, ReactNode } from 'react';
 
+import { useAppSelector } from '../../../../../../common/hooks/useAppSelector';
+import { LoadingStatus } from '../../../../../../common/types/enums/status.enum';
+
 import style from './AuthPageLayout.module.scss';
 
-import { MainLogo, SimpleLink } from 'ui-kit';
+import { LoaderLinear, MainLogo, SimpleLink } from 'ui-kit';
 
 interface IAuthPageLayout {
   children: ReactNode;
@@ -15,8 +18,11 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
   footerLink,
   footerTitle,
 }): JSX.Element => {
+  const isLoading = useAppSelector(state => state.app.loading);
+
   return (
     <div className={style.wrapper}>
+      {isLoading === LoadingStatus.Loading && <LoaderLinear />}
       <MainLogo />
       <div className={style.subtitle}>Start buying in bulk now!</div>
       {children}

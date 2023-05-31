@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
@@ -11,8 +11,6 @@ import style from './RegisterForm.module.scss';
 
 import { emailValidationSchema, passwordValidationSchema } from 'common/constants';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { useAppSelector } from 'common/hooks/useAppSelector';
-import { errorMessageSelector } from 'store/reducers/authSlice';
 import { registerUser } from 'store/reducers/authSlice/thunks';
 import { Button, Input } from 'ui-kit';
 
@@ -33,7 +31,6 @@ const formValidationSchema = yup
   .required();
 
 export const RegisterForm = (): JSX.Element => {
-  const errorMessage = useAppSelector(errorMessageSelector);
   const [userRole, setUserRole] = useState<'seller' | 'supplier'>('seller');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -43,7 +40,6 @@ export const RegisterForm = (): JSX.Element => {
     watch,
     formState: { isValid, errors },
     handleSubmit,
-    setError,
   } = useForm<IFormValues>({
     resolver: yupResolver(formValidationSchema),
     mode: 'all',
@@ -55,16 +51,7 @@ export const RegisterForm = (): JSX.Element => {
     setUserRole(userStatus);
   };
 
-  useEffect(() => {
-    if (errorMessage === 'Try another email') {
-      setError('email', { message: errorMessage });
-    } else {
-      setError('password', { message: errorMessage || undefined });
-      setError('email', { message: errorMessage || undefined });
-    }
-  }, [errorMessage, setError]);
-
-  const onSubmit = (data: IFormValues): void => {
+  const onSubmit = async (data: IFormValues): Promise<void> => {
     dispatch(registerUser({ ...data, route: userRole })).then(
       ({ meta: { requestStatus } }) => {
         if (requestStatus === 'fulfilled') navigate('/register/checkEmail');

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -8,7 +8,7 @@ import * as yup from 'yup';
 import { emailValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
-import { loginService } from '../../../../../store/reducers/loginSlice';
+import { loginUser } from '../../../../../store/reducers/authSlice/thunks';
 import { Button, Input } from '../../../../../ui-kit';
 
 import style from './LoginForm.module.scss';
@@ -29,35 +29,25 @@ export interface IFormValues {
 }
 
 export const LoginForm = (): JSX.Element => {
-  const { errMessage, loading, resMessage } = useAppSelector(state => state.login);
+  const { loading } = useAppSelector(state => state.login);
+  const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const {
     register,
     formState: { isValid, errors },
-    setError,
     handleSubmit,
   } = useForm<IFormValues>({
     resolver: yupResolver(formValidationSchema),
     mode: 'all',
   });
 
-  useEffect(() => {
-    // TODO - удаляем проверку по resMessage = добавляем вместо loading -> status (idle, success, failed, loading)
-    if (resMessage === 'LOGIN_SUCCESSFUL') navigate('/');
-    if (errMessage) {
-      setError('password', { message: errMessage });
-      setError('email', { message: errMessage });
-    }
-  }, [errMessage, navigate, setError, resMessage]);
-
   const onSubmit = (data: IFormValues): void => {
-    dispatch(loginService(data)).then(res => {
-      // @ts-ignore
-      if (res.payload.ok) navigate('/');
-    });
+    dispatch(loginUser(data));
   };
+
+  if (isAuthorized) navigate('/');
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>

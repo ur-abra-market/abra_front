@@ -17,9 +17,7 @@ export const getUserRole = createAsyncThunk<
     let errorMessage: string = ' [getUserRole]: Error';
 
     if (error instanceof AxiosError) {
-      const responseError = error.response?.data?.error;
-
-      errorMessage = responseError || error.message;
+      errorMessage = error.response?.data?.error || error.message;
 
       return rejectWithValue(errorMessage);
     }
