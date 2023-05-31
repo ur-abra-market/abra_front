@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { appReducer } from './reducers/appSlice';
-import { authReducer } from './reducers/authSlice/.index';
+import { appReducer } from './reducers/appSlice/slice';
+import { authReducer } from './reducers/authSlice';
 import basketReducer from './reducers/basketSlice';
 import categoryReducer from './reducers/categorySlice';
 import commonSlice from './reducers/commonSlice';

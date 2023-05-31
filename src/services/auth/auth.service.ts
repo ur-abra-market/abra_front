@@ -14,7 +14,11 @@ import {
   ResetPasswordPayloadType,
 } from './auth.serviceTypes';
 
-const authService = {
+export const authService = {
+  userRole: () => {
+    return baseConfigService.get(`/login/role/`);
+  },
+
   register: ({ email, password, route, token }: RegisterParamsType) => {
     if (route === 'confirmEmail') {
       return baseConfigService.get<RegisterResponseType>(

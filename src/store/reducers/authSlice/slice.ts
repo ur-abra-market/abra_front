@@ -1,17 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { registerUser } from './asyncThunks';
+import { userRoleType } from '../../../services/auth/auth.serviceTypes';
+import { getUserRole } from '../appSlice';
+
+import { registerUser } from './thunks';
 
 interface IAuthSliceInitialState {
   errorMessage: null | string;
   isValidRegistrationData: null | boolean;
   loading: boolean;
+  userRole: userRoleType;
 }
 
 const AuthSliceInitialState: IAuthSliceInitialState = {
   errorMessage: null,
   isValidRegistrationData: null,
   loading: false,
+  userRole: null,
 };
 
 const authSlice = createSlice({
@@ -24,6 +29,7 @@ const authSlice = createSlice({
       state.loading = false;
     },
   },
+
   extraReducers: builder => {
     builder.addCase(registerUser.pending, state => {
       state.errorMessage = null;
@@ -38,6 +44,13 @@ const authSlice = createSlice({
       state.isValidRegistrationData = false;
       state.loading = false;
     });
+
+    builder.addCase(
+      getUserRole.fulfilled,
+      (state, action: PayloadAction<userRoleType>) => {
+        state.userRole = action.payload;
+      },
+    );
   },
 });
 

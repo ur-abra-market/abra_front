@@ -4,22 +4,21 @@ import { RouterProvider } from 'react-router-dom';
 
 import { useAppDispatch } from '../common/hooks/useAppDispatch';
 import { useAppSelector } from '../common/hooks/useAppSelector';
-import { LoadingStatus } from '../common/types/enums/status.enum';
 import { createRoutes } from '../routes/root';
-import { getCurrentUserInfo } from '../store/reducers/loginSlice';
+import { getUserRole, isAppInitializedSelector } from '../store/reducers/appSlice';
+import { userRoleSelector } from '../store/reducers/authSlice';
 import { LoaderCircular } from '../ui-kit';
 
 export const App = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const isInitialized = useAppSelector(state => state.app.isInitialized);
-  const isLoading = useAppSelector(state => state.app.isLoading);
-  const userRole = useAppSelector(state => state.login.userRole);
+  const isAppInitialized = useAppSelector(isAppInitializedSelector);
+  const userRole = useAppSelector(userRoleSelector);
 
   useEffect(() => {
-    dispatch(getCurrentUserInfo());
+    dispatch(getUserRole());
   }, []);
 
-  if (!isInitialized || isLoading === LoadingStatus.Loading) {
+  if (!isAppInitialized) {
     return <LoaderCircular />;
   }
 

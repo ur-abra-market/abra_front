@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { registerUser } from '../../../../store/reducers/authSlice/asyncThunks';
-import { clearState } from '../../../../store/reducers/authSlice/slice';
+import { clearState } from '../../../../store/reducers/authSlice';
+import { registerUser } from '../../../../store/reducers/authSlice/thunks';
 import { LoaderCircular } from '../../../../ui-kit';
 
 import ContentMessage from 'components/ContentMessage';

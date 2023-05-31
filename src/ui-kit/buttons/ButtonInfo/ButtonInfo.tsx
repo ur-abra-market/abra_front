@@ -6,7 +6,7 @@ import styles from './ButtonInfo.module.css';
 
 import { ContactUsQuestionMarkIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { toggleInfoForm } from 'store/reducers/appSlice';
+import { toggleInfoForm } from 'store/reducers/appSlice/slice';
 
 export interface IButtonInfo
   extends Omit<

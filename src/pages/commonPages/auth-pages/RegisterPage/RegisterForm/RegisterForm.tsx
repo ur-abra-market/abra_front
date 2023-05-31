@@ -12,8 +12,8 @@ import style from './RegisterForm.module.scss';
 import { emailValidationSchema, passwordValidationSchema } from 'common/constants';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { errorMessageSelector } from 'store/reducers/authSlice/.index';
-import { registerUser } from 'store/reducers/authSlice/asyncThunks';
+import { errorMessageSelector } from 'store/reducers/authSlice';
+import { registerUser } from 'store/reducers/authSlice/thunks';
 import { Button, Input } from 'ui-kit';
 
 const MATCHED_ERROR_MESSAGE =
