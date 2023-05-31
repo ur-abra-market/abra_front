@@ -1,19 +1,27 @@
 import React, { FC } from 'react';
 
-import { Link } from 'react-router-dom';
+import cn from 'classnames';
+import { Link, useMatch } from 'react-router-dom';
 
 import { Button } from '../../../../ui-kit';
 import style from '../Top.module.css';
 
 import { BuildProfileMenuProps } from './BuildProfileMenu.props';
 
-const buildProfileMenu: FC<BuildProfileMenuProps> = props => {
+const BuildProfileMenu: FC<BuildProfileMenuProps> = props => {
   const { isAuth, PROFILE_MENU, handleClickLogout } = props;
 
   const buildMenu = !isAuth ? PROFILE_MENU.UNAUTHORIZED : PROFILE_MENU.AUTHORIZED;
 
+  const location = useMatch('/personal-account');
+
   return (
-    <ul className={style.menu}>
+    <ul
+      className={cn(style.menu, {
+        [style.menu_main]: location?.pathname !== '/personal-account/*',
+        [style.menu_profile]: location?.pathname === '/personal-account',
+      })}
+    >
       {buildMenu.map(({ href, label }) => (
         <li key={label} className={style.item}>
           {href !== '/logout' ? (
@@ -36,4 +44,4 @@ const buildProfileMenu: FC<BuildProfileMenuProps> = props => {
   );
 };
 
-export default buildProfileMenu;
+export default BuildProfileMenu;

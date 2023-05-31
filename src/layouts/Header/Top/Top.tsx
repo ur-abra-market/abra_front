@@ -60,6 +60,7 @@ const Top = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const isAuth = useAppSelector(state => state.login.isAuth);
+  // const userRole = useAppSelector(state => state.login.userRole);
   const [menu, setMenu] = useState<string>();
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
 
