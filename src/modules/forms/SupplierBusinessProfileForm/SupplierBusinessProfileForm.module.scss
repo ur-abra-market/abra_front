@@ -5,7 +5,7 @@
 
 .form_container {
   width: 634px;
-  padding: 67px 0 32px;
+  padding: 66px 0 32px;
 }
 
 .form_update_container {
@@ -46,8 +46,8 @@
 }
 
 .select{
-  font-size: 14px;
-  background: #F2F2F2;
+  font-size: var(--fz-xs);
+  background: var(--color-super-light-gray);
   border-radius: 12px;
 }
 
@@ -67,15 +67,15 @@
 
 .license_reminder {
   margin: 16px 0 24px;
-  font-size: 13px;
-  color: #4F4F4F;
+  font-size: var(--fz-xs);
+  color: var(--color-dark-gray);
   text-align: left;
 }
 
 .list_img_title {
   margin: 16px 0 8px;
-  font-size: 13px;
-  color: #828282;
+  font-size: var(--fz-xs2);
+  color: var(--color-medium-gray);
   text-align: left;
 }
 

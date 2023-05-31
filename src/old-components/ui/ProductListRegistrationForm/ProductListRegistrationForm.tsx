@@ -5,6 +5,21 @@ import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import {
+  addProductService,
+  getCompanyInfoService,
+  uploadImageService,
+} from '../../../store/reducers/supplierSlice';
+import {
+  Button,
+  Input,
+  ISelectOption,
+  Label,
+  LoaderCircular,
+  Select,
+} from '../../../ui-kit';
 import DropDownField from '../../DropDownField';
 import Form from '../../Form';
 import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
@@ -13,15 +28,6 @@ import SelectionsForProperties from '../SelectionsForProperties/SelectionsForPro
 import TypesPage from '../TypesView/TypesPage';
 
 import style from './ProductListRegistrationForm.module.css';
-
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { useAppSelector } from 'common/hooks/useAppSelector';
-import {
-  addProductService,
-  getCompanyInfoService,
-  uploadImageService,
-} from 'store/reducers/supplierSlice';
-import { Button, Input, ISelectOption, Label, LoaderCircular, Select } from 'ui-kit';
 
 interface ProductProperties {
   key: string;

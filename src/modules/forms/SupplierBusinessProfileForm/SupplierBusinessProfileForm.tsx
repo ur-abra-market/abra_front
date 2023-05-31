@@ -6,13 +6,11 @@ import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import style from './SupplierBusinessProfileForm.module.scss';
-
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { useAppSelector } from 'common/hooks/useAppSelector';
-import ImageAdding from 'old-components/ImageAdding/ImageAdding';
-import { ImagesAdding } from 'old-components/ImageAdding/ImagesAdding';
-import { uploadUserLogoService } from 'store/reducers/userSlice';
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import ImageAdding from '../../../old-components/ImageAdding/ImageAdding';
+import { ImagesAdding } from '../../../old-components/ImageAdding/ImagesAdding';
+import { uploadUserLogoService } from '../../../store/reducers/userSlice';
 import {
   Button,
   Checkbox,
@@ -21,7 +19,9 @@ import {
   Label,
   Select,
   SupplierRegisterFormStep,
-} from 'ui-kit';
+} from '../../../ui-kit';
+
+import style from './SupplierBusinessProfileForm.module.scss';
 
 const date = new Date();
 const year = date.getFullYear();
@@ -80,6 +80,8 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
 }): JSX.Element => {
   const [imgUrl, setImgUrl] = useState('');
   const [images, setImages] = useState([]);
+  const formContainerClasses = style.form_container;
+  const selectCompanyClasses = style.select_company;
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -160,7 +162,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
   return (
     <div className={style.form_wrapper}>
       <div
-        className={cn(style.form_container, {
+        className={cn(formContainerClasses, {
           [style.form_update_container]: updateForm,
         })}
       >
@@ -217,7 +219,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
               </div>
             </div>
             <div
-              className={cn(style.select_company, {
+              className={cn(selectCompanyClasses, {
                 [style.select_update_company]: updateForm,
               })}
             >

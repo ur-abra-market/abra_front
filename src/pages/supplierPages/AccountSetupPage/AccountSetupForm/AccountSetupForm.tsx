@@ -4,16 +4,17 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { accountPersonalInfoValidationSchema } from 'common/constants/accountPersonalInfoValidationSchema';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { IAccountPersonalInfo } from 'common/types/interfaces';
-import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
-import Modal from 'components/Modal';
-import { ModalChildPhoneCheck } from 'components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
-import style from 'pages/supplierPages/AccountSetupPage/AccountSetupForm/AccountSetupForm.module.scss';
-import { PersonalInfoChangeForm } from 'pages/supplierPages/SupplierAccountMainPage/PersonalInfoChangeForm/PersonalInfoChangeForm';
-import { sendAccountPersonalInfo } from 'store/reducers/formRegistrationSlice';
-import { Button, SupplierRegisterFormStep } from 'ui-kit';
+import { accountPersonalInfoValidationSchema } from '../../../../common/constants/accountPersonalInfoValidationSchema';
+import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
+import { IAccountPersonalInfo } from '../../../../common/types/interfaces';
+import { parsePhoneNumber } from '../../../../common/utils/parsePhoneNumber';
+import Modal from '../../../../components/Modal';
+import { ModalChildPhoneCheck } from '../../../../components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
+import { sendAccountPersonalInfo } from '../../../../store/reducers/formRegistrationSlice';
+import { Button, SupplierRegisterFormStep } from '../../../../ui-kit';
+import { PersonalInfoChangeForm } from '../../SupplierAccountMainPage';
+
+import style from 'pages/sellerPages/SellerAccountPage/SellerAccountPage.module.css';
 
 export const AccountSetupForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
