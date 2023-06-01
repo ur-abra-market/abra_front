@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import { Button, Checkbox, Input } from 'ui-kit';
-
 import style from './ProductItem.module.css';
+
+import { Button, Checkbox, Input } from 'ui-kit';
 
 interface ProductItemProps {
   product: any;

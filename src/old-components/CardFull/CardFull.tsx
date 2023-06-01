@@ -14,6 +14,7 @@ import ProductPrice from '../ui/product/ProductPrice';
 import SupplierCard from '../ui/product/SupplierCard';
 
 import style from './CardFull.module.css';
+
 import { HeaderCartIcon } from 'assets/icons';
 
 interface CardFullProps {

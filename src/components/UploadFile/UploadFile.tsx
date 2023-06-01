@@ -2,12 +2,13 @@ import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
-import { ImagePickerIcon } from 'assets/icons';
 import { LoadingStatus } from '../../common/types/enums/status.enum';
 import userService from '../../services/user/user.service';
 
 import style from './UploadFile.module.css';
 import { UploadFileProps } from './UploadFile.props';
+
+import { ImagePickerIcon } from 'assets/icons';
 
 const UploadFile: FC<UploadFileProps> = props => {
   const { className, action, image, ...restProps } = props;

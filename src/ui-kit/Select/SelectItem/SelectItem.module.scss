@@ -2,6 +2,11 @@
   cursor: pointer;
   padding: 24px;
   word-break: break-word;
+
+  &.item_selected {
+    color: var(--color-white);
+    background-color: var(--color-medium-gray);
+  }
 }
 
 .main_hover{
@@ -15,7 +20,3 @@
   background-color: #4F4F4F;
 }
 
-.item_selected {
-  color: var(--color-white);
-  background-color: var(--color-medium-gray);
-}

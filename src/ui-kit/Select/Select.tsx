@@ -5,7 +5,7 @@ import cn from 'classnames';
 import UseOnClickOutside from '../../common/hooks/useOnClickOutside';
 import useOnHoverOutside from '../../common/hooks/useOnHoverOutside';
 
-import styles from './Select.module.css';
+import styles from './Select.module.scss';
 import { SelectHeader } from './SelectHeader/SelectHeader';
 import { SelectItem } from './SelectItem/SelectItem';
 import { SelectMenu } from './SelectMenu/SelectMenu';
@@ -89,6 +89,7 @@ export const Select: FC<ISelect> = ({
   const menuClassname = cn({
     [styles.closed_menu]: !header,
     [styles.opened_menu_up_pos]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
+    [styles.menu_up_pos]: menuItemsPosition === 'up' && isOpenItemsMenu,
   });
 
   const handleChangeSelectState = (): void => {
@@ -166,14 +167,6 @@ export const Select: FC<ISelect> = ({
   }, [isOpenItemsMenu, options]);
 
   const selectWidth = width ? { width } : {};
-  const [currentMenuHeight, setCurrentMenuHeight] = useState(0);
-  const handleGetMenuHeight = (height: number): void => {
-    setCurrentMenuHeight(height);
-  };
-
-  const menuStyles: { top: string } = {
-    top: menuItemsPosition === 'up' ? `-${currentMenuHeight}px` : 'unset',
-  };
 
   return (
     <div style={selectWidth} className={cn(styles.main, className)} ref={mainDivRef}>
@@ -186,13 +179,7 @@ export const Select: FC<ISelect> = ({
       />
       <span className={styles.error}>{error}</span>
 
-      <SelectMenu
-        isOpen={isOpenItemsMenu}
-        height={menuHeight}
-        style={menuStyles}
-        className={menuClassname}
-        onChangeHeight={handleGetMenuHeight}
-      >
+      <SelectMenu isOpen={isOpenItemsMenu} height={menuHeight} className={menuClassname}>
         {mappedSelectItems}
         {children}
       </SelectMenu>
