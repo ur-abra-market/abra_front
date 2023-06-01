@@ -1,19 +1,18 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import FormTitle from '../../FormTitle';
-import ImageAdding from '../../ImageAdding';
-import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
+import { UploadImage } from '../../../components';
 
 import style from './BusinessProfileForm.module.css';
 
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { uploadUserLogoService } from 'store/reducers/userSlice';
+import FormTitle from 'old-components/FormTitle';
+import { Action } from 'services/user/user.service';
 import { Button, Input, ISelectOption, Label, Select } from 'ui-kit';
 
 const date = new Date();
@@ -58,8 +57,8 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
 ];
 
 const BusinessProfileForm: FC = (): JSX.Element => {
-  const [imgUrl, setImgUrl] = useState('');
-  const [images, setImages] = useState([]);
+  // const [imgUrl, setImgUrl] = useState('');
+  // const [images, setImages] = useState([]);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -74,7 +73,6 @@ const BusinessProfileForm: FC = (): JSX.Element => {
   } = useForm<FormFields>({ resolver: yupResolver(schema), mode: 'onChange' });
 
   const onSubmit = (data: any): void => {
-    console.log(data);
     // const phone = data.code + data.tel;
     // const info = {
     //   name: data.storeName,
@@ -87,10 +85,9 @@ const BusinessProfileForm: FC = (): JSX.Element => {
     //   business_email: data.email,
     //   address: data.address,
     // };
-
-    dispatch(uploadUserLogoService(images[0]));
-
-    reset();
+    //  dispatch(uploadUserLogoService(images[0]));
+    //
+    // reset();
   };
 
   useEffect(() => {
@@ -111,7 +108,7 @@ const BusinessProfileForm: FC = (): JSX.Element => {
           <div className={style.mainInfo}>
             <p className={style.main_info_title}>Main info</p>
 
-            <ImageAdding
+            {/* <ImageAdding
               imgUrl={imgUrl}
               setImgUrl={setImgUrl}
               images={images}
@@ -119,8 +116,14 @@ const BusinessProfileForm: FC = (): JSX.Element => {
               label="Add logo or profile image"
               placeholder="The customers will recognize your store by this image"
               {...register('profileLogo')}
+            /> */}
+            {/* <UploadImage action={Action.UPLOAD_LOGO} type="logo" /> */}
+            <UploadImage
+              action={Action.UPLOAD_LOGO_IMAGE}
+              type="logo"
+              label="Add logo or profile image"
+              placeholder="The customers will recognize your store by this image"
             />
-
             <div className={style.select_info_inputs}>
               <Label label="Shop name (will be shown on the profile)">
                 <Input
@@ -162,7 +165,6 @@ const BusinessProfileForm: FC = (): JSX.Element => {
               <label htmlFor="checkbox">I am a manufacturer</label>
             </div>
           </div>
-
           <div className={style.companyInfo}>
             <p className={style.main_info_title}>Company Info (optional)</p>
             <div className={style.select_info_inputs}>
@@ -202,13 +204,6 @@ const BusinessProfileForm: FC = (): JSX.Element => {
                 placeholder="Tell more about your company or business"
               />
             </Label>
-
-            <p className={style.list_img_title}>Photo of the company or production</p>
-            <div className={style.list_img}>
-              {[...new Array(5)].map((el, i) => (
-                <ImagesAdding key={i} images={images} setImages={setImages} />
-              ))}
-            </div>
           </div>
 
           <div>

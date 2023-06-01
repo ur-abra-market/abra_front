@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import cn from 'classnames';
+import { UploadImage } from 'components';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
@@ -9,7 +10,6 @@ import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { AccountManagementLink } from '../../../components';
 import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
 import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
-import UploadFile from '../../../components/UploadFile/UploadFile';
 import Footer from '../../../layouts/Footer';
 import Header from '../../../layouts/Header';
 import { Action } from '../../../services/user/user.service';
@@ -134,7 +134,7 @@ export const SellerAccountPage = (): JSX.Element => {
                   <ButtonLogOut />
                 </div>
                 <div className={style.button_link_container}>
-                  <UploadFile action={Action.UPLOAD_LOGO} />
+                  <UploadImage action={Action.UPLOAD_LOGO_IMAGE} type="logo" />
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className={style.names_container}>

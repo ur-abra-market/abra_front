@@ -7,7 +7,8 @@ import {
 import { IErrorResponse } from '../seller/seller.serviceTypes';
 
 export enum Action {
-  UPLOAD_LOGO = 'users/uploadLogoImage/',
+  UPLOAD_LOGO_IMAGE = 'suppliers/uploadCompanyImage/',
+  UPLOAD_ITEM_IMAGE = 'suppliers/uploadProductImage/',
 }
 
 const userService = {
@@ -40,21 +41,33 @@ const userService = {
     return data;
   },
 
-  uploadFile: async (payload: {
+  uploadImage: async (payload: {
     action: string;
     file: File;
-    quaries?: { product_id: number; serial_number: number };
+    queries?: { product_id: number; serial_number: number };
   }) => {
-    const { action, file, quaries } = payload;
+    const { action, file, queries } = payload;
     const formData = new FormData();
 
     formData.append('file', file);
 
-    const { data } = await baseConfigService.post(action, formData, { params: quaries });
+    const { data } = await baseConfigService.post<{
+      ok: boolean;
+      result: { id: number; url: string };
+    }>(action, formData, {
+      params: queries,
+    });
 
     return data;
   },
-
+  deleteImage: async (payload: {
+    action: string;
+    queries: { company_image_id: number; order?: number };
+  }) => {
+    const { data } = await baseConfigService.delete(payload.action, {
+      params: payload.queries,
+    });
+  },
   getFavoritesProducts: async () => {
     const { data } = await baseConfigService.get(`/users/showFavorites/`);
 

@@ -14,6 +14,7 @@ interface ImageAddingProps {
   setImages?: any;
   register?: any;
 }
+
 const ImageAdding: FC<ImageAddingProps> = ({
   label,
   placeholder,
@@ -70,9 +71,7 @@ const ImageAdding: FC<ImageAddingProps> = ({
             </button>
           </>
         ) : (
-          <ImagePickerIcon
-            className={label ? style.icon_img_label : style.icon_img}
-          />
+          <ImagePickerIcon className={label ? style.icon_img_label : style.icon_img} />
         )}
 
         {label ? (
