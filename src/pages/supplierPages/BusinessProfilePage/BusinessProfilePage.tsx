@@ -1,11 +1,11 @@
 import React from 'react';
 
-import BusinessProfileForm from 'old-components/ui/BusinessProfileForm';
+import { SupplierBusinessProfileForm } from '../../../modules';
 
 export const BusinessProfilePage = (): JSX.Element => {
   return (
     <div>
-      <BusinessProfileForm />
+      <SupplierBusinessProfileForm />
     </div>
   );
 };

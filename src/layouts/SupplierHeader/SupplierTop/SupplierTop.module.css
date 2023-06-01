@@ -71,7 +71,7 @@
   align-items: center;
 
   font-size: 15px;
-  line-height: calc(20/15);
+  line-height: calc(20 / 15);
   letter-spacing: 0.16px;
 
   background: transparent;
@@ -89,7 +89,6 @@
   border-radius: 50%;
 }
 
-
 .menu_active {
   z-index: 10;
   opacity: 1;
@@ -100,7 +99,7 @@
 
   position: absolute;
   z-index: 10;
-  top: 105%;
+  top: 67px;
 
   display: flex;
   flex-direction: column;
@@ -126,7 +125,6 @@
   font-size: 1em;
   background: transparent;
 }
-
 
 .icon {
   transform: rotate(90deg);
