@@ -56,9 +56,6 @@ const loginSlice = createSlice({
   name: 'login',
   initialState,
   extraReducers: builder => {
-    builder.addCase(getCurrentUserInfo.fulfilled, (state, action) => {
-      state.userRole = action.payload.result.is_supplier ? 'supplier' : 'seller';
-    });
     builder.addCase(getCurrentUserInfo.rejected, state => {
       state.isAuth = false;
     });
