@@ -254,7 +254,6 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
                       <Select
                         options={NUMBER_OF_EMPLOYEES_DATA}
                         placeholder="Select"
-                        padding="23px"
                         error={errors?.numEmployees?.message}
                         className={style.select}
                         onChange={value => {
