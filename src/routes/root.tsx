@@ -2,34 +2,33 @@ import React from 'react';
 
 import { createBrowserRouter } from 'react-router-dom';
 
+import { UserRoleType } from '../common/types';
 import {
   AboutUsPage,
   ChangeEmailPage,
   ChangePasswordPage,
+  CheckEmailPage,
   ConfirmEmailPage,
   ContactSupportPage,
   ErrorPage,
   FAQPage,
   ForgotPasswordPage,
   LastNewsPage,
+  LoginPage,
   PrivacyPolicyPage,
+  RegisterPage,
   ResetPasswordPage,
   SellAbraPage,
   TermsAndConditionsPage,
   TutorialPage,
-  CheckEmailPage,
-  LoginPage,
-  RegisterPage,
 } from '../pages/commonPages';
 
 import { sellerRoute } from './sellerRoute';
 import { supplierRoute } from './supplierRoute';
 
-import { userRoleType } from 'services/auth/auth.serviceTypes';
-
 type Routes = ReturnType<typeof createBrowserRouter>;
 
-export function createRoutes(userRole: userRoleType): Routes {
+export function createRoutes(userRole: UserRoleType): Routes {
   const child = userRole === 'supplier' ? supplierRoute : sellerRoute;
 
   return createBrowserRouter([

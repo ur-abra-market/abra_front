@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 
 import { useAppDispatch } from '../common/hooks/useAppDispatch';
 import { useAppSelector } from '../common/hooks/useAppSelector';
-import { NoticePopup } from '../components/NoticePopup/NoticePopup';
+import { NoticePopup } from '../components';
 import { createRoutes } from '../routes/root';
 import { getUserRole, isAppInitializedSelector } from '../store/reducers/appSlice';
 import { userRoleSelector } from '../store/reducers/authSlice';

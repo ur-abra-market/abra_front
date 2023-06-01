@@ -1,2 +1,2 @@
-export { authReducer, clearState } from './slice';
-export { errorMessageSelector, userRoleSelector } from './selectors';
+export { userRoleSelector } from './selectors';
+export { registerUser, loginUser } from './thunks';

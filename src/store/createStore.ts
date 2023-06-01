@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { appReducer } from './reducers/appSlice/slice';
-import { authReducer } from './reducers/authSlice';
+import { authReducer } from './reducers/authSlice/slice';
 import basketReducer from './reducers/basketSlice';
 import categoryReducer from './reducers/categorySlice';
 import commonSlice from './reducers/commonSlice';
@@ -27,8 +27,8 @@ import userReducer from './reducers/userSlice';
 export const store = configureStore({
   reducer: {
     app: appReducer,
-    login: loginReducer,
     auth: authReducer,
+    login: loginReducer,
     product: productReducer,
     targetProduct: targetProductReducer,
     paginate: paginateReducer,

@@ -1,22 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { userRoleType } from '../../../services/auth/auth.serviceTypes';
 import { getUserRole } from '../appSlice';
 
 import { loginUser } from './thunks';
 
+import { UserRoleType } from 'common/types';
+
 interface IAuthSliceInitialState {
-  errorMessage: null | string;
-  isValidRegistrationData: null | boolean;
-  loading: boolean;
-  userRole: userRoleType;
+  userRole: UserRoleType;
   isAuthorized: boolean;
 }
 
 const AuthSliceInitialState: IAuthSliceInitialState = {
-  errorMessage: null,
-  isValidRegistrationData: null,
-  loading: false,
   userRole: null,
   isAuthorized: false,
 };
@@ -24,18 +19,12 @@ const AuthSliceInitialState: IAuthSliceInitialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState: AuthSliceInitialState,
-  reducers: {
-    clearState: state => {
-      state.errorMessage = null;
-      state.isValidRegistrationData = null;
-      state.loading = false;
-    },
-  },
+  reducers: {},
 
   extraReducers: builder => {
     builder.addCase(
       getUserRole.fulfilled,
-      (state, action: PayloadAction<userRoleType>) => {
+      (state, action: PayloadAction<UserRoleType>) => {
         state.userRole = action.payload;
       },
     );
@@ -46,5 +35,4 @@ const authSlice = createSlice({
   },
 });
 
-export const { clearState } = authSlice.actions;
 export const authReducer = authSlice.reducer;

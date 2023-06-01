@@ -10,7 +10,7 @@ import {
   RegisterResponseType,
 } from '../../../services/auth/auth.serviceTypes';
 import { AppDispatchType } from '../../createStore';
-import { setLoading } from '../appSlice/slice';
+import { setLoading, setResponseNotice } from '../appSlice/slice';
 import { getCurrentUserInfo } from '../loginSlice';
 
 export const registerUser = createAsyncThunk<
@@ -29,6 +29,7 @@ export const registerUser = createAsyncThunk<
 
     if (error instanceof AxiosError) {
       errorMessage = error.response?.data?.error || error.message;
+      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
 
       return rejectWithValue(errorMessage);
     }
@@ -57,6 +58,7 @@ export const loginUser = createAsyncThunk<
 
     if (error instanceof AxiosError) {
       errorMessage = error.response?.data?.error || error.message;
+      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
 
       return rejectWithValue(errorMessage);
     }

@@ -5,17 +5,15 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
+import { ResponseUserRoleType } from '../../../../../common/types';
+import { registerUser } from '../../../../../store/reducers/authSlice';
 import { PasswordComplexity } from '../../assets';
 
 import style from './RegisterForm.module.scss';
 
 import { emailValidationSchema, passwordValidationSchema } from 'common/constants';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { registerUser } from 'store/reducers/authSlice/thunks';
 import { Button, Input } from 'ui-kit';
-
-const MATCHED_ERROR_MESSAGE =
-  'password must match the following: "/^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/"'; // todo fix error messages on backend
 
 export interface IFormValues {
   email: string;
@@ -31,7 +29,7 @@ const formValidationSchema = yup
   .required();
 
 export const RegisterForm = (): JSX.Element => {
-  const [userRole, setUserRole] = useState<'seller' | 'supplier'>('seller');
+  const [userRole, setUserRole] = useState<ResponseUserRoleType>('seller');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -45,9 +43,7 @@ export const RegisterForm = (): JSX.Element => {
     mode: 'all',
   });
 
-  const watchPassword = watch('password');
-
-  const handleButtonUserRoleOnClick = (userStatus: 'seller' | 'supplier'): void => {
+  const handleButtonUserRoleOnClick = (userStatus: ResponseUserRoleType): void => {
     setUserRole(userStatus);
   };
 
@@ -86,13 +82,9 @@ export const RegisterForm = (): JSX.Element => {
           type="password"
           variant="password"
           placeholder="Password"
-          error={
-            errors.password?.message !== MATCHED_ERROR_MESSAGE
-              ? errors.password?.message
-              : ''
-          }
+          error={errors.password?.message}
         />
-        <PasswordComplexity password={watchPassword} />
+        <PasswordComplexity password={watch('password')} />
       </div>
 
       <Button

@@ -3,21 +3,18 @@ import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { clearState } from '../../../../store/reducers/authSlice';
-import { registerUser } from '../../../../store/reducers/authSlice/thunks';
+import { registerUser } from '../../../../store/reducers/authSlice';
 import { LoaderCircular } from '../../../../ui-kit';
 
 import ContentMessage from 'components/ContentMessage';
 import style from 'pages/commonPages/auth-pages/ConfirmEmailPage/ConfirmEmailPage.module.css';
 
 export const ConfirmEmailPage = (): JSX.Element => {
-  const dispatch = useAppDispatch();
-
   const [searchParams] = useSearchParams();
-
   const [emailStatus, setEmailStatus] = useState<'confirmed' | 'unconfirmed' | null>(
     null,
   );
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const token = searchParams.get('token');
@@ -28,7 +25,6 @@ export const ConfirmEmailPage = (): JSX.Element => {
           setEmailStatus('confirmed');
         }
         if (meta.requestStatus === 'rejected') setEmailStatus('unconfirmed');
-        dispatch(clearState());
       });
   }, [dispatch, searchParams]);
 

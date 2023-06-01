@@ -37,7 +37,7 @@ export const NoticePopup = (): JSX.Element => {
   return createPortal(
     open && (
       <div className={style.notice_container}>
-        <p className={style.message}>{message} asdasdasd</p>
+        <p className={style.message}>{message}</p>
         <CrossWhiteIcon className={style.cross} onClick={handleNoticePopupClose} />
       </div>
     ),

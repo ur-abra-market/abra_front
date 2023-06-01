@@ -1,15 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
+import { UserRoleType } from '../../common/types';
 import authService from '../../services/auth/auth.service';
-import { AsyncThunkConfig, userRoleType } from '../../services/auth/auth.serviceTypes';
+import { AsyncThunkConfig } from '../../services/auth/auth.serviceTypes';
 
 interface IInitialState {
   resMessage: string;
   errMessage: string;
   loading: boolean;
   isAuth: boolean;
-  userRole: userRoleType;
+  userRole: UserRoleType;
 }
 
 const initialState: IInitialState = {
