@@ -177,6 +177,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
             <p className={style.main_info_title}>
               {updateForm ? 'Business Profile' : 'Main info'}
             </p>
+
             <div className={style.image_adding}>
               <ImageAdding
                 imgUrl={imgUrl}
@@ -188,6 +189,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
                 {...register('profileLogo')}
               />
             </div>
+
             <div className={style.select_info_inputs}>
               <Label label="Shop name (will be shown on the profile)">
                 <Input
@@ -197,7 +199,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
                 />
               </Label>
 
-              <div className={style.select_equal}>
+              <div className={style.select_width}>
                 <Controller
                   control={control}
                   name="businessSector"
@@ -206,9 +208,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
                       <Select
                         options={BUSINESS_SECTOR_DATA}
                         placeholder="Select"
-                        padding="23px"
                         error={errors?.businessSector?.message}
-                        className={style.select}
                         onChange={value => {
                           field.onChange(value.value);
                         }}
@@ -218,6 +218,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
                 />
               </div>
             </div>
+
             <div
               className={cn(selectCompanyClasses, {
                 [style.select_update_company]: updateForm,
@@ -233,7 +234,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
             </div>
           </div>
 
-          <div className={style.companyInfo}>
+          <div className={style.company_info}>
             <p className={style.main_info_title}>Company Info (optional)</p>
             <div className={style.select_info_inputs}>
               <Label label="Year established">
@@ -244,7 +245,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
                 />
               </Label>
 
-              <div className={style.select_equal}>
+              <div className={style.select_width}>
                 <Controller
                   control={control}
                   name="numEmployees"
@@ -312,6 +313,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
               </Label>
             </div>
           </div>
+
           <Button
             type="submit"
             className={style.button}

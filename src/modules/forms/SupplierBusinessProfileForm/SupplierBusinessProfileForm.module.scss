@@ -33,8 +33,8 @@
   margin: 24px 0 16px;
 }
 
-.select_equal {
-  width: 309px;
+.select_width {
+  width: 310px;
 }
 
 .select_company {
@@ -45,12 +45,6 @@
   margin-bottom: 36px;
 }
 
-.select{
-  font-size: var(--fz-xs);
-  background: var(--color-super-light-gray);
-  border-radius: 12px;
-}
-
 .phone_number {
   display: grid;
   grid-template-columns: 160px 1fr;
@@ -58,11 +52,6 @@
   align-items: flex-end;
 
   margin: 16px 0;
-}
-
-.margin_fix {
-  width: 100%;
-  margin-top: 16px;
 }
 
 .license_reminder {
@@ -98,6 +87,7 @@
 
 .explanatory_form {
   margin-top: 10px;
+  font-size: var(--fz-xs);
 }
 
 .checkbox {

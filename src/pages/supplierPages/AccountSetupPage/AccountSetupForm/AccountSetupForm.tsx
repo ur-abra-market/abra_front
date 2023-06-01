@@ -14,7 +14,7 @@ import { sendAccountPersonalInfo } from '../../../../store/reducers/formRegistra
 import { Button, SupplierRegisterFormStep } from '../../../../ui-kit';
 import { PersonalInfoChangeForm } from '../../SupplierAccountMainPage';
 
-import style from 'pages/sellerPages/SellerAccountPage/SellerAccountPage.module.css';
+import style from './AccountSetupForm.module.scss';
 
 export const AccountSetupForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
