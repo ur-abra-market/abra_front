@@ -25,13 +25,11 @@ export const registerUser = createAsyncThunk<
 
     return { data };
   } catch (error) {
-    let errorMessage: string = ' [registerUser]: Error';
+    let errorMessage: string = '[registerUser]: Error';
 
     if (error instanceof AxiosError) {
       errorMessage = error.response?.data?.error || error.message;
       dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
-
-      return rejectWithValue(errorMessage);
     }
 
     return rejectWithValue(errorMessage);

@@ -8,8 +8,12 @@ const axiosInstance = axios.create();
 axiosInstance.interceptors.response.use(
   response => response,
   error => {
-    if (!error.response || error.response.status === 500) {
-      store.dispatch(setResponseError(error.message || 'Some error'));
+    if (!error.response) {
+      store.dispatch(setResponseError('Network error or no response received'));
+    } else if (error.response.status === 500) {
+      store.dispatch(setResponseError('Internal Server Error'));
+    } else {
+      store.dispatch(setResponseError(error.message || 'Some error occurred'));
     }
 
     return Promise.reject(error);
