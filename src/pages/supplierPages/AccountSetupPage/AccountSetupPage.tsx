@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import AccountSetupForm from 'old-components/ui/AccountSetupForm';
+import { AccountSetupForm } from './index';
 
 export const AccountSetupPage: FC = () => {
   return (

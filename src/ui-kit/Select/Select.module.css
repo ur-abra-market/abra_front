@@ -1,4 +1,3 @@
-
 .header {
   cursor: pointer;
   user-select: none;
@@ -40,7 +39,7 @@ div > .header_active_up {
 
   word-break: break-word;
 
-  background: white;
+  background: var(--color-white);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.2) 7px 6px 5px, rgba(0, 0, 0, 0.2) -4px 6px 5px;
@@ -49,6 +48,9 @@ div > .header_active_up {
 
 .main {
   position: relative;
+  font-size: var(--fz-s);
+  background-color: var(--color-light-gray);
+  border-radius: 12px;
 }
 
 .error {
@@ -58,7 +60,7 @@ div > .header_active_up {
 
 
   font-size: 13px;
-  color: #FF4040;
+  color: var(--color-accent);
 }
 
 div > .opened_menu_up_pos {
