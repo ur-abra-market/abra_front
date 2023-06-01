@@ -4,6 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 
 import { useAppDispatch } from '../common/hooks/useAppDispatch';
 import { useAppSelector } from '../common/hooks/useAppSelector';
+import { NoticePopup } from '../components/NoticePopup/NoticePopup';
 import { createRoutes } from '../routes/root';
 import { getUserRole, isAppInitializedSelector } from '../store/reducers/appSlice';
 import { userRoleSelector } from '../store/reducers/authSlice';
@@ -24,6 +25,7 @@ export const App = (): JSX.Element => {
 
   return (
     <div className="App">
+      <NoticePopup />
       <RouterProvider router={createRoutes(userRole)} />
     </div>
   );

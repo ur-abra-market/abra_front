@@ -5,13 +5,17 @@ import { loginUser } from '../authSlice/thunks';
 
 import { getUserRole } from './index';
 
-type ResponseType = 'error' | 'success' | null;
+type NoticeType = 'error' | 'success' | null;
+export interface IResponseNotice {
+  noticeType: NoticeType;
+  message: string | null;
+}
 
 interface IAppSliceInitialState {
   isAppInitialized: boolean;
   initializedLoading: LoadingStatus;
   loading: LoadingStatus;
-  response: { type: ResponseType; message: string | null };
+  responseNotice: IResponseNotice;
   isFeedbackOpen: boolean;
 }
 
@@ -19,7 +23,7 @@ const initialState: IAppSliceInitialState = {
   isAppInitialized: false,
   initializedLoading: LoadingStatus.Idle,
   loading: LoadingStatus.Idle,
-  response: { type: null, message: null },
+  responseNotice: { noticeType: null, message: null },
   isFeedbackOpen: false,
 };
 
@@ -31,19 +35,20 @@ export const appSlice = createSlice({
       state.isFeedbackOpen = !state.isFeedbackOpen;
     },
     setResponseError(state, action: PayloadAction<string>) {
-      state.response.type = 'error';
-      state.response.message = action.payload;
+      state.responseNotice.noticeType = 'error';
+      state.responseNotice.message = action.payload;
       state.loading = LoadingStatus.Failed;
     },
     setLoading(state, action: PayloadAction<LoadingStatus>) {
       state.loading = action.payload;
     },
+    setResponseNotice(state, action: PayloadAction<IResponseNotice>) {
+      state.responseNotice.noticeType = action.payload.noticeType;
+      state.responseNotice.message = action.payload.message;
+    },
   },
 
   extraReducers: builder => {
-    builder.addCase(getUserRole.pending, state => {
-      state.response.message = null;
-    });
     builder.addCase(getUserRole.fulfilled, state => {
       state.isAppInitialized = true;
     });
@@ -52,10 +57,12 @@ export const appSlice = createSlice({
     });
 
     builder.addCase(loginUser.rejected, (state, action) => {
-      console.log(action.payload);
+      state.responseNotice.noticeType = 'error';
+      state.responseNotice.message = action.payload || null;
     });
   },
 });
 
 export const appReducer = appSlice.reducer;
-export const { toggleInfoForm, setResponseError, setLoading } = appSlice.actions;
+export const { toggleInfoForm, setResponseError, setLoading, setResponseNotice } =
+  appSlice.actions;
