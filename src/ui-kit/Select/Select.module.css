@@ -53,6 +53,10 @@ div > .header_active_up {
   border-radius: 12px;
 }
 
+.main_has_header {
+  background-color: var(--color-white) ;
+}
+
 .error {
   position: absolute;
   bottom: -15px;
