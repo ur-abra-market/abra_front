@@ -1,18 +1,27 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
+import cn from 'classnames';
 import { Controller, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
-import { UploadImage } from '../../../../components';
-import { uploadUserLogoService } from '../../../../store/reducers/userSlice';
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import { UploadImage } from '../../../components';
+import { Action } from '../../../services/user/user.service';
+import { uploadUserLogoService } from '../../../store/reducers/userSlice';
+import {
+  Button,
+  Checkbox,
+  Input,
+  ISelectOption,
+  Label,
+  Select,
+  SupplierRegisterFormStep,
+} from '../../../ui-kit';
 
-import style from './BusinessProfileChangeForm.module.css';
-
-import { Button, Input, Label, Select } from 'ui-kit';
-import { ISelectOption } from 'ui-kit/Select/Select';
+import style from './SupplierBusinessProfileForm.module.scss';
 
 const date = new Date();
 const year = date.getFullYear();
@@ -62,11 +71,20 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
   { label: 'Electronics', value: 'Electronics' },
 ];
 
-export const BusinessProfileChangeForm: FC = (): JSX.Element => {
-  const [images, setImages] = useState([]);
+interface IBusinessProfileForm {
+  updateForm?: boolean;
+}
 
+export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
+  updateForm,
+}): JSX.Element => {
+  const [images, setImages] = useState([]);
+  const formContainerClasses = style.form_container;
+  const selectCompanyClasses = style.select_company;
+
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [saveBtnActive, setSaveBtnActive] = useState(false);
+  const { resMessage } = useAppSelector(state => state.formRegistration);
   const accountInfo = useAppSelector(state => state.supplierAccount.supplierInfo);
 
   // @ts-ignore
@@ -77,7 +95,7 @@ export const BusinessProfileChangeForm: FC = (): JSX.Element => {
   const {
     control,
     register,
-    formState: { errors, isValid, isDirty },
+    formState: { errors, isValid },
     handleSubmit,
     reset,
   } = useForm<FormFields>({
@@ -99,8 +117,8 @@ export const BusinessProfileChangeForm: FC = (): JSX.Element => {
     },
   });
 
-  const onSubmit = (data: FormFields): void => {
-    console.log(data); // todo fix
+  const onSubmit = (data: any): void => {
+    console.log(data);
     // const phone = data.code + data.tel;
 
     // const info = {
@@ -136,21 +154,37 @@ export const BusinessProfileChangeForm: FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (isDirty) setSaveBtnActive(true);
-  }, [isDirty]);
+    if (resMessage === 'DATA_HAS_BEEN_SENT')
+      navigate('../add-product', { replace: true });
+  }, [resMessage, navigate]);
 
   return (
     <div className={style.form_wrapper}>
-      <div className={style.form_container}>
+      <div
+        className={cn(formContainerClasses, {
+          [style.form_update_container]: updateForm,
+        })}
+      >
+        {!updateForm && (
+          <div className={style.info_step}>
+            <SupplierRegisterFormStep step={2} />
+          </div>
+        )}
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={style.mainInfo}>
-            <p className={style.main_info_title}>Business Profile</p>
-            <UploadImage
-              action=""
-              type="logo"
-              label="Add logo or profile image"
-              placeholder="The customers will recognize your store by this image"
-            />
+            <p className={style.main_info_title}>
+              {updateForm ? 'Business Profile' : 'Main info'}
+            </p>
+
+            <div className={style.image_adding}>
+              <UploadImage
+                action={Action.UPLOAD_LOGO_IMAGE}
+                type="logo"
+                label="Add logo or profile image"
+                placeholder="The customers will recognize your store by this image"
+              />
+            </div>
 
             <div className={style.select_info_inputs}>
               <Label label="Shop name (will be shown on the profile)">
@@ -161,7 +195,7 @@ export const BusinessProfileChangeForm: FC = (): JSX.Element => {
                 />
               </Label>
 
-              <div className={style.select_equal}>
+              <div className={style.select_width}>
                 <Controller
                   control={control}
                   name="businessSector"
@@ -170,7 +204,6 @@ export const BusinessProfileChangeForm: FC = (): JSX.Element => {
                       <Select
                         options={BUSINESS_SECTOR_DATA}
                         placeholder="Select"
-                        className={style.select}
                         error={errors?.businessSector?.message}
                         onChange={value => {
                           field.onChange(value.value);
@@ -182,18 +215,22 @@ export const BusinessProfileChangeForm: FC = (): JSX.Element => {
               </div>
             </div>
 
-            <div className={style.checkbox_container}>
-              <input
-                type="checkbox"
-                id="checkbox"
-                className={style.checkbox}
-                {...register('checkbox')}
-              />
-              <label htmlFor="checkbox">I am a manufacturer</label>
+            <div
+              className={cn(selectCompanyClasses, {
+                [style.select_update_company]: updateForm,
+              })}
+            >
+              <Checkbox className={style.checkbox} label="I am a manufacturer" />
+              <Label label="License or entrepreneur number">
+                <Input placeholder="000 – 00 – 0000" />
+              </Label>
+              <p className={style.explanatory_form}>
+                Use the number of any document authorizing the sale
+              </p>
             </div>
           </div>
 
-          <div className={style.companyInfo}>
+          <div className={style.company_info}>
             <p className={style.main_info_title}>Company Info (optional)</p>
             <div className={style.select_info_inputs}>
               <Label label="Year established">
@@ -204,7 +241,7 @@ export const BusinessProfileChangeForm: FC = (): JSX.Element => {
                 />
               </Label>
 
-              <div className={style.select_equal}>
+              <div className={style.select_width}>
                 <Controller
                   control={control}
                   name="numEmployees"
@@ -213,8 +250,8 @@ export const BusinessProfileChangeForm: FC = (): JSX.Element => {
                       <Select
                         options={NUMBER_OF_EMPLOYEES_DATA}
                         placeholder="Select"
-                        className={style.select}
                         error={errors?.numEmployees?.message}
+                        className={style.select}
                         onChange={value => {
                           field.onChange(value.value);
                         }}
@@ -241,17 +278,19 @@ export const BusinessProfileChangeForm: FC = (): JSX.Element => {
           </div>
 
           <div>
-            <p className={style.main_info_title}>Contacts (optional)</p>
+            <p className={style.main_info_title}>
+              {updateForm ? 'Contacts (optional)' : 'Contacts'}
+            </p>
 
             <div className={style.phone_number}>
-              {/*      <Label label="Business phone number">
+              {/* <Label label="Business phone number">
                 <Select {...register('code')} name="code" options={PHONE_DATA} />
               </Label>
-                <Input
-                  placeholder="(XXX) XXX - XX - XX"
-                  {...register('tel')}
-                  error={errors?.tel?.message}
-                /> */}
+              <Input
+                placeholder="(XXX) XXX - XX - XX"
+                {...register('tel')}
+                error={errors?.tel?.message}
+              /> */}
               {/* todo заменить на PhoneInput */}
             </div>
 
@@ -269,14 +308,13 @@ export const BusinessProfileChangeForm: FC = (): JSX.Element => {
               </Label>
             </div>
           </div>
-          {saveBtnActive ? (
-            <Button
-              type="submit"
-              label="Save"
-              disabled={!isValid}
-              className={style.button}
-            />
-          ) : null}
+
+          <Button
+            type="submit"
+            className={style.button}
+            label="Save"
+            disabled={!isValid}
+          />
         </form>
       </div>
     </div>

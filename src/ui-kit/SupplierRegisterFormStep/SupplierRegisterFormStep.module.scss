@@ -3,14 +3,14 @@
 }
 
 .title {
-  font-size: 34px;
-  font-weight: 700;
+  font-size: var(--fz-xxl2);
+  font-weight: var(--bold);
   text-align: left;
 }
 
-.text {
-  margin-top: 8px;
-  font-size: 15px;
+.description {
+  margin-top: 16px;
+  font-size: var(--fz-s2);
   text-align: left;
 }
 
@@ -23,14 +23,14 @@
 .step {
   margin-bottom: 6px;
 
-  font-size: 34px;
-  font-weight: 700;
-  color: #D4D4D4;
+  font-size: var(--fz-xxl2);
+  font-weight: var(--bold);
+  color: var(--color-gray);
   text-align: right;
 }
 
 .link {
   /*color: #828282;*/
-  color: #FC133D;
+  color: var(--color-accent);
   text-decoration: underline;
 }
