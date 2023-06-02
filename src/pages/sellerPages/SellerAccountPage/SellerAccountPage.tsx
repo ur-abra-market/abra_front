@@ -117,10 +117,6 @@ export const SellerAccountPage = (): JSX.Element => {
     });
   }, [first_name, last_name, reset]);
 
-  // if (!isAuth) {
-  //   return <Navigate to="/auth" />;
-  // }
-
   return (
     <div className={style.seller_page}>
       <Header />

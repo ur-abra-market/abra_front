@@ -1,4 +1,4 @@
-export { MainPage } from './MainPage/MainPage';
+export { MainPage } from '../commonPages/MainPage/MainPage';
 export { CartPage } from './CartPage/CartPage';
 export { ProductPage } from './ProductPage/ProductPage';
 export { SellerAccountPage } from './SellerAccountPage/SellerAccountPage';

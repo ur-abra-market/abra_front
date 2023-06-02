@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-  MainPage,
   CartPage,
   ProductPage,
   CheckoutPage,
@@ -14,10 +13,6 @@ import {
 } from 'pages/sellerPages';
 
 export const sellerRoute = [
-  {
-    path: '/',
-    element: <MainPage />,
-  },
   {
     path: 'products-list/*',
     element: <ProductListPage />,
