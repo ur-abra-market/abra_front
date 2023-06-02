@@ -35,6 +35,6 @@
 .border_line_active{
   position: relative;
   height: 3px;
-  background-color: #F00F;
+  background-color: var(--color-accent);
   transition: all 0.3s;
 }

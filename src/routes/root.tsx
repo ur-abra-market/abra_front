@@ -20,8 +20,8 @@ import {
   CheckEmailPage,
   LoginPage,
   RegisterPage,
+  MainPage,
 } from '../pages/commonPages';
-import { MainPage } from '../pages/commonPages/MainPage/MainPage';
 
 import { sellerRoute } from './sellerRoute';
 import { supplierRoute } from './supplierRoute';
@@ -31,7 +31,6 @@ import { userRoleType } from 'services/auth/auth.serviceTypes';
 type Routes = ReturnType<typeof createBrowserRouter>;
 
 export function createRoutes(userRole: userRoleType): Routes {
-  // const child = userRole === 'supplier' ? supplierRoute : sellerRoute;
   let child: RouteObject[] = [];
 
   if (userRole === 'supplier') child = supplierRoute;
