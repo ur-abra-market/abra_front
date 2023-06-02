@@ -23,7 +23,7 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
   return (
     <div className={cn(style.images_box, className)} {...restProps}>
       <div className={style.image_box_main}>
-        <img src={Banner0Image} alt="" />
+        <img src={Banner0Image} alt="" height={388} width={1440} />
         <div className={style.grid_item_main_ad}>
           <span>GLASSES</span>
           <span>$8.50/pc </span>
@@ -35,7 +35,7 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
         <div className={style.images_box_grid}>
           <div className={cn(style.grid_item1)}>
             <span className={style.grid_item_ad}>AUTUMN SALE</span>
-            <img src={Banner4Image} alt="" />
+            <img src={Banner4Image} alt="" height={500} width={682} />
           </div>
 
           <div className={cn(style.grid_item2)}>
@@ -43,17 +43,17 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
               <span>special price for</span>
               <span>sneakers</span>
             </div>
-            <img src={Banner5Image} alt="" />
+            <img src={Banner5Image} alt="" height={244} width={682} />
           </div>
 
           <div className={cn(style.grid_item3)}>
             <span className={style.grid_item_ad}>MEN’S CLOTHES</span>
-            <img src={Banner6Image} alt="" />
+            <img src={Banner6Image} alt="" height={244} width={355} />
           </div>
 
           <div className={cn(style.grid_item4)}>
             <span className={style.grid_item_ad}>WOMEN’S CLOTHES</span>
-            <img src={Banner7Image} alt="" />
+            <img src={Banner7Image} alt="" height={244} width={355} />
           </div>
         </div>
       </Container>
