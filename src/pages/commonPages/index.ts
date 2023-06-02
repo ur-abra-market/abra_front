@@ -15,3 +15,4 @@ export { TermsAndConditionsPage } from './TermsAndConditionsPage/TermsAndConditi
 export { TutorialPage } from './TutorialPage/TutorialPage';
 export { LoginPage } from './auth-pages/LoginPage/LoginPage';
 export { RegisterPage } from './auth-pages/RegisterPage/RegisterPage';
+export { MainPage } from './MainPage/MainPage';

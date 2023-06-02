@@ -1,26 +1,27 @@
 import React from 'react';
 
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
 
 import { UserRoleType } from '../common/types';
 import {
   AboutUsPage,
   ChangeEmailPage,
   ChangePasswordPage,
-  CheckEmailPage,
   ConfirmEmailPage,
   ContactSupportPage,
   ErrorPage,
   FAQPage,
   ForgotPasswordPage,
   LastNewsPage,
-  LoginPage,
   PrivacyPolicyPage,
-  RegisterPage,
   ResetPasswordPage,
   SellAbraPage,
   TermsAndConditionsPage,
   TutorialPage,
+  CheckEmailPage,
+  LoginPage,
+  RegisterPage,
+  MainPage,
 } from '../pages/commonPages';
 
 import { sellerRoute } from './sellerRoute';
@@ -29,7 +30,10 @@ import { supplierRoute } from './supplierRoute';
 type Routes = ReturnType<typeof createBrowserRouter>;
 
 export function createRoutes(userRole: UserRoleType): Routes {
-  const child = userRole === 'supplier' ? supplierRoute : sellerRoute;
+  let child: RouteObject[] = [];
+
+  if (userRole === 'supplier') child = supplierRoute;
+  if (userRole === 'seller') child = sellerRoute;
 
   return createBrowserRouter([
     {
@@ -41,6 +45,14 @@ export function createRoutes(userRole: UserRoleType): Routes {
       ),
       children: [
         ...child,
+        {
+          path: '*',
+          element: <Navigate to="/login" />,
+        },
+        {
+          path: '/',
+          element: <MainPage />,
+        },
         {
           path: 'register',
           element: <RegisterPage />,

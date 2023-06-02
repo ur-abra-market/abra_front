@@ -15,6 +15,7 @@ export const ProductListPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const paginate = useAppSelector(state => state.paginate);
   const filter = useAppSelector(state => state.filter);
+
   const data = { ...filter, ...paginate };
 
   useEffect(() => {

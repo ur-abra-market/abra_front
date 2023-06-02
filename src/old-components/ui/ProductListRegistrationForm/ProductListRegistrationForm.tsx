@@ -7,6 +7,7 @@ import * as yup from 'yup';
 
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import { UploadImage } from '../../../components';
 import {
   addProductService,
   getCompanyInfoService,
@@ -22,7 +23,6 @@ import {
 } from '../../../ui-kit';
 import DropDownField from '../../DropDownField';
 import Form from '../../Form';
-import { ImagesAdding } from '../../ImageAdding/ImagesAdding';
 import ProdInfoInputs from '../ProdInfoInputs';
 import SelectionsForProperties from '../SelectionsForProperties/SelectionsForProperties';
 import TypesPage from '../TypesView/TypesPage';
@@ -340,7 +340,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 
                 <div className={style.list_img}>
                   {[...new Array(5)].map((el, i) => (
-                    <ImagesAdding key={i} images={images} setImages={setImages} />
+                    <UploadImage action="" type="default" key={i} />
                   ))}
                 </div>
                 <Label label="Description">
