@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
 
 import {
   AboutUsPage,
@@ -20,6 +20,7 @@ import {
   CheckEmailPage,
   LoginPage,
   RegisterPage,
+  MainPage,
 } from '../pages/commonPages';
 
 import { sellerRoute } from './sellerRoute';
@@ -30,7 +31,10 @@ import { userRoleType } from 'services/auth/auth.serviceTypes';
 type Routes = ReturnType<typeof createBrowserRouter>;
 
 export function createRoutes(userRole: userRoleType): Routes {
-  const child = userRole === 'supplier' ? supplierRoute : sellerRoute;
+  let child: RouteObject[] = [];
+
+  if (userRole === 'supplier') child = supplierRoute;
+  if (userRole === 'seller') child = sellerRoute;
 
   return createBrowserRouter([
     {
@@ -42,6 +46,14 @@ export function createRoutes(userRole: userRoleType): Routes {
       ),
       children: [
         ...child,
+        {
+          path: '*',
+          element: <Navigate to="/login" />,
+        },
+        {
+          path: '/',
+          element: <MainPage />,
+        },
         {
           path: 'register',
           element: <RegisterPage />,

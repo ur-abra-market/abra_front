@@ -1,5 +1,5 @@
 import { ProductSortType } from '../../common/types/enums/productSortType.enum';
-import { Categories } from '../../pages/sellerPages/MainPage/MainPage';
+import { Categories } from '../../pages/commonPages/MainPage/MainPage';
 
 export interface IResponse<T> {
   result: T;
