@@ -15,6 +15,11 @@ import style from './UploadImage.module.scss';
 
 import { UploadItemImageIcon, UploadLogoImageIcon, CrossRedIcon } from 'assets/icons';
 
+interface IUploadFileData {
+  preview: string;
+  raw: string | File;
+}
+
 interface IUploadImage
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   action: string;
@@ -33,12 +38,21 @@ export const UploadImage: FC<IUploadImage> = ({
   placeholder,
   ...restProps
 }) => {
-  const [file, setFile] = useState<UploadFileData>({ preview: '', raw: '' });
+  const [file, setFile] = useState<IUploadFileData>({ preview: '', raw: '' });
   const [image_id, setImage_id] = useState(0);
   const uploadImage = type === 'logo' ? <UploadLogoImageIcon /> : <UploadItemImageIcon />;
-  const inputStyle = type === 'logo' ? `${style.input_logo}` : `${style.input_default}`;
-  const imgStyle = type === 'logo' ? `${style.logo_img}` : `${style.default_img}`;
-  const crossStyle = type === 'logo' ? `${style.logo_cross}` : `${style.default_cross}`;
+  const inputClasses = cn({
+    [style.input_logo]: type === 'logo',
+    [style.input_default]: type !== 'logo',
+  });
+  const imgClasses = cn({
+    [style.logo_img]: type === 'logo',
+    [style.default_img]: type !== 'logo',
+  });
+  const crossClasses = cn({
+    [style.logo_cross]: type === 'logo',
+    [style.default_cross]: type !== 'logo',
+  });
   const imgAction =
     type === 'logo' ? '/suppliers/deleteCompanyImage/' : '/suppliers/deleteProductImage/';
   const handleOnClick = (): void => {
@@ -55,6 +69,8 @@ export const UploadImage: FC<IUploadImage> = ({
         preview: URL.createObjectURL(e.target.files[0]),
         raw: e.target.files[0],
       });
+      // eslint-disable-next-line no-param-reassign
+      e.target.value = '';
     }
   };
 
@@ -76,19 +92,18 @@ export const UploadImage: FC<IUploadImage> = ({
     <div className={cn(style.wrapper, className)} {...restProps}>
       <input
         type="file"
-        className={inputStyle}
+        className={inputClasses}
         id="profileLogo"
         onChange={handleOnChange}
       />
       <div className={style.img_wrapper}>
         {file.preview ? (
           <div>
-            <img className={imgStyle} src={file.preview} alt="" />
+            <img className={imgClasses} src={file.preview} alt="" />
 
-            {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-            <div className={crossStyle} onClick={handleOnClick}>
+            <button className={crossClasses} onClick={handleOnClick} type="button">
               <CrossRedIcon />
-            </div>
+            </button>
           </div>
         ) : (
           uploadImage
@@ -105,9 +120,4 @@ export const UploadImage: FC<IUploadImage> = ({
       )}
     </div>
   );
-};
-
-type UploadFileData = {
-  preview: string;
-  raw: string | File;
 };

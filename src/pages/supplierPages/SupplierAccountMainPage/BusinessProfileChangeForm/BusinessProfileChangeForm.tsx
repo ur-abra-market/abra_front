@@ -6,12 +6,11 @@ import * as yup from 'yup';
 
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../../common/hooks/useAppSelector';
+import { UploadImage } from '../../../../components';
 import { uploadUserLogoService } from '../../../../store/reducers/userSlice';
 
 import style from './BusinessProfileChangeForm.module.css';
 
-import ImageAdding from 'old-components/ImageAdding';
-import { ImagesAdding } from 'old-components/ImageAdding/ImagesAdding';
 import { Button, Input, Label, Select } from 'ui-kit';
 import { ISelectOption } from 'ui-kit/Select/Select';
 
@@ -64,7 +63,6 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
 ];
 
 export const BusinessProfileChangeForm: FC = (): JSX.Element => {
-  const [imgUrl, setImgUrl] = useState('');
   const [images, setImages] = useState([]);
 
   const dispatch = useAppDispatch();
@@ -147,15 +145,11 @@ export const BusinessProfileChangeForm: FC = (): JSX.Element => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={style.mainInfo}>
             <p className={style.main_info_title}>Business Profile</p>
-
-            <ImageAdding
-              imgUrl={imgUrl}
-              setImgUrl={setImgUrl}
-              images={images}
-              setImages={setImages}
+            <UploadImage
+              action=""
+              type="logo"
               label="Add logo or profile image"
               placeholder="The customers will recognize your store by this image"
-              {...register('profileLogo')}
             />
 
             <div className={style.select_info_inputs}>
@@ -241,7 +235,7 @@ export const BusinessProfileChangeForm: FC = (): JSX.Element => {
             <p className={style.list_img_title}>Photo of the company or production</p>
             <div className={style.list_img}>
               {[...new Array(5)].map((el, i) => (
-                <ImagesAdding key={i} images={images} setImages={setImages} />
+                <UploadImage action="" type="default" key={i} />
               ))}
             </div>
           </div>
