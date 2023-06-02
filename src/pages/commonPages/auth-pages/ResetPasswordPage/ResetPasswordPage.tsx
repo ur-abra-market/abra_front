@@ -2,15 +2,17 @@ import React, { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
-import { checkToken } from '../../../../store/reducers/passwordSlice';
-import { Button } from '../../../../ui-kit';
+import { AuthPageLayout } from '../assets/components/AuthPageLayout/AuthPageLayout';
 
-import style from './ResetPasswordPage.module.css';
+import style from './ResetPasswordPage.module.scss';
 
+import ResetPasswordForm from './index';
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppSelector } from 'common/hooks/useAppSelector';
 import Modal from 'components/Modal';
-import ResetPasswordForm from 'old-components/ui/ResetPasswordForm';
+import { checkToken } from 'store/reducers/passwordSlice';
+import { Button } from 'ui-kit';
 
 export const ResetPasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
@@ -29,19 +31,15 @@ export const ResetPasswordPage = (): JSX.Element => {
 
   return (
     <>
-      <div className={style.page}>
-        <div className={style.page_wrap}>
-          <div className={style.header}>Create new password</div>
-          <div className={style.subheader}>
-            Enter a new password that matches the criteria
-          </div>
-          <div className={style.inner_wrapper}>
-            {tokenStatus === 'TOKEN_IS_ACTIVE' && (
-              <ResetPasswordForm handleChangeModalActive={handleChangeModalActive} />
-            )}
-          </div>
+      <AuthPageLayout>
+        <div className={style.header}>Create new password</div>
+        <div className={style.subheader}>
+          Enter a new password that matches the criteria
         </div>
-      </div>
+        {tokenStatus === 'TOKEN_IS_ACTIVE' && (
+          <ResetPasswordForm handleChangeModalActive={handleChangeModalActive} />
+        )}
+      </AuthPageLayout>
       <Modal
         showModal={modalActive}
         closeModal={setModalActive}

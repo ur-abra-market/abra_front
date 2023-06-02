@@ -4,7 +4,11 @@ import { LoginForm } from './index';
 
 export const LoginPage = (): JSX.Element => {
   return (
-    <AuthPageLayout footerLink="/forgotPassword" footerTitle="Forgot password">
+    <AuthPageLayout
+      isMainLogoShow
+      footerLink="/forgotPassword"
+      footerTitle="Forgot password"
+    >
       <LoginForm />
     </AuthPageLayout>
   );

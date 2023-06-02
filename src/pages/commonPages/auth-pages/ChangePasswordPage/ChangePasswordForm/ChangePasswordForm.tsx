@@ -4,15 +4,14 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { passwordValidationSchema } from '../../../../common/constants';
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { PasswordComplexity } from '../../../../pages/commonPages/auth-pages/assets';
-import { ChangePasswordPayloadType } from '../../../../services/auth/auth.serviceTypes';
-import { changePassword } from '../../../../store/reducers/passwordSlice';
-import { Button, Input } from '../../../../ui-kit';
-import Form from '../../../Form';
+import { passwordValidationSchema } from '../../../../../common/constants';
+import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
+import { ChangePasswordPayloadType } from '../../../../../services/auth/auth.serviceTypes';
+import { changePassword } from '../../../../../store/reducers/passwordSlice';
+import { Button, Input } from '../../../../../ui-kit';
+import { PasswordComplexity } from '../../assets';
 
-import style from './ChangePasswordForm.module.css';
+import style from './ChangePasswordForm.module.scss';
 
 const formValidationSchema = yup
   .object()
@@ -31,7 +30,7 @@ const ChangePasswordForm: FC<ChangePasswordFormProps> = ({ handleChangeModalActi
   const {
     register,
     watch,
-    formState: { isValid },
+    formState: { isValid, errors },
     handleSubmit,
   } = useForm<ChangePasswordPayloadType>({
     resolver: yupResolver(formValidationSchema),
@@ -45,13 +44,14 @@ const ChangePasswordForm: FC<ChangePasswordFormProps> = ({ handleChangeModalActi
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} className={style.reset_password_form}>
+    <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
       <Input
         {...register('old_password')}
         classNameWrapper={style.input_wrapper}
         placeholder="Current password"
         type="password"
         variant="password"
+        error={errors.old_password?.message}
       />
       <Input
         {...register('new_password')}
@@ -59,6 +59,7 @@ const ChangePasswordForm: FC<ChangePasswordFormProps> = ({ handleChangeModalActi
         placeholder="New password"
         type="password"
         variant="password"
+        error={errors.new_password?.message}
       />
       <PasswordComplexity password={watchPassword} />
       <Button
@@ -68,7 +69,7 @@ const ChangePasswordForm: FC<ChangePasswordFormProps> = ({ handleChangeModalActi
         disabled={!isValid}
         onClick={handleChangeModalActive}
       />
-    </Form>
+    </form>
   );
 };
 

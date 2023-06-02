@@ -4,11 +4,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { forgotPassword } from '../../../store/reducers/passwordSlice';
-import { Button, Input } from '../../../ui-kit';
+import style from './ForgotPasswordForm.module.scss';
 
-import style from './ForgotPasswordForm.module.css';
+import { emailValidationSchema } from 'common/constants';
+import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { forgotPassword } from 'store/reducers/passwordSlice';
+import { Button, Input } from 'ui-kit';
 
 export type ForgotChangePasswordFormType = {
   email: string;
@@ -19,7 +20,7 @@ interface ForgotPasswordFormProps {
 }
 const schema = yup
   .object({
-    email: yup.string().email('Invalid email').required('Email is required'),
+    email: emailValidationSchema,
   })
   .required();
 

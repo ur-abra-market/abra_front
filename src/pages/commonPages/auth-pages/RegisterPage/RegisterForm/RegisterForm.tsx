@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import { ResponseUserRoleType } from '../../../../../common/types';
 import { registerUser } from '../../../../../store/reducers/authSlice';
 import { PasswordComplexity } from '../../assets';
 
@@ -13,6 +12,7 @@ import style from './RegisterForm.module.scss';
 
 import { emailValidationSchema, passwordValidationSchema } from 'common/constants';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { ResponseUserRoleType } from 'common/types';
 import { Button, Input } from 'ui-kit';
 
 export interface IFormValues {

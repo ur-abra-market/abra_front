@@ -4,10 +4,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { Button, Input } from '../../../../ui-kit';
-import Form from '../../../Form';
+import { Button, Input } from '../../../../../ui-kit';
 
-import style from './ChangeEmailForm.module.css';
+import style from './ChangeEmailForm.module.scss';
 
 export type FormDataValuesType = {
   email: string;
@@ -34,7 +33,7 @@ const ChangeEmailForm: FC<ChangeEmailFormProps> = ({ handleChangeModalActive }) 
   const onSubmit = (): void => {};
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} className={style.reset_password_form}>
+    <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
       <Input
         {...register('email')}
         classNameWrapper={style.input_wrapper}
@@ -53,7 +52,7 @@ const ChangeEmailForm: FC<ChangeEmailFormProps> = ({ handleChangeModalActive }) 
         className={style.button}
         onClick={handleChangeModalActive}
       />
-    </Form>
+    </form>
   );
 };
 

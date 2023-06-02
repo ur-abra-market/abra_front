@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-import { Link } from 'react-router-dom';
-
 import Modal from '../../../../components/Modal';
-import ChangePasswordForm from '../../../../old-components/ui/TypesView/ChangePasswordForm';
 import { Button } from '../../../../ui-kit';
+import { AuthPageLayout } from '../assets/components/AuthPageLayout/AuthPageLayout';
 
-import style from './ChangePasswordPage.module.css';
+import style from './ChangePasswordPage.module.scss';
+
+import ChangePasswordForm from './index';
 
 export const ChangePasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
@@ -16,18 +16,13 @@ export const ChangePasswordPage = (): JSX.Element => {
 
   return (
     <>
-      <div className={style.page}>
+      <AuthPageLayout footerLink="/forgotPassword" footerTitle="Forgot password?">
         <div className={style.page_wrap}>
           <div className={style.header}>Change password</div>
           <div className={style.subheader}>Enter your current and new passwords</div>
-          <div className={style.inner_wrapper}>
-            <ChangePasswordForm handleChangeModalActive={handleChangeModalActive} />
-          </div>
-          <Link className={style.link_forgot} to="/forgotPassword">
-            Forgot password?
-          </Link>
+          <ChangePasswordForm handleChangeModalActive={handleChangeModalActive} />
         </div>
-      </div>
+      </AuthPageLayout>
 
       <Modal
         showModal={modalActive}

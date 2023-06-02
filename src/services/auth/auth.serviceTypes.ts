@@ -32,7 +32,6 @@ export type PasswordResponseType = {
 export type ResetPasswordPayloadType = {
   new_password: string;
   confirm_password: string;
-  email: string;
 };
 
 export type ChangePasswordPayloadType = {
