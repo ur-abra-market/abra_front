@@ -8,8 +8,8 @@ import * as yup from 'yup';
 
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import ImageAdding from '../../../old-components/ImageAdding/ImageAdding';
-import { ImagesAdding } from '../../../old-components/ImageAdding/ImagesAdding';
+import { UploadImage } from '../../../components';
+import { Action } from '../../../services/user/user.service';
 import { uploadUserLogoService } from '../../../store/reducers/userSlice';
 import {
   Button,
@@ -78,7 +78,6 @@ interface IBusinessProfileForm {
 export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
   updateForm,
 }): JSX.Element => {
-  const [imgUrl, setImgUrl] = useState('');
   const [images, setImages] = useState([]);
   const formContainerClasses = style.form_container;
   const selectCompanyClasses = style.select_company;
@@ -179,14 +178,11 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
             </p>
 
             <div className={style.image_adding}>
-              <ImageAdding
-                imgUrl={imgUrl}
-                setImgUrl={setImgUrl}
-                images={images}
-                setImages={setImages}
+              <UploadImage
+                action={Action.UPLOAD_LOGO_IMAGE}
+                type="logo"
                 label="Add logo or profile image"
                 placeholder="The customers will recognize your store by this image"
-                {...register('profileLogo')}
               />
             </div>
 
@@ -276,7 +272,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
             <p className={style.list_img_title}>Photo of the company or production</p>
             <div className={style.list_img}>
               {[...new Array(5)].map((el, i) => (
-                <ImagesAdding key={i} images={images} setImages={setImages} />
+                <UploadImage action="" type="default" key={i} />
               ))}
             </div>
           </div>
