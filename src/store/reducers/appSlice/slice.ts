@@ -54,11 +54,6 @@ export const appSlice = createSlice({
     builder.addCase(getUserRole.rejected, state => {
       state.isAppInitialized = true;
     });
-
-    // builder.addCase(loginUser.rejected, (state, action) => {
-    //   state.responseNotice.noticeType = 'error';
-    //   state.responseNotice.message = action.payload || null;
-    // });
   },
 });
 

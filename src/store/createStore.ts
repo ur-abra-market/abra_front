@@ -4,7 +4,7 @@ import { appReducer } from './reducers/appSlice/slice';
 import { authReducer } from './reducers/authSlice/slice';
 import basketReducer from './reducers/basketSlice';
 import categoryReducer from './reducers/categorySlice';
-import commonSlice from './reducers/commonSlice';
+import { commonReducer } from './reducers/commonSlice';
 import filterReducer from './reducers/filterSlice';
 import formRegistrationReducer from './reducers/formRegistrationSlice';
 import loginReducer from './reducers/loginSlice';
@@ -26,6 +26,7 @@ import userReducer from './reducers/userSlice';
 
 export const store = configureStore({
   reducer: {
+    common: commonReducer,
     app: appReducer,
     auth: authReducer,
     login: loginReducer,
@@ -48,7 +49,6 @@ export const store = configureStore({
     seller: sellerSlice,
     sellerCheckout: sellerCheckoutSlice,
     passwordSlice,
-    common: commonSlice,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

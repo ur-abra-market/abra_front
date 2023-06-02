@@ -10,8 +10,8 @@ import {
   RegisterResponseType,
 } from '../../../services/auth/auth.serviceTypes';
 import { AppDispatchType } from '../../createStore';
+import { getUserRole } from '../appSlice';
 import { setLoading, setResponseNotice } from '../appSlice/slice';
-import { getCurrentUserInfo } from '../loginSlice';
 
 export const registerUser = createAsyncThunk<
   { data: RegisterResponseType },
@@ -48,7 +48,7 @@ export const loginUser = createAsyncThunk<
   try {
     const { data } = await authService.login(dataUser);
 
-    dispatch(getCurrentUserInfo());
+    dispatch(getUserRole());
 
     return data;
   } catch (error) {

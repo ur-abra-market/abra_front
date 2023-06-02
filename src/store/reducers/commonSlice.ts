@@ -42,4 +42,4 @@ const commonSlice = createSlice({
   },
 });
 
-export default commonSlice.reducer;
+export const commonReducer = commonSlice.reducer;
