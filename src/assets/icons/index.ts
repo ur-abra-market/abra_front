@@ -47,3 +47,5 @@ export { ReactComponent as ViewListDisabledIcon } from './files/view-list-disabl
 export { ReactComponent as VisaIcon } from './files/visa.svg';
 export { ReactComponent as VkIcon } from './files/vk.svg';
 export { ReactComponent as WhatsappIcon } from './files/whatsapp.svg';
+export { ReactComponent as UploadLogoImageIcon } from './files/upload-logo-image.svg';
+export { ReactComponent as UploadItemImageIcon } from './files/upload-item-image.svg';

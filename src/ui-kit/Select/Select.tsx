@@ -175,8 +175,10 @@ export const Select: FC<ISelect> = ({
     top: menuItemsPosition === 'up' ? `-${currentMenuHeight}px` : 'unset',
   };
 
+  const mainClasses = cn(styles.main, className, { [styles.main_has_header]: header });
+
   return (
-    <div style={selectWidth} className={cn(styles.main, className)} ref={mainDivRef}>
+    <div style={selectWidth} className={mainClasses} ref={mainDivRef}>
       <SelectHeader
         menuItemsPosition={menuItemsPosition}
         className={headerClassname}
