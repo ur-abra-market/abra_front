@@ -5,7 +5,7 @@ import cn from 'classnames';
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
 import { status } from '../../../../store/reducers/productSlice';
 
-import style from './StatusProduct.module.css';
+import style from './StatusProduct.module.scss';
 
 export enum CategoryType {
   BESTSELLERS = 'bestsellers',
