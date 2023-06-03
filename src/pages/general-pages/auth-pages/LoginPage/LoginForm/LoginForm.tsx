@@ -8,7 +8,7 @@ import * as yup from 'yup';
 import { emailValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
-import { loginUser } from '../../../../../store/reducers/authSlice/thunks';
+import { loginUser } from '../../../../../store/reducers/authSlice';
 import { Button, Input } from '../../../../../ui-kit';
 
 import style from './LoginForm.module.scss';
