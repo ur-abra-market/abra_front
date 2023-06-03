@@ -22,7 +22,7 @@ import {
   LoginPage,
   RegisterPage,
   MainPage,
-} from '../pages/commonPages';
+} from '../pages/general-pages';
 
 import { sellerRoute } from './sellerRoute';
 import { supplierRoute } from './supplierRoute';

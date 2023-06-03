@@ -12,7 +12,7 @@ import {
   ProductsListPage,
   SupplierAccountMainPage,
   SupplierPage,
-} from '../pages/supplierPages';
+} from '../pages/supplier-pages';
 
 export const supplierRoute = [
   {
