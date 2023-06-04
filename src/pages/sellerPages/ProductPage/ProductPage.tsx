@@ -4,8 +4,6 @@ import { useParams } from 'react-router-dom';
 
 import { WithLayout } from '../../../common/hocs/WithLayout';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { LoadingStatus } from '../../../common/types/enums/status.enum';
-import { IImageProduct } from '../../../common/types/interfaces';
 import ProductCarousel from '../../../components/ProductCarousel/ProductCarousel';
 import { getPopularProductsById } from '../../../store/reducers/popularProducts';
 import { getSimilarProducts } from '../../../store/reducers/similarProducts';
@@ -13,6 +11,7 @@ import { getGradesByProductId } from '../../../store/reducers/targetProductSlice
 import { Button, LoaderCircular, Container } from '../../../ui-kit';
 
 import { useAppSelector } from 'common/hooks/useAppSelector';
+import { IImageProduct, LoadingStatus } from 'common/types';
 import ChoiceProduct from 'old-components/ui/product/ChoiceProduct';
 import FlagFavorites from 'old-components/ui/product/FlagFavorites';
 import LatestSearch from 'old-components/ui/product/LatestSearch';

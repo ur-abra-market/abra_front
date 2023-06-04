@@ -3,9 +3,9 @@ import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import { LoadingStatus } from '../../../common/types/enums/status.enum';
 import { LoaderCircular } from '../../../ui-kit';
 
+import { LoadingStatus } from 'common/types';
 import { SupplierLayout } from 'layouts/SupplierLayout/SupplierLayout';
 
 export const SupplierPage = (): JSX.Element => {

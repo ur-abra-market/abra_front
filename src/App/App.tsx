@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router-dom';
 
 import { useAppDispatch } from '../common/hooks/useAppDispatch';
 import { useAppSelector } from '../common/hooks/useAppSelector';
-import { LoadingStatus } from '../common/types/enums/status.enum';
+import { LoadingStatus } from '../common/types';
 import { createRoutes } from '../routes/root';
 import { getCurrentUserInfo } from '../store/reducers/loginSlice';
 import { LoaderCircular } from '../ui-kit';

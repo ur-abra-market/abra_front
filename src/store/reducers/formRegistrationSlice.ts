@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { LoadingStatus } from '../../common/types/enums/status.enum';
 import authService from '../../services/auth/auth.service';
 import {
   IAccountPersonalInfoRequest,
@@ -10,6 +9,8 @@ import {
 import userService from '../../services/user/user.service';
 
 import { getCurrentUserInfo } from './loginSlice';
+
+import { LoadingStatus } from 'common/types';
 
 interface IFormRegistrationInitialState {
   accountInfo: null | {};
