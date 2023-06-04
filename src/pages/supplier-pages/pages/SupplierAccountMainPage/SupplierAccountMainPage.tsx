@@ -1,20 +1,21 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { accountPersonalInfoValidationSchema } from '../../../../common/constants/accountPersonalInfoValidationSchema';
+import { accountPersonalInfoValidationSchema } from '../../../../common/constants';
 import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../../common/hooks/useAppSelector';
-import { IAccountPersonalInfo } from '../../../../common/types/interfaces';
+import { IPersonalInfoFormData } from '../../../../common/types/interfaces';
 import { parsePhoneNumber } from '../../../../common/utils/parsePhoneNumber';
 import { AccountManagementLink } from '../../../../components';
 import { ButtonLogOut } from '../../../../components/ButtonLogOut/ButtonLogOut';
+import { PersonalInfoChangeForm } from '../../../../modules';
 import { updateAccountPersonalInfo } from '../../../../store/reducers/formRegistrationSlice';
 import { Button } from '../../../../ui-kit';
 import { SupplierBusinessProfileForm } from '../../supplier-pages-common';
 
 import style from './SupplierAccountMainPage.module.css';
 
-import { NotificationsChangeForm, PersonalInfoChangeForm } from './index';
+import { NotificationsChangeForm } from './index';
 
 export const SupplierAccountMainPage = (): JSX.Element => {
   const { lastName, firstName, phoneCountryCode, phoneNumberBody } = useAppSelector(
@@ -23,7 +24,7 @@ export const SupplierAccountMainPage = (): JSX.Element => {
   const phoneNumber = `${phoneCountryCode}${phoneNumberBody}`;
   const dispatch = useAppDispatch();
 
-  const formMethods = useForm<IAccountPersonalInfo>({
+  const formMethods = useForm<IPersonalInfoFormData>({
     resolver: yupResolver(accountPersonalInfoValidationSchema),
     mode: 'all',
     defaultValues: {
@@ -47,7 +48,7 @@ export const SupplierAccountMainPage = (): JSX.Element => {
     lastNameValue === lastName &&
     firstName === firstNameValue;
 
-  const onSubmit = async (data: IAccountPersonalInfo): Promise<void> => {
+  const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
     const { countryCode, numberBody } = parsePhoneNumber(data.phoneNumber);
 
     try {

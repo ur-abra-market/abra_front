@@ -3,7 +3,6 @@ import { AxiosError } from 'axios';
 
 import { LoadingStatus } from '../../common/types/enums/status.enum';
 import { userService } from '../../services';
-import authService from '../../services/auth/auth.service';
 import { IAccountPersonalInfoRequest } from '../../services/common/common.serviceTypes';
 import { IAccountPersonalInfoResponse } from '../../services/user/user.serviceTypes';
 
@@ -22,32 +21,6 @@ const initialState: IFormRegistrationInitialState = {
   errMessage: '',
   loading: LoadingStatus.Idle,
 };
-
-export const sendAccountPersonalInfo = createAsyncThunk<
-  any, // todo fix
-  IAccountPersonalInfoRequest
->(
-  'formRegistration/sendUserAccountInfo',
-  async (
-    { first_name, last_name, phone_country_code, phone_number },
-    { rejectWithValue },
-  ) => {
-    try {
-      return await authService.sendAccountPersonalInfo({
-        first_name,
-        last_name,
-        phone_country_code,
-        phone_number,
-      });
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.message);
-      }
-
-      return rejectWithValue('[sendUserAccountInfo]: ERROR');
-    }
-  },
-);
 
 export const updateAccountPersonalInfo = createAsyncThunk<
   IAccountPersonalInfoResponse,

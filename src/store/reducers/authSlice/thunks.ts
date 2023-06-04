@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { LoadingStatus } from '../../../common/types/enums/status.enum';
+import { IPersonalInfoRequestData } from '../../../common/types/interfaces';
 import authService from '../../../services/auth/auth.service';
 import {
   LoginParamsType,
@@ -35,6 +36,22 @@ export const registerUser = createAsyncThunk<
     return rejectWithValue(errorMessage);
   } finally {
     dispatch(setLoading(LoadingStatus.Idle));
+  }
+});
+
+export const createAccountPersonalInfo = createAsyncThunk<
+  any, // todo fix any -> need common request interface
+  IPersonalInfoRequestData
+>('auth/createAccountPersonalInfo', async (personalInfoData, { rejectWithValue }) => {
+  try {
+    return await authService.sendAccountPersonalInfo(personalInfoData);
+  } catch (error) {
+    const errorMessage =
+      error instanceof AxiosError
+        ? error.response?.data?.error || error.message
+        : '[getUserRole]: Error';
+
+    return rejectWithValue(errorMessage);
   }
 });
 

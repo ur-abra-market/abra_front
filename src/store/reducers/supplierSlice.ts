@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { LoadingStatus } from '../../common/types/enums/status.enum';
-import supplierFetch from '../../services/supplier/supplier.service';
+import { supplierService } from '../../services';
 import { CompanyInfo } from '../../services/supplier/supplier.serviceTypes';
 
 interface ProductObj {
@@ -27,7 +27,7 @@ export const getPropertiesService = createAsyncThunk<any, any>(
   'supplier/getPropertiesService',
   async ({ id }, { rejectWithValue }) => {
     try {
-      const data = await supplierFetch.getProductProperties(id);
+      const data = await supplierService.getProductProperties(id);
 
       return data.result;
     } catch (error: unknown) {
@@ -43,7 +43,7 @@ export const getCompanyInfoService = createAsyncThunk<any, void>(
   'supplier/getCompanyInfoService',
   async (_, { rejectWithValue }) => {
     try {
-      const data = await supplierFetch.getSupplierCompanyInfo();
+      const data = await supplierService.getSupplierCompanyInfo();
 
       return data.result;
     } catch (error: unknown) {
@@ -60,7 +60,7 @@ export const getVariationsService = createAsyncThunk<any, any>(
   'supplier/getVariationsService',
   async ({ id }, { rejectWithValue }) => {
     try {
-      const data = await supplierFetch.getProductVariations(id);
+      const data = await supplierService.getProductVariations(id);
 
       return data.result;
     } catch (error: unknown) {
@@ -77,7 +77,7 @@ export const addProductService = createAsyncThunk<any, any>(
   'supplier/addProduct',
   async ({ product }, { rejectWithValue }) => {
     try {
-      const data = await supplierFetch.addProduct(product);
+      const data = await supplierService.addProduct(product);
 
       return data.product_id;
     } catch (error: unknown) {
@@ -94,7 +94,7 @@ export const uploadImageService = createAsyncThunk<any, any>(
   'supplier/uploadImage',
   async ({ rest }, { rejectWithValue }) => {
     try {
-      return await supplierFetch.uploadImage(rest.img, rest.prodId, rest.index);
+      return await supplierService.uploadImage(rest.img, rest.prodId, rest.index);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

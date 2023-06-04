@@ -1,10 +1,17 @@
-export interface IAccountPersonalInfo {
+export interface IImageProduct {
+  image_url: string;
+  serial_number: number;
+}
+
+export interface IPersonalInfoFormData {
   firstName: string;
   lastName: string;
   phoneNumber: string;
 }
 
-export interface IImageProduct {
-  image_url: string;
-  serial_number: number;
+export interface IPersonalInfoRequestData {
+  first_name: string;
+  last_name: string;
+  phone_country_code: string;
+  phone_number: string;
 }

@@ -1,5 +1,5 @@
+import { IPersonalInfoRequestData } from '../../common/types/interfaces';
 import baseConfigService from '../baseConfig.service';
-import { IAccountPersonalInfoRequest } from '../common/common.serviceTypes';
 
 import {
   ChangePasswordPayloadType,
@@ -30,18 +30,11 @@ export const authService = {
     });
   },
 
-  sendAccountPersonalInfo: async ({
-    first_name,
-    last_name,
-    phone_country_code,
-    phone_number,
-  }: IAccountPersonalInfoRequest) => {
-    const { data } = await baseConfigService.post(`/register/account/sendInfo/`, {
-      first_name,
-      last_name,
-      phone_country_code,
-      phone_number,
-    });
+  sendAccountPersonalInfo: async (personalInfoData: IPersonalInfoRequestData) => {
+    const { data } = await baseConfigService.post(
+      `/register/account/sendInfo/`,
+      personalInfoData,
+    );
 
     return data;
   },

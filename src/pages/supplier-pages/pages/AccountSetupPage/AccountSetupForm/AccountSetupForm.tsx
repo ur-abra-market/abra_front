@@ -4,53 +4,51 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { accountPersonalInfoValidationSchema } from '../../../../../common/constants/accountPersonalInfoValidationSchema';
+import { accountPersonalInfoValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
-import { IAccountPersonalInfo } from '../../../../../common/types/interfaces';
+import {
+  IPersonalInfoRequestData,
+  IPersonalInfoFormData,
+} from '../../../../../common/types/interfaces';
 import { parsePhoneNumber } from '../../../../../common/utils/parsePhoneNumber';
 import Modal from '../../../../../components/Modal';
 import { ModalChildPhoneCheck } from '../../../../../components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
-import { sendAccountPersonalInfo } from '../../../../../store/reducers/formRegistrationSlice';
+import { PersonalInfoChangeForm } from '../../../../../modules';
 import { Button, SupplierRegisterFormStep } from '../../../../../ui-kit';
-import { PersonalInfoChangeForm } from '../../SupplierAccountMainPage';
 
 import style from './AccountSetupForm.module.scss';
 
+import { createAccountPersonalInfo } from 'store/reducers/authSlice';
+
 export const AccountSetupForm = (): JSX.Element => {
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [showModal, setShowModal] = useState(false);
 
-  const formMethods = useForm<IAccountPersonalInfo>({
+  const formMethods = useForm<IPersonalInfoFormData>({
     resolver: yupResolver(accountPersonalInfoValidationSchema),
     mode: 'all',
   });
   const {
-    reset,
     handleSubmit,
     formState: { isValid },
     watch,
   } = formMethods;
 
-  const onSubmit = async (data: IAccountPersonalInfo): Promise<void> => {
+  const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
     const { countryCode, numberBody } = parsePhoneNumber(data.phoneNumber);
 
-    try {
-      const response = (await dispatch(
-        sendAccountPersonalInfo({
-          first_name: data.firstName,
-          last_name: data.lastName,
-          phone_country_code: countryCode,
-          phone_number: numberBody,
-        }),
-      )) as { payload: { result: boolean } };
+    const personalInfoData: IPersonalInfoRequestData = {
+      first_name: data.firstName,
+      last_name: data.lastName,
+      phone_country_code: countryCode,
+      phone_number: numberBody,
+    };
 
-      if (response.payload.result) {
-        navigate('/business-profile');
-        reset();
-      }
-    } catch (error) {
-      console.log(error);
+    const actionResult = await dispatch(createAccountPersonalInfo(personalInfoData));
+
+    if (createAccountPersonalInfo.fulfilled.match(actionResult)) {
+      navigate('/business-profile');
     }
   };
 
@@ -67,7 +65,7 @@ export const AccountSetupForm = (): JSX.Element => {
               type="submit"
               disabled={!isValid}
               onClick={() => {
-                // setShowModal(true); //временно, пока подтверждение номера телефона не готово на беке, вместо открытия модального окна будет продолжение регистрации
+                // setShowModal(true); -> while phone number confirmation is not ready on the backend, instead of opening a modal window, the registration process will continue.
               }}
               className={style.submit_btn}
               label="Continue"

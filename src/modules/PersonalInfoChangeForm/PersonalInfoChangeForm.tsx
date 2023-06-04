@@ -6,8 +6,9 @@ import { useFormContext } from 'react-hook-form';
 import PhoneInput, { CountryData } from 'react-phone-input-2';
 
 import 'react-phone-input-2/lib/style.css';
-import { IAccountPersonalInfo } from '../../../../../common/types/interfaces';
-import { Input, Label } from '../../../../../ui-kit';
+
+import { IPersonalInfoFormData } from '../../common/types/interfaces';
+import { Input, Label } from '../../ui-kit';
 
 import style from './PersonalInfoChangeForm.module.css';
 
@@ -25,7 +26,7 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
     setValue,
     watch,
     formState: { errors },
-  } = useFormContext<IAccountPersonalInfo>();
+  } = useFormContext<IPersonalInfoFormData>();
 
   const phoneNumberValue = watch('phoneNumber');
   const phoneNumberError = errors.phoneNumber?.message;
