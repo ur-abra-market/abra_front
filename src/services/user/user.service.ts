@@ -1,32 +1,36 @@
 import { IUserNotificationsData } from '../../store/reducers/userSlice';
 import baseConfigService from '../baseConfig.service';
-import {
-  IAccountPersonalInfoRequest,
-  IAccountPersonalInfoResponse,
-} from '../common/common.serviceTypes';
+import { IAccountPersonalInfoRequest } from '../common/common.serviceTypes';
 import { IErrorResponse } from '../seller/seller.serviceTypes';
+
+import { IAccountPersonalInfoResponse } from './user.serviceTypes';
 
 export enum Action {
   UPLOAD_LOGO_IMAGE = 'suppliers/uploadCompanyImage/',
   UPLOAD_ITEM_IMAGE = 'suppliers/uploadProductImage/',
 }
 
-const userService = {
+export const userService = {
+  fetchAccountPersonalInfo: async () => {
+    const { data } = await baseConfigService.get<IAccountPersonalInfoResponse>(
+      `/users/account/personalInfo/`,
+    );
+
+    return data;
+  },
+
   updateAccountPersonalInfo: async ({
     first_name,
     last_name,
     phone_country_code,
     phone_number,
   }: IAccountPersonalInfoRequest) => {
-    const { data } = await baseConfigService.patch<IAccountPersonalInfoResponse>(
-      `/users/account/update/`,
-      {
-        first_name,
-        last_name,
-        phone_country_code,
-        phone_number,
-      },
-    );
+    const { data } = await baseConfigService.patch(`/users/account/update/`, {
+      first_name,
+      last_name,
+      phone_country_code,
+      phone_number,
+    });
 
     return data;
   },
@@ -91,5 +95,3 @@ const userService = {
     return data;
   },
 };
-
-export default userService;

@@ -2,12 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { LoadingStatus } from '../../common/types/enums/status.enum';
+import { userService } from '../../services';
 import authService from '../../services/auth/auth.service';
-import {
-  IAccountPersonalInfoRequest,
-  IAccountPersonalInfoResponse,
-} from '../../services/common/common.serviceTypes';
-import userService from '../../services/user/user.service';
+import { IAccountPersonalInfoRequest } from '../../services/common/common.serviceTypes';
+import { IAccountPersonalInfoResponse } from '../../services/user/user.serviceTypes';
 
 import { getCurrentUserInfo } from './loginSlice';
 
@@ -26,7 +24,7 @@ const initialState: IFormRegistrationInitialState = {
 };
 
 export const sendAccountPersonalInfo = createAsyncThunk<
-  IAccountPersonalInfoResponse,
+  any, // todo fix
   IAccountPersonalInfoRequest
 >(
   'formRegistration/sendUserAccountInfo',

@@ -20,16 +20,3 @@ export interface IAccountPersonalInfoRequest {
   phone_country_code: string;
   phone_number: string;
 }
-
-export interface IAccountPersonalInfoResponse {
-  ok: boolean;
-  result?: true;
-  detail?: string;
-  error: [
-    {
-      msg: string;
-      type: string;
-    },
-  ];
-  error_code: number;
-}

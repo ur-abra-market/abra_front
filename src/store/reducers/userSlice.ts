@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { LoadingStatus } from '../../common/types/enums/status.enum';
-import userService from '../../services/user/user.service';
+import { userService } from '../../services';
 import { RootStateType } from '../createStore';
 
 export const uploadUserLogoService = createAsyncThunk<any, any>(
