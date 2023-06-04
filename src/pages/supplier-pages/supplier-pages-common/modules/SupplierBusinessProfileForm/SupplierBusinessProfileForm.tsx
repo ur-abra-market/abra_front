@@ -1,11 +1,11 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import cn from 'classnames';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import * as yup from 'yup';
 
+import { supplierBusinessProfileFormValidationSchema } from '../../../../../common/constants/validation-schemas/supplierBusinessProfileFormValidationSchema';
 import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
 import { UploadImage } from '../../../../../components';
@@ -22,20 +22,6 @@ import {
 
 import style from './SupplierBusinessProfileForm.module.scss';
 
-const date = new Date();
-const year = date.getFullYear();
-
-const schema = yup.object({
-  storeName: yup.string().required('Field is required'),
-  businessSector: yup.string().required('Field is required'),
-  tel: yup.string().required('Field is required'),
-  yearEstablished: yup
-    .string()
-    .min(4, 'Add an existing year')
-    .max(year, "this year hasn't come yet"),
-  email: yup.string().email('Invalid email address'),
-});
-
 const phoneNumberSplit = (phone: string): [code: string, tel: string] => {
   const reg = /(\+(?:90|44|77|1))(\d+)/;
   const reg_exec = reg.exec(phone) || '';
@@ -48,20 +34,20 @@ interface FormFields {
   code: string;
   textarea: string;
   tel: string;
-  yearEstablished: string;
+  yearEstablished: object;
   address: string;
   checkbox: boolean;
   numEmployees: string;
-  profileLogo: string;
   storeName: string;
   businessSector: string;
+  entrepreneurNumber: string;
 }
 
 export const NUMBER_OF_EMPLOYEES_DATA: ISelectOption[] = [
-  { label: '0', value: '0' },
-  { label: '<4', value: '<4' },
-  { label: '<10', value: '<10' },
-  { label: '>10', value: '>10' },
+  { label: '1-10', value: '1-10' },
+  { label: '11-50', value: '11-50' },
+  { label: '50-100', value: '50-100' },
+  { label: '>100', value: '>100' },
 ];
 
 const BUSINESS_SECTOR_DATA: ISelectOption[] = [
@@ -81,7 +67,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
   const selectCompanyClasses = style.select_company;
 
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const { resMessage } = useAppSelector(state => state.formRegistration);
   const accountInfo = useAppSelector(state => state.supplierAccount.supplierInfo);
 
@@ -97,26 +83,25 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
     handleSubmit,
     reset,
   } = useForm<FormFields>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(supplierBusinessProfileFormValidationSchema),
     mode: 'onChange',
     defaultValues: {
       email: companyInfo?.business_email,
       code: acc_code || undefined,
       textarea: companyInfo.description,
       tel: acc_tel,
-      yearEstablished: `${companyInfo.year_established}`,
+      yearEstablished: companyInfo.year_established,
       address: companyInfo.address,
       checkbox: companyInfo.is_manufacturer === 1,
       // eslint-disable-next-line no-unsafe-optional-chaining
-      numEmployees: `${companyInfo?.number_of_employees}` || undefined,
-      profileLogo: '',
+      numEmployees: companyInfo?.number_of_employees,
       storeName: companyInfo.name,
-      businessSector: companyInfo.business_sector || undefined,
+      businessSector: companyInfo.business_sector,
+      entrepreneurNumber: companyInfo.entrepreneurNumber,
     },
   });
 
   const onSubmit = (data: any): void => {
-    console.log(data);
     // const phone = data.code + data.tel;
 
     // const info = {
@@ -198,9 +183,10 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
                   render={({ field }) => (
                     <Label label="Your main business sector">
                       <Select
+                        {...register('businessSector')}
+                        error={errors?.businessSector?.message}
                         options={BUSINESS_SECTOR_DATA}
                         placeholder="Select"
-                        error={errors?.businessSector?.message}
                         onChange={value => {
                           field.onChange(value.value);
                         }}
@@ -218,7 +204,11 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
             >
               <Checkbox className={style.checkbox} label="I am a manufacturer" />
               <Label label="License or entrepreneur number">
-                <Input placeholder="000 – 00 – 0000" />
+                <Input
+                  {...register('entrepreneurNumber')}
+                  error={errors?.entrepreneurNumber?.message}
+                  placeholder="000 – 00 – 0000"
+                />
               </Label>
               <p className={style.explanatory_form}>
                 Use the number of any document authorizing the sale
@@ -244,6 +234,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
                   render={({ field }) => (
                     <Label label="Number of employees">
                       <Select
+                        {...register('numEmployees')}
                         options={NUMBER_OF_EMPLOYEES_DATA}
                         placeholder="Select"
                         error={errors?.numEmployees?.message}
@@ -261,6 +252,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
             <Label label="About the business">
               <Input
                 {...register('textarea')}
+                error={errors?.textarea?.message}
                 placeholder="Tell more about your company or business"
               />
             </Label>
@@ -290,7 +282,11 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
               </Label>
 
               <Label label="Main company address">
-                <Input {...register('address')} placeholder="Enter address" />
+                <Input
+                  {...register('address')}
+                  error={errors?.address?.message}
+                  placeholder="Enter address"
+                />
               </Label>
             </div>
           </div>

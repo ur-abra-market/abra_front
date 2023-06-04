@@ -20,3 +20,11 @@ export interface IAccountPersonalInfoRequest {
   phone_country_code: string;
   phone_number: string;
 }
+export interface ResponseGetNumberEmployees {
+  ok: boolean;
+  result: NumberEmployeesType[];
+}
+type NumberEmployeesType = {
+  id: number;
+  number: string;
+};
