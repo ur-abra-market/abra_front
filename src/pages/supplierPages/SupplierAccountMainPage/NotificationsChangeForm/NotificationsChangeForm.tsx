@@ -1,11 +1,10 @@
 import React, { FC } from 'react';
 
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
+import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import { INotification } from '../../../../services/supplier/supplier.serviceTypes';
 
 import style from './NotificationsChangeForm.module.css';
 
-import { useAppSelector } from 'common/hooks/useAppSelector';
 import { updateSupplierNotifications } from 'store/reducers/supplierAccountSlice';
 import { Checkbox } from 'ui-kit';
 

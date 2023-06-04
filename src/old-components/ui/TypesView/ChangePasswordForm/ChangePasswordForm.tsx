@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { passwordValidationSchema } from '../../../../common/constants';
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
+import { useAppDispatch } from '../../../../common/hooks';
 import { PasswordComplexity } from '../../../../pages/commonPages/auth-pages/assets';
 import { ChangePasswordPayloadType } from '../../../../services/auth/auth.serviceTypes';
 import { changePassword } from '../../../../store/reducers/passwordSlice';

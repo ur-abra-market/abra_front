@@ -3,7 +3,7 @@ import { useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useAppDispatch } from '../../../common/hooks';
 import { logout } from '../../../store/reducers/loginSlice';
 import { Logo } from '../../Logo/Logo';
 

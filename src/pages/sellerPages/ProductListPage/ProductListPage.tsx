@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useAppDispatch } from '../../../common/hooks';
 
 import style from './ProductListPage.module.css';
 

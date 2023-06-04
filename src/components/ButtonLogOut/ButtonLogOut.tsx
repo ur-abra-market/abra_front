@@ -1,7 +1,7 @@
 import style from './ButtonLogOut.module.css';
 
 import { LogoutIcon } from 'assets/icons';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
+import { useAppDispatch } from 'common/hooks';
 import { logout } from 'store/reducers/loginSlice';
 import { Button } from 'ui-kit';
 

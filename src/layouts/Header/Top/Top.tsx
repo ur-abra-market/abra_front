@@ -3,8 +3,7 @@ import { useState } from 'react';
 import cn from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 import Modal from '../../../components/Modal';
 import { logout } from '../../../store/reducers/loginSlice';
 import { ButtonIcon, Search } from '../../../ui-kit';

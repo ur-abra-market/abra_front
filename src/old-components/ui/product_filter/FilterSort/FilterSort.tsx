@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
+import { useAppDispatch } from '../../../../common/hooks';
 import {
   ascending,
   brand,

@@ -2,8 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { accountPersonalInfoValidationSchema } from '../../../common/constants/accountPersonalInfoValidationSchema';
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 import { IAccountPersonalInfo } from '../../../common/types/interfaces';
 import { parsePhoneNumber } from '../../../common/utils/parsePhoneNumber';
 import { AccountManagementLink } from '../../../components';

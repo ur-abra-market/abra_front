@@ -5,8 +5,7 @@ import { UploadImage } from 'components';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 import { AccountManagementLink } from '../../../components';
 import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
 import FeedbackForm from '../../../components/feedbacks/FeedbackForm';

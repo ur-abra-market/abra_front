@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 
 import ProductListRegistrationForm from 'old-components/ui/ProductListRegistrationForm';
 import { categoryService, getCategories, getChilds } from 'store/reducers/categorySlice';

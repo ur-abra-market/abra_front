@@ -6,8 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 import { emailValidationSchema } from '../../../../../common/constants';
-import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { loginService } from '../../../../../store/reducers/loginSlice';
 import { Button, Input } from '../../../../../ui-kit';
 
