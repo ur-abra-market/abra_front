@@ -2,8 +2,8 @@ import baseConfigService from '../baseConfig.service';
 
 import {
   INotification,
-  INotificationData,
-  ISuppliersCompanyData,
+  ISuppliersNotifications,
+  ISuppliersCompanyInfoData,
   SuppliersResponse,
 } from './supplier.serviceTypes';
 
@@ -34,16 +34,16 @@ export const supplierService = {
 
   fetchCompanyInfo: async () => {
     const { data } = await baseConfigService.get<
-      SuppliersResponse<ISuppliersCompanyData>
+      SuppliersResponse<ISuppliersCompanyInfoData>
     >(`/suppliers/companyInfo`);
 
     return data.result;
   },
 
   fetchNotifications: async () => {
-    const { data } = await baseConfigService.get<SuppliersResponse<INotificationData>>(
-      `/suppliers/notifications/`,
-    );
+    const { data } = await baseConfigService.get<
+      SuppliersResponse<ISuppliersNotifications>
+    >(`/suppliers/notifications/`);
 
     return data.result;
   },

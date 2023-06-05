@@ -49,15 +49,15 @@ export interface SuppliersResponse<R> {
   result: R;
 }
 
-export interface ISuppliersCompanyData {
+export interface ISuppliersCompanyInfoData {
   id: number;
   license_number: string;
   grade_average: number;
   additional_info: string;
-  company: ICompanyInfoData;
+  company: ICompanyInfo;
 }
 
-export interface ICompanyInfoData {
+export interface ICompanyInfo {
   id: number;
   business_email: string;
   name: string;
@@ -71,7 +71,7 @@ export interface ICompanyInfoData {
   images: any[];
 }
 
-export interface INotificationData {
+export interface ISuppliersNotifications {
   id: number;
   on_advertising_campaigns: boolean;
   on_order_updates: boolean;
