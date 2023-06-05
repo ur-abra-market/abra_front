@@ -15,12 +15,11 @@ import { FilterButton } from './FilterButton/FilterButton';
 
 import { useAppSelector } from 'common/hooks/useAppSelector';
 
+export type Categories = 'all' | 'clothes' | 'accessories' | 'cosmetics';
 export interface ItemsProps {
   gender: string;
   items?: ResponseCategoryType[];
 }
-
-export type Categories = 'all' | 'clothes' | 'accessories' | 'cosmetics';
 
 type FilteredCategoriesType = {
   [key in Categories]: {

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { WithLayout } from '../../../common/hocs/WithLayout';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import { ProductSortType } from '../../../common/types/enums/productSortType.enum';
+import { ProductSortType } from '../../../common/types';
 import { Feedback, ProductCard } from '../../../components';
 import { ProductsPreview } from '../../../modules';
 import { fetchProductList } from '../../../store/reducers/mainPageSlice';

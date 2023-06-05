@@ -1,3 +1,6 @@
+export interface IResponse<T> {
+  result: T;
+}
 export interface IAccountPersonalInfoResponse {
   id: number;
   datetime: string;

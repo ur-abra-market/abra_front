@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 
 import { useAppSelector } from '../../../../../../common/hooks/useAppSelector';
-import { LoadingStatus } from '../../../../../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../../../../../common/types';
 
 import style from './AuthPageLayout.module.scss';
 

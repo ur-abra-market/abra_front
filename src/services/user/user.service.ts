@@ -1,9 +1,7 @@
-import { IUserNotificationsData } from '../../store/reducers/userSlice';
 import baseConfigService from '../baseConfig.service';
 import { IAccountPersonalInfoRequest } from '../common/common.serviceTypes';
-import { IErrorResponse } from '../seller/seller.serviceTypes';
 
-import { IAccountPersonalInfoResponse } from './user.serviceTypes';
+import { IAccountPersonalInfoResponse, IResponse } from './user.serviceTypes';
 
 export enum Action {
   UPLOAD_LOGO_IMAGE = 'suppliers/uploadCompanyImage/',
@@ -12,27 +10,20 @@ export enum Action {
 
 export const userService = {
   fetchAccountPersonalInfo: async () => {
-    const { data } = await baseConfigService.get<IAccountPersonalInfoResponse>(
+    const { data } = await baseConfigService.get<IResponse<IAccountPersonalInfoResponse>>(
       `/users/account/personalInfo/`,
     );
 
-    return data;
+    return data.result;
   },
 
-  updateAccountPersonalInfo: async ({
-    first_name,
-    last_name,
-    phone_country_code,
-    phone_number,
-  }: IAccountPersonalInfoRequest) => {
-    const { data } = await baseConfigService.patch(`/users/account/update/`, {
-      first_name,
-      last_name,
-      phone_country_code,
-      phone_number,
-    });
+  updateAccountPersonalInfo: async (personalInfoData: IAccountPersonalInfoRequest) => {
+    const { data } = await baseConfigService.patch(
+      `/users/account/personalInfo/update/`,
+      personalInfoData,
+    );
 
-    return data;
+    return data.result;
   },
 
   uploadLogoImage: async (img: any) => {
@@ -74,23 +65,6 @@ export const userService = {
   },
   getFavoritesProducts: async () => {
     const { data } = await baseConfigService.get(`/users/showFavorites/`);
-
-    return data;
-  },
-
-  getNotifications: async () => {
-    const { data } = await baseConfigService.get<IUserNotificationsData>(
-      `/users/getNotifications/`,
-    );
-
-    return data;
-  },
-
-  updateNotification: async (updatedData: IUserNotificationsData) => {
-    const { data } = await baseConfigService.patch<string | IErrorResponse>(
-      `/users/updateNotifications/`,
-      updatedData,
-    );
 
     return data;
   },
