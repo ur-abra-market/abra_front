@@ -1,10 +1,11 @@
 import { FC, useState } from 'react';
 
 import { AddNotePopup } from '../../popup/AddNotePopup/AddNotePopup';
+
 import style from './CheckItems.module.css';
 
+import { StarFilledIcon, ArrowRightIcon, DotIcon } from 'assets/icons'; // 5 10px for ArrowRightIcon
 import { Banner1Image } from 'assets/images';
-import { StarFilledIcon, ArrowRightIcon, DotIcon } from 'assets/icons';  // 5 10px for ArrowRightIcon
 
 interface CheckItemsProps {
   index: string;
@@ -38,7 +39,7 @@ const CheckItems: FC<CheckItemsProps> = ({ index }): JSX.Element => {
           <AddNotePopup modal={modal} setModal={setModal} />
         </div>
         <div className={style.check_items_product}>
-          <img src={Banner1Image} />
+          <img src={Banner1Image} alt="" />
           <div className={style.check_items_product_info}>
             <div className={style.check_items_product_info_name}>
               Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes
