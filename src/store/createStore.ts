@@ -22,13 +22,14 @@ import { similarProductsReducer } from './reducers/similarProducts';
 import supplierAccountReducer from './reducers/supplierAccountSlice';
 import supplierReducer from './reducers/supplierSlice';
 import { targetProductReducer } from './reducers/targetProductSlice';
-import userReducer from './reducers/userSlice';
+import { userReducer } from './reducers/userSlice/slice';
 
 export const store = configureStore({
   reducer: {
     common: commonReducer,
     app: appReducer,
     auth: authReducer,
+    user: userReducer,
     login: loginReducer,
     product: productReducer,
     targetProduct: targetProductReducer,
@@ -42,7 +43,6 @@ export const store = configureStore({
     supplierAccount: supplierAccountReducer,
     manageProducts: manageProductsReducer,
     mainPageProducts: mainPageReducer,
-    user: userReducer,
     modal: modalReducer,
     similarProducts: similarProductsReducer,
     popularProducts: popularProductsReducer,

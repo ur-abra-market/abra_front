@@ -6,11 +6,12 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { accountPersonalInfoValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
-import { IPersonalInfoFormData } from '../../../../../common/types/interfaces';
+import { IPersonalInfoFormData } from '../../../../../common/types';
 import { parsePhoneNumber } from '../../../../../common/utils/parsePhoneNumber';
 import { ButtonLogOut } from '../../../../../components/ButtonLogOut/ButtonLogOut';
 import { PersonalInfoChangeForm } from '../../../../../modules';
 import { updateAccountPersonalInfo } from '../../../../../store/reducers/formRegistrationSlice';
+import { getPersonalInfo } from '../../../../../store/reducers/userSlice';
 import { Button } from '../../../../../ui-kit';
 
 import style from './PersonalInfo.module.scss';
@@ -23,7 +24,7 @@ export const PersonalInfo = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    // dispatch();
+    dispatch(getPersonalInfo());
   }, []);
 
   const formMethods = useForm<IPersonalInfoFormData>({

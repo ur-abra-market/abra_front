@@ -1,19 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { IPersonalInfoRequestData } from '../../../common/types';
+interface ISupplierSliceInitialState {}
 
-interface ISupplierSliceInitialState {
-  personalInfo: IPersonalInfoRequestData;
-}
-
-const initialState: ISupplierSliceInitialState = {
-  personalInfo: {
-    first_name: '',
-    last_name: '',
-    phone_country_code: '',
-    phone_number: '',
-  },
-};
+const initialState: ISupplierSliceInitialState = {};
 
 export const supplierSlice = createSlice({
   name: 'supplier',

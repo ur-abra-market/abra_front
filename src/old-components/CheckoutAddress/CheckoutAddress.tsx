@@ -7,6 +7,7 @@ import { Checkbox } from '../../ui-kit';
 import { EditAddressModal } from '../ui/popup/EdtiAddressModal/EditAddressModal';
 
 import style from './CheckoutAddress.module.css';
+
 import { EditPencilIcon } from 'assets/icons';
 
 interface AddressProps {

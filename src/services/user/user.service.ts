@@ -1,4 +1,3 @@
-import { IUserNotificationsData } from '../../store/reducers/userSlice';
 import baseConfigService from '../baseConfig.service';
 import { IAccountPersonalInfoRequest } from '../common/common.serviceTypes';
 import { IErrorResponse } from '../seller/seller.serviceTypes';
@@ -16,7 +15,7 @@ export const userService = {
       `/users/account/personalInfo/`,
     );
 
-    return data;
+    return data.result;
   },
 
   updateAccountPersonalInfo: async ({
@@ -74,23 +73,6 @@ export const userService = {
   },
   getFavoritesProducts: async () => {
     const { data } = await baseConfigService.get(`/users/showFavorites/`);
-
-    return data;
-  },
-
-  getNotifications: async () => {
-    const { data } = await baseConfigService.get<IUserNotificationsData>(
-      `/users/getNotifications/`,
-    );
-
-    return data;
-  },
-
-  updateNotification: async (updatedData: IUserNotificationsData) => {
-    const { data } = await baseConfigService.patch<string | IErrorResponse>(
-      `/users/updateNotifications/`,
-      updatedData,
-    );
 
     return data;
   },
