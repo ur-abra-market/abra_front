@@ -16,25 +16,10 @@
   padding: 12px 32px 17px;
 }
 
-.personal_info,
 .business_profile {
   padding: 32px;
   background: #FFF;
   border-radius: 12px;
-}
-
-.personal_info_title_logout_container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-
-.personal_info_title {
-  font-size: 20px;
-  font-weight: 700;
-  color: #000;
-  letter-spacing: 0.16px;
 }
 
 .personal_info_submit_btn {
