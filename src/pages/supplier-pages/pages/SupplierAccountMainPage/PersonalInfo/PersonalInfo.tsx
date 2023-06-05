@@ -11,15 +11,17 @@ import { parsePhoneNumber } from '../../../../../common/utils/parsePhoneNumber';
 import { ButtonLogOut } from '../../../../../components/ButtonLogOut/ButtonLogOut';
 import { PersonalInfoChangeForm } from '../../../../../modules';
 import { updateAccountPersonalInfo } from '../../../../../store/reducers/formRegistrationSlice';
-import { getPersonalInfo } from '../../../../../store/reducers/userSlice';
+import {
+  getPersonalInfo,
+  personalInfoSelector,
+} from '../../../../../store/reducers/userSlice';
 import { Button } from '../../../../../ui-kit';
 
 import style from './PersonalInfo.module.scss';
 
 export const PersonalInfo = (): JSX.Element => {
-  const { lastName, firstName, phoneCountryCode, phoneNumberBody } = useAppSelector(
-    state => state.supplierAccount.supplierInfo,
-  );
+  const { lastName, firstName, phoneCountryCode, phoneNumberBody } =
+    useAppSelector(personalInfoSelector);
   const phoneNumber = `${phoneCountryCode}${phoneNumberBody}`;
   const dispatch = useAppDispatch();
 

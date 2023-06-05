@@ -3,3 +3,4 @@ export {
   uploadUserLogoService,
   getFavoritesProductsService,
 } from './thunks';
+export { personalInfoSelector } from './selectors';

@@ -2,25 +2,27 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { getFavoritesProductsService, uploadUserLogoService } from '.';
 
+export interface IPersonalInfo {
+  firstName: string;
+  lastName: string;
+  phoneCountryCode: string;
+  phoneNumberBody: string;
+} // проверить с респонс персонал инфо на дубль
+
 interface IUserSliceInitialState {
   logoUrl: null | string;
   favoritesProducts: any[];
-  personalInfo: {
-    first_name: '';
-    last_name: '';
-    phone_country_code: '';
-    phone_number: '';
-  };
+  personalInfo: IPersonalInfo;
 }
 
 const initialState: IUserSliceInitialState = {
   logoUrl: null,
   favoritesProducts: [],
   personalInfo: {
-    first_name: '',
-    last_name: '',
-    phone_country_code: '',
-    phone_number: '',
+    firstName: '',
+    lastName: '',
+    phoneCountryCode: '',
+    phoneNumberBody: '',
   },
 };
 
