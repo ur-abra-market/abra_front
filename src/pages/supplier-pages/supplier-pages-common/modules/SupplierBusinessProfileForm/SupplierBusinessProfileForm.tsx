@@ -1,0 +1,290 @@
+import React, { FC, useEffect } from 'react';
+
+import { yupResolver } from '@hookform/resolvers/yup';
+import cn from 'classnames';
+import { Controller, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
+import { supplierBusinessProfileFormValidationSchema } from '../../../../../common/constants/validation-schemas/supplierBusinessProfileFormValidationSchema';
+import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
+import { UploadImage } from '../../../../../components';
+import { Action } from '../../../../../services/user/user.service';
+import {
+  Button,
+  Checkbox,
+  Input,
+  ISelectOption,
+  Label,
+  Select,
+  SupplierRegisterFormStep,
+} from '../../../../../ui-kit';
+
+import style from './SupplierBusinessProfileForm.module.scss';
+
+interface FormFields {
+  email: string;
+  code: string;
+  textarea: string;
+  tel: string;
+  yearEstablished: object;
+  address: string;
+  checkbox: boolean;
+  numEmployees: string;
+  storeName: string;
+  businessSector: string;
+  entrepreneurNumber: string;
+}
+
+export const NUMBER_OF_EMPLOYEES_DATA: ISelectOption[] = [
+  { label: '1-10', value: '1-10' },
+  { label: '11-50', value: '11-50' },
+  { label: '50-100', value: '50-100' },
+  { label: '>100', value: '>100' },
+];
+
+const BUSINESS_SECTOR_DATA: ISelectOption[] = [
+  { label: 'Clothes', value: 'Clothes' },
+  { label: 'Accessories', value: 'Accessories' },
+  { label: 'Electronics', value: 'Electronics' },
+];
+
+interface IBusinessProfileForm {
+  updateForm?: boolean;
+}
+
+export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
+  updateForm,
+}): JSX.Element => {
+  const formContainerClasses = style.form_container;
+  const selectCompanyClasses = style.select_company;
+
+  const navigate = useNavigate();
+  // const dispatch = useAppDispatch();
+  // const accountInfo = useAppSelector(state => state.supplierAccount.supplierInfo);
+
+  // @ts-ignore
+  // const companyInfo = accountInfo?.company_info || {};
+
+  // const [acc_code, acc_tel] = phoneNumberSplit(companyInfo.phone);
+
+  const {
+    control,
+    register,
+    formState: { errors, isValid },
+    handleSubmit,
+    reset,
+  } = useForm<FormFields>({
+    resolver: yupResolver(supplierBusinessProfileFormValidationSchema),
+    mode: 'onChange',
+    defaultValues: {
+      // email: companyInfo?.business_email,
+      // code: acc_code || undefined,
+      // textarea: companyInfo.description,
+      // tel: acc_tel,
+      // yearEstablished: companyInfo.year_established,
+      // address: companyInfo.address,
+      // checkbox: companyInfo.is_manufacturer === 1,
+      // // eslint-disable-next-line no-unsafe-optional-chaining
+      // numEmployees: companyInfo?.number_of_employees,
+      // storeName: companyInfo.name,
+      // businessSector: companyInfo.business_sector,
+      // entrepreneurNumber: companyInfo.entrepreneurNumber,
+    },
+  });
+
+  const onSubmit = (data: any): void => {
+    // const phone = data.code + data.tel;
+
+    // const info = {
+    //   name: data.storeName,
+    //   business_sector: data.businessSector,
+    //   year_established: +data.yearEstablished,
+    //   number_of_employees: +data.numEmployees,
+    //   description: data.textarea,
+    //   phone,
+    //   business_email: data.email,
+    //   address: data.address,
+    //   is_manufacturer: data.checkbox ? 1 : 0,
+    // };
+
+    // const accountInfoForRequest = filterEmptyValues(info);
+
+    // dispatch(
+    //   updateSupplierAccountDataService({
+    //     ...accountInfo,
+    //     license: {
+    //       // @ts-ignore
+    //       license_number: accountInfo?.user_info.license,
+    //     },
+    //     company_info: {
+    //       ...accountInfoForRequest,
+    //     },
+    //   }),
+    // );
+
+    reset();
+  };
+
+  return (
+    <div className={style.form_wrapper}>
+      <div
+        className={cn(formContainerClasses, {
+          [style.form_update_container]: updateForm,
+        })}
+      >
+        {!updateForm && (
+          <div className={style.info_step}>
+            <SupplierRegisterFormStep step={2} />
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={style.main_info}>
+            <p className={style.main_info_title}>
+              {updateForm ? 'Business Profile' : 'Main info'}
+            </p>
+
+            <div className={style.add_logo}>
+              <UploadImage
+                action={Action.UPLOAD_LOGO_IMAGE}
+                type="logo"
+                label="Add logo or profile image"
+                placeholder="The customers will recognize your store by this image"
+              />
+            </div>
+
+            <div className={style.select_info_inputs}>
+              <Label label="Shop name (will be shown on the profile)">
+                <Input
+                  {...register('storeName')}
+                  error={errors?.storeName?.message}
+                  placeholder="Enter your company or store name"
+                />
+              </Label>
+
+              <div className={style.select_width}>
+                <Controller
+                  control={control}
+                  name="businessSector"
+                  render={({ field }) => (
+                    <Label label="Your main business sector">
+                      <Select
+                        {...register('businessSector')}
+                        error={errors?.businessSector?.message}
+                        options={BUSINESS_SECTOR_DATA}
+                        placeholder="Select"
+                        onChange={value => {
+                          field.onChange(value.value);
+                        }}
+                      />
+                    </Label>
+                  )}
+                />
+              </div>
+            </div>
+
+            <div
+              className={cn(selectCompanyClasses, {
+                [style.select_update_company]: updateForm,
+              })}
+            >
+              <Checkbox className={style.checkbox} label="I am a manufacturer" />
+              <Label label="License or entrepreneur number">
+                <Input
+                  {...register('entrepreneurNumber')}
+                  error={errors?.entrepreneurNumber?.message}
+                  placeholder="000 – 00 – 0000"
+                />
+              </Label>
+              <p className={style.explanatory_form}>
+                Use the number of any document authorizing the sale
+              </p>
+            </div>
+          </div>
+
+          <div className={style.company_info}>
+            <p className={style.main_info_title}>Company Info (optional)</p>
+            <div className={style.select_info_inputs}>
+              <Label label="Year established">
+                <Input
+                  {...register('yearEstablished')}
+                  error={errors?.yearEstablished?.message}
+                  placeholder="Enter the year"
+                />
+              </Label>
+
+              <div className={style.select_width}>
+                <Controller
+                  control={control}
+                  name="numEmployees"
+                  render={({ field }) => (
+                    <Label label="Number of employees">
+                      <Select
+                        {...register('numEmployees')}
+                        options={NUMBER_OF_EMPLOYEES_DATA}
+                        placeholder="Select"
+                        error={errors?.numEmployees?.message}
+                        className={style.select}
+                        onChange={value => {
+                          field.onChange(value.value);
+                        }}
+                      />
+                    </Label>
+                  )}
+                />
+              </div>
+            </div>
+
+            <Label label="About the business">
+              <Input
+                {...register('textarea')}
+                error={errors?.textarea?.message}
+                placeholder="Tell more about your company or business"
+              />
+            </Label>
+          </div>
+
+          <div>
+            <p className={style.main_info_title}>Contacts</p>
+            <div className={style.phone_number}>
+              {/* todo заменить на PhoneInput */}
+              {/* <Label label="Business phone number">
+                <Select {...register('code')} name="code" options={PHONE_DATA} />
+              </Label>
+              <Input
+                placeholder="(XXX) XXX - XX - XX"
+                {...register('tel')}
+                error={errors?.tel?.message}
+              /> */}
+            </div>
+
+            <div className={style.contacts_inputs}>
+              <Label label="Business email address">
+                <Input
+                  {...register('email')}
+                  error={errors?.email?.message}
+                  placeholder="business@email.com"
+                />
+              </Label>
+
+              <Label label="Main company address">
+                <Input
+                  {...register('address')}
+                  error={errors?.address?.message}
+                  placeholder="Enter address"
+                />
+              </Label>
+            </div>
+          </div>
+
+          <Button
+            type="submit"
+            className={style.button}
+            label="Save"
+            disabled={!isValid}
+          />
+        </form>
+      </div>
+    </div>
+  );
+};

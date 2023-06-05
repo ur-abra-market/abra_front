@@ -2,7 +2,37 @@ import baseConfigService from '../baseConfig.service';
 
 import { INotification } from './supplier.serviceTypes';
 
-const supplierFetch = {
+export const supplierService = {
+  hasCompanyInfo: async () => {
+    const { data } = await baseConfigService.get(`/suppliers/hasCompanyInfo/`);
+
+    return data.result;
+  },
+
+  hasPersonalInfo: async () => {
+    const { data } = await baseConfigService.get(`/suppliers/hasPersonalInfo/`);
+
+    return data.result;
+  },
+
+  fetchCompanyLogo: async () => {
+    const { data } = await baseConfigService.get(`/suppliers/companyLogo`);
+
+    return data.result;
+  },
+
+  fetchCompanyInfo: async () => {
+    const { data } = await baseConfigService.get(`/suppliers/companyInfo`);
+
+    return data.result;
+  },
+
+  fetchNotifications: async () => {
+    const { data } = await baseConfigService.get(`/suppliers/notifications/`);
+
+    return data.result;
+  },
+
   getProductProperties: async (categoryId: any) => {
     const { data } = await baseConfigService.get(
       `/suppliers/getCategoryProperties/${categoryId}`,
@@ -71,5 +101,3 @@ const supplierFetch = {
     return data.result;
   },
 };
-
-export default supplierFetch;

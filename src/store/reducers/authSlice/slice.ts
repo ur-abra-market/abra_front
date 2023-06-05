@@ -1,45 +1,39 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { registerUser } from './asyncThunks';
+import { getUserRole } from '../appSlice';
+
+import { loginUser } from './thunks';
+
+import { UserRoleType } from 'common/types';
 
 interface IAuthSliceInitialState {
-  errorMessage: null | string;
-  isValidRegistrationData: null | boolean;
-  loading: boolean;
+  userRole: UserRoleType;
+  isAuthorized: boolean;
 }
 
 const AuthSliceInitialState: IAuthSliceInitialState = {
-  errorMessage: null,
-  isValidRegistrationData: null,
-  loading: false,
+  userRole: null,
+  isAuthorized: false,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: AuthSliceInitialState,
-  reducers: {
-    clearState: state => {
-      state.errorMessage = null;
-      state.isValidRegistrationData = null;
-      state.loading = false;
-    },
-  },
+  reducers: {},
+
   extraReducers: builder => {
-    builder.addCase(registerUser.pending, state => {
-      state.errorMessage = null;
-      state.loading = true;
-    });
-    builder.addCase(registerUser.fulfilled, state => {
-      state.isValidRegistrationData = true;
-      state.loading = false;
-    });
-    builder.addCase(registerUser.rejected, (state, action) => {
-      state.errorMessage = action.payload as string;
-      state.isValidRegistrationData = false;
-      state.loading = false;
+    builder.addCase(
+      getUserRole.fulfilled,
+      (state, action: PayloadAction<UserRoleType>) => {
+        state.userRole = action.payload;
+        state.isAuthorized = true;
+      },
+    );
+
+    builder.addCase(loginUser.fulfilled, state => {
+      state.isAuthorized = true;
     });
   },
 });
 
-export const { clearState } = authSlice.actions;
 export const authReducer = authSlice.reducer;

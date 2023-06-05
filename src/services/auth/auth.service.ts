@@ -1,8 +1,5 @@
+import { IPersonalInfoRequestData } from '../../common/types/interfaces';
 import baseConfigService from '../baseConfig.service';
-import {
-  IAccountPersonalInfoRequest,
-  IAccountPersonalInfoResponse,
-} from '../common/common.serviceTypes';
 
 import {
   ChangePasswordPayloadType,
@@ -14,7 +11,11 @@ import {
   ResetPasswordPayloadType,
 } from './auth.serviceTypes';
 
-const authService = {
+export const authService = {
+  userRole: () => {
+    return baseConfigService.get(`/login/role/`);
+  },
+
   register: ({ email, password, route, token }: RegisterParamsType) => {
     if (route === 'confirmEmail') {
       return baseConfigService.get<RegisterResponseType>(
@@ -29,20 +30,10 @@ const authService = {
     });
   },
 
-  sendAccountPersonalInfo: async ({
-    first_name,
-    last_name,
-    phone_country_code,
-    phone_number,
-  }: IAccountPersonalInfoRequest) => {
-    const { data } = await baseConfigService.post<IAccountPersonalInfoResponse>(
+  sendAccountPersonalInfo: async (personalInfoData: IPersonalInfoRequestData) => {
+    const { data } = await baseConfigService.post(
       `/register/account/sendInfo/`,
-      {
-        first_name,
-        last_name,
-        phone_country_code,
-        phone_number,
-      },
+      personalInfoData,
     );
 
     return data;

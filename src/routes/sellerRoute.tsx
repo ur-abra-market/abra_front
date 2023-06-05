@@ -10,7 +10,7 @@ import {
   SellerFavoritesList,
   ProductListPage,
   CheckoutSuccessPage,
-} from 'pages/sellerPages';
+} from 'pages/seller-pages';
 
 export const sellerRoute = [
   {

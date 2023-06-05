@@ -9,7 +9,7 @@ import React, {
 
 import cn from 'classnames';
 
-import userService from '../../services/user/user.service';
+import { userService } from '../../services';
 
 import style from './UploadImage.module.scss';
 
@@ -78,7 +78,7 @@ export const UploadImage: FC<IUploadImage> = ({
     if (file.raw) {
       userService
         .uploadImage({ action, file: file.raw as File })
-        .then(res => setImage_id(res.result.id));
+        .then((res: any) => setImage_id(res.result.id)); // todo fix any
     }
   }, [file.raw, action]);
 

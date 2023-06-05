@@ -1,17 +1,17 @@
-import React from 'react';
-
-export interface IAccountPersonalInfo {
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-}
-
 export interface IImageProduct {
   image_url: string;
   serial_number: number;
 }
 
-// for importing image components
-export interface ImageComponents {
-  [key: string]: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+export interface IPersonalInfoFormData {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+}
+
+export interface IPersonalInfoRequestData {
+  first_name: string;
+  last_name: string;
+  phone_country_code: string;
+  phone_number: string;
 }

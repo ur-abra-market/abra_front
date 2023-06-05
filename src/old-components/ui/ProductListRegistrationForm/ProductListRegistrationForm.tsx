@@ -11,7 +11,7 @@ import {
   addProductService,
   getCompanyInfoService,
   uploadImageService,
-} from '../../../store/reducers/supplierSlice';
+} from '../../../store/reducers/supplier/other';
 import {
   Button,
   Input,
@@ -83,7 +83,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { productId, loading } = useAppSelector(state => state.supplier);
+  const { productId, loading } = useAppSelector(state => state.supplierOther);
 
   const [isSubmit, setIsSubmit] = useState(false);
   const [images, setImages] = useState([]);
