@@ -36,7 +36,7 @@ export const SelectItem: FC<ISelectItem> = ({
     }
   };
 
-  const isSelectedItem = cn(currentClassName, {
+  const selectedItemClassName = cn(currentClassName, {
     [styles.item_selected]: currentSelectedItem.label === value.label,
   });
 
@@ -44,7 +44,7 @@ export const SelectItem: FC<ISelectItem> = ({
     <div
       role="presentation"
       onClick={handleClickOnItem}
-      className={isSelectedItem}
+      className={selectedItemClassName}
       onMouseEnter={handleHoverOnItem}
       onMouseLeave={handleLeaveHoverOnItem}
       style={style}

@@ -20,13 +20,13 @@
   }
 
   &::-webkit-scrollbar-track {
-    background-color: #F9F9FD;
+    background-color: var(--color-super-light-gray);
     box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
   }
 
   &::-webkit-scrollbar-thumb {
     background-color: var(--color-dark-gray) ;    /* slider color */
-    border: 2px solid #F4F4F4;  /* margin around slider */
+    border: 2px solid var(--color-light-gray);  /* margin around slider */
     border-radius: 20px;       /* rounded runner */
   }
 }

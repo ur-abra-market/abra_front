@@ -24,10 +24,7 @@
     }
 
     &.header_active_up {
-      border-top-left-radius: unset;
-      border-top-right-radius: unset;
-      border-bottom-right-radius: 8px;
-      border-bottom-left-radius: 8px;
+      border-radius: 0 0 8px 8px;
     }
 
     &.header_active {
@@ -56,10 +53,7 @@
   }
 
   > .opened_menu_up_pos {
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: unset;
-    border-bottom-left-radius: unset;
+    border-radius: 8px 8px 0 0;
     box-shadow: rgba(0, 0, 0, 0.2) -4px -2px 5px, rgba(0, 0, 0, 0.2) 4px -2px 5px;
   }
 
