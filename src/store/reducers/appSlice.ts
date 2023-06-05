@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { LoadingStatus } from '../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../common/types';
 
 import { getCurrentUserInfo, loginService } from './loginSlice';
 

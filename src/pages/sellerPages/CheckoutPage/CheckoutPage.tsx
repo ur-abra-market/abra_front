@@ -1,8 +1,5 @@
 import React from 'react';
 
-import { Navigate } from 'react-router-dom';
-
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import Footer from '../../../layouts/Footer';
 import HeaderForChangePages from '../../../old-components/HeaderForChangePages';
 
@@ -15,12 +12,6 @@ import CheckPayment from 'old-components/ui/checkout/CheckPayment';
 import { ButtonInfo } from 'ui-kit';
 
 export const CheckoutPage = (): JSX.Element => {
-  const { isAuth } = useAppSelector(state => state.login);
-
-  if (!isAuth) {
-    return <Navigate to="/auth" />;
-  }
-
   return (
     <div className={style.container}>
       <HeaderForChangePages />
