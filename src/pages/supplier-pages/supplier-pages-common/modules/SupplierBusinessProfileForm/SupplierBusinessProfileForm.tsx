@@ -22,13 +22,6 @@ import {
 
 import style from './SupplierBusinessProfileForm.module.scss';
 
-const phoneNumberSplit = (phone: string): [code: string, tel: string] => {
-  const reg = /(\+(?:90|44|77|1))(\d+)/;
-  const reg_exec = reg.exec(phone) || '';
-
-  return reg_exec.length > 2 ? [reg_exec[1], reg_exec[2]] : ['', ''];
-};
-
 interface FormFields {
   email: string;
   code: string;
@@ -68,13 +61,12 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
 
   const navigate = useNavigate();
   // const dispatch = useAppDispatch();
-  const { resMessage } = useAppSelector(state => state.formRegistration);
-  const accountInfo = useAppSelector(state => state.supplierAccount.supplierInfo);
+  // const accountInfo = useAppSelector(state => state.supplierAccount.supplierInfo);
 
   // @ts-ignore
-  const companyInfo = accountInfo?.company_info || {};
+  // const companyInfo = accountInfo?.company_info || {};
 
-  const [acc_code, acc_tel] = phoneNumberSplit(companyInfo.phone);
+  // const [acc_code, acc_tel] = phoneNumberSplit(companyInfo.phone);
 
   const {
     control,
@@ -86,18 +78,18 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
     resolver: yupResolver(supplierBusinessProfileFormValidationSchema),
     mode: 'onChange',
     defaultValues: {
-      email: companyInfo?.business_email,
-      code: acc_code || undefined,
-      textarea: companyInfo.description,
-      tel: acc_tel,
-      yearEstablished: companyInfo.year_established,
-      address: companyInfo.address,
-      checkbox: companyInfo.is_manufacturer === 1,
-      // eslint-disable-next-line no-unsafe-optional-chaining
-      numEmployees: companyInfo?.number_of_employees,
-      storeName: companyInfo.name,
-      businessSector: companyInfo.business_sector,
-      entrepreneurNumber: companyInfo.entrepreneurNumber,
+      // email: companyInfo?.business_email,
+      // code: acc_code || undefined,
+      // textarea: companyInfo.description,
+      // tel: acc_tel,
+      // yearEstablished: companyInfo.year_established,
+      // address: companyInfo.address,
+      // checkbox: companyInfo.is_manufacturer === 1,
+      // // eslint-disable-next-line no-unsafe-optional-chaining
+      // numEmployees: companyInfo?.number_of_employees,
+      // storeName: companyInfo.name,
+      // businessSector: companyInfo.business_sector,
+      // entrepreneurNumber: companyInfo.entrepreneurNumber,
     },
   });
 
@@ -133,11 +125,6 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
 
     reset();
   };
-
-  useEffect(() => {
-    if (resMessage === 'DATA_HAS_BEEN_SENT')
-      navigate('../add-product', { replace: true });
-  }, [resMessage, navigate]);
 
   return (
     <div className={style.form_wrapper}>

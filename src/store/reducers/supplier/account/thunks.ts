@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { supplierService } from '../../../services';
+import { supplierService } from '../../../../services';
 
 export const getCompanyInfo = createAsyncThunk<any, void>( // todo fix any
-  'auth/createAccountPersonalInfo',
+  'supplierAccount/getCompanyInfo',
   async (_, { rejectWithValue }) => {
     try {
       return await supplierService.fetchCompanyInfo();

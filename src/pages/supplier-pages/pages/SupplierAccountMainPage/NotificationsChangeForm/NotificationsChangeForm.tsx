@@ -5,8 +5,6 @@ import { INotification } from '../../../../../services/supplier/supplier.service
 
 import style from './NotificationsChangeForm.module.css';
 
-import { useAppSelector } from 'common/hooks/useAppSelector';
-import { updateSupplierNotifications } from 'store/reducers/supplierAccountSlice';
 import { Checkbox } from 'ui-kit';
 
 // TODO - с бэка приходят notifications seller'a
@@ -21,12 +19,11 @@ const NOTIFICATIONS_DATA: { id: keyof INotification; label: string }[] = [
 ];
 
 export const NotificationsChangeForm: FC = (): JSX.Element => {
-  const notifications =
-    useAppSelector(state => state.supplierAccount.notifications) || null;
+  const notifications = null;
   const dispatch = useAppDispatch();
 
   const onNotificationChange = (id: string, value: boolean): void => {
-    dispatch(updateSupplierNotifications({ id, value }));
+    // dispatch(updateSupplierNotifications({ id, value }));
   };
 
   return (

@@ -2,21 +2,38 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { userService } from '../../../services';
+import { IAccountPersonalInfoResponse } from '../../../services/user/user.serviceTypes';
 
-export const getPersonalInfo = createAsyncThunk<any, void>( // todo fix any
-  'auth/createAccountPersonalInfo',
+export const getPersonalInfo = createAsyncThunk<IAccountPersonalInfoResponse, void>(
+  'user/getPersonalInfo',
   async (_, { rejectWithValue }) => {
     try {
-      const res = await userService.fetchAccountPersonalInfo();
-
-      console.log(res);
-
-      return res;
+      return await userService.fetchAccountPersonalInfo();
     } catch (error) {
       const errorMessage =
         error instanceof AxiosError
           ? error.response?.data?.error || error.message
-          : '[getUserRole]: Error';
+          : '[getPersonalInfo]: Error';
+
+      return rejectWithValue(errorMessage);
+    }
+  },
+);
+
+export const updatePersonalInfo = createAsyncThunk<any, any>(
+  'user/updatePersonalInfo',
+  async (personalInfoData, { rejectWithValue, dispatch }) => {
+    try {
+      const result = await userService.updateAccountPersonalInfo(personalInfoData);
+
+      if (result) dispatch(getPersonalInfo());
+
+      return result;
+    } catch (error) {
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.error || error.message
+          : '[updatePersonalInfo]: Error';
 
       return rejectWithValue(errorMessage);
     }

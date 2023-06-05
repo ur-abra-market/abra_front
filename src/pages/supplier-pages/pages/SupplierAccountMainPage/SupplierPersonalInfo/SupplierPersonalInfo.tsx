@@ -10,18 +10,19 @@ import { IPersonalInfoFormData } from '../../../../../common/types';
 import { parsePhoneNumber } from '../../../../../common/utils/parsePhoneNumber';
 import { ButtonLogOut } from '../../../../../components/ButtonLogOut/ButtonLogOut';
 import { PersonalInfoChangeForm } from '../../../../../modules';
-import { updateAccountPersonalInfo } from '../../../../../store/reducers/formRegistrationSlice';
+import { supplierPersonalInfoSelector } from '../../../../../store/reducers/supplier/account';
 import {
   getPersonalInfo,
-  personalInfoSelector,
+  updatePersonalInfo,
 } from '../../../../../store/reducers/userSlice';
 import { Button } from '../../../../../ui-kit';
 
-import style from './PersonalInfo.module.scss';
+import style from './SupplierPersonalInfo.module.scss';
 
-export const PersonalInfo = (): JSX.Element => {
-  const { lastName, firstName, phoneCountryCode, phoneNumberBody } =
-    useAppSelector(personalInfoSelector);
+export const SupplierPersonalInfo = (): JSX.Element => {
+  const { lastName, firstName, phoneCountryCode, phoneNumberBody } = useAppSelector(
+    supplierPersonalInfoSelector,
+  );
   const phoneNumber = `${phoneCountryCode}${phoneNumberBody}`;
   const dispatch = useAppDispatch();
 
@@ -29,16 +30,24 @@ export const PersonalInfo = (): JSX.Element => {
     dispatch(getPersonalInfo());
   }, []);
 
+  useEffect(() => {
+    if (lastName && firstName && phoneNumber) {
+      setValue('firstName', firstName);
+      setValue('lastName', lastName);
+      setValue('phoneNumber', phoneNumber);
+    }
+  }, [lastName, firstName, phoneCountryCode, phoneNumberBody]);
+
   const formMethods = useForm<IPersonalInfoFormData>({
     resolver: yupResolver(accountPersonalInfoValidationSchema),
     mode: 'all',
     defaultValues: {
-      firstName,
-      lastName,
-      phoneNumber,
+      lastName: '',
+      firstName: '',
+      phoneNumber: '',
     },
   });
-  const { watch, handleSubmit, formState } = formMethods;
+  const { watch, handleSubmit, formState, setValue } = formMethods;
 
   const [phoneNumberValue, lastNameValue, firstNameValue] = watch([
     'phoneNumber',
@@ -56,8 +65,8 @@ export const PersonalInfo = (): JSX.Element => {
   const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
     const { countryCode, numberBody } = parsePhoneNumber(data.phoneNumber);
 
-    const result = await dispatch(
-      updateAccountPersonalInfo({
+    dispatch(
+      updatePersonalInfo({
         first_name: data.firstName,
         last_name: data.lastName,
         phone_country_code: phoneNumber === numberFull ? phoneCountryCode : countryCode,

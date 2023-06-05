@@ -2,5 +2,5 @@ export {
   getPersonalInfo,
   uploadUserLogoService,
   getFavoritesProductsService,
+  updatePersonalInfo,
 } from './thunks';
-export { personalInfoSelector } from './selectors';
