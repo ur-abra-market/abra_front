@@ -11,7 +11,7 @@ import style from './ResetPasswordForm.module.scss';
 import { passwordValidationSchema } from 'common/constants/validation-schemas/passwordValidationSchema';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { ResetPasswordPayloadType } from 'services/auth/auth.serviceTypes';
-import { resetPassword } from 'store/reducers/passwordSlice';
+import { resetPassword } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
 
 interface ResetPasswordFormProps {

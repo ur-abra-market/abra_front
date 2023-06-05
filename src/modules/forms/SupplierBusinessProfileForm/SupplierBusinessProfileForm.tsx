@@ -85,7 +85,7 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { resMessage } = useAppSelector(state => state.formRegistration);
+  // const { resMessage } = useAppSelector(state => state.formRegistration);
   const accountInfo = useAppSelector(state => state.supplierAccount.supplierInfo);
 
   // @ts-ignore
@@ -154,10 +154,11 @@ export const SupplierBusinessProfileForm: FC<IBusinessProfileForm> = ({
     reset();
   };
 
-  useEffect(() => {
-    if (resMessage === 'DATA_HAS_BEEN_SENT')
-      navigate('../add-product', { replace: true });
-  }, [resMessage, navigate]);
+  // TODO - resMessage не приходит с санки
+  // useEffect(() => {
+  //   if (resMessage === 'DATA_HAS_BEEN_SENT')
+  //     navigate('../add-product', { replace: true });
+  // }, [resMessage, navigate]);
 
   return (
     <div className={style.form_wrapper}>

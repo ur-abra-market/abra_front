@@ -11,13 +11,13 @@ import ResetPasswordForm from './index';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import Modal from 'components/Modal';
-import { checkToken } from 'store/reducers/passwordSlice';
+import { checkToken } from 'store/reducers/authSlice';
 import { Button } from 'ui-kit';
 
 export const ResetPasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
   const [searchParams] = useSearchParams();
-  const tokenStatus = useAppSelector(state => state.passwordSlice.result);
+  const tokenStatus = useAppSelector(state => state.auth.passwordActionsResult);
 
   const token = searchParams.get('token');
   const dispatch = useAppDispatch();

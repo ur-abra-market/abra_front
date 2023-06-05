@@ -8,7 +8,7 @@ import style from './ForgotPasswordForm.module.scss';
 
 import { emailValidationSchema } from 'common/constants';
 import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { forgotPassword } from 'store/reducers/passwordSlice';
+import { forgotPassword } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
 
 export type ForgotChangePasswordFormType = {
@@ -36,7 +36,7 @@ const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => 
   const dispatch = useAppDispatch();
 
   const onSubmit = (data: ForgotChangePasswordFormType): void => {
-    dispatch(forgotPassword(data));
+    dispatch(forgotPassword(data.email));
     togglePageType();
   };
 

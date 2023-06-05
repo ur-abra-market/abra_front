@@ -10,7 +10,7 @@ import { IAccountPersonalInfo } from '../../../../common/types/interfaces';
 import { parsePhoneNumber } from '../../../../common/utils/parsePhoneNumber';
 import Modal from '../../../../components/Modal';
 import { ModalChildPhoneCheck } from '../../../../components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
-import { sendAccountPersonalInfo } from '../../../../store/reducers/formRegistrationSlice';
+import { sendAccountPersonalInfo } from '../../../../store/reducers/authSlice';
 import { Button, SupplierRegisterFormStep } from '../../../../ui-kit';
 import { PersonalInfoChangeForm } from '../../SupplierAccountMainPage';
 

@@ -5,7 +5,7 @@ import { LoadingStatus } from '../../common/types/enums/status.enum';
 import supplierService from '../../services/supplier/supplier.service';
 import { INotification } from '../../services/supplier/supplier.serviceTypes';
 
-import { getCurrentUserInfo } from './loginSlice';
+import { getCurrentUserInfo } from './authSlice';
 
 import { RootStateType } from 'store/createStore';
 

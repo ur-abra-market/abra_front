@@ -9,7 +9,7 @@ import { parsePhoneNumber } from '../../../common/utils/parsePhoneNumber';
 import { AccountManagementLink } from '../../../components';
 import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
 import { SupplierBusinessProfileForm } from '../../../modules';
-import { updateAccountPersonalInfo } from '../../../store/reducers/formRegistrationSlice';
+import { updateAccountPersonalInfo } from '../../../store/reducers/authSlice';
 import { Button } from '../../../ui-kit';
 
 import style from './SupplierAccountMainPage.module.css';

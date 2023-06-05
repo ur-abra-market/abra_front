@@ -1,5 +1,13 @@
 import { Dispatch } from '@reduxjs/toolkit';
 
+import { AppDispatchType, RootStateType } from '../../store/createStore';
+import { IUserNotificationsData } from '../../store/reducers/userSlice';
+import { IProduct } from '../product/product.serviceTypes';
+import { ISellerAddressData } from '../seller/seller.serviceTypes';
+import { INotification } from '../supplier/supplier.serviceTypes';
+
+import { ISellerData } from 'services/seller/seller.serviceTypes';
+
 export type RegisterParamsType = {
   email?: string;
   password?: string;
@@ -39,11 +47,46 @@ export type ChangePasswordPayloadType = {
   new_password: string;
 };
 
+export type LogoutResponseType = {
+  result: boolean;
+};
+
+export type CurrentUserInfoResponseType = {
+  result: {
+    datetime: string;
+    updated_at?: string;
+    phone_country_code: string;
+    phone_number: string;
+    first_name: string;
+    last_name: string;
+    full_name: string;
+    email: string;
+    is_verified?: boolean;
+    is_deleted?: boolean;
+    is_supplier?: boolean;
+    supplier?: {
+      license_number?: string;
+      grade_average?: number;
+      additional_info?: string;
+      notifications?: INotification;
+      products?: IProduct[];
+    };
+    seller?: {
+      has_main_address?: boolean;
+      notifications?: INotification;
+      addresses?: ISellerAddressData[];
+    };
+  };
+  detail: {
+    has_profile: boolean;
+  };
+};
+
 export type AsyncThunkConfig = {
-  state?: unknown;
-  dispatch?: Dispatch;
+  state: RootStateType;
+  dispatch: AppDispatchType;
   extra?: unknown;
-  rejectValue?: unknown;
+  rejectValue: string;
   serializedErrorType?: unknown;
   pendingMeta?: unknown;
   fulfilledMeta?: unknown;

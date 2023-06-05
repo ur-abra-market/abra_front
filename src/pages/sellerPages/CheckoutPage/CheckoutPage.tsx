@@ -15,7 +15,7 @@ import CheckPayment from 'old-components/ui/checkout/CheckPayment';
 import { ButtonInfo } from 'ui-kit';
 
 export const CheckoutPage = (): JSX.Element => {
-  const { isAuth } = useAppSelector(state => state.login);
+  const isAuth = useAppSelector(state => state.auth.isAuthorized);
 
   if (!isAuth) {
     return <Navigate to="/auth" />;

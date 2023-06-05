@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import Modal from '../../../components/Modal';
-import { logout } from '../../../store/reducers/loginSlice';
+import { logout } from '../../../store/reducers/authSlice';
 import { ButtonIcon, Search } from '../../../ui-kit';
 import { Logo } from '../../Logo/Logo';
 
@@ -59,8 +59,8 @@ const Top = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const isAuth = useAppSelector(state => state.login.isAuth);
-  // const userRole = useAppSelector(state => state.login.userRole);
+  const isAuth = useAppSelector(state => state.auth.isAuthorized);
+  // const userRole = useAppSelector(state => state.auth.userRole);
   const [menu, setMenu] = useState<string>();
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
 

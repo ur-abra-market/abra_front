@@ -3,12 +3,13 @@ import { useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { ArrowRightIcon, HeaderNotificationsIcon } from 'assets/icons'; // 5 10px for ArrowRightIcon
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { logout } from '../../../store/reducers/loginSlice';
+import { logout } from '../../../store/reducers/authSlice';
 import { Logo } from '../../Logo/Logo';
 
 import style from './SupplierTop.module.css';
+
+import { ArrowRightIcon, HeaderNotificationsIcon } from 'assets/icons'; // 5 10px for ArrowRightIcon
 
 const SupplierTop = (): JSX.Element => {
   const dispatch = useAppDispatch();

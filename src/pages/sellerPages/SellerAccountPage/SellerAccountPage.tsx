@@ -45,7 +45,7 @@ type FormValues = {
 
 export const SellerAccountPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  // const isAuth = useAppSelector(state => state.login.isAuth);
+  // const isAuth = useAppSelector(state => state.auth.isAuthorized);
   const isFeedbackOpen = useAppSelector(state => state.app.isFeedbackOpen);
 
   const { first_name, last_name } = useAppSelector(state => state.seller.userProfileInfo);
