@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { LoadingStatus } from '../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../common/types';
 import { userService } from '../../services';
 import { IAccountPersonalInfoRequest } from '../../services/common/common.serviceTypes';
 import { IAccountPersonalInfoResponse } from '../../services/user/user.serviceTypes';

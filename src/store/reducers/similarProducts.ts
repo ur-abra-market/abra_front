@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
+import { LoadingStatus } from '../../common/types';
 import { productService } from '../../services/product/product.service';
 import {
   IProductCompilation,
   IRequestSimilarProduct,
 } from '../../services/product/product.serviceTypes';
-
-import { LoadingStatus } from 'common/types/enums/status.enum';
 
 export const getSimilarProducts = createAsyncThunk<
   IProductCompilation[],

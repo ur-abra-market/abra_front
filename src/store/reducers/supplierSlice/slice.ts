@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { IPersonalInfoRequestData } from '../../../common/types/interfaces';
+import { IPersonalInfoRequestData } from '../../../common/types';
 
 interface ISupplierSliceInitialState {
   personalInfo: IPersonalInfoRequestData;
