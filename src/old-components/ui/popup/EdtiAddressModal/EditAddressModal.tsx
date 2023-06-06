@@ -2,12 +2,12 @@ import { FC } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 
+import { useAppDispatch } from '../../../../common/hooks';
 import Check from '../../../Check';
 
 import style from './EditAddressModal.module.css';
 
 import { DeleteTrashCanIcon, CrossRedIcon } from 'assets/icons'; // 16px for CrossRedIcon
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { SellerAddressData } from 'services/seller/seller.serviceTypes';
 import { deleteAddress, editAddress } from 'store/reducers/sellerCheckoutSlice';
 import { Button, Input, Select } from 'ui-kit';

@@ -5,7 +5,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { accountPersonalInfoValidationSchema } from '../../../../../common/constants';
-import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
+import { useAppDispatch } from '../../../../../common/hooks';
 import {
   IPersonalInfoRequestData,
   IPersonalInfoFormData,

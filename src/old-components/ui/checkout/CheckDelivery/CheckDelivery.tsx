@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import { getAddress } from '../../../../store/reducers/sellerCheckoutSlice';
 import { getSellerInfoService } from '../../../../store/reducers/sellerSlice';
 import CheckoutAddress from '../../../CheckoutAddress/CheckoutAddress';

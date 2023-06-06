@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import cn from 'classnames';
 
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
+import { useAppDispatch } from '../../../../common/hooks';
 import { status } from '../../../../store/reducers/productSlice';
 
 import style from './StatusProduct.module.scss';

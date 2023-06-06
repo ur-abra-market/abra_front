@@ -1,10 +1,10 @@
 import { FC, useEffect, useState } from 'react';
 
+import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
+
 import style from './SelectFilter.module.css';
 
 import { ArrowDownIcon } from 'assets/icons';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { useAppSelector } from 'common/hooks/useAppSelector';
 import { ascending, category, sort } from 'store/reducers/filterSlice';
 
 interface SelectFilterProps {

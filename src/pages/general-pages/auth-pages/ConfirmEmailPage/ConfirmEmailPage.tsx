@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Link, useSearchParams } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
+import { useAppDispatch } from '../../../../common/hooks';
 import { registerUser } from '../../../../store/reducers/authSlice';
 import { LoaderCircular } from '../../../../ui-kit';
 
