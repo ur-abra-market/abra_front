@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import { SimpleLink } from '../../ui-kit';
+import { SimpleLink } from '../../../ui-kit';
 
 import style from './AccountManagmentLink.module.scss';
 
@@ -10,7 +10,7 @@ interface IAccountManagementLink {
   description: string;
 }
 
-export const AccountManagementLink: React.FC<IAccountManagementLink> = ({
+export const AccountManagementLink: FC<IAccountManagementLink> = ({
   linkLabel,
   path,
   description,

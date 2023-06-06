@@ -1,13 +1,11 @@
 import { useEffect } from 'react';
 
 import cn from 'classnames';
-import { UploadImage } from 'components';
+import { AccountManagement, UploadImage } from 'components';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import AccountManagement from '../../../components/AccountManagement/AccountManagement';
+import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
 import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
 import Footer from '../../../layouts/Footer';

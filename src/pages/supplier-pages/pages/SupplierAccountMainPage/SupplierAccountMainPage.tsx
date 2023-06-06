@@ -1,4 +1,4 @@
-import AccountManagement from '../../../../components/AccountManagement/AccountManagement';
+import { AccountManagement } from '../../../../components';
 import { SupplierBusinessProfileForm } from '../../supplier-pages-common';
 
 import style from './SupplierAccountMainPage.module.css';
