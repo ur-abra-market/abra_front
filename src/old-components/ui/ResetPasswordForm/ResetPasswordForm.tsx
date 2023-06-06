@@ -4,8 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { PasswordComplexity } from '../../../pages/commonPages/auth-pages/assets';
+import { useAppDispatch } from '../../../common/hooks';
+import { PasswordComplexity } from '../../../pages/general-pages/auth-pages/assets';
 import { ResetPasswordPayloadType } from '../../../services/auth/auth.serviceTypes';
 import { resetPassword } from '../../../store/reducers/passwordSlice';
 import { Button, Input } from '../../../ui-kit';

@@ -5,14 +5,13 @@ import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 import { UploadImage } from '../../../components';
 import {
   addProductService,
   getCompanyInfoService,
   uploadImageService,
-} from '../../../store/reducers/supplierSlice';
+} from '../../../store/reducers/supplier/other';
 import {
   Button,
   Input,
@@ -84,7 +83,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { productId, loading } = useAppSelector(state => state.supplier);
+  const { productId, loading } = useAppSelector(state => state.supplierOther);
 
   const [isSubmit, setIsSubmit] = useState(false);
   const [images, setImages] = useState([]);

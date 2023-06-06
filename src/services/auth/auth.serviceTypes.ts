@@ -1,7 +1,5 @@
 import { Dispatch } from '@reduxjs/toolkit';
 
-export type userRoleType = null | 'supplier' | 'seller';
-
 export type RegisterParamsType = {
   email?: string;
   password?: string;

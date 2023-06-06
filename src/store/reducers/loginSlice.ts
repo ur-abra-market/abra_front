@@ -1,20 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
+import { UserRoleType } from '../../common/types';
 import authService from '../../services/auth/auth.service';
-import {
-  AsyncThunkConfig,
-  LoginParamsType,
-  userRoleType,
-  LoginResponseType,
-} from '../../services/auth/auth.serviceTypes';
+import { AsyncThunkConfig } from '../../services/auth/auth.serviceTypes';
 
 interface IInitialState {
   resMessage: string;
   errMessage: string;
   loading: boolean;
   isAuth: boolean;
-  userRole: userRoleType;
+  userRole: UserRoleType;
 }
 
 const initialState: IInitialState = {
@@ -24,26 +20,6 @@ const initialState: IInitialState = {
   isAuth: false,
   userRole: null,
 };
-
-export const loginService = createAsyncThunk<
-  LoginResponseType,
-  LoginParamsType,
-  AsyncThunkConfig
->('login/loginService', async (dataUser, { rejectWithValue, dispatch }) => {
-  try {
-    const response = await authService.login(dataUser);
-
-    dispatch(getCurrentUserInfo());
-
-    return response.data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      return rejectWithValue(error.message);
-    }
-
-    return rejectWithValue('[loginService]: ERROR');
-  }
-});
 
 export const getCurrentUserInfo = createAsyncThunk<any, void, AsyncThunkConfig>(
   'login/getCurrentUserInfo',
@@ -81,18 +57,6 @@ const loginSlice = createSlice({
   name: 'login',
   initialState,
   extraReducers: builder => {
-    builder.addCase(loginService.fulfilled, (state, action) => {
-      state.resMessage = action.payload.result;
-      state.isAuth = true;
-    });
-    builder.addCase(loginService.rejected, (state, action) => {
-      state.resMessage = action.payload as string;
-      state.errMessage = action.payload as string;
-      state.isAuth = false;
-    });
-    builder.addCase(getCurrentUserInfo.fulfilled, (state, action) => {
-      state.userRole = action.payload.result.is_supplier ? 'supplier' : 'seller';
-    });
     builder.addCase(getCurrentUserInfo.rejected, state => {
       state.isAuth = false;
     });

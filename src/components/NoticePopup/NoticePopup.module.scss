@@ -1,0 +1,37 @@
+.notice_container {
+  cursor: default;
+
+  position: fixed;
+  z-index: 100;
+  top: 30px;
+  left: calc(50% - 200px);
+
+  display: flex;
+  flex-shrink: 1;
+  column-gap: 16px;
+  align-items: center;
+
+  width: 400px;
+  padding: 12px;
+
+  font-size: var(--fz-s);
+  color: var(--color-white);
+
+  background: var(--color-accent);
+  border-radius: 12px;
+}
+
+.message {
+  width: 100%;
+}
+
+.cross {
+  cursor: pointer;
+
+  flex-shrink: 0;
+  align-self: flex-start;
+
+  width: 30px;
+  height: 30px;
+  padding: 0 6px 6px;
+}
