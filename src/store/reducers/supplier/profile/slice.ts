@@ -9,7 +9,7 @@ export interface ISupplierPersonalInfo {
   phoneNumberBody: string;
 }
 
-interface ISupplierSliceInitialState {
+interface ISupplierProfileSliceInitialState {
   loading: boolean;
   personalInfo: {
     firstName: string;
@@ -19,7 +19,7 @@ interface ISupplierSliceInitialState {
   };
 }
 
-const initialState: ISupplierSliceInitialState = {
+const initialState: ISupplierProfileSliceInitialState = {
   loading: false,
   personalInfo: {
     firstName: '',
@@ -29,7 +29,7 @@ const initialState: ISupplierSliceInitialState = {
   },
 };
 
-export const supplierAccountSlice = createSlice({
+export const supplierProfileSlice = createSlice({
   name: 'supplierAccount',
   initialState,
   reducers: {},
@@ -48,4 +48,4 @@ export const supplierAccountSlice = createSlice({
   },
 });
 
-export const supplierAccountReducer = supplierAccountSlice.reducer;
+export const supplierProfileReducer = supplierProfileSlice.reducer;

@@ -9,7 +9,7 @@ import { IPersonalInfoFormData } from '../../../../../common/types';
 import { parsePhoneNumber } from '../../../../../common/utils/parsePhoneNumber';
 import { ButtonLogOut } from '../../../../../components/ButtonLogOut/ButtonLogOut';
 import { PersonalInfoChangeForm } from '../../../../../modules';
-import { supplierPersonalInfoSelector } from '../../../../../store/reducers/supplier/account';
+import { supplierPersonalInfoSelector } from '../../../../../store/reducers/supplier/profile';
 import {
   getPersonalInfo,
   updatePersonalInfo,

@@ -18,8 +18,8 @@ import productReducer from './reducers/productSlice';
 import sellerCheckoutSlice from './reducers/sellerCheckoutSlice';
 import sellerSlice from './reducers/sellerSlice';
 import { similarProductsReducer } from './reducers/similarProducts';
-import { supplierAccountReducer } from './reducers/supplier/account/slice';
 import { supplierOtherReducer } from './reducers/supplier/other/slice';
+import { supplierProfileReducer } from './reducers/supplier/profile/slice';
 import { targetProductReducer } from './reducers/targetProductSlice';
 import { userReducer } from './reducers/userSlice/slice';
 
@@ -29,7 +29,7 @@ export const store = configureStore({
     app: appReducer,
     auth: authReducer,
     user: userReducer,
-    supplierAccount: supplierAccountReducer,
+    supplierProfile: supplierProfileReducer,
     supplierOther: supplierOtherReducer,
 
     login: loginReducer,

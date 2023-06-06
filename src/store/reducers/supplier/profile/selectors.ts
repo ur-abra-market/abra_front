@@ -4,4 +4,4 @@ import { ISupplierPersonalInfo } from './slice';
 
 export const supplierPersonalInfoSelector = (
   state: RootStateType,
-): ISupplierPersonalInfo => state.supplierAccount.personalInfo;
+): ISupplierPersonalInfo => state.supplierProfile.personalInfo;
