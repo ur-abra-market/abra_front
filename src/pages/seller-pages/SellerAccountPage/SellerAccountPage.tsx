@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import { AccountManagementLink } from '../../../components';
+import AccountManagement from '../../../components/AccountManagement/AccountManagement';
 import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
 import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
 import Footer from '../../../layouts/Footer';
@@ -153,21 +153,7 @@ export const SellerAccountPage = (): JSX.Element => {
                 </form>
               </div>
 
-              <AccountManagementLink
-                linkLabel="Change your email"
-                path="/changeEmail"
-                description="(You will have to confirm a new email)"
-              />
-              <AccountManagementLink
-                linkLabel=" Change your password"
-                path="/changePassword"
-                description="(In case if you forgot a current password or need a stronger one)"
-              />
-              <AccountManagementLink
-                linkLabel=" Remove the account?"
-                path="/" // todo fix
-                description="(All your data including order history will be deleted)"
-              />
+              <AccountManagement />
             </div>
 
             <div className={style.center_column}>
