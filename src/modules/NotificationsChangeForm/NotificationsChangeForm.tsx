@@ -37,10 +37,11 @@ export const NotificationsChangeForm: FC<INotificationsChangeForm> = ({
               label={el.label}
               className={style.notifications_item}
               checked={
-                notifications &&
-                notifications[
-                  el.id as keyof (ISellerNotifications & ISupplierNotifications)
-                ]
+                notifications
+                  ? notifications[
+                      el.id as keyof (ISellerNotifications & ISupplierNotifications)
+                    ]
+                  : false
               }
               onChange={event =>
                 onNotificationChange(event.currentTarget.id, event.currentTarget.checked)
