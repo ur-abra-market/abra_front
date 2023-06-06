@@ -19,7 +19,7 @@
 .personal_info,
 .business_profile {
   padding: 32px;
-  background: #FFF;
+  background: var(--color-white);
   border-radius: 12px;
 }
 
@@ -31,9 +31,9 @@
 }
 
 .personal_info_title {
-  font-size: 20px;
-  font-weight: 700;
-  color: #000;
+  font-size: var(--fz-l2);
+  font-weight: var(--bold);
+  color: var(--color-black);
   letter-spacing: 0.16px;
 }
 
@@ -64,9 +64,9 @@
 .details_block button {
   cursor: pointer;
 
-  font-size: 15px;
+  font-size: var(--fz-s2);
   line-height: 20px;
-  color: #FC133D;
+  color: var(--color-accent);
   text-decoration-line: underline;
   letter-spacing: 0.16px;
 
@@ -74,7 +74,7 @@
 }
 
 .details_block p {
-  font-size: 15px;
+  font-size: var(--fz-s2);
   line-height: 20px;
   letter-spacing: 0.16px;
 }
@@ -92,19 +92,19 @@
 }
 
 .header {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--fz-l2);
+  font-weight: var(--bold);
   font-style: normal;
   line-height: 25px;
-  color: #000;
+  color: var(--color-black);
 }
 
 .header_link {
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--fz-l2);
+  font-weight: var(--regular);
   font-style: normal;
   line-height: 20px;
-  color: #000;
+  color: var(--color-black);
   text-decoration-line: underline;
 }
 
@@ -112,9 +112,9 @@
   margin: -4px auto 5px;
   padding-top: 5px;
 
-  font-size: 12px;
+  font-size: var(--fz-xs);
   /* color: #828282; */
-  color: #FC133D;
+  color: var(--color-accent);
   letter-spacing: 0.02em;
 
   opacity: 0.7;
@@ -160,11 +160,11 @@
 .subtitle,
 .select_name,
 .textarea_name {
-  font-size: 13px;
-  font-weight: 400;
+  font-size: var(--fz-xs2);
+  font-weight: var(--regular);
   font-style: normal;
   line-height: 18px;
-  color: #828282;
+  color: var(--color-medium-gray);
   letter-spacing: -0.08px;
 }
 
@@ -189,11 +189,11 @@
   height: fit-content;
   padding: 12px;
 
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
   font-style: normal;
   line-height: 20px;
-  color: #000;
+  color: var(--color-black);
   letter-spacing: -0.24px;
 
   background: #F2F2F2;
@@ -210,10 +210,10 @@
   display: flex;
   align-items: center;
 
-  font-size: 14px;
-  font-weight: 400;
+  font-size: var(--fz-s);
+  font-weight: var(--regular);
   line-height: 20px;
-  color: #828282;
+  color: var(--color-medium-gray);
   letter-spacing: -0.24px;
 }
 
@@ -258,10 +258,10 @@
 }
 
 .select_header {
-  font-size: 14px;
-  font-weight: 400;
+  font-size: var(--fz-s);
+  font-weight: var(--regular);
   line-height: 20px;
-  color: #828282;
+  color: var(--color-medium-gray);
   letter-spacing: -0.24px;
 }
 
@@ -280,9 +280,9 @@
   height: fit-content;
   margin-top: 26px;
 
-  background-color: #FFF;
+  background-color: var(--color-white);
   border-radius: 3px;
-  box-shadow: 5px 0 10px rgb(0, 0, 0, 0.25);
+  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.25);
 
   transition: 0.4s;
 }
@@ -325,10 +325,10 @@
   margin-top: 40px;
   margin-bottom: 16px;
 
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--fz-l2);
+  font-weight: var(--bold);
   line-height: 25px;
-  color: #000;
+  color: var(--color-black);
 }
 
 .account_details_text_field_input {
@@ -351,9 +351,9 @@
 
   margin: 12px;
 
-  font-size: 12px;
-  font-weight: 500;
-  color: #828282;
+  font-size: var(--fz-xs);
+  font-weight: var(--medium);
+  color: var(--color-medium-gray);
 }
 
 .profile_logo {
@@ -455,19 +455,19 @@
 
   margin-bottom: 8px;
 
-  font-size: 14px;
-  font-weight: 400;
+  font-size: var(--fz-s);
+  font-weight: var(--regular);
   line-height: 20px;
-  color: #FC133D;
+  color: var(--color-accent);
   text-decoration-line: underline;
   letter-spacing: -0.24px;
 }
 
 .profile_logo_description_subtitle {
   font-size: 11px;
-  font-weight: 400;
+  font-weight: var(--regular);
   line-height: 13px;
-  color: #828282;
+  color: var(--color-medium-gray);
 }
 
 .label_checkbox {
@@ -478,10 +478,10 @@
 
   padding-bottom: 5px;
 
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
   line-height: 20px;
-  color: #000;
+  color: var(--color-black);
   letter-spacing: -0.24px;
 }
 
@@ -490,13 +490,13 @@
   height: 20px;
   margin: 15px 15px 15px 0;
 
-  background: #FFF;
-  border: 1px solid #828282;
+  background: var(--color-white);
+  border: 1px solid var(--color-medium-gray);
   border-radius: 4px;
 }
 
 .input_checkbox:checked {
-  background: #FC133D;
+  background: var(--color-accent);
 }
 
 .account_details_wrapper {
@@ -514,17 +514,17 @@
 
 .remove_account_link,
 .link_description {
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
   font-style: normal;
   line-height: 32px;
-  color: #FC133D;
+  color: var(--color-accent);
   text-align: left;
   text-decoration-line: underline;
 }
 
 .link_description {
-  color: #828282;
+  color: var(--color-medium-gray);
 }
 
 .photo {
@@ -567,12 +567,12 @@
   height: 40px;
   margin-right: 32px;
 
-  font-size: 15px;
-  font-weight: 600;
-  color: #FFF;
+  font-size: var(--fz-s2);
+  font-weight: var(--semi-bold);
+  color: var(--color-white);
   text-align: center;
 
-  background: #FC133D;
+  background: var(--color-accent);
   border-radius: 8px;
 }
 
