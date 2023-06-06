@@ -20,7 +20,8 @@ const commonService = {
 
     return data;
   },
-  getNumberEmployees: () => {
+
+  getCompanyNumberEmployees: () => {
     return baseConfigService.get<ResponseGetNumberEmployees>('common/numberEmployees/');
   },
 };
