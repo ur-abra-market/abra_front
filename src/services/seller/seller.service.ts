@@ -1,10 +1,12 @@
 import { AxiosResponse } from 'axios';
 
 import baseConfigService from '../baseConfig.service';
+import { ISupplierNotifications } from '../supplier/supplier.serviceTypes';
 
 import {
   IGetAddressesResponse,
   ISellerData,
+  ISellerNotifications,
   ISellerProfile,
   ISendSellerResponse,
   IUserInfoFetch,
@@ -61,5 +63,20 @@ export const sellerService = {
 
   deleteAddress: (id: number) => {
     return baseConfigService.delete<ResponseDeleteAddress>(`sellers/removeAddress/${id}`);
+  },
+
+  getNotifications: async () => {
+    const { data } = await baseConfigService.get(`sellers/notifications/`);
+
+    return data.result;
+  },
+
+  updateNotifications: async (notifications: ISellerNotifications) => {
+    const { data } = await baseConfigService.patch(
+      `sellers/notifications/update/`,
+      notifications,
+    );
+
+    return data.result;
   },
 };

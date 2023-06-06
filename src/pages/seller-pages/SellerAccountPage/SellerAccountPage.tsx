@@ -106,7 +106,7 @@ export const SellerAccountPage = (): JSX.Element => {
   useEffect(() => {
     dispatch(getSellerInfoService());
     dispatch(getSellerAddressesService());
-    dispatch(getUserNotificationsService());
+    // dispatch(getUserNotificationsService());
     // dispatch(checkAuth());
   }, [dispatch]);
 
@@ -231,99 +231,7 @@ export const SellerAccountPage = (): JSX.Element => {
                   </div>
                 </div>
 
-                <div className={style.notifications_list}>
-                  <Checkbox
-                    id="on_discount"
-                    variant="notification"
-                    label="Discounts & offers"
-                    className={style.notifications_item}
-                    checked={on_discount || false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_order_updates"
-                    variant="notification"
-                    label="Order updates"
-                    className={style.notifications_item}
-                    checked={on_order_updates || false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_order_reminders"
-                    variant="notification"
-                    label="Order reminders"
-                    className={style.notifications_item}
-                    checked={on_order_reminders || false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_stock_again"
-                    variant="notification"
-                    label="On stock again"
-                    className={style.notifications_item}
-                    checked={on_stock_again || false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_product_is_cheaper"
-                    variant="notification"
-                    label="Product is cheaper"
-                    className={style.notifications_item}
-                    checked={on_product_is_cheaper || false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_your_favorites_new"
-                    variant="notification"
-                    label="Your favorites new"
-                    className={style.notifications_item}
-                    checked={on_your_favorites_new || false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_account_support"
-                    variant="notification"
-                    label="Account support"
-                    className={style.notifications_item}
-                    checked={on_account_support || false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                </div>
+                <div className={style.notifications_list} />
               </div>
             </div>
             <FeedbackForm isFeedbackOpen={isFeedbackOpen} />
