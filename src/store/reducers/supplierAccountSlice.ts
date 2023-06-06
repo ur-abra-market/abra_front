@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 
 import { LoadingStatus } from '../../common/types/enums/status.enum';
 import { supplierService } from '../../services';
-import { INotification } from '../../services/supplier/supplier.serviceTypes';
+import { ISupplierNotifications } from '../../services/supplier/supplier.serviceTypes';
 
 import { getCurrentUserInfo } from './loginSlice';
 
@@ -28,7 +28,7 @@ export const getSupplierNotifications = createAsyncThunk(
   'supplierAccount/getNotifications',
   async (_, { rejectWithValue }) => {
     try {
-      return supplierService.getNotifications();
+      return supplierService.fetchNotifications();
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         rejectWithValue(error.message);
@@ -68,7 +68,7 @@ export const updateSupplierNotifications = createAsyncThunk<
 export interface ISupplierAccountSlice {
   isLoading: LoadingStatus;
   error: string | null;
-  notifications?: INotification;
+  notifications?: ISupplierNotifications | null;
   hasProfile: boolean;
   supplierInfo: {
     firstName: string;
@@ -88,6 +88,7 @@ const initialState: ISupplierAccountSlice = {
     phoneCountryCode: '',
     phoneNumberBody: '',
   },
+  notifications: null,
 };
 
 const supplierAccountSlice = createSlice({

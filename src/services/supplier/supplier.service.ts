@@ -1,6 +1,6 @@
 import baseConfigService from '../baseConfig.service';
 
-import { INotification } from './supplier.serviceTypes';
+import { ISupplierNotifications } from './supplier.serviceTypes';
 
 export const supplierService = {
   hasCompanyInfo: async () => {
@@ -92,9 +92,9 @@ export const supplierService = {
     return data;
   },
 
-  postNotifications: async (notifications: INotification) => {
+  postNotifications: async (notifications: ISupplierNotifications) => {
     const { data } = await baseConfigService.patch(
-      `users/updateNotification/`,
+      `suppliers/notifications/update/`,
       notifications,
     );
 

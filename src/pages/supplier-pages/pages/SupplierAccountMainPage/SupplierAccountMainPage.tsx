@@ -13,9 +13,8 @@ import { updateAccountPersonalInfo } from '../../../../store/reducers/formRegist
 import { Button } from '../../../../ui-kit';
 import { SupplierBusinessProfileForm } from '../../supplier-pages-common';
 
-import style from './SupplierAccountMainPage.module.css';
-
-import { NotificationsChangeForm } from './index';
+import style from './SupplierAccountMainPage.module.scss';
+import { SupplierNotifications } from './SupplierNotifications/SupplierNotifications';
 
 export const SupplierAccountMainPage = (): JSX.Element => {
   const { lastName, firstName, phoneCountryCode, phoneNumberBody } = useAppSelector(
@@ -109,9 +108,8 @@ export const SupplierAccountMainPage = (): JSX.Element => {
             description="(All your data including order history will be deleted)"
           />
         </div>
-
         <div className={style.notifications}>
-          <NotificationsChangeForm />
+          <SupplierNotifications />
         </div>
       </div>
     </div>

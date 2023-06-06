@@ -34,12 +34,14 @@ export interface RequestAccountInfo {
   };
 }
 
-export interface INotification {
-  on_discount: boolean;
+export interface ISupplierNotifications {
+  on_advertising_campaigns: boolean;
   on_order_updates: boolean;
   on_order_reminders: boolean;
-  on_stock_again: boolean;
-  on_product_is_cheaper: boolean;
-  on_your_favorites_new: boolean;
+  on_product_updates: boolean;
+  on_product_reminders: boolean;
+  on_reviews_of_products: boolean;
+  on_change_in_demand: boolean;
+  on_advice_from_abra: boolean;
   on_account_support: boolean;
 }

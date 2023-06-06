@@ -5,6 +5,7 @@ import { LoadingStatus } from '../../common/types/enums/status.enum';
 import {
   ISellerAddressData,
   ISellerData,
+  ISellerNotifications,
   ISendSellerResponse,
   IUserResultFetch,
 } from '../../services/seller/seller.serviceTypes';
@@ -62,28 +63,36 @@ export const getSellerAddressesService = createAsyncThunk<ISellerAddressData[], 
   },
 );
 
-const initialState = {
-  loading: LoadingStatus.Idle as LoadingStatus,
+interface ISellerSlice {
+  loading: LoadingStatus;
   userProfileInfo: {
-    first_name: '' as string,
-    last_name: '' as string,
-    email: null as null | string,
-    phone: null as null | string,
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone: string;
+  };
+  userAdresses: {};
+  notifications: ISellerNotifications | null;
+  profileImage: {
+    null: null;
+  };
+  sellerAddress: null | ISellerAddressData[];
+}
+
+const initialState: ISellerSlice = {
+  loading: LoadingStatus.Idle,
+  userProfileInfo: {
+    first_name: '',
+    last_name: '',
+    email: '',
+    phone: '',
   },
   userAdresses: {},
-  notifications: {
-    on_discount: true as boolean,
-    on_order_updates: true as boolean,
-    on_order_reminders: true as boolean,
-    on_stock_again: true as boolean,
-    on_product_is_cheaper: true as boolean,
-    on_your_favorites_new: true as boolean,
-    on_account_support: true as boolean,
-  },
+  notifications: null,
   profileImage: {
-    null: null as null | string,
+    null: null,
   },
-  sellerAddress: null as null | ISellerAddressData[],
+  sellerAddress: null,
 };
 
 const sellerSlice = createSlice({
