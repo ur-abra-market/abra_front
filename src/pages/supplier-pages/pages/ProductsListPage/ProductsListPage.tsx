@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import ShowPage from '../../../../old-components/ShowPage';
 import { Checkbox, Input, ISelectOption, Search, Select } from '../../../../ui-kit';
 

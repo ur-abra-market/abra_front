@@ -1,7 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import { useAppDispatch } from '../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../common/hooks';
 import { changeById } from '../../store/reducers/basketSlice';
 
 import style from './ProductQuantityControl.module.css';

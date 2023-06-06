@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import { priceFrom, priceTo } from '../../../../store/reducers/filterSlice';
 import { productPaginateService } from '../../../../store/reducers/productPaginateSlice';
 import SwitchBox from '../../../SwitchBox';

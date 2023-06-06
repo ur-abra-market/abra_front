@@ -4,7 +4,7 @@ import { appReducer } from './reducers/appSlice/slice';
 import { authReducer } from './reducers/authSlice/slice';
 import basketReducer from './reducers/basketSlice';
 import categoryReducer from './reducers/categorySlice';
-import { commonReducer } from './reducers/commonSlice';
+import { commonReducer } from './reducers/commonSlice/slice';
 import filterReducer from './reducers/filterSlice';
 import loginReducer from './reducers/loginSlice';
 import { mainPageReducer } from './reducers/mainPageSlice';

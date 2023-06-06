@@ -1,7 +1,6 @@
 import baseConfigService from '../baseConfig.service';
 
 import {
-  INotification,
   ISuppliersNotifications,
   ISuppliersCompanyInfoData,
   SuppliersResponse,
@@ -93,26 +92,5 @@ export const supplierService = {
     );
 
     return data;
-  },
-
-  getAccountData: async () => {
-    const { data } = await baseConfigService.get(`suppliers/getSupplierInfo/`);
-
-    return data.result;
-  },
-
-  getNotifications: async () => {
-    const { data } = await baseConfigService.get(`users/getNotifications/`);
-
-    return data;
-  },
-
-  postNotifications: async (notifications: INotification) => {
-    const { data } = await baseConfigService.patch(
-      `users/updateNotification/`,
-      notifications,
-    );
-
-    return data.result;
   },
 };

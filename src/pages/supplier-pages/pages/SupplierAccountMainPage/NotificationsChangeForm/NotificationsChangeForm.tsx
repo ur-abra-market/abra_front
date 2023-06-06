@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
+import { useAppDispatch } from '../../../../../common/hooks';
 import { INotification } from '../../../../../services/supplier/supplier.serviceTypes';
 
 import style from './NotificationsChangeForm.module.css';
