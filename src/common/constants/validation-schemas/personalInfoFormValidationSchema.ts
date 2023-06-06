@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const accountPersonalInfoValidationSchema = yup
+export const personalInfoFormValidationSchema = yup
   .object({
     firstName: yup
       .string()

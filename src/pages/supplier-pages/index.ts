@@ -1,9 +1,9 @@
-export { AccountSetupPage } from './pages/AccountSetupPage/AccountSetupPage';
-export { SupplierPage } from './pages/SupplierPage/SupplierPage';
-export { SupplierAccountMainPage } from './pages/SupplierAccountMainPage/SupplierAccountMainPage';
+export { SupplierMainPage } from './pages/SupplierMainPage/SupplierMainPage';
+export { AccountSetupPersonalInfoPage } from './pages/account-setup-pages/AccountSetupPersonalInfoPage/AccountSetupPersonalInfoPage';
+export { AccountSetupBusinessInfoPage } from './pages/account-setup-pages/AccountSetupBusinessInfoPage/AccountSetupBusinessInfoPage';
+export { SupplierProfilePage } from './pages/SupplierProfilePage/SupplierProfilePage';
 export { ProductListRegistrationPage } from './pages/ProductListRegistrationPage/ProductListRegistrationPage';
 export { ProductsListPage } from './pages/ProductsListPage/ProductsListPage';
-export { BusinessProfilePage } from './pages/BusinessProfilePage/BusinessProfilePage';
 export { DashboardPage } from './pages/DashboardPage/DashboardPage';
 export { FeedbackAndQuestionsPage } from './pages/FeedbackAndQuestionsPage/FeedbackAndQuestionsPage';
 export { OrdersPage } from './pages/OrdersPage/OrdersPage';

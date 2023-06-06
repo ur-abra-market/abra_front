@@ -6,7 +6,7 @@ import {
   ResponseGetNumberEmployees,
 } from './common.serviceTypes';
 
-const commonService = {
+export const commonService = {
   getCountry: async () => {
     const { data } = await baseConfigService.get<BaseResponseType<CountryType[]>>(
       `/common/country/`,
@@ -21,9 +21,7 @@ const commonService = {
     return data;
   },
 
-  getCompanyNumberEmployees: () => {
+  fetchCompanyNumberEmployees: () => {
     return baseConfigService.get<ResponseGetNumberEmployees>('common/numberEmployees/');
   },
 };
-
-export default commonService;

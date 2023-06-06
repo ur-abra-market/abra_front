@@ -3,9 +3,8 @@ import React, { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { accountPersonalInfoValidationSchema } from '../../../../../common/constants';
-import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
+import { personalInfoFormValidationSchema } from '../../../../../common/constants';
+import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { IPersonalInfoFormData } from '../../../../../common/types';
 import { parsePhoneNumber } from '../../../../../common/utils/parsePhoneNumber';
 import { ButtonLogOut } from '../../../../../components/ButtonLogOut/ButtonLogOut';
@@ -17,9 +16,9 @@ import {
 } from '../../../../../store/reducers/userSlice';
 import { Button } from '../../../../../ui-kit';
 
-import style from './SupplierPersonalInfo.module.scss';
+import style from './SupplierPersonalInfoChangeForm.module.scss';
 
-export const SupplierPersonalInfo = (): JSX.Element => {
+export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
   const { lastName, firstName, phoneCountryCode, phoneNumberBody } = useAppSelector(
     supplierPersonalInfoSelector,
   );
@@ -39,7 +38,7 @@ export const SupplierPersonalInfo = (): JSX.Element => {
   }, [lastName, firstName, phoneCountryCode, phoneNumberBody]);
 
   const formMethods = useForm<IPersonalInfoFormData>({
-    resolver: yupResolver(accountPersonalInfoValidationSchema),
+    resolver: yupResolver(personalInfoFormValidationSchema),
     mode: 'all',
     defaultValues: {
       lastName: '',

@@ -1,22 +1,3 @@
-.form_wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.form_container {
-  width: 634px;
-  padding: 66px 0 32px;
-}
-
-.form_update_container {
-  width: 548px;
-  padding: 0 0 32px;
-}
-
-.info_step {
-  margin-bottom: 40px;
-}
-
 .main_info_title {
   font-size: var(--fz-l2);
   font-weight: var(--bold);
@@ -37,8 +18,8 @@
   margin: 24px 0 16px;
 }
 
-.select_width {
-  width: 310px;
+.shop_name {
+  width: 100%;
 }
 
 .select_company {

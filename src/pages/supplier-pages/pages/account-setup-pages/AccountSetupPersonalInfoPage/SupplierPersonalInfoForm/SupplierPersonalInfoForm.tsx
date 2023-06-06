@@ -4,29 +4,29 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { accountPersonalInfoValidationSchema } from '../../../../../common/constants';
-import { useAppDispatch } from '../../../../../common/hooks';
+import { personalInfoFormValidationSchema } from '../../../../../../common/constants';
+import { useAppDispatch } from '../../../../../../common/hooks';
 import {
   IPersonalInfoRequestData,
   IPersonalInfoFormData,
-} from '../../../../../common/types/interfaces';
-import { parsePhoneNumber } from '../../../../../common/utils/parsePhoneNumber';
-import Modal from '../../../../../components/Modal';
-import { ModalChildPhoneCheck } from '../../../../../components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
-import { PersonalInfoChangeForm } from '../../../../../modules';
-import { Button, SupplierRegisterFormStep } from '../../../../../ui-kit';
+} from '../../../../../../common/types';
+import { parsePhoneNumber } from '../../../../../../common/utils/parsePhoneNumber';
+import Modal from '../../../../../../components/Modal';
+import { ModalChildPhoneCheck } from '../../../../../../components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
+import { PersonalInfoChangeForm } from '../../../../../../modules';
+import { Button, SupplierRegisterFormStep } from '../../../../../../ui-kit';
 
-import style from './AccountSetupForm.module.scss';
+import style from './SupplierPersonalInfoForm.module.scss';
 
 import { createAccountPersonalInfo } from 'store/reducers/authSlice';
 
-export const AccountSetupForm = (): JSX.Element => {
+export const SupplierPersonalInfoForm = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const formMethods = useForm<IPersonalInfoFormData>({
-    resolver: yupResolver(accountPersonalInfoValidationSchema),
+    resolver: yupResolver(personalInfoFormValidationSchema),
     mode: 'all',
   });
   const {

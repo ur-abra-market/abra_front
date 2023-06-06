@@ -1,27 +1,27 @@
 import React from 'react';
 
 import {
-  AccountSetupPage,
+  AccountSetupBusinessInfoPage,
+  AccountSetupPersonalInfoPage,
   AnalyticsPage,
-  BusinessProfilePage,
   DashboardPage,
   FeedbackAndQuestionsPage,
   OrdersPage,
   PriceManagementPage,
   ProductListRegistrationPage,
   ProductsListPage,
-  SupplierAccountMainPage,
-  SupplierPage,
+  SupplierMainPage,
+  SupplierProfilePage,
 } from '../pages/supplier-pages';
 
 export const supplierRoute = [
   {
     path: '/',
-    element: <SupplierPage />,
+    element: <SupplierMainPage />,
     children: [
       {
         path: '/',
-        element: <SupplierAccountMainPage />,
+        element: <SupplierProfilePage />,
       },
       {
         path: 'dashboard',
@@ -50,12 +50,12 @@ export const supplierRoute = [
     ],
   },
   {
-    path: 'account-setup',
-    element: <AccountSetupPage />,
+    path: 'account-setup-personal-info',
+    element: <AccountSetupPersonalInfoPage />,
   },
   {
-    path: 'business-profile',
-    element: <BusinessProfilePage />,
+    path: 'account-setup-business-info',
+    element: <AccountSetupBusinessInfoPage />,
   },
   {
     path: 'add-product',
