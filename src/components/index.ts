@@ -5,3 +5,4 @@ export { PasswordComplexity } from '../pages/general-pages/auth-pages/assets/com
 export { UploadImage } from './UploadImage/UploadImage';
 export { NoticePopup } from './NoticePopup/NoticePopup';
 export { AccountManagement } from './AccountManagement/AccountManagement';
+export { ContentMessage } from './ContentMessage/ContentMessage';

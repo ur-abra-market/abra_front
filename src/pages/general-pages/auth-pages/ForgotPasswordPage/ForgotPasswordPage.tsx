@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 
-import style from './ForgotPasswordPage.module.css';
+import { ContentMessage } from 'components';
 
-import ContentMessage from 'components/ContentMessage';
-import ForgotPasswordForm from 'old-components/ui/ForgotPasswordForm';
+import { AuthPageLayout } from '../assets';
+
+import style from './ForgotPasswordPage.module.scss';
+
+import ForgotPasswordForm from '.';
+
+export type pageType = 'forgotPassword' | 'recoveryEmailIsSent';
 
 export const ForgotPasswordPage = (): JSX.Element => {
-  const [pageType, setPageType] = useState('forgotPassword');
+  const [pageType, setPageType] = useState<pageType>('forgotPassword');
 
   const togglePageType = (): void => {
     setPageType(prevState =>
@@ -15,30 +20,27 @@ export const ForgotPasswordPage = (): JSX.Element => {
   };
 
   return (
-    <div className={style.page_wrap}>
+    <AuthPageLayout>
       {pageType === 'forgotPassword' ? (
         <>
           <ContentMessage
             title="Forgot the password?"
             text="Enter your email address to receive a link to reset your password"
-            className={style.content}
+            className={style.message}
           />
-          <div className={style.inner_wrapper}>
-            <ForgotPasswordForm togglePageType={togglePageType} />
-          </div>
+          <ForgotPasswordForm togglePageType={togglePageType} />
         </>
       ) : (
-        <>
+        <div className={style.wrapper}>
           <div className={style.header}>
-            <p>A link to reset your password</p>
-            <p>has been sent to your email address.</p>
+            A link to reset your password <br /> has been sent to your email address.
           </div>
           <div className={style.subheader}>
-            <p>Make sure the email you received is indeed from Abra platform</p>
-            <p>and follow the link to create a new password.</p>
+            Make sure the email you received is indeed from Abra platform <br /> and
+            follow the link to create a new password.
           </div>
-        </>
+        </div>
       )}
-    </div>
+    </AuthPageLayout>
   );
 };

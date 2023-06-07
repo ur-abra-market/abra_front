@@ -2,6 +2,8 @@ import { IPersonalInfoRequestData } from '../../common/types/interfaces';
 import baseConfigService from '../baseConfig.service';
 
 import {
+  LogoutResponseType,
+  CurrentUserInfoResponseType,
   ChangePasswordPayloadType,
   LoginParamsType,
   LoginResponseType,
@@ -44,11 +46,11 @@ export const authService = {
   },
 
   loginCurrentUser: () => {
-    return baseConfigService.get(`/login/current/`); // todo добавить типизацию
+    return baseConfigService.get<CurrentUserInfoResponseType>(`/login/current/`); // todo добавить типизацию
   },
 
   logout: async () => {
-    const { data } = await baseConfigService.delete(`logout/`);
+    const { data } = await baseConfigService.delete<LogoutResponseType>(`logout/`);
 
     return data;
   },
