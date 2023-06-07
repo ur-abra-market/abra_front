@@ -140,29 +140,18 @@ export const getCurrentUserInfo = createAsyncThunk<
 export const sendAccountPersonalInfo = createAsyncThunk<
   IAccountPersonalInfoResponse,
   IAccountPersonalInfoRequest
->(
-  'formRegistration/sendUserAccountInfo',
-  async (
-    { first_name, last_name, phone_country_code, phone_number },
-    { rejectWithValue },
-  ) => {
-    try {
-      return await authService.sendAccountPersonalInfo({
-        first_name,
-        last_name,
-        phone_country_code,
-        phone_number,
-      });
-    } catch (error: unknown) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error || error.message
-          : '[sendUserAccountInfo]: Error';
+>('formRegistration/sendUserAccountInfo', async (personalInfo, { rejectWithValue }) => {
+  try {
+    return await authService.sendAccountPersonalInfo(personalInfo);
+  } catch (error: unknown) {
+    const errorMessage =
+      error instanceof AxiosError
+        ? error.response?.data?.error || error.message
+        : '[sendUserAccountInfo]: Error';
 
-      return rejectWithValue(errorMessage);
-    }
-  },
-);
+    return rejectWithValue(errorMessage);
+  }
+});
 
 export const updateAccountPersonalInfo = createAsyncThunk<
   IAccountPersonalInfoResponse,
@@ -170,17 +159,9 @@ export const updateAccountPersonalInfo = createAsyncThunk<
   AsyncThunkConfig
 >(
   'formRegistration/updateAccountPersonalInfo',
-  async (
-    { first_name, last_name, phone_country_code, phone_number },
-    { dispatch, rejectWithValue },
-  ) => {
+  async (personalInfo, { dispatch, rejectWithValue }) => {
     try {
-      const response = await userService.updateAccountPersonalInfo({
-        first_name,
-        last_name,
-        phone_country_code,
-        phone_number,
-      });
+      const response = await userService.updateAccountPersonalInfo(personalInfo);
 
       if (response.result) {
         dispatch(getCurrentUserInfo());

@@ -17,7 +17,7 @@ export const ChangePasswordPage = (): JSX.Element => {
   return (
     <>
       <AuthPageLayout footerLink="/forgotPassword" footerTitle="Forgot password?">
-        <div className={style.page_wrap}>
+        <div className={style.wrapper}>
           <div className={style.header}>Change password</div>
           <div className={style.subheader}>Enter your current and new passwords</div>
           <ChangePasswordForm handleChangeModalActive={handleChangeModalActive} />

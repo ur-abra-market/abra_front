@@ -31,7 +31,7 @@ export const ForgotPasswordPage = (): JSX.Element => {
           <ForgotPasswordForm togglePageType={togglePageType} />
         </>
       ) : (
-        <div className={style.content}>
+        <div className={style.wrapper}>
           <div className={style.header}>
             A link to reset your password <br /> has been sent to your email address.
           </div>

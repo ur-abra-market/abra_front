@@ -1,14 +1,13 @@
-.page_wrap {
+.wrapper {
   width: 100%;
   margin: 0 auto;
 }
 
 .header {
-  font-size: 28px;
-  font-weight: 700;
-  font-style: normal;
+  font-size: var(--fz-xxl);
+  font-weight: var(--bold);
   line-height: 100%;
-  color: #000;
+  color: var(--color-black);
   text-align: center;
   letter-spacing: 0.0024em;
 }
@@ -16,9 +15,8 @@
 .subheader {
   margin-top: 16px;
 
-  font-size: 15px;
-  font-weight: 400;
-  font-style: normal;
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
   line-height: 24px;
   color: #636568;
   text-align: center;
@@ -33,17 +31,17 @@
 .modal_header {
   margin-bottom: 26px;
 
-  font-size: 34px;
-  font-weight: 700;
+  font-size: var(--fz-xxl2);
+  font-weight: var(--bold);
   line-height: 41px;
-  color: #000;
+  color: var(--color-black);
   letter-spacing: 0.41px;
 }
 
 @media screen and (max-width: 768px) {
   .header {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: var(--fz-l2);
+    font-weight: var(--semi-bold);
     line-height: 24px;
   }
 

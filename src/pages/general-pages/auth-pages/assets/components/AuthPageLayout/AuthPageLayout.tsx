@@ -42,7 +42,7 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
         )}
       </div>
       <div className={style.footer}>
-        © 2022 Abra. <Link to="/terms&conditions">Terms & conditions</Link> and{' '}
+        © 2022 Abra. <Link to="/terms&conditions">Terms & conditions</Link> and&nbsp;
         <Link to="/privacy&policy">Privacy policy</Link>
       </div>
     </div>

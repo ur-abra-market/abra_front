@@ -3,13 +3,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Modal from '../../../../components/Modal';
+import { Button } from '../../../../ui-kit';
 import { AuthPageLayout } from '../assets';
 
 import style from './ChangeEmailPage.module.scss';
 
 import ChangeEmailForm from '.';
-
-import { Button } from 'ui-kit';
 
 export const ChangeEmailPage = (): JSX.Element => {
   const navigate = useNavigate();
@@ -21,7 +20,7 @@ export const ChangeEmailPage = (): JSX.Element => {
   return (
     <>
       <AuthPageLayout>
-        <div className={style.page_wrap}>
+        <div className={style.wrapper}>
           <div className={style.header}>Change email</div>
           <div className={style.subheader}>
             Enter your current and new email addresses

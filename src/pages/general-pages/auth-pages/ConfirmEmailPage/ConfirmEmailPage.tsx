@@ -37,7 +37,7 @@ export const ConfirmEmailPage = (): JSX.Element => {
         {emailStatus === 'confirmed' && (
           <>
             <ContentMessage title="Email confirmed." text="" />
-            You can go to{' '}
+            You can go to&nbsp;
             <Link className={style.link} to="/">
               main page
             </Link>
