@@ -7,7 +7,7 @@ import { AuthPageLayout } from '../assets';
 
 import style from './ChangeEmailPage.module.scss';
 
-import ChangeEmailForm from './index';
+import ChangeEmailForm from '.';
 
 import { Button } from 'ui-kit';
 

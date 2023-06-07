@@ -6,7 +6,7 @@ import { AuthPageLayout } from '../assets';
 
 import style from './ChangePasswordPage.module.scss';
 
-import ChangePasswordForm from './index';
+import ChangePasswordForm from '.';
 
 export const ChangePasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);

@@ -1,10 +1,10 @@
 import React from 'react';
 
+import { ContentMessage } from 'components';
+
 import { AuthPageLayout } from '../assets';
 
 import style from './CheckEmailPage.module.scss';
-
-import ContentMessage from 'components/ContentMessage';
 
 export const CheckEmailPage = (): JSX.Element => {
   return (

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { ContentMessage } from 'components';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../common/hooks';
@@ -8,8 +9,6 @@ import { LoaderCircular } from '../../../../ui-kit';
 import { AuthPageLayout } from '../assets';
 
 import style from './ConfirmEmailPage.module.scss';
-
-import ContentMessage from 'components/ContentMessage';
 
 export const ConfirmEmailPage = (): JSX.Element => {
   const [searchParams] = useSearchParams();
