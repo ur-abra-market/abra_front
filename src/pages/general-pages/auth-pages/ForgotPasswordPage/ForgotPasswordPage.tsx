@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-import { ContentMessage } from 'components';
-
+import { ContentMessage } from '../../../../components';
 import { AuthPageLayout } from '../assets';
 
 import style from './ForgotPasswordPage.module.scss';
 
-import ForgotPasswordForm from '.';
+import { ForgotPasswordForm } from '.';
 
 export type pageType = 'forgotPassword' | 'recoveryEmailIsSent';
 

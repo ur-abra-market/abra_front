@@ -25,7 +25,9 @@ interface ChangePasswordFormProps {
   handleChangeModalActive: () => void;
 }
 
-const ChangePasswordForm: FC<ChangePasswordFormProps> = ({ handleChangeModalActive }) => {
+export const ChangePasswordForm: FC<ChangePasswordFormProps> = ({
+  handleChangeModalActive,
+}) => {
   const dispatch = useAppDispatch();
   const {
     register,
@@ -72,5 +74,3 @@ const ChangePasswordForm: FC<ChangePasswordFormProps> = ({ handleChangeModalActi
     </form>
   );
 };
-
-export default ChangePasswordForm;

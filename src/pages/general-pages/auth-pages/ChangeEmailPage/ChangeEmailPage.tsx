@@ -8,7 +8,7 @@ import { AuthPageLayout } from '../assets';
 
 import style from './ChangeEmailPage.module.scss';
 
-import ChangeEmailForm from '.';
+import { ChangeEmailForm } from '.';
 
 export const ChangeEmailPage = (): JSX.Element => {
   const navigate = useNavigate();
@@ -20,13 +20,9 @@ export const ChangeEmailPage = (): JSX.Element => {
   return (
     <>
       <AuthPageLayout>
-        <div className={style.wrapper}>
-          <div className={style.header}>Change email</div>
-          <div className={style.subheader}>
-            Enter your current and new email addresses
-          </div>
-          <ChangeEmailForm handleChangeModalActive={handleChangeModalActive} />
-        </div>
+        <div className={style.header}>Change email</div>
+        <div className={style.subheader}>Enter your current and new email addresses</div>
+        <ChangeEmailForm handleChangeModalActive={handleChangeModalActive} />
       </AuthPageLayout>
 
       <Modal showModal={modalActive} closeModal={setModalActive}>
@@ -34,7 +30,11 @@ export const ChangeEmailPage = (): JSX.Element => {
           <div className={style.modal_header}>
             Your new email has been successfully saved
           </div>
-          <Button value="Okay" onClick={() => navigate('/')} />
+          <Button
+            className={style.modal_button}
+            label="Okey"
+            onClick={() => navigate('/')}
+          />
         </div>
       </Modal>
     </>
