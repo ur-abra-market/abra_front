@@ -50,3 +50,23 @@ export type AsyncThunkConfig = {
   fulfilledMeta?: unknown;
   rejectedMeta?: unknown;
 };
+
+export interface IBusinessInfoRequestData {
+  supplier_data_request: {
+    license_number: string;
+  };
+  company_data_request: {
+    phone_country_code: string;
+    phone_number: string;
+    name: string;
+    is_manufacturer: false;
+    year_established: 0;
+    number_employees: 0;
+    description: string;
+    address: string;
+    logo_url: string;
+    business_sector: string;
+    business_email: string;
+    country_id: number;
+  };
+}

@@ -1,8 +1,9 @@
-import { IPersonalInfoRequestData } from '../../common/types/interfaces';
+import { IPersonalInfoRequestData } from '../../common/types';
 import baseConfigService from '../baseConfig.service';
 
 import {
   ChangePasswordPayloadType,
+  IBusinessInfoRequestData,
   LoginParamsType,
   LoginResponseType,
   PasswordResponseType,
@@ -34,6 +35,15 @@ export const authService = {
     const { data } = await baseConfigService.post(
       `/register/account/sendInfo/`,
       personalInfoData,
+    );
+
+    return data;
+  },
+
+  sendAccountBusinessInfo: async (businessInfoData: IBusinessInfoRequestData) => {
+    const { data } = await baseConfigService.post(
+      `/register/business/sendInfo/`,
+      businessInfoData,
     );
 
     return data;

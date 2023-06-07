@@ -48,4 +48,7 @@ export const supplierBusinessInfoFormValidationSchema = yup.object({
       value: yup.string(),
     })
     .required('Please select your business sector'),
+  countryRegistration: yup
+    .number()
+    .required('Please select country of company registration'),
 });

@@ -5,7 +5,9 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import {
+  countriesSelector,
   getCompanyNumberEmployees,
+  getCountries,
   numberEmployeesSelector,
 } from '../../../../../store/reducers/commonSlice';
 import {
@@ -37,6 +39,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const numberEmployees = useAppSelector(numberEmployeesSelector);
+  const countries = useAppSelector(countriesSelector);
   const {
     register,
     handleSubmit,
@@ -46,6 +49,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 
   useEffect(() => {
     dispatch(getCompanyNumberEmployees());
+    dispatch(getCountries());
   }, []);
 
   const selectCompanyClasses = cn(style.select_company, {
@@ -138,6 +142,27 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
             )}
           />
         </div>
+
+        <Controller
+          control={control}
+          name="countryRegistration"
+          render={({ field }) => (
+            <Label label="Country of company registration*">
+              <Select
+                {...field}
+                error={errors?.countryRegistration?.message}
+                options={countries.map(el => ({
+                  value: el.id,
+                  label: el.country,
+                }))}
+                placeholder="Select"
+                onChange={value => {
+                  field.onChange(value.value);
+                }}
+              />
+            </Label>
+          )}
+        />
 
         <Label label="About the business">
           <Input

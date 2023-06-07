@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { CountryType } from '../../../services/common/common.serviceTypes';
+import { ICountry } from '../../../services/common/common.serviceTypes';
 
 import { getCompanyNumberEmployees, getCountries } from './index';
 
@@ -10,7 +10,7 @@ export interface INumberEmployees {
 }
 
 interface IInitialState {
-  countries: CountryType[];
+  countries: ICountry[];
   numberEmployees: INumberEmployees[];
 }
 
@@ -27,6 +27,9 @@ const commonSlice = createSlice({
     builder
       .addCase(getCountries.fulfilled, (state, action) => {
         state.countries = action.payload;
+      })
+      .addCase(getCountries.rejected, (state, action) => {
+        console.log(action.payload);
       })
       .addCase(getCompanyNumberEmployees.fulfilled, (state, action) => {
         state.numberEmployees = action.payload;

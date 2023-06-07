@@ -30,11 +30,13 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
       storeName: '',
       businessSector: null,
       entrepreneurNumber: '',
+      countryRegistration: null,
     },
   });
 
   const onSubmit = (data: any): void => {
     console.log(data);
+
     // const phone = data.code + data.tel;
     // const info = {
     //   name: data.storeName,

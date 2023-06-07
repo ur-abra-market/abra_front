@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { LoadingStatus } from '../../../common/types';
-import { IPersonalInfoRequestData } from '../../../common/types/interfaces';
+import { LoadingStatus, IPersonalInfoRequestData } from '../../../common/types';
 import authService from '../../../services/auth/auth.service';
 import {
   LoginParamsType,
@@ -42,18 +41,40 @@ export const registerUser = createAsyncThunk<
 export const createAccountPersonalInfo = createAsyncThunk<
   any, // todo fix any -> need common request interface
   IPersonalInfoRequestData
->('auth/createAccountPersonalInfo', async (personalInfoData, { rejectWithValue }) => {
-  try {
-    return await authService.sendAccountPersonalInfo(personalInfoData);
-  } catch (error) {
-    const errorMessage =
-      error instanceof AxiosError
-        ? error.response?.data?.error || error.message
-        : '[getUserRole]: Error';
+>(
+  'createAccount/createAccountPersonalInfo',
+  async (personalInfoData, { rejectWithValue }) => {
+    try {
+      return await authService.sendAccountPersonalInfo(personalInfoData);
+    } catch (error) {
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.error || error.message
+          : '[createAccountPersonalInfo]: Error';
 
-    return rejectWithValue(errorMessage);
-  }
-});
+      return rejectWithValue(errorMessage);
+    }
+  },
+);
+
+export const createAccountBusinessInfo = createAsyncThunk<
+  any, // todo fix any -> need common request interface
+  any
+>(
+  'createAccount/createAccountBusinessInfo',
+  async (personalInfoData, { rejectWithValue }) => {
+    try {
+      return await authService.sendAccountPersonalInfo(personalInfoData);
+    } catch (error) {
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.error || error.message
+          : '[createAccountBusinessInfo]: Error';
+
+      return rejectWithValue(errorMessage);
+    }
+  },
+);
 
 export const loginUser = createAsyncThunk<
   LoginResponseType,

@@ -3,6 +3,11 @@ interface IBusinessSector {
   value: string;
 }
 
+interface ICountryRegistration {
+  label: string;
+  value: number;
+}
+
 export interface ISupplierBusinessInfoFormValues {
   email: string;
   code: string;
@@ -15,4 +20,5 @@ export interface ISupplierBusinessInfoFormValues {
   storeName: string;
   businessSector: IBusinessSector | null;
   entrepreneurNumber: string;
+  countryRegistration: ICountryRegistration | null;
 }
