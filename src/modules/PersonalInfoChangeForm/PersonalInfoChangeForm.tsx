@@ -7,7 +7,7 @@ import PhoneInput, { CountryData } from 'react-phone-input-2';
 
 import 'react-phone-input-2/lib/style.css';
 
-import { IPersonalInfoFormData } from '../../common/types/interfaces';
+import { IPersonalInfoFormData } from '../../common/types';
 import { Input, Label } from '../../ui-kit';
 
 import style from './PersonalInfoChangeForm.module.css';

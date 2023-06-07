@@ -1,28 +1,3 @@
-// get seller info interfaces
-
-import { IUserNotificationsData } from '../../store/reducers/userSlice';
-
-export interface IUserInfoFetch {
-  result: IUserResultFetch;
-}
-
-export interface IUserResultFetch {
-  user_profile_info: IUserProfile;
-  user_adresses: {};
-  notifications: IUserNotificationsData; // notifications: IUserNotificationsData;
-  profile_image: {
-    null: null;
-  };
-}
-interface IUserProfile {
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-}
-
-// send seller info interfaces
-
 interface IErrorDetail {
   loc: [string, number];
   msg: string;
@@ -85,8 +60,7 @@ export interface ResponseDeleteAddress {
 export interface ISellerProfile {
   seller_data: ISellerData;
   seller_address_data: ISellerAddressData;
-  seller_notifications_data: IUserNotificationsData;
-  // seller_notifications_data: IUserNotificationsData;
+  seller_notifications_data: any;
 }
 
 export interface ISendSellerResponse {

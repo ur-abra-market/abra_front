@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import { checkToken } from '../../../../store/reducers/passwordSlice';
 import { Button } from '../../../../ui-kit';
 

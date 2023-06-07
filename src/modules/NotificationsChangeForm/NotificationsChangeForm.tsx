@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { INotificationSellerData } from '../../pages/seller-pages/SellerAccountPage/SellerNotifications/SellerNotifications';
-import { INotificationSupplierData } from '../../pages/supplier-pages/pages/SupplierAccountMainPage/SupplierNotifications/SupplierNotifications';
+import { INotificationSupplierData } from '../../pages/supplier-pages/pages/SupplierProfilePage/SupplierNotifications/SupplierNotifications';
 import { ISellerNotifications } from '../../services/seller/seller.serviceTypes';
 import { ISupplierNotifications } from '../../services/supplier/supplier.serviceTypes';
 
@@ -11,7 +11,7 @@ import { Checkbox } from 'ui-kit';
 
 interface INotificationsChangeForm {
   callBack: (id: string, value: boolean) => void;
-  notifications: Partial<ISellerNotifications & ISupplierNotifications>;
+  notifications: Partial<ISellerNotifications & ISupplierNotifications> | null;
   notificationsData: INotificationSupplierData[] | INotificationSellerData[];
 }
 

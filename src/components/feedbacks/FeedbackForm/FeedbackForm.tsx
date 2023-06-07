@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useAppDispatch } from '../../../common/hooks';
 import { toggleInfoForm } from '../../../store/reducers/appSlice/slice';
 // import { Button } from '../../../ui-kit';
 // import Modal from '../../Modal';

@@ -9,7 +9,6 @@ import {
   ISellerNotifications,
   ISellerProfile,
   ISendSellerResponse,
-  IUserInfoFetch,
   ResponseAddressData,
   ResponseDeleteAddress,
   SellerAddressData,
@@ -17,7 +16,7 @@ import {
 
 export const sellerService = {
   getSellerInfo: async () => {
-    const { data } = await baseConfigService.get<IUserInfoFetch>('sellers/getSellerInfo');
+    const { data } = await baseConfigService.get('sellers/getSellerInfo');
 
     return data;
   },

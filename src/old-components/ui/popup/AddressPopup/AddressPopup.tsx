@@ -4,10 +4,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { useAppDispatch } from '../../../../common/hooks';
+
 import style from './AddressPopup.module.css';
 
 import { CrossRedIcon } from 'assets/icons'; // 16px
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
 import { SellerAddressData } from 'services/seller/seller.serviceTypes';
 import { addAddress } from 'store/reducers/sellerCheckoutSlice';
 import { Button, Checkbox, Input, Select } from 'ui-kit';

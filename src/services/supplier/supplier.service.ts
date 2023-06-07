@@ -1,34 +1,48 @@
 import baseConfigService from '../baseConfig.service';
 
-import { ISupplierNotifications } from './supplier.serviceTypes';
+import {
+  ISuppliersCompanyInfoData,
+  SuppliersResponse,
+  ISupplierNotifications,
+} from './supplier.serviceTypes';
 
 export const supplierService = {
   hasCompanyInfo: async () => {
-    const { data } = await baseConfigService.get(`/suppliers/hasCompanyInfo/`);
+    const { data } = await baseConfigService.get<SuppliersResponse<boolean>>(
+      `/suppliers/hasCompanyInfo/`,
+    );
 
     return data.result;
   },
 
   hasPersonalInfo: async () => {
-    const { data } = await baseConfigService.get(`/suppliers/hasPersonalInfo/`);
+    const { data } = await baseConfigService.get<SuppliersResponse<boolean>>(
+      `/suppliers/hasPersonalInfo/`,
+    );
 
     return data.result;
   },
 
   fetchCompanyLogo: async () => {
-    const { data } = await baseConfigService.get(`/suppliers/companyLogo`);
+    const { data } = await baseConfigService.get<SuppliersResponse<string>>(
+      `/suppliers/companyLogo`,
+    );
 
     return data.result;
   },
 
   fetchCompanyInfo: async () => {
-    const { data } = await baseConfigService.get(`/suppliers/companyInfo`);
+    const { data } = await baseConfigService.get<
+      SuppliersResponse<ISuppliersCompanyInfoData>
+    >(`/suppliers/companyInfo`);
 
     return data.result;
   },
 
-  fetchNotifications: async () => {
-    const { data } = await baseConfigService.get(`/suppliers/notifications/`);
+  getNotifications: async () => {
+    const { data } = await baseConfigService.get<
+      SuppliersResponse<ISupplierNotifications>
+    >(`/suppliers/notifications/`);
 
     return data.result;
   },
@@ -86,13 +100,7 @@ export const supplierService = {
     return data.result;
   },
 
-  getNotifications: async () => {
-    const { data } = await baseConfigService.get(`users/getNotifications/`);
-
-    return data;
-  },
-
-  postNotifications: async (notifications: ISupplierNotifications) => {
+  updateNotifications: async (notifications: ISupplierNotifications) => {
     const { data } = await baseConfigService.patch(
       `suppliers/notifications/update/`,
       notifications,

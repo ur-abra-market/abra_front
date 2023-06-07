@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
+import { useAppDispatch } from '../../../common/hooks';
 import { forgotPassword } from '../../../store/reducers/passwordSlice';
 import { Button, Input } from '../../../ui-kit';
 

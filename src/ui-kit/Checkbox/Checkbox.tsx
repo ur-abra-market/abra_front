@@ -15,7 +15,7 @@ export interface ICheckbox
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, ICheckbox>((props, ref) => {
-  const { label, variant, size = 'md', className, ...restProps } = props;
+  const { label, variant, size = 'md', className, disabled, ...restProps } = props;
 
   return (
     <label className={cn(styles.label, className)}>

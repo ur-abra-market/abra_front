@@ -1,13 +1,11 @@
 import { useEffect } from 'react';
 
 import cn from 'classnames';
-import { UploadImage } from 'components';
+import { AccountManagement, UploadImage } from 'components';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import { AccountManagementLink } from '../../../components';
+import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
 import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
 import Footer from '../../../layouts/Footer';
@@ -23,10 +21,6 @@ import {
   getSellerInfoService,
   sendSellerInfoService,
 } from 'store/reducers/sellerSlice';
-import {
-  getUserNotificationsService,
-  updateUserNotificationService,
-} from 'store/reducers/userSlice';
 import {
   Button,
   ButtonInfo,
@@ -50,17 +44,6 @@ export const SellerAccountPage = (): JSX.Element => {
 
   const { first_name, last_name } = useAppSelector(state => state.seller.userProfileInfo);
   const addresses = useAppSelector(state => state.sellerCheckout.addresses); // фиксил ошибки, заглушка
-
-  const notifications = useAppSelector(state => state.user.notifications);
-  const {
-    on_discount,
-    on_order_updates,
-    on_order_reminders,
-    on_stock_again,
-    on_product_is_cheaper,
-    on_your_favorites_new,
-    on_account_support,
-  } = notifications ?? {};
 
   const { register, handleSubmit, reset } = useForm<FormValues>({
     defaultValues: {
@@ -94,9 +77,7 @@ export const SellerAccountPage = (): JSX.Element => {
 
   // const addresses = [addressExample];
 
-  const onNotificationChange = (id: string, isChecked: boolean): void => {
-    dispatch(updateUserNotificationService({ id, isChecked }));
-  };
+  const onNotificationChange = (id: string, isChecked: boolean): void => {};
 
   const options: ISelectOption[] = [
     { label: '+90', value: '+90' },
@@ -106,8 +87,6 @@ export const SellerAccountPage = (): JSX.Element => {
   useEffect(() => {
     dispatch(getSellerInfoService());
     dispatch(getSellerAddressesService());
-    // dispatch(getUserNotificationsService());
-    // dispatch(checkAuth());
   }, [dispatch]);
 
   useEffect(() => {
@@ -172,21 +151,7 @@ export const SellerAccountPage = (): JSX.Element => {
                 </form>
               </div>
 
-              <AccountManagementLink
-                linkLabel="Change your email"
-                path="/changeEmail"
-                description="(You will have to confirm a new email)"
-              />
-              <AccountManagementLink
-                linkLabel=" Change your password"
-                path="/changePassword"
-                description="(In case if you forgot a current password or need a stronger one)"
-              />
-              <AccountManagementLink
-                linkLabel=" Remove the account?"
-                path="/" // todo fix
-                description="(All your data including order history will be deleted)"
-              />
+              <AccountManagement />
             </div>
 
             <div className={style.center_column}>

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { LoadingStatus } from '../../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../../common/types';
 import { IPersonalInfoRequestData } from '../../../common/types/interfaces';
 import authService from '../../../services/auth/auth.service';
 import {

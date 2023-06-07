@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 
-import { useAppDispatch } from '../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import { NotificationsChangeForm } from '../../../../modules';
 import { ISellerNotifications } from '../../../../services/seller/seller.serviceTypes';
-import {
-  getSupplierNotifications,
-  updateSupplierNotifications,
-} from '../../../../store/reducers/supplierAccountSlice';
+// import {
+//   getSupplierNotifications,
+//   updateSupplierNotifications,
+// } from '../../../../store/reducers/supplierAccountSlice';
 
 export interface INotificationSellerData {
   id: keyof ISellerNotifications;
@@ -29,7 +28,7 @@ export const SupplierNotifications = (): JSX.Element => {
   const notifications = useAppSelector(state => state.seller.notifications || null);
 
   const onNotificationChange = (id: string, value: boolean): void => {
-    dispatch(updateSupplierNotifications({ id, value }));
+    // dispatch(updateSupplierNotifications({ id, value }));
   };
 
   useEffect(() => {

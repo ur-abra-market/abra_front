@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 
-import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { discount } from '../../../../../store/reducers/filterSlice';
 
 import styles from './SwitchDiscount.module.css';
