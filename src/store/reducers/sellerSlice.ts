@@ -1,17 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { LoadingStatus } from '../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../common/types';
 import {
   ISellerAddressData,
   ISellerData,
   ISendSellerResponse,
-  IUserResultFetch,
 } from '../../services/seller/seller.serviceTypes';
 
 import { sellerService } from 'services/seller/seller.service';
 
-export const getSellerInfoService = createAsyncThunk<IUserResultFetch, void>(
+export const getSellerInfoService = createAsyncThunk<any, void>(
   'seller/getSellerInfoService',
   async (_, { rejectWithValue }) => {
     try {

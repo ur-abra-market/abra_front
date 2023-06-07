@@ -36,6 +36,7 @@ const authSlice = createSlice({
       getUserRole.fulfilled,
       (state, action: PayloadAction<UserRoleType>) => {
         state.userRole = action.payload;
+        state.isAuthorized = true;
       },
     );
 

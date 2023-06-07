@@ -14,13 +14,10 @@ export const getUserRole = createAsyncThunk<
 
     return data.result;
   } catch (error) {
-    let errorMessage: string = ' [getUserRole]: Error';
-
-    if (error instanceof AxiosError) {
-      errorMessage = error.response?.data?.error || error.message;
-
-      return rejectWithValue(errorMessage);
-    }
+    const errorMessage =
+      error instanceof AxiosError
+        ? error.response?.data?.error || error.message
+        : '[getUserRole]: Error';
 
     return rejectWithValue(errorMessage);
   }

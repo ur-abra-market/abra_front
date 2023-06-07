@@ -127,3 +127,7 @@
     border: none;
   }
 }
+
+.logo_font_size {
+  font-size: var(--fz-xl2);
+}

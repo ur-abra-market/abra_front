@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { CategoryType } from '../../pages/sellerPages/MainPage/StatusProduct/StatusProduct';
+import { CategoryType } from '../../pages/general-pages/MainPage/StatusProduct/StatusProduct';
 import { IRequestCategory } from '../../services/product/product.serviceTypes';
 
 import { productService } from 'services/product/product.service';

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { DefaultProductImage } from '../../assets/images';
 import Flag from '../../old-components/Flag';
-import { getPriceOneItem } from '../../pages/sellerPages/ProductPage/helpers/getPriceOneItem';
+import { getPriceOneItem } from '../../pages/seller-pages/ProductPage/helpers/getPriceOneItem';
 import { IProductCompilation } from '../../services/product/product.serviceTypes';
 import { Stars } from '../../ui-kit';
 

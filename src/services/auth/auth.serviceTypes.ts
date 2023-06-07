@@ -1,12 +1,7 @@
-import { Dispatch } from '@reduxjs/toolkit';
-
 import { AppDispatchType, RootStateType } from '../../store/createStore';
-import { IUserNotificationsData } from '../../store/reducers/userSlice';
 import { IProduct } from '../product/product.serviceTypes';
 import { ISellerAddressData } from '../seller/seller.serviceTypes';
 import { INotification } from '../supplier/supplier.serviceTypes';
-
-import { ISellerData } from 'services/seller/seller.serviceTypes';
 
 export type RegisterParamsType = {
   email?: string;

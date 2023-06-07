@@ -1,14 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import cn from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 import Modal from '../../../components/Modal';
 import { logout } from '../../../store/reducers/authSlice';
-import { ButtonIcon, Search } from '../../../ui-kit';
-import { Logo } from '../../Logo/Logo';
+import { ButtonIcon, MainLogo, Search } from '../../../ui-kit';
 
 import BuildProfileMenu from './BuildProfileMenu/BuildProfileMenu';
 import style from './Top.module.css';
@@ -103,7 +101,7 @@ const Top = (): JSX.Element => {
         })}
       />
 
-      <Logo href="/" />
+      <MainLogo className={style.logo_font_size} />
       <Search placeholder="Search" />
       <div className={style.inner_buttons}>
         <div className={style.wrapper_btn}>

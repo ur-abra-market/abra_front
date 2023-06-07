@@ -1,9 +1,8 @@
+import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import SearchFilter from '../SearchFilter';
 
 import style from './FilterBrand.module.css';
 
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { useAppSelector } from 'common/hooks/useAppSelector';
 import { brand } from 'store/reducers/filterSlice';
 
 const FilterBrand = (): JSX.Element => {

@@ -1,33 +1,29 @@
-import { IUserNotificationsData } from '../../store/reducers/userSlice';
 import baseConfigService from '../baseConfig.service';
-import {
-  IAccountPersonalInfoRequest,
-  IAccountPersonalInfoResponse,
-} from '../common/common.serviceTypes';
-import { IErrorResponse } from '../seller/seller.serviceTypes';
+import { IAccountPersonalInfoRequest } from '../common/common.serviceTypes';
+
+import { IAccountPersonalInfoResponse, IResponse } from './user.serviceTypes';
 
 export enum Action {
-  UPLOAD_LOGO = 'users/uploadLogoImage/',
+  UPLOAD_LOGO_IMAGE = 'suppliers/uploadCompanyImage/',
+  UPLOAD_ITEM_IMAGE = 'suppliers/uploadProductImage/',
 }
 
-const userService = {
-  updateAccountPersonalInfo: async ({
-    first_name,
-    last_name,
-    phone_country_code,
-    phone_number,
-  }: IAccountPersonalInfoRequest) => {
-    const { data } = await baseConfigService.patch<IAccountPersonalInfoResponse>(
-      `/users/account/update/`,
-      {
-        first_name,
-        last_name,
-        phone_country_code,
-        phone_number,
-      },
+export const userService = {
+  fetchAccountPersonalInfo: async () => {
+    const { data } = await baseConfigService.get<IResponse<IAccountPersonalInfoResponse>>(
+      `/users/account/personalInfo/`,
     );
 
-    return data;
+    return data.result;
+  },
+
+  updateAccountPersonalInfo: async (personalInfoData: IAccountPersonalInfoRequest) => {
+    const { data } = await baseConfigService.patch(
+      `/users/account/personalInfo/update/`,
+      personalInfoData,
+    );
+
+    return data.result;
   },
 
   uploadLogoImage: async (img: any) => {
@@ -40,43 +36,36 @@ const userService = {
     return data;
   },
 
-  uploadFile: async (payload: {
+  uploadImage: async (payload: {
     action: string;
     file: File;
-    quaries?: { product_id: number; serial_number: number };
+    queries?: { product_id: number; serial_number: number };
   }) => {
-    const { action, file, quaries } = payload;
+    const { action, file, queries } = payload;
     const formData = new FormData();
 
     formData.append('file', file);
 
-    const { data } = await baseConfigService.post(action, formData, { params: quaries });
+    const { data } = await baseConfigService.post<{
+      ok: boolean;
+      result: { id: number; url: string };
+    }>(action, formData, {
+      params: queries,
+    });
 
     return data;
   },
-
+  deleteImage: async (payload: {
+    action: string;
+    queries: { company_image_id: number; order?: number };
+  }) => {
+    const { data } = await baseConfigService.delete(payload.action, {
+      params: payload.queries,
+    });
+  },
   getFavoritesProducts: async () => {
     const { data } = await baseConfigService.get(`/users/showFavorites/`);
 
     return data;
   },
-
-  getNotifications: async () => {
-    const { data } = await baseConfigService.get<IUserNotificationsData>(
-      `/users/getNotifications/`,
-    );
-
-    return data;
-  },
-
-  updateNotification: async (updatedData: IUserNotificationsData) => {
-    const { data } = await baseConfigService.patch<string | IErrorResponse>(
-      `/users/updateNotifications/`,
-      updatedData,
-    );
-
-    return data;
-  },
 };
-
-export default userService;

@@ -1,8 +1,5 @@
+import { IPersonalInfoRequestData } from '../../common/types/interfaces';
 import baseConfigService from '../baseConfig.service';
-import {
-  IAccountPersonalInfoRequest,
-  IAccountPersonalInfoResponse,
-} from '../common/common.serviceTypes';
 
 import {
   LogoutResponseType,
@@ -35,20 +32,10 @@ export const authService = {
     });
   },
 
-  sendAccountPersonalInfo: async ({
-    first_name,
-    last_name,
-    phone_country_code,
-    phone_number,
-  }: IAccountPersonalInfoRequest) => {
-    const { data } = await baseConfigService.post<IAccountPersonalInfoResponse>(
+  sendAccountPersonalInfo: async (personalInfoData: IPersonalInfoRequestData) => {
+    const { data } = await baseConfigService.post(
       `/register/account/sendInfo/`,
-      {
-        first_name,
-        last_name,
-        phone_country_code,
-        phone_number,
-      },
+      personalInfoData,
     );
 
     return data;

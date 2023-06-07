@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { LoadingStatus } from '../../../common/types/enums/status.enum';
+import { LoadingStatus } from '../../../common/types';
 
 import { getUserRole } from './index';
 
@@ -54,11 +54,6 @@ export const appSlice = createSlice({
     builder.addCase(getUserRole.rejected, state => {
       state.isAppInitialized = true;
     });
-
-    // builder.addCase(loginUser.rejected, (state, action) => {
-    //   state.responseNotice.noticeType = 'error';
-    //   state.responseNotice.message = action.payload || null;
-    // });
   },
 });
 
