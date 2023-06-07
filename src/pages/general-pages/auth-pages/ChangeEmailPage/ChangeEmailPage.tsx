@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Modal from '../../../../components/Modal';
-import FooterForSupplierPart from '../../../../old-components/FooterForChangePages';
-import HeaderForChangePages from '../../../../old-components/HeaderForChangePages';
-import ChangeEmailForm from '../../../../old-components/ui/TypesView/ChangeEmailForm';
 import { Button } from '../../../../ui-kit';
+import { AuthPageLayout } from '../assets';
 
-import style from './ChangeEmailPage.module.css';
+import style from './ChangeEmailPage.module.scss';
+
+import ChangeEmailForm from '.';
 
 export const ChangeEmailPage = (): JSX.Element => {
   const navigate = useNavigate();
@@ -19,28 +19,21 @@ export const ChangeEmailPage = (): JSX.Element => {
 
   return (
     <>
-      <HeaderForChangePages />
-
-      <div className={style.page}>
-        <div className={style.page_wrap}>
+      <AuthPageLayout>
+        <div className={style.wrapper}>
           <div className={style.header}>Change email</div>
           <div className={style.subheader}>
             Enter your current and new email addresses
           </div>
-          <div className={style.inner_wrapper}>
-            <ChangeEmailForm handleChangeModalActive={handleChangeModalActive} />
-          </div>
+          <ChangeEmailForm handleChangeModalActive={handleChangeModalActive} />
         </div>
-      </div>
-
-      <FooterForSupplierPart />
+      </AuthPageLayout>
 
       <Modal showModal={modalActive} closeModal={setModalActive}>
         <div className={style.modal_content_wrapper}>
           <div className={style.modal_header}>
             Your new email has been successfully saved
           </div>
-
           <Button value="Okay" onClick={() => navigate('/')} />
         </div>
       </Modal>

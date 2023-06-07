@@ -6,12 +6,10 @@ import basketReducer from './reducers/basketSlice';
 import categoryReducer from './reducers/categorySlice';
 import { commonReducer } from './reducers/commonSlice/slice';
 import filterReducer from './reducers/filterSlice';
-import loginReducer from './reducers/loginSlice';
 import { mainPageReducer } from './reducers/mainPageSlice';
 import manageProductsReducer from './reducers/manageProductsSlice';
 import modalReducer from './reducers/modalSlice';
 import paginateReducer from './reducers/paginateSlice';
-import passwordSlice from './reducers/passwordSlice';
 import { popularProductsReducer } from './reducers/popularProducts';
 import productPaginateReducer from './reducers/productPaginateSlice';
 import productReducer from './reducers/productSlice';
@@ -32,7 +30,6 @@ export const store = configureStore({
     supplierProfile: supplierProfileReducer,
     supplierOther: supplierOtherReducer,
 
-    login: loginReducer,
     product: productReducer,
     targetProduct: targetProductReducer,
     paginate: paginateReducer,
@@ -47,7 +44,6 @@ export const store = configureStore({
     popularProducts: popularProductsReducer,
     seller: sellerSlice,
     sellerCheckout: sellerCheckoutSlice,
-    passwordSlice,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
+import { ContentMessage } from 'components';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../common/hooks';
 import { registerUser } from '../../../../store/reducers/authSlice';
 import { LoaderCircular } from '../../../../ui-kit';
+import { AuthPageLayout } from '../assets';
 
-import ContentMessage from 'components/ContentMessage';
-import style from 'pages/general-pages/auth-pages/ConfirmEmailPage/ConfirmEmailPage.module.css';
+import style from './ConfirmEmailPage.module.scss';
 
 export const ConfirmEmailPage = (): JSX.Element => {
   const [searchParams] = useSearchParams();
@@ -31,19 +32,21 @@ export const ConfirmEmailPage = (): JSX.Element => {
   if (!emailStatus) return <LoaderCircular />;
 
   return (
-    <div className={style.container}>
+    <AuthPageLayout>
       <div className={style.wrapper}>
         {emailStatus === 'confirmed' && (
           <>
             <ContentMessage title="Email confirmed." text="" />
-            You can go to
-            <Link to="/"> main page</Link>
+            You can go to&nbsp;
+            <Link className={style.link} to="/">
+              main page
+            </Link>
           </>
         )}
         {emailStatus === 'unconfirmed' && (
           <ContentMessage title="Email not confirmed." text="Please try again later" />
         )}
       </div>
-    </div>
+    </AuthPageLayout>
   );
 };

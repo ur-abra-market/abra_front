@@ -7,6 +7,7 @@ import * as yup from 'yup';
 
 import { emailValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
+import { LoadingStatus } from '../../../../../common/types';
 import { loginUser } from '../../../../../store/reducers/authSlice';
 import { Button, Input } from '../../../../../ui-kit';
 
@@ -28,7 +29,7 @@ export interface IFormValues {
 }
 
 export const LoginForm = (): JSX.Element => {
-  const { loading } = useAppSelector(state => state.login);
+  const loading = useAppSelector(state => state.app.loading);
   const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ export const LoginForm = (): JSX.Element => {
         className={style.button}
         label="Log in"
         type="submit"
-        disabled={!isValid || loading}
+        disabled={!isValid || loading === LoadingStatus.Loading}
       />
     </form>
   );
