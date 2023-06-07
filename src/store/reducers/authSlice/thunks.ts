@@ -4,6 +4,7 @@ import { AxiosError } from 'axios';
 import { LoadingStatus, IPersonalInfoRequestData } from '../../../common/types';
 import authService from '../../../services/auth/auth.service';
 import {
+  IBusinessInfoRequestData,
   LoginParamsType,
   LoginResponseType,
   RegisterParamsType,
@@ -58,13 +59,13 @@ export const createAccountPersonalInfo = createAsyncThunk<
 );
 
 export const createAccountBusinessInfo = createAsyncThunk<
-  any, // todo fix any -> need common request interface
-  any
+  IBusinessInfoRequestData,
+  any // todo fix any -> need common request interface
 >(
   'createAccount/createAccountBusinessInfo',
-  async (personalInfoData, { rejectWithValue }) => {
+  async (businessInfoData, { rejectWithValue }) => {
     try {
-      return await authService.sendAccountPersonalInfo(personalInfoData);
+      return await authService.sendAccountBusinessInfo(businessInfoData);
     } catch (error) {
       const errorMessage =
         error instanceof AxiosError
