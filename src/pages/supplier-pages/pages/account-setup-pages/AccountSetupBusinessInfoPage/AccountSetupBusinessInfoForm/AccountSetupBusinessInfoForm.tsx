@@ -3,6 +3,8 @@ import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { UploadImage } from '../../../../../../components';
+import { Action } from '../../../../../../services/user/user.service';
 import { SupplierRegisterFormStep } from '../../../../../../ui-kit';
 import {
   ISupplierBusinessInfoFormValues,
@@ -66,8 +68,19 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
         <div className={style.step}>
           <SupplierRegisterFormStep step={2} />
         </div>
+        <p className={style.subtitle}>Business Profile</p>
+
+        <div className={style.add_logo}>
+          <UploadImage
+            action={Action.UPLOAD_LOGO_IMAGE}
+            type="logo"
+            label="Add logo or profile image"
+            placeholder="The customers will recognize your store by this image"
+          />
+        </div>
+
         <FormProvider {...formMethods}>
-          <SupplierBusinessInfoForm title="Business Profile" onSubmit={onSubmit} />
+          <SupplierBusinessInfoForm onSubmit={onSubmit} />
         </FormProvider>
       </div>
     </div>

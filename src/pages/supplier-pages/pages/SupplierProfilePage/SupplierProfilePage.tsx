@@ -40,7 +40,6 @@ export const SupplierProfilePage = (): JSX.Element => {
           <FormProvider {...formMethods}>
             <SupplierBusinessInfoForm
               updateForm
-              title="Main info"
               onSubmit={(data: any) => console.log(data)}
             />
           </FormProvider>

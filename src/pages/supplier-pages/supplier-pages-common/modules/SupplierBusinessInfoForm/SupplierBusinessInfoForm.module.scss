@@ -1,15 +1,11 @@
-.main_info_title {
-  font-size: var(--fz-l2);
-  font-weight: var(--bold);
-  text-align: left;
-}
-
-.add_logo {
-  margin-top: 24px;
-}
+@import "./src/common/styles/mixins";
 
 .company_info {
   margin-bottom: 36px;
+}
+
+.subtitle {
+  @include form_subtitle;
 }
 
 .select_info_inputs {

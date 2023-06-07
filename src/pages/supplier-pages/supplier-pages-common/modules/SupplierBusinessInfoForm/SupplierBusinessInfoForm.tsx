@@ -4,8 +4,6 @@ import cn from 'classnames';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { UploadImage } from '../../../../../components';
-import { Action } from '../../../../../services/user/user.service';
 import {
   getCompanyNumberEmployees,
   numberEmployeesSelector,
@@ -30,13 +28,11 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
 
 interface IBusinessProfileForm {
   updateForm?: boolean;
-  title: string;
   onSubmit: (data: any) => void;
 }
 
 export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
   updateForm,
-  title,
   onSubmit,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -59,17 +55,6 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={style.main_info}>
-        <p className={style.main_info_title}>{title}</p>
-
-        <div className={style.add_logo}>
-          <UploadImage
-            action={Action.UPLOAD_LOGO_IMAGE}
-            type="logo"
-            label="Add logo or profile image"
-            placeholder="The customers will recognize your store by this image"
-          />
-        </div>
-
         <div className={style.select_info_inputs}>
           <Label label="Shop name* (will be shown on the profile)">
             <Input
@@ -120,7 +105,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
       </div>
 
       <div className={style.company_info}>
-        <p className={style.main_info_title}>Company Info (optional)</p>
+        <p className={style.subtitle}>Company Info (optional)</p>
         <div className={style.select_info_inputs}>
           <Label label="Year established*">
             <Input
