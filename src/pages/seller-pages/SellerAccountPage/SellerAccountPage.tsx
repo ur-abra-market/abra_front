@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 
 import cn from 'classnames';
-import { AccountManagement, UploadImage } from 'components';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks';
+import { AccountManagement, UploadImage } from '../../../components';
 import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
 import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
 import Footer from '../../../layouts/Footer';
@@ -39,7 +39,6 @@ type FormValues = {
 
 export const SellerAccountPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  // const isAuth = useAppSelector(state => state.auth.isAuthorized);
   const isFeedbackOpen = useAppSelector(state => state.app.isFeedbackOpen);
 
   const { first_name, last_name } = useAppSelector(state => state.seller.userProfileInfo);
@@ -55,27 +54,6 @@ export const SellerAccountPage = (): JSX.Element => {
   const onSubmit = (data: FormValues): void => {
     dispatch(sendSellerInfoService(data));
   };
-
-  // const userData = {
-  //   first_name: 'Olga',
-  //   last_name: 'Andreeva',
-  // };
-
-  // const userAddress = {
-  //   country: 'Russian Federation',
-  //   area: 'Moscow',
-  //   city: 'Moscow',
-  //   street: 'Jaroslava Gasheka 6',
-  //   building: '2',
-  //   appartment: 'apartment 904',
-  //   postal_code: '589964',
-  // };
-  //
-  // const addressExample = {
-  //   seller_address: userAddress,
-  // };
-
-  // const addresses = [addressExample];
 
   const onNotificationChange = (id: string, isChecked: boolean): void => {};
 
@@ -137,13 +115,7 @@ export const SellerAccountPage = (): JSX.Element => {
                       </label>
                       <Select options={options} padding="23px" className={style.select} />
                     </div>
-                    <div className={style.phone}>
-                      {/* <InputWithMask */}
-                      {/*  mask="(999) 999-9999" */}
-                      {/*  placeholder="(XXX) XXX-XXXX" */}
-                      {/*  className={style.mask} */}
-                      {/* /> */} todo add inputPhoneNumber here when he will be ready
-                    </div>
+                    <div className={style.phone} />
                   </div>
                   <Button className={style.save_button} type="submit">
                     Save
