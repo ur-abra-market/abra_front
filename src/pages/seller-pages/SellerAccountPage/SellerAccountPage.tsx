@@ -272,7 +272,3 @@ export const SellerAccountPage = (): JSX.Element => {
     </div>
   );
 };
-
-export const SellerAccountPageTemp = (): JSX.Element => {
-  return <div>xxxx</div>;
-};
