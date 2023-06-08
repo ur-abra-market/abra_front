@@ -12,8 +12,8 @@ import cn from 'classnames';
 
 import { CategoriesMenu } from '../../components/CategoriesMenu/CategoriesMenu';
 import { LocationAndCurrencySelection } from '../../components/LocationAndCurrencySelection/LocationAndCurrencySelection';
-import { Container } from '../../old-components';
 import HeaderNavMenu from '../../old-components/HeaderNavMemu';
+import { Container } from '../../ui-kit';
 
 import style from './Header.module.css';
 import Top from './Top/Top';
