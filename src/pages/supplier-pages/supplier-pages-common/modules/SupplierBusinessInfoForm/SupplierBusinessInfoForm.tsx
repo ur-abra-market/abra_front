@@ -96,8 +96,8 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 
           <Label label="License or entrepreneur number*">
             <Input
-              {...register('entrepreneurNumber')}
-              error={errors?.entrepreneurNumber?.message}
+              {...register('license')}
+              error={errors?.license?.message}
               placeholder="000 – 00 – 0000"
             />
           </Label>
@@ -166,8 +166,8 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 
         <Label label="About the business">
           <Input
-            {...register('aboutBusiness')}
-            error={errors?.aboutBusiness?.message}
+            {...register('description')}
+            error={errors?.description?.message}
             placeholder="Tell more about your company or business"
           />
         </Label>

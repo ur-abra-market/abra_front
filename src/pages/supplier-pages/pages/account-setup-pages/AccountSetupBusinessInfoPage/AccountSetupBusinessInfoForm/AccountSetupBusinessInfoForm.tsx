@@ -3,8 +3,10 @@ import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { useAppDispatch } from '../../../../../../common/hooks';
 import { UploadImage } from '../../../../../../components';
 import { Action } from '../../../../../../services/user/user.service';
+import { createAccountBusinessInfo } from '../../../../../../store/reducers/authSlice/thunks';
 import { SupplierRegisterFormStep } from '../../../../../../ui-kit';
 import {
   ISupplierBusinessInfoFormValues,
@@ -15,53 +17,50 @@ import {
 import style from './AccountSetupBusinessInfoForm.module.scss';
 
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const formMethods = useForm<ISupplierBusinessInfoFormValues>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
     defaultValues: {
       email: '',
       code: '',
-      aboutBusiness: '',
+      description: '',
       tel: '',
       yearEstablished: null,
       address: '',
-      checkbox: false,
+      isManufacturer: false,
       numEmployees: '',
       storeName: '',
       businessSector: null,
-      entrepreneurNumber: '',
+      license: '',
       countryRegistration: null,
     },
   });
 
-  const onSubmit = (data: any): void => {
+  const onSubmit = (data: ISupplierBusinessInfoFormValues): void => {
     console.log(data);
 
-    // const phone = data.code + data.tel;
-    // const info = {
-    //   name: data.storeName,
-    //   business_sector: data.businessSector,
-    //   year_established: +data.yearEstablished,
-    //   number_of_employees: +data.numEmployees,
-    //   description: data.textarea,
-    //   phone,
-    //   business_email: data.email,
-    //   address: data.address,
-    //   is_manufacturer: data.checkbox ? 1 : 0,
-    // };
-    // const accountInfoForRequest = filterEmptyValues(info);
-    // dispatch(
-    //   updateSupplierAccountDataService({
-    //     ...accountInfo,
-    //     license: {
-    //       // @ts-ignore
-    //       license_number: accountInfo?.user_info.license,
-    //     },
-    //     company_info: {
-    //       ...accountInfoForRequest,
-    //     },
-    //   }),
-    // );
+    const businessInfoData = {
+      supplier_data_request: {
+        license_number: data.license,
+      },
+      company_data_request: {
+        phone_country_code: '+7',
+        phone_number: '9657566767',
+        name: data.storeName,
+        is_manufacturer: data.isManufacturer,
+        year_established: data.yearEstablished,
+        number_employees: data.numEmployees,
+        description: data.description,
+        address: data.address,
+        logo_url: '',
+        business_sector: data.businessSector,
+        business_email: data.email,
+        country_id: data.countryRegistration,
+      },
+    };
+
+    dispatch(createAccountBusinessInfo(businessInfoData)); // сделать переход после того как форма удачно отправится
   };
 
   return (

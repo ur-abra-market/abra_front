@@ -160,22 +160,6 @@ export const getCurrentUserInfo = createAsyncThunk<
   }
 });
 
-export const sendAccountPersonalInfo = createAsyncThunk<
-  IAccountPersonalInfoResponse,
-  IAccountPersonalInfoRequest
->('formRegistration/sendUserAccountInfo', async (personalInfo, { rejectWithValue }) => {
-  try {
-    return await authService.sendAccountPersonalInfo(personalInfo);
-  } catch (error: unknown) {
-    const errorMessage =
-      error instanceof AxiosError
-        ? error.response?.data?.error || error.message
-        : '[sendUserAccountInfo]: Error';
-
-    return rejectWithValue(errorMessage);
-  }
-});
-
 export const updateAccountPersonalInfo = createAsyncThunk<
   IAccountPersonalInfoResponse,
   IAccountPersonalInfoRequest,

@@ -1,5 +1,4 @@
 interface IBusinessSector {
-  label: string;
   value: string;
 }
 
@@ -11,14 +10,14 @@ interface ICountryRegistration {
 export interface ISupplierBusinessInfoFormValues {
   email: string;
   code: string;
-  aboutBusiness: string;
+  description: string;
   tel: string;
   yearEstablished: number | null;
   address: string;
-  checkbox: boolean;
+  isManufacturer: boolean;
   numEmployees: string;
   storeName: string;
   businessSector: IBusinessSector | null;
-  entrepreneurNumber: string;
+  license: string;
   countryRegistration: ICountryRegistration | null;
 }

@@ -14,7 +14,7 @@ export const supplierBusinessInfoFormValidationSchema = yup.object({
     .test('no-spaces', 'Please enter a valid text', value => {
       return value === undefined || value.trim() !== '';
     }),
-  entrepreneurNumber: yup
+  license: yup
     .string()
     .required('Please enter a valid license or entrepreneur number')
     .min(2, 'Should be min 2 symbols')
@@ -37,7 +37,7 @@ export const supplierBusinessInfoFormValidationSchema = yup.object({
       }
     }),
   email: yup.string().email('Invalid email'),
-  aboutBusiness: yup.string().max(1000, 'Description should be max 1000 symbols'),
+  description: yup.string().max(1000, 'Description should be max 1000 symbols'),
   address: yup
     .string()
     .test('check-address', 'Should be min 10 symbols and max 300 symbols', value =>

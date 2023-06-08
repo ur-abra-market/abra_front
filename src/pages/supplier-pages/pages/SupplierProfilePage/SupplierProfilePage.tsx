@@ -19,15 +19,15 @@ export const SupplierProfilePage = (): JSX.Element => {
     defaultValues: {
       email: '',
       code: '',
-      aboutBusiness: '',
+      description: '',
       tel: '',
       yearEstablished: null,
       address: '',
-      checkbox: false,
+      isManufacturer: false,
       numEmployees: '',
       storeName: '',
       businessSector: null,
-      entrepreneurNumber: '',
+      license: '',
     },
   });
 
