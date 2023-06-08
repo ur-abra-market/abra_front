@@ -1,48 +1,21 @@
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-import { FormProvider, useForm } from 'react-hook-form';
-
 import { AccountManagement } from '../../../../components';
-import {
-  ISupplierBusinessInfoFormValues,
-  SupplierBusinessInfoForm,
-  supplierBusinessInfoFormValidationSchema,
-} from '../../supplier-pages-common';
 
 import style from './SupplierProfilePage.module.css';
 
-import { NotificationsChangeForm, SupplierPersonalInfoChangeForm } from './index';
+import {
+  NotificationsChangeForm,
+  SupplierBusinessInfoChangeForm,
+  SupplierPersonalInfoChangeForm,
+} from '.';
 
 export const SupplierProfilePage = (): JSX.Element => {
-  const formMethods = useForm<ISupplierBusinessInfoFormValues>({
-    resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
-    mode: 'onChange',
-    defaultValues: {
-      email: '',
-      code: '',
-      description: '',
-      tel: '',
-      yearEstablished: null,
-      address: '',
-      isManufacturer: false,
-      numEmployees: '',
-      storeName: '',
-      businessSector: null,
-      license: '',
-    },
-  });
-
   return (
     <div className={style.supplier_cabinet}>
       <div className={style.supplier_cabinet_content_wrapper}>
         <SupplierPersonalInfoChangeForm />
 
         <div className={style.business_profile}>
-          <FormProvider {...formMethods}>
-            <SupplierBusinessInfoForm
-              updateForm
-              onSubmit={(data: any) => console.log(data)}
-            />
-          </FormProvider>
+          <SupplierBusinessInfoChangeForm />
         </div>
 
         <div className={style.account_details}>
