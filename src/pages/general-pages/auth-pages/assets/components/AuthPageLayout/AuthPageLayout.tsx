@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react';
 
+import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../../../../../../common/hooks/useAppSelector';
@@ -25,7 +26,11 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
   const isLoading = useAppSelector(state => state.app.loading);
 
   return (
-    <div className={style.wrapper}>
+    <div
+      className={cn(style.wrapper, {
+        [style.pointer_none]: isLoading === LoadingStatus.Loading,
+      })}
+    >
       <div className={style.content}>
         {isLoading === LoadingStatus.Loading && <LoaderLinear />}
         {isMainLogoShow && (

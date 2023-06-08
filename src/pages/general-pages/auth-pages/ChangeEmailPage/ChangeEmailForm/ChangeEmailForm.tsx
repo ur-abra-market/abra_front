@@ -8,9 +8,11 @@ import { Button, Input } from '../../../../../ui-kit';
 
 import style from './ChangeEmailForm.module.scss';
 
+import { emailValidationSchema } from 'common/constants';
+
 export type FormDataValuesType = {
-  email: string;
-  password: string;
+  old_email: string;
+  new_email: string;
 };
 
 interface ChangeEmailFormProps {
@@ -18,10 +20,14 @@ interface ChangeEmailFormProps {
 }
 const schema = yup
   .object({
-    email: yup.string().email('Invalid email').required('Email is required'),
+    old_email: emailValidationSchema,
+    new_email: emailValidationSchema,
   })
   .required();
-const ChangeEmailForm: FC<ChangeEmailFormProps> = ({ handleChangeModalActive }) => {
+
+export const ChangeEmailForm: FC<ChangeEmailFormProps> = ({
+  handleChangeModalActive,
+}) => {
   const {
     register,
     formState: { isValid, errors },
@@ -35,16 +41,16 @@ const ChangeEmailForm: FC<ChangeEmailFormProps> = ({ handleChangeModalActive }) 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
       <Input
-        {...register('email')}
+        {...register('old_email')}
         classNameWrapper={style.input_wrapper}
         placeholder="Current email"
-        error={errors.email?.message}
+        error={errors.old_email?.message}
       />
       <Input
-        {...register('email')}
+        {...register('new_email')}
         placeholder="New email"
         classNameWrapper={style.input_wrapper}
-        error={errors.email?.message}
+        error={errors.new_email?.message}
       />
       <Button
         label="Continue"
@@ -55,5 +61,3 @@ const ChangeEmailForm: FC<ChangeEmailFormProps> = ({ handleChangeModalActive }) 
     </form>
   );
 };
-
-export default ChangeEmailForm;
