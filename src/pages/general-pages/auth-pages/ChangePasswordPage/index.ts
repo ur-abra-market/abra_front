@@ -1,3 +1,1 @@
-import ChangePasswordForm from './ChangePasswordForm/ChangePasswordForm';
-
-export default ChangePasswordForm;
+export { ChangePasswordForm } from './ChangePasswordForm/ChangePasswordForm';

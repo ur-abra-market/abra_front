@@ -6,7 +6,7 @@ import { AuthPageLayout } from '../assets';
 
 import style from './ChangePasswordPage.module.scss';
 
-import ChangePasswordForm from '.';
+import { ChangePasswordForm } from '.';
 
 export const ChangePasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
@@ -17,11 +17,9 @@ export const ChangePasswordPage = (): JSX.Element => {
   return (
     <>
       <AuthPageLayout footerLink="/forgotPassword" footerTitle="Forgot password?">
-        <div className={style.wrapper}>
-          <div className={style.header}>Change password</div>
-          <div className={style.subheader}>Enter your current and new passwords</div>
-          <ChangePasswordForm handleChangeModalActive={handleChangeModalActive} />
-        </div>
+        <div className={style.header}>Change password</div>
+        <div className={style.subheader}>Enter your current and new passwords</div>
+        <ChangePasswordForm handleChangeModalActive={handleChangeModalActive} />
       </AuthPageLayout>
 
       <Modal

@@ -25,7 +25,7 @@ const schema = yup
   })
   .required();
 
-const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => {
+export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => {
   const {
     register,
     formState: { isValid, errors },
@@ -58,5 +58,3 @@ const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => 
     </form>
   );
 };
-
-export default ForgotPasswordForm;

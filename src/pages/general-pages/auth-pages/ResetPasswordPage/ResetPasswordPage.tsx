@@ -7,7 +7,7 @@ import { AuthPageLayout } from '../assets';
 
 import style from './ResetPasswordPage.module.scss';
 
-import ResetPasswordForm from '.';
+import { ResetPasswordForm } from '.';
 
 import Modal from 'components/Modal';
 import { checkToken } from 'store/reducers/authSlice';
