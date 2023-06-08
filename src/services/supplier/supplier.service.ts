@@ -39,6 +39,12 @@ export const supplierService = {
     return data.result;
   },
 
+  updateCompanyInfo: async () => {
+    const { data } = await baseConfigService.patch(`/suppliers/companyInfo/update/`); // todo add type
+
+    return data.result;
+  },
+
   fetchNotifications: async () => {
     const { data } = await baseConfigService.get<
       SuppliersResponse<ISuppliersNotifications>
