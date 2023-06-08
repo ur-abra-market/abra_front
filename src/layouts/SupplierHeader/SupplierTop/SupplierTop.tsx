@@ -9,7 +9,8 @@ import { logout } from '../../../store/reducers/authSlice';
 import style from './SupplierTop.module.css';
 
 import { ArrowRightIcon, HeaderNotificationsIcon } from 'assets/icons';
-import { MainLogo } from 'ui-kit'; // 5 10px for ArrowRightIcon
+import BuildProfileMenu from 'layouts/Header/Top/BuildProfileMenu/BuildProfileMenu'; // 5 10px for ArrowRightIcon
+import { MainLogo } from 'ui-kit';
 
 const SupplierTop = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -84,7 +85,13 @@ const SupplierTop = (): JSX.Element => {
           <span className={style.icon}>
             <ArrowRightIcon className={style.arrow} />
           </span>
-          {isMenu && <ul className={style.menu}>{buildMenu()}</ul>}
+          <BuildProfileMenu
+            isAuth={}
+            PROFILE_MENU={}
+            handleClickLogout={}
+            active={}
+            setActive={}
+          />
         </div>
       </div>
     </div>

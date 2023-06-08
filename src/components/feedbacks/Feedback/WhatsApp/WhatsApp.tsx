@@ -2,9 +2,9 @@ import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import { WhatsappIcon } from 'assets/icons';
-
 import style from './WhatsApp.module.css';
+
+import { WhatsappIcon } from 'assets/icons';
 
 export interface IWhatsApp
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}

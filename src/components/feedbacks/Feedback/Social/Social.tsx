@@ -2,9 +2,9 @@ import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import { GoogleIcon, InstagramIcon, TelegramIcon, VkIcon } from 'assets/icons';
-
 import style from './Social.module.css';
+
+import { GoogleIcon, InstagramIcon, TelegramIcon, VkIcon } from 'assets/icons';
 
 export interface SocialProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
