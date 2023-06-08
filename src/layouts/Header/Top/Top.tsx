@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import { useRef, useState, MouseEvent } from 'react';
 
-import cn from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import useOnClickOutside from '../../../common/hooks/useOnClickOutside';
 import Modal from '../../../components/Modal';
 import { logout } from '../../../store/reducers/loginSlice';
 import { ButtonIcon, Search } from '../../../ui-kit';
 import { Logo } from '../../Logo/Logo';
 
 import BuildProfileMenu from './BuildProfileMenu/BuildProfileMenu';
-import style from './Top.module.css';
+import style from './Top.module.scss';
 
 import {
   HeaderCartIcon,
@@ -60,20 +60,14 @@ const Top = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const isAuth = useAppSelector(state => state.login.isAuth);
-  // const userRole = useAppSelector(state => state.login.userRole);
-  const [menu, setMenu] = useState<string>();
-  const [isShowModal, setIsShowModal] = useState<boolean>(false);
+  const [active, setActive] = useState(false);
+  const [isShowModal, setIsShowModal] = useState(false);
 
   const handleOnClick = (target: string): void => {
-    if (!isAuth && target === 'account') {
-      return setMenu(target);
-    }
-    if (!isAuth && target !== 'account') {
+    if (!isAuth) {
       return setIsShowModal(true);
     }
     switch (target) {
-      case 'account':
-        return setMenu(target);
       case 'note':
         return navigate('/');
       case 'favorite':
@@ -87,6 +81,11 @@ const Top = (): JSX.Element => {
   const handleClickLogout = (): void => {
     dispatch(logout());
   };
+  const handleMenuOpen = (value: boolean): void => {
+    setActive(value);
+  };
+
+  const triggerRef = useOnClickOutside(handleMenuOpen);
 
   return (
     <div className={style.wrapper}>
@@ -95,28 +94,21 @@ const Top = (): JSX.Element => {
         <Link to="/auth">Login</Link>
       </Modal>
 
-      <div
-        role="presentation"
-        onClick={() => setMenu(undefined)}
-        className={cn(style.menu_wrapper, {
-          [style.menu_active]: !!menu,
-        })}
-      />
-
       <Logo href="/" />
       <Search placeholder="Search" />
       <div className={style.inner_buttons}>
-        <div className={style.wrapper_btn}>
-          <ButtonIcon onClick={() => handleOnClick('account')}>
+        <div className={style.wrapper_btn} ref={triggerRef}>
+          <ButtonIcon onClick={() => handleMenuOpen(!active)}>
             <HeaderProfileIcon />
           </ButtonIcon>
-          {menu === 'account' && (
-            <BuildProfileMenu
-              isAuth={isAuth}
-              PROFILE_MENU={PROFILE_MENU}
-              handleClickLogout={handleClickLogout}
-            />
-          )}
+
+          <BuildProfileMenu
+            isAuth={isAuth}
+            PROFILE_MENU={PROFILE_MENU}
+            handleClickLogout={handleClickLogout}
+            active={active}
+            setActive={setActive}
+          />
         </div>
 
         <ButtonIcon onClick={() => handleOnClick('note')}>

@@ -1,23 +1,41 @@
-import React, { FC } from 'react';
+import React, { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 import { Link, useMatch } from 'react-router-dom';
 
 import { Button } from '../../../../ui-kit';
-import style from '../Top.module.css';
+import { ProfileMenu } from '../Top';
+import style from '../Top.module.scss';
 
-import { BuildProfileMenuProps } from './BuildProfileMenu.props';
+export interface BuildProfileMenuProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement> {
+  isAuth: boolean;
+  PROFILE_MENU: ProfileMenu;
+  handleClickLogout: () => void;
+  active: boolean;
+  setActive: (value: boolean) => void;
+}
 
-const BuildProfileMenu: FC<BuildProfileMenuProps> = props => {
-  const { isAuth, PROFILE_MENU, handleClickLogout } = props;
-
+const BuildProfileMenu: FC<BuildProfileMenuProps> = ({
+  isAuth,
+  PROFILE_MENU,
+  handleClickLogout,
+  active,
+  setActive,
+}) => {
   const buildMenu = !isAuth ? PROFILE_MENU.UNAUTHORIZED : PROFILE_MENU.AUTHORIZED;
 
   const location = useMatch('/personal-account');
 
+  const handleOnClick = (): void => {
+    setActive(false);
+  };
+
   return (
     <ul
       className={cn(style.menu, {
+        [style.menu_active]: active,
+        [style.menu_inactive]: !active,
         [style.menu_main]: location?.pathname !== '/personal-account/*',
         [style.menu_profile]: location?.pathname === '/personal-account',
       })}
@@ -25,7 +43,7 @@ const BuildProfileMenu: FC<BuildProfileMenuProps> = props => {
       {buildMenu.map(({ href, label }) => (
         <li key={label} className={style.item}>
           {href !== '/logout' ? (
-            <Link to={href} state={label}>
+            <Link to={href} state={label} onClick={handleOnClick}>
               {label}
             </Link>
           ) : (

@@ -1,4 +1,4 @@
-import { FC, ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react';
 
 import cn from 'classnames';
 
