@@ -7,16 +7,17 @@ import { useAppSelector } from '../../common/hooks/useAppSelector';
 import { LocationAndCurrencySelection } from '../../components/LocationAndCurrencySelection/LocationAndCurrencySelection';
 import { Container } from '../../old-components';
 import HeaderNavMenu from '../../old-components/HeaderNavMemu';
-import { Logo } from '../Logo/Logo';
 
 import style from './Footer.module.css';
 import { FooterProps } from './Footer.props';
+
+import { MainLogo } from 'ui-kit';
 
 const Footer: FC<FooterProps> = (props): JSX.Element => {
   const { className } = props;
   const routs = ['personal-account', 'product', 'order-history', ''];
   const { pathname } = useLocation();
-  const isSupplier = useAppSelector(state => state.login.userRole);
+  const isSupplier = useAppSelector(state => state.auth.userRole);
   const showHeadNav =
     isSupplier === 'seller' && routs.some(el => el === pathname.split('/')[1]);
 
@@ -25,7 +26,7 @@ const Footer: FC<FooterProps> = (props): JSX.Element => {
       {showHeadNav && (
         <Container>
           <div className={style.top}>
-            <Logo href="/" size="sm" color="black" />
+            <MainLogo className={style.logo_font_size} />
             <div className={style.inner}>
               <HeaderNavMenu className={cn(style.nav, style.nav_menu)} />
               <LocationAndCurrencySelection className={style.selects} />

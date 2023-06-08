@@ -1,34 +1,29 @@
-import { IUserNotificationsData } from '../../store/reducers/userSlice';
 import baseConfigService from '../baseConfig.service';
-import {
-  IAccountPersonalInfoRequest,
-  IAccountPersonalInfoResponse,
-} from '../common/common.serviceTypes';
-import { IErrorResponse } from '../seller/seller.serviceTypes';
+import { IAccountPersonalInfoRequest } from '../common/common.serviceTypes';
+
+import { IAccountPersonalInfoResponse, IResponse } from './user.serviceTypes';
 
 export enum Action {
   UPLOAD_LOGO_IMAGE = 'suppliers/uploadCompanyImage/',
   UPLOAD_ITEM_IMAGE = 'suppliers/uploadProductImage/',
 }
 
-const userService = {
-  updateAccountPersonalInfo: async ({
-    first_name,
-    last_name,
-    phone_country_code,
-    phone_number,
-  }: IAccountPersonalInfoRequest) => {
-    const { data } = await baseConfigService.patch<IAccountPersonalInfoResponse>(
-      `/users/account/update/`,
-      {
-        first_name,
-        last_name,
-        phone_country_code,
-        phone_number,
-      },
+export const userService = {
+  fetchAccountPersonalInfo: async () => {
+    const { data } = await baseConfigService.get<IResponse<IAccountPersonalInfoResponse>>(
+      `/users/account/personalInfo/`,
     );
 
-    return data;
+    return data.result;
+  },
+
+  updateAccountPersonalInfo: async (personalInfoData: IAccountPersonalInfoRequest) => {
+    const { data } = await baseConfigService.patch(
+      `/users/account/personalInfo/update/`,
+      personalInfoData,
+    );
+
+    return data.result;
   },
 
   uploadLogoImage: async (img: any) => {
@@ -73,23 +68,4 @@ const userService = {
 
     return data;
   },
-
-  getNotifications: async () => {
-    const { data } = await baseConfigService.get<IUserNotificationsData>(
-      `/users/getNotifications/`,
-    );
-
-    return data;
-  },
-
-  updateNotification: async (updatedData: IUserNotificationsData) => {
-    const { data } = await baseConfigService.patch<string | IErrorResponse>(
-      `/users/updateNotifications/`,
-      updatedData,
-    );
-
-    return data;
-  },
 };
-
-export default userService;

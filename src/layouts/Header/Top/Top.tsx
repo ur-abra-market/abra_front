@@ -1,14 +1,11 @@
-import { useRef, useState, MouseEvent } from 'react';
+import { useState } from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
-import useOnClickOutside from '../../../common/hooks/useOnClickOutside';
+import { useAppDispatch, useAppSelector, useOnClickOutside } from '../../../common/hooks';
 import Modal from '../../../components/Modal';
-import { logout } from '../../../store/reducers/loginSlice';
-import { ButtonIcon, Search } from '../../../ui-kit';
-import { Logo } from '../../Logo/Logo';
+import { logout } from '../../../store/reducers/authSlice';
+import { ButtonIcon, MainLogo, Search } from '../../../ui-kit';
 
 import BuildProfileMenu from './BuildProfileMenu/BuildProfileMenu';
 import style from './Top.module.scss';
@@ -59,7 +56,7 @@ const Top = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const isAuth = useAppSelector(state => state.login.isAuth);
+  const isAuth = useAppSelector(state => state.auth.isAuthorized);
   const [active, setActive] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -94,7 +91,7 @@ const Top = (): JSX.Element => {
         <Link to="/auth">Login</Link>
       </Modal>
 
-      <Logo href="/" />
+      <MainLogo className={style.logo_font_size} />
       <Search placeholder="Search" />
       <div className={style.inner_buttons}>
         <div className={style.wrapper_btn} ref={triggerRef}>

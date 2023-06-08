@@ -2,6 +2,7 @@ import React from 'react';
 
 import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
 
+import { UserRoleType } from '../common/types';
 import {
   AboutUsPage,
   ChangeEmailPage,
@@ -21,16 +22,14 @@ import {
   LoginPage,
   RegisterPage,
   MainPage,
-} from '../pages/commonPages';
+} from '../pages/general-pages';
 
 import { sellerRoute } from './sellerRoute';
 import { supplierRoute } from './supplierRoute';
 
-import { userRoleType } from 'services/auth/auth.serviceTypes';
-
 type Routes = ReturnType<typeof createBrowserRouter>;
 
-export function createRoutes(userRole: userRoleType): Routes {
+export function createRoutes(userRole: UserRoleType): Routes {
   let child: RouteObject[] = [];
 
   if (userRole === 'supplier') child = supplierRoute;

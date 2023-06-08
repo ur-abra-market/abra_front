@@ -2,7 +2,7 @@ import { RefObject, useEffect, useRef } from 'react';
 
 type Event = MouseEvent | TouchEvent;
 
-const useOnClickOutside = (handler: (value: boolean) => void): RefObject<any> => {
+export const useOnClickOutside = (handler: (value: boolean) => void): RefObject<any> => {
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -11,9 +11,7 @@ const useOnClickOutside = (handler: (value: boolean) => void): RefObject<any> =>
 
       if (!el || el.contains((event?.target as Node) || null)) return;
 
-      if (handler) {
-        handler(false);
-      } // Call the handler only if the click is outside the element passed.
+      handler(false); // Call the handler only if the click is outside the element passed.
     };
 
     document.addEventListener('mousedown', listener);
@@ -27,5 +25,3 @@ const useOnClickOutside = (handler: (value: boolean) => void): RefObject<any> =>
 
   return ref;
 };
-
-export default useOnClickOutside;

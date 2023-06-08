@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-function useOnHoverOutside(ref: any, handler: (event: Event) => void): void {
+export function useOnHoverOutside(ref: any, handler: (event: Event) => void): void {
   useEffect(() => {
     const listener = (event: Event): void => {
       if (!ref.current || ref.current.contains(event.target)) {
@@ -16,5 +16,3 @@ function useOnHoverOutside(ref: any, handler: (event: Event) => void): void {
     };
   }, [ref, handler]);
 }
-
-export default useOnHoverOutside;

@@ -135,3 +135,7 @@
   width: 8px;
   height: 14px;
 }
+
+.logo_font_size {
+  font-size: var(--fz-xl2);
+}

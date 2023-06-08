@@ -1,45 +1,77 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { registerUser } from './asyncThunks';
+import { getUserRole } from '../appSlice';
+
+import {
+  getCurrentUserInfo,
+  loginUser,
+  logout,
+  forgotPassword,
+  checkToken,
+  resetPassword,
+  changePassword,
+} from './thunks';
+
+import { UserRoleType } from 'common/types';
 
 interface IAuthSliceInitialState {
-  errorMessage: null | string;
-  isValidRegistrationData: null | boolean;
-  loading: boolean;
+  userRole: UserRoleType;
+  isAuthorized: boolean;
+  passwordActionsResult: string;
 }
 
 const AuthSliceInitialState: IAuthSliceInitialState = {
-  errorMessage: null,
-  isValidRegistrationData: null,
-  loading: false,
+  userRole: null,
+  isAuthorized: false,
+  passwordActionsResult: '',
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: AuthSliceInitialState,
-  reducers: {
-    clearState: state => {
-      state.errorMessage = null;
-      state.isValidRegistrationData = null;
-      state.loading = false;
-    },
-  },
+  reducers: {},
+
   extraReducers: builder => {
-    builder.addCase(registerUser.pending, state => {
-      state.errorMessage = null;
-      state.loading = true;
+    builder.addCase(
+      getUserRole.fulfilled,
+      (state, action: PayloadAction<UserRoleType>) => {
+        state.userRole = action.payload;
+        state.isAuthorized = true;
+      },
+    );
+
+    builder.addCase(getCurrentUserInfo.rejected, state => {
+      state.isAuthorized = false;
     });
-    builder.addCase(registerUser.fulfilled, state => {
-      state.isValidRegistrationData = true;
-      state.loading = false;
+
+    builder.addCase(loginUser.fulfilled, state => {
+      state.isAuthorized = true;
     });
-    builder.addCase(registerUser.rejected, (state, action) => {
-      state.errorMessage = action.payload as string;
-      state.isValidRegistrationData = false;
-      state.loading = false;
+
+    builder.addCase(logout.fulfilled, state => {
+      state.isAuthorized = false;
+      state.userRole = null;
+    });
+    builder.addCase(logout.rejected, (state, action) => {
+      state.isAuthorized = false;
+    });
+
+    builder.addCase(forgotPassword.pending, state => {
+      state.passwordActionsResult = '';
+    });
+    builder.addCase(forgotPassword.fulfilled, (state, action) => {
+      state.passwordActionsResult = action.payload;
+    });
+    builder.addCase(checkToken.fulfilled, (state, action) => {
+      state.passwordActionsResult = action.payload;
+    });
+    builder.addCase(resetPassword.fulfilled, (state, action) => {
+      state.passwordActionsResult = action.payload;
+    });
+    builder.addCase(changePassword.fulfilled, (state, action) => {
+      state.passwordActionsResult = action.payload;
     });
   },
 });
 
-export const { clearState } = authSlice.actions;
 export const authReducer = authSlice.reducer;
