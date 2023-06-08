@@ -1,8 +1,9 @@
+import { useAppDispatch } from '../../common/hooks';
+
 import style from './ButtonLogOut.module.css';
 
 import { LogoutIcon } from 'assets/icons';
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { logout } from 'store/reducers/loginSlice';
+import { logout } from 'store/reducers/authSlice';
 import { Button } from 'ui-kit';
 
 export const ButtonLogOut = (): JSX.Element => {

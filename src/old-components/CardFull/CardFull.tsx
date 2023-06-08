@@ -2,8 +2,7 @@ import React, { CSSProperties, FC, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../common/hooks';
 import { changeById } from '../../store/reducers/basketSlice';
 import { active } from '../../store/reducers/productPaginateSlice';
 import { Stars } from '../../ui-kit';

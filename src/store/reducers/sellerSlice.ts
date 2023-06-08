@@ -6,12 +6,11 @@ import {
   ISellerAddressData,
   ISellerData,
   ISendSellerResponse,
-  IUserResultFetch,
 } from '../../services/seller/seller.serviceTypes';
 
 import { sellerService } from 'services/seller/seller.service';
 
-export const getSellerInfoService = createAsyncThunk<IUserResultFetch, void>(
+export const getSellerInfoService = createAsyncThunk<any, void>(
   'seller/getSellerInfoService',
   async (_, { rejectWithValue }) => {
     try {

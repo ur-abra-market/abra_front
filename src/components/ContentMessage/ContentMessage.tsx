@@ -9,7 +9,7 @@ interface ContentMessageProps {
   text: string;
   className?: string;
 }
-const ContentMessage: FC<ContentMessageProps> = ({ title, text, className }) => {
+export const ContentMessage: FC<ContentMessageProps> = ({ title, text, className }) => {
   return (
     <>
       <div className={cn(style.header, className)}>{title}</div>
@@ -17,5 +17,3 @@ const ContentMessage: FC<ContentMessageProps> = ({ title, text, className }) => 
     </>
   );
 };
-
-export default ContentMessage;

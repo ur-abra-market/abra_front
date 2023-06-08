@@ -3,10 +3,9 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 import Modal from '../../../components/Modal';
-import { logout } from '../../../store/reducers/loginSlice';
+import { logout } from '../../../store/reducers/authSlice';
 import { ButtonIcon, MainLogo, Search } from '../../../ui-kit';
 
 import BuildProfileMenu from './BuildProfileMenu/BuildProfileMenu';
@@ -58,8 +57,8 @@ const Top = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const isAuth = useAppSelector(state => state.login.isAuth);
-  // const userRole = useAppSelector(state => state.login.userRole);
+  const isAuth = useAppSelector(state => state.auth.isAuthorized);
+  // const userRole = useAppSelector(state => state.auth.userRole);
   const [menu, setMenu] = useState<string>();
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
 

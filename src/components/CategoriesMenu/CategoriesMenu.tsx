@@ -2,7 +2,7 @@ import React, { ForwardedRef, forwardRef, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
-import { useAppDispatch } from '../../common/hooks/useAppDispatch';
+import { useAppDispatch, useAppSelector } from '../../common/hooks';
 import {
   categoryService,
   ResponseCategoryType,
@@ -13,14 +13,11 @@ import { CategoriesMenuProps } from './CategoriesMenu.props';
 import { Items } from './CategoryItems';
 import { FilterButton } from './FilterButton/FilterButton';
 
-import { useAppSelector } from 'common/hooks/useAppSelector';
-
+export type Categories = 'all' | 'clothes' | 'accessories' | 'cosmetics';
 export interface ItemsProps {
   gender: string;
   items?: ResponseCategoryType[];
 }
-
-export type Categories = 'all' | 'clothes' | 'accessories' | 'cosmetics';
 
 type FilteredCategoriesType = {
   [key in Categories]: {

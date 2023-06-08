@@ -17,7 +17,7 @@ const Footer: FC<FooterProps> = (props): JSX.Element => {
   const { className } = props;
   const routs = ['personal-account', 'product', 'order-history', ''];
   const { pathname } = useLocation();
-  const isSupplier = useAppSelector(state => state.login.userRole);
+  const isSupplier = useAppSelector(state => state.auth.userRole);
   const showHeadNav =
     isSupplier === 'seller' && routs.some(el => el === pathname.split('/')[1]);
 

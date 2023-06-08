@@ -1,10 +1,10 @@
 import cn from 'classnames';
 
+import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
+
 import style from './PaginatorProduct.module.css';
 
 import { ArrowLeftIcon, ArrowRightIcon } from 'assets/icons'; // 24px
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
-import { useAppSelector } from 'common/hooks/useAppSelector';
 import { activeNum } from 'store/reducers/productPaginateSlice';
 
 const PaginatorProduct = (): JSX.Element => {

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import commonService from '../../services/common/common.service';
+import { commonService } from '../../services/common/common.service';
 
 import { LoadingStatus } from 'common/types';
 

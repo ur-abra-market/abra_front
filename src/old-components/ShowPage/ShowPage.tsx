@@ -1,11 +1,11 @@
 import { useState, MouseEvent } from 'react';
 
+import { useAppDispatch } from '../../common/hooks';
 import { amount } from '../../store/reducers/paginateSlice';
 
 import style from './ShowPage.module.css';
 
 import { ArrowDownIcon } from 'assets/icons'; // 24px
-import { useAppDispatch } from 'common/hooks/useAppDispatch';
 
 const ShowPage = (): JSX.Element => {
   const dispatch = useAppDispatch();

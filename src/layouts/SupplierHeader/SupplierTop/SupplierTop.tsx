@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
-import { logout } from '../../../store/reducers/loginSlice';
+import { useAppDispatch } from '../../../common/hooks';
+import { logout } from '../../../store/reducers/authSlice';
 
 import style from './SupplierTop.module.css';
 
