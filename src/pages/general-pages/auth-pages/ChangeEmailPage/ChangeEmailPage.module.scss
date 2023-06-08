@@ -1,8 +1,3 @@
-.wrapper {
-  width: 100%;
-  margin: 0 auto;
-}
-
 .header {
   font-size: var(--fz-xxl);
   font-weight: var(--bold);
@@ -36,6 +31,10 @@
   line-height: 41px;
   color: var(--color-black);
   letter-spacing: 0.41px;
+}
+
+.modal_button {
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {

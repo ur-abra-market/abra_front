@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import { ContentMessage } from 'components';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../common/hooks';
+import { ContentMessage } from '../../../../components';
 import { registerUser } from '../../../../store/reducers/authSlice';
 import { LoaderCircular } from '../../../../ui-kit';
 import { AuthPageLayout } from '../assets';
