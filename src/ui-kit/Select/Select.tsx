@@ -174,14 +174,6 @@ export const Select = forwardRef(
     }, [isOpenItemsMenu, options]);
 
     const selectWidth = width ? { width } : {};
-    const [currentMenuHeight, setCurrentMenuHeight] = useState(0);
-    const handleGetMenuHeight = (height: number): void => {
-      setCurrentMenuHeight(height);
-    };
-
-    const menuStyles: { top: string } = {
-      top: menuItemsPosition === 'up' ? `-${currentMenuHeight}px` : 'unset',
-    };
 
     const mainClasses = cn(styles.main, className, { [styles.main_has_header]: header });
 
@@ -199,9 +191,7 @@ export const Select = forwardRef(
         <SelectMenu
           isOpen={isOpenItemsMenu}
           height={menuHeight}
-          style={menuStyles}
           className={menuClassname}
-          onChangeHeight={handleGetMenuHeight}
         >
           {mappedSelectItems}
           {children}
