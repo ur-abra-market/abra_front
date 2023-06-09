@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import { useOnClickOutside, useOnHoverOutside } from '../../common/hooks';
 
-import styles from './Select.module.css';
+import styles from './Select.module.scss';
 import { SelectHeader } from './SelectHeader/SelectHeader';
 import { SelectItem } from './SelectItem/SelectItem';
 import { SelectMenu } from './SelectMenu/SelectMenu';
@@ -96,6 +96,7 @@ export const Select = forwardRef(
       [styles.closed_menu]: !header,
       [styles.opened_menu_up_pos]:
         header && menuItemsPosition === 'up' && isOpenItemsMenu,
+      [styles.menu_up_pos]: menuItemsPosition === 'up' && isOpenItemsMenu,
     });
 
     const handleChangeSelectState = (): void => {
@@ -173,14 +174,6 @@ export const Select = forwardRef(
     }, [isOpenItemsMenu, options]);
 
     const selectWidth = width ? { width } : {};
-    const [currentMenuHeight, setCurrentMenuHeight] = useState(0);
-    const handleGetMenuHeight = (height: number): void => {
-      setCurrentMenuHeight(height);
-    };
-
-    const menuStyles: { top: string } = {
-      top: menuItemsPosition === 'up' ? `-${currentMenuHeight}px` : 'unset',
-    };
 
     const mainClasses = cn(styles.main, className, { [styles.main_has_header]: header });
 
@@ -198,9 +191,7 @@ export const Select = forwardRef(
         <SelectMenu
           isOpen={isOpenItemsMenu}
           height={menuHeight}
-          style={menuStyles}
           className={menuClassname}
-          onChangeHeight={handleGetMenuHeight}
         >
           {mappedSelectItems}
           {children}
