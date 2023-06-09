@@ -13,7 +13,9 @@ axiosInstance.interceptors.response.use(
     } else if (error.response.status === 500) {
       store.dispatch(setResponseError('Internal Server Error'));
     } else {
-      store.dispatch(setResponseError(error.message || 'Some error occurred'));
+      store.dispatch(
+        setResponseError(error.message || 'Something went wrong, please try again'),
+      );
     }
 
     return Promise.reject(error);
