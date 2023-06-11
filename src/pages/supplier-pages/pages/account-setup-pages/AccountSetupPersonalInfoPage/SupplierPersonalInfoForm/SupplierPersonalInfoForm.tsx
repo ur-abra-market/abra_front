@@ -58,7 +58,11 @@ export const SupplierPersonalInfoForm = (): JSX.Element => {
 
         <FormProvider {...formMethods}>
           <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-            <PersonalInfoChangeForm phoneInputClass={style.phone_input} />
+            {/* todo fix countryShort={'ru'} */}
+            <PersonalInfoChangeForm
+              phoneInputClass={style.phone_input}
+              countryShort="ru"
+            />
 
             <Button
               type="submit"
