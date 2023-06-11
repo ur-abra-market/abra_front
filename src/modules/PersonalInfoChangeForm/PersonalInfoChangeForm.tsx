@@ -18,11 +18,13 @@ import { getCountries } from 'store/reducers/commonSlice';
 interface IPersonalInfoChangeForm {
   phoneInputClass?: string;
   countryShort: string;
+  key: string;
 }
 
 export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
   phoneInputClass,
   countryShort,
+  key,
 }): JSX.Element => {
   const countries = useAppSelector(state => state.common.countries);
   const dispatch = useAppDispatch();
@@ -79,13 +81,13 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
   });
 
   // phoneInputKey is needed for rerendering  PhoneInput, without it PhoneInput doesn't rerender after initialization
-  const [phoneInputKey, setPhoneInputKey] = useState(Date.now());
+  const [phoneInputKey, setPhoneInputKey] = useState(key);
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
     const asyncDispatch = async () => {
       await dispatch(getCountries());
-      setPhoneInputKey(Date.now());
+      setPhoneInputKey(String(Date.now()));
     };
 
     asyncDispatch();
