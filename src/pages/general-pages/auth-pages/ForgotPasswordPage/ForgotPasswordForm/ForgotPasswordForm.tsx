@@ -4,11 +4,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { useAppDispatch } from '../../../common/hooks';
-import { forgotPassword } from '../../../store/reducers/passwordSlice';
-import { Button, Input } from '../../../ui-kit';
+import { useAppDispatch } from '../../../../../common/hooks';
+import { forgotPassword } from '../../../../../store/reducers/authSlice';
+import { Button, Input } from '../../../../../ui-kit';
 
-import style from './ForgotPasswordForm.module.css';
+import style from './ForgotPasswordForm.module.scss';
+
+import { emailValidationSchema } from 'common/constants';
 
 export type ForgotChangePasswordFormType = {
   email: string;
@@ -19,11 +21,11 @@ interface ForgotPasswordFormProps {
 }
 const schema = yup
   .object({
-    email: yup.string().email('Invalid email').required('Email is required'),
+    email: emailValidationSchema,
   })
   .required();
 
-const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => {
+export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => {
   const {
     register,
     formState: { isValid, errors },
@@ -35,7 +37,7 @@ const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => 
   const dispatch = useAppDispatch();
 
   const onSubmit = (data: ForgotChangePasswordFormType): void => {
-    dispatch(forgotPassword(data));
+    dispatch(forgotPassword(data.email));
     togglePageType();
   };
 
@@ -56,5 +58,3 @@ const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => 
     </form>
   );
 };
-
-export default ForgotPasswordForm;

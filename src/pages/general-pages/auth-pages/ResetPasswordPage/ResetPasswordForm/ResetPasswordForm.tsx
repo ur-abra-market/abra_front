@@ -4,41 +4,36 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { useAppDispatch } from '../../../common/hooks';
-import { PasswordComplexity } from '../../../pages/general-pages/auth-pages/assets';
-import { ResetPasswordPayloadType } from '../../../services/auth/auth.serviceTypes';
-import { resetPassword } from '../../../store/reducers/passwordSlice';
-import { Button, Input } from '../../../ui-kit';
-import Form from '../../Form';
+import { passwordValidationSchema } from '../../../../../common/constants';
+import { useAppDispatch } from '../../../../../common/hooks';
+import { PasswordComplexity } from '../../assets';
 
-import style from './ResetPasswordForm.module.css';
+import style from './ResetPasswordForm.module.scss';
+
+import { ResetPasswordPayloadType } from 'services/auth/auth.serviceTypes';
+import { resetPassword } from 'store/reducers/authSlice';
+import { Button, Input } from 'ui-kit';
 
 interface ResetPasswordFormProps {
   handleChangeModalActive: () => void;
 }
 const schema = yup
   .object({
-    email: yup.string().email('Invalid email').required('Email is required'),
-    new_password: yup
-      .string()
-      .matches(
-        /^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      ),
+    new_password: passwordValidationSchema,
     confirm_password: yup
       .string()
-      .matches(
-        /^.*(?=.{8,})((?=.*[!#+*]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      ),
+      .oneOf([yup.ref('new_password')], 'Passwords must match'),
   })
   .required();
-const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
+
+export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
   handleChangeModalActive,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const {
     register,
     watch,
-    formState: { isValid },
+    formState: { isValid, errors },
     handleSubmit,
   } = useForm<ResetPasswordPayloadType>({
     resolver: yupResolver(schema),
@@ -50,19 +45,14 @@ const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} className={style.reset_password_form}>
-      <Input
-        {...register('email')}
-        classNameWrapper={style.input_wrapper}
-        placeholder="Email"
-        variant="password"
-      />
+    <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
       <Input
         {...register('new_password')}
         classNameWrapper={style.input_wrapper}
         placeholder="New password"
         type="password"
         variant="password"
+        error={errors.new_password?.message}
       />
       <Input
         {...register('confirm_password')}
@@ -70,6 +60,7 @@ const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
         placeholder="Confirm password"
         type="password"
         variant="password"
+        error={errors.confirm_password?.message}
       />
       <PasswordComplexity password={watchPassword} />
       <Button
@@ -79,8 +70,6 @@ const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
         disabled={!isValid}
         onClick={handleChangeModalActive}
       />
-    </Form>
+    </form>
   );
 };
-
-export default ResetPasswordForm;

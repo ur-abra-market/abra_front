@@ -14,11 +14,10 @@ import { parsePhoneNumber } from '../../../../../../common/utils/parsePhoneNumbe
 import Modal from '../../../../../../components/Modal';
 import { ModalChildPhoneCheck } from '../../../../../../components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
 import { PersonalInfoChangeForm } from '../../../../../../modules';
+import { createAccountPersonalInfo } from '../../../../../../store/reducers/authSlice/thunks';
 import { Button, SupplierRegisterFormStep } from '../../../../../../ui-kit';
 
 import style from './SupplierPersonalInfoForm.module.scss';
-
-import { createAccountPersonalInfo } from 'store/reducers/authSlice';
 
 export const SupplierPersonalInfoForm = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);

@@ -1,7 +1,5 @@
 import * as yup from 'yup';
 
-import { emailValidationSchema } from '../../../../../common/constants';
-
 const date = new Date();
 
 const year = date.getFullYear();
@@ -9,28 +7,36 @@ const year = date.getFullYear();
 export const supplierBusinessInfoFormValidationSchema = yup.object({
   storeName: yup
     .string()
-    .min(2)
+    .required('Please enter your company name')
+    .min(2, 'Should be min 2 symbols')
     .max(100)
-    .typeError('Should be min 2 symbols')
-    .required('Field is required')
+    // .typeError('Should be min 2 symbols')
     .test('no-spaces', 'Please enter a valid text', value => {
       return value === undefined || value.trim() !== '';
     }),
   entrepreneurNumber: yup
     .string()
-    .min(2)
+    .required('Please enter a valid license or entrepreneur number')
+    .min(2, 'Should be min 2 symbols')
     .max(50)
-    .typeError('Should be min 2 symbols')
-    .required('Field is required')
     .test('no-spaces', 'Please enter a valid license or entrepreneur number', value => {
       return value === undefined || value.trim() !== '';
     }),
   yearEstablished: yup
-    .number()
-    .min(4, 'Add an existing year')
-    .max(year, "this year hasn't come yet")
-    .required('Please enter the year your company was founded'),
-  email: emailValidationSchema,
+    .string()
+    .required('Please enter the year your company was founded')
+    .matches(/^\d+$/, 'Year must contain only numbers')
+    .test('is-four-digits', 'Year must have four digits', value => {
+      if (value && /^\d+$/.test(value)) {
+        return value.length === 4;
+      }
+    })
+    .test('is-future-year', "This year hasn't come yet", value => {
+      if (value && /^\d+$/.test(value)) {
+        return parseInt(value, 10) <= year;
+      }
+    }),
+  email: yup.string().email('Invalid email'),
   aboutBusiness: yup.string().max(1000, 'Description should be max 1000 symbols'),
   address: yup
     .string()
