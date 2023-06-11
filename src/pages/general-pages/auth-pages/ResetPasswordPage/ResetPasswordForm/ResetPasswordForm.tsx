@@ -6,6 +6,8 @@ import * as yup from 'yup';
 
 import { passwordValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch } from '../../../../../common/hooks';
+import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
+import { LoadingStatus } from '../../../../../common/types/enums';
 import { PasswordComplexity } from '../../assets';
 
 import style from './ResetPasswordForm.module.scss';
@@ -15,8 +17,15 @@ import { resetPassword } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
 
 interface ResetPasswordFormProps {
-  handleChangeModalActive: () => void;
+  setModalActive: (value: boolean) => void;
+  token: string;
 }
+
+export interface IFormValues {
+  new_password: string;
+  confirm_password: string;
+}
+
 const schema = yup
   .object({
     new_password: passwordValidationSchema,
@@ -27,7 +36,8 @@ const schema = yup
   .required();
 
 export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
-  handleChangeModalActive,
+  setModalActive,
+  token,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const {
@@ -40,8 +50,14 @@ export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
     mode: 'all',
   });
   const watchPassword = watch('new_password' || 'confirm_password');
-  const onSubmit = (data: ResetPasswordPayloadType): void => {
-    dispatch(resetPassword(data));
+  const loading = useAppSelector(state => state.app.loading);
+
+  const onSubmit = async (data: IFormValues): Promise<void> => {
+    const actionResult = await dispatch(resetPassword({ ...data, token }));
+
+    if (resetPassword.fulfilled.match(actionResult)) {
+      setModalActive(true);
+    }
   };
 
   return (
@@ -67,8 +83,7 @@ export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
         label="Save"
         className={style.button_save}
         type="submit"
-        disabled={!isValid}
-        onClick={handleChangeModalActive}
+        disabled={!isValid || loading === LoadingStatus.Loading}
       />
     </form>
   );

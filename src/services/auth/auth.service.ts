@@ -56,9 +56,9 @@ export const authService = {
   },
 
   forgotPassword: (email: string) => {
-    return baseConfigService.post<PasswordResponseType>('password/forgot/', {
-      email,
-    });
+    return baseConfigService.post<PasswordResponseType>(
+      `password/forgot/?email=${email}`,
+    );
   },
 
   checkToken: (token: string) => {
@@ -68,7 +68,12 @@ export const authService = {
   },
 
   resetPassword: (params: ResetPasswordPayloadType) => {
-    return baseConfigService.post<PasswordResponseType>('password/reset/', params);
+    const { token, ...restParams } = params;
+
+    return baseConfigService.post<PasswordResponseType>(
+      `password/reset/?token=${token}`,
+      restParams,
+    );
   },
 
   changePassword: (params: ChangePasswordPayloadType) => {

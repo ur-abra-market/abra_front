@@ -4,13 +4,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { useAppDispatch } from '../../../../../common/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { forgotPassword } from '../../../../../store/reducers/authSlice';
 import { Button, Input } from '../../../../../ui-kit';
 
 import style from './ForgotPasswordForm.module.scss';
 
 import { emailValidationSchema } from 'common/constants';
+import { LoadingStatus } from 'common/types';
 
 export type ForgotChangePasswordFormType = {
   email: string;
@@ -34,11 +35,15 @@ export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType
     resolver: yupResolver(schema),
     mode: 'all',
   });
+  const loading = useAppSelector(state => state.app.loading);
   const dispatch = useAppDispatch();
 
-  const onSubmit = (data: ForgotChangePasswordFormType): void => {
-    dispatch(forgotPassword(data.email));
-    togglePageType();
+  const onSubmit = async (data: ForgotChangePasswordFormType): Promise<void> => {
+    const actionResult = await dispatch(forgotPassword(data.email));
+
+    if (forgotPassword.fulfilled.match(actionResult)) {
+      togglePageType();
+    }
   };
 
   return (
@@ -53,7 +58,7 @@ export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType
         label="Reset password"
         className={style.button}
         type="submit"
-        disabled={!isValid}
+        disabled={!isValid || loading === LoadingStatus.Loading}
       />
     </form>
   );

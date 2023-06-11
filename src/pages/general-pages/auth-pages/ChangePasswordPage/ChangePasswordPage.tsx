@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import Modal from '../../../../components/Modal';
 import { Button } from '../../../../ui-kit';
 import { AuthPageLayout } from '../assets';
@@ -9,9 +11,12 @@ import style from './ChangePasswordPage.module.scss';
 import { ChangePasswordForm } from '.';
 
 export const ChangePasswordPage = (): JSX.Element => {
+  const navigate = useNavigate();
+
   const [modalActive, setModalActive] = useState(false);
-  const handleChangeModalActive = (): void => {
-    setModalActive(prevState => !prevState);
+  const modalCloseHandler = (value: boolean): void => {
+    setModalActive(value);
+    navigate('/');
   };
 
   return (
@@ -19,12 +24,12 @@ export const ChangePasswordPage = (): JSX.Element => {
       <AuthPageLayout footerLink="/forgotPassword" footerTitle="Forgot password?">
         <div className={style.header}>Change password</div>
         <div className={style.subheader}>Enter your current and new passwords</div>
-        <ChangePasswordForm handleChangeModalActive={handleChangeModalActive} />
+        <ChangePasswordForm setModalActive={setModalActive} />
       </AuthPageLayout>
 
       <Modal
         showModal={modalActive}
-        closeModal={setModalActive}
+        closeModal={modalCloseHandler}
         classNameModal={style.modal_container}
       >
         <div className={style.modal_content_wrapper}>
@@ -37,7 +42,7 @@ export const ChangePasswordPage = (): JSX.Element => {
           <Button
             label="Okay"
             className={style.button_modal}
-            onClick={handleChangeModalActive}
+            onClick={() => modalCloseHandler(false)}
           />
         </div>
       </Modal>

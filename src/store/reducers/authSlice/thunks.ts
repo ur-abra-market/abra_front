@@ -181,7 +181,8 @@ export const updateAccountPersonalInfo = createAsyncThunk<
 
 export const forgotPassword = createAsyncThunk<string, string, AsyncThunkConfig>(
   'password/forgotPassword',
-  async (email, { rejectWithValue }) => {
+  async (email, { dispatch, rejectWithValue }) => {
+    dispatch(setLoading(LoadingStatus.Loading));
     try {
       const response = await authService.forgotPassword(email);
 
@@ -192,7 +193,12 @@ export const forgotPassword = createAsyncThunk<string, string, AsyncThunkConfig>
           ? error.response?.data?.error || error.message
           : '[forgotPassword]: Error';
 
+      if (error instanceof AxiosError)
+        dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
+
       return rejectWithValue(errorMessage);
+    } finally {
+      dispatch(setLoading(LoadingStatus.Idle));
     }
   },
 );
@@ -219,7 +225,9 @@ export const resetPassword = createAsyncThunk<
   string,
   ResetPasswordPayloadType,
   AsyncThunkConfig
->('password/resetPassword', async (param, { rejectWithValue }) => {
+>('password/resetPassword', async (param, { dispatch, rejectWithValue }) => {
+  dispatch(setLoading(LoadingStatus.Loading));
+
   try {
     const response = await authService.resetPassword(param);
 
@@ -230,7 +238,12 @@ export const resetPassword = createAsyncThunk<
         ? error.response?.data?.error || error.message
         : '[resetPassword]: Error';
 
+    if (error instanceof AxiosError)
+      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
+
     return rejectWithValue(errorMessage);
+  } finally {
+    dispatch(setLoading(LoadingStatus.Idle));
   }
 });
 
@@ -238,7 +251,8 @@ export const changePassword = createAsyncThunk<
   string,
   ChangePasswordPayloadType,
   AsyncThunkConfig
->('password/changePassword', async (param, { rejectWithValue }) => {
+>('password/changePassword', async (param, { dispatch, rejectWithValue }) => {
+  dispatch(setLoading(LoadingStatus.Loading));
   try {
     const response = await authService.changePassword(param);
 
@@ -249,6 +263,11 @@ export const changePassword = createAsyncThunk<
         ? error.response?.data?.error || error.message
         : '[changePassword]: Error';
 
+    if (error instanceof AxiosError)
+      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
+
     return rejectWithValue(errorMessage);
+  } finally {
+    dispatch(setLoading(LoadingStatus.Idle));
   }
 });

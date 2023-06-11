@@ -17,7 +17,11 @@ import { UserRoleType } from 'common/types';
 interface IAuthSliceInitialState {
   userRole: UserRoleType;
   isAuthorized: boolean;
-  passwordActionsResult: string;
+  passwordActionsResult:
+    | 'LINK_HAS_BEEN_SENT'
+    | 'TOKEN_IS_ACTIVE'
+    | 'PASSWORD_HAS_BEEN_CHANGED'
+    | '';
 }
 
 const AuthSliceInitialState: IAuthSliceInitialState = {
@@ -52,24 +56,24 @@ const authSlice = createSlice({
       state.isAuthorized = false;
       state.userRole = null;
     });
-    builder.addCase(logout.rejected, (state, action) => {
+    builder.addCase(logout.rejected, state => {
       state.isAuthorized = false;
     });
 
     builder.addCase(forgotPassword.pending, state => {
       state.passwordActionsResult = '';
     });
-    builder.addCase(forgotPassword.fulfilled, (state, action) => {
-      state.passwordActionsResult = action.payload;
+    builder.addCase(forgotPassword.fulfilled, state => {
+      state.passwordActionsResult = 'LINK_HAS_BEEN_SENT';
     });
-    builder.addCase(checkToken.fulfilled, (state, action) => {
-      state.passwordActionsResult = action.payload;
+    builder.addCase(checkToken.fulfilled, state => {
+      state.passwordActionsResult = 'TOKEN_IS_ACTIVE';
     });
-    builder.addCase(resetPassword.fulfilled, (state, action) => {
-      state.passwordActionsResult = action.payload;
+    builder.addCase(resetPassword.fulfilled, state => {
+      state.passwordActionsResult = 'PASSWORD_HAS_BEEN_CHANGED';
     });
-    builder.addCase(changePassword.fulfilled, (state, action) => {
-      state.passwordActionsResult = action.payload;
+    builder.addCase(changePassword.fulfilled, state => {
+      state.passwordActionsResult = 'PASSWORD_HAS_BEEN_CHANGED';
     });
   },
 });

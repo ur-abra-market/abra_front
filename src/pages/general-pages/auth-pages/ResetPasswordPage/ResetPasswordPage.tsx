@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import { AuthPageLayout } from '../assets';
@@ -16,12 +16,14 @@ import { Button } from 'ui-kit';
 export const ResetPasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const tokenStatus = useAppSelector(state => state.auth.passwordActionsResult);
 
   const token = searchParams.get('token');
   const dispatch = useAppDispatch();
-  const handleChangeModalActive = (): void => {
-    setModalActive(prevState => !prevState);
+  const modalCloseHandler = (value: boolean): void => {
+    setModalActive(value);
+    navigate('/login');
   };
 
   useEffect(() => {
@@ -36,12 +38,12 @@ export const ResetPasswordPage = (): JSX.Element => {
           Enter a new password that matches the criteria
         </div>
         {tokenStatus === 'TOKEN_IS_ACTIVE' && (
-          <ResetPasswordForm handleChangeModalActive={handleChangeModalActive} />
+          <ResetPasswordForm setModalActive={setModalActive} token={token!} />
         )}
       </AuthPageLayout>
       <Modal
         showModal={modalActive}
-        closeModal={setModalActive}
+        closeModal={modalCloseHandler}
         classNameModal={style.modal_container}
       >
         <div className={style.modal_content_wrapper}>
@@ -54,7 +56,7 @@ export const ResetPasswordPage = (): JSX.Element => {
           <Button
             label="Okay"
             className={style.modal_window_btn_active}
-            onClick={handleChangeModalActive}
+            onClick={() => modalCloseHandler(false)}
           />
         </div>
       </Modal>

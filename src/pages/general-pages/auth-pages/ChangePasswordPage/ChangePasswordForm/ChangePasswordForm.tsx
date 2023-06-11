@@ -5,7 +5,8 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { passwordValidationSchema } from '../../../../../common/constants';
-import { useAppDispatch } from '../../../../../common/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
+import { LoadingStatus } from '../../../../../common/types/enums';
 import { ChangePasswordPayloadType } from '../../../../../services/auth/auth.serviceTypes';
 import { changePassword } from '../../../../../store/reducers/authSlice';
 import { Button, Input } from '../../../../../ui-kit';
@@ -17,17 +18,19 @@ const formValidationSchema = yup
   .object()
   .shape({
     old_password: passwordValidationSchema,
-    new_password: passwordValidationSchema,
+    new_password: passwordValidationSchema.notOneOf(
+      [yup.ref('old_password')],
+      'Passwords must not match.',
+    ),
   })
   .required();
 
 interface ChangePasswordFormProps {
-  handleChangeModalActive: () => void;
+  setModalActive: (value: boolean) => void;
 }
 
-export const ChangePasswordForm: FC<ChangePasswordFormProps> = ({
-  handleChangeModalActive,
-}) => {
+export const ChangePasswordForm: FC<ChangePasswordFormProps> = ({ setModalActive }) => {
+  const loading = useAppSelector(state => state.app.loading);
   const dispatch = useAppDispatch();
   const {
     register,
@@ -39,10 +42,14 @@ export const ChangePasswordForm: FC<ChangePasswordFormProps> = ({
     mode: 'all',
   });
 
-  const watchPassword = watch('old_password' || 'new_password');
+  const watchPassword = watch('new_password' || 'old_password');
 
-  const onSubmit = (data: ChangePasswordPayloadType): void => {
-    dispatch(changePassword(data));
+  const onSubmit = async (data: ChangePasswordPayloadType): Promise<void> => {
+    const actionResult = await dispatch(changePassword(data));
+
+    if (changePassword.fulfilled.match(actionResult)) {
+      setModalActive(true);
+    }
   };
 
   return (
@@ -68,8 +75,7 @@ export const ChangePasswordForm: FC<ChangePasswordFormProps> = ({
         label="Continue"
         type="submit"
         className={style.button}
-        disabled={!isValid}
-        onClick={handleChangeModalActive}
+        disabled={!isValid || loading === LoadingStatus.Loading}
       />
     </form>
   );
