@@ -1,16 +1,10 @@
 import baseConfigService from '../baseConfig.service';
 
-import {
-  BaseResponseType,
-  CountryType,
-  ResponseGetNumberEmployees,
-} from './common.serviceTypes';
+import { ResponseGetNumberEmployees } from './common.serviceTypes';
 
 export const commonService = {
   getCountry: async () => {
-    const { data } = await baseConfigService.get<BaseResponseType<CountryType[]>>(
-      `/common/country/`,
-    );
+    const { data } = await baseConfigService.get(`/common/country/`);
 
     return data;
   },

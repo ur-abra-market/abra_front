@@ -1,7 +1,10 @@
+import { CountryType } from 'services/common/common.serviceTypes';
+
 export interface IResponse<T> {
   result: T;
 }
 export interface IAccountPersonalInfoResponse {
+  country: CountryType;
   id: number;
   datetime: string;
   phone_country_code: string;

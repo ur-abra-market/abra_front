@@ -7,6 +7,9 @@ export interface IPersonalInfoFormData {
   firstName: string;
   lastName: string;
   phoneNumber: string;
+
+  // todo check IPersonalInfoFormData
+  countryId: number | null;
 }
 
 export interface IPersonalInfoRequestData {
