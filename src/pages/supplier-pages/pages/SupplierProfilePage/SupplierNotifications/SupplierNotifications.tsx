@@ -6,7 +6,7 @@ import { ISupplierNotifications } from '../../../../../services/supplier/supplie
 import {
   getSupplierNotifications,
   updateSupplierNotifications,
-} from '../../../../../store/reducers/supplier/profile/thunks';
+} from '../../../../../store/reducers/supplier/profile';
 
 export interface INotificationSupplierData {
   id: keyof ISupplierNotifications;
