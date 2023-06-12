@@ -10,13 +10,21 @@ import style from './ChangePasswordPage.module.scss';
 
 import { ChangePasswordForm } from '.';
 
+import { useAppSelector } from 'common/hooks';
+
 export const ChangePasswordPage = (): JSX.Element => {
   const navigate = useNavigate();
-
+  const userRole = useAppSelector(state => state.auth.userRole);
   const [modalActive, setModalActive] = useState(false);
+
   const modalCloseHandler = (value: boolean): void => {
     setModalActive(value);
-    navigate('/');
+
+    if (userRole === 'seller') {
+      navigate('/personal-account');
+    } else {
+      navigate('/');
+    }
   };
 
   return (
