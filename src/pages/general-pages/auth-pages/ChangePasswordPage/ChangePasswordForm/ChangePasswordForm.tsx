@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import { passwordValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { LoadingStatus } from '../../../../../common/types/enums';
+import { LoadingStatus } from '../../../../../common/types';
 import { ChangePasswordPayloadType } from '../../../../../services/auth/auth.serviceTypes';
 import { changePassword } from '../../../../../store/reducers/authSlice';
 import { Button, Input } from '../../../../../ui-kit';
@@ -20,7 +20,7 @@ const formValidationSchema = yup
     old_password: passwordValidationSchema,
     new_password: passwordValidationSchema.notOneOf(
       [yup.ref('old_password')],
-      'Passwords must not match.',
+      'Passwords must not match',
     ),
   })
   .required();
