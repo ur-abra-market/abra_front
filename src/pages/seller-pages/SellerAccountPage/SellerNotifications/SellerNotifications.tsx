@@ -3,10 +3,10 @@ import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import { NotificationsChangeForm } from '../../../../modules';
 import { ISellerNotifications } from '../../../../services/seller/seller.serviceTypes';
-// import {
-//   getSupplierNotifications,
-//   updateSupplierNotifications,
-// } from '../../../../store/reducers/supplierAccountSlice';
+import {
+  getSellerNotifications,
+  updateSellerNotifications,
+} from '../../../../store/reducers/seller/profile';
 
 export interface INotificationSellerData {
   id: keyof ISellerNotifications;
@@ -23,27 +23,30 @@ const NOTIFICATIONS_SELLER_DATA: INotificationSellerData[] = [
   { id: 'on_account_support', label: 'Account support' },
 ];
 
-export const SupplierNotifications = (): JSX.Element => {
+export const SellerNotifications = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const notifications = useAppSelector(state => state.seller.notifications || null);
+  const notifications = useAppSelector(
+    state => state.sellerProfile.notifications || null,
+  );
+  const loading = useAppSelector(state => state.sellerProfile.loading);
 
   const onNotificationChange = (id: string, value: boolean): void => {
-    // dispatch(updateSupplierNotifications({ id, value }));
+    dispatch(updateSellerNotifications({ id, value }));
   };
 
   useEffect(() => {
     if (notifications) {
-      // return;
+      return;
     }
-    // dispatch(getSupplierNotifications());
+    dispatch(getSellerNotifications());
   }, [dispatch]);
 
   return (
     <NotificationsChangeForm
-      notifications={notifications as ISellerNotifications}
+      notifications={notifications}
       callBack={onNotificationChange}
       notificationsData={NOTIFICATIONS_SELLER_DATA}
+      disabled={loading}
     />
-    // <></>
   );
 };
