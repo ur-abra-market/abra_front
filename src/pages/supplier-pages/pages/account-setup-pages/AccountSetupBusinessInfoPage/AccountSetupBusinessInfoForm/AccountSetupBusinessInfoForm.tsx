@@ -81,7 +81,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
         </div>
 
         <FormProvider {...formMethods}>
-          <SupplierBusinessInfoForm onSubmit={onSubmit} />
+          <SupplierBusinessInfoForm onSubmit={onSubmit} updateForm />
         </FormProvider>
       </div>
     </div>

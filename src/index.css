@@ -69,6 +69,10 @@
   --medium: 500;
   --semi-bold: 600;
   --bold: 700;
+
+  /*----------sizes----------*/
+  --form-column-gap: 16px;
+  --form-row-gap: 20px;
 }
 
 * {
