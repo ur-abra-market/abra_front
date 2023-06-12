@@ -11,20 +11,16 @@ import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
 import Footer from '../../../layouts/Footer';
 import Header from '../../../layouts/Header';
 import { Action } from '../../../services/user/user.service';
+import { getSellerAddressesService } from '../../../store/reducers/seller/profile';
 
 import { Address } from './Address/Address';
 import Orders from './Orders/Orders';
 import style from './SellerAccountPage.module.css';
+import { SellerNotifications } from './SellerNotifications/SellerNotifications';
 
-import {
-  getSellerAddressesService,
-  getSellerInfoService,
-  sendSellerInfoService,
-} from 'store/reducers/sellerSlice';
 import {
   Button,
   ButtonInfo,
-  Checkbox,
   Container,
   Input,
   ISelectOption,
@@ -41,7 +37,9 @@ export const SellerAccountPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const isFeedbackOpen = useAppSelector(state => state.app.isFeedbackOpen);
 
-  const { first_name, last_name } = useAppSelector(state => state.seller.userProfileInfo);
+  const { first_name, last_name } = useAppSelector(
+    state => state.sellerProfile.personalInfo,
+  );
   const addresses = useAppSelector(state => state.sellerCheckout.addresses); // фиксил ошибки, заглушка
 
   const { register, handleSubmit, reset } = useForm<FormValues>({
@@ -52,10 +50,8 @@ export const SellerAccountPage = (): JSX.Element => {
   });
 
   const onSubmit = (data: FormValues): void => {
-    dispatch(sendSellerInfoService(data));
+    // dispatch(sendSellerInfoService(data));
   };
-
-  const onNotificationChange = (id: string, isChecked: boolean): void => {};
 
   const options: ISelectOption[] = [
     { label: '+90', value: '+90' },
@@ -63,7 +59,7 @@ export const SellerAccountPage = (): JSX.Element => {
   ];
 
   useEffect(() => {
-    dispatch(getSellerInfoService());
+    // dispatch(getSellerInfoService());
     dispatch(getSellerAddressesService());
   }, [dispatch]);
 
@@ -168,7 +164,9 @@ export const SellerAccountPage = (): JSX.Element => {
                   </div>
                 </div>
 
-                <div className={style.notifications_list} />
+                <div className={style.notifications_list}>
+                  <SellerNotifications />
+                </div>
               </div>
             </div>
             <FeedbackForm isFeedbackOpen={isFeedbackOpen} />

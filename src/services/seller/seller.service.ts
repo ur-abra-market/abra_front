@@ -1,42 +1,14 @@
-import { AxiosResponse } from 'axios';
-
 import baseConfigService from '../baseConfig.service';
-import { ISupplierNotifications } from '../supplier/supplier.serviceTypes';
 
 import {
   IGetAddressesResponse,
-  ISellerData,
   ISellerNotifications,
-  ISellerProfile,
-  ISendSellerResponse,
   ResponseAddressData,
   ResponseDeleteAddress,
   SellerAddressData,
 } from './seller.serviceTypes';
 
 export const sellerService = {
-  getSellerInfo: async () => {
-    const { data } = await baseConfigService.get('sellers/getSellerInfo');
-
-    return data;
-  },
-  sendSellerInfo: async (sellerData: ISellerData) => {
-    const { first_name, last_name } = sellerData;
-
-    const { data } = await baseConfigService.post<
-      ISendSellerResponse,
-      AxiosResponse<ISendSellerResponse>,
-      Partial<ISellerProfile>
-    >('sellers/sendSellerInfo', {
-      seller_data: {
-        first_name,
-        last_name,
-      },
-    });
-
-    return data;
-  },
-
   getSellerAddresses: async () => {
     const { data } = await baseConfigService.get<IGetAddressesResponse>(
       'sellers/addresses/',
