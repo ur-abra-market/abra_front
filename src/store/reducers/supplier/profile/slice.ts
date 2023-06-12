@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { LoadingStatus } from '../../../../common/types';
 import { ISupplierNotifications } from '../../../../services/supplier/supplier.serviceTypes';
 import { getPersonalInfo } from '../../userSlice';
 
@@ -13,18 +14,13 @@ export interface ISupplierPersonalInfo {
 }
 
 interface ISupplierProfileSliceInitialState {
-  loading: boolean;
-  personalInfo: {
-    firstName: string;
-    lastName: string;
-    phoneCountryCode: string;
-    phoneNumberBody: string;
-  };
+  loading: LoadingStatus;
+  personalInfo: ISupplierPersonalInfo;
   notifications: ISupplierNotifications | null;
 }
 
 const initialState: ISupplierProfileSliceInitialState = {
-  loading: false,
+  loading: LoadingStatus.Idle,
   personalInfo: {
     firstName: '',
     lastName: '',
@@ -41,28 +37,31 @@ export const supplierProfileSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getPersonalInfo.pending, state => {
-        // state.loading = true;
+        state.loading = LoadingStatus.Loading;
       })
       .addCase(getPersonalInfo.fulfilled, (state, action) => {
         state.personalInfo.lastName = action.payload.last_name;
         state.personalInfo.firstName = action.payload.first_name;
         state.personalInfo.phoneCountryCode = action.payload.phone_country_code;
         state.personalInfo.phoneNumberBody = action.payload.phone_number;
-        state.loading = false;
+        state.loading = LoadingStatus.Success;
       });
     builder
       .addCase(getSupplierNotifications.pending, state => {
-        state.loading = true;
+        state.loading = LoadingStatus.Loading;
       })
       .addCase(getSupplierNotifications.fulfilled, (state, action) => {
         state.notifications = action.payload;
-        state.loading = false;
+        state.loading = LoadingStatus.Success;
+      })
+      .addCase(getSupplierNotifications.rejected, state => {
+        state.loading = LoadingStatus.Failed;
       })
       .addCase(updateSupplierNotifications.pending, state => {
-        state.loading = true;
+        state.loading = LoadingStatus.Loading;
       })
-      .addCase(updateSupplierNotifications.fulfilled, (state, action) => {
-        state.loading = false;
+      .addCase(updateSupplierNotifications.rejected, (state, action) => {
+        state.loading = LoadingStatus.Failed;
       });
   },
 });

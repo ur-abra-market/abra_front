@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { useAppDispatch } from '../../../../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { NotificationsChangeForm } from '../../../../../modules';
 import { ISupplierNotifications } from '../../../../../services/supplier/supplier.serviceTypes';
 import {
@@ -47,6 +46,7 @@ export const SupplierNotifications = (): JSX.Element => {
       notifications={notifications}
       callBack={onNotificationChange}
       notificationsData={NOTIFICATIONS_SUPPLIER_DATA}
+      disabled={loading}
     />
   );
 };

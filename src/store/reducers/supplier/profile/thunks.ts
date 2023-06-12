@@ -3,6 +3,7 @@ import { AxiosError } from 'axios';
 
 import { supplierService } from '../../../../services';
 import { RootStateType } from '../../../createStore';
+import { setResponseNotice } from '../../appSlice/slice';
 
 export const getCompanyInfo = createAsyncThunk<any, void>( // todo fix any
   'supplierAccount/getCompanyInfo',
@@ -22,7 +23,7 @@ export const getCompanyInfo = createAsyncThunk<any, void>( // todo fix any
 
 export const getSupplierNotifications = createAsyncThunk<any, void>(
   'supplierAccount/getSupplierNotifications',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
       return await supplierService.getNotifications();
     } catch (error) {
@@ -30,6 +31,9 @@ export const getSupplierNotifications = createAsyncThunk<any, void>(
         error instanceof AxiosError
           ? error.response?.data?.error || error.message
           : '[getSupplierNotifications]: Error';
+
+      if (error instanceof AxiosError)
+        dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
 
       return rejectWithValue(errorMessage);
     }
@@ -57,6 +61,9 @@ export const updateSupplierNotifications = createAsyncThunk<
         error instanceof AxiosError
           ? error.response?.data?.error || error.message
           : '[updateSupplierNotifications]: Error';
+
+      if (error instanceof AxiosError)
+        dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
 
       return rejectWithValue(errorMessage);
     }

@@ -52,7 +52,6 @@ export const SupplierProfilePage = (): JSX.Element => {
         </div>
 
         <div className={style.notifications}>
-          {/* <NotificationsChangeForm /> */}
           <SupplierNotifications />
         </div>
       </div>
