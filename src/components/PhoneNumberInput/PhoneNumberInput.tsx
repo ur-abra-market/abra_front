@@ -1,5 +1,6 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 
+import 'react-phone-input-2/lib/style.css';
 import cn from 'classnames';
 import { CountryCode, isValidNumber } from 'libphonenumber-js';
 import { useFormContext } from 'react-hook-form';
@@ -13,22 +14,18 @@ import { Label } from '../../ui-kit';
 import style from './PhoneNumberInput.module.scss';
 
 interface IPhoneNumberInput {
-  key: string;
   countryShort: string;
-  phoneInputClass?: string;
   label: string;
+  phoneInputClass?: string;
 }
 
 export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
-  key,
   countryShort,
   phoneInputClass,
   label,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const countries = useAppSelector(state => state.common.countries);
-  const countryShortCodes = countries.map(el => el.country_short);
-  const [phoneInputKey, setPhoneInputKey] = useState(key); // phoneInputKey is needed for re-rendering  PhoneInput, without it PhoneInput doesn't rerender after initialization
 
   const {
     setError,
@@ -41,14 +38,9 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
   const phoneNumberValue = watch('phoneNumber');
   const phoneNumberError = errors.phoneNumber?.message;
 
-  // useEffect(() => {
-  //   const asyncDispatch = async (): Promise<void> => {
-  //     await dispatch(getCountries());
-  //     setPhoneInputKey(String(Date.now()));
-  //   };
-  //
-  //   asyncDispatch();
-  // }, []);
+  useEffect(() => {
+    dispatch(getCountries()); // todo - страны уже могу быть в слайсе, нужно запрошивать только если их нет
+  }, []);
 
   const handlePhoneInputOnChange = (
     value: string,
@@ -93,16 +85,17 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
   return (
     <div className={style.phone_number}>
       <Label label={label} htmlFor="tel">
-        <PhoneInput
-          inputClass={phoneInputClasses}
-          buttonClass={phoneButtonClasses}
-          country={countryShort}
-          value={phoneNumberValue}
-          onChange={handlePhoneInputOnChange}
-          onlyCountries={countryShortCodes}
-          countryCodeEditable={false}
-        />
-
+        {countries.length && (
+          <PhoneInput
+            inputClass={phoneInputClasses}
+            buttonClass={phoneButtonClasses}
+            country={countryShort}
+            value={phoneNumberValue}
+            onChange={handlePhoneInputOnChange}
+            onlyCountries={countries.map(el => el.country_short)}
+            countryCodeEditable={false}
+          />
+        )}
         {phoneNumberError && <span className={style.error}>{phoneNumberError}</span>}
       </Label>
     </div>

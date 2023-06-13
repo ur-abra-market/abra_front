@@ -2,8 +2,6 @@ import React, { FC } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
-import 'react-phone-input-2/lib/style.css';
-
 import { IPersonalInfoFormData } from '../../common/types';
 import { PhoneNumberInput } from '../../components';
 import { Input, Label } from '../../ui-kit';
@@ -13,13 +11,11 @@ import style from './PersonalInfoChangeForm.module.css';
 interface IPersonalInfoChangeForm {
   phoneInputClass?: string;
   countryShort: string;
-  key: string;
 }
 
 export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
   phoneInputClass,
   countryShort,
-  key,
 }): JSX.Element => {
   const {
     register,
@@ -49,7 +45,6 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
       </div>
 
       <PhoneNumberInput
-        key={key}
         countryShort={countryShort}
         phoneInputClass={phoneInputClass}
         label="Personal phone number"
