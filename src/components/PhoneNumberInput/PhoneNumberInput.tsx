@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 
 import 'react-phone-input-2/lib/style.css';
 import cn from 'classnames';
@@ -39,7 +39,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
   const handlePhoneInputOnChange = (
     value: string,
     data: CountryData,
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: ChangeEvent<HTMLInputElement>,
     formattedValue: string,
   ): void => {
     const countryId = countries.find(el => el.country_short === data.countryCode)?.id;
