@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../../../../../common/hooks';
 import { UploadImage } from '../../../../../../components';
 import { Action } from '../../../../../../services/user/user.service';
 import { createAccountBusinessInfo } from '../../../../../../store/reducers/authSlice/thunks';
+import { getCountries } from '../../../../../../store/reducers/commonSlice';
 import { SupplierRegisterFormStep } from '../../../../../../ui-kit';
 import {
   ISupplierBusinessInfoFormValues,
@@ -36,6 +37,10 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
       countryRegistration: null,
     },
   });
+
+  useEffect(() => {
+    dispatch(getCountries());
+  }, []);
 
   const onSubmit = (data: ISupplierBusinessInfoFormValues): void => {
     console.log(data);

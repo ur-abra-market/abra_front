@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -15,6 +15,7 @@ import Modal from '../../../../../../components/Modal';
 import { ModalChildPhoneCheck } from '../../../../../../components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
 import { PersonalInfoChangeForm } from '../../../../../../modules';
 import { createAccountPersonalInfo } from '../../../../../../store/reducers/authSlice/thunks';
+import { getCountries } from '../../../../../../store/reducers/commonSlice';
 import { Button, SupplierRegisterFormStep } from '../../../../../../ui-kit';
 
 import style from './SupplierPersonalInfoForm.module.scss';
@@ -33,6 +34,10 @@ export const SupplierPersonalInfoForm = (): JSX.Element => {
     formState: { isValid },
     watch,
   } = formMethods;
+
+  useEffect(() => {
+    dispatch(getCountries());
+  }, []);
 
   const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
     const { countryCode, numberBody } = parsePhoneNumber(data.phoneNumber);

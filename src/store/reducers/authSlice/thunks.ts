@@ -1,7 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { LoadingStatus, IPersonalInfoRequestData } from '../../../common/types';
+import {
+  LoadingStatus,
+  IPersonalInfoRequestData,
+  AsyncThunkConfig,
+} from '../../../common/types';
 import { userService } from '../../../services';
 import authService from '../../../services/auth/auth.service';
 import {
@@ -10,7 +14,6 @@ import {
   LoginResponseType,
   RegisterParamsType,
   RegisterResponseType,
-  AsyncThunkConfig,
   LogoutResponseType,
   CurrentUserInfoResponseType,
   ResetPasswordPayloadType,

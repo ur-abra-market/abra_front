@@ -1,4 +1,3 @@
-import { AppDispatchType, RootStateType } from '../../store/createStore';
 import { IProduct } from '../product/product.serviceTypes';
 import { ISellerAddressData } from '../seller/seller.serviceTypes';
 import { INotification } from '../supplier/supplier.serviceTypes';
@@ -75,17 +74,6 @@ export type CurrentUserInfoResponseType = {
   detail: {
     has_profile: boolean;
   };
-};
-
-export type AsyncThunkConfig = {
-  state: RootStateType;
-  dispatch: AppDispatchType;
-  extra?: unknown;
-  rejectValue: string;
-  serializedErrorType?: unknown;
-  pendingMeta?: unknown;
-  fulfilledMeta?: unknown;
-  rejectedMeta?: unknown;
 };
 
 export interface IBusinessInfoRequestData {
