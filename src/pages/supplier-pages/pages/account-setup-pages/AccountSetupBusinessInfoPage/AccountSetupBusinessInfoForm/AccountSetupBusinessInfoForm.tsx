@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { useAppDispatch } from '../../../../../../common/hooks';
+import { getCountries } from '../../../../../../store/reducers/commonSlice';
 import { SupplierRegisterFormStep } from '../../../../../../ui-kit';
 import {
   ISupplierBusinessInfoFormValues,
@@ -13,6 +15,7 @@ import {
 import style from './AccountSetupBusinessInfoForm.module.scss';
 
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const formMethods = useForm<ISupplierBusinessInfoFormValues>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
@@ -30,6 +33,10 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
       entrepreneurNumber: '',
     },
   });
+
+  useEffect(() => {
+    dispatch(getCountries());
+  }, []);
 
   const onSubmit = (data: any): void => {
     console.log(data);

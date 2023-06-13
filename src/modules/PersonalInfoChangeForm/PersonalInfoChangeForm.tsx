@@ -10,7 +10,7 @@ import style from './PersonalInfoChangeForm.module.css';
 
 interface IPersonalInfoChangeForm {
   phoneInputClass?: string;
-  countryShort: string;
+  countryShort?: string;
 }
 
 export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({

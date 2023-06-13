@@ -13,8 +13,8 @@ import { Label } from '../../ui-kit';
 import style from './PhoneNumberInput.module.scss';
 
 interface IPhoneNumberInput {
-  countryShort: string;
   label: string;
+  countryShort?: string;
   phoneInputClass?: string;
 }
 
@@ -34,7 +34,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
   } = useFormContext<IPersonalInfoFormData>();
 
   const phoneNumberValue = watch('phoneNumber');
-  const phoneNumberError = errors.phoneNumber?.message || '';
+  const phoneNumberError = errors.phoneNumber?.message;
 
   const handlePhoneInputOnChange = (
     value: string,
@@ -83,7 +83,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
           <PhoneInput
             inputClass={phoneInputClasses}
             buttonClass={phoneButtonClasses}
-            country={countryShort}
+            country={countryShort || 'ru'}
             value={phoneNumberValue}
             onChange={handlePhoneInputOnChange}
             onlyCountries={countries.map(el => el.country_short)}
