@@ -7,7 +7,7 @@ import style from './SupplierMenu.module.css';
 const SupplierMenu = (): JSX.Element => {
   const menu = [
     { name: 'Dashboard', path: 'dashboard' },
-    { name: 'Products List', path: 'products-list' },
+    { name: 'Products List', path: 'products_list' },
     { name: 'Orders', path: 'orders' },
     { name: 'Price Management', path: 'price' },
     { name: 'Analytics', path: 'analytics' },

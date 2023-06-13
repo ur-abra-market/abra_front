@@ -62,27 +62,27 @@ export function createRoutes(userRole: UserRoleType): Routes {
           element: <LoginPage />,
         },
         {
-          path: 'forgotPassword',
+          path: 'forgot_password',
           element: <ForgotPasswordPage />,
         },
         {
-          path: 'resetPassword',
+          path: 'reset_password',
           element: <ResetPasswordPage />,
         },
         {
-          path: 'changePassword',
+          path: 'change_password',
           element: <ChangePasswordPage />,
         },
         {
-          path: 'changeEmail',
+          path: 'change_email',
           element: <ChangeEmailPage />,
         },
         {
-          path: 'register/confirmEmail',
+          path: 'register/confirm_email',
           element: <ConfirmEmailPage />,
         },
         {
-          path: 'register/checkEmail',
+          path: 'register/check_email',
           element: <CheckEmailPage />,
         },
         {
