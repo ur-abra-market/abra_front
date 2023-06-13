@@ -22,7 +22,6 @@
   border-radius: 12px;
 }
 
-//<<<<<<<< HEAD:src/pages/supplier-pages/pages/SupplierProfilePage/SupplierProfilePage.module.scss
 .personal_info_title_logout_container {
   display: flex;
   align-items: center;
@@ -37,8 +36,6 @@
   letter-spacing: 0.16px;
 }
 
-//========
-//>>>>>>>> refactor:src/pages/supplier-pages/pages/SupplierProfilePage/SupplierProfilePage.module.css
 .personal_info_submit_btn {
   width: 100%;
   margin-top: 12px;
@@ -115,7 +112,6 @@
   padding-top: 5px;
 
   font-size: var(--fz-xs);
-  /* color: #828282; */
   color: var(--color-accent);
   letter-spacing: 0.02em;
 

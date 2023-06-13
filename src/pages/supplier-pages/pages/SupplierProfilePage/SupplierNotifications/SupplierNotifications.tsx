@@ -6,6 +6,8 @@ import { ISupplierNotifications } from '../../../../../services/supplier/supplie
 import {
   getSupplierNotifications,
   updateSupplierNotifications,
+  supplierLoadingSelector,
+  supplierNotificationsSelector,
 } from '../../../../../store/reducers/supplier/profile';
 
 export interface INotificationSupplierData {
@@ -27,18 +29,17 @@ const NOTIFICATIONS_SUPPLIER_DATA: INotificationSupplierData[] = [
 
 export const SupplierNotifications = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const notifications = useAppSelector(state => state.supplierProfile.notifications);
-  const loading = useAppSelector(state => state.supplierProfile.loading);
+  const notifications = useAppSelector(supplierNotificationsSelector);
+  const loading = useAppSelector(supplierLoadingSelector);
 
   const onNotificationChange = (id: string, value: boolean): void => {
     dispatch(updateSupplierNotifications({ id, value }));
   };
 
   useEffect(() => {
-    if (notifications) {
-      return;
+    if (!notifications) {
+      dispatch(getSupplierNotifications());
     }
-    dispatch(getSupplierNotifications());
   }, [dispatch]);
 
   return (

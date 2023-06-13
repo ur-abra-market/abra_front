@@ -1,3 +1,4 @@
+import { IServerResponse } from '../../common/types';
 import baseConfigService from '../baseConfig.service';
 
 import {
@@ -37,17 +38,17 @@ export const sellerService = {
   },
 
   getNotifications: async () => {
-    const { data } = await baseConfigService.get(`sellers/notifications/`);
+    const { data } = await baseConfigService.get<IServerResponse<ISellerNotifications>>(
+      `sellers/notifications/`,
+    );
 
     return data.result;
   },
 
   updateNotifications: async (notifications: ISellerNotifications) => {
-    const { data } = await baseConfigService.patch(
+    await baseConfigService.patch<IServerResponse<boolean>>(
       `sellers/notifications/update/`,
       notifications,
     );
-
-    return data.result;
   },
 };

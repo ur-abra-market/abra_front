@@ -3,4 +3,8 @@ export {
   getSupplierNotifications,
   updateSupplierNotifications,
 } from './thunks';
-export { supplierPersonalInfoSelector } from './selectors';
+export {
+  supplierPersonalInfoSelector,
+  supplierLoadingSelector,
+  supplierNotificationsSelector,
+} from './selectors';

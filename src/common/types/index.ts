@@ -4,4 +4,5 @@ export type {
   IImageProduct,
   IPersonalInfoRequestData,
   IPersonalInfoFormData,
+  IServerResponse,
 } from './interfaces';

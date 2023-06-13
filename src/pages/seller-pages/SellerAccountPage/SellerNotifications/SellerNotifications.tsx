@@ -6,6 +6,8 @@ import { ISellerNotifications } from '../../../../services/seller/seller.service
 import {
   getSellerNotifications,
   updateSellerNotifications,
+  sellerLoadingSelector,
+  sellerNotificationSelector,
 } from '../../../../store/reducers/seller/profile';
 
 export interface INotificationSellerData {
@@ -25,20 +27,17 @@ const NOTIFICATIONS_SELLER_DATA: INotificationSellerData[] = [
 
 export const SellerNotifications = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const notifications = useAppSelector(
-    state => state.sellerProfile.notifications || null,
-  );
-  const loading = useAppSelector(state => state.sellerProfile.loading);
+  const notifications = useAppSelector(sellerNotificationSelector);
+  const loading = useAppSelector(sellerLoadingSelector);
 
   const onNotificationChange = (id: string, value: boolean): void => {
     dispatch(updateSellerNotifications({ id, value }));
   };
 
   useEffect(() => {
-    if (notifications) {
-      return;
+    if (!notifications) {
+      dispatch(getSellerNotifications());
     }
-    dispatch(getSellerNotifications());
   }, [dispatch]);
 
   return (

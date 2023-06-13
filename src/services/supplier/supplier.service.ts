@@ -1,14 +1,14 @@
+import { IServerResponse } from '../../common/types';
 import baseConfigService from '../baseConfig.service';
 
 import {
   ISuppliersCompanyInfoData,
-  SuppliersResponse,
   ISupplierNotifications,
 } from './supplier.serviceTypes';
 
 export const supplierService = {
   hasCompanyInfo: async () => {
-    const { data } = await baseConfigService.get<SuppliersResponse<boolean>>(
+    const { data } = await baseConfigService.get<IServerResponse<boolean>>(
       `/suppliers/hasCompanyInfo/`,
     );
 
@@ -16,7 +16,7 @@ export const supplierService = {
   },
 
   hasPersonalInfo: async () => {
-    const { data } = await baseConfigService.get<SuppliersResponse<boolean>>(
+    const { data } = await baseConfigService.get<IServerResponse<boolean>>(
       `/suppliers/hasPersonalInfo/`,
     );
 
@@ -24,7 +24,7 @@ export const supplierService = {
   },
 
   fetchCompanyLogo: async () => {
-    const { data } = await baseConfigService.get<SuppliersResponse<string>>(
+    const { data } = await baseConfigService.get<IServerResponse<string>>(
       `/suppliers/companyLogo`,
     );
 
@@ -33,16 +33,16 @@ export const supplierService = {
 
   fetchCompanyInfo: async () => {
     const { data } = await baseConfigService.get<
-      SuppliersResponse<ISuppliersCompanyInfoData>
+      IServerResponse<ISuppliersCompanyInfoData>
     >(`/suppliers/companyInfo`);
 
     return data.result;
   },
 
   getNotifications: async () => {
-    const { data } = await baseConfigService.get<
-      SuppliersResponse<ISupplierNotifications>
-    >(`/suppliers/notifications/`);
+    const { data } = await baseConfigService.get<IServerResponse<ISupplierNotifications>>(
+      `/suppliers/notifications/`,
+    );
 
     return data.result;
   },
@@ -101,11 +101,9 @@ export const supplierService = {
   },
 
   updateNotifications: async (notifications: ISupplierNotifications) => {
-    const { data } = await baseConfigService.patch(
+    await baseConfigService.patch<IServerResponse<boolean>>(
       `suppliers/notifications/update/`,
       notifications,
     );
-
-    return data.result;
   },
 };
