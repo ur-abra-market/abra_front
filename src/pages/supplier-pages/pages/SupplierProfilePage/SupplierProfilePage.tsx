@@ -1,7 +1,11 @@
+import { useEffect } from 'react';
+
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { useAppDispatch } from '../../../../common/hooks';
 import { AccountManagement } from '../../../../components';
+import { getCountries } from '../../../../store/reducers/commonSlice';
 import {
   ISupplierBusinessInfoFormValues,
   SupplierBusinessInfoForm,
@@ -13,6 +17,7 @@ import style from './SupplierProfilePage.module.css';
 import { NotificationsChangeForm, SupplierPersonalInfoChangeForm } from './index';
 
 export const SupplierProfilePage = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const formMethods = useForm<ISupplierBusinessInfoFormValues>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
@@ -30,6 +35,10 @@ export const SupplierProfilePage = (): JSX.Element => {
       entrepreneurNumber: '',
     },
   });
+
+  useEffect(() => {
+    dispatch(getCountries());
+  }, []);
 
   return (
     <div className={style.supplier_cabinet}>
