@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 
 import 'react-phone-input-2/lib/style.css';
 import cn from 'classnames';
@@ -6,9 +6,8 @@ import { CountryCode, isValidNumber } from 'libphonenumber-js';
 import { useFormContext } from 'react-hook-form';
 import PhoneInput, { CountryData } from 'react-phone-input-2';
 
-import { useAppDispatch, useAppSelector } from '../../common/hooks';
+import { useAppSelector } from '../../common/hooks';
 import { IPersonalInfoFormData } from '../../common/types';
-import { getCountries } from '../../store/reducers/commonSlice';
 import { Label } from '../../ui-kit';
 
 import style from './PhoneNumberInput.module.scss';
@@ -24,7 +23,6 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
   phoneInputClass,
   label,
 }): JSX.Element => {
-  const dispatch = useAppDispatch();
   const countries = useAppSelector(state => state.common.countries);
 
   const {
@@ -36,11 +34,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
   } = useFormContext<IPersonalInfoFormData>();
 
   const phoneNumberValue = watch('phoneNumber');
-  const phoneNumberError = errors.phoneNumber?.message;
-
-  useEffect(() => {
-    dispatch(getCountries()); // todo - страны уже могу быть в слайсе, нужно запрошивать только если их нет
-  }, []);
+  const phoneNumberError = errors.phoneNumber?.message || '';
 
   const handlePhoneInputOnChange = (
     value: string,

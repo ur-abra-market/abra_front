@@ -9,7 +9,7 @@
   margin-left: 48px;
   padding: 12px 10px 15px;
 
-  font-size: 14px;
+  font-size: var(--fz-s);
   color: var(--color-black);
 
   background-color: var(--color-light-gray);
@@ -47,6 +47,6 @@
   bottom: -16px;
   left: 0;
 
-  font-size: 12px;
+  font-size: var(--fz-xs);
   color: var(--color-accent);
 }

@@ -7,8 +7,6 @@ export interface IPersonalInfoFormData {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-
-  // todo check IPersonalInfoFormData
   countryId: number | null;
 }
 
@@ -17,4 +15,4 @@ export interface IPersonalInfoRequestData {
   last_name: string;
   phone_country_code: string;
   phone_number: string;
-}
+} // todo разобраться с валидацией запросов

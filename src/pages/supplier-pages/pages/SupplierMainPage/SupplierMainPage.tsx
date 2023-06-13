@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Outlet } from 'react-router-dom';
+
+import { useAppDispatch } from '../../../../common/hooks';
+import { getCountries } from '../../../../store/reducers/commonSlice';
 
 import { SupplierLayout } from 'layouts/SupplierLayout/SupplierLayout';
 
 export const SupplierMainPage = (): JSX.Element => {
-  // const isLoading = useAppSelector(state => state.supplierAccount.isLoading);
-  // const hasProfile = useAppSelector(state => state.supplierAccount.hasProfile);
-  // const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   // useEffect(() => {
   //   if (!hasProfile) navigate('../account-setup');
@@ -16,6 +17,10 @@ export const SupplierMainPage = (): JSX.Element => {
   // if (isLoading === LoadingStatus.Loading) {
   //   return <LoaderCircular />;
   // }
+
+  useEffect(() => {
+    dispatch(getCountries());
+  }, []);
 
   return (
     <SupplierLayout>
