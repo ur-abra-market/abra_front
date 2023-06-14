@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import cn from 'classnames';
-import { Link, useMatch } from 'react-router-dom';
+import { NavLink, useMatch } from 'react-router-dom';
 
 import { Button } from '../../../../ui-kit';
 import style from '../Top.module.css';
@@ -13,21 +13,21 @@ const BuildProfileMenu: FC<BuildProfileMenuProps> = props => {
 
   const buildMenu = !isAuth ? PROFILE_MENU.UNAUTHORIZED : PROFILE_MENU.AUTHORIZED;
 
-  const location = useMatch('/personal-account');
+  const location = useMatch('/personal_account');
 
   return (
     <ul
       className={cn(style.menu, {
-        [style.menu_main]: location?.pathname !== '/personal-account/*',
-        [style.menu_profile]: location?.pathname === '/personal-account',
+        [style.menu_main]: location?.pathname !== '/personal_account/*',
+        [style.menu_profile]: location?.pathname === '/personal_account',
       })}
     >
       {buildMenu.map(({ href, label }) => (
         <li key={label} className={style.item}>
           {href !== '/logout' ? (
-            <Link to={href} state={label}>
+            <NavLink to={href} state={label}>
               {label}
-            </Link>
+            </NavLink>
           ) : (
             <Button
               type="button"
