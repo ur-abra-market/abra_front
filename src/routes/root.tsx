@@ -86,11 +86,11 @@ export function createRoutes(userRole: UserRoleType): Routes {
           element: <CheckEmailPage />,
         },
         {
-          path: 'terms&conditions',
+          path: 'terms_and_conditions',
           element: <TermsAndConditionsPage />,
         },
         {
-          path: 'privacy&policy',
+          path: 'privacy_policy',
           element: <PrivacyPolicyPage />,
         },
         {
