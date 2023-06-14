@@ -7,12 +7,12 @@ export const AccountManagement = (): JSX.Element => {
     <>
       <AccountManagementLink
         linkLabel="Change your email"
-        path="/changeEmail"
+        path="/change_email"
         description="(You will have to confirm a new email)"
       />
       <AccountManagementLink
         linkLabel="Change your password"
-        path="/changePassword"
+        path="/change_password"
         description="(In case if you forgot a current password or need a stronger one)"
       />
       <AccountManagementLink
