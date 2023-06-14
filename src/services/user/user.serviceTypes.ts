@@ -1,10 +1,10 @@
-import { CountryType } from 'services/common/common.serviceTypes';
+import { ICountry } from '../common/common.serviceTypes';
 
 export interface IResponse<T> {
   result: T;
 }
 export interface IAccountPersonalInfoResponse {
-  country: CountryType;
+  country: ICountry;
   id: number;
   datetime: string;
   phone_country_code: string;

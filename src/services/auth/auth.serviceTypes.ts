@@ -1,4 +1,3 @@
-import { AppDispatchType, RootStateType } from '../../store/createStore';
 import { IProduct } from '../product/product.serviceTypes';
 import { ISellerAddressData } from '../seller/seller.serviceTypes';
 import { INotification } from '../supplier/supplier.serviceTypes';
@@ -77,13 +76,29 @@ export type CurrentUserInfoResponseType = {
   };
 };
 
-export type AsyncThunkConfig = {
-  state: RootStateType;
-  dispatch: AppDispatchType;
-  extra?: unknown;
-  rejectValue: string;
-  serializedErrorType?: unknown;
-  pendingMeta?: unknown;
-  fulfilledMeta?: unknown;
-  rejectedMeta?: unknown;
-};
+export interface IBusinessInfoRequestData {
+  supplier_data_request: {
+    license_number: string;
+  };
+  company_data_request: {
+    phone_country_code: string;
+    phone_number: string;
+    name: string;
+    is_manufacturer: false;
+    year_established: 0;
+    number_employees: 0;
+    description: string;
+    address: string;
+    logo_url: string;
+    business_sector: string;
+    business_email: string;
+    country_id: number;
+  };
+}
+
+export interface IPersonalInfoRequestData {
+  first_name: string;
+  last_name: string;
+  country_id: number;
+  phone_number: string;
+}

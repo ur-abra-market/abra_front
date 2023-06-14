@@ -6,8 +6,10 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { personalInfoFormValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { IPersonalInfoFormData } from '../../../../../common/types';
+import { parsePhoneNumber } from '../../../../../common/utils/parsePhoneNumber';
 import { ButtonLogOut } from '../../../../../components/ButtonLogOut/ButtonLogOut';
 import { PersonalInfoChangeForm } from '../../../../../modules';
+import { countriesSelector } from '../../../../../store/reducers/commonSlice';
 import { supplierPersonalInfoSelector } from '../../../../../store/reducers/supplier/profile';
 import {
   getPersonalInfo,
@@ -18,32 +20,29 @@ import { Button } from '../../../../../ui-kit';
 import style from './SupplierPersonalInfoChangeForm.module.scss';
 
 export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const { lastName, firstName, countryShort, phoneNumber } = useAppSelector(
     supplierPersonalInfoSelector,
   );
-  const dispatch = useAppDispatch();
+  const countries = useAppSelector(countriesSelector);
+  const numberCountry = countries.find(c => c.country_short === countryShort);
 
   useEffect(() => {
     dispatch(getPersonalInfo());
   }, []);
 
   useEffect(() => {
-    if (lastName && firstName && phoneNumber) {
+    if (lastName && firstName && numberCountry) {
       setValue('firstName', firstName);
       setValue('lastName', lastName);
-      setValue('phoneNumber', phoneNumber);
+      setValue('phoneNumber', `${numberCountry.country_code}${phoneNumber}`);
+      setValue('countryId', numberCountry.id);
     }
   }, [lastName, firstName, phoneNumber]);
 
   const formMethods = useForm<IPersonalInfoFormData>({
     resolver: yupResolver(personalInfoFormValidationSchema),
     mode: 'all',
-    defaultValues: {
-      lastName: '',
-      firstName: '',
-      phoneNumber: '',
-      countryId: null,
-    },
   });
   const { watch, handleSubmit, formState, setValue } = formMethods;
 
@@ -53,20 +52,31 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
     'firstName',
   ]);
 
+  const { numberFull: currentPhoneNumber } = parsePhoneNumber(phoneNumberValue || '');
+  const serverPhoneNumber = `${numberCountry?.country_code}${phoneNumber}`;
+
   const isPersonalInfoFormDisable =
-    phoneNumberValue === phoneNumber &&
+    currentPhoneNumber === serverPhoneNumber &&
     lastNameValue === lastName &&
     firstNameValue === firstName;
 
   const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
-    dispatch(
-      updatePersonalInfo({
-        first_name: data.firstName,
-        last_name: data.lastName,
-        phone_number: data.phoneNumber,
-        country_id: data.countryId,
-      }),
-    );
+    let phoneNumberBody;
+
+    if (currentPhoneNumber !== serverPhoneNumber) {
+      const { numberBody } = parsePhoneNumber(data.phoneNumber);
+
+      phoneNumberBody = numberBody;
+    }
+
+    const updatePersonalInfoData = {
+      first_name: data.firstName,
+      last_name: data.lastName,
+      phone_number: phoneNumberBody || phoneNumber,
+      country_id: data.countryId,
+    };
+
+    dispatch(updatePersonalInfo(updatePersonalInfoData));
   };
 
   return (

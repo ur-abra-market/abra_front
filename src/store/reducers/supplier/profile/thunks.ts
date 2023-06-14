@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 import { supplierService } from '../../../../services';
 
 export const getCompanyInfo = createAsyncThunk<any, void>( // todo fix any
-  'supplierAccount/getCompanyInfo',
+  'supplierProfile/getCompanyInfo',
   async (_, { rejectWithValue }) => {
     try {
       return await supplierService.fetchCompanyInfo();
@@ -12,7 +12,7 @@ export const getCompanyInfo = createAsyncThunk<any, void>( // todo fix any
       const errorMessage =
         error instanceof AxiosError
           ? error.response?.data?.error || error.message
-          : '[getUserRole]: Error';
+          : '[getCompanyInfo]: Error';
 
       return rejectWithValue(errorMessage);
     }

@@ -33,7 +33,6 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
     formState: { errors },
   } = useFormContext<IPersonalInfoFormData>();
 
-  const phoneNumberValue = watch('phoneNumber');
   const phoneNumberError = errors.phoneNumber?.message;
 
   const handlePhoneInputOnChange = (
@@ -61,7 +60,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
       });
     } else {
       clearErrors('phoneNumber');
-      setValue('phoneNumber', value, { shouldValidate: true });
+      setValue('phoneNumber', formattedValue, { shouldValidate: true });
     }
   };
 
@@ -84,7 +83,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
             inputClass={phoneInputClasses}
             buttonClass={phoneButtonClasses}
             country={countryShort || 'ru'}
-            value={phoneNumberValue}
+            value={watch('phoneNumber')}
             onChange={handlePhoneInputOnChange}
             onlyCountries={countries.map(el => el.country_short)}
             countryCodeEditable={false}
