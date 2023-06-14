@@ -3,7 +3,6 @@ import { AxiosError } from 'axios';
 
 import { sellerService } from '../../../../services/seller/seller.service';
 import { ISellerAddressData } from '../../../../services/seller/seller.serviceTypes';
-import { RootStateType } from '../../../createStore';
 import { setResponseNotice } from '../../appSlice/slice';
 
 export const getSellerAddressesService = createAsyncThunk<ISellerAddressData[], void>(
@@ -45,29 +44,19 @@ export const getSellerNotifications = createAsyncThunk<any, void>(
 export const updateSellerNotifications = createAsyncThunk<
   void,
   { id: string; value: boolean }
->(
-  'seller/updateSellerNotifications',
-  async (param, { rejectWithValue, getState, dispatch }) => {
-    try {
-      const state = getState() as RootStateType;
-      const { notifications } = state.sellerProfile;
+>('seller/updateSellerNotifications', async (param, { rejectWithValue, dispatch }) => {
+  try {
+    await sellerService.updateNotifications({ [param.id]: param.value });
+    dispatch(getSellerNotifications());
+  } catch (error) {
+    const errorMessage =
+      error instanceof AxiosError
+        ? error.response?.data?.error || error.message
+        : '[updateSellerNotifications]: Error';
 
-      if (notifications) {
-        const new_notifications = { ...notifications, [param.id]: param.value };
+    if (error instanceof AxiosError)
+      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
 
-        await sellerService.updateNotifications(new_notifications);
-        dispatch(getSellerNotifications());
-      }
-    } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error || error.message
-          : '[updateSellerNotifications]: Error';
-
-      if (error instanceof AxiosError)
-        dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
-
-      return rejectWithValue(errorMessage);
-    }
-  },
-);
+    return rejectWithValue(errorMessage);
+  }
+});

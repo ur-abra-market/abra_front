@@ -45,10 +45,10 @@ export const sellerService = {
     return data.result;
   },
 
-  updateNotifications: async (notifications: ISellerNotifications) => {
+  updateNotifications: async (notification: Partial<ISellerNotifications>) => {
     await baseConfigService.patch<IServerResponse<boolean>>(
       `sellers/notifications/update/`,
-      notifications,
+      notification,
     );
   },
 };

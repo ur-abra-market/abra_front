@@ -1,5 +1,5 @@
 import { IProduct } from '../product/product.serviceTypes';
-import { ISellerAddressData } from '../seller/seller.serviceTypes';
+import { ISellerAddressData, ISellerNotifications } from '../seller/seller.serviceTypes';
 import { ISupplierNotifications } from '../supplier/supplier.serviceTypes';
 
 export type RegisterParamsType = {
@@ -67,7 +67,7 @@ export type CurrentUserInfoResponseType = {
     };
     seller?: {
       has_main_address?: boolean;
-      notifications?: ISupplierNotifications;
+      notifications?: ISellerNotifications;
       addresses?: ISellerAddressData[];
     };
   };

@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { supplierService } from '../../../../services';
-import { RootStateType } from '../../../createStore';
 import { setResponseNotice } from '../../appSlice/slice';
 
 export const getCompanyInfo = createAsyncThunk<any, void>( // todo fix any
@@ -45,17 +44,10 @@ export const updateSupplierNotifications = createAsyncThunk<
   { id: string; value: boolean }
 >(
   'supplierAccount/updateSupplierNotifications',
-  async (param, { rejectWithValue, getState, dispatch }) => {
+  async (param, { rejectWithValue, dispatch }) => {
     try {
-      const state = getState() as RootStateType;
-      const { notifications } = state.supplierProfile;
-
-      if (notifications) {
-        const new_notifications = { ...notifications, [param.id]: param.value };
-
-        await supplierService.updateNotifications(new_notifications);
-        dispatch(getSupplierNotifications());
-      }
+      await supplierService.updateNotifications({ [param.id]: param.value });
+      dispatch(getSupplierNotifications());
     } catch (error) {
       const errorMessage =
         error instanceof AxiosError

@@ -100,10 +100,10 @@ export const supplierService = {
     return data;
   },
 
-  updateNotifications: async (notifications: ISupplierNotifications) => {
+  updateNotifications: async (notification: Partial<ISupplierNotifications>) => {
     await baseConfigService.patch<IServerResponse<boolean>>(
       `suppliers/notifications/update/`,
-      notifications,
+      notification,
     );
   },
 };
