@@ -12,12 +12,12 @@ export interface ISupplierBusinessInfoFormValues {
   code: string;
   description: string;
   tel: string;
-  yearEstablished: number | null;
+  yearEstablished: number;
   address: string;
   isManufacturer: boolean;
   numEmployees: string;
   storeName: string;
-  businessSector: IBusinessSector | null;
+  businessSector: IBusinessSector;
   license: string;
-  countryRegistration: ICountryRegistration | null;
+  countryRegistration: ICountryRegistration;
 }

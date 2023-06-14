@@ -17,19 +17,6 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const formMethods = useForm<ISupplierBusinessInfoFormValues>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
-    defaultValues: {
-      email: '',
-      code: '',
-      description: '',
-      tel: '',
-      yearEstablished: null,
-      address: '',
-      isManufacturer: false,
-      numEmployees: '',
-      storeName: '',
-      businessSector: null,
-      license: '',
-    },
   });
 
   return (
