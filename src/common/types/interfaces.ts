@@ -22,3 +22,8 @@ export interface AsyncThunkConfig {
   fulfilledMeta?: unknown;
   rejectedMeta?: unknown;
 }
+
+export interface IServerResponse<R> {
+  ok: boolean;
+  result: R;
+}

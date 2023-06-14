@@ -60,6 +60,12 @@
   background: #FC133D;
 }
 
+.input_notification:disabled {
+  /*justify-content: right;*/
+  /*display: none;*/
+  background: #999;
+}
+
 .input_default {
   cursor: pointer;
 

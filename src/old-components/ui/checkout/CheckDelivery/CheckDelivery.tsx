@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import { getAddress } from '../../../../store/reducers/sellerCheckoutSlice';
-import { getSellerInfoService } from '../../../../store/reducers/sellerSlice';
+// import { getSellerInfoService } from '../../../../store/reducers/sellerSlice';
 import CheckoutAddress from '../../../CheckoutAddress/CheckoutAddress';
 import AddressPopup from '../../popup/AddressPopup';
 
@@ -20,7 +20,7 @@ const CheckDelivery = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(getAddress());
-    dispatch(getSellerInfoService());
+    // dispatch(getSellerInfoService());
   }, [dispatch]);
   const handleOnClick = (id: number): void => {
     setSelectedAddress(id);

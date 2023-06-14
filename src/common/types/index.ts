@@ -4,4 +4,5 @@ export type {
   IImageProduct,
   IPersonalInfoFormData,
   AsyncThunkConfig,
+  IServerResponse,
 } from './interfaces';

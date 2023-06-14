@@ -1,14 +1,14 @@
+import { IServerResponse } from '../../common/types';
 import baseConfigService from '../baseConfig.service';
 
 import {
-  ISuppliersNotifications,
   ISuppliersCompanyInfoData,
-  SuppliersResponse,
+  ISupplierNotifications,
 } from './supplier.serviceTypes';
 
 export const supplierService = {
   hasCompanyInfo: async () => {
-    const { data } = await baseConfigService.get<SuppliersResponse<boolean>>(
+    const { data } = await baseConfigService.get<IServerResponse<boolean>>(
       `/suppliers/hasCompanyInfo/`,
     );
 
@@ -16,7 +16,7 @@ export const supplierService = {
   },
 
   hasPersonalInfo: async () => {
-    const { data } = await baseConfigService.get<SuppliersResponse<boolean>>(
+    const { data } = await baseConfigService.get<IServerResponse<boolean>>(
       `/suppliers/hasPersonalInfo/`,
     );
 
@@ -24,7 +24,7 @@ export const supplierService = {
   },
 
   fetchCompanyLogo: async () => {
-    const { data } = await baseConfigService.get<SuppliersResponse<string>>(
+    const { data } = await baseConfigService.get<IServerResponse<string>>(
       `/suppliers/companyLogo`,
     );
 
@@ -33,7 +33,7 @@ export const supplierService = {
 
   fetchCompanyInfo: async () => {
     const { data } = await baseConfigService.get<
-      SuppliersResponse<ISuppliersCompanyInfoData>
+      IServerResponse<ISuppliersCompanyInfoData>
     >(`/suppliers/companyInfo`);
 
     return data.result;
@@ -45,10 +45,10 @@ export const supplierService = {
     return data.result;
   },
 
-  fetchNotifications: async () => {
-    const { data } = await baseConfigService.get<
-      SuppliersResponse<ISuppliersNotifications>
-    >(`/suppliers/notifications/`);
+  getNotifications: async () => {
+    const { data } = await baseConfigService.get<IServerResponse<ISupplierNotifications>>(
+      `/suppliers/notifications/`,
+    );
 
     return data.result;
   },
@@ -98,5 +98,12 @@ export const supplierService = {
     );
 
     return data;
+  },
+
+  updateNotifications: async (notification: Partial<ISupplierNotifications>) => {
+    await baseConfigService.patch<IServerResponse<boolean>>(
+      `suppliers/notifications/update/`,
+      notification,
+    );
   },
 };
