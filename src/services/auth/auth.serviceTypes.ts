@@ -95,3 +95,10 @@ export interface IBusinessInfoRequestData {
     country_id: number;
   };
 }
+
+export interface IPersonalInfoRequestData {
+  first_name: string;
+  last_name: string;
+  country_id: number;
+  phone_number: string;
+}

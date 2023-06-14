@@ -9,15 +9,8 @@ export interface IPersonalInfoFormData {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  countryId: number | null;
+  countryId: number;
 }
-
-export interface IPersonalInfoRequestData {
-  first_name: string;
-  last_name: string;
-  phone_country_code: string;
-  phone_number: string;
-} // todo разобраться с валидацией запросов
 
 export interface AsyncThunkConfig {
   state: RootStateType;

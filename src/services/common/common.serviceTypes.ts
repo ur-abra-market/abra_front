@@ -10,6 +10,9 @@ export interface ICountry {
   id: number;
   country: string;
   country_short: string;
+  country_code: string;
+  currency: string;
+  flag: string;
 }
 
 export type CountriesType = ICountry[];

@@ -6,10 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { personalInfoFormValidationSchema } from '../../../../../../common/constants';
 import { useAppDispatch } from '../../../../../../common/hooks';
-import {
-  IPersonalInfoRequestData,
-  IPersonalInfoFormData,
-} from '../../../../../../common/types';
+import { IPersonalInfoFormData } from '../../../../../../common/types';
 import { parsePhoneNumber } from '../../../../../../common/utils/parsePhoneNumber';
 import Modal from '../../../../../../components/Modal';
 import { ModalChildPhoneCheck } from '../../../../../../components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
@@ -19,6 +16,8 @@ import { getCountries } from '../../../../../../store/reducers/commonSlice';
 import { Button, SupplierRegisterFormStep } from '../../../../../../ui-kit';
 
 import style from './SupplierPersonalInfoForm.module.scss';
+
+import { IPersonalInfoRequestData } from 'services/auth/auth.serviceTypes';
 
 export const SupplierPersonalInfoForm = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
@@ -40,19 +39,19 @@ export const SupplierPersonalInfoForm = (): JSX.Element => {
   }, []);
 
   const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
-    const { countryCode, numberBody } = parsePhoneNumber(data.phoneNumber);
+    const { numberBody } = parsePhoneNumber(data.phoneNumber);
 
     const personalInfoData: IPersonalInfoRequestData = {
       first_name: data.firstName,
       last_name: data.lastName,
-      phone_country_code: countryCode,
+      country_id: data.countryId,
       phone_number: numberBody,
     };
 
     const actionResult = await dispatch(createAccountPersonalInfo(personalInfoData));
 
     if (createAccountPersonalInfo.fulfilled.match(actionResult)) {
-      navigate('/business-profile');
+      navigate('/account_setup_business_info');
     }
   };
 
