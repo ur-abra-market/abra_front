@@ -6,3 +6,4 @@ export { UploadImage } from './UploadImage/UploadImage';
 export { NoticePopup } from './NoticePopup/NoticePopup';
 export { AccountManagement } from './AccountManagement/AccountManagement';
 export { ContentMessage } from './ContentMessage/ContentMessage';
+export { PhoneNumberInput } from './PhoneNumberInput/PhoneNumberInput';

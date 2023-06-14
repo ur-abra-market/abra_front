@@ -11,7 +11,7 @@ export type BaseResponseType<R> = {
 export type CountryType = {
   id: number;
   country: string;
-  country_code: string;
+  country_short: string;
 };
 
 export interface IAccountPersonalInfoRequest {
