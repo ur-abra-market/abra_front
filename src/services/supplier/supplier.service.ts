@@ -39,6 +39,12 @@ export const supplierService = {
     return data.result;
   },
 
+  updateCompanyInfo: async () => {
+    const { data } = await baseConfigService.patch(`/suppliers/companyInfo/update/`); // todo add type
+
+    return data.result;
+  },
+
   getNotifications: async () => {
     const { data } = await baseConfigService.get<IServerResponse<ISupplierNotifications>>(
       `/suppliers/notifications/`,
@@ -92,12 +98,6 @@ export const supplierService = {
     );
 
     return data;
-  },
-
-  getAccountData: async () => {
-    const { data } = await baseConfigService.get(`suppliers/getSupplierInfo/`);
-
-    return data.result;
   },
 
   updateNotifications: async (notifications: ISupplierNotifications) => {

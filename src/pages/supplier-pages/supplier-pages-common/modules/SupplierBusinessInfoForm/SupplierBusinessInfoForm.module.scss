@@ -1,81 +1,31 @@
-.main_info_title {
-  font-size: var(--fz-l2);
-  font-weight: var(--bold);
-  text-align: left;
+@import "./src/common/styles/mixins";
+
+.main_info, .company_info, .contacts_info {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--form-row-gap);
+  margin: 24px 0 36px;
 }
 
-.add_logo {
-  margin-top: 24px;
-}
-
-.company_info {
-  margin-bottom: 36px;
+.subtitle {
+  @include form_subtitle;
 }
 
 .select_info_inputs {
   display: flex;
-  gap: 15px;
-  margin: 24px 0 16px;
+  gap: var(--form-column-gap);
 }
 
-.shop_name {
-  width: 100%;
-}
-
-.select_company {
-  margin-bottom: 40px;
-}
-
-.select_update_company {
-  margin-bottom: 36px;
-}
-
-.phone_number {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 15px;
-  align-items: flex-end;
-
-  margin: 16px 0;
-}
-
-.license_reminder {
-  margin: 16px 0 24px;
+.license_description {
   font-size: var(--fz-xs);
-  color: var(--color-dark-gray);
-  text-align: left;
-}
-
-.list_img_title {
-  margin: 16px 0 8px;
-  font-size: var(--fz-xs2);
-  color: var(--color-medium-gray);
-  text-align: left;
-}
-
-.list_img {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 40px;
 }
 
 .contacts_inputs {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 40px;
+  gap: var(--form-row-gap);
 }
 
 .button {
   width: 100%;
 }
-
-.explanatory_form {
-  margin-top: 20px;
-  font-size: var(--fz-xs);
-}
-
-.checkbox {
-  margin: 0 4px 24px 0;
-}
-

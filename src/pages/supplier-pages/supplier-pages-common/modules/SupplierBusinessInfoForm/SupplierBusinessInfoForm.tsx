@@ -1,13 +1,12 @@
 import React, { FC, useEffect } from 'react';
 
-import cn from 'classnames';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { UploadImage } from '../../../../../components';
-import { Action } from '../../../../../services/user/user.service';
 import {
+  countriesSelector,
   getCompanyNumberEmployees,
+  getCountries,
   numberEmployeesSelector,
 } from '../../../../../store/reducers/commonSlice';
 import {
@@ -30,17 +29,16 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
 
 interface IBusinessProfileForm {
   updateForm?: boolean;
-  title: string;
-  onSubmit: (data: any) => void;
+  onSubmit: (data: any) => void; // todo fix any
 }
 
 export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
   updateForm,
-  title,
   onSubmit,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const numberEmployees = useAppSelector(numberEmployeesSelector);
+  const countries = useAppSelector(countriesSelector);
   const {
     register,
     handleSubmit,
@@ -50,26 +48,12 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 
   useEffect(() => {
     dispatch(getCompanyNumberEmployees());
+    dispatch(getCountries());
   }, []);
-
-  const selectCompanyClasses = cn(style.select_company, {
-    [style.select_update_company]: updateForm,
-  });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={style.main_info}>
-        <p className={style.main_info_title}>{title}</p>
-
-        <div className={style.add_logo}>
-          <UploadImage
-            action={Action.UPLOAD_LOGO_IMAGE}
-            type="logo"
-            label="Add logo or profile image"
-            placeholder="The customers will recognize your store by this image"
-          />
-        </div>
-
         <div className={style.select_info_inputs}>
           <Label label="Shop name* (will be shown on the profile)">
             <Input
@@ -80,7 +64,6 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
             />
           </Label>
 
-          <div className={style.select_width} />
           <Controller
             control={control}
             name="businessSector"
@@ -97,30 +80,30 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
           />
         </div>
 
-        <div className={selectCompanyClasses}>
-          <Checkbox
-            className={style.checkbox}
-            label="I am a manufacturer"
-            variant="default"
-            size="sm"
+        <Checkbox
+          className={style.checkbox}
+          label="I am a manufacturer"
+          variant="default"
+          size="sm"
+        />
+
+        <Label label="License or entrepreneur number*">
+          <Input
+            {...register('license')}
+            error={errors?.license?.message}
+            placeholder="000 – 00 – 0000"
           />
+        </Label>
 
-          <Label label="License or entrepreneur number*">
-            <Input
-              {...register('entrepreneurNumber')}
-              error={errors?.entrepreneurNumber?.message}
-              placeholder="000 – 00 – 0000"
-            />
-          </Label>
-
-          <p className={style.explanatory_form}>
+        {updateForm && (
+          <p className={style.license_description}>
             Use the number of any document authorizing the sale
           </p>
-        </div>
+        )}
       </div>
 
       <div className={style.company_info}>
-        <p className={style.main_info_title}>Company Info (optional)</p>
+        <p className={style.subtitle}>Company Info (optional)</p>
         <div className={style.select_info_inputs}>
           <Label label="Year established*">
             <Input
@@ -154,28 +137,40 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
           />
         </div>
 
+        <Controller
+          control={control}
+          name="countryRegistration"
+          render={({ field }) => (
+            <Label label="Country of company registration*">
+              <Select
+                {...field}
+                error={errors?.countryRegistration?.message}
+                options={countries.map(el => ({
+                  value: el.id,
+                  label: el.country,
+                }))}
+                placeholder="Select"
+                onChange={value => {
+                  field.onChange(value.value);
+                }}
+              />
+            </Label>
+          )}
+        />
+
         <Label label="About the business">
           <Input
-            {...register('aboutBusiness')}
-            error={errors?.aboutBusiness?.message}
+            {...register('description')}
+            error={errors?.description?.message}
             placeholder="Tell more about your company or business"
           />
         </Label>
       </div>
 
-      <div>
-        <p className={style.main_info_title}>Contacts</p>
-        <div className={style.phone_number}>
-          {/* todo заменить на PhoneInput */}
-          {/* <Label label="Business phone number">
-                <Select {...register('code')} name="code" options={PHONE_DATA} />
-              </Label>
-              <Input
-                placeholder="(XXX) XXX - XX - XX"
-                {...register('tel')}
-                error={errors?.tel?.message}
-              /> */}
-        </div>
+      <div className={style.contacts_info}>
+        <p className={style.subtitle}>Contacts</p>
+
+        {/* todo вставить PhoneInput */}
 
         <div className={style.contacts_inputs}>
           <Label label="Business email address">

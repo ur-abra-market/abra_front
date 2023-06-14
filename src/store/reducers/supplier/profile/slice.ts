@@ -9,8 +9,8 @@ import { getSupplierNotifications, updateSupplierNotifications } from './thunks'
 export interface ISupplierPersonalInfo {
   firstName: string;
   lastName: string;
-  phoneCountryCode: string;
-  phoneNumberBody: string;
+  countryShort: string;
+  phoneNumber: string;
 }
 
 interface ISupplierProfileSliceInitialState {
@@ -24,8 +24,8 @@ const initialState: ISupplierProfileSliceInitialState = {
   personalInfo: {
     firstName: '',
     lastName: '',
-    phoneCountryCode: '',
-    phoneNumberBody: '',
+    countryShort: '',
+    phoneNumber: '',
   },
   notifications: null,
 };
@@ -42,8 +42,8 @@ export const supplierProfileSlice = createSlice({
       .addCase(getPersonalInfo.fulfilled, (state, action) => {
         state.personalInfo.lastName = action.payload.last_name;
         state.personalInfo.firstName = action.payload.first_name;
-        state.personalInfo.phoneCountryCode = action.payload.phone_country_code;
-        state.personalInfo.phoneNumberBody = action.payload.phone_number;
+        state.personalInfo.countryShort = action.payload.country.country_short;
+        state.personalInfo.phoneNumber = action.payload.phone_number;
         state.loading = LoadingStatus.Success;
       });
     builder

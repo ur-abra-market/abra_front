@@ -3,10 +3,10 @@ import React, { FC } from 'react';
 import cn from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 
-import { useAppSelector } from '../../common/hooks/useAppSelector';
+import { useAppSelector } from '../../common/hooks';
 import { LocationAndCurrencySelection } from '../../components/LocationAndCurrencySelection/LocationAndCurrencySelection';
-import { Container } from '../../old-components';
 import HeaderNavMenu from '../../old-components/HeaderNavMemu';
+import { Container } from '../../ui-kit';
 
 import style from './Footer.module.css';
 import { FooterProps } from './Footer.props';
@@ -39,8 +39,8 @@ const Footer: FC<FooterProps> = (props): JSX.Element => {
         <Container>
           <div className={style.flex_box}>
             <div className={style.links}>
-              <Link to="/terms&conditions">Terms & Conditions</Link>
-              <Link to="/privacy&policy">Privacy Policy</Link>
+              <Link to="/terms_and_conditions">Terms & Conditions</Link>
+              <Link to="/privacy_policy">Privacy Policy</Link>
             </div>
             <div className={style.copyright}>
               <span>© Copyright 2023</span>
