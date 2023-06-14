@@ -1,18 +1,23 @@
 interface IBusinessSector {
-  label: string;
   value: string;
+}
+
+interface ICountryRegistration {
+  label: string;
+  value: number;
 }
 
 export interface ISupplierBusinessInfoFormValues {
   email: string;
   code: string;
-  aboutBusiness: string;
+  description: string;
   tel: string;
-  yearEstablished: number | null;
+  yearEstablished: number;
   address: string;
-  checkbox: boolean;
+  isManufacturer: boolean;
   numEmployees: string;
   storeName: string;
-  businessSector: IBusinessSector | null;
-  entrepreneurNumber: string;
+  businessSector: IBusinessSector;
+  license: string;
+  countryRegistration: ICountryRegistration;
 }

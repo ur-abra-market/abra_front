@@ -4,7 +4,6 @@ export {
   loginUser,
   logout,
   getCurrentUserInfo,
-  sendAccountPersonalInfo,
   updateAccountPersonalInfo,
   changePassword,
   checkToken,
