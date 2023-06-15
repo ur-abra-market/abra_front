@@ -28,7 +28,7 @@ export const ProductListPage = (): JSX.Element => {
         <ProductFilter />
         <ProductList />
       </div>
-      <Footer />
+      <Footer variant="default" />
     </>
   );
 };

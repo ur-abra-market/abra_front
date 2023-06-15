@@ -18,7 +18,7 @@ export const Layout: FC<LayoutProps> = ({ children }): JSX.Element => {
         {children}
       </main>
 
-      <Footer className={styles.footer} />
+      <Footer variant="default" className={styles.footer} />
     </div>
   );
 };

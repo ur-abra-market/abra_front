@@ -120,7 +120,7 @@ export const OrderHistoryPage = (): JSX.Element => {
           )}
         </div>
       </div>
-      <Footer />
+      <Footer variant="default" />
     </>
   );
 };

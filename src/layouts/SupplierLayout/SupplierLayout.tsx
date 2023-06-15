@@ -13,7 +13,7 @@ export const SupplierLayout: FC<LayoutProps> = ({ children }): JSX.Element => {
       <main className={styles.body} role="main">
         {children}
       </main>
-      <Footer className={styles.footer} />
+      <Footer variant="default" className={styles.footer} />
     </div>
   );
 };

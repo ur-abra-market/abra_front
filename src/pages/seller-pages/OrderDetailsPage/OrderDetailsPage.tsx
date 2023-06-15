@@ -164,7 +164,7 @@ export const OrderDetailsPage = (): JSX.Element => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer variant="default" />
     </>
   );
 };

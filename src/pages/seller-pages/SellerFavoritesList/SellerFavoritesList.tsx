@@ -53,7 +53,7 @@ export const SellerFavoritesList = (): JSX.Element => {
         </div>
       </Container>
       <Feedback />
-      <Footer />
+      <Footer variant="default" />
     </div>
   );
 };

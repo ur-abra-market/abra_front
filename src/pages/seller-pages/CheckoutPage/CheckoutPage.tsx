@@ -37,7 +37,7 @@ export const CheckoutPage = (): JSX.Element => {
         <CheckOrder />
       </div>
       <ButtonInfo className={style.info_bottom} />
-      <Footer />
+      <Footer variant="default" />
     </div>
   );
 };

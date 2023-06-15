@@ -268,7 +268,7 @@ export const SellerAccountPage = (): JSX.Element => {
           </div>
         </div>
       </Container>
-      <Footer />
+      <Footer variant="default" />
     </div>
   );
 };
