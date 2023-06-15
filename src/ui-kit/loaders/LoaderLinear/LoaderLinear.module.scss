@@ -20,13 +20,13 @@
 
     background-color: var(--color-accent);
 
-    -webkit-animation: lineAnim 1s linear infinite;
-    -moz-animation: lineAnim 1s linear infinite;
-    animation: lineAnim 1s linear infinite;
+    -webkit-animation: line_animation 1s linear infinite;
+    -moz-animation: line_animation 1s linear infinite;
+    animation: line_animation 1s linear infinite;
   }
 }
 
-@keyframes lineAnim {
+@keyframes line_animation {
   0% {
     left: -40%;
   }
