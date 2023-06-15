@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
+import { createBrowserRouter, RouteObject } from 'react-router-dom';
 
 import { UserRoleType } from '../common/types';
+import { combinePrivateRoutes } from '../common/utils/combinePrivateRoutes';
 import {
   AboutUsPage,
   ChangeEmailPage,
@@ -34,6 +35,7 @@ export function createRoutes(userRole: UserRoleType): Routes {
 
   if (userRole === 'supplier') child = supplierRoute;
   if (userRole === 'seller') child = sellerRoute;
+  if (userRole === null) child = combinePrivateRoutes();
 
   return createBrowserRouter([
     {
@@ -45,10 +47,6 @@ export function createRoutes(userRole: UserRoleType): Routes {
       ),
       children: [
         ...child,
-        {
-          path: '*',
-          element: <Navigate to="/login" />,
-        },
         {
           path: '/',
           element: <MainPage />,

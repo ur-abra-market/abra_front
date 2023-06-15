@@ -2,7 +2,7 @@ import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 import { emailValidationSchema } from '../../../../../common/constants';
@@ -32,7 +32,6 @@ export const LoginForm = (): JSX.Element => {
   const loading = useAppSelector(state => state.app.loading);
   const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const {
     register,
@@ -47,7 +46,9 @@ export const LoginForm = (): JSX.Element => {
     dispatch(loginUser(data));
   };
 
-  if (isAuthorized) navigate('/');
+  if (isAuthorized) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>

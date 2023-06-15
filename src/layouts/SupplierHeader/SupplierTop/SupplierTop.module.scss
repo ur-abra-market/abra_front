@@ -6,7 +6,7 @@
   width: 100%;
   padding: 26px 0;
 
-  background-color: #FFF;
+  background-color: var(--color-white);
   border-bottom: 1px solid var(--color-light-gray);
 }
 
@@ -26,9 +26,9 @@
 }
 
 .supplier_link {
-  font-size: 20px;
+  font-size: var(--fz-l2);
   font-weight: var(--semi-bold);
-  color: #000;
+  color: var(--color-black);
   letter-spacing: 0.38px;
 }
 
@@ -47,7 +47,7 @@
   left: 0;
 
   opacity: 0;
-  background-color: rgb(0 0 0 / 1%);
+  background-color: rgba(0, 0, 0, 0.01);
 
   transition: 0.3s;
 }
@@ -70,7 +70,7 @@
   gap: 10px;
   align-items: center;
 
-  font-size: 15px;
+  font-size: var(--fz-s2);
   line-height: calc(20 / 15);
   letter-spacing: 0.16px;
 
@@ -109,7 +109,7 @@
   padding: 32px;
 
   font-family: var(--roboto);
-  font-size: 18px;
+  font-size: var(--fz-l);
   font-weight: var(--medium);
   font-style: normal;
   line-height: 24px;
