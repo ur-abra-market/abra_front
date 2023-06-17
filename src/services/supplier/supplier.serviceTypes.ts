@@ -68,7 +68,42 @@ export interface ICompanyInfo {
   number_employees: number;
   description: string;
   address: string;
-  logo_url: string;
   business_sector: string;
+  country: ICountryInfo;
+  phone: IPhoneInfo;
   images: any[];
+}
+
+interface ICountryInfo {
+  id: number;
+  country: string;
+  country_code: string;
+  country_short: string;
+  currency: string;
+  flag: string;
+}
+
+interface IPhoneInfo {
+  id: number;
+  phone_number: string;
+  country: ICountryInfo;
+}
+
+export interface ISuppliersUpdateCompanyInfo {
+  supplier_data_request: ISupplierLicense;
+  company_data_request: Omit<IUpdateCompanyInfo, 'id' | 'country' | 'phone' | 'images'>;
+  company_phone_data_request: ISuppliersCompanyPhoneData;
+}
+
+export interface ISupplierLicense {
+  license_number: string;
+}
+
+interface IUpdateCompanyInfo extends ICompanyInfo {
+  country_id: number;
+}
+
+export interface ISuppliersCompanyPhoneData {
+  country_id: number;
+  phone_number: string;
 }

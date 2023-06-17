@@ -8,16 +8,16 @@ interface ICountryRegistration {
 }
 
 export interface ISupplierBusinessInfoFormValues {
-  email: string;
-  code: string;
-  description: string;
-  tel: string;
-  yearEstablished: number;
-  address: string;
-  isManufacturer: boolean;
-  numEmployees: string;
-  storeName: string;
+  shopName: string;
   businessSector: IBusinessSector;
-  license: string;
+  isManufacturer: boolean;
+  licenseNumber: string;
+  yearEstablished: number;
+  numberEmployees: number;
   countryRegistration: ICountryRegistration;
+  description: string;
+  businessEmail: string;
+  address: string;
+  code: string;
+  tel: string;
 }

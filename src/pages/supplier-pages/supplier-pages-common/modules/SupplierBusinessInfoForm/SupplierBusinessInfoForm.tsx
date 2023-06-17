@@ -29,7 +29,7 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
 
 interface IBusinessProfileForm {
   updateForm?: boolean;
-  onSubmit: (data: any) => void; // todo fix any
+  onSubmit: (data: ISupplierBusinessInfoFormValues) => void;
 }
 
 export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
@@ -57,8 +57,8 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         <div className={style.select_info_inputs}>
           <Label label="Shop name* (will be shown on the profile)">
             <Input
-              {...register('storeName')}
-              error={errors?.storeName?.message}
+              {...register('shopName')}
+              error={errors?.shopName?.message}
               placeholder="Enter your company or store name"
               className={style.shop_name}
             />
@@ -89,8 +89,8 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 
         <Label label="License or entrepreneur number*">
           <Input
-            {...register('license')}
-            error={errors?.license?.message}
+            {...register('licenseNumber')}
+            error={errors?.licenseNumber?.message}
             placeholder="000 – 00 – 0000"
           />
         </Label>
@@ -115,12 +115,12 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 
           <Controller
             control={control}
-            name="numEmployees"
+            name="numberEmployees"
             render={({ field }) => (
               <Label label="Number of employees*">
                 <Select
                   {...field}
-                  error={errors?.numEmployees?.message}
+                  error={errors?.numberEmployees?.message}
                   options={numberEmployees.map(el => ({
                     value: el.id,
                     label: el.number,
@@ -175,8 +175,8 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         <div className={style.contacts_inputs}>
           <Label label="Business email address">
             <Input
-              {...register('email')}
-              error={errors?.email?.message}
+              {...register('businessEmail')}
+              error={errors?.businessEmail?.message}
               width="266px"
               placeholder="business@email.com"
             />
