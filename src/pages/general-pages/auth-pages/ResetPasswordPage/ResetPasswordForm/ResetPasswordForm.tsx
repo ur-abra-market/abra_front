@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
@@ -45,12 +45,17 @@ export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
     watch,
     formState: { isValid, errors },
     handleSubmit,
+    trigger,
   } = useForm<ResetPasswordPayloadType>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
   const watchPassword = watch('new_password' || 'confirm_password');
   const loading = useAppSelector(state => state.app.loading);
+
+  useEffect(() => {
+    if (watch('confirm_password')) trigger('confirm_password');
+  }, [watch('new_password')]);
 
   const onSubmit = async (data: IFormValues): Promise<void> => {
     const actionResult = await dispatch(resetPassword({ ...data, token }));

@@ -15,15 +15,24 @@ import { Button } from 'ui-kit';
 
 export const ResetPasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const tokenStatus = useAppSelector(state => state.auth.passwordActionsResult);
+  const { passwordActionsResult, userRole } = useAppSelector(state => state.auth);
 
+  const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
+
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const modalCloseHandler = (value: boolean): void => {
     setModalActive(value);
-    navigate('/login');
+    switch (userRole) {
+      case 'seller':
+        return navigate('/personal_account');
+      case 'supplier':
+        return navigate('/');
+      default:
+        return navigate('/login');
+    }
   };
 
   useEffect(() => {
@@ -37,7 +46,7 @@ export const ResetPasswordPage = (): JSX.Element => {
         <div className={style.subheader}>
           Enter a new password that matches the criteria
         </div>
-        {tokenStatus === 'TOKEN_IS_ACTIVE' && (
+        {passwordActionsResult === 'TOKEN_IS_ACTIVE' && (
           <ResetPasswordForm setModalActive={setModalActive} token={token!} />
         )}
       </AuthPageLayout>

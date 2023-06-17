@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
@@ -19,7 +19,7 @@ const formValidationSchema = yup
   .shape({
     old_password: passwordValidationSchema,
     new_password: passwordValidationSchema.notOneOf(
-      [yup.ref('old_password')],
+      [yup.ref('old_password'), null],
       'Passwords must not match',
     ),
   })
@@ -32,17 +32,23 @@ interface ChangePasswordFormProps {
 export const ChangePasswordForm: FC<ChangePasswordFormProps> = ({ setModalActive }) => {
   const loading = useAppSelector(state => state.app.loading);
   const dispatch = useAppDispatch();
+
   const {
     register,
     watch,
     formState: { isValid, errors },
     handleSubmit,
+    trigger,
   } = useForm<ChangePasswordPayloadType>({
     resolver: yupResolver(formValidationSchema),
-    mode: 'all',
+    mode: 'onChange',
   });
 
   const watchPassword = watch('new_password' || 'old_password');
+
+  useEffect(() => {
+    if (watch('new_password')) trigger('new_password');
+  }, [watch('old_password')]);
 
   const onSubmit = async (data: ChangePasswordPayloadType): Promise<void> => {
     const actionResult = await dispatch(changePassword(data));

@@ -51,7 +51,7 @@ export const RegisterForm = (): JSX.Element => {
   const onSubmit = async (data: IFormValues): Promise<void> => {
     dispatch(registerUser({ ...data, route: userRole })).then(
       ({ meta: { requestStatus } }) => {
-        if (requestStatus === 'fulfilled') navigate('/register/checkEmail');
+        if (requestStatus === 'fulfilled') navigate('/register/check_email');
       },
     );
   };
