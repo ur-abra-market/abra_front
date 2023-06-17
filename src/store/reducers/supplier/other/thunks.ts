@@ -23,9 +23,7 @@ export const getCompanyInfoService = createAsyncThunk<any, void>(
   'supplier/getCompanyInfoService',
   async (_, { rejectWithValue }) => {
     try {
-      const data = await supplierService.getSupplierCompanyInfo();
-
-      return data.result;
+      return await supplierService.fetchCompanyInfo();
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
