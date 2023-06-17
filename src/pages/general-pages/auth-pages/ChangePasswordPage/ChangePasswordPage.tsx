@@ -21,7 +21,7 @@ export const ChangePasswordPage = (): JSX.Element => {
     setModalActive(value);
 
     if (userRole === 'seller') {
-      navigate('/personal-account');
+      navigate('/personal_account');
     } else {
       navigate('/');
     }
