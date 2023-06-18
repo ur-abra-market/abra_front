@@ -26,12 +26,13 @@ export interface ISelectOption {
 
 export interface ISelect {
   options: ISelectOption[];
+  customValue?: ISelectOption;
   onChange?: (value: ISelectOption) => void;
   error?: string;
   children?: ReactNode;
   placeholder?: string;
   menuHeight?: string;
-  defaultValue?: string;
+  defaultValue?: string | number;
   width?: string;
   className?: string;
   menuItemsPosition?: SelectPositionType;
@@ -43,6 +44,7 @@ export const Select = forwardRef(
   (
     {
       options,
+      customValue,
       placeholder,
       onChange,
       error,
@@ -65,17 +67,23 @@ export const Select = forwardRef(
     const [selectedValue, setSelectedVale] =
       useState<ISelectOption>(defaultSelectedValue);
 
+    const currentSelectedValue = customValue !== undefined ? customValue : selectedValue;
+
     useEffect(() => {
       if (defaultValue) {
-        const currentValue = options.find(el => el.label === defaultValue);
+        const currentValue = options.find(el => el.value === defaultValue);
 
         if (currentValue) setSelectedVale(currentValue);
       }
     }, [defaultValue, options]);
 
     const handleSetSelectedValue = (incomingData: ISelectOption): void => {
-      if (incomingData !== selectedValue) {
-        setSelectedVale(incomingData);
+      if (incomingData !== currentSelectedValue) {
+        if (customValue !== undefined) {
+          setSelectedVale(customValue);
+        } else {
+          setSelectedVale(incomingData);
+        }
         if (onChange) {
           onChange(incomingData);
         }
@@ -182,7 +190,7 @@ export const Select = forwardRef(
         <SelectHeader
           menuItemsPosition={menuItemsPosition}
           className={headerClassname}
-          currentSelectedValue={selectedValue}
+          currentSelectedValue={currentSelectedValue}
           isOpenMenu={isOpenItemsMenu}
           onClick={handleChangeSelectState}
         />

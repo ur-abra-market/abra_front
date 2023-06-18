@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { IPersonalInfoFormData } from '../../../../../common/types';
 import { parsePhoneNumber } from '../../../../../common/utils/parsePhoneNumber';
 import { ButtonLogOut } from '../../../../../components/ButtonLogOut/ButtonLogOut';
+import { PhoneNumber } from '../../../../../components/PhoneNumber/PhoneNumber';
 import { PersonalInfoChangeForm } from '../../../../../modules';
 import { countriesSelector } from '../../../../../store/reducers/commonSlice';
 import { supplierPersonalInfoSelector } from '../../../../../store/reducers/supplier/profile';
@@ -89,6 +90,8 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
       <FormProvider {...formMethods}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <PersonalInfoChangeForm countryShort={countryShort} />
+
+          <PhoneNumber />
 
           <Button
             type="submit"

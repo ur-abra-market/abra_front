@@ -12,7 +12,7 @@ export interface IInput
   extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   classNameWrapper?: string;
   error?: string;
-  type?: 'text' | 'textarea' | 'password' | 'date';
+  type?: 'text' | 'textarea' | 'password' | 'date' | 'number';
   variant?: 'primary' | 'password';
 }
 
