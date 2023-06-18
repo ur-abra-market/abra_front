@@ -4,7 +4,7 @@ interface IBusinessSector {
 
 interface ICountryRegistration {
   label: string;
-  value: number;
+  value: number | null;
 }
 
 export interface ISupplierBusinessInfoFormValues {
@@ -12,10 +12,10 @@ export interface ISupplierBusinessInfoFormValues {
   code: string;
   description: string;
   tel: string;
-  yearEstablished: number;
+  yearEstablished: number | null;
   address: string;
   isManufacturer: boolean;
-  numEmployees: string;
+  numEmployees: number | null;
   storeName: string;
   businessSector: IBusinessSector;
   license: string;

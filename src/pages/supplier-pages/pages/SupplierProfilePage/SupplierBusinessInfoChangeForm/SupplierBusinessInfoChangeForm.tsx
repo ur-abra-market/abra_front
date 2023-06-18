@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { UploadImage } from '../../../../../components';
+import { ISuppliersUpdateCompanyInfo } from '../../../../../services/supplier/supplier.serviceTypes';
 import { Action } from '../../../../../services/user/user.service';
+import {
+  getCompanyInfo,
+  supplierBusinessProfileInfoSelector,
+  updateCompanyInfo,
+} from '../../../../../store/reducers/supplier/profile';
 import {
   ISupplierBusinessInfoFormValues,
   SupplierBusinessInfoForm,
@@ -14,10 +21,57 @@ import {
 import style from './SupplierBusinessInfoChangeForm.module.scss';
 
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const companyInfoSelector = useAppSelector(supplierBusinessProfileInfoSelector);
+
+  useEffect(() => {
+    dispatch(getCompanyInfo());
+  }, []);
+
+  useEffect(() => {
+    setValue('storeName', companyInfoSelector.shopName);
+    setValue('businessSector', companyInfoSelector.businessSector);
+    setValue('address', companyInfoSelector.address);
+    setValue('description', companyInfoSelector.description);
+    setValue('license', companyInfoSelector.licenseNumber);
+    setValue('countryRegistration.value', companyInfoSelector.countryRegistration.value);
+    setValue('numEmployees', companyInfoSelector.numberEmployees);
+    setValue('isManufacturer', companyInfoSelector.isManufacturer);
+    setValue('yearEstablished', companyInfoSelector.yearEstablished);
+    setValue('email', companyInfoSelector.businessEmail);
+  }, [companyInfoSelector]);
+
   const formMethods = useForm<ISupplierBusinessInfoFormValues>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
   });
+  const { setValue } = formMethods;
+
+  const onSubmit = async (data: ISupplierBusinessInfoFormValues): Promise<void> => {
+    const updateData: ISuppliersUpdateCompanyInfo = {
+      supplier_data_request: {
+        license_number: data.license,
+      },
+      company_data_request: {
+        business_email: data.email,
+        business_sector: data.businessSector.value,
+        country_id: data.countryRegistration.value!,
+        is_manufacturer: data.isManufacturer,
+        address: data.address,
+        number_employees: data.numEmployees!,
+        year_established: data.yearEstablished!,
+        name: data.storeName,
+        description: data.description,
+      },
+      company_phone_data_request: {
+        // todo fix the stub
+        phone_number: '+375298884242',
+        country_id: 1,
+      },
+    };
+
+    dispatch(updateCompanyInfo(updateData));
+  };
 
   return (
     <>
@@ -29,10 +83,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
         placeholder="The customers will recognize your store by this image"
       />
       <FormProvider {...formMethods}>
-        <SupplierBusinessInfoForm
-          updateForm
-          onSubmit={(data: any) => console.log(data)}
-        />
+        <SupplierBusinessInfoForm updateForm onSubmit={onSubmit} />
       </FormProvider>
     </>
   );

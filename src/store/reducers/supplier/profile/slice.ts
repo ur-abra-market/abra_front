@@ -4,7 +4,11 @@ import { LoadingStatus } from '../../../../common/types';
 import { ISupplierNotifications } from '../../../../services/supplier/supplier.serviceTypes';
 import { getPersonalInfo } from '../../userSlice';
 
-import { getSupplierNotifications, updateSupplierNotifications } from './thunks';
+import {
+  getCompanyInfo,
+  getSupplierNotifications,
+  updateSupplierNotifications,
+} from './thunks';
 
 export interface ISupplierPersonalInfo {
   firstName: string;
@@ -13,9 +17,23 @@ export interface ISupplierPersonalInfo {
   phoneNumber: string;
 }
 
+export interface ISupplierBusinessProfileInfo {
+  shopName: string;
+  businessSector: { value: string };
+  isManufacturer: boolean;
+  licenseNumber: string;
+  yearEstablished: number | null;
+  numberEmployees: number | null;
+  countryRegistration: { value: number | null };
+  description: string;
+  businessEmail: string;
+  address: string;
+}
+
 interface ISupplierProfileSliceInitialState {
   loading: LoadingStatus;
   personalInfo: ISupplierPersonalInfo;
+  businessProfileInfo: ISupplierBusinessProfileInfo;
   notifications: ISupplierNotifications | null;
 }
 
@@ -26,6 +44,18 @@ const initialState: ISupplierProfileSliceInitialState = {
     lastName: '',
     countryShort: '',
     phoneNumber: '',
+  },
+  businessProfileInfo: {
+    shopName: '',
+    businessSector: { value: '' },
+    isManufacturer: false,
+    licenseNumber: '',
+    yearEstablished: null,
+    numberEmployees: null,
+    countryRegistration: { value: null },
+    description: '',
+    businessEmail: '',
+    address: '',
   },
   notifications: null,
 };
@@ -46,6 +76,30 @@ export const supplierProfileSlice = createSlice({
         state.personalInfo.phoneNumber = action.payload.phone_number;
         state.loading = LoadingStatus.Success;
       });
+    builder.addCase(getCompanyInfo.fulfilled, (state, action) => {
+      const {
+        name,
+        country,
+        description,
+        address,
+        year_established,
+        is_manufacturer,
+        business_sector,
+        business_email,
+        number_employees,
+      } = action.payload.company;
+
+      state.businessProfileInfo.shopName = name;
+      state.businessProfileInfo.businessSector.value = business_sector;
+      state.businessProfileInfo.isManufacturer = is_manufacturer;
+      state.businessProfileInfo.licenseNumber = action.payload.license_number;
+      state.businessProfileInfo.yearEstablished = year_established;
+      state.businessProfileInfo.numberEmployees = number_employees;
+      state.businessProfileInfo.countryRegistration.value = country.id;
+      state.businessProfileInfo.description = description;
+      state.businessProfileInfo.businessEmail = business_email;
+      state.businessProfileInfo.address = address;
+    });
     builder
       .addCase(getSupplierNotifications.pending, state => {
         state.loading = LoadingStatus.Loading;
@@ -60,7 +114,7 @@ export const supplierProfileSlice = createSlice({
       .addCase(updateSupplierNotifications.pending, state => {
         state.loading = LoadingStatus.Loading;
       })
-      .addCase(updateSupplierNotifications.rejected, (state, action) => {
+      .addCase(updateSupplierNotifications.rejected, state => {
         state.loading = LoadingStatus.Failed;
       });
   },

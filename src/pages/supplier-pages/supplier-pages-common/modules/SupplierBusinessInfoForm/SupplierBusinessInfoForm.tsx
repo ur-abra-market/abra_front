@@ -29,7 +29,7 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
 
 interface IBusinessProfileForm {
   updateForm?: boolean;
-  onSubmit: (data: any) => void; // todo fix any
+  onSubmit: (data: ISupplierBusinessInfoFormValues) => void;
 }
 
 export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
