@@ -7,27 +7,31 @@ import { ItemsProps } from './CategoriesMenu';
 import style from './CategoriesMenu.module.css';
 
 export const Items: FC<ItemsProps> = (props): JSX.Element => {
-  const { gender, items } = props;
+  const { items } = props;
 
   const activeStyle = {
     color: ' var(--red)',
   };
 
-  const mappedItems = items?.map((item, index) => (
-    <li key={index}>
+  const mappedItems = items?.map(item => (
+    <li key={item.id}>
       <NavLink
         style={({ isActive }) => (isActive ? activeStyle : undefined)}
         to={`/products-list/${item.id}`}
       >
         {item.name}
       </NavLink>
+      {item.children?.map(i => (
+        <div className={style.items_anchor} key={i.id}>
+          {i.name}
+        </div>
+      ))}
     </li>
   ));
 
   return (
-    <div>
-      <h4>{gender}</h4>
-      <ul className={cn(style.items_container)}>{mappedItems}</ul>
+    <div className={style.items_wrapper}>
+      <div className={cn(style.items_container)}>{mappedItems}</div>
     </div>
   );
 };

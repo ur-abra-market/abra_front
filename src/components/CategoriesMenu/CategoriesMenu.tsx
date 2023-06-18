@@ -13,64 +13,15 @@ import { CategoriesMenuProps } from './CategoriesMenu.props';
 import { Items } from './CategoryItems';
 import { FilterButton } from './FilterButton/FilterButton';
 
-export type Categories = 'all' | 'clothes' | 'accessories' | 'cosmetics';
+export type Categories = 'Women clothes' | 'Mens clothes' | 'Kids clothes';
+
 export interface ItemsProps {
-  gender: string;
   items?: ResponseCategoryType[];
 }
 
-type FilteredCategoriesType = {
-  [key in Categories]: {
-    title: string;
-    categories: string[];
-  };
-};
-
-const filteredCategories: FilteredCategoriesType = {
-  all: {
-    title: 'All categories',
-    categories: [
-      'Clothing',
-      'Sportswear',
-      'Swimwear',
-      'Underwear',
-      'Home clothes',
-      'Outerwear',
-      'Bags',
-      'Accessories',
-      'Shoes',
-      'Jewellery',
-      'For girls',
-      'For boys',
-    ],
-  },
-  accessories: {
-    title: 'Clothes',
-    categories: ['Bags', 'Accessories', 'Jewellery'],
-  },
-  clothes: {
-    title: 'Accessories',
-    categories: [
-      'Clothing',
-      'Sportswear',
-      'Swimwear',
-      'Underwear',
-      'Home clothes',
-      'Outerwear',
-      'Shoes',
-      'For girls',
-      'For boys',
-    ],
-  },
-  cosmetics: {
-    title: 'Cosmetics and Self Care',
-    categories: [],
-  },
-};
-
 export const CategoriesMenu = forwardRef(
   (props: CategoriesMenuProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
-    const [activeCategories, setActiveCategories] = useState<Categories>('all');
+    const [activeCategories, setActiveCategories] = useState<Categories>('Women clothes');
 
     const categories = useAppSelector(state => state.category.dateCategories);
 
@@ -82,9 +33,9 @@ export const CategoriesMenu = forwardRef(
       category?: ResponseCategoryType[],
     ): ResponseCategoryType[] | [] => {
       return category
-        ? category.filter(c =>
-            filteredCategories[activeCategories].categories.includes(c.name),
-          )
+        ? category.filter(c => {
+            return c.name;
+          })
         : [];
     };
 
@@ -96,20 +47,24 @@ export const CategoriesMenu = forwardRef(
     return (
       <div ref={ref} className={cn(style.menu_container)}>
         <ul>
-          {(Object.keys(filteredCategories) as Categories[]).map((c, index) => (
-            <FilterButton
-              key={index}
-              value={c}
-              activeValue={activeCategories}
-              callback={setActiveCategories}
-            >
-              {filteredCategories[c].title}
-            </FilterButton>
-          ))}
+          {wearerCategory.map(c => {
+            return (
+              <FilterButton
+                key={c.id}
+                value={c.name}
+                activeValue={activeCategories}
+                callback={setActiveCategories}
+              >
+                {c.name}
+              </FilterButton>
+            );
+          })}
         </ul>
-        {wearerCategory.map(c => (
-          <Items key={c.id} gender={c.name} items={filterCategories(c.children)} />
-        ))}
+        {wearerCategory
+          .filter(c => c.name === activeCategories)
+          .map(c => {
+            return <Items key={c.id} items={filterCategories(c.children)} />;
+          })}
       </div>
     );
   },

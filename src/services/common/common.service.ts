@@ -24,7 +24,7 @@ export const commonService = {
   },
 
   getAllCategories: async () => {
-    const { data } = await baseConfigService.get(`/categories/all/`);
+    const { data } = await baseConfigService.get(`categories/all/`);
 
     return data;
   },

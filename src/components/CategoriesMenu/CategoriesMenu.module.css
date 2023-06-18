@@ -1,13 +1,12 @@
 .menu_container {
   position: absolute;
   z-index: 1;
-  bottom: -464px;
   left: 0;
 
   display: flex;
   gap: 64px;
 
-  min-width: 864px;
+  min-width: 600px;
   min-height: 464px;
   padding: 32px;
 
@@ -15,10 +14,21 @@
   border-radius: 0 12px 12px 0;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
 
+
+}
+
+.items_wrapper {
+  max-width: 464px;
+}
+
+.items_container {
+  display: grid;
+  grid-auto-rows: minmax(100px, auto);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
 }
 
 .items_container > li {
-  margin-top: 16px;
   margin-bottom: 16px;
 
   font-size: 18px;
@@ -28,5 +38,17 @@
 }
 
 .items_container > li > a {
+  font-size: 18px;
+  font-weight: 600;
   color: var(--color-black);
 }
+
+.items_anchor {
+  margin-top: 14px;
+}
+
+.items_anchor:hover {
+  cursor: pointer;
+}
+
+
