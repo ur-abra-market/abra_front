@@ -337,11 +337,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 
                 <p className={style.list_img_title}>Photo of the company or production</p>
 
-                <div className={style.list_img}>
-                  {[...new Array(5)].map((el, i) => (
-                    <UploadImage action="" type="default" key={i} />
-                  ))}
-                </div>
+                <div className={style.list_img} />
                 <Label label="Description">
                   <Input
                     {...register('textarea')}

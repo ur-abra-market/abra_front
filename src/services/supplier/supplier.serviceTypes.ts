@@ -49,6 +49,12 @@ export interface SuppliersResponse<R> {
   result: R;
 }
 
+export interface ISupplierErrorResponse {
+  ok: boolean;
+  error_code: number;
+  error: { loc: string[]; msg: string; type: string }[];
+}
+
 export interface ISuppliersCompanyInfoData {
   id: number;
   license_number: string;

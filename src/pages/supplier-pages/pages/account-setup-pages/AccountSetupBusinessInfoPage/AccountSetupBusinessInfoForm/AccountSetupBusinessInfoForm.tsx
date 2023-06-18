@@ -2,10 +2,10 @@ import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '../../../../../../common/hooks';
 import { UploadImage } from '../../../../../../components';
-import { Action } from '../../../../../../services/user/user.service';
 import { createAccountBusinessInfo } from '../../../../../../store/reducers/authSlice/thunks';
 import { SupplierRegisterFormStep } from '../../../../../../ui-kit';
 import {
@@ -16,8 +16,17 @@ import {
 
 import style from './AccountSetupBusinessInfoForm.module.scss';
 
+import { uploadCompanyImage } from 'store/reducers/supplier/profile';
+import {
+  supplierCompanyImageIdSelector,
+  supplierCompanyImageSelector,
+} from 'store/reducers/supplier/profile/selectors';
+import { deleteCompanyImage } from 'store/reducers/supplier/profile/thunks';
+
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
+  const companyLogo = useSelector(supplierCompanyImageSelector);
+  const companyLogoId = useSelector(supplierCompanyImageIdSelector);
   const formMethods = useForm<ISupplierBusinessInfoFormValues>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
@@ -62,6 +71,12 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
 
     dispatch(createAccountBusinessInfo(businessInfoData)); // сделать переход после того как форма удачно отправится
   };
+  const handleUploadImage = (img: File): void => {
+    dispatch(uploadCompanyImage(img));
+  };
+  const handleDeleteImage = (): void => {
+    dispatch(deleteCompanyImage(companyLogoId));
+  };
 
   return (
     <div className={style.wrapper}>
@@ -73,7 +88,9 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
 
         <div className={style.add_logo}>
           <UploadImage
-            action={Action.UPLOAD_LOGO_IMAGE}
+            uploadImage={handleUploadImage}
+            deleteImage={handleDeleteImage}
+            image={companyLogo}
             type="logo"
             label="Add logo or profile image"
             placeholder="The customers will recognize your store by this image"
