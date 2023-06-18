@@ -4,6 +4,7 @@ import baseConfigService from '../baseConfig.service';
 import {
   ISuppliersCompanyInfoData,
   ISupplierNotifications,
+  ISuppliersUpdateCompanyInfo,
 } from './supplier.serviceTypes';
 
 export const supplierService = {
@@ -39,8 +40,11 @@ export const supplierService = {
     return data.result;
   },
 
-  updateCompanyInfo: async () => {
-    const { data } = await baseConfigService.patch(`/suppliers/companyInfo/update/`); // todo add type
+  updateCompanyInfo: async (companyInfo: Partial<ISuppliersUpdateCompanyInfo>) => {
+    const { data } = await baseConfigService.patch<IServerResponse<boolean>>(
+      `suppliers/companyInfo/update/`,
+      companyInfo,
+    );
 
     return data.result;
   },
@@ -65,12 +69,6 @@ export const supplierService = {
     const { data } = await baseConfigService.get(
       `suppliers/getCategoryVariations/${categoryId}/`,
     );
-
-    return data;
-  },
-
-  getSupplierCompanyInfo: async () => {
-    const { data } = await baseConfigService.get(`suppliers/companyInfo/`);
 
     return data;
   },

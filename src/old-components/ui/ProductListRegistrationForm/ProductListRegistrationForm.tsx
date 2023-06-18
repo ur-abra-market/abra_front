@@ -9,9 +9,9 @@ import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 import { UploadImage } from '../../../components';
 import {
   addProductService,
-  getCompanyInfoService,
   uploadImageService,
 } from '../../../store/reducers/supplier/other';
+import { getCompanyInfo } from '../../../store/reducers/supplier/profile';
 import {
   Button,
   Input,
@@ -232,7 +232,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   }, [dispatch, images, isSubmit, navigate, productId]);
 
   useEffect(() => {
-    dispatch(getCompanyInfoService());
+    dispatch(getCompanyInfo());
   }, [dispatch]);
 
   const handleSetCategory = (
