@@ -1,2 +1,2 @@
 export { getCountries, getCompanyNumberEmployees } from './thunks';
-export { numberEmployeesSelector } from './selectors';
+export { numberEmployeesSelector, countriesSelector } from './selectors';

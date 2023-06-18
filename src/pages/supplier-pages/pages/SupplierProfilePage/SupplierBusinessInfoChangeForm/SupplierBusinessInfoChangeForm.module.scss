@@ -1,0 +1,7 @@
+@import "./src/common/styles/mixins";
+
+.subtitle {
+  @include form_subtitle;
+
+  margin-bottom: 24px;
+}

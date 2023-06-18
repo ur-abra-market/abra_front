@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import {
   OrderStatusShippedIcon,
@@ -15,9 +15,9 @@ const Orders = (): JSX.Element => {
     <>
       <div className={style.header_wrapper}>
         <div className={style.header}>Orders</div>
-        <Link className={style.header_link} to="/order-history">
+        <NavLink className={style.header_link} to="/order_history">
           View All
-        </Link>
+        </NavLink>
       </div>
       <div className={style.category_wrapper}>
         <Button color="white" className={style.orders_button}>

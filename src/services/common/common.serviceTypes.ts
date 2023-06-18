@@ -1,18 +1,33 @@
-export type BaseResponseType<R> = {
-  data: {
-    ok: true;
-    result: R;
-    detail: 'string';
-    error: 'string';
-    error_code: 0;
-  };
-};
+export interface IBaseResponseType<R> {
+  ok: true;
+  result: R;
+  detail: 'string';
+  error: 'string';
+  error_code: 0;
+}
 
-export type CountryType = {
+export interface ICountry {
   id: number;
   country: string;
+  country_short: string;
   country_code: string;
-};
+  currency: string;
+  flag: string;
+}
+
+export type CountriesType = ICountry[];
+
+export interface INumberEmployees {
+  id: number;
+  number: string;
+}
+
+export type NumberEmployeesType = INumberEmployees[];
+
+export interface ResponseGetNumberEmployees {
+  ok: boolean;
+  result: NumberEmployeesType[];
+}
 
 export interface IAccountPersonalInfoRequest {
   first_name: string;
@@ -20,11 +35,3 @@ export interface IAccountPersonalInfoRequest {
   phone_country_code: string;
   phone_number: string;
 }
-export interface ResponseGetNumberEmployees {
-  ok: boolean;
-  result: NumberEmployeesType[];
-}
-type NumberEmployeesType = {
-  id: number;
-  number: string;
-};

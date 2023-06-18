@@ -1,35 +1,20 @@
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-import { FormProvider, useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 
+import { useAppDispatch } from '../../../../common/hooks';
 import { AccountManagement } from '../../../../components';
-import {
-  ISupplierBusinessInfoFormValues,
-  SupplierBusinessInfoForm,
-  supplierBusinessInfoFormValidationSchema,
-} from '../../supplier-pages-common';
+import { getCountries } from '../../../../store/reducers/commonSlice';
 
-import style from './SupplierProfilePage.module.css';
+import { SupplierNotifications } from './SupplierNotifications/SupplierNotifications';
+import style from './SupplierProfilePage.module.scss';
 
-import { NotificationsChangeForm, SupplierPersonalInfoChangeForm } from './index';
+import { SupplierBusinessInfoChangeForm, SupplierPersonalInfoChangeForm } from '.';
 
 export const SupplierProfilePage = (): JSX.Element => {
-  const formMethods = useForm<ISupplierBusinessInfoFormValues>({
-    resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
-    mode: 'onChange',
-    defaultValues: {
-      email: '',
-      code: '',
-      aboutBusiness: '',
-      tel: '',
-      yearEstablished: null,
-      address: '',
-      checkbox: false,
-      numEmployees: '',
-      storeName: '',
-      businessSector: null,
-      entrepreneurNumber: '',
-    },
-  });
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getCountries());
+  }, []);
 
   return (
     <div className={style.supplier_cabinet}>
@@ -37,13 +22,7 @@ export const SupplierProfilePage = (): JSX.Element => {
         <SupplierPersonalInfoChangeForm />
 
         <div className={style.business_profile}>
-          <FormProvider {...formMethods}>
-            <SupplierBusinessInfoForm
-              updateForm
-              title="Main info"
-              onSubmit={(data: any) => console.log(data)}
-            />
-          </FormProvider>
+          <SupplierBusinessInfoChangeForm />
         </div>
 
         <div className={style.account_details}>
@@ -51,7 +30,7 @@ export const SupplierProfilePage = (): JSX.Element => {
         </div>
 
         <div className={style.notifications}>
-          <NotificationsChangeForm />
+          <SupplierNotifications />
         </div>
       </div>
     </div>

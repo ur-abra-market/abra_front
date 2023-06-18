@@ -1,7 +1,6 @@
-import { AppDispatchType, RootStateType } from '../../store/createStore';
 import { IProduct } from '../product/product.serviceTypes';
-import { ISellerAddressData } from '../seller/seller.serviceTypes';
-import { INotification } from '../supplier/supplier.serviceTypes';
+import { ISellerAddressData, ISellerNotifications } from '../seller/seller.serviceTypes';
+import { ISupplierNotifications } from '../supplier/supplier.serviceTypes';
 
 export type RegisterParamsType = {
   email?: string;
@@ -63,12 +62,12 @@ export type CurrentUserInfoResponseType = {
       license_number?: string;
       grade_average?: number;
       additional_info?: string;
-      notifications?: INotification;
+      notifications?: ISupplierNotifications;
       products?: IProduct[];
     };
     seller?: {
       has_main_address?: boolean;
-      notifications?: INotification;
+      notifications?: ISellerNotifications;
       addresses?: ISellerAddressData[];
     };
   };
@@ -77,13 +76,29 @@ export type CurrentUserInfoResponseType = {
   };
 };
 
-export type AsyncThunkConfig = {
-  state: RootStateType;
-  dispatch: AppDispatchType;
-  extra?: unknown;
-  rejectValue: string;
-  serializedErrorType?: unknown;
-  pendingMeta?: unknown;
-  fulfilledMeta?: unknown;
-  rejectedMeta?: unknown;
-};
+export interface IBusinessInfoRequestData {
+  supplier_data_request: {
+    license_number: string;
+  };
+  company_data_request: {
+    phone_country_code: string;
+    phone_number: string;
+    name: string;
+    is_manufacturer: false;
+    year_established: 0;
+    number_employees: 0;
+    description: string;
+    address: string;
+    logo_url: string;
+    business_sector: string;
+    business_email: string;
+    country_id: number;
+  };
+}
+
+export interface IPersonalInfoRequestData {
+  first_name: string;
+  last_name: string;
+  country_id: number;
+  phone_number: string;
+}

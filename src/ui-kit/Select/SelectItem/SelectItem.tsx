@@ -2,7 +2,7 @@ import React, { CSSProperties, FC, useState } from 'react';
 
 import cn from 'classnames';
 
-import styles from './SelectItem.module.css';
+import styles from './SelectItem.module.scss';
 
 import { ISelectOption } from 'ui-kit';
 
@@ -36,16 +36,15 @@ export const SelectItem: FC<ISelectItem> = ({
     }
   };
 
-  const isSelectedItem = cn(
-    currentSelectedItem.label === value.label && styles.item_selected,
-    currentClassName,
-  );
+  const selectedItemClassName = cn(currentClassName, {
+    [styles.item_selected]: currentSelectedItem.label === value.label,
+  });
 
   return (
     <div
       role="presentation"
       onClick={handleClickOnItem}
-      className={isSelectedItem}
+      className={selectedItemClassName}
       onMouseEnter={handleHoverOnItem}
       onMouseLeave={handleLeaveHoverOnItem}
       style={style}

@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import { useAppDispatch } from '../../../../../common/hooks';
-import { ResponseUserRoleType } from '../../../../../common/types';
+import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
+import { LoadingStatus, ResponseUserRoleType } from '../../../../../common/types';
 import { registerUser } from '../../../../../store/reducers/authSlice';
 import { PasswordComplexity } from '../../assets';
 
@@ -29,6 +29,7 @@ const formValidationSchema = yup
   .required();
 
 export const RegisterForm = (): JSX.Element => {
+  const loading = useAppSelector(state => state.app.loading);
   const [userRole, setUserRole] = useState<ResponseUserRoleType>('seller');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -91,7 +92,7 @@ export const RegisterForm = (): JSX.Element => {
         className={style.button_submit}
         label="Create Account"
         type="submit"
-        disabled={!isValid}
+        disabled={!isValid || loading === LoadingStatus.Loading}
       />
     </form>
   );

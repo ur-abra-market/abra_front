@@ -17,8 +17,8 @@ export const FooterForAuth = (): JSX.Element => {
     }
   };
 
-  const TERMS_CONDITIONS = '/terms&conditions' as const;
-  const PRIVACY_POLICY = '/privacy&policy' as const;
+  const TERMS_CONDITIONS = '/terms_and_conditions' as const;
+  const PRIVACY_POLICY = '/privacy_policy' as const;
 
   return (
     <footer className={style.footer}>

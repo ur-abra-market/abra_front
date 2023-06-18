@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector, useOnClickOutside } from '../../../common/hooks';
 import Modal from '../../../components/Modal';
@@ -31,19 +31,19 @@ const PROFILE_MENU = {
   AUTHORIZED: [
     {
       label: 'My Profile',
-      href: '/personal-account',
+      href: '/personal_account',
     },
     {
       label: 'Edit Profile',
-      href: '/personal-account',
+      href: '/personal_account',
     },
     {
       label: 'Settings',
-      href: '/personal-account',
+      href: '/personal_account',
     },
     {
       label: 'My Orders',
-      href: '/personal-account',
+      href: '/personal_account',
     },
     {
       label: 'Log out',
@@ -88,7 +88,7 @@ const Top = (): JSX.Element => {
     <div className={style.wrapper}>
       <Modal showModal={isShowModal} closeModal={setIsShowModal}>
         <div>You are not included in...</div>
-        <Link to="/auth">Login</Link>
+        <NavLink to="/auth">Login</NavLink>
       </Modal>
 
       <MainLogo className={style.logo_font_size} />

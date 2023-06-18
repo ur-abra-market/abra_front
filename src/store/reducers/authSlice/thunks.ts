@@ -1,19 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { LoadingStatus, IPersonalInfoRequestData } from '../../../common/types';
+import { LoadingStatus, AsyncThunkConfig } from '../../../common/types';
 import { userService } from '../../../services';
 import authService from '../../../services/auth/auth.service';
 import {
+  IBusinessInfoRequestData,
   LoginParamsType,
   LoginResponseType,
   RegisterParamsType,
   RegisterResponseType,
-  AsyncThunkConfig,
   LogoutResponseType,
   CurrentUserInfoResponseType,
   ResetPasswordPayloadType,
   ChangePasswordPayloadType,
+  IPersonalInfoRequestData,
 } from '../../../services/auth/auth.serviceTypes';
 import { IAccountPersonalInfoRequest } from '../../../services/common/common.serviceTypes';
 import { IAccountPersonalInfoResponse } from '../../../services/user/user.serviceTypes';
@@ -50,18 +51,40 @@ export const registerUser = createAsyncThunk<
 export const createAccountPersonalInfo = createAsyncThunk<
   any, // todo fix any -> need common request interface
   IPersonalInfoRequestData
->('auth/createAccountPersonalInfo', async (personalInfoData, { rejectWithValue }) => {
-  try {
-    return await authService.sendAccountPersonalInfo(personalInfoData);
-  } catch (error) {
-    const errorMessage =
-      error instanceof AxiosError
-        ? error.response?.data?.error || error.message
-        : '[getUserRole]: Error';
+>(
+  'createAccount/createAccountPersonalInfo',
+  async (personalInfoData, { rejectWithValue }) => {
+    try {
+      return await authService.sendAccountPersonalInfo(personalInfoData);
+    } catch (error) {
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.error || error.message
+          : '[createAccountPersonalInfo]: Error';
 
-    return rejectWithValue(errorMessage);
-  }
-});
+      return rejectWithValue(errorMessage);
+    }
+  },
+);
+
+export const createAccountBusinessInfo = createAsyncThunk<
+  IBusinessInfoRequestData,
+  any // todo fix any -> need common request interface
+>(
+  'createAccount/createAccountBusinessInfo',
+  async (businessInfoData, { rejectWithValue }) => {
+    try {
+      return await authService.sendAccountBusinessInfo(businessInfoData);
+    } catch (error) {
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.error || error.message
+          : '[createAccountBusinessInfo]: Error';
+
+      return rejectWithValue(errorMessage);
+    }
+  },
+);
 
 export const loginUser = createAsyncThunk<
   LoginResponseType,
@@ -134,22 +157,6 @@ export const getCurrentUserInfo = createAsyncThunk<
     return rejectWithValue(errorMessage);
   } finally {
     dispatch(setLoading(LoadingStatus.Idle));
-  }
-});
-
-export const sendAccountPersonalInfo = createAsyncThunk<
-  IAccountPersonalInfoResponse,
-  IAccountPersonalInfoRequest
->('formRegistration/sendUserAccountInfo', async (personalInfo, { rejectWithValue }) => {
-  try {
-    return await authService.sendAccountPersonalInfo(personalInfo);
-  } catch (error: unknown) {
-    const errorMessage =
-      error instanceof AxiosError
-        ? error.response?.data?.error || error.message
-        : '[sendUserAccountInfo]: Error';
-
-    return rejectWithValue(errorMessage);
   }
 });
 

@@ -28,7 +28,7 @@ export const supplierRoute = [
         element: <DashboardPage />,
       },
       {
-        path: 'products-list',
+        path: 'products_list',
         element: <ProductsListPage />,
       },
       {
@@ -50,15 +50,15 @@ export const supplierRoute = [
     ],
   },
   {
-    path: 'account-setup-personal-info',
+    path: 'account_setup_personal_info',
     element: <AccountSetupPersonalInfoPage />,
   },
   {
-    path: 'account-setup-business-info',
+    path: 'account_setup_business_info',
     element: <AccountSetupBusinessInfoPage />,
   },
   {
-    path: 'add-product',
+    path: 'add_product',
     element: <ProductListRegistrationPage />,
   },
 ];

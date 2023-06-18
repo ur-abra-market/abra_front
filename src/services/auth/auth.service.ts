@@ -1,16 +1,17 @@
-import { IPersonalInfoRequestData } from '../../common/types/interfaces';
 import baseConfigService from '../baseConfig.service';
 
 import {
   LogoutResponseType,
   CurrentUserInfoResponseType,
   ChangePasswordPayloadType,
+  IBusinessInfoRequestData,
   LoginParamsType,
   LoginResponseType,
   PasswordResponseType,
   RegisterParamsType,
   RegisterResponseType,
   ResetPasswordPayloadType,
+  IPersonalInfoRequestData,
 } from './auth.serviceTypes';
 
 export const authService = {
@@ -36,6 +37,15 @@ export const authService = {
     const { data } = await baseConfigService.post(
       `/register/account/sendInfo/`,
       personalInfoData,
+    );
+
+    return data;
+  },
+
+  sendAccountBusinessInfo: async (businessInfoData: IBusinessInfoRequestData) => {
+    const { data } = await baseConfigService.post(
+      `/register/business/sendInfo/`,
+      businessInfoData,
     );
 
     return data;

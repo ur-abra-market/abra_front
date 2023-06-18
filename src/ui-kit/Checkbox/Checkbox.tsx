@@ -12,16 +12,18 @@ export interface ICheckbox
   variant?: 'notification' | 'default';
   label?: string;
   size?: 'md' | 'sm';
+  disabled?: boolean;
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, ICheckbox>((props, ref) => {
-  const { label, variant, size = 'md', className, ...restProps } = props;
+  const { label, variant, size = 'md', className, disabled, ...restProps } = props;
 
   return (
     <label className={cn(styles.label, className)}>
       <input
         ref={ref}
         type="checkbox"
+        disabled={disabled}
         className={cn({
           [styles.input_notification]: variant === 'notification',
           [styles.input_default]: variant === 'default',

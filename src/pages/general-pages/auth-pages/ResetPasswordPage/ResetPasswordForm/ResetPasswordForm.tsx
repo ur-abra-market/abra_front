@@ -26,7 +26,7 @@ const schema = yup
   })
   .required();
 
-const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
+export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
   handleChangeModalActive,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -73,5 +73,3 @@ const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
     </form>
   );
 };
-
-export default ResetPasswordForm;

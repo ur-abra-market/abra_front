@@ -1,7 +1,7 @@
 import React, { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
-import { Link, useMatch } from 'react-router-dom';
+import { NavLink, useMatch } from 'react-router-dom';
 
 import { Button } from '../../../../ui-kit';
 import { ProfileMenu } from '../Top';
@@ -25,7 +25,7 @@ const BuildProfileMenu: FC<BuildProfileMenuProps> = ({
 }) => {
   const buildMenu = !isAuth ? PROFILE_MENU.UNAUTHORIZED : PROFILE_MENU.AUTHORIZED;
 
-  const location = useMatch('/personal-account');
+  const location = useMatch('/personal_account');
 
   const handleOnClick = (): void => {
     setActive(false);
@@ -36,16 +36,16 @@ const BuildProfileMenu: FC<BuildProfileMenuProps> = ({
       className={cn(style.menu, {
         [style.menu_active]: active,
         [style.menu_inactive]: !active,
-        [style.menu_main]: location?.pathname !== '/personal-account/*',
-        [style.menu_profile]: location?.pathname === '/personal-account',
+        [style.menu_main]: location?.pathname !== '/personal_account/*',
+        [style.menu_profile]: location?.pathname === '/personal_account',
       })}
     >
       {buildMenu.map(({ href, label }) => (
         <li key={label} className={style.item}>
           {href !== '/logout' ? (
-            <Link to={href} state={label} onClick={handleOnClick}>
+            <NavLink to={href} state={label} onClick={handleOnClick}>
               {label}
-            </Link>
+            </NavLink>
           ) : (
             <Button
               type="button"

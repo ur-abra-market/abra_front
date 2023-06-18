@@ -1,8 +1,9 @@
 import { FC, ReactNode } from 'react';
 
+import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { useAppSelector } from '../../../../../../common/hooks/useAppSelector';
+import { useAppSelector } from '../../../../../../common/hooks';
 import { LoadingStatus } from '../../../../../../common/types';
 
 import style from './AuthPageLayout.module.scss';
@@ -25,7 +26,11 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
   const isLoading = useAppSelector(state => state.app.loading);
 
   return (
-    <div className={style.wrapper}>
+    <div
+      className={cn(style.wrapper, {
+        [style.pointer_none]: isLoading === LoadingStatus.Loading,
+      })}
+    >
       <div className={style.content}>
         {isLoading === LoadingStatus.Loading && <LoaderLinear />}
         {isMainLogoShow && (
@@ -42,8 +47,8 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
         )}
       </div>
       <div className={style.footer}>
-        © 2022 Abra. <Link to="/terms&conditions">Terms & conditions</Link> and&nbsp;
-        <Link to="/privacy&policy">Privacy policy</Link>
+        © 2022 Abra. <Link to="/terms_and_conditions">Terms & conditions</Link> and&nbsp;
+        <Link to="/privacy_policy">Privacy policy</Link>
       </div>
     </div>
   );

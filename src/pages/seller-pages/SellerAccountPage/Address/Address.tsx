@@ -14,7 +14,7 @@ interface AddressProps {
 
 export const Address: FC<AddressProps> = ({ address }): JSX.Element => {
   const { first_name, last_name, phone } = useAppSelector(
-    state => state.seller.userProfileInfo,
+    state => state.sellerProfile.personalInfo,
   );
   const [selected] = useState(false);
   const styles = {
