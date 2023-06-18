@@ -1,9 +1,10 @@
 import { FC, useState } from 'react';
 
-import nonePng from 'assets/images/files/image-default.png';
 import Flag from '../Flag';
 
 import style from './ImgSlider.module.css';
+
+import nonePng from 'assets/images/files/image-default.png';
 
 interface ImgSliderProps {
   srcArr: any[];

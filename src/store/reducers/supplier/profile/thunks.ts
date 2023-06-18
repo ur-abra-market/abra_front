@@ -2,8 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { supplierService } from '../../../../services';
+import { setResponseNotice } from '../../appSlice/slice';
 
-import { AsyncThunkConfig } from 'services/auth/auth.serviceTypes';
+import { AsyncThunkConfig } from 'common/types';
 import {
   ISupplierErrorResponse,
   SuppliersResponse,
@@ -26,23 +27,22 @@ export const getCompanyInfo = createAsyncThunk<any, void>( // todo fix any
     }
   },
 );
-export const fetchCompanyImage = createAsyncThunk<
-  SuppliersResponse<string>,
-  void,
-  AsyncThunkConfig
->('supplierProfile/fetchCompanyImage', async (_, { dispatch, rejectWithValue }) => {
-  try {
-    return await supplierService.fetchCompanyLogo();
-  } catch (error: unknown) {
-    const err = error as AxiosError<ISupplierErrorResponse>;
+export const fetchCompanyImage = createAsyncThunk<string, void, AsyncThunkConfig>(
+  'supplierProfile/fetchCompanyImage',
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      return await supplierService.fetchCompanyLogo();
+    } catch (error: unknown) {
+      const err = error as AxiosError<ISupplierErrorResponse>;
 
-    if (err.response) {
-      dispatch(setResponseError(err.response?.data.error[0].msg));
+      if (err.response) {
+        dispatch(setResponseError(err.response?.data.error[0].msg));
+      }
+
+      return rejectWithValue(err.message);
     }
-
-    return rejectWithValue(err.message);
-  }
-});
+  },
+);
 export const uploadCompanyImage = createAsyncThunk<
   SuppliersResponse<{
     id: number;
@@ -84,3 +84,45 @@ export const deleteCompanyImage = createAsyncThunk<
     return rejectWithValue(err.message);
   }
 });
+
+export const getSupplierNotifications = createAsyncThunk<any, void>(
+  'supplierAccount/getSupplierNotifications',
+  async (_, { rejectWithValue, dispatch }) => {
+    try {
+      return await supplierService.getNotifications();
+    } catch (error) {
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.error || error.message
+          : '[getSupplierNotifications]: Error';
+
+      if (error instanceof AxiosError)
+        dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
+
+      return rejectWithValue(errorMessage);
+    }
+  },
+);
+
+export const updateSupplierNotifications = createAsyncThunk<
+  void,
+  { id: string; value: boolean }
+>(
+  'supplierAccount/updateSupplierNotifications',
+  async (param, { rejectWithValue, dispatch }) => {
+    try {
+      await supplierService.updateNotifications({ [param.id]: param.value });
+      dispatch(getSupplierNotifications());
+    } catch (error) {
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.error || error.message
+          : '[updateSupplierNotifications]: Error';
+
+      if (error instanceof AxiosError)
+        dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
+
+      return rejectWithValue(errorMessage);
+    }
+  },
+);

@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { LoadingStatus } from '../../common/types';
-import { AsyncThunkConfig } from '../../services/auth/auth.serviceTypes';
+import { AsyncThunkConfig, LoadingStatus } from '../../common/types';
 import { sellerService } from '../../services/seller/seller.service';
 import {
   EditAddressData,

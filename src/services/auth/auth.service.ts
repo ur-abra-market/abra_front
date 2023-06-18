@@ -1,4 +1,3 @@
-import { IPersonalInfoRequestData } from '../../common/types';
 import baseConfigService from '../baseConfig.service';
 
 import {
@@ -12,6 +11,7 @@ import {
   RegisterParamsType,
   RegisterResponseType,
   ResetPasswordPayloadType,
+  IPersonalInfoRequestData,
 } from './auth.serviceTypes';
 
 export const authService = {

@@ -9,7 +9,10 @@ export interface IBaseResponseType<R> {
 export interface ICountry {
   id: number;
   country: string;
+  country_short: string;
   country_code: string;
+  currency: string;
+  flag: string;
 }
 
 export type CountriesType = ICountry[];
@@ -20,6 +23,11 @@ export interface INumberEmployees {
 }
 
 export type NumberEmployeesType = INumberEmployees[];
+
+export interface ResponseGetNumberEmployees {
+  ok: boolean;
+  result: NumberEmployeesType[];
+}
 
 export interface IAccountPersonalInfoRequest {
   first_name: string;

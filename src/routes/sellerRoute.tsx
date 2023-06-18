@@ -14,7 +14,7 @@ import {
 
 export const sellerRoute = [
   {
-    path: 'products-list/*',
+    path: 'products_list/*',
     element: <ProductListPage />,
   },
   {
@@ -22,7 +22,7 @@ export const sellerRoute = [
     element: <ProductPage />,
   },
   {
-    path: 'personal-account',
+    path: 'personal_account',
     element: <SellerAccountPage />,
   },
   {
@@ -34,15 +34,15 @@ export const sellerRoute = [
     element: <CheckoutPage />,
   },
   {
-    path: 'checkout-success',
+    path: 'checkout_success',
     element: <CheckoutSuccessPage />,
   },
   {
-    path: 'order-history',
+    path: 'order_history',
     element: <OrderHistoryPage />,
   },
   {
-    path: 'order-history/4784437395989684',
+    path: 'order_history/4784437395989684',
     element: <OrderDetailsPage />,
   },
   {

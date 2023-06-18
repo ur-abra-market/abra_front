@@ -1,2 +1,11 @@
-export { getCompanyInfo, uploadCompanyImage } from './thunks';
-export { supplierPersonalInfoSelector } from './selectors';
+export {
+  getCompanyInfo,
+  getSupplierNotifications,
+  updateSupplierNotifications,
+  uploadCompanyImage,
+} from './thunks';
+export {
+  supplierPersonalInfoSelector,
+  supplierLoadingSelector,
+  supplierNotificationsSelector,
+} from './selectors';

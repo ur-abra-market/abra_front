@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../../../../../common/hooks';
 import { UploadImage } from '../../../../../../components';
 import { createAccountBusinessInfo } from '../../../../../../store/reducers/authSlice/thunks';
+import { getCountries } from '../../../../../../store/reducers/commonSlice';
 import { SupplierRegisterFormStep } from '../../../../../../ui-kit';
 import {
   ISupplierBusinessInfoFormValues,
@@ -30,21 +31,11 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   const formMethods = useForm<ISupplierBusinessInfoFormValues>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
-    defaultValues: {
-      email: '',
-      code: '',
-      description: '',
-      tel: '',
-      yearEstablished: null,
-      address: '',
-      isManufacturer: false,
-      numEmployees: '',
-      storeName: '',
-      businessSector: null,
-      license: '',
-      countryRegistration: null,
-    },
   });
+
+  useEffect(() => {
+    dispatch(getCountries());
+  }, []);
 
   const onSubmit = (data: ISupplierBusinessInfoFormValues): void => {
     console.log(data);
@@ -98,7 +89,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
         </div>
 
         <FormProvider {...formMethods}>
-          <SupplierBusinessInfoForm onSubmit={onSubmit} />
+          <SupplierBusinessInfoForm onSubmit={onSubmit} updateForm />
         </FormProvider>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import React, { FC, useEffect } from 'react';
 
-import cn from 'classnames';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
@@ -30,7 +29,7 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
 
 interface IBusinessProfileForm {
   updateForm?: boolean;
-  onSubmit: (data: any) => void;
+  onSubmit: (data: any) => void; // todo fix any
 }
 
 export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
@@ -52,10 +51,6 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
     dispatch(getCountries());
   }, []);
 
-  const selectCompanyClasses = cn(style.select_company, {
-    [style.select_update_company]: updateForm,
-  });
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={style.main_info}>
@@ -69,7 +64,6 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
             />
           </Label>
 
-          <div className={style.select_width} />
           <Controller
             control={control}
             name="businessSector"
@@ -86,26 +80,26 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
           />
         </div>
 
-        <div className={selectCompanyClasses}>
-          <Checkbox
-            className={style.checkbox}
-            label="I am a manufacturer"
-            variant="default"
-            size="sm"
+        <Checkbox
+          className={style.checkbox}
+          label="I am a manufacturer"
+          variant="default"
+          size="sm"
+        />
+
+        <Label label="License or entrepreneur number*">
+          <Input
+            {...register('license')}
+            error={errors?.license?.message}
+            placeholder="000 – 00 – 0000"
           />
+        </Label>
 
-          <Label label="License or entrepreneur number*">
-            <Input
-              {...register('license')}
-              error={errors?.license?.message}
-              placeholder="000 – 00 – 0000"
-            />
-          </Label>
-
-          <p className={style.explanatory_form}>
+        {updateForm && (
+          <p className={style.license_description}>
             Use the number of any document authorizing the sale
           </p>
-        </div>
+        )}
       </div>
 
       <div className={style.company_info}>
@@ -173,19 +167,10 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         </Label>
       </div>
 
-      <div>
-        <p className={style.main_info_title}>Contacts</p>
-        <div className={style.phone_number}>
-          {/* todo заменить на PhoneInput */}
-          {/* <Label label="Business phone number">
-                <Select {...register('code')} name="code" options={PHONE_DATA} />
-              </Label>
-              <Input
-                placeholder="(XXX) XXX - XX - XX"
-                {...register('tel')}
-                error={errors?.tel?.message}
-              /> */}
-        </div>
+      <div className={style.contacts_info}>
+        <p className={style.subtitle}>Contacts</p>
+
+        {/* todo вставить PhoneInput */}
 
         <div className={style.contacts_inputs}>
           <Label label="Business email address">

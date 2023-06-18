@@ -6,7 +6,7 @@ export const LoginPage = (): JSX.Element => {
   return (
     <AuthPageLayout
       isMainLogoShow
-      footerLink="/forgotPassword"
+      footerLink="/forgot_password"
       footerTitle="Forgot password"
     >
       <LoginForm />

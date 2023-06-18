@@ -11,15 +11,30 @@ interface ISelectHeaderPropsType {
   menuItemsPosition?: SelectPositionType;
 }
 
+const arrowIcon = {
+  up: {
+    true: <ArrowDownIcon />,
+    false: <ArrowUpIcon />,
+  },
+  down: {
+    true: <ArrowUpIcon />,
+    false: <ArrowDownIcon />,
+  },
+};
+
 export const SelectHeader: FC<ISelectHeaderPropsType> = ({
   currentSelectedValue,
   onClick,
   className,
   isOpenMenu,
   menuItemsPosition = 'down',
-}) => (
-  <div onClick={onClick} role="presentation" className={className}>
-    {currentSelectedValue.label}
-    {isOpenMenu && menuItemsPosition === 'up' ? <ArrowDownIcon /> : <ArrowUpIcon />}
-  </div>
-);
+}) => {
+  const currentIcon = arrowIcon[menuItemsPosition][`${isOpenMenu}`];
+
+  return (
+    <div onClick={onClick} role="presentation" className={className}>
+      {currentSelectedValue.label}
+      {currentIcon}
+    </div>
+  );
+};
