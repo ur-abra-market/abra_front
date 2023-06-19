@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 
-import { Layout } from '../../layouts/Layout/Layout';
+import { Layout } from 'layouts/Layout';
 
 export const WithLayout = <T extends Record<string, unknown>>(
   Component: FunctionComponent<T>,

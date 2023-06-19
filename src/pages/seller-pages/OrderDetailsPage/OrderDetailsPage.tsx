@@ -6,7 +6,7 @@ import Header from '../../../layouts/Header';
 
 import style from './OrderDetails.module.css';
 
-import Footer from 'layouts/Footer';
+import { Footer } from 'layouts/Footer';
 
 export const OrderDetailsPage = (): JSX.Element => {
   return (

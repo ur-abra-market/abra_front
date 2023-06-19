@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 import { AccountManagement, UploadImage } from '../../../components';
 import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
 import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
-import Footer from '../../../layouts/Footer';
 import Header from '../../../layouts/Header';
 import { Action } from '../../../services/user/user.service';
 
@@ -16,6 +15,7 @@ import { Address } from './Address/Address';
 import Orders from './Orders/Orders';
 import style from './SellerAccountPage.module.css';
 
+import { Footer } from 'layouts/Footer';
 import {
   getSellerAddressesService,
   getSellerInfoService,

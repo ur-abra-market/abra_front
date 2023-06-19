@@ -7,7 +7,7 @@ import { LoadingStatus } from '../../../../../../common/types';
 
 import style from './AuthPageLayout.module.scss';
 
-import Footer from 'layouts/Footer';
+import { Footer } from 'layouts/Footer';
 import { LoaderLinear, MainLogo, SimpleLink } from 'ui-kit';
 
 interface IAuthPageLayout {
@@ -46,7 +46,7 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
           </SimpleLink>
         )}
       </div>
-      <Footer variant="default" />
+      <Footer variant="white" />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 import { NavLink, useLocation } from 'react-router-dom';
@@ -8,17 +8,23 @@ import { LocationAndCurrencySelection } from '../../components/LocationAndCurren
 import HeaderNavMenu from '../../old-components/HeaderNavMemu';
 import { Container } from '../../ui-kit';
 
-import style from './Footer.module.css';
-import { FooterProps } from './Footer.props';
+import style from './Footer.module.scss';
 
 import { MainLogo } from 'ui-kit';
 
-const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => {
+export interface FooterProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  variant: 'white' | 'default';
+}
+export const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => {
   const routs = ['personal-account', 'product', 'order-history', ''];
   const { pathname } = useLocation();
   const isSupplier = useAppSelector(state => state.auth.userRole);
   const showHeadNav =
     isSupplier === 'seller' && routs.some(el => el === pathname.split('/')[1]);
+  const footerClasses = cn(style.footer, {
+    [style.footer_white]: variant === 'white',
+  });
 
   return (
     <div className={cn(style.container, className)}>
@@ -34,11 +40,7 @@ const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => {
         </Container>
       )}
 
-      <div
-        className={cn(style.footer, {
-          [style.footer_white]: variant === 'white',
-        })}
-      >
+      <div className={footerClasses}>
         <Container>
           <div className={style.flex_box}>
             {variant === 'default' ? (
@@ -51,7 +53,7 @@ const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => {
                     to="/terms_and_conditions"
                   >
                     Terms & conditions
-                  </NavLink>{' '}
+                  </NavLink>
                   <NavLink
                     className={({ isActive }) =>
                       isActive ? style.is_disabled : style.link
@@ -62,12 +64,12 @@ const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => {
                   </NavLink>
                 </div>
                 <div className={style.copyright}>
-                  <span>© Copyright 2023</span>
+                  <span>&#169; Copyright 2023</span>
                 </div>
               </>
             ) : (
               <div className={style.links_white}>
-                © 2022 Abra.{' '}
+                &#169; 2022 Abra.
                 <NavLink
                   className={({ isActive }) =>
                     isActive ? style.is_disabled_white : style.link_white
@@ -75,7 +77,7 @@ const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => {
                   to="/terms_and_conditions"
                 >
                   Terms & conditions
-                </NavLink>{' '}
+                </NavLink>
                 and&nbsp;
                 <NavLink
                   className={({ isActive }) =>
@@ -93,5 +95,3 @@ const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => {
     </div>
   );
 };
-
-export default Footer;
