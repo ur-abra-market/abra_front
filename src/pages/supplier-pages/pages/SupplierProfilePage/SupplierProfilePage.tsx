@@ -4,13 +4,10 @@ import { useAppDispatch } from '../../../../common/hooks';
 import { AccountManagement } from '../../../../components';
 import { getCountries } from '../../../../store/reducers/commonSlice';
 
-import style from './SupplierProfilePage.module.css';
+import { SupplierNotifications } from './SupplierNotifications/SupplierNotifications';
+import style from './SupplierProfilePage.module.scss';
 
-import {
-  NotificationsChangeForm,
-  SupplierBusinessInfoChangeForm,
-  SupplierPersonalInfoChangeForm,
-} from '.';
+import { SupplierBusinessInfoChangeForm, SupplierPersonalInfoChangeForm } from '.';
 
 export const SupplierProfilePage = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -33,7 +30,7 @@ export const SupplierProfilePage = (): JSX.Element => {
         </div>
 
         <div className={style.notifications}>
-          <NotificationsChangeForm />
+          <SupplierNotifications />
         </div>
       </div>
     </div>

@@ -1,12 +1,12 @@
 .notifications {
-  background: #FFF;
+  background: var(--color-white);
   border-radius: 12px;
 }
 
 .title {
   padding: 32px 32px 8px;
 
-  font-size: 20px;
+  font-size: var(--fz-l2);
   font-weight: 700;
   line-height: 24px;
   letter-spacing: 0.16px;

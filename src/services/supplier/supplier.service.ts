@@ -1,14 +1,15 @@
+import { IServerResponse } from '../../common/types';
 import baseConfigService from '../baseConfig.service';
 
 import {
-  ISuppliersNotifications,
   ISuppliersCompanyInfoData,
-  SuppliersResponse,
+  ISupplierNotifications,
+  ISuppliersUpdateCompanyInfo,
 } from './supplier.serviceTypes';
 
 export const supplierService = {
   hasCompanyInfo: async () => {
-    const { data } = await baseConfigService.get<SuppliersResponse<boolean>>(
+    const { data } = await baseConfigService.get<IServerResponse<boolean>>(
       `/suppliers/hasCompanyInfo/`,
     );
 
@@ -16,7 +17,7 @@ export const supplierService = {
   },
 
   hasPersonalInfo: async () => {
-    const { data } = await baseConfigService.get<SuppliersResponse<boolean>>(
+    const { data } = await baseConfigService.get<IServerResponse<boolean>>(
       `/suppliers/hasPersonalInfo/`,
     );
 
@@ -24,31 +25,34 @@ export const supplierService = {
   },
 
   fetchCompanyLogo: async () => {
-    const { data } = await baseConfigService.get<SuppliersResponse<string>>(
+    const { data } = await baseConfigService.get<IServerResponse<string>>(
       `/suppliers/companyLogo`,
     );
 
     return data.result;
   },
 
-  fetchCompanyInfo: async () => {
+  fetchBusinessInfo: async () => {
     const { data } = await baseConfigService.get<
-      SuppliersResponse<ISuppliersCompanyInfoData>
-    >(`/suppliers/companyInfo`);
+      IServerResponse<ISuppliersCompanyInfoData>
+    >(`/suppliers/businessInfo/`);
 
     return data.result;
   },
 
-  updateCompanyInfo: async () => {
-    const { data } = await baseConfigService.patch(`/suppliers/companyInfo/update/`); // todo add type
+  updateBusinessInfo: async (companyInfo: Partial<ISuppliersUpdateCompanyInfo>) => {
+    const { data } = await baseConfigService.patch<IServerResponse<boolean>>(
+      `/suppliers/businessInfo/update/`,
+      companyInfo,
+    );
 
     return data.result;
   },
 
-  fetchNotifications: async () => {
-    const { data } = await baseConfigService.get<
-      SuppliersResponse<ISuppliersNotifications>
-    >(`/suppliers/notifications/`);
+  getNotifications: async () => {
+    const { data } = await baseConfigService.get<IServerResponse<ISupplierNotifications>>(
+      `/suppliers/notifications/`,
+    );
 
     return data.result;
   },
@@ -65,12 +69,6 @@ export const supplierService = {
     const { data } = await baseConfigService.get(
       `suppliers/getCategoryVariations/${categoryId}/`,
     );
-
-    return data;
-  },
-
-  getSupplierCompanyInfo: async () => {
-    const { data } = await baseConfigService.get(`suppliers/companyInfo/`);
 
     return data;
   },
@@ -98,5 +96,12 @@ export const supplierService = {
     );
 
     return data;
+  },
+
+  updateNotifications: async (notification: Partial<ISupplierNotifications>) => {
+    await baseConfigService.patch<IServerResponse<boolean>>(
+      `suppliers/notifications/update/`,
+      notification,
+    );
   },
 };

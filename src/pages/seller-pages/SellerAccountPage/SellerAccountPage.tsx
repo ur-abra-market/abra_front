@@ -10,21 +10,17 @@ import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
 import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
 import Header from '../../../layouts/Header';
 import { Action } from '../../../services/user/user.service';
+import { getSellerAddressesService } from '../../../store/reducers/seller/profile';
 
 import { Address } from './Address/Address';
 import Orders from './Orders/Orders';
 import style from './SellerAccountPage.module.css';
+import { SellerNotifications } from './SellerNotifications/SellerNotifications';
 
 import { Footer } from 'layouts/Footer';
 import {
-  getSellerAddressesService,
-  getSellerInfoService,
-  sendSellerInfoService,
-} from 'store/reducers/sellerSlice';
-import {
   Button,
   ButtonInfo,
-  Checkbox,
   Container,
   Input,
   ISelectOption,
@@ -41,7 +37,9 @@ export const SellerAccountPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const isFeedbackOpen = useAppSelector(state => state.app.isFeedbackOpen);
 
-  const { first_name, last_name } = useAppSelector(state => state.seller.userProfileInfo);
+  const { first_name, last_name } = useAppSelector(
+    state => state.sellerProfile.personalInfo,
+  );
   const addresses = useAppSelector(state => state.sellerCheckout.addresses); // фиксил ошибки, заглушка
 
   const { register, handleSubmit, reset } = useForm<FormValues>({
@@ -52,10 +50,8 @@ export const SellerAccountPage = (): JSX.Element => {
   });
 
   const onSubmit = (data: FormValues): void => {
-    dispatch(sendSellerInfoService(data));
+    // dispatch(sendSellerInfoService(data));
   };
-
-  const onNotificationChange = (id: string, isChecked: boolean): void => {};
 
   const options: ISelectOption[] = [
     { label: '+90', value: '+90' },
@@ -63,7 +59,7 @@ export const SellerAccountPage = (): JSX.Element => {
   ];
 
   useEffect(() => {
-    dispatch(getSellerInfoService());
+    // dispatch(getSellerInfoService());
     dispatch(getSellerAddressesService());
   }, [dispatch]);
 
@@ -169,97 +165,7 @@ export const SellerAccountPage = (): JSX.Element => {
                 </div>
 
                 <div className={style.notifications_list}>
-                  <Checkbox
-                    id="on_discount"
-                    variant="notification"
-                    label="Discounts & offers"
-                    className={style.notifications_item}
-                    checked={false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_order_updates"
-                    variant="notification"
-                    label="Order updates"
-                    className={style.notifications_item}
-                    checked={false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_order_reminders"
-                    variant="notification"
-                    label="Order reminders"
-                    className={style.notifications_item}
-                    checked={false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_stock_again"
-                    variant="notification"
-                    label="On stock again"
-                    className={style.notifications_item}
-                    checked={false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_product_is_cheaper"
-                    variant="notification"
-                    label="Product is cheaper"
-                    className={style.notifications_item}
-                    checked={false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_your_favorites_new"
-                    variant="notification"
-                    label="Your favorites new"
-                    className={style.notifications_item}
-                    checked={false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
-                  <Checkbox
-                    id="on_account_support"
-                    variant="notification"
-                    label="Account support"
-                    className={style.notifications_item}
-                    checked={false}
-                    onChange={event =>
-                      onNotificationChange(
-                        event.currentTarget.id,
-                        event.currentTarget.checked,
-                      )
-                    }
-                  />
+                  <SellerNotifications />
                 </div>
               </div>
             </div>

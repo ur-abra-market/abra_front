@@ -8,25 +8,25 @@
   height: 4px;
 
   background-color: rgba(252, 19, 61, 0.24);
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    left: -50%;
+
+    width: 40%;
+    height: 4px;
+
+    background-color: var(--color-accent);
+
+    -webkit-animation: line_animation 1s linear infinite;
+    -moz-animation: line_animation 1s linear infinite;
+    animation: line_animation 1s linear infinite;
+  }
 }
 
-.loader_line::before {
-  content: '';
-
-  position: absolute;
-  left: -50%;
-
-  width: 40%;
-  height: 4px;
-
-  background-color: var(--color-accent);
-
-  -webkit-animation: lineAnim 1s linear infinite;
-  -moz-animation: lineAnim 1s linear infinite;
-  animation: lineAnim 1s linear infinite;
-}
-
-@keyframes lineAnim {
+@keyframes line_animation {
   0% {
     left: -40%;
   }

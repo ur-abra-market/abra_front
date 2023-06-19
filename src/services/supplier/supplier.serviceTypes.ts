@@ -1,3 +1,5 @@
+import { ICountry } from '../common/common.serviceTypes';
+
 export interface License {
   license_number: number;
 }
@@ -34,19 +36,16 @@ export interface RequestAccountInfo {
   };
 }
 
-export interface INotification {
-  on_discount: boolean;
+export interface ISupplierNotifications {
+  on_advertising_campaigns: boolean;
   on_order_updates: boolean;
   on_order_reminders: boolean;
-  on_stock_again: boolean;
-  on_product_is_cheaper: boolean;
-  on_your_favorites_new: boolean;
+  on_product_updates: boolean;
+  on_product_reminders: boolean;
+  on_reviews_of_products: boolean;
+  on_change_in_demand: boolean;
+  on_advice_from_abra: boolean;
   on_account_support: boolean;
-}
-
-export interface SuppliersResponse<R> {
-  ok: boolean;
-  result: R;
 }
 
 export interface ISuppliersCompanyInfoData {
@@ -66,20 +65,33 @@ export interface ICompanyInfo {
   number_employees: number;
   description: string;
   address: string;
-  logo_url: string;
   business_sector: string;
+  country: ICountry;
+  phone: IPhoneInfo;
   images: any[];
 }
 
-export interface ISuppliersNotifications {
+interface IPhoneInfo {
   id: number;
-  on_advertising_campaigns: boolean;
-  on_order_updates: boolean;
-  on_order_reminders: boolean;
-  on_product_updates: boolean;
-  on_product_reminders: boolean;
-  on_reviews_of_products: boolean;
-  on_change_in_demand: boolean;
-  on_advice_from_abra: boolean;
-  on_account_support: boolean;
+  phone_number: string;
+  country: ICountry;
+}
+
+export interface ISuppliersUpdateCompanyInfo {
+  supplier_data_request: ISupplierLicense;
+  company_data_request: Omit<IUpdateCompanyInfo, 'id' | 'country' | 'phone' | 'images'>;
+  company_phone_data_request: ISuppliersCompanyPhoneData;
+}
+
+interface ISupplierLicense {
+  license_number: string;
+}
+
+interface IUpdateCompanyInfo extends ICompanyInfo {
+  country_id: number;
+}
+
+interface ISuppliersCompanyPhoneData {
+  country_id: number;
+  phone_number: string;
 }
