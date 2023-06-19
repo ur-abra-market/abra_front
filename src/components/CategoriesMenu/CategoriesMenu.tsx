@@ -46,7 +46,7 @@ export const CategoriesMenu = forwardRef(
 
     return (
       <div ref={ref} className={cn(style.menu_container)}>
-        <ul>
+        <ul className={style.list}>
           {wearerCategory.map(c => {
             return (
               <FilterButton

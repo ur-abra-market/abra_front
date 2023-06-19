@@ -24,11 +24,11 @@ export const FilterButton: FC<FilterButtonProps> = ({
   };
 
   return (
-    <li className={style.filter_button}>
+    <li className={style.filter_button} onMouseEnter={onClick}>
       <button
         type="button"
         onMouseEnter={onClick}
-        className={cn({
+        className={cn(style.btn, {
           [style.active_button]: activeValue === value,
         })}
       >

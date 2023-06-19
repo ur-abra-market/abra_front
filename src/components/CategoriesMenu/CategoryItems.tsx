@@ -14,15 +14,16 @@ export const Items: FC<ItemsProps> = (props): JSX.Element => {
   };
 
   const mappedItems = items?.map(item => (
-    <li key={item.id}>
+    <li className={style.list_item} key={item.id}>
       <NavLink
+        className={style.link}
         style={({ isActive }) => (isActive ? activeStyle : undefined)}
         to={`/products-list/${item.id}`}
       >
         {item.name}
       </NavLink>
       {item.children?.map(i => (
-        <div className={style.items_anchor} key={i.id}>
+        <div className={style.items_links} key={i.id}>
           {i.name}
         </div>
       ))}
