@@ -2,7 +2,7 @@ import { LoadingStatus } from '../../../../common/types';
 import { ISupplierNotifications } from '../../../../services/supplier/supplier.serviceTypes';
 import { RootStateType } from '../../../createStore';
 
-import { ISupplierPersonalInfo, ISupplierBusinessProfileInfo } from './slice';
+import { ISupplierPersonalInfo, ISupplierBusinessInfo } from './slice';
 
 export const supplierPersonalInfoSelector = (
   state: RootStateType,
@@ -10,7 +10,7 @@ export const supplierPersonalInfoSelector = (
 
 export const supplierBusinessProfileInfoSelector = (
   state: RootStateType,
-): ISupplierBusinessProfileInfo => state.supplierProfile.businessProfileInfo;
+): ISupplierBusinessInfo => state.supplierProfile.businessInfo;
 
 export const supplierNotificationsSelector = (
   state: RootStateType,

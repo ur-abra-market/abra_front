@@ -12,7 +12,7 @@ import {
   supplierBusinessProfileInfoSelector,
   updateCompanyInfo,
 } from '../../../../../store/reducers/supplier/profile';
-import { ISupplierBusinessProfileInfo } from '../../../../../store/reducers/supplier/profile/slice';
+import { ISupplierBusinessInfo } from '../../../../../store/reducers/supplier/profile/slice';
 import {
   SupplierBusinessInfoForm,
   supplierBusinessInfoFormValidationSchema,
@@ -32,13 +32,13 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
     reset(companyInfoSelector);
   }, [companyInfoSelector]);
 
-  const formMethods = useForm<ISupplierBusinessProfileInfo>({
+  const formMethods = useForm<ISupplierBusinessInfo>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
   });
   const { reset } = formMethods;
 
-  const onSubmit = async (data: ISupplierBusinessProfileInfo): Promise<void> => {
+  const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
     const updateData: ISuppliersUpdateCompanyInfo = {
       supplier_data_request: {
         license_number: data.license,

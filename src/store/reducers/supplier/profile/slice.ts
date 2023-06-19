@@ -26,7 +26,7 @@ interface ICountryRegistration {
   value: number | null;
 }
 
-export interface ISupplierBusinessProfileInfo {
+export interface ISupplierBusinessInfo {
   storeName: string;
   businessSector: IBusinessSector;
   isManufacturer: boolean;
@@ -44,7 +44,7 @@ export interface ISupplierBusinessProfileInfo {
 interface ISupplierProfileSliceInitialState {
   loading: LoadingStatus;
   personalInfo: ISupplierPersonalInfo;
-  businessProfileInfo: ISupplierBusinessProfileInfo;
+  businessInfo: ISupplierBusinessInfo;
   notifications: ISupplierNotifications | null;
 }
 
@@ -56,7 +56,7 @@ const initialState: ISupplierProfileSliceInitialState = {
     countryShort: '',
     phoneNumber: '',
   },
-  businessProfileInfo: {
+  businessInfo: {
     storeName: '',
     businessSector: { value: '' },
     isManufacturer: false,
@@ -100,17 +100,17 @@ export const supplierProfileSlice = createSlice({
         number_employees,
       } = action.payload.company;
 
-      state.businessProfileInfo.storeName = name;
-      state.businessProfileInfo.businessSector.value = business_sector;
-      state.businessProfileInfo.isManufacturer = is_manufacturer;
-      state.businessProfileInfo.license = action.payload.license_number;
-      state.businessProfileInfo.yearEstablished = year_established;
-      state.businessProfileInfo.numEmployees = number_employees;
-      state.businessProfileInfo.countryRegistration.value = country.id;
-      state.businessProfileInfo.countryRegistration.label = country.country;
-      state.businessProfileInfo.description = description;
-      state.businessProfileInfo.email = business_email;
-      state.businessProfileInfo.address = address;
+      state.businessInfo.storeName = name;
+      state.businessInfo.businessSector.value = business_sector;
+      state.businessInfo.isManufacturer = is_manufacturer;
+      state.businessInfo.license = action.payload.license_number;
+      state.businessInfo.yearEstablished = year_established;
+      state.businessInfo.numEmployees = number_employees;
+      state.businessInfo.countryRegistration.value = country.id;
+      state.businessInfo.countryRegistration.label = country.country;
+      state.businessInfo.description = description;
+      state.businessInfo.email = business_email;
+      state.businessInfo.address = address;
     });
     builder
       .addCase(getSupplierNotifications.pending, state => {
