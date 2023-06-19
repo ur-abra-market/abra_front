@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 import { AccountManagement, UploadImage } from '../../../components';
 import { ButtonLogOut } from '../../../components/ButtonLogOut/ButtonLogOut';
 import FeedbackForm from '../../../components/feedbacks/FeedbackForm';
-import Footer from '../../../layouts/Footer';
 import Header from '../../../layouts/Header';
 import { Action } from '../../../services/user/user.service';
 import { getSellerAddressesService } from '../../../store/reducers/seller/profile';
@@ -18,6 +17,7 @@ import Orders from './Orders/Orders';
 import style from './SellerAccountPage.module.css';
 import { SellerNotifications } from './SellerNotifications/SellerNotifications';
 
+import { Footer } from 'layouts/Footer';
 import {
   Button,
   ButtonInfo,
@@ -174,7 +174,7 @@ export const SellerAccountPage = (): JSX.Element => {
           </div>
         </div>
       </Container>
-      <Footer />
+      <Footer variant="default" />
     </div>
   );
 };
