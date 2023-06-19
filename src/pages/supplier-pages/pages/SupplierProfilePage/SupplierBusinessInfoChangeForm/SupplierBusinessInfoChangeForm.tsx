@@ -8,9 +8,9 @@ import { UploadImage } from '../../../../../components';
 import { ISuppliersUpdateCompanyInfo } from '../../../../../services/supplier/supplier.serviceTypes';
 import { Action } from '../../../../../services/user/user.service';
 import {
-  getCompanyInfo,
-  supplierBusinessProfileInfoSelector,
-  updateCompanyInfo,
+  getBusinessInfo,
+  supplierBusinessInfoSelector,
+  updateBusinessInfo,
 } from '../../../../../store/reducers/supplier/profile';
 import { ISupplierBusinessInfo } from '../../../../../store/reducers/supplier/profile/slice';
 import {
@@ -22,10 +22,10 @@ import style from './SupplierBusinessInfoChangeForm.module.scss';
 
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const companyInfoSelector = useAppSelector(supplierBusinessProfileInfoSelector);
+  const companyInfoSelector = useAppSelector(supplierBusinessInfoSelector);
 
   useEffect(() => {
-    dispatch(getCompanyInfo());
+    dispatch(getBusinessInfo());
   }, []);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
       },
     };
 
-    dispatch(updateCompanyInfo(updateData));
+    dispatch(updateBusinessInfo(updateData));
   };
 
   return (

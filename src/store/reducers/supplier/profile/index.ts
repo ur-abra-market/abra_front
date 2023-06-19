@@ -1,12 +1,12 @@
 export {
-  getCompanyInfo,
+  getBusinessInfo,
   getSupplierNotifications,
   updateSupplierNotifications,
-  updateCompanyInfo,
+  updateBusinessInfo,
 } from './thunks';
 export {
   supplierPersonalInfoSelector,
   supplierLoadingSelector,
   supplierNotificationsSelector,
-  supplierBusinessProfileInfoSelector,
+  supplierBusinessInfoSelector,
 } from './selectors';

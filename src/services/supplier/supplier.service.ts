@@ -32,17 +32,17 @@ export const supplierService = {
     return data.result;
   },
 
-  fetchCompanyInfo: async () => {
+  fetchBusinessInfo: async () => {
     const { data } = await baseConfigService.get<
       IServerResponse<ISuppliersCompanyInfoData>
-    >(`/suppliers/companyInfo`);
+    >(`/suppliers/businessInfo/`);
 
     return data.result;
   },
 
-  updateCompanyInfo: async (companyInfo: Partial<ISuppliersUpdateCompanyInfo>) => {
+  updateBusinessInfo: async (companyInfo: Partial<ISuppliersUpdateCompanyInfo>) => {
     const { data } = await baseConfigService.patch<IServerResponse<boolean>>(
-      `suppliers/companyInfo/update/`,
+      `/suppliers/businessInfo/update/`,
       companyInfo,
     );
 

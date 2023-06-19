@@ -11,7 +11,7 @@ import {
   addProductService,
   uploadImageService,
 } from '../../../store/reducers/supplier/other';
-import { getCompanyInfo } from '../../../store/reducers/supplier/profile';
+import { getBusinessInfo } from '../../../store/reducers/supplier/profile';
 import {
   Button,
   Input,
@@ -232,7 +232,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   }, [dispatch, images, isSubmit, navigate, productId]);
 
   useEffect(() => {
-    dispatch(getCompanyInfo());
+    dispatch(getBusinessInfo());
   }, [dispatch]);
 
   const handleSetCategory = (

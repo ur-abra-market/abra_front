@@ -8,7 +8,7 @@ export const supplierPersonalInfoSelector = (
   state: RootStateType,
 ): ISupplierPersonalInfo => state.supplierProfile.personalInfo;
 
-export const supplierBusinessProfileInfoSelector = (
+export const supplierBusinessInfoSelector = (
   state: RootStateType,
 ): ISupplierBusinessInfo => state.supplierProfile.businessInfo;
 

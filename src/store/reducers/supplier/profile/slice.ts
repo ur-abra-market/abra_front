@@ -5,7 +5,7 @@ import { ISupplierNotifications } from '../../../../services/supplier/supplier.s
 import { getPersonalInfo } from '../../userSlice';
 
 import {
-  getCompanyInfo,
+  getBusinessInfo,
   getSupplierNotifications,
   updateSupplierNotifications,
 } from './thunks';
@@ -87,7 +87,7 @@ export const supplierProfileSlice = createSlice({
         state.personalInfo.phoneNumber = action.payload.phone_number;
         state.loading = LoadingStatus.Success;
       });
-    builder.addCase(getCompanyInfo.fulfilled, (state, action) => {
+    builder.addCase(getBusinessInfo.fulfilled, (state, action) => {
       const {
         name,
         country,

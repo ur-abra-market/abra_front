@@ -10,13 +10,13 @@ import {
   ISuppliersUpdateCompanyInfo,
 } from 'services/supplier/supplier.serviceTypes';
 
-export const getCompanyInfo = createAsyncThunk<
+export const getBusinessInfo = createAsyncThunk<
   ISuppliersCompanyInfoData,
   void,
   AsyncThunkConfig
 >('supplierProfile/getCompanyInfo', async (_, { rejectWithValue }) => {
   try {
-    return await supplierService.fetchCompanyInfo();
+    return await supplierService.fetchBusinessInfo();
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
@@ -26,14 +26,14 @@ export const getCompanyInfo = createAsyncThunk<
     return rejectWithValue(errorMessage);
   }
 });
-export const updateCompanyInfo = createAsyncThunk<
+export const updateBusinessInfo = createAsyncThunk<
   void,
   ISuppliersUpdateCompanyInfo,
   AsyncThunkConfig
 >('supplierProfile/updateCompanyInfo', async (arg, { rejectWithValue, dispatch }) => {
   try {
-    await supplierService.updateCompanyInfo(arg);
-    dispatch(getCompanyInfo());
+    await supplierService.updateBusinessInfo(arg);
+    dispatch(getBusinessInfo());
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
