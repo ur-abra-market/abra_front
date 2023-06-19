@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { RouteObject } from 'react-router-dom';
+
 import {
   AccountSetupBusinessInfoPage,
   AccountSetupPersonalInfoPage,
@@ -14,51 +16,64 @@ import {
   SupplierProfilePage,
 } from '../pages/supplier-pages';
 
-export const supplierRoute = [
+import { HOME } from './constans/root';
+import {
+  ACCOUNT_SETUP_BUSINESS_INFO,
+  ACCOUNT_SETUP_PERSONAL_INFO,
+  ADD_PRODUCT,
+  ANALYTICS,
+  DASHBOARD,
+  FEEDBACK,
+  ORDERS,
+  PRICE,
+  SUPPLIERS_PRODUCTS,
+} from './constans/supplier';
+
+export const supplierRoute: RouteObject[] = [
   {
-    path: '/',
+    path: HOME,
     element: <SupplierMainPage />,
     children: [
       {
-        path: '/',
+        path: HOME,
         element: <SupplierProfilePage />,
       },
       {
-        path: 'dashboard',
+        path: DASHBOARD,
         element: <DashboardPage />,
       },
       {
-        path: 'products_list',
+        path: SUPPLIERS_PRODUCTS,
         element: <ProductsListPage />,
       },
       {
-        path: 'orders',
+        path: ORDERS,
         element: <OrdersPage />,
       },
       {
-        path: 'price',
+        path: PRICE,
         element: <PriceManagementPage />,
       },
       {
-        path: 'analytics',
+        path: ANALYTICS,
         element: <AnalyticsPage />,
       },
       {
-        path: 'feedback',
+        path: FEEDBACK,
         element: <FeedbackAndQuestionsPage />,
       },
     ],
   },
   {
-    path: 'account_setup_personal_info',
+    path: ACCOUNT_SETUP_PERSONAL_INFO,
     element: <AccountSetupPersonalInfoPage />,
   },
   {
-    path: 'account_setup_business_info',
+    path: ACCOUNT_SETUP_BUSINESS_INFO,
     element: <AccountSetupBusinessInfoPage />,
   },
   {
-    path: 'add_product',
+    path: ADD_PRODUCT,
     element: <ProductListRegistrationPage />,
   },
 ];
