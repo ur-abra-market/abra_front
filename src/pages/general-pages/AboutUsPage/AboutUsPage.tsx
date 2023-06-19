@@ -4,6 +4,8 @@ import HeaderForChangePages from '../../../old-components/HeaderForChangePages';
 
 import style from './AboutUsPage.module.css';
 
+import { Footer } from 'layouts/Footer';
+
 export const AboutUsPage = (): JSX.Element => {
   return (
     <div>
@@ -89,6 +91,7 @@ export const AboutUsPage = (): JSX.Element => {
           </p>
         </div>
       </div>
+      <Footer variant="default" />
     </div>
   );
 };
