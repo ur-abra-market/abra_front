@@ -3,6 +3,8 @@ import React, { FC } from 'react';
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 
+import { ABOUT, CONTACT, FAQ, NEWS, SELL, TUTORIALS } from '../../routes';
+
 import style from './HeaderNavMenu.module.css';
 import { HeaderNavMenuProps } from './HeaderNavMenu.props';
 
@@ -18,7 +20,7 @@ const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {
         <li>
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            to="/news"
+            to={NEWS}
           >
             Last News
           </NavLink>
@@ -26,7 +28,7 @@ const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {
         <li>
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            to="/tutorials"
+            to={TUTORIALS}
           >
             Tutorials for Buyers
           </NavLink>
@@ -34,7 +36,7 @@ const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {
         <li>
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            to="/sell"
+            to={SELL}
           >
             Sell on Abra
           </NavLink>
@@ -42,7 +44,7 @@ const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {
         <li>
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            to="/contact"
+            to={CONTACT}
           >
             Contact Support
           </NavLink>
@@ -50,7 +52,7 @@ const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {
         <li>
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            to="/faq"
+            to={FAQ}
           >
             FAQ
           </NavLink>
@@ -58,7 +60,7 @@ const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {
         <li>
           <NavLink
             style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            to="/about"
+            to={ABOUT}
           >
             About Us
           </NavLink>

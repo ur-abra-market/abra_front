@@ -2,6 +2,8 @@ import { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { HOME } from '../../../../routes';
+
 import style from './ProductPath.module.css';
 
 import { BreadcrumbsArrowIcon } from 'assets/icons';
@@ -16,7 +18,7 @@ const ProductPath: FC<ProductPathProps> = ({ pathArr }): JSX.Element => {
       {pathArr.map(route => (
         // eslint-disable-next-line jsx-a11y/anchor-is-valid
         <Link key={`path_${route}`} className={style.product_path_item} to="#">
-          {route.replace('/', '')}
+          {route.replace(HOME, '')}
           <span>
             <BreadcrumbsArrowIcon />
           </span>

@@ -2,16 +2,25 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
+import {
+  ANALYTICS,
+  DASHBOARD,
+  FEEDBACK,
+  ORDERS,
+  PRICE,
+  SUPPLIERS_PRODUCTS,
+} from '../../../routes';
+
 import style from './SupplierMenu.module.css';
 
 const SupplierMenu = (): JSX.Element => {
   const menu = [
-    { name: 'Dashboard', path: 'dashboard' },
-    { name: 'Products List', path: 'products_list' },
-    { name: 'Orders', path: 'orders' },
-    { name: 'Price Management', path: 'price' },
-    { name: 'Analytics', path: 'analytics' },
-    { name: 'Feedback and questions', path: 'feedback' },
+    { name: 'Dashboard', path: DASHBOARD },
+    { name: 'Products List', path: SUPPLIERS_PRODUCTS },
+    { name: 'Orders', path: ORDERS },
+    { name: 'Price Management', path: PRICE },
+    { name: 'Analytics', path: ANALYTICS },
+    { name: 'Feedback and questions', path: FEEDBACK },
   ];
 
   return (

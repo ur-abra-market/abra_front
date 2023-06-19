@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 import Modal from '../../../components/Modal';
+import { HOME, LOGIN, REGISTER, CART, PERSONAL_ACCOUNT } from '../../../routes';
 import { logout } from '../../../store/reducers/authSlice';
 import { ButtonIcon, MainLogo, Search } from '../../../ui-kit';
 
@@ -22,29 +23,29 @@ const PROFILE_MENU = {
   UNAUTHORIZED: [
     {
       label: 'Log in',
-      href: '/login',
+      href: LOGIN,
     },
     {
       label: 'Register',
-      href: '/register',
+      href: REGISTER,
     },
   ],
   AUTHORIZED: [
     {
       label: 'My Profile',
-      href: '/personal_account',
+      href: PERSONAL_ACCOUNT,
     },
     {
       label: 'Edit Profile',
-      href: '/personal_account',
+      href: PERSONAL_ACCOUNT,
     },
     {
       label: 'Settings',
-      href: '/personal_account',
+      href: PERSONAL_ACCOUNT,
     },
     {
       label: 'My Orders',
-      href: '/personal_account',
+      href: PERSONAL_ACCOUNT,
     },
     {
       label: 'Log out',
@@ -73,25 +74,25 @@ const Top = (): JSX.Element => {
       case 'account':
         return setMenu(target);
       case 'note':
-        return navigate('/');
+        return navigate(HOME);
       case 'favorite':
-        return navigate('/');
+        return navigate(HOME);
       case 'cart':
-        return navigate('/cart');
+        return navigate(CART);
       default:
     }
   };
 
   const handleClickLogout = (): void => {
     dispatch(logout());
-    navigate('/');
+    navigate(HOME);
   };
 
   return (
     <div className={style.wrapper}>
       <Modal showModal={isShowModal} closeModal={setIsShowModal}>
         <div>You are not included in...</div>
-        <NavLink to="/auth">Login</NavLink>
+        <NavLink to={LOGIN}>Login</NavLink>
       </Modal>
 
       <div

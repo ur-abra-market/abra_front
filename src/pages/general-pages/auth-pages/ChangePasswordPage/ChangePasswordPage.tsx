@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Modal from '../../../../components/Modal';
+import { FORGOT_PASSWORD } from '../../../../routes';
 import { Button } from '../../../../ui-kit';
 import { AuthPageLayout } from '../assets';
 
@@ -16,7 +17,7 @@ export const ChangePasswordPage = (): JSX.Element => {
 
   return (
     <>
-      <AuthPageLayout footerLink="/forgot_password" footerTitle="Forgot password?">
+      <AuthPageLayout footerLink={FORGOT_PASSWORD} footerTitle="Forgot password?">
         <div className={style.header}>Change password</div>
         <div className={style.subheader}>Enter your current and new passwords</div>
         <ChangePasswordForm handleChangeModalActive={handleChangeModalActive} />

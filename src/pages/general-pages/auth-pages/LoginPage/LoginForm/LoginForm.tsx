@@ -8,6 +8,7 @@ import * as yup from 'yup';
 import { emailValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { LoadingStatus } from '../../../../../common/types';
+import { HOME } from '../../../../../routes';
 import { loginUser } from '../../../../../store/reducers/authSlice';
 import { Button, Input } from '../../../../../ui-kit';
 
@@ -47,7 +48,7 @@ export const LoginForm = (): JSX.Element => {
   };
 
   if (isAuthorized) {
-    return <Navigate to="/" />;
+    return <Navigate to={HOME} />;
   }
 
   return (

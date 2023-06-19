@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../common/hooks';
+import { HOME } from '../../../routes';
 import { logout } from '../../../store/reducers/authSlice';
 
 import style from './SupplierTop.module.scss';
@@ -17,18 +18,18 @@ const SupplierTop = (): JSX.Element => {
   const navigate = useNavigate();
   const handleClickLogout = (): void => {
     dispatch(logout());
-    navigate('/');
+    navigate(HOME);
   };
 
   const buildMenu = (): JSX.Element[] => {
     const menu = [
       {
         label: 'Name 1',
-        href: '/',
+        href: HOME,
       },
       {
         label: 'Name 2',
-        href: '/',
+        href: HOME,
       },
       {
         label: 'Log Out',
@@ -63,13 +64,13 @@ const SupplierTop = (): JSX.Element => {
         <MainLogo className={style.logo_font_size} />
         <span className={style.vertical_line} />
         <span>
-          <Link className={style.supplier_link} to="/">
+          <Link className={style.supplier_link} to={HOME}>
             SUPPLIER
           </Link>
         </span>
       </div>
       <div className={style.inner_buttons}>
-        <Link to="/">
+        <Link to={HOME}>
           <HeaderNotificationsIcon />
         </Link>
         <div

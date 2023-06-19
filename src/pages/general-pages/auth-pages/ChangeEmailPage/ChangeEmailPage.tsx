@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Modal from '../../../../components/Modal';
+import { HOME } from '../../../../routes';
 import { Button } from '../../../../ui-kit';
 import { AuthPageLayout } from '../assets';
 
@@ -33,7 +34,7 @@ export const ChangeEmailPage = (): JSX.Element => {
           <Button
             className={style.modal_button}
             label="Okey"
-            onClick={() => navigate('/')}
+            onClick={() => navigate(HOME)}
           />
         </div>
       </Modal>

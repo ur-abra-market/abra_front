@@ -7,6 +7,7 @@ import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { LoadingStatus, ResponseUserRoleType } from '../../../../../common/types';
+import { CHECK_EMAIL } from '../../../../../routes';
 import { registerUser } from '../../../../../store/reducers/authSlice';
 import { PasswordComplexity } from '../../assets';
 
@@ -51,7 +52,7 @@ export const RegisterForm = (): JSX.Element => {
   const onSubmit = async (data: IFormValues): Promise<void> => {
     dispatch(registerUser({ ...data, route: userRole })).then(
       ({ meta: { requestStatus } }) => {
-        if (requestStatus === 'fulfilled') navigate('/register/checkEmail');
+        if (requestStatus === 'fulfilled') navigate(CHECK_EMAIL);
       },
     );
   };

@@ -4,6 +4,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import { Link } from 'react-router-dom';
 
 import { WithLayout } from '../../../common/hocs/WithLayout';
+import { CONTACT } from '../../../routes';
 
 import style from './FAQ.module.css';
 
@@ -89,7 +90,7 @@ export const FAQPage = WithLayout((): JSX.Element => {
       </div>
       <p>
         For any further questions, please visit our Help Center or{' '}
-        <Link to="../contact">contact</Link> our Customer Support Team
+        <Link to={CONTACT}>contact</Link> our Customer Support Team
       </p>
     </div>
   );

@@ -24,7 +24,6 @@ import {
   RegisterPage,
   MainPage,
 } from '../pages/general-pages';
-import { ProductPage } from '../pages/seller-pages';
 
 import {
   ABOUT,

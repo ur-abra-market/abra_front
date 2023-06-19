@@ -3,6 +3,8 @@ import React, { FC } from 'react';
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 
+import { SELLER_PRODUCTS } from '../../routes';
+
 import { ItemsProps } from './CategoriesMenu';
 import style from './CategoriesMenu.module.css';
 
@@ -17,7 +19,8 @@ export const Items: FC<ItemsProps> = (props): JSX.Element => {
     <li key={index}>
       <NavLink
         style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        to={`/products-list/${item.id}`}
+        to={`${SELLER_PRODUCTS}/${item.id}`}
+        state={item.id}
       >
         {item.name}
       </NavLink>

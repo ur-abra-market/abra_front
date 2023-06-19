@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { CHANGE_EMAIL, CHANGE_PASSWORD } from '../../routes';
+
 import { AccountManagementLink } from './AccountManagmentLink/AccountManagmentLink';
 
 export const AccountManagement = (): JSX.Element => {
@@ -7,12 +9,12 @@ export const AccountManagement = (): JSX.Element => {
     <>
       <AccountManagementLink
         linkLabel="Change your email"
-        path="/change_email"
+        path={CHANGE_EMAIL}
         description="(You will have to confirm a new email)"
       />
       <AccountManagementLink
         linkLabel="Change your password"
-        path="/change_password"
+        path={CHANGE_PASSWORD}
         description="(In case if you forgot a current password or need a stronger one)"
       />
       <AccountManagementLink

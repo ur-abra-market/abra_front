@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { DefaultProductImage } from '../../assets/images';
 import Flag from '../../old-components/Flag';
 import { getPriceOneItem } from '../../pages/seller-pages/ProductPage/helpers/getPriceOneItem';
+import { PRODUCT_DETAILS } from '../../routes';
 import { IProductCompilation } from '../../services/product/product.serviceTypes';
 import { Stars } from '../../ui-kit';
 
@@ -44,7 +45,7 @@ export const ProductCard: FC<IProductCard> = ({
           </span>
         </span>
       </div>
-      <Link to={`/product/${id}`} className={style.link}>
+      <Link to={`${PRODUCT_DETAILS}/${id}`} className={style.link}>
         <div className={style.direction}>
           <span>{name}</span>
           <span>{description}</span>

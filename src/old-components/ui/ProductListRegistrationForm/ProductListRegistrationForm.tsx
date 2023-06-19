@@ -7,6 +7,7 @@ import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 import { UploadImage } from '../../../components';
+import { HOME } from '../../../routes';
 import {
   addProductService,
   getCompanyInfoService,
@@ -227,7 +228,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
         );
       });
 
-      navigate('/');
+      navigate(HOME);
     }
   }, [dispatch, images, isSubmit, navigate, productId]);
 

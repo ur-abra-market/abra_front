@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../../../../../../common/hooks';
 import { LoadingStatus } from '../../../../../../common/types';
+import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from '../../../../../../routes';
 
 import style from './AuthPageLayout.module.scss';
 
@@ -47,8 +48,8 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
         )}
       </div>
       <div className={style.footer}>
-        © 2022 Abra. <Link to="/terms_and_conditions">Terms & conditions</Link> and&nbsp;
-        <Link to="/privacy_policy">Privacy policy</Link>
+        © 2022 Abra. <Link to={TERMS_AND_CONDITIONS}>Terms & conditions</Link> and&nbsp;
+        <Link to={PRIVACY_POLICY}>Privacy policy</Link>
       </div>
     </div>
   );

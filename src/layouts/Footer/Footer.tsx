@@ -6,6 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../common/hooks';
 import { LocationAndCurrencySelection } from '../../components/LocationAndCurrencySelection/LocationAndCurrencySelection';
 import HeaderNavMenu from '../../old-components/HeaderNavMemu';
+import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from '../../routes';
 import { Container } from '../../ui-kit';
 
 import style from './Footer.module.css';
@@ -39,8 +40,8 @@ const Footer: FC<FooterProps> = (props): JSX.Element => {
         <Container>
           <div className={style.flex_box}>
             <div className={style.links}>
-              <Link to="/terms_and_conditions">Terms & Conditions</Link>
-              <Link to="/privacy_policy">Privacy Policy</Link>
+              <Link to={TERMS_AND_CONDITIONS}>Terms & Conditions</Link>
+              <Link to={PRIVACY_POLICY}>Privacy Policy</Link>
             </div>
             <div className={style.copyright}>
               <span>© Copyright 2023</span>
