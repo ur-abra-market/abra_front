@@ -12,8 +12,8 @@ import {
   supplierBusinessProfileInfoSelector,
   updateCompanyInfo,
 } from '../../../../../store/reducers/supplier/profile';
+import { ISupplierBusinessProfileInfo } from '../../../../../store/reducers/supplier/profile/slice';
 import {
-  ISupplierBusinessInfoFormValues,
   SupplierBusinessInfoForm,
   supplierBusinessInfoFormValidationSchema,
 } from '../../../supplier-pages-common';
@@ -29,25 +29,16 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   }, []);
 
   useEffect(() => {
-    setValue('storeName', companyInfoSelector.shopName);
-    setValue('businessSector', companyInfoSelector.businessSector);
-    setValue('address', companyInfoSelector.address);
-    setValue('description', companyInfoSelector.description);
-    setValue('license', companyInfoSelector.licenseNumber);
-    setValue('countryRegistration.value', companyInfoSelector.countryRegistration.value);
-    setValue('numEmployees', companyInfoSelector.numberEmployees);
-    setValue('isManufacturer', companyInfoSelector.isManufacturer);
-    setValue('yearEstablished', companyInfoSelector.yearEstablished);
-    setValue('email', companyInfoSelector.businessEmail);
+    reset(companyInfoSelector);
   }, [companyInfoSelector]);
 
-  const formMethods = useForm<ISupplierBusinessInfoFormValues>({
+  const formMethods = useForm<ISupplierBusinessProfileInfo>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
   });
-  const { setValue } = formMethods;
+  const { reset } = formMethods;
 
-  const onSubmit = async (data: ISupplierBusinessInfoFormValues): Promise<void> => {
+  const onSubmit = async (data: ISupplierBusinessProfileInfo): Promise<void> => {
     const updateData: ISuppliersUpdateCompanyInfo = {
       supplier_data_request: {
         license_number: data.license,

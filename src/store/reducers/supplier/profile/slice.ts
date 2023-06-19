@@ -17,17 +17,28 @@ export interface ISupplierPersonalInfo {
   phoneNumber: string;
 }
 
+interface IBusinessSector {
+  value: string;
+}
+
+interface ICountryRegistration {
+  label: string;
+  value: number | null;
+}
+
 export interface ISupplierBusinessProfileInfo {
-  shopName: string;
-  businessSector: { value: string };
+  storeName: string;
+  businessSector: IBusinessSector;
   isManufacturer: boolean;
-  licenseNumber: string;
+  license: string;
   yearEstablished: number | null;
-  numberEmployees: number | null;
-  countryRegistration: { value: number | null };
+  numEmployees: number | null;
+  countryRegistration: ICountryRegistration;
   description: string;
-  businessEmail: string;
+  email: string;
   address: string;
+  tel?: string;
+  code?: string;
 }
 
 interface ISupplierProfileSliceInitialState {
@@ -46,15 +57,15 @@ const initialState: ISupplierProfileSliceInitialState = {
     phoneNumber: '',
   },
   businessProfileInfo: {
-    shopName: '',
+    storeName: '',
     businessSector: { value: '' },
     isManufacturer: false,
-    licenseNumber: '',
+    license: '',
     yearEstablished: null,
-    numberEmployees: null,
-    countryRegistration: { value: null },
+    numEmployees: null,
+    countryRegistration: { value: null, label: '' },
     description: '',
-    businessEmail: '',
+    email: '',
     address: '',
   },
   notifications: null,
@@ -89,15 +100,16 @@ export const supplierProfileSlice = createSlice({
         number_employees,
       } = action.payload.company;
 
-      state.businessProfileInfo.shopName = name;
+      state.businessProfileInfo.storeName = name;
       state.businessProfileInfo.businessSector.value = business_sector;
       state.businessProfileInfo.isManufacturer = is_manufacturer;
-      state.businessProfileInfo.licenseNumber = action.payload.license_number;
+      state.businessProfileInfo.license = action.payload.license_number;
       state.businessProfileInfo.yearEstablished = year_established;
-      state.businessProfileInfo.numberEmployees = number_employees;
+      state.businessProfileInfo.numEmployees = number_employees;
       state.businessProfileInfo.countryRegistration.value = country.id;
+      state.businessProfileInfo.countryRegistration.label = country.country;
       state.businessProfileInfo.description = description;
-      state.businessProfileInfo.businessEmail = business_email;
+      state.businessProfileInfo.email = business_email;
       state.businessProfileInfo.address = address;
     });
     builder
