@@ -1,6 +1,2 @@
-export {
-  getSellerNotifications,
-  updateSellerNotifications,
-  getSellerAddressesService,
-} from './thunks';
+export { getSellerNotifications, updateSellerNotifications } from './thunks';
 export { sellerLoadingSelector, sellerNotificationSelector } from './selectors';

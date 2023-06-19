@@ -48,6 +48,7 @@
 }
 
 .section {
+  margin-bottom: 10px;
   padding: 32px;
   background: var(--color-white);
   border-radius: 8px;
@@ -394,4 +395,39 @@
   font-size: 14px;
   background: #F2F2F2;
   border-radius: 12px;
+}
+
+.seller_cabinet {
+  background: #F5F5F5;
+}
+
+.seller_cabinet_content_wrapper {
+  display: grid;
+  grid-gap: 12px;
+  grid-template-areas:
+    'personal_info business_profile notifications'
+    'account_details business_profile notifications';
+  grid-template-columns: minmax(auto, 450px) minmax(auto, 622px) minmax(auto, 280px);
+  grid-template-rows: auto 1fr;
+
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 12px 32px 17px;
+}
+
+.seller_info {
+  /*padding: 32px;*/
+  /*background: var(--color-white);*/
+  border-radius: 12px;
+}
+
+.account_details {
+  display: flex;
+  grid-area: account_details;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.notifications {
+  grid-area: notifications;
 }

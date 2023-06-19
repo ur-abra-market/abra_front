@@ -1,7 +1,7 @@
 export { MainPage } from '../general-pages/index';
 export { CartPage } from './CartPage/CartPage';
 export { ProductPage } from './ProductPage/ProductPage';
-export { SellerAccountPage } from './SellerAccountPage/SellerAccountPage';
+export { SellerProfilePage } from 'pages/seller-pages/SellerProfilePage/SellerProfilePage';
 export { SellerFavoritesList } from './SellerFavoritesList/SellerFavoritesList';
 export { ProductListPage } from './ProductListPage/ProductListPage';
 export { OrderDetailsPage } from './OrderDetailsPage/OrderDetailsPage';
