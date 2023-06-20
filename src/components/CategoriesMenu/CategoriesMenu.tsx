@@ -3,10 +3,8 @@ import React, { ForwardedRef, forwardRef, useEffect, useState } from 'react';
 import cn from 'classnames';
 
 import { useAppDispatch, useAppSelector } from '../../common/hooks';
-import {
-  categoryService,
-  ResponseCategoryType,
-} from '../../store/reducers/categorySlice';
+import { ResponseCategoryType } from '../../store/reducers/categorySlice';
+import { categoryService } from '../../store/reducers/commonSlice/thunks';
 
 import style from './CategoriesMenu.module.css';
 import { CategoriesMenuProps } from './CategoriesMenu.props';
@@ -23,7 +21,7 @@ export const CategoriesMenu = forwardRef(
   (props: CategoriesMenuProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [activeCategories, setActiveCategories] = useState<Categories>('Women clothes');
 
-    const categories = useAppSelector(state => state.category.dateCategories);
+    const categories = useAppSelector(state => state.common.categories);
 
     const wearerCategory = categories ? categories.filter(c => c.level === 1) : [];
 
@@ -41,7 +39,9 @@ export const CategoriesMenu = forwardRef(
 
     useEffect(() => {
       // prevent unnecessary requests for following rerenderings
-      if (!categories) dispatch(categoryService());
+      if (!categories) {
+        dispatch(categoryService());
+      }
     }, [dispatch, categories]);
 
     return (

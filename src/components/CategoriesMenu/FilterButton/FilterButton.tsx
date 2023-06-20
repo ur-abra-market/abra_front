@@ -6,29 +6,29 @@ import { Categories } from '../CategoriesMenu';
 
 import style from './FilterButton.module.css';
 
-interface FilterButtonProps {
+interface IFilterButton {
   children: string;
   value: string;
   activeValue: string;
   callback: (value: Categories) => void;
 }
 
-export const FilterButton: FC<FilterButtonProps> = ({
+export const FilterButton: FC<IFilterButton> = ({
   value,
   activeValue,
   callback,
   children,
 }): JSX.Element => {
-  const onClick = (): void => {
+  const updateActiveCategory = (): void => {
     callback(value as Categories);
   };
 
   return (
-    <li className={style.filter_button} onMouseEnter={onClick}>
+    <li className={style.filter_button} onMouseEnter={updateActiveCategory}>
       <button
         type="button"
-        onMouseEnter={onClick}
-        className={cn(style.btn, {
+        onMouseEnter={updateActiveCategory}
+        className={cn(style.button_categories, {
           [style.active_button]: activeValue === value,
         })}
       >

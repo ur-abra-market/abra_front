@@ -3,6 +3,7 @@ import { AxiosError } from 'axios';
 
 import { AsyncThunkConfig } from '../../../common/types';
 import { commonService } from '../../../services/common/common.service';
+import { ResponseCategoryType } from '../categorySlice';
 
 import { CountriesType, NumberEmployeesType } from 'services/common/common.serviceTypes';
 
@@ -36,3 +37,19 @@ export const getCompanyNumberEmployees = createAsyncThunk<
     return rejectWithValue('[getCompanyNumberEmployees]: ERROR');
   }
 });
+
+export const categoryService = createAsyncThunk<ResponseCategoryType[], void>(
+  'category/categoryService',
+  async function (_, { rejectWithValue }) {
+    try {
+      const data = await commonService.getAllCategories();
+
+      return data.result;
+    } catch (error: unknown) {
+      // @ts-ignore
+      const err = error.response.data.result ? error.response.data.result : error.message;
+
+      return rejectWithValue(err);
+    }
+  },
+);

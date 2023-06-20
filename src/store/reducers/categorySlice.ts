@@ -13,54 +13,54 @@ export type ResponseCategoryType = {
 };
 
 interface IInitialState {
-  dateCategories: null | ResponseCategoryType[];
+  // dateCategories: null | ResponseCategoryType[];
   errMessage: string;
   loading: LoadingStatus;
 }
 
 const initialState: IInitialState = {
-  dateCategories: null,
+  // dateCategories: null,
   errMessage: '',
   loading: LoadingStatus.Idle,
 };
 
-export const categoryService = createAsyncThunk<any, void>(
-  'category/categoryService',
-  async function (_, { rejectWithValue }) {
-    try {
-      const data = await commonService.getAllCategories();
-
-      return data.result;
-    } catch (error: unknown) {
-      // @ts-ignore
-      const err = error.response.data.result ? error.response.data.result : error.message;
-
-      return rejectWithValue(err);
-    }
-  },
-);
+// export const categoryService = createAsyncThunk<ResponseCategoryType[], void>(
+//   'category/categoryService',
+//   async function (_, { rejectWithValue }) {
+//     try {
+//       const data = await commonService.getAllCategories();
+//
+//       return data.result;
+//     } catch (error: unknown) {
+//       // @ts-ignore
+//       const err = error.response.data.result ? error.response.data.result : error.message;
+//
+//       return rejectWithValue(err);
+//     }
+//   },
+// );
 
 const categorySlice = createSlice({
   name: 'category',
   initialState,
-  extraReducers: builder => {
-    builder
-      .addCase(categoryService.pending, state => {
-        state.dateCategories = null;
-        state.loading = LoadingStatus.Loading;
-      })
-      .addCase(categoryService.fulfilled, (state, action) => {
-        state.dateCategories = action.payload;
-        state.loading = LoadingStatus.Success;
-      })
-      .addCase(categoryService.rejected, (state, action) => {
-        // @ts-ignore
-        state.dateCategories = action.payload;
-        // @ts-ignore
-        state.errMessage = action.payload;
-        state.loading = LoadingStatus.Failed;
-      });
-  },
+  // extraReducers: builder => {
+  //   builder
+  //     .addCase(categoryService.pending, state => {
+  //       state.dateCategories = null;
+  //       state.loading = LoadingStatus.Loading;
+  //     })
+  //     .addCase(categoryService.fulfilled, (state, action) => {
+  //       state.dateCategories = action.payload;
+  //       state.loading = LoadingStatus.Success;
+  //     })
+  //     .addCase(categoryService.rejected, (state, action) => {
+  //       // @ts-ignore
+  //       state.dateCategories = action.payload;
+  //       // @ts-ignore
+  //       state.errMessage = action.payload;
+  //       state.loading = LoadingStatus.Failed;
+  //     });
+  // },
   reducers: {},
 });
 

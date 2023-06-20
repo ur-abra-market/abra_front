@@ -1,3 +1,5 @@
+import { ResponseCategoryType } from '../../store/reducers/categorySlice';
+
 export interface IBaseResponseType<R> {
   ok: true;
   result: R;
@@ -34,4 +36,9 @@ export interface IAccountPersonalInfoRequest {
   last_name: string;
   phone_country_code: string;
   phone_number: string;
+}
+
+export interface IGetAllCategories {
+  ok: boolean;
+  result: ResponseCategoryType[];
 }

@@ -1,8 +1,10 @@
+import { ResponseCategoryType } from '../../store/reducers/categorySlice';
 import baseConfigService from '../baseConfig.service';
 
 import {
   CountriesType,
   IBaseResponseType,
+  IGetAllCategories,
   NumberEmployeesType,
 } from './common.serviceTypes';
 
@@ -24,7 +26,7 @@ export const commonService = {
   },
 
   getAllCategories: async () => {
-    const { data } = await baseConfigService.get(`categories/all/`);
+    const { data } = await baseConfigService.get<IGetAllCategories>(`categories/all/`);
 
     return data;
   },

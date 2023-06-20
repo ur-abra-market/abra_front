@@ -29,6 +29,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 26px;
+  margin-top: 12px;
 }
 
 .list_item {

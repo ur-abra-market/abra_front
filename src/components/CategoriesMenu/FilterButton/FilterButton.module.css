@@ -1,4 +1,6 @@
 .filter_button {
+  cursor: pointer;
+
   display: flex;
   align-items: center;
 
@@ -11,7 +13,7 @@
   transition: all .1s;
 }
 
-.btn {
+.button_categories {
   cursor: pointer;
 
   font-family: var(--roboto);
