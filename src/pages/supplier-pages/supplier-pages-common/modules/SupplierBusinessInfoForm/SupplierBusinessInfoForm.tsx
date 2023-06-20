@@ -3,10 +3,10 @@ import React, { FC, useEffect } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
+import { PhoneNumberInput } from '../../../../../components';
 import {
   countriesSelector,
   getCompanyNumberEmployees,
-  getCountries,
   numberEmployeesSelector,
 } from '../../../../../store/reducers/commonSlice';
 import { ISupplierBusinessInfo } from '../../../../../store/reducers/supplier/profile/slice';
@@ -29,12 +29,14 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
 
 interface IBusinessProfileForm {
   updateForm?: boolean;
+  countryShort: string;
   onSubmit: (data: ISupplierBusinessInfo) => void;
 }
 
 export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
   updateForm,
   onSubmit,
+  countryShort,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const numberEmployees = useAppSelector(numberEmployeesSelector);
@@ -48,7 +50,6 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 
   useEffect(() => {
     dispatch(getCompanyNumberEmployees());
-    dispatch(getCountries());
   }, []);
 
   return (
@@ -66,11 +67,12 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 
           <Controller
             control={control}
-            name="businessSector"
+            name="businessSector.value"
             render={({ field }) => (
               <Label label="Your main business sector*">
                 <Select
                   {...field}
+                  defaultValue={field.value}
                   error={errors?.businessSector?.message}
                   options={BUSINESS_SECTOR_DATA}
                   placeholder="Select"
@@ -170,9 +172,8 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
       <div className={style.contacts_info}>
         <p className={style.subtitle}>Contacts</p>
 
-        {/* todo вставить PhoneInput */}
-
         <div className={style.contacts_inputs}>
+          <PhoneNumberInput label="Business phone number" countryShort={countryShort} />
           <Label label="Business email address">
             <Input
               {...register('email')}

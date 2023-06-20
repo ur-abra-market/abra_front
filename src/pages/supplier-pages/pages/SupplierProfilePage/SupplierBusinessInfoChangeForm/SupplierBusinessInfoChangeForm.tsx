@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { UploadImage } from '../../../../../components';
 import { ISuppliersUpdateCompanyInfo } from '../../../../../services/supplier/supplier.serviceTypes';
 import { Action } from '../../../../../services/user/user.service';
+import { countriesSelector } from '../../../../../store/reducers/commonSlice';
 import {
   getBusinessInfo,
   supplierBusinessInfoSelector,
@@ -22,21 +23,29 @@ import style from './SupplierBusinessInfoChangeForm.module.scss';
 
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const companyInfoSelector = useAppSelector(supplierBusinessInfoSelector);
+  const businessInfoData = useAppSelector(supplierBusinessInfoSelector);
+  const countries = useAppSelector(countriesSelector);
+  const numberCountry = countries.find(
+    c => c.country_short === businessInfoData.countryShort,
+  );
 
   useEffect(() => {
     dispatch(getBusinessInfo());
   }, []);
 
   useEffect(() => {
-    reset(companyInfoSelector);
-  }, [companyInfoSelector]);
+    reset(businessInfoData);
+    setValue(
+      'phoneNumber',
+      `${numberCountry?.country_code}${businessInfoData.phoneNumber}`,
+    );
+  }, [businessInfoData]);
 
   const formMethods = useForm<ISupplierBusinessInfo>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
   });
-  const { reset } = formMethods;
+  const { reset, setValue } = formMethods;
 
   const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
     const updateData: ISuppliersUpdateCompanyInfo = {
@@ -56,8 +65,8 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
       },
       company_phone_data_request: {
         // todo fix the stub
-        phone_number: '+375298884242',
-        country_id: 1,
+        phone_number: data.phoneNumber,
+        country_id: data.phoneId!,
       },
     };
 
@@ -74,7 +83,11 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
         placeholder="The customers will recognize your store by this image"
       />
       <FormProvider {...formMethods}>
-        <SupplierBusinessInfoForm updateForm onSubmit={onSubmit} />
+        <SupplierBusinessInfoForm
+          updateForm
+          onSubmit={onSubmit}
+          countryShort={businessInfoData.countryShort}
+        />
       </FormProvider>
     </>
   );
