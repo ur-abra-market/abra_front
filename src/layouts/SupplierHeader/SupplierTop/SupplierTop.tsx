@@ -3,63 +3,38 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../common/hooks';
+import { useAppDispatch, useAppSelector, useOnClickOutside } from '../../../common/hooks';
 import { logout } from '../../../store/reducers/authSlice';
 
-import style from './SupplierTop.module.css';
-
-import { ArrowRightIcon, HeaderNotificationsIcon } from 'assets/icons';
-import BuildProfileMenu from 'layouts/Header/Top/BuildProfileMenu/BuildProfileMenu'; // 5 10px for ArrowRightIcon
+import {
+  ArrowIcon,
+  ArrowRightIcon,
+  HeaderNotificationsIcon,
+  LogoCompanyPlaceholder,
+} from 'assets/icons';
+import { BuildProfileMenu } from 'layouts/Header/Top/BuildProfileMenu/BuildProfileMenu'; // 5 10px for ArrowRightIcon
+import style from 'layouts/SupplierHeader/SupplierTop/SupplierTop.module.scss';
+import { isAuthSelector } from 'store/reducers/authSlice/selectors';
 import { MainLogo } from 'ui-kit';
 
 const SupplierTop = (): JSX.Element => {
   const dispatch = useAppDispatch();
-
-  const [isMenu, setIsMenu] = useState(false);
-
+  const isAuth = useAppSelector(isAuthSelector);
+  const [active, setActive] = useState(false);
+  const triggerRef = useOnClickOutside(setActive);
   const handleClickLogout = (): void => {
     dispatch(logout());
   };
 
-  const buildMenu = (): JSX.Element[] => {
-    const menu = [
-      {
-        label: 'Name 1',
-        href: '/',
-      },
-      {
-        label: 'Name 2',
-        href: '/',
-      },
-      {
-        label: 'Log Out',
-      },
-    ];
-
-    return menu.map(({ href, label }) => {
-      return (
-        <li key={label} className={style.item}>
-          {href ? (
-            <Link to={href}>{label}</Link>
-          ) : (
-            <button type="button" onClick={handleClickLogout}>
-              {label}
-            </button>
-          )}
-        </li>
-      );
-    });
-  };
-
   return (
     <div className={style.wrapper}>
-      <div
-        role="presentation"
-        onClick={() => setIsMenu(false)}
-        className={cn(style.menu_wrapper, {
-          [style.menu_active]: isMenu,
-        })}
-      />
+      {/* <div */}
+      {/*  role="presentation" */}
+      {/*  onClick={() => setIsMenu(false)} */}
+      {/*  className={cn(style.menu_wrapper, { */}
+      {/*    [style.menu_active]: isMenu, */}
+      {/*  })} */}
+      {/* /> */}
       <div className={style.logo}>
         <MainLogo className={style.logo_font_size} />
         <span className={style.vertical_line} />
@@ -73,24 +48,23 @@ const SupplierTop = (): JSX.Element => {
         <Link to="/">
           <HeaderNotificationsIcon />
         </Link>
-        <div
-          role="presentation"
-          className={style.btn_menu}
-          onClick={() => setIsMenu(true)}
-        >
-          <div className={style.btn_menu_img}>
-            <HeaderNotificationsIcon />
-          </div>
-          <span>Business Name</span>
-          <span className={style.icon}>
-            <ArrowRightIcon className={style.arrow} />
-          </span>
+        <div role="presentation" className={style.btn_menu} ref={triggerRef}>
+          <LogoCompanyPlaceholder />
+          <button
+            className={style.menu_icons}
+            onClick={() => setActive(!active)}
+            type="button"
+          >
+            <span className={style.business_name}>Business Name</span>
+
+            <ArrowIcon className={style.icon} />
+          </button>
           <BuildProfileMenu
-            isAuth={}
-            PROFILE_MENU={}
-            handleClickLogout={}
-            active={}
-            setActive={}
+            isAuth={isAuth}
+            userRole="supplier"
+            handleClickLogout={handleClickLogout}
+            active={active}
+            setActive={() => setActive(!active)}
           />
         </div>
       </div>

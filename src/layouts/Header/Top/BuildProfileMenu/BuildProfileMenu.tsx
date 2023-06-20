@@ -4,26 +4,29 @@ import cn from 'classnames';
 import { NavLink, useMatch } from 'react-router-dom';
 
 import { Button } from '../../../../ui-kit';
-import { ProfileMenu } from '../Top';
-import style from '../Top.module.scss';
+
+import style from './BuildProfileMenu.module.scss';
+
+import { MENU } from 'common/constants/header-menu/headerMenu';
 
 export interface BuildProfileMenuProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement> {
   isAuth: boolean;
-  PROFILE_MENU: ProfileMenu;
+  userRole?: 'supplier' | 'seller';
   handleClickLogout: () => void;
   active: boolean;
   setActive: (value: boolean) => void;
 }
 
-const BuildProfileMenu: FC<BuildProfileMenuProps> = ({
+export const BuildProfileMenu: FC<BuildProfileMenuProps> = ({
   isAuth,
-  PROFILE_MENU,
+  userRole,
   handleClickLogout,
   active,
   setActive,
 }) => {
-  const buildMenu = !isAuth ? PROFILE_MENU.UNAUTHORIZED : PROFILE_MENU.AUTHORIZED;
+  const menuFor = userRole === 'supplier' ? MENU.SUPPLIER : MENU.SELLER;
+  const buildMenu = !isAuth ? MENU.UNAUTHORIZED : menuFor;
 
   const location = useMatch('/personal_account');
 
@@ -38,6 +41,7 @@ const BuildProfileMenu: FC<BuildProfileMenuProps> = ({
         [style.menu_inactive]: !active,
         [style.menu_main]: location?.pathname !== '/personal_account/*',
         [style.menu_profile]: location?.pathname === '/personal_account',
+        [style.menu_supplier]: userRole === 'supplier',
       })}
     >
       {buildMenu.map(({ href, label }) => (
@@ -61,5 +65,3 @@ const BuildProfileMenu: FC<BuildProfileMenuProps> = ({
     </ul>
   );
 };
-
-export default BuildProfileMenu;

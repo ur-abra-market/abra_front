@@ -7,7 +7,7 @@ import Modal from '../../../components/Modal';
 import { logout } from '../../../store/reducers/authSlice';
 import { ButtonIcon, MainLogo, Search } from '../../../ui-kit';
 
-import BuildProfileMenu from './BuildProfileMenu/BuildProfileMenu';
+import { BuildProfileMenu } from './BuildProfileMenu/BuildProfileMenu';
 import style from './Top.module.scss';
 
 import {
@@ -17,42 +17,7 @@ import {
   HeaderProfileIcon,
 } from 'assets/icons';
 
-const PROFILE_MENU = {
-  UNAUTHORIZED: [
-    {
-      label: 'Log in',
-      href: '/login',
-    },
-    {
-      label: 'Register',
-      href: '/register',
-    },
-  ],
-  AUTHORIZED: [
-    {
-      label: 'My Profile',
-      href: '/personal_account',
-    },
-    {
-      label: 'Edit Profile',
-      href: '/personal_account',
-    },
-    {
-      label: 'Settings',
-      href: '/personal_account',
-    },
-    {
-      label: 'My Orders',
-      href: '/personal_account',
-    },
-    {
-      label: 'Log out',
-      href: '/logout',
-    },
-  ],
-} as const;
-
-const Top = (): JSX.Element => {
+export const Top = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -101,7 +66,6 @@ const Top = (): JSX.Element => {
 
           <BuildProfileMenu
             isAuth={isAuth}
-            PROFILE_MENU={PROFILE_MENU}
             handleClickLogout={handleClickLogout}
             active={active}
             setActive={setActive}
@@ -121,7 +85,3 @@ const Top = (): JSX.Element => {
     </div>
   );
 };
-
-export type ProfileMenu = typeof PROFILE_MENU;
-
-export default Top;
