@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { LoadingStatus } from '../../common/types';
-import { INotificationSellerData } from '../../pages/seller-pages/SellerAccountPage/SellerNotifications/SellerNotifications';
+import { INotificationSellerData } from '../../pages/seller-pages/SellerProfilePage/SellerNotifications/SellerNotifications';
 import { INotificationSupplierData } from '../../pages/supplier-pages/pages/SupplierProfilePage/SupplierNotifications/SupplierNotifications';
 import { ISellerNotifications } from '../../services/seller/seller.serviceTypes';
 import { ISupplierNotifications } from '../../services/supplier/supplier.serviceTypes';

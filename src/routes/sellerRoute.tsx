@@ -6,7 +6,7 @@ import {
   CheckoutPage,
   OrderDetailsPage,
   OrderHistoryPage,
-  SellerAccountPage,
+  SellerProfilePage,
   SellerFavoritesList,
   ProductListPage,
   CheckoutSuccessPage,
@@ -23,7 +23,7 @@ export const sellerRoute = [
   },
   {
     path: 'personal_account',
-    element: <SellerAccountPage />,
+    element: <SellerProfilePage />,
   },
   {
     path: 'cart',

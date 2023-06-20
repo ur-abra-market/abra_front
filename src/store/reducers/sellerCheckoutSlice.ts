@@ -4,11 +4,12 @@ import { AxiosError } from 'axios';
 import { AsyncThunkConfig, LoadingStatus } from '../../common/types';
 import { sellerService } from '../../services/seller/seller.service';
 import {
-  EditAddressData,
   ResponseAddressData,
   ResponseDeleteAddress,
   SellerAddressData,
 } from '../../services/seller/seller.serviceTypes';
+
+import { getSellerAddresses } from 'store/reducers/seller/profile/thunks';
 
 export const addAddress = createAsyncThunk<
   ResponseAddressData,
@@ -29,31 +30,31 @@ export const addAddress = createAsyncThunk<
     return rejectWithValue('[modalSlice]: Error');
   }
 });
-export const editAddress = createAsyncThunk<
-  ResponseAddressData,
-  EditAddressData,
-  AsyncThunkConfig
->('modal/editAddress', async (params, { dispatch, rejectWithValue }) => {
-  try {
-    const { data } = await sellerService.editAddress(params.id, params.data);
 
-    dispatch(getAddress());
+export const editAddress = createAsyncThunk<any, any>(
+  'modal/editAddress',
+  async (params, { dispatch, rejectWithValue }) => {
+    try {
+      const { data } = await sellerService.editAddress(params);
 
-    return data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      return rejectWithValue(error.message);
+      dispatch(getSellerAddresses());
+
+      return data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[modalSlice]: Error');
     }
-
-    return rejectWithValue('[modalSlice]: Error');
-  }
-});
+  },
+);
 
 export const getAddress = createAsyncThunk<ResponseAddressData, void, AsyncThunkConfig>(
   'modal/getAddress',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await sellerService.getAddress();
+      const { data } = await sellerService.getSellerAddresses();
 
       return data;
     } catch (error) {
