@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { FooterForAuth } from '../../../old-components/FooterForAuth/FooterForAuth';
 import HeaderForChangePages from '../../../old-components/HeaderForChangePages';
 
 import style from './TermsAndConditions.module.css';
+
+import { Footer } from 'layouts/Footer';
 
 export const TermsAndConditionsPage = (): JSX.Element => {
   return (
@@ -806,7 +807,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
         </div>
       </div>
 
-      <FooterForAuth />
+      <Footer variant="default" />
     </div>
   );
 };

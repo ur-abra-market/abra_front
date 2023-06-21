@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 
-import Footer from '../Footer/Footer';
+import { Footer } from '../Footer';
 import Header from '../Header/Header';
 
 import styles from './Layout.module.css';
@@ -18,7 +18,7 @@ export const Layout: FC<LayoutProps> = ({ children }): JSX.Element => {
         {children}
       </main>
 
-      <Footer className={styles.footer} />
+      <Footer variant="default" className={styles.footer} />
     </div>
   );
 };
