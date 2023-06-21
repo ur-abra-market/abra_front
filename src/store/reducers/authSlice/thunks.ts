@@ -1,20 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { LoadingStatus, AsyncThunkConfig } from '../../../common/types';
+import { AsyncThunkConfig, LoadingStatus } from '../../../common/types';
 import { userService } from '../../../services';
 import authService from '../../../services/auth/auth.service';
 import {
+  ChangePasswordPayloadType,
+  CurrentUserInfoResponseType,
   IBusinessInfoRequestData,
+  IPersonalInfoRequestData,
   LoginParamsType,
   LoginResponseType,
+  LogoutResponseType,
   RegisterParamsType,
   RegisterResponseType,
-  LogoutResponseType,
-  CurrentUserInfoResponseType,
   ResetPasswordPayloadType,
-  ChangePasswordPayloadType,
-  IPersonalInfoRequestData,
 } from '../../../services/auth/auth.serviceTypes';
 import { IAccountPersonalInfoRequest } from '../../../services/common/common.serviceTypes';
 import { IAccountPersonalInfoResponse } from '../../../services/user/user.serviceTypes';
@@ -100,15 +100,16 @@ export const loginUser = createAsyncThunk<
 
     return data;
   } catch (error) {
-    const errorMessage =
-      error instanceof AxiosError
-        ? error.response?.data?.error || error.message
-        : '[loginUser]: Error';
+    if (error instanceof AxiosError) {
+      dispatch(
+        setResponseNotice({
+          noticeType: 'error',
+          message: error.response?.data?.error || error.message,
+        }),
+      );
+    }
 
-    if (error instanceof AxiosError)
-      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
-
-    return rejectWithValue(errorMessage);
+    return rejectWithValue('[loginUser]: Error');
   } finally {
     dispatch(setLoading(LoadingStatus.Idle));
   }
