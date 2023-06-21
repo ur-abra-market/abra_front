@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
-import { categoryService } from '../../../../store/reducers/commonSlice/thunks';
+import { getAllCategories } from '../../../../store/reducers/commonSlice/thunks';
 import {
   getPropertiesService,
   getVariationsService,
@@ -55,7 +55,7 @@ export const ProductListRegistrationPage = (): JSX.Element => {
   }, [secondCategory]);
 
   useEffect(() => {
-    dispatch(categoryService());
+    dispatch(getAllCategories());
   }, [dispatch]);
 
   useEffect(() => {

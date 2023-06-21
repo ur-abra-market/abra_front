@@ -1,4 +1,4 @@
-import { ResponseCategoryType } from '../../store/reducers/categorySlice';
+import { IResponseCategory } from './common.service';
 
 export interface IBaseResponseType<R> {
   ok: true;
@@ -38,7 +38,7 @@ export interface IAccountPersonalInfoRequest {
   phone_number: string;
 }
 
-export interface IGetAllCategories {
-  ok: boolean;
-  result: ResponseCategoryType[];
-}
+export type GetAllCategories = Pick<
+  IBaseResponseType<IResponseCategory[]>,
+  'ok' | 'result'
+>;

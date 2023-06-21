@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { IResponseCategory } from '../../../services/common/common.service';
 import { ICountry } from '../../../services/common/common.serviceTypes';
-import { ResponseCategoryType } from '../categorySlice';
 
-import { categoryService } from './thunks';
+import { getAllCategories } from './thunks';
 
 import { getCompanyNumberEmployees, getCountries } from './index';
 
@@ -13,7 +13,7 @@ export interface INumberEmployees {
 }
 
 interface IInitialState {
-  categories: null | ResponseCategoryType[];
+  categories: null | IResponseCategory[];
   countries: ICountry[];
   numberEmployees: INumberEmployees[];
 }
@@ -39,10 +39,10 @@ const commonSlice = createSlice({
       .addCase(getCompanyNumberEmployees.fulfilled, (state, action) => {
         state.numberEmployees = action.payload;
       })
-      .addCase(categoryService.fulfilled, (state, action) => {
+      .addCase(getAllCategories.fulfilled, (state, action) => {
         state.categories = action.payload;
       })
-      .addCase(categoryService.rejected, (state, action) => {
+      .addCase(getAllCategories.rejected, (state, action) => {
         console.log(action.payload);
       });
   },

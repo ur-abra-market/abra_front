@@ -2,14 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { LoadingStatus } from 'common/types';
 
-export type ResponseCategoryType = {
-  id: number;
-  name: string;
-  level: number;
-  children?: ResponseCategoryType[] | [];
-  parent_id?: number;
-};
-
 interface IInitialState {
   errMessage: string;
   loading: LoadingStatus;

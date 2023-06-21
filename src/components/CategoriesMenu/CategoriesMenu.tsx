@@ -3,8 +3,8 @@ import React, { ForwardedRef, forwardRef, useEffect, useState } from 'react';
 import cn from 'classnames';
 
 import { useAppDispatch, useAppSelector } from '../../common/hooks';
-import { ResponseCategoryType } from '../../store/reducers/categorySlice';
-import { categoryService } from '../../store/reducers/commonSlice/thunks';
+import { IResponseCategory } from '../../services/common/common.service';
+import { getAllCategories } from '../../store/reducers/commonSlice/thunks';
 
 import style from './CategoriesMenu.module.scss';
 import { CategoriesMenuProps } from './CategoriesMenu.props';
@@ -14,7 +14,7 @@ import { FilterButton } from './FilterButton/FilterButton';
 export type Categories = 'Women clothes' | 'Mens clothes' | 'Kids clothes';
 
 export interface ItemsProps {
-  items?: ResponseCategoryType[];
+  items?: IResponseCategory[];
 }
 
 export const CategoriesMenu = forwardRef(
@@ -28,8 +28,8 @@ export const CategoriesMenu = forwardRef(
     const dispatch = useAppDispatch();
 
     const filterCategories = (
-      category?: ResponseCategoryType[],
-    ): ResponseCategoryType[] | [] => {
+      category?: IResponseCategory[],
+    ): IResponseCategory[] | [] => {
       return category
         ? category.filter(c => {
             return c.name;
@@ -40,7 +40,7 @@ export const CategoriesMenu = forwardRef(
     useEffect(() => {
       // prevent unnecessary requests for following rerenderings
       if (!categories) {
-        dispatch(categoryService());
+        dispatch(getAllCategories());
       }
     }, [dispatch, categories]);
 
