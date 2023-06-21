@@ -7,7 +7,7 @@ import {
   OrderStatusUnpaidIcon,
   OrderStatusCompletedIcon,
 } from 'assets/icons';
-import style from 'pages/seller-pages/SellerAccountPage/SellerAccountPage.module.css';
+import style from 'pages/seller-pages/SellerProfilePage/SellerProfilePage.module.css';
 import { Button } from 'ui-kit';
 
 const Orders = (): JSX.Element => {

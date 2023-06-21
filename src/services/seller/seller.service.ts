@@ -2,35 +2,36 @@ import { IServerResponse } from '../../common/types';
 import baseConfigService from '../baseConfig.service';
 
 import {
-  IGetAddressesResponse,
   ISellerNotifications,
-  ResponseAddressData,
   ResponseDeleteAddress,
   SellerAddressData,
 } from './seller.serviceTypes';
 
 export const sellerService = {
-  getSellerAddresses: async () => {
-    const { data } = await baseConfigService.get<IGetAddressesResponse>(
-      'sellers/addresses/',
-    );
+  getSellerAvatar: async () => {
+    const { data } = await baseConfigService.get('sellers/avatar');
 
     return data;
   },
 
-  addAddress: (params: SellerAddressData) => {
-    return baseConfigService.post<ResponseAddressData>('sellers/addAddress', params);
+  getSellerAddresses: async () => {
+    const { data } = await baseConfigService.get('sellers/addresses');
+
+    return data;
   },
 
-  getAddress: () => {
-    return baseConfigService.get<ResponseAddressData>('sellers/addresses');
+  addAddress: async (params: SellerAddressData) => {
+    const { data } = await baseConfigService.post('sellers/addAddress', params);
+
+    return data;
   },
 
-  editAddress: (id: number, params: SellerAddressData) => {
-    return baseConfigService.patch<ResponseAddressData>(`sellers/updateAddress`, {
+  editAddress: async (params: any) => {
+    const { data } = await baseConfigService.patch(`sellers/updateAddress`, {
       ...params,
-      id,
     });
+
+    return data;
   },
 
   deleteAddress: (id: number) => {

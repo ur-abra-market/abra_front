@@ -3,19 +3,15 @@ import { FC, useState } from 'react';
 import style from './Address.module.css';
 
 import { EditPencilIcon } from 'assets/icons';
-import { useAppSelector } from 'common/hooks/useAppSelector';
 import Check from 'old-components/Check';
 import { EditAddressModal } from 'old-components/ui/popup/EdtiAddressModal/EditAddressModal';
-import { SellerAddressData } from 'services/seller/seller.serviceTypes';
+import { IAddress } from 'store/reducers/seller/profile/slice';
 
 interface AddressProps {
-  address: SellerAddressData;
+  address: IAddress;
 }
 
 export const Address: FC<AddressProps> = ({ address }): JSX.Element => {
-  const { first_name, last_name, phone } = useAppSelector(
-    state => state.sellerProfile.personalInfo,
-  );
   const [selected] = useState(false);
   const styles = {
     border: selected ? '1px solid #FC133D' : '1px solid #D4D4D4',
@@ -24,7 +20,7 @@ export const Address: FC<AddressProps> = ({ address }): JSX.Element => {
     address.postal_code,
     address.city,
     address.street,
-    address.country,
+    address.country.country,
     address.area,
     address.apartment,
     address.postal_code,
@@ -41,7 +37,7 @@ export const Address: FC<AddressProps> = ({ address }): JSX.Element => {
     <div className={style.address} style={styles}>
       <div className={style.address_content}>
         <div className={style.address_content_text}>
-          {first_name} {last_name},{phone}
+          {address.first_name} {address.last_name},{address.phone_number}
           {address.building}
         </div>
         <EditPencilIcon className={style.address_content_edit} onClick={onClickModal} />

@@ -2,6 +2,7 @@ import React from 'react';
 
 import style from './PrivacyPolicy.module.css';
 
+import { Footer } from 'layouts/Footer';
 import HeaderForChangePages from 'old-components/HeaderForChangePages';
 
 export const PrivacyPolicyPage = (): JSX.Element => {
@@ -202,6 +203,7 @@ export const PrivacyPolicyPage = (): JSX.Element => {
           </p>
         </div>
       </div>
+      <Footer variant="default" />
     </div>
   );
 };
