@@ -1,4 +1,8 @@
-export { userRoleSelector } from './selectors';
+export {
+  userRoleSelector,
+  isAuthorizedSelector,
+  passwordActionsResultSelector,
+} from './selectors';
 export {
   registerUser,
   loginUser,

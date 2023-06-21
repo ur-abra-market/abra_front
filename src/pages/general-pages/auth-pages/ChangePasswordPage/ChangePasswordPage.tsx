@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Modal from '../../../../components/Modal';
+import { userRoleSelector } from '../../../../store/reducers/authSlice';
 import { Button } from '../../../../ui-kit';
 import { AuthPageLayout } from '../assets';
 
@@ -14,7 +15,7 @@ import { useAppSelector } from 'common/hooks';
 
 export const ChangePasswordPage = (): JSX.Element => {
   const navigate = useNavigate();
-  const userRole = useAppSelector(state => state.auth.userRole);
+  const userRole = useAppSelector(userRoleSelector);
   const [modalActive, setModalActive] = useState(false);
 
   const handleModalOnClose = (value: boolean): void => {

@@ -12,6 +12,7 @@ import style from './ForgotPasswordForm.module.scss';
 
 import { emailValidationSchema } from 'common/constants';
 import { LoadingStatus } from 'common/types';
+import { loadingSelector } from 'store/reducers/appSlice';
 
 export type ForgotChangePasswordFormType = {
   email: string;
@@ -35,7 +36,7 @@ export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType
     resolver: yupResolver(schema),
     mode: 'all',
   });
-  const loading = useAppSelector(state => state.app.loading);
+  const loading = useAppSelector(loadingSelector);
   const dispatch = useAppDispatch();
 
   const onSubmit = async (data: ForgotChangePasswordFormType): Promise<void> => {

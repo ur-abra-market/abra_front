@@ -13,6 +13,9 @@ import { emailValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatus } from 'common/types';
 import { ChangeEmailPayloadType } from 'services/auth/auth.serviceTypes';
+import { loadingSelector } from 'store/reducers/appSlice';
+
+const TRIGGER_FIELD = 'confirm_email';
 
 interface ChangeEmailFormProps {
   setModalActive: (val: boolean) => void;
@@ -37,10 +40,10 @@ export const ChangeEmailForm: FC<ChangeEmailFormProps> = ({ setModalActive }) =>
   });
 
   const dispatch = useAppDispatch();
-  const loading = useAppSelector(state => state.app.loading);
+  const loading = useAppSelector(loadingSelector);
 
   useEffect(() => {
-    if (watch('confirm_email')) trigger('confirm_email');
+    if (watch(TRIGGER_FIELD)) trigger(TRIGGER_FIELD);
   }, [watch('new_email')]);
 
   const onSubmit = async (data: ChangeEmailPayloadType): Promise<void> => {

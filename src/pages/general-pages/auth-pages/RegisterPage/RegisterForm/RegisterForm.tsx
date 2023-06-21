@@ -8,6 +8,7 @@ import * as yup from 'yup';
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { LoadingStatus, ResponseUserRoleType } from '../../../../../common/types';
 import { IRegisterRequest } from '../../../../../services/auth/auth.serviceTypes';
+import { loadingSelector } from '../../../../../store/reducers/appSlice';
 import { registerUser } from '../../../../../store/reducers/authSlice';
 import { PasswordComplexity } from '../../assets';
 
@@ -27,7 +28,7 @@ const formValidationSchema = yup
   .required();
 
 export const RegisterForm = (): JSX.Element => {
-  const loading = useAppSelector(state => state.app.loading);
+  const loading = useAppSelector(loadingSelector);
   const [userRole, setUserRole] = useState<ResponseUserRoleType>('seller');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();

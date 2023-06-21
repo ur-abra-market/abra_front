@@ -14,14 +14,16 @@ import {
 
 import { UserRoleType } from 'common/types';
 
+export type passwordActionsResultType =
+  | 'LINK_HAS_BEEN_SENT'
+  | 'TOKEN_IS_ACTIVE'
+  | 'PASSWORD_HAS_BEEN_CHANGED'
+  | '';
+
 interface IAuthSliceInitialState {
   userRole: UserRoleType;
   isAuthorized: boolean;
-  passwordActionsResult:
-    | 'LINK_HAS_BEEN_SENT'
-    | 'TOKEN_IS_ACTIVE'
-    | 'PASSWORD_HAS_BEEN_CHANGED'
-    | '';
+  passwordActionsResult: passwordActionsResultType;
 }
 
 const AuthSliceInitialState: IAuthSliceInitialState = {

@@ -11,10 +11,11 @@ import style from './ChangeEmailPage.module.scss';
 import { ChangeEmailForm } from '.';
 
 import { useAppSelector } from 'common/hooks';
+import { userRoleSelector } from 'store/reducers/authSlice';
 
 export const ChangeEmailPage = (): JSX.Element => {
   const navigate = useNavigate();
-  const userRole = useAppSelector(state => state.auth.userRole);
+  const userRole = useAppSelector(userRoleSelector);
   const [modalActive, setModalActive] = useState(false);
 
   const handleModalOnClose = (value: boolean): void => {

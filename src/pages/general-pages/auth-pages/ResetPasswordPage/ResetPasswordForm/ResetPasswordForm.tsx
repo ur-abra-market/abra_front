@@ -8,13 +8,16 @@ import { passwordValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch } from '../../../../../common/hooks';
 import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
 import { LoadingStatus } from '../../../../../common/types/enums';
+import { loadingSelector } from '../../../../../store/reducers/appSlice';
 import { PasswordComplexity } from '../../assets';
 
 import style from './ResetPasswordForm.module.scss';
 
 import { ResetPasswordPayloadType } from 'services/auth/auth.serviceTypes';
-import { resetPassword, logout } from 'store/reducers/authSlice';
+import { resetPassword } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
+
+const TRIGGER_FIELD = 'confirm_password';
 
 interface ResetPasswordFormProps {
   setModalActive: (value: boolean) => void;
@@ -40,6 +43,8 @@ export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
   token,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
+  const loading = useAppSelector(loadingSelector);
+
   const {
     register,
     watch,
@@ -50,11 +55,11 @@ export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
     resolver: yupResolver(schema),
     mode: 'all',
   });
+
   const watchPassword = watch('new_password' || 'confirm_password');
-  const loading = useAppSelector(state => state.app.loading);
 
   useEffect(() => {
-    if (watch('confirm_password')) trigger('confirm_password');
+    if (watch(TRIGGER_FIELD)) trigger(TRIGGER_FIELD);
   }, [watch('new_password')]);
 
   const onSubmit = async (data: IFormValues): Promise<void> => {

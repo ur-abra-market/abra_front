@@ -8,11 +8,14 @@ import { passwordValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { LoadingStatus } from '../../../../../common/types';
 import { ChangePasswordPayloadType } from '../../../../../services/auth/auth.serviceTypes';
+import { loadingSelector } from '../../../../../store/reducers/appSlice';
 import { changePassword } from '../../../../../store/reducers/authSlice';
 import { Button, Input } from '../../../../../ui-kit';
 import { PasswordComplexity } from '../../assets';
 
 import style from './ChangePasswordForm.module.scss';
+
+const TRIGGER_FIELD = 'new_password';
 
 const formValidationSchema = yup
   .object()
@@ -30,7 +33,7 @@ interface IChangePasswordFormProps {
 }
 
 export const ChangePasswordForm: FC<IChangePasswordFormProps> = ({ setModalActive }) => {
-  const loading = useAppSelector(state => state.app.loading);
+  const loading = useAppSelector(loadingSelector);
   const dispatch = useAppDispatch();
 
   const {
@@ -47,7 +50,7 @@ export const ChangePasswordForm: FC<IChangePasswordFormProps> = ({ setModalActiv
   const watchPassword = watch('new_password' || 'old_password');
 
   useEffect(() => {
-    if (watch('new_password')) trigger('new_password');
+    if (watch(TRIGGER_FIELD)) trigger(TRIGGER_FIELD);
   }, [watch('old_password')]);
 
   const onSubmit = async (data: ChangePasswordPayloadType): Promise<void> => {

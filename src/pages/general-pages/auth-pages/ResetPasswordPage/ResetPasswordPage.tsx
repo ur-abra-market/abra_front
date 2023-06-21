@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
+import { passwordActionsResultSelector } from '../../../../store/reducers/authSlice';
 import { AuthPageLayout } from '../assets';
 
 import style from './ResetPasswordPage.module.scss';
@@ -15,7 +16,7 @@ import { Button } from 'ui-kit';
 
 export const ResetPasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
-  const { passwordActionsResult } = useAppSelector(state => state.auth);
+  const passwordActionsResult = useAppSelector(passwordActionsResultSelector);
 
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
@@ -23,7 +24,7 @@ export const ResetPasswordPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const modalCloseHandler = (value: boolean): void => {
+  const handleModalOnClose = (value: boolean): void => {
     setModalActive(value);
     navigate('/login');
   };
@@ -45,7 +46,7 @@ export const ResetPasswordPage = (): JSX.Element => {
       </AuthPageLayout>
       <Modal
         showModal={modalActive}
-        closeModal={modalCloseHandler}
+        closeModal={handleModalOnClose}
         classNameModal={style.modal_container}
       >
         <div className={style.modal_content_wrapper}>
@@ -58,7 +59,7 @@ export const ResetPasswordPage = (): JSX.Element => {
           <Button
             label="Okay"
             className={style.modal_window_btn_active}
-            onClick={() => modalCloseHandler(false)}
+            onClick={() => handleModalOnClose(false)}
           />
         </div>
       </Modal>
