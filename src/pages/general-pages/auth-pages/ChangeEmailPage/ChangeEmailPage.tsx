@@ -10,22 +10,32 @@ import style from './ChangeEmailPage.module.scss';
 
 import { ChangeEmailForm } from '.';
 
+import { useAppSelector } from 'common/hooks';
+
 export const ChangeEmailPage = (): JSX.Element => {
   const navigate = useNavigate();
+  const userRole = useAppSelector(state => state.auth.userRole);
   const [modalActive, setModalActive] = useState(false);
-  const handleChangeModalActive = (): void => {
-    setModalActive(prevState => !prevState);
+
+  const modalCloseHandler = (value: boolean): void => {
+    setModalActive(value);
+
+    if (userRole === 'seller') {
+      navigate('/personal_account');
+    } else {
+      navigate('/');
+    }
   };
 
   return (
     <>
       <AuthPageLayout>
         <div className={style.header}>Change email</div>
-        <div className={style.subheader}>Enter your current and new email addresses</div>
-        <ChangeEmailForm handleChangeModalActive={handleChangeModalActive} />
+        <div className={style.subheader}>Enter your new email addresses</div>
+        <ChangeEmailForm setModalActive={setModalActive} />
       </AuthPageLayout>
 
-      <Modal showModal={modalActive} closeModal={setModalActive}>
+      <Modal showModal={modalActive} closeModal={modalCloseHandler}>
         <div className={style.modal_content_wrapper}>
           <div className={style.modal_header}>
             Your new email has been successfully saved
@@ -33,7 +43,7 @@ export const ChangeEmailPage = (): JSX.Element => {
           <Button
             className={style.modal_button}
             label="Okey"
-            onClick={() => navigate('/')}
+            onClick={() => modalCloseHandler(false)}
           />
         </div>
       </Modal>

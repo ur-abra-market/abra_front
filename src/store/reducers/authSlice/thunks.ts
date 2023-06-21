@@ -8,31 +8,32 @@ import {
   IBusinessInfoRequestData,
   LoginParamsType,
   LoginResponseType,
-  RegisterParamsType,
   RegisterResponseType,
   LogoutResponseType,
   CurrentUserInfoResponseType,
   ResetPasswordPayloadType,
   ChangePasswordPayloadType,
   IPersonalInfoRequestData,
+  ChangeEmailPayloadType,
+  IRegisterRequest,
+  IConfirmEmailRequest,
 } from '../../../services/auth/auth.serviceTypes';
 import { IAccountPersonalInfoRequest } from '../../../services/common/common.serviceTypes';
 import { IAccountPersonalInfoResponse } from '../../../services/user/user.serviceTypes';
-import { AppDispatchType } from '../../createStore';
 import { getUserRole } from '../appSlice';
 import { setLoading, setResponseNotice } from '../appSlice/slice';
 
 export const registerUser = createAsyncThunk<
-  { data: RegisterResponseType },
-  RegisterParamsType,
-  { rejectValue: string; dispatch: AppDispatchType }
+  RegisterResponseType,
+  IRegisterRequest,
+  AsyncThunkConfig
 >('auth/registerUser', async (dataUser, { rejectWithValue, dispatch }) => {
   dispatch(setLoading(LoadingStatus.Loading));
 
   try {
-    const { data } = await authService.register(dataUser);
+    const response = await authService.register(dataUser);
 
-    return { data };
+    return response.data;
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
@@ -45,6 +46,25 @@ export const registerUser = createAsyncThunk<
     return rejectWithValue(errorMessage);
   } finally {
     dispatch(setLoading(LoadingStatus.Idle));
+  }
+});
+
+export const confirmEmail = createAsyncThunk<
+  RegisterResponseType,
+  IConfirmEmailRequest,
+  AsyncThunkConfig
+>('auth/registerUser', async (dataUser, { rejectWithValue, dispatch }) => {
+  try {
+    const response = await authService.confirmEmail(dataUser);
+
+    return response.data;
+  } catch (error) {
+    const errorMessage =
+      error instanceof AxiosError
+        ? error.response?.data?.error || error.message
+        : '[confirmEmail]: Error';
+
+    return rejectWithValue(errorMessage);
   }
 });
 
@@ -269,6 +289,31 @@ export const changePassword = createAsyncThunk<
       error instanceof AxiosError
         ? error.response?.data?.error || error.message
         : '[changePassword]: Error';
+
+    if (error instanceof AxiosError)
+      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
+
+    return rejectWithValue(errorMessage);
+  } finally {
+    dispatch(setLoading(LoadingStatus.Idle));
+  }
+});
+
+export const changeEmail = createAsyncThunk<
+  string,
+  ChangeEmailPayloadType,
+  AsyncThunkConfig
+>('auth/changeEmail', async (params, { dispatch, rejectWithValue }) => {
+  dispatch(setLoading(LoadingStatus.Loading));
+  try {
+    const response = await authService.changeEmail(params);
+
+    return response.data.result;
+  } catch (error) {
+    const errorMessage =
+      error instanceof AxiosError
+        ? error.response?.data?.error || error.message
+        : '[changeEmail]: Error';
 
     if (error instanceof AxiosError)
       dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));

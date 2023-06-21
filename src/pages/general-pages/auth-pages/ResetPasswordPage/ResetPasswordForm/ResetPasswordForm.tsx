@@ -13,7 +13,7 @@ import { PasswordComplexity } from '../../assets';
 import style from './ResetPasswordForm.module.scss';
 
 import { ResetPasswordPayloadType } from 'services/auth/auth.serviceTypes';
-import { resetPassword } from 'store/reducers/authSlice';
+import { resetPassword, logout } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
 
 interface ResetPasswordFormProps {

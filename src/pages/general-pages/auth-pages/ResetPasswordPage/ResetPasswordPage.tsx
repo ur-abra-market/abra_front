@@ -15,7 +15,7 @@ import { Button } from 'ui-kit';
 
 export const ResetPasswordPage = (): JSX.Element => {
   const [modalActive, setModalActive] = useState(false);
-  const { passwordActionsResult, userRole } = useAppSelector(state => state.auth);
+  const { passwordActionsResult } = useAppSelector(state => state.auth);
 
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
@@ -25,19 +25,12 @@ export const ResetPasswordPage = (): JSX.Element => {
 
   const modalCloseHandler = (value: boolean): void => {
     setModalActive(value);
-    switch (userRole) {
-      case 'seller':
-        return navigate('/personal_account');
-      case 'supplier':
-        return navigate('/');
-      default:
-        return navigate('/login');
-    }
+    navigate('/login');
   };
 
   useEffect(() => {
     dispatch(checkToken(token!));
-  }, [dispatch, token]);
+  }, [token]);
 
   return (
     <>

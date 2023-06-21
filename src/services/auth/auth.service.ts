@@ -1,6 +1,8 @@
 import baseConfigService from '../baseConfig.service';
 
 import {
+  IConfirmEmailRequest,
+  IRegisterRequest,
   LogoutResponseType,
   CurrentUserInfoResponseType,
   ChangePasswordPayloadType,
@@ -8,10 +10,10 @@ import {
   LoginParamsType,
   LoginResponseType,
   PasswordResponseType,
-  RegisterParamsType,
   RegisterResponseType,
   ResetPasswordPayloadType,
   IPersonalInfoRequestData,
+  ChangeEmailPayloadType,
 } from './auth.serviceTypes';
 
 export const authService = {
@@ -19,18 +21,17 @@ export const authService = {
     return baseConfigService.get(`/login/role/`);
   },
 
-  register: ({ email, password, route, token }: RegisterParamsType) => {
-    if (route === 'confirmEmail') {
-      return baseConfigService.get<RegisterResponseType>(
-        `register/confirmEmail/?token=${token}`,
-      );
-    }
-
-    return baseConfigService.post<RegisterResponseType>(`register/${route}/`, {
+  register: ({ email, password, role }: IRegisterRequest) => {
+    return baseConfigService.post<RegisterResponseType>(`register/${role}/`, {
       email,
       password,
-      token,
     });
+  },
+
+  confirmEmail: ({ token }: IConfirmEmailRequest) => {
+    return baseConfigService.get<RegisterResponseType>(
+      `register/confirmEmail/?token=${token}`,
+    );
   },
 
   sendAccountPersonalInfo: async (personalInfoData: IPersonalInfoRequestData) => {
@@ -88,6 +89,10 @@ export const authService = {
 
   changePassword: (params: ChangePasswordPayloadType) => {
     return baseConfigService.post<PasswordResponseType>('password/change/', params);
+  },
+
+  changeEmail: (params: ChangeEmailPayloadType) => {
+    return baseConfigService.patch<PasswordResponseType>('users/changeEmail/', params);
   },
 };
 

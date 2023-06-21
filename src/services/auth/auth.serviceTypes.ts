@@ -2,12 +2,17 @@ import { IProduct } from '../product/product.serviceTypes';
 import { ISellerAddressData, ISellerNotifications } from '../seller/seller.serviceTypes';
 import { ISupplierNotifications } from '../supplier/supplier.serviceTypes';
 
-export type RegisterParamsType = {
-  email?: string;
-  password?: string;
-  route?: string;
-  token?: string;
-};
+import { ResponseUserRoleType } from 'common/types';
+
+export interface IRegisterRequest {
+  email: string;
+  password: string;
+  role: ResponseUserRoleType;
+}
+
+export interface IConfirmEmailRequest {
+  token: string;
+}
 
 export type RegisterResponseType = {
   result: string;
@@ -40,6 +45,11 @@ export type ResetPasswordPayloadType = {
 export type ChangePasswordPayloadType = {
   old_password: string;
   new_password: string;
+};
+
+export type ChangeEmailPayloadType = {
+  new_email: string;
+  confirm_email: string;
 };
 
 export type LogoutResponseType = {

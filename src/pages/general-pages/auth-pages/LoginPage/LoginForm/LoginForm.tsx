@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -47,7 +47,9 @@ export const LoginForm = (): JSX.Element => {
     dispatch(loginUser(data));
   };
 
-  if (isAuthorized) navigate('/');
+  useEffect(() => {
+    if (isAuthorized) navigate('/');
+  }, [isAuthorized, navigate]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
@@ -55,6 +57,7 @@ export const LoginForm = (): JSX.Element => {
 
       <Input
         {...register('password')}
+        classNameWrapper={style.input_wrapper}
         variant="password"
         type="password"
         placeholder="Password"

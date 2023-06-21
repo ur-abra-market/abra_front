@@ -52,7 +52,7 @@ export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType
         {...register('email')}
         placeholder="Email"
         error={errors.email?.message}
-        classNameWrapper={style.input}
+        classNameWrapper={style.input_wrapper}
       />
       <Button
         label="Reset password"

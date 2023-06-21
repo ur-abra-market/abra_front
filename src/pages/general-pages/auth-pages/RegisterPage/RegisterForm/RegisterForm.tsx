@@ -7,6 +7,7 @@ import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { LoadingStatus, ResponseUserRoleType } from '../../../../../common/types';
+import { IRegisterRequest } from '../../../../../services/auth/auth.serviceTypes';
 import { registerUser } from '../../../../../store/reducers/authSlice';
 import { PasswordComplexity } from '../../assets';
 
@@ -15,10 +16,7 @@ import style from './RegisterForm.module.scss';
 import { emailValidationSchema, passwordValidationSchema } from 'common/constants';
 import { Button, Input } from 'ui-kit';
 
-export interface IFormValues {
-  email: string;
-  password: string;
-}
+export interface IFormValues extends Omit<IRegisterRequest, 'role'> {}
 
 const formValidationSchema = yup
   .object()
@@ -49,11 +47,11 @@ export const RegisterForm = (): JSX.Element => {
   };
 
   const onSubmit = async (data: IFormValues): Promise<void> => {
-    dispatch(registerUser({ ...data, route: userRole })).then(
-      ({ meta: { requestStatus } }) => {
-        if (requestStatus === 'fulfilled') navigate('/register/check_email');
-      },
-    );
+    const actionResult = await dispatch(registerUser({ ...data, role: userRole }));
+
+    if (registerUser.fulfilled.match(actionResult)) {
+      navigate('/register/check_email');
+    }
   };
 
   return (
@@ -73,23 +71,18 @@ export const RegisterForm = (): JSX.Element => {
           onClick={() => handleButtonUserRoleOnClick('supplier')}
         />
       </div>
-
       <Input {...register('email')} placeholder="Email" error={errors.email?.message} />
-
-      <div>
-        <Input
-          {...register('password')}
-          classNameWrapper={style.input_password}
-          type="password"
-          variant="password"
-          placeholder="Password"
-          error={errors.password?.message}
-        />
-        <PasswordComplexity password={watch('password')} />
-      </div>
-
+      <Input
+        {...register('password')}
+        classNameWrapper={style.input_wrapper}
+        type="password"
+        variant="password"
+        placeholder="Password"
+        error={errors.password?.message}
+      />
+      <PasswordComplexity password={watch('password')} />
       <Button
-        className={style.button_submit}
+        className={style.button}
         label="Create Account"
         type="submit"
         disabled={!isValid || loading === LoadingStatus.Loading}
