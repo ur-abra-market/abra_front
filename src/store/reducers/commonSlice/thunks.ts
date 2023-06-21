@@ -45,11 +45,13 @@ export const categoryService = createAsyncThunk<ResponseCategoryType[], void>(
       const data = await commonService.getAllCategories();
 
       return data.result;
-    } catch (error: unknown) {
-      // @ts-ignore
-      const err = error.response.data.result ? error.response.data.result : error.message;
+    } catch (error) {
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.error || error.message
+          : '[categoryService]: Error';
 
-      return rejectWithValue(err);
+      return rejectWithValue(errorMessage);
     }
   },
 );

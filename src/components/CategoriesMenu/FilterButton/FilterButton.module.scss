@@ -11,6 +11,11 @@
   border-radius: 6px;
 
   transition: all .1s;
+
+  &:hover {
+    background-color: var(--color-light-gray);
+  }
+
 }
 
 .button_categories {
@@ -25,10 +30,6 @@
   background: transparent;
 
   transition: all .1s;
-}
-
-.filter_button:hover {
-  background-color: var(--color-light-gray);
 }
 
 .active_button {

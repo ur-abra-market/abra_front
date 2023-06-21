@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../common/hooks';
 import { ResponseCategoryType } from '../../store/reducers/categorySlice';
 import { categoryService } from '../../store/reducers/commonSlice/thunks';
 
-import style from './CategoriesMenu.module.css';
+import style from './CategoriesMenu.module.scss';
 import { CategoriesMenuProps } from './CategoriesMenu.props';
 import { Items } from './CategoryItems';
 import { FilterButton } from './FilterButton/FilterButton';

@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import { Categories } from '../CategoriesMenu';
 
-import style from './FilterButton.module.css';
+import style from './FilterButton.module.scss';
 
 interface IFilterButton {
   children: string;
@@ -19,19 +19,17 @@ export const FilterButton: FC<IFilterButton> = ({
   callback,
   children,
 }): JSX.Element => {
+  const buttonClasses = cn(style.button_categories, {
+    [style.active_button]: activeValue === value,
+  });
+
   const updateActiveCategory = (): void => {
     callback(value as Categories);
   };
 
   return (
     <li className={style.filter_button} onMouseEnter={updateActiveCategory}>
-      <button
-        type="button"
-        onMouseEnter={updateActiveCategory}
-        className={cn(style.button_categories, {
-          [style.active_button]: activeValue === value,
-        })}
-      >
+      <button type="button" onMouseEnter={updateActiveCategory} className={buttonClasses}>
         {children}
       </button>
     </li>

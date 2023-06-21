@@ -50,11 +50,12 @@
 .items_links {
   margin-top: 14px;
   transition: all .1s;
+
+  &:hover {
+    cursor: pointer;
+    color: var(--color-accent);
+  }
 }
 
-.items_links:hover {
-  cursor: pointer;
-  color: var(--color-accent);
-}
 
 
