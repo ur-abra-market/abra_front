@@ -2,12 +2,10 @@ import { useState } from 'react';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector, useOnClickOutside } from '../../../common/hooks';
+import { useAppSelector, useOnClickOutside } from '../../../common/hooks';
 import Modal from '../../../components/Modal';
-import { logout } from '../../../store/reducers/authSlice';
 import { ButtonIcon, MainLogo, Search } from '../../../ui-kit';
 
-import { BuildProfileMenu } from './BuildProfileMenu/BuildProfileMenu';
 import style from './Top.module.scss';
 
 import {
@@ -16,12 +14,13 @@ import {
   HeaderNotificationsIcon,
   HeaderProfileIcon,
 } from 'assets/icons';
+import { HeaderMenu } from 'components/HeaderMenu/HeaderMenu';
+import { isAuthSelector } from 'store/reducers/authSlice/selectors';
 
 export const Top = (): JSX.Element => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
-  const isAuth = useAppSelector(state => state.auth.isAuthorized);
+  const isAuth = useAppSelector(isAuthSelector);
   const [active, setActive] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
 
@@ -40,9 +39,6 @@ export const Top = (): JSX.Element => {
     }
   };
 
-  const handleClickLogout = (): void => {
-    dispatch(logout());
-  };
   const handleMenuOpen = (value: boolean): void => {
     setActive(value);
   };
@@ -64,12 +60,7 @@ export const Top = (): JSX.Element => {
             <HeaderProfileIcon />
           </ButtonIcon>
 
-          <BuildProfileMenu
-            isAuth={isAuth}
-            handleClickLogout={handleClickLogout}
-            active={active}
-            setActive={() => setActive(false)}
-          />
+          <HeaderMenu active={active} setActive={() => setActive(false)} />
         </div>
 
         <ButtonIcon onClick={() => handleOnClick('note')}>

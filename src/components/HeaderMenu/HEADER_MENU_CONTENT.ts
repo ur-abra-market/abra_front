@@ -1,4 +1,4 @@
-export const MENU = {
+export const HEADER_MENU_CONTENT = {
   UNAUTHORIZED: [
     {
       label: 'Log in',
@@ -11,11 +11,11 @@ export const MENU = {
   ],
   SELLER: [
     {
-      label: 'My Profile',
+      label: 'My profile',
       href: '/personal_account',
     },
     {
-      label: 'Edit Profile',
+      label: 'Edit profile',
       href: '/personal_account',
     },
     {
@@ -23,7 +23,7 @@ export const MENU = {
       href: '/personal_account',
     },
     {
-      label: 'My Orders',
+      label: 'My orders',
       href: '/personal_account',
     },
     {
@@ -41,7 +41,7 @@ export const MENU = {
       href: '/',
     },
     {
-      label: 'Log Out',
+      label: 'Log out',
       href: '/logout',
     },
   ],

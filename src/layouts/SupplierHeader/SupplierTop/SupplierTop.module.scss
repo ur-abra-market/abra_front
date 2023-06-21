@@ -63,14 +63,11 @@
   background: none;
 }
 
-.arrow_up {
+.arrow{
   transform: rotate(180deg);
-  transition: 0.4s ease;
 }
 
-.arrow_down {
-  transition: 0.4s ease;
-}
+
 
 .logo_font_size {
   font-size: var(--fz-xl2);

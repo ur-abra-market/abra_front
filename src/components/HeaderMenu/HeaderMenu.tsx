@@ -3,36 +3,27 @@ import React, { DetailedHTMLProps, FC, HTMLAttributes, useEffect } from 'react';
 import cn from 'classnames';
 import { NavLink, useMatch } from 'react-router-dom';
 
-import { Button } from '../../../../ui-kit';
-
-import style from './BuildProfileMenu.module.scss';
-
-import { MENU } from 'common/constants/header-menu/headerMenu';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { HEADER_MENU_CONTENT } from 'components/HeaderMenu/HEADER_MENU_CONTENT';
+import style from 'components/HeaderMenu/HeaderMenu.module.scss';
+import { logout } from 'store/reducers/authSlice';
+import { isAuthSelector, userRoleSelector } from 'store/reducers/authSlice/selectors';
+import { Button } from 'ui-kit';
 
 export interface BuildProfileMenuProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement> {
-  isAuth: boolean;
-  userRole?: 'supplier' | 'seller';
-  handleClickLogout: () => void;
   active: boolean;
   setActive: () => void;
 }
 
-export const BuildProfileMenu: FC<BuildProfileMenuProps> = ({
-  isAuth,
-  userRole,
-  handleClickLogout,
-  active,
-  setActive,
-}) => {
-  const menuFor = userRole === 'supplier' ? MENU.SUPPLIER : MENU.SELLER;
-  const buildMenu = !isAuth ? MENU.UNAUTHORIZED : menuFor;
-
+export const HeaderMenu: FC<BuildProfileMenuProps> = ({ active, setActive }) => {
+  const isAuth = useAppSelector(isAuthSelector);
+  const userRole = useAppSelector(userRoleSelector);
+  const dispatch = useAppDispatch();
+  const menuContent =
+    userRole === 'supplier' ? HEADER_MENU_CONTENT.SUPPLIER : HEADER_MENU_CONTENT.SELLER;
+  const buildMenu = !isAuth ? HEADER_MENU_CONTENT.UNAUTHORIZED : menuContent;
   const location = useMatch('/personal_account');
-
-  const handleOnClick = (): void => {
-    setActive();
-  };
 
   useEffect(() => {
     const onScrollHandler = (): void => {
@@ -42,7 +33,11 @@ export const BuildProfileMenu: FC<BuildProfileMenuProps> = ({
     document.addEventListener('scroll', onScrollHandler);
 
     return () => document.removeEventListener('scroll', onScrollHandler);
-  }, []);
+  }, [setActive]);
+
+  const handleClickLogout = (): void => {
+    dispatch(logout());
+  };
 
   return (
     <ul
@@ -57,7 +52,7 @@ export const BuildProfileMenu: FC<BuildProfileMenuProps> = ({
       {buildMenu.map(({ href, label }) => (
         <li key={label} className={style.item}>
           {href !== '/logout' ? (
-            <NavLink to={href} state={label} onClick={handleOnClick}>
+            <NavLink to={href} state={label} onClick={() => setActive()}>
               {label}
             </NavLink>
           ) : (
