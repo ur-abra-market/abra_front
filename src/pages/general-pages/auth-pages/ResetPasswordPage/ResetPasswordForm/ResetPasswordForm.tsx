@@ -9,12 +9,13 @@ import { useAppDispatch } from '../../../../../common/hooks';
 import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
 import { LoadingStatus } from '../../../../../common/types/enums';
 import { loadingSelector } from '../../../../../store/reducers/appSlice';
+import { isAuthorizedSelector } from '../../../../../store/reducers/authSlice';
 import { PasswordComplexity } from '../../assets';
 
 import style from './ResetPasswordForm.module.scss';
 
 import { ResetPasswordPayloadType } from 'services/auth/auth.serviceTypes';
-import { resetPassword } from 'store/reducers/authSlice';
+import { logout, resetPassword } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
 
 const TRIGGER_FIELD = 'confirm_password';
@@ -44,6 +45,7 @@ export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const loading = useAppSelector(loadingSelector);
+  const isAuthorized = useAppSelector(isAuthorizedSelector);
 
   const {
     register,
@@ -66,6 +68,9 @@ export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
     const actionResult = await dispatch(resetPassword({ ...data, token }));
 
     if (resetPassword.fulfilled.match(actionResult)) {
+      if (isAuthorized) {
+        await dispatch(logout());
+      }
       setModalActive(true);
     }
   };

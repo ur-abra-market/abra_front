@@ -35,15 +35,16 @@ export const registerUser = createAsyncThunk<
 
     return response.data;
   } catch (error) {
-    const errorMessage =
-      error instanceof AxiosError
-        ? error.response?.data?.error || error.message
-        : '[registerUser]: Error';
+    if (error instanceof AxiosError) {
+      dispatch(
+        setResponseNotice({
+          noticeType: 'error',
+          message: error.response?.data?.error || error.message,
+        }),
+      );
+    }
 
-    if (error instanceof AxiosError)
-      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
-
-    return rejectWithValue(errorMessage);
+    return rejectWithValue('[registerUser]: Error');
   } finally {
     dispatch(setLoading(LoadingStatus.Idle));
   }
@@ -53,18 +54,13 @@ export const confirmEmail = createAsyncThunk<
   RegisterResponseType,
   IConfirmEmailRequest,
   AsyncThunkConfig
->('auth/registerUser', async (dataUser, { rejectWithValue, dispatch }) => {
+>('auth/registerUser', async (dataUser, { rejectWithValue }) => {
   try {
     const response = await authService.confirmEmail(dataUser);
 
     return response.data;
   } catch (error) {
-    const errorMessage =
-      error instanceof AxiosError
-        ? error.response?.data?.error || error.message
-        : '[confirmEmail]: Error';
-
-    return rejectWithValue(errorMessage);
+    return rejectWithValue('[confirmEmail]: Error');
   }
 });
 
@@ -77,12 +73,7 @@ export const createAccountPersonalInfo = createAsyncThunk<
     try {
       return await authService.sendAccountPersonalInfo(personalInfoData);
     } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error || error.message
-          : '[createAccountPersonalInfo]: Error';
-
-      return rejectWithValue(errorMessage);
+      return rejectWithValue('[createAccountPersonalInfo]: Error');
     }
   },
 );
@@ -96,12 +87,7 @@ export const createAccountBusinessInfo = createAsyncThunk<
     try {
       return await authService.sendAccountBusinessInfo(businessInfoData);
     } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error || error.message
-          : '[createAccountBusinessInfo]: Error';
-
-      return rejectWithValue(errorMessage);
+      return rejectWithValue('[createAccountBusinessInfo]: Error');
     }
   },
 );
@@ -143,15 +129,16 @@ export const logout = createAsyncThunk<LogoutResponseType, void, AsyncThunkConfi
     try {
       return await authService.logout();
     } catch (error: unknown) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error || error.message
-          : '[logout]: Error';
+      if (error instanceof AxiosError) {
+        dispatch(
+          setResponseNotice({
+            noticeType: 'error',
+            message: error.response?.data?.error || error.message,
+          }),
+        );
+      }
 
-      if (error instanceof AxiosError)
-        dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
-
-      return rejectWithValue(errorMessage);
+      return rejectWithValue('[logout]: Error');
     } finally {
       dispatch(setLoading(LoadingStatus.Idle));
     }
@@ -170,12 +157,7 @@ export const getCurrentUserInfo = createAsyncThunk<
 
     return response.data;
   } catch (error) {
-    const errorMessage =
-      error instanceof AxiosError
-        ? error.response?.data?.error || error.message
-        : '[getCurrentUserInfo]: Error';
-
-    return rejectWithValue(errorMessage);
+    return rejectWithValue('[getCurrentUserInfo]: Error');
   } finally {
     dispatch(setLoading(LoadingStatus.Idle));
   }
@@ -196,13 +178,8 @@ export const updateAccountPersonalInfo = createAsyncThunk<
       }
 
       return response;
-    } catch (error: unknown) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error || error.message
-          : '[updateAccountPersonalInfo]: Error';
-
-      return rejectWithValue(errorMessage);
+    } catch (error) {
+      return rejectWithValue('[updateAccountPersonalInfo]: Error');
     }
   },
 );
@@ -216,15 +193,16 @@ export const forgotPassword = createAsyncThunk<string, string, AsyncThunkConfig>
 
       return response.data.result;
     } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error || error.message
-          : '[forgotPassword]: Error';
+      if (error instanceof AxiosError) {
+        dispatch(
+          setResponseNotice({
+            noticeType: 'error',
+            message: error.response?.data?.error || error.message,
+          }),
+        );
+      }
 
-      if (error instanceof AxiosError)
-        dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
-
-      return rejectWithValue(errorMessage);
+      return rejectWithValue('[forgotPassword]: Error');
     } finally {
       dispatch(setLoading(LoadingStatus.Idle));
     }
@@ -239,12 +217,7 @@ export const checkToken = createAsyncThunk<string, string, AsyncThunkConfig>(
 
       return response.data.result;
     } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error || error.message
-          : '[checkToken]: Error';
-
-      return rejectWithValue(errorMessage);
+      return rejectWithValue('[checkToken]: Error');
     }
   },
 );
@@ -261,15 +234,16 @@ export const resetPassword = createAsyncThunk<
 
     return response.data.result;
   } catch (error) {
-    const errorMessage =
-      error instanceof AxiosError
-        ? error.response?.data?.error || error.message
-        : '[resetPassword]: Error';
+    if (error instanceof AxiosError) {
+      dispatch(
+        setResponseNotice({
+          noticeType: 'error',
+          message: error.response?.data?.error || error.message,
+        }),
+      );
+    }
 
-    if (error instanceof AxiosError)
-      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
-
-    return rejectWithValue(errorMessage);
+    return rejectWithValue('[resetPassword]: Error');
   } finally {
     dispatch(setLoading(LoadingStatus.Idle));
   }
@@ -286,15 +260,16 @@ export const changePassword = createAsyncThunk<
 
     return response.data.result;
   } catch (error) {
-    const errorMessage =
-      error instanceof AxiosError
-        ? error.response?.data?.error || error.message
-        : '[changePassword]: Error';
+    if (error instanceof AxiosError) {
+      dispatch(
+        setResponseNotice({
+          noticeType: 'error',
+          message: error.response?.data?.error || error.message,
+        }),
+      );
+    }
 
-    if (error instanceof AxiosError)
-      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
-
-    return rejectWithValue(errorMessage);
+    return rejectWithValue('[changePassword]: Error');
   } finally {
     dispatch(setLoading(LoadingStatus.Idle));
   }
@@ -311,15 +286,16 @@ export const changeEmail = createAsyncThunk<
 
     return response.data.result;
   } catch (error) {
-    const errorMessage =
-      error instanceof AxiosError
-        ? error.response?.data?.error || error.message
-        : '[changeEmail]: Error';
+    if (error instanceof AxiosError) {
+      dispatch(
+        setResponseNotice({
+          noticeType: 'error',
+          message: error.response?.data?.error || error.message,
+        }),
+      );
+    }
 
-    if (error instanceof AxiosError)
-      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
-
-    return rejectWithValue(errorMessage);
+    return rejectWithValue('[changeEmail]: Error');
   } finally {
     dispatch(setLoading(LoadingStatus.Idle));
   }
