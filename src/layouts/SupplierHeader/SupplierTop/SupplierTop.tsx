@@ -6,12 +6,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector, useOnClickOutside } from '../../../common/hooks';
 import { logout } from '../../../store/reducers/authSlice';
 
-import {
-  ArrowIcon,
-  ArrowRightIcon,
-  HeaderNotificationsIcon,
-  LogoCompanyPlaceholder,
-} from 'assets/icons';
+import { ArrowIcon, HeaderNotificationsIcon, LogoCompanyPlaceholder } from 'assets/icons';
 import { BuildProfileMenu } from 'layouts/Header/Top/BuildProfileMenu/BuildProfileMenu'; // 5 10px for ArrowRightIcon
 import style from 'layouts/SupplierHeader/SupplierTop/SupplierTop.module.scss';
 import { isAuthSelector } from 'store/reducers/authSlice/selectors';
@@ -28,13 +23,6 @@ const SupplierTop = (): JSX.Element => {
 
   return (
     <div className={style.wrapper}>
-      {/* <div */}
-      {/*  role="presentation" */}
-      {/*  onClick={() => setIsMenu(false)} */}
-      {/*  className={cn(style.menu_wrapper, { */}
-      {/*    [style.menu_active]: isMenu, */}
-      {/*  })} */}
-      {/* /> */}
       <div className={style.logo}>
         <MainLogo className={style.logo_font_size} />
         <span className={style.vertical_line} />
@@ -57,14 +45,14 @@ const SupplierTop = (): JSX.Element => {
           >
             <span className={style.business_name}>Business Name</span>
 
-            <ArrowIcon className={style.icon} />
+            <ArrowIcon className={cn(style.arrow_down, { [style.arrow_up]: active })} />
           </button>
           <BuildProfileMenu
             isAuth={isAuth}
             userRole="supplier"
             handleClickLogout={handleClickLogout}
             active={active}
-            setActive={() => setActive(!active)}
+            setActive={() => setActive(false)}
           />
         </div>
       </div>

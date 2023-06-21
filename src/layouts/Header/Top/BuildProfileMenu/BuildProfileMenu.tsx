@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
+import React, { DetailedHTMLProps, FC, HTMLAttributes, useEffect } from 'react';
 
 import cn from 'classnames';
 import { NavLink, useMatch } from 'react-router-dom';
@@ -15,7 +15,7 @@ export interface BuildProfileMenuProps
   userRole?: 'supplier' | 'seller';
   handleClickLogout: () => void;
   active: boolean;
-  setActive: (value: boolean) => void;
+  setActive: () => void;
 }
 
 export const BuildProfileMenu: FC<BuildProfileMenuProps> = ({
@@ -31,8 +31,18 @@ export const BuildProfileMenu: FC<BuildProfileMenuProps> = ({
   const location = useMatch('/personal_account');
 
   const handleOnClick = (): void => {
-    setActive(false);
+    setActive();
   };
+
+  useEffect(() => {
+    const onScrollHandler = (): void => {
+      setActive();
+    };
+
+    document.addEventListener('scroll', onScrollHandler);
+
+    return () => document.removeEventListener('scroll', onScrollHandler);
+  }, []);
 
   return (
     <ul

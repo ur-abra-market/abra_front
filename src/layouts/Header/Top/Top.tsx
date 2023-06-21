@@ -68,7 +68,7 @@ export const Top = (): JSX.Element => {
             isAuth={isAuth}
             handleClickLogout={handleClickLogout}
             active={active}
-            setActive={setActive}
+            setActive={() => setActive(false)}
           />
         </div>
 
