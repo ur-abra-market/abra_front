@@ -16,7 +16,7 @@ export const Star: FC<IStar> = ({ percent }) => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M8 15L9.79611 9.47214H15.6085L10.9062 6.05573L12.7023 0.527864L8 3.94427L3.29772 0.527864L5.09383 6.05573L0.391548 9.47214H6.20389L8 15Z"
+        d="M8 0L9.79611 5.52786H15.6085L10.9062 8.94427L12.7023 14.4721L8 11.0557L3.29772 14.4721L5.09383 8.94427L0.391548 5.52786H6.20389L8 0Z"
         fill={`url('#StarGradient${uniqueId}')`}
       />
       <linearGradient id={`StarGradient${uniqueId}`}>

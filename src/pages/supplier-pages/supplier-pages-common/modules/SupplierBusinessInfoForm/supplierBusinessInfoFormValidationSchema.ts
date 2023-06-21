@@ -3,6 +3,7 @@ import * as yup from 'yup';
 const date = new Date();
 
 const year = date.getFullYear();
+const ACCEPTABLE_YEAR = 1960;
 
 export const supplierBusinessInfoFormValidationSchema = yup.object({
   storeName: yup
@@ -29,6 +30,11 @@ export const supplierBusinessInfoFormValidationSchema = yup.object({
     .test('is-four-digits', 'Year must have four digits', value => {
       if (value && /^\d+$/.test(value)) {
         return value.length === 4;
+      }
+    })
+    .test('is-not-correct-year', 'Please enter a valid year', value => {
+      if (value && /^\d+$/.test(value)) {
+        return parseInt(value, 10) >= ACCEPTABLE_YEAR;
       }
     })
     .test('is-future-year', "This year hasn't come yet", value => {
