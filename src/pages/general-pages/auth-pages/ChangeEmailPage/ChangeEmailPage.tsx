@@ -17,7 +17,7 @@ export const ChangeEmailPage = (): JSX.Element => {
   const userRole = useAppSelector(state => state.auth.userRole);
   const [modalActive, setModalActive] = useState(false);
 
-  const modalCloseHandler = (value: boolean): void => {
+  const handleModalOnClose = (value: boolean): void => {
     setModalActive(value);
 
     if (userRole === 'seller') {
@@ -35,7 +35,7 @@ export const ChangeEmailPage = (): JSX.Element => {
         <ChangeEmailForm setModalActive={setModalActive} />
       </AuthPageLayout>
 
-      <Modal showModal={modalActive} closeModal={modalCloseHandler}>
+      <Modal showModal={modalActive} closeModal={handleModalOnClose}>
         <div className={style.modal_content_wrapper}>
           <div className={style.modal_header}>
             Your new email has been successfully saved
@@ -43,7 +43,7 @@ export const ChangeEmailPage = (): JSX.Element => {
           <Button
             className={style.modal_button}
             label="Okey"
-            onClick={() => modalCloseHandler(false)}
+            onClick={() => handleModalOnClose(false)}
           />
         </div>
       </Modal>

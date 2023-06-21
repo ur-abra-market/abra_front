@@ -25,11 +25,11 @@ const formValidationSchema = yup
   })
   .required();
 
-interface ChangePasswordFormProps {
+interface IChangePasswordFormProps {
   setModalActive: (value: boolean) => void;
 }
 
-export const ChangePasswordForm: FC<ChangePasswordFormProps> = ({ setModalActive }) => {
+export const ChangePasswordForm: FC<IChangePasswordFormProps> = ({ setModalActive }) => {
   const loading = useAppSelector(state => state.app.loading);
   const dispatch = useAppDispatch();
 

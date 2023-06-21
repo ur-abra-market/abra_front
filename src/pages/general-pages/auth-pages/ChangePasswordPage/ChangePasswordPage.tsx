@@ -17,7 +17,7 @@ export const ChangePasswordPage = (): JSX.Element => {
   const userRole = useAppSelector(state => state.auth.userRole);
   const [modalActive, setModalActive] = useState(false);
 
-  const modalCloseHandler = (value: boolean): void => {
+  const handleModalOnClose = (value: boolean): void => {
     setModalActive(value);
 
     if (userRole === 'seller') {
@@ -37,7 +37,7 @@ export const ChangePasswordPage = (): JSX.Element => {
 
       <Modal
         showModal={modalActive}
-        closeModal={modalCloseHandler}
+        closeModal={handleModalOnClose}
         classNameModal={style.modal_container}
       >
         <div className={style.modal_content_wrapper}>
@@ -50,7 +50,7 @@ export const ChangePasswordPage = (): JSX.Element => {
           <Button
             label="Okay"
             className={style.button_modal}
-            onClick={() => modalCloseHandler(false)}
+            onClick={() => handleModalOnClose(false)}
           />
         </div>
       </Modal>
