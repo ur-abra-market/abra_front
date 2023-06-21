@@ -67,12 +67,11 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 
           <Controller
             control={control}
-            name="businessSector.value"
+            name="businessSector"
             render={({ field }) => (
               <Label label="Your main business sector*">
                 <Select
                   {...field}
-                  defaultValue={field.value}
                   error={errors?.businessSector?.message}
                   options={BUSINESS_SECTOR_DATA}
                   placeholder="Select"
@@ -193,7 +192,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         </div>
       </div>
 
-      <Button type="submit" className={style.button} label="Save" disabled={!isValid} />
+      <Button type="submit" className={style.button} label="Save" />
     </form>
   );
 };

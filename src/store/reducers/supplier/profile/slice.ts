@@ -36,10 +36,11 @@ export interface ISupplierBusinessInfo {
   countryRegistration: ICountryRegistration;
   description: string;
   email: string;
-  address: string;
-  countryShort: string;
   phoneNumber: string;
-  phoneId: number | null;
+  id: number | null;
+  countryShort: string;
+  countryCode: string;
+  address: string;
 }
 
 interface ISupplierProfileSliceInitialState {
@@ -70,7 +71,8 @@ const initialState: ISupplierProfileSliceInitialState = {
     address: '',
     countryShort: '',
     phoneNumber: '',
-    phoneId: null,
+    id: null,
+    countryCode: '',
   },
   notifications: null,
 };
@@ -116,9 +118,10 @@ export const supplierProfileSlice = createSlice({
       state.businessInfo.description = description;
       state.businessInfo.email = business_email;
       state.businessInfo.address = address;
-      state.businessInfo.countryShort = phone.country.country_short;
+      state.businessInfo.id = phone.country.id;
       state.businessInfo.phoneNumber = phone.phone_number;
-      state.businessInfo.phoneId = phone.id;
+      state.businessInfo.countryShort = phone.country.country_short;
+      state.businessInfo.countryCode = phone.country.country_code;
     });
     builder
       .addCase(getSupplierNotifications.pending, state => {

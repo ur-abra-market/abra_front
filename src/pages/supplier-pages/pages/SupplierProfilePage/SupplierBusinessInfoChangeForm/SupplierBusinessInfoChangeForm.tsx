@@ -7,7 +7,6 @@ import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { UploadImage } from '../../../../../components';
 import { ISuppliersUpdateCompanyInfo } from '../../../../../services/supplier/supplier.serviceTypes';
 import { Action } from '../../../../../services/user/user.service';
-import { countriesSelector } from '../../../../../store/reducers/commonSlice';
 import {
   getBusinessInfo,
   supplierBusinessInfoSelector,
@@ -24,10 +23,6 @@ import style from './SupplierBusinessInfoChangeForm.module.scss';
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const businessInfoData = useAppSelector(supplierBusinessInfoSelector);
-  const countries = useAppSelector(countriesSelector);
-  const numberCountry = countries.find(
-    c => c.country_short === businessInfoData.countryShort,
-  );
 
   useEffect(() => {
     dispatch(getBusinessInfo());
@@ -35,17 +30,13 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
 
   useEffect(() => {
     reset(businessInfoData);
-    setValue(
-      'phoneNumber',
-      `${numberCountry?.country_code}${businessInfoData.phoneNumber}`,
-    );
   }, [businessInfoData]);
 
   const formMethods = useForm<ISupplierBusinessInfo>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
   });
-  const { reset, setValue } = formMethods;
+  const { reset } = formMethods;
 
   const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
     const updateData: ISuppliersUpdateCompanyInfo = {
@@ -64,13 +55,12 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
         description: data.description,
       },
       company_phone_data_request: {
-        // todo fix the stub
-        phone_number: data.phoneNumber,
-        country_id: data.phoneId!,
+        phone_number: data.phoneNumber.replace(/ /g, '').replace(/\(|\)/g, ''),
+        country_id: data.id!,
       },
     };
 
-    dispatch(updateBusinessInfo(updateData));
+    await dispatch(updateBusinessInfo(updateData));
   };
 
   return (
