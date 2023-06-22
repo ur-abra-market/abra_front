@@ -9,7 +9,7 @@ export const SupplierMainPage = (): JSX.Element => {
   //   if (!hasProfile) navigate('../account-setup');
   // }, [hasProfile]);
 
-  // if (isLoading === LoadingStatus.Loading) {
+  // if (isLoading === LoadingStatusEnum.Loading) {
   //   return <LoaderCircular />;
   // }
 

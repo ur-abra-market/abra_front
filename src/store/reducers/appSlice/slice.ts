@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { LoadingStatus } from '../../../common/types';
+import { LoadingStatusEnum } from '../../../common/types';
 
 import { getUserRole } from './index';
 
@@ -12,16 +12,16 @@ export interface IResponseNotice {
 
 interface IAppSliceInitialState {
   isAppInitialized: boolean;
-  initializedLoading: LoadingStatus;
-  loading: LoadingStatus;
+  initializedLoading: LoadingStatusEnum;
+  loading: LoadingStatusEnum;
   responseNotice: IResponseNotice;
   isFeedbackOpen: boolean;
 }
 
 const initialState: IAppSliceInitialState = {
   isAppInitialized: false,
-  initializedLoading: LoadingStatus.Idle,
-  loading: LoadingStatus.Idle,
+  initializedLoading: LoadingStatusEnum.Idle,
+  loading: LoadingStatusEnum.Idle,
   responseNotice: { noticeType: null, message: null },
   isFeedbackOpen: false,
 };
@@ -36,9 +36,9 @@ export const appSlice = createSlice({
     setResponseError(state, action: PayloadAction<string>) {
       state.responseNotice.noticeType = 'error';
       state.responseNotice.message = action.payload;
-      state.loading = LoadingStatus.Failed;
+      state.loading = LoadingStatusEnum.Failed;
     },
-    setLoading(state, action: PayloadAction<LoadingStatus>) {
+    setLoading(state, action: PayloadAction<LoadingStatusEnum>) {
       state.loading = action.payload;
     },
     setResponseNotice(state, action: PayloadAction<IResponseNotice>) {

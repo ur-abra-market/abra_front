@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { AsyncThunkConfig } from '../../../common/types';
+import { IAsyncThunkConfig } from '../../../common/types';
 import { commonService } from '../../../services/common/common.service';
 
 import { CountriesType, NumberEmployeesType } from 'services/common/common.serviceTypes';
@@ -24,7 +24,7 @@ export const getCountries = createAsyncThunk<CountriesType, void, any>(
 export const getCompanyNumberEmployees = createAsyncThunk<
   NumberEmployeesType,
   void,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >('common/getCompanyNumberEmployees', async (_, { rejectWithValue }) => {
   try {
     return await commonService.fetchCompanyNumberEmployees();
