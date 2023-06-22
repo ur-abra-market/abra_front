@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import ProductItem from '../ProductItem/ProductItem';
 
-import style from './ShopItem.module.css';
+import style from './ShopItem.module.scss';
 
 import { ArrowRightIcon, DotIcon, StarEmptyIcon } from 'assets/icons'; // 5 10px for ArrowRightIcon
 import { Checkbox } from 'ui-kit';

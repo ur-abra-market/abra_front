@@ -6,7 +6,7 @@ import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import { Button } from '../../../../ui-kit';
 import ProductQuantityControl from '../../../ProductQuantityControl';
 
-import style from './ChoiceProduct.module.css';
+import style from './ChoiceProduct.module.scss';
 
 interface ChoiceProductProps {
   colors: string[];

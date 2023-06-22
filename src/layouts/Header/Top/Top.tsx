@@ -9,7 +9,7 @@ import { logout } from '../../../store/reducers/authSlice';
 import { ButtonIcon, MainLogo, Search } from '../../../ui-kit';
 
 import BuildProfileMenu from './BuildProfileMenu/BuildProfileMenu';
-import style from './Top.module.css';
+import style from './Top.module.scss';
 
 import {
   HeaderCartIcon,

@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import { ISelectOption, Select } from '../../ui-kit';
 
-import style from './LocationAndCurrencySelection.module.css';
+import style from './LocationAndCurrencySelection.module.scss';
 import { LocationAndCurrencySelectionProps } from './LocationAndCurrencySelection.props';
 
 const CURRENCY_DATA: ISelectOption[] = [

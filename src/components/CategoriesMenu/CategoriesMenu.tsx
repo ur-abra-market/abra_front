@@ -8,7 +8,7 @@ import {
   ResponseCategoryType,
 } from '../../store/reducers/categorySlice';
 
-import style from './CategoriesMenu.module.css';
+import style from './CategoriesMenu.module.scss';
 import { CategoriesMenuProps } from './CategoriesMenu.props';
 import { Items } from './CategoryItems';
 import { FilterButton } from './FilterButton/FilterButton';

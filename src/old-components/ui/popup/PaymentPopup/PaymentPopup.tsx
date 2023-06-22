@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import Check from '../../../Check';
 
-import style from './PaymentPopup.module.css';
+import style from './PaymentPopup.module.scss';
 
 import { CrossRedIcon } from 'assets/icons'; // 16px
 import { Button, Input } from 'ui-kit';

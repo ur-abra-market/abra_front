@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import style from './StatusSeller.module.css';
+import style from './StatusSeller.module.scss';
 
 import { StarEmptyIcon, ArrowRightIcon } from 'assets/icons';
 import { HangerImage } from 'assets/images';

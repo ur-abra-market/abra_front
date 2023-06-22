@@ -15,7 +15,7 @@ import { LocationAndCurrencySelection } from '../../components/LocationAndCurren
 import HeaderNavMenu from '../../old-components/HeaderNavMemu';
 import { Container } from '../../ui-kit';
 
-import style from './Header.module.css';
+import style from './Header.module.scss';
 import Top from './Top/Top';
 
 export interface IHeader

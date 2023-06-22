@@ -10,6 +10,8 @@ import { getSimilarProducts } from '../../../store/reducers/similarProducts';
 import { getGradesByProductId } from '../../../store/reducers/targetProductSlice';
 import { Button, LoaderCircular, Container } from '../../../ui-kit';
 
+import style from './ProductPage.module.scss';
+
 import { IImageProduct, LoadingStatus } from 'common/types';
 import ChoiceProduct from 'old-components/ui/product/ChoiceProduct';
 import FlagFavorites from 'old-components/ui/product/FlagFavorites';
@@ -20,7 +22,6 @@ import ProductStatistics from 'old-components/ui/product/ProductStatistics';
 import Reward from 'old-components/ui/product/Reward';
 import StatusSeller from 'old-components/ui/product/StatusSeller';
 import { PopularProduct } from 'pages/seller-pages/ProductPage/PopularProduct/PopularProduct';
-import style from 'pages/seller-pages/ProductPage/ProductPage.module.css';
 import ProductReview from 'pages/seller-pages/ProductPage/ProductReview/ProductReview';
 import { SimilarProduct } from 'pages/seller-pages/ProductPage/SimilarProduct/SimilarProduct';
 

@@ -1,4 +1,4 @@
-import style from './ContactSupport.module.css';
+import style from './ContactSupport.module.scss';
 
 import { GoogleIcon, VkIcon, WhatsappIcon } from 'assets/icons';
 import { Banner3Image } from 'assets/images';

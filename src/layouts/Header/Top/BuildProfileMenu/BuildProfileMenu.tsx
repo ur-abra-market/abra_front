@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { NavLink, useMatch } from 'react-router-dom';
 
 import { Button } from '../../../../ui-kit';
-import style from '../Top.module.css';
+import style from '../Top.module.scss';
 
 import { BuildProfileMenuProps } from './BuildProfileMenu.props';
 

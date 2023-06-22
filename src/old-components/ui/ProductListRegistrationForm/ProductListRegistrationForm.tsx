@@ -26,7 +26,7 @@ import ProdInfoInputs from '../ProdInfoInputs';
 import SelectionsForProperties from '../SelectionsForProperties/SelectionsForProperties';
 import TypesPage from '../TypesView/TypesPage';
 
-import style from './ProductListRegistrationForm.module.css';
+import style from './ProductListRegistrationForm.module.scss';
 
 interface ProductProperties {
   key: string;

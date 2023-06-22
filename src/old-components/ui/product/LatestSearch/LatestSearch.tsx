@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import style from './LatestSearch.module.css';
+import style from './LatestSearch.module.scss';
 
 interface LatestSearchProps {
   latestSearchData: any[];

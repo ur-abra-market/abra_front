@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../../common/hooks';
 import { logout } from '../../../store/reducers/authSlice';
 
-import style from './SupplierTop.module.css';
+import style from './SupplierTop.module.scss';
 
 import { ArrowRightIcon, HeaderNotificationsIcon } from 'assets/icons';
 import { MainLogo } from 'ui-kit'; // 5 10px for ArrowRightIcon

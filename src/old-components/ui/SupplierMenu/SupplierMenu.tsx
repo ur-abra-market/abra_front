@@ -2,7 +2,7 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import style from './SupplierMenu.module.css';
+import style from './SupplierMenu.module.scss';
 
 const SupplierMenu = (): JSX.Element => {
   const menu = [

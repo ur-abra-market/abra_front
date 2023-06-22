@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import { PhoneNumberInput } from '../../../../components';
 import Check from '../../../Check';
 
-import style from './EditAddressModal.module.css';
+import style from './EditAddressModal.module.scss';
 
 import { CrossRedIcon, DeleteTrashCanIcon } from 'assets/icons'; // 16px for CrossRedIcon
 import { IAddress } from 'store/reducers/seller/profile/slice';
