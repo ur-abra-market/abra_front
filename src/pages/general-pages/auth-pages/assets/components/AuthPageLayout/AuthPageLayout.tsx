@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react';
 import cn from 'classnames';
 
 import { useAppSelector } from '../../../../../../common/hooks';
-import { LoadingStatus } from '../../../../../../common/types';
+import { LoadingStatusEnum } from '../../../../../../common/types';
 
 import style from './AuthPageLayout.module.scss';
 
@@ -28,11 +28,11 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
   return (
     <div
       className={cn(style.wrapper, {
-        [style.pointer_none]: isLoading === LoadingStatus.Loading,
+        [style.pointer_none]: isLoading === LoadingStatusEnum.Loading,
       })}
     >
       <div className={style.content}>
-        {isLoading === LoadingStatus.Loading && <LoaderLinear />}
+        {isLoading === LoadingStatusEnum.Loading && <LoaderLinear />}
         {isMainLogoShow && (
           <>
             <MainLogo />
