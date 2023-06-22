@@ -1,10 +1,13 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import { Footer } from '../Footer/Footer';
 import { Header } from '../SupplierHeader/SupplierHeader';
 
 import styles from './SupplierLayout.module.css';
-import { LayoutProps } from './SupplierLayout.props';
+
+export interface LayoutProps {
+  children: ReactNode;
+}
 
 export const SupplierLayout: FC<LayoutProps> = ({ children }): JSX.Element => {
   return (

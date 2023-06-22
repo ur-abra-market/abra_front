@@ -6,11 +6,12 @@ import { Container } from '../../old-components';
 import SupplierMenu from '../../old-components/ui/SupplierMenu/SupplierMenu';
 
 import style from './SupplierHeader.module.css';
-import { HeaderProps } from './SupplierHeader.props';
 
 import { Top } from '.';
 
-export const Header: FC<HeaderProps> = (props): JSX.Element => {
+import { IHtmlHeaderProps } from 'common/types/interfaces';
+
+export const Header: FC<IHtmlHeaderProps> = (props): JSX.Element => {
   const { className, ...restProps } = props;
 
   return (

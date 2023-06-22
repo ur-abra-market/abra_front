@@ -1,3 +1,5 @@
+import { DetailedHTMLProps, HTMLAttributes } from 'react';
+
 import { AppDispatchType, RootStateType } from '../../store/createStore';
 
 export interface IImageProduct {
@@ -27,3 +29,6 @@ export interface IServerResponse<R> {
   ok: boolean;
   result: R;
 }
+
+export interface IHtmlHeaderProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}

@@ -1,12 +1,4 @@
-import React, {
-  FC,
-  RefObject,
-  useEffect,
-  useRef,
-  useState,
-  DetailedHTMLProps,
-  HTMLAttributes,
-} from 'react';
+import React, { FC, RefObject, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -19,10 +11,12 @@ import style from './Header.module.css';
 
 import { Top } from '.';
 
-export interface IHeader
-  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
+import { IHtmlHeaderProps } from 'common/types/interfaces';
 
-export const Header: FC<IHeader> = ({ className, ...restProps }): JSX.Element => {
+export const Header: FC<IHtmlHeaderProps> = ({
+  className,
+  ...restProps
+}): JSX.Element => {
   const [categoriesIsOpen, setCategoriesIsOpen] = useState(false);
 
   const categoriesRef = useRef() as RefObject<HTMLDivElement>;
