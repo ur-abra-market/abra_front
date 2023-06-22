@@ -17,3 +17,19 @@ export interface IAccountPersonalInfoResponse {
   is_deleted: boolean;
   is_supplier: boolean;
 }
+
+export interface IUploadImageRequest {
+  action: string;
+  file: File;
+  queries?: { product_id: number; serial_number: number };
+}
+
+export interface IUploadImageResponse {
+  ok: boolean;
+  result: { id: number; url: string };
+}
+
+export interface IDeleteImageRequest {
+  action: string;
+  queries: { company_image_id: number; order?: number };
+}

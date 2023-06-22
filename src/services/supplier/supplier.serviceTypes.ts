@@ -1,39 +1,17 @@
 import { ICountry } from '../common/common.serviceTypes';
 
-export interface License {
-  license_number: number;
+export interface ISuppliersCompanyInfoData {
+  id: number;
+  license_number: string;
+  grade_average: number;
+  additional_info: string;
+  company: ICompanyInfo;
 }
 
-export interface CompanyInfo {
-  name: string;
-  business_sector: string;
-  is_manufacturer: number;
-  year_established: number;
-  number_of_employees: number;
-  description: string;
-  phone: string;
-  business_email: string;
-  address: string;
-}
-
-export interface RequestAccountInfo {
-  user_info: {
-    first_name: string;
-    last_name?: string;
-    user_phone?: string;
-  };
-  license: License;
-  company_info: {
-    name: string;
-    business_sector: string;
-    is_manufacturer: number;
-    year_established?: number;
-    number_of_employees?: number;
-    description?: string;
-    phone?: string;
-    business_email?: string;
-    address?: string;
-  };
+export interface ISuppliersUpdateCompanyInfo {
+  supplier_data_request: ISupplierLicense;
+  company_data_request: Omit<IUpdateCompanyInfo, 'id' | 'country' | 'phone' | 'images'>;
+  company_phone_data_request: ISuppliersCompanyPhoneData;
 }
 
 export interface ISupplierNotifications {
@@ -48,12 +26,20 @@ export interface ISupplierNotifications {
   on_account_support: boolean;
 }
 
-export interface ISuppliersCompanyInfoData {
-  id: number;
-  license_number: string;
-  grade_average: number;
-  additional_info: string;
-  company: ICompanyInfo;
+export interface License {
+  license_number: number;
+}
+
+export interface CompanyInfo {
+  name: string;
+  business_sector: string;
+  is_manufacturer: number;
+  year_established: number;
+  number_of_employees: number;
+  description: string;
+  phone: string;
+  business_email: string;
+  address: string;
 }
 
 export interface ICompanyInfo {
@@ -77,12 +63,6 @@ interface IPhoneInfo {
   country: ICountry;
 }
 
-export interface ISuppliersUpdateCompanyInfo {
-  supplier_data_request: ISupplierLicense;
-  company_data_request: Omit<IUpdateCompanyInfo, 'id' | 'country' | 'phone' | 'images'>;
-  company_phone_data_request: ISuppliersCompanyPhoneData;
-}
-
 interface ISupplierLicense {
   license_number: string;
 }
@@ -94,4 +74,24 @@ interface IUpdateCompanyInfo extends ICompanyInfo {
 interface ISuppliersCompanyPhoneData {
   country_id: number;
   phone_number: string;
+}
+
+export interface RequestAccountInfo {
+  user_info: {
+    first_name: string;
+    last_name?: string;
+    user_phone?: string;
+  };
+  license: License;
+  company_info: {
+    name: string;
+    business_sector: string;
+    is_manufacturer: number;
+    year_established?: number;
+    number_of_employees?: number;
+    description?: string;
+    phone?: string;
+    business_email?: string;
+    address?: string;
+  };
 }

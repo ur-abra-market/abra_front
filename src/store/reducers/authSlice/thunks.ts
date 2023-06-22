@@ -3,18 +3,18 @@ import { AxiosError } from 'axios';
 
 import { AsyncThunkConfig, LoadingStatus } from '../../../common/types';
 import { userService } from '../../../services';
-import authService from '../../../services/auth/auth.service';
+import { authService } from '../../../services/auth/auth.service';
 import {
-  ChangePasswordPayloadType,
-  CurrentUserInfoResponseType,
-  IBusinessInfoRequestData,
-  IPersonalInfoRequestData,
-  LoginParamsType,
-  LoginResponseType,
-  LogoutResponseType,
-  RegisterParamsType,
-  RegisterResponseType,
-  ResetPasswordPayloadType,
+  IChangePasswordRequest,
+  ICurrentUserInfoResponse,
+  IBusinessInfoRequest,
+  IPersonalInfoRequest,
+  ILoginRequest,
+  ILoginResponse,
+  ILogoutResponse,
+  IRegisterRequest,
+  IRegisterResponse,
+  IResetPasswordRequest,
 } from '../../../services/auth/auth.serviceTypes';
 import { IAccountPersonalInfoRequest } from '../../../services/common/common.serviceTypes';
 import { IAccountPersonalInfoResponse } from '../../../services/user/user.serviceTypes';
@@ -23,8 +23,8 @@ import { getUserRole } from '../appSlice';
 import { setLoading, setResponseNotice } from '../appSlice/slice';
 
 export const registerUser = createAsyncThunk<
-  { data: RegisterResponseType },
-  RegisterParamsType,
+  { data: IRegisterResponse },
+  IRegisterRequest,
   { rejectValue: string; dispatch: AppDispatchType }
 >('auth/registerUser', async (dataUser, { rejectWithValue, dispatch }) => {
   dispatch(setLoading(LoadingStatus.Loading));
@@ -50,7 +50,7 @@ export const registerUser = createAsyncThunk<
 
 export const createAccountPersonalInfo = createAsyncThunk<
   any, // todo fix any -> need common request interface
-  IPersonalInfoRequestData
+  IPersonalInfoRequest
 >(
   'createAccount/createAccountPersonalInfo',
   async (personalInfoData, { rejectWithValue }) => {
@@ -68,7 +68,7 @@ export const createAccountPersonalInfo = createAsyncThunk<
 );
 
 export const createAccountBusinessInfo = createAsyncThunk<
-  IBusinessInfoRequestData,
+  IBusinessInfoRequest,
   any // todo fix any -> need common request interface
 >(
   'createAccount/createAccountBusinessInfo',
@@ -87,8 +87,8 @@ export const createAccountBusinessInfo = createAsyncThunk<
 );
 
 export const loginUser = createAsyncThunk<
-  LoginResponseType,
-  LoginParamsType,
+  ILoginResponse,
+  ILoginRequest,
   AsyncThunkConfig
 >('auth/loginUser', async (dataUser, { rejectWithValue, dispatch }) => {
   dispatch(setLoading(LoadingStatus.Loading));
@@ -115,7 +115,7 @@ export const loginUser = createAsyncThunk<
   }
 });
 
-export const logout = createAsyncThunk<LogoutResponseType, void, AsyncThunkConfig>(
+export const logout = createAsyncThunk<ILogoutResponse, void, AsyncThunkConfig>(
   'login/logout',
   async (_, { rejectWithValue, dispatch }) => {
     dispatch(setLoading(LoadingStatus.Loading));
@@ -139,7 +139,7 @@ export const logout = createAsyncThunk<LogoutResponseType, void, AsyncThunkConfi
 );
 
 export const getCurrentUserInfo = createAsyncThunk<
-  CurrentUserInfoResponseType,
+  ICurrentUserInfoResponse,
   void,
   AsyncThunkConfig
 >('login/getCurrentUserInfo', async (_, { rejectWithValue, dispatch }) => {
@@ -225,7 +225,7 @@ export const checkToken = createAsyncThunk<string, string, AsyncThunkConfig>(
 
 export const resetPassword = createAsyncThunk<
   string,
-  ResetPasswordPayloadType,
+  IResetPasswordRequest,
   AsyncThunkConfig
 >('password/resetPassword', async (param, { rejectWithValue }) => {
   try {
@@ -244,7 +244,7 @@ export const resetPassword = createAsyncThunk<
 
 export const changePassword = createAsyncThunk<
   string,
-  ChangePasswordPayloadType,
+  IChangePasswordRequest,
   AsyncThunkConfig
 >('password/changePassword', async (param, { rejectWithValue }) => {
   try {

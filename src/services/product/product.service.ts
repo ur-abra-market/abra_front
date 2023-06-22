@@ -1,68 +1,54 @@
-import baseConfigService from '../baseConfig.service';
+import { baseConfigService } from '../baseConfig.service';
 
 import {
   IGradeProduct,
-  IGradeProductRequest,
   IProduct,
   IProductCompilation,
-  IRequestCategory,
-  IRequestPopularProduct,
-  IRequestProduct,
-  IRequestSimilarProduct,
+  ICategoryRequest,
+  IPopularProductRequest,
+  IProductRequest,
   IResponse,
+  IProductPaginateList,
 } from './product.serviceTypes';
 
 export const productService = {
-  getList: async ({
-    offset,
-    limit,
-    category_id,
-    sort_type,
-    ascending,
-  }: IRequestCategory) => {
+  getList: async (getListData: ICategoryRequest) => {
+    const { offset, limit, category_id, sort_type, ascending } = getListData;
+    const payload = { category_id, sort_type, ascending };
+
     const { data } = await baseConfigService.post(
       `products/compilation/?offset=${offset}&limit=${limit}`,
-      {
-        category_id,
-        sort_type,
-        ascending,
-      },
+      payload,
     );
 
     return data.result;
   },
 
-  getProductById: async ({ product_id }: IRequestProduct) => {
+  getProductById: async (ProductByIdData: IProductRequest) => {
     const { data } = await baseConfigService.post<IResponse<IProduct>>(
       `products/product_card_p1/`,
       {},
-      {
-        params: {
-          product_id,
-        },
-      },
+      { params: ProductByIdData },
     );
 
     return data.result;
   },
 
-  getProductImagesById: async ({ product_id }: IRequestProduct) => {
+  getProductImagesById: async ({ product_id }: IProductRequest) => {
     const { data } = await baseConfigService.get(`products/${product_id}/images/`, {});
 
     return data.result;
   },
 
-  getPopularProductById: async (payload: IRequestPopularProduct) => {
+  getPopularProductById: async (popularProductData: IPopularProductRequest) => {
     const { data } = await baseConfigService.get(`products/popular/`, {
-      params: {
-        ...payload,
-      },
+      params: popularProductData,
     });
 
     return data;
   },
 
-  getGradesByProductId: async ({ product_id }: IGradeProductRequest) => {
+  getGradesByProductId: async ({ product_id }: IProductRequest) => {
     const { data } = await baseConfigService.get<IGradeProduct>(
       `products/${product_id}/grades/`,
     );
@@ -76,14 +62,10 @@ export const productService = {
     return data.result;
   },
 
-  getSimilarProducts: async (payload: IRequestSimilarProduct) => {
+  getSimilarProducts: async (similarProductData: IPopularProductRequest) => {
     const { data } = await baseConfigService.get<IResponse<IProductCompilation[]>>(
       `products/similar/`,
-      {
-        params: {
-          ...payload,
-        },
-      },
+      { params: similarProductData },
     );
 
     return data;
@@ -95,7 +77,7 @@ export const productService = {
     return data.result;
   },
 
-  getProductPaginateList: async (props: any) => {
+  getProductPaginateList: async (props: IProductPaginateList) => {
     const bottom_price = props.price_from > 0 ? `bottom_price=${props.price_to}&` : '';
     const top_price = props.price_to > 0 ? `top_price=${props.price_to}&` : '';
     const category = props.category !== '' ? `category_id=${props.category}&` : '';

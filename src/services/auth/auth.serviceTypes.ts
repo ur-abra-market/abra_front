@@ -1,51 +1,54 @@
 import { IProduct } from '../product/product.serviceTypes';
-import { ISellerAddressData, ISellerNotifications } from '../seller/seller.serviceTypes';
+import { IISellerAddressData, ISellerNotifications } from '../seller/seller.serviceTypes';
 import { ISupplierNotifications } from '../supplier/supplier.serviceTypes';
 
-export type RegisterParamsType = {
+export interface IRegisterRequest {
   email?: string;
   password?: string;
   route?: string;
   token?: string;
-};
-
-export type RegisterResponseType = {
+}
+export interface IRegisterResponse {
   result: string;
-};
+}
 
-export type LoginParamsType = {
+export interface IPersonalInfoRequest {
+  first_name: string;
+  last_name: string;
+  country_id: number;
+  phone_number: string;
+}
+
+export interface IBusinessInfoRequest {
+  supplier_data_request: {
+    license_number: string;
+  };
+  company_data_request: {
+    phone_country_code: string;
+    phone_number: string;
+    name: string;
+    is_manufacturer: false;
+    year_established: 0;
+    number_employees: 0;
+    description: string;
+    address: string;
+    logo_url: string;
+    business_sector: string;
+    business_email: string;
+    country_id: number;
+  };
+}
+
+export interface ILoginRequest {
   email: string;
   password: string;
-};
-
-export type LoginResponseType = {
+}
+export interface ILoginResponse {
   result: string;
   is_supplier: boolean;
-};
+}
 
-export type CheckAuthResponseType = {
-  result: { is_supplier: boolean };
-};
-
-export type PasswordResponseType = {
-  result: string;
-};
-
-export type ResetPasswordPayloadType = {
-  new_password: string;
-  confirm_password: string;
-};
-
-export type ChangePasswordPayloadType = {
-  old_password: string;
-  new_password: string;
-};
-
-export type LogoutResponseType = {
-  result: boolean;
-};
-
-export type CurrentUserInfoResponseType = {
+export interface ICurrentUserInfoResponse {
   result: {
     datetime: string;
     updated_at?: string;
@@ -68,37 +71,32 @@ export type CurrentUserInfoResponseType = {
     seller?: {
       has_main_address?: boolean;
       notifications?: ISellerNotifications;
-      addresses?: ISellerAddressData[];
+      addresses?: IISellerAddressData[];
     };
   };
   detail: {
     has_profile: boolean;
   };
+}
+
+export interface ILogoutResponse {
+  result: boolean;
+}
+
+export interface IPasswordResponse {
+  result: string;
+}
+
+export interface IResetPasswordRequest {
+  new_password: string;
+  confirm_password: string;
+}
+
+export interface IChangePasswordRequest {
+  old_password: string;
+  new_password: string;
+}
+
+export type CheckAuthResponseType = {
+  result: { is_supplier: boolean };
 };
-
-export interface IBusinessInfoRequestData {
-  supplier_data_request: {
-    license_number: string;
-  };
-  company_data_request: {
-    phone_country_code: string;
-    phone_number: string;
-    name: string;
-    is_manufacturer: false;
-    year_established: 0;
-    number_employees: 0;
-    description: string;
-    address: string;
-    logo_url: string;
-    business_sector: string;
-    business_email: string;
-    country_id: number;
-  };
-}
-
-export interface IPersonalInfoRequestData {
-  first_name: string;
-  last_name: string;
-  country_id: number;
-  phone_number: string;
-}

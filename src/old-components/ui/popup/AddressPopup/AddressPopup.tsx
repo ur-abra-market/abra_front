@@ -9,7 +9,7 @@ import { useAppDispatch } from '../../../../common/hooks';
 import style from './AddressPopup.module.css';
 
 import { CrossRedIcon } from 'assets/icons'; // 16px
-import { SellerAddressData } from 'services/seller/seller.serviceTypes';
+import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
 import { addAddress } from 'store/reducers/sellerCheckoutSlice';
 import { Button, Checkbox, Input, Select } from 'ui-kit';
 
@@ -54,12 +54,12 @@ const AddressPopup: FC<AddressPopupType> = ({ modal, setAddModal }): JSX.Element
     reset,
     handleSubmit,
     formState: { isValid },
-  } = useForm<SellerAddressData>({
+  } = useForm<ISellerAddressData>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
 
-  const onSubmit = (data: SellerAddressData): void => {
+  const onSubmit = (data: ISellerAddressData): void => {
     if (!isValid) return;
     dispatch(addAddress(data));
     reset();

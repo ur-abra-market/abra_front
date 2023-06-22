@@ -5,6 +5,52 @@ export interface IResponse<T> {
   result: T;
 }
 
+export interface ICategoryRequest {
+  offset: number;
+  limit: number;
+  category_id: Categories;
+  sort_type: ProductSortType;
+  ascending: boolean;
+}
+
+export interface IProductRequest {
+  product_id: number;
+}
+export interface IProduct {
+  grade: IGrade;
+  category_id: number;
+  category_path: string;
+  product_name: string;
+  is_favorite: boolean;
+  tags: string[];
+  colors: any[];
+  sizes: any[];
+  monthly_actual_demand: number;
+  daily_actual_demand: number;
+  prices: IPrice[];
+  supplier_info?: any;
+}
+
+export interface IPopularProductRequest {
+  product_id: number;
+  page_num: number;
+  page_size: number;
+}
+
+export interface IProductCompilation {
+  datetime: string;
+  description: string;
+  grade_average: number;
+  id: number;
+  images: IProductImage[];
+  is_active: boolean;
+  name: string;
+  prices: IProductPrice[];
+  supplier?: IProductSupplier;
+  total_orders: number;
+  uuid?: string;
+}
+
 export interface GradeDetail {
   grade: number;
   count: number;
@@ -35,26 +81,6 @@ export interface IProductUser {
   phone_number: string;
 }
 
-export interface IRequestPopularProduct {
-  product_id: number;
-  page_num: number;
-  page_size: number;
-}
-
-export interface IRequestCategory {
-  offset: number;
-  limit: number;
-  category_id: Categories;
-  sort_type: ProductSortType;
-  ascending: boolean;
-}
-
-export interface IRequestSimilarProduct extends IRequestPopularProduct {}
-
-export interface IRequestProduct {
-  product_id: number;
-}
-
 export interface IProductImage {
   id?: number;
   image_url?: string;
@@ -70,20 +96,6 @@ export interface IProductSupplier {
   user: IProductUser;
 }
 
-export interface IProductCompilation {
-  datetime: string;
-  description: string;
-  grade_average: number;
-  id: number;
-  images: IProductImage[];
-  is_active: boolean;
-  name: string;
-  prices: IProductPrice[];
-  supplier?: IProductSupplier;
-  total_orders: number;
-  uuid?: string;
-}
-
 export interface IProductPrice {
   discount: number;
   end_date: string;
@@ -93,8 +105,7 @@ export interface IProductPrice {
   value?: number;
 }
 
-export interface IGradeProductRequest extends IRequestProduct {}
-export interface IImageProductRequest extends IRequestProduct {}
+export interface IImageProductRequest extends IProductRequest {}
 
 export interface IPrice {
   value: string;
@@ -104,17 +115,18 @@ export interface IPrice {
   end_date: string;
 }
 
-export interface IProduct {
-  grade: IGrade;
-  category_id: number;
-  category_path: string;
-  product_name: string;
-  is_favorite: boolean;
-  tags: string[];
-  colors: any[];
-  sizes: any[];
-  monthly_actual_demand: number;
-  daily_actual_demand: number;
-  prices: IPrice[];
-  supplier_info?: any;
+export interface IProductPaginateList {
+  page_size: number;
+  amountPages: number;
+  page_num: number;
+  allItems: number;
+  sort_type: string;
+  category: string;
+  price_from: number;
+  price_to: number;
+  discount: boolean;
+  ascending: boolean;
+  brands: [];
+  materials: [];
+  sizes: [];
 }

@@ -1,19 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { AsyncThunkConfig, LoadingStatus } from '../../common/types';
+import { AsyncThunkConfig, IServerResponse, LoadingStatus } from '../../common/types';
 import { sellerService } from '../../services/seller/seller.service';
-import {
-  ResponseAddressData,
-  ResponseDeleteAddress,
-  SellerAddressData,
-} from '../../services/seller/seller.serviceTypes';
+import { ISellerAddressData } from '../../services/seller/seller.serviceTypes';
 
 import { getSellerAddresses } from 'store/reducers/seller/profile/thunks';
 
 export const addAddress = createAsyncThunk<
-  ResponseAddressData,
-  SellerAddressData,
+  IServerResponse<ISellerAddressData[]>,
+  ISellerAddressData,
   AsyncThunkConfig
 >('modal/addAddress', async (params, { dispatch, rejectWithValue }) => {
   try {
@@ -50,25 +46,26 @@ export const editAddress = createAsyncThunk<any, any>(
   },
 );
 
-export const getAddress = createAsyncThunk<ResponseAddressData, void, AsyncThunkConfig>(
-  'modal/getAddress',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await sellerService.getSellerAddresses();
+export const getAddress = createAsyncThunk<
+  IServerResponse<ISellerAddressData[]>,
+  void,
+  AsyncThunkConfig
+>('modal/getAddress', async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await sellerService.getSellerAddresses();
 
-      return data;
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.message);
-      }
-
-      return rejectWithValue('[modalSlice]: Error');
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      return rejectWithValue(error.message);
     }
-  },
-);
+
+    return rejectWithValue('[modalSlice]: Error');
+  }
+});
 
 export const deleteAddress = createAsyncThunk<
-  ResponseDeleteAddress,
+  IServerResponse<boolean>,
   number,
   AsyncThunkConfig
 >('modal/deleteAddress', async (id, { dispatch, rejectWithValue }) => {
@@ -88,7 +85,7 @@ export const deleteAddress = createAsyncThunk<
 });
 
 interface IInitialState {
-  addresses: SellerAddressData[];
+  addresses: ISellerAddressData[];
   loading: LoadingStatus;
 }
 

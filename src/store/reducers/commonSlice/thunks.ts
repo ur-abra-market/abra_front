@@ -4,9 +4,9 @@ import { AxiosError } from 'axios';
 import { AsyncThunkConfig } from '../../../common/types';
 import { commonService } from '../../../services/common/common.service';
 
-import { CountriesType, NumberEmployeesType } from 'services/common/common.serviceTypes';
+import { ICountry, INumberEmployees } from 'services/common/common.serviceTypes';
 
-export const getCountries = createAsyncThunk<CountriesType, void, any>(
+export const getCountries = createAsyncThunk<ICountry[], void, any>(
   'common/getCountries',
   async (_, { rejectWithValue }) => {
     try {
@@ -22,7 +22,7 @@ export const getCountries = createAsyncThunk<CountriesType, void, any>(
 );
 
 export const getCompanyNumberEmployees = createAsyncThunk<
-  NumberEmployeesType,
+  INumberEmployees[],
   void,
   AsyncThunkConfig
 >('common/getCompanyNumberEmployees', async (_, { rejectWithValue }) => {

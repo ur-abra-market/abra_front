@@ -1,89 +1,91 @@
-import baseConfigService from '../baseConfig.service';
+import { baseConfigService } from '../baseConfig.service';
 
 import {
-  LogoutResponseType,
-  CurrentUserInfoResponseType,
-  ChangePasswordPayloadType,
-  IBusinessInfoRequestData,
-  LoginParamsType,
-  LoginResponseType,
-  PasswordResponseType,
-  RegisterParamsType,
-  RegisterResponseType,
-  ResetPasswordPayloadType,
-  IPersonalInfoRequestData,
+  ILogoutResponse,
+  ICurrentUserInfoResponse,
+  IChangePasswordRequest,
+  IBusinessInfoRequest,
+  ILoginRequest,
+  ILoginResponse,
+  IPasswordResponse,
+  IRegisterRequest,
+  IRegisterResponse,
+  IResetPasswordRequest,
+  IPersonalInfoRequest,
 } from './auth.serviceTypes';
 
 export const authService = {
   userRole: () => {
-    return baseConfigService.get(`/login/role/`);
+    return baseConfigService.get(`login/role/`);
   },
 
-  register: ({ email, password, route, token }: RegisterParamsType) => {
+  register: ({ email, password, route, token }: IRegisterRequest) => {
+    const payload = { email, password, token };
+
     if (route === 'confirmEmail') {
-      return baseConfigService.get<RegisterResponseType>(
+      return baseConfigService.get<IRegisterResponse>(
         `register/confirmEmail/?token=${token}`,
       );
     }
 
-    return baseConfigService.post<RegisterResponseType>(`register/${route}/`, {
-      email,
-      password,
-      token,
-    });
+    return baseConfigService.post<IRegisterResponse>(`register/${route}/`, payload);
   },
 
-  sendAccountPersonalInfo: async (personalInfoData: IPersonalInfoRequestData) => {
+  sendAccountPersonalInfo: async (personalInfoData: IPersonalInfoRequest) => {
     const { data } = await baseConfigService.post(
-      `/register/account/sendInfo/`,
+      `register/account/sendInfo/`,
       personalInfoData,
     );
 
     return data;
   },
 
-  sendAccountBusinessInfo: async (businessInfoData: IBusinessInfoRequestData) => {
+  sendAccountBusinessInfo: async (businessInfoData: IBusinessInfoRequest) => {
     const { data } = await baseConfigService.post(
-      `/register/business/sendInfo/`,
+      `register/business/sendInfo/`,
       businessInfoData,
     );
 
     return data;
   },
 
-  login: ({ email, password }: LoginParamsType) => {
-    return baseConfigService.post<LoginResponseType>(`login/`, { email, password });
+  login: (loginData: ILoginRequest) => {
+    return baseConfigService.post<ILoginResponse>(`login/`, loginData);
   },
 
   loginCurrentUser: () => {
-    return baseConfigService.get<CurrentUserInfoResponseType>(`/login/current/`); // todo добавить типизацию
+    return baseConfigService.get<ICurrentUserInfoResponse>(`login/current/`);
   },
 
   logout: async () => {
-    const { data } = await baseConfigService.delete<LogoutResponseType>(`logout/`);
+    const { data } = await baseConfigService.delete<ILogoutResponse>(`logout/`);
 
     return data;
   },
 
   forgotPassword: (email: string) => {
-    return baseConfigService.post<PasswordResponseType>('password/forgot/', {
+    return baseConfigService.post<IPasswordResponse>('password/forgot/', {
       email,
     });
   },
 
   checkToken: (token: string) => {
-    return baseConfigService.get<PasswordResponseType>(
+    return baseConfigService.get<IPasswordResponse>(
       `password/checkToken/?token=${token}`,
     );
   },
 
-  resetPassword: (params: ResetPasswordPayloadType) => {
-    return baseConfigService.post<PasswordResponseType>('password/reset/', params);
+  resetPassword: (resetPasswordData: IResetPasswordRequest) => {
+    return baseConfigService.post<IPasswordResponse>(
+      'password/reset/',
+      resetPasswordData,
+    );
   },
 
-  changePassword: (params: ChangePasswordPayloadType) => {
-    return baseConfigService.post<PasswordResponseType>('password/change/', params);
+  changePassword: (changePasswordData: IChangePasswordRequest) => {
+    return baseConfigService.post<IPasswordResponse>(
+      'password/change/',
+      changePasswordData,
+    );
   },
 };
-
-export default authService;

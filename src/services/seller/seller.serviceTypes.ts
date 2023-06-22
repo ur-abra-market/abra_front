@@ -1,34 +1,4 @@
-interface IErrorDetail {
-  loc: [string, number];
-  msg: string;
-  type: string;
-}
-
-// TODO - одинаковые с ISendSellerErrorResponse
-export interface IErrorResponse {
-  detail: IErrorDetail[];
-}
-
-export interface ISellerData {
-  first_name: string;
-  last_name: string;
-}
-
 export interface ISellerAddressData {
-  country: string;
-  area: string;
-  city: string;
-  street: string;
-  building: string;
-  apartment: string;
-  postal_code: string;
-}
-export interface PayloadEditAddress {
-  id: number;
-  params: ISellerAddressData;
-}
-
-export interface SellerAddressData {
   phone_country_code: string;
   phone_number: string;
   address_id: number;
@@ -44,22 +14,44 @@ export interface SellerAddressData {
   postal_code: string;
 }
 
+interface IErrorDetail {
+  loc: [string, number];
+  msg: string;
+  type: string;
+}
+
+export interface ISellerData {
+  first_name: string;
+  last_name: string;
+}
+
+export interface IISellerAddressData {
+  country: string;
+  area: string;
+  city: string;
+  street: string;
+  building: string;
+  apartment: string;
+  postal_code: string;
+}
+
+export interface PayloadEditAddress {
+  id: number;
+  params: IISellerAddressData;
+}
+
 export interface EditAddressData {
   id: number;
-  data: SellerAddressData;
+  data: ISellerAddressData;
 }
-export interface ResponseAddressData {
-  ok: boolean;
-  result: SellerAddressData[];
-}
-export interface ResponseDeleteAddress {
-  ok: boolean;
-  result: boolean;
+
+export interface IErrorResponse {
+  detail: IErrorDetail[];
 }
 
 export interface ISellerProfile {
   seller_data: ISellerData;
-  seller_address_data: ISellerAddressData;
+  seller_address_data: IISellerAddressData;
   seller_notifications_data: any;
 }
 
@@ -74,7 +66,7 @@ export interface IGetAddressesResponse {
 }
 
 export interface IGetAddressesResult {
-  seller_address: ISellerAddressData[];
+  seller_address: IISellerAddressData[];
 }
 
 export interface ISellerNotifications {

@@ -3,16 +3,15 @@ import { AxiosError } from 'axios';
 
 import {
   IGradeProduct,
-  IGradeProductRequest,
   IImageProductRequest,
   IProduct,
-  IRequestProduct,
+  IProductRequest,
 } from '../../services/product/product.serviceTypes';
 
 import { IImageProduct, LoadingStatus } from 'common/types';
 import { productService } from 'services/product/product.service';
 
-export const getProductById = createAsyncThunk<IProduct, IRequestProduct>(
+export const getProductById = createAsyncThunk<IProduct, IProductRequest>(
   'targetProduct/getProductById',
   async (payload, { rejectWithValue }) => {
     try {
@@ -27,7 +26,7 @@ export const getProductById = createAsyncThunk<IProduct, IRequestProduct>(
   },
 );
 
-export const getGradesByProductId = createAsyncThunk<IGradeProduct, IGradeProductRequest>(
+export const getGradesByProductId = createAsyncThunk<IGradeProduct, IProductRequest>(
   'targetProduct/getGradesByProductId',
   async ({ product_id }, { rejectWithValue }) => {
     try {

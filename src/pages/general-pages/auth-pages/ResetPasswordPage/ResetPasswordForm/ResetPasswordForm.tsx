@@ -10,7 +10,7 @@ import { PasswordComplexity } from '../../assets';
 
 import style from './ResetPasswordForm.module.scss';
 
-import { ResetPasswordPayloadType } from 'services/auth/auth.serviceTypes';
+import { IResetPasswordRequest } from 'services/auth/auth.serviceTypes';
 import { resetPassword } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
 
@@ -35,12 +35,12 @@ export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
     watch,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm<ResetPasswordPayloadType>({
+  } = useForm<IResetPasswordRequest>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
   const watchPassword = watch('new_password' || 'confirm_password');
-  const onSubmit = (data: ResetPasswordPayloadType): void => {
+  const onSubmit = (data: IResetPasswordRequest): void => {
     dispatch(resetPassword(data));
   };
 

@@ -4,13 +4,13 @@ import { AxiosError } from 'axios';
 import { LoadingStatus } from '../../common/types';
 import { productService } from '../../services/product/product.service';
 import {
+  IPopularProductRequest,
   IProductCompilation,
-  IRequestSimilarProduct,
 } from '../../services/product/product.serviceTypes';
 
 export const getSimilarProducts = createAsyncThunk<
   IProductCompilation[],
-  IRequestSimilarProduct
+  IPopularProductRequest
 >('similarProducts/getSimilarProducts', async (payload, { rejectWithValue }) => {
   try {
     const { result } = await productService.getSimilarProducts(payload);

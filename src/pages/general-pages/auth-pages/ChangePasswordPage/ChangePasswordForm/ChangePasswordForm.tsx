@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import { passwordValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch } from '../../../../../common/hooks';
-import { ChangePasswordPayloadType } from '../../../../../services/auth/auth.serviceTypes';
+import { IChangePasswordRequest } from '../../../../../services/auth/auth.serviceTypes';
 import { changePassword } from '../../../../../store/reducers/authSlice';
 import { Button, Input } from '../../../../../ui-kit';
 import { PasswordComplexity } from '../../assets';
@@ -34,14 +34,14 @@ export const ChangePasswordForm: FC<ChangePasswordFormProps> = ({
     watch,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm<ChangePasswordPayloadType>({
+  } = useForm<IChangePasswordRequest>({
     resolver: yupResolver(formValidationSchema),
     mode: 'all',
   });
 
   const watchPassword = watch('old_password' || 'new_password');
 
-  const onSubmit = (data: ChangePasswordPayloadType): void => {
+  const onSubmit = (data: IChangePasswordRequest): void => {
     dispatch(changePassword(data));
   };
 

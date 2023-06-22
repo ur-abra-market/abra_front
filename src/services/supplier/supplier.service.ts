@@ -1,5 +1,5 @@
 import { IServerResponse } from '../../common/types';
-import baseConfigService from '../baseConfig.service';
+import { baseConfigService } from '../baseConfig.service';
 
 import {
   ISuppliersCompanyInfoData,
@@ -10,7 +10,7 @@ import {
 export const supplierService = {
   hasCompanyInfo: async () => {
     const { data } = await baseConfigService.get<IServerResponse<boolean>>(
-      `/suppliers/hasCompanyInfo/`,
+      `suppliers/hasCompanyInfo/`,
     );
 
     return data.result;
@@ -18,7 +18,7 @@ export const supplierService = {
 
   hasPersonalInfo: async () => {
     const { data } = await baseConfigService.get<IServerResponse<boolean>>(
-      `/suppliers/hasPersonalInfo/`,
+      `suppliers/hasPersonalInfo/`,
     );
 
     return data.result;
@@ -26,7 +26,7 @@ export const supplierService = {
 
   fetchCompanyLogo: async () => {
     const { data } = await baseConfigService.get<IServerResponse<string>>(
-      `/suppliers/companyLogo`,
+      `suppliers/companyLogo/`,
     );
 
     return data.result;
@@ -35,15 +35,15 @@ export const supplierService = {
   fetchBusinessInfo: async () => {
     const { data } = await baseConfigService.get<
       IServerResponse<ISuppliersCompanyInfoData>
-    >(`/suppliers/businessInfo/`);
+    >(`suppliers/businessInfo/`);
 
     return data.result;
   },
 
-  updateBusinessInfo: async (companyInfo: Partial<ISuppliersUpdateCompanyInfo>) => {
+  updateBusinessInfo: async (companyInfoData: Partial<ISuppliersUpdateCompanyInfo>) => {
     const { data } = await baseConfigService.patch<IServerResponse<boolean>>(
-      `/suppliers/businessInfo/update/`,
-      companyInfo,
+      `suppliers/businessInfo/update/`,
+      companyInfoData,
     );
 
     return data.result;
@@ -51,15 +51,15 @@ export const supplierService = {
 
   getNotifications: async () => {
     const { data } = await baseConfigService.get<IServerResponse<ISupplierNotifications>>(
-      `/suppliers/notifications/`,
+      `suppliers/notifications/`,
     );
 
     return data.result;
   },
 
-  getProductProperties: async (categoryId: any) => {
+  getProductProperties: async (categoryId: number) => {
     const { data } = await baseConfigService.get(
-      `/suppliers/getCategoryProperties/${categoryId}`,
+      `suppliers/getCategoryProperties/${categoryId}/`,
     );
 
     return data;
@@ -98,10 +98,10 @@ export const supplierService = {
     return data;
   },
 
-  updateNotifications: async (notification: Partial<ISupplierNotifications>) => {
+  updateNotifications: async (notificationData: Partial<ISupplierNotifications>) => {
     await baseConfigService.patch<IServerResponse<boolean>>(
       `suppliers/notifications/update/`,
-      notification,
+      notificationData,
     );
   },
 };
