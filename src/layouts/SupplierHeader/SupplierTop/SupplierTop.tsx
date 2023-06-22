@@ -11,7 +11,7 @@ import style from './SupplierTop.module.scss';
 
 import { ArrowIcon, HeaderNotificationsIcon, LogoCompanyPlaceholder } from 'assets/icons';
 
-const SupplierTop = (): JSX.Element => {
+export const SupplierTop = (): JSX.Element => {
   const [active, setActive] = useState(false);
   const triggerRef = useOnClickOutside(setActive);
 
@@ -47,5 +47,3 @@ const SupplierTop = (): JSX.Element => {
     </div>
   );
 };
-
-export default SupplierTop;

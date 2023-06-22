@@ -16,12 +16,13 @@ import HeaderNavMenu from '../../old-components/HeaderNavMemu';
 import { Container } from '../../ui-kit';
 
 import style from './Header.module.css';
-import { Top } from './Top/Top';
+
+import { Top } from '.';
 
 export interface IHeader
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
-const Header: FC<IHeader> = ({ className, ...restProps }): JSX.Element => {
+export const Header: FC<IHeader> = ({ className, ...restProps }): JSX.Element => {
   const [categoriesIsOpen, setCategoriesIsOpen] = useState(false);
 
   const categoriesRef = useRef() as RefObject<HTMLDivElement>;
@@ -69,5 +70,3 @@ const Header: FC<IHeader> = ({ className, ...restProps }): JSX.Element => {
     </header>
   );
 };
-
-export default Header;

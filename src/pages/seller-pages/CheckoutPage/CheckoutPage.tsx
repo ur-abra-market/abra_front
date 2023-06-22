@@ -7,7 +7,7 @@ import HeaderForChangePages from '../../../old-components/HeaderForChangePages';
 
 import style from './CheckoutPage.module.css';
 
-import { Footer } from 'layouts/Footer';
+import { Footer } from 'layouts';
 import CheckDelivery from 'old-components/ui/checkout/CheckDelivery';
 import CheckItems from 'old-components/ui/checkout/CheckItems';
 import CheckOrder from 'old-components/ui/checkout/CheckOrder';

@@ -7,7 +7,7 @@ import { LoadingStatus } from '../../../../../../common/types';
 
 import style from './AuthPageLayout.module.scss';
 
-import { Footer } from 'layouts/Footer';
+import { Footer } from 'layouts';
 import { LoaderLinear, MainLogo, SimpleLink } from 'ui-kit';
 
 interface IAuthPageLayout {

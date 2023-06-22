@@ -4,7 +4,7 @@ import HeaderForChangePages from '../../../old-components/HeaderForChangePages';
 
 import style from './TermsAndConditions.module.css';
 
-import { Footer } from 'layouts/Footer';
+import { Footer } from 'layouts';
 
 export const TermsAndConditionsPage = (): JSX.Element => {
   return (

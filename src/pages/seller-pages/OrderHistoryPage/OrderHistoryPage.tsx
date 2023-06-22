@@ -3,12 +3,11 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import Header from '../../../layouts/Header';
 import { Search } from '../../../ui-kit';
 
 import style from './OrderHistoryPage.module.css';
 
-import { Footer } from 'layouts/Footer';
+import { Footer, Header } from 'layouts';
 
 type LinkType = 'All' | 'Preparing' | 'In progress' | 'Completed';
 type OrderType = {

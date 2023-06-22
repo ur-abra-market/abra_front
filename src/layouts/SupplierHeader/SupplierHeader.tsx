@@ -7,9 +7,10 @@ import SupplierMenu from '../../old-components/ui/SupplierMenu/SupplierMenu';
 
 import style from './SupplierHeader.module.css';
 import { HeaderProps } from './SupplierHeader.props';
-import Top from './SupplierTop/SupplierTop';
 
-const Header: FC<HeaderProps> = (props): JSX.Element => {
+import { Top } from '.';
+
+export const Header: FC<HeaderProps> = (props): JSX.Element => {
   const { className, ...restProps } = props;
 
   return (
@@ -21,5 +22,3 @@ const Header: FC<HeaderProps> = (props): JSX.Element => {
     </header>
   );
 };
-
-export default Header;

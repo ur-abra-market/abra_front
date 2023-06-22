@@ -1,3 +1,1 @@
-import Header from './SupplierHeader';
-
-export default Header;
+export { SupplierTop as Top } from './SupplierTop/SupplierTop';

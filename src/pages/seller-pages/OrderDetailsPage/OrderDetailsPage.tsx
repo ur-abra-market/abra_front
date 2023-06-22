@@ -2,11 +2,9 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import Header from '../../../layouts/Header';
-
 import style from './OrderDetails.module.css';
 
-import { Footer } from 'layouts/Footer';
+import { Header, Footer } from 'layouts';
 
 export const OrderDetailsPage = (): JSX.Element => {
   return (

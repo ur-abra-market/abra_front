@@ -2,12 +2,11 @@ import React from 'react';
 
 import { Feedback } from 'components';
 
-import Header from '../../../layouts/Header';
 import { ButtonInfo, Container, Search } from '../../../ui-kit';
 
 import style from './SellerFavoritesList.module.css';
 
-import { Footer } from 'layouts/Footer';
+import { Header, Footer } from 'layouts';
 
 export const SellerFavoritesList = (): JSX.Element => {
   const arr = [];

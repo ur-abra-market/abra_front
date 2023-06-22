@@ -4,8 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 
 import style from './ProductListPage.module.css';
 
-import { Footer } from 'layouts/Footer';
-import Header from 'layouts/Header';
+import { Footer, Header } from 'layouts';
 import ProductFilter from 'old-components/ui/product/ProductFilter';
 import ProductList from 'old-components/ui/product/ProductList';
 import { productPaginateService } from 'store/reducers/productPaginateSlice';

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { Footer } from '../Footer/Footer';
-import Header from '../SupplierHeader/SupplierHeader';
+import { Header } from '../SupplierHeader/SupplierHeader';
 
 import styles from './SupplierLayout.module.css';
 import { LayoutProps } from './SupplierLayout.props';
