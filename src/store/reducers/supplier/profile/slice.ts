@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { LoadingStatus } from '../../../../common/types';
+import { LoadingStatusEnum } from '../../../../common/types';
 import { ISupplierNotifications } from '../../../../services/supplier/supplier.serviceTypes';
 import { getPersonalInfo } from '../../userSlice';
 
@@ -44,14 +44,14 @@ export interface ISupplierBusinessInfo {
 }
 
 interface ISupplierProfileSliceInitialState {
-  loading: LoadingStatus;
+  loading: LoadingStatusEnum;
   personalInfo: ISupplierPersonalInfo;
   businessInfo: ISupplierBusinessInfo;
   notifications: ISupplierNotifications | null;
 }
 
 const initialState: ISupplierProfileSliceInitialState = {
-  loading: LoadingStatus.Idle,
+  loading: LoadingStatusEnum.Idle,
   personalInfo: {
     firstName: '',
     lastName: '',
@@ -84,14 +84,14 @@ export const supplierProfileSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getPersonalInfo.pending, state => {
-        state.loading = LoadingStatus.Loading;
+        state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(getPersonalInfo.fulfilled, (state, action) => {
         state.personalInfo.lastName = action.payload.last_name;
         state.personalInfo.firstName = action.payload.first_name;
         state.personalInfo.countryShort = action.payload.country.country_short;
         state.personalInfo.phoneNumber = action.payload.phone_number;
-        state.loading = LoadingStatus.Success;
+        state.loading = LoadingStatusEnum.Success;
       });
     builder.addCase(getBusinessInfo.fulfilled, (state, action) => {
       const {
@@ -125,20 +125,20 @@ export const supplierProfileSlice = createSlice({
     });
     builder
       .addCase(getSupplierNotifications.pending, state => {
-        state.loading = LoadingStatus.Loading;
+        state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(getSupplierNotifications.fulfilled, (state, action) => {
         state.notifications = action.payload;
-        state.loading = LoadingStatus.Success;
+        state.loading = LoadingStatusEnum.Success;
       })
       .addCase(getSupplierNotifications.rejected, state => {
-        state.loading = LoadingStatus.Failed;
+        state.loading = LoadingStatusEnum.Failed;
       })
       .addCase(updateSupplierNotifications.pending, state => {
-        state.loading = LoadingStatus.Loading;
+        state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(updateSupplierNotifications.rejected, state => {
-        state.loading = LoadingStatus.Failed;
+        state.loading = LoadingStatusEnum.Failed;
       });
   },
 });
