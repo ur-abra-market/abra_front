@@ -40,10 +40,10 @@ export const supplierService = {
     return data.result;
   },
 
-  updateBusinessInfo: async (companyInfoData: Partial<ISuppliersUpdateCompanyInfo>) => {
+  updateBusinessInfo: async (params: Partial<ISuppliersUpdateCompanyInfo>) => {
     const { data } = await baseConfigService.patch<IServerResponse<boolean>>(
       `suppliers/businessInfo/update/`,
-      companyInfoData,
+      params,
     );
 
     return data.result;
@@ -73,8 +73,8 @@ export const supplierService = {
     return data;
   },
 
-  addProduct: async (product: any) => {
-    const { data } = await baseConfigService.post(`suppliers/addProduct/`, product);
+  addProduct: async (params: any) => {
+    const { data } = await baseConfigService.post(`suppliers/addProduct/`, params);
 
     return data;
   },
@@ -98,10 +98,10 @@ export const supplierService = {
     return data;
   },
 
-  updateNotifications: async (notificationData: Partial<ISupplierNotifications>) => {
+  updateNotifications: async (params: Partial<ISupplierNotifications>) => {
     await baseConfigService.patch<IServerResponse<boolean>>(
       `suppliers/notifications/update/`,
-      notificationData,
+      params,
     );
   },
 };

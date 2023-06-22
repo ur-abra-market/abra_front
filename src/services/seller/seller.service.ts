@@ -16,19 +16,14 @@ export const sellerService = {
     return data;
   },
 
-  addAddress: async (sellerAddressData: ISellerAddressData) => {
-    const { data } = await baseConfigService.post(
-      'sellers/addAddress/',
-      sellerAddressData,
-    );
+  addAddress: async (params: ISellerAddressData) => {
+    const { data } = await baseConfigService.post('sellers/addAddress/', params);
 
     return data;
   },
 
-  editAddress: async (editAddressData: any) => {
-    const { data } = await baseConfigService.patch(`sellers/updateAddress/`, {
-      ...editAddressData,
-    });
+  editAddress: async (params: any) => {
+    const { data } = await baseConfigService.patch(`sellers/updateAddress/`, params);
 
     return data;
   },
@@ -47,10 +42,10 @@ export const sellerService = {
     return data.result;
   },
 
-  updateNotifications: async (notificationData: Partial<ISellerNotifications>) => {
+  updateNotifications: async (params: Partial<ISellerNotifications>) => {
     await baseConfigService.patch<IServerResponse<boolean>>(
       `sellers/notifications/update/`,
-      notificationData,
+      params,
     );
   },
 };

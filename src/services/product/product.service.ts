@@ -12,8 +12,8 @@ import {
 } from './product.serviceTypes';
 
 export const productService = {
-  getList: async (getListData: ICategoryRequest) => {
-    const { offset, limit, category_id, sort_type, ascending } = getListData;
+  getList: async (params: ICategoryRequest) => {
+    const { offset, limit, category_id, sort_type, ascending } = params;
     const payload = { category_id, sort_type, ascending };
 
     const { data } = await baseConfigService.post(
@@ -24,11 +24,11 @@ export const productService = {
     return data.result;
   },
 
-  getProductById: async (ProductByIdData: IProductRequest) => {
+  getProductById: async (params: IProductRequest) => {
     const { data } = await baseConfigService.post<IResponse<IProduct>>(
       `products/product_card_p1/`,
       {},
-      { params: ProductByIdData },
+      { params },
     );
 
     return data.result;
@@ -40,9 +40,9 @@ export const productService = {
     return data.result;
   },
 
-  getPopularProductById: async (popularProductData: IPopularProductRequest) => {
+  getPopularProductById: async (params: IPopularProductRequest) => {
     const { data } = await baseConfigService.get(`products/popular/`, {
-      params: popularProductData,
+      params,
     });
 
     return data;
@@ -62,10 +62,10 @@ export const productService = {
     return data.result;
   },
 
-  getSimilarProducts: async (similarProductData: IPopularProductRequest) => {
+  getSimilarProducts: async (params: IPopularProductRequest) => {
     const { data } = await baseConfigService.get<IResponse<IProductCompilation[]>>(
       `products/similar/`,
-      { params: similarProductData },
+      { params },
     );
 
     return data;
@@ -77,16 +77,16 @@ export const productService = {
     return data.result;
   },
 
-  getProductPaginateList: async (props: IProductPaginateList) => {
-    const bottom_price = props.price_from > 0 ? `bottom_price=${props.price_to}&` : '';
-    const top_price = props.price_to > 0 ? `top_price=${props.price_to}&` : '';
-    const category = props.category !== '' ? `category_id=${props.category}&` : '';
+  getProductPaginateList: async (params: IProductPaginateList) => {
+    const bottom_price = params.price_from > 0 ? `bottom_price=${params.price_to}&` : '';
+    const top_price = params.price_to > 0 ? `top_price=${params.price_to}&` : '';
+    const category = params.category !== '' ? `category_id=${params.category}&` : '';
 
-    const url = `products/pagination/?page_num=${props.page_num}&page_size=${props.page_size}&${category}with_discount=${props.discount}&sort_type=${props.sort_type}&${bottom_price}${top_price}ascending=${props.ascending}`;
+    const url = `products/pagination/?page_num=${params.page_num}&page_size=${params.page_size}&${category}with_discount=${params.discount}&sort_type=${params.sort_type}&${bottom_price}${top_price}ascending=${params.ascending}`;
     const body = {
-      sizes: props.sizes,
-      brands: props.brands,
-      materials: props.materials,
+      sizes: params.sizes,
+      brands: params.brands,
+      materials: params.materials,
     };
     const { data } = await baseConfigService.post(url, body);
 

@@ -31,26 +31,20 @@ export const authService = {
     return baseConfigService.post<IRegisterResponse>(`register/${route}/`, payload);
   },
 
-  sendAccountPersonalInfo: async (personalInfoData: IPersonalInfoRequest) => {
-    const { data } = await baseConfigService.post(
-      `register/account/sendInfo/`,
-      personalInfoData,
-    );
+  sendAccountPersonalInfo: async (params: IPersonalInfoRequest) => {
+    const { data } = await baseConfigService.post(`register/account/sendInfo/`, params);
 
     return data;
   },
 
-  sendAccountBusinessInfo: async (businessInfoData: IBusinessInfoRequest) => {
-    const { data } = await baseConfigService.post(
-      `register/business/sendInfo/`,
-      businessInfoData,
-    );
+  sendAccountBusinessInfo: async (params: IBusinessInfoRequest) => {
+    const { data } = await baseConfigService.post(`register/business/sendInfo/`, params);
 
     return data;
   },
 
-  login: (loginData: ILoginRequest) => {
-    return baseConfigService.post<ILoginResponse>(`login/`, loginData);
+  login: (params: ILoginRequest) => {
+    return baseConfigService.post<ILoginResponse>(`login/`, params);
   },
 
   loginCurrentUser: () => {
@@ -75,17 +69,11 @@ export const authService = {
     );
   },
 
-  resetPassword: (resetPasswordData: IResetPasswordRequest) => {
-    return baseConfigService.post<IPasswordResponse>(
-      'password/reset/',
-      resetPasswordData,
-    );
+  resetPassword: (params: IResetPasswordRequest) => {
+    return baseConfigService.post<IPasswordResponse>('password/reset/', params);
   },
 
-  changePassword: (changePasswordData: IChangePasswordRequest) => {
-    return baseConfigService.post<IPasswordResponse>(
-      'password/change/',
-      changePasswordData,
-    );
+  changePassword: (params: IChangePasswordRequest) => {
+    return baseConfigService.post<IPasswordResponse>('password/change/', params);
   },
 };

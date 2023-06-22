@@ -24,10 +24,10 @@ export const userService = {
     return data.result;
   },
 
-  updateAccountPersonalInfo: async (personalInfoData: IAccountPersonalInfoRequest) => {
+  updateAccountPersonalInfo: async (params: IAccountPersonalInfoRequest) => {
     const { data } = await baseConfigService.patch(
       `users/account/personalInfo/update/`,
-      personalInfoData,
+      params,
     );
 
     return data.result;
@@ -43,8 +43,8 @@ export const userService = {
     return data;
   },
 
-  uploadImage: async (payload: IUploadImageRequest) => {
-    const { action, file, queries } = payload;
+  uploadImage: async (params: IUploadImageRequest) => {
+    const { action, file, queries } = params;
     const formData = new FormData();
 
     formData.append('file', file);

@@ -20,14 +20,14 @@ export interface INumberEmployees {
   number: string;
 }
 
-export type NumberEmployeesType = INumberEmployees[];
-
 export interface IAccountPersonalInfoRequest {
   first_name: string;
   last_name: string;
   phone_country_code: string;
   phone_number: string;
 }
+
+export type NumberEmployeesType = INumberEmployees[];
 
 export interface ResponseGetNumberEmployees {
   ok: boolean;
