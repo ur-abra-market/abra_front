@@ -11,7 +11,7 @@ import { CategoriesMenuProps } from './CategoriesMenu.props';
 import { Items } from './CategoryItems';
 import { FilterButton } from './FilterButton/FilterButton';
 
-export type Categories = 'Women clothes' | 'Mens clothes' | 'Kids clothes';
+export type Categories = 'Clothes' | 'Accessories' | 'Cosmetiques and Self Care';
 
 export interface ItemsProps {
   items?: IResponseCategory[];
@@ -19,11 +19,15 @@ export interface ItemsProps {
 
 export const CategoriesMenu = forwardRef(
   (props: CategoriesMenuProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
-    const [activeCategories, setActiveCategories] = useState<Categories>('Women clothes');
+    const [activeCategories, setActiveCategories] = useState<Categories>('Clothes');
+
+    console.log(activeCategories);
 
     const categories = useAppSelector(state => state.common.categories);
 
     const wearerCategory = categories ? categories.filter(c => c.level === 1) : [];
+
+    console.log(wearerCategory);
 
     const dispatch = useAppDispatch();
 
