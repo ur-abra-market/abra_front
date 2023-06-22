@@ -9,7 +9,7 @@ import style from './SupplierHeader.module.css';
 
 import { Top } from '.';
 
-import { IHtmlHeaderProps } from 'common/types/interfaces';
+import { IHtmlHeaderProps } from 'common/types';
 
 export const Header: FC<IHtmlHeaderProps> = (props): JSX.Element => {
   const { className, ...restProps } = props;

@@ -11,7 +11,7 @@ import style from './Header.module.css';
 
 import { Top } from '.';
 
-import { IHtmlHeaderProps } from 'common/types/interfaces';
+import { IHtmlHeaderProps } from 'common/types';
 
 export const Header: FC<IHtmlHeaderProps> = ({
   className,
