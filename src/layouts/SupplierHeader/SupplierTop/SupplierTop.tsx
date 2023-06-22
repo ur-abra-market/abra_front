@@ -4,11 +4,12 @@ import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { useOnClickOutside } from '../../../common/hooks';
+import { HeaderMenu } from '../../../components'; // 5 10px for ArrowRightIcon
+import { MainLogo } from '../../../ui-kit';
+
+import style from './SupplierTop.module.scss';
 
 import { ArrowIcon, HeaderNotificationsIcon, LogoCompanyPlaceholder } from 'assets/icons';
-import { HeaderMenu } from 'components/HeaderMenu/HeaderMenu'; // 5 10px for ArrowRightIcon
-import style from 'layouts/SupplierHeader/SupplierTop/SupplierTop.module.scss';
-import { MainLogo } from 'ui-kit';
 
 const SupplierTop = (): JSX.Element => {
   const [active, setActive] = useState(false);

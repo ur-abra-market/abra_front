@@ -2,9 +2,7 @@ import { useState } from 'react';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { useAppSelector, useOnClickOutside } from '../../../common/hooks';
 import Modal from '../../../components/Modal';
-import { ButtonIcon, MainLogo, Search } from '../../../ui-kit';
 
 import style from './Top.module.scss';
 
@@ -14,8 +12,10 @@ import {
   HeaderNotificationsIcon,
   HeaderProfileIcon,
 } from 'assets/icons';
+import { useAppSelector, useOnClickOutside } from 'common/hooks';
 import { HeaderMenu } from 'components/HeaderMenu/HeaderMenu';
 import { isAuthSelector } from 'store/reducers/authSlice/selectors';
+import { ButtonIcon, MainLogo, Search } from 'ui-kit';
 
 export const Top = (): JSX.Element => {
   const navigate = useNavigate();

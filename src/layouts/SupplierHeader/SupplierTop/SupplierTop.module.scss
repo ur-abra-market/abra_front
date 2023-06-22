@@ -6,7 +6,7 @@
   width: 100%;
   padding: 26px 0;
 
-  background-color: #FFF;
+  background-color: var(--color-white);
   border-bottom: 1px solid var(--color-light-gray);
 }
 
@@ -22,13 +22,13 @@
   height: 17px;
   margin: 0 12px;
 
-  background-color: #000;
+  background-color: var(--color-black);
 }
 
 .supplier_link {
   font-size: 20px;
   font-weight: var(--semi-bold);
-  color: #000;
+  color: var(--color-black);
   letter-spacing: 0.38px;
 }
 
@@ -63,10 +63,9 @@
   background: none;
 }
 
-.arrow{
+.arrow {
   transform: rotate(180deg);
 }
-
 
 
 .logo_font_size {
@@ -77,4 +76,5 @@
   margin: 0 8px 0 0;
   font-size: var(--fz-s2);
   line-height: 20px;
+  letter-spacing: 0.16px;
 }
