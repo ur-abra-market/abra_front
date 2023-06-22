@@ -2,7 +2,7 @@ export {};
 // import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import { AxiosError } from 'axios';
 //
-// import { LoadingStatus } from '../../common/types';
+// import { LoadingStatusEnum } from '../../common/types';
 // import { supplierService } from '../../services';
 // import { INotification } from '../../services/supplier/supplier.serviceTypes';
 //
@@ -67,7 +67,7 @@ export {};
 // );
 //
 // export interface ISupplierAccountSlice {
-//   isLoading: LoadingStatus;
+//   isLoading: LoadingStatusEnum;
 //   error: string | null;
 //   notifications?: INotification;
 //   hasProfile: boolean;
@@ -80,7 +80,7 @@ export {};
 // }
 //
 // const initialState: ISupplierAccountSlice = {
-//   isLoading: LoadingStatus.Idle,
+//   isLoading: LoadingStatusEnum.Idle,
 //   error: null,
 //   hasProfile: false,
 //   supplierInfo: {
@@ -97,7 +97,7 @@ export {};
 //   reducers: {},
 //   extraReducers: builder => {
 //     builder.addCase(getCurrentUserInfo.pending, state => {
-//       state.isLoading = LoadingStatus.Loading;
+//       state.isLoading = LoadingStatusEnum.Loading;
 //     });
 //     builder.addCase(getCurrentUserInfo.fulfilled, (state, action) => {
 //       const response = action.payload.result;
@@ -114,29 +114,29 @@ export {};
 //         }
 //       }
 //
-//       state.isLoading = LoadingStatus.Success;
+//       state.isLoading = LoadingStatusEnum.Success;
 //     });
 //     builder.addCase(getSupplierAccountDataService.pending, state => {
-//       state.isLoading = LoadingStatus.Loading;
+//       state.isLoading = LoadingStatusEnum.Loading;
 //       state.error = null;
 //     });
 //     builder.addCase(getSupplierAccountDataService.fulfilled, (state, action) => {
 //       state.supplierInfo = action.payload.result;
-//       state.isLoading = LoadingStatus.Success;
+//       state.isLoading = LoadingStatusEnum.Success;
 //     });
 //     builder.addCase(getSupplierAccountDataService.rejected, (state, action) => {
-//       state.isLoading = LoadingStatus.Failed;
+//       state.isLoading = LoadingStatusEnum.Failed;
 //       state.error = action.payload as string;
 //     });
 //     builder.addCase(getSupplierNotifications.pending, state => {
-//       state.isLoading = LoadingStatus.Loading;
+//       state.isLoading = LoadingStatusEnum.Loading;
 //     });
 //     builder.addCase(getSupplierNotifications.fulfilled, (state, action) => {
-//       state.isLoading = LoadingStatus.Success;
+//       state.isLoading = LoadingStatusEnum.Success;
 //       state.notifications = action.payload;
 //     });
 //     builder.addCase(getSupplierNotifications.rejected, (state, action) => {
-//       state.isLoading = LoadingStatus.Failed;
+//       state.isLoading = LoadingStatusEnum.Failed;
 //       state.error = action.payload as string;
 //     });
 //   },
