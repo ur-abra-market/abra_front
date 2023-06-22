@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { LoadingStatus, ResponseUserRoleType } from '../../../../../common/types';
+import { LoadingStatusEnum, ResponseUserRoleType } from '../../../../../common/types';
 import { registerUser } from '../../../../../store/reducers/authSlice';
 import { PasswordComplexity } from '../../assets';
 
@@ -92,7 +92,7 @@ export const RegisterForm = (): JSX.Element => {
         className={style.button_submit}
         label="Create Account"
         type="submit"
-        disabled={!isValid || loading === LoadingStatus.Loading}
+        disabled={!isValid || loading === LoadingStatusEnum.Loading}
       />
     </form>
   );

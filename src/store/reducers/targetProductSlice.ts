@@ -8,7 +8,7 @@ import {
   IProductRequest,
 } from '../../services/product/product.serviceTypes';
 
-import { IImageProduct, LoadingStatus } from 'common/types';
+import { IImageProduct, LoadingStatusEnum } from 'common/types';
 import { productService } from 'services/product/product.service';
 
 export const getProductById = createAsyncThunk<IProduct, IProductRequest>(
@@ -131,15 +131,15 @@ const targetProductSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addCase(getProductById.pending, state => {
-      state.status = LoadingStatus.Loading;
+      state.status = LoadingStatusEnum.Loading;
     });
     builder.addCase(getProductById.fulfilled, (state, action) => {
       state.product = action.payload;
 
-      state.status = LoadingStatus.Success;
+      state.status = LoadingStatusEnum.Success;
     });
     builder.addCase(getProductById.rejected, state => {
-      state.status = LoadingStatus.Failed;
+      state.status = LoadingStatusEnum.Failed;
     });
     builder.addCase(getGradesByProductId.fulfilled, (state, action) => {
       state.gradesData = action.payload;

@@ -2,7 +2,7 @@ export {};
 // import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 // import { AxiosError } from 'axios';
 //
-// import { LoadingStatus } from '../../common/types';
+// import { LoadingStatusEnum } from '../../common/types';
 // import {
 //   IISellerAddressData,
 //   ISellerData,
@@ -108,7 +108,7 @@ export {};
 // );
 
 // interface ISellerSlice {
-//   loading: LoadingStatus;
+//   loading: LoadingStatusEnum;
 //   userProfileInfo: {
 //     first_name: string;
 //     last_name: string;
@@ -124,7 +124,7 @@ export {};
 // }
 //
 // const initialState: ISellerSlice = {
-//   loading: LoadingStatus.Idle,
+//   loading: LoadingStatusEnum.Idle,
 //   userProfileInfo: {
 //     first_name: '',
 //     last_name: '',
@@ -145,42 +145,42 @@ export {};
 //   reducers: {},
 //   extraReducers: builder => {
 //     // builder.addCase(getSellerInfoService.pending, state => {
-//     //   state.loading = LoadingStatus.Loading;
+//     //   state.loading = LoadingStatusEnum.Loading;
 //     // });
 //     // builder.addCase(getSellerInfoService.fulfilled, (state, action) => {
-//     //   state.loading = LoadingStatus.Success;
+//     //   state.loading = LoadingStatusEnum.Success;
 //     //   state.userProfileInfo = action.payload.user_profile_info;
 //     //   state.userAdresses = action.payload.user_adresses;
 //     //   state.notifications = action.payload.notifications;
 //     //   state.profileImage = action.payload.profile_image;
 //     // });
 //     // builder.addCase(getSellerInfoService.rejected, state => {
-//     //   state.loading = LoadingStatus.Failed;
+//     //   state.loading = LoadingStatusEnum.Failed;
 //     // });
 //
 //     builder.addCase(getSellerAddressesService.pending, state => {
-//       state.loading = LoadingStatus.Loading;
+//       state.loading = LoadingStatusEnum.Loading;
 //     });
 //     builder.addCase(getSellerAddressesService.fulfilled, (state, action) => {
-//       state.loading = LoadingStatus.Success;
+//       state.loading = LoadingStatusEnum.Success;
 //       state.sellerAddress = action.payload;
 //     });
 //     builder.addCase(getSellerAddressesService.rejected, state => {
-//       state.loading = LoadingStatus.Failed;
+//       state.loading = LoadingStatusEnum.Failed;
 //     });
 //     builder
 //       .addCase(getSellerNotifications.pending, state => {
-//         state.loading = LoadingStatus.Loading;
+//         state.loading = LoadingStatusEnum.Loading;
 //       })
 //       .addCase(getSellerNotifications.fulfilled, (state, action) => {
 //         state.notifications = action.payload;
-//         state.loading = LoadingStatus.Success;
+//         state.loading = LoadingStatusEnum.Success;
 //       })
 //       .addCase(updateSellerNotifications.pending, state => {
-//         state.loading = LoadingStatus.Loading;
+//         state.loading = LoadingStatusEnum.Loading;
 //       })
 //       .addCase(updateSellerNotifications.rejected, (state, action) => {
-//         state.loading = LoadingStatus.Failed;
+//         state.loading = LoadingStatusEnum.Failed;
 //       });
 //   },
 // });

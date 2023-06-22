@@ -10,7 +10,7 @@ import { getSimilarProducts } from '../../../store/reducers/similarProducts';
 import { getGradesByProductId } from '../../../store/reducers/targetProductSlice';
 import { Button, LoaderCircular, Container } from '../../../ui-kit';
 
-import { IImageProduct, LoadingStatus } from 'common/types';
+import { IImageProduct, LoadingStatusEnum } from 'common/types';
 import ChoiceProduct from 'old-components/ui/product/ChoiceProduct';
 import FlagFavorites from 'old-components/ui/product/FlagFavorites';
 import LatestSearch from 'old-components/ui/product/LatestSearch';
@@ -69,7 +69,7 @@ export const ProductPage = WithLayout((): JSX.Element => {
     // добавление в избранное логика
   };
 
-  if (status === LoadingStatus.Loading || status === LoadingStatus.Idle)
+  if (status === LoadingStatusEnum.Loading || status === LoadingStatusEnum.Idle)
     return <LoaderCircular />;
 
   return (

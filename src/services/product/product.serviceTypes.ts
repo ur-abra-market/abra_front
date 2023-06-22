@@ -1,4 +1,4 @@
-import { ProductSortType } from '../../common/types';
+import { ProductSortEnum } from '../../common/types';
 import { Categories } from '../../pages/general-pages/MainPage/MainPage';
 
 export interface IResponse<T> {
@@ -9,7 +9,7 @@ export interface ICategoryRequest {
   offset: number;
   limit: number;
   category_id: Categories;
-  sort_type: ProductSortType;
+  sort_type: ProductSortEnum;
   ascending: boolean;
 }
 
