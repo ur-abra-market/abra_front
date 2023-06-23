@@ -1,29 +1,29 @@
-.filter_material {
+.filter_brand {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 100%;
 }
 
-.filter_material_title {
-  margin-bottom: 4px;
+.filter_brand_button {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
 }
 
-.filter_material_list {
+.filter_brand_list {
   display: flex;
   flex-wrap: wrap;
   row-gap: 12px;
   column-gap: 4px;
 }
 
-.filter_material_buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  width: 100%;
+.filter_brand_title {
+  margin-bottom: 4px;
 }
 
-.filter_material_list_item {
+.filter_brand_list_item {
   cursor: pointer;
 
   display: flex;
@@ -52,7 +52,7 @@
   height: 16px;
   margin-left: 8px;
 
-  background: url('~assets/icons/files/cross-white.svg'); /* using a pseudoelement, need to rewrite I think */
+  background: url('../../../../assets/icons/files/cross-white.svg'); /* using pseudo-element, need to rewrite I think */
   background-size: cover;
 }
 
