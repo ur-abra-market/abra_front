@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { WithLayout } from '../../../common/hocs/WithLayout';
 
-import style from './LastNews.module.css';
+import style from './LastNews.module.scss';
 
 import { News } from './index';
 

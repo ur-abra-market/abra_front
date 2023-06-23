@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 
-import style from './ProductListPage.module.css';
+import style from './ProductListPage.module.scss';
 
 import { Footer, Header } from 'layouts';
 import ProductFilter from 'old-components/ui/product/ProductFilter';

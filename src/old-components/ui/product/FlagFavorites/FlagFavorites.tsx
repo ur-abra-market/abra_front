@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './FlagFavorites.module.css';
+import style from './FlagFavorites.module.scss';
 
 import { FavouriteAddedToIcon } from 'assets/icons';
 import { Button } from 'ui-kit';

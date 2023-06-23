@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import { useAppSelector } from '../../../common/hooks';
 import HeaderForChangePages from '../../../old-components/HeaderForChangePages';
 
-import style from './CheckoutPage.module.css';
+import style from './CheckoutPage.module.scss';
 
 import { Footer } from 'layouts';
 import CheckDelivery from 'old-components/ui/checkout/CheckDelivery';

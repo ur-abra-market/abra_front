@@ -4,7 +4,7 @@ import { Feedback } from 'components';
 
 import { ButtonInfo, Container, Search } from '../../../ui-kit';
 
-import style from './SellerFavoritesList.module.css';
+import style from './SellerFavoritesList.module.scss';
 
 import { Header, Footer } from 'layouts';
 

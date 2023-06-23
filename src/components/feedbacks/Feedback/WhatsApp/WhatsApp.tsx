@@ -2,7 +2,7 @@ import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import style from './WhatsApp.module.css';
+import style from './WhatsApp.module.scss';
 
 import { WhatsappIcon } from 'assets/icons';
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import style from './OrderDetails.module.css';
+import style from './OrderDetails.module.scss';
 
 import { Header, Footer } from 'layouts';
 

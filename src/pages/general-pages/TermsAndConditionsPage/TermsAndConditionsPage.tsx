@@ -2,7 +2,7 @@ import React from 'react';
 
 import HeaderForChangePages from '../../../old-components/HeaderForChangePages';
 
-import style from './TermsAndConditions.module.css';
+import style from './TermsAndConditions.module.scss';
 
 import { Footer } from 'layouts';
 

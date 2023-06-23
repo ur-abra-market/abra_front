@@ -7,7 +7,7 @@ import { LocationAndCurrencySelection } from '../../components/LocationAndCurren
 import HeaderNavMenu from '../../old-components/HeaderNavMemu';
 import { Container } from '../../ui-kit';
 
-import style from './Header.module.css';
+import style from './Header.module.scss';
 
 import { Top } from '.';
 
@@ -20,6 +20,7 @@ export const Header: FC<IHtmlHeaderProps> = ({
   const [categoriesIsOpen, setCategoriesIsOpen] = useState(false);
 
   const categoriesRef = useRef() as RefObject<HTMLDivElement>;
+
   const buttonRef = useRef() as RefObject<HTMLButtonElement>;
 
   useEffect(() => {

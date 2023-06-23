@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import style from './ProductItem.module.css';
+import style from './ProductItem.module.scss';
 
 import { Button, Checkbox, Input } from 'ui-kit';
 

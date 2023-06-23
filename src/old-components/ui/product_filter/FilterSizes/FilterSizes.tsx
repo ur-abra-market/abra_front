@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import style from './FilterSizes.module.css';
+import style from './FilterSizes.module.scss';
 
 const FilterSizes = (): JSX.Element => {
   const sizeList = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'XXXXL'];

@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import SearchFilter from '../SearchFilter';
 
-import style from './FilterMaterial.module.css';
+import style from './FilterMaterial.module.scss';
 
 import { material } from 'store/reducers/filterSlice';
 
@@ -78,7 +78,7 @@ export default FilterMaterial;
 //
 // import SearchFilter from '../SearchFilter';
 //
-// import style from './FilterMaterial.module.css';
+// import style from './FilterMaterial.module.scss';
 //
 // const FilterMaterial = () => {
 //     const materialList = ['Cotton', 'Chiffon', 'Linen', 'Biflex', 'Silk', 'Satin'];

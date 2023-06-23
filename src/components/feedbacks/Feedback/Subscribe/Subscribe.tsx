@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import { Button, Input } from '../../../../ui-kit';
 
-import style from './Subscribe.module.css';
+import style from './Subscribe.module.scss';
 
 export interface SubscribeProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}

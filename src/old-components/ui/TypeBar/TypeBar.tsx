@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import style from './TypeBar.module.css';
+import style from './TypeBar.module.scss';
 
 interface Types {
   id: number;

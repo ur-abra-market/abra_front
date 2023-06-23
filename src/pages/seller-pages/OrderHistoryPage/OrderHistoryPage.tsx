@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { Search } from '../../../ui-kit';
 
-import style from './OrderHistoryPage.module.css';
+import style from './OrderHistoryPage.module.scss';
 
 import { Footer, Header } from 'layouts';
 

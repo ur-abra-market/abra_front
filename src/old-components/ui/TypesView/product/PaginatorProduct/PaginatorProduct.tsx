@@ -2,7 +2,7 @@ import cn from 'classnames';
 
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 
-import style from './PaginatorProduct.module.css';
+import style from './PaginatorProduct.module.scss';
 
 import { ArrowLeftIcon, ArrowRightIcon } from 'assets/icons'; // 24px
 import { activeNum } from 'store/reducers/productPaginateSlice';

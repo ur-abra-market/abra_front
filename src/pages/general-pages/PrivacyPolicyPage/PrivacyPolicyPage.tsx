@@ -1,6 +1,6 @@
 import React from 'react';
 
-import style from './PrivacyPolicy.module.css';
+import style from './PrivacyPolicy.module.scss';
 
 import { Footer } from 'layouts';
 import HeaderForChangePages from 'old-components/HeaderForChangePages';
