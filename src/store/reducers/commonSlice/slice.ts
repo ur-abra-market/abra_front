@@ -16,14 +16,12 @@ interface IInitialState {
   categories: null | IResponseCategory[];
   countries: ICountry[];
   numberEmployees: INumberEmployees[];
-  error: string;
 }
 
 const initialState: IInitialState = {
   categories: null,
   countries: [],
   numberEmployees: [],
-  error: '',
 };
 
 const commonSlice = createSlice({
