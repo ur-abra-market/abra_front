@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { Footer } from '../Footer/Footer';
 import Header from '../SupplierHeader/SupplierHeader';
 
-import styles from './SupplierLayout.module.css';
+import styles from './SupplierLayout.module.scss';
 import { LayoutProps } from './SupplierLayout.props';
 
 export const SupplierLayout: FC<LayoutProps> = ({ children }): JSX.Element => {

@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import { useAppDispatch } from '../../../common/hooks';
 
-import styles from './ButtonInfo.module.css';
+import styles from './ButtonInfo.module.scss';
 
 import { ContactUsQuestionMarkIcon } from 'assets/icons';
 import { toggleInfoForm } from 'store/reducers/appSlice/slice';

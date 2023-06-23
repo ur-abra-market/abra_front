@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import { useAppDispatch } from '../../../../common/hooks';
 
-import style from './AddressPopup.module.css';
+import style from './AddressPopup.module.scss';
 
 import { CrossRedIcon } from 'assets/icons'; // 16px
 import { SellerAddressData } from 'services/seller/seller.serviceTypes';

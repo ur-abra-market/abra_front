@@ -359,9 +359,9 @@
 /*}*/
 
 .input_checkbox::after {
-  border: 0.5px solid rgb(0 0 0 / 4%);
-  box-shadow: 0 3px 8px rgb(0 0 0 / 15%), 0 1px 1px rgb(0 0 0 / 16%),
-    0 3px 1px rgb(0 0 0 / 10%);
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.16),
+    0 3px 1px rgba(0, 0, 0, 0.10);
 }
 
 .input_checkbox:checked {

@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 
-import style from './Address.module.css';
+import style from './Address.module.scss';
 
 import { EditPencilIcon } from 'assets/icons';
 import Check from 'old-components/Check';

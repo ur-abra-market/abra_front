@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 
-import style from './SearchFilter.module.css';
+import style from './SearchFilter.module.scss';
 
 import { brand, material } from 'store/reducers/filterSlice';
 

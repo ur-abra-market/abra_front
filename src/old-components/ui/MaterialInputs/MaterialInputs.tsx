@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 
 import RelatedInputs from '../../RelatedInputs';
 
-import style from './MaterialInputs.module.css';
+import style from './MaterialInputs.module.scss';
 
 const fakeArr: number[] = [];
 

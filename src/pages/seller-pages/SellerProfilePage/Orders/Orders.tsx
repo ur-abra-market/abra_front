@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
+import style from '../SellerProfilePage.module.scss';
+
 import {
   OrderStatusShippedIcon,
   OrderStatusToBeReviewedIcon,
@@ -7,7 +9,6 @@ import {
   OrderStatusUnpaidIcon,
   OrderStatusCompletedIcon,
 } from 'assets/icons';
-import style from 'pages/seller-pages/SellerProfilePage/SellerProfilePage.module.css';
 import { Button } from 'ui-kit';
 
 const Orders = (): JSX.Element => {

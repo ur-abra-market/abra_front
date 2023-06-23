@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import { ButtonIcon } from '../buttons/ButtonIcon/ButtonIcon';
 
-import styles from './Input.module.css';
+import styles from './Input.module.scss';
 
 import { EyeHiddenIcon } from 'assets/icons';
 

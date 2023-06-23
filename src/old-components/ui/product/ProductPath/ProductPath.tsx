@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import style from './ProductPath.module.css';
+import style from './ProductPath.module.scss';
 
 import { BreadcrumbsArrowIcon } from 'assets/icons';
 

@@ -5,7 +5,7 @@ import { priceFrom, priceTo } from '../../../../store/reducers/filterSlice';
 import { productPaginateService } from '../../../../store/reducers/productPaginateSlice';
 import SwitchBox from '../../../SwitchBox';
 
-import style from './FilterPrice.module.css';
+import style from './FilterPrice.module.scss';
 
 const FilterPrice = (): JSX.Element => {
   const dispatch = useAppDispatch();

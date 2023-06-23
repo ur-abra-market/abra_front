@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { ProductCard } from '../../../../components';
 import { ProductsPreview } from '../../../../modules';
 import { IProductCompilation } from '../../../../services/product/product.serviceTypes';
-import style from '../ProductPage.module.css';
+import style from '../ProductPage.module.scss';
 
 export const SimilarProduct = (): JSX.Element => {
   const product: IProductCompilation = {

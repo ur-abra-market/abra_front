@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import style from './Reward.module.css';
+import style from './Reward.module.scss';
 
 import { StarEmptyIcon } from 'assets/icons';
 

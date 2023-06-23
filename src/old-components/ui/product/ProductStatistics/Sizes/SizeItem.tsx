@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './SizeItem.module.css';
+import style from './SizeItem.module.scss';
 
 interface SizeItemProps {
   isSelected: boolean;

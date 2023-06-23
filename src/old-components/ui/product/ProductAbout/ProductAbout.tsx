@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import style from './ProductAbout.module.css';
+import style from './ProductAbout.module.scss';
 
 const specification = {
   age_group: 'Adults',
