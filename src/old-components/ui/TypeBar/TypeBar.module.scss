@@ -18,15 +18,13 @@
 }
 
 .btn_active {
-  composes: btn;
   color: #FC133D;
-  background-color: white;
+  background-color: var(--color-white);
   border: 1px solid #FC133D;
 
 }
 
 .btn_plus {
-  composes: btn;
   width: 31px;
   height: 30px;
 }

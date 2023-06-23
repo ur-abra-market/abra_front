@@ -25,6 +25,7 @@ const Header: FC<IHeader> = ({ className, ...restProps }): JSX.Element => {
   const [categoriesIsOpen, setCategoriesIsOpen] = useState(false);
 
   const categoriesRef = useRef() as RefObject<HTMLDivElement>;
+
   const buttonRef = useRef() as RefObject<HTMLButtonElement>;
 
   useEffect(() => {
