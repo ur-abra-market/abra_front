@@ -27,7 +27,7 @@ export const CategoriesMenu = forwardRef(
 
     const wearerCategory = categories ? categories.filter(c => c.level === 1) : [];
 
-    console.log(wearerCategory);
+    // console.log(wearerCategory);
 
     const dispatch = useAppDispatch();
 
