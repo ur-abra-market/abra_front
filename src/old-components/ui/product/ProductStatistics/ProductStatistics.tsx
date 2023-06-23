@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import style from './ProductStatistics.module.css';
+import style from './ProductStatistics.module.scss';
 import { ProductStatisticsProps } from './ProductStatistics.props';
 import { SizeItem } from './Sizes/SizeItem';
 

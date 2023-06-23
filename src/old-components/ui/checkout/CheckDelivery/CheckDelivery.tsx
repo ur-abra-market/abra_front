@@ -6,7 +6,7 @@ import { getAddress } from '../../../../store/reducers/sellerCheckoutSlice';
 import CheckoutAddress from '../../../CheckoutAddress/CheckoutAddress';
 import AddressPopup from '../../popup/AddressPopup';
 
-import style from './CheckDelivery.module.css';
+import style from './CheckDelivery.module.scss';
 
 const CheckDelivery = (): JSX.Element => {
   const { addresses } = useAppSelector(state => state.sellerCheckout);

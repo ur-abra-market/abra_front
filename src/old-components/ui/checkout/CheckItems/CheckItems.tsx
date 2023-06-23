@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 
 import { AddNotePopup } from '../../popup/AddNotePopup/AddNotePopup';
 
-import style from './CheckItems.module.css';
+import style from './CheckItems.module.scss';
 
 import { StarFilledIcon, ArrowRightIcon, DotIcon } from 'assets/icons'; // 5 10px for ArrowRightIcon
 import { Banner1Image } from 'assets/images';

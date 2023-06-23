@@ -12,7 +12,7 @@ import ProductPath from '../ui/product/ProductPath';
 import ProductPrice from '../ui/product/ProductPrice';
 import SupplierCard from '../ui/product/SupplierCard';
 
-import style from './CardFull.module.css';
+import style from './CardFull.module.scss';
 
 import { HeaderCartIcon } from 'assets/icons';
 

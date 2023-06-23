@@ -1,6 +1,8 @@
 import React from 'react';
 
-import style from './PrivacyPolicy.module.css';
+import { ScrollRestoration } from 'react-router-dom';
+
+import style from './PrivacyPolicy.module.scss';
 
 import { Footer } from 'layouts/Footer';
 import HeaderForChangePages from 'old-components/HeaderForChangePages';
@@ -8,6 +10,7 @@ import HeaderForChangePages from 'old-components/HeaderForChangePages';
 export const PrivacyPolicyPage = (): JSX.Element => {
   return (
     <div>
+      <ScrollRestoration />
       <HeaderForChangePages />
       <div className={style.container}>
         <h1 className={style.title}>Privacy Policy</h1>

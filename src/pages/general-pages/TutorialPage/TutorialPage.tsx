@@ -2,7 +2,7 @@ import React from 'react';
 
 import { WithLayout } from '../../../common/hocs/WithLayout';
 
-import style from './Tutorial.module.css';
+import style from './Tutorial.module.scss';
 
 export const TutorialPage = WithLayout((): JSX.Element => {
   return (

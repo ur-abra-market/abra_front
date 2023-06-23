@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import { Button, Input } from '../../../../ui-kit';
 
-import style from './AddNotePopup.module.css';
+import style from './AddNotePopup.module.scss';
 
 import { CrossRedIcon } from 'assets/icons'; // 16px
 

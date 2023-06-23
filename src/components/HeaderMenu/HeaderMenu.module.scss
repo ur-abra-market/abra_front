@@ -1,3 +1,52 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 48px;
+  align-items: center;
+
+  width: 100%;
+  padding: 26px 0;
+
+  background-color: #FFF;
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
+.inner_buttons {
+  display: flex;
+  gap: 32px;
+}
+
+.wrapper_btn {
+  position: relative;
+}
+
+.menu_wrapper {
+  position: absolute;
+  z-index: -10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.01);
+
+  transition: 0.3s;
+}
+
+.menu_active {
+  z-index: 10;
+  opacity: 1;
+}
+
+.menu_main {
+  top: 60px;
+}
+
+.menu_profile {
+  top: 55px;
+}
+
 .menu {
   position: absolute;
   /* top: 60px; */

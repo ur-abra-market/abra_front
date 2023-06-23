@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 
-import style from './HeaderNavMenu.module.css';
+import style from './HeaderNavMenu.module.scss';
 import { HeaderNavMenuProps } from './HeaderNavMenu.props';
 
 const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {

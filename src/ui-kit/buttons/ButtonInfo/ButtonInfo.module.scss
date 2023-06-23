@@ -10,7 +10,7 @@
 
   background: var(--color-white);
   border-radius: 50%;
-  box-shadow: 0 4px 16px rgb(0 0 0 / 32%);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.32);
 
   transition: all 0.3s;
 }
@@ -22,5 +22,5 @@
 }
 
 .button:active {
-  box-shadow: 0 0 4px rgb(0 0 0 / 32%);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.32);
 }

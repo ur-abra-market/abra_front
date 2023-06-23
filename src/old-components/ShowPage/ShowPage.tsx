@@ -3,7 +3,7 @@ import { useState, MouseEvent } from 'react';
 import { useAppDispatch } from '../../common/hooks';
 import { amount } from '../../store/reducers/paginateSlice';
 
-import style from './ShowPage.module.css';
+import style from './ShowPage.module.scss';
 
 import { ArrowDownIcon } from 'assets/icons'; // 24px
 

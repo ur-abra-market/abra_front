@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './ContentMessage.module.css';
+import style from './ContentMessage.module.scss';
 
 interface ContentMessageProps {
   title: string;

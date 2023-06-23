@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-import style from './ProductCanvas.module.css';
+import style from './ProductCanvas.module.scss';
 
 const ProductCanvas = (): JSX.Element => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
