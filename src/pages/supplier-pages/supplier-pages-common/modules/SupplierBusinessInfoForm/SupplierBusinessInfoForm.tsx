@@ -29,7 +29,7 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
 
 interface IBusinessProfileForm {
   updateForm?: boolean;
-  countryShort: string;
+  countryShort?: string;
   onSubmit: (data: ISupplierBusinessInfo) => void;
 }
 
@@ -75,6 +75,10 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   error={errors?.businessSector?.message}
                   options={BUSINESS_SECTOR_DATA}
                   placeholder="Select"
+                  defaultValue={field?.value?.value}
+                  onChange={value => {
+                    field.onChange(value);
+                  }}
                 />
               </Label>
             )}
@@ -127,6 +131,9 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                     label: el.number,
                   }))}
                   className={style.select}
+                  defaultValue={
+                    numberEmployees?.find(el => field.value === el.id)?.number
+                  }
                   placeholder="Select"
                   width="266px"
                   onChange={value => {
@@ -145,6 +152,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
             <Label label="Country of company registration*">
               <Select
                 {...field}
+                defaultValue={countries?.find(el => el.id === field.value)?.country}
                 error={errors?.countryRegistration?.message}
                 options={countries.map(el => ({
                   value: el.id,
@@ -170,9 +178,8 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 
       <div className={style.contacts_info}>
         <p className={style.subtitle}>Contacts</p>
-
+        <PhoneNumberInput label="Business phone number" countryShort={countryShort} />
         <div className={style.contacts_inputs}>
-          <PhoneNumberInput label="Business phone number" countryShort={countryShort} />
           <Label label="Business email address">
             <Input
               {...register('email')}
@@ -192,7 +199,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         </div>
       </div>
 
-      <Button type="submit" className={style.button} label="Save" />
+      <Button type="submit" className={style.button} label="Save" disabled={!isValid} />
     </form>
   );
 };

@@ -30,13 +30,17 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
 
   useEffect(() => {
     reset(businessInfoData);
+    setValue(
+      'phoneNumber',
+      `${businessInfoData.countryCode}${businessInfoData.phoneNumber}`,
+    );
   }, [businessInfoData]);
 
   const formMethods = useForm<ISupplierBusinessInfo>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
   });
-  const { reset } = formMethods;
+  const { reset, setValue } = formMethods;
 
   const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
     const updateData: ISuppliersUpdateCompanyInfo = {
@@ -46,16 +50,16 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
       company_data_request: {
         business_email: data.email,
         business_sector: data.businessSector.value,
-        country_id: data.countryRegistration.value!,
+        country_id: data.countryRegistration!,
         is_manufacturer: data.isManufacturer,
         address: data.address,
-        number_employees: data.numEmployees!,
-        year_established: data.yearEstablished!,
+        number_employees: +data.numEmployees!,
+        year_established: +data.yearEstablished!,
         name: data.storeName,
         description: data.description,
       },
       company_phone_data_request: {
-        phone_number: data.phoneNumber.replace(/ /g, '').replace(/\(|\)/g, ''),
+        phone_number: '338808800',
         country_id: data.id!,
       },
     };
