@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import { Categories } from '../CategoriesMenu';
 
-import style from './FilterButton.module.css';
+import style from './FilterButton.module.scss';
 
 interface FilterButtonProps<T> {
   children: string;

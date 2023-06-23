@@ -1,6 +1,6 @@
 import { useAppDispatch } from '../../common/hooks';
 
-import style from './ButtonLogOut.module.css';
+import style from './ButtonLogOut.module.scss';
 
 import { LogoutIcon } from 'assets/icons';
 import { logout } from 'store/reducers/authSlice';

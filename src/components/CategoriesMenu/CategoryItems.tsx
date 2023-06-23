@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 import { ItemsProps } from './CategoriesMenu';
-import style from './CategoriesMenu.module.css';
+import style from './CategoriesMenu.module.scss';
 
 export const Items: FC<ItemsProps> = (props): JSX.Element => {
   const { gender, items } = props;

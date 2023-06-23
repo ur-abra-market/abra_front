@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { discount } from '../../../../../store/reducers/filterSlice';
 
-import styles from './SwitchDiscount.module.css';
+import styles from './SwitchDiscount.module.scss';
 
 const SwitchDiscount: FC = () => {
   const dispatch = useAppDispatch();

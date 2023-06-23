@@ -9,10 +9,10 @@ import { getSellerNotifications } from '../../../store/reducers/seller/profile';
 import { Address } from './Address/Address';
 import Orders from './Orders/Orders';
 import { SellerNotifications } from './SellerNotifications/SellerNotifications';
+import style from './SellerProfilePage.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { SellerPersonalInfoChangeForm } from 'pages/seller-pages/SellerProfilePage/SellerPersonalInfoChangeForm/SellerPersonalInfoChangeForm';
-import style from 'pages/seller-pages/SellerProfilePage/SellerProfilePage.module.css';
 import { getCountries } from 'store/reducers/commonSlice';
 import { IAddress } from 'store/reducers/seller/profile/slice';
 import { getSellerAddresses } from 'store/reducers/seller/profile/thunks';

@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import SearchFilter from '../SearchFilter';
 
-import style from './FilterBrand.module.css';
+import style from './FilterBrand.module.scss';
 
 import { brand } from 'store/reducers/filterSlice';
 

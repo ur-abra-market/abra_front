@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { WithLayout } from '../../../common/hocs/WithLayout';
 
-import style from './FAQ.module.css';
+import style from './FAQ.module.scss';
 
 import { ContentBox } from './index';
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import PaymentPopup from '../../popup/PaymentPopup';
 
-import style from './CheckPayment.module.css';
+import style from './CheckPayment.module.scss';
 
 import {
   ApplePayIcon,

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import Header from '../../../layouts/Header';
 
-import style from './OrderDetails.module.css';
+import style from './OrderDetails.module.scss';
 
 import { Footer } from 'layouts/Footer';
 

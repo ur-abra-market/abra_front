@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, useState } from 'react';
 
-import style from './CheckboxStyledElem.module.css';
+import style from './CheckboxStyledElem.module.scss';
 
 interface CheckboxStyledElemProps {
   register: any;

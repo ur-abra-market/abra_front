@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Container } from '../../../ui-kit';
 
-import style from './Feedback.module.css';
+import style from './Feedback.module.scss';
 
 import { Social, Subscribe, WhatsApp } from './index';
 

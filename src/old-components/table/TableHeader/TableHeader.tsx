@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import style from './TableHeader.module.css';
+import style from './TableHeader.module.scss';
 
 import { SortArrowDownIcon, SortArrowUpIcon } from 'assets/icons';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import style from './FeedbackFAQ.module.css';
+import style from './FeedbackFAQ.module.scss';
 
 const FeedbackFAQ = (): JSX.Element => {
   return (

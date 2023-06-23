@@ -6,7 +6,7 @@ import { IPersonalInfoFormData } from '../../common/types';
 import { PhoneNumberInput } from '../../components';
 import { Input, Label } from '../../ui-kit';
 
-import style from './PersonalInfoChangeForm.module.css';
+import style from './PersonalInfoChangeForm.module.scss';
 
 interface IPersonalInfoChangeForm {
   phoneInputClass?: string;

@@ -7,7 +7,7 @@ import FilterPrice from '../../product_filter/FilterPrice';
 import FilterSizes from '../../product_filter/FilterSizes';
 import FilterSort from '../../product_filter/FilterSort';
 
-import style from './ProductFilter.module.css';
+import style from './ProductFilter.module.scss';
 
 const ProductFilter = (): JSX.Element => {
   return (
