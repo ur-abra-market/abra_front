@@ -6,20 +6,10 @@ import { NavLink } from 'react-router-dom';
 import { ItemsProps } from './CategoriesMenu';
 import style from './CategoriesMenu.module.scss';
 
-export const Items: FC<ItemsProps> = (props): JSX.Element => {
-  const { items } = props;
-
-  const activeStyle = {
-    color: ' var(--red)',
-  };
-
+export const Items: FC<ItemsProps> = ({ items }): JSX.Element => {
   const mappedItems = items?.map(item => (
     <li className={style.list_item} key={item.id}>
-      <NavLink
-        className={style.link}
-        style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        to={`/products-list/${item.id}`}
-      >
+      <NavLink className={style.link} to={`/products-list/${item.id}`}>
         {item.name}
       </NavLink>
       {item.children?.map(i => (

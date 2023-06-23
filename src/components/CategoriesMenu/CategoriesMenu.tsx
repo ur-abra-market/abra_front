@@ -4,8 +4,8 @@ import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../common/hooks';
-import { IResponseCategory } from '../../services/common/common.service';
-import { getAllCategories } from '../../store/reducers/commonSlice/thunks';
+import { IResponseCategory } from '../../services/common/common.serviceTypes';
+import { getAllCategories } from '../../store/reducers/commonSlice';
 
 import style from './CategoriesMenu.module.scss';
 import { CategoriesMenuProps } from './CategoriesMenu.props';
