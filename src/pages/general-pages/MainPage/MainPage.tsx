@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { WithLayout } from '../../../common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from '../../../common/hooks';
-import { ProductSortType } from '../../../common/types';
+import { ProductSortEnum } from '../../../common/types';
 import { Feedback, ProductCard } from '../../../components';
 import { ProductsPreview } from '../../../modules';
 import { fetchProductList } from '../../../store/reducers/mainPageSlice';
@@ -58,7 +58,7 @@ export const MainPage = WithLayout((): JSX.Element => {
           offset: 0,
           limit: 23,
           category_id,
-          sort_type: ProductSortType.DATE,
+          sort_type: ProductSortEnum.DATE,
           ascending: false,
         }),
       );

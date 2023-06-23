@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-import cn from 'classnames';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 import Modal from '../../../components/Modal';
-import { logout } from '../../../store/reducers/authSlice';
-import { ButtonIcon, MainLogo, Search } from '../../../ui-kit';
 
-import BuildProfileMenu from './BuildProfileMenu/BuildProfileMenu';
 import style from './Top.module.scss';
 
 import {
@@ -17,61 +12,23 @@ import {
   HeaderNotificationsIcon,
   HeaderProfileIcon,
 } from 'assets/icons';
+import { useAppSelector, useOnClickOutside } from 'common/hooks';
+import { HeaderMenu } from 'components/HeaderMenu/HeaderMenu';
+import { isAuthSelector } from 'store/reducers/authSlice/selectors';
+import { ButtonIcon, MainLogo, Search } from 'ui-kit';
 
-const PROFILE_MENU = {
-  UNAUTHORIZED: [
-    {
-      label: 'Log in',
-      href: '/login',
-    },
-    {
-      label: 'Register',
-      href: '/register',
-    },
-  ],
-  AUTHORIZED: [
-    {
-      label: 'My Profile',
-      href: '/personal_account',
-    },
-    {
-      label: 'Edit Profile',
-      href: '/personal_account',
-    },
-    {
-      label: 'Settings',
-      href: '/personal_account',
-    },
-    {
-      label: 'My Orders',
-      href: '/personal_account',
-    },
-    {
-      label: 'Log out',
-      href: '/logout',
-    },
-  ],
-} as const;
-
-const Top = (): JSX.Element => {
+export const Top = (): JSX.Element => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
-  const isAuth = useAppSelector(state => state.auth.isAuthorized);
-  // const userRole = useAppSelector(state => state.auth.userRole);
-  const [menu, setMenu] = useState<string>();
-  const [isShowModal, setIsShowModal] = useState<boolean>(false);
+  const isAuth = useAppSelector(isAuthSelector);
+  const [active, setActive] = useState(false);
+  const [isShowModal, setIsShowModal] = useState(false);
 
   const handleOnClick = (target: string): void => {
-    if (!isAuth && target === 'account') {
-      return setMenu(target);
-    }
-    if (!isAuth && target !== 'account') {
+    if (!isAuth) {
       return setIsShowModal(true);
     }
     switch (target) {
-      case 'account':
-        return setMenu(target);
       case 'note':
         return navigate('/');
       case 'favorite':
@@ -82,9 +39,11 @@ const Top = (): JSX.Element => {
     }
   };
 
-  const handleClickLogout = (): void => {
-    dispatch(logout());
+  const handleMenuOpen = (value: boolean): void => {
+    setActive(value);
   };
+
+  const triggerRef = useOnClickOutside(handleMenuOpen);
 
   return (
     <div className={style.wrapper}>
@@ -93,28 +52,15 @@ const Top = (): JSX.Element => {
         <NavLink to="/auth">Login</NavLink>
       </Modal>
 
-      <div
-        role="presentation"
-        onClick={() => setMenu(undefined)}
-        className={cn(style.menu_wrapper, {
-          [style.menu_active]: !!menu,
-        })}
-      />
-
       <MainLogo className={style.logo_font_size} />
       <Search placeholder="Search" />
       <div className={style.inner_buttons}>
-        <div className={style.wrapper_btn}>
-          <ButtonIcon onClick={() => handleOnClick('account')}>
+        <div className={style.wrapper_btn} ref={triggerRef}>
+          <ButtonIcon onClick={() => handleMenuOpen(!active)}>
             <HeaderProfileIcon />
           </ButtonIcon>
-          {menu === 'account' && (
-            <BuildProfileMenu
-              isAuth={isAuth}
-              PROFILE_MENU={PROFILE_MENU}
-              handleClickLogout={handleClickLogout}
-            />
-          )}
+
+          <HeaderMenu active={active} setActive={() => setActive(false)} />
         </div>
 
         <ButtonIcon onClick={() => handleOnClick('note')}>
@@ -130,7 +76,3 @@ const Top = (): JSX.Element => {
     </div>
   );
 };
-
-export type ProfileMenu = typeof PROFILE_MENU;
-
-export default Top;

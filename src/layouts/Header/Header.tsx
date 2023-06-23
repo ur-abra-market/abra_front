@@ -16,7 +16,7 @@ import HeaderNavMenu from '../../old-components/HeaderNavMemu';
 import { Container } from '../../ui-kit';
 
 import style from './Header.module.scss';
-import Top from './Top/Top';
+import { Top } from './Top/Top';
 
 export interface IHeader
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}

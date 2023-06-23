@@ -4,7 +4,7 @@ import { AxiosError } from 'axios';
 import { supplierService } from '../../../../services';
 import { setResponseNotice } from '../../appSlice/slice';
 
-import { AsyncThunkConfig } from 'common/types';
+import { IAsyncThunkConfig } from 'common/types';
 import {
   ISuppliersCompanyInfoData,
   ISuppliersUpdateCompanyInfo,
@@ -13,7 +13,7 @@ import {
 export const getBusinessInfo = createAsyncThunk<
   ISuppliersCompanyInfoData,
   void,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >('supplierProfile/getCompanyInfo', async (_, { rejectWithValue }) => {
   try {
     return await supplierService.fetchBusinessInfo();
@@ -29,7 +29,7 @@ export const getBusinessInfo = createAsyncThunk<
 export const updateBusinessInfo = createAsyncThunk<
   void,
   ISuppliersUpdateCompanyInfo,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >('supplierProfile/updateCompanyInfo', async (arg, { rejectWithValue, dispatch }) => {
   try {
     await supplierService.updateBusinessInfo(arg);
