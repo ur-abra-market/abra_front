@@ -1,7 +1,25 @@
-.filter_button > button {
+.filter_button {
   cursor: pointer;
 
-  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+
+  min-width: 250px;
+  height: 30px;
+  padding: 26px 0 26px 32px;
+
+  border-radius: 6px;
+
+  transition: all .1s;
+
+  &:hover {
+    background-color: var(--color-light-gray);
+  }
+
+}
+
+.button_categories {
+  cursor: pointer;
 
   font-family: var(--roboto);
   font-size: 20px;
@@ -10,6 +28,8 @@
   line-height: 20px;
 
   background: transparent;
+
+  transition: all .1s;
 }
 
 .active_button {
