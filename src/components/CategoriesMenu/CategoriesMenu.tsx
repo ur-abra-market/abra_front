@@ -1,6 +1,7 @@
 import React, { ForwardedRef, forwardRef, useEffect, useState } from 'react';
 
 import cn from 'classnames';
+import { NavLink } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../common/hooks';
 import { IResponseCategory } from '../../services/common/common.service';
@@ -21,13 +22,9 @@ export const CategoriesMenu = forwardRef(
   (props: CategoriesMenuProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [activeCategories, setActiveCategories] = useState<Categories>('Clothes');
 
-    console.log(activeCategories);
-
     const categories = useAppSelector(state => state.common.categories);
 
     const wearerCategory = categories ? categories.filter(c => c.level === 1) : [];
-
-    // console.log(wearerCategory);
 
     const dispatch = useAppDispatch();
 
@@ -51,6 +48,11 @@ export const CategoriesMenu = forwardRef(
     return (
       <div ref={ref} className={cn(style.menu_container)}>
         <ul className={style.list}>
+          <li className={style.all_categories}>
+            <NavLink className={style.link} to="#">
+              All categories
+            </NavLink>
+          </li>
           {wearerCategory.map(c => {
             return (
               <FilterButton
