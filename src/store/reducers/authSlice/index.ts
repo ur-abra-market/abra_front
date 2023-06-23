@@ -1,8 +1,4 @@
-export {
-  userRoleSelector,
-  isAuthorizedSelector,
-  passwordActionsResultSelector,
-} from './selectors';
+export { userRoleSelector, isAuthorizedSelector } from './selectors';
 export {
   registerUser,
   loginUser,
@@ -13,4 +9,5 @@ export {
   checkToken,
   forgotPassword,
   resetPassword,
+  changeEmail,
 } from './thunks';

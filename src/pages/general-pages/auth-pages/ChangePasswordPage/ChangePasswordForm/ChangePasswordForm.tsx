@@ -28,11 +28,11 @@ const formValidationSchema = yup
   })
   .required();
 
-interface IChangePasswordFormProps {
-  setModalActive: (value: boolean) => void;
+interface IChangePasswordForm {
+  setOpenModal: (value: boolean) => void;
 }
 
-export const ChangePasswordForm: FC<IChangePasswordFormProps> = ({ setModalActive }) => {
+export const ChangePasswordForm: FC<IChangePasswordForm> = ({ setOpenModal }) => {
   const loading = useAppSelector(loadingSelector);
   const dispatch = useAppDispatch();
 
@@ -57,7 +57,7 @@ export const ChangePasswordForm: FC<IChangePasswordFormProps> = ({ setModalActiv
     const actionResult = await dispatch(changePassword(data));
 
     if (changePassword.fulfilled.match(actionResult)) {
-      setModalActive(true);
+      setOpenModal(true);
     }
   };
 
@@ -83,7 +83,7 @@ export const ChangePasswordForm: FC<IChangePasswordFormProps> = ({ setModalActiv
       <Button
         label="Continue"
         type="submit"
-        className={style.button}
+        className={style.button_submit}
         disabled={!isValid || loading === LoadingStatus.Loading}
       />
     </form>

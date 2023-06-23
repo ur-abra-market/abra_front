@@ -16,10 +16,10 @@ import { userRoleSelector } from 'store/reducers/authSlice';
 export const ChangeEmailPage = (): JSX.Element => {
   const navigate = useNavigate();
   const userRole = useAppSelector(userRoleSelector);
-  const [modalActive, setModalActive] = useState(false);
+  const [isModalOpen, setOpenModal] = useState(false);
 
   const handleModalOnClose = (value: boolean): void => {
-    setModalActive(value);
+    setOpenModal(value);
 
     if (userRole === 'seller') {
       navigate('/personal_account');
@@ -33,10 +33,10 @@ export const ChangeEmailPage = (): JSX.Element => {
       <AuthPageLayout>
         <div className={style.header}>Change email</div>
         <div className={style.subheader}>Enter your new email addresses</div>
-        <ChangeEmailForm setModalActive={setModalActive} />
+        <ChangeEmailForm setOpenModal={setOpenModal} />
       </AuthPageLayout>
 
-      <Modal showModal={modalActive} closeModal={handleModalOnClose}>
+      <Modal showModal={isModalOpen} closeModal={handleModalOnClose}>
         <div className={style.modal_content_wrapper}>
           <div className={style.modal_header}>
             Your new email has been successfully saved

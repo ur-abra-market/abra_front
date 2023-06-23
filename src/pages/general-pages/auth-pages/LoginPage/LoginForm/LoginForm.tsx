@@ -66,7 +66,7 @@ export const LoginForm = (): JSX.Element => {
       />
 
       <Button
-        className={style.button}
+        className={style.button_submit}
         label="Log in"
         type="submit"
         disabled={!isValid || loading === LoadingStatus.Loading}

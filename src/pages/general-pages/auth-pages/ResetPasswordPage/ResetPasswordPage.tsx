@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
-import { passwordActionsResultSelector } from '../../../../store/reducers/authSlice';
 import { AuthPageLayout } from '../assets';
 
 import style from './ResetPasswordPage.module.scss';
@@ -15,8 +14,8 @@ import { checkToken } from 'store/reducers/authSlice';
 import { Button } from 'ui-kit';
 
 export const ResetPasswordPage = (): JSX.Element => {
-  const [modalActive, setModalActive] = useState(false);
-  const passwordActionsResult = useAppSelector(passwordActionsResultSelector);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isTokenActive, setTokenActive] = useState(false);
 
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
@@ -25,13 +24,19 @@ export const ResetPasswordPage = (): JSX.Element => {
   const navigate = useNavigate();
 
   const handleModalOnClose = (value: boolean): void => {
-    setModalActive(value);
+    setModalOpen(value);
     navigate('/login');
   };
 
   useEffect(() => {
-    dispatch(checkToken(token!));
-  }, [token]);
+    (async () => {
+      const actionResult = await dispatch(checkToken(token!));
+
+      if (checkToken.fulfilled.match(actionResult)) {
+        setTokenActive(true);
+      }
+    })();
+  }, [dispatch, token]);
 
   return (
     <>
@@ -40,12 +45,12 @@ export const ResetPasswordPage = (): JSX.Element => {
         <div className={style.subheader}>
           Enter a new password that matches the criteria
         </div>
-        {passwordActionsResult === 'TOKEN_IS_ACTIVE' && (
-          <ResetPasswordForm setModalActive={setModalActive} token={token!} />
+        {isTokenActive && (
+          <ResetPasswordForm setModalOpen={setModalOpen} token={token!} />
         )}
       </AuthPageLayout>
       <Modal
-        showModal={modalActive}
+        showModal={isModalOpen}
         closeModal={handleModalOnClose}
         classNameModal={style.modal_container}
       >

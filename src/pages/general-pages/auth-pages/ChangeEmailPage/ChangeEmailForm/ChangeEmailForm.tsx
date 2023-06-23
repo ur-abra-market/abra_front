@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { changeEmail } from '../../../../../store/reducers/authSlice/thunks';
+import { changeEmail } from '../../../../../store/reducers/authSlice';
 import { Button, Input } from '../../../../../ui-kit';
 
 import style from './ChangeEmailForm.module.scss';
@@ -17,8 +17,8 @@ import { loadingSelector } from 'store/reducers/appSlice';
 
 const TRIGGER_FIELD = 'confirm_email';
 
-interface ChangeEmailFormProps {
-  setModalActive: (val: boolean) => void;
+interface IChangeEmailForm {
+  setOpenModal: (value: boolean) => void;
 }
 const schema = yup
   .object({
@@ -27,7 +27,7 @@ const schema = yup
   })
   .required();
 
-export const ChangeEmailForm: FC<ChangeEmailFormProps> = ({ setModalActive }) => {
+export const ChangeEmailForm: FC<IChangeEmailForm> = ({ setOpenModal }) => {
   const {
     register,
     watch,
@@ -50,7 +50,7 @@ export const ChangeEmailForm: FC<ChangeEmailFormProps> = ({ setModalActive }) =>
     const actionResult = await dispatch(changeEmail(data));
 
     if (changeEmail.fulfilled.match(actionResult)) {
-      setModalActive(true);
+      setOpenModal(true);
     }
   };
 
@@ -72,7 +72,7 @@ export const ChangeEmailForm: FC<ChangeEmailFormProps> = ({ setModalActive }) =>
         label="Continue"
         type="submit"
         disabled={!isValid || loading === LoadingStatus.Loading}
-        className={style.button}
+        className={style.button_submit}
       />
     </form>
   );

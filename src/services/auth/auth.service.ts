@@ -21,17 +21,24 @@ export const authService = {
     return baseConfigService.get(`/login/role/`);
   },
 
-  register: ({ email, password, role }: IRegisterRequest) => {
-    return baseConfigService.post<RegisterResponseType>(`register/${role}/`, {
-      email,
-      password,
-    });
+  register: async ({ email, password, role }: IRegisterRequest) => {
+    const { data } = await baseConfigService.post<RegisterResponseType>(
+      `register/${role}/`,
+      {
+        email,
+        password,
+      },
+    );
+
+    return data;
   },
 
-  confirmEmail: ({ token }: IConfirmEmailRequest) => {
-    return baseConfigService.get<RegisterResponseType>(
+  confirmEmail: async ({ token }: IConfirmEmailRequest) => {
+    const { data } = await baseConfigService.get<RegisterResponseType>(
       `register/confirmEmail/?token=${token}`,
     );
+
+    return data;
   },
 
   sendAccountPersonalInfo: async (personalInfoData: IPersonalInfoRequestData) => {

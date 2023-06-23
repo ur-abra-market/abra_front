@@ -16,10 +16,10 @@ import { useAppSelector } from 'common/hooks';
 export const ChangePasswordPage = (): JSX.Element => {
   const navigate = useNavigate();
   const userRole = useAppSelector(userRoleSelector);
-  const [modalActive, setModalActive] = useState(false);
+  const [isModalOpen, setOpenModal] = useState(false);
 
   const handleModalOnClose = (value: boolean): void => {
-    setModalActive(value);
+    setOpenModal(value);
 
     if (userRole === 'seller') {
       navigate('/personal_account');
@@ -33,11 +33,11 @@ export const ChangePasswordPage = (): JSX.Element => {
       <AuthPageLayout footerLink="/forgot_password" footerTitle="Forgot password?">
         <div className={style.header}>Change password</div>
         <div className={style.subheader}>Enter your current and new passwords</div>
-        <ChangePasswordForm setModalActive={setModalActive} />
+        <ChangePasswordForm setOpenModal={setOpenModal} />
       </AuthPageLayout>
 
       <Modal
-        showModal={modalActive}
+        showModal={isModalOpen}
         closeModal={handleModalOnClose}
         classNameModal={style.modal_container}
       >

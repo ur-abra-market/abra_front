@@ -17,7 +17,7 @@ import style from './RegisterForm.module.scss';
 import { emailValidationSchema, passwordValidationSchema } from 'common/constants';
 import { Button, Input } from 'ui-kit';
 
-export interface IFormValues extends Omit<IRegisterRequest, 'role'> {}
+export interface IRegisterFormData extends Omit<IRegisterRequest, 'role'> {}
 
 const formValidationSchema = yup
   .object()
@@ -38,7 +38,7 @@ export const RegisterForm = (): JSX.Element => {
     watch,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm<IFormValues>({
+  } = useForm<IRegisterFormData>({
     resolver: yupResolver(formValidationSchema),
     mode: 'all',
   });
@@ -47,7 +47,7 @@ export const RegisterForm = (): JSX.Element => {
     setUserRole(userStatus);
   };
 
-  const onSubmit = async (data: IFormValues): Promise<void> => {
+  const onSubmit = async (data: IRegisterFormData): Promise<void> => {
     const actionResult = await dispatch(registerUser({ ...data, role: userRole }));
 
     if (registerUser.fulfilled.match(actionResult)) {
@@ -83,7 +83,7 @@ export const RegisterForm = (): JSX.Element => {
       />
       <PasswordComplexity password={watch('password')} />
       <Button
-        className={style.button}
+        className={style.button_submit}
         label="Create Account"
         type="submit"
         disabled={!isValid || loading === LoadingStatus.Loading}

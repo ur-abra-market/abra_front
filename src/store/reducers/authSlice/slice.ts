@@ -14,22 +14,14 @@ import {
 
 import { UserRoleType } from 'common/types';
 
-export type passwordActionsResultType =
-  | 'LINK_HAS_BEEN_SENT'
-  | 'TOKEN_IS_ACTIVE'
-  | 'PASSWORD_HAS_BEEN_CHANGED'
-  | '';
-
 interface IAuthSliceInitialState {
   userRole: UserRoleType;
   isAuthorized: boolean;
-  passwordActionsResult: passwordActionsResultType;
 }
 
 const AuthSliceInitialState: IAuthSliceInitialState = {
   userRole: null,
   isAuthorized: false,
-  passwordActionsResult: '',
 };
 
 const authSlice = createSlice({
@@ -60,22 +52,6 @@ const authSlice = createSlice({
     });
     builder.addCase(logout.rejected, state => {
       state.isAuthorized = false;
-    });
-
-    builder.addCase(forgotPassword.pending, state => {
-      state.passwordActionsResult = '';
-    });
-    builder.addCase(forgotPassword.fulfilled, state => {
-      state.passwordActionsResult = 'LINK_HAS_BEEN_SENT';
-    });
-    builder.addCase(checkToken.fulfilled, state => {
-      state.passwordActionsResult = 'TOKEN_IS_ACTIVE';
-    });
-    builder.addCase(resetPassword.fulfilled, state => {
-      state.passwordActionsResult = 'PASSWORD_HAS_BEEN_CHANGED';
-    });
-    builder.addCase(changePassword.fulfilled, state => {
-      state.passwordActionsResult = 'PASSWORD_HAS_BEEN_CHANGED';
     });
   },
 });

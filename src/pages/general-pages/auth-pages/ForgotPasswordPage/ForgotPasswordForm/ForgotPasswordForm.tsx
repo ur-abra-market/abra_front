@@ -14,11 +14,11 @@ import { emailValidationSchema } from 'common/constants';
 import { LoadingStatus } from 'common/types';
 import { loadingSelector } from 'store/reducers/appSlice';
 
-export type ForgotChangePasswordFormType = {
+export interface IForgotChangePasswordFormData {
   email: string;
-};
+}
 
-interface ForgotPasswordFormProps {
+interface IForgotPasswordForm {
   togglePageType: () => void;
 }
 const schema = yup
@@ -27,19 +27,19 @@ const schema = yup
   })
   .required();
 
-export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => {
+export const ForgotPasswordForm: FC<IForgotPasswordForm> = ({ togglePageType }) => {
   const {
     register,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm<ForgotChangePasswordFormType>({
+  } = useForm<IForgotChangePasswordFormData>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
   const loading = useAppSelector(loadingSelector);
   const dispatch = useAppDispatch();
 
-  const onSubmit = async (data: ForgotChangePasswordFormType): Promise<void> => {
+  const onSubmit = async (data: IForgotChangePasswordFormData): Promise<void> => {
     const actionResult = await dispatch(forgotPassword(data.email));
 
     if (forgotPassword.fulfilled.match(actionResult)) {
@@ -57,7 +57,7 @@ export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType
       />
       <Button
         label="Reset password"
-        className={style.button}
+        className={style.button_submit}
         type="submit"
         disabled={!isValid || loading === LoadingStatus.Loading}
       />

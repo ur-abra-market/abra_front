@@ -31,9 +31,7 @@ export const registerUser = createAsyncThunk<
   dispatch(setLoading(LoadingStatus.Loading));
 
   try {
-    const response = await authService.register(dataUser);
-
-    return response.data;
+    return await authService.register(dataUser);
   } catch (error) {
     if (error instanceof AxiosError) {
       dispatch(
@@ -56,9 +54,7 @@ export const confirmEmail = createAsyncThunk<
   AsyncThunkConfig
 >('auth/registerUser', async (dataUser, { rejectWithValue }) => {
   try {
-    const response = await authService.confirmEmail(dataUser);
-
-    return response.data;
+    return await authService.confirmEmail(dataUser);
   } catch (error) {
     return rejectWithValue('[confirmEmail]: Error');
   }
