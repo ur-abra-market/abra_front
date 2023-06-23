@@ -29,8 +29,8 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
           <Input
             id="firstName"
             placeholder="John"
-            {...register('first_name')}
-            error={errors.first_name?.message}
+            {...register('firstName')}
+            error={errors.firstName?.message}
           />
         </Label>
 
@@ -38,8 +38,8 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
           <Input
             id="lastName"
             placeholder="Johnson"
-            {...register('last_name')}
-            error={errors.last_name?.message}
+            {...register('lastName')}
+            error={errors.lastName?.message}
           />
         </Label>
       </div>

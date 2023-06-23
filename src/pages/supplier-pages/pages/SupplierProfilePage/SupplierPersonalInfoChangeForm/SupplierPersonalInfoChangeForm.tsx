@@ -33,10 +33,10 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
 
   useEffect(() => {
     if (lastName && firstName && numberCountry) {
-      setValue('first_name', firstName);
-      setValue('last_name', lastName);
-      setValue('phone_number', `${numberCountry.country_code}${phoneNumber}`);
-      setValue('country_id', numberCountry.id);
+      setValue('firstName', firstName);
+      setValue('lastName', lastName);
+      setValue('phoneNumber', `${numberCountry.country_code}${phoneNumber}`);
+      setValue('countryId', numberCountry.id);
     }
   }, [lastName, firstName, phoneNumber]);
 
@@ -47,9 +47,9 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
   const { watch, handleSubmit, formState, setValue } = formMethods;
 
   const [phoneNumberValue, lastNameValue, firstNameValue] = watch([
-    'phone_number',
-    'last_name',
-    'first_name',
+    'phoneNumber',
+    'lastName',
+    'firstName',
   ]);
 
   const { numberFull: currentPhoneNumber } = parsePhoneNumber(phoneNumberValue || '');
@@ -64,16 +64,16 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
     let phoneNumberBody;
 
     if (currentPhoneNumber !== serverPhoneNumber) {
-      const { numberBody } = parsePhoneNumber(data.phone_number);
+      const { numberBody } = parsePhoneNumber(data.phoneNumber);
 
       phoneNumberBody = numberBody;
     }
 
     const updatePersonalInfoData = {
-      first_name: data.first_name,
-      last_name: data.last_name,
+      first_name: data.firstName,
+      last_name: data.lastName,
       phone_number: phoneNumberBody || phoneNumber,
-      country_id: data.country_id,
+      country_id: data.countryId,
     };
 
     dispatch(updatePersonalInfo(updatePersonalInfoData));
