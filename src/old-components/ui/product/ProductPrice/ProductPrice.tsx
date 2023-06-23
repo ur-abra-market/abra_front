@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import style from './ProductPrice.module.css';
+import style from './ProductPrice.module.scss';
 
 interface ProductPriceProps {
   price: string;

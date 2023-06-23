@@ -15,7 +15,7 @@ import {
 import { activeNum } from '../../../../store/reducers/productPaginateSlice';
 import SelectFilter from '../SelectFilter';
 
-import style from './FilterSort.module.css';
+import style from './FilterSort.module.scss';
 
 const FilterSort = (): JSX.Element => {
   const dispatch = useAppDispatch();

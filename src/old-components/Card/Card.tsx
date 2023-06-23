@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { active } from '../../store/reducers/productPaginateSlice';
 import ImgSlider from '../ImgSlider';
 
-import style from './Card.module.css';
+import style from './Card.module.scss';
 
 import { Stars } from 'ui-kit';
 

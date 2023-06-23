@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { Input, Label } from '../../ui-kit';
 
-import style from './RelatedInputs.module.css';
+import style from './RelatedInputs.module.scss';
 
 interface RelatedInputsProps {
   register?: any;

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import style from './News.module.css';
+import style from './News.module.scss';
 
 type NewsType = {
   title: string;

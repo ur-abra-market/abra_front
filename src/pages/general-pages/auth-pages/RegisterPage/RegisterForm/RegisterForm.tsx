@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { LoadingStatus, ResponseUserRoleType } from '../../../../../common/types';
+import { LoadingStatusEnum, ResponseUserRoleType } from '../../../../../common/types';
 import { IRegisterRequest } from '../../../../../services/auth/auth.serviceTypes';
 import { loadingSelector } from '../../../../../store/reducers/appSlice';
 import { registerUser } from '../../../../../store/reducers/authSlice';
@@ -86,7 +86,7 @@ export const RegisterForm = (): JSX.Element => {
         className={style.button_submit}
         label="Create Account"
         type="submit"
-        disabled={!isValid || loading === LoadingStatus.Loading}
+        disabled={!isValid || loading === LoadingStatusEnum.Loading}
       />
     </form>
   );

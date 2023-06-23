@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { WithLayout } from '../../../common/hocs/WithLayout';
 import { Button } from '../../../ui-kit';
 
-import style from './CheckoutSuccessPage.module.css';
+import style from './CheckoutSuccessPage.module.scss';
 
 export const CheckoutSuccessPage = WithLayout((): JSX.Element => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { AsyncThunkConfig, LoadingStatus } from '../../../common/types';
+import { IAsyncThunkConfig, LoadingStatusEnum } from '../../../common/types';
 import { userService } from '../../../services';
 import authService from '../../../services/auth/auth.service';
 import {
@@ -28,7 +28,7 @@ export const registerUser = createAsyncThunk<
   IRegisterRequest,
   AsyncThunkConfig
 >('auth/registerUser', async (dataUser, { rejectWithValue, dispatch }) => {
-  dispatch(setLoading(LoadingStatus.Loading));
+  dispatch(setLoading(LoadingStatusEnum.Loading));
 
   try {
     return await authService.register(dataUser);
@@ -44,14 +44,14 @@ export const registerUser = createAsyncThunk<
 
     return rejectWithValue('[registerUser]: Error');
   } finally {
-    dispatch(setLoading(LoadingStatus.Idle));
+    dispatch(setLoading(LoadingStatusEnum.Idle));
   }
 });
 
 export const confirmEmail = createAsyncThunk<
   RegisterResponseType,
   IConfirmEmailRequest,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >('auth/registerUser', async (dataUser, { rejectWithValue }) => {
   try {
     return await authService.confirmEmail(dataUser);
@@ -91,9 +91,9 @@ export const createAccountBusinessInfo = createAsyncThunk<
 export const loginUser = createAsyncThunk<
   LoginResponseType,
   LoginParamsType,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >('auth/loginUser', async (dataUser, { rejectWithValue, dispatch }) => {
-  dispatch(setLoading(LoadingStatus.Loading));
+  dispatch(setLoading(LoadingStatusEnum.Loading));
 
   try {
     const { data } = await authService.login(dataUser);
@@ -113,14 +113,14 @@ export const loginUser = createAsyncThunk<
 
     return rejectWithValue('[loginUser]: Error');
   } finally {
-    dispatch(setLoading(LoadingStatus.Idle));
+    dispatch(setLoading(LoadingStatusEnum.Idle));
   }
 });
 
-export const logout = createAsyncThunk<LogoutResponseType, void, AsyncThunkConfig>(
+export const logout = createAsyncThunk<LogoutResponseType, void, IAsyncThunkConfig>(
   'login/logout',
   async (_, { rejectWithValue, dispatch }) => {
-    dispatch(setLoading(LoadingStatus.Loading));
+    dispatch(setLoading(LoadingStatusEnum.Loading));
 
     try {
       return await authService.logout();
@@ -136,7 +136,7 @@ export const logout = createAsyncThunk<LogoutResponseType, void, AsyncThunkConfi
 
       return rejectWithValue('[logout]: Error');
     } finally {
-      dispatch(setLoading(LoadingStatus.Idle));
+      dispatch(setLoading(LoadingStatusEnum.Idle));
     }
   },
 );
@@ -144,9 +144,9 @@ export const logout = createAsyncThunk<LogoutResponseType, void, AsyncThunkConfi
 export const getCurrentUserInfo = createAsyncThunk<
   CurrentUserInfoResponseType,
   void,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >('login/getCurrentUserInfo', async (_, { rejectWithValue, dispatch }) => {
-  dispatch(setLoading(LoadingStatus.Loading));
+  dispatch(setLoading(LoadingStatusEnum.Loading));
 
   try {
     const response = await authService.loginCurrentUser();
@@ -155,14 +155,14 @@ export const getCurrentUserInfo = createAsyncThunk<
   } catch (error) {
     return rejectWithValue('[getCurrentUserInfo]: Error');
   } finally {
-    dispatch(setLoading(LoadingStatus.Idle));
+    dispatch(setLoading(LoadingStatusEnum.Idle));
   }
 });
 
 export const updateAccountPersonalInfo = createAsyncThunk<
   IAccountPersonalInfoResponse,
   IAccountPersonalInfoRequest,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >(
   'formRegistration/updateAccountPersonalInfo',
   async (personalInfo, { dispatch, rejectWithValue }) => {
@@ -180,7 +180,7 @@ export const updateAccountPersonalInfo = createAsyncThunk<
   },
 );
 
-export const forgotPassword = createAsyncThunk<string, string, AsyncThunkConfig>(
+export const forgotPassword = createAsyncThunk<string, string, IAsyncThunkConfig>(
   'password/forgotPassword',
   async (email, { dispatch, rejectWithValue }) => {
     dispatch(setLoading(LoadingStatus.Loading));
@@ -205,7 +205,7 @@ export const forgotPassword = createAsyncThunk<string, string, AsyncThunkConfig>
   },
 );
 
-export const checkToken = createAsyncThunk<string, string, AsyncThunkConfig>(
+export const checkToken = createAsyncThunk<string, string, IAsyncThunkConfig>(
   'password/checkToken',
   async (token, { rejectWithValue }) => {
     try {
@@ -221,7 +221,7 @@ export const checkToken = createAsyncThunk<string, string, AsyncThunkConfig>(
 export const resetPassword = createAsyncThunk<
   string,
   ResetPasswordPayloadType,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >('password/resetPassword', async (param, { dispatch, rejectWithValue }) => {
   dispatch(setLoading(LoadingStatus.Loading));
 
@@ -248,7 +248,7 @@ export const resetPassword = createAsyncThunk<
 export const changePassword = createAsyncThunk<
   string,
   ChangePasswordPayloadType,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >('password/changePassword', async (param, { dispatch, rejectWithValue }) => {
   dispatch(setLoading(LoadingStatus.Loading));
   try {

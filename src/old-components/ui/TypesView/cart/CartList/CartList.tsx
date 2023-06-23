@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import ShopItem from '../ShopItem/ShopItem';
 
-import style from './CartList.module.css';
+import style from './CartList.module.scss';
 
 interface CartListProps {
   cartItems?: any[];

@@ -1,3 +1,5 @@
+import { IResponseCategory } from './common.service';
+
 export interface IBaseResponseType<R> {
   ok: true;
   result: R;
@@ -35,3 +37,8 @@ export interface IAccountPersonalInfoRequest {
   phone_country_code: string;
   phone_number: string;
 }
+
+export type GetAllCategories = Pick<
+  IBaseResponseType<IResponseCategory[]>,
+  'ok' | 'result'
+>;

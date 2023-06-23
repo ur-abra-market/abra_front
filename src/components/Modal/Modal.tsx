@@ -3,7 +3,7 @@ import React, { FC, PropsWithChildren, useEffect } from 'react';
 import cn from 'classnames';
 import { createPortal } from 'react-dom';
 
-import style from './Modal.module.css';
+import style from './Modal.module.scss';
 
 interface IModal {
   showModal: boolean;

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import style from './ContentBox.module.css';
+import style from './ContentBox.module.scss';
 
 interface IContentBox {
   question: string;

@@ -7,7 +7,7 @@ import * as yup from 'yup';
 
 import { emailValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { LoadingStatus } from '../../../../../common/types';
+import { LoadingStatusEnum } from '../../../../../common/types';
 import { loadingSelector } from '../../../../../store/reducers/appSlice';
 import { loginUser, isAuthorizedSelector } from '../../../../../store/reducers/authSlice';
 import { Button, Input } from '../../../../../ui-kit';
@@ -69,7 +69,7 @@ export const LoginForm = (): JSX.Element => {
         className={style.button_submit}
         label="Log in"
         type="submit"
-        disabled={!isValid || loading === LoadingStatus.Loading}
+        disabled={!isValid || loading === LoadingStatusEnum.Loading}
       />
     </form>
   );

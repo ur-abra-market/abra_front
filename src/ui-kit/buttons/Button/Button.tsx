@@ -2,7 +2,7 @@ import { FC, ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 
 import cn from 'classnames';
 
-import styles from './Button.module.css';
+import styles from './Button.module.scss';
 
 export interface ButtonProps
   extends Omit<

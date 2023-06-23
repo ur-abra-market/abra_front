@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import style from './FilterGrowth.module.css';
+import style from './FilterGrowth.module.scss';
 
 const FilterGrowth = (): JSX.Element => {
   const growthList = [

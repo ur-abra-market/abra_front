@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import style from './SupplierCard.module.css';
+import style from './SupplierCard.module.scss';
 
 import { ArrowRightIcon } from 'assets/icons'; // 24px
 

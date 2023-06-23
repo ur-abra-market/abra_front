@@ -2,7 +2,7 @@ import { forwardRef, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import styles from './Search.module.css';
+import styles from './Search.module.scss';
 
 export interface ISearch
   extends Omit<

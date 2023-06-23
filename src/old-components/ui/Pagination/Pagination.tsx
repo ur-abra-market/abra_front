@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { active } from '../../../store/reducers/paginateSlice';
 
-import styles from './Pagination.module.css';
+import styles from './Pagination.module.scss';
 
 import { ArrowLeftIcon, ArrowRightIcon } from 'assets/icons'; // 24px
 
