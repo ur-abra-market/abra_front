@@ -39,12 +39,12 @@ export const SupplierPersonalInfoForm = (): JSX.Element => {
   }, []);
 
   const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
-    const { numberBody } = parsePhoneNumber(data.phoneNumber);
+    const { numberBody } = parsePhoneNumber(data.phone_number);
 
     const personalInfoData: IPersonalInfoRequestData = {
-      first_name: data.firstName,
-      last_name: data.lastName,
-      country_id: data.countryId,
+      first_name: data.first_name,
+      last_name: data.last_name,
+      country_id: data.country_id,
       phone_number: numberBody,
     };
 
@@ -83,7 +83,7 @@ export const SupplierPersonalInfoForm = (): JSX.Element => {
         >
           <ModalChildPhoneCheck
             setShowModal={setShowModal}
-            phone={watch('phoneNumber')}
+            phone={watch('phone_number')}
           />
         </Modal>
       </div>

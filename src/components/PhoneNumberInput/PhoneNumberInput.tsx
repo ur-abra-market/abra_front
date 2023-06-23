@@ -33,7 +33,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
     formState: { errors },
   } = useFormContext<IPersonalInfoFormData>();
 
-  const phoneNumberError = errors.phoneNumber?.message;
+  const phoneNumberError = errors.phone_number?.message;
 
   const handlePhoneInputOnChange = (
     value: string,
@@ -44,23 +44,23 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
     const countryId = countries.find(el => el.country_short === data.countryCode)?.id;
 
     if (countryId) {
-      setValue('countryId', countryId);
+      setValue('country_id', countryId);
     }
 
-    setValue('phoneNumber', formattedValue);
+    setValue('phone_number', formattedValue);
     const isPhoneNumberValid = isValidNumber(
       formattedValue,
       data.countryCode.toUpperCase() as CountryCode,
     );
 
     if (!isPhoneNumberValid) {
-      setError('phoneNumber', {
+      setError('phone_number', {
         type: 'manual',
         message: 'Please enter a valid phone number',
       });
     } else {
-      clearErrors('phoneNumber');
-      setValue('phoneNumber', formattedValue, { shouldValidate: true });
+      clearErrors('phone_number');
+      setValue('phone_number', formattedValue, { shouldValidate: true });
     }
   };
 
@@ -83,7 +83,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
             inputClass={phoneInputClasses}
             buttonClass={phoneButtonClasses}
             country={countryShort || 'ru'}
-            value={watch('phoneNumber')}
+            value={watch('phone_number')}
             onChange={handlePhoneInputOnChange}
             onlyCountries={countries.map(el => el.country_short)}
             countryCodeEditable={false}
