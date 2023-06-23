@@ -23,11 +23,11 @@ import { getSellerAvatar } from 'store/reducers/seller/profile/thunks';
 
 export const SellerPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { lastName, firstName, countryShort, phoneNumber } = useAppSelector(
+  const { firstName, lastName, phoneNumber, countryShort, avatar } = useAppSelector(
     state => state.sellerProfile.personalInfo,
   );
 
-  const avatar = useAppSelector(state => state.sellerProfile.personalInfo.avatar);
+  // const avatar = useAppSelector(state => state.sellerProfile.personalInfo.avatar);
 
   const countries = useAppSelector(countriesSelector);
 
@@ -40,23 +40,23 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
 
   useEffect(() => {
     if (lastName && firstName && numberCountry) {
-      setValue('firstName', firstName);
-      setValue('lastName', lastName);
-      setValue('phoneNumber', `${numberCountry.country_code}${phoneNumber}`);
-      setValue('countryId', numberCountry.id);
+      setValue('first_name', firstName);
+      setValue('last_name', lastName);
+      setValue('phone_number', `${numberCountry.country_code}${phoneNumber}`);
+      setValue('country_id', numberCountry.id);
     }
   }, [lastName, firstName, phoneNumber]);
 
   const formMethods = useForm<IPersonalInfoFormData>({
     resolver: yupResolver(personalInfoFormValidationSchema),
-    mode: 'all',
+    mode: 'onChange',
   });
   const { watch, handleSubmit, formState, setValue } = formMethods;
 
   const [phoneNumberValue, lastNameValue, firstNameValue] = watch([
-    'phoneNumber',
-    'lastName',
-    'firstName',
+    'phone_number',
+    'last_name',
+    'first_name',
   ]);
 
   const { numberFull: currentPhoneNumber } = parsePhoneNumber(phoneNumberValue || '');
@@ -71,16 +71,16 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
     let phoneNumberBody;
 
     if (currentPhoneNumber !== serverPhoneNumber) {
-      const { numberBody } = parsePhoneNumber(data.phoneNumber);
+      const { numberBody } = parsePhoneNumber(data.phone_number);
 
       phoneNumberBody = numberBody;
     }
 
     const updatePersonalInfoData = {
-      first_name: data.firstName,
-      last_name: data.lastName,
+      first_name: data.first_name,
+      last_name: data.last_name,
       phone_number: phoneNumberBody || phoneNumber,
-      country_id: data.countryId,
+      country_id: data.country_id,
     };
 
     dispatch(updatePersonalInfo(updatePersonalInfoData));
