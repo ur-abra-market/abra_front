@@ -53,21 +53,22 @@ export const CategoriesMenu = forwardRef(
               All categories
             </NavLink>
           </li>
-          {wearerCategory.map(c => {
-            return (
-              <FilterButton
-                key={c.id}
-                value={c.name}
-                activeValue={activeCategories}
-                callback={setActiveCategories}
-              >
-                {c.name}
-              </FilterButton>
-            );
-          })}
+          {wearerCategory &&
+            wearerCategory.map(c => {
+              return (
+                <FilterButton
+                  key={c.id}
+                  value={c.name}
+                  activeValue={activeCategories}
+                  callback={setActiveCategories}
+                >
+                  {c.name}
+                </FilterButton>
+              );
+            })}
         </ul>
         {wearerCategory
-          .filter(c => c.name === activeCategories)
+          ?.filter(c => c.name === activeCategories)
           .map(c => {
             return <Items key={c.id} items={filterCategories(c.children)} />;
           })}
