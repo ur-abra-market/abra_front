@@ -27,7 +27,7 @@ export const getCompanyInfo = createAsyncThunk<any, void>( // todo fix any
     }
   },
 );
-export const fetchCompanyImage = createAsyncThunk<string, void, AsyncThunkConfig>(
+export const fetchCompanyLogo = createAsyncThunk<string, void, AsyncThunkConfig>(
   'supplierProfile/fetchCompanyImage',
   async (_, { dispatch, rejectWithValue }) => {
     try {
@@ -43,7 +43,7 @@ export const fetchCompanyImage = createAsyncThunk<string, void, AsyncThunkConfig
     }
   },
 );
-export const uploadCompanyImage = createAsyncThunk<
+export const uploadCompanyLogo = createAsyncThunk<
   SuppliersResponse<{
     id: number;
     url: string;
@@ -53,14 +53,12 @@ export const uploadCompanyImage = createAsyncThunk<
   AsyncThunkConfig
 >('supplierProfile/uploadCompanyImage', async (img, { dispatch, rejectWithValue }) => {
   try {
-    const data = await supplierService.uploadCompanyImage(img);
+    const data = await supplierService.uploadCompanyLogo(img);
 
     return { ...data, result: { ...data.result, image: URL.createObjectURL(img) } };
   } catch (error: unknown) {
     const err = error as AxiosError<ISupplierErrorResponse>;
 
-    console.log(err.message);
-    console.log(err.response?.data.error[0].msg);
     if (err.response) {
       dispatch(setResponseError(err.response?.data.error[0].msg));
     }
@@ -69,13 +67,13 @@ export const uploadCompanyImage = createAsyncThunk<
   }
 });
 
-export const deleteCompanyImage = createAsyncThunk<
+export const deleteCompanyLogo = createAsyncThunk<
   SuppliersResponse<boolean>,
   number,
   AsyncThunkConfig
 >('supplierProfile/deleteCompanyImage', async (id, { dispatch, rejectWithValue }) => {
   try {
-    const data = await supplierService.deleteCompanyImage(id);
+    const data = await supplierService.deleteCompanyLogo(id);
 
     return data;
   } catch (error) {

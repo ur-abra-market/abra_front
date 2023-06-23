@@ -5,9 +5,9 @@ import { ISupplierNotifications } from '../../../../services/supplier/supplier.s
 import { getPersonalInfo } from '../../userSlice';
 
 import {
-  deleteCompanyImage,
-  fetchCompanyImage,
-  uploadCompanyImage,
+  deleteCompanyLogo,
+  fetchCompanyLogo,
+  uploadCompanyLogo,
   getSupplierNotifications,
   updateSupplierNotifications,
 } from './thunks';
@@ -79,14 +79,14 @@ export const supplierProfileSlice = createSlice({
       .addCase(updateSupplierNotifications.rejected, (state, action) => {
         state.loading = LoadingStatus.Failed;
       })
-      .addCase(fetchCompanyImage.fulfilled, (state, action) => {
+      .addCase(fetchCompanyLogo.fulfilled, (state, action) => {
         state.businessInfo.companyLogo = action.payload;
       })
-      .addCase(uploadCompanyImage.fulfilled, (state, action) => {
+      .addCase(uploadCompanyLogo.fulfilled, (state, action) => {
         state.businessInfo.companyLogo = action.payload.result.image;
         state.businessInfo.companyLogoId = action.payload.result.id;
       })
-      .addCase(deleteCompanyImage.fulfilled, state => {
+      .addCase(deleteCompanyLogo.fulfilled, state => {
         state.businessInfo.companyLogo = '';
       });
   },

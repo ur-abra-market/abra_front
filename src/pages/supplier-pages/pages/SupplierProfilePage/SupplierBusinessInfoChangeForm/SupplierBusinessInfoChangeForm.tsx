@@ -19,8 +19,8 @@ import {
   supplierCompanyImageSelector,
 } from 'store/reducers/supplier/profile/selectors';
 import {
-  deleteCompanyImage,
-  uploadCompanyImage,
+  deleteCompanyLogo,
+  uploadCompanyLogo,
 } from 'store/reducers/supplier/profile/thunks';
 
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
@@ -32,10 +32,10 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
     mode: 'onChange',
   });
   const handleUploadImage = (img: File): void => {
-    dispatch(uploadCompanyImage(img));
+    dispatch(uploadCompanyLogo(img));
   };
   const handleDeleteImage = (): void => {
-    dispatch(deleteCompanyImage(companyLogoId));
+    dispatch(deleteCompanyLogo(companyLogoId));
   };
 
   return (

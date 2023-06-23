@@ -26,7 +26,7 @@ export const supplierService = {
 
   fetchCompanyLogo: async () => {
     const { data } = await baseConfigService.get<IServerResponse<string>>(
-      `/suppliers/companyLogo`,
+      `/suppliers/companyLogo/`,
     );
 
     return data.result;
@@ -100,7 +100,7 @@ export const supplierService = {
 
     return data;
   },
-  uploadCompanyImage: async (img: File) => {
+  uploadCompanyLogo: async (img: File) => {
     const formData = new FormData();
 
     formData.append('file', img);
@@ -114,7 +114,7 @@ export const supplierService = {
 
     return data;
   },
-  deleteCompanyImage: async (company_image_id: number) => {
+  deleteCompanyLogo: async (company_image_id: number) => {
     const { data } = await baseConfigService.delete<SuppliersResponse<boolean>>(
       `suppliers/deleteCompanyImage/`,
       { params: { company_image_id } },

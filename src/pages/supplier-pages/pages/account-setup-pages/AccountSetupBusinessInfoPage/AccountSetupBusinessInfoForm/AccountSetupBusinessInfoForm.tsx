@@ -17,12 +17,12 @@ import {
 
 import style from './AccountSetupBusinessInfoForm.module.scss';
 
-import { uploadCompanyImage } from 'store/reducers/supplier/profile';
+import { uploadCompanyLogo } from 'store/reducers/supplier/profile';
 import {
   supplierCompanyImageIdSelector,
   supplierCompanyImageSelector,
 } from 'store/reducers/supplier/profile/selectors';
-import { deleteCompanyImage } from 'store/reducers/supplier/profile/thunks';
+import { deleteCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -63,10 +63,10 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
     dispatch(createAccountBusinessInfo(businessInfoData)); // сделать переход после того как форма удачно отправится
   };
   const handleUploadImage = (img: File): void => {
-    dispatch(uploadCompanyImage(img));
+    dispatch(uploadCompanyLogo(img));
   };
   const handleDeleteImage = (): void => {
-    dispatch(deleteCompanyImage(companyLogoId));
+    dispatch(deleteCompanyLogo(companyLogoId));
   };
 
   return (
