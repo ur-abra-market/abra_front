@@ -87,7 +87,7 @@ interface ISupplierLicense {
   license_number: string;
 }
 
-interface IUpdateCompanyInfo
+export interface IUpdateCompanyInfo
   extends Omit<ICompanyInfo, 'id' | 'country' | 'phone' | 'images'> {
   country_id: number;
 }

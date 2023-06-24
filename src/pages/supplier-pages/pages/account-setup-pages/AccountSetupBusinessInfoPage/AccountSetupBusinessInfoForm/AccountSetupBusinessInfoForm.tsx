@@ -5,6 +5,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import { useAppDispatch } from '../../../../../../common/hooks';
 import { UploadImage } from '../../../../../../components';
+import { IBusinessInfoRequestData } from '../../../../../../services/auth/auth.serviceTypes';
 import { Action } from '../../../../../../services/user/user.service';
 import { createAccountBusinessInfo } from '../../../../../../store/reducers/authSlice/thunks';
 import { getCountries } from '../../../../../../store/reducers/commonSlice';
@@ -29,23 +30,25 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   }, []);
 
   const onSubmit = (data: ISupplierBusinessInfo): void => {
-    const businessInfoData = {
+    const businessInfoData: IBusinessInfoRequestData = {
       supplier_data_request: {
         license_number: data.license,
       },
       company_data_request: {
-        phone_country_code: '+7',
-        phone_number: '9657566767',
-        name: data.storeName,
-        is_manufacturer: data.isManufacturer,
-        year_established: data.yearEstablished,
-        number_employees: data.numEmployees,
-        description: data.description,
-        address: data.address,
-        logo_url: '',
-        business_sector: data.businessSector,
         business_email: data.email,
-        country_id: data.countryRegistration,
+        business_sector: data.businessSector.value,
+        country_id: data.countryRegistration!,
+        is_manufacturer: false,
+        address: data.address,
+        number_employees: +data.numEmployees!,
+        year_established: +data.yearEstablished!,
+        name: data.storeName,
+        description: data.description,
+        logo_url: 'asd',
+      },
+      company_phone_data_request: {
+        phone_number: '338808800',
+        country_id: data.id!,
       },
     };
 
