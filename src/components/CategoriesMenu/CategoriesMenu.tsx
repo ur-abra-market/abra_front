@@ -38,7 +38,7 @@ export const CategoriesMenu = forwardRef(
     };
 
     useEffect(() => {
-      // prevent unnecessary requests for following rerenderings
+      // prevent unnecessary requests for following re-renderings
       if (!categories) {
         dispatch(getAllCategories());
       }

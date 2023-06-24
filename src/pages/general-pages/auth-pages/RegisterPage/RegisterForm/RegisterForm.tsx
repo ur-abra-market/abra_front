@@ -72,7 +72,9 @@ export const RegisterForm = (): JSX.Element => {
           onClick={() => handleButtonUserRoleOnClick('supplier')}
         />
       </div>
+
       <Input {...register('email')} placeholder="Email" error={errors.email?.message} />
+
       <Input
         {...register('password')}
         classNameWrapper={style.input_wrapper}
@@ -82,6 +84,7 @@ export const RegisterForm = (): JSX.Element => {
         error={errors.password?.message}
       />
       <PasswordComplexity password={watch('password')} />
+
       <Button
         className={style.button_submit}
         label="Create Account"
