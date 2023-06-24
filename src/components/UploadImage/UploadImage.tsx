@@ -3,7 +3,7 @@ import React, {
   DetailedHTMLProps,
   FC,
   HTMLAttributes,
-  useLayoutEffect,
+  useEffect,
 } from 'react';
 
 import cn from 'classnames';
@@ -73,7 +73,7 @@ export const UploadImage: FC<IUploadImage> = ({
     }
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (type === 'logo') dispatch(fetchCompanyLogo());
   }, [dispatch, type]);
 
