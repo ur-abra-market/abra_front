@@ -11,7 +11,7 @@ import style from './ChangeEmailForm.module.scss';
 
 import { emailValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { LoadingStatus } from 'common/types';
+import { LoadingStatusEnum } from 'common/types';
 import { ChangeEmailPayloadType } from 'services/auth/auth.serviceTypes';
 import { loadingSelector } from 'store/reducers/appSlice';
 
@@ -71,7 +71,7 @@ export const ChangeEmailForm: FC<IChangeEmailForm> = ({ setOpenModal }) => {
       <Button
         label="Continue"
         type="submit"
-        disabled={!isValid || loading === LoadingStatus.Loading}
+        disabled={!isValid || loading === LoadingStatusEnum.Loading}
         className={style.button_submit}
       />
     </form>

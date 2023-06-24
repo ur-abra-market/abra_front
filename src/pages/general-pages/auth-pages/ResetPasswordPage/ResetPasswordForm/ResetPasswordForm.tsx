@@ -7,9 +7,9 @@ import * as yup from 'yup';
 import { passwordValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch } from '../../../../../common/hooks';
 import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
-import { LoadingStatus } from '../../../../../common/types/enums';
+import { LoadingStatusEnum } from '../../../../../common/types';
 import { loadingSelector } from '../../../../../store/reducers/appSlice';
-import { isAuthorizedSelector } from '../../../../../store/reducers/authSlice';
+import { isAuthSelector } from '../../../../../store/reducers/authSlice';
 import { PasswordComplexity } from '../../assets';
 
 import style from './ResetPasswordForm.module.scss';
@@ -45,7 +45,7 @@ export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const loading = useAppSelector(loadingSelector);
-  const isAuthorized = useAppSelector(isAuthorizedSelector);
+  const isAuthorized = useAppSelector(isAuthSelector);
 
   const {
     register,
@@ -98,7 +98,7 @@ export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
         label="Save"
         className={style.button_save}
         type="submit"
-        disabled={!isValid || loading === LoadingStatus.Loading}
+        disabled={!isValid || loading === LoadingStatusEnum.Loading}
       />
     </form>
   );

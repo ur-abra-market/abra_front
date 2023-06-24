@@ -9,7 +9,7 @@ import { emailValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { LoadingStatusEnum } from '../../../../../common/types';
 import { loadingSelector } from '../../../../../store/reducers/appSlice';
-import { loginUser, isAuthorizedSelector } from '../../../../../store/reducers/authSlice';
+import { loginUser, isAuthSelector } from '../../../../../store/reducers/authSlice';
 import { Button, Input } from '../../../../../ui-kit';
 
 import style from './LoginForm.module.scss';
@@ -31,7 +31,7 @@ export interface IFormValues {
 
 export const LoginForm = (): JSX.Element => {
   const loading = useAppSelector(loadingSelector);
-  const isAuthorized = useAppSelector(isAuthorizedSelector);
+  const isAuthorized = useAppSelector(isAuthSelector);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 

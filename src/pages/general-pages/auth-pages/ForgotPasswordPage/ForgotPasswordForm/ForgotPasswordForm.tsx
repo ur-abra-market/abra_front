@@ -11,7 +11,7 @@ import { Button, Input } from '../../../../../ui-kit';
 import style from './ForgotPasswordForm.module.scss';
 
 import { emailValidationSchema } from 'common/constants';
-import { LoadingStatus } from 'common/types';
+import { LoadingStatusEnum } from 'common/types';
 import { loadingSelector } from 'store/reducers/appSlice';
 
 export interface IForgotChangePasswordFormData {
@@ -59,7 +59,7 @@ export const ForgotPasswordForm: FC<IForgotPasswordForm> = ({ togglePageType }) 
         label="Reset password"
         className={style.button_submit}
         type="submit"
-        disabled={!isValid || loading === LoadingStatus.Loading}
+        disabled={!isValid || loading === LoadingStatusEnum.Loading}
       />
     </form>
   );

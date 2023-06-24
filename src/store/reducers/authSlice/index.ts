@@ -1,4 +1,4 @@
-export { userRoleSelector, isAuthorizedSelector } from './selectors';
+export { userRoleSelector, isAuthSelector } from './selectors';
 export {
   registerUser,
   loginUser,

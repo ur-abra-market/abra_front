@@ -2,15 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getUserRole } from '../appSlice';
 
-import {
-  getCurrentUserInfo,
-  loginUser,
-  logout,
-  forgotPassword,
-  checkToken,
-  resetPassword,
-  changePassword,
-} from './thunks';
+import { getCurrentUserInfo, loginUser, logout } from './thunks';
 
 import { UserRoleType } from 'common/types';
 

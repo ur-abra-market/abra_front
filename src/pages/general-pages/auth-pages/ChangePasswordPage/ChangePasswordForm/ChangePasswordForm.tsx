@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import { passwordValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { LoadingStatus } from '../../../../../common/types';
+import { LoadingStatusEnum } from '../../../../../common/types';
 import { ChangePasswordPayloadType } from '../../../../../services/auth/auth.serviceTypes';
 import { loadingSelector } from '../../../../../store/reducers/appSlice';
 import { changePassword } from '../../../../../store/reducers/authSlice';
@@ -84,7 +84,7 @@ export const ChangePasswordForm: FC<IChangePasswordForm> = ({ setOpenModal }) =>
         label="Continue"
         type="submit"
         className={style.button_submit}
-        disabled={!isValid || loading === LoadingStatus.Loading}
+        disabled={!isValid || loading === LoadingStatusEnum.Loading}
       />
     </form>
   );

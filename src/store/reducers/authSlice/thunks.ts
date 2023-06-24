@@ -26,7 +26,7 @@ import { setLoading, setResponseNotice } from '../appSlice/slice';
 export const registerUser = createAsyncThunk<
   RegisterResponseType,
   IRegisterRequest,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >('auth/registerUser', async (dataUser, { rejectWithValue, dispatch }) => {
   dispatch(setLoading(LoadingStatusEnum.Loading));
 
@@ -183,7 +183,7 @@ export const updateAccountPersonalInfo = createAsyncThunk<
 export const forgotPassword = createAsyncThunk<string, string, IAsyncThunkConfig>(
   'password/forgotPassword',
   async (email, { dispatch, rejectWithValue }) => {
-    dispatch(setLoading(LoadingStatus.Loading));
+    dispatch(setLoading(LoadingStatusEnum.Loading));
     try {
       const response = await authService.forgotPassword(email);
 
@@ -200,7 +200,7 @@ export const forgotPassword = createAsyncThunk<string, string, IAsyncThunkConfig
 
       return rejectWithValue('[forgotPassword]: Error');
     } finally {
-      dispatch(setLoading(LoadingStatus.Idle));
+      dispatch(setLoading(LoadingStatusEnum.Idle));
     }
   },
 );
@@ -223,7 +223,7 @@ export const resetPassword = createAsyncThunk<
   ResetPasswordPayloadType,
   IAsyncThunkConfig
 >('password/resetPassword', async (param, { dispatch, rejectWithValue }) => {
-  dispatch(setLoading(LoadingStatus.Loading));
+  dispatch(setLoading(LoadingStatusEnum.Loading));
 
   try {
     const response = await authService.resetPassword(param);
@@ -241,7 +241,7 @@ export const resetPassword = createAsyncThunk<
 
     return rejectWithValue('[resetPassword]: Error');
   } finally {
-    dispatch(setLoading(LoadingStatus.Idle));
+    dispatch(setLoading(LoadingStatusEnum.Idle));
   }
 });
 
@@ -250,7 +250,7 @@ export const changePassword = createAsyncThunk<
   ChangePasswordPayloadType,
   IAsyncThunkConfig
 >('password/changePassword', async (param, { dispatch, rejectWithValue }) => {
-  dispatch(setLoading(LoadingStatus.Loading));
+  dispatch(setLoading(LoadingStatusEnum.Loading));
   try {
     const response = await authService.changePassword(param);
 
@@ -267,16 +267,16 @@ export const changePassword = createAsyncThunk<
 
     return rejectWithValue('[changePassword]: Error');
   } finally {
-    dispatch(setLoading(LoadingStatus.Idle));
+    dispatch(setLoading(LoadingStatusEnum.Idle));
   }
 });
 
 export const changeEmail = createAsyncThunk<
   string,
   ChangeEmailPayloadType,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >('auth/changeEmail', async (params, { dispatch, rejectWithValue }) => {
-  dispatch(setLoading(LoadingStatus.Loading));
+  dispatch(setLoading(LoadingStatusEnum.Loading));
   try {
     const response = await authService.changeEmail(params);
 
@@ -293,6 +293,6 @@ export const changeEmail = createAsyncThunk<
 
     return rejectWithValue('[changeEmail]: Error');
   } finally {
-    dispatch(setLoading(LoadingStatus.Idle));
+    dispatch(setLoading(LoadingStatusEnum.Idle));
   }
 });
