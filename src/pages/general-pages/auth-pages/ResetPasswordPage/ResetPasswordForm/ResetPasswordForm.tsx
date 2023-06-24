@@ -20,12 +20,12 @@ import { Button, Input } from 'ui-kit';
 
 const TRIGGER_FIELD = 'confirm_password';
 
-interface ResetPasswordFormProps {
+interface IResetPasswordForm {
   setModalOpen: (value: boolean) => void;
   token: string;
 }
 
-export interface IResetPasswordForm {
+export interface IResetPasswordFormData {
   new_password: string;
   confirm_password: string;
 }
@@ -39,7 +39,7 @@ const schema = yup
   })
   .required();
 
-export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
+export const ResetPasswordForm: FC<IResetPasswordForm> = ({
   setModalOpen,
   token,
 }): JSX.Element => {
@@ -64,7 +64,7 @@ export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
     if (watch(TRIGGER_FIELD)) trigger(TRIGGER_FIELD);
   }, [watch('new_password')]);
 
-  const onSubmit = async (data: IResetPasswordForm): Promise<void> => {
+  const onSubmit = async (data: IResetPasswordFormData): Promise<void> => {
     const actionResult = await dispatch(resetPassword({ ...data, token }));
 
     if (resetPassword.fulfilled.match(actionResult)) {
