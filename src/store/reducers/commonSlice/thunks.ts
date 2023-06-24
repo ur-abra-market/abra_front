@@ -2,12 +2,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { IAsyncThunkConfig } from '../../../common/types';
-import {
-  commonService,
-  IResponseCategory,
-} from '../../../services/common/common.service';
+import { commonService } from '../../../services/common/common.service';
 
-import { CountriesType, NumberEmployeesType } from 'services/common/common.serviceTypes';
+import {
+  CountriesType,
+  IResponseCategory,
+  NumberEmployeesType,
+} from 'services/common/common.serviceTypes';
 
 export const getCountries = createAsyncThunk<CountriesType, void, any>(
   'common/getCountries',
@@ -40,20 +41,21 @@ export const getCompanyNumberEmployees = createAsyncThunk<
   }
 });
 
-export const getAllCategories = createAsyncThunk<IResponseCategory[], void>(
-  'category/categoryService',
-  async function (_, { rejectWithValue }) {
-    try {
-      const data = await commonService.fetchAllCategories();
+export const getAllCategories = createAsyncThunk<
+  IResponseCategory[],
+  void,
+  IAsyncThunkConfig
+>('category/categoryService', async (_, { rejectWithValue }) => {
+  try {
+    const data = await commonService.fetchAllCategories();
 
-      return data.result;
-    } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error || error.message
-          : '[getAllCategories]: Error';
+    return data.result;
+  } catch (error) {
+    const errorMessage =
+      error instanceof AxiosError
+        ? error.response?.data?.error || error.message
+        : '[getAllCategories]: Error';
 
-      return rejectWithValue(errorMessage);
-    }
-  },
-);
+    return rejectWithValue(errorMessage);
+  }
+});

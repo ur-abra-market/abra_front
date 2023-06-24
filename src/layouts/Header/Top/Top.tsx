@@ -66,9 +66,11 @@ export const Top = (): JSX.Element => {
         <ButtonIcon onClick={() => handleOnClick('note')}>
           <HeaderNotificationsIcon />
         </ButtonIcon>
+
         <ButtonIcon onClick={() => handleOnClick('favorite')}>
           <HeaderFavouritesIcon />
         </ButtonIcon>
+
         <ButtonIcon onClick={() => handleOnClick('cart')}>
           <HeaderCartIcon />
         </ButtonIcon>
