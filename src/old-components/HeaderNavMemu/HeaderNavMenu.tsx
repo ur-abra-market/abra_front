@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import style from './HeaderNavMenu.module.scss';
 import { HeaderNavMenuProps } from './HeaderNavMenu.props';
 
-const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {
+export const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {
   const { className, ...restProps } = props;
   const activeStyle = {
     color: ' var(--red)',
@@ -67,5 +67,3 @@ const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {
     </nav>
   );
 };
-
-export default HeaderNavMenu;

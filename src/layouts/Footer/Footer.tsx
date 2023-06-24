@@ -5,7 +5,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 import { useAppSelector } from '../../common/hooks';
 import { LocationAndCurrencySelection } from '../../components/LocationAndCurrencySelection/LocationAndCurrencySelection';
-import HeaderNavMenu from '../../old-components/HeaderNavMemu';
+import { HeaderNavMenu } from '../../old-components/HeaderNavMemu';
 import { Container } from '../../ui-kit';
 
 import style from './Footer.module.scss';

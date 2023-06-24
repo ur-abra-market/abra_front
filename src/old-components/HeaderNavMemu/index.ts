@@ -1,3 +1,1 @@
-import HeaderNavMenu from './HeaderNavMenu';
-
-export default HeaderNavMenu;
+export { HeaderNavMenu } from './HeaderNavMenu';

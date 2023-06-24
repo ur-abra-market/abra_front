@@ -1,18 +1,24 @@
 import { FC, ReactNode } from 'react';
 
 import { Footer } from '../Footer/Footer';
-import { Header } from '../Header/Header';
 
 import styles from './Layout.module.scss';
 
+import { SupplierHeader, Header } from '.';
+
 export interface LayoutProps {
   children: ReactNode;
+  headerVariant?: 'default' | 'supplier';
 }
 
-export const Layout: FC<LayoutProps> = ({ children }): JSX.Element => {
+export const Layout: FC<LayoutProps> = ({
+  children,
+  headerVariant = 'default',
+}): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <Header className={styles.header} />
+      {headerVariant === 'default' && <Header className={styles.header} />}
+      {headerVariant === 'supplier' && <SupplierHeader className={styles.header} />}
 
       <main className={styles.body} role="main">
         {children}

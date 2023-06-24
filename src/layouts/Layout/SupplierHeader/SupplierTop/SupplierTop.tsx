@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { useOnClickOutside } from '../../../common/hooks';
-import { HeaderMenu } from '../../../components'; // 5 10px for ArrowRightIcon
-import { MainLogo } from '../../../ui-kit';
+import { useOnClickOutside } from '../../../../common/hooks';
+import { HeaderMenu } from '../../../../components'; // 5 10px for ArrowRightIcon
+import { MainLogo } from '../../../../ui-kit';
 
 import style from './SupplierTop.module.scss';
 

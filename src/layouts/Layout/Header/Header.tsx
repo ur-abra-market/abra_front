@@ -2,16 +2,16 @@ import React, { FC, RefObject, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
-import { CategoriesMenu } from '../../components/CategoriesMenu/CategoriesMenu';
-import { LocationAndCurrencySelection } from '../../components/LocationAndCurrencySelection/LocationAndCurrencySelection';
-import HeaderNavMenu from '../../old-components/HeaderNavMemu';
-import { Container } from '../../ui-kit';
+import { CategoriesMenu } from '../../../components/CategoriesMenu/CategoriesMenu';
+import { LocationAndCurrencySelection } from '../../../components/LocationAndCurrencySelection/LocationAndCurrencySelection';
+import { Container } from '../../../ui-kit';
 
 import style from './Header.module.scss';
 
 import { Top } from '.';
 
 import { IHtmlHeaderProps } from 'common/types';
+import { HeaderNav } from 'components/HeaderNav/HeaderNav';
 
 export const Header: FC<IHtmlHeaderProps> = ({
   className,
@@ -52,13 +52,13 @@ export const Header: FC<IHtmlHeaderProps> = ({
           <button
             type="button"
             ref={buttonRef}
-            className={style.left}
+            className={style.button}
             onClick={() => setCategoriesIsOpen(!categoriesIsOpen)}
           >
             All categories
           </button>
-          <HeaderNavMenu className={style.center} />
-          <LocationAndCurrencySelection className={style.right} />
+          <HeaderNav type="seller" className={style.nav_container} />
+          <LocationAndCurrencySelection className={style.selected} />
         </div>
         {categoriesIsOpen && <CategoriesMenu ref={categoriesRef} />}
       </Container>

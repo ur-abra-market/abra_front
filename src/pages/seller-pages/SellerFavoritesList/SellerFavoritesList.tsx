@@ -6,9 +6,9 @@ import { ButtonInfo, Container, Search } from '../../../ui-kit';
 
 import style from './SellerFavoritesList.module.scss';
 
-import { Header, Footer } from 'layouts';
+import { WithLayout } from 'common/hocs/WithLayout';
 
-export const SellerFavoritesList = (): JSX.Element => {
+export const SellerFavoritesList = WithLayout((): JSX.Element => {
   const arr = [];
 
   // const product: IShortCardProduct = {
@@ -35,7 +35,6 @@ export const SellerFavoritesList = (): JSX.Element => {
 
   return (
     <div className={style.favorites_page}>
-      <Header />
       <Container>
         <div className={style.top}>
           <h3 className={style.title}>Favorites list</h3>
@@ -52,8 +51,8 @@ export const SellerFavoritesList = (): JSX.Element => {
           <ButtonInfo />
         </div>
       </Container>
-      <Feedback />
-      <Footer variant="default" />
+      {/* <Feedback /> */}
+      {/* TODO Feedback crashing app */}
     </div>
   );
-};
+});
