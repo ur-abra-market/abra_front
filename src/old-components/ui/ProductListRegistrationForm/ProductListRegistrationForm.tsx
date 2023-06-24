@@ -6,12 +6,11 @@ import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks';
-import { UploadImage } from '../../../components';
 import {
   addProductService,
-  getCompanyInfoService,
   uploadImageService,
 } from '../../../store/reducers/supplier/other';
+import { getBusinessInfo } from '../../../store/reducers/supplier/profile';
 import {
   Button,
   Input,
@@ -232,7 +231,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   }, [dispatch, images, isSubmit, navigate, productId]);
 
   useEffect(() => {
-    dispatch(getCompanyInfoService());
+    dispatch(getBusinessInfo());
   }, [dispatch]);
 
   const handleSetCategory = (

@@ -3,6 +3,12 @@ import { IAccountPersonalInfoRequest } from '../common/common.serviceTypes';
 
 import { IAccountPersonalInfoResponse, IResponse } from './user.serviceTypes';
 
+export enum Action {
+  UPLOAD_LOGO_IMAGE = 'suppliers/uploadCompanyImage/',
+  UPLOAD_ITEM_IMAGE = 'suppliers/uploadProductImage/',
+  UPLOAD_SELLER_AVATAR = 'sellers/avatar/update',
+}
+
 export const userService = {
   fetchAccountPersonalInfo: async () => {
     const { data } = await baseConfigService.get<IResponse<IAccountPersonalInfoResponse>>(

@@ -9,6 +9,7 @@ import {
   getCountries,
   numberEmployeesSelector,
 } from '../../../../../store/reducers/commonSlice';
+import { ISupplierBusinessInfo } from '../../../../../store/reducers/supplier/profile/slice';
 import {
   Button,
   Checkbox,
@@ -19,7 +20,6 @@ import {
 } from '../../../../../ui-kit';
 
 import style from './SupplierBusinessInfoForm.module.scss';
-import { ISupplierBusinessInfoFormValues } from './supplierBusinessInfoFormInterfaces';
 
 const BUSINESS_SECTOR_DATA: ISelectOption[] = [
   { label: 'Clothes', value: 'Clothes' },
@@ -29,7 +29,7 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
 
 interface IBusinessProfileForm {
   updateForm?: boolean;
-  onSubmit: (data: any) => void; // todo fix any
+  onSubmit: (data: ISupplierBusinessInfo) => void;
 }
 
 export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
@@ -44,7 +44,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
     handleSubmit,
     control,
     formState: { errors, isValid },
-  } = useFormContext<ISupplierBusinessInfoFormValues>();
+  } = useFormContext<ISupplierBusinessInfo>();
 
   useEffect(() => {
     dispatch(getCompanyNumberEmployees());

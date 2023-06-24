@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import Footer from '../Footer/Footer';
+import { Footer } from '../Footer';
 import Header from '../SupplierHeader/SupplierHeader';
 
 import styles from './SupplierLayout.module.css';
@@ -13,7 +13,7 @@ export const SupplierLayout: FC<LayoutProps> = ({ children }): JSX.Element => {
       <main className={styles.body} role="main">
         {children}
       </main>
-      <Footer className={styles.footer} />
+      <Footer variant="default" className={styles.footer} />
     </div>
   );
 };

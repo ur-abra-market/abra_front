@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, useEffect, useRef, useState } from 'react';
+import React, { forwardRef, ReactNode, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -105,8 +105,7 @@ export const Select = forwardRef(
     const handleCloseSelectMenu = (): void => {
       setIsOpenItemsMenu(false);
     };
-
-    const mainDivRef = useRef<HTMLDivElement>(null);
+    const mainDivRef = useOnClickOutside(handleCloseSelectMenu);
 
     useOnHoverOutside(mainDivRef, () => {
       window.onscroll = () => {
@@ -115,8 +114,6 @@ export const Select = forwardRef(
         return true;
       };
     });
-
-    useOnClickOutside(mainDivRef, handleCloseSelectMenu);
 
     // if the menu is open and the user tries to scroll behind the menu, then we add the ability to scroll and hide the menu
     const mappedSelectItems = options.map(el => (

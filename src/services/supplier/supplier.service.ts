@@ -4,6 +4,7 @@ import baseConfigService from '../baseConfig.service';
 import {
   ISuppliersCompanyInfoData,
   ISupplierNotifications,
+  ISuppliersUpdateCompanyInfo,
   SuppliersResponse,
 } from './supplier.serviceTypes';
 
@@ -32,16 +33,19 @@ export const supplierService = {
     return data.result;
   },
 
-  fetchCompanyInfo: async () => {
+  fetchBusinessInfo: async () => {
     const { data } = await baseConfigService.get<
       IServerResponse<ISuppliersCompanyInfoData>
-    >(`/suppliers/companyInfo`);
+    >(`/suppliers/businessInfo/`);
 
     return data.result;
   },
 
-  updateCompanyInfo: async () => {
-    const { data } = await baseConfigService.patch(`/suppliers/companyInfo/update/`); // todo add type
+  updateBusinessInfo: async (companyInfo: Partial<ISuppliersUpdateCompanyInfo>) => {
+    const { data } = await baseConfigService.patch<IServerResponse<boolean>>(
+      `/suppliers/businessInfo/update/`,
+      companyInfo,
+    );
 
     return data.result;
   },
@@ -70,12 +74,6 @@ export const supplierService = {
     return data;
   },
 
-  getSupplierCompanyInfo: async () => {
-    const { data } = await baseConfigService.get(`suppliers/companyInfo/`);
-
-    return data;
-  },
-
   addProduct: async (product: any) => {
     const { data } = await baseConfigService.post(`suppliers/addProduct/`, product);
 
@@ -100,17 +98,17 @@ export const supplierService = {
 
     return data;
   },
-  uploadCompanyLogo: async (img: File) => {
+  uploadCompanyLogo: async (image: File) => {
     const formData = new FormData();
 
-    formData.append('file', img);
+    formData.append('file', image);
 
     const { data } = await baseConfigService.post<
       SuppliersResponse<{
         id: number;
         url: string;
       }>
-    >('suppliers/uploadCompanyImage/', formData);
+    >('suppliers/companyLogo/update/', formData);
 
     return data;
   },

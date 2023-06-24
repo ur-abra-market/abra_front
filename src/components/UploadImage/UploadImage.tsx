@@ -20,10 +20,13 @@ interface IUploadImage
   image?: string;
   label?: string;
   placeholder?: string;
-  type: 'default' | 'logo';
-  uploadImage: (img: File) => void;
-  deleteImage: () => void;
+  type: 'default' | 'logo' | 'avatar';
+  uploadImage?: (img: File) => void;
+  deleteImage?: () => void;
+  description: string;
 }
+
+const MAX_FILE_SIZE = 5000000;
 
 export const UploadImage: FC<IUploadImage> = ({
   className,
@@ -33,6 +36,7 @@ export const UploadImage: FC<IUploadImage> = ({
   placeholder,
   deleteImage,
   uploadImage,
+  description,
   ...restProps
 }) => {
   const dispatch = useAppDispatch();
@@ -55,16 +59,14 @@ export const UploadImage: FC<IUploadImage> = ({
     if (e.target?.files?.length) {
       const file = e.target.files[0];
 
-      if (type === 'logo' && file.size >= 5000000) {
+      if (type === 'logo' && file.size >= MAX_FILE_SIZE) {
         dispatch(
           setResponseNotice({
             noticeType: 'error',
             message: 'Sorry, max logo size 5 mb',
           }),
         );
-      } else {
-        uploadImage(file);
-      }
+      } else if (uploadImage) uploadImage(file);
 
       // eslint-disable-next-line no-param-reassign
       e.target.value = '';
@@ -73,7 +75,7 @@ export const UploadImage: FC<IUploadImage> = ({
 
   useLayoutEffect(() => {
     if (type === 'logo') dispatch(fetchCompanyLogo());
-  }, []);
+  }, [dispatch, type]);
 
   return (
     <div className={cn(style.wrapper, className)} {...restProps}>
@@ -86,9 +88,9 @@ export const UploadImage: FC<IUploadImage> = ({
       <div className={style.img_wrapper}>
         {image ? (
           <div>
-            <img className={imgClasses} src={image} alt="" />
+            <img className={imgClasses} src={image} alt={description} />
 
-            {type !== 'logo' && (
+            {type === 'default' && (
               <button className={crossClasses} onClick={deleteImage} type="button">
                 <CrossRedIcon />
               </button>

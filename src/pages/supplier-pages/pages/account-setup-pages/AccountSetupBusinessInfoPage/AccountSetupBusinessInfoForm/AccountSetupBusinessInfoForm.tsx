@@ -8,9 +8,9 @@ import { useAppDispatch } from '../../../../../../common/hooks';
 import { UploadImage } from '../../../../../../components';
 import { createAccountBusinessInfo } from '../../../../../../store/reducers/authSlice/thunks';
 import { getCountries } from '../../../../../../store/reducers/commonSlice';
+import { ISupplierBusinessInfo } from '../../../../../../store/reducers/supplier/profile/slice';
 import { SupplierRegisterFormStep } from '../../../../../../ui-kit';
 import {
-  ISupplierBusinessInfoFormValues,
   SupplierBusinessInfoForm,
   supplierBusinessInfoFormValidationSchema,
 } from '../../../../supplier-pages-common';
@@ -19,16 +19,16 @@ import style from './AccountSetupBusinessInfoForm.module.scss';
 
 import { uploadCompanyLogo } from 'store/reducers/supplier/profile';
 import {
-  supplierCompanyImageIdSelector,
-  supplierCompanyImageSelector,
+  supplierCompanyLogoIdSelector,
+  supplierCompanyLogoSelector,
 } from 'store/reducers/supplier/profile/selectors';
 import { deleteCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {
+  const companyLogo = useSelector(supplierCompanyLogoSelector);
+  const companyLogoId = useSelector(supplierCompanyLogoIdSelector);
   const dispatch = useAppDispatch();
-  const companyLogo = useSelector(supplierCompanyImageSelector);
-  const companyLogoId = useSelector(supplierCompanyImageIdSelector);
-  const formMethods = useForm<ISupplierBusinessInfoFormValues>({
+  const formMethods = useForm<ISupplierBusinessInfo>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
   });
@@ -37,9 +37,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
     dispatch(getCountries());
   }, []);
 
-  const onSubmit = (data: ISupplierBusinessInfoFormValues): void => {
-    console.log(data);
-
+  const onSubmit = (data: ISupplierBusinessInfo): void => {
     const businessInfoData = {
       supplier_data_request: {
         license_number: data.license,
@@ -66,7 +64,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
     dispatch(uploadCompanyLogo(img));
   };
   const handleDeleteImage = (): void => {
-    dispatch(deleteCompanyLogo(companyLogoId));
+    if (companyLogoId !== null) dispatch(deleteCompanyLogo(companyLogoId));
   };
 
   return (
@@ -85,6 +83,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
             type="logo"
             label="Add logo or profile image"
             placeholder="The customers will recognize your store by this image"
+            description="company logo"
           />
         </div>
 
