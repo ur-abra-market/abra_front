@@ -1,7 +1,6 @@
 import React, { ForwardedRef, forwardRef, useEffect, useState } from 'react';
 
 import cn from 'classnames';
-import { NavLink } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../common/hooks';
 import { IResponseCategory } from '../../services/common/common.serviceTypes';
@@ -12,7 +11,7 @@ import { CategoriesMenuProps } from './CategoriesMenu.props';
 import { Items } from './CategoryItems';
 import { FilterButton } from './FilterButton/FilterButton';
 
-export type Categories = 'Clothes' | 'Accessories' | 'Cosmetiques and Self Care';
+export type Categories = 'Clothes' | 'Accessories' | 'Cosmetics and Self Care';
 
 export interface ItemsProps {
   items?: IResponseCategory[];
