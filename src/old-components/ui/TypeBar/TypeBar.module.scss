@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  margin-top: 24px;
+}
+
+.btn {
+  cursor: pointer;
+
+  width: 72px;
+  height: 30px;
+  margin-right: 10px;
+
+  color: #828282;
+
+  background-color: #F4F4F4;
+  border: none;
+  border-radius: 8px;
+}
+
+.btn_active {
+  color: #FC133D;
+  background-color: var(--color-white);
+  border: 1px solid #FC133D;
+
+}
+
+.btn_plus {
+  width: 31px;
+  height: 30px;
+}

@@ -1,8 +1,8 @@
-import { FC, ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps, FC } from 'react';
 
 import cn from 'classnames';
 
-import styles from './ButtonIcon.module.css';
+import styles from './ButtonIcon.module.scss';
 
 export interface IButtonIcon
   extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {}

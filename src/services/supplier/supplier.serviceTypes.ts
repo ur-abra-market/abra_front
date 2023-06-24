@@ -1,3 +1,5 @@
+import { ICountry } from '../common/common.serviceTypes';
+
 export interface License {
   license_number: number;
 }
@@ -51,6 +53,12 @@ export interface SuppliersResponse<R> {
   result: R;
 }
 
+export interface ISupplierErrorResponse {
+  ok: boolean;
+  error_code: number;
+  error: { loc: string[]; msg: string; type: string }[];
+}
+
 export interface ISuppliersCompanyInfoData {
   id: number;
   license_number: string;
@@ -68,7 +76,33 @@ export interface ICompanyInfo {
   number_employees: number;
   description: string;
   address: string;
-  logo_url: string;
   business_sector: string;
+  country: ICountry;
+  phone: IPhoneInfo;
   images: any[];
+}
+
+interface IPhoneInfo {
+  id: number;
+  phone_number: string;
+  country: ICountry;
+}
+
+export interface ISuppliersUpdateCompanyInfo {
+  supplier_data_request: ISupplierLicense;
+  company_data_request: Omit<IUpdateCompanyInfo, 'id' | 'country' | 'phone' | 'images'>;
+  company_phone_data_request: ISuppliersCompanyPhoneData;
+}
+
+interface ISupplierLicense {
+  license_number: string;
+}
+
+interface IUpdateCompanyInfo extends ICompanyInfo {
+  country_id: number;
+}
+
+interface ISuppliersCompanyPhoneData {
+  country_id: number;
+  phone_number: string;
 }

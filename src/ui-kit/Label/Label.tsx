@@ -2,7 +2,7 @@ import { FC, DetailedHTMLProps, LabelHTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import styles from './Label.module.css';
+import styles from './Label.module.scss';
 
 export interface ILabel
   extends DetailedHTMLProps<LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement> {

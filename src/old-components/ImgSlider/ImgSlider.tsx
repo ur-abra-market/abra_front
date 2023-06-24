@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 
 import Flag from '../Flag';
 
-import style from './ImgSlider.module.css';
+import style from './ImgSlider.module.scss';
 
 import nonePng from 'assets/images/files/image-default.png';
 

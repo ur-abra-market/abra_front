@@ -2,7 +2,7 @@ import React from 'react';
 // import FiltersList from "../../../common/filtersList/filtersList";
 // import Table from "../../../common/table/table";
 // import api from "./fakeAPI";
-// import style from "./orders.module.css";
+// import style from "./orders.module.scss";
 // import _ from "lodash";
 // import Pagination from "../../../ui/pagination/pagination";
 // import { paginate } from "utils/paginate";

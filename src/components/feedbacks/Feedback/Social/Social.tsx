@@ -2,7 +2,7 @@ import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import style from './Social.module.css';
+import style from './Social.module.scss';
 
 import { GoogleIcon, InstagramIcon, TelegramIcon, VkIcon } from 'assets/icons';
 

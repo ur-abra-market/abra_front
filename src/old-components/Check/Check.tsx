@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 
-import style from './Check.module.css';
+import style from './Check.module.scss';
 
 import { CheckMarkWhiteIcon } from 'assets/icons';
 

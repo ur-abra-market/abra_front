@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Modal from '../../../../components/Modal';
-import { HOME } from '../../../../routes';
 import { Button } from '../../../../ui-kit';
 import { AuthPageLayout } from '../assets';
 
@@ -11,22 +10,33 @@ import style from './ChangeEmailPage.module.scss';
 
 import { ChangeEmailForm } from '.';
 
+import { useAppSelector } from 'common/hooks';
+import { userRoleSelector } from 'store/reducers/authSlice';
+
 export const ChangeEmailPage = (): JSX.Element => {
   const navigate = useNavigate();
-  const [modalActive, setModalActive] = useState(false);
-  const handleChangeModalActive = (): void => {
-    setModalActive(prevState => !prevState);
+  const userRole = useAppSelector(userRoleSelector);
+  const [isModalOpen, setOpenModal] = useState(false);
+
+  const handleModalOnClose = (value: boolean): void => {
+    setOpenModal(value);
+
+    if (userRole === 'seller') {
+      navigate('/personal_account');
+    } else {
+      navigate('/');
+    }
   };
 
   return (
     <>
       <AuthPageLayout>
         <div className={style.header}>Change email</div>
-        <div className={style.subheader}>Enter your current and new email addresses</div>
-        <ChangeEmailForm handleChangeModalActive={handleChangeModalActive} />
+        <div className={style.subheader}>Enter your new email addresses</div>
+        <ChangeEmailForm setOpenModal={setOpenModal} />
       </AuthPageLayout>
 
-      <Modal showModal={modalActive} closeModal={setModalActive}>
+      <Modal showModal={isModalOpen} closeModal={handleModalOnClose}>
         <div className={style.modal_content_wrapper}>
           <div className={style.modal_header}>
             Your new email has been successfully saved
@@ -34,7 +44,7 @@ export const ChangeEmailPage = (): JSX.Element => {
           <Button
             className={style.modal_button}
             label="Okey"
-            onClick={() => navigate(HOME)}
+            onClick={() => handleModalOnClose(false)}
           />
         </div>
       </Modal>

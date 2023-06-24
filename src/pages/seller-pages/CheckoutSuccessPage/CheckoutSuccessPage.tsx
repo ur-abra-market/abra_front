@@ -6,7 +6,7 @@ import { WithLayout } from '../../../common/hocs/WithLayout';
 import { HOME, ORDER_HISTORY } from '../../../routes';
 import { Button } from '../../../ui-kit';
 
-import style from './CheckoutSuccessPage.module.css';
+import style from './CheckoutSuccessPage.module.scss';
 
 export const CheckoutSuccessPage = WithLayout((): JSX.Element => {
   const navigate = useNavigate();

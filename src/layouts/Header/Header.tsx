@@ -15,8 +15,8 @@ import { LocationAndCurrencySelection } from '../../components/LocationAndCurren
 import HeaderNavMenu from '../../old-components/HeaderNavMemu';
 import { Container } from '../../ui-kit';
 
-import style from './Header.module.css';
-import Top from './Top/Top';
+import style from './Header.module.scss';
+import { Top } from './Top/Top';
 
 export interface IHeader
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
@@ -25,6 +25,7 @@ const Header: FC<IHeader> = ({ className, ...restProps }): JSX.Element => {
   const [categoriesIsOpen, setCategoriesIsOpen] = useState(false);
 
   const categoriesRef = useRef() as RefObject<HTMLDivElement>;
+
   const buttonRef = useRef() as RefObject<HTMLButtonElement>;
 
   useEffect(() => {
@@ -52,6 +53,7 @@ const Header: FC<IHeader> = ({ className, ...restProps }): JSX.Element => {
     <header className={cn(className)} {...restProps}>
       <Container className={style.container_position}>
         <Top />
+
         <div className={style.wrapper}>
           <button
             type="button"
@@ -64,6 +66,7 @@ const Header: FC<IHeader> = ({ className, ...restProps }): JSX.Element => {
           <HeaderNavMenu className={style.center} />
           <LocationAndCurrencySelection className={style.right} />
         </div>
+
         {categoriesIsOpen && <CategoriesMenu ref={categoriesRef} />}
       </Container>
     </header>

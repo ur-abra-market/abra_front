@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 import Header from '../../../layouts/Header';
 import { Search } from '../../../ui-kit';
 
-import style from './OrderHistoryPage.module.css';
+import style from './OrderHistoryPage.module.scss';
 
-import Footer from 'layouts/Footer';
+import { Footer } from 'layouts/Footer';
 
 type LinkType = 'All' | 'Preparing' | 'In progress' | 'Completed';
 type OrderType = {
@@ -120,7 +120,7 @@ export const OrderHistoryPage = (): JSX.Element => {
           )}
         </div>
       </div>
-      <Footer />
+      <Footer variant="default" />
     </>
   );
 };

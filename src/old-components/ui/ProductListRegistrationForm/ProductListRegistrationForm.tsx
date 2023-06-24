@@ -6,13 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks';
-import { UploadImage } from '../../../components';
 import { HOME } from '../../../routes';
 import {
   addProductService,
-  getCompanyInfoService,
   uploadImageService,
 } from '../../../store/reducers/supplier/other';
+import { getBusinessInfo } from '../../../store/reducers/supplier/profile';
 import {
   Button,
   Input,
@@ -27,7 +26,7 @@ import ProdInfoInputs from '../ProdInfoInputs';
 import SelectionsForProperties from '../SelectionsForProperties/SelectionsForProperties';
 import TypesPage from '../TypesView/TypesPage';
 
-import style from './ProductListRegistrationForm.module.css';
+import style from './ProductListRegistrationForm.module.scss';
 
 interface ProductProperties {
   key: string;
@@ -233,7 +232,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   }, [dispatch, images, isSubmit, navigate, productId]);
 
   useEffect(() => {
-    dispatch(getCompanyInfoService());
+    dispatch(getBusinessInfo());
   }, [dispatch]);
 
   const handleSetCategory = (
@@ -338,11 +337,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
 
                 <p className={style.list_img_title}>Photo of the company or production</p>
 
-                <div className={style.list_img}>
-                  {[...new Array(5)].map((el, i) => (
-                    <UploadImage action="" type="default" key={i} />
-                  ))}
-                </div>
+                <div className={style.list_img} />
                 <Label label="Description">
                   <Input
                     {...register('textarea')}

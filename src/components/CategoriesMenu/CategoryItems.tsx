@@ -6,31 +6,25 @@ import { NavLink } from 'react-router-dom';
 import { SELLER_PRODUCTS } from '../../routes';
 
 import { ItemsProps } from './CategoriesMenu';
-import style from './CategoriesMenu.module.css';
+import style from './CategoriesMenu.module.scss';
 
-export const Items: FC<ItemsProps> = (props): JSX.Element => {
-  const { gender, items } = props;
-
-  const activeStyle = {
-    color: ' var(--red)',
-  };
-
-  const mappedItems = items?.map((item, index) => (
-    <li key={index}>
-      <NavLink
-        style={({ isActive }) => (isActive ? activeStyle : undefined)}
-        to={`${SELLER_PRODUCTS}/${item.id}`}
-        state={item.id}
-      >
+export const Items: FC<ItemsProps> = ({ items }): JSX.Element => {
+  const mappedItems = items?.map(item => (
+    <li className={style.list_item} key={item.id}>
+      <NavLink className={style.link} to={`${SELLER_PRODUCTS}/${item.id}`}>
         {item.name}
       </NavLink>
+      {item.children?.map(i => (
+        <div className={style.items_links} key={i.id}>
+          {i.name}
+        </div>
+      ))}
     </li>
   ));
 
   return (
-    <div>
-      <h4>{gender}</h4>
-      <ul className={cn(style.items_container)}>{mappedItems}</ul>
+    <div className={style.items_wrapper}>
+      <div className={cn(style.items_container)}>{mappedItems}</div>
     </div>
   );
 };

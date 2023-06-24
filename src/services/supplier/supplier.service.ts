@@ -4,6 +4,8 @@ import baseConfigService from '../baseConfig.service';
 import {
   ISuppliersCompanyInfoData,
   ISupplierNotifications,
+  ISuppliersUpdateCompanyInfo,
+  SuppliersResponse,
 } from './supplier.serviceTypes';
 
 export const supplierService = {
@@ -25,22 +27,25 @@ export const supplierService = {
 
   fetchCompanyLogo: async () => {
     const { data } = await baseConfigService.get<IServerResponse<string>>(
-      `/suppliers/companyLogo`,
+      `/suppliers/companyLogo/`,
     );
 
     return data.result;
   },
 
-  fetchCompanyInfo: async () => {
+  fetchBusinessInfo: async () => {
     const { data } = await baseConfigService.get<
       IServerResponse<ISuppliersCompanyInfoData>
-    >(`/suppliers/companyInfo`);
+    >(`/suppliers/businessInfo/`);
 
     return data.result;
   },
 
-  updateCompanyInfo: async () => {
-    const { data } = await baseConfigService.patch(`/suppliers/companyInfo/update/`); // todo add type
+  updateBusinessInfo: async (companyInfo: Partial<ISuppliersUpdateCompanyInfo>) => {
+    const { data } = await baseConfigService.patch<IServerResponse<boolean>>(
+      `/suppliers/businessInfo/update/`,
+      companyInfo,
+    );
 
     return data.result;
   },
@@ -69,19 +74,13 @@ export const supplierService = {
     return data;
   },
 
-  getSupplierCompanyInfo: async () => {
-    const { data } = await baseConfigService.get(`suppliers/companyInfo/`);
-
-    return data;
-  },
-
   addProduct: async (product: any) => {
     const { data } = await baseConfigService.post(`suppliers/addProduct/`, product);
 
     return data;
   },
 
-  uploadImage: async (img: any, prodId: any, index: any) => {
+  uploadProductImage: async (img: any, prodId: any, index: any) => {
     const formData = new FormData();
 
     formData.append('file', img);
@@ -95,6 +94,28 @@ export const supplierService = {
           order: index,
         },
       },
+    );
+
+    return data;
+  },
+  uploadCompanyLogo: async (image: File) => {
+    const formData = new FormData();
+
+    formData.append('file', image);
+
+    const { data } = await baseConfigService.post<
+      SuppliersResponse<{
+        id: number;
+        url: string;
+      }>
+    >('suppliers/companyLogo/update/', formData);
+
+    return data;
+  },
+  deleteCompanyLogo: async (company_image_id: number) => {
+    const { data } = await baseConfigService.delete<SuppliersResponse<boolean>>(
+      `suppliers/deleteCompanyImage/`,
+      { params: { company_image_id } },
     );
 
     return data;

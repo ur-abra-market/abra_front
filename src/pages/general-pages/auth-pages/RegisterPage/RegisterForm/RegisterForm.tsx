@@ -6,8 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { LoadingStatus, ResponseUserRoleType } from '../../../../../common/types';
+import { LoadingStatusEnum, ResponseUserRoleType } from '../../../../../common/types';
 import { CHECK_EMAIL } from '../../../../../routes';
+import { IRegisterRequest } from '../../../../../services/auth/auth.serviceTypes';
+import { loadingSelector } from '../../../../../store/reducers/appSlice';
 import { registerUser } from '../../../../../store/reducers/authSlice';
 import { PasswordComplexity } from '../../assets';
 
@@ -16,10 +18,7 @@ import style from './RegisterForm.module.scss';
 import { emailValidationSchema, passwordValidationSchema } from 'common/constants';
 import { Button, Input } from 'ui-kit';
 
-export interface IFormValues {
-  email: string;
-  password: string;
-}
+export interface IRegisterFormData extends Omit<IRegisterRequest, 'role'> {}
 
 const formValidationSchema = yup
   .object()
@@ -30,7 +29,7 @@ const formValidationSchema = yup
   .required();
 
 export const RegisterForm = (): JSX.Element => {
-  const loading = useAppSelector(state => state.app.loading);
+  const loading = useAppSelector(loadingSelector);
   const [userRole, setUserRole] = useState<ResponseUserRoleType>('seller');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -40,7 +39,7 @@ export const RegisterForm = (): JSX.Element => {
     watch,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm<IFormValues>({
+  } = useForm<IRegisterFormData>({
     resolver: yupResolver(formValidationSchema),
     mode: 'all',
   });
@@ -49,12 +48,12 @@ export const RegisterForm = (): JSX.Element => {
     setUserRole(userStatus);
   };
 
-  const onSubmit = async (data: IFormValues): Promise<void> => {
-    dispatch(registerUser({ ...data, route: userRole })).then(
-      ({ meta: { requestStatus } }) => {
-        if (requestStatus === 'fulfilled') navigate(CHECK_EMAIL);
-      },
-    );
+  const onSubmit = async (data: IRegisterFormData): Promise<void> => {
+    const actionResult = await dispatch(registerUser({ ...data, role: userRole }));
+
+    if (registerUser.fulfilled.match(actionResult)) {
+      navigate(CHECK_EMAIL);
+    }
   };
 
   return (
@@ -77,23 +76,21 @@ export const RegisterForm = (): JSX.Element => {
 
       <Input {...register('email')} placeholder="Email" error={errors.email?.message} />
 
-      <div>
-        <Input
-          {...register('password')}
-          classNameWrapper={style.input_password}
-          type="password"
-          variant="password"
-          placeholder="Password"
-          error={errors.password?.message}
-        />
-        <PasswordComplexity password={watch('password')} />
-      </div>
+      <Input
+        {...register('password')}
+        classNameWrapper={style.input_wrapper}
+        type="password"
+        variant="password"
+        placeholder="Password"
+        error={errors.password?.message}
+      />
+      <PasswordComplexity password={watch('password')} />
 
       <Button
         className={style.button_submit}
         label="Create Account"
         type="submit"
-        disabled={!isValid || loading === LoadingStatus.Loading}
+        disabled={!isValid || loading === LoadingStatusEnum.Loading}
       />
     </form>
   );

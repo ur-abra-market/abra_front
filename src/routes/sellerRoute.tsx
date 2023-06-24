@@ -20,7 +20,7 @@ import {
   CheckoutPage,
   OrderDetailsPage,
   OrderHistoryPage,
-  SellerAccountPage,
+  SellerProfilePage,
   SellerFavoritesList,
   ProductListPage,
   CheckoutSuccessPage,
@@ -33,7 +33,6 @@ export const sellerRoute: RouteObject[] = [
   },
   {
     path: 'product',
-    // element: <ProductPage />,
     children: [
       {
         path: ':productId',
@@ -43,7 +42,7 @@ export const sellerRoute: RouteObject[] = [
   },
   {
     path: PERSONAL_ACCOUNT,
-    element: <SellerAccountPage />,
+    element: <SellerProfilePage />,
   },
   {
     path: CART,

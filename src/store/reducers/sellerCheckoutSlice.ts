@@ -1,19 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { AsyncThunkConfig, LoadingStatus } from '../../common/types';
+import { IAsyncThunkConfig, LoadingStatusEnum } from '../../common/types';
 import { sellerService } from '../../services/seller/seller.service';
 import {
-  EditAddressData,
   ResponseAddressData,
   ResponseDeleteAddress,
   SellerAddressData,
 } from '../../services/seller/seller.serviceTypes';
 
+import { getSellerAddresses } from 'store/reducers/seller/profile/thunks';
+
 export const addAddress = createAsyncThunk<
   ResponseAddressData,
   SellerAddressData,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >('modal/addAddress', async (params, { dispatch, rejectWithValue }) => {
   try {
     const { data } = await sellerService.addAddress(params);
@@ -29,31 +30,31 @@ export const addAddress = createAsyncThunk<
     return rejectWithValue('[modalSlice]: Error');
   }
 });
-export const editAddress = createAsyncThunk<
-  ResponseAddressData,
-  EditAddressData,
-  AsyncThunkConfig
->('modal/editAddress', async (params, { dispatch, rejectWithValue }) => {
-  try {
-    const { data } = await sellerService.editAddress(params.id, params.data);
 
-    dispatch(getAddress());
+export const editAddress = createAsyncThunk<any, any>(
+  'modal/editAddress',
+  async (params, { dispatch, rejectWithValue }) => {
+    try {
+      const { data } = await sellerService.editAddress(params);
 
-    return data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      return rejectWithValue(error.message);
+      dispatch(getSellerAddresses());
+
+      return data;
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[modalSlice]: Error');
     }
+  },
+);
 
-    return rejectWithValue('[modalSlice]: Error');
-  }
-});
-
-export const getAddress = createAsyncThunk<ResponseAddressData, void, AsyncThunkConfig>(
+export const getAddress = createAsyncThunk<ResponseAddressData, void, IAsyncThunkConfig>(
   'modal/getAddress',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await sellerService.getAddress();
+      const { data } = await sellerService.getSellerAddresses();
 
       return data;
     } catch (error) {
@@ -69,7 +70,7 @@ export const getAddress = createAsyncThunk<ResponseAddressData, void, AsyncThunk
 export const deleteAddress = createAsyncThunk<
   ResponseDeleteAddress,
   number,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >('modal/deleteAddress', async (id, { dispatch, rejectWithValue }) => {
   try {
     const { data } = await sellerService.deleteAddress(id);
@@ -88,12 +89,12 @@ export const deleteAddress = createAsyncThunk<
 
 interface IInitialState {
   addresses: SellerAddressData[];
-  loading: LoadingStatus;
+  loading: LoadingStatusEnum;
 }
 
 const initialState: IInitialState = {
   addresses: [],
-  loading: LoadingStatus.Idle,
+  loading: LoadingStatusEnum.Idle,
 };
 
 const sellerCheckoutSlice = createSlice({
@@ -102,41 +103,41 @@ const sellerCheckoutSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(addAddress.pending, state => {
-      state.loading = LoadingStatus.Loading;
+      state.loading = LoadingStatusEnum.Loading;
     });
     builder.addCase(addAddress.fulfilled, state => {
-      state.loading = LoadingStatus.Success;
+      state.loading = LoadingStatusEnum.Success;
     });
     builder.addCase(addAddress.rejected, state => {
-      state.loading = LoadingStatus.Failed;
+      state.loading = LoadingStatusEnum.Failed;
     });
     builder.addCase(getAddress.pending, state => {
-      state.loading = LoadingStatus.Loading;
+      state.loading = LoadingStatusEnum.Loading;
     });
     builder.addCase(getAddress.fulfilled, (state, action) => {
       state.addresses = action.payload.result;
-      state.loading = LoadingStatus.Success;
+      state.loading = LoadingStatusEnum.Success;
     });
     builder.addCase(getAddress.rejected, state => {
-      state.loading = LoadingStatus.Failed;
+      state.loading = LoadingStatusEnum.Failed;
     });
     builder.addCase(editAddress.pending, state => {
-      state.loading = LoadingStatus.Loading;
+      state.loading = LoadingStatusEnum.Loading;
     });
     builder.addCase(editAddress.fulfilled, state => {
-      state.loading = LoadingStatus.Success;
+      state.loading = LoadingStatusEnum.Success;
     });
     builder.addCase(editAddress.rejected, state => {
-      state.loading = LoadingStatus.Failed;
+      state.loading = LoadingStatusEnum.Failed;
     });
     builder.addCase(deleteAddress.pending, state => {
-      state.loading = LoadingStatus.Loading;
+      state.loading = LoadingStatusEnum.Loading;
     });
     builder.addCase(deleteAddress.fulfilled, state => {
-      state.loading = LoadingStatus.Success;
+      state.loading = LoadingStatusEnum.Success;
     });
     builder.addCase(deleteAddress.rejected, state => {
-      state.loading = LoadingStatus.Failed;
+      state.loading = LoadingStatusEnum.Failed;
     });
   },
 });

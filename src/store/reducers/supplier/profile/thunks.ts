@@ -4,22 +4,92 @@ import { AxiosError } from 'axios';
 import { supplierService } from '../../../../services';
 import { setResponseNotice } from '../../appSlice/slice';
 
-export const getCompanyInfo = createAsyncThunk<any, void>( // todo fix any
-  'supplierProfile/getCompanyInfo',
-  async (_, { rejectWithValue }) => {
-    try {
-      return await supplierService.fetchCompanyInfo();
-    } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error || error.message
-          : '[getCompanyInfo]: Error';
+import { IAsyncThunkConfig } from 'common/types';
+import {
+  ISupplierErrorResponse,
+  ISuppliersCompanyInfoData,
+  ISuppliersUpdateCompanyInfo,
+  SuppliersResponse,
+} from 'services/supplier/supplier.serviceTypes';
 
-      return rejectWithValue(errorMessage);
+export const getBusinessInfo = createAsyncThunk<
+  ISuppliersCompanyInfoData,
+  void,
+  IAsyncThunkConfig
+>('supplierProfile/getCompanyInfo', async (_, { rejectWithValue }) => {
+  try {
+    return await supplierService.fetchBusinessInfo();
+  } catch (error) {
+    const errorMessage =
+      error instanceof AxiosError
+        ? error.response?.data?.error || error.message
+        : '[getCompanyInfo]: Error';
+
+    return rejectWithValue(errorMessage);
+  }
+});
+export const updateBusinessInfo = createAsyncThunk<
+  void,
+  ISuppliersUpdateCompanyInfo,
+  IAsyncThunkConfig
+>('supplierProfile/updateCompanyInfo', async (arg, { rejectWithValue, dispatch }) => {
+  try {
+    await supplierService.updateBusinessInfo(arg);
+    dispatch(getBusinessInfo());
+  } catch (error) {
+    const errorMessage =
+      error instanceof AxiosError
+        ? error.response?.data?.error || error.message
+        : '[updateCompanyInfo]: Error';
+
+    return rejectWithValue(errorMessage);
+  }
+});
+export const fetchCompanyLogo = createAsyncThunk<string, void, IAsyncThunkConfig>(
+  'supplierProfile/fetchCompanyImage',
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      return await supplierService.fetchCompanyLogo();
+    } catch (error: unknown) {
+      const err = error as AxiosError<ISupplierErrorResponse>;
+
+      return rejectWithValue(err.message);
     }
   },
 );
+export const uploadCompanyLogo = createAsyncThunk<
+  SuppliersResponse<{
+    id: number;
+    url: string;
+    image: string;
+  }>,
+  File,
+  IAsyncThunkConfig
+>('supplierProfile/uploadCompanyImage', async (img, { dispatch, rejectWithValue }) => {
+  try {
+    const data = await supplierService.uploadCompanyLogo(img);
 
+    return { ...data, result: { ...data.result, image: URL.createObjectURL(img) } };
+  } catch (error: unknown) {
+    const err = error as AxiosError<ISupplierErrorResponse>;
+
+    return rejectWithValue(err.message);
+  }
+});
+
+export const deleteCompanyLogo = createAsyncThunk<
+  SuppliersResponse<boolean>,
+  number,
+  IAsyncThunkConfig
+>('supplierProfile/deleteCompanyImage', async (id, { dispatch, rejectWithValue }) => {
+  try {
+    return await supplierService.deleteCompanyLogo(id);
+  } catch (error) {
+    const err = error as AxiosError<ISupplierErrorResponse>;
+
+    return rejectWithValue(err.message);
+  }
+});
 export const getSupplierNotifications = createAsyncThunk<any, void>(
   'supplierAccount/getSupplierNotifications',
   async (_, { rejectWithValue, dispatch }) => {

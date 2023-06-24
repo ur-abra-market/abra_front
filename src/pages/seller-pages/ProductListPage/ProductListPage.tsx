@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 
-import style from './ProductListPage.module.css';
+import style from './ProductListPage.module.scss';
 
-import Footer from 'layouts/Footer';
+import { Footer } from 'layouts/Footer';
 import Header from 'layouts/Header';
 import ProductFilter from 'old-components/ui/product/ProductFilter';
 import ProductList from 'old-components/ui/product/ProductList';
@@ -28,7 +28,7 @@ export const ProductListPage = (): JSX.Element => {
         <ProductFilter />
         <ProductList />
       </div>
-      <Footer />
+      <Footer variant="default" />
     </>
   );
 };

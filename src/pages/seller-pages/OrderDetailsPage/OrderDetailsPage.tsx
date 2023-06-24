@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 import Header from '../../../layouts/Header';
 
-import style from './OrderDetails.module.css';
+import style from './OrderDetails.module.scss';
 
-import Footer from 'layouts/Footer';
+import { Footer } from 'layouts/Footer';
 
 export const OrderDetailsPage = (): JSX.Element => {
   return (
@@ -164,7 +164,7 @@ export const OrderDetailsPage = (): JSX.Element => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer variant="default" />
     </>
   );
 };

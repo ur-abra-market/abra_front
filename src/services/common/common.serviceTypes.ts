@@ -1,3 +1,11 @@
+export interface IResponseCategory {
+  id: number;
+  name: string;
+  level: number;
+  children?: IResponseCategory[] | [];
+  parent_id?: number;
+}
+
 export interface IBaseResponseType<R> {
   ok: true;
   result: R;
@@ -35,3 +43,5 @@ export interface IAccountPersonalInfoRequest {
   phone_country_code: string;
   phone_number: string;
 }
+
+export type AllCategories = Pick<IBaseResponseType<IResponseCategory[]>, 'ok' | 'result'>;

@@ -7,7 +7,7 @@ import { toggleInfoForm } from '../../../store/reducers/appSlice/slice';
 // import Social from '../Social';
 // import WhatsApp from '../WhatsApp';
 //
-// import style from './FeedbackForm.module.css';
+// import style from './FeedbackForm.module.scss';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const FeedbackForm: FC<Props> = ({ isFeedbackOpen }) => {

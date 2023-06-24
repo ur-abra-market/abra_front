@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 import { ABOUT, CONTACT, FAQ, NEWS, SELL, TUTORIALS } from '../../routes';
 
-import style from './HeaderNavMenu.module.css';
+import style from './HeaderNavMenu.module.scss';
 import { HeaderNavMenuProps } from './HeaderNavMenu.props';
 
 const HeaderNavMenu: FC<HeaderNavMenuProps> = (props): JSX.Element => {

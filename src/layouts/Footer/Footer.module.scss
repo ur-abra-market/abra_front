@@ -1,0 +1,173 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background: rgba(252, 19, 61, 0.12);
+}
+
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 40px 0;
+
+}
+
+.inner{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 74px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav{
+  font-family: var(--roboto);
+  font-size: 15px;
+  font-weight: var(--medium);
+  font-style: normal;
+  line-height: 15px;
+  color: var(--color-black);
+}
+
+.selects{
+  padding-left: 16px;
+  border-left: 1px solid var(--color-black);
+}
+
+.footer {
+  padding: 14px 0;
+
+  font-family: var(--roboto);
+  font-size: 15px;
+  font-weight: var(--regular);
+  font-style: normal;
+  line-height: 20px;
+  color: var(--color-white);
+
+  background: var(--color-black);
+}
+
+.footer_white{
+  padding: 32px 0;
+
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color-black);
+
+  background: var(--color-white);
+}
+
+.flex_box{
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.links_default,
+.links_white {
+  display: flex;
+  gap: 5px;
+}
+
+.links_default{
+  gap: 32px;
+}
+
+.copyright {
+  position: absolute;
+  left: 0;
+}
+
+.link_white,
+.link{
+  color: var(--color-white);
+  text-decoration: none;
+  transition: all 0.3s;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+}
+
+.link_white{
+  color: var(--color-accent);
+  text-decoration: underline;
+
+  &:hover{
+    color: var(--color-black);
+  }
+
+}
+
+.is_disabled_white,
+.is_disabled {
+  cursor: not-allowed;
+  color: var(--color-white);
+  text-decoration: none;
+  opacity: 0.5;
+}
+
+.is_disabled_white{
+  color: var(--color-accent);
+}
+
+@media only screen and (max-width: 600px) {
+  .top {
+    height: auto;
+    padding-top: 32px;
+    padding-bottom: 34px;
+  }
+
+  .inner {
+    gap: 6px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+
+  .nav_menu {
+    display: block;
+    column-count: 2;
+    padding: 0;
+    list-style-type: decimal;
+  }
+
+  .nav_menu li {
+    padding-top: 12px;
+    padding-right: 30px;
+  }
+
+  .footer {
+    padding: 24px 0;
+  }
+
+  .flex_box {
+    display: block;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .copyright {
+    position: static;
+    margin-top: 6px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .links {
+    display: block;
+  }
+
+  .links a {
+    padding-right: 35px;
+  }
+
+  .selects {
+    margin-top: 25px;
+    padding: 0;
+    border: none;
+  }
+}
+

@@ -1,0 +1,40 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-right: 1px solid var(--color-black);
+  border-left: 1px solid var(--color-black);
+}
+
+.header_nav_list {
+  display: flex;   
+  gap: 48px;
+  align-items: center;
+
+  padding-right: 16px;
+  padding-left: 16px;
+
+  list-style: none;
+
+  transition: 0.4s;
+}
+
+.header_nav_list > li > a {
+  color: var(--color-black);
+  transition: 0.3s;
+}
+
+.header_nav_list > li > a:hover {
+  color: var(--color-accent);
+}
+
+.nav {
+  color: var(--color-accent);
+}
+
+@media (max-width: 1400px) {
+  .header_nav_list {
+    gap: calc(7vw - 45px);
+  }
+}

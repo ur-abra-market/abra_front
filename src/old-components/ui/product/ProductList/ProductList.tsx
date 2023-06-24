@@ -5,7 +5,7 @@ import Card from '../../../Card';
 import CardFull from '../../../CardFull';
 import PaginatorProduct from '../../TypesView/product/PaginatorProduct';
 
-import style from './ProductList.module.css';
+import style from './ProductList.module.scss';
 
 import { ViewGridDisabledIcon, ViewListDisabledIcon } from 'assets/icons';
 import { ButtonInfo } from 'ui-kit';

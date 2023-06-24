@@ -4,7 +4,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../common/hooks';
 import { ContentMessage } from '../../../../components';
-import { registerUser } from '../../../../store/reducers/authSlice';
+import { confirmEmail } from '../../../../store/reducers/authSlice/thunks';
 import { LoaderCircular } from '../../../../ui-kit';
 import { AuthPageLayout } from '../assets';
 
@@ -21,7 +21,7 @@ export const ConfirmEmailPage = (): JSX.Element => {
     const token = searchParams.get('token');
 
     if (token)
-      dispatch(registerUser({ route: 'confirmEmail', token })).then(({ meta }) => {
+      dispatch(confirmEmail({ token })).then(({ meta }) => {
         if (meta.requestStatus === 'fulfilled') {
           setEmailStatus('confirmed');
         }

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import Modal from '../../../../components/Modal';
 import { FORGOT_PASSWORD } from '../../../../routes';
+import { userRoleSelector } from '../../../../store/reducers/authSlice';
 import { Button } from '../../../../ui-kit';
 import { AuthPageLayout } from '../assets';
 
@@ -9,10 +12,21 @@ import style from './ChangePasswordPage.module.scss';
 
 import { ChangePasswordForm } from '.';
 
+import { useAppSelector } from 'common/hooks';
+
 export const ChangePasswordPage = (): JSX.Element => {
-  const [modalActive, setModalActive] = useState(false);
-  const handleChangeModalActive = (): void => {
-    setModalActive(prevState => !prevState);
+  const navigate = useNavigate();
+  const userRole = useAppSelector(userRoleSelector);
+  const [isModalOpen, setOpenModal] = useState(false);
+
+  const handleModalOnClose = (value: boolean): void => {
+    setOpenModal(value);
+
+    if (userRole === 'seller') {
+      navigate('/personal_account');
+    } else {
+      navigate('/');
+    }
   };
 
   return (
@@ -20,12 +34,12 @@ export const ChangePasswordPage = (): JSX.Element => {
       <AuthPageLayout footerLink={FORGOT_PASSWORD} footerTitle="Forgot password?">
         <div className={style.header}>Change password</div>
         <div className={style.subheader}>Enter your current and new passwords</div>
-        <ChangePasswordForm handleChangeModalActive={handleChangeModalActive} />
+        <ChangePasswordForm setOpenModal={setOpenModal} />
       </AuthPageLayout>
 
       <Modal
-        showModal={modalActive}
-        closeModal={setModalActive}
+        showModal={isModalOpen}
+        closeModal={handleModalOnClose}
         classNameModal={style.modal_container}
       >
         <div className={style.modal_content_wrapper}>
@@ -38,7 +52,7 @@ export const ChangePasswordPage = (): JSX.Element => {
           <Button
             label="Okay"
             className={style.button_modal}
-            onClick={handleChangeModalActive}
+            onClick={() => handleModalOnClose(false)}
           />
         </div>
       </Modal>

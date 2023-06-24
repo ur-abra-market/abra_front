@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './LoaderCircular.module.css';
+import style from './LoaderCircular.module.scss';
 
 export interface LoaderProps {
   variant?: 'circular-min';

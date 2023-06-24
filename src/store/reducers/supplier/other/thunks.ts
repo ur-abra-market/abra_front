@@ -19,22 +19,6 @@ export const getPropertiesService = createAsyncThunk<any, any>(
     }
   },
 );
-export const getCompanyInfoService = createAsyncThunk<any, void>(
-  'supplier/getCompanyInfoService',
-  async (_, { rejectWithValue }) => {
-    try {
-      const data = await supplierService.getSupplierCompanyInfo();
-
-      return data.result;
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.message);
-      }
-
-      return rejectWithValue('[getCompanyInfoService]: Error');
-    }
-  },
-);
 
 export const getVariationsService = createAsyncThunk<any, any>(
   'supplier/getVariationsService',
@@ -74,7 +58,7 @@ export const uploadImageService = createAsyncThunk<any, any>(
   'supplier/uploadImage',
   async ({ rest }, { rejectWithValue }) => {
     try {
-      return await supplierService.uploadImage(rest.img, rest.prodId, rest.index);
+      return await supplierService.uploadProductImage(rest.img, rest.prodId, rest.index);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

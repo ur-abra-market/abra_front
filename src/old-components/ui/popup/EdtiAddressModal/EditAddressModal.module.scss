@@ -1,0 +1,177 @@
+.edit_address {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  scale: 0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: #0003;
+
+  transition: 0.3s;
+}
+
+.edit_address_modal {
+  padding: 32px 32px 17px; /*временно*/
+  background-color: #FFF;
+  border-radius: 12px;
+
+}
+
+.edit_address_modal_exit {
+  cursor: pointer;
+
+  position: absolute;
+  top: -33px;
+  right: -88px;
+
+  width: 40px;
+  height: 40px;
+  padding: 12px;
+
+  background: #FFF;
+  border-radius: 50%;
+}
+
+.edit_address_edit_address{
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.edit_address_row1 {
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  align-self: start;
+  justify-content: space-between;
+
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.edit_address_checkbox {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+}
+
+.edit_address_block {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.edit_address_block_title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.edit_address_block_row2 {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  width: 100%;
+
+}
+
+.edit_address_input_number{
+  width: 458px;
+}
+
+.edit_address_block_row2_box {
+  min-width: 309px;
+  margin-top: 16px;
+}
+
+.edit_address_block_row2_box_title {
+  margin-bottom: 8px;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  color: #828282;
+}
+
+.edit_address_phone {
+  margin-top: 16px;
+}
+
+.edit_address_text_modal {
+  width: 100%;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.edit_address_text_modal_input {
+  position: unset;
+  display: block;
+}
+
+.edit_address_text_modal_title {
+  margin-top: 16px;
+  margin-bottom: 8px;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  color: #828282;
+}
+
+.edit_address_phone_number {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+
+  width: 100%;
+  margin-top: 8px;
+}
+
+.edit_address_phone_title {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  color: #828282;
+}
+
+.edit_address_phone_number_select {
+  width: 160px;
+}
+
+.edit_address_button {
+  cursor: pointer;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.edit_address_icon_box{
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.delete_address{
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #828282;
+}
+
+.select{
+  font-size: 14px;
+  background: #F2F2F2;
+  border-radius: 12px;
+}

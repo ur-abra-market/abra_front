@@ -22,7 +22,7 @@
   height: 17px;
   margin: 0 12px;
 
-  background-color: #000;
+  background-color: var(--color-black);
 }
 
 .supplier_link {
@@ -38,104 +38,43 @@
   align-items: center;
 }
 
-.menu_wrapper {
-  position: absolute;
-  z-index: -10;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  opacity: 0;
-  background-color: rgba(0, 0, 0, 0.01);
-
-  transition: 0.3s;
-}
-
-.item a {
-  color: inherit;
-  transition: all 0.3s;
-}
-
-.item a:hover {
-  color: var(--color-accent);
-}
 
 .btn_menu {
-  cursor: pointer;
-
   position: relative;
 
   display: flex;
   gap: 10px;
   align-items: center;
 
-  font-size: var(--fz-s2);
+  font-size: 15px;
   line-height: calc(20 / 15);
   letter-spacing: 0.16px;
 
   background: transparent;
 }
 
-.btn_menu_img {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 40px;
-  height: 40px;
-
-  background: rgb(27, 188, 216);
-  border-radius: 50%;
-}
-
-.menu_active {
-  z-index: 10;
-  opacity: 1;
-}
-
-.menu {
-  cursor: default;
-
-  position: absolute;
-  z-index: 10;
-  top: 67px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-
-  width: 100%;
-  padding: 32px;
-
-  font-family: var(--roboto);
-  font-size: var(--fz-l);
-  font-weight: var(--medium);
-  font-style: normal;
-  line-height: 24px;
-  color: var(--color-black);
-
-  background: var(--color-white);
-  border-radius: 12px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
-}
-
-.menu button {
+.menu_icons {
   cursor: pointer;
-  font-size: 1em;
-  background: transparent;
-}
 
-.icon {
-  transform: rotate(90deg);
-  margin: 0 0 0 -2px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  background: none;
 }
 
 .arrow {
-  width: 8px;
-  height: 14px;
+  transform: rotate(180deg);
 }
+
 
 .logo_font_size {
   font-size: var(--fz-xl2);
+}
+
+.business_name {
+  margin: 0 8px 0 0;
+  font-size: var(--fz-s2);
+  line-height: 20px;
+  letter-spacing: 0.16px;
 }

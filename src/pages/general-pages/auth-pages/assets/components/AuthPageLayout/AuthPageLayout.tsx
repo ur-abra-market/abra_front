@@ -1,14 +1,13 @@
 import { FC, ReactNode } from 'react';
 
 import cn from 'classnames';
-import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../../../../../../common/hooks';
-import { LoadingStatus } from '../../../../../../common/types';
-import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from '../../../../../../routes';
+import { LoadingStatusEnum } from '../../../../../../common/types';
 
 import style from './AuthPageLayout.module.scss';
 
+import { Footer } from 'layouts/Footer';
 import { LoaderLinear, MainLogo, SimpleLink } from 'ui-kit';
 
 interface IAuthPageLayout {
@@ -29,11 +28,11 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
   return (
     <div
       className={cn(style.wrapper, {
-        [style.pointer_none]: isLoading === LoadingStatus.Loading,
+        [style.pointer_none]: isLoading === LoadingStatusEnum.Loading,
       })}
     >
       <div className={style.content}>
-        {isLoading === LoadingStatus.Loading && <LoaderLinear />}
+        {isLoading === LoadingStatusEnum.Loading && <LoaderLinear />}
         {isMainLogoShow && (
           <>
             <MainLogo />
@@ -47,10 +46,7 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
           </SimpleLink>
         )}
       </div>
-      <div className={style.footer}>
-        © 2022 Abra. <Link to={TERMS_AND_CONDITIONS}>Terms & conditions</Link> and&nbsp;
-        <Link to={PRIVACY_POLICY}>Privacy policy</Link>
-      </div>
+      <Footer variant="white" />
     </div>
   );
 };

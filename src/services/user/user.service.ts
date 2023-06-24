@@ -6,6 +6,7 @@ import { IAccountPersonalInfoResponse, IResponse } from './user.serviceTypes';
 export enum Action {
   UPLOAD_LOGO_IMAGE = 'suppliers/uploadCompanyImage/',
   UPLOAD_ITEM_IMAGE = 'suppliers/uploadProductImage/',
+  UPLOAD_SELLER_AVATAR = 'sellers/avatar/update',
 }
 
 export const userService = {
@@ -36,25 +37,6 @@ export const userService = {
     return data;
   },
 
-  uploadImage: async (payload: {
-    action: string;
-    file: File;
-    queries?: { product_id: number; serial_number: number };
-  }) => {
-    const { action, file, queries } = payload;
-    const formData = new FormData();
-
-    formData.append('file', file);
-
-    const { data } = await baseConfigService.post<{
-      ok: boolean;
-      result: { id: number; url: string };
-    }>(action, formData, {
-      params: queries,
-    });
-
-    return data;
-  },
   deleteImage: async (payload: {
     action: string;
     queries: { company_image_id: number; order?: number };
