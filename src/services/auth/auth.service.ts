@@ -1,6 +1,8 @@
 import baseConfigService from '../baseConfig.service';
 
 import {
+  IConfirmEmailRequest,
+  IRegisterRequest,
   LogoutResponseType,
   CurrentUserInfoResponseType,
   ChangePasswordPayloadType,
@@ -8,10 +10,10 @@ import {
   LoginParamsType,
   LoginResponseType,
   PasswordResponseType,
-  RegisterParamsType,
   RegisterResponseType,
   ResetPasswordPayloadType,
   IPersonalInfoRequestData,
+  ChangeEmailPayloadType,
 } from './auth.serviceTypes';
 
 export const authService = {
@@ -19,18 +21,24 @@ export const authService = {
     return baseConfigService.get(`/login/role/`);
   },
 
-  register: ({ email, password, route, token }: RegisterParamsType) => {
-    if (route === 'confirmEmail') {
-      return baseConfigService.get<RegisterResponseType>(
-        `register/confirmEmail/?token=${token}`,
-      );
-    }
+  register: async ({ email, password, role }: IRegisterRequest) => {
+    const { data } = await baseConfigService.post<RegisterResponseType>(
+      `register/${role}/`,
+      {
+        email,
+        password,
+      },
+    );
 
-    return baseConfigService.post<RegisterResponseType>(`register/${route}/`, {
-      email,
-      password,
-      token,
-    });
+    return data;
+  },
+
+  confirmEmail: async ({ token }: IConfirmEmailRequest) => {
+    const { data } = await baseConfigService.get<RegisterResponseType>(
+      `register/confirmEmail/?token=${token}`,
+    );
+
+    return data;
   },
 
   sendAccountPersonalInfo: async (personalInfoData: IPersonalInfoRequestData) => {
@@ -66,9 +74,9 @@ export const authService = {
   },
 
   forgotPassword: (email: string) => {
-    return baseConfigService.post<PasswordResponseType>('password/forgot/', {
-      email,
-    });
+    return baseConfigService.post<PasswordResponseType>(
+      `password/forgot/?email=${email}`,
+    );
   },
 
   checkToken: (token: string) => {
@@ -78,11 +86,20 @@ export const authService = {
   },
 
   resetPassword: (params: ResetPasswordPayloadType) => {
-    return baseConfigService.post<PasswordResponseType>('password/reset/', params);
+    const { token, ...restParams } = params;
+
+    return baseConfigService.post<PasswordResponseType>(
+      `password/reset/?token=${token}`,
+      restParams,
+    );
   },
 
   changePassword: (params: ChangePasswordPayloadType) => {
     return baseConfigService.post<PasswordResponseType>('password/change/', params);
+  },
+
+  changeEmail: (params: ChangeEmailPayloadType) => {
+    return baseConfigService.patch<PasswordResponseType>('users/changeEmail/', params);
   },
 };
 

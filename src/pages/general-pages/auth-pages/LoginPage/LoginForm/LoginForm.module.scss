@@ -1,13 +1,3 @@
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+@import "./src/common/styles/mixins";
 
-  width: 100%;
-  max-width: 396px;
-  margin-bottom: 24px;
-}
-
-.button{
-  margin-top: 10px;
-}
+@include auth_pages_form;

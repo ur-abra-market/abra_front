@@ -1,4 +1,4 @@
-export { userRoleSelector } from './selectors';
+export { userRoleSelector, isAuthSelector } from './selectors';
 export {
   registerUser,
   loginUser,
@@ -9,4 +9,5 @@ export {
   checkToken,
   forgotPassword,
   resetPassword,
+  changeEmail,
 } from './thunks';

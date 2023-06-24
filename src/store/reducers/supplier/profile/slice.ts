@@ -6,6 +6,9 @@ import { getPersonalInfo } from '../../userSlice';
 
 import {
   getBusinessInfo,
+  deleteCompanyLogo,
+  fetchCompanyLogo,
+  uploadCompanyLogo,
   getSupplierNotifications,
   updateSupplierNotifications,
 } from './thunks';
@@ -19,6 +22,11 @@ export interface ISupplierPersonalInfo {
 
 interface IBusinessSector {
   value: string;
+}
+
+interface ICountryRegistration {
+  label: string;
+  value: number | null;
 }
 
 export interface ISupplierBusinessInfo {
@@ -60,10 +68,12 @@ const initialState: ISupplierProfileSliceInitialState = {
     license: '',
     yearEstablished: null,
     numEmployees: null,
-    countryRegistration: null,
+    countryRegistration: { value: null, label: '' },
     description: '',
     email: '',
     address: '',
+    companyLogo: '',
+    companyLogoId: null,
     countryShort: '',
     phoneNumber: '',
     id: null,
@@ -133,6 +143,16 @@ export const supplierProfileSlice = createSlice({
       })
       .addCase(updateSupplierNotifications.rejected, state => {
         state.loading = LoadingStatusEnum.Failed;
+      })
+      .addCase(fetchCompanyLogo.fulfilled, (state, action) => {
+        state.businessInfo.companyLogo = action.payload;
+      })
+      .addCase(uploadCompanyLogo.fulfilled, (state, action) => {
+        state.businessInfo.companyLogo = action.payload.result.image;
+        state.businessInfo.companyLogoId = action.payload.result.id;
+      })
+      .addCase(deleteCompanyLogo.fulfilled, state => {
+        state.businessInfo.companyLogo = '';
       });
   },
 });

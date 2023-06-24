@@ -3,3 +3,24 @@
   font-weight: var(--bold);
   text-align: left;
 }
+
+@mixin auth_pages_form {
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    width: 100%;
+    max-width: 396px;
+    margin-top: 32px;
+    margin-bottom: 24px;
+  }
+
+  .input_wrapper {
+    width: 100%;
+  }
+
+  .button_submit {
+    width: 100%;
+  }
+}

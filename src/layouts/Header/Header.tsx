@@ -53,6 +53,7 @@ const Header: FC<IHeader> = ({ className, ...restProps }): JSX.Element => {
     <header className={cn(className)} {...restProps}>
       <Container className={style.container_position}>
         <Top />
+
         <div className={style.wrapper}>
           <button
             type="button"
@@ -65,6 +66,7 @@ const Header: FC<IHeader> = ({ className, ...restProps }): JSX.Element => {
           <HeaderNavMenu className={style.center} />
           <LocationAndCurrencySelection className={style.right} />
         </div>
+
         {categoriesIsOpen && <CategoriesMenu ref={categoriesRef} />}
       </Container>
     </header>

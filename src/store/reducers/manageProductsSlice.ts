@@ -10,9 +10,7 @@ export const manageProductsService = createAsyncThunk<any, void>(
 
   async (_, { rejectWithValue }) => {
     try {
-      const data = await productService.getListManageProducts();
-
-      return data;
+      return await productService.getListManageProducts();
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
