@@ -33,7 +33,6 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const companyLogo = useSelector(supplierCompanyLogoSelector);
   const companyLogoId = useSelector(supplierCompanyLogoIdSelector);
-  const companyInfoSelector = useAppSelector(supplierBusinessInfoSelector);
   const handleUploadImage = (image: File): void => {
     dispatch(uploadCompanyLogo(image));
   };

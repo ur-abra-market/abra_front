@@ -24,11 +24,6 @@ interface IBusinessSector {
   value: string;
 }
 
-interface ICountryRegistration {
-  label: string;
-  value: number | null;
-}
-
 export interface ISupplierBusinessInfo {
   storeName: string;
   businessSector: IBusinessSector;
@@ -44,6 +39,8 @@ export interface ISupplierBusinessInfo {
   countryShort: string;
   countryCode: string;
   address: string;
+  companyLogo: string;
+  companyLogoId: number | null;
 }
 
 interface ISupplierProfileSliceInitialState {
@@ -68,7 +65,7 @@ const initialState: ISupplierProfileSliceInitialState = {
     license: '',
     yearEstablished: null,
     numEmployees: null,
-    countryRegistration: { value: null, label: '' },
+    countryRegistration: null,
     description: '',
     email: '',
     address: '',
