@@ -1,0 +1,36 @@
+@import "src/common/styles/mixins";
+
+.container {
+  @include content_container
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 40px 0;
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 74px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav {
+  font-family: var(--roboto);
+  font-size: 15px;
+  font-weight: var(--medium);
+  font-style: normal;
+  line-height: 15px;
+  color: var(--color-black);
+}
+
+.selects {
+  padding-left: 16px;
+  border-left: 1px solid var(--color-black);
+}

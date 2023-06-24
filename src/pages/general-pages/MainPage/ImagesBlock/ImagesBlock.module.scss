@@ -1,5 +1,11 @@
+@import "common/styles/mixins";
+
 .images_box{
   text-transform: uppercase;
+}
+
+.container {
+  @include content_container
 }
 
 .image_box_main{

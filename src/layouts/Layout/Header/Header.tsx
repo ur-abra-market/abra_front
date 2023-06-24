@@ -4,7 +4,6 @@ import cn from 'classnames';
 
 import { CategoriesMenu } from '../../../components/CategoriesMenu/CategoriesMenu';
 import { LocationAndCurrencySelection } from '../../../components/LocationAndCurrencySelection/LocationAndCurrencySelection';
-import { Container } from '../../../ui-kit';
 
 import style from './Header.module.scss';
 
@@ -45,25 +44,23 @@ export const Header: FC<IHtmlHeaderProps> = ({
   });
 
   return (
-    <header className={cn(className)} {...restProps}>
-      <Container className={style.container_position}>
-        <Top />
+    <header className={cn(style.container, className)} {...restProps}>
+      <Top />
 
-        <div className={style.wrapper}>
-          <button
-            type="button"
-            ref={buttonRef}
-            className={style.button}
-            onClick={() => setCategoriesIsOpen(!categoriesIsOpen)}
-          >
-            All categories
-          </button>
-          <HeaderNav type="seller" className={style.nav_container} />
-          <LocationAndCurrencySelection className={style.selected} />
-        </div>
+      <div className={style.wrapper}>
+        <button
+          type="button"
+          ref={buttonRef}
+          className={style.button}
+          onClick={() => setCategoriesIsOpen(!categoriesIsOpen)}
+        >
+          All categories
+        </button>
+        <HeaderNav type="seller" className={style.nav_container} />
+        <LocationAndCurrencySelection className={style.selected} />
+      </div>
 
-        {categoriesIsOpen && <CategoriesMenu ref={categoriesRef} />}
-      </Container>
+      {categoriesIsOpen && <CategoriesMenu ref={categoriesRef} />}
     </header>
   );
 };

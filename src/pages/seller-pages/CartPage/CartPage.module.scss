@@ -1,4 +1,8 @@
-.cart_page {
+@import "common/styles/mixins";
+
+.container {
+  @include content_container;
+
   display: flex;
   gap: 32px;
   justify-content: space-between;

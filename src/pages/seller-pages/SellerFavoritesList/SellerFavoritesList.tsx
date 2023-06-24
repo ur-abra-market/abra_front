@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Feedback } from 'components';
 
-import { ButtonInfo, Container, Search } from '../../../ui-kit';
+import { ButtonInfo, Search } from '../../../ui-kit';
 
 import style from './SellerFavoritesList.module.scss';
 
@@ -35,7 +35,7 @@ export const SellerFavoritesList = WithLayout((): JSX.Element => {
 
   return (
     <div className={style.favorites_page}>
-      <Container>
+      <div className={style.container}>
         <div className={style.top}>
           <h3 className={style.title}>Favorites list</h3>
           <Search className={style.search} placeholder="Search within my favorites" />
@@ -50,7 +50,7 @@ export const SellerFavoritesList = WithLayout((): JSX.Element => {
         <div className={style.bottom}>
           <ButtonInfo />
         </div>
-      </Container>
+      </div>
       {/* <Feedback /> */}
       {/* TODO Feedback crashing app */}
     </div>

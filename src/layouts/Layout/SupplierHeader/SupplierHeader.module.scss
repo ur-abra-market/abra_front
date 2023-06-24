@@ -1,4 +1,8 @@
-.container_position {
+@import "common/styles/mixins";
+
+.container {
+  @include content_container;
+
   position: relative;
 }
 

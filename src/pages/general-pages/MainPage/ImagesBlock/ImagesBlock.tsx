@@ -9,7 +9,6 @@ import {
   Banner6Image,
   Banner7Image,
 } from '../../../../assets/images';
-import { Container } from '../../../../ui-kit';
 
 import style from './ImagesBlock.module.scss';
 
@@ -37,7 +36,7 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
         </div>
       </div>
 
-      <Container>
+      <div className={style.container}>
         <div className={style.images_box_grid}>
           <div className={style.grid_item1}>
             <span className={style.grid_item_ad1}>AUTUMN SALE</span>
@@ -86,7 +85,7 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
             />
           </div>
         </div>
-      </Container>
+      </div>
     </div>
   );
 };
