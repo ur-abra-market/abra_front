@@ -1,10 +1,9 @@
 import { FC, useState } from 'react';
 
-import style from './Address.module.scss';
-
 import { EditPencilIcon } from 'assets/icons';
 import Check from 'old-components/Check';
 import { EditAddressModal } from 'old-components/ui/popup/EdtiAddressModal/EditAddressModal';
+import style from 'pages/seller-pages/SellerProfilePage/SellerPersonalInfoAddresses/Address/Address.module.scss';
 import { IAddress } from 'store/reducers/seller/profile/slice';
 
 interface AddressProps {
