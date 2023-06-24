@@ -5,8 +5,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { passwordValidationSchema } from '../../../../../common/constants';
-import { useAppDispatch } from '../../../../../common/hooks';
-import { useAppSelector } from '../../../../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { LoadingStatusEnum } from '../../../../../common/types';
 import { loadingSelector } from '../../../../../store/reducers/appSlice';
 import { isAuthSelector } from '../../../../../store/reducers/authSlice';
