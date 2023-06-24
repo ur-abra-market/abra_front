@@ -1,4 +1,4 @@
-.wrapper{
+.wrapper {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -13,7 +13,7 @@
   color: var(--color-black);
 }
 
-.left{
+.left {
   cursor: pointer;
 
   padding-right: 16px;
@@ -27,11 +27,11 @@
   background: transparent;
 }
 
-.center{
+.center {
   justify-self: center;
 }
 
-.right{
+.right {
   padding-left: 16px;
 }
 

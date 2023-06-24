@@ -48,11 +48,15 @@ export const CategoriesMenu = forwardRef(
     return (
       <div ref={ref} className={cn(style.menu_container)}>
         <ul className={style.list}>
-          <li className={style.all_categories}>
-            <NavLink className={style.link} to="#">
-              All categories
-            </NavLink>
-          </li>
+          <FilterButton
+            key="12"
+            value="All categories"
+            activeValue={activeCategories}
+            callback={setActiveCategories}
+          >
+            All categories
+          </FilterButton>
+
           {wearerCategory &&
             wearerCategory.map(c => {
               return (
