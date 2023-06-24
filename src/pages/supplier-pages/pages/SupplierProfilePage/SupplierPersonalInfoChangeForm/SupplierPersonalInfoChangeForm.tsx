@@ -19,46 +19,48 @@ import { Button } from '../../../../../ui-kit';
 
 import style from './SupplierPersonalInfoChangeForm.module.scss';
 
+import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
+
 export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { lastName, firstName, countryShort, phoneNumber } = useAppSelector(
-    supplierPersonalInfoSelector,
-  );
-  const countries = useAppSelector(countriesSelector);
-  const numberCountry = countries.find(c => c.country_short === countryShort);
 
-  useEffect(() => {
-    dispatch(getPersonalInfo());
-  }, []);
+  const data = useAppSelector(supplierPersonalInfoSelector);
 
-  useEffect(() => {
-    if (lastName && firstName && numberCountry) {
-      setValue('firstName', firstName);
-      setValue('lastName', lastName);
-      setValue('phoneNumber', `${numberCountry.country_code}${phoneNumber}`);
-      setValue('countryId', numberCountry.id);
-    }
-  }, [lastName, firstName, phoneNumber]);
+  const { lastName, firstName, countryShort, phoneNumber } = data;
 
   const formMethods = useForm<IPersonalInfoFormData>({
     resolver: yupResolver(personalInfoFormValidationSchema),
     mode: 'all',
   });
+
   const { watch, handleSubmit, formState, setValue } = formMethods;
 
-  const [phoneNumberValue, lastNameValue, firstNameValue] = watch([
+  const countries = useAppSelector(countriesSelector);
+
+  const numberCountry = countries.find(c => c.country_short === countryShort);
+
+  useSetPersonalInfoValues(setValue, data, numberCountry);
+
+  useEffect(() => {
+    dispatch(getPersonalInfo());
+  }, [dispatch]);
+
+  const [phoneNumberValue, lastNameValue, firstNameValue, countryShortValue] = watch([
     'phoneNumber',
     'lastName',
     'firstName',
+    'countryShort',
   ]);
 
-  const { numberFull: currentPhoneNumber } = parsePhoneNumber(phoneNumberValue || '');
   const serverPhoneNumber = `${numberCountry?.country_code}${phoneNumber}`;
+
+  const { numberFull: currentPhoneNumber } = parsePhoneNumber(phoneNumberValue || '');
 
   const isPersonalInfoFormDisable =
     currentPhoneNumber === serverPhoneNumber &&
     lastNameValue === lastName &&
-    firstNameValue === firstName;
+    firstNameValue === firstName &&
+    countryShortValue === countryShort;
 
   const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
     let phoneNumberBody;

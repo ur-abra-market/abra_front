@@ -17,15 +17,25 @@ import {
 } from '../../../../store/reducers/userSlice';
 import { Button } from '../../../../ui-kit';
 
+import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
 import style from 'pages/seller-pages/SellerProfilePage/SellerPersonalInfoChangeForm/SellerPersonalInfoChangeForm.module.scss';
 import { Action } from 'services/user/user.service';
+import { sellerPersonalInfoSelector } from 'store/reducers/seller/profile';
 import { getSellerAvatar } from 'store/reducers/seller/profile/thunks';
 
 export const SellerPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { lastName, firstName, countryShort, phoneNumber } = useAppSelector(
-    state => state.sellerProfile.personalInfo,
-  );
+
+  const data = useAppSelector(sellerPersonalInfoSelector);
+
+  const { countryShort, phoneNumber, lastName, firstName } = data;
+
+  const formMethods = useForm<IPersonalInfoFormData>({
+    resolver: yupResolver(personalInfoFormValidationSchema),
+    mode: 'all',
+  });
+
+  const { watch, handleSubmit, formState, setValue } = formMethods;
 
   const avatar = useAppSelector(state => state.sellerProfile.personalInfo.avatar);
 
@@ -33,39 +43,29 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
 
   const numberCountry = countries.find(c => c.country_short === countryShort);
 
+  useSetPersonalInfoValues(setValue, data, numberCountry);
+
   useEffect(() => {
     dispatch(getPersonalInfo());
     dispatch(getSellerAvatar());
-  }, []);
+  }, [dispatch]);
 
-  useEffect(() => {
-    if (lastName && firstName && numberCountry) {
-      setValue('firstName', firstName);
-      setValue('lastName', lastName);
-      setValue('phoneNumber', `${numberCountry.country_code}${phoneNumber}`);
-      setValue('countryId', numberCountry.id);
-    }
-  }, [lastName, firstName, phoneNumber]);
-
-  const formMethods = useForm<IPersonalInfoFormData>({
-    resolver: yupResolver(personalInfoFormValidationSchema),
-    mode: 'all',
-  });
-  const { watch, handleSubmit, formState, setValue } = formMethods;
-
-  const [phoneNumberValue, lastNameValue, firstNameValue] = watch([
+  const [phoneNumberValue, lastNameValue, firstNameValue, countryShortValue] = watch([
     'phoneNumber',
     'lastName',
     'firstName',
+    'countryShort',
   ]);
 
-  const { numberFull: currentPhoneNumber } = parsePhoneNumber(phoneNumberValue || '');
   const serverPhoneNumber = `${numberCountry?.country_code}${phoneNumber}`;
+
+  const { numberFull: currentPhoneNumber } = parsePhoneNumber(phoneNumberValue || '');
 
   const isPersonalInfoFormDisable =
     currentPhoneNumber === serverPhoneNumber &&
     lastNameValue === lastName &&
-    firstNameValue === firstName;
+    firstNameValue === firstName &&
+    countryShortValue === countryShort;
 
   const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
     let phoneNumberBody;
