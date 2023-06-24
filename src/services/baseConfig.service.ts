@@ -25,7 +25,7 @@ baseConfigService.interceptors.response.use(
           'The content too Large. Please reduce the content size and retry.',
         ),
       );
-    } else if (error.response.status === 500) {
+    } else if (error.response.status >= 500) {
       store.dispatch(
         setResponseError(
           'Internal Server Error. Something went wrong on our end. Please try again later.',

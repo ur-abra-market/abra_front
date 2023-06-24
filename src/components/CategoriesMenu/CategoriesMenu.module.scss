@@ -8,7 +8,7 @@
 
   min-width: 600px;
   min-height: 464px;
-  padding: 32px;
+  padding: 24px;
 
   background-color: var(--color-white);
   border-radius: 8px;
@@ -19,6 +19,12 @@
   display: flex;
   flex-direction: column;
   row-gap: 16px;
+}
+
+.all_categories {
+  display: flex;
+  align-items: center;
+  height: 30px;
 }
 
 .items_wrapper {
@@ -45,6 +51,11 @@
   font-size: var(--fz-l);
   font-weight: var(--semi-bold);
   color: var(--color-black);
+
+  &:hover {
+    color: var(--color-accent);
+    transition: all .1s;
+  }
 }
 
 .items_links {
@@ -56,6 +67,3 @@
     color: var(--color-accent);
   }
 }
-
-
-

@@ -48,6 +48,7 @@ export const Header: FC<IHtmlHeaderProps> = ({
     <header className={cn(className)} {...restProps}>
       <Container className={style.container_position}>
         <Top />
+
         <div className={style.wrapper}>
           <button
             type="button"
@@ -60,6 +61,7 @@ export const Header: FC<IHtmlHeaderProps> = ({
           <HeaderNav type="seller" className={style.nav_container} />
           <LocationAndCurrencySelection className={style.selected} />
         </div>
+
         {categoriesIsOpen && <CategoriesMenu ref={categoriesRef} />}
       </Container>
     </header>
