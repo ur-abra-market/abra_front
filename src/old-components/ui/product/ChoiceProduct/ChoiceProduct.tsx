@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
 
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
+import { useAppSelector } from '../../../../common/hooks';
 import { Button } from '../../../../ui-kit';
 import ProductQuantityControl from '../../../ProductQuantityControl';
 

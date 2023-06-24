@@ -18,7 +18,6 @@ import {
 import { Button } from '../../../../ui-kit';
 
 import style from 'pages/seller-pages/SellerProfilePage/SellerPersonalInfoChangeForm/SellerPersonalInfoChangeForm.module.scss';
-import { Action } from 'services/user/user.service';
 import { getSellerAvatar } from 'store/reducers/seller/profile/thunks';
 
 export const SellerPersonalInfoChangeForm = (): JSX.Element => {

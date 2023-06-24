@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import Modal from '../../../components/Modal';
-import { HOME, LOGIN, REGISTER, CART, PERSONAL_ACCOUNT } from '../../../routes';
+import { HOME, LOGIN, CART } from '../../../routes';
 
 import style from './Top.module.scss';
 
