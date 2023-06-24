@@ -3,6 +3,7 @@ export {
   getSupplierNotifications,
   updateSupplierNotifications,
   updateBusinessInfo,
+  uploadCompanyLogo,
 } from './thunks';
 export {
   supplierPersonalInfoSelector,

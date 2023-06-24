@@ -7,6 +7,10 @@ import { ISupplierPersonalInfo, ISupplierBusinessInfo } from './slice';
 export const supplierPersonalInfoSelector = (
   state: RootStateType,
 ): ISupplierPersonalInfo => state.supplierProfile.personalInfo;
+export const supplierCompanyLogoSelector = (state: RootStateType): string =>
+  state.supplierProfile.businessInfo.companyLogo;
+export const supplierCompanyLogoIdSelector = (state: RootStateType): number | null =>
+  state.supplierProfile.businessInfo.companyLogoId;
 
 export const supplierBusinessInfoSelector = (
   state: RootStateType,

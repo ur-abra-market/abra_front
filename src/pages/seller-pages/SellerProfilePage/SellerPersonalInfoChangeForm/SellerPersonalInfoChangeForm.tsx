@@ -93,7 +93,7 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
         <ButtonLogOut />
       </div>
 
-      <UploadImage action={Action.UPLOAD_SELLER_AVATAR} type="default" image={avatar} />
+      <UploadImage type="default" image={avatar} description="avatar" />
 
       <FormProvider {...formMethods}>
         <form onSubmit={handleSubmit(onSubmit)}>
