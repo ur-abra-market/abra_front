@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '../../../../../../common/hooks';
 import { UploadImage } from '../../../../../../components';
@@ -18,7 +19,16 @@ import {
 
 import style from './AccountSetupBusinessInfoForm.module.scss';
 
+import { uploadCompanyLogo } from 'store/reducers/supplier/profile';
+import {
+  supplierCompanyLogoIdSelector,
+  supplierCompanyLogoSelector,
+} from 'store/reducers/supplier/profile/selectors';
+import { deleteCompanyLogo } from 'store/reducers/supplier/profile/thunks';
+
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {
+  const companyLogo = useSelector(supplierCompanyLogoSelector);
+  const companyLogoId = useSelector(supplierCompanyLogoIdSelector);
   const dispatch = useAppDispatch();
   const formMethods = useForm<ISupplierBusinessInfo>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
@@ -54,6 +64,12 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
 
     dispatch(createAccountBusinessInfo(businessInfoData)); // сделать переход после того как форма удачно отправится
   };
+  const handleUploadImage = (img: File): void => {
+    dispatch(uploadCompanyLogo(img));
+  };
+  const handleDeleteImage = (): void => {
+    if (companyLogoId !== null) dispatch(deleteCompanyLogo(companyLogoId));
+  };
 
   return (
     <div className={style.wrapper}>
@@ -65,10 +81,13 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
 
         <div className={style.add_logo}>
           <UploadImage
-            action={Action.UPLOAD_LOGO_IMAGE}
+            uploadImage={handleUploadImage}
+            deleteImage={handleDeleteImage}
+            image={companyLogo}
             type="logo"
             label="Add logo or profile image"
             placeholder="The customers will recognize your store by this image"
+            description="company logo"
           />
         </div>
 

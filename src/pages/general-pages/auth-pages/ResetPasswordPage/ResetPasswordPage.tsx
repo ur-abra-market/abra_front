@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import { AuthPageLayout } from '../assets';
@@ -14,18 +14,28 @@ import { checkToken } from 'store/reducers/authSlice';
 import { Button } from 'ui-kit';
 
 export const ResetPasswordPage = (): JSX.Element => {
-  const [modalActive, setModalActive] = useState(false);
-  const [searchParams] = useSearchParams();
-  const tokenStatus = useAppSelector(state => state.auth.passwordActionsResult);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isTokenActive, setTokenActive] = useState(false);
 
+  const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
+
   const dispatch = useAppDispatch();
-  const handleChangeModalActive = (): void => {
-    setModalActive(prevState => !prevState);
+  const navigate = useNavigate();
+
+  const handleModalOnClose = (value: boolean): void => {
+    setModalOpen(value);
+    navigate('/login');
   };
 
   useEffect(() => {
-    dispatch(checkToken(token!));
+    (async () => {
+      const actionResult = await dispatch(checkToken(token!));
+
+      if (checkToken.fulfilled.match(actionResult)) {
+        setTokenActive(true);
+      }
+    })();
   }, [dispatch, token]);
 
   return (
@@ -35,13 +45,13 @@ export const ResetPasswordPage = (): JSX.Element => {
         <div className={style.subheader}>
           Enter a new password that matches the criteria
         </div>
-        {tokenStatus === 'TOKEN_IS_ACTIVE' && (
-          <ResetPasswordForm handleChangeModalActive={handleChangeModalActive} />
+        {isTokenActive && (
+          <ResetPasswordForm setModalOpen={setModalOpen} token={token!} />
         )}
       </AuthPageLayout>
       <Modal
-        showModal={modalActive}
-        closeModal={setModalActive}
+        showModal={isModalOpen}
+        closeModal={handleModalOnClose}
         classNameModal={style.modal_container}
       >
         <div className={style.modal_content_wrapper}>
@@ -54,7 +64,7 @@ export const ResetPasswordPage = (): JSX.Element => {
           <Button
             label="Okay"
             className={style.modal_window_btn_active}
-            onClick={handleChangeModalActive}
+            onClick={() => handleModalOnClose(false)}
           />
         </div>
       </Modal>

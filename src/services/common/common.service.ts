@@ -2,18 +2,10 @@ import baseConfigService from '../baseConfig.service';
 
 import {
   CountriesType,
-  GetAllCategories,
+  AllCategories,
   IBaseResponseType,
   NumberEmployeesType,
 } from './common.serviceTypes';
-
-export interface IResponseCategory {
-  id: number;
-  name: string;
-  level: number;
-  children?: IResponseCategory[] | [];
-  parent_id?: number;
-}
 
 export const commonService = {
   getCountry: async () => {
@@ -33,9 +25,7 @@ export const commonService = {
   },
 
   fetchAllCategories: async () => {
-    const { data } = await baseConfigService.get<GetAllCategories>(`/categories/all/`);
-
-    console.log(data);
+    const { data } = await baseConfigService.get<AllCategories>(`/categories/all/`);
 
     return data;
   },

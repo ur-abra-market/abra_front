@@ -48,6 +48,17 @@ export interface ISupplierNotifications {
   on_account_support: boolean;
 }
 
+export interface SuppliersResponse<R> {
+  ok: boolean;
+  result: R;
+}
+
+export interface ISupplierErrorResponse {
+  ok: boolean;
+  error_code: number;
+  error: { loc: string[]; msg: string; type: string }[];
+}
+
 export interface ISuppliersCompanyInfoData {
   id: number;
   license_number: string;
