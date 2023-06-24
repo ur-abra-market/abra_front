@@ -42,14 +42,17 @@ export const UploadImage: FC<IUploadImage> = ({
   const dispatch = useAppDispatch();
   const uploadImageIcon =
     type === 'logo' ? <UploadLogoImageIcon /> : <UploadItemImageIcon />;
+
   const inputClasses = cn({
     [style.input_logo]: type === 'logo',
     [style.input_default]: type !== 'logo',
   });
+
   const imgClasses = cn({
     [style.logo_img]: type === 'logo',
     [style.default_img]: type !== 'logo',
   });
+
   const crossClasses = cn({
     [style.logo_cross]: type === 'logo',
     [style.default_cross]: type !== 'logo',
