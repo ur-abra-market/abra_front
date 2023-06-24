@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { UploadImage } from '../../../../../components';
 import { ISuppliersUpdateCompanyInfo } from '../../../../../services/supplier/supplier.serviceTypes';
-import { Action } from '../../../../../services/user/user.service';
 import {
   getBusinessInfo,
   supplierBusinessInfoSelector,
@@ -20,9 +20,26 @@ import {
 
 import style from './SupplierBusinessInfoChangeForm.module.scss';
 
+import {
+  supplierCompanyLogoIdSelector,
+  supplierCompanyLogoSelector,
+} from 'store/reducers/supplier/profile/selectors';
+import {
+  deleteCompanyLogo,
+  uploadCompanyLogo,
+} from 'store/reducers/supplier/profile/thunks';
+
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
+  const companyLogo = useSelector(supplierCompanyLogoSelector);
+  const companyLogoId = useSelector(supplierCompanyLogoIdSelector);
   const companyInfoSelector = useAppSelector(supplierBusinessInfoSelector);
+  const handleUploadImage = (image: File): void => {
+    dispatch(uploadCompanyLogo(image));
+  };
+  const handleDeleteImage = (): void => {
+    if (companyLogoId !== null) dispatch(deleteCompanyLogo(companyLogoId));
+  };
 
   useEffect(() => {
     dispatch(getBusinessInfo());
@@ -68,10 +85,13 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
     <>
       <p className={style.subtitle}>Business Profile</p>
       <UploadImage
-        action={Action.UPLOAD_LOGO_IMAGE}
+        image={companyLogo}
         type="logo"
         label="Add logo or profile image"
         placeholder="The customers will recognize your store by this image"
+        uploadImage={handleUploadImage}
+        deleteImage={handleDeleteImage}
+        description="company logo"
       />
       <FormProvider {...formMethods}>
         <SupplierBusinessInfoForm updateForm onSubmit={onSubmit} />

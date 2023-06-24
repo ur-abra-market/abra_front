@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, useEffect, useRef, useState } from 'react';
+import React, { forwardRef, ReactNode, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
