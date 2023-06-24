@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { Address } from './Address/Address';
 import style from './SellerPersonalInfoAddresses.module.scss';
 
 import { useAppSelector } from 'common/hooks';
-import { Address } from 'pages/seller-pages/SellerProfilePage/SellerPersonalInfoAddresses/Address/Address';
 import { IAddress } from 'store/reducers/seller/profile/slice';
 
 export const SellerPersonalInfoAddresses = (): JSX.Element => {
