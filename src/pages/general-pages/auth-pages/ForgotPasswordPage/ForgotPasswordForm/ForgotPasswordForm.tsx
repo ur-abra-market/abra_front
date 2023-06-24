@@ -4,19 +4,21 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { useAppDispatch } from '../../../../../common/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { forgotPassword } from '../../../../../store/reducers/authSlice';
 import { Button, Input } from '../../../../../ui-kit';
 
 import style from './ForgotPasswordForm.module.scss';
 
 import { emailValidationSchema } from 'common/constants';
+import { LoadingStatusEnum } from 'common/types';
+import { loadingSelector } from 'store/reducers/appSlice';
 
-export type ForgotChangePasswordFormType = {
+export interface IForgotChangePasswordFormData {
   email: string;
-};
+}
 
-interface ForgotPasswordFormProps {
+interface IForgotPasswordForm {
   togglePageType: () => void;
 }
 const schema = yup
@@ -25,20 +27,24 @@ const schema = yup
   })
   .required();
 
-export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType }) => {
+export const ForgotPasswordForm: FC<IForgotPasswordForm> = ({ togglePageType }) => {
   const {
     register,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm<ForgotChangePasswordFormType>({
+  } = useForm<IForgotChangePasswordFormData>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
+  const loading = useAppSelector(loadingSelector);
   const dispatch = useAppDispatch();
 
-  const onSubmit = (data: ForgotChangePasswordFormType): void => {
-    dispatch(forgotPassword(data.email));
-    togglePageType();
+  const onSubmit = async (data: IForgotChangePasswordFormData): Promise<void> => {
+    const actionResult = await dispatch(forgotPassword(data.email));
+
+    if (forgotPassword.fulfilled.match(actionResult)) {
+      togglePageType();
+    }
   };
 
   return (
@@ -47,13 +53,13 @@ export const ForgotPasswordForm: FC<ForgotPasswordFormProps> = ({ togglePageType
         {...register('email')}
         placeholder="Email"
         error={errors.email?.message}
-        classNameWrapper={style.input}
+        classNameWrapper={style.input_wrapper}
       />
       <Button
         label="Reset password"
-        className={style.button}
+        className={style.button_submit}
         type="submit"
-        disabled={!isValid}
+        disabled={!isValid || loading === LoadingStatusEnum.Loading}
       />
     </form>
   );

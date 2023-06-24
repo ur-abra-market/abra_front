@@ -1,12 +1,5 @@
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-
-  width: 100%;
-  max-width: 396px;
-  margin-bottom: 24px;
-}
+@import "./src/common/styles/mixins.scss";
+@include auth_pages_form;
 
 .buttons_container_user_role {
   display: flex;
@@ -17,13 +10,4 @@
 
 .button_user_role {
   width: 50%;
-}
-
-.input_password {
-  width: 100%;
-  margin-bottom: 24px;
-}
-
-.button_submit {
-  margin-top: 10px;
 }
