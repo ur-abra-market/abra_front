@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
+import { useAppDispatch } from '../../../../common/hooks';
 import { AuthPageLayout } from '../assets';
 
 import style from './ResetPasswordPage.module.scss';

@@ -28,6 +28,7 @@ export const getBusinessInfo = createAsyncThunk<
     return rejectWithValue(errorMessage);
   }
 });
+
 export const updateBusinessInfo = createAsyncThunk<
   void,
   ISuppliersUpdateCompanyInfo,
@@ -45,9 +46,10 @@ export const updateBusinessInfo = createAsyncThunk<
     return rejectWithValue(errorMessage);
   }
 });
+
 export const fetchCompanyLogo = createAsyncThunk<string, void, IAsyncThunkConfig>(
   'supplierProfile/fetchCompanyImage',
-  async (_, { dispatch, rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
       return await supplierService.fetchCompanyLogo();
     } catch (error: unknown) {
@@ -57,6 +59,7 @@ export const fetchCompanyLogo = createAsyncThunk<string, void, IAsyncThunkConfig
     }
   },
 );
+
 export const uploadCompanyLogo = createAsyncThunk<
   SuppliersResponse<{
     id: number;
@@ -65,7 +68,7 @@ export const uploadCompanyLogo = createAsyncThunk<
   }>,
   File,
   IAsyncThunkConfig
->('supplierProfile/uploadCompanyImage', async (img, { dispatch, rejectWithValue }) => {
+>('supplierProfile/uploadCompanyImage', async (img, { rejectWithValue }) => {
   try {
     const data = await supplierService.uploadCompanyLogo(img);
 
@@ -81,7 +84,7 @@ export const deleteCompanyLogo = createAsyncThunk<
   SuppliersResponse<boolean>,
   number,
   IAsyncThunkConfig
->('supplierProfile/deleteCompanyImage', async (id, { dispatch, rejectWithValue }) => {
+>('supplierProfile/deleteCompanyImage', async (id, { rejectWithValue }) => {
   try {
     return await supplierService.deleteCompanyLogo(id);
   } catch (error) {
@@ -90,6 +93,7 @@ export const deleteCompanyLogo = createAsyncThunk<
     return rejectWithValue(err.message);
   }
 });
+
 export const getSupplierNotifications = createAsyncThunk<any, void>(
   'supplierAccount/getSupplierNotifications',
   async (_, { rejectWithValue, dispatch }) => {
