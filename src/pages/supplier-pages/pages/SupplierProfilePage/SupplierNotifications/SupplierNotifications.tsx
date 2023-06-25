@@ -40,7 +40,7 @@ export const SupplierNotifications = (): JSX.Element => {
     if (!notifications) {
       dispatch(getSupplierNotifications());
     }
-  }, [dispatch]);
+  }, []);
 
   return (
     <NotificationsChangeForm

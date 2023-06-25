@@ -84,13 +84,6 @@ export interface ISellerPersonalInfo {
   avatar: string;
 }
 
-// to thunk
-
-export interface Root {
-  ok: boolean;
-  result: IAddress[];
-}
-
 export interface IAddress {
   id: number;
   phone_number: string;
@@ -151,8 +144,7 @@ const sellerProfileSlice = createSlice({
         state.personalInfo.countryShort = action.payload.country.country_short;
         state.personalInfo.phoneNumber = action.payload.phone_number;
         state.loading = LoadingStatusEnum.Success;
-      });
-    builder
+      })
       .addCase(getSellerNotifications.pending, state => {
         state.loading = LoadingStatusEnum.Loading;
       })
@@ -166,10 +158,9 @@ const sellerProfileSlice = createSlice({
       .addCase(updateSellerNotifications.pending, state => {
         state.loading = LoadingStatusEnum.Loading;
       })
-      .addCase(updateSellerNotifications.rejected, (state, action) => {
+      .addCase(updateSellerNotifications.rejected, state => {
         state.loading = LoadingStatusEnum.Failed;
-      });
-    builder
+      })
       .addCase(getSellerAddresses.pending, state => {
         state.loading = LoadingStatusEnum.Loading;
       })
@@ -178,10 +169,10 @@ const sellerProfileSlice = createSlice({
       })
       .addCase(getSellerAddresses.rejected, state => {
         state.loading = LoadingStatusEnum.Failed;
+      })
+      .addCase(getSellerAvatar.fulfilled, (state, action) => {
+        state.personalInfo.avatar = action.payload.result.thumbnail_url;
       });
-    builder.addCase(getSellerAvatar.fulfilled, (state, action) => {
-      state.personalInfo.avatar = action.payload.result.thumbnail_url;
-    });
   },
 });
 

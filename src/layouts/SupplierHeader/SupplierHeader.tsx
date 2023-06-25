@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import { Container } from '../../old-components';
 import SupplierMenu from '../../old-components/ui/SupplierMenu/SupplierMenu';
+import { Container } from '../../ui-kit';
 
 import style from './SupplierHeader.module.scss';
 import { HeaderProps } from './SupplierHeader.props';
