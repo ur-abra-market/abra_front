@@ -65,14 +65,13 @@
   }
 }
 
-.link_white{
+.link_white {
   color: var(--color-accent);
   text-decoration: underline;
 
   &:hover{
     color: var(--color-black);
   }
-
 }
 
 .is_disabled_white,
@@ -83,7 +82,6 @@
   opacity: 0.5;
 }
 
-.is_disabled_white{
+.is_disabled_white {
   color: var(--color-accent);
 }
-
