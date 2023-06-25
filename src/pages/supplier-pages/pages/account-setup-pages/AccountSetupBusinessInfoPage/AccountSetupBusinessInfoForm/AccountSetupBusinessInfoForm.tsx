@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../../../common/hooks';
 import { parsePhoneNumber } from '../../../../../../common/utils/parsePhoneNumber';
@@ -30,6 +31,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   const companyLogo = useSelector(supplierCompanyLogoSelector);
   const companyLogoId = useSelector(supplierCompanyLogoIdSelector);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const formMethods = useForm<ISupplierBusinessInfo>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
@@ -39,7 +41,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
     dispatch(getCountries());
   }, []);
 
-  const onSubmit = (data: ISupplierBusinessInfo): void => {
+  const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
     const { numberBody } = parsePhoneNumber(data.phoneNumber);
     const businessInfoData: IBusinessInfoRequestData = {
       supplier_data_request: {
@@ -59,11 +61,15 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
       },
       company_phone_data_request: {
         phone_number: numberBody,
-        country_id: data.id!,
+        country_id: data.phoneId!,
       },
     };
 
-    dispatch(createAccountBusinessInfo(businessInfoData)); // сделать переход после того как форма удачно отправится
+    const result = await dispatch(createAccountBusinessInfo(businessInfoData));
+
+    if (createAccountBusinessInfo.fulfilled.match(result)) {
+      navigate('/');
+    }
   };
   const handleUploadImage = (img: File): void => {
     dispatch(uploadCompanyLogo(img));
