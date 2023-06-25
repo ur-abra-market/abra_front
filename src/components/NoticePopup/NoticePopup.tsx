@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { CrossWhiteIcon } from '../../assets/icons';
-import { useAppDispatch } from '../../common/hooks/useAppDispatch';
-import { useAppSelector } from '../../common/hooks/useAppSelector';
+import { useAppDispatch, useAppSelector } from '../../common/hooks';
 import { responseNoticeSelector } from '../../store/reducers/appSlice';
 import { setResponseNotice } from '../../store/reducers/appSlice/slice';
 

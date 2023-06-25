@@ -85,7 +85,6 @@ export interface ICompanyInfo {
 interface IPhoneInfo {
   id: number;
   phone_number: string;
-  country: ICountry;
 }
 
 export interface ISuppliersUpdateCompanyInfo {

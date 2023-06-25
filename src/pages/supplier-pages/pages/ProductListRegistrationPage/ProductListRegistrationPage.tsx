@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
-import { getAllCategories } from '../../../../store/reducers/commonSlice/thunks';
+import { getAllCategories } from '../../../../store/reducers/commonSlice';
 import {
   getPropertiesService,
   getVariationsService,

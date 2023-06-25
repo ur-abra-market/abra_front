@@ -119,10 +119,10 @@ export const supplierProfileSlice = createSlice({
       state.businessInfo.description = description;
       state.businessInfo.email = business_email;
       state.businessInfo.address = address;
-      state.businessInfo.id = phone.country.id;
+      state.businessInfo.id = phone.id;
       state.businessInfo.phoneNumber = phone.phone_number;
-      state.businessInfo.countryShort = phone.country.country_short;
-      state.businessInfo.countryCode = phone.country.country_code;
+      state.businessInfo.countryShort = country.country_short;
+      state.businessInfo.countryCode = country.country_code;
     });
     builder
       .addCase(getSupplierNotifications.pending, state => {

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
+import { useAppSelector } from '../../../../common/hooks';
 import { Stars } from '../../../../ui-kit';
 
 import style from './ProductReview.module.scss';
