@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { useOnClickOutside } from '../../../../common/hooks';
-import { HeaderMenu } from '../../../../components'; // 5 10px for ArrowRightIcon
+import { HeaderMenu } from '../../../../components';
 import { MainLogo } from '../../../../ui-kit';
 
 import style from './SupplierTop.module.scss';
@@ -12,8 +12,8 @@ import style from './SupplierTop.module.scss';
 import { ArrowIcon, HeaderNotificationsIcon, LogoCompanyPlaceholder } from 'assets/icons';
 
 export const SupplierTop = (): JSX.Element => {
-  const [active, setActive] = useState(false);
-  const triggerRef = useOnClickOutside(setActive);
+  const [isShowPopupMenu, setIsShowPopupMenu] = useState(false);
+  const triggerRef = useOnClickOutside(setIsShowPopupMenu);
 
   return (
     <div className={style.wrapper}>
@@ -34,14 +34,17 @@ export const SupplierTop = (): JSX.Element => {
           <LogoCompanyPlaceholder />
           <button
             className={style.menu_icons}
-            onClick={() => setActive(!active)}
+            onClick={() => setIsShowPopupMenu(!isShowPopupMenu)}
             type="button"
           >
             <span className={style.business_name}>Business Name</span>
 
-            <ArrowIcon className={cn({ [style.arrow]: active })} />
+            <ArrowIcon className={cn({ [style.arrow]: isShowPopupMenu })} />
           </button>
-          <HeaderMenu active={active} setActive={() => setActive(false)} />
+          <HeaderMenu
+            active={isShowPopupMenu}
+            setActive={() => setIsShowPopupMenu(false)}
+          />
         </div>
       </div>
     </div>

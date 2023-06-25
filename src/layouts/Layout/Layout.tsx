@@ -6,12 +6,12 @@ import styles from './Layout.module.scss';
 
 import { SupplierHeader, Header } from '.';
 
-export interface LayoutProps {
+export interface ILayoutProps {
   children: ReactNode;
   headerVariant?: 'default' | 'supplier';
 }
 
-export const Layout: FC<LayoutProps> = ({
+export const Layout: FC<ILayoutProps> = ({
   children,
   headerVariant = 'default',
 }): JSX.Element => {

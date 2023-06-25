@@ -11,14 +11,14 @@
 
   font-size: var(--fz-s2);
   font-weight: var(--medium);
-  color: #000;
+  color: var(--color-black);
   letter-spacing: 0.16px;
 }
 
 .menu_item_active {
-  color: #FC133D ;
+  color: var(--color-accent) ;
 }
 
 .menu_item:hover {
-  color: #FC133D;
+  color: var(--color-accent);
 }

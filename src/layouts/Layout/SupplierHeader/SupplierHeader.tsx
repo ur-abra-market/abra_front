@@ -9,9 +9,10 @@ import { Top } from '.';
 import { IHtmlHeaderProps } from 'common/types';
 import { HeaderNav } from 'components/HeaderNav/HeaderNav';
 
-export const SupplierHeader: FC<IHtmlHeaderProps> = (props): JSX.Element => {
-  const { className, ...restProps } = props;
-
+export const SupplierHeader: FC<IHtmlHeaderProps> = ({
+  className,
+  ...restProps
+}): JSX.Element => {
   return (
     <header className={cn(style.container, className)} {...restProps}>
       <Top />

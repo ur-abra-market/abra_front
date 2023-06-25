@@ -73,9 +73,7 @@
   /*----------sizes----------*/
   --form-column-gap: 16px;
   --form-row-gap: 20px;
-
-  /*----------sizes-container----------*/
-  --main-content-with: 1440px;
+  --main-content-width: 1440px;
 }
 
 * {

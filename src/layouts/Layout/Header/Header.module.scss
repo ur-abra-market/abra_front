@@ -16,11 +16,10 @@
   font-family: var(--roboto);
   font-size: var(--fz-s2);
   font-weight: var(--medium);
-  line-height: 15px;
   color: var(--color-black);
 }
 
-.button{
+.button {
   cursor: pointer;
 
   grid-column-end: 2;
@@ -31,13 +30,12 @@
   font-family: var(--roboto);
   font-size: var(--fz-s2);
   font-weight: var(--medium);
-  line-height: 15px;
 
   background: transparent;
   border-right: 1px solid var(--color-black);
 }
 
-.nav_container{
+.nav_container {
   grid-column-end: 3;
   grid-column-start: 2;
   column-gap: 50px;

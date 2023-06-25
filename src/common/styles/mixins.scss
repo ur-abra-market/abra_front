@@ -27,7 +27,7 @@
 
 @mixin content_container {
   width: 100%;
-  max-width: var(--main-content-with);
+  max-width: var(--main-content-width);
   margin: 0 auto;
   padding: 0 32px;
 }

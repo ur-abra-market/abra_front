@@ -14,10 +14,11 @@ export interface FooterProps
   variant: 'white' | 'default';
 }
 export const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => {
-  const routs = new Set(['personal-account', 'product', 'order_history', '']);
+  const routesToShow = new Set(['personal_account', 'product', 'order_history', '']);
   const { pathname } = useLocation();
-  const userRole = useAppSelector(state => state.auth.userRole);
-  const showHeadNav = userRole === 'seller' && routs.has(pathname.split('/')[1]);
+  const currentUser = useAppSelector(state => state.auth.userRole);
+  const isShowTopNav =
+    currentUser === 'seller' && routesToShow.has(pathname.split('/')[1]);
 
   const footerClasses = cn(style.footer, {
     [style.footer_white]: variant === 'white',
@@ -25,7 +26,7 @@ export const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => 
 
   return (
     <div className={cn(style.wrapper, className)}>
-      {showHeadNav && <Top />}
+      {isShowTopNav && <Top />}
 
       <div className={footerClasses}>
         <div className={style.container}>
