@@ -111,13 +111,10 @@ body {
   font-family: Roboto, sans-serif;
   font-weight: var(--regular);
   font-style: normal;
+  line-height: 100%;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-h1, h2, h3, h4, h5, h6, p, span, a, div {
-  line-height: 100%;
 }
 
 h1 {

@@ -19,7 +19,6 @@ import { Button } from '../../../../ui-kit';
 
 import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
 import style from 'pages/seller-pages/SellerProfilePage/SellerPersonalInfoChangeForm/SellerPersonalInfoChangeForm.module.scss';
-import { Action } from 'services/user/user.service';
 import { sellerPersonalInfoSelector } from 'store/reducers/seller/profile';
 import { getSellerAvatar } from 'store/reducers/seller/profile/thunks';
 

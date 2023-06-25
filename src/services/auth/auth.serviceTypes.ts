@@ -28,10 +28,6 @@ export type LoginResponseType = {
   is_supplier: boolean;
 };
 
-export type CheckAuthResponseType = {
-  result: { is_supplier: boolean };
-};
-
 export type PasswordResponseType = {
   result: string;
 };
