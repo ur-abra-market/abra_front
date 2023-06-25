@@ -5,9 +5,9 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '../../../../../../common/hooks';
+import { parsePhoneNumber } from '../../../../../../common/utils/parsePhoneNumber';
 import { UploadImage } from '../../../../../../components';
 import { IBusinessInfoRequestData } from '../../../../../../services/auth/auth.serviceTypes';
-import { Action } from '../../../../../../services/user/user.service';
 import { createAccountBusinessInfo } from '../../../../../../store/reducers/authSlice/thunks';
 import { getCountries } from '../../../../../../store/reducers/commonSlice';
 import { ISupplierBusinessInfo } from '../../../../../../store/reducers/supplier/profile/slice';
@@ -40,6 +40,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   }, []);
 
   const onSubmit = (data: ISupplierBusinessInfo): void => {
+    const { numberBody } = parsePhoneNumber(data.phoneNumber);
     const businessInfoData: IBusinessInfoRequestData = {
       supplier_data_request: {
         license_number: data.license,
@@ -48,16 +49,16 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
         business_email: data.email,
         business_sector: data.businessSector.value,
         country_id: data.countryRegistration!,
-        is_manufacturer: false,
+        is_manufacturer: false, // TODO
         address: data.address,
-        number_employees: +data.numEmployees!,
-        year_established: +data.yearEstablished!,
+        number_employees: Number(data.numEmployees!),
+        year_established: Number(data.yearEstablished!),
         name: data.storeName,
         description: data.description,
-        logo_url: 'asd',
+        logo_url: 'logo.net', // TODO
       },
       company_phone_data_request: {
-        phone_number: '338808800',
+        phone_number: numberBody,
         country_id: data.id!,
       },
     };

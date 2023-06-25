@@ -176,7 +176,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         </Label>
       </div>
 
-      <div className={style.contacts_info}>
+      <div>
         <p className={style.subtitle}>Contacts</p>
         <PhoneNumberInput label="Business phone number" countryShort={countryShort} />
         <div className={style.contacts_inputs}>
