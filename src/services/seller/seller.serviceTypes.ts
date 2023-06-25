@@ -1,14 +1,3 @@
-interface IErrorDetail {
-  loc: [string, number];
-  msg: string;
-  type: string;
-}
-
-// TODO - одинаковые с ISendSellerErrorResponse
-export interface IErrorResponse {
-  detail: IErrorDetail[];
-}
-
 export interface ISellerData {
   first_name: string;
   last_name: string;
@@ -62,12 +51,6 @@ export interface ISellerProfile {
   seller_address_data: ISellerAddressData;
   seller_notifications_data: any;
 }
-
-export interface ISendSellerResponse {
-  detail: IErrorDetail[] | string;
-}
-
-// get addresses
 
 export interface IGetAddressesResponse {
   result: IGetAddressesResult;

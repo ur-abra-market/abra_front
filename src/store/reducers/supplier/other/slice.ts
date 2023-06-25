@@ -5,15 +5,6 @@ import { CompanyInfo } from '../../../../services/supplier/supplier.serviceTypes
 
 import { addProductService, getPropertiesService, getVariationsService } from './thunks';
 
-interface ProductObj {
-  key: string;
-  values: Array<{ value: string; optional_value: string }>;
-}
-
-export interface ProductProperties {
-  result: ProductObj[];
-}
-
 const initialState = {
   productId: null as number | null,
   productProperties: null,

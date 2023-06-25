@@ -45,6 +45,7 @@ export const userService = {
       params: payload.queries,
     });
   },
+
   getFavoritesProducts: async () => {
     const { data } = await baseConfigService.get(`/users/showFavorites/`);
 

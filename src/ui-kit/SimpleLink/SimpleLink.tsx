@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 import cn from 'classnames';
 import { Link, LinkProps } from 'react-router-dom';
@@ -11,21 +11,25 @@ export interface ISimpleLink extends LinkProps {
   children: ReactNode;
 }
 
-export const SimpleLink = forwardRef<LinkProps, ISimpleLink>(
-  ({ to, className, color, children, ...restProps }, ref) => {
-    const linkClasses = cn(
-      styles.link,
-      {
-        [styles.default]: color === 'default',
-        [styles.accent]: color === 'accent',
-      },
-      className,
-    );
+export const SimpleLink: FC<ISimpleLink> = ({
+  to,
+  className,
+  color,
+  children,
+  ...restProps
+}) => {
+  const linkClasses = cn(
+    styles.link,
+    {
+      [styles.default]: color === 'default',
+      [styles.accent]: color === 'accent',
+    },
+    className,
+  );
 
-    return (
-      <Link to={to} className={linkClasses} {...restProps}>
-        {children}
-      </Link>
-    );
-  },
-);
+  return (
+    <Link to={to} className={linkClasses} {...restProps}>
+      {children}
+    </Link>
+  );
+};
