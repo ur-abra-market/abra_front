@@ -3,6 +3,8 @@ import React, { DetailedHTMLProps, FC, HTMLAttributes, useEffect } from 'react';
 import cn from 'classnames';
 import { NavLink, useMatch } from 'react-router-dom';
 
+import { PERSONAL_ACCOUNT } from '../../routes';
+
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import style from 'components/HeaderMenu/HeaderMenu.module.scss';
 import { HEADER_MENU_CONTENT } from 'components/HeaderMenu/headerMenuContent';
@@ -23,12 +25,12 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ active, setActive }) => {
   const menuContent =
     userRole === 'supplier' ? HEADER_MENU_CONTENT.SUPPLIER : HEADER_MENU_CONTENT.SELLER;
   const buildMenu = !isAuth ? HEADER_MENU_CONTENT.UNAUTHORIZED : menuContent;
-  const location = useMatch('/personal_account');
+  const location = useMatch(PERSONAL_ACCOUNT);
   const menuCLasses = cn(style.menu, {
     [style.menu_active]: active,
     [style.menu_inactive]: !active,
-    [style.menu_main]: location?.pathname !== '/personal_account/*',
-    [style.menu_profile]: location?.pathname === '/personal_account',
+    [style.menu_main]: location?.pathname !== `${PERSONAL_ACCOUNT}/*`,
+    [style.menu_profile]: location?.pathname === PERSONAL_ACCOUNT,
     [style.menu_supplier]: userRole === 'supplier',
   });
 

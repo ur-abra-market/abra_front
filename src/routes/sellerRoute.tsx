@@ -11,6 +11,7 @@ import {
   ORDER_HISTORY,
   ORDER_HISTORY_DETAILS,
   PERSONAL_ACCOUNT,
+  PRODUCT_DETAILS,
   SELLER_PRODUCTS,
 } from './constans/seller';
 
@@ -32,7 +33,7 @@ export const sellerRoute: RouteObject[] = [
     element: <ProductListPage />,
   },
   {
-    path: 'product',
+    path: PRODUCT_DETAILS,
     children: [
       {
         path: ':productId',

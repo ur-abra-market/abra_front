@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../common/hooks';
+import { LOGIN } from '../../../../routes';
 import { AuthPageLayout } from '../assets';
 
 import style from './ResetPasswordPage.module.scss';
@@ -25,7 +26,7 @@ export const ResetPasswordPage = (): JSX.Element => {
 
   const handleModalOnClose = (value: boolean): void => {
     setModalOpen(value);
-    navigate('/login');
+    navigate(LOGIN);
   };
 
   useEffect(() => {
