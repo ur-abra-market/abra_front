@@ -35,7 +35,7 @@ export interface ISupplierBusinessInfo {
   description: string;
   email: string;
   phoneNumber: string;
-  id: number | null;
+  phoneId: number | null;
   countryShort: string;
   countryCode: string;
   address: string;
@@ -73,7 +73,7 @@ const initialState: ISupplierProfileSliceInitialState = {
     companyLogoId: null,
     countryShort: '',
     phoneNumber: '',
-    id: null,
+    phoneId: null,
     countryCode: '',
   },
   notifications: null,
@@ -119,7 +119,7 @@ export const supplierProfileSlice = createSlice({
       state.businessInfo.description = description;
       state.businessInfo.email = business_email;
       state.businessInfo.address = address;
-      state.businessInfo.id = phone.id;
+      state.businessInfo.phoneId = phone.id;
       state.businessInfo.phoneNumber = phone.phone_number;
       state.businessInfo.countryShort = country.country_short;
       state.businessInfo.countryCode = country.country_code;

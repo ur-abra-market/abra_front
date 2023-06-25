@@ -31,12 +31,14 @@ interface IBusinessProfileForm {
   updateForm?: boolean;
   countryShort?: string;
   onSubmit: (data: ISupplierBusinessInfo) => void;
+  isDisabled?: boolean;
 }
 
 export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
   updateForm,
   onSubmit,
   countryShort,
+  isDisabled,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const numberEmployees = useAppSelector(numberEmployeesSelector);
@@ -199,7 +201,12 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         </div>
       </div>
 
-      <Button type="submit" className={style.button} label="Save" disabled={!isValid} />
+      <Button
+        type="submit"
+        className={style.button}
+        label="Save"
+        disabled={!isValid || isDisabled}
+      />
     </form>
   );
 };
