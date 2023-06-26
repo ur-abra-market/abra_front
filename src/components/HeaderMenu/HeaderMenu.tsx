@@ -1,9 +1,9 @@
 import React, { DetailedHTMLProps, FC, HTMLAttributes, useEffect } from 'react';
 
 import cn from 'classnames';
-import { NavLink, useMatch } from 'react-router-dom';
+import { NavLink, useMatch, useNavigate } from 'react-router-dom';
 
-import { PERSONAL_ACCOUNT } from '../../routes';
+import { HOME, PERSONAL_ACCOUNT } from '../../routes';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import style from 'components/HeaderMenu/HeaderMenu.module.scss';
@@ -26,6 +26,7 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ active, setActive }) => {
     userRole === 'supplier' ? HEADER_MENU_CONTENT.SUPPLIER : HEADER_MENU_CONTENT.SELLER;
   const buildMenu = !isAuth ? HEADER_MENU_CONTENT.UNAUTHORIZED : menuContent;
   const location = useMatch(PERSONAL_ACCOUNT);
+  const navigate = useNavigate();
   const menuCLasses = cn(style.menu, {
     [style.menu_active]: active,
     [style.menu_inactive]: !active,
@@ -46,6 +47,7 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ active, setActive }) => {
 
   const handleClickLogout = (): void => {
     dispatch(logout());
+    navigate(HOME);
   };
 
   return (

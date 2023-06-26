@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CHANGE_EMAIL, CHANGE_PASSWORD } from '../../routes';
+import { CHANGE_EMAIL, CHANGE_PASSWORD, HOME } from '../../routes';
 
 import { AccountManagementLink } from './AccountManagmentLink/AccountManagmentLink';
 
@@ -19,7 +19,7 @@ export const AccountManagement = (): JSX.Element => {
       />
       <AccountManagementLink
         linkLabel="Remove the account"
-        path="/" // todo fix
+        path={HOME} // todo fix
         description="(All your data including order history will be deleted)"
       />
     </>

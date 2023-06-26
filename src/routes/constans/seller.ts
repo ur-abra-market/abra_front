@@ -10,7 +10,7 @@ export const {
   FAVORITES,
   HELP,
 } = {
-  SELLER_PRODUCTS: '/products_list/*',
+  SELLER_PRODUCTS: '/products_list',
   PRODUCT_DETAILS: '/product',
   PERSONAL_ACCOUNT: '/personal_account',
   CART: '/cart',

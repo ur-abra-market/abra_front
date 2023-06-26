@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
@@ -29,6 +29,7 @@ const formValidationSchema = yup
   .required();
 
 export const RegisterForm = (): JSX.Element => {
+  const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
   const loading = useAppSelector(loadingSelector);
   const [userRole, setUserRole] = useState<ResponseUserRoleType>('seller');
   const navigate = useNavigate();
@@ -55,6 +56,10 @@ export const RegisterForm = (): JSX.Element => {
       navigate(CHECK_EMAIL);
     }
   };
+
+  useEffect(() => {
+    if (isAuthorized) navigate(-1);
+  }, [isAuthorized, navigate]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
