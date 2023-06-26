@@ -36,20 +36,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const companyLogo = useSelector(supplierCompanyLogoSelector);
   const companyLogoId = useSelector(supplierCompanyLogoIdSelector);
 
-  const {
-    phoneNumber,
-    businessSector,
-    countryCode,
-    countryRegistration,
-    address,
-    isManufacturer,
-    email,
-    description,
-    numEmployees,
-    license,
-    yearEstablished,
-    storeName,
-  } = businessInfoData;
+  const { phoneNumber, countryCode } = businessInfoData;
 
   const handleUploadImage = (image: File): void => {
     dispatch(uploadCompanyLogo(image));
@@ -64,7 +51,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
 
   useEffect(() => {
     reset(businessInfoData);
-    setValue('phoneNumber', `${businessInfoData.countryCode}${phoneNumber}`);
+    setValue('phoneNumber', `${countryCode}${phoneNumber}`);
   }, [businessInfoData]);
 
   const formMethods = useForm<ISupplierBusinessInfo>({
@@ -73,45 +60,9 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   });
   const { reset, setValue, watch } = formMethods;
 
-  const [
-    licenseNumber,
-    emailData,
-    businessSectorData,
-    phoneNumberData,
-    countryRegistrationData,
-    isManufacturerData,
-    addresData,
-    numberEmployees,
-    yearEstablishedData,
-    store,
-    descriptionData,
-  ] = watch([
-    'license',
-    'email',
-    'businessSector.value',
-    'phoneNumber',
-    'countryRegistration',
-    'isManufacturer',
-    'address',
-    'numEmployees',
-    'yearEstablished',
-    'storeName',
-    'description',
-    'phoneNumber',
-  ]);
+  const phoneNumberData = watch('phoneNumber');
 
-  const isBusinessInfoFormDisable =
-    store === storeName &&
-    businessSectorData === businessSector.value &&
-    isManufacturerData === isManufacturer &&
-    licenseNumber === license &&
-    yearEstablishedData === yearEstablished &&
-    numberEmployees === numEmployees &&
-    countryRegistrationData === countryRegistration &&
-    descriptionData === description &&
-    emailData === email &&
-    phoneNumberData === `${countryCode}${phoneNumber}` &&
-    addresData === address;
+  const isPhoneNumberDisable = phoneNumberData === `${countryCode}${phoneNumber}`;
 
   const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
     const { numberBody } = parsePhoneNumber(data.phoneNumber);
@@ -156,7 +107,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
           updateForm
           onSubmit={onSubmit}
           countryShort={businessInfoData.countryShort}
-          isDisabled={isBusinessInfoFormDisable}
+          isPhoneNumber={isPhoneNumberDisable}
         />
       </FormProvider>
     </>
