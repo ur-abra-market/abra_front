@@ -56,7 +56,7 @@ export const Header: FC<IHtmlHeaderProps> = ({
         >
           All categories
         </button>
-        <HeaderNav type="seller" className={style.nav_container} />
+        <HeaderNav userRole="seller" className={style.nav_container} />
         <LocationAndCurrencySelection className={style.selected} />
       </div>
 

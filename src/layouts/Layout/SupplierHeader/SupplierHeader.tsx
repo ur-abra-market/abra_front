@@ -16,7 +16,7 @@ export const SupplierHeader: FC<IHtmlHeaderProps> = ({
   return (
     <header className={cn(style.container, className)} {...restProps}>
       <Top />
-      <HeaderNav type="supplier" className={style.nav_container} />
+      <HeaderNav userRole="supplier" className={style.nav_container} />
     </header>
   );
 };

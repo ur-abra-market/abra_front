@@ -9,11 +9,12 @@ import style from './Footer.module.scss';
 
 import { Top } from '.';
 
-export interface FooterProps
+interface IFooter
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   variant: 'white' | 'default';
 }
-export const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => {
+
+export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
   const routesToShow = new Set(['personal_account', 'product', 'order_history', '']);
   const { pathname } = useLocation();
   const currentUser = useAppSelector(state => state.auth.userRole);

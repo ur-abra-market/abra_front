@@ -10,7 +10,7 @@ export const Top = (): JSX.Element => {
   return (
     <div className={style.container}>
       <MainLogo className={style.logo} />
-      <HeaderNav type="seller" className={style.nav_container} />
+      <HeaderNav userRole="seller" className={style.nav_container} />
       <LocationAndCurrencySelection className={style.selects} />
     </div>
   );

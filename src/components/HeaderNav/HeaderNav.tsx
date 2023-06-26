@@ -8,12 +8,12 @@ import style from './HeaderNav.module.scss';
 import { HEADER_NAV_CONTENT } from 'components/HeaderNav/HeaderNavContent';
 
 interface IHeaderNavProps {
-  type: 'seller' | 'supplier';
+  userRole: 'seller' | 'supplier';
   className?: string;
 }
 
-export const HeaderNav: FC<IHeaderNavProps> = ({ type, className }): JSX.Element => {
-  const navItems = HEADER_NAV_CONTENT[type];
+export const HeaderNav: FC<IHeaderNavProps> = ({ userRole, className }): JSX.Element => {
+  const navItems = HEADER_NAV_CONTENT[userRole];
 
   return (
     <ul className={cn(style.container, className)}>
