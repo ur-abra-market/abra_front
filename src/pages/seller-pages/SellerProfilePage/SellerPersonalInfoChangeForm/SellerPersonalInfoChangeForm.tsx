@@ -1,33 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { personalInfoFormValidationSchema } from '../../../../common/constants';
-import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
-import { IPersonalInfoFormData } from '../../../../common/types';
-import { parsePhoneNumber } from '../../../../common/utils/parsePhoneNumber';
 import { UploadImage } from '../../../../components';
-import { ButtonLogOut } from '../../../../components/ButtonLogOut/ButtonLogOut';
-import { PersonalInfoChangeForm } from '../../../../modules';
-import { countriesSelector } from '../../../../store/reducers/commonSlice';
-import {
-  getPersonalInfo,
-  updatePersonalInfo,
-} from '../../../../store/reducers/userSlice';
-import { Button } from '../../../../ui-kit';
 
+import style from './SellerPersonalInfoChangeForm.module.scss';
+
+import { personalInfoFormValidationSchema } from 'common/constants';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
-import style from 'pages/seller-pages/SellerProfilePage/SellerPersonalInfoChangeForm/SellerPersonalInfoChangeForm.module.scss';
+import { IPersonalInfoFormData } from 'common/types';
+import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import { ButtonLogOut } from 'components/ButtonLogOut/ButtonLogOut';
+import { PersonalInfoChangeForm } from 'modules';
+import { countriesSelector } from 'store/reducers/commonSlice';
 import { sellerPersonalInfoSelector } from 'store/reducers/seller/profile';
 import { getSellerAvatar } from 'store/reducers/seller/profile/thunks';
+import { getPersonalInfo, updatePersonalInfo } from 'store/reducers/userSlice';
+import { Button } from 'ui-kit';
 
 export const SellerPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const data = useAppSelector(sellerPersonalInfoSelector);
 
-  const { countryShort, phoneNumber, lastName, firstName } = data;
+  const { countryShort, phoneNumber, lastName, firstName, avatar } = data;
 
   const formMethods = useForm<IPersonalInfoFormData>({
     resolver: yupResolver(personalInfoFormValidationSchema),
@@ -35,8 +33,6 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
   });
 
   const { watch, handleSubmit, formState, setValue } = formMethods;
-
-  const avatar = useAppSelector(state => state.sellerProfile.personalInfo.avatar);
 
   const countries = useAppSelector(countriesSelector);
 
@@ -85,6 +81,8 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
     dispatch(updatePersonalInfo(updatePersonalInfoData));
   };
 
+  const handleUploadImage = useCallback((image: File): void => {}, []); // пока нету санки
+
   return (
     <div className={style.wrapper}>
       <div className={style.header}>
@@ -92,7 +90,13 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
         <ButtonLogOut />
       </div>
 
-      <UploadImage type="default" image={avatar} description="avatar" />
+      <UploadImage
+        uploadImage={handleUploadImage}
+        label="Add image"
+        type="avatar"
+        image={avatar || ''}
+        description="avatar"
+      />
 
       <FormProvider {...formMethods}>
         <form onSubmit={handleSubmit(onSubmit)}>
