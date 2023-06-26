@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../../common/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import { ContentMessage } from '../../../../components';
+import { HOME } from '../../../../routes';
 import { confirmEmail } from '../../../../store/reducers/authSlice/thunks';
 import { LoaderCircular } from '../../../../ui-kit';
 import { AuthPageLayout } from '../assets';
@@ -11,6 +12,8 @@ import { AuthPageLayout } from '../assets';
 import style from './ConfirmEmailPage.module.scss';
 
 export const ConfirmEmailPage = (): JSX.Element => {
+  const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [emailStatus, setEmailStatus] = useState<'confirmed' | 'unconfirmed' | null>(
     null,
@@ -29,6 +32,10 @@ export const ConfirmEmailPage = (): JSX.Element => {
       });
   }, [dispatch, searchParams]);
 
+  useEffect(() => {
+    if (isAuthorized) navigate(-1);
+  }, [isAuthorized, navigate]);
+
   if (!emailStatus) return <LoaderCircular />;
 
   return (
@@ -38,7 +45,7 @@ export const ConfirmEmailPage = (): JSX.Element => {
           <>
             <ContentMessage title="Email confirmed." text="" />
             You can go to&nbsp;
-            <Link className={style.link} to="/">
+            <Link className={style.link} to={HOME}>
               main page
             </Link>
           </>

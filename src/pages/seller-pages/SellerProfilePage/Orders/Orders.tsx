@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
+import { ORDER_HISTORY } from '../../../../routes';
 import style from '../SellerProfilePage.module.scss';
 
 import {
@@ -16,7 +17,7 @@ const Orders = (): JSX.Element => {
     <>
       <div className={style.header_wrapper}>
         <div className={style.header}>Orders</div>
-        <NavLink className={style.header_link} to="/order_history">
+        <NavLink className={style.header_link} to={ORDER_HISTORY}>
           View All
         </NavLink>
       </div>

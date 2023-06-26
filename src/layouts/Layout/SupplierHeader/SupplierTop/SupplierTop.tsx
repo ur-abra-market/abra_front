@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { useOnClickOutside } from '../../../../common/hooks';
 import { HeaderMenu } from '../../../../components';
+import { HOME } from '../../../../routes';
 import { MainLogo } from '../../../../ui-kit';
 
 import style from './SupplierTop.module.scss';
@@ -21,13 +22,13 @@ export const SupplierTop = (): JSX.Element => {
         <MainLogo className={style.logo_font_size} />
         <span className={style.vertical_line} />
         <span>
-          <Link className={style.supplier_link} to="/">
+          <Link className={style.supplier_link} to={HOME}>
             SUPPLIER
           </Link>
         </span>
       </div>
       <div className={style.inner_buttons}>
-        <Link to="/">
+        <Link to={HOME}>
           <HeaderNotificationsIcon />
         </Link>
         <div role="presentation" className={style.btn_menu} ref={triggerRef}>

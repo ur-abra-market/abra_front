@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { NavLink, useLocation } from 'react-router-dom';
 
 import { useAppSelector } from '../../common/hooks';
+import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from '../../routes';
 
 import style from './Footer.module.scss';
 
@@ -39,7 +40,7 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
                     className={({ isActive }) =>
                       isActive ? style.is_disabled : style.link
                     }
-                    to="/terms_and_conditions"
+                    to={TERMS_AND_CONDITIONS}
                   >
                     Terms & conditions
                   </NavLink>
@@ -47,7 +48,7 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
                     className={({ isActive }) =>
                       isActive ? style.is_disabled : style.link
                     }
-                    to="/privacy_policy"
+                    to={PRIVACY_POLICY}
                   >
                     Privacy policy
                   </NavLink>
@@ -63,7 +64,7 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
                   className={({ isActive }) =>
                     isActive ? style.is_disabled_white : style.link_white
                   }
-                  to="/terms_and_conditions"
+                  to={TERMS_AND_CONDITIONS}
                 >
                   Terms & conditions
                 </NavLink>
@@ -72,7 +73,7 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
                   className={({ isActive }) =>
                     isActive ? style.is_disabled_white : style.link_white
                   }
-                  to="/privacy_policy"
+                  to={PRIVACY_POLICY}
                 >
                   Privacy policy
                 </NavLink>

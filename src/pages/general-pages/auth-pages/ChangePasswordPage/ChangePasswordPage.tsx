@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Modal from '../../../../components/Modal';
+import { FORGOT_PASSWORD, HOME, PERSONAL_ACCOUNT } from '../../../../routes';
 import { userRoleSelector } from '../../../../store/reducers/authSlice';
 import { Button } from '../../../../ui-kit';
 import { AuthPageLayout } from '../assets';
@@ -22,15 +23,15 @@ export const ChangePasswordPage = (): JSX.Element => {
     setOpenModal(value);
 
     if (userRole === 'seller') {
-      navigate('/personal_account');
+      navigate(PERSONAL_ACCOUNT);
     } else {
-      navigate('/');
+      navigate(HOME);
     }
   };
 
   return (
     <>
-      <AuthPageLayout footerLink="/forgot_password" footerTitle="Forgot password?">
+      <AuthPageLayout footerLink={FORGOT_PASSWORD} footerTitle="Forgot password?">
         <div className={style.header}>Change password</div>
         <div className={style.subheader}>Enter your current and new passwords</div>
         <ChangePasswordForm setOpenModal={setOpenModal} />

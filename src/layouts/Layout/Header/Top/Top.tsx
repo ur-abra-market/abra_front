@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import Modal from '../../../../components/Modal';
+import { CART, HOME, LOGIN } from '../../../../routes';
 
 import style from './Top.module.scss';
 
@@ -30,11 +31,11 @@ export const Top = (): JSX.Element => {
     }
     switch (target) {
       case 'note':
-        return navigate('/');
+        return navigate(HOME);
       case 'favorite':
-        return navigate('/');
+        return navigate(HOME);
       case 'cart':
-        return navigate('/cart');
+        return navigate(CART);
       default:
     }
   };
@@ -49,7 +50,7 @@ export const Top = (): JSX.Element => {
     <div className={style.wrapper}>
       <Modal showModal={isShowModal} closeModal={setIsShowModal}>
         <div>You are not included in...</div>
-        <NavLink to="/auth">Login</NavLink>
+        <NavLink to={LOGIN}>Login</NavLink>
       </Modal>
 
       <MainLogo className={style.logo_font_size} />

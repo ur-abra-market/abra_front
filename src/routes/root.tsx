@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { createBrowserRouter, Navigate, RouteObject } from 'react-router-dom';
+import { createBrowserRouter, RouteObject } from 'react-router-dom';
 
 import { UserRoleType } from '../common/types';
+import { convertCombinedPrivateRoutes } from '../common/utils/combinePrivateRoutes';
 import {
   AboutUsPage,
   ChangeEmailPage,
@@ -24,6 +25,25 @@ import {
   MainPage,
 } from '../pages/general-pages';
 
+import {
+  ABOUT,
+  CHANGE_EMAIL,
+  CHANGE_PASSWORD,
+  CHECK_EMAIL,
+  CONFIRM_EMAIL,
+  CONTACT,
+  FAQ,
+  FORGOT_PASSWORD,
+  HOME,
+  LOGIN,
+  NEWS,
+  PRIVACY_POLICY,
+  REGISTER,
+  RESET_PASSWORD,
+  SELL,
+  TERMS_AND_CONDITIONS,
+  TUTORIALS,
+} from './constans/root';
 import { sellerRoute } from './sellerRoute';
 import { supplierRoute } from './supplierRoute';
 
@@ -34,10 +54,11 @@ export function createRoutes(userRole: UserRoleType): Routes {
 
   if (userRole === 'supplier') child = supplierRoute;
   if (userRole === 'seller') child = sellerRoute;
+  if (userRole === null) child = convertCombinedPrivateRoutes();
 
   return createBrowserRouter([
     {
-      path: '/',
+      path: HOME,
       errorElement: (
         <main style={{ padding: '1rem' }}>
           <ErrorPage />
@@ -46,75 +67,71 @@ export function createRoutes(userRole: UserRoleType): Routes {
       children: [
         ...child,
         {
-          path: '*',
-          element: <Navigate to="/login" />,
-        },
-        {
-          path: '/',
+          path: HOME,
           element: <MainPage />,
         },
         {
-          path: 'register',
+          path: REGISTER,
           element: <RegisterPage />,
         },
         {
-          path: 'login',
+          path: LOGIN,
           element: <LoginPage />,
         },
         {
-          path: 'forgot_password',
+          path: FORGOT_PASSWORD,
           element: <ForgotPasswordPage />,
         },
         {
-          path: 'reset_password',
+          path: RESET_PASSWORD,
           element: <ResetPasswordPage />,
         },
         {
-          path: 'change_password',
+          path: CHANGE_PASSWORD,
           element: <ChangePasswordPage />,
         },
         {
-          path: 'change_email',
+          path: CHANGE_EMAIL,
           element: <ChangeEmailPage />,
         },
         {
-          path: 'register/confirm_email',
+          path: CONFIRM_EMAIL,
           element: <ConfirmEmailPage />,
         },
         {
-          path: 'register/check_email',
+          path: CHECK_EMAIL,
           element: <CheckEmailPage />,
         },
         {
-          path: 'terms_and_conditions',
+          path: TERMS_AND_CONDITIONS,
           element: <TermsAndConditionsPage />,
         },
         {
-          path: 'privacy_policy',
+          path: PRIVACY_POLICY,
           element: <PrivacyPolicyPage />,
         },
         {
-          path: 'news',
+          path: NEWS,
           element: <LastNewsPage />,
         },
         {
-          path: 'contact',
+          path: CONTACT,
           element: <ContactSupportPage />,
         },
         {
-          path: 'sell',
+          path: SELL,
           element: <SellAbraPage />,
         },
         {
-          path: 'tutorials',
+          path: TUTORIALS,
           element: <TutorialPage />,
         },
         {
-          path: 'about',
+          path: ABOUT,
           element: <AboutUsPage />,
         },
         {
-          path: 'faq',
+          path: FAQ,
           element: <FAQPage />,
         },
       ],

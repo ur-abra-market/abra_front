@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks';
+import { HOME } from '../../../routes';
 import {
   addProductService,
   uploadImageService,
@@ -226,7 +227,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
         );
       });
 
-      navigate('/');
+      navigate(HOME);
     }
   }, [dispatch, images, isSubmit, navigate, productId]);
 

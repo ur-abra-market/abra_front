@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Modal from '../../../../components/Modal';
+import { HOME, PERSONAL_ACCOUNT } from '../../../../routes';
 import { Button } from '../../../../ui-kit';
 import { AuthPageLayout } from '../assets';
 
@@ -22,9 +23,9 @@ export const ChangeEmailPage = (): JSX.Element => {
     setOpenModal(value);
 
     if (userRole === 'seller') {
-      navigate('/personal_account');
+      navigate(PERSONAL_ACCOUNT);
     } else {
-      navigate('/');
+      navigate(HOME);
     }
   };
 
@@ -43,7 +44,7 @@ export const ChangeEmailPage = (): JSX.Element => {
           </div>
           <Button
             className={style.modal_button}
-            label="Okey"
+            label="Okay"
             onClick={() => handleModalOnClose(false)}
           />
         </div>

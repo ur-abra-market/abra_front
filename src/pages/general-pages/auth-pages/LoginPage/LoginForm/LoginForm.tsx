@@ -8,6 +8,7 @@ import * as yup from 'yup';
 import { emailValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { LoadingStatusEnum } from '../../../../../common/types';
+import { HOME } from '../../../../../routes';
 import { loadingSelector } from '../../../../../store/reducers/appSlice';
 import { loginUser, isAuthSelector } from '../../../../../store/reducers/authSlice';
 import { Button, Input } from '../../../../../ui-kit';
@@ -49,7 +50,7 @@ export const LoginForm = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (isAuthorized) navigate('/');
+    if (isAuthorized) navigate(HOME);
   }, [isAuthorized, navigate]);
 
   return (

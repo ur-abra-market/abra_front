@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
@@ -7,6 +7,7 @@ import * as yup from 'yup';
 
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { LoadingStatusEnum, ResponseUserRoleType } from '../../../../../common/types';
+import { CHECK_EMAIL } from '../../../../../routes';
 import { IRegisterRequest } from '../../../../../services/auth/auth.serviceTypes';
 import { loadingSelector } from '../../../../../store/reducers/appSlice';
 import { registerUser } from '../../../../../store/reducers/authSlice';
@@ -28,6 +29,7 @@ const formValidationSchema = yup
   .required();
 
 export const RegisterForm = (): JSX.Element => {
+  const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
   const loading = useAppSelector(loadingSelector);
   const [userRole, setUserRole] = useState<ResponseUserRoleType>('seller');
   const navigate = useNavigate();
@@ -51,9 +53,13 @@ export const RegisterForm = (): JSX.Element => {
     const actionResult = await dispatch(registerUser({ ...data, role: userRole }));
 
     if (registerUser.fulfilled.match(actionResult)) {
-      navigate('/register/check_email');
+      navigate(CHECK_EMAIL);
     }
   };
+
+  useEffect(() => {
+    if (isAuthorized) navigate(-1);
+  }, [isAuthorized, navigate]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>

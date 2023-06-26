@@ -1,30 +1,32 @@
+import { HOME, LOGIN, PERSONAL_ACCOUNT, REGISTER } from '../../routes';
+
 export const HEADER_MENU_CONTENT = {
   UNAUTHORIZED: [
     {
       label: 'Log in',
-      href: '/login',
+      href: LOGIN,
     },
     {
       label: 'Register',
-      href: '/register',
+      href: REGISTER,
     },
   ],
   SELLER: [
     {
       label: 'My profile',
-      href: '/personal_account',
+      href: PERSONAL_ACCOUNT,
     },
     {
       label: 'Edit profile',
-      href: '/personal_account',
+      href: PERSONAL_ACCOUNT,
     },
     {
       label: 'Settings',
-      href: '/personal_account',
+      href: PERSONAL_ACCOUNT,
     },
     {
       label: 'My orders',
-      href: '/personal_account',
+      href: PERSONAL_ACCOUNT,
     },
     {
       label: 'Log out',
@@ -34,11 +36,11 @@ export const HEADER_MENU_CONTENT = {
   SUPPLIER: [
     {
       label: 'Name 1',
-      href: '/',
+      href: HOME,
     },
     {
       label: 'Name 2',
-      href: '/',
+      href: HOME,
     },
     {
       label: 'Log out',
