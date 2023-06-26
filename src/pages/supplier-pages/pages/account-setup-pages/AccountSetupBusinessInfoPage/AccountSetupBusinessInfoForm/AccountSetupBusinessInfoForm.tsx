@@ -3,9 +3,12 @@ import React, { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../../../common/hooks';
+import { parsePhoneNumber } from '../../../../../../common/utils/parsePhoneNumber';
 import { UploadImage } from '../../../../../../components';
+import { IBusinessInfoRequestData } from '../../../../../../services/auth/auth.serviceTypes';
 import { createAccountBusinessInfo } from '../../../../../../store/reducers/authSlice/thunks';
 import { getCountries } from '../../../../../../store/reducers/commonSlice';
 import { ISupplierBusinessInfo } from '../../../../../../store/reducers/supplier/profile/slice';
@@ -28,6 +31,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   const companyLogo = useSelector(supplierCompanyLogoSelector);
   const companyLogoId = useSelector(supplierCompanyLogoIdSelector);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const formMethods = useForm<ISupplierBusinessInfo>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
@@ -37,28 +41,35 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
     dispatch(getCountries());
   }, []);
 
-  const onSubmit = (data: ISupplierBusinessInfo): void => {
-    const businessInfoData = {
+  const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
+    const { numberBody } = parsePhoneNumber(data.phoneNumber);
+    const businessInfoData: IBusinessInfoRequestData = {
       supplier_data_request: {
         license_number: data.license,
       },
       company_data_request: {
-        phone_country_code: '+7',
-        phone_number: '9657566767',
-        name: data.storeName,
-        is_manufacturer: data.isManufacturer,
-        year_established: data.yearEstablished,
-        number_employees: data.numEmployees,
-        description: data.description,
-        address: data.address,
-        logo_url: '',
-        business_sector: data.businessSector,
         business_email: data.email,
-        country_id: data.countryRegistration,
+        business_sector: data.businessSector.value,
+        country_id: data.countryRegistration!,
+        is_manufacturer: false, // TODO
+        address: data.address,
+        number_employees: Number(data.numEmployees!),
+        year_established: Number(data.yearEstablished!),
+        name: data.storeName,
+        description: data.description,
+        logo_url: 'logo.net', // TODO
+      },
+      company_phone_data_request: {
+        phone_number: numberBody,
+        country_id: data.phoneId!,
       },
     };
 
-    dispatch(createAccountBusinessInfo(businessInfoData)); // сделать переход после того как форма удачно отправится
+    const result = await dispatch(createAccountBusinessInfo(businessInfoData));
+
+    if (createAccountBusinessInfo.fulfilled.match(result)) {
+      navigate('/');
+    }
   };
   const handleUploadImage = (img: File): void => {
     dispatch(uploadCompanyLogo(img));
