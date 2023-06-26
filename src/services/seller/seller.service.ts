@@ -1,11 +1,7 @@
 import { IServerResponse } from '../../common/types';
-import baseConfigService from '../baseConfig.service';
+import { baseConfigService } from '../baseConfig.service';
 
-import {
-  ISellerNotifications,
-  ResponseDeleteAddress,
-  SellerAddressData,
-} from './seller.serviceTypes';
+import { ISellerNotifications, ISellerAddressData } from './seller.serviceTypes';
 
 export const sellerService = {
   getSellerAvatar: async () => {
@@ -20,22 +16,20 @@ export const sellerService = {
     return data;
   },
 
-  addAddress: async (params: SellerAddressData) => {
+  addAddress: async (params: ISellerAddressData) => {
     const { data } = await baseConfigService.post('sellers/addAddress/', params);
 
     return data;
   },
 
   editAddress: async (params: any) => {
-    const { data } = await baseConfigService.patch(`sellers/updateAddress/`, {
-      ...params,
-    });
+    const { data } = await baseConfigService.patch(`sellers/updateAddress/`, params);
 
     return data;
   },
 
   deleteAddress: (id: number) => {
-    return baseConfigService.delete<ResponseDeleteAddress>(
+    return baseConfigService.delete<IServerResponse<boolean>>(
       `sellers/removeAddress/${id}/`,
     );
   },
@@ -48,10 +42,10 @@ export const sellerService = {
     return data.result;
   },
 
-  updateNotifications: async (notification: Partial<ISellerNotifications>) => {
+  updateNotifications: async (params: Partial<ISellerNotifications>) => {
     await baseConfigService.patch<IServerResponse<boolean>>(
       `sellers/notifications/update/`,
-      notification,
+      params,
     );
   },
 };

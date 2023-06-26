@@ -25,7 +25,7 @@ import { getPersonalInfo } from 'store/reducers/userSlice';
 //   profileImage: {
 //     null: null;
 //   };
-//   sellerAddress: null | ISellerAddressData[];
+//   sellerAddress: null | IISellerAddressData[];
 // }
 
 // const initialState: ISellerProfileSlice = {

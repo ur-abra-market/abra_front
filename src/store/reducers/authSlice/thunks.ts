@@ -5,16 +5,16 @@ import { IAsyncThunkConfig, LoadingStatusEnum } from '../../../common/types';
 import { userService } from '../../../services';
 import authService from '../../../services/auth/auth.service';
 import {
-  ChangePasswordPayloadType,
-  CurrentUserInfoResponseType,
-  IBusinessInfoRequestData,
-  IPersonalInfoRequestData,
-  LoginParamsType,
-  LoginResponseType,
-  LogoutResponseType,
-  RegisterResponseType,
-  ResetPasswordPayloadType,
-  ChangeEmailPayloadType,
+  IChangePasswordRequest,
+  ICurrentUserInfoResponse,
+  IBusinessInfoRequest,
+  IPersonalInfoRequest,
+  ILoginRequest,
+  ILoginResponse,
+  ILogoutResponse,
+  IRegisterResponse,
+  IResetPasswordRequest,
+  IChangeEmailRequest,
   IRegisterRequest,
   IConfirmEmailRequest,
 } from '../../../services/auth/auth.serviceTypes';
@@ -24,7 +24,7 @@ import { getUserRole } from '../appSlice';
 import { setLoading, setResponseNotice } from '../appSlice/slice';
 
 export const registerUser = createAsyncThunk<
-  RegisterResponseType,
+  IRegisterResponse,
   IRegisterRequest,
   IAsyncThunkConfig
 >('auth/registerUser', async (dataUser, { rejectWithValue, dispatch }) => {
@@ -49,7 +49,7 @@ export const registerUser = createAsyncThunk<
 });
 
 export const confirmEmail = createAsyncThunk<
-  RegisterResponseType,
+  IRegisterResponse,
   IConfirmEmailRequest,
   IAsyncThunkConfig
 >('auth/registerUser', async (dataUser, { rejectWithValue }) => {
@@ -62,7 +62,7 @@ export const confirmEmail = createAsyncThunk<
 
 export const createAccountPersonalInfo = createAsyncThunk<
   any, // todo fix any -> need common request interface
-  IPersonalInfoRequestData
+  IPersonalInfoRequest
 >(
   'createAccount/createAccountPersonalInfo',
   async (personalInfoData, { rejectWithValue }) => {
@@ -76,7 +76,7 @@ export const createAccountPersonalInfo = createAsyncThunk<
 
 export const createAccountBusinessInfo = createAsyncThunk<
   void,
-  IBusinessInfoRequestData,
+  IBusinessInfoRequest,
   IAsyncThunkConfig
 >(
   'createAccount/createAccountBusinessInfo',
@@ -90,8 +90,8 @@ export const createAccountBusinessInfo = createAsyncThunk<
 );
 
 export const loginUser = createAsyncThunk<
-  LoginResponseType,
-  LoginParamsType,
+  ILoginResponse,
+  ILoginRequest,
   IAsyncThunkConfig
 >('auth/loginUser', async (dataUser, { rejectWithValue, dispatch }) => {
   dispatch(setLoading(LoadingStatusEnum.Loading));
@@ -118,7 +118,7 @@ export const loginUser = createAsyncThunk<
   }
 });
 
-export const logout = createAsyncThunk<LogoutResponseType, void, IAsyncThunkConfig>(
+export const logout = createAsyncThunk<ILogoutResponse, void, IAsyncThunkConfig>(
   'login/logout',
   async (_, { rejectWithValue, dispatch }) => {
     dispatch(setLoading(LoadingStatusEnum.Loading));
@@ -143,7 +143,7 @@ export const logout = createAsyncThunk<LogoutResponseType, void, IAsyncThunkConf
 );
 
 export const getCurrentUserInfo = createAsyncThunk<
-  CurrentUserInfoResponseType,
+  ICurrentUserInfoResponse,
   void,
   IAsyncThunkConfig
 >('login/getCurrentUserInfo', async (_, { rejectWithValue, dispatch }) => {
@@ -221,7 +221,7 @@ export const checkToken = createAsyncThunk<string, string, IAsyncThunkConfig>(
 
 export const resetPassword = createAsyncThunk<
   string,
-  ResetPasswordPayloadType,
+  IResetPasswordRequest,
   IAsyncThunkConfig
 >('password/resetPassword', async (param, { dispatch, rejectWithValue }) => {
   dispatch(setLoading(LoadingStatusEnum.Loading));
@@ -248,7 +248,7 @@ export const resetPassword = createAsyncThunk<
 
 export const changePassword = createAsyncThunk<
   string,
-  ChangePasswordPayloadType,
+  IChangePasswordRequest,
   IAsyncThunkConfig
 >('password/changePassword', async (param, { dispatch, rejectWithValue }) => {
   dispatch(setLoading(LoadingStatusEnum.Loading));
@@ -274,7 +274,7 @@ export const changePassword = createAsyncThunk<
 
 export const changeEmail = createAsyncThunk<
   string,
-  ChangeEmailPayloadType,
+  IChangeEmailRequest,
   IAsyncThunkConfig
 >('auth/changeEmail', async (params, { dispatch, rejectWithValue }) => {
   dispatch(setLoading(LoadingStatusEnum.Loading));

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
-import { getAllCategories } from '../../../../store/reducers/commonSlice';
+import { getIAllCategories } from '../../../../store/reducers/commonSlice';
 import {
   getPropertiesService,
   getVariationsService,
@@ -17,7 +17,7 @@ export const ProductListRegistrationPage = (): JSX.Element => {
   const [secondCategory, setSecondCategory] = useState('');
   const [thirdCategory, setThirdCategory] = useState('');
 
-  const allCategories = useAppSelector(state => state.common.categories);
+  const IAllCategories = useAppSelector(state => state.common.categories);
   const productProperties = useAppSelector(
     state => state.supplierOther.productProperties,
   );
@@ -25,10 +25,10 @@ export const ProductListRegistrationPage = (): JSX.Element => {
     state => state.supplierOther.productVariations,
   );
 
-  const secondsChilds = useAppSelector(getChilds(firstCategory, allCategories));
+  const secondsChilds = useAppSelector(getChilds(firstCategory, IAllCategories));
   const thirdChilds = useAppSelector(getChilds(secondCategory, secondsChilds));
 
-  const getFirstCategories = useAppSelector(getCategories(allCategories)) || [];
+  const getFirstCategories = useAppSelector(getCategories(IAllCategories)) || [];
   const getSecondCategories = useAppSelector(getCategories(secondsChilds)) || [];
   const getThirdCategories = useAppSelector(getCategories(thirdChilds)) || [];
 
@@ -55,7 +55,7 @@ export const ProductListRegistrationPage = (): JSX.Element => {
   }, [secondCategory]);
 
   useEffect(() => {
-    dispatch(getAllCategories());
+    dispatch(getIAllCategories());
   }, [dispatch]);
 
   useEffect(() => {

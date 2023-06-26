@@ -4,12 +4,12 @@ import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 import { SELLER_PRODUCTS } from '../../../routes';
-import { IResponseCategory } from '../../../services/common/common.serviceTypes';
+import { ICategoryResponse } from '../../../services/common/common.serviceTypes';
 
 import style from './MenuItems.module.scss';
 
 export interface IMenuItems {
-  items?: IResponseCategory[];
+  items?: ICategoryResponse[];
 }
 
 export const MenuItems: FC<IMenuItems> = ({ items }): JSX.Element => {

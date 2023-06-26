@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
 import { parsePhoneNumber } from '../../../../../common/utils/parsePhoneNumber';
 import { UploadImage } from '../../../../../components';
-import { ISuppliersUpdateCompanyInfo } from '../../../../../services/supplier/supplier.serviceTypes';
+import { ISuppliersUpdateICompanyInfo } from '../../../../../services/supplier/supplier.serviceTypes';
 import {
   getBusinessInfo,
   supplierBusinessInfoSelector,
@@ -66,7 +66,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
 
   const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
     const { numberBody } = parsePhoneNumber(data.phoneNumber);
-    const updateData: ISuppliersUpdateCompanyInfo = {
+    const updateData: ISuppliersUpdateICompanyInfo = {
       supplier_data_request: {
         license_number: data.license,
       },

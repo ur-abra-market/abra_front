@@ -4,16 +4,16 @@ import { AxiosError } from 'axios';
 import { IAsyncThunkConfig, LoadingStatusEnum } from '../../common/types';
 import { sellerService } from '../../services/seller/seller.service';
 import {
-  ResponseAddressData,
+  IAddressDataResponse,
   ResponseDeleteAddress,
-  SellerAddressData,
+  ISellerAddressData,
 } from '../../services/seller/seller.serviceTypes';
 
 import { getSellerAddresses } from 'store/reducers/seller/profile/thunks';
 
 export const addAddress = createAsyncThunk<
-  ResponseAddressData,
-  SellerAddressData,
+  IAddressDataResponse,
+  ISellerAddressData,
   IAsyncThunkConfig
 >('modal/addAddress', async (params, { dispatch, rejectWithValue }) => {
   try {
@@ -50,7 +50,7 @@ export const editAddress = createAsyncThunk<any, any>(
   },
 );
 
-export const getAddress = createAsyncThunk<ResponseAddressData, void, IAsyncThunkConfig>(
+export const getAddress = createAsyncThunk<IAddressDataResponse, void, IAsyncThunkConfig>(
   'modal/getAddress',
   async (_, { rejectWithValue }) => {
     try {
@@ -88,7 +88,7 @@ export const deleteAddress = createAsyncThunk<
 });
 
 interface IInitialState {
-  addresses: SellerAddressData[];
+  addresses: ISellerAddressData[];
   loading: LoadingStatusEnum;
 }
 

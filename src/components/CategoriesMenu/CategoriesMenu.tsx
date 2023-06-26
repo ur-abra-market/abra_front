@@ -10,8 +10,8 @@ import React, {
 import cn from 'classnames';
 
 import { useAppDispatch, useAppSelector } from '../../common/hooks';
-import { IResponseCategory } from '../../services/common/common.serviceTypes';
-import { getAllCategories } from '../../store/reducers/commonSlice';
+import { ICategoryResponse } from '../../services/common/common.serviceTypes';
+import { getIAllCategories } from '../../store/reducers/commonSlice';
 
 import style from './CategoriesMenu.module.scss';
 
@@ -30,8 +30,8 @@ export const CategoriesMenu = forwardRef(
     const dispatch = useAppDispatch();
 
     const filterCategories = (
-      category?: IResponseCategory[],
-    ): IResponseCategory[] | [] => {
+      category?: ICategoryResponse[],
+    ): ICategoryResponse[] | [] => {
       return category
         ? category.filter(c => {
             return c.name;
@@ -41,7 +41,7 @@ export const CategoriesMenu = forwardRef(
 
     useEffect(() => {
       if (!categories) {
-        dispatch(getAllCategories());
+        dispatch(getIAllCategories());
       }
     }, [dispatch, categories]);
 

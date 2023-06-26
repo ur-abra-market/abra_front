@@ -1,89 +1,72 @@
-import baseConfigService from '../baseConfig.service';
+import { baseConfigService } from '../baseConfig.service';
 
 import {
-  IGradeProduct,
-  IGradeProductRequest,
+  IGradeProductResponse,
   IProduct,
   IProductCompilation,
-  IRequestCategory,
-  IRequestPopularProduct,
-  IRequestProduct,
-  IRequestSimilarProduct,
+  ICategoryRequest,
+  IPopularProductRequest,
+  IProductRequest,
+  ISimilarProductRequest,
   IResponse,
+  IProductPaginateList,
 } from './product.serviceTypes';
 
 export const productService = {
-  getList: async ({
-    offset,
-    limit,
-    category_id,
-    sort_type,
-    ascending,
-  }: IRequestCategory) => {
+  getList: async (params: ICategoryRequest) => {
+    const { offset, limit, category_id, sort_type, ascending } = params;
+    const payload = { category_id, sort_type, ascending };
+
     const { data } = await baseConfigService.post(
       `products/compilation/?offset=${offset}&limit=${limit}`,
-      {
-        category_id,
-        sort_type,
-        ascending,
-      },
+      payload,
     );
 
     return data.result;
   },
 
-  getProductById: async ({ product_id }: IRequestProduct) => {
+  getProductById: async (params: IProductRequest) => {
     const { data } = await baseConfigService.post<IResponse<IProduct>>(
       `products/product_card_p1/`,
       {},
-      {
-        params: {
-          product_id,
-        },
-      },
+      { params },
     );
 
     return data.result;
   },
 
-  getProductImagesById: async ({ product_id }: IRequestProduct) => {
+  getProductImagesById: async ({ product_id }: IProductRequest) => {
     const { data } = await baseConfigService.get(`products/${product_id}/images/`, {});
 
     return data.result;
   },
 
-  getPopularProductById: async (payload: IRequestPopularProduct) => {
+  getPopularProductById: async (params: IPopularProductRequest) => {
     const { data } = await baseConfigService.get(`products/popular/`, {
-      params: {
-        ...payload,
-      },
+      params,
     });
 
     return data;
   },
 
-  getGradesByProductId: async ({ product_id }: IGradeProductRequest) => {
-    const { data } = await baseConfigService.get<IGradeProduct>(
+  getGradesByProductId: async ({ product_id }: IProductRequest) => {
+    const { data } = await baseConfigService.get<IGradeProductResponse>(
       `products/${product_id}/grades/`,
     );
 
     return data;
   },
 
-  deleteList: async (id: any) => {
+  deleteList: async (id: string[]) => {
     const { data } = await baseConfigService.patch(`suppliers/deleteProducts/`, [...id]);
 
     return data.result;
   },
 
-  getSimilarProducts: async (payload: IRequestSimilarProduct) => {
+  getSimilarProducts: async (params: ISimilarProductRequest) => {
     const { data } = await baseConfigService.get<IResponse<IProductCompilation[]>>(
       `products/similar/`,
-      {
-        params: {
-          ...payload,
-        },
-      },
+      { params },
     );
 
     return data;
@@ -95,18 +78,26 @@ export const productService = {
     return data.result;
   },
 
-  getProductPaginateList: async (props: any) => {
-    const bottom_price = props.price_from > 0 ? `bottom_price=${props.price_to}&` : '';
-    const top_price = props.price_to > 0 ? `top_price=${props.price_to}&` : '';
-    const category = props.category !== '' ? `category_id=${props.category}&` : '';
-
-    const url = `products/pagination/?page_num=${props.page_num}&page_size=${props.page_size}&${category}with_discount=${props.discount}&sort_type=${props.sort_type}&${bottom_price}${top_price}ascending=${props.ascending}`;
+  getProductPaginateList: async (params: IProductPaginateList) => {
     const body = {
-      sizes: props.sizes,
-      brands: props.brands,
-      materials: props.materials,
+      sizes: params.sizes,
+      brands: params.brands,
+      materials: params.materials,
     };
-    const { data } = await baseConfigService.post(url, body);
+    const queryParams = {
+      page_num: params.page_num,
+      page_size: params.page_size,
+      category: params.category !== '' ? params.category : '',
+      with_discount: params.discount,
+      sort_type: params.sort_type,
+      bottom_price: params.price_from > 0 ? params.price_to : '',
+      top_price: params.price_to > 0 ? params.price_to : '',
+      ascending: params.ascending,
+    };
+
+    const { data } = await baseConfigService.post('products/pagination/', body, {
+      params: queryParams,
+    });
 
     return data;
   },

@@ -13,7 +13,6 @@ import style from './UploadImage.module.scss';
 import { CrossRedIcon, UploadItemImageIcon, UploadLogoImageIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
-import { getSellerAvatar } from 'store/reducers/seller/profile/thunks';
 import { fetchCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 
 interface IUploadImage

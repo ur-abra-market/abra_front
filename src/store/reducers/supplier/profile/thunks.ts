@@ -7,23 +7,23 @@ import { setResponseNotice } from '../../appSlice/slice';
 import { IAsyncThunkConfig } from 'common/types';
 import {
   ISupplierErrorResponse,
-  ISuppliersCompanyInfoData,
-  ISuppliersUpdateCompanyInfo,
-  SuppliersResponse,
+  ISuppliersICompanyInfoData,
+  ISuppliersUpdateICompanyInfo,
+  ISuppliersResponse,
 } from 'services/supplier/supplier.serviceTypes';
 
 export const getBusinessInfo = createAsyncThunk<
-  ISuppliersCompanyInfoData,
+  ISuppliersICompanyInfoData,
   void,
   IAsyncThunkConfig
->('supplierProfile/getCompanyInfo', async (_, { rejectWithValue }) => {
+>('supplierProfile/getICompanyInfo', async (_, { rejectWithValue }) => {
   try {
     return await supplierService.fetchBusinessInfo();
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
         ? error.response?.data?.error || error.message
-        : '[getCompanyInfo]: Error';
+        : '[getICompanyInfo]: Error';
 
     return rejectWithValue(errorMessage);
   }
@@ -31,9 +31,9 @@ export const getBusinessInfo = createAsyncThunk<
 
 export const updateBusinessInfo = createAsyncThunk<
   void,
-  ISuppliersUpdateCompanyInfo,
+  ISuppliersUpdateICompanyInfo,
   IAsyncThunkConfig
->('supplierProfile/updateCompanyInfo', async (arg, { rejectWithValue, dispatch }) => {
+>('supplierProfile/updateICompanyInfo', async (arg, { rejectWithValue, dispatch }) => {
   try {
     await supplierService.updateBusinessInfo(arg);
     dispatch(getBusinessInfo());
@@ -41,7 +41,7 @@ export const updateBusinessInfo = createAsyncThunk<
     const errorMessage =
       error instanceof AxiosError
         ? error.response?.data?.error || error.message
-        : '[updateCompanyInfo]: Error';
+        : '[updateICompanyInfo]: Error';
 
     return rejectWithValue(errorMessage);
   }
@@ -61,7 +61,7 @@ export const fetchCompanyLogo = createAsyncThunk<string, void, IAsyncThunkConfig
 );
 
 export const uploadCompanyLogo = createAsyncThunk<
-  SuppliersResponse<{
+  ISuppliersResponse<{
     id: number;
     url: string;
     image: string;
@@ -81,7 +81,7 @@ export const uploadCompanyLogo = createAsyncThunk<
 });
 
 export const deleteCompanyLogo = createAsyncThunk<
-  SuppliersResponse<boolean>,
+  ISuppliersResponse<boolean>,
   number,
   IAsyncThunkConfig
 >('supplierProfile/deleteCompanyImage', async (id, { rejectWithValue }) => {

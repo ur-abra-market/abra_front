@@ -1,9 +1,9 @@
 import { IProduct } from '../product/product.serviceTypes';
-import { ISellerAddressData, ISellerNotifications } from '../seller/seller.serviceTypes';
+import { ISellerNotifications } from '../seller/seller.serviceTypes';
 import {
   ISupplierNotifications,
-  ISuppliersUpdateCompanyInfo,
-  IUpdateCompanyInfo,
+  ISuppliersUpdateICompanyInfo,
+  IUpdateICompanyInfo,
 } from '../supplier/supplier.serviceTypes';
 
 import { ResponseUserRoleType } from 'common/types';
@@ -18,45 +18,55 @@ export interface IConfirmEmailRequest {
   token: string;
 }
 
-export type RegisterResponseType = {
+export type IRegisterResponse = {
   result: string;
 };
 
-export type LoginParamsType = {
+export type ILoginRequest = {
   email: string;
   password: string;
 };
 
-export type LoginResponseType = {
+export type ILoginResponse = {
   result: string;
   is_supplier: boolean;
 };
 
-export type PasswordResponseType = {
+export type IPasswordResponse = {
   result: string;
 };
 
-export type ResetPasswordPayloadType = {
+export type IResetPasswordRequest = {
   new_password: string;
   confirm_password: string;
   token: string;
 };
 
-export type ChangePasswordPayloadType = {
+export type IChangePasswordRequest = {
   old_password: string;
   new_password: string;
 };
 
-export type ChangeEmailPayloadType = {
+export type IChangeEmailRequest = {
   new_email: string;
   confirm_email: string;
 };
 
-export type LogoutResponseType = {
+export type ILogoutResponse = {
   result: boolean;
 };
 
-export type CurrentUserInfoResponseType = {
+export interface ISellerAddressData {
+  country: string;
+  area: string;
+  city: string;
+  street: string;
+  building: string;
+  apartment: string;
+  postal_code: string;
+}
+
+export type ICurrentUserInfoResponse = {
   result: {
     datetime: string;
     updated_at?: string;
@@ -87,16 +97,16 @@ export type CurrentUserInfoResponseType = {
   };
 };
 
-export interface IBusinessInfoRequestData
-  extends Omit<ISuppliersUpdateCompanyInfo, 'company_data_request'> {
-  company_data_request: ISendCompanyInfo;
+export interface IBusinessInfoRequest
+  extends Omit<ISuppliersUpdateICompanyInfo, 'company_data_request'> {
+  company_data_request: ISendICompanyInfo;
 }
 
-interface ISendCompanyInfo extends IUpdateCompanyInfo {
+interface ISendICompanyInfo extends IUpdateICompanyInfo {
   logo_url: string;
 }
 
-export interface IPersonalInfoRequestData {
+export interface IPersonalInfoRequest {
   first_name: string;
   last_name: string;
   country_id: number;

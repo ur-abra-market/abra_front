@@ -23,7 +23,7 @@ export const manageProductsService = createAsyncThunk<any, void>(
 
 export const deleteProducts = createAsyncThunk<any, any>(
   'manageProducts/deleteProducts',
-  async (id, { rejectWithValue, dispatch }) => {
+  async (id: string[], { rejectWithValue, dispatch }) => {
     try {
       const response = await productService.deleteList(id);
 
