@@ -48,11 +48,6 @@ export interface ISupplierNotifications {
   on_account_support: boolean;
 }
 
-export interface ISuppliersResponse<R> {
-  ok: boolean;
-  result: R;
-}
-
 export interface ISupplierErrorResponse {
   ok: boolean;
   error_code: number;

@@ -14,15 +14,6 @@ export interface ISellerAddressData {
   postal_code: string;
 }
 
-export interface IAddressDataResponse {
-  ok: boolean;
-  result: ISellerAddressData[];
-}
-export interface ResponseDeleteAddress {
-  ok: boolean;
-  result: boolean;
-}
-
 export interface ISellerNotifications {
   on_discount: boolean;
   on_order_updates: boolean;

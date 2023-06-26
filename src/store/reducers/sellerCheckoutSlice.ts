@@ -1,18 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IAsyncThunkConfig, LoadingStatusEnum } from '../../common/types';
-import { sellerService } from '../../services/seller/seller.service';
 import {
-  IAddressDataResponse,
-  ResponseDeleteAddress,
-  ISellerAddressData,
-} from '../../services/seller/seller.serviceTypes';
+  IAsyncThunkConfig,
+  IServerResponse,
+  LoadingStatusEnum,
+} from '../../common/types';
+import { sellerService } from '../../services/seller/seller.service';
+import { ISellerAddressData } from '../../services/seller/seller.serviceTypes';
 
 import { getSellerAddresses } from 'store/reducers/seller/profile/thunks';
 
 export const addAddress = createAsyncThunk<
-  IAddressDataResponse,
+  IServerResponse<ISellerAddressData[]>,
   ISellerAddressData,
   IAsyncThunkConfig
 >('modal/addAddress', async (params, { dispatch, rejectWithValue }) => {
@@ -50,25 +50,26 @@ export const editAddress = createAsyncThunk<any, any>(
   },
 );
 
-export const getAddress = createAsyncThunk<IAddressDataResponse, void, IAsyncThunkConfig>(
-  'modal/getAddress',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await sellerService.getSellerAddresses();
+export const getAddress = createAsyncThunk<
+  IServerResponse<ISellerAddressData[]>,
+  void,
+  IAsyncThunkConfig
+>('modal/getAddress', async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await sellerService.getSellerAddresses();
 
-      return data;
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.message);
-      }
-
-      return rejectWithValue('[modalSlice]: Error');
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      return rejectWithValue(error.message);
     }
-  },
-);
+
+    return rejectWithValue('[modalSlice]: Error');
+  }
+});
 
 export const deleteAddress = createAsyncThunk<
-  ResponseDeleteAddress,
+  IServerResponse<boolean>,
   number,
   IAsyncThunkConfig
 >('modal/deleteAddress', async (id, { dispatch, rejectWithValue }) => {

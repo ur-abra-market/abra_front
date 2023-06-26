@@ -4,12 +4,11 @@ import { AxiosError } from 'axios';
 import { supplierService } from '../../../../services';
 import { setResponseNotice } from '../../appSlice/slice';
 
-import { IAsyncThunkConfig } from 'common/types';
+import { IAsyncThunkConfig, IServerResponse } from 'common/types';
 import {
   ISupplierErrorResponse,
   ISuppliersICompanyInfoData,
   ISuppliersUpdateICompanyInfo,
-  ISuppliersResponse,
 } from 'services/supplier/supplier.serviceTypes';
 
 export const getBusinessInfo = createAsyncThunk<
@@ -61,7 +60,7 @@ export const fetchCompanyLogo = createAsyncThunk<string, void, IAsyncThunkConfig
 );
 
 export const uploadCompanyLogo = createAsyncThunk<
-  ISuppliersResponse<{
+  IServerResponse<{
     id: number;
     url: string;
     image: string;
@@ -81,7 +80,7 @@ export const uploadCompanyLogo = createAsyncThunk<
 });
 
 export const deleteCompanyLogo = createAsyncThunk<
-  ISuppliersResponse<boolean>,
+  IServerResponse<boolean>,
   number,
   IAsyncThunkConfig
 >('supplierProfile/deleteCompanyImage', async (id, { rejectWithValue }) => {

@@ -5,7 +5,6 @@ import {
   ISuppliersICompanyInfoData,
   ISupplierNotifications,
   ISuppliersUpdateICompanyInfo,
-  ISuppliersResponse,
 } from './supplier.serviceTypes';
 
 export const supplierService = {
@@ -105,7 +104,7 @@ export const supplierService = {
     formData.append('file', image);
 
     const { data } = await baseConfigService.post<
-      ISuppliersResponse<{
+      IServerResponse<{
         id: number;
         url: string;
       }>
@@ -115,7 +114,7 @@ export const supplierService = {
   },
 
   deleteCompanyLogo: async (company_image_id: number) => {
-    const { data } = await baseConfigService.delete<ISuppliersResponse<boolean>>(
+    const { data } = await baseConfigService.delete<IServerResponse<boolean>>(
       `suppliers/deleteCompanyImage/`,
       { params: { company_image_id } },
     );
