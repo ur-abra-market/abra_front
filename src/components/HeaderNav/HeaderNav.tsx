@@ -7,12 +7,12 @@ import style from './HeaderNav.module.scss';
 
 import { HEADER_NAV_CONTENT } from 'components/HeaderNav/HeaderNavContent';
 
-interface IHeaderNavProps {
+interface IHeaderNav {
   userRole: 'seller' | 'supplier';
   className?: string;
 }
 
-export const HeaderNav: FC<IHeaderNavProps> = ({ userRole, className }): JSX.Element => {
+export const HeaderNav: FC<IHeaderNav> = ({ userRole, className }): JSX.Element => {
   const navItems = HEADER_NAV_CONTENT[userRole];
 
   return (
