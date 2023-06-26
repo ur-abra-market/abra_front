@@ -10,7 +10,7 @@ import {
 export const supplierService = {
   hasISupplierCompanyInfo: async () => {
     const { data } = await baseConfigService.get<IServerResponse<boolean>>(
-      `suppliers/hasISupplierCompanyInfo/`,
+      `suppliers/hasCompanyInfo/`,
     );
 
     return data.result;

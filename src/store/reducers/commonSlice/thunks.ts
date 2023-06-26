@@ -45,9 +45,9 @@ export const getIAllCategories = createAsyncThunk<
   ICategoryResponse[],
   void,
   IAsyncThunkConfig
->('category/categoryService', async (_, { rejectWithValue }) => {
+>('category/getIAllCategories', async (_, { rejectWithValue }) => {
   try {
-    const data = await commonService.fetchIAllCategories();
+    const data = await commonService.fetchAllCategories();
 
     return data.result;
   } catch (error) {

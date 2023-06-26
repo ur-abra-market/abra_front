@@ -1,10 +1,6 @@
 import { ProductSortEnum } from '../../common/types';
 import { Categories } from '../../pages/general-pages/MainPage/MainPage';
 
-export interface IResponse<T> {
-  result: T;
-}
-
 export interface IGradeDetails {
   grade: number;
   count: number;
@@ -49,8 +45,6 @@ export interface ICategoryRequest {
   ascending: boolean;
 }
 
-export interface ISimilarProductRequest extends IPopularProductRequest {}
-
 export interface IProductRequest {
   product_id: number;
 }
@@ -92,8 +86,6 @@ export interface IProductPrice {
   start_date: string;
   value?: number;
 }
-
-export interface IImageProductRequest extends IProductRequest {}
 
 export interface IPrice {
   value: string;

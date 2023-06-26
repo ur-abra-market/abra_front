@@ -7,10 +7,10 @@ import {
   ICategoryRequest,
   IPopularProductRequest,
   IProductRequest,
-  ISimilarProductRequest,
-  IResponse,
   IProductPaginateList,
 } from './product.serviceTypes';
+
+import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 
 export const productService = {
   getList: async (params: ICategoryRequest) => {
@@ -26,7 +26,7 @@ export const productService = {
   },
 
   getProductById: async (params: IProductRequest) => {
-    const { data } = await baseConfigService.post<IResponse<IProduct>>(
+    const { data } = await baseConfigService.post<IBaseResponse<IProduct>>(
       `products/product_card_p1/`,
       {},
       { params },
@@ -63,8 +63,8 @@ export const productService = {
     return data.result;
   },
 
-  getSimilarProducts: async (params: ISimilarProductRequest) => {
-    const { data } = await baseConfigService.get<IResponse<IProductCompilation[]>>(
+  getSimilarProducts: async (params: IPopularProductRequest) => {
+    const { data } = await baseConfigService.get<IBaseResponse<IProductCompilation[]>>(
       `products/similar/`,
       { params },
     );

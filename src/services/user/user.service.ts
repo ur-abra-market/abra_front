@@ -4,7 +4,9 @@ import {
   IDeleteImageRequest,
 } from '../common/common.serviceTypes';
 
-import { IAccountPersonalInfoResponse, IResponse } from './user.serviceTypes';
+import { IAccountPersonalInfoResponse } from './user.serviceTypes';
+
+import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 
 export enum Action {
   UPLOAD_LOGO_IMAGE = 'suppliers/uploadCompanyImage/',
@@ -14,9 +16,9 @@ export enum Action {
 
 export const userService = {
   fetchAccountPersonalInfo: async () => {
-    const { data } = await baseConfigService.get<IResponse<IAccountPersonalInfoResponse>>(
-      `users/account/personalInfo/`,
-    );
+    const { data } = await baseConfigService.get<
+      IBaseResponse<IAccountPersonalInfoResponse>
+    >(`users/account/personalInfo/`);
 
     return data.result;
   },

@@ -28,7 +28,7 @@ export const categoryService = createAsyncThunk<any, void>(
   'category/categoryService',
   async function (_, { rejectWithValue }) {
     try {
-      const data = await commonService.fetchIAllCategories();
+      const data = await commonService.fetchAllCategories();
 
       return data.result;
     } catch (error: unknown) {

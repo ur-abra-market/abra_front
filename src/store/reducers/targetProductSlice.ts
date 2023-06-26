@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import {
-  IImageProductRequest,
   IProduct,
   IProductRequest,
   IGradeProductResponse,
@@ -41,20 +40,20 @@ export const getGradesByProductId = createAsyncThunk<
   }
 });
 
-export const getImagesByProductId = createAsyncThunk<
-  IImageProduct[],
-  IImageProductRequest
->('targetProduct/getImagesByProductId', async ({ product_id }, { rejectWithValue }) => {
-  try {
-    return await productService.getProductImagesById({ product_id });
-  } catch (error: unknown) {
-    if (error instanceof AxiosError) {
-      return rejectWithValue(error.response?.data);
-    }
+export const getImagesByProductId = createAsyncThunk<IImageProduct[], IProductRequest>(
+  'targetProduct/getImagesByProductId',
+  async ({ product_id }, { rejectWithValue }) => {
+    try {
+      return await productService.getProductImagesById({ product_id });
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.response?.data);
+      }
 
-    return rejectWithValue('[Error]: getImagesByProductId');
-  }
-});
+      return rejectWithValue('[Error]: getImagesByProductId');
+    }
+  },
+);
 
 const product = {
   grade: {

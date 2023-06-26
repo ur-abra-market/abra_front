@@ -15,14 +15,14 @@ export const getBusinessInfo = createAsyncThunk<
   ISupplierCompanyInfoData,
   void,
   IAsyncThunkConfig
->('supplierProfile/getISupplierCompanyInfo', async (_, { rejectWithValue }) => {
+>('supplierProfile/getBusinessInfo', async (_, { rejectWithValue }) => {
   try {
     return await supplierService.fetchBusinessInfo();
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
         ? error.response?.data?.error || error.message
-        : '[getISupplierCompanyInfo]: Error';
+        : '[getBusinessInfo]: Error';
 
     return rejectWithValue(errorMessage);
   }
@@ -32,25 +32,22 @@ export const updateBusinessInfo = createAsyncThunk<
   void,
   ISuppliersUpdateISupplierCompanyInfo,
   IAsyncThunkConfig
->(
-  'supplierProfile/updateISupplierCompanyInfo',
-  async (arg, { rejectWithValue, dispatch }) => {
-    try {
-      await supplierService.updateBusinessInfo(arg);
-      dispatch(getBusinessInfo());
-    } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error || error.message
-          : '[updateISupplierCompanyInfo]: Error';
+>('supplierProfile/updateBusinessInfo', async (arg, { rejectWithValue, dispatch }) => {
+  try {
+    await supplierService.updateBusinessInfo(arg);
+    dispatch(getBusinessInfo());
+  } catch (error) {
+    const errorMessage =
+      error instanceof AxiosError
+        ? error.response?.data?.error || error.message
+        : '[updateBusinessInfo]: Error';
 
-      return rejectWithValue(errorMessage);
-    }
-  },
-);
+    return rejectWithValue(errorMessage);
+  }
+});
 
 export const fetchCompanyLogo = createAsyncThunk<string, void, IAsyncThunkConfig>(
-  'supplierProfile/fetchCompanyImage',
+  'supplierProfile/fetchCompanyLogo',
   async (_, { rejectWithValue }) => {
     try {
       return await supplierService.fetchCompanyLogo();
@@ -70,7 +67,7 @@ export const uploadCompanyLogo = createAsyncThunk<
   }>,
   File,
   IAsyncThunkConfig
->('supplierProfile/uploadCompanyImage', async (img, { rejectWithValue }) => {
+>('supplierProfile/uploadCompanyLogo', async (img, { rejectWithValue }) => {
   try {
     const data = await supplierService.uploadCompanyLogo(img);
 
@@ -86,7 +83,7 @@ export const deleteCompanyLogo = createAsyncThunk<
   IServerResponse<boolean>,
   number,
   IAsyncThunkConfig
->('supplierProfile/deleteCompanyImage', async (id, { rejectWithValue }) => {
+>('supplierProfile/deleteCompanyLogo', async (id, { rejectWithValue }) => {
   try {
     return await supplierService.deleteCompanyLogo(id);
   } catch (error) {

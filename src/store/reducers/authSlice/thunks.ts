@@ -11,12 +11,11 @@ import {
   IPersonalInfoRequest,
   ILoginRequest,
   ILoginResponse,
-  ILogoutResponse,
-  IRegisterResponse,
   IResetPasswordRequest,
   IChangeEmailRequest,
   IRegisterRequest,
   IConfirmEmailRequest,
+  IPasswordResponse,
 } from '../../../services/auth/auth.serviceTypes';
 import { IAccountPersonalInfoRequest } from '../../../services/common/common.serviceTypes';
 import { IAccountPersonalInfoResponse } from '../../../services/user/user.serviceTypes';
@@ -24,7 +23,7 @@ import { getUserRole } from '../appSlice';
 import { setLoading, setResponseNotice } from '../appSlice/slice';
 
 export const registerUser = createAsyncThunk<
-  IRegisterResponse,
+  IPasswordResponse,
   IRegisterRequest,
   IAsyncThunkConfig
 >('auth/registerUser', async (dataUser, { rejectWithValue, dispatch }) => {
@@ -49,10 +48,10 @@ export const registerUser = createAsyncThunk<
 });
 
 export const confirmEmail = createAsyncThunk<
-  IRegisterResponse,
+  IPasswordResponse,
   IConfirmEmailRequest,
   IAsyncThunkConfig
->('auth/registerUser', async (dataUser, { rejectWithValue }) => {
+>('auth/confirmEmail', async (dataUser, { rejectWithValue }) => {
   try {
     return await authService.confirmEmail(dataUser);
   } catch (error) {
@@ -118,7 +117,7 @@ export const loginUser = createAsyncThunk<
   }
 });
 
-export const logout = createAsyncThunk<ILogoutResponse, void, IAsyncThunkConfig>(
+export const logout = createAsyncThunk<IPasswordResponse, void, IAsyncThunkConfig>(
   'login/logout',
   async (_, { rejectWithValue, dispatch }) => {
     dispatch(setLoading(LoadingStatusEnum.Loading));

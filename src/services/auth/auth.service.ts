@@ -3,14 +3,12 @@ import { baseConfigService } from '../baseConfig.service';
 import {
   IConfirmEmailRequest,
   IRegisterRequest,
-  ILogoutResponse,
   ICurrentUserInfoResponse,
   IChangePasswordRequest,
   IBusinessInfoRequest,
   ILoginRequest,
   ILoginResponse,
   IPasswordResponse,
-  IRegisterResponse,
   IResetPasswordRequest,
   IPersonalInfoRequest,
   IChangeEmailRequest,
@@ -22,7 +20,7 @@ export const authService = {
   },
 
   register: async ({ email, password, role }: IRegisterRequest) => {
-    const { data } = await baseConfigService.post<IRegisterResponse>(
+    const { data } = await baseConfigService.post<IPasswordResponse>(
       `register/${role}/`,
       { email, password },
     );
@@ -31,7 +29,7 @@ export const authService = {
   },
 
   confirmEmail: async ({ token }: IConfirmEmailRequest) => {
-    const { data } = await baseConfigService.get<IRegisterResponse>(
+    const { data } = await baseConfigService.get<IPasswordResponse>(
       `register/confirmEmail/?token=${token}`,
     );
 
@@ -59,7 +57,7 @@ export const authService = {
   },
 
   logout: async () => {
-    const { data } = await baseConfigService.delete<ILogoutResponse>(`logout/`);
+    const { data } = await baseConfigService.delete<IPasswordResponse>(`logout/`);
 
     return data;
   },

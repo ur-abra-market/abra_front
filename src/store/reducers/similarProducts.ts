@@ -5,12 +5,12 @@ import { LoadingStatusEnum } from '../../common/types';
 import { productService } from '../../services/product/product.service';
 import {
   IProductCompilation,
-  ISimilarProductRequest,
+  IPopularProductRequest,
 } from '../../services/product/product.serviceTypes';
 
 export const getSimilarProducts = createAsyncThunk<
   IProductCompilation[],
-  ISimilarProductRequest
+  IPopularProductRequest
 >('similarProducts/getSimilarProducts', async (payload, { rejectWithValue }) => {
   try {
     const { result } = await productService.getSimilarProducts(payload);

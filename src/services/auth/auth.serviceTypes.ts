@@ -18,15 +18,10 @@ export interface IConfirmEmailRequest {
   token: string;
 }
 
-export interface IRegisterResponse {
-  result: string;
-}
-
 export interface ILoginRequest {
   email: string;
   password: string;
 }
-
 export interface ILoginResponse {
   result: string;
   is_supplier: boolean;
@@ -50,10 +45,6 @@ export interface IChangePasswordRequest {
 export interface IChangeEmailRequest {
   new_email: string;
   confirm_email: string;
-}
-
-export interface ILogoutResponse {
-  result: boolean;
 }
 
 export interface ISellerAddressData {

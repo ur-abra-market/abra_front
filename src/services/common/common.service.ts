@@ -1,11 +1,8 @@
 import { baseConfigService } from '../baseConfig.service';
 
-import {
-  IAllCategories,
-  IBaseResponse,
-  ICountry,
-  INumberEmployees,
-} from './common.serviceTypes';
+import { IAllCategories, ICountry, INumberEmployees } from './common.serviceTypes';
+
+import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 
 export const commonService = {
   getCountry: async () => {
@@ -24,7 +21,7 @@ export const commonService = {
     return data.result;
   },
 
-  fetchIAllCategories: async () => {
+  fetchAllCategories: async () => {
     const { data } = await baseConfigService.get<IAllCategories>(`categories/all/`);
 
     return data;

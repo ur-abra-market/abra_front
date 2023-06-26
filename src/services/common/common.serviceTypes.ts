@@ -1,17 +1,11 @@
+import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
+
 export interface ICategoryResponse {
   id: number;
   name: string;
   level: number;
   children?: ICategoryResponse[] | [];
   parent_id?: number;
-}
-
-export interface IBaseResponse<R> {
-  ok: true;
-  result: R;
-  detail: 'string';
-  error: 'string';
-  error_code: 0;
 }
 
 export interface ICountry {
