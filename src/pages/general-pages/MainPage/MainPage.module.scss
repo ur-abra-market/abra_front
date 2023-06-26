@@ -1,9 +1,15 @@
+@import "common/styles/mixins";
+
 .main_page {
-  background-color: #FFF;
+  background-color: var(--color-white);
 }
 
 .images_block{
   margin-bottom: 112px;
+}
+
+.container {
+  @include content_container
 }
 
 .main_sliders {

@@ -34,7 +34,7 @@ const SelectFilter: FC<SelectFilterProps> = ({ typeSelect }): JSX.Element => {
     if (typeSelect === 'sort') setList(listSort);
 
     if (typeSelect === 'category') setList(listCategory);
-  }, [listSort, listCategory, typeSelect]);
+  }, [typeSelect]);
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const option = () => {

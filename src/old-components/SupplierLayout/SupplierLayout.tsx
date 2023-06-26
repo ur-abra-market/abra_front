@@ -1,15 +1,18 @@
-import { FC } from 'react';
-
-import { Footer } from '../Footer';
-import Header from '../SupplierHeader/SupplierHeader';
+import { FC, ReactNode } from 'react';
 
 import styles from './SupplierLayout.module.scss';
-import { LayoutProps } from './SupplierLayout.props';
+
+import { Footer } from 'layouts/Footer/Footer';
+import { SupplierHeader } from 'layouts/Layout';
+
+export interface LayoutProps {
+  children: ReactNode;
+}
 
 export const SupplierLayout: FC<LayoutProps> = ({ children }): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <Header className={styles.header} />
+      <SupplierHeader className={styles.header} />
       <main className={styles.body} role="main">
         {children}
       </main>

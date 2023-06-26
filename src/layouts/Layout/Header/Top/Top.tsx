@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import Modal from '../../../components/Modal';
+import Modal from '../../../../components/Modal';
 
 import style from './Top.module.scss';
 

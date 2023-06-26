@@ -4,7 +4,7 @@ import HeaderForChangePages from '../../../old-components/HeaderForChangePages';
 
 import style from './AboutUsPage.module.scss';
 
-import { Footer } from 'layouts/Footer';
+import { Footer } from 'layouts';
 
 export const AboutUsPage = (): JSX.Element => {
   return (

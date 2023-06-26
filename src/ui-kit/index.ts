@@ -10,7 +10,6 @@ export { Search } from './Search/Search';
 export { LoaderCircular } from './loaders/LoaderCircular/LoaderCircular';
 export { LoaderLinear } from './loaders/LoaderLinear/LoaderLinear';
 export { Stars } from './Stars/Stars';
-export { Container } from './Container/Container';
 export { ViewMoreProducts } from './ViewMoreProducts/ViewMoreProducts';
 export { SimpleLink } from './SimpleLink/SimpleLink';
 export { MainLogo } from './MainLogo/MainLogo';

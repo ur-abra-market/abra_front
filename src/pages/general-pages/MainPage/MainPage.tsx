@@ -6,7 +6,7 @@ import { ProductSortEnum } from '../../../common/types';
 import { Feedback, ProductCard } from '../../../components';
 import { ProductsPreview } from '../../../modules';
 import { fetchProductList } from '../../../store/reducers/mainPageSlice';
-import { ButtonInfo, Container, LoaderCircular, ViewMoreProducts } from '../../../ui-kit';
+import { ButtonInfo, LoaderCircular, ViewMoreProducts } from '../../../ui-kit';
 
 import style from './MainPage.module.scss';
 
@@ -71,7 +71,7 @@ export const MainPage = WithLayout((): JSX.Element => {
       {isLoading === false && (
         <div>
           <ImagesBlock className={style.images_block} />
-          <Container>
+          <div className={style.container}>
             <StatusProduct />
             <div className={style.main_sliders}>
               {products &&
@@ -89,7 +89,7 @@ export const MainPage = WithLayout((): JSX.Element => {
             <div className={style.info_block}>
               <ButtonInfo className={style.info_btn} />
             </div>
-          </Container>
+          </div>
           <Feedback />
         </div>
       )}
