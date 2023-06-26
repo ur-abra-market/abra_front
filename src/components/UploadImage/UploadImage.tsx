@@ -13,6 +13,7 @@ import style from './UploadImage.module.scss';
 import { CrossRedIcon, UploadItemImageIcon, UploadLogoImageIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
+import { getSellerAvatar } from 'store/reducers/seller/profile/thunks';
 import { fetchCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 
 interface IUploadImage
@@ -41,21 +42,28 @@ export const UploadImage: FC<IUploadImage> = ({
 }) => {
   const dispatch = useAppDispatch();
   const uploadImageIcon =
-    type === 'logo' ? <UploadLogoImageIcon /> : <UploadItemImageIcon />;
+    type === 'logo' || type === 'avatar' ? (
+      <UploadLogoImageIcon />
+    ) : (
+      <UploadItemImageIcon />
+    );
 
   const inputClasses = cn({
     [style.input_logo]: type === 'logo',
-    [style.input_default]: type !== 'logo',
+    [style.input_avatar]: type === 'avatar',
+    [style.input_default]: type !== 'logo' && type !== 'avatar',
   });
 
   const imgClasses = cn({
     [style.logo_img]: type === 'logo',
-    [style.default_img]: type !== 'logo',
+    [style.avatar_img]: type === 'avatar',
+    [style.default_img]: type !== 'logo' && type !== 'avatar',
   });
 
   const crossClasses = cn({
     [style.logo_cross]: type === 'logo',
-    [style.default_cross]: type !== 'logo',
+    [style.avatar_cross]: type === 'avatar',
+    [style.default_cross]: type !== 'logo' && type !== 'avatar',
   });
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -104,7 +112,7 @@ export const UploadImage: FC<IUploadImage> = ({
         )}
       </div>
 
-      {type === 'logo' && (
+      {(type === 'logo' || type === 'avatar') && (
         <div className={style.description}>
           <label className={style.label} htmlFor="profileLogo">
             {label}

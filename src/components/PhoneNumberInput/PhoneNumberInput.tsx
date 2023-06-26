@@ -43,6 +43,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
   ): void => {
     const countryId = countries.find(el => el.country_short === data.countryCode)?.id;
 
+    setValue('countryShort', data?.countryCode);
     if (countryId) {
       setValue('countryId', countryId);
     }
@@ -75,18 +76,22 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
     [style.phone_flag_error]: Boolean(phoneNumberError),
   });
 
+  const priority = countryShort === 'kz' ? { ca: 0, us: 1, kz: 0, ru: 1 } : undefined;
+
   return (
     <div className={style.phone_number}>
       <Label label={label} htmlFor="tel">
         {countries.length && (
           <PhoneInput
+            key={countryShort}
             inputClass={phoneInputClasses}
             buttonClass={phoneButtonClasses}
-            country={countryShort || 'ru'}
+            country={countryShort || ''}
             value={watch('phoneNumber')}
             onChange={handlePhoneInputOnChange}
             onlyCountries={countries.map(el => el.country_short)}
             countryCodeEditable={false}
+            priority={priority}
           />
         )}
         {phoneNumberError && <span className={style.error}>{phoneNumberError}</span>}

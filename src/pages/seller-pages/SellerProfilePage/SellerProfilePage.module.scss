@@ -64,21 +64,6 @@
   justify-content: flex-start;
 }
 
-.header_wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.header {
-  font-size: var(--fz-l2);
-  font-weight: var(--bold);
-  font-style: normal;
-  line-height: var(--fz-xl2);
-  color: var(--color-black);
-  text-align: left;
-}
-
 .header_notifications {
   padding: 32px 127px 0 32px;
 }
@@ -141,16 +126,6 @@
   width: 100%;
 }
 
-.header_link {
-  font-size: var(--fz-s2);
-  font-weight: var(--regular);
-  font-style: normal;
-  line-height: var(--fz-l2);
-  color: var(--color-accent);
-  text-decoration-line: underline;
-
-}
-
 .button_link_container {
   display: flex;
   align-items: center;
@@ -207,25 +182,6 @@
   cursor: pointer;
   display: block;
   width: 48px;
-}
-
-.my_addresses_wrapper {
-  margin-top: 24px;
-}
-
-.no_address {
-  font-size: 15px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 20px;
-  color: var(--color-black);
-
-}
-
-.addresses_container>div {
-  width: 100%;
-  border-radius: 12px;
-
 }
 
 .notifications_list {
