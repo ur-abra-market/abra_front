@@ -18,43 +18,43 @@ export interface IConfirmEmailRequest {
   token: string;
 }
 
-export type IRegisterResponse = {
+export interface IRegisterResponse {
   result: string;
-};
+}
 
-export type ILoginRequest = {
+export interface ILoginRequest {
   email: string;
   password: string;
-};
+}
 
-export type ILoginResponse = {
+export interface ILoginResponse {
   result: string;
   is_supplier: boolean;
-};
+}
 
-export type IPasswordResponse = {
+export interface IPasswordResponse {
   result: string;
-};
+}
 
-export type IResetPasswordRequest = {
+export interface IResetPasswordRequest {
   new_password: string;
   confirm_password: string;
   token: string;
-};
+}
 
-export type IChangePasswordRequest = {
+export interface IChangePasswordRequest {
   old_password: string;
   new_password: string;
-};
+}
 
-export type IChangeEmailRequest = {
+export interface IChangeEmailRequest {
   new_email: string;
   confirm_email: string;
-};
+}
 
-export type ILogoutResponse = {
+export interface ILogoutResponse {
   result: boolean;
-};
+}
 
 export interface ISellerAddressData {
   country: string;
@@ -66,7 +66,7 @@ export interface ISellerAddressData {
   postal_code: string;
 }
 
-export type ICurrentUserInfoResponse = {
+export interface ICurrentUserInfoResponse {
   result: {
     datetime: string;
     updated_at?: string;
@@ -95,7 +95,7 @@ export type ICurrentUserInfoResponse = {
   detail: {
     has_profile: boolean;
   };
-};
+}
 
 export interface IBusinessInfoRequest
   extends Omit<ISuppliersUpdateICompanyInfo, 'company_data_request'> {
