@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { LoadingStatusEnum } from '../../../../common/types';
-import { ICompanyInfo } from '../../../../services/supplier/supplier.serviceTypes';
+import { ISupplierCompanyInfo } from '../../../../services/supplier/supplier.serviceTypes';
 
 import { addProductService, getPropertiesService, getVariationsService } from './thunks';
 
@@ -11,7 +11,7 @@ const initialState = {
   productVariations: null,
   errMessage: '',
   loading: LoadingStatusEnum.Idle as LoadingStatusEnum,
-  ICompanyInfo: null as ICompanyInfo | null,
+  ISupplierCompanyInfo: null as ISupplierCompanyInfo | null,
 };
 
 const categorySlice = createSlice({

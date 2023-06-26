@@ -2,8 +2,8 @@ import { IProduct } from '../product/product.serviceTypes';
 import { ISellerNotifications } from '../seller/seller.serviceTypes';
 import {
   ISupplierNotifications,
-  ISuppliersUpdateICompanyInfo,
-  IUpdateICompanyInfo,
+  ISuppliersUpdateISupplierCompanyInfo,
+  ISupplierUpdateCompanyInfo,
 } from '../supplier/supplier.serviceTypes';
 
 import { ResponseUserRoleType } from 'common/types';
@@ -98,11 +98,11 @@ export interface ICurrentUserInfoResponse {
 }
 
 export interface IBusinessInfoRequest
-  extends Omit<ISuppliersUpdateICompanyInfo, 'company_data_request'> {
-  company_data_request: ISendICompanyInfo;
+  extends Omit<ISuppliersUpdateISupplierCompanyInfo, 'company_data_request'> {
+  company_data_request: ISendISupplierCompanyInfo;
 }
 
-interface ISendICompanyInfo extends IUpdateICompanyInfo {
+interface ISendISupplierCompanyInfo extends ISupplierUpdateCompanyInfo {
   logo_url: string;
 }
 

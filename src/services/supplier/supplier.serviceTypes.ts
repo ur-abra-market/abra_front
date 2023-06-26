@@ -24,7 +24,7 @@ import { ICountry } from '../common/common.serviceTypes';
 //   };
 // }
 
-export interface ICompanyInfo {
+export interface ISupplierCompanyInfo {
   name: string;
   business_sector: string;
   is_manufacturer: number;
@@ -54,7 +54,7 @@ export interface ISupplierErrorResponse {
   error: { loc: string[]; msg: string; type: string }[];
 }
 
-export interface ISuppliersICompanyInfoData {
+export interface ISupplierCompanyInfoData {
   id: number;
   license_number: string;
   grade_average: number;
@@ -73,18 +73,18 @@ export interface ISuppliersCompanyInfo {
   address: string;
   business_sector: string;
   country: ICountry;
-  phone: IPhoneInfo;
+  phone: ISupplierPhoneInfo;
   images: any[];
 }
 
-interface IPhoneInfo {
+interface ISupplierPhoneInfo {
   id: number;
   phone_number: string;
 }
 
-export interface ISuppliersUpdateICompanyInfo {
+export interface ISuppliersUpdateISupplierCompanyInfo {
   supplier_data_request: ISupplierLicense;
-  company_data_request: IUpdateICompanyInfo;
+  company_data_request: ISupplierUpdateCompanyInfo;
   company_phone_data_request: ISuppliersCompanyPhoneData;
 }
 
@@ -92,7 +92,7 @@ interface ISupplierLicense {
   license_number: string;
 }
 
-export interface IUpdateICompanyInfo
+export interface ISupplierUpdateCompanyInfo
   extends Omit<ISuppliersCompanyInfo, 'id' | 'country' | 'phone' | 'images'> {
   country_id: number;
 }

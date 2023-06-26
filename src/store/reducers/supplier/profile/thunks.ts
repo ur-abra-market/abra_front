@@ -7,22 +7,22 @@ import { setResponseNotice } from '../../appSlice/slice';
 import { IAsyncThunkConfig, IServerResponse } from 'common/types';
 import {
   ISupplierErrorResponse,
-  ISuppliersICompanyInfoData,
-  ISuppliersUpdateICompanyInfo,
+  ISupplierCompanyInfoData,
+  ISuppliersUpdateISupplierCompanyInfo,
 } from 'services/supplier/supplier.serviceTypes';
 
 export const getBusinessInfo = createAsyncThunk<
-  ISuppliersICompanyInfoData,
+  ISupplierCompanyInfoData,
   void,
   IAsyncThunkConfig
->('supplierProfile/getICompanyInfo', async (_, { rejectWithValue }) => {
+>('supplierProfile/getISupplierCompanyInfo', async (_, { rejectWithValue }) => {
   try {
     return await supplierService.fetchBusinessInfo();
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
         ? error.response?.data?.error || error.message
-        : '[getICompanyInfo]: Error';
+        : '[getISupplierCompanyInfo]: Error';
 
     return rejectWithValue(errorMessage);
   }
@@ -30,21 +30,24 @@ export const getBusinessInfo = createAsyncThunk<
 
 export const updateBusinessInfo = createAsyncThunk<
   void,
-  ISuppliersUpdateICompanyInfo,
+  ISuppliersUpdateISupplierCompanyInfo,
   IAsyncThunkConfig
->('supplierProfile/updateICompanyInfo', async (arg, { rejectWithValue, dispatch }) => {
-  try {
-    await supplierService.updateBusinessInfo(arg);
-    dispatch(getBusinessInfo());
-  } catch (error) {
-    const errorMessage =
-      error instanceof AxiosError
-        ? error.response?.data?.error || error.message
-        : '[updateICompanyInfo]: Error';
+>(
+  'supplierProfile/updateISupplierCompanyInfo',
+  async (arg, { rejectWithValue, dispatch }) => {
+    try {
+      await supplierService.updateBusinessInfo(arg);
+      dispatch(getBusinessInfo());
+    } catch (error) {
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.error || error.message
+          : '[updateISupplierCompanyInfo]: Error';
 
-    return rejectWithValue(errorMessage);
-  }
-});
+      return rejectWithValue(errorMessage);
+    }
+  },
+);
 
 export const fetchCompanyLogo = createAsyncThunk<string, void, IAsyncThunkConfig>(
   'supplierProfile/fetchCompanyImage',

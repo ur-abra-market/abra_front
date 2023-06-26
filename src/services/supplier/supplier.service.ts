@@ -2,15 +2,15 @@ import { IServerResponse } from '../../common/types';
 import { baseConfigService } from '../baseConfig.service';
 
 import {
-  ISuppliersICompanyInfoData,
+  ISupplierCompanyInfoData,
   ISupplierNotifications,
-  ISuppliersUpdateICompanyInfo,
+  ISuppliersUpdateISupplierCompanyInfo,
 } from './supplier.serviceTypes';
 
 export const supplierService = {
-  hasICompanyInfo: async () => {
+  hasISupplierCompanyInfo: async () => {
     const { data } = await baseConfigService.get<IServerResponse<boolean>>(
-      `suppliers/hasICompanyInfo/`,
+      `suppliers/hasISupplierCompanyInfo/`,
     );
 
     return data.result;
@@ -34,13 +34,13 @@ export const supplierService = {
 
   fetchBusinessInfo: async () => {
     const { data } = await baseConfigService.get<
-      IServerResponse<ISuppliersICompanyInfoData>
+      IServerResponse<ISupplierCompanyInfoData>
     >(`suppliers/businessInfo/`);
 
     return data.result;
   },
 
-  updateBusinessInfo: async (params: Partial<ISuppliersUpdateICompanyInfo>) => {
+  updateBusinessInfo: async (params: Partial<ISuppliersUpdateISupplierCompanyInfo>) => {
     const { data } = await baseConfigService.patch<IServerResponse<boolean>>(
       `suppliers/businessInfo/update/`,
       params,
