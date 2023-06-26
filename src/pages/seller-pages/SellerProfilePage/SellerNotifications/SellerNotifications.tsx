@@ -38,7 +38,7 @@ export const SellerNotifications = (): JSX.Element => {
     if (!notifications) {
       dispatch(getSellerNotifications());
     }
-  }, [dispatch]);
+  }, []);
 
   return (
     <NotificationsChangeForm

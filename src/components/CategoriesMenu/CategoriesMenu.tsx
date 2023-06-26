@@ -1,4 +1,11 @@
-import React, { ForwardedRef, forwardRef, useEffect, useState } from 'react';
+import React, {
+  ForwardedRef,
+  forwardRef,
+  useEffect,
+  useState,
+  DetailedHTMLProps,
+  HTMLAttributes,
+} from 'react';
 
 import cn from 'classnames';
 
@@ -7,24 +14,19 @@ import { IResponseCategory } from '../../services/common/common.serviceTypes';
 import { getAllCategories } from '../../store/reducers/commonSlice';
 
 import style from './CategoriesMenu.module.scss';
-import { CategoriesMenuProps } from './CategoriesMenu.props';
-import { Items } from './CategoryItems';
-import { FilterButton } from './FilterButton/FilterButton';
+
+import { FilterButton, MenuItems } from '.';
 
 export type Categories = 'Clothes' | 'Accessories' | 'Cosmetics and Self Care';
 
-export interface ItemsProps {
-  items?: IResponseCategory[];
-}
+export interface CategoriesMenuProps
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 export const CategoriesMenu = forwardRef(
   (props: CategoriesMenuProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const [activeCategories, setActiveCategories] = useState<Categories>('Clothes');
-
     const categories = useAppSelector(state => state.common.categories);
-
     const wearerCategory = categories ? categories.filter(c => c.level === 1) : [];
-
     const dispatch = useAppDispatch();
 
     const filterCategories = (
@@ -38,7 +40,6 @@ export const CategoriesMenu = forwardRef(
     };
 
     useEffect(() => {
-      // prevent unnecessary requests for following re-renderings
       if (!categories) {
         dispatch(getAllCategories());
       }
@@ -70,10 +71,11 @@ export const CategoriesMenu = forwardRef(
               );
             })}
         </ul>
+
         {wearerCategory
           ?.filter(c => c.name === activeCategories)
           .map(c => {
-            return <Items key={c.id} items={filterCategories(c.children)} />;
+            return <MenuItems key={c.id} items={filterCategories(c.children)} />;
           })}
       </div>
     );

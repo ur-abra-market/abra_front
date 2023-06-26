@@ -14,8 +14,6 @@
   font-family: var(--roboto);
   font-size: var(--fz-l2);
   font-weight: var(--semi-bold);
-  font-style: normal;
-  line-height: 20px;
   color: var(--color-black);
 
   background: none;
@@ -28,7 +26,7 @@
 
 .border_line{
   height: 3px;
-  background: #D4D4D4;
+  background: var(--color-gray);
   border-radius: 8px;
 }
 

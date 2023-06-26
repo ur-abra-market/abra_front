@@ -8,7 +8,7 @@ import ProductCarousel from '../../../components/ProductCarousel/ProductCarousel
 import { getPopularProductsById } from '../../../store/reducers/popularProducts';
 import { getSimilarProducts } from '../../../store/reducers/similarProducts';
 import { getGradesByProductId } from '../../../store/reducers/targetProductSlice';
-import { Button, LoaderCircular, Container } from '../../../ui-kit';
+import { Button, LoaderCircular } from '../../../ui-kit';
 
 import style from './ProductPage.module.scss';
 
@@ -74,7 +74,7 @@ export const ProductPage = WithLayout((): JSX.Element => {
     return <LoaderCircular />;
 
   return (
-    <Container>
+    <div className={style.container}>
       <div className={style.basic}>
         <div className={style.basic_left}>
           <ProductPath pathArr={[product.category_path, '/Dress', '/Spring-Summer']} />
@@ -128,6 +128,6 @@ export const ProductPage = WithLayout((): JSX.Element => {
       <SimilarProduct />
       <PopularProduct />
       <LatestSearch latestSearchData={latestSearchData || []} />
-    </Container>
+    </div>
   );
 });

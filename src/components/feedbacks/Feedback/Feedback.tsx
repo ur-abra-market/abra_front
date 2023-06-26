@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Container } from '../../../ui-kit';
-
 import style from './Feedback.module.scss';
 
 import { Social, Subscribe, WhatsApp } from './index';
@@ -9,7 +7,7 @@ import { Social, Subscribe, WhatsApp } from './index';
 export const Feedback = (): JSX.Element => {
   return (
     <div className={style.wrapper}>
-      <Container className={style.container}>
+      <div className={style.container}>
         <div>
           <Subscribe />
         </div>
@@ -17,7 +15,7 @@ export const Feedback = (): JSX.Element => {
           <WhatsApp />
           <Social />
         </div>
-      </Container>
+      </div>
     </div>
   );
 };

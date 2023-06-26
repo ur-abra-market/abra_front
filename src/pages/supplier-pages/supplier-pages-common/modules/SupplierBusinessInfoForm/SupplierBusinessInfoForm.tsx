@@ -3,10 +3,10 @@ import React, { FC, useEffect } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
+import { PhoneNumberInput } from '../../../../../components';
 import {
   countriesSelector,
   getCompanyNumberEmployees,
-  getCountries,
   numberEmployeesSelector,
 } from '../../../../../store/reducers/commonSlice';
 import { ISupplierBusinessInfo } from '../../../../../store/reducers/supplier/profile/slice';
@@ -29,12 +29,16 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
 
 interface IBusinessProfileForm {
   updateForm?: boolean;
+  countryShort?: string;
   onSubmit: (data: ISupplierBusinessInfo) => void;
+  isPhoneNumber?: boolean;
 }
 
 export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
   updateForm,
   onSubmit,
+  countryShort,
+  isPhoneNumber,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const numberEmployees = useAppSelector(numberEmployeesSelector);
@@ -43,12 +47,11 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
     register,
     handleSubmit,
     control,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
   } = useFormContext<ISupplierBusinessInfo>();
 
   useEffect(() => {
     dispatch(getCompanyNumberEmployees());
-    dispatch(getCountries());
   }, []);
 
   return (
@@ -74,6 +77,10 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   error={errors?.businessSector?.message}
                   options={BUSINESS_SECTOR_DATA}
                   placeholder="Select"
+                  defaultValue={field?.value?.value}
+                  onChange={value => {
+                    field.onChange(value);
+                  }}
                 />
               </Label>
             )}
@@ -126,6 +133,9 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                     label: el.number,
                   }))}
                   className={style.select}
+                  defaultValue={
+                    numberEmployees?.find(el => field.value === el.id)?.number
+                  }
                   placeholder="Select"
                   width="266px"
                   onChange={value => {
@@ -144,6 +154,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
             <Label label="Country of company registration*">
               <Select
                 {...field}
+                defaultValue={countries?.find(el => el.id === field.value)?.country}
                 error={errors?.countryRegistration?.message}
                 options={countries.map(el => ({
                   value: el.id,
@@ -167,11 +178,9 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         </Label>
       </div>
 
-      <div className={style.contacts_info}>
+      <div>
         <p className={style.subtitle}>Contacts</p>
-
-        {/* todo вставить PhoneInput */}
-
+        <PhoneNumberInput label="Business phone number" countryShort={countryShort} />
         <div className={style.contacts_inputs}>
           <Label label="Business email address">
             <Input
@@ -192,7 +201,12 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         </div>
       </div>
 
-      <Button type="submit" className={style.button} label="Save" disabled={!isValid} />
+      <Button
+        type="submit"
+        className={style.button}
+        label="Save"
+        disabled={!isValid || (!isDirty && isPhoneNumber)}
+      />
     </form>
   );
 };

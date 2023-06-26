@@ -1,1 +1,2 @@
-export { Layout } from './Layout';
+export { SupplierHeader } from './SupplierHeader/SupplierHeader';
+export { Header } from './Header/Header';

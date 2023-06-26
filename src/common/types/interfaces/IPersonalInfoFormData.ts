@@ -3,4 +3,5 @@ export interface IPersonalInfoFormData {
   lastName: string;
   phoneNumber: string;
   countryId: number;
+  countryShort: string;
 }

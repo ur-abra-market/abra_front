@@ -6,8 +6,6 @@ import CartOrder from '../../../old-components/ui/TypesView/cart/CartOrder/CartO
 
 import style from './CartPage.module.scss';
 
-import { Container } from 'ui-kit';
-
 export const CartPage = WithLayout((): JSX.Element => {
   const [cartItems] = useState([
     {
@@ -67,9 +65,9 @@ export const CartPage = WithLayout((): JSX.Element => {
   });
 
   return (
-    <Container className={style.cart_page}>
+    <div className={style.container}>
       <CartList cartItems={cartItems} />
       <CartOrder info={orderInfo} />
-    </Container>
+    </div>
   );
 });

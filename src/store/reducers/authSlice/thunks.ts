@@ -75,8 +75,9 @@ export const createAccountPersonalInfo = createAsyncThunk<
 );
 
 export const createAccountBusinessInfo = createAsyncThunk<
+  void,
   IBusinessInfoRequestData,
-  any // todo fix any -> need common request interface
+  IAsyncThunkConfig
 >(
   'createAccount/createAccountBusinessInfo',
   async (businessInfoData, { rejectWithValue }) => {

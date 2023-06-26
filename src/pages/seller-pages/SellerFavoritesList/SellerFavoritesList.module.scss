@@ -1,5 +1,11 @@
+@import "common/styles/mixins";
+
 .favorites_page {
   background-color: var(--color-white);
+}
+
+.container {
+  @include content_container;
 }
 
 .top {

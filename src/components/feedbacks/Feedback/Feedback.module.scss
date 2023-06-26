@@ -1,9 +1,13 @@
+@import "common/styles/mixins";
+
 .wrapper {
   padding: 60px 0 80px;
   background-color: rgba(252, 19, 61, 0.02);
 }
 
 .container{
+  @include content_container;
+
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }

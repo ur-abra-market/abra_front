@@ -85,12 +85,11 @@ export interface ICompanyInfo {
 interface IPhoneInfo {
   id: number;
   phone_number: string;
-  country: ICountry;
 }
 
 export interface ISuppliersUpdateCompanyInfo {
   supplier_data_request: ISupplierLicense;
-  company_data_request: Omit<IUpdateCompanyInfo, 'id' | 'country' | 'phone' | 'images'>;
+  company_data_request: IUpdateCompanyInfo;
   company_phone_data_request: ISuppliersCompanyPhoneData;
 }
 
@@ -98,7 +97,8 @@ interface ISupplierLicense {
   license_number: string;
 }
 
-interface IUpdateCompanyInfo extends ICompanyInfo {
+export interface IUpdateCompanyInfo
+  extends Omit<ICompanyInfo, 'id' | 'country' | 'phone' | 'images'> {
   country_id: number;
 }
 

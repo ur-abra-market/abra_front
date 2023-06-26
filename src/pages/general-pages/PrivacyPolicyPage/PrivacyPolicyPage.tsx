@@ -4,7 +4,7 @@ import { ScrollRestoration } from 'react-router-dom';
 
 import style from './PrivacyPolicy.module.scss';
 
-import { Footer } from 'layouts/Footer';
+import { Footer } from 'layouts';
 import HeaderForChangePages from 'old-components/HeaderForChangePages';
 
 export const PrivacyPolicyPage = (): JSX.Element => {
