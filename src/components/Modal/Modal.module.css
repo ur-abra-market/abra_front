@@ -5,8 +5,8 @@
   top: 0;
   left: 0;
 
+  overflow-y: scroll;
   display: flex;
-  align-items: center;
   justify-content: center;
 
   width: 100vw;
@@ -19,6 +19,11 @@
 }
 
 .modal_content {
+  width: 50%;
+  min-width: 500px;
+  max-width: 700px;
+  height: max-content;
+  margin: auto 0;
   padding: 32px;
 
   background: #FFF;
