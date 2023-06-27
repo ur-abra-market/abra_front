@@ -43,7 +43,7 @@ export const supplierService = {
 
   updateBusinessInfo: async (companyInfo: Partial<ISuppliersUpdateCompanyInfo>) => {
     const { data } = await baseConfigService.patch<IServerResponse<boolean>>(
-      `/suppliers/businessInfo/update/`,
+      `suppliers/businessInfo/update/`,
       companyInfo,
     );
 
