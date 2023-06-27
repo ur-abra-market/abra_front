@@ -4,7 +4,6 @@ import {
   IConfirmEmailRequest,
   IRegisterRequest,
   LogoutResponseType,
-  CurrentUserInfoResponseType,
   ChangePasswordPayloadType,
   IBusinessInfoRequestData,
   LoginParamsType,
@@ -61,10 +60,6 @@ export const authService = {
 
   login: ({ email, password }: LoginParamsType) => {
     return baseConfigService.post<LoginResponseType>(`login/`, { email, password });
-  },
-
-  loginCurrentUser: () => {
-    return baseConfigService.get<CurrentUserInfoResponseType>(`/login/current/`); // todo добавить типизацию
   },
 
   logout: async () => {

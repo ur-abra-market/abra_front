@@ -3,8 +3,6 @@ export {
   registerUser,
   loginUser,
   logout,
-  getCurrentUserInfo,
-  updateAccountPersonalInfo,
   changePassword,
   checkToken,
   forgotPassword,
