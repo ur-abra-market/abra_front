@@ -7,7 +7,7 @@ import { getAddress } from '../../../../store/reducers/sellerCheckoutSlice';
 // import { getSellerInfoService } from '../../../../store/reducers/sellerSlice';
 import CheckoutAddress from '../../../CheckoutAddress/CheckoutAddress';
 
-import style from './CheckDelivery.module.css';
+import style from './CheckDelivery.module.scss';
 
 const CheckDelivery = (): JSX.Element => {
   const { addresses } = useAppSelector(state => state.sellerProfile);

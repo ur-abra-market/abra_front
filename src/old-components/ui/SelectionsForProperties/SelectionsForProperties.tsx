@@ -3,9 +3,9 @@ import React, { FC, useState } from 'react';
 import { Control, Controller } from 'react-hook-form';
 
 import { ISelectOption, Label, Select } from '../../../ui-kit';
-import style from '../ProductListRegistrationForm/ProductListRegistrationForm.module.css';
+import style from '../ProductListRegistrationForm/ProductListRegistrationForm.module.scss';
 
-import styles from './SelectionsForProperties.module.css';
+import styles from './SelectionsForProperties.module.scss';
 
 interface ISelectionsForPropertiesProps {
   control: Control<any>;

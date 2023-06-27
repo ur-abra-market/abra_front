@@ -4,44 +4,34 @@ import cn from 'classnames';
 import { NavLink, useLocation } from 'react-router-dom';
 
 import { useAppSelector } from '../../common/hooks';
-import { LocationAndCurrencySelection } from '../../components/LocationAndCurrencySelection/LocationAndCurrencySelection';
-import HeaderNavMenu from '../../old-components/HeaderNavMemu';
-import { Container } from '../../ui-kit';
+import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from '../../routes';
+import { userRoleSelector } from '../../store/reducers/authSlice';
 
 import style from './Footer.module.scss';
 
-import { MainLogo } from 'ui-kit';
+import { Top } from '.';
 
-export interface FooterProps
+interface IFooter
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   variant: 'white' | 'default';
 }
-export const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => {
-  const routs = ['personal-account', 'product', 'order-history', ''];
+
+export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
+  const routesToShow = new Set(['personal_account', 'product', 'order_history', '']);
   const { pathname } = useLocation();
-  const isSupplier = useAppSelector(state => state.auth.userRole);
-  const showHeadNav =
-    isSupplier === 'seller' && routs.some(el => el === pathname.split('/')[1]);
+  const userRole = useAppSelector(userRoleSelector);
+  const isShowTopNav = userRole === 'seller' && routesToShow.has(pathname.split('/')[1]);
+
   const footerClasses = cn(style.footer, {
     [style.footer_white]: variant === 'white',
   });
 
   return (
-    <div className={cn(style.container, className)}>
-      {showHeadNav && (
-        <Container>
-          <div className={style.top}>
-            <MainLogo className={style.logo_font_size} />
-            <div className={style.inner}>
-              <HeaderNavMenu className={cn(style.nav, style.nav_menu)} />
-              <LocationAndCurrencySelection className={style.selects} />
-            </div>
-          </div>
-        </Container>
-      )}
+    <div className={cn(style.wrapper, className)}>
+      {isShowTopNav && <Top />}
 
       <div className={footerClasses}>
-        <Container>
+        <div className={style.container}>
           <div className={style.flex_box}>
             {variant === 'default' ? (
               <>
@@ -50,7 +40,7 @@ export const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => 
                     className={({ isActive }) =>
                       isActive ? style.is_disabled : style.link
                     }
-                    to="/terms_and_conditions"
+                    to={TERMS_AND_CONDITIONS}
                   >
                     Terms & conditions
                   </NavLink>
@@ -58,7 +48,7 @@ export const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => 
                     className={({ isActive }) =>
                       isActive ? style.is_disabled : style.link
                     }
-                    to="/privacy_policy"
+                    to={PRIVACY_POLICY}
                   >
                     Privacy policy
                   </NavLink>
@@ -74,7 +64,7 @@ export const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => 
                   className={({ isActive }) =>
                     isActive ? style.is_disabled_white : style.link_white
                   }
-                  to="/terms_and_conditions"
+                  to={TERMS_AND_CONDITIONS}
                 >
                   Terms & conditions
                 </NavLink>
@@ -83,14 +73,14 @@ export const Footer: FC<FooterProps> = ({ className, variant }): JSX.Element => 
                   className={({ isActive }) =>
                     isActive ? style.is_disabled_white : style.link_white
                   }
-                  to="/privacy_policy"
+                  to={PRIVACY_POLICY}
                 >
                   Privacy policy
                 </NavLink>
               </div>
             )}
           </div>
-        </Container>
+        </div>
       </div>
     </div>
   );

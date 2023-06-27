@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import ShowPage from '../../../../old-components/ShowPage';
-import { Checkbox, Input, ISelectOption, Search, Select } from '../../../../ui-kit';
+
+import style from './ProductsListPage.module.scss';
 
 import {
   EditPencilInCircleIcon,
@@ -14,15 +14,16 @@ import {
   StarFilledIcon,
 } from 'assets/icons';
 import imageProduct from 'assets/images/files/banner2.png'; //! need to rewrite
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import Modal from 'components/Modal';
 import Table from 'old-components/table';
 import Pagination from 'old-components/ui/Pagination';
 import { tableStyleClasses } from 'pages/supplier-pages/pages/ProductsListPage/constantsOfClassesStyles';
-import style from 'pages/supplier-pages/pages/ProductsListPage/ProductsListPage.module.css';
 import {
   deleteProducts,
   manageProductsService,
 } from 'store/reducers/manageProductsSlice';
+import { Checkbox, Input, ISelectOption, Search, Select } from 'ui-kit';
 
 export const CATEGORY_SELECT: ISelectOption[] = [
   { label: 'S', value: '1' },
@@ -114,7 +115,7 @@ export const ProductsListPage: FC = (): JSX.Element => {
     handleChangeModalActive();
   }
 
-  const getDeletedItems = (items: any): void => {
+  const getDeletedItems = (items: string[]): void => {
     dispatch(deleteProducts(items));
   };
 

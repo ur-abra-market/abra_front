@@ -11,13 +11,14 @@ import { parsePhoneNumber } from '../../../../../../common/utils/parsePhoneNumbe
 import Modal from '../../../../../../components/Modal';
 import { ModalChildPhoneCheck } from '../../../../../../components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
 import { PersonalInfoChangeForm } from '../../../../../../modules';
+import { ACCOUNT_SETUP_PERSONAL_INFO } from '../../../../../../routes';
 import { createAccountPersonalInfo } from '../../../../../../store/reducers/authSlice/thunks';
 import { getCountries } from '../../../../../../store/reducers/commonSlice';
 import { Button, SupplierRegisterFormStep } from '../../../../../../ui-kit';
 
 import style from './SupplierPersonalInfoForm.module.scss';
 
-import { IPersonalInfoRequestData } from 'services/auth/auth.serviceTypes';
+import { IPersonalInfoRequest } from 'services/auth/auth.serviceTypes';
 
 export const SupplierPersonalInfoForm = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
@@ -41,7 +42,7 @@ export const SupplierPersonalInfoForm = (): JSX.Element => {
   const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
     const { numberBody } = parsePhoneNumber(data.phoneNumber);
 
-    const personalInfoData: IPersonalInfoRequestData = {
+    const personalInfoData: IPersonalInfoRequest = {
       first_name: data.firstName,
       last_name: data.lastName,
       country_id: data.countryId,
@@ -51,7 +52,7 @@ export const SupplierPersonalInfoForm = (): JSX.Element => {
     const actionResult = await dispatch(createAccountPersonalInfo(personalInfoData));
 
     if (createAccountPersonalInfo.fulfilled.match(actionResult)) {
-      navigate('/account_setup_business_info');
+      navigate(ACCOUNT_SETUP_PERSONAL_INFO);
     }
   };
 

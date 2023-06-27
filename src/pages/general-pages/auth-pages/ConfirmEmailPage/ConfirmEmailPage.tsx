@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
 
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../../common/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 import { ContentMessage } from '../../../../components';
-import { registerUser } from '../../../../store/reducers/authSlice';
+import { HOME } from '../../../../routes';
+import { confirmEmail } from '../../../../store/reducers/authSlice/thunks';
 import { LoaderCircular } from '../../../../ui-kit';
 import { AuthPageLayout } from '../assets';
 
 import style from './ConfirmEmailPage.module.scss';
 
 export const ConfirmEmailPage = (): JSX.Element => {
+  const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [emailStatus, setEmailStatus] = useState<'confirmed' | 'unconfirmed' | null>(
     null,
@@ -21,13 +24,17 @@ export const ConfirmEmailPage = (): JSX.Element => {
     const token = searchParams.get('token');
 
     if (token)
-      dispatch(registerUser({ route: 'confirmEmail', token })).then(({ meta }) => {
+      dispatch(confirmEmail({ token })).then(({ meta }) => {
         if (meta.requestStatus === 'fulfilled') {
           setEmailStatus('confirmed');
         }
         if (meta.requestStatus === 'rejected') setEmailStatus('unconfirmed');
       });
   }, [dispatch, searchParams]);
+
+  useEffect(() => {
+    if (isAuthorized) navigate(-1);
+  }, [isAuthorized, navigate]);
 
   if (!emailStatus) return <LoaderCircular />;
 
@@ -38,7 +45,7 @@ export const ConfirmEmailPage = (): JSX.Element => {
           <>
             <ContentMessage title="Email confirmed." text="" />
             You can go to&nbsp;
-            <Link className={style.link} to="/">
+            <Link className={style.link} to={HOME}>
               main page
             </Link>
           </>

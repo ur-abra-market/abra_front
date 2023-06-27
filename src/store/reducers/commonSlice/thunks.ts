@@ -1,12 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { AsyncThunkConfig } from '../../../common/types';
+import { IAsyncThunkConfig } from '../../../common/types';
 import { commonService } from '../../../services/common/common.service';
 
-import { CountriesType, NumberEmployeesType } from 'services/common/common.serviceTypes';
+import {
+  ICategoryResponse,
+  ICountry,
+  INumberEmployees,
+} from 'services/common/common.serviceTypes';
 
-export const getCountries = createAsyncThunk<CountriesType, void, any>(
+export const getCountries = createAsyncThunk<ICountry[], void, any>(
   'common/getCountries',
   async (_, { rejectWithValue }) => {
     try {
@@ -22,9 +26,9 @@ export const getCountries = createAsyncThunk<CountriesType, void, any>(
 );
 
 export const getCompanyNumberEmployees = createAsyncThunk<
-  NumberEmployeesType,
+  INumberEmployees[],
   void,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >('common/getCompanyNumberEmployees', async (_, { rejectWithValue }) => {
   try {
     return await commonService.fetchCompanyNumberEmployees();
@@ -34,5 +38,24 @@ export const getCompanyNumberEmployees = createAsyncThunk<
     }
 
     return rejectWithValue('[getCompanyNumberEmployees]: ERROR');
+  }
+});
+
+export const getAllCategories = createAsyncThunk<
+  ICategoryResponse[],
+  void,
+  IAsyncThunkConfig
+>('category/getAllCategories', async (_, { rejectWithValue }) => {
+  try {
+    const data = await commonService.fetchAllCategories();
+
+    return data.result;
+  } catch (error) {
+    const errorMessage =
+      error instanceof AxiosError
+        ? error.response?.data?.error || error.message
+        : '[getAllCategories]: Error';
+
+    return rejectWithValue(errorMessage);
   }
 });

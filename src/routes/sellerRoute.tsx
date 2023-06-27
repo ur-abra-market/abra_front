@@ -1,5 +1,20 @@
 import React from 'react';
 
+import { RouteObject } from 'react-router-dom';
+
+import {
+  CART,
+  CHECKOUT,
+  CHECKOUT_SUCCESS,
+  FAVORITES,
+  HELP,
+  ORDER_HISTORY,
+  ORDER_HISTORY_DETAILS,
+  PERSONAL_ACCOUNT,
+  PRODUCT_DETAILS,
+  SELLER_PRODUCTS,
+} from './constans/seller';
+
 import {
   CartPage,
   ProductPage,
@@ -12,45 +27,55 @@ import {
   CheckoutSuccessPage,
 } from 'pages/seller-pages';
 
-export const sellerRoute = [
+export const sellerRoute: RouteObject[] = [
   {
-    path: 'products_list/*',
-    element: <ProductListPage />,
+    path: SELLER_PRODUCTS,
+    children: [
+      {
+        path: '*',
+        element: <ProductListPage />,
+      },
+    ],
   },
   {
-    path: 'product/:productId',
-    element: <ProductPage />,
+    path: PRODUCT_DETAILS,
+    children: [
+      {
+        path: ':productId',
+        element: <ProductPage />,
+      },
+    ],
   },
   {
-    path: 'personal_account',
+    path: PERSONAL_ACCOUNT,
     element: <SellerProfilePage />,
   },
   {
-    path: 'cart',
+    path: CART,
     element: <CartPage />,
   },
   {
-    path: 'checkout',
+    path: CHECKOUT,
     element: <CheckoutPage />,
   },
   {
-    path: 'checkout_success',
+    path: CHECKOUT_SUCCESS,
     element: <CheckoutSuccessPage />,
   },
   {
-    path: 'order_history',
+    path: ORDER_HISTORY,
     element: <OrderHistoryPage />,
   },
   {
-    path: 'order_history/4784437395989684',
+    path: ORDER_HISTORY_DETAILS,
     element: <OrderDetailsPage />,
   },
   {
-    path: 'favorites',
+    path: FAVORITES,
     element: <SellerFavoritesList />,
   },
   {
-    path: 'help',
+    path: HELP,
     element: <p> Help </p>,
   },
 ];

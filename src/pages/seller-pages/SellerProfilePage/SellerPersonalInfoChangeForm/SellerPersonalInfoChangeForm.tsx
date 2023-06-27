@@ -1,71 +1,66 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { personalInfoFormValidationSchema } from '../../../../common/constants';
-import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
-import { IPersonalInfoFormData } from '../../../../common/types';
-import { parsePhoneNumber } from '../../../../common/utils/parsePhoneNumber';
 import { UploadImage } from '../../../../components';
-import { ButtonLogOut } from '../../../../components/ButtonLogOut/ButtonLogOut';
-import { PersonalInfoChangeForm } from '../../../../modules';
-import { countriesSelector } from '../../../../store/reducers/commonSlice';
-import {
-  getPersonalInfo,
-  updatePersonalInfo,
-} from '../../../../store/reducers/userSlice';
-import { Button } from '../../../../ui-kit';
 
-import style from 'pages/seller-pages/SellerProfilePage/SellerPersonalInfoChangeForm/SellerPersonalInfoChangeForm.module.scss';
-import { Action } from 'services/user/user.service';
+import style from './SellerPersonalInfoChangeForm.module.scss';
+
+import { personalInfoFormValidationSchema } from 'common/constants';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
+import { IPersonalInfoFormData } from 'common/types';
+import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import { ButtonLogOut } from 'components/ButtonLogOut/ButtonLogOut';
+import { PersonalInfoChangeForm } from 'modules';
+import { countriesSelector } from 'store/reducers/commonSlice';
+import { sellerPersonalInfoSelector } from 'store/reducers/seller/profile';
 import { getSellerAvatar } from 'store/reducers/seller/profile/thunks';
+import { getPersonalInfo, updatePersonalInfo } from 'store/reducers/userSlice';
+import { Button } from 'ui-kit';
 
 export const SellerPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { lastName, firstName, countryShort, phoneNumber } = useAppSelector(
-    state => state.sellerProfile.personalInfo,
-  );
 
-  const avatar = useAppSelector(state => state.sellerProfile.personalInfo.avatar);
+  const data = useAppSelector(sellerPersonalInfoSelector);
 
-  const countries = useAppSelector(countriesSelector);
-
-  const numberCountry = countries.find(c => c.country_short === countryShort);
-
-  useEffect(() => {
-    dispatch(getPersonalInfo());
-    dispatch(getSellerAvatar());
-  }, []);
-
-  useEffect(() => {
-    if (lastName && firstName && numberCountry) {
-      setValue('firstName', firstName);
-      setValue('lastName', lastName);
-      setValue('phoneNumber', `${numberCountry.country_code}${phoneNumber}`);
-      setValue('countryId', numberCountry.id);
-    }
-  }, [lastName, firstName, phoneNumber]);
+  const { countryShort, phoneNumber, lastName, firstName, avatar } = data;
 
   const formMethods = useForm<IPersonalInfoFormData>({
     resolver: yupResolver(personalInfoFormValidationSchema),
     mode: 'all',
   });
+
   const { watch, handleSubmit, formState, setValue } = formMethods;
 
-  const [phoneNumberValue, lastNameValue, firstNameValue] = watch([
+  const countries = useAppSelector(countriesSelector);
+
+  const numberCountry = countries.find(c => c.country_short === countryShort);
+
+  useSetPersonalInfoValues(setValue, data, numberCountry);
+
+  useEffect(() => {
+    dispatch(getPersonalInfo());
+    dispatch(getSellerAvatar());
+  }, [dispatch]);
+
+  const [phoneNumberValue, lastNameValue, firstNameValue, countryShortValue] = watch([
     'phoneNumber',
     'lastName',
     'firstName',
+    'countryShort',
   ]);
 
-  const { numberFull: currentPhoneNumber } = parsePhoneNumber(phoneNumberValue || '');
   const serverPhoneNumber = `${numberCountry?.country_code}${phoneNumber}`;
+
+  const { numberFull: currentPhoneNumber } = parsePhoneNumber(phoneNumberValue || '');
 
   const isPersonalInfoFormDisable =
     currentPhoneNumber === serverPhoneNumber &&
     lastNameValue === lastName &&
-    firstNameValue === firstName;
+    firstNameValue === firstName &&
+    countryShortValue === countryShort;
 
   const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
     let phoneNumberBody;
@@ -86,6 +81,8 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
     dispatch(updatePersonalInfo(updatePersonalInfoData));
   };
 
+  const handleUploadImage = useCallback((image: File): void => {}, []); // пока нету санки
+
   return (
     <div className={style.wrapper}>
       <div className={style.header}>
@@ -93,7 +90,13 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
         <ButtonLogOut />
       </div>
 
-      <UploadImage action={Action.UPLOAD_SELLER_AVATAR} type="default" image={avatar} />
+      <UploadImage
+        uploadImage={handleUploadImage}
+        label="Add image"
+        type="avatar"
+        image={avatar || ''}
+        description="avatar"
+      />
 
       <FormProvider {...formMethods}>
         <form onSubmit={handleSubmit(onSubmit)}>

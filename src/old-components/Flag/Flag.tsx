@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 
 import cn from 'classnames';
 
-import style from './Flag.module.css';
+import style from './Flag.module.scss';
 
 import { FavouriteAddedToIcon } from 'assets/icons';
 

@@ -1,22 +1,34 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { passwordValidationSchema } from '../../../../../common/constants';
-import { useAppDispatch } from '../../../../../common/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
+import { LoadingStatusEnum } from '../../../../../common/types';
+import { loadingSelector } from '../../../../../store/reducers/appSlice';
+import { isAuthSelector } from '../../../../../store/reducers/authSlice';
 import { PasswordComplexity } from '../../assets';
 
 import style from './ResetPasswordForm.module.scss';
 
-import { ResetPasswordPayloadType } from 'services/auth/auth.serviceTypes';
-import { resetPassword } from 'store/reducers/authSlice';
+import { IResetPasswordRequest } from 'services/auth/auth.serviceTypes';
+import { logout, resetPassword } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
 
-interface ResetPasswordFormProps {
-  handleChangeModalActive: () => void;
+const TRIGGER_FIELD = 'confirm_password';
+
+interface IResetPasswordForm {
+  setModalOpen: (value: boolean) => void;
+  token: string;
 }
+
+export interface IResetPasswordFormData {
+  new_password: string;
+  confirm_password: string;
+}
+
 const schema = yup
   .object({
     new_password: passwordValidationSchema,
@@ -26,22 +38,40 @@ const schema = yup
   })
   .required();
 
-export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
-  handleChangeModalActive,
+export const ResetPasswordForm: FC<IResetPasswordForm> = ({
+  setModalOpen,
+  token,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
+  const loading = useAppSelector(loadingSelector);
+  const isAuthorized = useAppSelector(isAuthSelector);
+
   const {
     register,
     watch,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm<ResetPasswordPayloadType>({
+    trigger,
+  } = useForm<IResetPasswordRequest>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
+
   const watchPassword = watch('new_password' || 'confirm_password');
-  const onSubmit = (data: ResetPasswordPayloadType): void => {
-    dispatch(resetPassword(data));
+
+  useEffect(() => {
+    if (watch(TRIGGER_FIELD)) trigger(TRIGGER_FIELD);
+  }, [watch('new_password')]);
+
+  const onSubmit = async (data: IResetPasswordFormData): Promise<void> => {
+    const actionResult = await dispatch(resetPassword({ ...data, token }));
+
+    if (resetPassword.fulfilled.match(actionResult)) {
+      if (isAuthorized) {
+        await dispatch(logout());
+      }
+      setModalOpen(true);
+    }
   };
 
   return (
@@ -67,8 +97,7 @@ export const ResetPasswordForm: FC<ResetPasswordFormProps> = ({
         label="Save"
         className={style.button_save}
         type="submit"
-        disabled={!isValid}
-        onClick={handleChangeModalActive}
+        disabled={!isValid || loading === LoadingStatusEnum.Loading}
       />
     </form>
   );

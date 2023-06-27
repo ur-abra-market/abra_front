@@ -2,13 +2,13 @@ import React, { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { useAppSelector } from '../../../../common/hooks/useAppSelector';
+import { useAppSelector } from '../../../../common/hooks';
 import { Stars } from '../../../../ui-kit';
 
+import style from './ProductReview.module.scss';
 import { ProductReviewProps } from './ProductReview.props';
 
 import { getPercentagesOfTotalCountReview } from 'pages/seller-pages/ProductPage/helpers/getPercentagesOfTotalCountReview';
-import style from 'pages/seller-pages/ProductPage/ProductReview/ProductReview.module.css';
 
 const ProductReview: FC<ProductReviewProps> = props => {
   const { className } = props;

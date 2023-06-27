@@ -1,88 +1,80 @@
-import baseConfigService from '../baseConfig.service';
+import { baseConfigService } from '../baseConfig.service';
 
 import {
-  LogoutResponseType,
-  CurrentUserInfoResponseType,
-  ChangePasswordPayloadType,
-  IBusinessInfoRequestData,
-  LoginParamsType,
-  LoginResponseType,
-  PasswordResponseType,
-  RegisterParamsType,
-  RegisterResponseType,
-  ResetPasswordPayloadType,
-  IPersonalInfoRequestData,
+  IConfirmEmailRequest,
+  IRegisterRequest,
+  IChangePasswordRequest,
+  ILoginRequest,
+  ILoginResponse,
+  IPasswordResponse,
+  IResetPasswordRequest,
+  IPersonalInfoRequest,
+  IChangeEmailRequest,
 } from './auth.serviceTypes';
 
 export const authService = {
   userRole: () => {
-    return baseConfigService.get(`/login/role/`);
+    return baseConfigService.get(`login/role/`);
   },
 
-  register: ({ email, password, route, token }: RegisterParamsType) => {
-    if (route === 'confirmEmail') {
-      return baseConfigService.get<RegisterResponseType>(
-        `register/confirmEmail/?token=${token}`,
-      );
-    }
-
-    return baseConfigService.post<RegisterResponseType>(`register/${route}/`, {
-      email,
-      password,
-      token,
-    });
-  },
-
-  sendAccountPersonalInfo: async (personalInfoData: IPersonalInfoRequestData) => {
-    const { data } = await baseConfigService.post(
-      `/register/account/sendInfo/`,
-      personalInfoData,
+  register: async ({ email, password, role }: IRegisterRequest) => {
+    const { data } = await baseConfigService.post<IPasswordResponse>(
+      `register/${role}/`,
+      { email, password },
     );
 
     return data;
   },
 
-  sendAccountBusinessInfo: async (businessInfoData: IBusinessInfoRequestData) => {
-    const { data } = await baseConfigService.post(
-      `/register/business/sendInfo/`,
-      businessInfoData,
+  confirmEmail: async ({ token }: IConfirmEmailRequest) => {
+    const { data } = await baseConfigService.get<IPasswordResponse>(
+      `register/confirmEmail/?token=${token}`,
     );
 
     return data;
   },
 
-  login: ({ email, password }: LoginParamsType) => {
-    return baseConfigService.post<LoginResponseType>(`login/`, { email, password });
+  sendAccountPersonalInfo: async (params: IPersonalInfoRequest) => {
+    const { data } = await baseConfigService.post(`register/account/sendInfo/`, params);
+
+    return data;
   },
 
-  loginCurrentUser: () => {
-    return baseConfigService.get<CurrentUserInfoResponseType>(`/login/current/`); // todo добавить типизацию
+  login: (params: ILoginRequest) => {
+    return baseConfigService.post<ILoginResponse>(`login/`, params);
   },
 
   logout: async () => {
-    const { data } = await baseConfigService.delete<LogoutResponseType>(`logout/`);
+    const { data } = await baseConfigService.delete<IPasswordResponse>(`logout/`);
 
     return data;
   },
 
   forgotPassword: (email: string) => {
-    return baseConfigService.post<PasswordResponseType>('password/forgot/', {
-      email,
-    });
+    return baseConfigService.post<IPasswordResponse>(`password/forgot/?email=${email}`);
   },
 
   checkToken: (token: string) => {
-    return baseConfigService.get<PasswordResponseType>(
+    return baseConfigService.get<IPasswordResponse>(
       `password/checkToken/?token=${token}`,
     );
   },
 
-  resetPassword: (params: ResetPasswordPayloadType) => {
-    return baseConfigService.post<PasswordResponseType>('password/reset/', params);
+  resetPassword: (params: IResetPasswordRequest) => {
+    const { token, ...restParams } = params;
+
+    return baseConfigService.post<IPasswordResponse>(
+      `password/reset/?token=${token}`,
+      restParams,
+    );
   },
 
-  changePassword: (params: ChangePasswordPayloadType) => {
-    return baseConfigService.post<PasswordResponseType>('password/change/', params);
+  changePassword: (params: IChangePasswordRequest) => {
+    return baseConfigService.post<IPasswordResponse>('password/change/', params);
+  },
+
+  changeEmail: (params: IChangeEmailRequest) => {
+    return baseConfigService.patch<IPasswordResponse>('users/changeEmail/', params);
   },
 };
 

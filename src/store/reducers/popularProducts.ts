@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { LoadingStatus } from '../../common/types';
-import { IRequestPopularProduct } from '../../services/product/product.serviceTypes';
+import { LoadingStatusEnum } from '../../common/types';
+import { IPopularProductRequest } from '../../services/product/product.serviceTypes';
 
 import { productService } from 'services/product/product.service';
 
-export const getPopularProductsById = createAsyncThunk<[], IRequestPopularProduct>(
+export const getPopularProductsById = createAsyncThunk<[], IPopularProductRequest>(
   'popularProducts/getPopularProducts',
   async (payload, { rejectWithValue }) => {
     try {
@@ -25,7 +25,7 @@ export const getPopularProductsById = createAsyncThunk<[], IRequestPopularProduc
 
 const initialState = {
   popularProducts: [],
-  status: LoadingStatus.Idle,
+  status: LoadingStatusEnum.Idle,
 };
 
 export const popularProductsSlice = createSlice({
@@ -33,15 +33,15 @@ export const popularProductsSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addCase(getPopularProductsById.pending, state => {
-      state.status = LoadingStatus.Loading;
+      state.status = LoadingStatusEnum.Loading;
     });
     builder.addCase(getPopularProductsById.fulfilled, (state, action) => {
       state.popularProducts = action.payload;
-      state.status = LoadingStatus.Success;
+      state.status = LoadingStatusEnum.Success;
     });
     builder.addCase(getPopularProductsById.rejected, state => {
       state.popularProducts = [];
-      state.status = LoadingStatus.Failed;
+      state.status = LoadingStatusEnum.Failed;
     });
   },
   reducers: {},

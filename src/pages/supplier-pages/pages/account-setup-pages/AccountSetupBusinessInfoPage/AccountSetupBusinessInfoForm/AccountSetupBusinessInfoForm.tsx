@@ -2,13 +2,16 @@ import React, { useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from '../../../../../../common/hooks';
+import { parsePhoneNumber } from '../../../../../../common/utils/parsePhoneNumber';
 import { UploadImage } from '../../../../../../components';
-import { Action } from '../../../../../../services/user/user.service';
-import { createAccountBusinessInfo } from '../../../../../../store/reducers/authSlice/thunks';
+import { IBusinessInfoRequest } from '../../../../../../services/supplier/supplier.serviceTypes';
 import { getCountries } from '../../../../../../store/reducers/commonSlice';
 import { ISupplierBusinessInfo } from '../../../../../../store/reducers/supplier/profile/slice';
+import { createAccountBusinessInfo } from '../../../../../../store/reducers/supplier/profile/thunks';
 import { SupplierRegisterFormStep } from '../../../../../../ui-kit';
 import {
   SupplierBusinessInfoForm,
@@ -17,8 +20,18 @@ import {
 
 import style from './AccountSetupBusinessInfoForm.module.scss';
 
+import { uploadCompanyLogo } from 'store/reducers/supplier/profile';
+import {
+  supplierCompanyLogoIdSelector,
+  supplierCompanyLogoSelector,
+} from 'store/reducers/supplier/profile/selectors';
+import { deleteCompanyLogo } from 'store/reducers/supplier/profile/thunks';
+
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {
+  const companyLogo = useSelector(supplierCompanyLogoSelector);
+  const companyLogoId = useSelector(supplierCompanyLogoIdSelector);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const formMethods = useForm<ISupplierBusinessInfo>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
@@ -28,28 +41,41 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
     dispatch(getCountries());
   }, []);
 
-  const onSubmit = (data: ISupplierBusinessInfo): void => {
-    const businessInfoData = {
+  const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
+    const { numberBody } = parsePhoneNumber(data.phoneNumber);
+    const businessInfoData: IBusinessInfoRequest = {
       supplier_data_request: {
         license_number: data.license,
       },
       company_data_request: {
-        phone_country_code: '+7',
-        phone_number: '9657566767',
-        name: data.storeName,
-        is_manufacturer: data.isManufacturer,
-        year_established: data.yearEstablished,
-        number_employees: data.numEmployees,
-        description: data.description,
-        address: data.address,
-        logo_url: '',
-        business_sector: data.businessSector,
         business_email: data.email,
-        country_id: data.countryRegistration,
+        business_sector: data.businessSector.value,
+        country_id: data.countryRegistration!,
+        is_manufacturer: false, // TODO
+        address: data.address,
+        number_employees: Number(data.numEmployees!),
+        year_established: Number(data.yearEstablished!),
+        name: data.storeName,
+        description: data.description,
+        logo_url: 'logo.net', // TODO
+      },
+      company_phone_data_request: {
+        phone_number: numberBody,
+        country_id: data.phoneId!,
       },
     };
 
-    dispatch(createAccountBusinessInfo(businessInfoData)); // сделать переход после того как форма удачно отправится
+    const result = await dispatch(createAccountBusinessInfo(businessInfoData));
+
+    if (createAccountBusinessInfo.fulfilled.match(result)) {
+      navigate('/');
+    }
+  };
+  const handleUploadImage = (img: File): void => {
+    dispatch(uploadCompanyLogo(img));
+  };
+  const handleDeleteImage = (): void => {
+    if (companyLogoId !== null) dispatch(deleteCompanyLogo(companyLogoId));
   };
 
   return (
@@ -62,10 +88,13 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
 
         <div className={style.add_logo}>
           <UploadImage
-            action={Action.UPLOAD_LOGO_IMAGE}
+            uploadImage={handleUploadImage}
+            deleteImage={handleDeleteImage}
+            image={companyLogo}
             type="logo"
             label="Add logo or profile image"
             placeholder="The customers will recognize your store by this image"
+            description="company logo"
           />
         </div>
 

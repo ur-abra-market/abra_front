@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  align-items: center;
+
+  font-size: var(--fz-s2);
+  font-weight: var(--medium);
+  letter-spacing: 0.16px;
+}
+
+.item {
+  color: var(--color-black);
+  transition: 0.1s;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+}
+
+.active_item {
+  color: var(--color-accent);
+}

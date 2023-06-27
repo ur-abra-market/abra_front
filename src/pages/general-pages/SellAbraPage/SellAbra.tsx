@@ -2,7 +2,7 @@ import React from 'react';
 
 import { WithLayout } from '../../../common/hocs/WithLayout';
 
-import style from './SellAbra.module.css';
+import style from './SellAbra.module.scss';
 
 import { ContentBox } from './index';
 

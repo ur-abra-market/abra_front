@@ -3,16 +3,14 @@ import { AxiosError } from 'axios';
 
 import { productService } from '../../services/product/product.service';
 
-import { LoadingStatus } from 'common/types';
+import { LoadingStatusEnum } from 'common/types';
 
 export const manageProductsService = createAsyncThunk<any, void>(
   'manageProducts/manageProductsService',
 
   async (_, { rejectWithValue }) => {
     try {
-      const data = await productService.getListManageProducts();
-
-      return data;
+      return await productService.getListManageProducts();
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
@@ -25,7 +23,7 @@ export const manageProductsService = createAsyncThunk<any, void>(
 
 export const deleteProducts = createAsyncThunk<any, any>(
   'manageProducts/deleteProducts',
-  async (id, { rejectWithValue, dispatch }) => {
+  async (id: string[], { rejectWithValue, dispatch }) => {
     try {
       const response = await productService.deleteList(id);
 
@@ -44,13 +42,13 @@ export const deleteProducts = createAsyncThunk<any, any>(
 
 interface IManageProductsItialState {
   products: any[] | null;
-  isLoading: LoadingStatus;
+  isLoading: LoadingStatusEnum;
   error: string | null;
 }
 
 const initialState: IManageProductsItialState = {
   products: null,
-  isLoading: LoadingStatus.Idle,
+  isLoading: LoadingStatusEnum.Idle,
   // isStarted: false,
   error: null,
 };
@@ -61,30 +59,30 @@ const manageProductsSlice = createSlice({
 
   extraReducers: builder => {
     builder.addCase(manageProductsService.pending, state => {
-      state.isLoading = LoadingStatus.Loading;
+      state.isLoading = LoadingStatusEnum.Loading;
       // state.isStarted = true
       state.error = null;
     });
     builder.addCase(manageProductsService.fulfilled, (state, action) => {
-      state.isLoading = LoadingStatus.Success;
+      state.isLoading = LoadingStatusEnum.Success;
       state.products = action.payload;
     });
     builder.addCase(manageProductsService.rejected, (state, action) => {
-      state.isLoading = LoadingStatus.Failed;
+      state.isLoading = LoadingStatusEnum.Failed;
       state.error = action.payload as string;
     });
 
     builder.addCase(deleteProducts.pending, state => {
-      state.isLoading = LoadingStatus.Loading;
+      state.isLoading = LoadingStatusEnum.Loading;
       // state.isStarted = true
       state.error = null;
     });
     builder.addCase(deleteProducts.fulfilled, (state, action) => {
-      state.isLoading = LoadingStatus.Success;
+      state.isLoading = LoadingStatusEnum.Success;
       state.products = action.payload;
     });
     builder.addCase(deleteProducts.rejected, (state, action) => {
-      state.isLoading = LoadingStatus.Failed;
+      state.isLoading = LoadingStatusEnum.Failed;
       state.error = action.payload as string;
     });
   },

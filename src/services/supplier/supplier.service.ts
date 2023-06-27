@@ -1,16 +1,17 @@
 import { IServerResponse } from '../../common/types';
-import baseConfigService from '../baseConfig.service';
+import { baseConfigService } from '../baseConfig.service';
 
 import {
-  ISuppliersCompanyInfoData,
+  ISupplierBusinessInfo,
   ISupplierNotifications,
-  ISuppliersUpdateCompanyInfo,
+  ISupplierUpdateBusinessInfo,
+  IBusinessInfoRequest,
 } from './supplier.serviceTypes';
 
 export const supplierService = {
   hasCompanyInfo: async () => {
     const { data } = await baseConfigService.get<IServerResponse<boolean>>(
-      `/suppliers/hasCompanyInfo/`,
+      `suppliers/hasCompanyInfo/`,
     );
 
     return data.result;
@@ -18,40 +19,46 @@ export const supplierService = {
 
   hasPersonalInfo: async () => {
     const { data } = await baseConfigService.get<IServerResponse<boolean>>(
-      `/suppliers/hasPersonalInfo/`,
+      `suppliers/hasPersonalInfo/`,
     );
 
     return data.result;
   },
 
+  createBusinessInfo: async (params: IBusinessInfoRequest) => {
+    const { data } = await baseConfigService.post(`register/business/sendInfo/`, params);
+
+    return data;
+  },
+
   fetchCompanyLogo: async () => {
     const { data } = await baseConfigService.get<IServerResponse<string>>(
-      `/suppliers/companyLogo`,
+      `suppliers/companyLogo/`,
     );
 
     return data.result;
   },
 
   fetchBusinessInfo: async () => {
-    const { data } = await baseConfigService.get<
-      IServerResponse<ISuppliersCompanyInfoData>
-    >(`/suppliers/businessInfo/`);
-
-    return data.result;
-  },
-
-  updateBusinessInfo: async (companyInfo: Partial<ISuppliersUpdateCompanyInfo>) => {
-    const { data } = await baseConfigService.patch<IServerResponse<boolean>>(
-      `/suppliers/businessInfo/update/`,
-      companyInfo,
+    const { data } = await baseConfigService.get<IServerResponse<ISupplierBusinessInfo>>(
+      `suppliers/businessInfo/`,
     );
 
     return data.result;
   },
 
-  getNotifications: async () => {
+  updateBusinessInfo: async (params: Partial<ISupplierUpdateBusinessInfo>) => {
+    const { data } = await baseConfigService.patch<IServerResponse<boolean>>(
+      `suppliers/businessInfo/update/`,
+      params,
+    );
+
+    return data.result;
+  },
+
+  fetchNotifications: async () => {
     const { data } = await baseConfigService.get<IServerResponse<ISupplierNotifications>>(
-      `/suppliers/notifications/`,
+      `suppliers/notifications/`,
     );
 
     return data.result;
@@ -59,7 +66,7 @@ export const supplierService = {
 
   getProductProperties: async (categoryId: any) => {
     const { data } = await baseConfigService.get(
-      `/suppliers/getCategoryProperties/${categoryId}`,
+      `suppliers/getCategoryProperties/${categoryId}/`,
     );
 
     return data;
@@ -73,13 +80,13 @@ export const supplierService = {
     return data;
   },
 
-  addProduct: async (product: any) => {
-    const { data } = await baseConfigService.post(`suppliers/addProduct/`, product);
+  addProduct: async (params: any) => {
+    const { data } = await baseConfigService.post(`suppliers/addProduct/`, params);
 
     return data;
   },
 
-  uploadImage: async (img: any, prodId: any, index: any) => {
+  uploadProductImage: async (img: File, prodId: number, index: number) => {
     const formData = new FormData();
 
     formData.append('file', img);
@@ -98,10 +105,34 @@ export const supplierService = {
     return data;
   },
 
-  updateNotifications: async (notification: Partial<ISupplierNotifications>) => {
+  uploadCompanyLogo: async (image: File) => {
+    const formData = new FormData();
+
+    formData.append('file', image);
+
+    const { data } = await baseConfigService.post<
+      IServerResponse<{
+        id: number;
+        url: string;
+      }>
+    >('suppliers/companyLogo/update/', formData);
+
+    return data;
+  },
+
+  deleteCompanyLogo: async (company_image_id: number) => {
+    const { data } = await baseConfigService.delete<IServerResponse<boolean>>(
+      `suppliers/deleteCompanyImage/`,
+      { params: { company_image_id } },
+    );
+
+    return data;
+  },
+
+  updateNotifications: async (params: Partial<ISupplierNotifications>) => {
     await baseConfigService.patch<IServerResponse<boolean>>(
       `suppliers/notifications/update/`,
-      notification,
+      params,
     );
   },
 };

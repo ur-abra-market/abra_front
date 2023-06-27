@@ -4,9 +4,7 @@ import { WithLayout } from '../../../common/hocs/WithLayout';
 import CartList from '../../../old-components/ui/TypesView/cart/CartList/CartList';
 import CartOrder from '../../../old-components/ui/TypesView/cart/CartOrder/CartOrder';
 
-import style from './CartPage.module.css';
-
-import { Container } from 'ui-kit';
+import style from './CartPage.module.scss';
 
 export const CartPage = WithLayout((): JSX.Element => {
   const [cartItems] = useState([
@@ -67,9 +65,9 @@ export const CartPage = WithLayout((): JSX.Element => {
   });
 
   return (
-    <Container className={style.cart_page}>
+    <div className={style.container}>
       <CartList cartItems={cartItems} />
       <CartOrder info={orderInfo} />
-    </Container>
+    </div>
   );
 });

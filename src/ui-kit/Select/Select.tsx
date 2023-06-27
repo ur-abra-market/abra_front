@@ -26,6 +26,7 @@ export interface ISelectOption {
 
 export interface ISelect {
   options: ISelectOption[];
+  controlledValue?: ISelectOption;
   onChange?: (value: ISelectOption) => void;
   error?: string;
   children?: ReactNode;
@@ -43,6 +44,7 @@ export const Select = forwardRef(
   (
     {
       options,
+      controlledValue,
       placeholder,
       onChange,
       error,
@@ -65,19 +67,26 @@ export const Select = forwardRef(
     const [selectedValue, setSelectedVale] =
       useState<ISelectOption>(defaultSelectedValue);
 
+    const currentSelectedValue =
+      controlledValue !== undefined ? controlledValue : selectedValue;
+
     useEffect(() => {
       if (defaultValue) {
-        const currentValue = options.find(el => el.label === defaultValue);
+        const currentValue = options.find(el => el.value === defaultValue);
 
         if (currentValue) setSelectedVale(currentValue);
       }
     }, [defaultValue, options]);
 
-    const handleSetSelectedValue = (incomingData: ISelectOption): void => {
-      if (incomingData !== selectedValue) {
-        setSelectedVale(incomingData);
+    const handleSetSelectedValue = (option: ISelectOption): void => {
+      if (option !== currentSelectedValue) {
+        if (controlledValue !== undefined) {
+          setSelectedVale(controlledValue);
+        } else {
+          setSelectedVale(option);
+        }
         if (onChange) {
-          onChange(incomingData);
+          onChange(option);
         }
       }
       handleCloseSelectMenu();
@@ -105,8 +114,7 @@ export const Select = forwardRef(
     const handleCloseSelectMenu = (): void => {
       setIsOpenItemsMenu(false);
     };
-
-    const mainDivRef = useRef<HTMLDivElement>(null);
+    const mainDivRef = useOnClickOutside(handleCloseSelectMenu);
 
     useOnHoverOutside(mainDivRef, () => {
       window.onscroll = () => {
@@ -115,8 +123,6 @@ export const Select = forwardRef(
         return true;
       };
     });
-
-    useOnClickOutside(mainDivRef, handleCloseSelectMenu);
 
     // if the menu is open and the user tries to scroll behind the menu, then we add the ability to scroll and hide the menu
     const mappedSelectItems = options.map(el => (
@@ -182,7 +188,7 @@ export const Select = forwardRef(
         <SelectHeader
           menuItemsPosition={menuItemsPosition}
           className={headerClassname}
-          currentSelectedValue={selectedValue}
+          currentSelectedValue={currentSelectedValue}
           isOpenMenu={isOpenItemsMenu}
           onClick={handleChangeSelectState}
         />

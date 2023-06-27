@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { sellerService } from '../../../../services/seller/seller.service';
-import { SellerAddressData } from '../../../../services/seller/seller.serviceTypes';
+import { ISellerAddressData } from '../../../../services/seller/seller.serviceTypes';
 import { setResponseNotice } from '../../appSlice/slice';
 
 export const getSellerAvatar = createAsyncThunk<any, void>(
@@ -37,7 +37,7 @@ export const getSellerAddresses = createAsyncThunk<any, void>(
   },
 );
 
-export const addSellerAddresses = createAsyncThunk<any, SellerAddressData>(
+export const addSellerAddresses = createAsyncThunk<any, ISellerAddressData>(
   'seller/addSellerAddresses',
   async (arg, { rejectWithValue, dispatch }) => {
     try {
@@ -54,7 +54,7 @@ export const addSellerAddresses = createAsyncThunk<any, SellerAddressData>(
   },
 );
 
-export const updateSellerAddresses = createAsyncThunk<any, SellerAddressData>(
+export const updateSellerAddresses = createAsyncThunk<any, ISellerAddressData>(
   'seller/updateSellerAddresses',
   async (arg, { rejectWithValue, dispatch }) => {
     try {
@@ -75,7 +75,7 @@ export const getSellerNotifications = createAsyncThunk<any, void>(
   'seller/getSellerNotifications',
   async (_, { rejectWithValue, dispatch }) => {
     try {
-      return await sellerService.getNotifications();
+      return await sellerService.fetchNotifications();
     } catch (error) {
       const errorMessage =
         error instanceof AxiosError

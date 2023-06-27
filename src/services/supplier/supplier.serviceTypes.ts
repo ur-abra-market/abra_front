@@ -1,39 +1,35 @@
 import { ICountry } from '../common/common.serviceTypes';
 
-export interface License {
-  license_number: number;
+export interface ISupplierBusinessInfo {
+  id: number;
+  license_number: string;
+  grade_average: number;
+  additional_info: string;
+  company: ISupplierCompanyInfo;
 }
 
-export interface CompanyInfo {
-  name: string;
-  business_sector: string;
-  is_manufacturer: number;
-  year_established: number;
-  number_of_employees: number;
-  description: string;
-  phone: string;
+export interface ISupplierCompanyInfo {
+  id: number;
   business_email: string;
+  name: string;
+  is_manufacturer: boolean;
+  year_established: number;
+  number_employees: number;
+  description: string;
   address: string;
+  business_sector: string;
+  country: ICountry;
+  phone: ISupplierPhoneInfo;
+  images: any[];
 }
 
-export interface RequestAccountInfo {
-  user_info: {
-    first_name: string;
-    last_name?: string;
-    user_phone?: string;
-  };
-  license: License;
-  company_info: {
-    name: string;
-    business_sector: string;
-    is_manufacturer: number;
-    year_established?: number;
-    number_of_employees?: number;
-    description?: string;
-    phone?: string;
-    business_email?: string;
-    address?: string;
-  };
+export interface IBusinessInfoRequest
+  extends Omit<ISupplierUpdateBusinessInfo, 'company_data_request'> {
+  company_data_request: ISendISupplierCompanyInfo;
+}
+
+interface ISendISupplierCompanyInfo extends ISupplierUpdateCompanyInfo {
+  logo_url: string;
 }
 
 export interface ISupplierNotifications {
@@ -48,46 +44,25 @@ export interface ISupplierNotifications {
   on_account_support: boolean;
 }
 
-export interface ISuppliersCompanyInfoData {
-  id: number;
-  license_number: string;
-  grade_average: number;
-  additional_info: string;
-  company: ICompanyInfo;
+export interface ISupplierErrorResponse {
+  ok: boolean;
+  error_code: number;
+  error: { loc: string[]; msg: string; type: string }[];
 }
 
-export interface ICompanyInfo {
-  id: number;
-  business_email: string;
-  name: string;
-  is_manufacturer: boolean;
-  year_established: number;
-  number_employees: number;
-  description: string;
-  address: string;
-  business_sector: string;
-  country: ICountry;
-  phone: IPhoneInfo;
-  images: any[];
-}
-
-interface IPhoneInfo {
+interface ISupplierPhoneInfo {
   id: number;
   phone_number: string;
-  country: ICountry;
 }
 
-export interface ISuppliersUpdateCompanyInfo {
-  supplier_data_request: ISupplierLicense;
-  company_data_request: Omit<IUpdateCompanyInfo, 'id' | 'country' | 'phone' | 'images'>;
+export interface ISupplierUpdateBusinessInfo {
+  supplier_data_request: { license_number: string };
+  company_data_request: ISupplierUpdateCompanyInfo;
   company_phone_data_request: ISuppliersCompanyPhoneData;
 }
 
-interface ISupplierLicense {
-  license_number: string;
-}
-
-interface IUpdateCompanyInfo extends ICompanyInfo {
+export interface ISupplierUpdateCompanyInfo
+  extends Omit<ISupplierCompanyInfo, 'id' | 'country' | 'phone' | 'images'> {
   country_id: number;
 }
 

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { discount } from '../../store/reducers/filterSlice';
 
-import style from './SwitchBox.module.css';
+import style from './SwitchBox.module.scss';
 
 interface SwitchBoxProps {
   label: string;

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
+import { getAllCategories } from '../../../../store/reducers/commonSlice';
 import {
   getPropertiesService,
   getVariationsService,
 } from '../../../../store/reducers/supplier/other';
 
 import ProductListRegistrationForm from 'old-components/ui/ProductListRegistrationForm';
-import { categoryService, getCategories, getChilds } from 'store/reducers/categorySlice';
+import { getCategories, getChilds } from 'store/reducers/categorySlice';
 
 export const ProductListRegistrationPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -16,7 +17,7 @@ export const ProductListRegistrationPage = (): JSX.Element => {
   const [secondCategory, setSecondCategory] = useState('');
   const [thirdCategory, setThirdCategory] = useState('');
 
-  const allCategories = useAppSelector(state => state.category.dateCategories);
+  const allCategories = useAppSelector(state => state.common.categories);
   const productProperties = useAppSelector(
     state => state.supplierOther.productProperties,
   );
@@ -54,7 +55,7 @@ export const ProductListRegistrationPage = (): JSX.Element => {
   }, [secondCategory]);
 
   useEffect(() => {
-    dispatch(categoryService());
+    dispatch(getAllCategories());
   }, [dispatch]);
 
   useEffect(() => {

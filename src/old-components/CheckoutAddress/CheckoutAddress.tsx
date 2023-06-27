@@ -4,12 +4,12 @@ import cn from 'classnames';
 
 import Modal from '../../components/Modal';
 import SellerEditAddressChangeForm from '../../pages/seller-pages/SellerProfilePage/Addresses/SellerEditAddressChangeForm/SellerEditAddressChangeForm';
-import { SellerAddressData } from '../../services/seller/seller.serviceTypes';
+import { ISellerAddressData } from '../../services/seller/seller.serviceTypes';
 import { IAddress } from '../../store/reducers/seller/profile/slice';
 import { Checkbox } from '../../ui-kit';
 import { EditAddressModal } from '../ui/popup/EdtiAddressModal/EditAddressModal';
 
-import style from './CheckoutAddress.module.css';
+import style from './CheckoutAddress.module.scss';
 
 import { EditPencilIcon } from 'assets/icons';
 

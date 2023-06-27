@@ -1,10 +1,8 @@
 import { FC, useState } from 'react';
 
-import { AddNotePopup } from '../../popup/AddNotePopup/AddNotePopup';
+import style from './CheckItems.module.scss';
 
-import style from './CheckItems.module.css';
-
-import { StarFilledIcon, ArrowRightIcon, DotIcon } from 'assets/icons'; // 5 10px for ArrowRightIcon
+import { ArrowRightIcon, DotIcon, StarFilledIcon } from 'assets/icons';
 import { Banner1Image } from 'assets/images';
 
 interface CheckItemsProps {
@@ -36,7 +34,6 @@ const CheckItems: FC<CheckItemsProps> = ({ index }): JSX.Element => {
           <div className={style.check_items_block_note} onClick={onClick}>
             + Add a note
           </div>
-          <AddNotePopup modal={modal} setModal={setModal} />
         </div>
         <div className={style.check_items_product}>
           <img src={Banner1Image} alt="" />

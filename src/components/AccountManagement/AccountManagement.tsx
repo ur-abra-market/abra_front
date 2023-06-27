@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { CHANGE_EMAIL, CHANGE_PASSWORD, HOME } from '../../routes';
+
 import { AccountManagementLink } from './AccountManagmentLink/AccountManagmentLink';
 
 export const AccountManagement = (): JSX.Element => {
@@ -7,17 +9,17 @@ export const AccountManagement = (): JSX.Element => {
     <>
       <AccountManagementLink
         linkLabel="Change your email"
-        path="/change_email"
+        path={CHANGE_EMAIL}
         description="(You will have to confirm a new email)"
       />
       <AccountManagementLink
         linkLabel="Change your password"
-        path="/change_password"
+        path={CHANGE_PASSWORD}
         description="(In case if you forgot a current password or need a stronger one)"
       />
       <AccountManagementLink
         linkLabel="Remove the account"
-        path="/" // todo fix
+        path={HOME} // todo fix
         description="(All your data including order history will be deleted)"
       />
     </>

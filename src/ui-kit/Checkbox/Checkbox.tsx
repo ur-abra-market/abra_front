@@ -2,7 +2,7 @@ import { forwardRef, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import styles from './Checkbox.module.css';
+import styles from './Checkbox.module.scss';
 
 export interface ICheckbox
   extends Omit<

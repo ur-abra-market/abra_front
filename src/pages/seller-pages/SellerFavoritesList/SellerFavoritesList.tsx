@@ -2,14 +2,13 @@ import React from 'react';
 
 import { Feedback } from 'components';
 
-import Header from '../../../layouts/Header';
-import { ButtonInfo, Container, Search } from '../../../ui-kit';
+import { ButtonInfo, Search } from '../../../ui-kit';
 
-import style from './SellerFavoritesList.module.css';
+import style from './SellerFavoritesList.module.scss';
 
-import { Footer } from 'layouts/Footer';
+import { WithLayout } from 'common/hocs/WithLayout';
 
-export const SellerFavoritesList = (): JSX.Element => {
+export const SellerFavoritesList = WithLayout((): JSX.Element => {
   const arr = [];
 
   // const product: IShortCardProduct = {
@@ -36,8 +35,7 @@ export const SellerFavoritesList = (): JSX.Element => {
 
   return (
     <div className={style.favorites_page}>
-      <Header />
-      <Container>
+      <div className={style.container}>
         <div className={style.top}>
           <h3 className={style.title}>Favorites list</h3>
           <Search className={style.search} placeholder="Search within my favorites" />
@@ -52,9 +50,9 @@ export const SellerFavoritesList = (): JSX.Element => {
         <div className={style.bottom}>
           <ButtonInfo />
         </div>
-      </Container>
-      <Feedback />
-      <Footer variant="default" />
+      </div>
+      {/* <Feedback /> */}
+      {/* TODO Feedback crashing app */}
     </div>
   );
-};
+});

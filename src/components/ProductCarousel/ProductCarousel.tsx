@@ -8,7 +8,7 @@ import 'swiper/swiper-bundle.min.css';
 
 import { Button } from '../../ui-kit';
 
-import style from './ProductCarousel.module.css';
+import style from './ProductCarousel.module.scss';
 
 import { ArrowDownIcon, ArrowUpIcon } from 'assets/icons'; // 24px
 

@@ -4,89 +4,88 @@ import React, {
   FC,
   HTMLAttributes,
   useEffect,
-  useState,
 } from 'react';
 
 import cn from 'classnames';
 
-import { userService } from '../../services';
-
 import style from './UploadImage.module.scss';
 
-import { UploadItemImageIcon, UploadLogoImageIcon, CrossRedIcon } from 'assets/icons';
-
-interface IUploadFileData {
-  preview: string;
-  raw: string | File;
-}
+import { CrossRedIcon, UploadItemImageIcon, UploadLogoImageIcon } from 'assets/icons';
+import { useAppDispatch } from 'common/hooks';
+import { setResponseNotice } from 'store/reducers/appSlice/slice';
+import { fetchCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 
 interface IUploadImage
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  action: string;
   image?: string;
   label?: string;
   placeholder?: string;
-  type: 'default' | 'logo';
+  type: 'default' | 'logo' | 'avatar';
+  uploadImage?: (img: File) => void;
+  deleteImage?: () => void;
+  description: string;
 }
+
+const MAX_FILE_SIZE = 5000000;
 
 export const UploadImage: FC<IUploadImage> = ({
   className,
-  action,
   image,
   type,
   label,
   placeholder,
+  deleteImage,
+  uploadImage,
+  description,
   ...restProps
 }) => {
-  const [file, setFile] = useState<IUploadFileData>({ preview: '', raw: '' });
-  const [image_id, setImage_id] = useState(0);
-  const uploadImage = type === 'logo' ? <UploadLogoImageIcon /> : <UploadItemImageIcon />;
+  const dispatch = useAppDispatch();
+  const uploadImageIcon =
+    type === 'logo' || type === 'avatar' ? (
+      <UploadLogoImageIcon />
+    ) : (
+      <UploadItemImageIcon />
+    );
+
   const inputClasses = cn({
     [style.input_logo]: type === 'logo',
-    [style.input_default]: type !== 'logo',
+    [style.input_avatar]: type === 'avatar',
+    [style.input_default]: type !== 'logo' && type !== 'avatar',
   });
+
   const imgClasses = cn({
     [style.logo_img]: type === 'logo',
-    [style.default_img]: type !== 'logo',
+    [style.avatar_img]: type === 'avatar',
+    [style.default_img]: type !== 'logo' && type !== 'avatar',
   });
+
   const crossClasses = cn({
     [style.logo_cross]: type === 'logo',
-    [style.default_cross]: type !== 'logo',
+    [style.avatar_cross]: type === 'avatar',
+    [style.default_cross]: type !== 'logo' && type !== 'avatar',
   });
-  const imgAction =
-    type === 'logo' ? '/suppliers/deleteCompanyImage/' : '/suppliers/deleteProductImage/';
-  const handleOnClick = (): void => {
-    userService
-      .deleteImage({
-        action: imgAction,
-        queries: { company_image_id: image_id },
-      })
-      .then(() => setFile({ preview: '', raw: '' }));
-  };
+
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>): void => {
     if (e.target?.files?.length) {
-      setFile({
-        preview: URL.createObjectURL(e.target.files[0]),
-        raw: e.target.files[0],
-      });
+      const file = e.target.files[0];
+
+      if (type === 'logo' && file.size >= MAX_FILE_SIZE) {
+        dispatch(
+          setResponseNotice({
+            noticeType: 'error',
+            message: 'Sorry, max logo size 5 mb',
+          }),
+        );
+      } else if (uploadImage) uploadImage(file);
+
       // eslint-disable-next-line no-param-reassign
       e.target.value = '';
     }
   };
 
   useEffect(() => {
-    if (file.raw) {
-      userService
-        .uploadImage({ action, file: file.raw as File })
-        .then((res: any) => setImage_id(res.result.id)); // todo fix any
-    }
-  }, [file.raw, action]);
-
-  useEffect(() => {
-    if (image) {
-      setFile(prevState => ({ ...prevState, preview: image }));
-    }
-  }, [image]);
+    if (type === 'logo') dispatch(fetchCompanyLogo());
+  }, [dispatch, type]);
 
   return (
     <div className={cn(style.wrapper, className)} {...restProps}>
@@ -97,20 +96,22 @@ export const UploadImage: FC<IUploadImage> = ({
         onChange={handleOnChange}
       />
       <div className={style.img_wrapper}>
-        {file.preview ? (
+        {image ? (
           <div>
-            <img className={imgClasses} src={file.preview} alt="" />
+            <img className={imgClasses} src={image} alt={description} />
 
-            <button className={crossClasses} onClick={handleOnClick} type="button">
-              <CrossRedIcon />
-            </button>
+            {type === 'default' && (
+              <button className={crossClasses} onClick={deleteImage} type="button">
+                <CrossRedIcon />
+              </button>
+            )}
           </div>
         ) : (
-          uploadImage
+          uploadImageIcon
         )}
       </div>
 
-      {type === 'logo' && (
+      {(type === 'logo' || type === 'avatar') && (
         <div className={style.description}>
           <label className={style.label} htmlFor="profileLogo">
             {label}

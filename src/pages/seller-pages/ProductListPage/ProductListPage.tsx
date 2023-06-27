@@ -2,15 +2,14 @@ import React, { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks';
 
-import style from './ProductListPage.module.css';
+import style from './ProductListPage.module.scss';
 
-import { Footer } from 'layouts/Footer';
-import Header from 'layouts/Header';
+import { WithLayout } from 'common/hocs/WithLayout';
 import ProductFilter from 'old-components/ui/product/ProductFilter';
 import ProductList from 'old-components/ui/product/ProductList';
 import { productPaginateService } from 'store/reducers/productPaginateSlice';
 
-export const ProductListPage = (): JSX.Element => {
+export const ProductListPage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();
   const paginate = useAppSelector(state => state.paginate);
   const filter = useAppSelector(state => state.filter);
@@ -19,16 +18,12 @@ export const ProductListPage = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(productPaginateService(data));
-  });
+  }, [data]);
 
   return (
-    <>
-      <Header />
-      <div className={style.product_list_page}>
-        <ProductFilter />
-        <ProductList />
-      </div>
-      <Footer variant="default" />
-    </>
+    <div className={style.product_list_page}>
+      <ProductFilter />
+      <ProductList />
+    </div>
   );
-};
+});

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button, Input } from '../../../ui-kit';
 
-import style from './ModalChildPhoneCheck.module.css';
+import style from './ModalChildPhoneCheck.module.scss';
 
 import { CrossRedIcon } from 'assets/icons';
 

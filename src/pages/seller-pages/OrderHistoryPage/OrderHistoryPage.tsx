@@ -3,12 +3,11 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import Header from '../../../layouts/Header';
 import { Search } from '../../../ui-kit';
 
-import style from './OrderHistoryPage.module.css';
+import style from './OrderHistoryPage.module.scss';
 
-import { Footer } from 'layouts/Footer';
+import { WithLayout } from 'common/hocs/WithLayout';
 
 type LinkType = 'All' | 'Preparing' | 'In progress' | 'Completed';
 type OrderType = {
@@ -17,7 +16,7 @@ type OrderType = {
   status: LinkType;
 };
 
-export const OrderHistoryPage = (): JSX.Element => {
+export const OrderHistoryPage = WithLayout((): JSX.Element => {
   const statusLinksList: Array<LinkType> = [
     'All',
     'Preparing',
@@ -67,60 +66,56 @@ export const OrderHistoryPage = (): JSX.Element => {
   };
 
   return (
-    <>
-      <Header />
-      <div className={style.wrapper}>
-        <div className={style.main}>
-          <div className={style.head}>
-            <h2 className={style.title}>Order History</h2>
-            <Search className={style.search} placeholder="Search by product name" />
-          </div>
-
-          <div className={style.links}>
-            {statusLinksList.map(link => (
-              <button
-                type="button"
-                className={cn([style.link], { [style.active]: link === check })}
-                onClick={() => handleButtonCategoryClick(link)}
-                key={`status_${link}`}
-              >
-                {link}
-              </button>
-            ))}
-          </div>
-
-          {ordersArray.length ? (
-            <ul className={style.list}>
-              {ordersArray.map((order, index) => (
-                <li key={index} className={style.item}>
-                  <div className={style.info}>
-                    <h3 className={style.number}>Order No: {order.number}</h3>
-                    <p className={style.number}>Total: ...</p>
-                    <p className={style.date}>{order.date}</p>
-                    <div className={style.details}>
-                      <Link to={order.number}>View Details</Link>
-                    </div>
-                  </div>
-                  <div className={style.status}>{order.status}</div>
-
-                  <div className={style.images}>
-                    <div className={style.image} />
-                    <div className={style.image} />
-                    <div className={style.image} />
-                    <div className={style.image} />
-                  </div>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className={style.empty_message}>
-              <p>Unfortunately, there are no orders.</p>
-              <p>As soon as you place your first order it will appear here</p>
-            </div>
-          )}
+    <div className={style.wrapper}>
+      <div className={style.main}>
+        <div className={style.head}>
+          <h2 className={style.title}>Order History</h2>
+          <Search className={style.search} placeholder="Search by product name" />
         </div>
+
+        <div className={style.links}>
+          {statusLinksList.map(link => (
+            <button
+              type="button"
+              className={cn([style.link], { [style.active]: link === check })}
+              onClick={() => handleButtonCategoryClick(link)}
+              key={`status_${link}`}
+            >
+              {link}
+            </button>
+          ))}
+        </div>
+
+        {ordersArray.length ? (
+          <ul className={style.list}>
+            {ordersArray.map((order, index) => (
+              <li key={index} className={style.item}>
+                <div className={style.info}>
+                  <h3 className={style.number}>Order No: {order.number}</h3>
+                  <p className={style.number}>Total: ...</p>
+                  <p className={style.date}>{order.date}</p>
+                  <div className={style.details}>
+                    <Link to={order.number}>View Details</Link>
+                  </div>
+                </div>
+                <div className={style.status}>{order.status}</div>
+
+                <div className={style.images}>
+                  <div className={style.image} />
+                  <div className={style.image} />
+                  <div className={style.image} />
+                  <div className={style.image} />
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className={style.empty_message}>
+            <p>Unfortunately, there are no orders.</p>
+            <p>As soon as you place your first order it will appear here</p>
+          </div>
+        )}
       </div>
-      <Footer variant="default" />
-    </>
+    </div>
   );
-};
+});

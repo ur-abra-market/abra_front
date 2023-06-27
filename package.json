@@ -38,11 +38,10 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint-fix": "eslint --fix",
-    "stylelint-fix": "stylelint \"**/*.css\" --fix"
+    "stylelint-fix": "stylelint \"**/*.{css, scss}\" --fix"
   },
   "lint-staged": {
-
-    "**/*.css": [
+    "**/*.{css,scss}": [
       "stylelint --fix"
     ],
     "**/*.{js,ts,jsx,tsx}": [
@@ -64,6 +63,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.191",
+    "@types/webpack-env": "^1.18.1",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.48.2",
     "eslint": "^8.33.0",

@@ -38,7 +38,7 @@ export const getVariationsService = createAsyncThunk<any, any>(
 );
 
 export const addProductService = createAsyncThunk<any, any>(
-  'supplier/addProduct',
+  'supplier/addProductService',
   async ({ product }, { rejectWithValue }) => {
     try {
       const data = await supplierService.addProduct(product);
@@ -55,10 +55,10 @@ export const addProductService = createAsyncThunk<any, any>(
 );
 
 export const uploadImageService = createAsyncThunk<any, any>(
-  'supplier/uploadImage',
+  'supplier/uploadImageService',
   async ({ rest }, { rejectWithValue }) => {
     try {
-      return await supplierService.uploadImage(rest.img, rest.prodId, rest.index);
+      return await supplierService.uploadProductImage(rest.img, rest.prodId, rest.index);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

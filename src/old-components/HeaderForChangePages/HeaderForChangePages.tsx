@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // import { useAppSelector } from '../../store/hooks';
 // import { ButtonLink } from '../buttons';
 
-import style from './HeaderForChangePages.module.css';
+import style from './HeaderForChangePages.module.scss';
 
 // const navbarBtnClasses = {
 //   wrapperButtonLink: `${style.wrapper_button_link}`,

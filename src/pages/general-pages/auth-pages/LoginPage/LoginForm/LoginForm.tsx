@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -7,8 +7,10 @@ import * as yup from 'yup';
 
 import { emailValidationSchema } from '../../../../../common/constants';
 import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { LoadingStatus } from '../../../../../common/types';
-import { loginUser } from '../../../../../store/reducers/authSlice';
+import { LoadingStatusEnum } from '../../../../../common/types';
+import { HOME } from '../../../../../routes';
+import { loadingSelector } from '../../../../../store/reducers/appSlice';
+import { loginUser, isAuthSelector } from '../../../../../store/reducers/authSlice';
 import { Button, Input } from '../../../../../ui-kit';
 
 import style from './LoginForm.module.scss';
@@ -29,8 +31,8 @@ export interface IFormValues {
 }
 
 export const LoginForm = (): JSX.Element => {
-  const loading = useAppSelector(state => state.app.loading);
-  const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
+  const loading = useAppSelector(loadingSelector);
+  const isAuthorized = useAppSelector(isAuthSelector);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -47,7 +49,9 @@ export const LoginForm = (): JSX.Element => {
     dispatch(loginUser(data));
   };
 
-  if (isAuthorized) navigate('/');
+  useEffect(() => {
+    if (isAuthorized) navigate(HOME);
+  }, [isAuthorized, navigate]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
@@ -55,6 +59,7 @@ export const LoginForm = (): JSX.Element => {
 
       <Input
         {...register('password')}
+        classNameWrapper={style.input_wrapper}
         variant="password"
         type="password"
         placeholder="Password"
@@ -62,10 +67,10 @@ export const LoginForm = (): JSX.Element => {
       />
 
       <Button
-        className={style.button}
+        className={style.button_submit}
         label="Log in"
         type="submit"
-        disabled={!isValid || loading === LoadingStatus.Loading}
+        disabled={!isValid || loading === LoadingStatusEnum.Loading}
       />
     </form>
   );

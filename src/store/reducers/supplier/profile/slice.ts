@@ -1,11 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { LoadingStatus } from '../../../../common/types';
+import { LoadingStatusEnum } from '../../../../common/types';
 import { ISupplierNotifications } from '../../../../services/supplier/supplier.serviceTypes';
 import { getPersonalInfo } from '../../userSlice';
 
 import {
   getBusinessInfo,
+  deleteCompanyLogo,
+  fetchCompanyLogo,
+  uploadCompanyLogo,
   getSupplierNotifications,
   updateSupplierNotifications,
 } from './thunks';
@@ -21,11 +24,6 @@ interface IBusinessSector {
   value: string;
 }
 
-interface ICountryRegistration {
-  label: string;
-  value: number | null;
-}
-
 export interface ISupplierBusinessInfo {
   storeName: string;
   businessSector: IBusinessSector;
@@ -33,23 +31,27 @@ export interface ISupplierBusinessInfo {
   license: string;
   yearEstablished: number | null;
   numEmployees: number | null;
-  countryRegistration: ICountryRegistration;
+  countryRegistration: number | null;
   description: string;
   email: string;
+  phoneNumber: string;
+  phoneId: number | null;
+  countryShort: string;
+  countryCode: string;
   address: string;
-  tel?: string;
-  code?: string;
+  companyLogo: string;
+  companyLogoId: number | null;
 }
 
 interface ISupplierProfileSliceInitialState {
-  loading: LoadingStatus;
+  loading: LoadingStatusEnum;
   personalInfo: ISupplierPersonalInfo;
   businessInfo: ISupplierBusinessInfo;
   notifications: ISupplierNotifications | null;
 }
 
 const initialState: ISupplierProfileSliceInitialState = {
-  loading: LoadingStatus.Idle,
+  loading: LoadingStatusEnum.Idle,
   personalInfo: {
     firstName: '',
     lastName: '',
@@ -63,10 +65,16 @@ const initialState: ISupplierProfileSliceInitialState = {
     license: '',
     yearEstablished: null,
     numEmployees: null,
-    countryRegistration: { value: null, label: '' },
+    countryRegistration: null,
     description: '',
     email: '',
     address: '',
+    companyLogo: '',
+    companyLogoId: null,
+    countryShort: '',
+    phoneNumber: '',
+    phoneId: null,
+    countryCode: '',
   },
   notifications: null,
 };
@@ -78,14 +86,14 @@ export const supplierProfileSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getPersonalInfo.pending, state => {
-        state.loading = LoadingStatus.Loading;
+        state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(getPersonalInfo.fulfilled, (state, action) => {
         state.personalInfo.lastName = action.payload.last_name;
         state.personalInfo.firstName = action.payload.first_name;
         state.personalInfo.countryShort = action.payload.country.country_short;
         state.personalInfo.phoneNumber = action.payload.phone_number;
-        state.loading = LoadingStatus.Success;
+        state.loading = LoadingStatusEnum.Success;
       });
     builder.addCase(getBusinessInfo.fulfilled, (state, action) => {
       const {
@@ -98,6 +106,7 @@ export const supplierProfileSlice = createSlice({
         business_sector,
         business_email,
         number_employees,
+        phone,
       } = action.payload.company;
 
       state.businessInfo.storeName = name;
@@ -106,28 +115,41 @@ export const supplierProfileSlice = createSlice({
       state.businessInfo.license = action.payload.license_number;
       state.businessInfo.yearEstablished = year_established;
       state.businessInfo.numEmployees = number_employees;
-      state.businessInfo.countryRegistration.value = country.id;
-      state.businessInfo.countryRegistration.label = country.country;
+      state.businessInfo.countryRegistration = country.id;
       state.businessInfo.description = description;
       state.businessInfo.email = business_email;
       state.businessInfo.address = address;
+      state.businessInfo.phoneId = phone.id;
+      state.businessInfo.phoneNumber = phone.phone_number;
+      state.businessInfo.countryShort = country.country_short;
+      state.businessInfo.countryCode = country.country_code;
     });
     builder
       .addCase(getSupplierNotifications.pending, state => {
-        state.loading = LoadingStatus.Loading;
+        state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(getSupplierNotifications.fulfilled, (state, action) => {
         state.notifications = action.payload;
-        state.loading = LoadingStatus.Success;
+        state.loading = LoadingStatusEnum.Success;
       })
       .addCase(getSupplierNotifications.rejected, state => {
-        state.loading = LoadingStatus.Failed;
+        state.loading = LoadingStatusEnum.Failed;
       })
       .addCase(updateSupplierNotifications.pending, state => {
-        state.loading = LoadingStatus.Loading;
+        state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(updateSupplierNotifications.rejected, state => {
-        state.loading = LoadingStatus.Failed;
+        state.loading = LoadingStatusEnum.Failed;
+      })
+      .addCase(fetchCompanyLogo.fulfilled, (state, action) => {
+        state.businessInfo.companyLogo = action.payload;
+      })
+      .addCase(uploadCompanyLogo.fulfilled, (state, action) => {
+        state.businessInfo.companyLogo = action.payload.result.image;
+        state.businessInfo.companyLogoId = action.payload.result.id;
+      })
+      .addCase(deleteCompanyLogo.fulfilled, state => {
+        state.businessInfo.companyLogo = '';
       });
   },
 });

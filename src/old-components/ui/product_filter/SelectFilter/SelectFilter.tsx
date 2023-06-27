@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
 
-import style from './SelectFilter.module.css';
+import style from './SelectFilter.module.scss';
 
 import { ArrowDownIcon } from 'assets/icons';
 import { ascending, category, sort } from 'store/reducers/filterSlice';
@@ -34,7 +34,7 @@ const SelectFilter: FC<SelectFilterProps> = ({ typeSelect }): JSX.Element => {
     if (typeSelect === 'sort') setList(listSort);
 
     if (typeSelect === 'category') setList(listCategory);
-  }, [listSort, listCategory, typeSelect]);
+  }, [typeSelect]);
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const option = () => {

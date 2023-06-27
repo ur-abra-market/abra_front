@@ -8,9 +8,11 @@ import ProductCarousel from '../../../components/ProductCarousel/ProductCarousel
 import { getPopularProductsById } from '../../../store/reducers/popularProducts';
 import { getSimilarProducts } from '../../../store/reducers/similarProducts';
 import { getGradesByProductId } from '../../../store/reducers/targetProductSlice';
-import { Button, LoaderCircular, Container } from '../../../ui-kit';
+import { Button, LoaderCircular } from '../../../ui-kit';
 
-import { IImageProduct, LoadingStatus } from 'common/types';
+import style from './ProductPage.module.scss';
+
+import { IImageProduct, LoadingStatusEnum } from 'common/types';
 import ChoiceProduct from 'old-components/ui/product/ChoiceProduct';
 import FlagFavorites from 'old-components/ui/product/FlagFavorites';
 import LatestSearch from 'old-components/ui/product/LatestSearch';
@@ -20,7 +22,6 @@ import ProductStatistics from 'old-components/ui/product/ProductStatistics';
 import Reward from 'old-components/ui/product/Reward';
 import StatusSeller from 'old-components/ui/product/StatusSeller';
 import { PopularProduct } from 'pages/seller-pages/ProductPage/PopularProduct/PopularProduct';
-import style from 'pages/seller-pages/ProductPage/ProductPage.module.css';
 import ProductReview from 'pages/seller-pages/ProductPage/ProductReview/ProductReview';
 import { SimilarProduct } from 'pages/seller-pages/ProductPage/SimilarProduct/SimilarProduct';
 
@@ -69,11 +70,11 @@ export const ProductPage = WithLayout((): JSX.Element => {
     // добавление в избранное логика
   };
 
-  if (status === LoadingStatus.Loading || status === LoadingStatus.Idle)
+  if (status === LoadingStatusEnum.Loading || status === LoadingStatusEnum.Idle)
     return <LoaderCircular />;
 
   return (
-    <Container>
+    <div className={style.container}>
       <div className={style.basic}>
         <div className={style.basic_left}>
           <ProductPath pathArr={[product.category_path, '/Dress', '/Spring-Summer']} />
@@ -127,6 +128,6 @@ export const ProductPage = WithLayout((): JSX.Element => {
       <SimilarProduct />
       <PopularProduct />
       <LatestSearch latestSearchData={latestSearchData || []} />
-    </Container>
+    </div>
   );
 });

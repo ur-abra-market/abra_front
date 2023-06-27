@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { LoadingStatus } from '../../../../common/types';
+import { LoadingStatusEnum } from '../../../../common/types';
 import { ISellerNotifications } from '../../../../services/seller/seller.serviceTypes';
 
 import {
@@ -13,7 +13,7 @@ import {
 import { getPersonalInfo } from 'store/reducers/userSlice';
 
 // interface ISellerProfileSlice {
-//   loading: LoadingStatus;
+//   loading: LoadingStatusEnum;
 //   personalInfo: {
 //     first_name: string;
 //     last_name: string;
@@ -25,11 +25,11 @@ import { getPersonalInfo } from 'store/reducers/userSlice';
 //   profileImage: {
 //     null: null;
 //   };
-//   sellerAddress: null | ISellerAddressData[];
+//   sellerAddress: null | IISellerAddressData[];
 // }
 
 // const initialState: ISellerProfileSlice = {
-//   loading: LoadingStatus.Idle,
+//   loading: LoadingStatusEnum.Idle,
 //   personalInfo: {
 //     first_name: '',
 //     last_name: '',
@@ -50,28 +50,28 @@ import { getPersonalInfo } from 'store/reducers/userSlice';
 //   reducers: {},
 //   extraReducers: builder => {
 //     builder.addCase(getSellerAddressesService.pending, state => {
-//       state.loading = LoadingStatus.Loading;
+//       state.loading = LoadingStatusEnum.Loading;
 //     });
 //     builder.addCase(getSellerAddressesService.fulfilled, (state, action) => {
-//       state.loading = LoadingStatus.Success;
+//       state.loading = LoadingStatusEnum.Success;
 //       state.sellerAddress = action.payload;
 //     });
 //     builder.addCase(getSellerAddressesService.rejected, state => {
-//       state.loading = LoadingStatus.Failed;
+//       state.loading = LoadingStatusEnum.Failed;
 //     });
 //     builder
 //       .addCase(getSellerNotifications.pending, state => {
-//         state.loading = LoadingStatus.Loading;
+//         state.loading = LoadingStatusEnum.Loading;
 //       })
 //       .addCase(getSellerNotifications.fulfilled, (state, action) => {
 //         state.notifications = action.payload;
-//         state.loading = LoadingStatus.Success;
+//         state.loading = LoadingStatusEnum.Success;
 //       })
 //       .addCase(updateSellerNotifications.pending, state => {
-//         state.loading = LoadingStatus.Loading;
+//         state.loading = LoadingStatusEnum.Loading;
 //       })
 //       .addCase(updateSellerNotifications.rejected, (state, action) => {
-//         state.loading = LoadingStatus.Failed;
+//         state.loading = LoadingStatusEnum.Failed;
 //       });
 //   },
 // });
@@ -112,7 +112,7 @@ export interface IAddress {
   phone_number: string;
   first_name: string;
   last_name: string;
-  full_name?: string;
+  full_name: string;
   is_main: boolean;
   area: string;
   city: string;
@@ -133,14 +133,14 @@ export interface ICountry {
 }
 
 interface ISellerProfileSliceInitialState {
-  loading: LoadingStatus;
+  loading: LoadingStatusEnum;
   personalInfo: ISellerPersonalInfo;
   addresses: IAddress[] | null;
   notifications: ISellerNotifications | null;
 }
 
 const initialState: ISellerProfileSliceInitialState = {
-  loading: LoadingStatus.Idle,
+  loading: LoadingStatusEnum.Idle,
   personalInfo: {
     firstName: '',
     lastName: '',
@@ -159,46 +159,44 @@ const sellerProfileSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getPersonalInfo.pending, state => {
-        state.loading = LoadingStatus.Loading;
+        state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(getPersonalInfo.fulfilled, (state, action) => {
         state.personalInfo.lastName = action.payload.last_name;
         state.personalInfo.firstName = action.payload.first_name;
         state.personalInfo.countryShort = action.payload.country.country_short;
         state.personalInfo.phoneNumber = action.payload.phone_number;
-        state.loading = LoadingStatus.Success;
-      });
-    builder
+        state.loading = LoadingStatusEnum.Success;
+      })
       .addCase(getSellerNotifications.pending, state => {
-        state.loading = LoadingStatus.Loading;
+        state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(getSellerNotifications.fulfilled, (state, action) => {
         state.notifications = action.payload;
-        state.loading = LoadingStatus.Success;
+        state.loading = LoadingStatusEnum.Success;
       })
       .addCase(getSellerNotifications.rejected, state => {
-        state.loading = LoadingStatus.Failed;
+        state.loading = LoadingStatusEnum.Failed;
       })
       .addCase(updateSellerNotifications.pending, state => {
-        state.loading = LoadingStatus.Loading;
+        state.loading = LoadingStatusEnum.Loading;
       })
-      .addCase(updateSellerNotifications.rejected, (state, action) => {
-        state.loading = LoadingStatus.Failed;
-      });
-    builder
+      .addCase(updateSellerNotifications.rejected, state => {
+        state.loading = LoadingStatusEnum.Failed;
+      })
       .addCase(getSellerAddresses.pending, state => {
-        state.loading = LoadingStatus.Loading;
+        state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(getSellerAddresses.fulfilled, (state, action) => {
         state.addresses = action.payload;
-        state.loading = LoadingStatus.Success;
+        state.loading = LoadingStatusEnum.Success;
       })
       .addCase(getSellerAddresses.rejected, state => {
-        state.loading = LoadingStatus.Failed;
+        state.loading = LoadingStatusEnum.Failed;
+      })
+      .addCase(getSellerAvatar.fulfilled, (state, action) => {
+        state.personalInfo.avatar = action.payload.result.thumbnail_url;
       });
-    builder.addCase(getSellerAvatar.fulfilled, (state, action) => {
-      state.personalInfo.avatar = action.payload.result.thumbnail_url;
-    });
   },
 });
 
