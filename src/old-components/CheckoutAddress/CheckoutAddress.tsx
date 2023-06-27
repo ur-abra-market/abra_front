@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import cn from 'classnames';
 
-import { SellerAddressData } from '../../services/seller/seller.serviceTypes';
+import { ISellerAddressData } from '../../services/seller/seller.serviceTypes';
 import { Checkbox } from '../../ui-kit';
 import { EditAddressModal } from '../ui/popup/EdtiAddressModal/EditAddressModal';
 
@@ -11,7 +11,7 @@ import style from './CheckoutAddress.module.scss';
 import { EditPencilIcon } from 'assets/icons';
 
 interface AddressProps {
-  address: SellerAddressData;
+  address: ISellerAddressData;
   onClick: () => void;
   selected: boolean;
   openModal: () => void;

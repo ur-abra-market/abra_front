@@ -115,7 +115,7 @@ export const ProductsListPage: FC = (): JSX.Element => {
     handleChangeModalActive();
   }
 
-  const getDeletedItems = (items: any): void => {
+  const getDeletedItems = (items: string[]): void => {
     dispatch(deleteProducts(items));
   };
 

@@ -2,11 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { LoadingStatusEnum } from '../../common/types';
-import { IRequestPopularProduct } from '../../services/product/product.serviceTypes';
+import { IPopularProductRequest } from '../../services/product/product.serviceTypes';
 
 import { productService } from 'services/product/product.service';
 
-export const getPopularProductsById = createAsyncThunk<[], IRequestPopularProduct>(
+export const getPopularProductsById = createAsyncThunk<[], IPopularProductRequest>(
   'popularProducts/getPopularProducts',
   async (payload, { rejectWithValue }) => {
     try {

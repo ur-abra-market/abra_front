@@ -8,10 +8,10 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../../../../common/hooks';
 import { parsePhoneNumber } from '../../../../../../common/utils/parsePhoneNumber';
 import { UploadImage } from '../../../../../../components';
-import { IBusinessInfoRequestData } from '../../../../../../services/auth/auth.serviceTypes';
-import { createAccountBusinessInfo } from '../../../../../../store/reducers/authSlice/thunks';
+import { IBusinessInfoRequest } from '../../../../../../services/supplier/supplier.serviceTypes';
 import { getCountries } from '../../../../../../store/reducers/commonSlice';
 import { ISupplierBusinessInfo } from '../../../../../../store/reducers/supplier/profile/slice';
+import { createAccountBusinessInfo } from '../../../../../../store/reducers/supplier/profile/thunks';
 import { SupplierRegisterFormStep } from '../../../../../../ui-kit';
 import {
   SupplierBusinessInfoForm,
@@ -43,7 +43,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
 
   const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
     const { numberBody } = parsePhoneNumber(data.phoneNumber);
-    const businessInfoData: IBusinessInfoRequestData = {
+    const businessInfoData: IBusinessInfoRequest = {
       supplier_data_request: {
         license_number: data.license,
       },

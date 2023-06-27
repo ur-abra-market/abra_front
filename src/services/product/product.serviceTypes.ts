@@ -1,24 +1,20 @@
 import { ProductSortEnum } from '../../common/types';
 import { Categories } from '../../pages/general-pages/MainPage/MainPage';
 
-export interface IResponse<T> {
-  result: T;
-}
-
-export interface GradeDetail {
+interface IGradeDetails {
   grade: number;
   count: number;
 }
 
-export interface IGrade {
+interface IGrade {
   grade_average: string;
   count: number;
 }
 
-export interface IGradeProduct {
+export interface IGradeProductResponse {
   grade_average(grade_average: any): number;
   grade: IGrade;
-  grade_details: GradeDetail[];
+  grade_details: IGradeDetails[];
 }
 
 export interface IProductUser {
@@ -35,13 +31,13 @@ export interface IProductUser {
   phone_number: string;
 }
 
-export interface IRequestPopularProduct {
+export interface IPopularProductRequest {
   product_id: number;
   page_num: number;
   page_size: number;
 }
 
-export interface IRequestCategory {
+export interface ICategoryRequest {
   offset: number;
   limit: number;
   category_id: Categories;
@@ -49,20 +45,18 @@ export interface IRequestCategory {
   ascending: boolean;
 }
 
-export interface IRequestSimilarProduct extends IRequestPopularProduct {}
-
-export interface IRequestProduct {
+export interface IProductRequest {
   product_id: number;
 }
 
-export interface IProductImage {
+interface IProductImage {
   id?: number;
   image_url?: string;
   order?: number;
   product?: string;
 }
 
-export interface IProductSupplier {
+interface IProductSupplier {
   additional_info: string;
   grade_average: number;
   id: number;
@@ -93,10 +87,7 @@ export interface IProductPrice {
   value?: number;
 }
 
-export interface IGradeProductRequest extends IRequestProduct {}
-export interface IImageProductRequest extends IRequestProduct {}
-
-export interface IPrice {
+interface IPrice {
   value: string;
   min_quantity: number;
   discount: string;
@@ -117,4 +108,20 @@ export interface IProduct {
   daily_actual_demand: number;
   prices: IPrice[];
   supplier_info?: any;
+}
+
+export interface IProductPaginateList {
+  page_size: number;
+  amountPages: number;
+  page_num: number;
+  allItems: number;
+  sort_type: string;
+  category: string;
+  price_from: number;
+  price_to: number;
+  discount: boolean;
+  ascending: boolean;
+  brands: [];
+  materials: [];
+  sizes: [];
 }
