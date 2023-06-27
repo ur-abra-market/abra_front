@@ -3,7 +3,6 @@ import { baseConfigService } from '../baseConfig.service';
 import {
   IConfirmEmailRequest,
   IRegisterRequest,
-  ICurrentUserInfoResponse,
   IChangePasswordRequest,
   ILoginRequest,
   ILoginResponse,
@@ -43,10 +42,6 @@ export const authService = {
 
   login: (params: ILoginRequest) => {
     return baseConfigService.post<ILoginResponse>(`login/`, params);
-  },
-
-  loginCurrentUser: () => {
-    return baseConfigService.get<ICurrentUserInfoResponse>(`login/current/`);
   },
 
   logout: async () => {
