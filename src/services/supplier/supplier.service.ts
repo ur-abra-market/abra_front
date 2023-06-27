@@ -25,7 +25,7 @@ export const supplierService = {
     return data.result;
   },
 
-  sendAccountBusinessInfo: async (params: IBusinessInfoRequest) => {
+  createBusinessInfo: async (params: IBusinessInfoRequest) => {
     const { data } = await baseConfigService.post(`register/business/sendInfo/`, params);
 
     return data;
@@ -56,7 +56,7 @@ export const supplierService = {
     return data.result;
   },
 
-  getNotifications: async () => {
+  fetchNotifications: async () => {
     const { data } = await baseConfigService.get<IServerResponse<ISupplierNotifications>>(
       `suppliers/notifications/`,
     );

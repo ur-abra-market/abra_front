@@ -5,7 +5,6 @@ import { IAsyncThunkConfig, LoadingStatusEnum } from '../../../common/types';
 import authService from '../../../services/auth/auth.service';
 import {
   IChangePasswordRequest,
-  ICurrentUserInfoResponse,
   IPersonalInfoRequest,
   ILoginRequest,
   ILoginResponse,

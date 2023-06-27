@@ -37,7 +37,7 @@ export const createAccountBusinessInfo = createAsyncThunk<
   'createAccount/createAccountBusinessInfo',
   async (businessInfoData, { rejectWithValue }) => {
     try {
-      return await supplierService.sendAccountBusinessInfo(businessInfoData);
+      return await supplierService.createBusinessInfo(businessInfoData);
     } catch (error) {
       return rejectWithValue('[createAccountBusinessInfo]: Error');
     }
@@ -113,7 +113,7 @@ export const getSupplierNotifications = createAsyncThunk<any, void>(
   'supplierAccount/getSupplierNotifications',
   async (_, { rejectWithValue, dispatch }) => {
     try {
-      return await supplierService.getNotifications();
+      return await supplierService.fetchNotifications();
     } catch (error) {
       const errorMessage =
         error instanceof AxiosError

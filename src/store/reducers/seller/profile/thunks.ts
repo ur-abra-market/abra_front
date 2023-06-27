@@ -40,7 +40,7 @@ export const getSellerNotifications = createAsyncThunk<any, void>(
   'seller/getSellerNotifications',
   async (_, { rejectWithValue, dispatch }) => {
     try {
-      return await sellerService.getNotifications();
+      return await sellerService.fetchNotifications();
     } catch (error) {
       const errorMessage =
         error instanceof AxiosError

@@ -34,7 +34,7 @@ export const sellerService = {
     );
   },
 
-  getNotifications: async () => {
+  fetchNotifications: async () => {
     const { data } = await baseConfigService.get<IServerResponse<ISellerNotifications>>(
       `sellers/notifications/`,
     );

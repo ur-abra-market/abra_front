@@ -4,11 +4,6 @@ import { AxiosError } from 'axios';
 import { userService } from '../../../services';
 import { IAccountPersonalInfoResponse } from '../../../services/user/user.serviceTypes';
 
-import { IAsyncThunkConfig, LoadingStatusEnum } from 'common/types';
-import authService from 'services/auth/auth.service';
-import { IChangeEmailRequest } from 'services/auth/auth.serviceTypes';
-import { setLoading, setResponseNotice } from 'store/reducers/appSlice/slice';
-
 export const getPersonalInfo = createAsyncThunk<IAccountPersonalInfoResponse, void>(
   'user/getPersonalInfo',
   async (_, { rejectWithValue }) => {
@@ -78,29 +73,3 @@ export const getFavoritesProductsService = createAsyncThunk<any, void>(
     }
   },
 );
-
-export const changeEmail = createAsyncThunk<
-  string,
-  IChangeEmailRequest,
-  IAsyncThunkConfig
->('auth/changeEmail', async (params, { dispatch, rejectWithValue }) => {
-  dispatch(setLoading(LoadingStatusEnum.Loading));
-  try {
-    const response = await authService.changeEmail(params);
-
-    return response.data.result;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      dispatch(
-        setResponseNotice({
-          noticeType: 'error',
-          message: error.response?.data?.error || error.message,
-        }),
-      );
-    }
-
-    return rejectWithValue('[changeEmail]: Error');
-  } finally {
-    dispatch(setLoading(LoadingStatusEnum.Idle));
-  }
-});
