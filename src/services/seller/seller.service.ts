@@ -9,33 +9,35 @@ import {
 
 export const sellerService = {
   getSellerAvatar: async () => {
-    const { data } = await baseConfigService.get('sellers/avatar');
+    const { data } = await baseConfigService.get('sellers/avatar/');
 
     return data;
   },
 
   getSellerAddresses: async () => {
-    const { data } = await baseConfigService.get('sellers/addresses');
+    const { data } = await baseConfigService.get('sellers/addresses/');
 
-    return data;
+    return data.result;
   },
 
   addAddress: async (params: SellerAddressData) => {
-    const { data } = await baseConfigService.post('sellers/addAddress', params);
+    const { data } = await baseConfigService.post('sellers/addAddress/', params);
 
     return data;
   },
 
-  editAddress: async (params: any) => {
-    const { data } = await baseConfigService.patch(`sellers/updateAddress`, {
+  updateAddress: async (params: any) => {
+    const { data } = await baseConfigService.patch(`sellers/updateAddress/`, {
       ...params,
     });
 
     return data;
   },
 
-  deleteAddress: (id: number) => {
-    return baseConfigService.delete<ResponseDeleteAddress>(`sellers/removeAddress/${id}`);
+  deleteAddress: async (id: number) => {
+    return baseConfigService.delete<ResponseDeleteAddress>(
+      `sellers/removeAddress/${id}/`,
+    );
   },
 
   getNotifications: async () => {

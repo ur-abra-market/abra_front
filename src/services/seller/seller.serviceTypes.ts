@@ -29,13 +29,11 @@ export interface PayloadEditAddress {
 }
 
 export interface SellerAddressData {
-  phone_country_code: string;
+  country_id: number;
+  is_main: boolean;
   phone_number: string;
-  address_id: number;
   first_name: string;
   last_name: string;
-  id: number;
-  country: string;
   area: string;
   city: string;
   street: string;
@@ -43,7 +41,6 @@ export interface SellerAddressData {
   apartment: string;
   postal_code: string;
 }
-
 export interface EditAddressData {
   id: number;
   data: SellerAddressData;
