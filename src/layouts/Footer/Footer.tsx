@@ -5,6 +5,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 import { useAppSelector } from '../../common/hooks';
 import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from '../../routes';
+import { userRoleSelector } from '../../store/reducers/authSlice';
 
 import style from './Footer.module.scss';
 
@@ -18,9 +19,8 @@ interface IFooter
 export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
   const routesToShow = new Set(['personal_account', 'product', 'order_history', '']);
   const { pathname } = useLocation();
-  const currentUser = useAppSelector(state => state.auth.userRole);
-  const isShowTopNav =
-    currentUser === 'seller' && routesToShow.has(pathname.split('/')[1]);
+  const userRole = useAppSelector(userRoleSelector);
+  const isShowTopNav = userRole === 'seller' && routesToShow.has(pathname.split('/')[1]);
 
   const footerClasses = cn(style.footer, {
     [style.footer_white]: variant === 'white',

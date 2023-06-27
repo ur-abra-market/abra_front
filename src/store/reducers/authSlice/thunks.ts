@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { IAsyncThunkConfig, LoadingStatusEnum } from '../../../common/types';
-import { userService } from '../../../services';
 import authService from '../../../services/auth/auth.service';
 import {
   IChangePasswordRequest,
@@ -16,8 +15,6 @@ import {
   IConfirmEmailRequest,
   IPasswordResponse,
 } from '../../../services/auth/auth.serviceTypes';
-import { IAccountPersonalInfoRequest } from '../../../services/common/common.serviceTypes';
-import { IAccountPersonalInfoResponse } from '../../../services/user/user.serviceTypes';
 import { getUserRole } from '../appSlice';
 import { setLoading, setResponseNotice } from '../appSlice/slice';
 
@@ -121,45 +118,6 @@ export const logout = createAsyncThunk<IPasswordResponse, void, IAsyncThunkConfi
       return rejectWithValue('[logout]: Error');
     } finally {
       dispatch(setLoading(LoadingStatusEnum.Idle));
-    }
-  },
-);
-
-export const getCurrentUserInfo = createAsyncThunk<
-  ICurrentUserInfoResponse,
-  void,
-  IAsyncThunkConfig
->('login/getCurrentUserInfo', async (_, { rejectWithValue, dispatch }) => {
-  dispatch(setLoading(LoadingStatusEnum.Loading));
-
-  try {
-    const response = await authService.loginCurrentUser();
-
-    return response.data;
-  } catch (error) {
-    return rejectWithValue('[getCurrentUserInfo]: Error');
-  } finally {
-    dispatch(setLoading(LoadingStatusEnum.Idle));
-  }
-});
-
-export const updateAccountPersonalInfo = createAsyncThunk<
-  IAccountPersonalInfoResponse,
-  IAccountPersonalInfoRequest,
-  IAsyncThunkConfig
->(
-  'formRegistration/updateAccountPersonalInfo',
-  async (personalInfo, { dispatch, rejectWithValue }) => {
-    try {
-      const response = await userService.updateAccountPersonalInfo(personalInfo);
-
-      if (response.result) {
-        dispatch(getCurrentUserInfo());
-      }
-
-      return response;
-    } catch (error) {
-      return rejectWithValue('[updateAccountPersonalInfo]: Error');
     }
   },
 );
