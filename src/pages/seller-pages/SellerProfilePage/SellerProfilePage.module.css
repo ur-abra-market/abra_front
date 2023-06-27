@@ -142,13 +142,14 @@
 }
 
 .header_link {
+  cursor: pointer;
+
   font-size: var(--fz-s2);
   font-weight: var(--regular);
   font-style: normal;
   line-height: var(--fz-l2);
   color: var(--color-accent);
   text-decoration-line: underline;
-
 }
 
 .button_link_container {
@@ -387,8 +388,8 @@
 }
 
 .completed_icon {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
 }
 
 .select {
