@@ -1,0 +1,143 @@
+.address_popup_modal_exit {
+  cursor: pointer;
+
+  position: absolute;
+  top: -33px;
+  right: -88px;
+
+  width: 40px;
+  height: 40px;
+  padding: 12px;
+
+  background: var(--color-white);
+  border-radius: 50%;
+}
+
+.address_popup_add_address{
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.address_popup_row1 {
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  align-self: start;
+  justify-content: space-between;
+
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.address_popup_checkbox {
+  display: flex;
+  flex-direction: row;
+  gap: 48px;
+}
+
+.checkbox{
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.address_popup_block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.address_popup_block_title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.address_popup_block_row2 {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  width: 100%;
+
+}
+
+.address_popup_input_number{
+  width: 458px;
+}
+
+.address_popup_block_row2_box {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.address_popup_block_row2_box_title {
+  margin-bottom: 8px;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  color: #828282;
+}
+
+.text_modal {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.text_modal_input {
+  //position: unset;
+  display: block;
+}
+
+.text_modal_title {
+  margin-top: 16px;
+  margin-bottom: 8px;
+
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  color: #828282;
+}
+
+.address_popup_phone_number {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+
+  width: 100%;
+  margin-top: 8px;
+}
+
+.address_popup_phone_title {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  color: #828282;
+}
+
+.address_popup_phone_number_select {
+  width: 160px;
+}
+
+.address_popup_button {
+  cursor: pointer;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.select{
+  font-size: 14px;
+  background: #F2F2F2;
+  border-radius: 12px;
+}
+
+.edit_address_icon_box{
+  cursor: pointer;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
