@@ -5,16 +5,15 @@ import { supplierService } from '../../../../services';
 import { setResponseNotice } from '../../appSlice/slice';
 
 import { IAsyncThunkConfig, IServerResponse } from 'common/types';
-import authService from 'services/auth/auth.service';
 import {
   ISupplierErrorResponse,
-  ISupplierCompanyInfoData,
-  ISuppliersUpdateISupplierCompanyInfo,
+  ISupplierBusinessInfo,
+  ISupplierUpdateBusinessInfo,
   IBusinessInfoRequest,
 } from 'services/supplier/supplier.serviceTypes';
 
 export const getBusinessInfo = createAsyncThunk<
-  ISupplierCompanyInfoData,
+  ISupplierBusinessInfo,
   void,
   IAsyncThunkConfig
 >('supplierProfile/getBusinessInfo', async (_, { rejectWithValue }) => {
@@ -47,7 +46,7 @@ export const createAccountBusinessInfo = createAsyncThunk<
 
 export const updateBusinessInfo = createAsyncThunk<
   void,
-  ISuppliersUpdateISupplierCompanyInfo,
+  ISupplierUpdateBusinessInfo,
   IAsyncThunkConfig
 >('supplierProfile/updateBusinessInfo', async (arg, { rejectWithValue, dispatch }) => {
   try {
