@@ -13,7 +13,7 @@ export const sellerService = {
   getSellerAddresses: async () => {
     const { data } = await baseConfigService.get('sellers/addresses/');
 
-    return data;
+    return data.result;
   },
 
   addAddress: async (params: ISellerAddressData) => {
@@ -22,8 +22,10 @@ export const sellerService = {
     return data;
   },
 
-  editAddress: async (params: any) => {
-    const { data } = await baseConfigService.patch(`sellers/updateAddress/`, params);
+  updateAddress: async (params: any) => {
+    const { data } = await baseConfigService.patch(`sellers/updateAddress/`, {
+      ...params,
+    });
 
     return data;
   },

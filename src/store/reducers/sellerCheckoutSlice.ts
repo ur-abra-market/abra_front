@@ -35,7 +35,7 @@ export const editAddress = createAsyncThunk<any, any>(
   'modal/editAddress',
   async (params, { dispatch, rejectWithValue }) => {
     try {
-      const { data } = await sellerService.editAddress(params);
+      const { data } = await sellerService.updateAddress(params);
 
       dispatch(getSellerAddresses());
 

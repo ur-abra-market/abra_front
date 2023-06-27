@@ -255,7 +255,7 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
   const onSubmit = (data: IAddress): void => {
     if (!isValid) return;
 
-    console.log();
+    // console.log();
     dispatch(editAddress(data));
     setModal(false);
   };

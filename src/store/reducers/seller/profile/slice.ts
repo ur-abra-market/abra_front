@@ -84,6 +84,29 @@ export interface ISellerPersonalInfo {
   avatar: string;
 }
 
+export interface ISellerAddressData {
+  addressId: number;
+  apartment: string;
+  area: string;
+  building: string;
+  city: string;
+  country: string;
+  countryId: number;
+  firstName: string;
+  isMain: boolean;
+  lastName: string;
+  phoneNumber: string;
+  postalCode: string;
+  street: string;
+}
+
+// to thunk
+
+export interface Root {
+  ok: boolean;
+  result: IAddress[];
+}
+
 export interface IAddress {
   id: number;
   phone_number: string;
@@ -165,7 +188,8 @@ const sellerProfileSlice = createSlice({
         state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(getSellerAddresses.fulfilled, (state, action) => {
-        state.addresses = action.payload.result;
+        state.addresses = action.payload;
+        state.loading = LoadingStatusEnum.Success;
       })
       .addCase(getSellerAddresses.rejected, state => {
         state.loading = LoadingStatusEnum.Failed;

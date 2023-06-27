@@ -2,7 +2,10 @@ import { FC } from 'react';
 
 import cn from 'classnames';
 
+import Modal from '../../components/Modal';
+import SellerEditAddressChangeForm from '../../pages/seller-pages/SellerProfilePage/Addresses/SellerEditAddressChangeForm/SellerEditAddressChangeForm';
 import { ISellerAddressData } from '../../services/seller/seller.serviceTypes';
+import { IAddress } from '../../store/reducers/seller/profile/slice';
 import { Checkbox } from '../../ui-kit';
 import { EditAddressModal } from '../ui/popup/EdtiAddressModal/EditAddressModal';
 
@@ -11,7 +14,7 @@ import style from './CheckoutAddress.module.scss';
 import { EditPencilIcon } from 'assets/icons';
 
 interface AddressProps {
-  address: ISellerAddressData;
+  address: IAddress;
   onClick: () => void;
   selected: boolean;
   openModal: () => void;
@@ -54,7 +57,7 @@ const CheckoutAddress: FC<AddressProps> = ({
       </div>
       <span className={style.address_content_line} />
       <span className={style.address_place}>
-        {apartment},{building},{country},{city},{street},{area},{postal_code}
+        {/* {apartment},{building},{country},{city},{street},{area},{postal_code} */}
       </span>
 
       <div
@@ -63,7 +66,10 @@ const CheckoutAddress: FC<AddressProps> = ({
           display: selected ? 'flex' : 'none',
         }}
       >
-        <EditAddressModal modal={modal} setModal={openModal} dataArr={address} />
+        {/* <EditAddressModal modal={modal} setModal={openModal} dataArr={address} /> */}
+        <Modal showModal={modal} closeModal={openModal}>
+          <SellerEditAddressChangeForm address={address} />
+        </Modal>
         <div className={style.address_main_text}>Main Address</div>
         <Checkbox variant="default" checked={selected} readOnly />
       </div>
