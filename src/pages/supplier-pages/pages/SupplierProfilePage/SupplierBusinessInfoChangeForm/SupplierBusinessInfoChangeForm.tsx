@@ -13,7 +13,6 @@ import {
   supplierBusinessInfoSelector,
   updateBusinessInfo,
 } from '../../../../../store/reducers/supplier/profile';
-import { ISupplierBusinessInfo } from '../../../../../store/reducers/supplier/profile/slice';
 import {
   SupplierBusinessInfoForm,
   supplierBusinessInfoFormValidationSchema,
@@ -21,6 +20,7 @@ import {
 
 import style from './SupplierBusinessInfoChangeForm.module.scss';
 
+import { ISupplierBusinessInfoData } from 'common/types';
 import {
   supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
@@ -54,7 +54,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
     setValue('phoneNumber', `${countryCode}${phoneNumber}`);
   }, [businessInfoData]);
 
-  const formMethods = useForm<ISupplierBusinessInfo>({
+  const formMethods = useForm<ISupplierBusinessInfoData>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
     mode: 'onChange',
   });
@@ -64,7 +64,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
 
   const isPhoneNumberDisable = phoneNumberData === `${countryCode}${phoneNumber}`;
 
-  const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
+  const onSubmit = async (data: ISupplierBusinessInfoData): Promise<void> => {
     const { numberBody } = parsePhoneNumber(data.phoneNumber);
     const updateData: ISuppliersUpdateCompanyInfo = {
       supplier_data_request: {
@@ -73,7 +73,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
       company_data_request: {
         business_email: data.email,
         business_sector: data.businessSector.value,
-        country_id: data.countryRegistration!,
+        country_id: data.countryId!,
         is_manufacturer: data.isManufacturer,
         address: data.address,
         number_employees: Number(data.numEmployees!),
@@ -83,7 +83,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
       },
       company_phone_data_request: {
         phone_number: numberBody,
-        country_id: data.phoneId!,
+        country_id: data.countryId!,
       },
     };
 
