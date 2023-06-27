@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { productService } from '../../services/product/product.service';
-import { ICategoryRequest } from '../../services/product/product.serviceTypes';
+import { productService } from 'services/product/product.service';
+import { ICategoryRequest } from 'services/product/product.serviceTypes';
 
 export interface MainPageInitialState {
   products?: { [key: number]: any[] };

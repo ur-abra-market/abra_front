@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import { WithLayout } from '../../../common/hocs/WithLayout';
-import CartList from '../../../old-components/ui/TypesView/cart/CartList/CartList';
-import CartOrder from '../../../old-components/ui/TypesView/cart/CartOrder/CartOrder';
-
 import style from './CartPage.module.scss';
+
+import { WithLayout } from 'common/hocs/WithLayout';
+import CartList from 'old-components/ui/TypesView/cart/CartList/CartList';
+import CartOrder from 'old-components/ui/TypesView/cart/CartOrder/CartOrder';
 
 export const CartPage = WithLayout((): JSX.Element => {
   const [cartItems] = useState([

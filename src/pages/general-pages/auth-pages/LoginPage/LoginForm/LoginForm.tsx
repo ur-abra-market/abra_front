@@ -5,15 +5,15 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import { emailValidationSchema } from '../../../../../common/constants';
-import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { LoadingStatusEnum } from '../../../../../common/types';
-import { HOME } from '../../../../../routes';
-import { loadingSelector } from '../../../../../store/reducers/appSlice';
-import { loginUser, isAuthSelector } from '../../../../../store/reducers/authSlice';
-import { Button, Input } from '../../../../../ui-kit';
-
 import style from './LoginForm.module.scss';
+
+import { emailValidationSchema } from 'common/constants';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { LoadingStatusEnum } from 'common/types';
+import { HOME } from 'routes';
+import { loadingSelector } from 'store/reducers/appSlice';
+import { loginUser, isAuthSelector } from 'store/reducers/authSlice';
+import { Button, Input } from 'ui-kit';
 
 const MAX_COUNT = 32;
 

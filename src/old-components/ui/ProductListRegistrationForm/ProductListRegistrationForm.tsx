@@ -5,28 +5,18 @@ import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import { useAppDispatch, useAppSelector } from '../../../common/hooks';
-import { HOME } from '../../../routes';
-import {
-  addProductService,
-  uploadImageService,
-} from '../../../store/reducers/supplier/other';
-import { getBusinessInfo } from '../../../store/reducers/supplier/profile';
-import {
-  Button,
-  Input,
-  ISelectOption,
-  Label,
-  LoaderCircular,
-  Select,
-} from '../../../ui-kit';
-import DropDownField from '../../DropDownField';
-import Form from '../../Form';
-import ProdInfoInputs from '../ProdInfoInputs';
-import SelectionsForProperties from '../SelectionsForProperties/SelectionsForProperties';
-import TypesPage from '../TypesView/TypesPage';
-
 import style from './ProductListRegistrationForm.module.scss';
+
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import DropDownField from 'old-components/DropDownField';
+import Form from 'old-components/Form';
+import ProdInfoInputs from 'old-components/ui/ProdInfoInputs';
+import SelectionsForProperties from 'old-components/ui/SelectionsForProperties/SelectionsForProperties';
+import TypesPage from 'old-components/ui/TypesView/TypesPage';
+import { HOME } from 'routes';
+import { addProductService, uploadImageService } from 'store/reducers/supplier/other';
+import { getBusinessInfo } from 'store/reducers/supplier/profile';
+import { Button, Input, ISelectOption, Label, LoaderCircular, Select } from 'ui-kit';
 
 interface ProductProperties {
   key: string;

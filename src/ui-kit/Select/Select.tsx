@@ -2,12 +2,12 @@ import React, { forwardRef, ReactNode, useEffect, useRef, useState } from 'react
 
 import cn from 'classnames';
 
-import { useOnClickOutside, useOnHoverOutside } from '../../common/hooks';
-
 import styles from './Select.module.scss';
 import { SelectHeader } from './SelectHeader/SelectHeader';
 import { SelectItem } from './SelectItem/SelectItem';
 import { SelectMenu } from './SelectMenu/SelectMenu';
+
+import { useOnClickOutside, useOnHoverOutside } from 'common/hooks';
 
 const SPACE_KEYBOARD = 'Space';
 const ENTER_KEYBOARD = 'Enter';

@@ -1,10 +1,9 @@
 import { FC } from 'react';
 
-import ProductItem from '../ProductItem/ProductItem';
-
 import style from './ShopItem.module.scss';
 
 import { ArrowRightIcon, DotIcon, StarEmptyIcon } from 'assets/icons'; // 5 10px for ArrowRightIcon
+import ProductItem from 'old-components/ui/TypesView/cart/ProductItem/ProductItem';
 import { Checkbox } from 'ui-kit';
 
 interface ShopItemProps {

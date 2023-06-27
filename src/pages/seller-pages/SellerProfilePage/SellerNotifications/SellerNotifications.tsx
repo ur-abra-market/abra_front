@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
-import { NotificationsChangeForm } from '../../../../modules';
-import { ISellerNotifications } from '../../../../services/seller/seller.serviceTypes';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { NotificationsChangeForm } from 'modules';
+import { ISellerNotifications } from 'services/seller/seller.serviceTypes';
 import {
   getSellerNotifications,
   updateSellerNotifications,
   sellerLoadingSelector,
   sellerNotificationSelector,
-} from '../../../../store/reducers/seller/profile';
+} from 'store/reducers/seller/profile';
 
 export interface INotificationSellerData {
   id: keyof ISellerNotifications;

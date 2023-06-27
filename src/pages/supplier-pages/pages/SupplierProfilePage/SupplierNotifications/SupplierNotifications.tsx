@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { NotificationsChangeForm } from '../../../../../modules';
-import { ISupplierNotifications } from '../../../../../services/supplier/supplier.serviceTypes';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { NotificationsChangeForm } from 'modules';
+import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
 import {
   getSupplierNotifications,
   updateSupplierNotifications,
   supplierLoadingSelector,
   supplierNotificationsSelector,
-} from '../../../../../store/reducers/supplier/profile';
+} from 'store/reducers/supplier/profile';
 
 export interface INotificationSupplierData {
   id: keyof ISupplierNotifications;

@@ -2,9 +2,9 @@ import React, { useState, useEffect, FC } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { discount } from '../../store/reducers/filterSlice';
-
 import style from './SwitchBox.module.scss';
+
+import { discount } from 'store/reducers/filterSlice';
 
 interface SwitchBoxProps {
   label: string;

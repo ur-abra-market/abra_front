@@ -1,11 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
-import { CHECKOUT_SUCCESS } from '../../../../routes';
-import { Button } from '../../../../ui-kit';
-
 import style from './CheckOrder.module.scss';
 
 import { LockIcon } from 'assets/icons';
+import { CHECKOUT_SUCCESS } from 'routes';
+import { Button } from 'ui-kit';
 
 const CheckOrder = (): JSX.Element => {
   const navigate = useNavigate();

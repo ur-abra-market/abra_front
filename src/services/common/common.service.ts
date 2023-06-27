@@ -1,8 +1,7 @@
-import { baseConfigService } from '../baseConfig.service';
-
 import { IAllCategories, ICountry, INumberEmployees } from './common.serviceTypes';
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
+import { baseConfigService } from 'services/baseConfig.service';
 
 export const commonService = {
   getCountry: async () => {

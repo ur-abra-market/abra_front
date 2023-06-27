@@ -3,12 +3,12 @@ import React from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import { Link } from 'react-router-dom';
 
-import { WithLayout } from '../../../common/hocs/WithLayout';
-import { CONTACT } from '../../../routes';
-
 import style from './FAQ.module.scss';
 
-import { ContentBox } from './index';
+import { ContentBox } from '.';
+
+import { WithLayout } from 'common/hocs/WithLayout';
+import { CONTACT } from 'routes';
 
 const FAQData = [
   {

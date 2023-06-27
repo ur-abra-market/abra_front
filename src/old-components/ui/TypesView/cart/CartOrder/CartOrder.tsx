@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import { Button } from '../../../../../ui-kit';
-
 import style from './CartOrder.module.scss';
+
+import { Button } from 'ui-kit';
 
 interface CartOrderProps {
   info: any;

@@ -2,11 +2,10 @@ import React from 'react';
 
 import { ScrollRestoration } from 'react-router-dom';
 
-import HeaderForChangePages from '../../../old-components/HeaderForChangePages';
-
 import style from './TermsAndConditions.module.scss';
 
 import { Footer } from 'layouts';
+import HeaderForChangePages from 'old-components/HeaderForChangePages';
 
 export const TermsAndConditionsPage = (): JSX.Element => {
   return (

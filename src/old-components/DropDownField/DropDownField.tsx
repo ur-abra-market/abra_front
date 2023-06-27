@@ -1,10 +1,9 @@
 import { FC, PropsWithChildren } from 'react';
 
-import styles from '../../ui-kit/Select/Select.module.scss';
-
 import style from './DropDownField.module.scss';
 
 import { ArrowRightIcon } from 'assets/icons'; // 5 10px
+import styles from 'ui-kit/Select/Select.module.scss';
 
 interface DropDownFieldProps {
   title: string;

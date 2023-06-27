@@ -1,7 +1,7 @@
-import { FORGOT_PASSWORD } from '../../../../routes';
-import { AuthPageLayout } from '../assets';
-
 import { LoginForm } from '.';
+
+import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
+import { FORGOT_PASSWORD } from 'routes';
 
 export const LoginPage = (): JSX.Element => {
   return (

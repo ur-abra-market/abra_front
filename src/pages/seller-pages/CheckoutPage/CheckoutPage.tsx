@@ -2,12 +2,11 @@ import React from 'react';
 
 import { Navigate } from 'react-router-dom';
 
-import { useAppSelector } from '../../../common/hooks';
-import HeaderForChangePages from '../../../old-components/HeaderForChangePages';
-
 import style from './CheckoutPage.module.scss';
 
+import { useAppSelector } from 'common/hooks';
 import { Footer } from 'layouts';
+import HeaderForChangePages from 'old-components/HeaderForChangePages';
 import CheckDelivery from 'old-components/ui/checkout/CheckDelivery';
 import CheckItems from 'old-components/ui/checkout/CheckItems';
 import CheckOrder from 'old-components/ui/checkout/CheckOrder';

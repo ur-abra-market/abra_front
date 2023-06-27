@@ -1,7 +1,7 @@
-import { ICountry } from '../../../services/common/common.serviceTypes';
-import { RootStateType } from '../../createStore';
-
 import { INumberEmployees } from './slice';
+
+import { ICountry } from 'services/common/common.serviceTypes';
+import { RootStateType } from 'store/createStore';
 
 export const numberEmployeesSelector = (state: RootStateType): INumberEmployees[] =>
   state.common.numberEmployees;

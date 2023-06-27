@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { WithLayout } from '../../../common/hocs/WithLayout';
-
 import style from './SellAbra.module.scss';
 
-import { ContentBox } from './index';
+import { ContentBox } from '.';
+
+import { WithLayout } from 'common/hocs/WithLayout';
 
 export const SellAbraPage = WithLayout(() => {
   return (

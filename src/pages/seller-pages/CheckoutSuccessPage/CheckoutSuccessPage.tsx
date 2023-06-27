@@ -2,11 +2,11 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { WithLayout } from '../../../common/hocs/WithLayout';
-import { HOME, ORDER_HISTORY } from '../../../routes';
-import { Button } from '../../../ui-kit';
-
 import style from './CheckoutSuccessPage.module.scss';
+
+import { WithLayout } from 'common/hocs/WithLayout';
+import { HOME, ORDER_HISTORY } from 'routes';
+import { Button } from 'ui-kit';
 
 export const CheckoutSuccessPage = WithLayout((): JSX.Element => {
   const navigate = useNavigate();

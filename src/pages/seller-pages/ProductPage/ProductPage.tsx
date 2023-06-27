@@ -2,17 +2,12 @@ import React, { useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { WithLayout } from '../../../common/hocs/WithLayout';
-import { useAppDispatch, useAppSelector } from '../../../common/hooks';
-import ProductCarousel from '../../../components/ProductCarousel/ProductCarousel';
-import { getPopularProductsById } from '../../../store/reducers/popularProducts';
-import { getSimilarProducts } from '../../../store/reducers/similarProducts';
-import { getGradesByProductId } from '../../../store/reducers/targetProductSlice';
-import { Button, LoaderCircular } from '../../../ui-kit';
-
 import style from './ProductPage.module.scss';
 
+import { WithLayout } from 'common/hocs/WithLayout';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { IImageProduct, LoadingStatusEnum } from 'common/types';
+import ProductCarousel from 'elements/ProductCarousel/ProductCarousel';
 import ChoiceProduct from 'old-components/ui/product/ChoiceProduct';
 import FlagFavorites from 'old-components/ui/product/FlagFavorites';
 import LatestSearch from 'old-components/ui/product/LatestSearch';
@@ -24,6 +19,10 @@ import StatusSeller from 'old-components/ui/product/StatusSeller';
 import { PopularProduct } from 'pages/seller-pages/ProductPage/PopularProduct/PopularProduct';
 import ProductReview from 'pages/seller-pages/ProductPage/ProductReview/ProductReview';
 import { SimilarProduct } from 'pages/seller-pages/ProductPage/SimilarProduct/SimilarProduct';
+import { getPopularProductsById } from 'store/reducers/popularProducts';
+import { getSimilarProducts } from 'store/reducers/similarProducts';
+import { getGradesByProductId } from 'store/reducers/targetProductSlice';
+import { Button, LoaderCircular } from 'ui-kit';
 
 const latestSearchData = [
   { search_query: 'Tag 1', datetime: '' },

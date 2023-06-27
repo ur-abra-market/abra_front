@@ -2,29 +2,6 @@ import React from 'react';
 
 import { createBrowserRouter, RouteObject } from 'react-router-dom';
 
-import { UserRoleType } from '../common/types';
-import { convertCombinedPrivateRoutes } from '../common/utils/combinePrivateRoutes';
-import {
-  AboutUsPage,
-  ChangeEmailPage,
-  ChangePasswordPage,
-  ConfirmEmailPage,
-  ContactSupportPage,
-  ErrorPage,
-  FAQPage,
-  ForgotPasswordPage,
-  LastNewsPage,
-  PrivacyPolicyPage,
-  ResetPasswordPage,
-  SellAbraPage,
-  TermsAndConditionsPage,
-  TutorialPage,
-  CheckEmailPage,
-  LoginPage,
-  RegisterPage,
-  MainPage,
-} from '../pages/general-pages';
-
 import {
   ABOUT,
   CHANGE_EMAIL,
@@ -46,6 +23,29 @@ import {
 } from './constans/root';
 import { sellerRoute } from './sellerRoute';
 import { supplierRoute } from './supplierRoute';
+
+import { UserRoleType } from 'common/types';
+import { convertCombinedPrivateRoutes } from 'common/utils/combinePrivateRoutes';
+import {
+  AboutUsPage,
+  ChangeEmailPage,
+  ChangePasswordPage,
+  ConfirmEmailPage,
+  ContactSupportPage,
+  ErrorPage,
+  FAQPage,
+  ForgotPasswordPage,
+  LastNewsPage,
+  PrivacyPolicyPage,
+  ResetPasswordPage,
+  SellAbraPage,
+  TermsAndConditionsPage,
+  TutorialPage,
+  CheckEmailPage,
+  LoginPage,
+  RegisterPage,
+  MainPage,
+} from 'pages/general-pages';
 
 type Routes = ReturnType<typeof createBrowserRouter>;
 

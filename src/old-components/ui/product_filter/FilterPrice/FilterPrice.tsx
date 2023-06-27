@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
-import { priceFrom, priceTo } from '../../../../store/reducers/filterSlice';
-import { productPaginateService } from '../../../../store/reducers/productPaginateSlice';
-import SwitchBox from '../../../SwitchBox';
-
 import style from './FilterPrice.module.scss';
+
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import SwitchBox from 'old-components/SwitchBox';
+import { priceFrom, priceTo } from 'store/reducers/filterSlice';
+import { productPaginateService } from 'store/reducers/productPaginateSlice';
 
 const FilterPrice = (): JSX.Element => {
   const dispatch = useAppDispatch();

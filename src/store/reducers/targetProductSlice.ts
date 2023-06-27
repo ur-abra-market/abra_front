@@ -1,14 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
+import { IImageProduct, LoadingStatusEnum } from 'common/types';
+import { productService } from 'services/product/product.service';
 import {
   IProduct,
   IProductRequest,
   IGradeProductResponse,
-} from '../../services/product/product.serviceTypes';
-
-import { IImageProduct, LoadingStatusEnum } from 'common/types';
-import { productService } from 'services/product/product.service';
+} from 'services/product/product.serviceTypes';
 
 export const getProductById = createAsyncThunk<IProduct, IProductRequest>(
   'targetProduct/getProductById',

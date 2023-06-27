@@ -2,16 +2,15 @@ import { FC } from 'react';
 
 import cn from 'classnames';
 
-import Modal from '../../components/Modal';
-import SellerEditAddressChangeForm from '../../pages/seller-pages/SellerProfilePage/Addresses/SellerEditAddressChangeForm/SellerEditAddressChangeForm';
-import { ISellerAddressData } from '../../services/seller/seller.serviceTypes';
-import { IAddress } from '../../store/reducers/seller/profile/slice';
-import { Checkbox } from '../../ui-kit';
-import { EditAddressModal } from '../ui/popup/EdtiAddressModal/EditAddressModal';
-
 import style from './CheckoutAddress.module.scss';
 
 import { EditPencilIcon } from 'assets/icons';
+import Modal from 'elements/Modal';
+import { EditAddressModal } from 'old-components/ui/popup/EdtiAddressModal/EditAddressModal';
+import SellerEditAddressChangeForm from 'pages/seller-pages/SellerProfilePage/Addresses/SellerEditAddressChangeForm/SellerEditAddressChangeForm';
+import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
+import { IAddress } from 'store/reducers/seller/profile/slice';
+import { Checkbox } from 'ui-kit';
 
 interface AddressProps {
   address: IAddress;

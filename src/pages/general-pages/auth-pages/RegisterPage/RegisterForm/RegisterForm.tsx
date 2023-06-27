@@ -5,17 +5,16 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { LoadingStatusEnum, ResponseUserRoleType } from '../../../../../common/types';
-import { CHECK_EMAIL } from '../../../../../routes';
-import { IRegisterRequest } from '../../../../../services/auth/auth.serviceTypes';
-import { loadingSelector } from '../../../../../store/reducers/appSlice';
-import { registerUser } from '../../../../../store/reducers/authSlice';
-import { PasswordComplexity } from '../../assets';
-
 import style from './RegisterForm.module.scss';
 
 import { emailValidationSchema, passwordValidationSchema } from 'common/constants';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { LoadingStatusEnum, ResponseUserRoleType } from 'common/types';
+import { PasswordComplexity } from 'pages/general-pages/auth-pages/assets';
+import { CHECK_EMAIL } from 'routes';
+import { IRegisterRequest } from 'services/auth/auth.serviceTypes';
+import { loadingSelector } from 'store/reducers/appSlice';
+import { registerUser } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
 
 export interface IRegisterFormData extends Omit<IRegisterRequest, 'role'> {}

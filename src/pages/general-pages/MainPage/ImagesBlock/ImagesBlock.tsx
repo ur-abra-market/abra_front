@@ -2,15 +2,15 @@ import { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
+import style from './ImagesBlock.module.scss';
+
 import {
   Banner0Image,
   Banner4Image,
   Banner5Image,
   Banner6Image,
   Banner7Image,
-} from '../../../../assets/images';
-
-import style from './ImagesBlock.module.scss';
+} from 'assets/images';
 
 export interface ImagesBlockProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}

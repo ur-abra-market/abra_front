@@ -2,19 +2,18 @@ import React, { CSSProperties, FC, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../common/hooks';
-import { changeById } from '../../store/reducers/basketSlice';
-import { active } from '../../store/reducers/productPaginateSlice';
-import { Stars } from '../../ui-kit';
-import ImgSlider from '../ImgSlider';
-import ProductQuantityControl from '../ProductQuantityControl';
-import ProductPath from '../ui/product/ProductPath';
-import ProductPrice from '../ui/product/ProductPrice';
-import SupplierCard from '../ui/product/SupplierCard';
-
 import style from './CardFull.module.scss';
 
 import { HeaderCartIcon } from 'assets/icons';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import ImgSlider from 'old-components/ImgSlider';
+import ProductQuantityControl from 'old-components/ProductQuantityControl';
+import ProductPath from 'old-components/ui/product/ProductPath';
+import ProductPrice from 'old-components/ui/product/ProductPrice';
+import SupplierCard from 'old-components/ui/product/SupplierCard';
+import { changeById } from 'store/reducers/basketSlice';
+import { active } from 'store/reducers/productPaginateSlice';
+import { Stars } from 'ui-kit';
 
 interface CardFullProps {
   props: any;

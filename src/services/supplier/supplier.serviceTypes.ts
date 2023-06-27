@@ -1,4 +1,4 @@
-import { ICountry } from '../common/common.serviceTypes';
+import { ICountry } from 'services/common/common.serviceTypes';
 
 export interface ISupplierBusinessInfo {
   id: number;

@@ -1,13 +1,12 @@
 import { useState } from 'react';
 
-import { useAppSelector } from '../../../../common/hooks';
-import Card from '../../../Card';
-import CardFull from '../../../CardFull';
-import PaginatorProduct from '../../TypesView/product/PaginatorProduct';
-
 import style from './ProductList.module.scss';
 
 import { ViewGridDisabledIcon, ViewListDisabledIcon } from 'assets/icons';
+import { useAppSelector } from 'common/hooks';
+import Card from 'old-components/Card';
+import CardFull from 'old-components/CardFull';
+import PaginatorProduct from 'old-components/ui/TypesView/product/PaginatorProduct';
 import { ButtonInfo } from 'ui-kit';
 
 const ProductList = (): JSX.Element => {

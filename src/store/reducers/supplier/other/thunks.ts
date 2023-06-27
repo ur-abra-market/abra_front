@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { supplierService } from '../../../../services';
+import { supplierService } from 'services';
 
 export const getPropertiesService = createAsyncThunk<any, any>(
   'supplier/getPropertiesService',

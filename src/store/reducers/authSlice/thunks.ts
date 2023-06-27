@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IAsyncThunkConfig, LoadingStatusEnum } from '../../../common/types';
-import authService from '../../../services/auth/auth.service';
+import { IAsyncThunkConfig, LoadingStatusEnum } from 'common/types';
+import authService from 'services/auth/auth.service';
 import {
   IChangePasswordRequest,
   IPersonalInfoRequest,
@@ -13,9 +13,9 @@ import {
   IRegisterRequest,
   IConfirmEmailRequest,
   IPasswordResponse,
-} from '../../../services/auth/auth.serviceTypes';
-import { getUserRole } from '../appSlice';
-import { setLoading, setResponseNotice } from '../appSlice/slice';
+} from 'services/auth/auth.serviceTypes';
+import { getUserRole } from 'store/reducers/appSlice';
+import { setLoading, setResponseNotice } from 'store/reducers/appSlice/slice';
 
 export const registerUser = createAsyncThunk<
   IPasswordResponse,

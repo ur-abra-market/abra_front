@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import ShopItem from '../ShopItem/ShopItem';
-
 import style from './CartList.module.scss';
+
+import ShopItem from 'old-components/ui/TypesView/cart/ShopItem/ShopItem';
 
 interface CartListProps {
   cartItems?: any[];

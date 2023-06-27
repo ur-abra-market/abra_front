@@ -1,12 +1,10 @@
 import React from 'react';
 
-import { Feedback } from 'components';
-
-import { ButtonInfo, Search } from '../../../ui-kit';
-
 import style from './SellerFavoritesList.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
+import { Feedback } from 'elements';
+import { ButtonInfo, Search } from 'ui-kit';
 
 export const SellerFavoritesList = WithLayout((): JSX.Element => {
   const arr = [];

@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 
 import { RouterProvider } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../common/hooks';
-import { NoticePopup } from '../components';
-import { createRoutes } from '../routes/root';
-import { getUserRole, isAppInitializedSelector } from '../store/reducers/appSlice';
-import { userRoleSelector } from '../store/reducers/authSlice';
-import { LoaderCircular } from '../ui-kit';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { NoticePopup } from 'elements';
+import { createRoutes } from 'routes/root';
+import { getUserRole, isAppInitializedSelector } from 'store/reducers/appSlice';
+import { userRoleSelector } from 'store/reducers/authSlice';
+import { LoaderCircular } from 'ui-kit';
 
 export const App = (): JSX.Element => {
   const dispatch = useAppDispatch();

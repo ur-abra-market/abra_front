@@ -2,12 +2,11 @@ import { FC, useState } from 'react';
 
 import cn from 'classnames';
 
-import Modal from '../../../../../components/Modal';
-import SellerEditAddressChangeForm from '../SellerEditAddressChangeForm/SellerEditAddressChangeForm';
-
 import style from './Address.module.scss';
 
 import { EditPencilIcon } from 'assets/icons';
+import Modal from 'elements/Modal';
+import SellerEditAddressChangeForm from 'pages/seller-pages/SellerProfilePage/Addresses/SellerEditAddressChangeForm/SellerEditAddressChangeForm';
 import { IAddress } from 'store/reducers/seller/profile/slice';
 
 interface AddressProps {

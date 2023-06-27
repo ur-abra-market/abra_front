@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { sellerService } from '../../../../services/seller/seller.service';
-import { ISellerAddressData } from '../../../../services/seller/seller.serviceTypes';
-import { setResponseNotice } from '../../appSlice/slice';
+import { sellerService } from 'services/seller/seller.service';
+import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
+import { setResponseNotice } from 'store/reducers/appSlice/slice';
 
 export const getSellerAvatar = createAsyncThunk<any, void>(
   'seller/getSellerAvatar',

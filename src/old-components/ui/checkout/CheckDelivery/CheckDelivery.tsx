@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
-import Modal from '../../../../components/Modal';
-import { SellerAddAddressChangeForm } from '../../../../pages/seller-pages/SellerProfilePage/Addresses/SellerAddAddressChangeForm/SellerAddAddressChangeForm';
-import { getAddress } from '../../../../store/reducers/sellerCheckoutSlice';
-// import { getSellerInfoService } from '../../../../store/reducers/sellerSlice';
-import CheckoutAddress from '../../../CheckoutAddress/CheckoutAddress';
-
 import style from './CheckDelivery.module.scss';
+
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import Modal from 'elements/Modal';
+import CheckoutAddress from 'old-components/CheckoutAddress/CheckoutAddress';
+import { SellerAddAddressChangeForm } from 'pages/seller-pages/SellerProfilePage/Addresses/SellerAddAddressChangeForm/SellerAddAddressChangeForm';
+import { getAddress } from 'store/reducers/sellerCheckoutSlice';
+// import { getSellerInfoService } from '../../../../store/reducers/sellerSlice';
 
 const CheckDelivery = (): JSX.Element => {
   const { addresses } = useAppSelector(state => state.sellerProfile);

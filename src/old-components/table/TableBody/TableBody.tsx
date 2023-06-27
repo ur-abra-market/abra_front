@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 
-import { LoaderCircular } from '../../../ui-kit';
+import { LoaderCircular } from 'ui-kit';
 
 interface TableBodyProps {
   data: any[];

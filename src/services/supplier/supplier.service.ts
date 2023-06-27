@@ -1,12 +1,12 @@
-import { IServerResponse } from '../../common/types';
-import { baseConfigService } from '../baseConfig.service';
-
 import {
   ISupplierBusinessInfo,
   ISupplierNotifications,
   ISupplierUpdateBusinessInfo,
   IBusinessInfoRequest,
 } from './supplier.serviceTypes';
+
+import { IServerResponse } from 'common/types';
+import { baseConfigService } from 'services/baseConfig.service';
 
 export const supplierService = {
   hasCompanyInfo: async () => {

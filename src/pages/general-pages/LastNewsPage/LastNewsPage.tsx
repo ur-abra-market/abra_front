@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import { WithLayout } from '../../../common/hocs/WithLayout';
-
 import style from './LastNews.module.scss';
 
-import { News } from './index';
+import { News } from '.';
+
+import { WithLayout } from 'common/hocs/WithLayout';
 
 export const LastNewsPage = WithLayout((): JSX.Element => {
   const [text] = useState([

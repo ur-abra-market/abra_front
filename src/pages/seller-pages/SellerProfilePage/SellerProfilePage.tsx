@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 
-import { useAppDispatch } from '../../../common/hooks';
-import { AccountManagement } from '../../../components';
-
 import { SellerAddresses } from './Addresses/SellerAddresses';
 import Orders from './Orders/Orders';
 import { SellerNotifications } from './SellerNotifications/SellerNotifications';
 import style from './SellerProfilePage.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
+import { useAppDispatch } from 'common/hooks';
+import { AccountManagement } from 'elements';
 import { SellerPersonalInfoChangeForm } from 'pages/seller-pages/SellerProfilePage/SellerPersonalInfoChangeForm/SellerPersonalInfoChangeForm';
 import { getCountries } from 'store/reducers/commonSlice';
 

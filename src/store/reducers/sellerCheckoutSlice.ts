@@ -1,14 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import {
-  IAsyncThunkConfig,
-  IServerResponse,
-  LoadingStatusEnum,
-} from '../../common/types';
-import { sellerService } from '../../services/seller/seller.service';
-import { ISellerAddressData } from '../../services/seller/seller.serviceTypes';
-
+import { IAsyncThunkConfig, IServerResponse, LoadingStatusEnum } from 'common/types';
+import { sellerService } from 'services/seller/seller.service';
+import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
 import { getSellerAddresses } from 'store/reducers/seller/profile/thunks';
 
 export const addAddress = createAsyncThunk<

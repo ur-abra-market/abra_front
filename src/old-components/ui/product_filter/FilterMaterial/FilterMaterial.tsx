@@ -1,8 +1,7 @@
-import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
-import SearchFilter from '../SearchFilter';
-
 import style from './FilterMaterial.module.scss';
 
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import SearchFilter from 'old-components/ui/product_filter/SearchFilter';
 import { material } from 'store/reducers/filterSlice';
 
 const FilterMaterial = (): JSX.Element => {

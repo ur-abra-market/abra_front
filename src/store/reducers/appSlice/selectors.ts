@@ -1,7 +1,7 @@
-import { LoadingStatusEnum } from '../../../common/types';
-import { RootStateType } from '../../createStore';
-
 import { IResponseNotice } from './slice';
+
+import { LoadingStatusEnum } from 'common/types';
+import { RootStateType } from 'store/createStore';
 
 export const isAppInitializedSelector = (state: RootStateType): boolean =>
   state.app.isAppInitialized;

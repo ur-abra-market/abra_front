@@ -1,9 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { productService } from '../../services/product/product.service';
-
 import { LoadingStatusEnum } from 'common/types';
+import { productService } from 'services/product/product.service';
 
 export const manageProductsService = createAsyncThunk<any, void>(
   'manageProducts/manageProductsService',
