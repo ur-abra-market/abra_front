@@ -1,7 +1,4 @@
-import { IProduct } from '../product/product.serviceTypes';
-import { ISellerAddressData, ISellerNotifications } from '../seller/seller.serviceTypes';
 import {
-  ISupplierNotifications,
   ISuppliersUpdateCompanyInfo,
   IUpdateCompanyInfo,
 } from '../supplier/supplier.serviceTypes';
@@ -54,37 +51,6 @@ export type ChangeEmailPayloadType = {
 
 export type LogoutResponseType = {
   result: boolean;
-};
-
-export type CurrentUserInfoResponseType = {
-  result: {
-    datetime: string;
-    updated_at?: string;
-    phone_country_code: string;
-    phone_number: string;
-    first_name: string;
-    last_name: string;
-    full_name: string;
-    email: string;
-    is_verified?: boolean;
-    is_deleted?: boolean;
-    is_supplier?: boolean;
-    supplier?: {
-      license_number?: string;
-      grade_average?: number;
-      additional_info?: string;
-      notifications?: ISupplierNotifications;
-      products?: IProduct[];
-    };
-    seller?: {
-      has_main_address?: boolean;
-      notifications?: ISellerNotifications;
-      addresses?: ISellerAddressData[];
-    };
-  };
-  detail: {
-    has_profile: boolean;
-  };
 };
 
 export interface IBusinessInfoRequestData

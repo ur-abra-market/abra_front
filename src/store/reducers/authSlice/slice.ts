@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getUserRole } from '../appSlice';
 
-import { getCurrentUserInfo, loginUser, logout } from './thunks';
+import { loginUser, logout } from './thunks';
 
 import { UserRoleType } from 'common/types';
 
@@ -29,10 +29,6 @@ const authSlice = createSlice({
         state.isAuthorized = true;
       },
     );
-
-    builder.addCase(getCurrentUserInfo.rejected, state => {
-      state.isAuthorized = false;
-    });
 
     builder.addCase(loginUser.fulfilled, state => {
       state.isAuthorized = true;
