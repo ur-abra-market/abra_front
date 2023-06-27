@@ -48,7 +48,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
       setValue('countryId', countryId);
     }
 
-    setValue('phoneNumber', formattedValue);
+    // setValue('phoneNumber', formattedValue);
     const isPhoneNumberValid = isValidNumber(
       formattedValue,
       data.countryCode.toUpperCase() as CountryCode,

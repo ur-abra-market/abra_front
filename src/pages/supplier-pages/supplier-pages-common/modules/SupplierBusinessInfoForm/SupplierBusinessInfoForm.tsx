@@ -20,7 +20,7 @@ import {
 
 import style from './SupplierBusinessInfoForm.module.scss';
 
-import { ISupplierBusinessInfoData } from 'common/types';
+import { ISupplierBusinessInfoFormData } from 'common/types';
 
 const BUSINESS_SECTOR_DATA: ISelectOption[] = [
   { label: 'Clothes', value: 'Clothes' },
@@ -31,8 +31,9 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
 interface IBusinessProfileForm {
   updateForm?: boolean;
   countryShort?: string;
-  onSubmit: (data: ISupplierBusinessInfoData) => void;
+  onSubmit: (data: ISupplierBusinessInfoFormData) => void;
   isPhoneNumber?: boolean;
+  isDirty?: boolean;
 }
 
 export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
@@ -40,6 +41,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
   onSubmit,
   countryShort,
   isPhoneNumber,
+  isDirty,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const numberEmployees = useAppSelector(numberEmployeesSelector);
@@ -48,12 +50,12 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
     register,
     handleSubmit,
     control,
-    formState: { errors, isValid, isDirty },
-  } = useFormContext<ISupplierBusinessInfoData>();
+    formState: { errors, isValid },
+  } = useFormContext<ISupplierBusinessInfoFormData>();
 
   useEffect(() => {
     dispatch(getCompanyNumberEmployees());
-  }, []);
+  }, [dispatch]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

@@ -20,6 +20,7 @@ import {
 
 import style from './AccountSetupBusinessInfoForm.module.scss';
 
+import { ISupplierBusinessInfoFormData } from 'common/types';
 import { uploadCompanyLogo } from 'store/reducers/supplier/profile';
 import {
   supplierCompanyLogoIdSelector,
@@ -39,9 +40,9 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(getCountries());
-  }, []);
+  }, [dispatch]);
 
-  const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
+  const onSubmit = async (data: ISupplierBusinessInfoFormData): Promise<void> => {
     const { numberBody } = parsePhoneNumber(data.phoneNumber);
     const businessInfoData: IBusinessInfoRequestData = {
       supplier_data_request: {
@@ -61,7 +62,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
       },
       company_phone_data_request: {
         phone_number: numberBody,
-        country_id: data.phoneId!,
+        country_id: data.countryId!,
       },
     };
 

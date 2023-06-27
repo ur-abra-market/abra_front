@@ -41,6 +41,7 @@ export interface ISupplierBusinessInfo {
   address: string;
   companyLogo: string;
   companyLogoId: number | null;
+  countryId: number | null;
 }
 
 interface ISupplierProfileSliceInitialState {
@@ -75,6 +76,7 @@ const initialState: ISupplierProfileSliceInitialState = {
     phoneNumber: '',
     phoneId: null,
     countryCode: '',
+    countryId: null,
   },
   notifications: null,
 };
@@ -121,8 +123,9 @@ export const supplierProfileSlice = createSlice({
       state.businessInfo.address = address;
       state.businessInfo.phoneId = phone.id;
       state.businessInfo.phoneNumber = phone.phone_number;
-      state.businessInfo.countryShort = country.country_short;
-      state.businessInfo.countryCode = country.country_code;
+      state.businessInfo.countryShort = phone.country.country_short;
+      state.businessInfo.countryCode = phone.country.country_code;
+      state.businessInfo.countryId = phone.country.id;
     });
     builder
       .addCase(getSupplierNotifications.pending, state => {
