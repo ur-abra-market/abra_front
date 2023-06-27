@@ -11,7 +11,7 @@ import {
   HeaderProfileIcon,
 } from 'assets/icons';
 import { useAppSelector, useOnClickOutside } from 'common/hooks';
-import { HeaderMenu } from 'elements/HeaderMenu/HeaderMenu';
+import { HeaderMenu } from 'elements';
 import Modal from 'elements/Modal';
 import { CART, HOME, LOGIN } from 'routes';
 import { isAuthSelector } from 'store/reducers/authSlice/selectors';

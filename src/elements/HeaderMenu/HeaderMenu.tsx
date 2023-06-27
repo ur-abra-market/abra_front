@@ -3,9 +3,10 @@ import React, { DetailedHTMLProps, FC, HTMLAttributes, useEffect } from 'react';
 import cn from 'classnames';
 import { NavLink, useMatch, useNavigate } from 'react-router-dom';
 
+import style from './HeaderMenu.module.scss';
+import { HEADER_MENU_CONTENT } from './headerMenuContent';
+
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import style from 'elements/HeaderMenu/HeaderMenu.module.scss';
-import { HEADER_MENU_CONTENT } from 'elements/HeaderMenu/headerMenuContent';
 import { HOME, PERSONAL_ACCOUNT } from 'routes';
 import { logout } from 'store/reducers/authSlice';
 import { isAuthSelector, userRoleSelector } from 'store/reducers/authSlice/selectors';
