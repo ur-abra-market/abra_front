@@ -5,10 +5,12 @@ import { supplierService } from '../../../../services';
 import { setResponseNotice } from '../../appSlice/slice';
 
 import { IAsyncThunkConfig, IServerResponse } from 'common/types';
+import authService from 'services/auth/auth.service';
 import {
   ISupplierErrorResponse,
   ISupplierCompanyInfoData,
   ISuppliersUpdateISupplierCompanyInfo,
+  IBusinessInfoRequest,
 } from 'services/supplier/supplier.serviceTypes';
 
 export const getBusinessInfo = createAsyncThunk<
@@ -27,6 +29,21 @@ export const getBusinessInfo = createAsyncThunk<
     return rejectWithValue(errorMessage);
   }
 });
+
+export const createAccountBusinessInfo = createAsyncThunk<
+  void,
+  IBusinessInfoRequest,
+  IAsyncThunkConfig
+>(
+  'createAccount/createAccountBusinessInfo',
+  async (businessInfoData, { rejectWithValue }) => {
+    try {
+      return await supplierService.sendAccountBusinessInfo(businessInfoData);
+    } catch (error) {
+      return rejectWithValue('[createAccountBusinessInfo]: Error');
+    }
+  },
+);
 
 export const updateBusinessInfo = createAsyncThunk<
   void,

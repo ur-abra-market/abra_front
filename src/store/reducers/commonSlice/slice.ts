@@ -5,7 +5,7 @@ import {
   ICategoryResponse,
 } from '../../../services/common/common.serviceTypes';
 
-import { getIAllCategories, getCompanyNumberEmployees, getCountries } from './thunks';
+import { getAllCategories, getCompanyNumberEmployees, getCountries } from './thunks';
 
 export interface INumberEmployees {
   id: number;
@@ -39,10 +39,10 @@ const commonSlice = createSlice({
       .addCase(getCompanyNumberEmployees.fulfilled, (state, action) => {
         state.numberEmployees = action.payload;
       })
-      .addCase(getIAllCategories.fulfilled, (state, action) => {
+      .addCase(getAllCategories.fulfilled, (state, action) => {
         state.categories = action.payload;
       })
-      .addCase(getIAllCategories.rejected, (state, action) => {
+      .addCase(getAllCategories.rejected, (state, action) => {
         console.log(action.payload);
       });
   },

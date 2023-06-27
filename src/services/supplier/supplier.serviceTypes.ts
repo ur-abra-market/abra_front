@@ -1,14 +1,14 @@
 import { ICountry } from '../common/common.serviceTypes';
 
-export interface ISupplierCompanyInfoData {
+export interface ISupplierBusinessInfo {
   id: number;
   license_number: string;
   grade_average: number;
   additional_info: string;
-  company: ISuppliersCompanyInfo;
+  company: ISupplierCompanyInfo;
 }
 
-export interface ISuppliersCompanyInfo {
+export interface ISupplierCompanyInfo {
   id: number;
   business_email: string;
   name: string;
@@ -21,6 +21,15 @@ export interface ISuppliersCompanyInfo {
   country: ICountry;
   phone: ISupplierPhoneInfo;
   images: any[];
+}
+
+export interface IBusinessInfoRequest
+  extends Omit<ISupplierUpdateBusinessInfo, 'company_data_request'> {
+  company_data_request: ISendISupplierCompanyInfo;
+}
+
+interface ISendISupplierCompanyInfo extends ISupplierUpdateCompanyInfo {
+  logo_url: string;
 }
 
 export interface ISupplierNotifications {
@@ -46,14 +55,14 @@ interface ISupplierPhoneInfo {
   phone_number: string;
 }
 
-export interface ISuppliersUpdateISupplierCompanyInfo {
+export interface ISupplierUpdateBusinessInfo {
   supplier_data_request: { license_number: string };
   company_data_request: ISupplierUpdateCompanyInfo;
   company_phone_data_request: ISuppliersCompanyPhoneData;
 }
 
 export interface ISupplierUpdateCompanyInfo
-  extends Omit<ISuppliersCompanyInfo, 'id' | 'country' | 'phone' | 'images'> {
+  extends Omit<ISupplierCompanyInfo, 'id' | 'country' | 'phone' | 'images'> {
   country_id: number;
 }
 

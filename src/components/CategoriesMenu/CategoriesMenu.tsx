@@ -11,7 +11,7 @@ import cn from 'classnames';
 
 import { useAppDispatch, useAppSelector } from '../../common/hooks';
 import { ICategoryResponse } from '../../services/common/common.serviceTypes';
-import { getIAllCategories } from '../../store/reducers/commonSlice';
+import { getAllCategories } from '../../store/reducers/commonSlice';
 
 import style from './CategoriesMenu.module.scss';
 
@@ -41,7 +41,7 @@ export const CategoriesMenu = forwardRef(
 
     useEffect(() => {
       if (!categories) {
-        dispatch(getIAllCategories());
+        dispatch(getAllCategories());
       }
     }, [dispatch, categories]);
 

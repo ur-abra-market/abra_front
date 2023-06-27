@@ -2,13 +2,14 @@ import { IServerResponse } from '../../common/types';
 import { baseConfigService } from '../baseConfig.service';
 
 import {
-  ISupplierCompanyInfoData,
+  ISupplierBusinessInfo,
   ISupplierNotifications,
-  ISuppliersUpdateISupplierCompanyInfo,
+  ISupplierUpdateBusinessInfo,
+  IBusinessInfoRequest,
 } from './supplier.serviceTypes';
 
 export const supplierService = {
-  hasISupplierCompanyInfo: async () => {
+  hasCompanyInfo: async () => {
     const { data } = await baseConfigService.get<IServerResponse<boolean>>(
       `suppliers/hasCompanyInfo/`,
     );
@@ -24,6 +25,12 @@ export const supplierService = {
     return data.result;
   },
 
+  sendAccountBusinessInfo: async (params: IBusinessInfoRequest) => {
+    const { data } = await baseConfigService.post(`register/business/sendInfo/`, params);
+
+    return data;
+  },
+
   fetchCompanyLogo: async () => {
     const { data } = await baseConfigService.get<IServerResponse<string>>(
       `suppliers/companyLogo/`,
@@ -33,14 +40,14 @@ export const supplierService = {
   },
 
   fetchBusinessInfo: async () => {
-    const { data } = await baseConfigService.get<
-      IServerResponse<ISupplierCompanyInfoData>
-    >(`suppliers/businessInfo/`);
+    const { data } = await baseConfigService.get<IServerResponse<ISupplierBusinessInfo>>(
+      `suppliers/businessInfo/`,
+    );
 
     return data.result;
   },
 
-  updateBusinessInfo: async (params: Partial<ISuppliersUpdateISupplierCompanyInfo>) => {
+  updateBusinessInfo: async (params: Partial<ISupplierUpdateBusinessInfo>) => {
     const { data } = await baseConfigService.patch<IServerResponse<boolean>>(
       `suppliers/businessInfo/update/`,
       params,

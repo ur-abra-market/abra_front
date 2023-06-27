@@ -41,11 +41,11 @@ export const getCompanyNumberEmployees = createAsyncThunk<
   }
 });
 
-export const getIAllCategories = createAsyncThunk<
+export const getAllCategories = createAsyncThunk<
   ICategoryResponse[],
   void,
   IAsyncThunkConfig
->('category/getIAllCategories', async (_, { rejectWithValue }) => {
+>('category/getAllCategories', async (_, { rejectWithValue }) => {
   try {
     const data = await commonService.fetchAllCategories();
 
@@ -54,7 +54,7 @@ export const getIAllCategories = createAsyncThunk<
     const errorMessage =
       error instanceof AxiosError
         ? error.response?.data?.error || error.message
-        : '[getIAllCategories]: Error';
+        : '[getAllCategories]: Error';
 
     return rejectWithValue(errorMessage);
   }

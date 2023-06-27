@@ -5,7 +5,6 @@ import {
   IRegisterRequest,
   ICurrentUserInfoResponse,
   IChangePasswordRequest,
-  IBusinessInfoRequest,
   ILoginRequest,
   ILoginResponse,
   IPasswordResponse,
@@ -38,12 +37,6 @@ export const authService = {
 
   sendAccountPersonalInfo: async (params: IPersonalInfoRequest) => {
     const { data } = await baseConfigService.post(`register/account/sendInfo/`, params);
-
-    return data;
-  },
-
-  sendAccountBusinessInfo: async (params: IBusinessInfoRequest) => {
-    const { data } = await baseConfigService.post(`register/business/sendInfo/`, params);
 
     return data;
   },

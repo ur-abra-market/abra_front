@@ -7,7 +7,6 @@ import authService from '../../../services/auth/auth.service';
 import {
   IChangePasswordRequest,
   ICurrentUserInfoResponse,
-  IBusinessInfoRequest,
   IPersonalInfoRequest,
   ILoginRequest,
   ILoginResponse,
@@ -69,21 +68,6 @@ export const createAccountPersonalInfo = createAsyncThunk<
       return await authService.sendAccountPersonalInfo(personalInfoData);
     } catch (error) {
       return rejectWithValue('[createAccountPersonalInfo]: Error');
-    }
-  },
-);
-
-export const createAccountBusinessInfo = createAsyncThunk<
-  void,
-  IBusinessInfoRequest,
-  IAsyncThunkConfig
->(
-  'createAccount/createAccountBusinessInfo',
-  async (businessInfoData, { rejectWithValue }) => {
-    try {
-      return await authService.sendAccountBusinessInfo(businessInfoData);
-    } catch (error) {
-      return rejectWithValue('[createAccountBusinessInfo]: Error');
     }
   },
 );

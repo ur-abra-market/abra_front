@@ -1,12 +1,12 @@
 import { ProductSortEnum } from '../../common/types';
 import { Categories } from '../../pages/general-pages/MainPage/MainPage';
 
-export interface IGradeDetails {
+interface IGradeDetails {
   grade: number;
   count: number;
 }
 
-export interface IGrade {
+interface IGrade {
   grade_average: string;
   count: number;
 }
@@ -49,14 +49,14 @@ export interface IProductRequest {
   product_id: number;
 }
 
-export interface IProductImage {
+interface IProductImage {
   id?: number;
   image_url?: string;
   order?: number;
   product?: string;
 }
 
-export interface IProductSupplier {
+interface IProductSupplier {
   additional_info: string;
   grade_average: number;
   id: number;
@@ -87,7 +87,7 @@ export interface IProductPrice {
   value?: number;
 }
 
-export interface IPrice {
+interface IPrice {
   value: string;
   min_quantity: number;
   discount: string;

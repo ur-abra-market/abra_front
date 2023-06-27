@@ -1,10 +1,6 @@
 import { IProduct } from '../product/product.serviceTypes';
 import { ISellerNotifications } from '../seller/seller.serviceTypes';
-import {
-  ISupplierNotifications,
-  ISuppliersUpdateISupplierCompanyInfo,
-  ISupplierUpdateCompanyInfo,
-} from '../supplier/supplier.serviceTypes';
+import { ISupplierNotifications } from '../supplier/supplier.serviceTypes';
 
 import { ResponseUserRoleType } from 'common/types';
 
@@ -86,15 +82,6 @@ export interface ICurrentUserInfoResponse {
   detail: {
     has_profile: boolean;
   };
-}
-
-export interface IBusinessInfoRequest
-  extends Omit<ISuppliersUpdateISupplierCompanyInfo, 'company_data_request'> {
-  company_data_request: ISendISupplierCompanyInfo;
-}
-
-interface ISendISupplierCompanyInfo extends ISupplierUpdateCompanyInfo {
-  logo_url: string;
 }
 
 export interface IPersonalInfoRequest {
