@@ -7,6 +7,9 @@ import { useSelector } from 'react-redux';
 import style from './SupplierBusinessInfoChangeForm.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { useSupplierBusinessInfoFormDirty } from 'common/hooks/useSupplierBusinessInfoFormDirty';
+import { useSupplierBusinessInfoSetValue } from 'common/hooks/useSupplierBusinessInfoSetValue';
+import { ISupplierBusinessInfoFormData } from 'common/types';
 import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
 import { UploadImage } from 'elements';
 import {
@@ -23,7 +26,6 @@ import {
   supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
 } from 'store/reducers/supplier/profile/selectors';
-import { ISupplierBusinessInfo } from 'store/reducers/supplier/profile/slice';
 import {
   deleteCompanyLogo,
   uploadCompanyLogo,
@@ -35,7 +37,11 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const companyLogo = useSelector(supplierCompanyLogoSelector);
   const companyLogoId = useSelector(supplierCompanyLogoIdSelector);
 
-  const { phoneNumber, countryCode } = businessInfoData;
+  const formMethods = useForm<ISupplierBusinessInfoFormData>({
+    resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
+    mode: 'onChange',
+  });
+  const { setValue, watch } = formMethods;
 
   const handleUploadImage = (image: File): void => {
     dispatch(uploadCompanyLogo(image));
@@ -46,25 +52,21 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(getBusinessInfo());
-  }, []);
+  }, [dispatch]);
 
-  useEffect(() => {
-    reset(businessInfoData);
-    setValue('phoneNumber', `${countryCode}${phoneNumber}`);
-  }, [businessInfoData]);
+  useSupplierBusinessInfoSetValue(setValue, businessInfoData);
 
-  const formMethods = useForm<ISupplierBusinessInfo>({
-    resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
-    mode: 'onChange',
-  });
-  const { reset, setValue, watch } = formMethods;
+  const { isDirty, isPhoneNumberDisable } = useSupplierBusinessInfoFormDirty(
+    businessInfoData,
+    watch,
+  );
 
-  const phoneNumberData = watch('phoneNumber');
-
-  const isPhoneNumberDisable = phoneNumberData === `${countryCode}${phoneNumber}`;
-
-  const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
+  const onSubmit = async (data: ISupplierBusinessInfoFormData): Promise<void> => {
     const { numberBody } = parsePhoneNumber(data.phoneNumber);
+    const currentPhoneNumber = isPhoneNumberDisable
+      ? businessInfoData.phoneNumber
+      : numberBody;
+
     const updateData: ISupplierUpdateBusinessInfo = {
       supplier_data_request: {
         license_number: data.license,
@@ -81,8 +83,8 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
         description: data.description,
       },
       company_phone_data_request: {
-        phone_number: numberBody,
-        country_id: data.phoneId!,
+        phone_number: currentPhoneNumber,
+        country_id: data.countryId!,
       },
     };
 
@@ -103,6 +105,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
       />
       <FormProvider {...formMethods}>
         <SupplierBusinessInfoForm
+          isDirty={isDirty}
           updateForm
           onSubmit={onSubmit}
           countryShort={businessInfoData.countryShort}
