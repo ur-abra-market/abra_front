@@ -30,12 +30,13 @@ import {
 export const sellerRoute: RouteObject[] = [
   {
     path: SELLER_PRODUCTS,
-    children: [
-      {
-        path: '*',
-        element: <ProductListPage />,
-      },
-    ],
+    element: <ProductListPage />,
+    // children: [
+    //   {
+    //     path: '*',
+    //     element: <ProductListPage />,
+    //   },
+    // ],
   },
   {
     path: PRODUCT_DETAILS,

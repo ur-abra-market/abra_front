@@ -1,41 +1,34 @@
 import { useState } from 'react';
 
 import style from './ProductList.module.scss';
+import { ViewGrid, ViewList } from './ViewIcons/ViewIcons';
 
-import { ViewGridDisabledIcon, ViewListDisabledIcon } from 'assets/icons';
 import { useAppSelector } from 'common/hooks';
 import Card from 'old-components/Card';
 import CardFull from 'old-components/CardFull';
 import PaginatorProduct from 'old-components/ui/TypesView/product/PaginatorProduct';
 import { ButtonInfo } from 'ui-kit';
 
-const ProductList = (): JSX.Element => {
+export type ViewType = 'grid' | 'list';
+
+export const ProductList = (): JSX.Element => {
   const dataArr = useAppSelector(state => state.productPaginate.productsPage);
 
-  const [list, setList] = useState(true);
+  const [selectedView, setSelectedView] = useState<ViewType>('grid');
 
   return (
     <div className={style.wrapper}>
       <div className={style.control}>
         <div className={style.control_btns}>
-          <ViewGridDisabledIcon
-            role="presentation"
-            className={style.control_blocks}
-            onClick={() => setList(false)}
-          />
-          <ViewListDisabledIcon
-            role="presentation"
-            className={style.control_list}
-            onClick={() => setList(true)}
-          />
-
+          <ViewGrid selectedView={selectedView} setSelectedView={setSelectedView} />
+          <ViewList selectedView={selectedView} setSelectedView={setSelectedView} />
           <div className={style.control_category}>{`< Clothes and Accessories`}</div>
         </div>
         <PaginatorProduct />
       </div>
       <div className={style.list}>
         {dataArr.map((data, index) =>
-          list ? (
+          selectedView ? (
             <CardFull key={`product-${index}`} props={data} />
           ) : (
             // @ts-ignore
@@ -53,5 +46,3 @@ const ProductList = (): JSX.Element => {
     </div>
   );
 };
-
-export default ProductList;
