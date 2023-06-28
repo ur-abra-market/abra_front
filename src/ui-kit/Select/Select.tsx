@@ -32,7 +32,7 @@ export interface ISelect {
   children?: ReactNode;
   placeholder?: string;
   menuHeight?: string;
-  defaultValue?: string;
+  defaultValue?: string | number;
   width?: string;
   className?: string;
   menuItemsPosition?: SelectPositionType;

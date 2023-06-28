@@ -26,7 +26,6 @@ import {
   supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
 } from 'store/reducers/supplier/profile/selectors';
-import { ISupplierBusinessInfo } from 'store/reducers/supplier/profile/slice';
 import {
   deleteCompanyLogo,
   uploadCompanyLogo,

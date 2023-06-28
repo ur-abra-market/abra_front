@@ -128,9 +128,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                     label: el.number,
                   }))}
                   className={style.select}
-                  defaultValue={
-                    numberEmployees?.find(el => field.value === el.id)?.number
-                  }
+                  defaultValue={typeof field.value === 'number' ? field.value : undefined}
                   placeholder="Select"
                   width="266px"
                   onChange={value => {
@@ -149,7 +147,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
             <Label label="Country of company registration*">
               <Select
                 {...field}
-                defaultValue={countries?.find(el => el.id === field.value)?.country}
+                defaultValue={typeof field.value === 'number' ? field.value : undefined}
                 error={errors?.countryRegistration?.message}
                 options={countries.map(el => ({
                   value: el.id,
