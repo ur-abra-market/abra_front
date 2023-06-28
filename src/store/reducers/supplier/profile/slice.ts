@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
   getBusinessInfo,
@@ -6,7 +6,6 @@ import {
   fetchCompanyLogo,
   uploadCompanyLogo,
   getSupplierNotifications,
-  updateSupplierNotifications,
 } from './thunks';
 
 import { LoadingStatusEnum } from 'common/types';
@@ -84,19 +83,19 @@ const initialState: ISupplierProfileSliceInitialState = {
 export const supplierProfileSlice = createSlice({
   name: 'supplierAccount',
   initialState,
-  reducers: {},
+  reducers: {
+    setLoadingStatus: (state, action: PayloadAction<LoadingStatusEnum>) => {
+      state.loading = action.payload;
+    },
+  },
   extraReducers: builder => {
-    builder
-      .addCase(getPersonalInfo.pending, state => {
-        state.loading = LoadingStatusEnum.Loading;
-      })
-      .addCase(getPersonalInfo.fulfilled, (state, action) => {
-        state.personalInfo.lastName = action.payload.last_name;
-        state.personalInfo.firstName = action.payload.first_name;
-        state.personalInfo.countryShort = action.payload.country.country_short;
-        state.personalInfo.phoneNumber = action.payload.phone_number;
-        state.loading = LoadingStatusEnum.Success;
-      });
+    builder.addCase(getPersonalInfo.fulfilled, (state, action) => {
+      state.personalInfo.lastName = action.payload.last_name;
+      state.personalInfo.firstName = action.payload.first_name;
+      state.personalInfo.countryShort = action.payload.country.country_short;
+      state.personalInfo.phoneNumber = action.payload.phone_number;
+    });
+
     builder.addCase(getBusinessInfo.fulfilled, (state, action) => {
       const {
         name,
@@ -128,21 +127,8 @@ export const supplierProfileSlice = createSlice({
       state.businessInfo.countryId = phone.country.id;
     });
     builder
-      .addCase(getSupplierNotifications.pending, state => {
-        state.loading = LoadingStatusEnum.Loading;
-      })
       .addCase(getSupplierNotifications.fulfilled, (state, action) => {
         state.notifications = action.payload;
-        state.loading = LoadingStatusEnum.Success;
-      })
-      .addCase(getSupplierNotifications.rejected, state => {
-        state.loading = LoadingStatusEnum.Failed;
-      })
-      .addCase(updateSupplierNotifications.pending, state => {
-        state.loading = LoadingStatusEnum.Loading;
-      })
-      .addCase(updateSupplierNotifications.rejected, state => {
-        state.loading = LoadingStatusEnum.Failed;
       })
       .addCase(fetchCompanyLogo.fulfilled, (state, action) => {
         state.businessInfo.companyLogo = action.payload;
@@ -157,4 +143,5 @@ export const supplierProfileSlice = createSlice({
   },
 });
 
+export const { setLoadingStatus } = supplierProfileSlice.actions;
 export const supplierProfileReducer = supplierProfileSlice.reducer;
