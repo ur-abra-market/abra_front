@@ -17,11 +17,12 @@ interface formType {
 
 export const PhoneNumber = (): JSX.Element => {
   const countries = useAppSelector(state => state.common.countries);
-  const [phoneValue, setPhoneValue] = useState<ISelectOption>({
+  const [phoneCountryCode, setPhoneCountryCode] = useState<ISelectOption>({
     label: 'Russia',
     value: 5,
   });
-  const [phoneBodyValue, setPhoneBodyValue] = useState('');
+  const [phoneNumberBody, setPhoneNumberBody] = useState('');
+  const [phoneCountryShort, setPhoneCountryShort] = useState('ru');
   const {
     handleSubmit,
     register,
@@ -38,43 +39,125 @@ export const PhoneNumber = (): JSX.Element => {
     },
   });
 
-  const getCountryCode = (countryId: number | string): string => {
-    const country = countries.find(country => country.id === countryId);
-
-    return country?.country_short || '';
-  };
-
   const onSubmit = (data: any): void => {
     console.log(data);
   };
 
   useEffect(() => {
     if (countries.length) {
-      setPhoneValue({
+      setPhoneCountryCode({
         label: `+${countries[0].country_code} ${countries[0].country}`,
         value: countries[0].id,
       });
     }
   }, [countries]);
 
-  const onChangeCustom = (value: ISelectOption): void => {
-    setPhoneValue(value);
+  const handlePhoneCountryCodeOnChange = (value: ISelectOption): void => {
+    const country = countries.find(country => country.id === value.value);
+
+    if (country) setPhoneCountryShort(country.country_short);
+    setPhoneCountryCode(value);
   };
 
-  const validatePhoneNumber = (phoneNumber: string): boolean => {
-    // Проверяем, что номер РФ начинается с 9
-    return /^9\d{9}$/.test(phoneNumber);
+  const validatePhoneNumber = (
+    phoneNumber: string,
+    phoneNumberCountyCode: string,
+  ): boolean => {
+    if (phoneNumberCountyCode === 'ru') {
+      return /^9\d{9}$/.test(phoneNumber); // Проверяем, что номер РФ начинается с 9
+    }
+
+    if (phoneNumberCountyCode === 'az') {
+      return /^[4567]\d{8}$/.test(phoneNumber); // Проверяем, что номер азербайджана начинается 4, 5, 6 или 7
+    }
+
+    if (phoneNumberCountyCode === 'by') {
+      return /^[2345]\d{8}$/.test(phoneNumber); // Проверяем, что номер беларуси начинается с 2, 3, 4, или 5
+    }
+
+    if (phoneNumberCountyCode === 'kz') {
+      return /^7\d{9}$/.test(phoneNumber); // Проверяем, что номер казахстана начинается с 7
+    }
+
+    return true;
   };
 
   const getFormattedPhoneNumberBody = (
     phoneNumberBody: string,
     phoneNumberCountyCode: string,
   ): string => {
+    const numberBody = phoneNumberBody;
+
     if (phoneNumberCountyCode === 'ru') {
+      // россия
       if (phoneNumberBody.length <= 10) {
-        return phoneNumberBody.replace(
+        return numberBody.replace(
           /^(\d{1,3})?(\d{1,3})?(\d{1,2})?(\d{1,2})?/,
 
+          (match, g1, g2, g3, g4) => {
+            let result = '';
+
+            result += g1 ? `${g1}` : '';
+            result += g2 ? ` ${g2}` : '';
+            result += g3 ? `-${g3}` : '';
+            result += g4 ? `-${g4}` : '';
+
+            return result;
+          },
+        );
+      }
+
+      return '';
+    }
+    if (phoneNumberCountyCode === 'az') {
+      // азербайджан
+      if (phoneNumberBody.length <= 9) {
+        return numberBody.replace(
+          /^(\d{1,2})?(\d{1,3})?(\d{1,2})?(\d{1,2})?/,
+
+          (match, g1, g2, g3, g4) => {
+            let result = '';
+
+            result += g1 ? `${g1}` : '';
+            result += g2 ? ` ${g2}` : '';
+            result += g3 ? `-${g3}` : '';
+            result += g4 ? `-${g4}` : '';
+
+            return result;
+          },
+        );
+      }
+
+      return '';
+    }
+
+    if (phoneNumberCountyCode === 'by') {
+      // беларусь
+      if (phoneNumberBody.length <= 9) {
+        return numberBody.replace(
+          /^(\d{1,2})?(\d{1,3})?(\d{1,2})?(\d{1,2})?/,
+
+          (match, g1, g2, g3, g4) => {
+            let result = '';
+
+            result += g1 ? `${g1}` : '';
+            result += g2 ? ` ${g2}` : '';
+            result += g3 ? `-${g3}` : '';
+            result += g4 ? `-${g4}` : '';
+
+            return result;
+          },
+        );
+      }
+
+      return '';
+    }
+
+    if (phoneNumberCountyCode === 'kz') {
+      // казахстан
+      if (phoneNumberBody.length <= 10) {
+        return numberBody.replace(
+          /^(\d{1,3})?(\d{1,3})?(\d{1,2})?(\d{1,2})?/,
           (match, g1, g2, g3, g4) => {
             let result = '';
 
@@ -94,24 +177,22 @@ export const PhoneNumber = (): JSX.Element => {
     return '';
   };
 
+  console.log(phoneCountryShort);
+
   const onChangePhoneNumberBody = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const inputValue = e.currentTarget.value;
     const rawValue = inputValue.replace(/\D/g, ''); // оставляем только цифры
 
-    if (!rawValue && phoneBodyValue) {
-      // если приходит значение пустое, и при этом текущее значение имеет данные - значит мы пытаемся очистить инпут телеа телефона и надо засетаить пустую строку и выкинуть ошибку
-      setPhoneBodyValue('');
+    if (!rawValue && phoneNumberBody) {
+      // если приходит значение пустое, и при этом текущее значение имеет данные - значит мы пытаемся очистить инпут телефона и надо засетаить пустую строку и выкинуть ошибку
+      setPhoneNumberBody('');
       setError('phoneNumberBody', { message: 'Please, enter a valid phone number' });
     } else {
-      const countryCode = getCountryCode(phoneValue.value).toLowerCase();
-      const formattedNumber = getFormattedPhoneNumberBody(
-        rawValue,
-        countryCode as string,
-      ); // получаем отформатированное по маске страны с countryCode тело телефонного номера
+      const formattedNumber = getFormattedPhoneNumberBody(rawValue, phoneCountryShort); // получаем отформатированное по маске страны с countryCode тело телефонного номера
 
       if (formattedNumber) {
-        setPhoneBodyValue(formattedNumber);
-        if (!validatePhoneNumber(rawValue)) {
+        setPhoneNumberBody(formattedNumber);
+        if (!validatePhoneNumber(rawValue, phoneCountryShort)) {
           setError('phoneNumberBody', { message: 'Please, enter a valid phone number' });
         } else {
           clearErrors('phoneNumberBody');
@@ -120,32 +201,6 @@ export const PhoneNumber = (): JSX.Element => {
     }
   };
 
-  // if (rawValue.length <= 10) {
-  //   const formattedValue = rawValue.replace(
-  //     /^(\d{1,3})?(\d{1,3})?(\d{1,2})?(\d{1,2})?/,
-  //
-  //     (match, g1, g2, g3, g4) => {
-  //       let result = '';
-  //
-  //       result += g1 ? `${g1}` : '';
-  //       result += g2 ? ` ${g2}` : '';
-  //       result += g3 ? `-${g3}` : '';
-  //       result += g4 ? `-${g4}` : '';
-  //
-  //       return result;
-  //     },
-  //   );
-  //
-  //   setPhoneBodyValue(formattedValue);
-  //   if (!validatePhoneNumber(rawValue)) {
-  //     setError('phoneNumberBody', { message: 'Please, enter a valid phone number' });
-  //   } else {
-  //     clearErrors('phoneNumberBody');
-  //   }
-  // } else {
-  //   setPhoneBodyValue(phoneBodyValue);
-  // }
-
   if (!countries.length) return <div />;
 
   return (
@@ -153,8 +208,8 @@ export const PhoneNumber = (): JSX.Element => {
       {countries.length && (
         <form onSubmit={handleSubmit(onSubmit)} className={style.wrapper}>
           <Select
-            controlledValue={phoneValue}
-            onChange={onChangeCustom}
+            controlledValue={phoneCountryCode}
+            onChange={handlePhoneCountryCodeOnChange}
             options={countries.map(c => ({
               label: `+${c.country_code} ${c.country}`,
               value: c.id,
@@ -162,7 +217,7 @@ export const PhoneNumber = (): JSX.Element => {
           />
           <Input
             {...register('phoneNumberBody')}
-            value={phoneBodyValue}
+            value={phoneNumberBody}
             onChange={onChangePhoneNumberBody}
             error={errors?.phoneNumberBody?.message}
           />
