@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import { ProductVariations } from '../ProductListRegistrationForm/ProductListRegistrationForm';
-import TypeBar from '../TypeBar/TypeBar';
-import TypeList from '../TypeList/TypeList';
+import { ProductVariations } from 'old-components/ui/ProductListRegistrationForm/ProductListRegistrationForm';
+import TypeBar from 'old-components/ui/TypeBar/TypeBar';
+import TypeList from 'old-components/ui/TypeList/TypeList';
 
 interface TypesPageProps {
   variations: ProductVariations;

@@ -1,7 +1,7 @@
-import { IServerResponse } from '../../common/types';
-import { baseConfigService } from '../baseConfig.service';
-
 import { ISellerNotifications, ISellerAddressData } from './seller.serviceTypes';
+
+import { IServerResponse } from 'common/types';
+import { baseConfigService } from 'services/baseConfig.service';
 
 export const sellerService = {
   getSellerAvatar: async () => {

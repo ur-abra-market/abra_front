@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react';
 
-import RadioStyledElem from '../../RadioStyledElem';
-
 import style from './RadiosFor.module.scss';
+
+import RadioStyledElem from 'old-components/RadioStyledElem';
 
 interface RadiosForProps {
   register: any;

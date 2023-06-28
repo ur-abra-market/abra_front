@@ -1,5 +1,3 @@
-import { baseConfigService } from '../baseConfig.service';
-
 import {
   IGradeProductResponse,
   IProduct,
@@ -11,6 +9,7 @@ import {
 } from './product.serviceTypes';
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
+import { baseConfigService } from 'services/baseConfig.service';
 
 export const productService = {
   getList: async (params: ICategoryRequest) => {

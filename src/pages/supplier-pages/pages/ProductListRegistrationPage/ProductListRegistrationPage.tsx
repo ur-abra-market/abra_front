@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
-import { getAllCategories } from '../../../../store/reducers/commonSlice';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import ProductListRegistrationForm from 'old-components/ui/ProductListRegistrationForm';
+import { getCategories, getChilds } from 'store/reducers/categorySlice';
+import { getAllCategories } from 'store/reducers/commonSlice';
 import {
   getPropertiesService,
   getVariationsService,
-} from '../../../../store/reducers/supplier/other';
-
-import ProductListRegistrationForm from 'old-components/ui/ProductListRegistrationForm';
-import { getCategories, getChilds } from 'store/reducers/categorySlice';
+} from 'store/reducers/supplier/other';
 
 export const ProductListRegistrationPage = (): JSX.Element => {
   const dispatch = useAppDispatch();

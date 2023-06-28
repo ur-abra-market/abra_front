@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-import { ProductCard } from '../../../../components';
-import { ProductsPreview } from '../../../../modules';
-import { IProductCompilation } from '../../../../services/product/product.serviceTypes';
-import style from '../ProductPage.module.scss';
+import { ProductCard } from 'elements';
+import { ProductsPreview } from 'modules';
+import style from 'pages/seller-pages/ProductPage/ProductPage.module.scss';
+import { IProductCompilation } from 'services/product/product.serviceTypes';
 
 export const PopularProduct = (): JSX.Element => {
   const product: IProductCompilation = {

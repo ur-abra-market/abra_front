@@ -1,12 +1,11 @@
-import { baseConfigService } from '../baseConfig.service';
-import {
-  IAccountPersonalInfoRequest,
-  IDeleteImageRequest,
-} from '../common/common.serviceTypes';
-
 import { IAccountPersonalInfoResponse } from './user.serviceTypes';
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
+import { baseConfigService } from 'services/baseConfig.service';
+import {
+  IAccountPersonalInfoRequest,
+  IDeleteImageRequest,
+} from 'services/common/common.serviceTypes';
 
 export enum Action {
   UPLOAD_LOGO_IMAGE = 'suppliers/uploadCompanyImage/',

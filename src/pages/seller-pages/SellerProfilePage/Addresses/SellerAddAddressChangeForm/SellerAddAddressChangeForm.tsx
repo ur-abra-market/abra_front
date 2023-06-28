@@ -3,13 +3,13 @@ import { FC } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { parsePhoneNumber } from '../../../../../common/utils/parsePhoneNumber';
-import { AddressesChangeForm } from '../../../../../modules/AddressesChangeForm/AddressesChangeForm';
-import { ISellerAddressData } from '../../../../../store/reducers/seller/profile/slice';
-import { addressFormValidationSchema } from '../AddressFormValidationSchema';
-
 import style from './SellerAddAddressChangeForm.module.scss';
+
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import { AddressesChangeForm } from 'modules/AddressesChangeForm/AddressesChangeForm';
+import { addressFormValidationSchema } from 'pages/seller-pages/SellerProfilePage/Addresses/AddressFormValidationSchema';
+import { ISellerAddressData } from 'store/reducers/seller/profile/slice';
 
 interface ISellerAddAddressChangeForm {
   closeModal?: (modal: boolean) => void;

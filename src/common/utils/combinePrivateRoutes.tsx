@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Navigate, RouteObject } from 'react-router-dom';
 
-import { HOME, LOGIN } from '../../routes';
-import { sellerRoute } from '../../routes/sellerRoute';
-import { supplierRoute } from '../../routes/supplierRoute';
+import { HOME, LOGIN } from 'routes';
+import { sellerRoute } from 'routes/sellerRoute';
+import { supplierRoute } from 'routes/supplierRoute';
 
 /**
  * Combines private routes from the sellerRoute and supplierRoute arrays

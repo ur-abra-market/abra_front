@@ -1,9 +1,9 @@
 import React, { FC, useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../common/hooks';
-import { changeById } from '../../store/reducers/basketSlice';
-
 import style from './ProductQuantityControl.module.scss';
+
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { changeById } from 'store/reducers/basketSlice';
 
 const min = 100;
 

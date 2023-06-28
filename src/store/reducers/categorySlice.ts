@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { commonService } from '../../services/common/common.service';
-
 import { LoadingStatusEnum } from 'common/types';
+import { commonService } from 'services/common/common.service';
 
 export type ResponseCategoryType = {
   id: number;

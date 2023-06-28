@@ -5,27 +5,28 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../../../../common/hooks';
-import { parsePhoneNumber } from '../../../../../../common/utils/parsePhoneNumber';
-import { UploadImage } from '../../../../../../components';
-import { IBusinessInfoRequest } from '../../../../../../services/supplier/supplier.serviceTypes';
-import { getCountries } from '../../../../../../store/reducers/commonSlice';
-import { ISupplierBusinessInfo } from '../../../../../../store/reducers/supplier/profile/slice';
-import { createAccountBusinessInfo } from '../../../../../../store/reducers/supplier/profile/thunks';
-import { SupplierRegisterFormStep } from '../../../../../../ui-kit';
+import style from './AccountSetupBusinessInfoForm.module.scss';
+
+import { useAppDispatch } from 'common/hooks';
+import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import { UploadImage } from 'elements';
 import {
   SupplierBusinessInfoForm,
   supplierBusinessInfoFormValidationSchema,
-} from '../../../../supplier-pages-common';
-
-import style from './AccountSetupBusinessInfoForm.module.scss';
-
+} from 'pages/supplier-pages/supplier-pages-common';
+import { IBusinessInfoRequest } from 'services/supplier/supplier.serviceTypes';
+import { getCountries } from 'store/reducers/commonSlice';
 import { uploadCompanyLogo } from 'store/reducers/supplier/profile';
 import {
   supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
 } from 'store/reducers/supplier/profile/selectors';
-import { deleteCompanyLogo } from 'store/reducers/supplier/profile/thunks';
+import { ISupplierBusinessInfo } from 'store/reducers/supplier/profile/slice';
+import {
+  createAccountBusinessInfo,
+  deleteCompanyLogo,
+} from 'store/reducers/supplier/profile/thunks';
+import { SupplierRegisterFormStep } from 'ui-kit';
 
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   const companyLogo = useSelector(supplierCompanyLogoSelector);

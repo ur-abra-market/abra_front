@@ -1,5 +1,3 @@
-import { baseConfigService } from '../baseConfig.service';
-
 import {
   IConfirmEmailRequest,
   IRegisterRequest,
@@ -11,6 +9,8 @@ import {
   IPersonalInfoRequest,
   IChangeEmailRequest,
 } from './auth.serviceTypes';
+
+import { baseConfigService } from 'services/baseConfig.service';
 
 export const authService = {
   userRole: () => {

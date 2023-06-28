@@ -1,9 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IAsyncThunkConfig } from '../../../common/types';
-import { commonService } from '../../../services/common/common.service';
-
+import { IAsyncThunkConfig } from 'common/types';
+import { commonService } from 'services/common/common.service';
 import {
   ICategoryResponse,
   ICountry,

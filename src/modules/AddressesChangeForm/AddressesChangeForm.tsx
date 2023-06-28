@@ -2,14 +2,14 @@ import React, { FC } from 'react';
 
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { DeleteTrashCanIcon } from '../../assets/icons';
-import { useAppDispatch, useAppSelector } from '../../common/hooks';
-import { PhoneNumberInput } from '../../components';
-import { IAddress, ISellerAddressData } from '../../store/reducers/seller/profile/slice';
-import { deleteAddress } from '../../store/reducers/sellerCheckoutSlice';
-import { Button, Checkbox, Input, Label, Select } from '../../ui-kit';
-
 import style from './AddressesChangeForm.module.scss';
+
+import { DeleteTrashCanIcon } from 'assets/icons';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { PhoneNumberInput } from 'elements';
+import { IAddress, ISellerAddressData } from 'store/reducers/seller/profile/slice';
+import { deleteAddress } from 'store/reducers/sellerCheckoutSlice';
+import { Button, Checkbox, Input, Label, Select } from 'ui-kit';
 
 interface IAddressesChangeForm {
   isEditForm?: boolean;

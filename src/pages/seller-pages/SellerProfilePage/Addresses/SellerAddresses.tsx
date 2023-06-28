@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
-import Modal from '../../../../components/Modal';
-import { IAddress } from '../../../../store/reducers/seller/profile/slice';
-import { getSellerAddresses } from '../../../../store/reducers/seller/profile/thunks';
-
 import { Address } from './Address/Address';
 import { SellerAddAddressChangeForm } from './SellerAddAddressChangeForm/SellerAddAddressChangeForm';
 import style from './SellerAddresses.module.scss';
+
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import Modal from 'elements/Modal';
+import { IAddress } from 'store/reducers/seller/profile/slice';
+import { getSellerAddresses } from 'store/reducers/seller/profile/thunks';
 
 export const SellerAddresses = (): JSX.Element => {
   const [modal, setModal] = useState(false);

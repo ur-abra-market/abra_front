@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { LoadingStatusEnum } from '../../../../common/types';
-
 import { addProductService, getPropertiesService, getVariationsService } from './thunks';
+
+import { LoadingStatusEnum } from 'common/types';
 
 const initialState = {
   productId: null as number | null,

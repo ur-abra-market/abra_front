@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { useAppDispatch } from '../../../../common/hooks';
+import style from './FilterSort.module.scss';
+
+import { useAppDispatch } from 'common/hooks';
+import SelectFilter from 'old-components/ui/product_filter/SelectFilter';
 import {
   ascending,
   brand,
@@ -11,11 +14,8 @@ import {
   priceTo,
   size,
   sort,
-} from '../../../../store/reducers/filterSlice';
-import { activeNum } from '../../../../store/reducers/productPaginateSlice';
-import SelectFilter from '../SelectFilter';
-
-import style from './FilterSort.module.scss';
+} from 'store/reducers/filterSlice';
+import { activeNum } from 'store/reducers/productPaginateSlice';
 
 const FilterSort = (): JSX.Element => {
   const dispatch = useAppDispatch();

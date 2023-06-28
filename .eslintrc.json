@@ -25,7 +25,8 @@
     "import",
     "prettier",
     "react-hooks",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "no-relative-import-paths"
   ],
   "overrides": [
     {
@@ -52,20 +53,12 @@
       "error",
       {
         "newlines-between": "always",
-        "pathGroupsExcludedImportTypes": [
-          "react"
-        ],
+        "pathGroupsExcludedImportTypes": ["react"],
         "alphabetize": {
           "order": "asc",
           "caseInsensitive": true
         },
-        "groups": [
-          "builtin",
-          "external",
-          "parent",
-          "sibling",
-          "index"
-        ],
+        "groups": ["builtin", "external", "parent", "sibling", "index"],
         "pathGroups": [
           {
             "pattern": "react",
@@ -87,25 +80,13 @@
       },
       {
         "blankLine": "always",
-        "prev": [
-          "const",
-          "let",
-          "var"
-        ],
+        "prev": ["const", "let", "var"],
         "next": "*"
       },
       {
         "blankLine": "any",
-        "prev": [
-          "const",
-          "let",
-          "var"
-        ],
-        "next": [
-          "const",
-          "let",
-          "var"
-        ]
+        "prev": ["const", "let", "var"],
+        "next": ["const", "let", "var"]
       }
     ],
     "no-shadow": "off",
@@ -114,21 +95,7 @@
     "no-magic-numbers": [
       "warn",
       {
-        "ignore": [
-          0,
-          1,
-          -1,
-          2,
-          3,
-          4,
-          5,
-          100,
-          6,
-          9,
-          8,
-          10,
-          11
-        ]
+        "ignore": [0, 1, -1, 2, 3, 4, 5, 100, 6, 9, 8, 10, 11]
       }
     ],
     "no-use-before-define": "off",
@@ -136,10 +103,7 @@
       "error",
       {
         "props": true,
-        "ignorePropertyModificationsFor": [
-          "state",
-          "self"
-        ]
+        "ignorePropertyModificationsFor": ["state", "self"]
       }
     ],
     "react/display-name": "off",
@@ -150,10 +114,7 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".jsx",
-          ".tsx"
-        ]
+        "extensions": [".jsx", ".tsx"]
       }
     ],
     "react/function-component-definition": [
@@ -169,9 +130,7 @@
         "html": "ignore"
       }
     ],
-    "@typescript-eslint/no-unused-vars": [
-      "warn"
-    ],
+    "@typescript-eslint/no-unused-vars": ["warn"],
     "@typescript-eslint/explicit-function-return-type": [
       "error",
       {
@@ -195,13 +154,20 @@
         ]
       }
     ],
-    "jsx-a11y/label-has-associated-control": [ 2, {
-      "labelComponents": ["Label"],
-      "labelAttributes": ["label"],
-      "controlComponents": ["Input", "Select"],
-      "depth": 3
-    }],
-    "react/no-array-index-key": "off"
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "labelComponents": ["Label"],
+        "labelAttributes": ["label"],
+        "controlComponents": ["Input", "Select"],
+        "depth": 3
+      }
+    ],
+    "react/no-array-index-key": "off",
+    "no-relative-import-paths/no-relative-import-paths": [
+      "warn",
+      { "allowSameFolder": true, "rootDir": "src" }
+    ]
   },
   "globals": {
     "JSX": "readonly"
@@ -209,15 +175,8 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": [
-          "src"
-        ],
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
   }

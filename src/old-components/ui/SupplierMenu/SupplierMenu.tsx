@@ -2,6 +2,8 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
+import style from './SupplierMenu.module.scss';
+
 import {
   ANALYTICS,
   DASHBOARD,
@@ -9,9 +11,7 @@ import {
   ORDERS,
   PRICE,
   SUPPLIERS_PRODUCTS,
-} from '../../../routes';
-
-import style from './SupplierMenu.module.scss';
+} from 'routes';
 
 const SupplierMenu = (): JSX.Element => {
   const menu = [

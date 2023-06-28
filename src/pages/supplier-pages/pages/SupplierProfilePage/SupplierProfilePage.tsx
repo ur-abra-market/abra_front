@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 
-import { useAppDispatch } from '../../../../common/hooks';
-import { AccountManagement } from '../../../../components';
-import { getCountries } from '../../../../store/reducers/commonSlice';
-
 import { SupplierNotifications } from './SupplierNotifications/SupplierNotifications';
 import style from './SupplierProfilePage.module.scss';
 
 import { SupplierBusinessInfoChangeForm, SupplierPersonalInfoChangeForm } from '.';
+
+import { useAppDispatch } from 'common/hooks';
+import { AccountManagement } from 'elements';
+import { getCountries } from 'store/reducers/commonSlice';
 
 export const SupplierProfilePage = (): JSX.Element => {
   const dispatch = useAppDispatch();

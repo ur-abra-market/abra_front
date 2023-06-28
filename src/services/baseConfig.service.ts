@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { store } from '../store/createStore';
-import { setResponseError } from '../store/reducers/appSlice/slice';
+import { store } from 'store/createStore';
+import { setResponseError } from 'store/reducers/appSlice/slice';
 
 export const baseConfigService = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL || 'http://localhost/',

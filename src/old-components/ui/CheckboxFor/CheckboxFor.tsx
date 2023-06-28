@@ -1,8 +1,8 @@
 import React, { FC, useCallback } from 'react';
 
-import CheckboxStyledElem from '../../CheckboxStyledElem';
-
 import style from './CheckboxFor.module.scss';
+
+import CheckboxStyledElem from 'old-components/CheckboxStyledElem';
 
 interface CheckboxForProps {
   register: any;

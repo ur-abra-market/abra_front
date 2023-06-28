@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
-import { IPersonalInfoFormData } from '../../common/types';
-import { PhoneNumberInput } from '../../components';
-import { Input, Label } from '../../ui-kit';
-
 import style from './PersonalInfoChangeForm.module.scss';
+
+import { IPersonalInfoFormData } from 'common/types';
+import { PhoneNumberInput } from 'elements';
+import { Input, Label } from 'ui-kit';
 
 interface IPersonalInfoChangeForm {
   phoneInputClass?: string;

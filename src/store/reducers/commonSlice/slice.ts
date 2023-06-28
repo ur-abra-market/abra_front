@@ -1,11 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import {
-  ICountry,
-  ICategoryResponse,
-} from '../../../services/common/common.serviceTypes';
-
 import { getAllCategories, getCompanyNumberEmployees, getCountries } from './thunks';
+
+import { ICountry, ICategoryResponse } from 'services/common/common.serviceTypes';
 
 export interface INumberEmployees {
   id: number;

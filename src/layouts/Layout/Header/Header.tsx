@@ -2,15 +2,14 @@ import React, { FC, RefObject, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
-import { CategoriesMenu } from '../../../components/CategoriesMenu/CategoriesMenu';
-import { LocationAndCurrencySelection } from '../../../components/LocationAndCurrencySelection/LocationAndCurrencySelection';
-
 import style from './Header.module.scss';
 
 import { Top } from '.';
 
 import { IHtmlHeaderProps } from 'common/types';
-import { HeaderNav } from 'components/HeaderNav/HeaderNav';
+import { CategoriesMenu } from 'elements/CategoriesMenu/CategoriesMenu';
+import { HeaderNav } from 'elements/HeaderNav/HeaderNav';
+import { LocationAndCurrencySelection } from 'elements/LocationAndCurrencySelection/LocationAndCurrencySelection';
 
 export const Header: FC<IHtmlHeaderProps> = ({
   className,

@@ -1,8 +1,8 @@
 import React, { FC, useState } from 'react';
 
-import RelatedInputs from '../../RelatedInputs';
-
 import style from './MaterialInputs.module.scss';
+
+import RelatedInputs from 'old-components/RelatedInputs';
 
 const fakeArr: number[] = [];
 

@@ -1,8 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { LoadingStatusEnum } from '../../../../common/types';
-import { ISellerNotifications } from '../../../../services/seller/seller.serviceTypes';
-
 import {
   getSellerAddresses,
   getSellerAvatar,
@@ -10,6 +7,8 @@ import {
   updateSellerNotifications,
 } from './thunks';
 
+import { LoadingStatusEnum } from 'common/types';
+import { ISellerNotifications } from 'services/seller/seller.serviceTypes';
 import { getPersonalInfo } from 'store/reducers/userSlice';
 
 // interface ISellerProfileSlice {

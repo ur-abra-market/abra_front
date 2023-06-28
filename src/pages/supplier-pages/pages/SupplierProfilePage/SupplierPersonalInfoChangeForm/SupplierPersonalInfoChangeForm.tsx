@@ -3,23 +3,19 @@ import React, { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { personalInfoFormValidationSchema } from '../../../../../common/constants';
-import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { IPersonalInfoFormData } from '../../../../../common/types';
-import { parsePhoneNumber } from '../../../../../common/utils/parsePhoneNumber';
-import { ButtonLogOut } from '../../../../../components/ButtonLogOut/ButtonLogOut';
-import { PersonalInfoChangeForm } from '../../../../../modules';
-import { countriesSelector } from '../../../../../store/reducers/commonSlice';
-import { supplierPersonalInfoSelector } from '../../../../../store/reducers/supplier/profile';
-import {
-  getPersonalInfo,
-  updatePersonalInfo,
-} from '../../../../../store/reducers/userSlice';
-import { Button } from '../../../../../ui-kit';
-
 import style from './SupplierPersonalInfoChangeForm.module.scss';
 
+import { personalInfoFormValidationSchema } from 'common/constants';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
+import { IPersonalInfoFormData } from 'common/types';
+import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import { ButtonLogOut } from 'elements/ButtonLogOut/ButtonLogOut';
+import { PersonalInfoChangeForm } from 'modules';
+import { countriesSelector } from 'store/reducers/commonSlice';
+import { supplierPersonalInfoSelector } from 'store/reducers/supplier/profile';
+import { getPersonalInfo, updatePersonalInfo } from 'store/reducers/userSlice';
+import { Button } from 'ui-kit';
 
 export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();

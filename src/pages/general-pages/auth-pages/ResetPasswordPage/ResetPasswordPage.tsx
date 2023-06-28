@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
-import { useAppDispatch } from '../../../../common/hooks';
-import { LOGIN } from '../../../../routes';
-import { AuthPageLayout } from '../assets';
-
 import style from './ResetPasswordPage.module.scss';
 
 import { ResetPasswordForm } from '.';
 
-import Modal from 'components/Modal';
+import { useAppDispatch } from 'common/hooks';
+import Modal from 'elements/Modal';
+import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
+import { LOGIN } from 'routes';
 import { checkToken } from 'store/reducers/authSlice';
 import { Button } from 'ui-kit';
 

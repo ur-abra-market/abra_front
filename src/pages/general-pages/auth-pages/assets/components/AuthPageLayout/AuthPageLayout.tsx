@@ -2,11 +2,10 @@ import { FC, ReactNode } from 'react';
 
 import cn from 'classnames';
 
-import { useAppSelector } from '../../../../../../common/hooks';
-import { LoadingStatusEnum } from '../../../../../../common/types';
-
 import style from './AuthPageLayout.module.scss';
 
+import { useAppSelector } from 'common/hooks';
+import { LoadingStatusEnum } from 'common/types';
 import { Footer } from 'layouts';
 import { LoaderLinear, MainLogo, SimpleLink } from 'ui-kit';
 

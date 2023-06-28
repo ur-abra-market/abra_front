@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useAppSelector } from '../../../../common/hooks';
-import { ContentMessage } from '../../../../components';
-import { AuthPageLayout } from '../assets';
-
 import style from './CheckEmailPage.module.scss';
+
+import { useAppSelector } from 'common/hooks';
+import { ContentMessage } from 'elements';
+import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
 
 export const CheckEmailPage = (): JSX.Element => {
   const isAuthorized = useAppSelector(state => state.auth.isAuthorized);

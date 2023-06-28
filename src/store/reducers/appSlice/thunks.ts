@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { ResponseUserRoleType } from '../../../common/types';
-import { authService } from '../../../services';
+import { ResponseUserRoleType } from 'common/types';
+import { authService } from 'services';
 
 export const getUserRole = createAsyncThunk<
   ResponseUserRoleType,

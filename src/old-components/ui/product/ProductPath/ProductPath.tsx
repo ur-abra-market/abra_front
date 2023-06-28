@@ -2,11 +2,10 @@ import { FC } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { HOME } from '../../../../routes';
-
 import style from './ProductPath.module.scss';
 
 import { BreadcrumbsArrowIcon } from 'assets/icons';
+import { HOME } from 'routes';
 
 interface ProductPathProps {
   pathArr: string[];

@@ -1,10 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { getUserRole } from '../appSlice';
-
 import { loginUser, logout } from './thunks';
 
 import { UserRoleType } from 'common/types';
+import { getUserRole } from 'store/reducers/appSlice';
 
 interface IAuthSliceInitialState {
   userRole: UserRoleType;

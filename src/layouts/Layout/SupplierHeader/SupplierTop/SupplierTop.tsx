@@ -3,14 +3,13 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { useOnClickOutside } from '../../../../common/hooks';
-import { HeaderMenu } from '../../../../components';
-import { HOME } from '../../../../routes';
-import { MainLogo } from '../../../../ui-kit';
-
 import style from './SupplierTop.module.scss';
 
 import { ArrowIcon, HeaderNotificationsIcon, LogoCompanyPlaceholder } from 'assets/icons';
+import { useOnClickOutside } from 'common/hooks';
+import { HeaderMenu } from 'elements';
+import { HOME } from 'routes';
+import { MainLogo } from 'ui-kit';
 
 export const SupplierTop = (): JSX.Element => {
   const [isShowPopupMenu, setIsShowPopupMenu] = useState(false);

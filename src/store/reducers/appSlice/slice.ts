@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { LoadingStatusEnum } from '../../../common/types';
+import { getUserRole } from '.';
 
-import { getUserRole } from './index';
+import { LoadingStatusEnum } from 'common/types';
 
 type NoticeType = 'error' | 'success' | null;
 export interface IResponseNotice {

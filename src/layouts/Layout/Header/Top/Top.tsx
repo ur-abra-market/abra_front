@@ -2,9 +2,6 @@ import { useState } from 'react';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import Modal from '../../../../components/Modal';
-import { CART, HOME, LOGIN } from '../../../../routes';
-
 import style from './Top.module.scss';
 
 import {
@@ -14,7 +11,9 @@ import {
   HeaderProfileIcon,
 } from 'assets/icons';
 import { useAppSelector, useOnClickOutside } from 'common/hooks';
-import { HeaderMenu } from 'components/HeaderMenu/HeaderMenu';
+import { HeaderMenu } from 'elements';
+import Modal from 'elements/Modal';
+import { CART, HOME, LOGIN } from 'routes';
 import { isAuthSelector } from 'store/reducers/authSlice/selectors';
 import { ButtonIcon, MainLogo, Search } from 'ui-kit';
 

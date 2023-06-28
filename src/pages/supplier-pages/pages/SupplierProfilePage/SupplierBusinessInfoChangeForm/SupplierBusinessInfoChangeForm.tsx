@@ -4,27 +4,26 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
-import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { parsePhoneNumber } from '../../../../../common/utils/parsePhoneNumber';
-import { UploadImage } from '../../../../../components';
-import { ISupplierUpdateBusinessInfo } from '../../../../../services/supplier/supplier.serviceTypes';
+import style from './SupplierBusinessInfoChangeForm.module.scss';
+
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import { UploadImage } from 'elements';
+import {
+  SupplierBusinessInfoForm,
+  supplierBusinessInfoFormValidationSchema,
+} from 'pages/supplier-pages/supplier-pages-common';
+import { ISupplierUpdateBusinessInfo } from 'services/supplier/supplier.serviceTypes';
 import {
   getBusinessInfo,
   supplierBusinessInfoSelector,
   updateBusinessInfo,
-} from '../../../../../store/reducers/supplier/profile';
-import { ISupplierBusinessInfo } from '../../../../../store/reducers/supplier/profile/slice';
-import {
-  SupplierBusinessInfoForm,
-  supplierBusinessInfoFormValidationSchema,
-} from '../../../supplier-pages-common';
-
-import style from './SupplierBusinessInfoChangeForm.module.scss';
-
+} from 'store/reducers/supplier/profile';
 import {
   supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
 } from 'store/reducers/supplier/profile/selectors';
+import { ISupplierBusinessInfo } from 'store/reducers/supplier/profile/slice';
 import {
   deleteCompanyLogo,
   uploadCompanyLogo,

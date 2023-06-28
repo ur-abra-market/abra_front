@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import { ucFirst } from '../../common/utils/ucFirst';
-
 import style from './RadioStyledElem.module.scss';
+
+import { ucFirst } from 'common/utils/ucFirst';
 
 interface RadioStyledElemProps {
   name: string;

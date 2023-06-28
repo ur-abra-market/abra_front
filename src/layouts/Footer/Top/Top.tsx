@@ -2,8 +2,8 @@ import React, { JSX } from 'react';
 
 import style from './Top.module.scss';
 
-import { HeaderNav } from 'components/HeaderNav/HeaderNav';
-import { LocationAndCurrencySelection } from 'components/LocationAndCurrencySelection/LocationAndCurrencySelection';
+import { HeaderNav } from 'elements/HeaderNav/HeaderNav';
+import { LocationAndCurrencySelection } from 'elements/LocationAndCurrencySelection/LocationAndCurrencySelection';
 import { MainLogo } from 'ui-kit';
 
 export const Top = (): JSX.Element => {
