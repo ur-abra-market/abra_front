@@ -39,7 +39,7 @@ export const SupplierProfilePage = (): JSX.Element => {
     };
 
     fetchData();
-  }, [dispatch]);
+  }, [dispatch]); // notifications не добавил так как дважды уйдут все запросы, сдесь это не надо
 
   if (isLoading) {
     return <LoaderLinear />;
