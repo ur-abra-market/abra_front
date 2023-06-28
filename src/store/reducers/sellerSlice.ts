@@ -4,7 +4,7 @@ export {};
 //
 // import { LoadingStatusEnum } from '../../common/types';
 // import {
-//   ISellerAddressData,
+//   IISellerAddressData,
 //   ISellerData,
 //   ISellerNotifications,
 //   ISendSellerResponse,
@@ -47,7 +47,7 @@ export {};
 //   },
 // );
 
-// export const getSellerAddressesService = createAsyncThunk<ISellerAddressData[], void>(
+// export const getSellerAddressesService = createAsyncThunk<IISellerAddressData[], void>(
 //   'seller/getSellerAddressesService',
 //   async (_, { rejectWithValue }) => {
 //     try {
@@ -120,7 +120,7 @@ export {};
 //   profileImage: {
 //     null: null;
 //   };
-//   sellerAddress: null | ISellerAddressData[];
+//   sellerAddress: null | IISellerAddressData[];
 // }
 //
 // const initialState: ISellerSlice = {

@@ -1,4 +1,4 @@
-import { IProductPrice } from '../../../../services/product/product.serviceTypes';
+import { IProductPrice } from 'services/product/product.serviceTypes';
 
 export const getPriceOneItem = (params: IProductPrice[]): any => {
   const { discount, min_quantity } = params[0];

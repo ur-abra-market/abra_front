@@ -4,11 +4,10 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import Check from '../../../Check';
-
 import style from './PaymentPopup.module.scss';
 
 import { CrossRedIcon } from 'assets/icons'; // 16px
+import Check from 'old-components/Check';
 import { Button, Input } from 'ui-kit';
 
 interface FormCardType {

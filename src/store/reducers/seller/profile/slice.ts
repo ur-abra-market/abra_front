@@ -1,8 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { LoadingStatusEnum } from '../../../../common/types';
-import { ISellerNotifications } from '../../../../services/seller/seller.serviceTypes';
-
 import {
   getSellerAddresses,
   getSellerAvatar,
@@ -10,6 +7,8 @@ import {
   updateSellerNotifications,
 } from './thunks';
 
+import { LoadingStatusEnum } from 'common/types';
+import { ISellerNotifications } from 'services/seller/seller.serviceTypes';
 import { getPersonalInfo } from 'store/reducers/userSlice';
 
 // interface ISellerProfileSlice {
@@ -25,7 +24,7 @@ import { getPersonalInfo } from 'store/reducers/userSlice';
 //   profileImage: {
 //     null: null;
 //   };
-//   sellerAddress: null | ISellerAddressData[];
+//   sellerAddress: null | IISellerAddressData[];
 // }
 
 // const initialState: ISellerProfileSlice = {
@@ -82,6 +81,29 @@ export interface ISellerPersonalInfo {
   countryShort: string;
   phoneNumber: string;
   avatar: string;
+}
+
+export interface ISellerAddressData {
+  addressId: number;
+  apartment: string;
+  area: string;
+  building: string;
+  city: string;
+  country: string;
+  countryId: number;
+  firstName: string;
+  isMain: boolean;
+  lastName: string;
+  phoneNumber: string;
+  postalCode: string;
+  street: string;
+}
+
+// to thunk
+
+export interface Root {
+  ok: boolean;
+  result: IAddress[];
 }
 
 export interface IAddress {
@@ -165,7 +187,8 @@ const sellerProfileSlice = createSlice({
         state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(getSellerAddresses.fulfilled, (state, action) => {
-        state.addresses = action.payload.result;
+        state.addresses = action.payload;
+        state.loading = LoadingStatusEnum.Success;
       })
       .addCase(getSellerAddresses.rejected, state => {
         state.loading = LoadingStatusEnum.Failed;

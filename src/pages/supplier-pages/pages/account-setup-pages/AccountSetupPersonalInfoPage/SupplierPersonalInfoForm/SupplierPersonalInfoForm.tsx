@@ -4,21 +4,20 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { personalInfoFormValidationSchema } from '../../../../../../common/constants';
-import { useAppDispatch } from '../../../../../../common/hooks';
-import { IPersonalInfoFormData } from '../../../../../../common/types';
-import { parsePhoneNumber } from '../../../../../../common/utils/parsePhoneNumber';
-import Modal from '../../../../../../components/Modal';
-import { ModalChildPhoneCheck } from '../../../../../../components/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
-import { PersonalInfoChangeForm } from '../../../../../../modules';
-import { ACCOUNT_SETUP_PERSONAL_INFO } from '../../../../../../routes';
-import { createAccountPersonalInfo } from '../../../../../../store/reducers/authSlice/thunks';
-import { getCountries } from '../../../../../../store/reducers/commonSlice';
-import { Button, SupplierRegisterFormStep } from '../../../../../../ui-kit';
-
 import style from './SupplierPersonalInfoForm.module.scss';
 
-import { IPersonalInfoRequestData } from 'services/auth/auth.serviceTypes';
+import { personalInfoFormValidationSchema } from 'common/constants';
+import { useAppDispatch } from 'common/hooks';
+import { IPersonalInfoFormData } from 'common/types';
+import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import Modal from 'elements/Modal';
+import { ModalChildPhoneCheck } from 'elements/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
+import { PersonalInfoChangeForm } from 'modules';
+import { ACCOUNT_SETUP_PERSONAL_INFO } from 'routes';
+import { IPersonalInfoRequest } from 'services/auth/auth.serviceTypes';
+import { createAccountPersonalInfo } from 'store/reducers/authSlice/thunks';
+import { getCountries } from 'store/reducers/commonSlice';
+import { Button, SupplierRegisterFormStep } from 'ui-kit';
 
 export const SupplierPersonalInfoForm = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
@@ -42,7 +41,7 @@ export const SupplierPersonalInfoForm = (): JSX.Element => {
   const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
     const { numberBody } = parsePhoneNumber(data.phoneNumber);
 
-    const personalInfoData: IPersonalInfoRequestData = {
+    const personalInfoData: IPersonalInfoRequest = {
       first_name: data.firstName,
       last_name: data.lastName,
       country_id: data.countryId,

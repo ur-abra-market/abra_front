@@ -4,15 +4,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { forgotPassword } from '../../../../../store/reducers/authSlice';
-import { Button, Input } from '../../../../../ui-kit';
-
 import style from './ForgotPasswordForm.module.scss';
 
 import { emailValidationSchema } from 'common/constants';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
 import { loadingSelector } from 'store/reducers/appSlice';
+import { forgotPassword } from 'store/reducers/authSlice';
+import { Button, Input } from 'ui-kit';
 
 export interface IForgotChangePasswordFormData {
   email: string;

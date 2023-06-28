@@ -1,26 +1,24 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IAsyncThunkConfig, LoadingStatusEnum } from '../../../common/types';
-import authService from '../../../services/auth/auth.service';
+import { IAsyncThunkConfig, LoadingStatusEnum } from 'common/types';
+import authService from 'services/auth/auth.service';
 import {
-  ChangeEmailPayloadType,
-  ChangePasswordPayloadType,
-  IBusinessInfoRequestData,
-  IConfirmEmailRequest,
-  IPersonalInfoRequestData,
+  IChangePasswordRequest,
+  IPersonalInfoRequest,
+  ILoginRequest,
+  ILoginResponse,
+  IResetPasswordRequest,
+  IChangeEmailRequest,
   IRegisterRequest,
-  LoginParamsType,
-  LoginResponseType,
-  LogoutResponseType,
-  RegisterResponseType,
-  ResetPasswordPayloadType,
-} from '../../../services/auth/auth.serviceTypes';
-import { getUserRole } from '../appSlice';
-import { setLoading, setResponseNotice } from '../appSlice/slice';
+  IConfirmEmailRequest,
+  IPasswordResponse,
+} from 'services/auth/auth.serviceTypes';
+import { getUserRole } from 'store/reducers/appSlice';
+import { setLoading, setResponseNotice } from 'store/reducers/appSlice/slice';
 
 export const registerUser = createAsyncThunk<
-  RegisterResponseType,
+  IPasswordResponse,
   IRegisterRequest,
   IAsyncThunkConfig
 >('auth/registerUser', async (dataUser, { rejectWithValue, dispatch }) => {
@@ -45,10 +43,10 @@ export const registerUser = createAsyncThunk<
 });
 
 export const confirmEmail = createAsyncThunk<
-  RegisterResponseType,
+  IPasswordResponse,
   IConfirmEmailRequest,
   IAsyncThunkConfig
->('auth/registerUser', async (dataUser, { rejectWithValue }) => {
+>('auth/confirmEmail', async (dataUser, { rejectWithValue }) => {
   try {
     return await authService.confirmEmail(dataUser);
   } catch (error) {
@@ -58,7 +56,7 @@ export const confirmEmail = createAsyncThunk<
 
 export const createAccountPersonalInfo = createAsyncThunk<
   any, // todo fix any -> need common request interface
-  IPersonalInfoRequestData
+  IPersonalInfoRequest
 >(
   'createAccount/createAccountPersonalInfo',
   async (personalInfoData, { rejectWithValue }) => {
@@ -70,24 +68,9 @@ export const createAccountPersonalInfo = createAsyncThunk<
   },
 );
 
-export const createAccountBusinessInfo = createAsyncThunk<
-  void,
-  IBusinessInfoRequestData,
-  IAsyncThunkConfig
->(
-  'createAccount/createAccountBusinessInfo',
-  async (businessInfoData, { rejectWithValue }) => {
-    try {
-      return await authService.sendAccountBusinessInfo(businessInfoData);
-    } catch (error) {
-      return rejectWithValue('[createAccountBusinessInfo]: Error');
-    }
-  },
-);
-
 export const loginUser = createAsyncThunk<
-  LoginResponseType,
-  LoginParamsType,
+  ILoginResponse,
+  ILoginRequest,
   IAsyncThunkConfig
 >('auth/loginUser', async (dataUser, { rejectWithValue, dispatch }) => {
   dispatch(setLoading(LoadingStatusEnum.Loading));
@@ -114,7 +97,7 @@ export const loginUser = createAsyncThunk<
   }
 });
 
-export const logout = createAsyncThunk<LogoutResponseType, void, IAsyncThunkConfig>(
+export const logout = createAsyncThunk<IPasswordResponse, void, IAsyncThunkConfig>(
   'login/logout',
   async (_, { rejectWithValue, dispatch }) => {
     dispatch(setLoading(LoadingStatusEnum.Loading));
@@ -178,7 +161,7 @@ export const checkToken = createAsyncThunk<string, string, IAsyncThunkConfig>(
 
 export const resetPassword = createAsyncThunk<
   string,
-  ResetPasswordPayloadType,
+  IResetPasswordRequest,
   IAsyncThunkConfig
 >('password/resetPassword', async (param, { dispatch, rejectWithValue }) => {
   dispatch(setLoading(LoadingStatusEnum.Loading));
@@ -205,7 +188,7 @@ export const resetPassword = createAsyncThunk<
 
 export const changePassword = createAsyncThunk<
   string,
-  ChangePasswordPayloadType,
+  IChangePasswordRequest,
   IAsyncThunkConfig
 >('password/changePassword', async (param, { dispatch, rejectWithValue }) => {
   dispatch(setLoading(LoadingStatusEnum.Loading));
@@ -231,7 +214,7 @@ export const changePassword = createAsyncThunk<
 
 export const changeEmail = createAsyncThunk<
   string,
-  ChangeEmailPayloadType,
+  IChangeEmailRequest,
   IAsyncThunkConfig
 >('auth/changeEmail', async (params, { dispatch, rejectWithValue }) => {
   dispatch(setLoading(LoadingStatusEnum.Loading));

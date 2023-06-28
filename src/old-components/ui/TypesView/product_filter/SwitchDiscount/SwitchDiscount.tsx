@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { discount } from '../../../../../store/reducers/filterSlice';
-
 import styles from './SwitchDiscount.module.scss';
+
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { discount } from 'store/reducers/filterSlice';
 
 const SwitchDiscount: FC = () => {
   const dispatch = useAppDispatch();

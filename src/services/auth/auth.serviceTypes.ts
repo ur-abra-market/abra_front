@@ -1,8 +1,3 @@
-import {
-  ISuppliersUpdateCompanyInfo,
-  IUpdateCompanyInfo,
-} from '../supplier/supplier.serviceTypes';
-
 import { ResponseUserRoleType } from 'common/types';
 
 export interface IRegisterRequest {
@@ -15,54 +10,36 @@ export interface IConfirmEmailRequest {
   token: string;
 }
 
-export type RegisterResponseType = {
-  result: string;
-};
-
-export type LoginParamsType = {
+export interface ILoginRequest {
   email: string;
   password: string;
-};
-
-export type LoginResponseType = {
+}
+export interface ILoginResponse {
   result: string;
   is_supplier: boolean;
-};
+}
 
-export type PasswordResponseType = {
+export interface IPasswordResponse {
   result: string;
-};
+}
 
-export type ResetPasswordPayloadType = {
+export interface IResetPasswordRequest {
   new_password: string;
   confirm_password: string;
   token: string;
-};
+}
 
-export type ChangePasswordPayloadType = {
+export interface IChangePasswordRequest {
   old_password: string;
   new_password: string;
-};
+}
 
-export type ChangeEmailPayloadType = {
+export interface IChangeEmailRequest {
   new_email: string;
   confirm_email: string;
-};
-
-export type LogoutResponseType = {
-  result: boolean;
-};
-
-export interface IBusinessInfoRequestData
-  extends Omit<ISuppliersUpdateCompanyInfo, 'company_data_request'> {
-  company_data_request: ISendCompanyInfo;
 }
 
-interface ISendCompanyInfo extends IUpdateCompanyInfo {
-  logo_url: string;
-}
-
-export interface IPersonalInfoRequestData {
+export interface IPersonalInfoRequest {
   first_name: string;
   last_name: string;
   country_id: number;

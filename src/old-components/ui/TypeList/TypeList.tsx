@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import CheckboxFor from '../CheckboxFor';
-import RadiosFor from '../RadiosFor';
+import CheckboxFor from 'old-components/ui/CheckboxFor';
+import RadiosFor from 'old-components/ui/RadiosFor';
 
 interface TypeListProps {
   colors: string[];

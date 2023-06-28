@@ -1,39 +1,53 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { supplierService } from '../../../../services';
-import { setResponseNotice } from '../../appSlice/slice';
-
-import { IAsyncThunkConfig } from 'common/types';
+import { IAsyncThunkConfig, IServerResponse } from 'common/types';
+import { supplierService } from 'services';
 import {
   ISupplierErrorResponse,
-  ISuppliersCompanyInfoData,
-  ISuppliersUpdateCompanyInfo,
-  SuppliersResponse,
+  ISupplierBusinessInfo,
+  ISupplierUpdateBusinessInfo,
+  IBusinessInfoRequest,
 } from 'services/supplier/supplier.serviceTypes';
+import { setResponseNotice } from 'store/reducers/appSlice/slice';
 
 export const getBusinessInfo = createAsyncThunk<
-  ISuppliersCompanyInfoData,
+  ISupplierBusinessInfo,
   void,
   IAsyncThunkConfig
->('supplierProfile/getCompanyInfo', async (_, { rejectWithValue }) => {
+>('supplierProfile/getBusinessInfo', async (_, { rejectWithValue }) => {
   try {
     return await supplierService.fetchBusinessInfo();
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
         ? error.response?.data?.error || error.message
-        : '[getCompanyInfo]: Error';
+        : '[getBusinessInfo]: Error';
 
     return rejectWithValue(errorMessage);
   }
 });
 
+export const createAccountBusinessInfo = createAsyncThunk<
+  void,
+  IBusinessInfoRequest,
+  IAsyncThunkConfig
+>(
+  'createAccount/createAccountBusinessInfo',
+  async (businessInfoData, { rejectWithValue }) => {
+    try {
+      return await supplierService.createBusinessInfo(businessInfoData);
+    } catch (error) {
+      return rejectWithValue('[createAccountBusinessInfo]: Error');
+    }
+  },
+);
+
 export const updateBusinessInfo = createAsyncThunk<
   void,
-  ISuppliersUpdateCompanyInfo,
+  ISupplierUpdateBusinessInfo,
   IAsyncThunkConfig
->('supplierProfile/updateCompanyInfo', async (arg, { rejectWithValue, dispatch }) => {
+>('supplierProfile/updateBusinessInfo', async (arg, { rejectWithValue, dispatch }) => {
   try {
     await supplierService.updateBusinessInfo(arg);
     dispatch(getBusinessInfo());
@@ -41,14 +55,14 @@ export const updateBusinessInfo = createAsyncThunk<
     const errorMessage =
       error instanceof AxiosError
         ? error.response?.data?.error || error.message
-        : '[updateCompanyInfo]: Error';
+        : '[updateBusinessInfo]: Error';
 
     return rejectWithValue(errorMessage);
   }
 });
 
 export const fetchCompanyLogo = createAsyncThunk<string, void, IAsyncThunkConfig>(
-  'supplierProfile/fetchCompanyImage',
+  'supplierProfile/fetchCompanyLogo',
   async (_, { rejectWithValue }) => {
     try {
       return await supplierService.fetchCompanyLogo();
@@ -61,14 +75,14 @@ export const fetchCompanyLogo = createAsyncThunk<string, void, IAsyncThunkConfig
 );
 
 export const uploadCompanyLogo = createAsyncThunk<
-  SuppliersResponse<{
+  IServerResponse<{
     id: number;
     url: string;
     image: string;
   }>,
   File,
   IAsyncThunkConfig
->('supplierProfile/uploadCompanyImage', async (img, { rejectWithValue }) => {
+>('supplierProfile/uploadCompanyLogo', async (img, { rejectWithValue }) => {
   try {
     const data = await supplierService.uploadCompanyLogo(img);
 
@@ -81,10 +95,10 @@ export const uploadCompanyLogo = createAsyncThunk<
 });
 
 export const deleteCompanyLogo = createAsyncThunk<
-  SuppliersResponse<boolean>,
+  IServerResponse<boolean>,
   number,
   IAsyncThunkConfig
->('supplierProfile/deleteCompanyImage', async (id, { rejectWithValue }) => {
+>('supplierProfile/deleteCompanyLogo', async (id, { rejectWithValue }) => {
   try {
     return await supplierService.deleteCompanyLogo(id);
   } catch (error) {
@@ -98,7 +112,7 @@ export const getSupplierNotifications = createAsyncThunk<any, void>(
   'supplierAccount/getSupplierNotifications',
   async (_, { rejectWithValue, dispatch }) => {
     try {
-      return await supplierService.getNotifications();
+      return await supplierService.fetchNotifications();
     } catch (error) {
       const errorMessage =
         error instanceof AxiosError

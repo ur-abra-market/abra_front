@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { productService } from '../../services/product/product.service';
+import { productService } from 'services/product/product.service';
 
 const initialState = {
   productsPage: [],

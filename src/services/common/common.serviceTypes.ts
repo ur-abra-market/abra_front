@@ -1,17 +1,11 @@
-export interface IResponseCategory {
+import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
+
+export interface ICategoryResponse {
   id: number;
   name: string;
   level: number;
-  children?: IResponseCategory[] | [];
+  children?: ICategoryResponse[] | [];
   parent_id?: number;
-}
-
-export interface IBaseResponseType<R> {
-  ok: true;
-  result: R;
-  detail: 'string';
-  error: 'string';
-  error_code: 0;
 }
 
 export interface ICountry {
@@ -23,18 +17,9 @@ export interface ICountry {
   flag: string;
 }
 
-export type CountriesType = ICountry[];
-
 export interface INumberEmployees {
   id: number;
   number: string;
-}
-
-export type NumberEmployeesType = INumberEmployees[];
-
-export interface ResponseGetNumberEmployees {
-  ok: boolean;
-  result: NumberEmployeesType[];
 }
 
 export interface IAccountPersonalInfoRequest {
@@ -44,4 +29,9 @@ export interface IAccountPersonalInfoRequest {
   phone_number: string;
 }
 
-export type AllCategories = Pick<IBaseResponseType<IResponseCategory[]>, 'ok' | 'result'>;
+export interface IDeleteImageRequest {
+  action: string;
+  queries: { company_image_id: number; order?: number };
+}
+
+export type IAllCategories = Pick<IBaseResponse<ICategoryResponse[]>, 'ok' | 'result'>;

@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-import PaymentPopup from '../../popup/PaymentPopup';
-
 import style from './CheckPayment.module.scss';
 
 import {
@@ -11,6 +9,7 @@ import {
   PaypalIcon,
   VisaIcon,
 } from 'assets/icons';
+import PaymentPopup from 'old-components/ui/popup/PaymentPopup';
 
 const CheckPayment = (): JSX.Element => {
   const [modal, setModal] = useState(false);

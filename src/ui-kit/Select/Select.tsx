@@ -1,13 +1,13 @@
-import React, { forwardRef, ReactNode, useEffect, useState } from 'react';
+import React, { forwardRef, ReactNode, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
-
-import { useOnClickOutside, useOnHoverOutside } from '../../common/hooks';
 
 import styles from './Select.module.scss';
 import { SelectHeader } from './SelectHeader/SelectHeader';
 import { SelectItem } from './SelectItem/SelectItem';
 import { SelectMenu } from './SelectMenu/SelectMenu';
+
+import { useOnClickOutside, useOnHoverOutside } from 'common/hooks';
 
 const SPACE_KEYBOARD = 'Space';
 const ENTER_KEYBOARD = 'Enter';
@@ -26,6 +26,7 @@ export interface ISelectOption {
 
 export interface ISelect {
   options: ISelectOption[];
+  controlledValue?: ISelectOption;
   onChange?: (value: ISelectOption) => void;
   error?: string;
   children?: ReactNode;
@@ -43,6 +44,7 @@ export const Select = forwardRef(
   (
     {
       options,
+      controlledValue,
       placeholder,
       onChange,
       error,
@@ -65,19 +67,26 @@ export const Select = forwardRef(
     const [selectedValue, setSelectedVale] =
       useState<ISelectOption>(defaultSelectedValue);
 
+    const currentSelectedValue =
+      controlledValue !== undefined ? controlledValue : selectedValue;
+
     useEffect(() => {
       if (defaultValue) {
-        const currentValue = options.find(el => el.label === defaultValue);
+        const currentValue = options.find(el => el.value === defaultValue);
 
         if (currentValue) setSelectedVale(currentValue);
       }
     }, [defaultValue, options]);
 
-    const handleSetSelectedValue = (incomingData: ISelectOption): void => {
-      if (incomingData !== selectedValue) {
-        setSelectedVale(incomingData);
+    const handleSetSelectedValue = (option: ISelectOption): void => {
+      if (option !== currentSelectedValue) {
+        if (controlledValue !== undefined) {
+          setSelectedVale(controlledValue);
+        } else {
+          setSelectedVale(option);
+        }
         if (onChange) {
-          onChange(incomingData);
+          onChange(option);
         }
       }
       handleCloseSelectMenu();
@@ -179,7 +188,7 @@ export const Select = forwardRef(
         <SelectHeader
           menuItemsPosition={menuItemsPosition}
           className={headerClassname}
-          currentSelectedValue={selectedValue}
+          currentSelectedValue={currentSelectedValue}
           isOpenMenu={isOpenItemsMenu}
           onClick={handleChangeSelectState}
         />

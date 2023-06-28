@@ -1,8 +1,5 @@
-import { ICountry } from '../common/common.serviceTypes';
+import { ICountry } from 'services/common/common.serviceTypes';
 
-export interface IResponse<T> {
-  result: T;
-}
 export interface IAccountPersonalInfoResponse {
   country: ICountry;
   id: number;

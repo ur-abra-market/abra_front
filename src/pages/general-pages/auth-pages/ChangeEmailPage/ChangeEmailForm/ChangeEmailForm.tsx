@@ -4,16 +4,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { changeEmail } from '../../../../../store/reducers/authSlice';
-import { Button, Input } from '../../../../../ui-kit';
-
 import style from './ChangeEmailForm.module.scss';
 
 import { emailValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
-import { ChangeEmailPayloadType } from 'services/auth/auth.serviceTypes';
+import { IChangeEmailRequest } from 'services/auth/auth.serviceTypes';
 import { loadingSelector } from 'store/reducers/appSlice';
+import { changeEmail } from 'store/reducers/authSlice';
+import { Button, Input } from 'ui-kit';
 
 const TRIGGER_FIELD = 'confirm_email';
 
@@ -34,7 +33,7 @@ export const ChangeEmailForm: FC<IChangeEmailForm> = ({ setOpenModal }) => {
     trigger,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm<ChangeEmailPayloadType>({
+  } = useForm<IChangeEmailRequest>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
@@ -46,7 +45,7 @@ export const ChangeEmailForm: FC<IChangeEmailForm> = ({ setOpenModal }) => {
     if (watch(TRIGGER_FIELD)) trigger(TRIGGER_FIELD);
   }, [watch('new_email')]);
 
-  const onSubmit = async (data: ChangeEmailPayloadType): Promise<void> => {
+  const onSubmit = async (data: IChangeEmailRequest): Promise<void> => {
     const actionResult = await dispatch(changeEmail(data));
 
     if (changeEmail.fulfilled.match(actionResult)) {

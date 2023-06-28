@@ -3,11 +3,10 @@ import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { active } from '../../store/reducers/productPaginateSlice';
-import ImgSlider from '../ImgSlider';
-
 import style from './Card.module.scss';
 
+import ImgSlider from 'old-components/ImgSlider';
+import { active } from 'store/reducers/productPaginateSlice';
 import { Stars } from 'ui-kit';
 
 interface CardProps {

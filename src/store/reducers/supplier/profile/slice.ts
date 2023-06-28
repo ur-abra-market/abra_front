@@ -1,9 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { LoadingStatusEnum } from '../../../../common/types';
-import { ISupplierNotifications } from '../../../../services/supplier/supplier.serviceTypes';
-import { getPersonalInfo } from '../../userSlice';
-
 import {
   getBusinessInfo,
   deleteCompanyLogo,
@@ -12,6 +8,10 @@ import {
   getSupplierNotifications,
   updateSupplierNotifications,
 } from './thunks';
+
+import { LoadingStatusEnum } from 'common/types';
+import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
+import { getPersonalInfo } from 'store/reducers/userSlice';
 
 export interface ISupplierPersonalInfo {
   firstName: string;

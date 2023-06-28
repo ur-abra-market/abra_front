@@ -2,10 +2,10 @@ import React, { FC, useState } from 'react';
 
 import { Control, Controller } from 'react-hook-form';
 
-import { ISelectOption, Label, Select } from '../../../ui-kit';
-import style from '../ProductListRegistrationForm/ProductListRegistrationForm.module.scss';
-
 import styles from './SelectionsForProperties.module.scss';
+
+import style from 'old-components/ui/ProductListRegistrationForm/ProductListRegistrationForm.module.scss';
+import { ISelectOption, Label, Select } from 'ui-kit';
 
 interface ISelectionsForPropertiesProps {
   control: Control<any>;

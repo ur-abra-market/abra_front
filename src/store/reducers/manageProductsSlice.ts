@@ -1,9 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { productService } from '../../services/product/product.service';
-
 import { LoadingStatusEnum } from 'common/types';
+import { productService } from 'services/product/product.service';
 
 export const manageProductsService = createAsyncThunk<any, void>(
   'manageProducts/manageProductsService',
@@ -23,7 +22,7 @@ export const manageProductsService = createAsyncThunk<any, void>(
 
 export const deleteProducts = createAsyncThunk<any, any>(
   'manageProducts/deleteProducts',
-  async (id, { rejectWithValue, dispatch }) => {
+  async (id: string[], { rejectWithValue, dispatch }) => {
     try {
       const response = await productService.deleteList(id);
 

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import { Input, Label } from '../../ui-kit';
-
 import style from './RelatedInputs.module.scss';
+
+import { Input, Label } from 'ui-kit';
 
 interface RelatedInputsProps {
   register?: any;

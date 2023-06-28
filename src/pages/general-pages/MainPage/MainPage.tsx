@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 
-import { WithLayout } from '../../../common/hocs/WithLayout';
-import { useAppDispatch, useAppSelector } from '../../../common/hooks';
-import { ProductSortEnum } from '../../../common/types';
-import { Feedback, ProductCard } from '../../../components';
-import { ProductsPreview } from '../../../modules';
-import { fetchProductList } from '../../../store/reducers/mainPageSlice';
-import { ButtonInfo, LoaderCircular, ViewMoreProducts } from '../../../ui-kit';
-
 import style from './MainPage.module.scss';
 
-import { ImagesBlock, StatusProduct } from './index';
+import { ImagesBlock, StatusProduct } from '.';
+
+import { WithLayout } from 'common/hocs/WithLayout';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { ProductSortEnum } from 'common/types';
+import { Feedback, ProductCard } from 'elements';
+import { ProductsPreview } from 'modules';
+import { fetchProductList } from 'store/reducers/mainPageSlice';
+import { ButtonInfo, LoaderCircular, ViewMoreProducts } from 'ui-kit';
 
 export enum Categories {
   ALL,

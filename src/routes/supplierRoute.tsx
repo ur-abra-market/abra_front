@@ -2,20 +2,6 @@ import React from 'react';
 
 import { RouteObject } from 'react-router-dom';
 
-import {
-  AccountSetupBusinessInfoPage,
-  AccountSetupPersonalInfoPage,
-  AnalyticsPage,
-  DashboardPage,
-  FeedbackAndQuestionsPage,
-  OrdersPage,
-  PriceManagementPage,
-  ProductListRegistrationPage,
-  ProductsListPage,
-  SupplierMainPage,
-  SupplierProfilePage,
-} from '../pages/supplier-pages';
-
 import { HOME } from './constans/root';
 import {
   ACCOUNT_SETUP_BUSINESS_INFO,
@@ -28,6 +14,20 @@ import {
   PRICE,
   SUPPLIERS_PRODUCTS,
 } from './constans/supplier';
+
+import {
+  AccountSetupBusinessInfoPage,
+  AccountSetupPersonalInfoPage,
+  AnalyticsPage,
+  DashboardPage,
+  FeedbackAndQuestionsPage,
+  OrdersPage,
+  PriceManagementPage,
+  ProductListRegistrationPage,
+  ProductsListPage,
+  SupplierMainPage,
+  SupplierProfilePage,
+} from 'pages/supplier-pages';
 
 export const supplierRoute: RouteObject[] = [
   {

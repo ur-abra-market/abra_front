@@ -1,12 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { CategoryType } from '../../pages/general-pages/MainPage/StatusProduct/StatusProduct';
-import { IRequestCategory } from '../../services/product/product.serviceTypes';
-
+import { CategoryType } from 'pages/general-pages/MainPage/StatusProduct/StatusProduct';
 import { productService } from 'services/product/product.service';
+import { ICategoryRequest } from 'services/product/product.serviceTypes';
 
-export const productFetch = createAsyncThunk<any, IRequestCategory>(
+export const productFetch = createAsyncThunk<any, ICategoryRequest>(
   'product/productService',
   async (productData, { rejectWithValue }) => {
     try {

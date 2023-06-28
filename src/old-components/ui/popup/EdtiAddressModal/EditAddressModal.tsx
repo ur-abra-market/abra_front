@@ -2,13 +2,12 @@ import React, { FC } from 'react';
 
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 
-import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
-import { PhoneNumberInput } from '../../../../components';
-import Check from '../../../Check';
-
 import style from './EditAddressModal.module.scss';
 
 import { CrossRedIcon, DeleteTrashCanIcon } from 'assets/icons'; // 16px for CrossRedIcon
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { PhoneNumberInput } from 'elements';
+import Check from 'old-components/Check';
 import { IAddress } from 'store/reducers/seller/profile/slice';
 import { deleteAddress, editAddress } from 'store/reducers/sellerCheckoutSlice';
 import { Button, Input, Label, Select } from 'ui-kit';
@@ -255,7 +254,7 @@ export const EditAddressModal: FC<EditAddressModalType> = ({
   const onSubmit = (data: IAddress): void => {
     if (!isValid) return;
 
-    console.log();
+    // console.log();
     dispatch(editAddress(data));
     setModal(false);
   };

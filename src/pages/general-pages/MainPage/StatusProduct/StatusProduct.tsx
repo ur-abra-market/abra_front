@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 import cn from 'classnames';
 
-import { useAppDispatch } from '../../../../common/hooks';
-import { status } from '../../../../store/reducers/productSlice';
-
 import style from './StatusProduct.module.scss';
+
+import { useAppDispatch } from 'common/hooks';
+import { status } from 'store/reducers/productSlice';
 
 export enum CategoryType {
   BESTSELLERS = 'bestsellers',

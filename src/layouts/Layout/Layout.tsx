@@ -1,10 +1,10 @@
 import { FC, ReactNode } from 'react';
 
-import { Footer } from '../Footer/Footer';
-
 import styles from './Layout.module.scss';
 
 import { SupplierHeader, Header } from '.';
+
+import { Footer } from 'layouts/Footer/Footer';
 
 interface ILayout {
   children: ReactNode;

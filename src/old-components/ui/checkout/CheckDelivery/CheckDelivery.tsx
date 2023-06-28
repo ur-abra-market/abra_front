@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../../../common/hooks';
-import { getAddress } from '../../../../store/reducers/sellerCheckoutSlice';
-// import { getSellerInfoService } from '../../../../store/reducers/sellerSlice';
-import CheckoutAddress from '../../../CheckoutAddress/CheckoutAddress';
-import AddressPopup from '../../popup/AddressPopup';
-
 import style from './CheckDelivery.module.scss';
 
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import Modal from 'elements/Modal';
+import CheckoutAddress from 'old-components/CheckoutAddress/CheckoutAddress';
+import { SellerAddAddressChangeForm } from 'pages/seller-pages/SellerProfilePage/Addresses/SellerAddAddressChangeForm/SellerAddAddressChangeForm';
+import { getAddress } from 'store/reducers/sellerCheckoutSlice';
+// import { getSellerInfoService } from '../../../../store/reducers/sellerSlice';
+
 const CheckDelivery = (): JSX.Element => {
-  const { addresses } = useAppSelector(state => state.sellerCheckout);
+  const { addresses } = useAppSelector(state => state.sellerProfile);
   const [selectedAddress, setSelectedAddress] = useState<number>();
   const dispatch = useAppDispatch();
-  const [AddModal, setAddModal] = useState(false);
+  const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const onClick = (): void => {
-    setAddModal(!AddModal);
+    setAddModal(!addModal);
   };
 
   useEffect(() => {
@@ -50,7 +51,10 @@ const CheckDelivery = (): JSX.Element => {
           + Add an address
         </div>
       </div>
-      <AddressPopup modal={AddModal} setAddModal={setAddModal} />
+      {/* <AddressPopup modal={AddModal} setAddModal={setAddModal} /> */}
+      <Modal showModal={addModal} closeModal={setAddModal}>
+        <SellerAddAddressChangeForm />
+      </Modal>
     </div>
   );
 };

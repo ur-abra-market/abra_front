@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { sellerService } from '../../../../services/seller/seller.service';
-import { setResponseNotice } from '../../appSlice/slice';
+import { sellerService } from 'services/seller/seller.service';
+import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
+import { setResponseNotice } from 'store/reducers/appSlice/slice';
 
 export const getSellerAvatar = createAsyncThunk<any, void>(
   'seller/getSellerAvatar',
@@ -36,11 +37,45 @@ export const getSellerAddresses = createAsyncThunk<any, void>(
   },
 );
 
+export const addSellerAddresses = createAsyncThunk<any, ISellerAddressData>(
+  'seller/addSellerAddresses',
+  async (arg, { rejectWithValue, dispatch }) => {
+    try {
+      await sellerService.addAddress(arg);
+      dispatch(getSellerAddresses());
+    } catch (error) {
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.error || error.message
+          : '[addSellerAddresses]: Error';
+
+      return rejectWithValue(errorMessage);
+    }
+  },
+);
+
+export const updateSellerAddresses = createAsyncThunk<any, ISellerAddressData>(
+  'seller/updateSellerAddresses',
+  async (arg, { rejectWithValue, dispatch }) => {
+    try {
+      await sellerService.addAddress(arg);
+      dispatch(getSellerAddresses());
+    } catch (error) {
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.error || error.message
+          : '[updateSellerAddresses]: Error';
+
+      return rejectWithValue(errorMessage);
+    }
+  },
+);
+
 export const getSellerNotifications = createAsyncThunk<any, void>(
   'seller/getSellerNotifications',
   async (_, { rejectWithValue, dispatch }) => {
     try {
-      return await sellerService.getNotifications();
+      return await sellerService.fetchNotifications();
     } catch (error) {
       const errorMessage =
         error instanceof AxiosError

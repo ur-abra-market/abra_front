@@ -11,12 +11,11 @@ import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import { Swiper as SwiperType } from 'swiper';
 
-import { ArrowLeftIcon, ArrowRightIcon } from '../../assets/icons'; // 24px
-
 import style from './ProductsPreview.module.scss';
 
-import { Carousel } from './index';
+import { Carousel } from '.';
 
+import { ArrowLeftIcon, ArrowRightIcon } from 'assets/icons'; // 24px
 import { ButtonIcon } from 'ui-kit';
 
 interface IProductsPreview

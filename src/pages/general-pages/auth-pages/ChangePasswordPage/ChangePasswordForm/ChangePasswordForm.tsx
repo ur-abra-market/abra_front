@@ -4,16 +4,16 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { passwordValidationSchema } from '../../../../../common/constants';
-import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { LoadingStatusEnum } from '../../../../../common/types';
-import { ChangePasswordPayloadType } from '../../../../../services/auth/auth.serviceTypes';
-import { loadingSelector } from '../../../../../store/reducers/appSlice';
-import { changePassword } from '../../../../../store/reducers/authSlice';
-import { Button, Input } from '../../../../../ui-kit';
-import { PasswordComplexity } from '../../assets';
-
 import style from './ChangePasswordForm.module.scss';
+
+import { passwordValidationSchema } from 'common/constants';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { LoadingStatusEnum } from 'common/types';
+import { PasswordComplexity } from 'pages/general-pages/auth-pages/assets';
+import { IChangePasswordRequest } from 'services/auth/auth.serviceTypes';
+import { loadingSelector } from 'store/reducers/appSlice';
+import { changePassword } from 'store/reducers/authSlice';
+import { Button, Input } from 'ui-kit';
 
 const TRIGGER_FIELD = 'new_password';
 
@@ -42,7 +42,7 @@ export const ChangePasswordForm: FC<IChangePasswordForm> = ({ setOpenModal }) =>
     formState: { isValid, errors },
     handleSubmit,
     trigger,
-  } = useForm<ChangePasswordPayloadType>({
+  } = useForm<IChangePasswordRequest>({
     resolver: yupResolver(formValidationSchema),
     mode: 'onChange',
   });
@@ -53,7 +53,7 @@ export const ChangePasswordForm: FC<IChangePasswordForm> = ({ setOpenModal }) =>
     if (watch(TRIGGER_FIELD)) trigger(TRIGGER_FIELD);
   }, [watch('old_password')]);
 
-  const onSubmit = async (data: ChangePasswordPayloadType): Promise<void> => {
+  const onSubmit = async (data: IChangePasswordRequest): Promise<void> => {
     const actionResult = await dispatch(changePassword(data));
 
     if (changePassword.fulfilled.match(actionResult)) {

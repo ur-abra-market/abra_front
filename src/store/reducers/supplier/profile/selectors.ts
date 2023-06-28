@@ -1,8 +1,8 @@
-import { LoadingStatusEnum } from '../../../../common/types';
-import { ISupplierNotifications } from '../../../../services/supplier/supplier.serviceTypes';
-import { RootStateType } from '../../../createStore';
-
 import { ISupplierPersonalInfo, ISupplierBusinessInfo } from './slice';
+
+import { LoadingStatusEnum } from 'common/types';
+import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
+import { RootStateType } from 'store/createStore';
 
 export const supplierPersonalInfoSelector = (
   state: RootStateType,

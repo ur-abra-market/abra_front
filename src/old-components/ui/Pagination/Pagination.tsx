@@ -2,11 +2,10 @@ import { FC } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { active } from '../../../store/reducers/paginateSlice';
-
 import styles from './Pagination.module.scss';
 
 import { ArrowLeftIcon, ArrowRightIcon } from 'assets/icons'; // 24px
+import { active } from 'store/reducers/paginateSlice';
 
 interface PaginationProps {
   activePage: number;

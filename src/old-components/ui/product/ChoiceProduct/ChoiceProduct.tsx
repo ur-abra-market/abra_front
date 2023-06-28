@@ -2,11 +2,11 @@ import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
 
-import { useAppSelector } from '../../../../common/hooks';
-import { Button } from '../../../../ui-kit';
-import ProductQuantityControl from '../../../ProductQuantityControl';
-
 import style from './ChoiceProduct.module.scss';
+
+import { useAppSelector } from 'common/hooks';
+import ProductQuantityControl from 'old-components/ProductQuantityControl';
+import { Button } from 'ui-kit';
 
 interface ChoiceProductProps {
   colors: string[];

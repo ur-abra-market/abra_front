@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { supplierService } from '../../../../services';
+import { supplierService } from 'services';
 
 export const getPropertiesService = createAsyncThunk<any, any>(
   'supplier/getPropertiesService',
@@ -38,7 +38,7 @@ export const getVariationsService = createAsyncThunk<any, any>(
 );
 
 export const addProductService = createAsyncThunk<any, any>(
-  'supplier/addProduct',
+  'supplier/addProductService',
   async ({ product }, { rejectWithValue }) => {
     try {
       const data = await supplierService.addProduct(product);
@@ -55,7 +55,7 @@ export const addProductService = createAsyncThunk<any, any>(
 );
 
 export const uploadImageService = createAsyncThunk<any, any>(
-  'supplier/uploadImage',
+  'supplier/uploadImageService',
   async ({ rest }, { rejectWithValue }) => {
     try {
       return await supplierService.uploadProductImage(rest.img, rest.prodId, rest.index);

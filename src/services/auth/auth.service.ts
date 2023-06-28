@@ -1,100 +1,80 @@
-import baseConfigService from '../baseConfig.service';
-
 import {
   IConfirmEmailRequest,
   IRegisterRequest,
-  LogoutResponseType,
-  ChangePasswordPayloadType,
-  IBusinessInfoRequestData,
-  LoginParamsType,
-  LoginResponseType,
-  PasswordResponseType,
-  RegisterResponseType,
-  ResetPasswordPayloadType,
-  IPersonalInfoRequestData,
-  ChangeEmailPayloadType,
+  IChangePasswordRequest,
+  ILoginRequest,
+  ILoginResponse,
+  IPasswordResponse,
+  IResetPasswordRequest,
+  IPersonalInfoRequest,
+  IChangeEmailRequest,
 } from './auth.serviceTypes';
+
+import { baseConfigService } from 'services/baseConfig.service';
 
 export const authService = {
   userRole: () => {
-    return baseConfigService.get(`/login/role/`);
+    return baseConfigService.get(`login/role/`);
   },
 
   register: async ({ email, password, role }: IRegisterRequest) => {
-    const { data } = await baseConfigService.post<RegisterResponseType>(
+    const { data } = await baseConfigService.post<IPasswordResponse>(
       `register/${role}/`,
-      {
-        email,
-        password,
-      },
+      { email, password },
     );
 
     return data;
   },
 
   confirmEmail: async ({ token }: IConfirmEmailRequest) => {
-    const { data } = await baseConfigService.get<RegisterResponseType>(
+    const { data } = await baseConfigService.get<IPasswordResponse>(
       `register/confirmEmail/?token=${token}`,
     );
 
     return data;
   },
 
-  sendAccountPersonalInfo: async (personalInfoData: IPersonalInfoRequestData) => {
-    const { data } = await baseConfigService.post(
-      `/register/account/sendInfo/`,
-      personalInfoData,
-    );
+  sendAccountPersonalInfo: async (params: IPersonalInfoRequest) => {
+    const { data } = await baseConfigService.post(`register/account/sendInfo/`, params);
 
     return data;
   },
 
-  sendAccountBusinessInfo: async (businessInfoData: IBusinessInfoRequestData) => {
-    const { data } = await baseConfigService.post(
-      `/register/business/sendInfo/`,
-      businessInfoData,
-    );
-
-    return data;
-  },
-
-  login: ({ email, password }: LoginParamsType) => {
-    return baseConfigService.post<LoginResponseType>(`login/`, { email, password });
+  login: (params: ILoginRequest) => {
+    return baseConfigService.post<ILoginResponse>(`login/`, params);
   },
 
   logout: async () => {
-    const { data } = await baseConfigService.delete<LogoutResponseType>(`logout/`);
+    const { data } = await baseConfigService.delete<IPasswordResponse>(`logout/`);
 
     return data;
   },
 
   forgotPassword: (email: string) => {
-    return baseConfigService.post<PasswordResponseType>(
-      `password/forgot/?email=${email}`,
-    );
+    return baseConfigService.post<IPasswordResponse>(`password/forgot/?email=${email}`);
   },
 
   checkToken: (token: string) => {
-    return baseConfigService.get<PasswordResponseType>(
+    return baseConfigService.get<IPasswordResponse>(
       `password/checkToken/?token=${token}`,
     );
   },
 
-  resetPassword: (params: ResetPasswordPayloadType) => {
+  resetPassword: (params: IResetPasswordRequest) => {
     const { token, ...restParams } = params;
 
-    return baseConfigService.post<PasswordResponseType>(
+    return baseConfigService.post<IPasswordResponse>(
       `password/reset/?token=${token}`,
       restParams,
     );
   },
 
-  changePassword: (params: ChangePasswordPayloadType) => {
-    return baseConfigService.post<PasswordResponseType>('password/change/', params);
+  changePassword: (params: IChangePasswordRequest) => {
+    return baseConfigService.post<IPasswordResponse>('password/change/', params);
   },
 
-  changeEmail: (params: ChangeEmailPayloadType) => {
-    return baseConfigService.patch<PasswordResponseType>('users/changeEmail/', params);
+  changeEmail: (params: IChangeEmailRequest) => {
+    return baseConfigService.patch<IPasswordResponse>('users/changeEmail/', params);
   },
 };
 

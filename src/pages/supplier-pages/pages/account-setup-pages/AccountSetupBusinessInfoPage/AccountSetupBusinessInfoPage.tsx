@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AccountSetupBusinessInfoForm } from './index';
+import { AccountSetupBusinessInfoForm } from '.';
 
 export const AccountSetupBusinessInfoPage = (): JSX.Element => (
   <AccountSetupBusinessInfoForm />

@@ -3,8 +3,6 @@ import React, { useCallback, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import { UploadImage } from '../../../../components';
-
 import style from './SellerPersonalInfoChangeForm.module.scss';
 
 import { personalInfoFormValidationSchema } from 'common/constants';
@@ -12,7 +10,8 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
 import { IPersonalInfoFormData } from 'common/types';
 import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
-import { ButtonLogOut } from 'components/ButtonLogOut/ButtonLogOut';
+import { UploadImage } from 'elements';
+import { ButtonLogOut } from 'elements/ButtonLogOut/ButtonLogOut';
 import { PersonalInfoChangeForm } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
 import { sellerPersonalInfoSelector } from 'store/reducers/seller/profile';

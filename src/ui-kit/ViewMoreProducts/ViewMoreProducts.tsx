@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { SELLER_PRODUCTS } from '../../routes';
-
 import style from './ViewMoreProducts.module.scss';
+
+import { SELLER_PRODUCTS } from 'routes';
 
 export const ViewMoreProducts = (): JSX.Element => {
   return (

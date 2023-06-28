@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { LOGIN } from '../../../../routes';
-import { AuthPageLayout } from '../assets';
-
 import { RegisterForm } from '.';
+
+import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
+import { LOGIN } from 'routes';
 
 export const RegisterPage = (): JSX.Element => {
   return (

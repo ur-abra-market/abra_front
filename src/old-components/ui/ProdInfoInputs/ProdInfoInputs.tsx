@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import RelatedInputs from '../../RelatedInputs';
-
 import style from './ProdInfoInputs.module.scss';
+
+import RelatedInputs from 'old-components/RelatedInputs';
 
 interface ProdInfoInputsProps {
   register: any;

@@ -1,18 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import {
-  IGradeProduct,
-  IGradeProductRequest,
-  IImageProductRequest,
-  IProduct,
-  IRequestProduct,
-} from '../../services/product/product.serviceTypes';
-
 import { IImageProduct, LoadingStatusEnum } from 'common/types';
 import { productService } from 'services/product/product.service';
+import {
+  IProduct,
+  IProductRequest,
+  IGradeProductResponse,
+} from 'services/product/product.serviceTypes';
 
-export const getProductById = createAsyncThunk<IProduct, IRequestProduct>(
+export const getProductById = createAsyncThunk<IProduct, IProductRequest>(
   'targetProduct/getProductById',
   async (payload, { rejectWithValue }) => {
     try {
@@ -27,35 +24,35 @@ export const getProductById = createAsyncThunk<IProduct, IRequestProduct>(
   },
 );
 
-export const getGradesByProductId = createAsyncThunk<IGradeProduct, IGradeProductRequest>(
-  'targetProduct/getGradesByProductId',
-  async ({ product_id }, { rejectWithValue }) => {
-    try {
-      return await productService.getGradesByProductId({ product_id });
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.response?.data);
-      }
-
-      return rejectWithValue('[Error]: getGradesByProductId');
-    }
-  },
-);
-
-export const getImagesByProductId = createAsyncThunk<
-  IImageProduct[],
-  IImageProductRequest
->('targetProduct/getImagesByProductId', async ({ product_id }, { rejectWithValue }) => {
+export const getGradesByProductId = createAsyncThunk<
+  IGradeProductResponse,
+  IProductRequest
+>('targetProduct/getGradesByProductId', async ({ product_id }, { rejectWithValue }) => {
   try {
-    return await productService.getProductImagesById({ product_id });
+    return await productService.getGradesByProductId({ product_id });
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
       return rejectWithValue(error.response?.data);
     }
 
-    return rejectWithValue('[Error]: getImagesByProductId');
+    return rejectWithValue('[Error]: getGradesByProductId');
   }
 });
+
+export const getImagesByProductId = createAsyncThunk<IImageProduct[], IProductRequest>(
+  'targetProduct/getImagesByProductId',
+  async ({ product_id }, { rejectWithValue }) => {
+    try {
+      return await productService.getProductImagesById({ product_id });
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.response?.data);
+      }
+
+      return rejectWithValue('[Error]: getImagesByProductId');
+    }
+  },
+);
 
 const product = {
   grade: {
@@ -121,7 +118,7 @@ const gradesData = {
 
 const initialState = {
   product: product as IProduct,
-  gradesData: gradesData as IGradeProduct,
+  gradesData: gradesData as IGradeProductResponse,
   images: images as IImageProduct[],
   status: 'success',
   error: '',

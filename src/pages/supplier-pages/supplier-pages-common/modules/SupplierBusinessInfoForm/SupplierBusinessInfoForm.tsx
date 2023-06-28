@@ -2,25 +2,17 @@ import React, { FC, useEffect } from 'react';
 
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { PhoneNumberInput } from '../../../../../components';
+import style from './SupplierBusinessInfoForm.module.scss';
+
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { ISupplierBusinessInfoFormData } from 'common/types';
+import { PhoneNumberInput } from 'elements';
 import {
   countriesSelector,
   getCompanyNumberEmployees,
   numberEmployeesSelector,
-} from '../../../../../store/reducers/commonSlice';
-import {
-  Button,
-  Checkbox,
-  Input,
-  ISelectOption,
-  Label,
-  Select,
-} from '../../../../../ui-kit';
-
-import style from './SupplierBusinessInfoForm.module.scss';
-
-import { ISupplierBusinessInfoFormData } from 'common/types';
+} from 'store/reducers/commonSlice';
+import { Button, Checkbox, Input, ISelectOption, Label, Select } from 'ui-kit';
 
 const BUSINESS_SECTOR_DATA: ISelectOption[] = [
   { label: 'Clothes', value: 'Clothes' },

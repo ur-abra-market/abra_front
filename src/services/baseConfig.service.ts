@@ -1,14 +1,12 @@
 import axios from 'axios';
 
-import { store } from '../store/createStore';
-import { setResponseError } from '../store/reducers/appSlice/slice';
+import { store } from 'store/createStore';
+import { setResponseError } from 'store/reducers/appSlice/slice';
 
-const baseConfigService = axios.create({
+export const baseConfigService = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL || 'http://localhost/',
   withCredentials: true,
 });
-
-export default baseConfigService;
 
 baseConfigService.interceptors.response.use(
   response => response,

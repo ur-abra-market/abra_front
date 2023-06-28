@@ -4,17 +4,15 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import { passwordValidationSchema } from '../../../../../common/constants';
-import { useAppDispatch, useAppSelector } from '../../../../../common/hooks';
-import { LoadingStatusEnum } from '../../../../../common/types';
-import { loadingSelector } from '../../../../../store/reducers/appSlice';
-import { isAuthSelector } from '../../../../../store/reducers/authSlice';
-import { PasswordComplexity } from '../../assets';
-
 import style from './ResetPasswordForm.module.scss';
 
-import { ResetPasswordPayloadType } from 'services/auth/auth.serviceTypes';
-import { logout, resetPassword } from 'store/reducers/authSlice';
+import { passwordValidationSchema } from 'common/constants';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { LoadingStatusEnum } from 'common/types';
+import { PasswordComplexity } from 'pages/general-pages/auth-pages/assets';
+import { IResetPasswordRequest } from 'services/auth/auth.serviceTypes';
+import { loadingSelector } from 'store/reducers/appSlice';
+import { isAuthSelector, logout, resetPassword } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
 
 const TRIGGER_FIELD = 'confirm_password';
@@ -52,7 +50,7 @@ export const ResetPasswordForm: FC<IResetPasswordForm> = ({
     formState: { isValid, errors },
     handleSubmit,
     trigger,
-  } = useForm<ResetPasswordPayloadType>({
+  } = useForm<IResetPasswordRequest>({
     resolver: yupResolver(schema),
     mode: 'all',
   });
