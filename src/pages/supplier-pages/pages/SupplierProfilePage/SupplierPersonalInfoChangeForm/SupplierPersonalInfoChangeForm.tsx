@@ -11,6 +11,7 @@ import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues'
 import { IPersonalInfoFormData } from 'common/types';
 import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
 import { ButtonLogOut } from 'elements/ButtonLogOut/ButtonLogOut';
+import { PhoneNumber } from 'elements/Phone/PhoneNumber';
 import { PersonalInfoChangeForm } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
 import { supplierPersonalInfoSelector } from 'store/reducers/supplier/profile';
@@ -96,6 +97,8 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
           />
         </form>
       </FormProvider>
+
+      <PhoneNumber />
     </div>
   );
 };
