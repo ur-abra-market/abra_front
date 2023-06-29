@@ -2,7 +2,6 @@ import React from 'react';
 
 import { RouteObject } from 'react-router-dom';
 
-import { HOME } from './constans/root';
 import {
   ACCOUNT_SETUP_BUSINESS_INFO,
   ACCOUNT_SETUP_PERSONAL_INFO,
@@ -12,8 +11,8 @@ import {
   FEEDBACK,
   ORDERS,
   PRICE,
-  SUPPLIERS_PRODUCTS,
-} from './constans/supplier';
+  HOME,
+} from '.';
 
 import {
   AccountSetupBusinessInfoPage,
@@ -24,12 +23,11 @@ import {
   OrdersPage,
   PriceManagementPage,
   ProductListRegistrationPage,
-  ProductsListPage,
   SupplierMainPage,
   SupplierProfilePage,
 } from 'pages/supplier-pages';
 
-export const supplierRoute: RouteObject[] = [
+export const supplierRoutes: RouteObject[] = [
   {
     path: HOME,
     element: <SupplierMainPage />,
@@ -41,10 +39,6 @@ export const supplierRoute: RouteObject[] = [
       {
         path: DASHBOARD,
         element: <DashboardPage />,
-      },
-      {
-        path: SUPPLIERS_PRODUCTS,
-        element: <ProductsListPage />,
       },
       {
         path: ORDERS,

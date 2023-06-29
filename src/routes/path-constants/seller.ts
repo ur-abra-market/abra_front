@@ -1,5 +1,4 @@
 export const {
-  SELLER_PRODUCTS,
   PRODUCT_DETAILS,
   PERSONAL_ACCOUNT,
   CART,
@@ -10,7 +9,6 @@ export const {
   FAVORITES,
   HELP,
 } = {
-  SELLER_PRODUCTS: '/products_list',
   PRODUCT_DETAILS: '/product',
   PERSONAL_ACCOUNT: '/personal_account',
   CART: '/cart',

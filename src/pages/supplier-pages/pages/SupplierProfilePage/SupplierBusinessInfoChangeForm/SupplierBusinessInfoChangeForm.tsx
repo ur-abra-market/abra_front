@@ -20,11 +20,9 @@ import { ISupplierUpdateBusinessInfo } from 'services/supplier/supplier.serviceT
 import {
   supplierBusinessInfoSelector,
   updateBusinessInfo,
-} from 'store/reducers/supplier/profile';
-import {
   supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
-} from 'store/reducers/supplier/profile/selectors';
+} from 'store/reducers/supplier/profile';
 import {
   deleteCompanyLogo,
   uploadCompanyLogo,

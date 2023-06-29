@@ -16,23 +16,22 @@ export {
   TERMS_AND_CONDITIONS,
   REGISTER,
   PRIVACY_POLICY,
-} from './constans/root';
+  PRODUCTS_LIST,
+} from './path-constants/root';
 
 export {
   ORDER_HISTORY_DETAILS,
   PRODUCT_DETAILS,
   ORDER_HISTORY,
   CART,
-  SELLER_PRODUCTS,
   CHECKOUT,
   CHECKOUT_SUCCESS,
   HELP,
   FAVORITES,
   PERSONAL_ACCOUNT,
-} from './constans/seller';
+} from './path-constants/seller';
 
 export {
-  SUPPLIERS_PRODUCTS,
   ADD_PRODUCT,
   ACCOUNT_SETUP_BUSINESS_INFO,
   ACCOUNT_SETUP_PERSONAL_INFO,
@@ -41,4 +40,9 @@ export {
   PRICE,
   DASHBOARD,
   FEEDBACK,
-} from './constans/supplier';
+} from './path-constants/supplier';
+
+export { supplierRoutes } from './supplierRoutes';
+export { sellerRoutes } from './sellerRoutes';
+export { createRoutes } from './rootRoutes';
+export { convertCombinedPrivateRoutes } from './combinePrivateRoutes';

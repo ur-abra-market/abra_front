@@ -15,17 +15,18 @@ import {
   LOGIN,
   NEWS,
   PRIVACY_POLICY,
+  PRODUCTS_LIST,
   REGISTER,
   RESET_PASSWORD,
   SELL,
   TERMS_AND_CONDITIONS,
   TUTORIALS,
-} from './constans/root';
-import { sellerRoute } from './sellerRoute';
-import { supplierRoute } from './supplierRoute';
+  sellerRoutes,
+  supplierRoutes,
+  convertCombinedPrivateRoutes,
+} from '.';
 
 import { UserRoleType } from 'common/types';
-import { convertCombinedPrivateRoutes } from 'common/utils/combinePrivateRoutes';
 import {
   AboutUsPage,
   ChangeEmailPage,
@@ -37,6 +38,7 @@ import {
   ForgotPasswordPage,
   LastNewsPage,
   PrivacyPolicyPage,
+  ProductListPage,
   ResetPasswordPage,
   SellAbraPage,
   TermsAndConditionsPage,
@@ -52,8 +54,8 @@ type Routes = ReturnType<typeof createBrowserRouter>;
 export function createRoutes(userRole: UserRoleType): Routes {
   let child: RouteObject[] = [];
 
-  if (userRole === 'supplier') child = supplierRoute;
-  if (userRole === 'seller') child = sellerRoute;
+  if (userRole === 'supplier') child = supplierRoutes;
+  if (userRole === 'seller') child = sellerRoutes;
   if (userRole === null) child = convertCombinedPrivateRoutes();
 
   return createBrowserRouter([
@@ -101,6 +103,20 @@ export function createRoutes(userRole: UserRoleType): Routes {
         {
           path: CHECK_EMAIL,
           element: <CheckEmailPage />,
+        },
+        {
+          path: PRODUCTS_LIST,
+          children: [
+            {
+              path: '*',
+              element:
+                userRole === 'seller' || userRole === null ? (
+                  <ProductListPage />
+                ) : (
+                  <ErrorPage />
+                ),
+            },
+          ],
         },
         {
           path: TERMS_AND_CONDITIONS,
