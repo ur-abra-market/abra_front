@@ -17,11 +17,11 @@ import {
 } from 'pages/supplier-pages/supplier-pages-common';
 import { IBusinessInfoRequest } from 'services/supplier/supplier.serviceTypes';
 import { getCountries } from 'store/reducers/commonSlice';
-import { uploadCompanyLogo } from 'store/reducers/supplier/profile';
 import {
+  uploadCompanyLogo,
   supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
-} from 'store/reducers/supplier/profile/selectors';
+} from 'store/reducers/supplier/profile';
 import { ISupplierBusinessInfo } from 'store/reducers/supplier/profile/slice';
 import {
   createAccountBusinessInfo,
