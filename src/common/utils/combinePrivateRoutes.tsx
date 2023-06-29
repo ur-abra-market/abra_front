@@ -2,9 +2,7 @@ import React from 'react';
 
 import { Navigate, RouteObject } from 'react-router-dom';
 
-import { HOME, LOGIN } from 'routes';
-import { sellerRoute } from 'routes/sellerRoute';
-import { supplierRoute } from 'routes/supplierRoute';
+import { HOME, LOGIN, sellerRoutes, supplierRoutes } from 'routes';
 
 /**
  * Combines private routes from the sellerRoute and supplierRoute arrays
@@ -14,7 +12,7 @@ export const convertCombinedPrivateRoutes = (): RouteObject[] => {
   const navigateToLogin = <Navigate to={LOGIN} />;
 
   return [
-    ...supplierRoute
+    ...supplierRoutes
       .flatMap(route => (route.children ? route.children : route))
       .map(route => ({
         path: route.path,
@@ -22,7 +20,7 @@ export const convertCombinedPrivateRoutes = (): RouteObject[] => {
       }))
       .filter(route => route.path !== HOME),
 
-    ...sellerRoute.map(route => ({
+    ...sellerRoutes.map(route => ({
       path: route.path,
       element: navigateToLogin,
     })),

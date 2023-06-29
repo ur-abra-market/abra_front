@@ -17,7 +17,7 @@ export {
   REGISTER,
   PRIVACY_POLICY,
   PRODUCTS_LIST,
-} from './constans/root';
+} from './path-constants/root';
 
 export {
   ORDER_HISTORY_DETAILS,
@@ -29,7 +29,7 @@ export {
   HELP,
   FAVORITES,
   PERSONAL_ACCOUNT,
-} from './constans/seller';
+} from './path-constants/seller';
 
 export {
   ADD_PRODUCT,
@@ -40,4 +40,8 @@ export {
   PRICE,
   DASHBOARD,
   FEEDBACK,
-} from './constans/supplier';
+} from './path-constants/supplier';
+
+export { supplierRoutes } from './supplierRoutes';
+export { sellerRoutes } from './sellerRoutes';
+export { createRoutes } from './rootRoutes';

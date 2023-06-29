@@ -2,7 +2,6 @@ import React from 'react';
 
 import { RouteObject } from 'react-router-dom';
 
-import { HOME } from './constans/root';
 import {
   ACCOUNT_SETUP_BUSINESS_INFO,
   ACCOUNT_SETUP_PERSONAL_INFO,
@@ -12,7 +11,8 @@ import {
   FEEDBACK,
   ORDERS,
   PRICE,
-} from './constans/supplier';
+  HOME,
+} from '.';
 
 import {
   AccountSetupBusinessInfoPage,
@@ -27,7 +27,7 @@ import {
   SupplierProfilePage,
 } from 'pages/supplier-pages';
 
-export const supplierRoute: RouteObject[] = [
+export const supplierRoutes: RouteObject[] = [
   {
     path: HOME,
     element: <SupplierMainPage />,

@@ -12,7 +12,7 @@ import {
   ORDER_HISTORY_DETAILS,
   PERSONAL_ACCOUNT,
   PRODUCT_DETAILS,
-} from './constans/seller';
+} from '.';
 
 import {
   CartPage,
@@ -25,7 +25,7 @@ import {
   CheckoutSuccessPage,
 } from 'pages/seller-pages';
 
-export const sellerRoute: RouteObject[] = [
+export const sellerRoutes: RouteObject[] = [
   {
     path: PRODUCT_DETAILS,
     children: [
