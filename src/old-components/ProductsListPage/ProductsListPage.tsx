@@ -15,10 +15,10 @@ import imageProduct from 'assets/images/files/banner2.png'; //! need to rewrite
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import Modal from 'elements/Modal';
+import { tableStyleClasses } from 'old-components/ProductsListPage/constantsOfClassesStyles';
 import ShowPage from 'old-components/ShowPage';
 import Table from 'old-components/table';
 import Pagination from 'old-components/ui/Pagination';
-import { tableStyleClasses } from 'pages/supplier-pages/pages/ProductsListPage/constantsOfClassesStyles';
 import {
   deleteProducts,
   manageProductsService,

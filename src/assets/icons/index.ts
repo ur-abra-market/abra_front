@@ -44,6 +44,7 @@ export { ReactComponent as TelegramIcon } from './files/telegram.svg';
 export { ReactComponent as ViewGridDisabledIcon } from './files/view-grid-disabled.svg';
 export { ReactComponent as ViewGridEnabledIcon } from './files/view-grid-enabled.svg';
 export { ReactComponent as ViewListDisabledIcon } from './files/view-list-disabled.svg';
+export { ReactComponent as ViewListEnabledIcon } from './files/view-list-enabled.svg';
 export { ReactComponent as VisaIcon } from './files/visa.svg';
 export { ReactComponent as VkIcon } from './files/vk.svg';
 export { ReactComponent as WhatsappIcon } from './files/whatsapp.svg';

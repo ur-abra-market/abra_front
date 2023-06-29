@@ -27,7 +27,7 @@ export interface IProductUser {
   is_supplier: boolean;
   is_verified: boolean;
   last_name: string;
-  phone_country_code: string;
+  phone_country_code?: string;
   phone_number: string;
 }
 

@@ -4,19 +4,11 @@ import { NavLink } from 'react-router-dom';
 
 import style from './SupplierMenu.module.scss';
 
-import {
-  ANALYTICS,
-  DASHBOARD,
-  FEEDBACK,
-  ORDERS,
-  PRICE,
-  SUPPLIERS_PRODUCTS,
-} from 'routes';
+import { ANALYTICS, DASHBOARD, FEEDBACK, ORDERS, PRICE } from 'routes';
 
 const SupplierMenu = (): JSX.Element => {
   const menu = [
     { name: 'Dashboard', path: DASHBOARD },
-    { name: 'Products List', path: SUPPLIERS_PRODUCTS },
     { name: 'Orders', path: ORDERS },
     { name: 'Price Management', path: PRICE },
     { name: 'Analytics', path: ANALYTICS },
