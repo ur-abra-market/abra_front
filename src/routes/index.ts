@@ -45,3 +45,4 @@ export {
 export { supplierRoutes } from './supplierRoutes';
 export { sellerRoutes } from './sellerRoutes';
 export { createRoutes } from './rootRoutes';
+export { convertCombinedPrivateRoutes } from './combinePrivateRoutes';

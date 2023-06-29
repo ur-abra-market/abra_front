@@ -23,10 +23,10 @@ import {
   TUTORIALS,
   sellerRoutes,
   supplierRoutes,
+  convertCombinedPrivateRoutes,
 } from '.';
 
 import { UserRoleType } from 'common/types';
-import { convertCombinedPrivateRoutes } from 'common/utils/combinePrivateRoutes';
 import {
   AboutUsPage,
   ChangeEmailPage,

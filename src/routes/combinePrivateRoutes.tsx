@@ -2,12 +2,9 @@ import React from 'react';
 
 import { Navigate, RouteObject } from 'react-router-dom';
 
-import { HOME, LOGIN, sellerRoutes, supplierRoutes } from 'routes';
+import { HOME, LOGIN, sellerRoutes, supplierRoutes } from 'routes/index';
 
-/**
- * Combines private routes from the sellerRoute and supplierRoute arrays
- * and returns an array of private routes that navigate to login page
- */
+/* Combines private routes from the sellerRoute and supplierRoute arrays and returns an array of private routes that navigate to login page */
 export const convertCombinedPrivateRoutes = (): RouteObject[] => {
   const navigateToLogin = <Navigate to={LOGIN} />;
 
