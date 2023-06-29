@@ -29,7 +29,6 @@ export const SupplierProfilePage = (): JSX.Element => {
       await dispatch(getPersonalInfo());
       await dispatch(getBusinessInfo());
       await dispatch(getCompanyNumberEmployees());
-      await dispatch(fetchCompanyLogo());
       await dispatch(getSupplierNotifications());
 
       setIsLoading(false);

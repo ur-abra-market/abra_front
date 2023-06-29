@@ -6,6 +6,7 @@ import {
 } from 'common/constants';
 import {
   FormActionSupplierProfileType,
+  LoadingStatusEnum,
   ProgressingActionSupplierProfileType,
 } from 'common/types';
 import { handleLoadingStatus } from 'common/utils/handleLoadingStatus';
@@ -31,6 +32,13 @@ const progressingActionTypesToHandle: ProgressingActionSupplierProfileType[] = [
 export const supplierAccountLoadingMiddleware: Middleware =
   (api: MiddlewareAPI) => next => action => {
     const { type, meta } = action;
+
+    if (type.endsWith('uploadCompanyLogo/fulfilled')) {
+      api.dispatch({
+        type: SUPPLIER_ACCOUNT_SET_PROGRESSING_STATUS,
+        payload: LoadingStatusEnum.Success,
+      });
+    }
 
     handleLoadingStatus(
       type,
