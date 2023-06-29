@@ -10,4 +10,5 @@ export {
   supplierLoadingSelector,
   supplierNotificationsSelector,
   supplierBusinessInfoSelector,
+  supplierProgressLoadingSelector,
 } from './selectors';

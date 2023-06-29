@@ -45,6 +45,7 @@ export interface ISupplierBusinessInfo {
 
 interface ISupplierProfileSliceInitialState {
   loading: LoadingStatusEnum;
+  isProgressLoading: LoadingStatusEnum;
   personalInfo: ISupplierPersonalInfo;
   businessInfo: ISupplierBusinessInfo;
   notifications: ISupplierNotifications | null;
@@ -52,6 +53,7 @@ interface ISupplierProfileSliceInitialState {
 
 const initialState: ISupplierProfileSliceInitialState = {
   loading: LoadingStatusEnum.Idle,
+  isProgressLoading: LoadingStatusEnum.Idle,
   personalInfo: {
     firstName: '',
     lastName: '',
@@ -86,6 +88,9 @@ export const supplierProfileSlice = createSlice({
   reducers: {
     setLoadingStatus: (state, action: PayloadAction<LoadingStatusEnum>) => {
       state.loading = action.payload;
+    },
+    setProgressLoading: (state, action: PayloadAction<LoadingStatusEnum>) => {
+      state.isProgressLoading = action.payload;
     },
   },
   extraReducers: builder => {
@@ -143,5 +148,4 @@ export const supplierProfileSlice = createSlice({
   },
 });
 
-export const { setLoadingStatus } = supplierProfileSlice.actions;
 export const supplierProfileReducer = supplierProfileSlice.reducer;

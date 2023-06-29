@@ -62,7 +62,7 @@ export const updateBusinessInfo = createAsyncThunk<
 });
 
 export const fetchCompanyLogo = createAsyncThunk<string, void, IAsyncThunkConfig>(
-  'supplierProfile/fetchCompanyLogo',
+  'supplierProfile/getCompanyLogo',
   async (_, { rejectWithValue }) => {
     try {
       return await supplierService.fetchCompanyLogo();

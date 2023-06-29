@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { rtkQueryLoadingMiddleware } from './middlewares/rtkQueryLoadingMiddleware';
+import { supplierAccountLoadingMiddleware } from './middlewares/supplierAccountLoadingMiddleware';
 import { appReducer } from './reducers/appSlice/slice';
 import { authReducer } from './reducers/authSlice/slice';
 import basketReducer from './reducers/basketSlice';
@@ -47,7 +47,7 @@ export const store = configureStore({
     // seller: sellerSlice,
     sellerCheckout: sellerCheckoutSlice,
   },
-  middleware: gDM => gDM().concat([rtkQueryLoadingMiddleware]),
+  middleware: gDM => gDM().concat([supplierAccountLoadingMiddleware]),
   devTools: process.env.NODE_ENV !== 'production',
 });
 

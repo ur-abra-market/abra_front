@@ -7,3 +7,5 @@ export type { IAsyncThunkConfig } from './interfaces/IAsyncThunkConfig';
 export type { IServerResponse } from './interfaces/IServerResponse';
 export type { IHtmlHeaderProps } from './interfaces/IHtmlHeaderProps';
 export type { ISupplierBusinessInfoFormData } from './interfaces/ISupplierBusinessInfoFormData';
+export type { ProgressingActionSupplierProfileType } from './types/ProgressingActionSupplierProfileType';
+export type { FormActionSupplierProfileType } from './types/FormActionSupplierProfileType';

@@ -22,3 +22,7 @@ export const supplierNotificationsSelector = (
 
 export const supplierLoadingSelector = (state: RootStateType): LoadingStatusEnum =>
   state.supplierProfile.loading;
+
+export const supplierProgressLoadingSelector = (
+  state: RootStateType,
+): LoadingStatusEnum => state.supplierProfile.isProgressLoading;

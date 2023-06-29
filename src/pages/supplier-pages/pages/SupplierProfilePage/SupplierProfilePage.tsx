@@ -12,8 +12,7 @@ import { getCompanyNumberEmployees, getCountries } from 'store/reducers/commonSl
 import {
   getBusinessInfo,
   getSupplierNotifications,
-  supplierLoadingSelector,
-  supplierNotificationsSelector,
+  supplierProgressLoadingSelector,
 } from 'store/reducers/supplier/profile';
 import { fetchCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 import { getPersonalInfo } from 'store/reducers/userSlice';
@@ -21,9 +20,8 @@ import { LoaderLinear } from 'ui-kit';
 
 export const SupplierProfilePage = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(true);
-  const loading = useAppSelector(supplierLoadingSelector);
+  const isProgressLoading = useAppSelector(supplierProgressLoadingSelector);
   const dispatch = useAppDispatch();
-  const notifications = useAppSelector(supplierNotificationsSelector);
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
@@ -32,9 +30,8 @@ export const SupplierProfilePage = (): JSX.Element => {
       await dispatch(getBusinessInfo());
       await dispatch(getCompanyNumberEmployees());
       await dispatch(fetchCompanyLogo());
-      if (!notifications) {
-        await dispatch(getSupplierNotifications());
-      }
+      await dispatch(getSupplierNotifications());
+
       setIsLoading(false);
     };
 
@@ -47,7 +44,7 @@ export const SupplierProfilePage = (): JSX.Element => {
 
   return (
     <div className={style.supplier_cabinet}>
-      {loading === LoadingStatusEnum.Loading && <LoaderLinear />}
+      {isProgressLoading === LoadingStatusEnum.Loading && <LoaderLinear />}
       <div className={style.supplier_cabinet_content_wrapper}>
         <SupplierPersonalInfoChangeForm />
 
