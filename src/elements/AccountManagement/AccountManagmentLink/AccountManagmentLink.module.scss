@@ -1,0 +1,22 @@
+.link_container {
+  display: flex;
+  flex-flow: column;
+
+  padding: 32px;
+
+  background: var(--color-white);
+  border-radius: 8px;
+
+}
+
+.link_description {
+  font-size: var(--fz-s2);
+  line-height: var(--fz-l2);
+  color: var(--color-black);
+  text-align: left;
+}
+
+.link {
+  text-decoration: underline;
+}
+

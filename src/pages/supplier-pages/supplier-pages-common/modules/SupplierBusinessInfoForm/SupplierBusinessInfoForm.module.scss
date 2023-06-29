@@ -1,0 +1,32 @@
+@import "src/common/styles/mixins";
+
+.main_info, .company_info, .contacts_info {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--form-row-gap);
+  margin: 24px 0 36px;
+}
+
+.subtitle {
+  @include form_subtitle;
+}
+
+.select_info_inputs {
+  display: flex;
+  gap: var(--form-column-gap);
+}
+
+.license_description {
+  font-size: var(--fz-xs);
+}
+
+.contacts_inputs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--form-row-gap);
+  margin-bottom: 36px;
+}
+
+.button {
+  width: 100%;
+}

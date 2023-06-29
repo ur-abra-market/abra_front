@@ -1,0 +1,86 @@
+@import "common/styles/mixins";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  background: rgba(252, 19, 61, 0.12);
+}
+
+.container {
+  @include content_container
+}
+
+.footer {
+  padding: 14px 0;
+
+  font-family: var(--roboto);
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
+  line-height: 20px;
+  color: var(--color-white);
+
+  background: var(--color-black);
+}
+
+.footer_white{
+  padding: 32px 0;
+
+  font-size: var(--fz-xs2);
+  line-height: 18px;
+  color: var(--color-black);
+
+  background: var(--color-white);
+}
+
+.flex_box{
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.links_default,
+.links_white {
+  display: flex;
+  gap: 5px;
+}
+
+.links_default{
+  gap: 32px;
+}
+
+.copyright {
+  position: absolute;
+  left: 0;
+}
+
+.link_white,
+.link{
+  color: var(--color-white);
+  text-decoration: none;
+  transition: all 0.3s;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+}
+
+.link_white {
+  color: var(--color-accent);
+  text-decoration: underline;
+
+  &:hover{
+    color: var(--color-black);
+  }
+}
+
+.is_disabled_white,
+.is_disabled {
+  cursor: not-allowed;
+  color: var(--color-white);
+  text-decoration: none;
+  opacity: 0.5;
+}
+
+.is_disabled_white {
+  color: var(--color-accent);
+}

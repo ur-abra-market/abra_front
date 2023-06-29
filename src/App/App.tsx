@@ -2,31 +2,30 @@ import React, { useEffect } from 'react';
 
 import { RouterProvider } from 'react-router-dom';
 
-import Loader from '../components/Loader';
-import { Status } from '../enums/status.enum';
-import { createRoutes } from '../routes/root';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { getCurrentUserInfo } from '../store/reducers/loginSlice';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { NoticePopup } from 'elements';
+import { createRoutes } from 'routes';
+import { getUserRole, isAppInitializedSelector } from 'store/reducers/appSlice';
+import { userRoleSelector } from 'store/reducers/authSlice';
+import { LoaderCircular } from 'ui-kit';
 
-const App = (): JSX.Element => {
+export const App = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const isInitialized = useAppSelector(state => state.app.isInitialized);
-  const isLoading = useAppSelector(state => state.app.isLoading);
-  const userRole = useAppSelector(state => state.login.userRole);
+  const isAppInitialized = useAppSelector(isAppInitializedSelector);
+  const userRole = useAppSelector(userRoleSelector);
 
   useEffect(() => {
-    dispatch(getCurrentUserInfo());
+    dispatch(getUserRole());
   }, []);
 
-  if (!isInitialized || isLoading === Status.Loading) {
-    return <Loader />;
+  if (!isAppInitialized) {
+    return <LoaderCircular />;
   }
 
   return (
     <div className="App">
+      <NoticePopup />
       <RouterProvider router={createRoutes(userRole)} />
     </div>
   );
 };
-
-export default App;

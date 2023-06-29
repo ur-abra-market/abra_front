@@ -1,0 +1,136 @@
+@import "common/styles/mixins";
+
+.images_box{
+  text-transform: uppercase;
+}
+
+.container {
+  @include content_container
+}
+
+.image_box_main{
+  position: relative;
+
+  width: 100%;
+  max-width: var(--main-content-width);
+  height: auto;
+  margin: 0 auto 32px;
+}
+
+.grid_item_main_ad {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  transform: translateY(-50%);
+
+  max-width: 586px;
+  padding: 33px 100px 24px 27px;
+
+  font-family: var(--roboto);
+  color: var(--color-white);
+
+  background-color: var(--color-accent);
+  border-radius: 40px;
+}
+
+.grid_item_main_ad_text:first-child{
+  display: block;
+  font-size: 106px;
+  font-weight: var(--bold);
+  line-height: 124px;
+}
+
+.grid_item_main_ad_text:nth-child(2){
+  font-family: 'SF Pro Display', sans-serif;
+  font-size: 62px;
+  font-weight: var(--semi-bold);
+  line-height: 78px;
+}
+
+.grid_item_main_ad_text:last-child{
+  font-size: var(--fz-l2);
+  font-weight: var(--semi-bold);
+  line-height: 26px;
+}
+
+.images_box_grid{
+  display: grid;
+  grid-template-areas:
+    "item1 item2 item2"
+    "item1 item3 item4";
+  gap: 12px;
+  padding: 0 32px;
+}
+
+.banner_img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.grid_item1, .grid_item2, .grid_item3, .grid_item4{
+  position: relative;
+  font-family: var(--roboto);
+  font-style: normal;
+  color: var(--color-accent);
+}
+
+.grid_item_ad1, .grid_item_ad2, .grid_item_ad3, .grid_item_ad4{
+  position: absolute;
+  font-weight: var(--bold);
+}
+
+.grid_item1{
+  grid-area: item1;
+}
+
+.grid_item_ad1{
+  top: 170px;
+  left: 25px;
+
+  max-width: 240px;
+
+  font-size: 50px;
+  line-height: 85%;
+}
+
+.grid_item2{
+  grid-area: item2;
+}
+
+.grid_item_ad2{
+  top: 96px;
+  right: 63px;
+  max-width: 230px;
+}
+
+.grid_item_ad2_text:first-child{
+  font-size: var(--fz-xl);
+  font-weight: var(--medium);
+  line-height: 85%;
+}
+
+.grid_item_ad2_text:last-child{
+  display: block;
+  font-size: 45px;
+  line-height: 85%;
+}
+
+.grid_item3{
+  grid-area: item3;
+}
+
+.grid_item4{
+  grid-area: item4;
+}
+
+.grid_item_ad3, .grid_item_ad4{
+  top: 62px;
+  left: 20px;
+
+  max-width: 160px;
+
+  font-size: 30px;
+  line-height: 85%;
+}

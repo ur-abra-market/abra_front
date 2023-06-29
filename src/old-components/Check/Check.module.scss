@@ -1,0 +1,32 @@
+.check {
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+.check_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  border-radius: 4px;
+}
+
+.check_box_mark {
+  width: 16px;
+  height: 16px;
+  background-position: center;
+  background-size: cover;
+}
+
+.check_label{
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+}

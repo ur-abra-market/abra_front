@@ -1,0 +1,38 @@
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 15px 10px 15px 16px;
+
+  font-size: var(--fz-s);
+  color: var(--color-black);
+
+  background-color: var(--color-light-gray) ;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  outline: none;
+}
+
+.input_error {
+  border: 1px solid var(--color-accent);
+}
+
+.error {
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+
+  font-size: var(--fz-xs);
+  color: var(--color-accent);
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}

@@ -1,0 +1,601 @@
+.supplier_cabinet {
+  background: #F5F5F5;
+}
+
+.supplier_cabinet_content_wrapper {
+  display: grid;
+  grid-gap: 12px;
+  grid-template-areas:
+    'personal_info business_profile notifications'
+    'account_details business_profile notifications';
+  grid-template-columns: minmax(auto, 450px) minmax(auto, 622px) minmax(auto, 280px);
+  grid-template-rows: auto 1fr;
+
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 12px 32px 17px;
+}
+
+.business_profile {
+  padding: 32px;
+  background: var(--color-white);
+  border-radius: 12px;
+}
+
+.personal_info_title_logout_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.personal_info_title {
+  font-size: var(--fz-l2);
+  font-weight: var(--bold);
+  color: var(--color-black);
+  letter-spacing: 0.16px;
+}
+
+.personal_info_submit_btn {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.personal_info {
+  grid-area: personal_info;
+}
+
+.business_profile {
+  grid-area: business_profile;
+}
+
+.notifications {
+  grid-area: notifications;
+}
+
+.account_details {
+  display: flex;
+  grid-area: account_details;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.details_block button {
+  cursor: pointer;
+
+  font-size: var(--fz-s2);
+  line-height: 20px;
+  color: var(--color-accent);
+  text-decoration-line: underline;
+  letter-spacing: 0.16px;
+
+  background: transparent;
+}
+
+.details_block p {
+  font-size: var(--fz-s2);
+  line-height: 20px;
+  letter-spacing: 0.16px;
+}
+
+.avatar_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.header_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header {
+  font-size: var(--fz-l2);
+  font-weight: var(--bold);
+  font-style: normal;
+  line-height: 25px;
+  color: var(--color-black);
+}
+
+.header_link {
+  font-size: var(--fz-l2);
+  font-weight: var(--regular);
+  font-style: normal;
+  line-height: 20px;
+  color: var(--color-black);
+  text-decoration-line: underline;
+}
+
+.error {
+  margin: -4px auto 5px;
+  padding-top: 5px;
+
+  font-size: var(--fz-xs);
+  color: var(--color-accent);
+  letter-spacing: 0.02em;
+
+  opacity: 0.7;
+}
+
+.wrapper {
+  margin-top: 16px;
+}
+
+.fields_wrapper {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  margin-top: 24px;
+}
+
+.profile_info_number {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+
+  margin-top: 0;
+  padding-top: 16px;
+}
+
+.flex_container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+
+  width: 100%;
+}
+
+.text_field_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.text_field_label,
+.subtitle,
+.select_name,
+.textarea_name {
+  font-size: var(--fz-xs2);
+  font-weight: var(--regular);
+  font-style: normal;
+  line-height: 18px;
+  color: var(--color-medium-gray);
+  letter-spacing: -0.08px;
+}
+
+.text_field_label {
+  margin-bottom: 10px;
+}
+
+.textarea_name {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.text_field_input,
+.account_details_text_field_input,
+.about_business {
+  width: 100%;
+  height: fit-content;
+  padding: 12px;
+
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
+  font-style: normal;
+  line-height: 20px;
+  color: var(--color-black);
+  letter-spacing: -0.24px;
+
+  background: #F2F2F2;
+  border-radius: 4px;
+}
+
+.about_business {
+  resize: none;
+  box-sizing: border-box;
+  padding-top: 12px;
+}
+
+.about_business::placeholder {
+  display: flex;
+  align-items: center;
+
+  font-size: var(--fz-s);
+  font-weight: var(--regular);
+  line-height: 20px;
+  color: var(--color-medium-gray);
+  letter-spacing: -0.24px;
+}
+
+.input_wrapper {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 42px;
+
+  background: #F2F2F2;
+  border: none;
+  border-radius: 4px;
+}
+
+.select_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-width: 160px;
+  height: 42px;
+}
+
+.select_wrapper_business_sector,
+.select_wrapper_number_of_employees {
+  width: 100%;
+}
+
+.select_header_wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 14px;
+
+  background: #F2F2F2;
+  border-radius: 4px;
+}
+
+.select_header {
+  font-size: var(--fz-s);
+  font-weight: var(--regular);
+  line-height: 20px;
+  color: var(--color-medium-gray);
+  letter-spacing: -0.24px;
+}
+
+.select_options_country,
+.select_options_phone_personal,
+.select_options_business_sector,
+.select_options_number_of_employees,
+.select_options_phone_business {
+  position: absolute;
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  height: fit-content;
+  margin-top: 26px;
+
+  background-color: var(--color-white);
+  border-radius: 3px;
+  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.25);
+
+  transition: 0.4s;
+}
+
+.select_options_country {
+  top: 325px;
+  width: 30%;
+}
+
+.select_options_phone_personal {
+  top: 410px;
+  width: 8%;
+}
+
+.select_options_phone_business {
+  top: 1057px;
+  width: 8%;
+}
+
+.select_options_business_sector {
+  top: 390px;
+  width: 18%;
+}
+
+.select_options_number_of_employees {
+  top: 602px;
+  width: 18%;
+}
+
+.option {
+  cursor: pointer;
+  padding: 5px 5px 5px 10px;
+}
+
+.option:hover {
+  background: #B5B5B5;
+}
+
+.section_subtitle {
+  margin-top: 40px;
+  margin-bottom: 16px;
+
+  font-size: var(--fz-l2);
+  font-weight: var(--bold);
+  line-height: 25px;
+  color: var(--color-black);
+}
+
+.account_details_text_field_input {
+  width: 406px;
+}
+
+.account_details_input_text_field_password {
+  width: 353px;
+  height: 42px;
+  padding-left: 12px;
+  background: #F2F2F2;
+}
+
+.account_details_change_button_wrapper {
+  padding: 10px;
+}
+
+.account_details_change_button {
+  cursor: pointer;
+
+  margin: 12px;
+
+  font-size: var(--fz-xs);
+  font-weight: var(--medium);
+  color: var(--color-medium-gray);
+}
+
+.profile_logo {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+
+  margin: 30px 0;
+}
+
+.hidden {
+  overflow: hidden;
+
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+
+  line-height: 0;
+
+  opacity: 0;
+}
+
+.uploaded_image {
+  width: 95px;
+  height: 95px;
+  border-radius: 10px;
+}
+
+.uploaded_image_logo {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+}
+
+.profile_logo_background {
+  cursor: pointer;
+}
+
+.profile_logo_background,
+.company_photo_background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 95px;
+  height: 95px;
+
+  background: var(--color-light-gray);
+  border-radius: 50%;
+}
+
+.company_photo_background {
+  border-radius: 10px;
+}
+
+.profile_logo_img,
+.company_photo_img {
+  display: block;
+  width: 37.5%;
+}
+
+.company_photo_background:hover {
+  cursor: pointer;
+  position: relative;
+  background: #B5B5B5;
+}
+
+/* .companyPhoto_backgroung:hover::before,
+.companyPhoto_backgroung:hover::after {
+  position: absolute;
+  top: 12px;
+  right: 3px;
+  content: "";
+  width: 20px;
+  height: 2px;
+  background: #000000;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.companyPhoto_backgroung:hover::before {
+  transform: rotate(45deg);
+}
+
+.companyPhoto_backgroung:hover::after {
+  transform: rotate(-45deg);
+} */
+
+.company_photo_wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.profile_logo_description_title {
+  cursor: pointer;
+
+  margin-bottom: 8px;
+
+  font-size: var(--fz-s);
+  font-weight: var(--regular);
+  line-height: 20px;
+  color: var(--color-accent);
+  text-decoration-line: underline;
+  letter-spacing: -0.24px;
+}
+
+.profile_logo_description_subtitle {
+  font-size: 11px;
+  font-weight: var(--regular);
+  line-height: 13px;
+  color: var(--color-medium-gray);
+}
+
+.label_checkbox {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+
+  padding-bottom: 5px;
+
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
+  line-height: 20px;
+  color: var(--color-black);
+  letter-spacing: -0.24px;
+}
+
+.input_checkbox {
+  width: 20px;
+  height: 20px;
+  margin: 15px 15px 15px 0;
+
+  background: var(--color-white);
+  border: 1px solid var(--color-medium-gray);
+  border-radius: 4px;
+}
+
+.input_checkbox:checked {
+  background: var(--color-accent);
+}
+
+.account_details_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.remove_wrapper {
+  display: flex;
+  flex-flow: column;
+  margin-top: 38px;
+}
+
+.remove_account_link,
+.link_description {
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
+  font-style: normal;
+  line-height: 32px;
+  color: var(--color-accent);
+  text-align: left;
+  text-decoration-line: underline;
+}
+
+.link_description {
+  color: var(--color-medium-gray);
+}
+
+.photo {
+  cursor: pointer;
+  position: relative;
+}
+
+.photo_remove {
+  cursor: pointer;
+
+  position: absolute;
+  z-index: 5;
+  top: 10px;
+  right: 10px;
+
+  display: none;
+
+  background: transparent;
+}
+
+.photo_remove img {
+  width: 20px;
+  height: 20px;
+}
+
+.photo:hover .photo_remove {
+  display: block;
+}
+
+.save_changes_button_wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.save_changes_button {
+  cursor: pointer;
+
+  width: 200px;
+  height: 40px;
+  margin-right: 32px;
+
+  font-size: var(--fz-s2);
+  font-weight: var(--semi-bold);
+  color: var(--color-white);
+  text-align: center;
+
+  background: var(--color-accent);
+  border-radius: 8px;
+}
+
+@media all and (max-width: 1340px) {
+  .select_wrapper {
+    width: 100%;
+  }
+
+  .supplier_cabinet_content_wrapper {
+    grid-template-columns: minmax(280px, 2fr);
+  }
+
+  .company_photo_wrapper {
+    gap: 10px;
+  }
+
+  .company_photo_background:last-child {
+    display: none;
+  }
+
+  .fields_wrapper {
+    flex-direction: column;
+  }
+
+  .profile_info_number {
+    flex-direction: column;
+  }
+}

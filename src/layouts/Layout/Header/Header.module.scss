@@ -1,0 +1,52 @@
+@import "common/styles/mixins";
+
+.container {
+  @include content_container;
+
+  position: relative;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  padding: 21px 0;
+
+  font-family: var(--roboto);
+  font-size: var(--fz-s2);
+  font-weight: var(--medium);
+  color: var(--color-black);
+}
+
+.button {
+  cursor: pointer;
+
+  grid-column-end: 2;
+  grid-column-start: 1;
+
+  padding-right: 16px;
+
+  font-family: var(--roboto);
+  font-size: var(--fz-s2);
+  font-weight: var(--medium);
+
+  background: transparent;
+  border-right: 1px solid var(--color-black);
+}
+
+.nav_container {
+  grid-column-end: 3;
+  grid-column-start: 2;
+  column-gap: 50px;
+  justify-content: center;
+
+  margin: 0 10px;
+
+  border-right: 1px solid var(--color-black);
+}
+
+.selected {
+  grid-column-end: 4;
+  grid-column-start: 3;
+}

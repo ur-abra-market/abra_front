@@ -1,0 +1,37 @@
+.product_quantity_control {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 232px;
+}
+
+.product_quantity_control_btn {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  font-size: var(--fz-s2);
+
+  border: 2px #DDD solid;
+  border-radius: 4px;
+}
+
+.product_quantity_control_sum {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 132px;
+  height: 40px;
+
+  font-size: var(--fz-s2);
+  text-align: center;
+
+  border: 2px #DDD solid;
+  border-radius: 4px;
+}

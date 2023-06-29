@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { Status } from '../../enums/status.enum';
-import categoryFetch from '../../services/category.service';
+import { LoadingStatusEnum } from 'common/types';
+import { commonService } from 'services/common/common.service';
 
 export type ResponseCategoryType = {
   id: number;
@@ -14,20 +14,20 @@ export type ResponseCategoryType = {
 interface IInitialState {
   dateCategories: null | ResponseCategoryType[];
   errMessage: string;
-  loading: Status;
+  loading: LoadingStatusEnum;
 }
 
 const initialState: IInitialState = {
   dateCategories: null,
   errMessage: '',
-  loading: Status.Idle,
+  loading: LoadingStatusEnum.Idle,
 };
 
 export const categoryService = createAsyncThunk<any, void>(
   'category/categoryService',
   async function (_, { rejectWithValue }) {
     try {
-      const data = await categoryFetch.getAllCategories();
+      const data = await commonService.fetchAllCategories();
 
       return data.result;
     } catch (error: unknown) {
@@ -46,18 +46,18 @@ const categorySlice = createSlice({
     builder
       .addCase(categoryService.pending, state => {
         state.dateCategories = null;
-        state.loading = Status.Loading;
+        state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(categoryService.fulfilled, (state, action) => {
         state.dateCategories = action.payload;
-        state.loading = Status.Success;
+        state.loading = LoadingStatusEnum.Success;
       })
       .addCase(categoryService.rejected, (state, action) => {
         // @ts-ignore
         state.dateCategories = action.payload;
         // @ts-ignore
         state.errMessage = action.payload;
-        state.loading = Status.Failed;
+        state.loading = LoadingStatusEnum.Failed;
       });
   },
   reducers: {},

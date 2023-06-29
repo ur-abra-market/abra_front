@@ -1,54 +1,87 @@
-import React, { FC } from 'react';
+import React, { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
-import { Container } from '../../components';
-import HeaderNavMenu from '../../components/HeaderNavMemu/HeaderNavMenu';
-import { LocationAndCurrencySelection } from '../../components/new-components/LocationAndCurrencySelection/LocationAndCurrencySelection';
-import { useAppSelector } from '../../store/hooks';
-import { Logo } from '../Logo/Logo';
+import style from './Footer.module.scss';
 
-import style from './Footer.module.css';
-import { FooterProps } from './Footer.props';
+import { Top } from '.';
 
-const Footer: FC<FooterProps> = (props): JSX.Element => {
-  const { className } = props;
-  const routs = ['personal-account', 'product', 'order-history', ''];
+import { useAppSelector } from 'common/hooks';
+import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from 'routes';
+import { userRoleSelector } from 'store/reducers/authSlice';
+
+interface IFooter
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  variant: 'white' | 'default';
+}
+
+export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
+  const routesToShow = new Set(['personal_account', 'product', 'order_history', '']);
   const { pathname } = useLocation();
-  const isSupplier = useAppSelector(state => state.login.userRole);
-  const showHeadNav =
-    isSupplier === 'seller' && routs.some(el => el === pathname.split('/')[1]);
+  const userRole = useAppSelector(userRoleSelector);
+  const isShowTopNav = userRole === 'seller' && routesToShow.has(pathname.split('/')[1]);
+
+  const footerClasses = cn(style.footer, {
+    [style.footer_white]: variant === 'white',
+  });
 
   return (
-    <div className={cn(style.footer, className)}>
-      {showHeadNav && (
-        <Container>
-          <div className={style.top}>
-            <Logo href="/" size="sm" color="black" />
-            <div className={style.inner}>
-              <HeaderNavMenu className={cn(style.nav, style.nav_menu)} />
-              <LocationAndCurrencySelection className={style.selects} />
-            </div>
-          </div>
-        </Container>
-      )}
+    <div className={cn(style.wrapper, className)}>
+      {isShowTopNav && <Top />}
 
-      <div className={style.bottom}>
-        <Container>
+      <div className={footerClasses}>
+        <div className={style.container}>
           <div className={style.flex_box}>
-            <div className={style.links}>
-              <Link to="/terms&conditions">Terms & Conditions</Link>
-              <Link to="/privacy&policy">Privacy Policy</Link>
-            </div>
-            <div className={style.copyright}>
-              <span>© Copyright 2023</span>
-            </div>
+            {variant === 'default' ? (
+              <>
+                <div className={style.links_default}>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? style.is_disabled : style.link
+                    }
+                    to={TERMS_AND_CONDITIONS}
+                  >
+                    Terms & conditions
+                  </NavLink>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? style.is_disabled : style.link
+                    }
+                    to={PRIVACY_POLICY}
+                  >
+                    Privacy policy
+                  </NavLink>
+                </div>
+                <div className={style.copyright}>
+                  <span>&#169; Copyright 2023</span>
+                </div>
+              </>
+            ) : (
+              <div className={style.links_white}>
+                &#169; 2022 Abra.
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? style.is_disabled_white : style.link_white
+                  }
+                  to={TERMS_AND_CONDITIONS}
+                >
+                  Terms & conditions
+                </NavLink>
+                and&nbsp;
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? style.is_disabled_white : style.link_white
+                  }
+                  to={PRIVACY_POLICY}
+                >
+                  Privacy policy
+                </NavLink>
+              </div>
+            )}
           </div>
-        </Container>
+        </div>
       </div>
     </div>
   );
 };
-
-export default Footer;

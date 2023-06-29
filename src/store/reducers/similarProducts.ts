@@ -1,16 +1,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { Status } from 'enums/status.enum';
-import { IRequestSimilarProduct, IProductCompilation } from 'interfaces';
-import { getSimilarProductsService } from 'services/getSimilarProducts.service';
+import { LoadingStatusEnum } from 'common/types';
+import { productService } from 'services/product/product.service';
+import {
+  IProductCompilation,
+  IPopularProductRequest,
+} from 'services/product/product.serviceTypes';
 
 export const getSimilarProducts = createAsyncThunk<
   IProductCompilation[],
-  IRequestSimilarProduct
+  IPopularProductRequest
 >('similarProducts/getSimilarProducts', async (payload, { rejectWithValue }) => {
   try {
-    const { result } = await getSimilarProductsService.get(payload);
+    const { result } = await productService.getSimilarProducts(payload);
 
     return result;
   } catch (error: unknown) {
@@ -24,7 +27,7 @@ export const getSimilarProducts = createAsyncThunk<
 
 const initialState = {
   similarProducts: [] as IProductCompilation[],
-  status: Status.Idle,
+  status: LoadingStatusEnum.Idle,
 };
 
 export const similarProductsSlice = createSlice({
@@ -32,15 +35,15 @@ export const similarProductsSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addCase(getSimilarProducts.pending, state => {
-      state.status = Status.Loading;
+      state.status = LoadingStatusEnum.Loading;
     });
     builder.addCase(getSimilarProducts.fulfilled, (state, action) => {
       state.similarProducts = action.payload;
-      state.status = Status.Success;
+      state.status = LoadingStatusEnum.Success;
     });
     builder.addCase(getSimilarProducts.rejected, state => {
       state.similarProducts = [];
-      state.status = Status.Failed;
+      state.status = LoadingStatusEnum.Failed;
     });
   },
   reducers: {},

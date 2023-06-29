@@ -1,0 +1,63 @@
+.container {
+  width: 100%;
+  height: fit-content;
+}
+
+.inner {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
+  margin-bottom: 36px;
+}
+
+.title_box {
+  display: flex;
+  gap: 24px;
+  align-items: flex-end;
+
+}
+
+.title{
+  font-family: var(--roboto);
+  font-size: 34px;
+  font-weight: var(--bold);
+  font-style: normal;
+  line-height: 34px;
+  color: var(--color-black);
+}
+
+.link {
+  margin-bottom: 5px;
+
+  font-family: var(--roboto);
+  font-size: 15px;
+  font-weight: var(--regular);
+  line-height: 20px;
+  color:var(--color-accent);
+  text-decoration: underline;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 64px;
+}
+
+.icon_left, .icon_right {
+  width: 24px;
+  height: 24px;
+}
+
+.disable_button {
+  cursor: default;
+}
+
+.disable_button path {
+  fill: var(--color-gray);
+}
+
+
+

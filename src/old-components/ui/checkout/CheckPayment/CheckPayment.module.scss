@@ -1,0 +1,62 @@
+.check_payment {
+  display: flex;
+  flex-direction: column;
+
+  margin: 12px 12px 12px 32px;
+  padding: 32px;
+
+  background-color: #FFF;
+  border-radius: 12px;
+
+}
+
+.check_payment_block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.check_payment_block_kind {
+  display: flex;
+  align-items: center;
+  height: 25px;
+}
+
+.check_payment_add {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  padding: 30px 0;
+
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #FC133D;
+  text-decoration: underline;
+
+
+  border: 1px solid #D4D4D4;
+  border-radius: 12px;
+}
+
+.check_payment_title {
+  margin-bottom: 32px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.icon {
+  margin-right: 32px;
+}
+
+.transfer_text {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 120%;
+}

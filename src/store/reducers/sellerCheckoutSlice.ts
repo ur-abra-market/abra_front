@@ -1,23 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { Status } from '../../enums/status.enum';
-import { AsyncThunkConfig } from '../../services/auth.serviceType';
-import {
-  EditAddressData,
-  ResponseAddressData,
-  ResponseDeleteAddress,
-  SellerAddressData,
-  sellerFetch,
-} from '../../services/seller.service';
+import { IAsyncThunkConfig, IServerResponse, LoadingStatusEnum } from 'common/types';
+import { sellerService } from 'services/seller/seller.service';
+import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
+import { getSellerAddresses } from 'store/reducers/seller/profile/thunks';
 
 export const addAddress = createAsyncThunk<
-  ResponseAddressData,
-  SellerAddressData,
-  AsyncThunkConfig
+  IServerResponse<ISellerAddressData[]>,
+  ISellerAddressData,
+  IAsyncThunkConfig
 >('modal/addAddress', async (params, { dispatch, rejectWithValue }) => {
   try {
-    const { data } = await sellerFetch.addAddress(params);
+    const { data } = await sellerService.addAddress(params);
 
     dispatch(getAddress());
 
@@ -30,30 +25,14 @@ export const addAddress = createAsyncThunk<
     return rejectWithValue('[modalSlice]: Error');
   }
 });
-export const editAddress = createAsyncThunk<
-  ResponseAddressData,
-  EditAddressData,
-  AsyncThunkConfig
->('modal/editAddress', async (params, { dispatch, rejectWithValue }) => {
-  try {
-    const { data } = await sellerFetch.editAddress(params.id, params.data);
 
-    dispatch(getAddress());
-
-    return data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      return rejectWithValue(error.message);
-    }
-
-    return rejectWithValue('[modalSlice]: Error');
-  }
-});
-export const getAddress = createAsyncThunk<ResponseAddressData, void, AsyncThunkConfig>(
-  'modal/getAddress',
-  async (_, { rejectWithValue }) => {
+export const editAddress = createAsyncThunk<any, any>(
+  'modal/editAddress',
+  async (params, { dispatch, rejectWithValue }) => {
     try {
-      const { data } = await sellerFetch.getAddress();
+      const { data } = await sellerService.updateAddress(params);
+
+      dispatch(getSellerAddresses());
 
       return data;
     } catch (error) {
@@ -65,13 +44,32 @@ export const getAddress = createAsyncThunk<ResponseAddressData, void, AsyncThunk
     }
   },
 );
+
+export const getAddress = createAsyncThunk<
+  IServerResponse<ISellerAddressData[]>,
+  void,
+  IAsyncThunkConfig
+>('modal/getAddress', async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await sellerService.getSellerAddresses();
+
+    return data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      return rejectWithValue(error.message);
+    }
+
+    return rejectWithValue('[modalSlice]: Error');
+  }
+});
+
 export const deleteAddress = createAsyncThunk<
-  ResponseDeleteAddress,
+  IServerResponse<boolean>,
   number,
-  AsyncThunkConfig
+  IAsyncThunkConfig
 >('modal/deleteAddress', async (id, { dispatch, rejectWithValue }) => {
   try {
-    const { data } = await sellerFetch.deleteAddress(id);
+    const { data } = await sellerService.deleteAddress(id);
 
     dispatch(getAddress());
 
@@ -84,14 +82,15 @@ export const deleteAddress = createAsyncThunk<
     return rejectWithValue('[modalSlice]: Error');
   }
 });
-interface IInitialState {
-  addresses: SellerAddressData[];
 
-  loading: Status;
+interface IInitialState {
+  addresses: ISellerAddressData[];
+  loading: LoadingStatusEnum;
 }
+
 const initialState: IInitialState = {
   addresses: [],
-  loading: Status.Idle,
+  loading: LoadingStatusEnum.Idle,
 };
 
 const sellerCheckoutSlice = createSlice({
@@ -100,41 +99,41 @@ const sellerCheckoutSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(addAddress.pending, state => {
-      state.loading = Status.Loading;
+      state.loading = LoadingStatusEnum.Loading;
     });
     builder.addCase(addAddress.fulfilled, state => {
-      state.loading = Status.Success;
+      state.loading = LoadingStatusEnum.Success;
     });
     builder.addCase(addAddress.rejected, state => {
-      state.loading = Status.Failed;
+      state.loading = LoadingStatusEnum.Failed;
     });
     builder.addCase(getAddress.pending, state => {
-      state.loading = Status.Loading;
+      state.loading = LoadingStatusEnum.Loading;
     });
     builder.addCase(getAddress.fulfilled, (state, action) => {
       state.addresses = action.payload.result;
-      state.loading = Status.Success;
+      state.loading = LoadingStatusEnum.Success;
     });
     builder.addCase(getAddress.rejected, state => {
-      state.loading = Status.Failed;
+      state.loading = LoadingStatusEnum.Failed;
     });
     builder.addCase(editAddress.pending, state => {
-      state.loading = Status.Loading;
+      state.loading = LoadingStatusEnum.Loading;
     });
     builder.addCase(editAddress.fulfilled, state => {
-      state.loading = Status.Success;
+      state.loading = LoadingStatusEnum.Success;
     });
     builder.addCase(editAddress.rejected, state => {
-      state.loading = Status.Failed;
+      state.loading = LoadingStatusEnum.Failed;
     });
     builder.addCase(deleteAddress.pending, state => {
-      state.loading = Status.Loading;
+      state.loading = LoadingStatusEnum.Loading;
     });
     builder.addCase(deleteAddress.fulfilled, state => {
-      state.loading = Status.Success;
+      state.loading = LoadingStatusEnum.Success;
     });
     builder.addCase(deleteAddress.rejected, state => {
-      state.loading = Status.Failed;
+      state.loading = LoadingStatusEnum.Failed;
     });
   },
 });

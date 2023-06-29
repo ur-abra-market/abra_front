@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IRequestCategory, productFetch } from '../../services/product.service';
+import { productService } from 'services/product/product.service';
+import { ICategoryRequest } from 'services/product/product.serviceTypes';
 
 export interface MainPageInitialState {
   products?: { [key: number]: any[] };
@@ -15,11 +16,11 @@ const initialState: MainPageInitialState = {
   error: '',
 };
 
-export const fetchProductList = createAsyncThunk<any, IRequestCategory>(
+export const fetchProductList = createAsyncThunk<any, ICategoryRequest>(
   'mainPageProducts/fetchProductsList',
   async (productData, { rejectWithValue }) => {
     try {
-      const response = await productFetch.getList(productData);
+      const response = await productService.getList(productData);
 
       return {
         data: response,
@@ -41,7 +42,7 @@ const mainPageSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder.addCase(fetchProductList.pending, state => {
-      // state.isLoading = true;
+      state.isLoading = true;
       state.error = '';
     });
     builder.addCase(fetchProductList.fulfilled, (state, action) => {

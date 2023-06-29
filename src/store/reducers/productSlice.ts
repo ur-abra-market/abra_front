@@ -1,14 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { CategoryType } from '../../pages/MainPage/StatusProduct/StatusProduct';
-import { IRequestCategory, productFetch } from '../../services/product.service';
+import { CategoryType } from 'pages/general-pages/MainPage/StatusProduct/StatusProduct';
+import { productService } from 'services/product/product.service';
+import { ICategoryRequest } from 'services/product/product.serviceTypes';
 
-export const productService = createAsyncThunk<any, IRequestCategory>(
+export const productFetch = createAsyncThunk<any, ICategoryRequest>(
   'product/productService',
   async (productData, { rejectWithValue }) => {
     try {
-      const data = await productFetch.getList(productData);
+      const data = await productService.getList(productData);
 
       return data.result;
     } catch (error: unknown) {
@@ -38,15 +39,15 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   extraReducers: builder => {
-    builder.addCase(productService.pending, state => {
+    builder.addCase(productFetch.pending, state => {
       state.dataProduct = null;
       state.stateProduct = 'loading';
     });
-    builder.addCase(productService.fulfilled, (state, action) => {
+    builder.addCase(productFetch.fulfilled, (state, action) => {
       state.dataProduct = action.payload;
       state.stateProduct = 'presence';
     });
-    builder.addCase(productService.rejected, state => {
+    builder.addCase(productFetch.rejected, state => {
       state.dataProduct = null;
       state.stateProduct = 'nothing';
     });
@@ -74,5 +75,5 @@ export const productSlice = createSlice({
     },
   },
 });
-export const { status, category, increment, decrement, input } = productSlice.actions;
+export const { status, category, input } = productSlice.actions;
 export default productSlice.reducer;

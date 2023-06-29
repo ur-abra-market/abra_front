@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+@font-face {
+  font-family: 'SF Pro Display Regular';
+  src: url('assets/fonts/SFProDisplay-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'SF Pro Display Black';
+  src: url('assets/fonts/SFProDisplay-Black.ttf');
+}
+
+@font-face {
+  font-family: 'SF Pro Display Bold';
+  src: url('assets/fonts/SFProDisplay-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'SF Pro Display Medium';
+  src: url('assets/fonts/SFProDisplay-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'SF Pro Display Light';
+  src: url('assets/fonts/SFProDisplay-Light-1.ttf');
+}
+
+@font-face {
+  font-family: 'SF Pro Display RegularItalic';
+  src: url('assets/fonts/SFProDisplay-RegularItalic.ttf');
+}
+
+:root {
+  /* -------colors------ */
+  --color-black: #000;
+  --color-dark-gray: #4E4E4E;
+  --color-medium-gray: #828282;
+  --color-grey-innactive: #999;
+  --color-gray: #D4D4D4;
+  --color-light-gray: #F4F4F4;
+  --color-super-light-gray: #F9F9F9;
+  --color-white: #FFF;
+  --color-rating-star:#FFAB5E;
+  --color-accent: #FC133D;
+  --color-green:#34E145;
+
+  /* -------font-sizes------ */
+  --fz-xxs: 10px;    /* Extra Extra Small */
+  --fz-xs: 12px;     /* Extra Small */
+  --fz-xs2: 13px;    /* Extra Small 2 */
+  --fz-s: 14px;      /* Small */
+  --fz-s2: 15px;     /* Small 2 */
+  --fz-m: 16px;      /* Medium */
+  --fz-m2: 17px;     /* Medium 2 */
+  --fz-l: 18px;      /* Large */
+  --fz-l2: 20px;     /* Large 2 */
+  --fz-xl: 24px;     /* Extra Large */
+  --fz-xl2: 25px;    /* Extra Large 2 */
+  --fz-xxl: 28px;    /* Extra Extra Large */
+  --fz-xxl2: 34px;   /* Extra Extra Large 2 */
+  --fz-xxxl: 40px;   /* Extra Extra Extra Large */
+
+  /* -------font-weights------ */
+  --roboto: 'Roboto';
+  --light: 300;
+  --regular: 400;
+  --medium: 500;
+  --semi-bold: 600;
+  --bold: 700;
+
+  /*----------sizes----------*/
+  --form-column-gap: 16px;
+  --form-row-gap: 20px;
+  --main-content-width: 1440px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  text-decoration: none;
+  list-style-type: none;
+
+  border: 0;
+}
+
+*, *::before,
+*::after {
+  box-sizing: border-box;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+*:focus,
+*:active {
+  outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+/* stylelint-disable selector-no-qualifying-type */
+input[type='number'] {
+  appearance: textfield;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  font-weight: var(--regular);
+  font-style: normal;
+  line-height: 100%;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-size: var(--fz-xxxl);
+  letter-spacing: 0.41px;
+}
+
+h2 {
+  font-size:  var(--fz-xxl2);
+  letter-spacing: 0.41px;
+}
+
+h3 {
+  font-size: var(--fz-xl2);
+  letter-spacing: 0.38px;
+}
+
+h4 {
+  font-size: var(--fz-l2);
+  letter-spacing: 0.38px;
+}

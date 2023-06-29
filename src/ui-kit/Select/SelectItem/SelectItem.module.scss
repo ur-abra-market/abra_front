@@ -1,0 +1,22 @@
+.main{
+  cursor: pointer;
+  padding: 24px;
+  word-break: break-word;
+
+  &.item_selected {
+    color: var(--color-white);
+    background-color: var(--color-medium-gray);
+  }
+}
+
+.main_hover{
+  cursor: pointer;
+
+  padding: 24px;
+
+  color: var(--color-white);
+  word-break: break-word;
+
+  background-color: var(--color-dark-gray);
+}
+

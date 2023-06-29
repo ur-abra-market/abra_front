@@ -1,0 +1,35 @@
+@import "common/styles/mixins";
+
+.main_page {
+  background-color: var(--color-white);
+}
+
+.images_block{
+  margin-bottom: 112px;
+}
+
+.container {
+  @include content_container
+}
+
+.main_sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+
+  width: 100%;
+  height: fit-content;
+  margin-top: 96px;
+  margin-bottom: 116px;
+}
+
+.info_block{
+  position: relative;
+}
+
+.info_btn{
+  position: absolute;
+  z-index: 100;
+  right: 0;
+  bottom: 32px;
+}

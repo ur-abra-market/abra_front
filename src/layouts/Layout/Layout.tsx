@@ -1,19 +1,30 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
+import styles from './Layout.module.scss';
 
-import styles from './Layout.module.css';
-import { LayoutProps } from './Layout.props';
+import { SupplierHeader, Header } from '.';
 
-export const Layout: FC<LayoutProps> = ({ children }): JSX.Element => {
+import { Footer } from 'layouts/Footer/Footer';
+
+interface ILayout {
+  children: ReactNode;
+  headerVariant?: 'default' | 'supplier';
+}
+
+export const Layout: FC<ILayout> = ({
+  children,
+  headerVariant = 'default',
+}): JSX.Element => {
   return (
     <div className={styles.wrapper}>
-      <Header className={styles.header} />
+      {headerVariant === 'default' && <Header className={styles.header} />}
+      {headerVariant === 'supplier' && <SupplierHeader className={styles.header} />}
+
       <main className={styles.body} role="main">
         {children}
       </main>
-      <Footer className={styles.footer} />
+
+      <Footer variant="default" className={styles.footer} />
     </div>
   );
 };
