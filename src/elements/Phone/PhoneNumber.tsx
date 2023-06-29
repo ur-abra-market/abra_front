@@ -22,7 +22,7 @@ export const PhoneNumber = (): JSX.Element => {
     value: 5,
   });
   const [phoneNumberBody, setPhoneNumberBody] = useState('');
-  const [phoneCountryShort, setPhoneCountryShort] = useState('ru');
+  const [phoneCountryShort, setPhoneCountryShort] = useState<CountryCode>('ru');
   const {
     handleSubmit,
     register,
@@ -55,43 +55,42 @@ export const PhoneNumber = (): JSX.Element => {
   const handlePhoneCountryCodeOnChange = (value: ISelectOption): void => {
     const country = countries.find(country => country.id === value.value);
 
-    if (country) setPhoneCountryShort(country.country_short);
+    if (country) setPhoneCountryShort(country.country_short as CountryCode);
     setPhoneCountryCode(value);
   };
 
+  type CountryCode = 'ru' | 'az' | 'by' | 'kz' | 'kg' | 'tr' | 'tj' | 'ua' | 'uz';
   const validatePhoneNumber = (
     phoneNumber: string,
-    phoneNumberCountyCode: string,
+    phoneNumberCountyCode: CountryCode,
   ): boolean => {
-    if (phoneNumberCountyCode === 'ru') {
-      return /^9\d{9}$/.test(phoneNumber); // Проверяем, что номер РФ начинается с 9
-    }
+    const countryPhoneRegex: Record<CountryCode, RegExp> = {
+      ru: /^9\d{9}$/, // Russia: phone number body starts with 9 and has a length of 10
+      az: /^[4567]\d{8}$/, // Azerbaijan: phone number body starts with 4, 5, 6, or 7 and has a length of 9
+      by: /^[2345]\d{8}$/, // Belarus: phone number body starts with 2, 3, 4, or 5 and has a length of 9
+      kz: /^7\d{9}$/, // Kazakhstan: phone number body starts with 7 and has a length of 10
+      kg: /^[57]\d{9}$/, // Kyrgyzstan: phone number body starts with 5 or 7 and has a length of 10
+      tr: /^5\d{9}$/, // Turkey: phone number body starts with 5 and has a length of 10
+      tj: /^\d{9}$/, // Tajikistan: phone number body has a length of 9
+      ua: /^\d{9}$/, // Ukraine: phone number body has a length of 9
+      uz: /^\d{9}$/, // Uzbekistan: phone number body has a length of 9
+    };
 
-    if (phoneNumberCountyCode === 'az') {
-      return /^[4567]\d{8}$/.test(phoneNumber); // Проверяем, что номер азербайджана начинается 4, 5, 6 или 7
-    }
+    const regex = countryPhoneRegex[phoneNumberCountyCode];
 
-    if (phoneNumberCountyCode === 'by') {
-      return /^[2345]\d{8}$/.test(phoneNumber); // Проверяем, что номер беларуси начинается с 2, 3, 4, или 5
-    }
-
-    if (phoneNumberCountyCode === 'kz') {
-      return /^7\d{9}$/.test(phoneNumber); // Проверяем, что номер казахстана начинается с 7
-    }
-
-    return true;
+    return regex.test(phoneNumber);
   };
 
   const getFormattedPhoneNumberBody = (
     phoneNumberBody: string,
     phoneNumberCountyCode: string,
   ): string => {
-    const numberBody = phoneNumberBody;
+    const changedNumberBody = phoneNumberBody;
 
     if (phoneNumberCountyCode === 'ru') {
       // россия
       if (phoneNumberBody.length <= 10) {
-        return numberBody.replace(
+        return changedNumberBody.replace(
           /^(\d{1,3})?(\d{1,3})?(\d{1,2})?(\d{1,2})?/,
 
           (match, g1, g2, g3, g4) => {
@@ -112,7 +111,7 @@ export const PhoneNumber = (): JSX.Element => {
     if (phoneNumberCountyCode === 'az') {
       // азербайджан
       if (phoneNumberBody.length <= 9) {
-        return numberBody.replace(
+        return changedNumberBody.replace(
           /^(\d{1,2})?(\d{1,3})?(\d{1,2})?(\d{1,2})?/,
 
           (match, g1, g2, g3, g4) => {
@@ -134,7 +133,7 @@ export const PhoneNumber = (): JSX.Element => {
     if (phoneNumberCountyCode === 'by') {
       // беларусь
       if (phoneNumberBody.length <= 9) {
-        return numberBody.replace(
+        return changedNumberBody.replace(
           /^(\d{1,2})?(\d{1,3})?(\d{1,2})?(\d{1,2})?/,
 
           (match, g1, g2, g3, g4) => {
@@ -156,8 +155,114 @@ export const PhoneNumber = (): JSX.Element => {
     if (phoneNumberCountyCode === 'kz') {
       // казахстан
       if (phoneNumberBody.length <= 10) {
-        return numberBody.replace(
+        return changedNumberBody.replace(
           /^(\d{1,3})?(\d{1,3})?(\d{1,2})?(\d{1,2})?/,
+          (match, g1, g2, g3, g4) => {
+            let result = '';
+
+            result += g1 ? `${g1}` : '';
+            result += g2 ? ` ${g2}` : '';
+            result += g3 ? `-${g3}` : '';
+            result += g4 ? `-${g4}` : '';
+
+            return result;
+          },
+        );
+      }
+
+      return '';
+    }
+
+    if (phoneNumberCountyCode === 'kg') {
+      // Киргизия
+      if (phoneNumberBody.length <= 9) {
+        return changedNumberBody.replace(
+          /^(\d{1,2})?(\d{1,3})?(\d{1,2})?(\d{1,2})?/,
+
+          (match, g1, g2, g3, g4) => {
+            let result = '';
+
+            result += g1 ? `${g1}` : '';
+            result += g2 ? ` ${g2}` : '';
+            result += g3 ? `-${g3}` : '';
+            result += g4 ? `-${g4}` : '';
+
+            return result;
+          },
+        );
+      }
+
+      return '';
+    }
+
+    if (phoneNumberCountyCode === 'tj') {
+      // Таджикистан
+      if (phoneNumberBody.length <= 9) {
+        return changedNumberBody.replace(
+          /^(\d{1,2})?(\d{1,3})?(\d{1,2})?(\d{1,2})?/,
+          (match, g1, g2, g3, g4) => {
+            let result = '';
+
+            result += g1 ? `${g1}` : '';
+            result += g2 ? ` ${g2}` : '';
+            result += g3 ? `-${g3}` : '';
+            result += g4 ? `-${g4}` : '';
+
+            return result;
+          },
+        );
+      }
+
+      return '';
+    }
+
+    if (phoneNumberCountyCode === 'ua') {
+      // Украина
+      if (phoneNumberBody.length <= 9) {
+        return changedNumberBody.replace(
+          /^(\d{1,2})?(\d{1,3})?(\d{1,2})?(\d{1,2})?/,
+          (match, g1, g2, g3, g4) => {
+            let result = '';
+
+            result += g1 ? `${g1}` : '';
+            result += g2 ? ` ${g2}` : '';
+            result += g3 ? `-${g3}` : '';
+            result += g4 ? `-${g4}` : '';
+
+            return result;
+          },
+        );
+      }
+
+      return '';
+    }
+
+    if (phoneNumberCountyCode === 'tr') {
+      // Турция
+      if (phoneNumberBody.length <= 10) {
+        return changedNumberBody.replace(
+          /^(\d{1,3})?(\d{1,3})?(\d{1,2})?(\d{1,2})?/,
+          (match, g1, g2, g3, g4) => {
+            let result = '';
+
+            result += g1 ? `${g1}` : '';
+            result += g2 ? ` ${g2}` : '';
+            result += g3 ? `-${g3}` : '';
+            result += g4 ? `-${g4}` : '';
+
+            return result;
+          },
+        );
+      }
+
+      return '';
+    }
+
+    if (phoneNumberCountyCode === 'uz') {
+      // Узбекистан
+      if (phoneNumberBody.length <= 9) {
+        changedNumberBody.replace(
+          /^(\d{1,2})?(\d{1,3})?(\d{1,2})?(\d{1,2})?/,
           (match, g1, g2, g3, g4) => {
             let result = '';
 
