@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 import cn from 'classnames';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import style from './SupplierTop.module.scss';
 
 import { ArrowIcon, HeaderNotificationsIcon, LogoCompanyPlaceholder } from 'assets/icons';
-import { useOnClickOutside, useAppDispatch } from 'common/hooks';
+import { useOnClickOutside, useAppDispatch, useAppSelector } from 'common/hooks';
 import { HeaderMenu } from 'elements';
 import { HOME } from 'routes';
 import {
@@ -19,7 +18,7 @@ import { MainLogo } from 'ui-kit';
 export const SupplierTop = (): JSX.Element => {
   const [isShowPopupMenu, setIsShowPopupMenu] = useState(false);
   const triggerRef = useOnClickOutside(setIsShowPopupMenu);
-  const companyLogo = useSelector(supplierCompanyLogoSelector);
+  const companyLogo = useAppSelector(supplierCompanyLogoSelector);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
