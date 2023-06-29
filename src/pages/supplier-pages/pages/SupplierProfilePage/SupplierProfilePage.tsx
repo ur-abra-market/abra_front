@@ -14,7 +14,6 @@ import {
   getSupplierNotifications,
   supplierProgressLoadingSelector,
 } from 'store/reducers/supplier/profile';
-import { fetchCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 import { getPersonalInfo } from 'store/reducers/userSlice';
 import { LoaderLinear } from 'ui-kit';
 
