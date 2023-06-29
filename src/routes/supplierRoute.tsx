@@ -12,7 +12,6 @@ import {
   FEEDBACK,
   ORDERS,
   PRICE,
-  SUPPLIERS_PRODUCTS,
 } from './constans/supplier';
 
 import {
@@ -24,7 +23,6 @@ import {
   OrdersPage,
   PriceManagementPage,
   ProductListRegistrationPage,
-  ProductsListPage,
   SupplierMainPage,
   SupplierProfilePage,
 } from 'pages/supplier-pages';
@@ -41,10 +39,6 @@ export const supplierRoute: RouteObject[] = [
       {
         path: DASHBOARD,
         element: <DashboardPage />,
-      },
-      {
-        path: SUPPLIERS_PRODUCTS,
-        element: <ProductsListPage />,
       },
       {
         path: ORDERS,

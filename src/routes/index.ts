@@ -16,6 +16,7 @@ export {
   TERMS_AND_CONDITIONS,
   REGISTER,
   PRIVACY_POLICY,
+  PRODUCTS_LIST,
 } from './constans/root';
 
 export {
@@ -23,7 +24,6 @@ export {
   PRODUCT_DETAILS,
   ORDER_HISTORY,
   CART,
-  SELLER_PRODUCTS,
   CHECKOUT,
   CHECKOUT_SUCCESS,
   HELP,
@@ -32,7 +32,6 @@ export {
 } from './constans/seller';
 
 export {
-  SUPPLIERS_PRODUCTS,
   ADD_PRODUCT,
   ACCOUNT_SETUP_BUSINESS_INFO,
   ACCOUNT_SETUP_PERSONAL_INFO,
