@@ -15,6 +15,7 @@ import {
   LOGIN,
   NEWS,
   PRIVACY_POLICY,
+  PRODUCTS_LIST,
   REGISTER,
   RESET_PASSWORD,
   SELL,
@@ -37,6 +38,7 @@ import {
   ForgotPasswordPage,
   LastNewsPage,
   PrivacyPolicyPage,
+  ProductListPage,
   ResetPasswordPage,
   SellAbraPage,
   TermsAndConditionsPage,
@@ -101,6 +103,20 @@ export function createRoutes(userRole: UserRoleType): Routes {
         {
           path: CHECK_EMAIL,
           element: <CheckEmailPage />,
+        },
+        {
+          path: PRODUCTS_LIST,
+          children: [
+            {
+              path: '*',
+              element:
+                userRole === 'seller' || userRole === null ? (
+                  <ProductListPage />
+                ) : (
+                  <ErrorPage />
+                ),
+            },
+          ],
         },
         {
           path: TERMS_AND_CONDITIONS,
