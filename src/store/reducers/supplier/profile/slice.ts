@@ -7,6 +7,8 @@ import {
   uploadCompanyLogo,
   getSupplierNotifications,
   updateSupplierNotifications,
+  hasPersonalInfo,
+  hasCompanyInfo,
 } from './thunks';
 
 import { LoadingStatusEnum } from 'common/types';
@@ -49,6 +51,8 @@ interface ISupplierProfileSliceInitialState {
   personalInfo: ISupplierPersonalInfo;
   businessInfo: ISupplierBusinessInfo;
   notifications: ISupplierNotifications | null;
+  hasCompanyInfo: boolean;
+  hasPersonalInfo: boolean;
 }
 
 const initialState: ISupplierProfileSliceInitialState = {
@@ -79,6 +83,8 @@ const initialState: ISupplierProfileSliceInitialState = {
     countryId: null,
   },
   notifications: null,
+  hasPersonalInfo: false,
+  hasCompanyInfo: false,
 };
 
 export const supplierProfileSlice = createSlice({
@@ -153,6 +159,13 @@ export const supplierProfileSlice = createSlice({
       })
       .addCase(deleteCompanyLogo.fulfilled, state => {
         state.businessInfo.companyLogo = '';
+      });
+    builder
+      .addCase(hasPersonalInfo.fulfilled, (state, action) => {
+        state.hasPersonalInfo = action.payload;
+      })
+      .addCase(hasCompanyInfo.fulfilled, (state, action) => {
+        state.hasCompanyInfo = action.payload;
       });
   },
 });

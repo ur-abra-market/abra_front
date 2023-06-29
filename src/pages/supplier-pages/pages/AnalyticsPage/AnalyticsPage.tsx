@@ -1,5 +1,7 @@
 import React from 'react';
 
-export const AnalyticsPage = (): JSX.Element => {
+import { WithLayout } from 'common/hocs/WithLayout';
+
+export const AnalyticsPage = WithLayout((): JSX.Element => {
   return <h2>AnalyticsPage</h2>;
-};
+}, 'supplier');

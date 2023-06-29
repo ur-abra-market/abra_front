@@ -5,11 +5,12 @@ import style from './SupplierProfilePage.module.scss';
 
 import { SupplierBusinessInfoChangeForm, SupplierPersonalInfoChangeForm } from '.';
 
+import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch } from 'common/hooks';
 import { AccountManagement } from 'elements';
 import { getCountries } from 'store/reducers/commonSlice';
 
-export const SupplierProfilePage = (): JSX.Element => {
+export const SupplierProfilePage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -35,4 +36,4 @@ export const SupplierProfilePage = (): JSX.Element => {
       </div>
     </div>
   );
-};
+}, 'supplier');

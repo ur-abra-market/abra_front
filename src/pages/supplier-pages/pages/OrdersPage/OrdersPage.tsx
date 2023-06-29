@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { WithLayout } from 'common/hocs/WithLayout';
 // import FiltersList from "../../../common/filtersList/filtersList";
 // import Table from "../../../common/table/table";
 // import api from "./fakeAPI";
@@ -15,7 +17,7 @@ import React from 'react';
 // import arrowDown from "assets/icons/files/arrow-down.png";
 // import Loader from "../../../common/Loader";
 
-export const OrdersPage = (): JSX.Element => {
+export const OrdersPage = WithLayout((): JSX.Element => {
   return <h2>OrdersPage</h2>;
 
   // const activePage = useSelector((state) => state.paginate.page_num);
@@ -204,4 +206,4 @@ export const OrdersPage = (): JSX.Element => {
   //     </>
   //   );
   // }
-};
+}, 'supplier');

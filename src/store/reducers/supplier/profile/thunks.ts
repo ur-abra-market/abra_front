@@ -43,6 +43,28 @@ export const createAccountBusinessInfo = createAsyncThunk<
   },
 );
 
+export const hasCompanyInfo = createAsyncThunk<boolean, void, IAsyncThunkConfig>(
+  'supplierProfile/hasCompanyInfo',
+  async (_, { rejectWithValue }) => {
+    try {
+      return await supplierService.hasCompanyInfo();
+    } catch (e) {
+      return rejectWithValue('[hasCompanyInfo]: Error');
+    }
+  },
+);
+
+export const hasPersonalInfo = createAsyncThunk<boolean, void, IAsyncThunkConfig>(
+  'supplierProfile/hasPersonalInfo',
+  async (_, { rejectWithValue }) => {
+    try {
+      return await supplierService.hasPersonalInfo();
+    } catch (e) {
+      return rejectWithValue('[hasPersonalInfo]: Error');
+    }
+  },
+);
+
 export const updateBusinessInfo = createAsyncThunk<
   void,
   ISupplierUpdateBusinessInfo,

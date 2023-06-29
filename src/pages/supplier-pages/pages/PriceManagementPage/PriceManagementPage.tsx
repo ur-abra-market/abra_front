@@ -1,5 +1,7 @@
 import React from 'react';
 
-export const PriceManagementPage = (): JSX.Element => {
+import { WithLayout } from 'common/hocs/WithLayout';
+
+export const PriceManagementPage = WithLayout((): JSX.Element => {
   return <h2>Price Management</h2>;
-};
+});

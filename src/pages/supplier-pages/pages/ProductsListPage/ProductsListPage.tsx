@@ -12,6 +12,7 @@ import {
   StarFilledIcon,
 } from 'assets/icons';
 import imageProduct from 'assets/images/files/banner2.png'; //! need to rewrite
+import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import Modal from 'elements/Modal';
 import ShowPage from 'old-components/ShowPage';
@@ -40,7 +41,7 @@ export const STATUS_SELECT: ISelectOption[] = [
 //   image: string;
 //   name: string;
 // }
-export const ProductsListPage: FC = (): JSX.Element => {
+export const ProductsListPage: FC = WithLayout((): JSX.Element => {
   // const navigate = useNavigate();
   const activePage = useAppSelector(state => state.paginate.page_num);
   const amountPages = useAppSelector(state => state.paginate.amountPages);
@@ -289,4 +290,4 @@ export const ProductsListPage: FC = (): JSX.Element => {
       </div>
     </>
   );
-};
+}, 'supplier');
