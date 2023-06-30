@@ -5,13 +5,13 @@ import { Controller, useFormContext } from 'react-hook-form';
 import style from './SupplierBusinessInfoForm.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { ISupplierBusinessInfoFormData } from 'common/types';
 import { PhoneNumberInput } from 'elements';
 import {
   countriesSelector,
   getCompanyNumberEmployees,
   numberEmployeesSelector,
 } from 'store/reducers/commonSlice';
-import { ISupplierBusinessInfo } from 'store/reducers/supplier/profile/slice';
 import { Button, Checkbox, Input, ISelectOption, Label, Select } from 'ui-kit';
 
 const BUSINESS_SECTOR_DATA: ISelectOption[] = [
@@ -23,8 +23,9 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
 interface IBusinessProfileForm {
   updateForm?: boolean;
   countryShort?: string;
-  onSubmit: (data: ISupplierBusinessInfo) => void;
+  onSubmit: (data: ISupplierBusinessInfoFormData) => void;
   isPhoneNumber?: boolean;
+  isDirty?: boolean;
 }
 
 export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
@@ -32,6 +33,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
   onSubmit,
   countryShort,
   isPhoneNumber,
+  isDirty,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const numberEmployees = useAppSelector(numberEmployeesSelector);
@@ -40,12 +42,12 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
     register,
     handleSubmit,
     control,
-    formState: { errors, isValid, isDirty },
-  } = useFormContext<ISupplierBusinessInfo>();
+    formState: { errors, isValid },
+  } = useFormContext<ISupplierBusinessInfoFormData>();
 
   useEffect(() => {
     dispatch(getCompanyNumberEmployees());
-  }, []);
+  }, [dispatch]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -126,9 +128,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                     label: el.number,
                   }))}
                   className={style.select}
-                  defaultValue={
-                    numberEmployees?.find(el => field.value === el.id)?.number
-                  }
+                  defaultValue={typeof field.value === 'number' ? field.value : undefined}
                   placeholder="Select"
                   width="266px"
                   onChange={value => {
@@ -147,7 +147,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
             <Label label="Country of company registration*">
               <Select
                 {...field}
-                defaultValue={countries?.find(el => el.id === field.value)?.country}
+                defaultValue={typeof field.value === 'number' ? field.value : undefined}
                 error={errors?.countryRegistration?.message}
                 options={countries.map(el => ({
                   value: el.id,

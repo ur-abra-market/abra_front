@@ -53,6 +53,7 @@ export interface ISupplierErrorResponse {
 interface ISupplierPhoneInfo {
   id: number;
   phone_number: string;
+  country: ICountry;
 }
 
 export interface ISupplierUpdateBusinessInfo {

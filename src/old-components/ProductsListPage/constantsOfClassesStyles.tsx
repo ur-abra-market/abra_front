@@ -1,4 +1,4 @@
-import style from 'pages/supplier-pages/pages/ProductsListPage/ProductsListPage.module.scss';
+import style from 'old-components/ProductsListPage/ProductsListPage.module.scss';
 
 export const tableStyleClasses = {
   table: `${style.table}`,

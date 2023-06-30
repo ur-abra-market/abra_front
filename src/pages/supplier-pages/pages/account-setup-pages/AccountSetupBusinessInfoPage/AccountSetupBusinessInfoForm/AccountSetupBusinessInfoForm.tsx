@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import style from './AccountSetupBusinessInfoForm.module.scss';
 
 import { useAppDispatch } from 'common/hooks';
+import { ISupplierBusinessInfoFormData } from 'common/types';
 import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
 import { UploadImage } from 'elements';
 import {
@@ -16,11 +17,11 @@ import {
 } from 'pages/supplier-pages/supplier-pages-common';
 import { IBusinessInfoRequest } from 'services/supplier/supplier.serviceTypes';
 import { getCountries } from 'store/reducers/commonSlice';
-import { uploadCompanyLogo } from 'store/reducers/supplier/profile';
 import {
+  uploadCompanyLogo,
   supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
-} from 'store/reducers/supplier/profile/selectors';
+} from 'store/reducers/supplier/profile';
 import { ISupplierBusinessInfo } from 'store/reducers/supplier/profile/slice';
 import {
   createAccountBusinessInfo,
@@ -40,9 +41,9 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(getCountries());
-  }, []);
+  }, [dispatch]);
 
-  const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
+  const onSubmit = async (data: ISupplierBusinessInfoFormData): Promise<void> => {
     const { numberBody } = parsePhoneNumber(data.phoneNumber);
     const businessInfoData: IBusinessInfoRequest = {
       supplier_data_request: {
@@ -62,7 +63,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
       },
       company_phone_data_request: {
         phone_number: numberBody,
-        country_id: data.phoneId!,
+        country_id: data.countryId!,
       },
     };
 
