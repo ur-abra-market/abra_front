@@ -34,7 +34,9 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 }): JSX.Element => {
   const numberEmployees = useAppSelector(numberEmployeesSelector);
   const countries = useAppSelector(countriesSelector);
-  const isLoading = useAppSelector(supplierLoadingSelector);
+  const isLoading =
+    useAppSelector(supplierLoadingSelector).businessInfoLoading ===
+    LoadingStatusEnum.Loading;
   const {
     register,
     handleSubmit,
@@ -48,7 +50,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         <div className={style.select_info_inputs}>
           <Label label="Shop name* (will be shown on the profile)">
             <Input
-              disabled={isLoading === LoadingStatusEnum.Loading}
+              disabled={isLoading}
               {...register('storeName')}
               error={errors?.storeName?.message}
               placeholder="Enter your company or store name"
@@ -78,7 +80,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 
         <Checkbox
           className={style.checkbox}
-          disabled={isLoading === LoadingStatusEnum.Loading}
+          disabled={isLoading}
           label="I am a manufacturer"
           variant="default"
           size="sm"
@@ -87,7 +89,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         <Label label="License or entrepreneur number*">
           <Input
             {...register('license')}
-            disabled={isLoading === LoadingStatusEnum.Loading}
+            disabled={isLoading}
             error={errors?.license?.message}
             placeholder="000 – 00 – 0000"
           />
@@ -105,7 +107,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         <div className={style.select_info_inputs}>
           <Label label="Year established*">
             <Input
-              disabled={isLoading === LoadingStatusEnum.Loading}
+              disabled={isLoading}
               {...register('yearEstablished')}
               error={errors?.yearEstablished?.message}
               placeholder="Enter the year"
@@ -161,7 +163,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 
         <Label label="About the business">
           <Input
-            disabled={isLoading === LoadingStatusEnum.Loading}
+            disabled={isLoading}
             {...register('description')}
             error={errors?.description?.message}
             placeholder="Tell more about your company or business"
@@ -172,14 +174,14 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
       <div>
         <p className={style.subtitle}>Contacts</p>
         <PhoneNumberInput
-          disabled={isLoading === LoadingStatusEnum.Loading}
+          disabled={isLoading}
           label="Business phone number"
           countryShort={countryShort}
         />
         <div className={style.contacts_inputs}>
           <Label label="Business email address">
             <Input
-              disabled={isLoading === LoadingStatusEnum.Loading}
+              disabled={isLoading}
               {...register('email')}
               error={errors?.email?.message}
               width="266px"
@@ -189,7 +191,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 
           <Label label="Main company address">
             <Input
-              disabled={isLoading === LoadingStatusEnum.Loading}
+              disabled={isLoading}
               {...register('address')}
               error={errors?.address?.message}
               placeholder="Enter address"
@@ -202,11 +204,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         type="submit"
         className={style.button}
         label="Save"
-        disabled={
-          !isValid ||
-          (!isDirty && isPhoneNumber) ||
-          isLoading === LoadingStatusEnum.Loading
-        }
+        disabled={!isValid || (!isDirty && isPhoneNumber) || isLoading}
       />
     </form>
   );

@@ -19,7 +19,9 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
   phoneInputClass,
   countryShort,
 }): JSX.Element => {
-  const isLoading = useAppSelector(supplierLoadingSelector);
+  const isLoading =
+    useAppSelector(supplierLoadingSelector).personalInfoLoading ===
+    LoadingStatusEnum.Loading;
   const {
     register,
     formState: { errors },
@@ -30,7 +32,7 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
       <div className={style.name_container}>
         <Label label="First name" htmlFor="firstName">
           <Input
-            disabled={isLoading === LoadingStatusEnum.Loading}
+            disabled={isLoading}
             id="firstName"
             placeholder="John"
             {...register('firstName')}
@@ -40,7 +42,7 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
 
         <Label label="Last name" htmlFor="lastName">
           <Input
-            disabled={isLoading === LoadingStatusEnum.Loading}
+            disabled={isLoading}
             id="lastName"
             placeholder="Johnson"
             {...register('lastName')}
@@ -50,7 +52,7 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
       </div>
 
       <PhoneNumberInput
-        disabled={isLoading === LoadingStatusEnum.Loading}
+        disabled={isLoading}
         countryShort={countryShort}
         phoneInputClass={phoneInputClass}
         label="Personal phone number"

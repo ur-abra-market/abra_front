@@ -1,6 +1,9 @@
-import { ISupplierPersonalInfo, ISupplierBusinessInfo } from './slice';
+import {
+  ISupplierPersonalInfo,
+  ISupplierBusinessInfo,
+  ISupplierProfileLoading,
+} from './slice';
 
-import { LoadingStatusEnum } from 'common/types';
 import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
 import { RootStateType } from 'store/createStore';
 
@@ -20,9 +23,5 @@ export const supplierNotificationsSelector = (
   state: RootStateType,
 ): ISupplierNotifications | null => state.supplierProfile.notifications;
 
-export const supplierLoadingSelector = (state: RootStateType): LoadingStatusEnum =>
+export const supplierLoadingSelector = (state: RootStateType): ISupplierProfileLoading =>
   state.supplierProfile.loading;
-
-export const supplierProgressLoadingSelector = (
-  state: RootStateType,
-): LoadingStatusEnum => state.supplierProfile.isProgressLoading;

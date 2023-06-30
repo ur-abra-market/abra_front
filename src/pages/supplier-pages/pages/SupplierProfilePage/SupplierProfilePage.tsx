@@ -6,21 +6,23 @@ import style from './SupplierProfilePage.module.scss';
 import { SupplierBusinessInfoChangeForm, SupplierPersonalInfoChangeForm } from '.';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { LoadingStatusEnum } from 'common/types';
 import { AccountManagement } from 'elements';
 import { getCompanyNumberEmployees, getCountries } from 'store/reducers/commonSlice';
 import {
   getBusinessInfo,
   getSupplierNotifications,
-  supplierProgressLoadingSelector,
+  supplierLoadingSelector,
 } from 'store/reducers/supplier/profile';
 import { getPersonalInfo } from 'store/reducers/userSlice';
 import { LoaderLinear } from 'ui-kit';
 
 export const SupplierProfilePage = (): JSX.Element => {
-  const [isLoading, setIsLoading] = useState(true);
-  const isProgressLoading = useAppSelector(supplierProgressLoadingSelector);
+  const [isFetchingData, setIsFetchingData] = useState(true);
   const dispatch = useAppDispatch();
+  const loading = useAppSelector(supplierLoadingSelector);
+  const { notificationsLoading, ...restLoading } = loading;
+
+  const isLoading = Object.values(restLoading).every(value => value !== 'loading');
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
@@ -30,19 +32,19 @@ export const SupplierProfilePage = (): JSX.Element => {
       await dispatch(getCompanyNumberEmployees());
       await dispatch(getSupplierNotifications());
 
-      setIsLoading(false);
+      setIsFetchingData(false);
     };
 
     fetchData();
   }, [dispatch]); // notifications не добавил так как дважды уйдут все запросы, сдесь это не надо
 
-  if (isLoading) {
+  if (isFetchingData) {
     return <LoaderLinear />;
   }
 
   return (
     <div className={style.supplier_cabinet}>
-      {isProgressLoading === LoadingStatusEnum.Loading && <LoaderLinear />}
+      {!isLoading && <LoaderLinear />}
       <div className={style.supplier_cabinet_content_wrapper}>
         <SupplierPersonalInfoChangeForm />
 

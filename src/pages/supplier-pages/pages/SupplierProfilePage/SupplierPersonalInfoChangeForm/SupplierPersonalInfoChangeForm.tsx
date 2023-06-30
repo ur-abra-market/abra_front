@@ -22,7 +22,9 @@ import { Button } from 'ui-kit';
 
 export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const isLoading = useAppSelector(supplierLoadingSelector);
+  const isLoading =
+    useAppSelector(supplierLoadingSelector).personalInfoLoading ===
+    LoadingStatusEnum.Loading;
 
   const data = useAppSelector(supplierPersonalInfoSelector);
 
@@ -90,11 +92,7 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
 
           <Button
             type="submit"
-            disabled={
-              isLoading === LoadingStatusEnum.Loading ||
-              !formState.isValid ||
-              isPersonalInfoFormDisable
-            }
+            disabled={isLoading || !formState.isValid || isPersonalInfoFormDisable}
             className={style.submit_button}
             label="Save"
           />

@@ -4,9 +4,9 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { NotificationsChangeForm } from 'modules';
 import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
 import {
-  updateSupplierNotifications,
   supplierLoadingSelector,
   supplierNotificationsSelector,
+  updateSupplierNotifications,
 } from 'store/reducers/supplier/profile';
 
 export interface INotificationSupplierData {
@@ -29,8 +29,7 @@ const NOTIFICATIONS_SUPPLIER_DATA: INotificationSupplierData[] = [
 export const SupplierNotifications = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const notifications = useAppSelector(supplierNotificationsSelector);
-  const loading = useAppSelector(supplierLoadingSelector);
-
+  const loading = useAppSelector(supplierLoadingSelector).notificationsLoading;
   const onNotificationChange = (id: string, value: boolean): void => {
     dispatch(updateSupplierNotifications({ id, value }));
   };
