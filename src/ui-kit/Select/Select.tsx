@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, useEffect, useRef, useState } from 'react';
+import React, { forwardRef, ReactNode, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -181,7 +181,7 @@ export const Select = forwardRef(
 
     const selectWidth = width ? { width } : {};
 
-    const mainClasses = cn(styles.main, className, { [styles.main_has_header]: header });
+    const mainClasses = cn(className, styles.main, { [styles.main_has_header]: header });
 
     return (
       <div style={selectWidth} className={mainClasses} ref={mainDivRef}>
