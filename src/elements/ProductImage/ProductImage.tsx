@@ -3,7 +3,7 @@ import React, { DetailedHTMLProps, FC, HTMLAttributes, SyntheticEvent } from 're
 import cn from 'classnames';
 
 import { MagnifierLightGreyIcon } from 'assets/icons';
-import { DefaultProductImage } from 'assets/images';
+import { LazyImage } from 'elements/LazyImage/LazyImage';
 import style from 'elements/ProductCard/ProductCard.module.scss';
 import Flag from 'old-components/Flag';
 
@@ -21,16 +21,10 @@ const ProductImage: FC<IProductCard> = ({
   imageUrl,
   ...restProps
 }): JSX.Element => {
-  const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
-    const newEvent = { ...event };
-
-    newEvent.currentTarget.src = DefaultProductImage;
-  };
-
   return (
-    <div className={cn(style.image, className)} {...restProps}>
+    <div className={cn(style.image_wrapper, className)} {...restProps}>
       <Flag className={style.flag} isFavorite={isFavorite} />
-      <img src={imageUrl || ''} alt={name} onError={handleImageError} />
+      <LazyImage src={imageUrl || ''} alt={name} className={style.image} />
       <span className={style.hover}>
         <span className={style.hover_text}>
           <MagnifierLightGreyIcon />

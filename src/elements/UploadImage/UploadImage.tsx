@@ -12,6 +12,7 @@ import style from './UploadImage.module.scss';
 
 import { CrossRedIcon, UploadItemImageIcon, UploadLogoImageIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
+import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
 import { fetchCompanyLogo } from 'store/reducers/supplier/profile';
 
@@ -98,7 +99,7 @@ export const UploadImage: FC<IUploadImage> = ({
       <div className={style.img_wrapper}>
         {image ? (
           <div>
-            <img className={imgClasses} src={image} alt={description} />
+            <LazyImage src={image} alt={description} className={imgClasses} />
 
             {type === 'default' && (
               <button className={crossClasses} onClick={deleteImage} type="button">
