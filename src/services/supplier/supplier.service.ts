@@ -19,7 +19,7 @@ export const supplierService = {
 
   hasPersonalInfo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<boolean>>(
-      `suppliers/hasPersonalInfo/`,
+      `suppliers/hasBusinessInfo/`,
     );
 
     return data.result;
