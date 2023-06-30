@@ -89,7 +89,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
             key={countryShort}
             inputClass={phoneInputClasses}
             buttonClass={phoneButtonClasses}
-            country={countryShort || ''}
+            country={countryShort || 'ru'}
             value={watch('phoneNumber')}
             onChange={handlePhoneInputOnChange}
             onlyCountries={countries.map(el => el.country_short)}
