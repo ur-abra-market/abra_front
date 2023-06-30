@@ -1,8 +1,7 @@
 import React from 'react';
 
+import { ContentBox } from './Content/ContentBox';
 import style from './SellAbra.module.scss';
-
-import { ContentBox } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 
