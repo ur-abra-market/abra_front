@@ -1,4 +1,11 @@
-.value{
+.item {
+  display: flex;
+  margin-bottom: 16px;
+  background-color: var(--color-super-light-gray);
+  border-radius: 12px;
+}
+
+.number {
   padding: 24px 16px 24px 24px;
 
   font-size: 48px;
@@ -8,14 +15,7 @@
   letter-spacing: 0.41px;
 }
 
-.box{
-  display: flex;
-  margin-bottom: 16px;
-  background-color: var(--color-super-light-gray);
-  border-radius: 12px;
-}
-
-.title_text{
+.title {
   padding-bottom: 4px;
 
   font-size: 20px;
@@ -24,11 +24,11 @@
   letter-spacing: 0.16px;
 }
 
-.content{
+.content_container {
   padding-top: 28px;
 }
 
-.content_text{
+.description {
   font-size: 15px;
   font-weight: 400;
   line-height: 20px;

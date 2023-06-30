@@ -7,20 +7,25 @@ import { WithLayout } from 'common/hocs/WithLayout';
 export const ContactSupportPage = WithLayout(() => {
   return (
     <div>
-      <img className={style.image_header} src={Banner3Image} alt="" />
-      <div className={style.container}>
-        <p className={style.title}>Got any questions? Contact us via Whatsapp</p>
+      <div className={style.image_container}>
+        <img className={style.image} src={Banner3Image} alt="" />
+      </div>
+
+      <div className={style.content_container}>
+        <h2 className={style.title}>Got any questions? Contact us via Whatsapp</h2>
+
         <div className={style.contacts}>
-          <WhatsappIcon className={style.image} />
+          <WhatsappIcon className={style.whatsapp_icon} />
           <p className={style.number_phone}>+79385656431</p>
         </div>
+
         <div>
           <p className={style.social_network}>We in social media</p>
           <a href="/">
-            <VkIcon className={style.social_image} />
+            <VkIcon className={style.social_icon} />
           </a>
           <a href="/">
-            <GoogleIcon className={style.social_image} />
+            <GoogleIcon className={style.social_icon} />
           </a>
         </div>
       </div>
