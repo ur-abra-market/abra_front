@@ -84,7 +84,7 @@ export const UploadImage: FC<IUploadImage> = ({
   };
 
   useEffect(() => {
-    if (type === 'logo') dispatch(fetchCompanyLogo());
+    // if (type === 'logo') dispatch(fetchCompanyLogo());
   }, [dispatch, type]);
 
   return (

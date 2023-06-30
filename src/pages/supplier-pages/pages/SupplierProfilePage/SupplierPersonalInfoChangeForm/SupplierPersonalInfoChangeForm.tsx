@@ -38,7 +38,7 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
   useSetPersonalInfoValues(setValue, data, numberCountry);
 
   useEffect(() => {
-    dispatch(getPersonalInfo());
+    // dispatch(getPersonalInfo());
   }, [dispatch]);
 
   const [phoneNumberValue, lastNameValue, firstNameValue, countryShortValue] = watch([

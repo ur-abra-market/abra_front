@@ -38,7 +38,7 @@ export const SupplierNotifications = (): JSX.Element => {
 
   useEffect(() => {
     if (!notifications) {
-      dispatch(getSupplierNotifications());
+      // dispatch(getSupplierNotifications());
     }
   }, []);
 

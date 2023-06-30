@@ -49,7 +49,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   };
 
   useEffect(() => {
-    dispatch(getBusinessInfo());
+    // dispatch(getBusinessInfo());
   }, [dispatch]);
 
   useSupplierBusinessInfoSetValue(setValue, businessInfoData);

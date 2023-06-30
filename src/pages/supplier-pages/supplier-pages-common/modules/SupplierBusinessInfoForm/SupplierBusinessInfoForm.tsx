@@ -46,7 +46,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
   } = useFormContext<ISupplierBusinessInfoFormData>();
 
   useEffect(() => {
-    dispatch(getCompanyNumberEmployees());
+    // dispatch(getCompanyNumberEmployees());
   }, [dispatch]);
 
   return (
