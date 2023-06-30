@@ -1,1 +1,1 @@
-export { ContentBox } from './Content/ContentBox';
+export { Item } from './Item/Item';

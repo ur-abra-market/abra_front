@@ -6,6 +6,7 @@ import {
 
 import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
 import { RootStateType } from 'store/createStore';
+import { state } from 'store/reducers/modalSlice';
 
 export const supplierPersonalInfoSelector = (
   state: RootStateType,
@@ -25,3 +26,9 @@ export const supplierNotificationsSelector = (
 
 export const supplierLoadingSelector = (state: RootStateType): ISupplierProfileLoading =>
   state.supplierProfile.loading;
+
+export const hasPersonalInfoSelector = (state: RootStateType): boolean =>
+  state.supplierProfile.hasPersonalInfo;
+
+export const hasCompanyInfoSelector = (state: RootStateType): boolean =>
+  state.supplierProfile.hasCompanyInfo;

@@ -5,6 +5,7 @@ import style from './SupplierProfilePage.module.scss';
 
 import { SupplierBusinessInfoChangeForm, SupplierPersonalInfoChangeForm } from '.';
 
+import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { AccountManagement } from 'elements';
 import { getCompanyNumberEmployees, getCountries } from 'store/reducers/commonSlice';
@@ -16,7 +17,7 @@ import {
 import { getPersonalInfo } from 'store/reducers/userSlice';
 import { LoaderLinear } from 'ui-kit';
 
-export const SupplierProfilePage = (): JSX.Element => {
+export const SupplierProfilePage = WithLayout((): JSX.Element => {
   const [isFetchingData, setIsFetchingData] = useState(true);
   const dispatch = useAppDispatch();
   const loading = useAppSelector(supplierLoadingSelector);
@@ -62,4 +63,4 @@ export const SupplierProfilePage = (): JSX.Element => {
       </div>
     </div>
   );
-};
+}, 'supplier');
