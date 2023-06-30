@@ -1,5 +1,7 @@
 import React from 'react';
 
-export const FeedbackAndQuestionsPage = (): JSX.Element => {
+import { WithLayout } from 'common/hocs/WithLayout';
+
+export const FeedbackAndQuestionsPage = WithLayout((): JSX.Element => {
   return <h2>Feedback And Questions</h2>;
-};
+}, 'supplier');
