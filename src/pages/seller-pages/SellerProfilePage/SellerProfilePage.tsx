@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
-import { SellerAddresses } from './Addresses/SellerAddresses';
 import Orders from './Orders/Orders';
+import { SellerAddresses } from './SellerAddresses/SellerAddresses';
 import { SellerNotifications } from './SellerNotifications/SellerNotifications';
 import style from './SellerProfilePage.module.scss';
 
