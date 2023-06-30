@@ -1,4 +1,8 @@
-import { ISellerNotifications, ISellerAddressData } from './seller.serviceTypes';
+import {
+  ISellerNotifications,
+  ISellerAddressData,
+  ISellerAddressRequest,
+} from './seller.serviceTypes';
 
 import { IServerResponse } from 'common/types';
 import { baseConfigService } from 'services/baseConfig.service';
@@ -11,21 +15,27 @@ export const sellerService = {
   },
 
   getSellerAddresses: async () => {
-    const { data } = await baseConfigService.get('sellers/addresses/');
+    const { data } = await baseConfigService.get<IServerResponse<ISellerAddressData[]>>(
+      'sellers/addresses/',
+    );
 
     return data.result;
   },
 
-  addAddress: async (params: ISellerAddressData) => {
-    const { data } = await baseConfigService.post('sellers/addAddress/', params);
+  addAddress: async (params: ISellerAddressRequest) => {
+    const { data } = await baseConfigService.post<Omit<IServerResponse<any>, 'result'>>(
+      'sellers/addAddress/',
+      params,
+    );
 
     return data;
   },
 
-  updateAddress: async (params: any) => {
-    const { data } = await baseConfigService.patch(`sellers/updateAddress/`, {
-      ...params,
-    });
+  updateAddress: async (params: ISellerAddressRequest) => {
+    const { data } = await baseConfigService.patch<Omit<IServerResponse<any>, 'result'>>(
+      `sellers/updateAddress/${params.address_id}/`,
+      params,
+    );
 
     return data;
   },
