@@ -5,12 +5,12 @@ import {
   IBusinessInfoRequest,
 } from './supplier.serviceTypes';
 
-import { IServerResponse } from 'common/types';
+import { IServerResponse, IBaseResponse } from 'common/types';
 import { baseConfigService } from 'services/baseConfig.service';
 
 export const supplierService = {
   hasCompanyInfo: async () => {
-    const { data } = await baseConfigService.get<IServerResponse<boolean>>(
+    const { data } = await baseConfigService.get<IBaseResponse<boolean>>(
       `suppliers/hasCompanyInfo/`,
     );
 
@@ -18,8 +18,8 @@ export const supplierService = {
   },
 
   hasPersonalInfo: async () => {
-    const { data } = await baseConfigService.get<IServerResponse<boolean>>(
-      `suppliers/hasPersonalInfo/`,
+    const { data } = await baseConfigService.get<IBaseResponse<boolean>>(
+      `suppliers/hasBusinessInfo/`,
     );
 
     return data.result;
