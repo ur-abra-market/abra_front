@@ -5,7 +5,7 @@ import {
   IBusinessInfoRequest,
 } from './supplier.serviceTypes';
 
-import { IServerResponse, IBaseResponse } from 'common/types';
+import { IBaseResponse } from 'common/types';
 import { baseConfigService } from 'services/baseConfig.service';
 
 export const supplierService = {
@@ -32,7 +32,7 @@ export const supplierService = {
   },
 
   fetchCompanyLogo: async () => {
-    const { data } = await baseConfigService.get<IServerResponse<string>>(
+    const { data } = await baseConfigService.get<IBaseResponse<string>>(
       `suppliers/companyLogo/`,
     );
 
@@ -40,7 +40,7 @@ export const supplierService = {
   },
 
   fetchBusinessInfo: async () => {
-    const { data } = await baseConfigService.get<IServerResponse<ISupplierBusinessInfo>>(
+    const { data } = await baseConfigService.get<IBaseResponse<ISupplierBusinessInfo>>(
       `suppliers/businessInfo/`,
     );
 
@@ -48,7 +48,7 @@ export const supplierService = {
   },
 
   updateBusinessInfo: async (params: Partial<ISupplierUpdateBusinessInfo>) => {
-    const { data } = await baseConfigService.patch<IServerResponse<boolean>>(
+    const { data } = await baseConfigService.patch<IBaseResponse<boolean>>(
       `suppliers/businessInfo/update/`,
       params,
     );
@@ -57,7 +57,7 @@ export const supplierService = {
   },
 
   fetchNotifications: async () => {
-    const { data } = await baseConfigService.get<IServerResponse<ISupplierNotifications>>(
+    const { data } = await baseConfigService.get<IBaseResponse<ISupplierNotifications>>(
       `suppliers/notifications/`,
     );
 
@@ -111,7 +111,7 @@ export const supplierService = {
     formData.append('file', image);
 
     const { data } = await baseConfigService.post<
-      IServerResponse<{
+      IBaseResponse<{
         id: number;
         url: string;
       }>
@@ -121,7 +121,7 @@ export const supplierService = {
   },
 
   deleteCompanyLogo: async (company_image_id: number) => {
-    const { data } = await baseConfigService.delete<IServerResponse<boolean>>(
+    const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
       `suppliers/deleteCompanyImage/`,
       { params: { company_image_id } },
     );
@@ -130,7 +130,7 @@ export const supplierService = {
   },
 
   updateNotifications: async (params: Partial<ISupplierNotifications>) => {
-    await baseConfigService.patch<IServerResponse<boolean>>(
+    await baseConfigService.patch<IBaseResponse<boolean>>(
       `suppliers/notifications/update/`,
       params,
     );
