@@ -7,7 +7,7 @@ import style from './ConfirmEmailPage.module.scss';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ContentMessage } from 'elements';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
-import { HOME } from 'routes';
+import { HOME, LOGIN } from 'routes';
 import { confirmEmail } from 'store/reducers/authSlice/thunks';
 import { LoaderCircular } from 'ui-kit';
 
@@ -44,9 +44,9 @@ export const ConfirmEmailPage = (): JSX.Element => {
         {emailStatus === 'confirmed' && (
           <>
             <ContentMessage title="Email confirmed." text="" />
-            You can go to&nbsp;
-            <Link className={style.link} to={HOME}>
-              main page
+            Now you can&nbsp;
+            <Link className={style.link} to={LOGIN}>
+              log in
             </Link>
           </>
         )}
