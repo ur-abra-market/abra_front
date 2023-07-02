@@ -56,28 +56,22 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
         </h4>
         <div className={style.address_form_checkbox}>
           {isEditForm && (
-            <div
+            <button
               className={style.delete_address}
-              tabIndex={0}
-              onKeyDown={event => {
-                if (event.key === 'Backspace') {
-                  removeAddress();
-                }
-              }}
-              role="button"
               onClick={removeAddress}
+              type="button"
             >
               <DeleteTrashCanIcon />
               <span>Remove Address</span>
-            </div>
+            </button>
           )}
           <Controller
             control={control}
             name="isMain"
+            defaultValue={isEditForm ? address?.is_main : undefined}
             render={({ field }) => (
               <Checkbox
-                defaultChecked={isEditForm ? field.value : false}
-                checked={isEditForm && field.value}
+                checked={field.value || false}
                 className={style.checkbox}
                 variant="default"
                 label="Main Address"
