@@ -11,9 +11,10 @@
   grid-column-gap: 12px;
   grid-template-areas:
     'personal_info business_info notifications'
+    'account_details business_info notifications'
+    'account_details business_info .'
     'account_details business_info .';
   grid-template-columns: minmax(auto, 450px) minmax(auto, 622px) minmax(auto, 280px);
-  grid-template-rows: auto 1fr;
 
   max-width: 1440px;
   margin: 0 auto;
