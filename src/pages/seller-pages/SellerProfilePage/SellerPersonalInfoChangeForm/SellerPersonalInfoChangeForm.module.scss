@@ -1,22 +1,6 @@
-.wrapper {
-  padding: 32px;
-  background: var(--color-white);
-  border-radius: 24px;
-}
+@import "src/common/styles/mixins";
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 24px;
-}
-
-.title {
-  font-size: var(--fz-l2);
-  font-weight:var(--bold);
-  color: var(--color-black);
-  letter-spacing: 0.16px;
-}
+@include seller_section_header();
 
 .submit_button {
   width: 100%;

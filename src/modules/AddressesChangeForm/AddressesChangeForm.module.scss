@@ -3,8 +3,8 @@
 }
 
 .address_form_header_title{
-  font-size: 20px;
-  font-weight: 700;
+  font-size: var(--fz-l2);
+  font-weight: var(--bold);
   line-height: 24px;
 }
 
@@ -27,8 +27,8 @@
 }
 
 .checkbox{
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
   line-height: 20px;
 }
 
@@ -40,9 +40,8 @@
 }
 
 .address_form_block_title {
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 16px;
+  font-size: var(--fz-m);
+  font-weight: var(--semi-bold);
 }
 
 .address_form_block_row {
@@ -55,8 +54,8 @@
 
 .address_form_item {
   width: 100%;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: var(--fz-s);
+  font-weight: var(--regular);
 }
 
 .address_form_input {
@@ -70,14 +69,17 @@
 }
 
 .select{
-  font-size: 14px;
+  font-size: var(--fz-s);
   background: #F2F2F2;
   border-radius: 12px;
 }
 
 .delete_address{
   cursor: pointer;
+
   display: flex;
   gap: 12px;
   align-items: center;
+
+  background: transparent;
 }
