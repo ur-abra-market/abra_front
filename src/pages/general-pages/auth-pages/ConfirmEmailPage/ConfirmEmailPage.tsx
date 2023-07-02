@@ -7,7 +7,7 @@ import style from './ConfirmEmailPage.module.scss';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ContentMessage } from 'elements';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
-import { HOME, LOGIN } from 'routes';
+import { LOGIN } from 'routes';
 import { confirmEmail } from 'store/reducers/authSlice/thunks';
 import { LoaderCircular } from 'ui-kit';
 
