@@ -1,10 +1,10 @@
-import React, { DetailedHTMLProps, FC, HTMLAttributes, SyntheticEvent } from 'react';
+import React, { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
 import { MagnifierLightGreyIcon } from 'assets/icons';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
-import style from 'elements/ProductCard/ProductCard.module.scss';
+import style from 'elements/ProductImage/ProductImage.module.scss';
 import Flag from 'old-components/Flag';
 
 interface IProductCard
