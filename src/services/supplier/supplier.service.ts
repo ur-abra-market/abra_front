@@ -9,7 +9,7 @@ import { IBaseResponse } from 'common/types';
 import { baseConfigService } from 'services/baseConfig.service';
 
 export const supplierService = {
-  hasCompanyInfo: async () => {
+  hasBusinessInfo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<boolean>>(
       `suppliers/hasBusinessInfo/`,
     );
