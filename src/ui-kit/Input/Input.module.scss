@@ -22,8 +22,8 @@
 }
 
 .input:disabled {
-  background: var(--color-gray);
   color: var(--color-medium-gray);
+  opacity: 0.5;
 }
 
 .input:not(.input_error):focus {
