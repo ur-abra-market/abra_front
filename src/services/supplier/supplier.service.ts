@@ -11,7 +11,7 @@ import { baseConfigService } from 'services/baseConfig.service';
 export const supplierService = {
   hasCompanyInfo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<boolean>>(
-      `suppliers/hasCompanyInfo/`,
+      `suppliers/hasBusinessInfo/`,
     );
 
     return data.result;
@@ -19,7 +19,7 @@ export const supplierService = {
 
   hasPersonalInfo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<boolean>>(
-      `suppliers/hasBusinessInfo/`,
+      `suppliers/hasPersonalInfo/`,
     );
 
     return data.result;
