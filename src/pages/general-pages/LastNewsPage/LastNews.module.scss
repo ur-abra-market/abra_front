@@ -1,8 +1,12 @@
-.container{
-  margin: 48px 150px 44px;
+@import "src/common/styles/mixins";
+
+.container {
+  @include content_container;
+
+  margin: 48px auto;
 }
 
-.last_news{
+.last_news {
   margin-bottom: 28px;
 
   font-size: 34px;
@@ -11,8 +15,8 @@
   letter-spacing: 0.41px;
 }
 
-.container_block{
+.container_block {
   padding: 32px;
-  background-color: #F4F4F4;
+  background-color: var(--color-light-gray);
   border-radius: 12px;
 }
