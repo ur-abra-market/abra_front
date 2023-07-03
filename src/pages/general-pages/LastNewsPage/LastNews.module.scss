@@ -1,7 +1,8 @@
-@import "../../../common/styles/mixins.scss";
+@import "src/common/styles/mixins";
 
 .container {
   @include content_container;
+
   margin: 48px auto;
 }
 
@@ -16,6 +17,6 @@
 
 .container_block {
   padding: 32px;
-  background-color: #f4f4f4;
+  background-color: var(--color-light-gray);
   border-radius: 12px;
 }
