@@ -66,11 +66,15 @@ const sellerProfileSlice = createSlice({
         state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(getPersonalInfo.fulfilled, (state, action) => {
-        state.personalInfo.lastName = action.payload.last_name;
-        state.personalInfo.firstName = action.payload.first_name;
-        state.personalInfo.countryShort = action.payload.country.country_short;
-        state.personalInfo.phoneNumber = action.payload.phone_number;
-        state.loading = LoadingStatusEnum.Success;
+        if (!action.payload.is_supplier) {
+          state.personalInfo.lastName = action.payload.last_name;
+          state.personalInfo.firstName = action.payload.first_name;
+          if (action.payload.country) {
+            state.personalInfo.countryShort = action.payload.country.country_short;
+          }
+          state.personalInfo.phoneNumber = action.payload.phone_number;
+          state.loading = LoadingStatusEnum.Success;
+        }
       })
       .addCase(getSellerNotifications.pending, state => {
         state.loading = LoadingStatusEnum.Loading;
