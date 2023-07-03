@@ -1,5 +1,8 @@
-.container{
-  margin: 48px 148px 44px;
+@import "../../../common/styles/mixins.scss";
+
+.container {
+  @include content_container;
+  margin: 48px auto;
 }
 
 .title{

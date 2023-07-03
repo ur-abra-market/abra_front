@@ -1,8 +1,11 @@
-.container{
-  margin: 48px 150px 44px;
+@import "../../../common/styles/mixins.scss";
+
+.container {
+  @include content_container;
+  margin: 48px auto;
 }
 
-.last_news{
+.last_news {
   margin-bottom: 28px;
 
   font-size: 34px;
@@ -11,8 +14,8 @@
   letter-spacing: 0.41px;
 }
 
-.container_block{
+.container_block {
   padding: 32px;
-  background-color: #F4F4F4;
+  background-color: #f4f4f4;
   border-radius: 12px;
 }
