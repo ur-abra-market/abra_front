@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 import { Address } from './Address/Address';
+import { makeMainAddressFirst } from './helpers/makeMainAddressFirst';
 import { SellerAddAddressChangeForm } from './SellerAddAddressChangeForm/SellerAddAddressChangeForm';
 import style from './SellerAddresses.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import Modal from 'elements/Modal';
-import { IAddress } from 'store/reducers/seller/profile/slice';
+import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
+import { sellerAddressesSelector } from 'store/reducers/seller/profile/selectors';
 import { getSellerAddresses } from 'store/reducers/seller/profile/thunks';
 
 export const SellerAddresses = (): JSX.Element => {
@@ -16,25 +18,15 @@ export const SellerAddresses = (): JSX.Element => {
     setModal(true);
   };
 
-  const addresses = useAppSelector(state => state.sellerProfile.addresses);
-  // todo вынести в функцию
-  const sortedAddresses: IAddress[] | undefined = addresses?.reduce(
-    (acc: IAddress[], item: IAddress) => {
-      if (item.is_main) {
-        acc.unshift(item);
-      } else {
-        acc.push(item);
-      }
-
-      return acc;
-    },
-    [],
+  const addresses = useAppSelector(sellerAddressesSelector);
+  const sortedAddresses: ISellerAddressData[] | undefined = makeMainAddressFirst(
+    addresses!,
   );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getSellerAddresses());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -52,10 +44,10 @@ export const SellerAddresses = (): JSX.Element => {
         </Modal>
       </div>
       <div className={style.my_addresses_wrapper}>
-        {sortedAddresses ? (
+        {addresses?.length ? (
           <div className={style.addresses_container}>
-            {sortedAddresses.map((a: IAddress) => (
-              <Address key={a.id} address={a} />
+            {sortedAddresses?.map(address => (
+              <Address key={address.id} address={address} />
             ))}
           </div>
         ) : (

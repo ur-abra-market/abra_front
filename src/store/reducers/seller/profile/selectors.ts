@@ -1,7 +1,10 @@
 import { ISellerPersonalInfo } from './slice';
 
 import { LoadingStatusEnum } from 'common/types';
-import { ISellerNotifications } from 'services/seller/seller.serviceTypes';
+import {
+  ISellerAddressData,
+  ISellerNotifications,
+} from 'services/seller/seller.serviceTypes';
 import { RootStateType } from 'store/createStore';
 
 export const sellerPersonalInfoSelector = (state: RootStateType): ISellerPersonalInfo =>
@@ -13,3 +16,7 @@ export const sellerNotificationSelector = (
 
 export const sellerLoadingSelector = (state: RootStateType): LoadingStatusEnum =>
   state.sellerProfile.loading;
+
+export const sellerAddressesSelector = (
+  state: RootStateType,
+): ISellerAddressData[] | null => state.sellerProfile.addresses;

@@ -14,7 +14,6 @@ import { popularProductsReducer } from './reducers/popularProducts';
 import productPaginateReducer from './reducers/productPaginateSlice';
 import productReducer from './reducers/productSlice';
 import { sellerProfileReducer } from './reducers/seller/profile/slice';
-import sellerCheckoutSlice from './reducers/sellerCheckoutSlice';
 import { similarProductsReducer } from './reducers/similarProducts';
 import { supplierOtherReducer } from './reducers/supplier/other/slice';
 import { supplierProfileReducer } from './reducers/supplier/profile/slice';
@@ -43,8 +42,6 @@ export const store = configureStore({
     modal: modalReducer,
     similarProducts: similarProductsReducer,
     popularProducts: popularProductsReducer,
-    // seller: sellerSlice,
-    sellerCheckout: sellerCheckoutSlice,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

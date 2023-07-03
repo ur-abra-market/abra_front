@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  DetailedHTMLProps,
-  FC,
-  HTMLAttributes,
-  useEffect,
-} from 'react';
+import React, { ChangeEvent, DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
@@ -14,7 +8,6 @@ import { CrossRedIcon, UploadItemImageIcon, UploadLogoImageIcon } from 'assets/i
 import { useAppDispatch } from 'common/hooks';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
-import { fetchCompanyLogo } from 'store/reducers/supplier/profile';
 
 interface IUploadImage
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -83,10 +76,6 @@ export const UploadImage: FC<IUploadImage> = ({
       e.target.value = '';
     }
   };
-
-  useEffect(() => {
-    if (type === 'logo') dispatch(fetchCompanyLogo());
-  }, [dispatch, type]);
 
   return (
     <div className={cn(style.wrapper, className)} {...restProps}>
