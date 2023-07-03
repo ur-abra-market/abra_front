@@ -16,7 +16,7 @@
     'account_details business_info .';
   grid-template-columns: minmax(auto, 450px) minmax(auto, 622px) minmax(auto, 280px);
 
-  max-width: 1440px;
+  max-width: var(--main-content-width);
   margin: 0 auto;
   padding: 12px 32px 17px;
 }
