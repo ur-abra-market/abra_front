@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 
-import { SellerAddresses } from './Addresses/SellerAddresses';
+import cn from 'classnames';
+
 import Orders from './Orders/Orders';
+import { SellerAddresses } from './SellerAddresses/SellerAddresses';
 import { SellerNotifications } from './SellerNotifications/SellerNotifications';
 import style from './SellerProfilePage.module.scss';
 
@@ -16,18 +18,20 @@ export const SellerProfilePage = WithLayout((): JSX.Element => {
 
   useEffect(() => {
     dispatch(getCountries());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={style.seller_cabinet}>
       <div className={style.seller_cabinet_content_wrapper}>
-        <SellerPersonalInfoChangeForm />
-        <div className={style.seller_info}>
+        <div className={cn(style.section, style.personal_info)}>
+          <SellerPersonalInfoChangeForm />
+        </div>
+        <div className={style.business_info}>
           <div className={style.section}>
             <Orders />
           </div>
 
-          <div className={style.section}>
+          <div className={cn(style.section)}>
             <SellerAddresses />
           </div>
         </div>
@@ -36,7 +40,7 @@ export const SellerProfilePage = WithLayout((): JSX.Element => {
           <AccountManagement />
         </div>
 
-        <div className={style.notifications}>
+        <div className={cn(style.section, style.notifications)}>
           <SellerNotifications />
         </div>
       </div>

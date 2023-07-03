@@ -25,8 +25,8 @@
 
 .address_personal_info {
   padding-bottom: 12px;
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
   line-height: 20px;
 }
 
@@ -37,8 +37,8 @@
 .address_location_info {
   margin: 0 0 17px;
 
-  font-size: 15px;
-  font-weight: 500;
+  font-size: var(--fz-s2);
+  font-weight: var(--medium);
   font-style: normal;
   line-height: 20px;
 
@@ -55,12 +55,12 @@
 }
 
 .address_main {
-  border: 1px solid #FC133D;
+  border: 1px solid var(--color-accent);
 }
 
 .address_main_text {
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
   line-height: 20px;
   color: var(--color-accent);
 }

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IAsyncThunkConfig, IServerResponse } from 'common/types';
+import { IAsyncThunkConfig, IBaseResponse } from 'common/types';
 import { supplierService } from 'services';
 import {
   ISupplierErrorResponse,
@@ -97,7 +97,7 @@ export const fetchCompanyLogo = createAsyncThunk<string, void, IAsyncThunkConfig
 );
 
 export const uploadCompanyLogo = createAsyncThunk<
-  IServerResponse<{
+  IBaseResponse<{
     id: number;
     url: string;
     image: string;
@@ -117,7 +117,7 @@ export const uploadCompanyLogo = createAsyncThunk<
 });
 
 export const deleteCompanyLogo = createAsyncThunk<
-  IServerResponse<boolean>,
+  IBaseResponse<boolean>,
   number,
   IAsyncThunkConfig
 >('supplierProfile/deleteCompanyLogo', async (id, { rejectWithValue }) => {
