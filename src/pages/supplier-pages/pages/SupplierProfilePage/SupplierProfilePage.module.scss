@@ -51,6 +51,12 @@
 
 .notifications {
   grid-area: notifications;
+
+  height: fit-content;
+  padding: 32px;
+
+  background: var(--color-white);
+  border-radius: 12px;
 }
 
 .account_details {

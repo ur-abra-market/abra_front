@@ -27,7 +27,7 @@ export const NotificationsChangeForm: FC<INotificationsChangeForm> = ({
   };
 
   return (
-    <div className={style.notifications}>
+    <>
       <div className={style.title}>Notifications</div>
       <div className={style.notifications_list}>
         {notificationsData.map(el => {
@@ -47,6 +47,6 @@ export const NotificationsChangeForm: FC<INotificationsChangeForm> = ({
           );
         })}
       </div>
-    </div>
+    </>
   );
 };

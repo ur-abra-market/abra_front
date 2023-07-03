@@ -1,6 +1,10 @@
-import { ISellerNotifications, ISellerAddressData } from './seller.serviceTypes';
+import {
+  ISellerNotifications,
+  ISellerAddressData,
+  ISellerAddressRequest,
+} from './seller.serviceTypes';
 
-import { IServerResponse } from 'common/types';
+import { IBaseResponse } from 'common/types';
 import { baseConfigService } from 'services/baseConfig.service';
 
 export const sellerService = {
@@ -11,33 +15,39 @@ export const sellerService = {
   },
 
   getSellerAddresses: async () => {
-    const { data } = await baseConfigService.get('sellers/addresses/');
+    const { data } = await baseConfigService.get<IBaseResponse<ISellerAddressData[]>>(
+      'sellers/addresses/',
+    );
 
     return data.result;
   },
 
-  addAddress: async (params: ISellerAddressData) => {
-    const { data } = await baseConfigService.post('sellers/addAddress/', params);
+  addAddress: async (params: ISellerAddressRequest) => {
+    const { data } = await baseConfigService.post<Omit<IBaseResponse<any>, 'result'>>(
+      'sellers/addAddress/',
+      params,
+    );
 
     return data;
   },
 
-  updateAddress: async (params: any) => {
-    const { data } = await baseConfigService.patch(`sellers/updateAddress/`, {
-      ...params,
-    });
+  updateAddress: async (params: ISellerAddressRequest) => {
+    const { data } = await baseConfigService.patch<Omit<IBaseResponse<any>, 'result'>>(
+      `sellers/updateAddress/${params.address_id}/`,
+      params,
+    );
 
     return data;
   },
 
   deleteAddress: (id: number) => {
-    return baseConfigService.delete<IServerResponse<boolean>>(
+    return baseConfigService.delete<IBaseResponse<boolean>>(
       `sellers/removeAddress/${id}/`,
     );
   },
 
   fetchNotifications: async () => {
-    const { data } = await baseConfigService.get<IServerResponse<ISellerNotifications>>(
+    const { data } = await baseConfigService.get<IBaseResponse<ISellerNotifications>>(
       `sellers/notifications/`,
     );
 
@@ -45,7 +55,7 @@ export const sellerService = {
   },
 
   updateNotifications: async (params: Partial<ISellerNotifications>) => {
-    await baseConfigService.patch<IServerResponse<boolean>>(
+    await baseConfigService.patch<IBaseResponse<boolean>>(
       `sellers/notifications/update/`,
       params,
     );

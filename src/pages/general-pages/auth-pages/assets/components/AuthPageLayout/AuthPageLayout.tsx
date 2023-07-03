@@ -5,21 +5,19 @@ import cn from 'classnames';
 import style from './AuthPageLayout.module.scss';
 
 import { useAppSelector } from 'common/hooks';
-import { LoadingStatusEnum } from 'common/types';
+import { IAuthFooterData, LoadingStatusEnum } from 'common/types';
 import { Footer } from 'layouts';
 import { LoaderLinear, MainLogo, SimpleLink } from 'ui-kit';
 
 interface IAuthPageLayout {
   children: ReactNode;
   isMainLogoShow?: boolean;
-  footerLink?: string;
-  footerTitle?: string;
+  footerData?: IAuthFooterData[];
 }
 
 export const AuthPageLayout: FC<IAuthPageLayout> = ({
   children,
-  footerLink,
-  footerTitle,
+  footerData,
   isMainLogoShow = false,
 }): JSX.Element => {
   const isLoading = useAppSelector(state => state.app.loading);
@@ -39,11 +37,13 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
           </>
         )}
         {children}
-        {footerLink && footerTitle && (
-          <SimpleLink to={footerLink} color="accent">
-            {footerTitle}
-          </SimpleLink>
-        )}
+        <div className={style.footer_wrapper}>
+          {footerData?.map(el => (
+            <SimpleLink key={el.link} to={el.link} color="accent">
+              {el.title}
+            </SimpleLink>
+          ))}
+        </div>
       </div>
       <Footer variant="white" />
     </div>
