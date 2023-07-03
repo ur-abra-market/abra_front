@@ -17,7 +17,7 @@ interface IFooter
 }
 
 export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
-  const routesToShow = new Set(['personal_account', 'product', 'order_history', '']);
+  const routesToShow = new Set(['cart', 'product', 'favorites', '']);
   const { pathname } = useLocation();
   const userRole = useAppSelector(userRoleSelector);
   const isShowTopNav = userRole === 'seller' && routesToShow.has(pathname.split('/')[1]);
