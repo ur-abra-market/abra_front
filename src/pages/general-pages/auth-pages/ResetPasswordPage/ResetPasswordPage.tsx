@@ -7,6 +7,7 @@ import style from './ResetPasswordPage.module.scss';
 import { ResetPasswordForm } from '.';
 
 import { useAppDispatch } from 'common/hooks';
+import { AdditionalHeaderBlock } from 'elements';
 import Modal from 'elements/Modal';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
 import { LOGIN } from 'routes';
@@ -40,6 +41,7 @@ export const ResetPasswordPage = (): JSX.Element => {
 
   return (
     <>
+      <AdditionalHeaderBlock />
       <AuthPageLayout>
         <div className={style.header}>Create new password</div>
         <div className={style.subheader}>

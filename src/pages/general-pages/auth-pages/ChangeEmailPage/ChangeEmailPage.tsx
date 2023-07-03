@@ -7,6 +7,7 @@ import style from './ChangeEmailPage.module.scss';
 import { ChangeEmailForm } from '.';
 
 import { useAppSelector } from 'common/hooks';
+import { AdditionalHeaderBlock } from 'elements';
 import Modal from 'elements/Modal';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
 import { HOME, PERSONAL_ACCOUNT } from 'routes';
@@ -30,6 +31,7 @@ export const ChangeEmailPage = (): JSX.Element => {
 
   return (
     <>
+      <AdditionalHeaderBlock />
       <AuthPageLayout>
         <div className={style.header}>Change email</div>
         <div className={style.subheader}>Enter your new email addresses</div>

@@ -52,3 +52,4 @@ export { ReactComponent as UploadLogoImageIcon } from './files/upload-logo-image
 export { ReactComponent as UploadItemImageIcon } from './files/upload-item-image.svg';
 export { ReactComponent as LogoCompanyPlaceholder } from './files/logo-company-placeholder.svg';
 export { ReactComponent as ArrowIcon } from './files/arrow.svg';
+export { ReactComponent as Home } from './files/home.svg';

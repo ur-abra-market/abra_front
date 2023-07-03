@@ -1,0 +1,20 @@
+@import "../../common/styles/mixins";
+
+.header_wrapper {
+  @include content_container;
+}
+
+.header_block {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 26px 0;
+
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
+.header_logo {
+  font-size: var(--fz-xl2);
+}

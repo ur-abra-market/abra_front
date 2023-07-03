@@ -4,14 +4,14 @@ import { ScrollRestoration } from 'react-router-dom';
 
 import style from './TermsAndConditions.module.scss';
 
+import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
-import HeaderForChangePages from 'old-components/HeaderForChangePages';
 
 export const TermsAndConditionsPage = (): JSX.Element => {
   return (
     <div>
       <ScrollRestoration />
-      <HeaderForChangePages />
+      <AdditionalHeaderBlock />
       <div className={style.container}>
         <h1 className={style.title}>Terms & conditions</h1>
         <div className={style.container_text}>
