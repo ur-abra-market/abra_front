@@ -38,6 +38,7 @@ export interface ISelect {
   menuItemsPosition?: SelectPositionType;
   header?: boolean; // to add header use --> header={true}
   padding?: string;
+  disabled?: boolean;
 }
 
 export const Select = forwardRef(
@@ -56,6 +57,7 @@ export const Select = forwardRef(
       header = false,
       padding = '14px',
       defaultValue,
+      disabled,
     }: ISelect,
     ref,
   ) => {
@@ -100,16 +102,23 @@ export const Select = forwardRef(
       [styles.header_active]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active_up]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active]: header && menuItemsPosition === 'down' && isOpenItemsMenu,
+      [styles.header_disabled]: disabled,
     });
     const menuClassname = cn({
-      [styles.closed_menu]: !header,
+      [styles.closed_menu]: !header || disabled,
       [styles.opened_menu_up_pos]:
         header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.menu_up_pos]: menuItemsPosition === 'up' && isOpenItemsMenu,
     });
 
     const handleChangeSelectState = (): void => {
-      setIsOpenItemsMenu(!isOpenItemsMenu);
+      if (disabled) {
+        setIsOpenItemsMenu(false);
+
+        return;
+      }
+
+      setIsOpenItemsMenu(prev => !prev);
     };
     const handleCloseSelectMenu = (): void => {
       setIsOpenItemsMenu(false);
@@ -138,6 +147,12 @@ export const Select = forwardRef(
     // disable scrolling by click on space or arrows on keyboard
     useEffect(() => {
       let currentItemId = 0;
+
+      if (disabled) {
+        handleCloseSelectMenu();
+
+        return;
+      }
 
       if (isOpenItemsMenu) {
         const test = window.scrollY;
@@ -177,7 +192,7 @@ export const Select = forwardRef(
           return true;
         };
       }
-    }, [isOpenItemsMenu, options]);
+    }, [disabled, isOpenItemsMenu, options]);
 
     const selectWidth = width ? { width } : {};
 
@@ -195,7 +210,7 @@ export const Select = forwardRef(
         <span className={styles.error}>{error}</span>
 
         <SelectMenu
-          isOpen={isOpenItemsMenu}
+          isOpen={isOpenItemsMenu && !disabled}
           height={menuHeight}
           className={menuClassname}
         >

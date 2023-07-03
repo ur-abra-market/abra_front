@@ -1,6 +1,8 @@
 .main {
   position: relative;
-  font-size: var(--fz-s);
+  font-size: var(--fz-xs);
+  font-weight: var(--medium);
+  font-family: "Roboto";
   background-color: var(--color-light-gray);
   border-radius: 12px;
 }
@@ -49,6 +51,14 @@
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.2) 7px 6px 5px, rgba(0, 0, 0, 0.2) -4px 6px 5px;
+  }
+
+  &.header_disabled {
+    pointer-events: none;
+    cursor: default;
+    background: var(--color-gray);
+    color: var(--color-medium-gray);
+    border-radius: 8px;
   }
 }
 
