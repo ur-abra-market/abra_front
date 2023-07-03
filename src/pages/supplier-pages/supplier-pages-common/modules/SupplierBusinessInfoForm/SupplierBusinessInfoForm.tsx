@@ -79,6 +79,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         </div>
 
         <Checkbox
+          {...register('isManufacturer')}
           className={style.checkbox}
           disabled={isLoading}
           label="I am a manufacturer"

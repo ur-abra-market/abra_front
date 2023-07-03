@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { SupplierNotifications } from './SupplierNotifications/SupplierNotifications';
 import style from './SupplierProfilePage.module.scss';
 
-import { SupplierBusinessInfoChangeForm, SupplierPersonalInfoChangeForm } from '.';
+import {
+  SupplierBusinessInfoChangeForm,
+  SupplierPersonalInfoChangeForm,
+  SupplierNotifications,
+} from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
