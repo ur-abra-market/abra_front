@@ -113,10 +113,13 @@ export const supplierProfileSlice = createSlice({
         };
       })
       .addCase(getPersonalInfo.fulfilled, (state, action) => {
-        state.personalInfo.lastName = action.payload.last_name;
-        state.personalInfo.firstName = action.payload.first_name;
-        state.personalInfo.countryShort = action.payload.country.country_short;
-        state.personalInfo.phoneNumber = action.payload.phone_number;
+        if (action.payload.is_supplier) {
+          state.personalInfo.lastName = action.payload.last_name;
+          state.personalInfo.firstName = action.payload.first_name;
+          state.personalInfo.countryShort =
+            action.payload.country && action.payload.country.country_short;
+          state.personalInfo.phoneNumber = action.payload.phone_number;
+        }
         state.loading = {
           ...state.loading,
           personalInfoLoading: LoadingStatusEnum.Success,
