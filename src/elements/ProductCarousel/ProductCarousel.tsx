@@ -9,6 +9,7 @@ import 'swiper/swiper-bundle.min.css';
 import style from './ProductCarousel.module.scss';
 
 import { ArrowDownIcon, ArrowUpIcon } from 'assets/icons'; // 24px
+import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { Button } from 'ui-kit';
 
 const ProductCarousel: FC<Props> = props => {
@@ -54,7 +55,7 @@ const ProductCarousel: FC<Props> = props => {
                 return (
                   <SwiperSlide key={`preview${index}`} style={{ height: 106 }}>
                     <div className={style.preview_image}>
-                      <img src={slide} alt="" />
+                      <LazyImage src={slide} alt="" />
                     </div>
                   </SwiperSlide>
                 );
@@ -81,7 +82,7 @@ const ProductCarousel: FC<Props> = props => {
               return (
                 <SwiperSlide key={`image${index}`}>
                   <div className={style.slider_showed}>
-                    <img src={slide} alt="" />
+                    <LazyImage src={slide} alt="" />
                   </div>
                 </SwiperSlide>
               );
