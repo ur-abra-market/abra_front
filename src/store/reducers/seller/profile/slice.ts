@@ -2,14 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   getSellerAddresses,
+  getSellerAvatar,
   getSellerNotifications,
   updateSellerNotifications,
 } from './thunks';
 
 import { LoadingStatusEnum } from 'common/types';
 import {
-  ISellerNotifications,
   ISellerAddressData,
+  ISellerNotifications,
 } from 'services/seller/seller.serviceTypes';
 
 export interface ISellerAddress {
@@ -26,16 +27,28 @@ export interface ISellerAddress {
   street: string;
 }
 
+export interface ISellerProfileLoading {
+  sellerAvatarLoading: LoadingStatusEnum;
+  sellerNotificationsLoading: LoadingStatusEnum;
+  sellerAddressesLoading: LoadingStatusEnum;
+}
+
 interface ISellerProfileSliceInitialState {
-  loading: LoadingStatusEnum;
+  loading: ISellerProfileLoading;
   addresses: ISellerAddressData[] | null;
   notifications: ISellerNotifications | null;
+  sellerAvatar: string;
 }
 
 const initialState: ISellerProfileSliceInitialState = {
-  loading: LoadingStatusEnum.Idle,
+  loading: {
+    sellerAvatarLoading: LoadingStatusEnum.Idle,
+    sellerNotificationsLoading: LoadingStatusEnum.Idle,
+    sellerAddressesLoading: LoadingStatusEnum.Idle,
+  },
   addresses: null,
   notifications: null,
+  sellerAvatar: '',
 };
 
 const sellerProfileSlice = createSlice({
@@ -45,30 +58,76 @@ const sellerProfileSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getSellerNotifications.pending, state => {
-        state.loading = LoadingStatusEnum.Loading;
+        state.loading = {
+          ...state.loading,
+          sellerNotificationsLoading: LoadingStatusEnum.Loading,
+        };
       })
       .addCase(getSellerNotifications.fulfilled, (state, action) => {
         state.notifications = action.payload;
-        state.loading = LoadingStatusEnum.Success;
+        state.loading = {
+          ...state.loading,
+          sellerNotificationsLoading: LoadingStatusEnum.Success,
+        };
       })
       .addCase(getSellerNotifications.rejected, state => {
-        state.loading = LoadingStatusEnum.Failed;
+        state.loading = {
+          ...state.loading,
+          sellerNotificationsLoading: LoadingStatusEnum.Failed,
+        };
       })
+
       .addCase(updateSellerNotifications.pending, state => {
-        state.loading = LoadingStatusEnum.Loading;
+        state.loading = {
+          ...state.loading,
+          sellerNotificationsLoading: LoadingStatusEnum.Loading,
+        };
       })
       .addCase(updateSellerNotifications.rejected, state => {
-        state.loading = LoadingStatusEnum.Failed;
+        state.loading = {
+          ...state.loading,
+          sellerNotificationsLoading: LoadingStatusEnum.Failed,
+        };
       })
+
       .addCase(getSellerAddresses.pending, state => {
-        state.loading = LoadingStatusEnum.Loading;
+        state.loading = {
+          ...state.loading,
+          sellerAddressesLoading: LoadingStatusEnum.Loading,
+        };
       })
       .addCase(getSellerAddresses.fulfilled, (state, action) => {
         state.addresses = action.payload;
-        state.loading = LoadingStatusEnum.Success;
+        state.loading = {
+          ...state.loading,
+          sellerAddressesLoading: LoadingStatusEnum.Success,
+        };
       })
       .addCase(getSellerAddresses.rejected, state => {
-        state.loading = LoadingStatusEnum.Failed;
+        state.loading = {
+          ...state.loading,
+          sellerAddressesLoading: LoadingStatusEnum.Failed,
+        };
+      })
+
+      .addCase(getSellerAvatar.pending, state => {
+        state.loading = {
+          ...state.loading,
+          sellerAvatarLoading: LoadingStatusEnum.Loading,
+        };
+      })
+      .addCase(getSellerAvatar.fulfilled, (state, action) => {
+        state.sellerAvatar = action.payload.result.thumbnail_url;
+        state.loading = {
+          ...state.loading,
+          sellerAvatarLoading: LoadingStatusEnum.Success,
+        };
+      })
+      .addCase(getSellerAvatar.rejected, state => {
+        state.loading = {
+          ...state.loading,
+          sellerAvatarLoading: LoadingStatusEnum.Failed,
+        };
       });
   },
 });

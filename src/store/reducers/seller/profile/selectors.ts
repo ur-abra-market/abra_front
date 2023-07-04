@@ -1,4 +1,5 @@
-import { LoadingStatusEnum } from 'common/types';
+import { ISellerProfileLoading } from './slice';
+
 import {
   ISellerAddressData,
   ISellerNotifications,
@@ -9,9 +10,12 @@ export const sellerNotificationSelector = (
   state: RootStateType,
 ): ISellerNotifications | null => state.sellerProfile.notifications;
 
-export const sellerLoadingSelector = (state: RootStateType): LoadingStatusEnum =>
+export const sellerLoadingSelector = (state: RootStateType): ISellerProfileLoading =>
   state.sellerProfile.loading;
 
 export const sellerAddressesSelector = (
   state: RootStateType,
 ): ISellerAddressData[] | null => state.sellerProfile.addresses;
+
+export const sellerAvatarSelector = (state: RootStateType): string =>
+  state.sellerProfile.sellerAvatar;

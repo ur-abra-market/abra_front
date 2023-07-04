@@ -4,19 +4,16 @@ import { getFavoritesProductsService, getPersonalInfo, updatePersonalInfo } from
 
 import { LoadingStatusEnum } from 'common/types';
 import { logout } from 'store/reducers/authSlice';
-import { getSellerAvatar } from 'store/reducers/seller/profile/thunks';
 
 export interface IUserPersonalInfo {
   firstName: string;
   lastName: string;
   countryShort: string;
   phoneNumber: string;
-  avatar: string;
 }
 
 export interface IUserLoading {
   personalInfoLoading: LoadingStatusEnum;
-  userAvatarLoading: LoadingStatusEnum;
 }
 
 interface IUserSliceInitialState {
@@ -28,14 +25,12 @@ interface IUserSliceInitialState {
 const initialState: IUserSliceInitialState = {
   loading: {
     personalInfoLoading: LoadingStatusEnum.Idle,
-    userAvatarLoading: LoadingStatusEnum.Idle,
   },
   personalInfo: {
     firstName: '',
     lastName: '',
     countryShort: '',
     phoneNumber: '',
-    avatar: '',
   },
   favoritesProducts: [],
 };
@@ -88,32 +83,12 @@ const userSlice = createSlice({
         state.favoritesProducts = action.payload;
       })
 
-      .addCase(getSellerAvatar.pending, state => {
-        state.loading = {
-          ...state.loading,
-          userAvatarLoading: LoadingStatusEnum.Loading,
-        };
-      })
-      .addCase(getSellerAvatar.fulfilled, (state, action) => {
-        state.personalInfo.avatar = action.payload.result.thumbnail_url;
-        state.loading = {
-          ...state.loading,
-          userAvatarLoading: LoadingStatusEnum.Success,
-        };
-      })
-      .addCase(getSellerAvatar.rejected, state => {
-        state.loading = {
-          ...state.loading,
-          userAvatarLoading: LoadingStatusEnum.Failed,
-        };
-      })
       .addCase(logout.fulfilled, state => {
         state.personalInfo = {
           firstName: '',
           lastName: '',
           countryShort: '',
           phoneNumber: '',
-          avatar: '',
         };
       });
   },
