@@ -6,9 +6,9 @@ services:
     build:
       context: ${PWD}
       dockerfile: docker/Dockerfile
-    command: /bin/bash -c \
-      "echo '[+] Run frontend' && \
-      yarn start"
+    command: /bin/sh -c \
+      "echo '[+] Run nginx server' && \
+      nginx -g 'daemon off;'"
     ports:
       - ${EXPOSE_PORT}:${EXPOSE_PORT}
     expose:

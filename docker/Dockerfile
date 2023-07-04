@@ -1,14 +1,19 @@
-FROM node:16 as builder
+FROM node:16-alpine as build-stage
 
 WORKDIR /app
 
-COPY package.json ./
+COPY package*.json /app/
 
-# RUN apk add --update python3 make g++
+RUN apk add --update python3 make g++
 RUN yarn install --frozen-lockfile
 
-ENV PATH /app/node_modules/.bin:$PATH
+COPY ./ /app/
 
-COPY . .
+RUN yarn build
 
-RUN yarn build 
+# =================================================================
+
+FROM nginx:latest as run-stage
+
+COPY --from=build-stage /app/build/ /usr/share/nginx/html
+COPY --from=build-stage /app/nginx/template.conf /etc/nginx/conf.d/default.conf

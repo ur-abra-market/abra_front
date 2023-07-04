@@ -21,7 +21,7 @@ export type SelectPositionType = 'up' | 'down';
 
 export interface ISelectOption {
   label: string;
-  value: string | number;
+  value: any;
 }
 
 export interface ISelect {

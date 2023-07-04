@@ -5,7 +5,6 @@ compose_directory = docker/compose
 
 main_container = -f $(compose_directory)/main.yml
 web_container = -f $(compose_directory)/web.yml
-nginx_container = -f $(compose_directory)/nginx.yml
 
 capture_exit_code = --abort-on-container-exit --exit-code-from
 
@@ -21,6 +20,10 @@ build:
 .PHONY: no cache build
 build-nc:
 	$(compose_web) build --no-cache
+
+.PHONY: application
+application:
+	${compose_web} up -d
 
 .PHONY: stop
 stop:

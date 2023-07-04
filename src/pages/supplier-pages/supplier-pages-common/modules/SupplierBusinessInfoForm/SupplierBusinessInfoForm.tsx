@@ -133,7 +133,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   placeholder="Select"
                   width="266px"
                   onChange={value => {
-                    field.onChange(value.value);
+                    field.onChange(value.value as number);
                   }}
                 />
               </Label>
@@ -156,7 +156,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                 }))}
                 placeholder="Select"
                 onChange={value => {
-                  field.onChange(value.value);
+                  field.onChange(value.value as number);
                 }}
               />
             </Label>
