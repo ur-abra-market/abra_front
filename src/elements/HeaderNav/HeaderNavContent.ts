@@ -24,7 +24,7 @@ export const HEADER_NAV_CONTENT = {
   ],
   supplier: [
     { id: 1, label: 'Dashboard', path: DASHBOARD },
-    { id: 2, label: 'ProductS List', path: PRODUCTS },
+    { id: 2, label: 'Products List', path: PRODUCTS },
     { id: 3, label: 'Orders', path: ORDERS },
     { id: 4, label: 'Price Management', path: PRICE },
     { id: 5, label: 'Analytics', path: ANALYTICS },
