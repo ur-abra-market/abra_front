@@ -65,6 +65,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
               <Label label="Your main business sector*">
                 <Select
                   {...field}
+                  disabled
                   error={errors?.businessSector?.message}
                   options={BUSINESS_SECTOR_DATA}
                   placeholder="Select"
