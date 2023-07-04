@@ -1,0 +1,19 @@
+version: "3.9"
+
+name: abra-front
+services:
+  web:
+    container_name: web
+    build:
+      context: ${PWD}
+      dockerfile: docker/Dockerfile
+    command: /bin/bash -c \
+      "echo '[+] Run frontend' && \
+      yarn start"
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    env_file:
+      - ${PWD}/.env
+    restart: unless-stopped
