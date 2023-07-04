@@ -8,6 +8,7 @@ import { useAppSelector } from 'common/hooks';
 import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
 import { PhoneNumberInput } from 'elements';
 import { supplierLoadingSelector } from 'store/reducers/supplier/profile';
+import { userLoadingSelector } from 'store/reducers/userSlice';
 import { Input, Label } from 'ui-kit';
 
 interface IPersonalInfoChangeForm {
@@ -20,8 +21,7 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
   countryShort,
 }): JSX.Element => {
   const isLoading =
-    useAppSelector(supplierLoadingSelector).personalInfoLoading ===
-    LoadingStatusEnum.Loading;
+    useAppSelector(userLoadingSelector).personalInfoLoading === LoadingStatusEnum.Loading;
   const {
     register,
     formState: { errors },

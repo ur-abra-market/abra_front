@@ -37,6 +37,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
   const isLoading =
     useAppSelector(supplierLoadingSelector).businessInfoLoading ===
     LoadingStatusEnum.Loading;
+
   const {
     register,
     handleSubmit,

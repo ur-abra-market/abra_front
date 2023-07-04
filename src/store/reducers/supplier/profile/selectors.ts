@@ -1,16 +1,8 @@
-import {
-  ISupplierPersonalInfo,
-  ISupplierBusinessInfo,
-  ISupplierProfileLoading,
-} from './slice';
+import { ISupplierBusinessInfo, ISupplierProfileLoading } from './slice';
 
 import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
 import { RootStateType } from 'store/createStore';
-import { state } from 'store/reducers/modalSlice';
 
-export const supplierPersonalInfoSelector = (
-  state: RootStateType,
-): ISupplierPersonalInfo => state.supplierProfile.personalInfo;
 export const supplierCompanyLogoSelector = (state: RootStateType): string =>
   state.supplierProfile.businessInfo.companyLogo;
 export const supplierCompanyLogoIdSelector = (state: RootStateType): number | null =>
