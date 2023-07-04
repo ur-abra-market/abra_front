@@ -2,6 +2,8 @@ import { FC } from 'react';
 
 import style from './ProductItem.module.scss';
 
+import DefaultPictures from 'assets/images/files/image-default.png';
+import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { Button, Checkbox, Input } from 'ui-kit';
 
 interface ProductItemProps {
@@ -22,11 +24,7 @@ const ProductItem: FC<ProductItemProps> = ({ product }) => {
         />
 
         <div>
-          <img
-            className={style.container_img}
-            src="src/assets/images/files/image-default.png"
-            alt="img"
-          />
+          <LazyImage src={DefaultPictures} className={style.container_img} alt="img" />
         </div>
 
         <div>

@@ -4,18 +4,18 @@ import { ScrollRestoration } from 'react-router-dom';
 
 import style from './TermsAndConditions.module.scss';
 
+import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
-import HeaderForChangePages from 'old-components/HeaderForChangePages';
 
 export const TermsAndConditionsPage = (): JSX.Element => {
   return (
     <div>
       <ScrollRestoration />
-      <HeaderForChangePages />
+      <AdditionalHeaderBlock />
+
       <div className={style.container}>
         <h1 className={style.title}>Terms & conditions</h1>
         <div className={style.container_text}>
-          {/* eslint-disable-next-line react/no-unescaped-entities */}
           <div className={style.title_block}>Terms of Use for Abra</div>
           <div className={style.title_block}>Last Updated: 4/18/2023</div>
           <p className={style.text}>

@@ -8,6 +8,7 @@ import { ChangePasswordForm } from '.';
 
 import { useAppSelector } from 'common/hooks';
 import { IAuthFooterData } from 'common/types';
+import { AdditionalHeaderBlock } from 'elements';
 import Modal from 'elements/Modal';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
 import { FORGOT_PASSWORD, HOME, PERSONAL_ACCOUNT } from 'routes';
@@ -35,6 +36,7 @@ export const ChangePasswordPage = (): JSX.Element => {
 
   return (
     <>
+      <AdditionalHeaderBlock />
       <AuthPageLayout footerData={passwordFooterData}>
         <div className={style.header}>Change password</div>
         <div className={style.subheader}>Enter your current and new passwords</div>
