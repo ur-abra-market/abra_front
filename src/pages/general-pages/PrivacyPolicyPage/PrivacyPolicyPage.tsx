@@ -12,6 +12,7 @@ export const PrivacyPolicyPage = (): JSX.Element => {
     <div>
       <ScrollRestoration />
       <AdditionalHeaderBlock />
+
       <div className={style.container}>
         <h1 className={style.title}>Privacy Policy</h1>
         <div className={style.container_text}>

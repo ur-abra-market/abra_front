@@ -15,6 +15,7 @@ export const AdditionalHeaderBlock = (): JSX.Element => {
   const handleProfileTransition = (): void => {
     navigate(PERSONAL_ACCOUNT);
   };
+
   const handleHomeTransition = (): void => {
     navigate(HOME);
   };
@@ -23,6 +24,7 @@ export const AdditionalHeaderBlock = (): JSX.Element => {
     <nav className={style.header_wrapper}>
       <div className={style.header_block}>
         <MainLogo className={style.header_logo} />
+
         {isAuth ? (
           <ButtonIcon onClick={handleProfileTransition}>
             <HeaderProfileIcon />
