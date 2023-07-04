@@ -65,7 +65,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
               <Label label="Your main business sector*">
                 <Select
                   {...field}
-                  disabled
+                  disabled={isLoading}
                   error={errors?.businessSector?.message}
                   options={BUSINESS_SECTOR_DATA}
                   placeholder="Select"
@@ -123,6 +123,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
               <Label label="Number of employees*">
                 <Select
                   {...field}
+                  disabled={isLoading}
                   error={errors?.numEmployees?.message}
                   options={numberEmployees.map(el => ({
                     value: el.id,
@@ -147,6 +148,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
           render={({ field }) => (
             <Label label="Country of company registration*">
               <Select
+                disabled={isLoading}
                 {...field}
                 defaultValue={typeof field.value === 'number' ? field.value : undefined}
                 error={errors?.countryRegistration?.message}
