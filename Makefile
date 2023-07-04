@@ -9,7 +9,7 @@ nginx_container = -f $(compose_directory)/nginx.yml
 
 capture_exit_code = --abort-on-container-exit --exit-code-from
 
-compose_web = $(docker_v2) $(main_container) $(web_container) $(nginx_container) --env-file .env
+compose_web = $(docker_v2) $(main_container) $(web_container) --env-file .env
 
 # ============================================VARIABLES===========================================
 

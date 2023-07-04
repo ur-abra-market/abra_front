@@ -9,6 +9,8 @@ services:
     command: /bin/bash -c \
       "echo '[+] Run frontend' && \
       yarn start"
+    ports:
+      - ${EXPOSE_PORT}:${EXPOSE_PORT}
     expose:
       - ${EXPOSE_PORT}
     env_file:
