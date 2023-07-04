@@ -7,7 +7,6 @@ import style from './PersonalInfoChangeForm.module.scss';
 import { useAppSelector } from 'common/hooks';
 import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
 import { PhoneNumberInput } from 'elements';
-import { supplierLoadingSelector } from 'store/reducers/supplier/profile';
 import { userLoadingSelector } from 'store/reducers/userSlice';
 import { Input, Label } from 'ui-kit';
 
