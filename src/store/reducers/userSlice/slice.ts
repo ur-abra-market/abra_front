@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getFavoritesProductsService, getPersonalInfo, updatePersonalInfo } from '.';
 
 import { LoadingStatusEnum } from 'common/types';
+import { logout } from 'store/reducers/authSlice';
 import { getSellerAvatar } from 'store/reducers/seller/profile/thunks';
 
 export interface IUserPersonalInfo {
@@ -104,6 +105,15 @@ const userSlice = createSlice({
         state.loading = {
           ...state.loading,
           userAvatarLoading: LoadingStatusEnum.Failed,
+        };
+      })
+      .addCase(logout.fulfilled, state => {
+        state.personalInfo = {
+          firstName: '',
+          lastName: '',
+          countryShort: '',
+          phoneNumber: '',
+          avatar: '',
         };
       });
   },
