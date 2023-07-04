@@ -22,3 +22,9 @@
     color: var(--color-black);
   }
 }
+
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: var(--color-grey-innactive);
+}
