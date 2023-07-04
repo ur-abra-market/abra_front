@@ -17,7 +17,7 @@ export const SimpleLink: FC<ISimpleLink> = ({
   className,
   color,
   children,
-  disabled = true,
+  disabled,
   ...restProps
 }) => {
   const linkClasses = cn(
