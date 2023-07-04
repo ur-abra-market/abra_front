@@ -5,8 +5,8 @@ import { Navigate } from 'react-router-dom';
 import style from './CheckoutPage.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
-import HeaderForChangePages from 'old-components/HeaderForChangePages';
 import CheckDelivery from 'old-components/ui/checkout/CheckDelivery';
 import CheckItems from 'old-components/ui/checkout/CheckItems';
 import CheckOrder from 'old-components/ui/checkout/CheckOrder';
@@ -28,7 +28,7 @@ export const CheckoutPage = (): JSX.Element => {
 
   return (
     <div className={style.container}>
-      <HeaderForChangePages />
+      <AdditionalHeaderBlock />
 
       <div className={style.checkout_page}>
         <div className={style.checkout}>
