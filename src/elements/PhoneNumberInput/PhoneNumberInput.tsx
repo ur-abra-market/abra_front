@@ -75,6 +75,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
 
   const phoneButtonClasses = cn({
     [style.phone_flag]: true,
+    [style.phone_flag_disabled]: disabled,
     [style.phone_flag_error]: Boolean(phoneNumberError),
   });
 
