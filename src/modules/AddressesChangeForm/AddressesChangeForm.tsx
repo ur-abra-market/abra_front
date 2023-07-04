@@ -131,7 +131,7 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
                   error={errors.country?.message}
                   defaultValue={watch('country')}
                   onChange={value => {
-                    field.onChange(value.value);
+                    field.onChange(value.value as number);
                   }}
                 />
               </Label>
