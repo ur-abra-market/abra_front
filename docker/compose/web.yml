@@ -1,6 +1,5 @@
 version: "3.9"
 
-name: abra-front
 services:
   web:
     container_name: web
@@ -10,10 +9,8 @@ services:
     command: /bin/bash -c \
       "echo '[+] Run frontend' && \
       yarn start"
-    ports:
-      - 3000:3000
     expose:
-      - 3000
+      - ${EXPOSE_PORT}
     env_file:
       - ${PWD}/.env
     restart: unless-stopped

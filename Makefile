@@ -3,11 +3,13 @@ docker_v2 = docker compose
 
 compose_directory = docker/compose
 
+main_container = -f $(compose_directory)/main.yml
 web_container = -f $(compose_directory)/web.yml
+nginx_container = -f $(compose_directory)/nginx.yml
 
 capture_exit_code = --abort-on-container-exit --exit-code-from
 
-compose_web = $(docker_v2) ${web_container} --env-file .env
+compose_web = $(docker_v2) $(main_container) $(web_container) $(nginx_container) --env-file .env
 
 # ============================================VARIABLES===========================================
 
@@ -15,6 +17,10 @@ compose_web = $(docker_v2) ${web_container} --env-file .env
 .PHONY: build
 build:
 	$(compose_web) build
+
+.PHONY: no cache build
+build-nc:
+	$(compose_web) build --no-cache
 
 .PHONY: stop
 stop:
