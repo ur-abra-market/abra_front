@@ -3,6 +3,7 @@ import {
   ANALYTICS,
   CONTACT,
   DASHBOARD,
+  PRODUCTS,
   FAQ,
   FEEDBACK,
   NEWS,
@@ -23,9 +24,10 @@ export const HEADER_NAV_CONTENT = {
   ],
   supplier: [
     { id: 1, label: 'Dashboard', path: DASHBOARD },
-    { id: 2, label: 'Orders', path: ORDERS },
-    { id: 3, label: 'Price Management', path: PRICE },
-    { id: 4, label: 'Analytics', path: ANALYTICS },
-    { id: 5, label: 'Feedback and questions', path: FEEDBACK },
+    { id: 2, label: 'Products List', path: PRODUCTS },
+    { id: 3, label: 'Orders', path: ORDERS },
+    { id: 4, label: 'Price Management', path: PRICE },
+    { id: 5, label: 'Analytics', path: ANALYTICS },
+    { id: 6, label: 'Feedback and questions', path: FEEDBACK },
   ],
 };

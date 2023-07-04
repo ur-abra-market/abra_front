@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 
-import style from './ProductsListPage.module.scss';
+import style from './SupplierProductsListPage.module.scss';
 
 import {
   EditPencilInCircleIcon,
@@ -15,8 +15,8 @@ import imageProduct from 'assets/images/files/banner2.png'; //! need to rewrite
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import Modal from 'elements/Modal';
-import { tableStyleClasses } from 'old-components/ProductsListPage/constantsOfClassesStyles';
 import ShowPage from 'old-components/ShowPage';
+import { tableStyleClasses } from 'old-components/SupplierProductsListPage/constantsOfClassesStyles';
 import Table from 'old-components/table';
 import Pagination from 'old-components/ui/Pagination';
 import {
@@ -41,7 +41,7 @@ export const STATUS_SELECT: ISelectOption[] = [
 //   image: string;
 //   name: string;
 // }
-export const ProductsListPage: FC = WithLayout((): JSX.Element => {
+export const SupplierProductsListPage: FC = WithLayout((): JSX.Element => {
   // const navigate = useNavigate();
   const activePage = useAppSelector(state => state.paginate.page_num);
   const amountPages = useAppSelector(state => state.paginate.amountPages);

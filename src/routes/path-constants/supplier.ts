@@ -1,5 +1,6 @@
 export const {
   DASHBOARD,
+  PRODUCTS,
   ORDERS,
   PRICE,
   ANALYTICS,
@@ -9,6 +10,7 @@ export const {
   ADD_PRODUCT,
 } = {
   DASHBOARD: '/dashboard',
+  PRODUCTS: '/products',
   ORDERS: '/orders',
   PRICE: '/price',
   ANALYTICS: '/analytics',
