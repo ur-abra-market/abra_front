@@ -9,6 +9,7 @@ export interface ISimpleLink extends LinkProps {
   color: 'accent' | 'default';
   className?: string;
   children: ReactNode;
+  disabled?: boolean;
 }
 
 export const SimpleLink: FC<ISimpleLink> = ({
@@ -16,6 +17,7 @@ export const SimpleLink: FC<ISimpleLink> = ({
   className,
   color,
   children,
+  disabled = true,
   ...restProps
 }) => {
   const linkClasses = cn(
@@ -23,6 +25,7 @@ export const SimpleLink: FC<ISimpleLink> = ({
     {
       [styles.default]: color === 'default',
       [styles.accent]: color === 'accent',
+      [styles.disabled]: disabled,
     },
     className,
   );

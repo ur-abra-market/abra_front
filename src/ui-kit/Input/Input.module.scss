@@ -8,13 +8,26 @@
   width: 100%;
   padding: 15px 10px 15px 16px;
 
-  font-size: var(--fz-s);
+  font-size: var(--fz-xs);
+  font-weight: var(--medium);
   color: var(--color-black);
+  font-family: "Roboto";
+  letter-spacing: 0.24px;
 
-  background-color: var(--color-light-gray) ;
+  background-color: var(--color-light-gray);
   border: 1px solid transparent;
   border-radius: 12px;
   outline: none;
+  transition: border 0.2s, color 0.2s;
+}
+
+.input:disabled {
+  color: var(--color-medium-gray);
+  opacity: 0.5;
+}
+
+.input:not(.input_error):focus {
+  border: 1px solid var(--color-medium-gray);
 }
 
 .input_error {
