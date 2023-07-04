@@ -27,7 +27,7 @@ export interface ISellerAddress {
   area: string;
   building: string;
   city: string;
-  country: string;
+  country: number;
   firstName: string;
   isMain: boolean;
   lastName: string;

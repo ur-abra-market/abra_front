@@ -73,7 +73,7 @@ export const SellerEditAddressChangeForm: FC<ISellerEditAddressChangeForm> = ({
     lastNameValue === address?.last_name &&
     `${address?.phone.country.country_code}${address?.phone.phone_number}` ===
       currentPhoneNumber &&
-    countryValue === address?.country.country &&
+    countryValue === address?.country.id &&
     cityValue === address?.city &&
     buildingValue === address?.building &&
     streetValue === address?.street &&
@@ -95,7 +95,7 @@ export const SellerEditAddressChangeForm: FC<ISellerEditAddressChangeForm> = ({
       phoneCountryCode = countryCode;
     }
 
-    const countryId = countries.find(el => el.country === data.country)?.id;
+    // const countryId = countries.find(el => el.country === data.country)?.id;
     const phoneCountryId = countries.find(el => el.country_code === phoneCountryCode)?.id;
     const updateSellerAddressData: ISellerAddressRequest = {
       address_id: address.id,
@@ -107,7 +107,7 @@ export const SellerEditAddressChangeForm: FC<ISellerEditAddressChangeForm> = ({
         building: data.building,
         apartment: data.apartment,
         postal_code: data.postalCode,
-        country_id: countryId!,
+        country_id: data.country,
         first_name: data.firstName,
         last_name: data.lastName,
       },
@@ -128,7 +128,7 @@ export const SellerEditAddressChangeForm: FC<ISellerEditAddressChangeForm> = ({
       'phoneNumber',
       `${address.phone.country.country_code}${address.phone.phone_number}`,
     );
-    setValue('country', address.country.country);
+    setValue('country', address.country.id);
     setValue('isMain', address.is_main);
   }, [
     address.phone.country.country_code,
