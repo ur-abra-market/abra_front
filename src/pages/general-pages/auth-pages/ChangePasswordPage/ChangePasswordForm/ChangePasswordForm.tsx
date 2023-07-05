@@ -33,8 +33,9 @@ interface IChangePasswordForm {
 }
 
 export const ChangePasswordForm: FC<IChangePasswordForm> = ({ setOpenModal }) => {
-  const loading = useAppSelector(loadingSelector);
   const dispatch = useAppDispatch();
+  const loading = useAppSelector(loadingSelector);
+  const isLoading = loading === LoadingStatusEnum.Loading;
 
   const {
     register,
@@ -70,6 +71,7 @@ export const ChangePasswordForm: FC<IChangePasswordForm> = ({ setOpenModal }) =>
         type="password"
         variant="password"
         error={errors.old_password?.message}
+        disabled={isLoading}
       />
       <Input
         {...register('new_password')}
@@ -78,13 +80,14 @@ export const ChangePasswordForm: FC<IChangePasswordForm> = ({ setOpenModal }) =>
         type="password"
         variant="password"
         error={errors.new_password?.message}
+        disabled={isLoading}
       />
       <PasswordComplexity password={watchPassword} />
       <Button
         label="Continue"
         type="submit"
         className={style.button_submit}
-        disabled={!isValid || loading === LoadingStatusEnum.Loading}
+        disabled={!isValid || isLoading}
       />
     </form>
   );
