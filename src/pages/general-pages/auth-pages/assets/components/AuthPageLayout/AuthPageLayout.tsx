@@ -44,7 +44,12 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
         {children}
         <div className={style.footer_wrapper}>
           {footerData?.map(el => (
-            <SimpleLink key={el.link} to={el.link} color="accent">
+            <SimpleLink
+              disabled={isLoading === LoadingStatusEnum.Loading}
+              key={el.link}
+              to={el.link}
+              color="accent"
+            >
               {el.title}
             </SimpleLink>
           ))}

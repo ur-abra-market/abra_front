@@ -40,6 +40,7 @@ export const ChangeEmailForm: FC<IChangeEmailForm> = ({ setOpenModal }) => {
 
   const dispatch = useAppDispatch();
   const loading = useAppSelector(loadingSelector);
+  const isLoading = loading === LoadingStatusEnum.Loading;
 
   useEffect(() => {
     if (watch(TRIGGER_FIELD)) trigger(TRIGGER_FIELD);
@@ -60,17 +61,19 @@ export const ChangeEmailForm: FC<IChangeEmailForm> = ({ setOpenModal }) => {
         classNameWrapper={style.input_wrapper}
         placeholder="New email"
         error={errors.new_email?.message}
+        disabled={isLoading}
       />
       <Input
         {...register('confirm_email')}
         placeholder="Confirm email"
         classNameWrapper={style.input_wrapper}
         error={errors.confirm_email?.message}
+        disabled={isLoading}
       />
       <Button
         label="Continue"
         type="submit"
-        disabled={!isValid || loading === LoadingStatusEnum.Loading}
+        disabled={!isValid || isLoading}
         className={style.button_submit}
       />
     </form>
