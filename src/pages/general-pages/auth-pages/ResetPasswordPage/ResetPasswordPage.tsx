@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import style from './ResetPasswordPage.module.scss';
 
@@ -40,7 +40,7 @@ export const ResetPasswordPage = (): JSX.Element => {
 
   return (
     <>
-      <AuthPageLayout>
+      <AuthPageLayout withHeader>
         <div className={style.header}>Create new password</div>
         <div className={style.subheader}>
           Enter a new password that matches the criteria

@@ -28,11 +28,12 @@ const formValidationSchema = yup
   .required();
 
 export const RegisterForm = (): JSX.Element => {
-  const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
-  const loading = useAppSelector(loadingSelector);
   const [userRole, setUserRole] = useState<ResponseUserRoleType>('seller');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
+  const loading = useAppSelector(loadingSelector);
+  const isLoading = loading === LoadingStatusEnum.Loading;
 
   const {
     register,
@@ -78,7 +79,12 @@ export const RegisterForm = (): JSX.Element => {
         />
       </div>
 
-      <Input {...register('email')} placeholder="Email" error={errors.email?.message} />
+      <Input
+        {...register('email')}
+        placeholder="Email"
+        error={errors.email?.message}
+        disabled={isLoading}
+      />
 
       <Input
         {...register('password')}
@@ -87,6 +93,7 @@ export const RegisterForm = (): JSX.Element => {
         variant="password"
         placeholder="Password"
         error={errors.password?.message}
+        disabled={isLoading}
       />
       <PasswordComplexity password={watch('password')} />
 
@@ -94,7 +101,7 @@ export const RegisterForm = (): JSX.Element => {
         className={style.button_submit}
         label="Create Account"
         type="submit"
-        disabled={!isValid || loading === LoadingStatusEnum.Loading}
+        disabled={!isValid || isLoading}
       />
     </form>
   );

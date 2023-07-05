@@ -15,7 +15,7 @@ import style from './ProductsPreview.module.scss';
 
 import { Carousel } from '.';
 
-import { ArrowLeftIcon, ArrowRightIcon } from 'assets/icons'; // 24px
+import { ArrowIcon } from 'assets/icons'; // 24px
 import { ButtonIcon } from 'ui-kit';
 
 interface IProductsPreview
@@ -75,7 +75,7 @@ export const ProductsPreview: FC<IProductsPreview> = ({
 
         <div className={style.buttons}>
           <ButtonIcon disabled={disableLeftArrow} onClick={handlePrev}>
-            <ArrowLeftIcon
+            <ArrowIcon
               className={cn(style.icon_left, {
                 [style.disable_button]: swiperEl.current?.isBeginning,
               })}
@@ -83,7 +83,7 @@ export const ProductsPreview: FC<IProductsPreview> = ({
           </ButtonIcon>
 
           <ButtonIcon disabled={disableRightArrow} onClick={handleNext}>
-            <ArrowRightIcon
+            <ArrowIcon
               className={cn(style.icon_right, {
                 [style.disable_button]: swiperEl.current?.isEnd,
               })}

@@ -35,7 +35,7 @@ export const ChangePasswordPage = (): JSX.Element => {
 
   return (
     <>
-      <AuthPageLayout footerData={passwordFooterData}>
+      <AuthPageLayout withHeader footerData={passwordFooterData}>
         <div className={style.header}>Change password</div>
         <div className={style.subheader}>Enter your current and new passwords</div>
         <ChangePasswordForm setOpenModal={setOpenModal} />

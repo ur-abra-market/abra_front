@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import style from './StatusSeller.module.scss';
 
-import { StarEmptyIcon, ArrowRightIcon } from 'assets/icons';
+import { ArrowIcon, StarEmptyIcon } from 'assets/icons';
 import { HangerImage } from 'assets/images';
 
 interface StatusSellerProps {
@@ -37,7 +37,7 @@ const StatusSeller: FC<StatusSellerProps> = ({ supplierInfo }): JSX.Element => {
         {/*  <p>{total_deals} Deals</p> */}
         {/* </div> */}
       </div>
-      <ArrowRightIcon className={style.status_seller_btn} />
+      <ArrowIcon className={style.status_seller_btn} />
     </div>
   );
 };

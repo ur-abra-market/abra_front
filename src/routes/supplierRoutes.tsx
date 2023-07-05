@@ -9,11 +9,13 @@ import {
   ANALYTICS,
   DASHBOARD,
   FEEDBACK,
+  HOME,
   ORDERS,
   PRICE,
-  HOME,
+  PRODUCTS,
 } from '.';
 
+import { SupplierProductsListPage } from 'old-components/SupplierProductsListPage/SupplierProductsListPage';
 import {
   AccountSetupBusinessInfoPage,
   AccountSetupPersonalInfoPage,
@@ -39,6 +41,10 @@ export const supplierRoutes: RouteObject[] = [
       {
         path: DASHBOARD,
         element: <DashboardPage />,
+      },
+      {
+        path: PRODUCTS,
+        element: <SupplierProductsListPage />,
       },
       {
         path: ORDERS,

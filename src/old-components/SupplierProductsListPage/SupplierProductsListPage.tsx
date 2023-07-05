@@ -3,13 +3,12 @@ import { FC, useEffect, useState } from 'react';
 import style from './SupplierProductsListPage.module.scss';
 
 import {
+  ArrowIcon,
   EditPencilInCircleIcon,
-  ViewListDisabledIcon,
-  ViewGridDisabledIcon,
-  ArrowUpIcon,
-  ArrowDownIcon,
   EyeHiddenIcon,
   StarFilledIcon,
+  ViewGridDisabledIcon,
+  ViewListDisabledIcon,
 } from 'assets/icons';
 import imageProduct from 'assets/images/files/banner2.png'; //! need to rewrite
 import { WithLayout } from 'common/hocs/WithLayout';
@@ -166,10 +165,10 @@ export const SupplierProductsListPage: FC = WithLayout((): JSX.Element => {
             Show filters
           </span>
           {!restFilters ? (
-            <ArrowDownIcon onClick={handleRestFiltersSet} />
+            <ArrowIcon onClick={handleRestFiltersSet} />
           ) : (
             <>
-              <ArrowUpIcon onClick={handleRestFiltersSet} className={style.vector_up} />
+              <ArrowIcon onClick={handleRestFiltersSet} className={style.vector_up} />
               <div className={style.reset_link}>Reset Filters</div>
             </>
           )}

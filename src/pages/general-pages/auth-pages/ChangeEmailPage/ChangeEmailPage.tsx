@@ -30,7 +30,7 @@ export const ChangeEmailPage = (): JSX.Element => {
 
   return (
     <>
-      <AuthPageLayout>
+      <AuthPageLayout withHeader>
         <div className={style.header}>Change email</div>
         <div className={style.subheader}>Enter your new email addresses</div>
         <ChangeEmailForm setOpenModal={setOpenModal} />
