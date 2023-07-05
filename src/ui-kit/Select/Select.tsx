@@ -186,7 +186,6 @@ export const Select = forwardRef(
     return (
       <div style={selectWidth} className={mainClasses} ref={mainDivRef}>
         <SelectHeader
-          menuItemsPosition={menuItemsPosition}
           className={headerClassname}
           currentSelectedValue={currentSelectedValue}
           isOpenMenu={isOpenItemsMenu}

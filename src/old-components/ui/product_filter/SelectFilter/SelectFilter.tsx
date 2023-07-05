@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 
 import style from './SelectFilter.module.scss';
 
-import { ArrowDownIcon } from 'assets/icons';
+import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ascending, category, sort } from 'store/reducers/filterSlice';
 
@@ -90,7 +90,7 @@ const SelectFilter: FC<SelectFilterProps> = ({ typeSelect }): JSX.Element => {
           </div>
         </div>
         <div className={style.select_filter_img}>
-          <ArrowDownIcon />
+          <ArrowIcon />
         </div>
       </div>
       <ul className={style.select_filter_list} style={styleList}>
