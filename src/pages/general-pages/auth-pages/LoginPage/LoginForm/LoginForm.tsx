@@ -31,10 +31,11 @@ export interface IFormValues {
 }
 
 export const LoginForm = (): JSX.Element => {
-  const loading = useAppSelector(loadingSelector);
-  const isAuthorized = useAppSelector(isAuthSelector);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const isAuthorized = useAppSelector(isAuthSelector);
+  const loading = useAppSelector(loadingSelector);
+  const isLoading = loading === LoadingStatusEnum.Loading;
 
   const {
     register,
@@ -55,8 +56,12 @@ export const LoginForm = (): JSX.Element => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-      <Input {...register('email')} placeholder="Email" error={errors.email?.message} />
-
+      <Input
+        {...register('email')}
+        placeholder="Email"
+        error={errors.email?.message}
+        disabled={isLoading}
+      />
       <Input
         {...register('password')}
         classNameWrapper={style.input_wrapper}
@@ -64,13 +69,13 @@ export const LoginForm = (): JSX.Element => {
         type="password"
         placeholder="Password"
         error={errors.password?.message}
+        disabled={isLoading}
       />
-
       <Button
         className={style.button_submit}
         label="Log in"
         type="submit"
-        disabled={!isValid || loading === LoadingStatusEnum.Loading}
+        disabled={!isValid || isLoading}
       />
     </form>
   );

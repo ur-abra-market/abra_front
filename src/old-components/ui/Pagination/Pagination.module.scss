@@ -9,11 +9,13 @@
 }
 
 .paginator_product_left_arrow {
+  transform: rotate(90deg);
   width: 24px;
   height: 24px;
 }
 
 .paginator_product_right_arrow {
+  transform: rotate(270deg);
   width: 24px;
   height: 24px;
 }

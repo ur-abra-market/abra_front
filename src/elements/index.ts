@@ -10,3 +10,4 @@ export { ContentMessage } from './ContentMessage/ContentMessage';
 export { PhoneNumberInput } from './PhoneNumberInput/PhoneNumberInput';
 export { HeaderMenu } from './HeaderMenu/HeaderMenu';
 export { ProductList } from './ProductList/ProductList';
+export { AdditionalHeaderBlock } from './AdditionalHeaderBlock/AdditionalHeaderBlock';

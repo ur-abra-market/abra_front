@@ -1,8 +1,10 @@
 import { FC, PropsWithChildren } from 'react';
 
+import cn from 'classnames';
+
 import style from './DropDownField.module.scss';
 
-import { ArrowRightIcon } from 'assets/icons'; // 5 10px
+import { ArrowIcon } from 'assets/icons'; // 5 10px
 import styles from 'ui-kit/Select/Select.module.scss';
 
 interface DropDownFieldProps {
@@ -13,6 +15,7 @@ interface DropDownFieldProps {
   setOpen: (value: number | null) => void;
   /* foo?: (value: boolean) => void; */
 }
+
 const DropDownField: FC<PropsWithChildren<DropDownFieldProps>> = ({
   children,
   title,
@@ -28,9 +31,8 @@ const DropDownField: FC<PropsWithChildren<DropDownFieldProps>> = ({
     <div>
       <div role="presentation" className={style.title} onClick={() => onClick(id)}>
         <p className={style.title_text}>{title}</p>
-        <span className={open ? style.arrow_on : style.arrow_off}>
-          <ArrowRightIcon className={styles.arrow} />
-        </span>
+
+        <ArrowIcon className={cn({ [style.arrow_up]: open })} />
       </div>
 
       {open === id && <div className={style.children}>{children}</div>}

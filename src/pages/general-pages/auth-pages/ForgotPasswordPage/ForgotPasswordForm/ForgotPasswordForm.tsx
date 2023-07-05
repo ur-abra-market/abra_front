@@ -27,6 +27,10 @@ const schema = yup
   .required();
 
 export const ForgotPasswordForm: FC<IForgotPasswordForm> = ({ togglePageType }) => {
+  const dispatch = useAppDispatch();
+  const loading = useAppSelector(loadingSelector);
+  const isLoading = loading === LoadingStatusEnum.Loading;
+
   const {
     register,
     formState: { isValid, errors },
@@ -35,8 +39,6 @@ export const ForgotPasswordForm: FC<IForgotPasswordForm> = ({ togglePageType }) 
     resolver: yupResolver(schema),
     mode: 'all',
   });
-  const loading = useAppSelector(loadingSelector);
-  const dispatch = useAppDispatch();
 
   const onSubmit = async (data: IForgotChangePasswordFormData): Promise<void> => {
     const actionResult = await dispatch(forgotPassword(data.email));
@@ -53,12 +55,13 @@ export const ForgotPasswordForm: FC<IForgotPasswordForm> = ({ togglePageType }) 
         placeholder="Email"
         error={errors.email?.message}
         classNameWrapper={style.input_wrapper}
+        disabled={isLoading}
       />
       <Button
         label="Reset password"
         className={style.button_submit}
         type="submit"
-        disabled={!isValid || loading === LoadingStatusEnum.Loading}
+        disabled={!isValid || isLoading}
       />
     </form>
   );

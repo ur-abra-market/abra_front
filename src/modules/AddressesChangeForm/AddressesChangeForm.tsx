@@ -38,7 +38,7 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
 
   const countries = useAppSelector(state => state.common.countries);
   const listCountry = countries.map(el => ({
-    value: el.country,
+    value: el.id,
     label: el.country,
   }));
 
@@ -131,7 +131,7 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
                   error={errors.country?.message}
                   defaultValue={watch('country')}
                   onChange={value => {
-                    field.onChange(value.value);
+                    field.onChange(value.value as number);
                   }}
                 />
               </Label>

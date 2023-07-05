@@ -6,7 +6,7 @@
 .phone_number .phone {
   width:calc(100% - 48px);
   height: 100%;
-  margin-left: 48px;
+  margin-left: 47px;
   padding: 12px 10px 15px;
 
   font-size: var(--fz-s);
@@ -14,7 +14,15 @@
 
   background-color: var(--color-light-gray);
   border: 1px solid transparent;
+  border-left: none !important;
   border-radius: 0 12px 12px 0;
+
+  &:disabled {
+    pointer-events: none;
+    cursor: default;
+    color: var(--color-medium-gray);
+    opacity: 0.5;
+  }
 }
 
 .phone_number .phone_error {
@@ -24,12 +32,13 @@
 /*!important is used here to override styles from 'react-phone-input-2' library for hover events and open country code dropdown menu*/
 
 .phone_number .phone_flag {
-  padding: 12px 4px 15px 10px;
+  padding: 12px 4px 15px;
 
   color: var(--color-black);
 
   background-color: var(--color-light-gray) !important;
   border: 1px solid transparent;
+  border-right: none !important;
   border-radius: 12px 0 0 12px !important;
 }
 
@@ -49,4 +58,8 @@
 
   font-size: var(--fz-xs);
   color: var(--color-accent);
+}
+
+.phone_flag_disabled {
+  opacity: .5;
 }
