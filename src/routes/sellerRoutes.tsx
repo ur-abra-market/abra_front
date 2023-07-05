@@ -16,7 +16,6 @@ import {
 
 import {
   CartPage,
-  ProductPage,
   CheckoutPage,
   OrderDetailsPage,
   OrderHistoryPage,
@@ -31,7 +30,7 @@ export const sellerRoutes: RouteObject[] = [
     children: [
       {
         path: ':productId',
-        element: <ProductPage />,
+        // element: <ProductPage />,
       },
     ],
   },
