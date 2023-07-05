@@ -1,0 +1,5 @@
+@import "src/common/styles/mixins";
+
+.product_container {
+  @include content_container;
+}
