@@ -23,6 +23,7 @@ import {
   SellerFavoritesList,
   CheckoutSuccessPage,
 } from 'pages/seller-pages';
+import { ProductPage } from 'pages/seller-pages/ProductPage/ProductPage';
 
 export const sellerRoutes: RouteObject[] = [
   {
@@ -30,7 +31,7 @@ export const sellerRoutes: RouteObject[] = [
     children: [
       {
         path: ':productId',
-        // element: <ProductPage />,
+        element: <ProductPage />,
       },
     ],
   },
