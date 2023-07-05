@@ -40,23 +40,6 @@ export const updatePersonalInfo = createAsyncThunk<any, any>(
   },
 );
 
-export const uploadUserLogoService = createAsyncThunk<any, any>(
-  'user/uploadUserLogoService',
-  async (image, { rejectWithValue }) => {
-    try {
-      const data = await userService.uploadLogoImage(image);
-
-      return data.result;
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        rejectWithValue(error.message);
-      }
-
-      return rejectWithValue('[uploadUserLogoService]: ERROR');
-    }
-  },
-);
-
 export const getFavoritesProductsService = createAsyncThunk<any, void>(
   'user/getFavoritesProductsService',
   async (_, { rejectWithValue }) => {

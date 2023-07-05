@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import style from './ResetPasswordPage.module.scss';
 
 import { ResetPasswordForm } from '.';
 
 import { useAppDispatch } from 'common/hooks';
-import { AdditionalHeaderBlock } from 'elements';
 import Modal from 'elements/Modal';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
 import { LOGIN } from 'routes';
@@ -41,8 +40,7 @@ export const ResetPasswordPage = (): JSX.Element => {
 
   return (
     <>
-      <AdditionalHeaderBlock />
-      <AuthPageLayout>
+      <AuthPageLayout withHeader>
         <div className={style.header}>Create new password</div>
         <div className={style.subheader}>
           Enter a new password that matches the criteria

@@ -30,7 +30,7 @@ export const AboutUsPage = WithLayout((): JSX.Element => {
         </p>
 
         <div className={style.title_block}>Why Choose Abra Bulk Marketplace?</div>
-        <p className={style.text}>
+        <div className={style.text}>
           <ul>
             <li>
               <b>1.</b>
@@ -76,7 +76,7 @@ export const AboutUsPage = WithLayout((): JSX.Element => {
               Best of Turkey with Abra Bulk Marketplace
             </li>
           </ul>
-        </p>
+        </div>
 
         <p className={style.default_text}>
           At Abra Bulk Marketplace, we believe that every business deserves access to the

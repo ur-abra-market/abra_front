@@ -2,10 +2,7 @@ import { IAccountPersonalInfoResponse } from './user.serviceTypes';
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
-import {
-  IAccountPersonalInfoRequest,
-  IDeleteImageRequest,
-} from 'services/common/common.serviceTypes';
+import { IAccountPersonalInfoRequest } from 'services/common/common.serviceTypes';
 
 export enum Action {
   UPLOAD_LOGO_IMAGE = 'suppliers/uploadCompanyImage/',
@@ -29,22 +26,6 @@ export const userService = {
     );
 
     return data.result;
-  },
-
-  uploadLogoImage: async (img: File) => {
-    const formData = new FormData();
-
-    formData.append('file', img);
-
-    const { data } = await baseConfigService.post('users/uploadLogoImage/', formData);
-
-    return data;
-  },
-
-  deleteImage: async ({ queries, action }: IDeleteImageRequest) => {
-    const { data } = await baseConfigService.delete(action, {
-      params: queries,
-    });
   },
 
   getFavoritesProducts: async () => {

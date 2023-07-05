@@ -8,7 +8,7 @@ import 'swiper/swiper-bundle.min.css';
 
 import style from './ProductCarousel.module.scss';
 
-import { ArrowDownIcon, ArrowUpIcon } from 'assets/icons'; // 24px
+import { ArrowIcon } from 'assets/icons'; // 24px
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { Button } from 'ui-kit';
 
@@ -37,7 +37,7 @@ const ProductCarousel: FC<Props> = props => {
       <div className={style.flex_container}>
         <div className={style.col}>
           <Button color="white" onClick={handlePrev}>
-            <ArrowUpIcon />
+            <ArrowIcon className={style.arrow_up} />
           </Button>
 
           <div className={style.thumbs}>
@@ -64,7 +64,7 @@ const ProductCarousel: FC<Props> = props => {
           </div>
 
           <Button color="white" onClick={handleNext}>
-            <ArrowDownIcon />
+            <ArrowIcon />
           </Button>
         </div>
 
