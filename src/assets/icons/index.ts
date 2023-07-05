@@ -1,8 +1,4 @@
 export { ReactComponent as ApplePayIcon } from './files/apple-pay.svg';
-export { ReactComponent as ArrowDownIcon } from './files/arrow-down.svg';
-export { ReactComponent as ArrowLeftIcon } from './files/arrow-left.svg';
-export { ReactComponent as ArrowRightIcon } from './files/arrow-right.svg';
-export { ReactComponent as ArrowUpIcon } from './files/arrow-up.svg';
 export { ReactComponent as BreadcrumbsArrowIcon } from './files/breadcrumbs-arrow.svg';
 export { ReactComponent as CheckMarkWhiteIcon } from './files/check-mark-white.svg';
 export { ReactComponent as ContactUsQuestionMarkIcon } from './files/contact-us-question-mark.svg';

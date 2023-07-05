@@ -2,7 +2,7 @@ import cn from 'classnames';
 
 import style from './PaginatorProduct.module.scss';
 
-import { ArrowLeftIcon, ArrowRightIcon } from 'assets/icons'; // 24px
+import { ArrowIcon } from 'assets/icons'; // 24px
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { activeNum } from 'store/reducers/productPaginateSlice';
 
@@ -44,7 +44,7 @@ const PaginatorProduct = (): JSX.Element => {
         className={style.left}
         onClick={() => (activePage > 1 ? handlePage(activePage - 1) : false)}
       >
-        <ArrowLeftIcon className={style.left_arrow} />
+        <ArrowIcon className={style.left_arrow} />
       </div>
       <div className={style.numbers}>
         <div
@@ -83,7 +83,7 @@ const PaginatorProduct = (): JSX.Element => {
         className={style.right}
         onClick={() => (activePage < amountPages ? handlePage(activePage + 1) : false)}
       >
-        <ArrowRightIcon className={style.right_arrow} />
+        <ArrowIcon className={style.right_arrow} />
       </div>
     </div>
   );

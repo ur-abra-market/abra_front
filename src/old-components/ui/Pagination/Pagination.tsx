@@ -4,13 +4,14 @@ import { useDispatch } from 'react-redux';
 
 import styles from './Pagination.module.scss';
 
-import { ArrowLeftIcon, ArrowRightIcon } from 'assets/icons'; // 24px
+import { ArrowIcon } from 'assets/icons'; // 24px
 import { active } from 'store/reducers/paginateSlice';
 
 interface PaginationProps {
   activePage: number;
   amountPages: number;
 }
+
 const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
   const dispatch = useDispatch();
 
@@ -46,7 +47,7 @@ const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
         className={styles.paginator_product_left}
         onClick={() => (activePage > 1 ? handlePage(activePage - 1) : false)}
       >
-        <ArrowLeftIcon className={styles.paginator_product_left_arrow} />
+        <ArrowIcon className={styles.paginator_product_left_arrow} />
       </div>
       <div className={styles.paginator_product_numbers}>
         <div
@@ -84,7 +85,7 @@ const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
         className={styles.paginator_product_right}
         onClick={() => (activePage < amountPages ? handlePage(activePage + 1) : false)}
       >
-        <ArrowRightIcon className={styles.paginator_product_right_arrow} />
+        <ArrowIcon className={styles.paginator_product_right_arrow} />
       </div>
     </div>
   );
