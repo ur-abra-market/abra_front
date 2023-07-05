@@ -1,4 +1,4 @@
-import { ISupplierBusinessInfo, ISupplierProfileLoading } from './slice';
+import { ISupplierBusinessInfo, ILoading } from './slice';
 
 import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
 import { RootStateType } from 'store/createStore';
@@ -16,7 +16,7 @@ export const supplierNotificationsSelector = (
   state: RootStateType,
 ): ISupplierNotifications | null => state.supplierProfile.notifications;
 
-export const supplierLoadingSelector = (state: RootStateType): ISupplierProfileLoading =>
+export const supplierLoadingSelector = (state: RootStateType): ILoading =>
   state.supplierProfile.loading;
 
 export const hasPersonalInfoSelector = (state: RootStateType): boolean =>

@@ -1,4 +1,4 @@
-import { ISellerProfileLoading } from './slice';
+import { ILoading } from './slice';
 
 import {
   ISellerAddressData,
@@ -10,7 +10,7 @@ export const sellerNotificationSelector = (
   state: RootStateType,
 ): ISellerNotifications | null => state.sellerProfile.notifications;
 
-export const sellerLoadingSelector = (state: RootStateType): ISellerProfileLoading =>
+export const sellerLoadingSelector = (state: RootStateType): ILoading =>
   state.sellerProfile.loading;
 
 export const sellerAddressesSelector = (

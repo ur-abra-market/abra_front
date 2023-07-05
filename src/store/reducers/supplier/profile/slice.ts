@@ -39,14 +39,14 @@ export interface ISupplierBusinessInfo {
   countryId: number | null;
 }
 
-export interface ISupplierProfileLoading {
+export interface ILoading {
   businessInfoLoading: LoadingStatusEnum;
   notificationsLoading: LoadingStatusEnum;
   companyLogoLoading: LoadingStatusEnum;
 }
 
 interface ISupplierProfileSliceInitialState {
-  loading: ISupplierProfileLoading;
+  loading: ILoading;
   businessInfo: ISupplierBusinessInfo;
   notifications: ISupplierNotifications | null;
   hasCompanyInfo: boolean;

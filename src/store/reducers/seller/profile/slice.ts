@@ -27,14 +27,14 @@ export interface ISellerAddress {
   street: string;
 }
 
-export interface ISellerProfileLoading {
-  sellerAvatarLoading: LoadingStatusEnum;
-  sellerNotificationsLoading: LoadingStatusEnum;
-  sellerAddressesLoading: LoadingStatusEnum;
+export interface ILoading {
+  avatarLoading: LoadingStatusEnum;
+  notificationsLoading: LoadingStatusEnum;
+  addressesLoading: LoadingStatusEnum;
 }
 
 interface ISellerProfileSliceInitialState {
-  loading: ISellerProfileLoading;
+  loading: ILoading;
   addresses: ISellerAddressData[] | null;
   notifications: ISellerNotifications | null;
   sellerAvatar: string;
@@ -42,9 +42,9 @@ interface ISellerProfileSliceInitialState {
 
 const initialState: ISellerProfileSliceInitialState = {
   loading: {
-    sellerAvatarLoading: LoadingStatusEnum.Idle,
-    sellerNotificationsLoading: LoadingStatusEnum.Idle,
-    sellerAddressesLoading: LoadingStatusEnum.Idle,
+    avatarLoading: LoadingStatusEnum.Idle,
+    notificationsLoading: LoadingStatusEnum.Idle,
+    addressesLoading: LoadingStatusEnum.Idle,
   },
   addresses: null,
   notifications: null,
@@ -60,73 +60,73 @@ const sellerProfileSlice = createSlice({
       .addCase(getSellerNotifications.pending, state => {
         state.loading = {
           ...state.loading,
-          sellerNotificationsLoading: LoadingStatusEnum.Loading,
+          notificationsLoading: LoadingStatusEnum.Loading,
         };
       })
       .addCase(getSellerNotifications.fulfilled, (state, action) => {
         state.notifications = action.payload;
         state.loading = {
           ...state.loading,
-          sellerNotificationsLoading: LoadingStatusEnum.Success,
+          notificationsLoading: LoadingStatusEnum.Success,
         };
       })
       .addCase(getSellerNotifications.rejected, state => {
         state.loading = {
           ...state.loading,
-          sellerNotificationsLoading: LoadingStatusEnum.Failed,
+          notificationsLoading: LoadingStatusEnum.Failed,
         };
       })
 
       .addCase(updateSellerNotifications.pending, state => {
         state.loading = {
           ...state.loading,
-          sellerNotificationsLoading: LoadingStatusEnum.Loading,
+          notificationsLoading: LoadingStatusEnum.Loading,
         };
       })
       .addCase(updateSellerNotifications.rejected, state => {
         state.loading = {
           ...state.loading,
-          sellerNotificationsLoading: LoadingStatusEnum.Failed,
+          notificationsLoading: LoadingStatusEnum.Failed,
         };
       })
 
       .addCase(getSellerAddresses.pending, state => {
         state.loading = {
           ...state.loading,
-          sellerAddressesLoading: LoadingStatusEnum.Loading,
+          addressesLoading: LoadingStatusEnum.Loading,
         };
       })
       .addCase(getSellerAddresses.fulfilled, (state, action) => {
         state.addresses = action.payload;
         state.loading = {
           ...state.loading,
-          sellerAddressesLoading: LoadingStatusEnum.Success,
+          addressesLoading: LoadingStatusEnum.Success,
         };
       })
       .addCase(getSellerAddresses.rejected, state => {
         state.loading = {
           ...state.loading,
-          sellerAddressesLoading: LoadingStatusEnum.Failed,
+          addressesLoading: LoadingStatusEnum.Failed,
         };
       })
 
       .addCase(getSellerAvatar.pending, state => {
         state.loading = {
           ...state.loading,
-          sellerAvatarLoading: LoadingStatusEnum.Loading,
+          avatarLoading: LoadingStatusEnum.Loading,
         };
       })
       .addCase(getSellerAvatar.fulfilled, (state, action) => {
         state.sellerAvatar = action.payload.result.thumbnail_url;
         state.loading = {
           ...state.loading,
-          sellerAvatarLoading: LoadingStatusEnum.Success,
+          avatarLoading: LoadingStatusEnum.Success,
         };
       })
       .addCase(getSellerAvatar.rejected, state => {
         state.loading = {
           ...state.loading,
-          sellerAvatarLoading: LoadingStatusEnum.Failed,
+          avatarLoading: LoadingStatusEnum.Failed,
         };
       });
   },

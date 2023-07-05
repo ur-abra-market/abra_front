@@ -12,12 +12,12 @@ export interface IUserPersonalInfo {
   phoneNumber: string;
 }
 
-export interface IUserLoading {
+export interface ILoading {
   personalInfoLoading: LoadingStatusEnum;
 }
 
 interface IUserSliceInitialState {
-  loading: IUserLoading;
+  loading: ILoading;
   personalInfo: IUserPersonalInfo;
   favoritesProducts: any[];
 }
