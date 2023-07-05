@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -18,7 +18,6 @@ import {
 } from 'pages/supplier-pages/supplier-pages-common';
 import { ISupplierUpdateBusinessInfo } from 'services/supplier/supplier.serviceTypes';
 import {
-  getBusinessInfo,
   supplierBusinessInfoSelector,
   updateBusinessInfo,
   supplierCompanyLogoIdSelector,
@@ -47,10 +46,6 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const handleDeleteImage = (): void => {
     if (companyLogoId !== null) dispatch(deleteCompanyLogo(companyLogoId));
   };
-
-  useEffect(() => {
-    dispatch(getBusinessInfo());
-  }, [dispatch]);
 
   useSupplierBusinessInfoSetValue(setValue, businessInfoData);
 

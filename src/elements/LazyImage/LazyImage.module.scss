@@ -1,0 +1,19 @@
+.image_container {
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+  background: inherit;
+
+  transition: opacity 0.7s;
+}
+
+.image_container.loaded {
+  opacity: 1;
+}
+
+.image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover
+}

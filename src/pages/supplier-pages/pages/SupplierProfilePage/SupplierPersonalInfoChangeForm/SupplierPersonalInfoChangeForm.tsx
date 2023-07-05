@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -8,17 +8,23 @@ import style from './SupplierPersonalInfoChangeForm.module.scss';
 import { personalInfoFormValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
-import { IPersonalInfoFormData } from 'common/types';
+import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
 import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
 import { ButtonLogOut } from 'elements/ButtonLogOut/ButtonLogOut';
 import { PersonalInfoChangeForm } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
-import { supplierPersonalInfoSelector } from 'store/reducers/supplier/profile';
-import { getPersonalInfo, updatePersonalInfo } from 'store/reducers/userSlice';
+import {
+  supplierLoadingSelector,
+  supplierPersonalInfoSelector,
+} from 'store/reducers/supplier/profile';
+import { updatePersonalInfo } from 'store/reducers/userSlice';
 import { Button } from 'ui-kit';
 
 export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
+  const isLoading =
+    useAppSelector(supplierLoadingSelector).personalInfoLoading ===
+    LoadingStatusEnum.Loading;
 
   const data = useAppSelector(supplierPersonalInfoSelector);
 
@@ -36,10 +42,6 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
   const numberCountry = countries.find(c => c.country_short === countryShort);
 
   useSetPersonalInfoValues(setValue, data, numberCountry);
-
-  useEffect(() => {
-    dispatch(getPersonalInfo());
-  }, [dispatch]);
 
   const [phoneNumberValue, lastNameValue, firstNameValue, countryShortValue] = watch([
     'phoneNumber',
@@ -90,7 +92,7 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
 
           <Button
             type="submit"
-            disabled={!formState.isValid || isPersonalInfoFormDisable}
+            disabled={isLoading || !formState.isValid || isPersonalInfoFormDisable}
             className={style.submit_button}
             label="Save"
           />

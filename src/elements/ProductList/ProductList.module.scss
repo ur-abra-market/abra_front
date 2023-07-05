@@ -1,6 +1,8 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+
   width: calc(100% - 464px);
   padding-right: 118px;
 }
@@ -46,7 +48,7 @@
   display: flex;
   flex-wrap: wrap;
   row-gap: 16px;
-  justify-content: space-between;
+  column-gap: 11px;
 
   width: 100%;
   max-height: 1968px;

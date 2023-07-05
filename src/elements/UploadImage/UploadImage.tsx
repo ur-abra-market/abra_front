@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  DetailedHTMLProps,
-  FC,
-  HTMLAttributes,
-  useEffect,
-} from 'react';
+import React, { ChangeEvent, DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
@@ -12,8 +6,8 @@ import style from './UploadImage.module.scss';
 
 import { CrossRedIcon, UploadItemImageIcon, UploadLogoImageIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
+import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
-import { fetchCompanyLogo } from 'store/reducers/supplier/profile';
 
 interface IUploadImage
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -83,10 +77,6 @@ export const UploadImage: FC<IUploadImage> = ({
     }
   };
 
-  useEffect(() => {
-    if (type === 'logo') dispatch(fetchCompanyLogo());
-  }, [dispatch, type]);
-
   return (
     <div className={cn(style.wrapper, className)} {...restProps}>
       <input
@@ -98,7 +88,7 @@ export const UploadImage: FC<IUploadImage> = ({
       <div className={style.img_wrapper}>
         {image ? (
           <div>
-            <img className={imgClasses} src={image} alt={description} />
+            <LazyImage src={image} alt={description} className={imgClasses} />
 
             {type === 'default' && (
               <button className={crossClasses} onClick={deleteImage} type="button">

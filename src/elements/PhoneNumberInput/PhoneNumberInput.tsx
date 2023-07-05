@@ -16,12 +16,14 @@ interface IPhoneNumberInput {
   label: string;
   countryShort?: string;
   phoneInputClass?: string;
+  disabled?: boolean;
 }
 
 export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
   countryShort,
   phoneInputClass,
   label,
+  disabled,
 }): JSX.Element => {
   const countries = useAppSelector(state => state.common.countries);
 
@@ -43,6 +45,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
   ): void => {
     const countryId = countries.find(el => el.country_short === data.countryCode)?.id;
 
+    setValue('phoneNumber', formattedValue);
     setValue('countryShort', data?.countryCode);
     if (countryId) {
       setValue('countryId', countryId);
@@ -72,6 +75,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
 
   const phoneButtonClasses = cn({
     [style.phone_flag]: true,
+    [style.phone_flag_disabled]: disabled,
     [style.phone_flag_error]: Boolean(phoneNumberError),
   });
 
@@ -82,10 +86,11 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
       <Label label={label} htmlFor="tel">
         {countries.length && (
           <PhoneInput
+            disabled={disabled}
             key={countryShort}
             inputClass={phoneInputClasses}
             buttonClass={phoneButtonClasses}
-            country={countryShort || ''}
+            country={countryShort || 'ru'}
             value={watch('phoneNumber')}
             onChange={handlePhoneInputOnChange}
             onlyCountries={countries.map(el => el.country_short)}

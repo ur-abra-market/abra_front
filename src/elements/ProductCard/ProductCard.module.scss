@@ -5,65 +5,6 @@
   height: 325px;
 }
 
-.image {
-  cursor: pointer;
-  position: relative;
-  width: 220px;
-  height: 220px;
-}
-
-.image:hover > .hover{
-  z-index: 10;
-  opacity: 1;
-}
-
-.image > img {
-  width: 220px;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.flag{
-  position: absolute;
-  z-index: 11;
-  top: 16px;
-  right: 16px;
-}
-
-.hover{
-  position: absolute;
-  z-index: -10;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  opacity: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
-  border-radius: 8px;
-
-  transition: all 0.5s;
-}
-
-.hover_text{
-  display: flex;
-  gap: 10px;
-  align-items: center;
-
-  font-family: Roboto, sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  font-style: normal;
-  line-height: 27px;
-  color: #FFF;
-}
-
-
 .link {
   color: inherit;
 }

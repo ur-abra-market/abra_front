@@ -4,6 +4,7 @@ import style from './CheckItems.module.scss';
 
 import { ArrowIcon, DotIcon, StarFilledIcon } from 'assets/icons';
 import { Banner1Image } from 'assets/images';
+import { LazyImage } from 'elements/LazyImage/LazyImage';
 
 interface CheckItemsProps {
   index: string;
@@ -36,7 +37,7 @@ const CheckItems: FC<CheckItemsProps> = ({ index }): JSX.Element => {
           </div>
         </div>
         <div className={style.check_items_product}>
-          <img src={Banner1Image} alt="" />
+          <LazyImage src={Banner1Image} alt="" />
           <div className={style.check_items_product_info}>
             <div className={style.check_items_product_info_name}>
               Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes

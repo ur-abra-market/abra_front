@@ -39,6 +39,7 @@ export {
   ORDERS,
   PRICE,
   DASHBOARD,
+  PRODUCTS,
   FEEDBACK,
 } from './path-constants/supplier';
 

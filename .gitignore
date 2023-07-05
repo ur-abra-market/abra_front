@@ -20,6 +20,7 @@
 .env.production.local
 
 npm-debug.log*
+yarn.lock
 yarn-debug.log*
 yarn-error.log*
 
@@ -27,3 +28,4 @@ yarn-error.log*
 .idea
 
 package-lock.json
+yarn.lock
