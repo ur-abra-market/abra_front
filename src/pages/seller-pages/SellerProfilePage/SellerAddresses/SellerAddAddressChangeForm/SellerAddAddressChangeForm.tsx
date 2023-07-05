@@ -36,21 +36,20 @@ export const SellerAddAddressChangeForm: FC<ISellerAddAddressChangeForm> = ({
     if (!isValid) return;
     const { numberBody, countryCode } = parsePhoneNumber(data.phoneNumber);
 
-    // const countryId = countries.find(el => el.country === data.country)?.id!;
     const phoneCountryId = countries.find(el => el.country_code === countryCode)?.id;
 
     const updateSellerAddressData: ISellerAddressRequest = {
       seller_address_request: {
         is_main: data.isMain || false,
-        area: data.area,
         city: data.city,
         street: data.street,
-        building: data.building,
-        apartment: data.apartment,
         postal_code: data.postalCode,
         country_id: data.country,
         first_name: data.firstName,
         last_name: data.lastName,
+        ...(data.area && { area: data.area }),
+        ...(data.building && { building: data.building }),
+        ...(data.apartment && { apartment: data.apartment }),
       },
       seller_address_phone_request: {
         country_id: phoneCountryId!,

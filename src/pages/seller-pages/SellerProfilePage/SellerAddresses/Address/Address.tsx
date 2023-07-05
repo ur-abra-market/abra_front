@@ -25,7 +25,7 @@ export const Address: FC<AddressProps> = ({ address }): JSX.Element => {
     address.country.country,
     address.postal_code,
   ];
-  const arrFilter = arrAddress.filter(e => e !== '').join(', ');
+  const arrFilter = arrAddress.filter(e => e !== undefined).join(', ');
   const [modal, setModal] = useState(false);
 
   const onClickModal = (): void => {

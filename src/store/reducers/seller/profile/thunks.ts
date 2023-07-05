@@ -49,12 +49,18 @@ export const addSellerAddresses = createAsyncThunk<
 >('seller/addSellerAddresses', async (arg, { rejectWithValue, dispatch }) => {
   try {
     await sellerService.addAddress(arg);
+    dispatch(
+      setResponseNotice({ noticeType: 'success', message: 'Address successfully added' }),
+    );
     dispatch(getSellerAddresses());
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
         ? error.response?.data?.error || error.message
         : '[addSellerAddresses]: Error';
+
+    if (error instanceof AxiosError)
+      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
 
     return rejectWithValue(errorMessage);
   }
@@ -67,12 +73,21 @@ export const updateSellerAddresses = createAsyncThunk<
 >('seller/updateSellerAddresses', async (arg, { rejectWithValue, dispatch }) => {
   try {
     await sellerService.updateAddress(arg);
+    dispatch(
+      setResponseNotice({
+        noticeType: 'success',
+        message: 'Address successfully changed',
+      }),
+    );
     dispatch(getSellerAddresses());
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
         ? error.response?.data?.error || error.message
         : '[updateSellerAddresses]: Error';
+
+    if (error instanceof AxiosError)
+      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
 
     return rejectWithValue(errorMessage);
   }

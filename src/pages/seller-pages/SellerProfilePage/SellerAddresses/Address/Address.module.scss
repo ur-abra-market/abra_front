@@ -34,6 +34,12 @@
   cursor: pointer;
 }
 
+.address_edit:hover {
+  path {
+    fill: var(--color-accent);
+  }
+}
+
 .address_location_info {
   margin: 0 0 17px;
 
