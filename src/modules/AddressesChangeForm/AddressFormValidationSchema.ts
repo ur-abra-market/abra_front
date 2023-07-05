@@ -44,20 +44,7 @@ export const addressFormValidationSchema = yup
       .min(1, 'Please enter at least 1 character')
       .max(10, 'Please limit to 10 characters')
       .required('Field is required'),
-    country: yup
-      .string()
-      .oneOf([
-        'Azerbaijan',
-        'Belarus',
-        'Kazakhstan',
-        'Kyrgyzstan',
-        'Russian Federation',
-        'Tajikistan',
-        'Turkey',
-        'Ukraine',
-        'Uzbekistan',
-      ])
-      .required('Pick country'),
+    country: yup.number().required('Pick country'),
     isMain: yup.boolean(),
   })
   .required();

@@ -1,19 +1,18 @@
 version: "3.9"
 
-name: abra-front
 services:
   web:
     container_name: web
     build:
       context: ${PWD}
       dockerfile: docker/Dockerfile
-    command: /bin/bash -c \
-      "echo '[+] Run frontend' && \
-      yarn start"
+    command: /bin/sh -c \
+      "echo '[+] Run nginx server' && \
+      nginx -g 'daemon off;'"
     ports:
-      - 3000:3000
+      - ${EXPOSE_PORT}:${EXPOSE_PORT}
     expose:
-      - 3000
+      - ${EXPOSE_PORT}
     env_file:
       - ${PWD}/.env
     restart: unless-stopped
