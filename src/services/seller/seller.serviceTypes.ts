@@ -5,11 +5,11 @@ interface ISellerAddress {
   is_main: boolean;
   first_name: string;
   last_name: string;
-  area: string;
+  area?: string;
   city: string;
   street: string;
-  building: string;
-  apartment: string;
+  building?: string;
+  apartment?: string;
   postal_code: string;
 }
 
