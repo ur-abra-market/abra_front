@@ -23,7 +23,7 @@ export const SelectHeader: FC<ISelectHeaderPropsType> = ({
   return (
     <div onClick={onClick} role="presentation" className={className}>
       {currentSelectedValue.label}
-      <ArrowIcon className={cn({ [style.arrow_up]: isOpenMenu })} />
+      <ArrowIcon className={cn({ [style.arrow_up]: isOpenMenu })} width="14" />
     </div>
   );
 };
