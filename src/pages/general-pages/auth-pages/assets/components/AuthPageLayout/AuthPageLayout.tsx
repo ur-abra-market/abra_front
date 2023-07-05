@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 
 import cn from 'classnames';
 
@@ -6,28 +6,33 @@ import style from './AuthPageLayout.module.scss';
 
 import { useAppSelector } from 'common/hooks';
 import { IAuthFooterData, LoadingStatusEnum } from 'common/types';
+import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
 import { LoaderLinear, MainLogo, SimpleLink } from 'ui-kit';
 
 interface IAuthPageLayout {
   children: ReactNode;
+  withHeader?: boolean;
   isMainLogoShow?: boolean;
   footerData?: IAuthFooterData[];
 }
 
 export const AuthPageLayout: FC<IAuthPageLayout> = ({
+  withHeader = false,
   children,
   footerData,
   isMainLogoShow = false,
 }): JSX.Element => {
   const isLoading = useAppSelector(state => state.app.loading);
 
+  const wrapperClasses = cn(style.wrapper, {
+    [style.pointer_none]: isLoading === LoadingStatusEnum.Loading,
+  });
+
   return (
-    <div
-      className={cn(style.wrapper, {
-        [style.pointer_none]: isLoading === LoadingStatusEnum.Loading,
-      })}
-    >
+    <div className={wrapperClasses}>
+      {withHeader && <AdditionalHeaderBlock />}
+
       <div className={style.content}>
         {isLoading === LoadingStatusEnum.Loading && <LoaderLinear />}
         {isMainLogoShow && (
