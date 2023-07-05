@@ -14,17 +14,22 @@ import { UploadImage } from 'elements';
 import { ButtonLogOut } from 'elements/ButtonLogOut/ButtonLogOut';
 import { PersonalInfoChangeForm } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
-import { sellerPersonalInfoSelector } from 'store/reducers/seller/profile';
+import { sellerAvatarSelector } from 'store/reducers/seller/profile';
 import { getSellerAvatar } from 'store/reducers/seller/profile/thunks';
-import { getPersonalInfo, updatePersonalInfo } from 'store/reducers/userSlice';
+import {
+  getPersonalInfo,
+  updatePersonalInfo,
+  userPersonalInfoSelector,
+} from 'store/reducers/userSlice';
 import { Button } from 'ui-kit';
 
 export const SellerPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
-  const data = useAppSelector(sellerPersonalInfoSelector);
+  const data = useAppSelector(userPersonalInfoSelector);
+  const avatar = useAppSelector(sellerAvatarSelector);
 
-  const { countryShort, phoneNumber, lastName, firstName, avatar } = data;
+  const { countryShort, phoneNumber, lastName, firstName } = data;
 
   const formMethods = useForm<IPersonalInfoFormData>({
     resolver: yupResolver(personalInfoFormValidationSchema),

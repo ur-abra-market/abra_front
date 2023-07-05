@@ -7,7 +7,6 @@ export {
   fetchCompanyLogo,
 } from './thunks';
 export {
-  supplierPersonalInfoSelector,
   supplierLoadingSelector,
   supplierNotificationsSelector,
   supplierBusinessInfoSelector,

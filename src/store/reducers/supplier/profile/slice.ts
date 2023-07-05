@@ -14,14 +14,6 @@ import {
 
 import { LoadingStatusEnum } from 'common/types';
 import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
-import { getPersonalInfo, updatePersonalInfo } from 'store/reducers/userSlice';
-
-export interface ISupplierPersonalInfo {
-  firstName: string;
-  lastName: string;
-  countryShort: string;
-  phoneNumber: string;
-}
 
 interface IBusinessSector {
   value: string;
@@ -47,16 +39,14 @@ export interface ISupplierBusinessInfo {
   countryId: number | null;
 }
 
-export interface ISupplierProfileLoading {
-  personalInfoLoading: LoadingStatusEnum;
+export interface ILoading {
   businessInfoLoading: LoadingStatusEnum;
   notificationsLoading: LoadingStatusEnum;
   companyLogoLoading: LoadingStatusEnum;
 }
 
 interface ISupplierProfileSliceInitialState {
-  loading: ISupplierProfileLoading;
-  personalInfo: ISupplierPersonalInfo;
+  loading: ILoading;
   businessInfo: ISupplierBusinessInfo;
   notifications: ISupplierNotifications | null;
   hasCompanyInfo: boolean;
@@ -65,16 +55,9 @@ interface ISupplierProfileSliceInitialState {
 
 const initialState: ISupplierProfileSliceInitialState = {
   loading: {
-    personalInfoLoading: LoadingStatusEnum.Idle,
     businessInfoLoading: LoadingStatusEnum.Idle,
     notificationsLoading: LoadingStatusEnum.Idle,
     companyLogoLoading: LoadingStatusEnum.Idle,
-  },
-  personalInfo: {
-    firstName: '',
-    lastName: '',
-    countryShort: '',
-    phoneNumber: '',
   },
   businessInfo: {
     storeName: '',
@@ -106,45 +89,6 @@ export const supplierProfileSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(getPersonalInfo.pending, state => {
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Loading,
-        };
-      })
-      .addCase(getPersonalInfo.fulfilled, (state, action) => {
-        if (action.payload.is_supplier) {
-          state.personalInfo.lastName = action.payload.last_name;
-          state.personalInfo.firstName = action.payload.first_name;
-          state.personalInfo.countryShort =
-            action.payload.country && action.payload.country.country_short;
-          state.personalInfo.phoneNumber = action.payload.phone_number;
-        }
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Success,
-        };
-      })
-      .addCase(getPersonalInfo.rejected, state => {
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Failed,
-        };
-      })
-
-      .addCase(updatePersonalInfo.pending, state => {
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Loading,
-        };
-      })
-      .addCase(updatePersonalInfo.rejected, state => {
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Failed,
-        };
-      })
-
       .addCase(getBusinessInfo.pending, state => {
         state.loading = {
           ...state.loading,
