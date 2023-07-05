@@ -1,7 +1,11 @@
 import React from 'react';
 
-import style from './ProductPageHeader.module.scss';
+import { Grades } from 'elements';
 
 export const ProductPageHeader = (): JSX.Element => {
-  return <header />;
+  return (
+    <div>
+      <Grades grade="4.4" count={1900} />
+    </div>
+  );
 };
