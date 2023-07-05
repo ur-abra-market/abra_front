@@ -1,0 +1,35 @@
+.checkout_address {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap:16px
+}
+
+.checkout_address_title{
+  margin-bottom: 32px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.checkout_address_add_button {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 29px;
+
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #FC133D;
+  text-decoration: underline;
+
+  border: 1px solid #D4D4D4;
+  border-radius: 12px;
+}
+

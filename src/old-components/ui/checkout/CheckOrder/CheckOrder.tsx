@@ -13,7 +13,7 @@ const CheckOrder = (): JSX.Element => {
   };
 
   return (
-    <div className={style.check_order}>
+    <>
       <div className={style.check_order_title}>
         <span className={style.check_order_title_text}>Items to Order</span>
         <span className={style.check_order_title_text}>400</span>
@@ -46,7 +46,7 @@ const CheckOrder = (): JSX.Element => {
           Your data and orders are secured
         </span>
       </div>
-    </div>
+    </>
   );
 };
 
