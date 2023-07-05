@@ -5,20 +5,15 @@ import style from './AdditionalHeaderBlock.module.scss';
 import { HeaderProfileIcon, Home } from 'assets/icons';
 import { useAppSelector } from 'common/hooks';
 import { HOME, PERSONAL_ACCOUNT } from 'routes';
-import { isAuthSelector, userRoleSelector } from 'store/reducers/authSlice';
+import { isAuthSelector } from 'store/reducers/authSlice';
 import { ButtonIcon, MainLogo } from 'ui-kit';
 
 export const AdditionalHeaderBlock = (): JSX.Element => {
-  const isAuth = useAppSelector(isAuthSelector);
-  const userRole = useAppSelector(userRoleSelector);
+  const isAuthorized = useAppSelector(isAuthSelector);
   const navigate = useNavigate();
 
   const handleProfileTransition = (): void => {
-    if (userRole === 'seller') {
-      navigate(PERSONAL_ACCOUNT);
-    } else {
-      navigate(HOME);
-    }
+    navigate(PERSONAL_ACCOUNT);
   };
 
   const handleHomeTransition = (): void => {
@@ -27,18 +22,20 @@ export const AdditionalHeaderBlock = (): JSX.Element => {
 
   return (
     <nav className={style.header_wrapper}>
-      <div className={style.header_block}>
-        <MainLogo className={style.header_logo} />
+      <div className={style.header_container}>
+        <div className={style.header_block}>
+          <MainLogo className={style.header_logo} />
 
-        {isAuth ? (
-          <ButtonIcon onClick={handleProfileTransition}>
-            <HeaderProfileIcon />
-          </ButtonIcon>
-        ) : (
-          <ButtonIcon onClick={handleHomeTransition}>
-            <Home />
-          </ButtonIcon>
-        )}
+          {isAuthorized ? (
+            <ButtonIcon onClick={handleProfileTransition}>
+              <HeaderProfileIcon />
+            </ButtonIcon>
+          ) : (
+            <ButtonIcon onClick={handleHomeTransition}>
+              <Home />
+            </ButtonIcon>
+          )}
+        </div>
       </div>
     </nav>
   );
