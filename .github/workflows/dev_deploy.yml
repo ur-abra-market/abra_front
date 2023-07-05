@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - dev_deploy_workflow
+      - dev
 
 jobs:
   deploy:
