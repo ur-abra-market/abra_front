@@ -1,4 +1,9 @@
-export { getSellerNotifications, updateSellerNotifications } from './thunks';
+export {
+  getSellerNotifications,
+  updateSellerNotifications,
+  getSellerAvatar,
+  updateSellerAvatar,
+} from './thunks';
 export {
   sellerLoadingSelector,
   sellerNotificationSelector,

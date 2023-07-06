@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -14,8 +14,11 @@ import { UploadImage } from 'elements';
 import { ButtonLogOut } from 'elements/ButtonLogOut/ButtonLogOut';
 import { PersonalInfoChangeForm } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
-import { sellerAvatarSelector } from 'store/reducers/seller/profile';
-import { getSellerAvatar } from 'store/reducers/seller/profile/thunks';
+import {
+  getSellerAvatar,
+  sellerAvatarSelector,
+  updateSellerAvatar,
+} from 'store/reducers/seller/profile';
 import {
   getPersonalInfo,
   updatePersonalInfo,
@@ -85,7 +88,9 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
     dispatch(updatePersonalInfo(updatePersonalInfoData));
   };
 
-  const handleUploadImage = useCallback((image: File): void => {}, []); // пока нету санки
+  const handleUploadImage = (image: File): void => {
+    dispatch(updateSellerAvatar(image));
+  };
 
   return (
     <div className={style.wrapper}>

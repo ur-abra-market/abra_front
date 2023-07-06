@@ -5,9 +5,13 @@ import cn from 'classnames';
 import style from './UploadImage.module.scss';
 
 import { CrossRedIcon, UploadItemImageIcon, UploadLogoImageIcon } from 'assets/icons';
-import { useAppDispatch } from 'common/hooks';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { LoadingStatusEnum } from 'common/types';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
+import { userRoleSelector } from 'store/reducers/authSlice';
+import { sellerLoadingSelector } from 'store/reducers/seller/profile';
+import { supplierLoadingSelector } from 'store/reducers/supplier/profile';
 
 interface IUploadImage
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -34,6 +38,16 @@ export const UploadImage: FC<IUploadImage> = ({
   ...restProps
 }) => {
   const dispatch = useAppDispatch();
+  const userRole = useAppSelector(userRoleSelector);
+  const sellerLoading = useAppSelector(sellerLoadingSelector);
+  const supplierLoading = useAppSelector(supplierLoadingSelector);
+
+  const isDisabled =
+    (userRole === 'seller' &&
+      sellerLoading.avatarLoading === LoadingStatusEnum.Loading) ||
+    (userRole === 'supplier' &&
+      supplierLoading.companyLogoLoading === LoadingStatusEnum.Loading);
+
   const uploadImageIcon =
     type === 'logo' || type === 'avatar' ? (
       <UploadLogoImageIcon />
@@ -80,6 +94,7 @@ export const UploadImage: FC<IUploadImage> = ({
   return (
     <div className={cn(style.wrapper, className)} {...restProps}>
       <input
+        disabled={isDisabled}
         type="file"
         className={inputClasses}
         id="profileLogo"
