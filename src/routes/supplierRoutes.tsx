@@ -62,16 +62,16 @@ export const supplierRoutes: RouteObject[] = [
         path: FEEDBACK,
         element: <FeedbackAndQuestionsPage />,
       },
-      {
-        path: ACCOUNT_SETUP_PERSONAL_INFO,
-        element: <AccountSetupPersonalInfoPage />,
-      },
-
-      {
-        path: ACCOUNT_SETUP_BUSINESS_INFO,
-        element: <AccountSetupBusinessInfoPage />,
-      },
     ],
+  },
+  {
+    path: ACCOUNT_SETUP_PERSONAL_INFO,
+    element: <AccountSetupPersonalInfoPage />,
+  },
+
+  {
+    path: ACCOUNT_SETUP_BUSINESS_INFO,
+    element: <AccountSetupBusinessInfoPage />,
   },
   {
     path: ADD_PRODUCT,
