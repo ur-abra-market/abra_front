@@ -1,6 +1,5 @@
 import {
   IGradeProductResponse,
-  IProduct,
   IProductCompilation,
   ICategoryRequest,
   IPopularProductRequest,
