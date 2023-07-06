@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import { useParams } from 'react-router-dom';
-
 import style from './Favorite.module.scss';
 
 import { FavouriteAddedIcon, FavouriteAddedToIcon } from 'assets/icons';
@@ -14,16 +12,19 @@ import { ButtonIcon } from 'ui-kit';
 
 interface IFavoriteProps {
   isFavorite: boolean;
+  product_id: number;
 }
 
-export const Favorite: FC<IFavoriteProps> = ({ isFavorite = false }): JSX.Element => {
+export const Favorite: FC<IFavoriteProps> = ({
+  isFavorite = false,
+  product_id,
+}): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { productId } = useParams<string>();
   const onClickHandler = (): void => {
     if (isFavorite) {
-      dispatch(removeFavoriteProduct({ product_id: Number(productId) }));
+      dispatch(removeFavoriteProduct({ product_id }));
     } else {
-      dispatch(addFavoriteProduct({ product_id: Number(productId) }));
+      dispatch(addFavoriteProduct({ product_id }));
     }
   };
 
