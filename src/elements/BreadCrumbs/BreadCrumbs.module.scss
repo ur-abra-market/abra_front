@@ -1,0 +1,14 @@
+.items {
+  display: flex;
+  column-gap: 24px;
+  color: var(--color-black);
+}
+
+.item {
+  display: flex;
+  column-gap: 24px;
+}
+
+.item_link {
+  color: inherit;
+}
