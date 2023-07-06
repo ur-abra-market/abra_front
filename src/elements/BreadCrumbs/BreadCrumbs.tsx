@@ -14,7 +14,7 @@ export const BreadCrumbs: FC<IBreadCrumbsProps> = ({ categoryName }): JSX.Elemen
     { id: 1, name: 'Clothing' },
     { id: 2, name: 'For women' },
     { id: 3, name: categoryName },
-  ];
+  ]; // пока так, не получаем всех значений
 
   return (
     <ul className={style.items}>

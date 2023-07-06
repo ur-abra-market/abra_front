@@ -32,6 +32,27 @@ export const productService = {
     return data.result;
   },
 
+  addFavorite: async (params: IProductRequest) => {
+    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+      `/products/addFavorite/`,
+      {},
+      { params },
+    );
+
+    return data.result;
+  },
+
+  removeFavorite: async (params: IProductRequest) => {
+    const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
+      `/products/removeFavorite/`,
+      {
+        params,
+      },
+    );
+
+    return data.result;
+  },
+
   getProductImagesById: async ({ product_id }: IProductRequest) => {
     const { data } = await baseConfigService.get(`products/${product_id}/images/`, {});
 
