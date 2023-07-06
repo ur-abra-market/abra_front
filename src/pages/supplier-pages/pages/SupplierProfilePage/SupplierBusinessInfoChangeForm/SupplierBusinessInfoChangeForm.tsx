@@ -20,19 +20,14 @@ import { ISupplierUpdateBusinessInfo } from 'services/supplier/supplier.serviceT
 import {
   supplierBusinessInfoSelector,
   updateBusinessInfo,
-  supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
 } from 'store/reducers/supplier/profile';
-import {
-  deleteCompanyLogo,
-  uploadCompanyLogo,
-} from 'store/reducers/supplier/profile/thunks';
+import { uploadCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const businessInfoData = useAppSelector(supplierBusinessInfoSelector);
   const companyLogo = useSelector(supplierCompanyLogoSelector);
-  const companyLogoId = useSelector(supplierCompanyLogoIdSelector);
 
   const formMethods = useForm<ISupplierBusinessInfoFormData>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
@@ -42,9 +37,6 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
 
   const handleUploadImage = (image: File): void => {
     dispatch(uploadCompanyLogo(image));
-  };
-  const handleDeleteImage = (): void => {
-    if (companyLogoId !== null) dispatch(deleteCompanyLogo(companyLogoId));
   };
 
   useSupplierBusinessInfoSetValue(setValue, businessInfoData);
@@ -93,7 +85,6 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
         label="Add logo or profile image"
         placeholder="The customers will recognize your store by this image"
         uploadImage={handleUploadImage}
-        deleteImage={handleDeleteImage}
         description="company logo"
       />
       <FormProvider {...formMethods}>

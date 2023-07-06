@@ -29,10 +29,10 @@ import { Button } from 'ui-kit';
 export const SellerPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
-  const data = useAppSelector(userPersonalInfoSelector);
-  const avatar = useAppSelector(sellerAvatarSelector);
+  const userData = useAppSelector(userPersonalInfoSelector);
+  const userAvatar = useAppSelector(sellerAvatarSelector);
 
-  const { countryShort, phoneNumber, lastName, firstName } = data;
+  const { countryShort, phoneNumber, lastName, firstName } = userData;
 
   const formMethods = useForm<IPersonalInfoFormData>({
     resolver: yupResolver(personalInfoFormValidationSchema),
@@ -45,7 +45,7 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
 
   const numberCountry = countries.find(c => c.country_short === countryShort);
 
-  useSetPersonalInfoValues(setValue, data, numberCountry);
+  useSetPersonalInfoValues(setValue, userData, numberCountry);
 
   useEffect(() => {
     dispatch(getPersonalInfo());
@@ -103,7 +103,7 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
         uploadImage={handleUploadImage}
         label="Add image"
         type="avatar"
-        image={avatar || ''}
+        image={userAvatar || ''}
         description="avatar"
       />
 

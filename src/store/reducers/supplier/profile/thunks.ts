@@ -116,13 +116,13 @@ export const uploadCompanyLogo = createAsyncThunk<
   }
 });
 
-export const deleteCompanyLogo = createAsyncThunk<
+export const deleteCompanyImage = createAsyncThunk<
   IBaseResponse<boolean>,
   number,
   IAsyncThunkConfig
 >('supplierProfile/deleteCompanyLogo', async (id, { rejectWithValue }) => {
   try {
-    return await supplierService.deleteCompanyLogo(id);
+    return await supplierService.deleteCompanyImage(id);
   } catch (error) {
     const err = error as AxiosError<ISupplierErrorResponse>;
 

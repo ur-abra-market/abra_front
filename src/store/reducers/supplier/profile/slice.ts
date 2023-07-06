@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
-  deleteCompanyLogo,
+  deleteCompanyImage,
   fetchCompanyLogo,
   getBusinessInfo,
   getSupplierNotifications,
@@ -223,20 +223,20 @@ export const supplierProfileSlice = createSlice({
         };
       })
 
-      .addCase(deleteCompanyLogo.pending, state => {
+      .addCase(deleteCompanyImage.pending, state => {
         state.loading = {
           ...state.loading,
           companyLogoLoading: LoadingStatusEnum.Loading,
         };
       })
-      .addCase(deleteCompanyLogo.fulfilled, state => {
+      .addCase(deleteCompanyImage.fulfilled, state => {
         state.businessInfo.companyLogo = '';
         state.loading = {
           ...state.loading,
           companyLogoLoading: LoadingStatusEnum.Success,
         };
       })
-      .addCase(deleteCompanyLogo.rejected, state => {
+      .addCase(deleteCompanyImage.rejected, state => {
         state.loading = {
           ...state.loading,
           companyLogoLoading: LoadingStatusEnum.Failed,
