@@ -27,8 +27,6 @@ export const ProductPageHeader = (): JSX.Element => {
     <header className={style.header}>
       <div className={style.inner_wrapper}>
         <BreadCrumbs categoryName={categoryName} />
-        <Grades grade="4.4" count={1900} />
-        <Favorite product_id={Number(productId)} isFavorite={isFavorite} />
         <Grades grade={grade} count={totalOrders} />
         <Favorite product_id={Number(productId)} isFavorite={isFavorite} />
       </div>
