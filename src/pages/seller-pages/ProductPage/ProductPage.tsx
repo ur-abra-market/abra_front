@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { ProductMainInfo } from './ProductInfo/ProductInfo';
+import { ProductMainInfo } from './ProductMainInfo/ProductMainInfo';
 import style from './ProductPage.module.scss';
 import { ProductPageHeader } from './ProductPageHeader/ProductPageHeader';
 
