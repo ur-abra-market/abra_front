@@ -8,7 +8,7 @@ import { Stars } from 'ui-kit';
 import { Star } from 'ui-kit/Stars/Star/Star';
 
 interface IGradeProps {
-  grade: string;
+  grade: string | number;
   fiveStar?: boolean;
   variant?: 'deals' | 'reviews';
   count: number;
@@ -32,7 +32,7 @@ export const Grades: FC<IGradeProps> = ({
       {fiveStar ? (
         <Stars reward={+grade} sizes="24" />
       ) : (
-        <Star percent={grade} sizes="24" />
+        <Star percent={`${grade}`} sizes="24" />
       )}
 
       <div className={cn(style.text_container, textContainerMode)}>
