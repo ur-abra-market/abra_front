@@ -14,7 +14,7 @@ export interface IProductCard {
   category: ICategory;
   supplier: ISupplier;
   images: IImage[];
-  tags: any[];
+  tags: string[];
   prices: IPrice[];
   variations: any[];
 }

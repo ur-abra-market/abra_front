@@ -1,0 +1,15 @@
+.items {
+  display: flex;
+  column-gap: 16px;
+  margin-bottom: 40px;
+}
+
+.item {
+  font: var(--regular) var(--fz-s2) / 20px var(--roboto);
+  color: var(--color-accent);
+  letter-spacing: 0.16px;
+}
+
+.link {
+  color: inherit;
+}

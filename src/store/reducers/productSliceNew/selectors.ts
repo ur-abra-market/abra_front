@@ -16,3 +16,12 @@ export const productTotalOrdersSelector = (state: RootStateType): number =>
 
 export const productImagesSelector = (state: RootStateType): IImage[] =>
   state.productNew.productCard.images;
+
+export const productNameSelector = (state: RootStateType): string =>
+  state.productNew.productCard.name;
+
+export const productTagsSelector = (state: RootStateType): string[] =>
+  state.productNew.productCard.tags;
+
+export const productVariationsSelector = (state: RootStateType): any[] =>
+  state.productNew.productCard.variations;
