@@ -1,5 +1,6 @@
 export interface IProductSliceInitialState {
   productCard: IProductCard;
+  isFavorite: boolean;
 }
 export interface IProductCard {
   id: number;

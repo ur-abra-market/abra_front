@@ -16,8 +16,6 @@ export const ProductPage = WithLayout((): JSX.Element => {
   const { productId } = useParams<string>();
   const dispatch = useAppDispatch();
 
-  console.log(productId);
-
   useEffect(() => {
     if (!productId) return;
     const fetchData = async (): Promise<void> => {
