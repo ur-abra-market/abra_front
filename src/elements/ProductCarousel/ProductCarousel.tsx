@@ -10,9 +10,14 @@ import style from './ProductCarousel.module.scss';
 
 import { ArrowIcon } from 'assets/icons'; // 24px
 import { LazyImage } from 'elements/LazyImage/LazyImage';
+import { IImage } from 'store/reducers/productSliceNew/interfaces';
 import { Button } from 'ui-kit';
 
-const ProductCarousel: FC<Props> = props => {
+type Props = {
+  photoArray: IImage[];
+};
+
+export const ProductCarousel: FC<Props> = props => {
   const { photoArray } = props;
 
   const [activeThumb, setActiveThumb] = useState<SwiperType | null>(null);
@@ -33,69 +38,61 @@ const ProductCarousel: FC<Props> = props => {
   };
 
   return (
-    <section className={style.slider}>
-      <div className={style.flex_container}>
-        <div className={style.col}>
-          <Button color="white" onClick={handlePrev}>
-            <ArrowIcon className={style.arrow_up} />
-          </Button>
+    <div className={style.slider_container}>
+      <div className={style.images_slider}>
+        <Button color="white" onClick={handlePrev}>
+          <ArrowIcon className={style.arrow_up} />
+        </Button>
 
-          <div className={style.thumbs}>
-            <Swiper
-              onBeforeInit={onBeforeInit}
-              onSwiper={setActiveThumb}
-              direction="vertical"
-              spaceBetween={10}
-              slidesPerView="auto"
-              loop
-              className={style.swiper_container1}
-              modules={[Thumbs]}
-            >
-              {photoArray.map((slide, index) => {
-                return (
-                  <SwiperSlide key={`preview${index}`} style={{ height: 106 }}>
-                    <div className={style.preview_image}>
-                      <LazyImage src={slide} alt="" />
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-          </div>
-
-          <Button color="white" onClick={handleNext}>
-            <ArrowIcon />
-          </Button>
-        </div>
-
-        <div className={style.images}>
+        <div className={style.images_container}>
           <Swiper
-            thumbs={{ swiper: activeThumb }}
+            onBeforeInit={onBeforeInit}
+            onSwiper={setActiveThumb}
             direction="vertical"
-            slidesPerView={1}
-            spaceBetween={32}
-            mousewheel
-            className={style.swiper_container2}
-            modules={[Thumbs, Mousewheel]}
+            spaceBetween={8}
+            slidesPerView="auto"
+            loop
+            className={style.swiper_container}
+            modules={[Thumbs]}
           >
             {photoArray.map((slide, index) => {
               return (
-                <SwiperSlide key={`image${index}`}>
-                  <div className={style.slider_showed}>
-                    <LazyImage src={slide} alt="" />
+                <SwiperSlide key={`preview${index}`} className={style.image_slider}>
+                  <div className={style.preview_image}>
+                    <LazyImage src={slide.image_url} alt="" />
                   </div>
                 </SwiperSlide>
               );
             })}
           </Swiper>
         </div>
+
+        <Button color="white" onClick={handleNext}>
+          <ArrowIcon />
+        </Button>
       </div>
-    </section>
+
+      <div className={style.image_container}>
+        <Swiper
+          thumbs={{ swiper: activeThumb }}
+          direction="vertical"
+          slidesPerView={1}
+          spaceBetween={32}
+          mousewheel
+          className={style.swiper_container}
+          modules={[Thumbs, Mousewheel]}
+        >
+          {photoArray.map((slide, index) => {
+            return (
+              <SwiperSlide key={`image${index}`}>
+                <div className={style.slider_showed}>
+                  <LazyImage src={slide.image_url} alt="" />
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
+    </div>
   );
-};
-
-export default ProductCarousel;
-
-type Props = {
-  photoArray: string[];
 };

@@ -9,7 +9,7 @@ import { SimilarProduct } from './SimilarProduct/SimilarProduct';
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { IImageProduct, LoadingStatusEnum } from 'common/types';
-import ProductCarousel from 'elements/ProductCarousel/ProductCarousel';
+// import { ProductCarousel } from 'elements/ProductCarousel/ProductCarousel';
 import ProductReview from 'old-components/ProductPageOld/ProductReview/ProductReview';
 import ChoiceProduct from 'old-components/ui/product/ChoiceProduct';
 import FlagFavorites from 'old-components/ui/product/FlagFavorites';
@@ -77,7 +77,7 @@ export const ProductPage = WithLayout((): JSX.Element => {
       <div className={style.basic}>
         <div className={style.basic_left}>
           <ProductPath pathArr={[product.category_path, '/Dress', '/Spring-Summer']} />
-          {images && <ProductCarousel photoArray={productsArr} />}
+          {/* {images && <ProductCarousel photoArray={productsArr} />} */}
         </div>
         <div className={style.basic_right}>
           <div className={style.basic_top}>

@@ -1,33 +1,33 @@
-.slider {
+.slider_container {
   overflow: hidden;
-}
-
-.slider .swiper_container1 {
-  width: 100%;
-  height: 100%;
-}
-
-.slider .swiper_container2 {
-  width: 100%;
-  height: 100%;
-}
-
-.flex_container {
   display: flex;
 }
 
-.col {
+.images_slider {
   display: flex;
   flex-direction: column;
   max-width: 106px;
   margin-right: 8px;
 }
 
-.thumbs {
+.arrow_up {
+  transform: rotate(180deg);
+}
+
+.swiper_container {
+  width: 100%;
+  height: 100%;
+}
+
+.image_slider {
+  height: 106px;
+}
+
+.images_container {
   height: 562px;
 }
 
-.images {
+.image_container {
   width: 568px;
   height: 853px;
 }
@@ -47,8 +47,5 @@
   object-fit: cover;
 }
 
-.arrow_up {
-  transform: rotate(180deg);
-}
 
 

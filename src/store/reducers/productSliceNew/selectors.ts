@@ -6,10 +6,10 @@ export const productCategorySelector = (state: RootStateType): ICategory =>
   state.productNew.productCard.category ?? {};
 
 export const productGradeSelector = (state: RootStateType): number =>
-  state.productNew.productCard?.grade_average;
+  state.productNew.productCard.grade_average;
 
 export const productTotalOrdersSelector = (state: RootStateType): number =>
-  state.productNew.productCard?.total_orders;
+  state.productNew.productCard.total_orders;
 
 export const productImagesSelector = (state: RootStateType): IImage[] =>
-  state.productNew.productCard?.images;
+  state.productNew.productCard.images;
