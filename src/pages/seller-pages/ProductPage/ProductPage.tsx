@@ -7,7 +7,7 @@ import { ProductPageHeader } from './ProductPageHeader/ProductPageHeader';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch } from 'common/hooks';
-import { getProductById } from 'store/reducers/productSlice/thunks';
+import { getProductById } from 'store/reducers/productSliceNew/thunks';
 
 export const ProductPage = WithLayout((): JSX.Element => {
   const { productId } = useParams<string>();
