@@ -10,6 +10,7 @@ import {
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
+import { IProductCard } from 'store/reducers/productSlice/interfaces';
 
 export const productService = {
   getList: async (params: ICategoryRequest) => {
@@ -24,11 +25,9 @@ export const productService = {
     return data.result;
   },
 
-  getProductById: async (params: IProductRequest) => {
-    const { data } = await baseConfigService.post<IBaseResponse<IProduct>>(
-      `products/product_card_p1/`,
-      {},
-      { params },
+  getProductById: async ({ product_id }: IProductRequest) => {
+    const { data } = await baseConfigService.get<IBaseResponse<IProductCard>>(
+      `products/productCard/${product_id}/`,
     );
 
     return data.result;
