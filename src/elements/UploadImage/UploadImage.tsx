@@ -5,13 +5,9 @@ import cn from 'classnames';
 import style from './UploadImage.module.scss';
 
 import { CrossRedIcon, UploadItemImageIcon, UploadLogoImageIcon } from 'assets/icons';
-import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { LoadingStatusEnum } from 'common/types';
+import { useAppDispatch } from 'common/hooks';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
-import { userRoleSelector } from 'store/reducers/authSlice';
-import { sellerLoadingSelector } from 'store/reducers/seller/profile';
-import { supplierLoadingSelector } from 'store/reducers/supplier/profile';
 
 interface IUploadImage
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -22,6 +18,7 @@ interface IUploadImage
   uploadImage?: (img: File) => void;
   deleteImage?: () => void;
   description: string;
+  isDisabled?: boolean;
 }
 
 const MAX_FILE_SIZE = 5000000;
@@ -35,18 +32,10 @@ export const UploadImage: FC<IUploadImage> = ({
   deleteImage,
   uploadImage,
   description,
+  isDisabled,
   ...restProps
 }) => {
   const dispatch = useAppDispatch();
-  const userRole = useAppSelector(userRoleSelector);
-  const sellerLoading = useAppSelector(sellerLoadingSelector);
-  const supplierLoading = useAppSelector(supplierLoadingSelector);
-
-  const isDisabled =
-    (userRole === 'seller' &&
-      sellerLoading.avatarLoading === LoadingStatusEnum.Loading) ||
-    (userRole === 'supplier' &&
-      supplierLoading.companyLogoLoading === LoadingStatusEnum.Loading);
 
   const uploadImageIcon =
     type === 'logo' || type === 'avatar' ? (

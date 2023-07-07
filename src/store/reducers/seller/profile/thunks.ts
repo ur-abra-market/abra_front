@@ -161,9 +161,6 @@ export const updateSellerAvatar = createAsyncThunk<void, File, IAsyncThunkConfig
           ? error.response?.data?.error || error.message
           : '[updateSellerNotifications]: Error';
 
-      if (error instanceof AxiosError)
-        dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
-
       return rejectWithValue(errorMessage);
     }
   },

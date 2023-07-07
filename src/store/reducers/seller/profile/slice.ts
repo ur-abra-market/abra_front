@@ -130,6 +130,7 @@ const sellerProfileSlice = createSlice({
           avatarLoading: LoadingStatusEnum.Failed,
         };
       })
+
       .addCase(updateSellerAvatar.pending, state => {
         state.loading = {
           ...state.loading,

@@ -9,7 +9,7 @@ import style from './SupplierBusinessInfoChangeForm.module.scss';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSupplierBusinessInfoFormDirty } from 'common/hooks/useSupplierBusinessInfoFormDirty';
 import { useSupplierBusinessInfoSetValue } from 'common/hooks/useSupplierBusinessInfoSetValue';
-import { ISupplierBusinessInfoFormData } from 'common/types';
+import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
 import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
 import { UploadImage } from 'elements';
 import {
@@ -21,6 +21,7 @@ import {
   supplierBusinessInfoSelector,
   updateBusinessInfo,
   supplierCompanyLogoSelector,
+  supplierLoadingSelector,
 } from 'store/reducers/supplier/profile';
 import { uploadCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 
@@ -28,6 +29,9 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const businessInfoData = useAppSelector(supplierBusinessInfoSelector);
   const companyLogo = useSelector(supplierCompanyLogoSelector);
+  const supplierLoading = useAppSelector(supplierLoadingSelector);
+
+  const isDisabled = supplierLoading.companyLogoLoading === LoadingStatusEnum.Loading;
 
   const formMethods = useForm<ISupplierBusinessInfoFormData>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
@@ -86,6 +90,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
         placeholder="The customers will recognize your store by this image"
         uploadImage={handleUploadImage}
         description="company logo"
+        isDisabled={isDisabled}
       />
       <FormProvider {...formMethods}>
         <SupplierBusinessInfoForm

@@ -8,7 +8,7 @@ import style from './SellerPersonalInfoChangeForm.module.scss';
 import { personalInfoFormValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
-import { IPersonalInfoFormData } from 'common/types';
+import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
 import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
 import { UploadImage } from 'elements';
 import { ButtonLogOut } from 'elements/ButtonLogOut/ButtonLogOut';
@@ -17,6 +17,7 @@ import { countriesSelector } from 'store/reducers/commonSlice';
 import {
   getSellerAvatar,
   sellerAvatarSelector,
+  sellerLoadingSelector,
   updateSellerAvatar,
 } from 'store/reducers/seller/profile';
 import {
@@ -29,10 +30,13 @@ import { Button } from 'ui-kit';
 export const SellerPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
-  const userData = useAppSelector(userPersonalInfoSelector);
+  const userPersonalInfo = useAppSelector(userPersonalInfoSelector);
   const userAvatar = useAppSelector(sellerAvatarSelector);
+  const sellerLoading = useAppSelector(sellerLoadingSelector);
 
-  const { countryShort, phoneNumber, lastName, firstName } = userData;
+  const { countryShort, phoneNumber, lastName, firstName } = userPersonalInfo;
+
+  const isDisabled = sellerLoading.avatarLoading === LoadingStatusEnum.Loading;
 
   const formMethods = useForm<IPersonalInfoFormData>({
     resolver: yupResolver(personalInfoFormValidationSchema),
@@ -45,7 +49,7 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
 
   const numberCountry = countries.find(c => c.country_short === countryShort);
 
-  useSetPersonalInfoValues(setValue, userData, numberCountry);
+  useSetPersonalInfoValues(setValue, userPersonalInfo, numberCountry);
 
   useEffect(() => {
     dispatch(getPersonalInfo());
@@ -105,6 +109,7 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
         type="avatar"
         image={userAvatar || ''}
         description="avatar"
+        isDisabled={isDisabled}
       />
 
       <FormProvider {...formMethods}>
