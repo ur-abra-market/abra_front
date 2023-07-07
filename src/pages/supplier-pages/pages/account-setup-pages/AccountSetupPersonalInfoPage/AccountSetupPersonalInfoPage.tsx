@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { SupplierPersonalInfoForm } from '.';
 
-import { useAppSelector } from 'common/hooks';
+import { useAppDispatch } from 'common/hooks';
 import { HOME } from 'routes';
-import { hasPersonalInfoSelector } from 'store/reducers/supplier/profile/selectors';
+import { hasPersonalInfo } from 'store/reducers/supplier/profile/thunks';
+import { LoaderCircular } from 'ui-kit';
 
 export const AccountSetupPersonalInfoPage = (): JSX.Element => {
-  const hasPersonalInfoResult = useAppSelector(hasPersonalInfoSelector);
+  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  if (hasPersonalInfoResult) return <Navigate to={HOME} />;
+  useEffect(() => {
+    dispatch(hasPersonalInfo())
+      .then(res => {
+        if (res.payload) navigate(HOME);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) return <LoaderCircular />;
 
   return <SupplierPersonalInfoForm />;
 };

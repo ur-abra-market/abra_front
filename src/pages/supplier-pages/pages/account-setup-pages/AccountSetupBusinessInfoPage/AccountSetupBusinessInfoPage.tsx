@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { AccountSetupBusinessInfoForm } from '.';
 
-import { useAppSelector } from 'common/hooks';
+import { useAppDispatch } from 'common/hooks';
 import { HOME } from 'routes';
-import { hasCompanyInfoSelector } from 'store/reducers/supplier/profile/selectors';
+import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
+import { hasCompanyInfo } from 'store/reducers/supplier/profile/thunks';
+import { LoaderCircular } from 'ui-kit';
 
 export const AccountSetupBusinessInfoPage = (): JSX.Element => {
-  const hasCompanyInfoResult = useAppSelector(hasCompanyInfoSelector);
+  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  if (hasCompanyInfoResult) return <Navigate to={HOME} />;
+  useEffect(() => {
+    dispatch(getCompanyNumberEmployees());
+    dispatch(hasCompanyInfo())
+      .then(res => {
+        if (res.payload) navigate(HOME);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, []);
+
+  if (isLoading) return <LoaderCircular />;
 
   return <AccountSetupBusinessInfoForm />;
 };
