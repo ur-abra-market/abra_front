@@ -28,15 +28,11 @@ const CheckoutAddresses = (): JSX.Element => {
 
   return (
     <>
-      <h4 className={style.checkout_address_title}>Delivery Address</h4>
+      <h4 className={style.title}>Delivery Address</h4>
       <div className={style.checkout_address}>
         {addresses &&
           sortedAddresses?.map(address => <Address key={address.id} address={address} />)}
-        <button
-          type="button"
-          className={style.checkout_address_add_button}
-          onClick={onClick}
-        >
+        <button type="button" className={style.add_button} onClick={onClick}>
           + Add an address
         </button>
       </div>

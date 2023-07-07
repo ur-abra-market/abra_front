@@ -5,15 +5,20 @@ import style from './AdditionalHeaderBlock.module.scss';
 import { HeaderProfileIcon, Home } from 'assets/icons';
 import { useAppSelector } from 'common/hooks';
 import { HOME, PERSONAL_ACCOUNT } from 'routes';
-import { isAuthSelector } from 'store/reducers/authSlice';
+import { isAuthSelector, userRoleSelector } from 'store/reducers/authSlice';
 import { ButtonIcon, MainLogo } from 'ui-kit';
 
 export const AdditionalHeaderBlock = (): JSX.Element => {
   const isAuthorized = useAppSelector(isAuthSelector);
+  const userRole = useAppSelector(userRoleSelector);
   const navigate = useNavigate();
 
   const handleProfileTransition = (): void => {
-    navigate(PERSONAL_ACCOUNT);
+    if (userRole === 'seller') {
+      navigate(PERSONAL_ACCOUNT);
+    } else {
+      navigate(HOME);
+    }
   };
 
   const handleHomeTransition = (): void => {
