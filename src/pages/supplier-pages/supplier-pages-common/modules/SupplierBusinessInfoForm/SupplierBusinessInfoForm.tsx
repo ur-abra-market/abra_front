@@ -45,8 +45,6 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
     formState: { errors, isValid },
   } = useFormContext<ISupplierBusinessInfoFormData>();
 
-  console.log(numberEmployees);
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={style.main_info}>
