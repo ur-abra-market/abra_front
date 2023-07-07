@@ -19,8 +19,8 @@ export const supplierNotificationsSelector = (
 export const supplierLoadingSelector = (state: RootStateType): ILoading =>
   state.supplierProfile.loading;
 
-export const hasPersonalInfoSelector = (state: RootStateType): boolean =>
+export const hasPersonalInfoSelector = (state: RootStateType): boolean | null =>
   state.supplierProfile.hasPersonalInfo;
 
-export const hasCompanyInfoSelector = (state: RootStateType): boolean =>
+export const hasCompanyInfoSelector = (state: RootStateType): boolean | null =>
   state.supplierProfile.hasCompanyInfo;

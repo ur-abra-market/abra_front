@@ -49,8 +49,8 @@ interface ISupplierProfileSliceInitialState {
   loading: ILoading;
   businessInfo: ISupplierBusinessInfo;
   notifications: ISupplierNotifications | null;
-  hasCompanyInfo: boolean;
-  hasPersonalInfo: boolean;
+  hasCompanyInfo: boolean | null;
+  hasPersonalInfo: boolean | null;
 }
 
 const initialState: ISupplierProfileSliceInitialState = {
@@ -79,8 +79,8 @@ const initialState: ISupplierProfileSliceInitialState = {
     countryId: null,
   },
   notifications: null,
-  hasPersonalInfo: false,
-  hasCompanyInfo: false,
+  hasPersonalInfo: null,
+  hasCompanyInfo: null,
 };
 
 export const supplierProfileSlice = createSlice({

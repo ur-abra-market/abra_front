@@ -4,6 +4,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ACCOUNT_SETUP_BUSINESS_INFO, ACCOUNT_SETUP_PERSONAL_INFO } from 'routes';
+import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
 import {
   hasCompanyInfoSelector,
   hasPersonalInfoSelector,
@@ -21,6 +22,7 @@ export const SupplierMainPage = (): JSX.Element => {
     (async () => {
       await dispatch(hasPersonalInfo());
       await dispatch(hasCompanyInfo());
+      await dispatch(getCompanyNumberEmployees());
       setIsLoading(false);
     })();
   }, []);
