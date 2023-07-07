@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import CheckoutAddresses from './CheckoutAddresses/CheckoutAddresses';
+import { CheckoutAddresses } from './CheckoutAddresses/CheckoutAddresses';
 import style from './CheckoutPage.module.scss';
 
 import { useAppDispatch } from 'common/hooks';

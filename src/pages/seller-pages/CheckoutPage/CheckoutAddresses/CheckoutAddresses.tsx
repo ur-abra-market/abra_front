@@ -10,16 +10,16 @@ import { SellerAddAddressChangeForm } from 'pages/seller-pages/SellerProfilePage
 import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
 import { getSellerAddresses } from 'store/reducers/seller/profile/thunks';
 
-const CheckoutAddresses = (): JSX.Element => {
+export const CheckoutAddresses = (): JSX.Element => {
   const { addresses } = useAppSelector(state => state.sellerProfile);
   const sortedAddresses: ISellerAddressData[] | undefined = makeMainAddressFirst(
     addresses!,
   );
 
   const dispatch = useAppDispatch();
-  const [addModal, setAddModal] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
   const onClick = (): void => {
-    setAddModal(!addModal);
+    setModalOpen(!isModalOpen);
   };
 
   useEffect(() => {
@@ -36,11 +36,9 @@ const CheckoutAddresses = (): JSX.Element => {
           + Add an address
         </button>
       </div>
-      <Modal showModal={addModal} closeModal={setAddModal}>
+      <Modal showModal={isModalOpen} closeModal={setModalOpen}>
         <SellerAddAddressChangeForm />
       </Modal>
     </>
   );
 };
-
-export default CheckoutAddresses;
