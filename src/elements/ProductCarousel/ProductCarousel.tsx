@@ -17,10 +17,39 @@ type Props = {
   photoArray: IImage[];
 };
 
-export const ProductCarousel: FC<Props> = props => {
-  const { photoArray } = props;
-
+export const ProductCarousel: FC<Props> = ({ photoArray }) => {
   const [activeThumb, setActiveThumb] = useState<SwiperType | null>(null);
+
+  const imagesData = [
+    {
+      id: 1,
+      image_url: 'https://picsum.photos/id/307/220/220',
+      order: 1,
+    },
+    {
+      id: 2,
+      image_url: 'https://picsum.photos/id/247/220/220',
+      order: 1,
+    },
+    {
+      id: 3,
+      image_url: 'https://placekitten.com/220/220?image=14',
+      order: 1,
+    },
+    // {
+    //   id: 4,
+    //   image_url: 'https://picsum.photos/id/475/220/220',
+    //   order: 1,
+    // },
+    // {
+    //   id: 6,
+    //   image_url: 'https://picsum.photos/id/475/220/220',
+    //   order: 1,
+    // },
+  ];
+
+  const arrLength = imagesData.length;
+  const slidesPerViewQuantity = arrLength > 0 && arrLength < 5 ? arrLength : 5;
 
   const swiperEl = useRef<SwiperType>();
 
@@ -50,12 +79,13 @@ export const ProductCarousel: FC<Props> = props => {
             onSwiper={setActiveThumb}
             direction="vertical"
             spaceBetween={8}
-            slidesPerView="auto"
+            slidesPerView={slidesPerViewQuantity}
             loop
+            mousewheel
             className={style.swiper_container}
-            modules={[Thumbs]}
+            modules={[Thumbs, Mousewheel]}
           >
-            {photoArray.map((slide, index) => {
+            {imagesData.map((slide, index) => {
               return (
                 <SwiperSlide key={`preview${index}`} className={style.image_slider}>
                   <div className={style.preview_image}>
@@ -82,7 +112,7 @@ export const ProductCarousel: FC<Props> = props => {
           className={style.swiper_container}
           modules={[Thumbs, Mousewheel]}
         >
-          {photoArray.map((slide, index) => {
+          {imagesData.map((slide, index) => {
             return (
               <SwiperSlide key={`image${index}`}>
                 <div className={style.slider_showed}>
