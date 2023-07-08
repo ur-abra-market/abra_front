@@ -4,7 +4,7 @@
   background: var(--color-white);
 }
 
-.header_container{
+.header_container {
   @include content_container;
 
   &::after {

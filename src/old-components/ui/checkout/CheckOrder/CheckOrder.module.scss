@@ -83,7 +83,7 @@
 
 
 
-.check_order_security_lock path{
+.check_order_security_lock path {
   fill: #1C9929;
 }
 
@@ -96,31 +96,31 @@
   color: #1C9929;
 }
 
-.check_order_title{
+.check_order_title {
   display: flex;
   justify-content: space-between;
   margin-bottom: 24px;
 }
 
-.check_order_title_text{
+.check_order_title_text {
   font-size: 15px;
   font-weight: 500;
   line-height: 20px;
 }
 
-.check_order_goods_cost{
+.check_order_goods_cost {
   font-size: 15px;
   font-weight: 400;
   line-height: 20px;
 }
 
-.line{
+.line {
   width: 58%;
   margin-bottom: 5px;
   border-bottom: 1px solid #000;
 }
 
-.line_two{
+.line_two {
   margin: 24px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.14);
 }
