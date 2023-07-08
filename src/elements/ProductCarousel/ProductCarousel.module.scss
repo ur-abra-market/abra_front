@@ -1,7 +1,7 @@
 .slider_container {
   overflow: hidden;
   display: flex;
-  //min-width: 682px;
+  min-width: 682px;
 }
 
 .images_slider {
@@ -22,6 +22,11 @@
 .swiper_container {
   width: 100%;
   height: 100%;
+}
+
+.active_slide {
+  //outline: 4px solid rebeccapurple;
+  //border: 4px solid rebeccapurple;
 }
 
 .image_slider {
