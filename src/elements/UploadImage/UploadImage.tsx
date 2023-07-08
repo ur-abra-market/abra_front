@@ -48,6 +48,7 @@ export const UploadImage: FC<IUploadImage> = ({
     [style.input_logo]: type === 'logo',
     [style.input_avatar]: type === 'avatar',
     [style.input_default]: type !== 'logo' && type !== 'avatar',
+    [style.input_disabled]: isDisabled,
   });
 
   const imgClasses = cn({
@@ -79,6 +80,9 @@ export const UploadImage: FC<IUploadImage> = ({
       e.target.value = '';
     }
   };
+  const labelClasses = cn(style.label, {
+    [style.label_disabled]: isDisabled,
+  });
 
   return (
     <div className={cn(style.wrapper, className)} {...restProps}>
@@ -107,7 +111,7 @@ export const UploadImage: FC<IUploadImage> = ({
 
       {(type === 'logo' || type === 'avatar') && (
         <div className={style.description}>
-          <label className={style.label} htmlFor="profileLogo">
+          <label className={labelClasses} htmlFor="profileLogo">
             {label}
           </label>
           <p className={style.placeholder}>{placeholder}</p>
