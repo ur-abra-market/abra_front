@@ -120,7 +120,7 @@ export const supplierService = {
     return data;
   },
 
-  deleteCompanyLogo: async (company_image_id: number) => {
+  deleteCompanyImage: async (company_image_id: number) => {
     const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
       `suppliers/deleteCompanyImage/`,
       { params: { company_image_id } },

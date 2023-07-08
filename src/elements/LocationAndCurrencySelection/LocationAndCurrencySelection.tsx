@@ -13,6 +13,7 @@ const CURRENCY_DATA: ISelectOption[] = [
 ];
 
 const COUNTRY_DATA: ISelectOption[] = [
+  { label: 'Russia', value: 'russia' },
   { label: 'Turkey', value: 'turkey' },
   { label: 'Belarus', value: 'belarus' },
 ];
