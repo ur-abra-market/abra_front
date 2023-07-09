@@ -25,3 +25,6 @@ export const productTagsSelector = (state: RootStateType): string[] =>
 
 export const productVariationsSelector = (state: RootStateType): any[] =>
   state.productNew.productCard.variations;
+
+export const productDescriptionSelector = (state: RootStateType): string =>
+  state.productNew.productCard.description;

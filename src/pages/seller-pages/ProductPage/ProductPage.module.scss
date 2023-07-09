@@ -2,4 +2,6 @@
 
 .product_container {
   @include content_container;
+
+  background: var(--color-super-light-gray);
 }

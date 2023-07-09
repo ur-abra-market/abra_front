@@ -7,6 +7,7 @@ export {
   productNameSelector,
   productTagsSelector,
   productVariationsSelector,
+  productDescriptionSelector,
 } from './selectors';
 
 export { getProductById, addFavoriteProduct, removeFavoriteProduct } from './thunks';

@@ -3,8 +3,8 @@ import React from 'react';
 import style from './ProductDetails.module.scss';
 
 import { useAppSelector } from 'common/hooks';
-import { ProductColor } from 'elements/ProductColor/ProductColor';
-import { Tags } from 'elements/Tags/Tags';
+import { Tags } from 'elements';
+// import { ProductColor } from 'elements';
 import {
   productNameSelector,
   productTagsSelector,
@@ -20,7 +20,7 @@ export const ProductDetails = (): JSX.Element => {
     <div className={style.product_details_container}>
       <h2 className={style.product_title}>{title}</h2>
       <Tags tags={tags} />
-      <ProductColor colors={variations} />
+      {/* <ProductColor colors={variations} /> */}
     </div>
   );
 };

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { ProductMainInfo } from './ProductMainInfo/ProductMainInfo';
+import { ProductOverview } from './ProductOverview/ProductOverview';
 import style from './ProductPage.module.scss';
 import { ProductPageHeader } from './ProductPageHeader/ProductPageHeader';
 
@@ -32,6 +33,7 @@ export const ProductPage = WithLayout((): JSX.Element => {
     <div className={style.product_container}>
       <ProductPageHeader />
       <ProductMainInfo />
+      <ProductOverview />
     </div>
   );
 });

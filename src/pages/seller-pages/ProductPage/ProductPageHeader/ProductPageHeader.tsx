@@ -5,9 +5,7 @@ import { useParams } from 'react-router-dom';
 import style from './ProductPageHeader.module.scss';
 
 import { useAppSelector } from 'common/hooks';
-import { Grades } from 'elements';
-import { BreadCrumbs } from 'elements/BreadCrumbs/BreadCrumbs';
-import { Favorite } from 'elements/Favorite/Favorite';
+import { Grades, BreadCrumbs, Favorite } from 'elements';
 import {
   productCategorySelector,
   favoriteProductSelector,
