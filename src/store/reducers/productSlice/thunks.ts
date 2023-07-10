@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IProductCard } from './interfaces';
+import { IProductCard } from './types';
 
 import { productService } from 'services/product/product.service';
 import {

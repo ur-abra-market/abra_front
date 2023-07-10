@@ -1,4 +1,4 @@
-import { ICategory, IImage } from './interfaces';
+import { ICategory, IImage } from './types';
 
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { RootStateType } from 'store/createStore';

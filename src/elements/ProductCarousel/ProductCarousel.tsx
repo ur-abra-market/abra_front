@@ -11,7 +11,7 @@ import style from './ProductCarousel.module.scss';
 
 import { ArrowIcon } from 'assets/icons';
 import { DefaultProductImage } from 'assets/images';
-import { IImage } from 'store/reducers/productSlice/interfaces';
+import { IImage } from 'store/reducers/productSlice/types';
 
 type Props = {
   photoArray: IImage[];

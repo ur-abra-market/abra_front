@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IProductCard } from './productSlice/interfaces';
+import { IProductCard } from './productSlice/types';
 
 import { IImageProduct, LoadingStatusEnum } from 'common/types';
 import { productService } from 'services/product/product.service';

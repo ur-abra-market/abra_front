@@ -9,7 +9,7 @@ import {
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
-import { IProductCard } from 'store/reducers/productSlice/interfaces';
+import { IProductCard } from 'store/reducers/productSlice/types';
 
 export const productService = {
   getList: async (params: ICategoryRequest) => {

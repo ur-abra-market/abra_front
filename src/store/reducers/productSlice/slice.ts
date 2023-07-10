@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { IProductCard, IProductSliceInitialState } from './interfaces';
 import {
   addFavoriteProduct,
   getPopularProducts,
@@ -8,6 +7,7 @@ import {
   getSimilarProducts,
   removeFavoriteProduct,
 } from './thunks';
+import { IProductCard, IProductSliceInitialState } from './types';
 
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 
