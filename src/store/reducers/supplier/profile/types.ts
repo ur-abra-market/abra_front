@@ -35,6 +35,6 @@ export interface ISupplierProfileSliceInitialState {
   loading: ILoading;
   businessInfo: ISupplierBusinessInfo;
   notifications: ISupplierNotifications | null;
-  hasCompanyInfo: boolean;
-  hasPersonalInfo: boolean;
+  hasCompanyInfo: boolean | null;
+  hasPersonalInfo: boolean | null;
 }

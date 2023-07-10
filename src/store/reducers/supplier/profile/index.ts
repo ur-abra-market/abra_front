@@ -5,7 +5,7 @@ export {
   updateBusinessInfo,
   uploadCompanyLogo,
   fetchCompanyLogo,
-  deleteCompanyLogo,
+  deleteCompanyImage,
   hasPersonalInfo,
   hasCompanyInfo,
   createAccountBusinessInfo,
