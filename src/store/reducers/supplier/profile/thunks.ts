@@ -8,6 +8,7 @@ import {
   ISupplierBusinessInfo,
   ISupplierUpdateBusinessInfo,
   IBusinessInfoRequest,
+  ISupplierNotifications,
 } from 'services/supplier/supplier.serviceTypes';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
 
@@ -130,7 +131,11 @@ export const deleteCompanyImage = createAsyncThunk<
   }
 });
 
-export const getSupplierNotifications = createAsyncThunk<any, void>(
+export const getSupplierNotifications = createAsyncThunk<
+  ISupplierNotifications,
+  void,
+  IAsyncThunkConfig
+>(
   'supplierAccount/getSupplierNotifications',
   async (_, { rejectWithValue, dispatch }) => {
     try {
@@ -151,7 +156,8 @@ export const getSupplierNotifications = createAsyncThunk<any, void>(
 
 export const updateSupplierNotifications = createAsyncThunk<
   void,
-  { id: string; value: boolean }
+  { id: string; value: boolean },
+  IAsyncThunkConfig
 >(
   'supplierAccount/updateSupplierNotifications',
   async (param, { rejectWithValue, dispatch }) => {

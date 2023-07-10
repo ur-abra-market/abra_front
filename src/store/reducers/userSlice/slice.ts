@@ -1,26 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getFavoritesProductsService, getPersonalInfo, updatePersonalInfo } from '.';
+import {
+  IUserSliceInitialState,
+  getFavoritesProductsService,
+  getPersonalInfo,
+  updatePersonalInfo,
+} from '.';
 
 import { LoadingStatusEnum } from 'common/types';
 import { logout } from 'store/reducers/authSlice';
-
-export interface IUserPersonalInfo {
-  firstName: string;
-  lastName: string;
-  countryShort: string;
-  phoneNumber: string;
-}
-
-export interface ILoading {
-  personalInfoLoading: LoadingStatusEnum;
-}
-
-interface IUserSliceInitialState {
-  loading: ILoading;
-  personalInfo: IUserPersonalInfo;
-  favoritesProducts: any[];
-}
 
 const initialState: IUserSliceInitialState = {
   loading: {
