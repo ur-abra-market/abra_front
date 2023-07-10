@@ -6,6 +6,7 @@ export {
   deleteSellerAddress,
   updateSellerAddresses,
   getSellerAvatar,
+  updateSellerAvatar,
 } from './thunks';
 export {
   sellerLoadingSelector,

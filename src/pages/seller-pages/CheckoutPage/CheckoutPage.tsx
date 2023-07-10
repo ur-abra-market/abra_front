@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
 
-import { Navigate } from 'react-router-dom';
-
+import { CheckoutAddresses } from './CheckoutAddresses/CheckoutAddresses';
 import style from './CheckoutPage.module.scss';
 
-import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { useAppDispatch } from 'common/hooks';
 import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
-import CheckDelivery from 'old-components/ui/checkout/CheckDelivery';
 import CheckItems from 'old-components/ui/checkout/CheckItems';
 import CheckOrder from 'old-components/ui/checkout/CheckOrder';
 import CheckPayment from 'old-components/ui/checkout/CheckPayment';
@@ -16,34 +14,32 @@ import { ButtonInfo } from 'ui-kit';
 
 export const CheckoutPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const isAuth = useAppSelector(state => state.auth.isAuthorized);
 
   useEffect(() => {
     dispatch(getCountries());
-  }, []);
-
-  if (!isAuth) {
-    return <Navigate to="/auth" />;
-  }
+  }, [dispatch]);
 
   return (
-    <div className={style.container}>
+    <div className={style.wrapper}>
       <AdditionalHeaderBlock />
-
-      <div className={style.checkout_page}>
-        <div className={style.checkout}>
-          <CheckDelivery />
-          {/* <div> */}
-          {/*  <SellerAddresses /> */}
-          {/* </div> */}
-
-          <CheckPayment />
-          <div className={style.checkout_items}>
-            <CheckItems index="0" />
-            <CheckItems index="1" />
+      <div className={style.container}>
+        <div className={style.checkout_page}>
+          <div className={style.checkout_info}>
+            <div className={style.section}>
+              <CheckoutAddresses />
+            </div>
+            <div className={style.section}>
+              <CheckPayment />
+            </div>
+            <div className={style.section}>
+              <CheckItems index="0" />
+              <CheckItems index="1" />
+            </div>
+          </div>
+          <div className={style.section}>
+            <CheckOrder />
           </div>
         </div>
-        <CheckOrder />
       </div>
       <ButtonInfo className={style.info_bottom} />
       <Footer variant="default" />

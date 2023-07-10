@@ -37,7 +37,9 @@ const CheckItems: FC<CheckItemsProps> = ({ index }): JSX.Element => {
           </div>
         </div>
         <div className={style.check_items_product}>
-          <LazyImage src={Banner1Image} alt="" />
+          <div className={style.image}>
+            <LazyImage src={Banner1Image} alt="" />
+          </div>
           <div className={style.check_items_product_info}>
             <div className={style.check_items_product_info_name}>
               Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes

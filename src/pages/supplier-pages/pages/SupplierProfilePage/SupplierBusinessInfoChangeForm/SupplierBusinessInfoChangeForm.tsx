@@ -9,7 +9,7 @@ import style from './SupplierBusinessInfoChangeForm.module.scss';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSupplierBusinessInfoFormDirty } from 'common/hooks/useSupplierBusinessInfoFormDirty';
 import { useSupplierBusinessInfoSetValue } from 'common/hooks/useSupplierBusinessInfoSetValue';
-import { ISupplierBusinessInfoFormData } from 'common/types';
+import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
 import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
 import { UploadImage } from 'elements';
 import {
@@ -20,9 +20,8 @@ import { ISupplierUpdateBusinessInfo } from 'services/supplier/supplier.serviceT
 import {
   supplierBusinessInfoSelector,
   updateBusinessInfo,
-  supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
-  deleteCompanyLogo,
+  supplierLoadingSelector,
   uploadCompanyLogo,
 } from 'store/reducers/supplier/profile';
 
@@ -30,7 +29,9 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const businessInfoData = useAppSelector(supplierBusinessInfoSelector);
   const companyLogo = useSelector(supplierCompanyLogoSelector);
-  const companyLogoId = useSelector(supplierCompanyLogoIdSelector);
+  const supplierLoading = useAppSelector(supplierLoadingSelector);
+
+  const isDisabled = supplierLoading.companyLogoLoading === LoadingStatusEnum.Loading;
 
   const formMethods = useForm<ISupplierBusinessInfoFormData>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
@@ -40,9 +41,6 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
 
   const handleUploadImage = (image: File): void => {
     dispatch(uploadCompanyLogo(image));
-  };
-  const handleDeleteImage = (): void => {
-    if (companyLogoId !== null) dispatch(deleteCompanyLogo(companyLogoId));
   };
 
   useSupplierBusinessInfoSetValue(setValue, businessInfoData);
@@ -91,8 +89,8 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
         label="Add logo or profile image"
         placeholder="The customers will recognize your store by this image"
         uploadImage={handleUploadImage}
-        deleteImage={handleDeleteImage}
         description="company logo"
+        isDisabled={isDisabled}
       />
       <FormProvider {...formMethods}>
         <SupplierBusinessInfoForm

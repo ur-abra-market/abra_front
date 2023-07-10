@@ -11,7 +11,9 @@ import { hasPersonalInfoSelector } from 'store/reducers/supplier/profile';
 export const AccountSetupPersonalInfoPage = (): JSX.Element => {
   const hasPersonalInfoResult = useAppSelector(hasPersonalInfoSelector);
 
-  if (hasPersonalInfoResult) return <Navigate to={HOME} />;
+  if (hasPersonalInfoResult || hasPersonalInfoResult === null) {
+    return <Navigate to={HOME} />;
+  }
 
   return <SupplierPersonalInfoForm />;
 };

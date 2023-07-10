@@ -4,6 +4,7 @@ import {
   getSellerAddresses,
   getSellerAvatar,
   getSellerNotifications,
+  updateSellerAvatar,
   updateSellerNotifications,
   ISellerProfileSliceInitialState,
 } from '.';
@@ -94,6 +95,19 @@ const sellerProfileSlice = createSlice({
         };
       })
       .addCase(getSellerAvatar.rejected, state => {
+        state.loading = {
+          ...state.loading,
+          avatarLoading: LoadingStatusEnum.Failed,
+        };
+      })
+
+      .addCase(updateSellerAvatar.pending, state => {
+        state.loading = {
+          ...state.loading,
+          avatarLoading: LoadingStatusEnum.Loading,
+        };
+      })
+      .addCase(updateSellerAvatar.rejected, state => {
         state.loading = {
           ...state.loading,
           avatarLoading: LoadingStatusEnum.Failed,

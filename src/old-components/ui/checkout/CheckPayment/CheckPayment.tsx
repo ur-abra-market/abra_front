@@ -19,7 +19,7 @@ const CheckPayment = (): JSX.Element => {
   };
 
   return (
-    <div className={style.check_payment}>
+    <>
       <div className={style.check_payment_block}>
         <h4 className={style.check_payment_title}>Payment Method</h4>
         <div className={style.check_payment_block_kind}>
@@ -31,12 +31,11 @@ const CheckPayment = (): JSX.Element => {
           <span className={style.transfer_text}>Online Transfer</span>
         </div>
       </div>
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
-      <div className={style.check_payment_add} onClick={onClick}>
+      <button type="button" className={style.check_payment_add} onClick={onClick}>
         + Add a credit or debit card
-      </div>
+      </button>
       <PaymentPopup modal={modal} setModal={setModal} />
-    </div>
+    </>
   );
 };
 

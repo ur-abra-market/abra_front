@@ -1,34 +1,45 @@
-.container{
+@import "src/common/styles/mixins";
+
+.wrapper {
   position: relative;
+  background: #F5F5F5;
+}
+
+.container {
+  max-width: var(--main-content-width);
+  margin: 0 auto 90px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+
+  height: max-content;
+  padding: 32px;
+
+  background-color: #FFF;
+  border-radius: 12px;
 }
 
 .checkout_page {
   display: flex;
   flex-direction: row;
+  gap: 12px;
+
   width: 100%;
-  background: #F9F9F9;
+  margin-top: 12px;
+
+  background: inherit;
 }
 
-.checkout {
+.checkout_info {
   display: flex;
   flex-direction: column;
+  gap: 12px;
   width: 100%;
 }
 
-.checkout_items {
-  display: flex;
-  flex-direction: column;
-  margin: 0 12px 97px 32px;
-
-}
-
-.checkout_items > h4 {
-  padding-top: 32px;
-  padding-left: 32px;
-  background-color: #FFF;
-}
-
-.info_bottom{
+.info_bottom {
   position: absolute;
   right: 32px;
   bottom: 74px;

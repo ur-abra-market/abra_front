@@ -151,3 +151,20 @@ export const updateSellerNotifications = createAsyncThunk<
     return rejectWithValue(errorMessage);
   }
 });
+
+export const updateSellerAvatar = createAsyncThunk<void, File, IAsyncThunkConfig>(
+  'seller/updateAvatar',
+  async (img, { rejectWithValue, dispatch }) => {
+    try {
+      await sellerService.updateAvatar(img);
+      dispatch(getSellerAvatar());
+    } catch (error) {
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.error || error.message
+          : '[updateSellerNotifications]: Error';
+
+      return rejectWithValue(errorMessage);
+    }
+  },
+);
