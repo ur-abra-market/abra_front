@@ -1,14 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { loginUser, logout } from './thunks';
+import { loginUser, logout, IAuthSliceInitialState } from '.';
 
 import { UserRoleType } from 'common/types';
 import { getUserRole } from 'store/reducers/appSlice';
-
-interface IAuthSliceInitialState {
-  userRole: UserRoleType;
-  isAuthorized: boolean;
-}
 
 const AuthSliceInitialState: IAuthSliceInitialState = {
   userRole: null,
