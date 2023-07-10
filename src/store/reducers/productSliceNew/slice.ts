@@ -1,7 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IProductCard, IProductSliceInitialState } from './interfaces';
-import { addFavoriteProduct, getProductById, removeFavoriteProduct } from './thunks';
+import {
+  addFavoriteProduct,
+  getPopularProducts,
+  getProductById,
+  getSimilarProducts,
+  removeFavoriteProduct,
+} from './thunks';
+
+import { IProductCompilation } from 'services/product/product.serviceTypes';
 
 const productSlice = createSlice({
   name: 'Product',
@@ -17,7 +25,19 @@ const productSlice = createSlice({
       })
       .addCase(removeFavoriteProduct.fulfilled, state => {
         state.isFavorite = false;
-      });
+      })
+      .addCase(
+        getSimilarProducts.fulfilled,
+        (state, action: PayloadAction<IProductCompilation[]>) => {
+          state.similarProducts = action.payload;
+        },
+      )
+      .addCase(
+        getPopularProducts.fulfilled,
+        (state, action: PayloadAction<IProductCompilation[]>) => {
+          state.popularProducts = action.payload;
+        },
+      );
   },
 });
 

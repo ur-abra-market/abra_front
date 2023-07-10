@@ -6,10 +6,15 @@ import { ProductMainInfo } from './ProductMainInfo/ProductMainInfo';
 import { ProductOverview } from './ProductOverview/ProductOverview';
 import style from './ProductPage.module.scss';
 import { ProductPageHeader } from './ProductPageHeader/ProductPageHeader';
+import { ProductRecommendations } from './ProductRecommendations/ProductRecommendations';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch } from 'common/hooks';
-import { getProductById } from 'store/reducers/productSliceNew';
+import {
+  getPopularProducts,
+  getProductById,
+  getSimilarProducts,
+} from 'store/reducers/productSliceNew';
 import { LoaderLinear } from 'ui-kit';
 
 export const ProductPage = WithLayout((): JSX.Element => {
@@ -21,6 +26,12 @@ export const ProductPage = WithLayout((): JSX.Element => {
     if (!productId) return;
     const fetchData = async (): Promise<void> => {
       await dispatch(getProductById({ product_id: Number(productId) }));
+      await dispatch(
+        getSimilarProducts({ product_id: Number(productId), page_num: 0, page_size: 10 }),
+      );
+      await dispatch(
+        getPopularProducts({ product_id: Number(productId), page_num: 0, page_size: 10 }),
+      );
       setIsFetchingData(false);
     };
 
@@ -34,6 +45,7 @@ export const ProductPage = WithLayout((): JSX.Element => {
       <ProductPageHeader />
       <ProductMainInfo />
       <ProductOverview />
+      <ProductRecommendations />
     </div>
   );
 });

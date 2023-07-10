@@ -4,7 +4,11 @@ import { AxiosError } from 'axios';
 import { IProductCard } from './interfaces';
 
 import { productService } from 'services/product/product.service';
-import { IProductRequest } from 'services/product/product.serviceTypes';
+import {
+  IPopularProductRequest,
+  IProductCompilation,
+  IProductRequest,
+} from 'services/product/product.serviceTypes';
 
 export const getProductById = createAsyncThunk<IProductCard, IProductRequest>(
   'targetProduct/getProductById',
@@ -47,6 +51,40 @@ export const removeFavoriteProduct = createAsyncThunk<any, IProductRequest>(
       }
 
       return rejectWithValue('[Error]: removeFavoriteProduct');
+    }
+  },
+);
+
+export const getSimilarProducts = createAsyncThunk<
+  IProductCompilation[],
+  IPopularProductRequest
+>('similarProducts/getSimilarProducts', async (payload, { rejectWithValue }) => {
+  try {
+    const { result } = await productService.getSimilarProducts(payload);
+
+    return result;
+  } catch (error: unknown) {
+    if (error instanceof AxiosError) {
+      return rejectWithValue(error.response?.data);
+    }
+
+    return rejectWithValue('[Error]: getSimilarProducts');
+  }
+});
+
+export const getPopularProducts = createAsyncThunk<[], IPopularProductRequest>(
+  'popularProducts/getPopularProducts',
+  async (payload, { rejectWithValue }) => {
+    try {
+      const { result } = await productService.getPopularProduct(payload);
+
+      return result;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.response?.data);
+      }
+
+      return rejectWithValue('[Error]: getPopularProductsById');
     }
   },
 );

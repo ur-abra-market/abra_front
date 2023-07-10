@@ -59,7 +59,7 @@ export const productService = {
     return data.result;
   },
 
-  getPopularProductById: async (params: IPopularProductRequest) => {
+  getPopularProduct: async (params: IPopularProductRequest) => {
     const { data } = await baseConfigService.get(`products/popular/`, {
       params,
     });

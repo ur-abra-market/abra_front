@@ -1,5 +1,6 @@
 import { ICategory, IImage } from './interfaces';
 
+import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { RootStateType } from 'store/createStore';
 
 export const productCategorySelector = (state: RootStateType): ICategory =>
@@ -28,3 +29,9 @@ export const productVariationsSelector = (state: RootStateType): any[] =>
 
 export const productDescriptionSelector = (state: RootStateType): string =>
   state.productNew.productCard.description;
+
+export const popularProductsSelector = (state: RootStateType): IProductCompilation[] =>
+  state.productNew.popularProducts;
+
+export const similarProductsSelector = (state: RootStateType): IProductCompilation[] =>
+  state.productNew.similarProducts;

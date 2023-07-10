@@ -1,5 +1,9 @@
+import { IProductCompilation } from 'services/product/product.serviceTypes';
+
 export interface IProductSliceInitialState {
   productCard: IProductCard;
+  similarProducts: IProductCompilation[];
+  popularProducts: IProductCompilation[];
   isFavorite: boolean;
 }
 export interface IProductCard {

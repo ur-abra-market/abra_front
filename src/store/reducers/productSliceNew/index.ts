@@ -8,7 +8,15 @@ export {
   productTagsSelector,
   productVariationsSelector,
   productDescriptionSelector,
+  similarProductsSelector,
+  popularProductsSelector,
 } from './selectors';
 
-export { getProductById, addFavoriteProduct, removeFavoriteProduct } from './thunks';
+export {
+  getProductById,
+  addFavoriteProduct,
+  removeFavoriteProduct,
+  getSimilarProducts,
+  getPopularProducts,
+} from './thunks';
 export { productReducerNew } from './slice';

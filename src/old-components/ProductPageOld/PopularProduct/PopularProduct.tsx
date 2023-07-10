@@ -11,6 +11,7 @@ export const PopularProduct = (): JSX.Element => {
     description: 'shirt description',
     grade_average: 4.2,
     id: 12,
+    uuid: '',
     images: [
       {
         image_url:
