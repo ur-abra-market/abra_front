@@ -60,4 +60,17 @@ export const sellerService = {
       params,
     );
   },
+
+  updateAvatar: async (image: File) => {
+    const formData = new FormData();
+
+    formData.append('file', image);
+
+    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+      `sellers/avatar/update/`,
+      formData,
+    );
+
+    return data;
+  },
 };

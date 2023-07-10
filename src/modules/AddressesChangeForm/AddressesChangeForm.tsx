@@ -8,8 +8,7 @@ import { DeleteTrashCanIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { PhoneNumberInput } from 'elements';
 import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
-import { ISellerAddress } from 'store/reducers/seller/profile/slice';
-import { deleteSellerAddress } from 'store/reducers/seller/profile/thunks';
+import { ISellerAddress, deleteSellerAddress } from 'store/reducers/seller/profile';
 import { Button, Checkbox, Input, Label, Select } from 'ui-kit';
 
 interface IAddressesChangeForm {

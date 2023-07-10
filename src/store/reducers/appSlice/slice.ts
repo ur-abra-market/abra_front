@@ -1,22 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { getUserRole } from '.';
+import { getUserRole, IAppSliceInitialState, IResponseNotice } from '.';
 
 import { LoadingStatusEnum } from 'common/types';
-
-type NoticeType = 'error' | 'success' | null;
-export interface IResponseNotice {
-  noticeType: NoticeType;
-  message: string | null;
-}
-
-interface IAppSliceInitialState {
-  isAppInitialized: boolean;
-  initializedLoading: LoadingStatusEnum;
-  loading: LoadingStatusEnum;
-  responseNotice: IResponseNotice;
-  isFeedbackOpen: boolean;
-}
 
 const initialState: IAppSliceInitialState = {
   isAppInitialized: false,

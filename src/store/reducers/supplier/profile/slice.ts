@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
-  deleteCompanyLogo,
+  deleteCompanyImage,
   fetchCompanyLogo,
   getBusinessInfo,
   getSupplierNotifications,
@@ -10,48 +10,10 @@ import {
   hasPersonalInfo,
   hasCompanyInfo,
   uploadCompanyLogo,
-} from './thunks';
+  ISupplierProfileSliceInitialState,
+} from '.';
 
 import { LoadingStatusEnum } from 'common/types';
-import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
-
-interface IBusinessSector {
-  value: string;
-}
-
-export interface ISupplierBusinessInfo {
-  storeName: string;
-  businessSector: IBusinessSector;
-  isManufacturer: boolean;
-  license: string;
-  yearEstablished: number | null;
-  numEmployees: number | null;
-  countryRegistration: number | null;
-  description: string;
-  email: string;
-  phoneNumber: string;
-  phoneId: number | null;
-  countryShort: string;
-  countryCode: string;
-  address: string;
-  companyLogo: string;
-  companyLogoId: number | null;
-  countryId: number | null;
-}
-
-export interface ILoading {
-  businessInfoLoading: LoadingStatusEnum;
-  notificationsLoading: LoadingStatusEnum;
-  companyLogoLoading: LoadingStatusEnum;
-}
-
-interface ISupplierProfileSliceInitialState {
-  loading: ILoading;
-  businessInfo: ISupplierBusinessInfo;
-  notifications: ISupplierNotifications | null;
-  hasCompanyInfo: boolean;
-  hasPersonalInfo: boolean;
-}
 
 const initialState: ISupplierProfileSliceInitialState = {
   loading: {
@@ -79,8 +41,8 @@ const initialState: ISupplierProfileSliceInitialState = {
     countryId: null,
   },
   notifications: null,
-  hasPersonalInfo: false,
-  hasCompanyInfo: false,
+  hasPersonalInfo: null,
+  hasCompanyInfo: null,
 };
 
 export const supplierProfileSlice = createSlice({
@@ -223,20 +185,20 @@ export const supplierProfileSlice = createSlice({
         };
       })
 
-      .addCase(deleteCompanyLogo.pending, state => {
+      .addCase(deleteCompanyImage.pending, state => {
         state.loading = {
           ...state.loading,
           companyLogoLoading: LoadingStatusEnum.Loading,
         };
       })
-      .addCase(deleteCompanyLogo.fulfilled, state => {
+      .addCase(deleteCompanyImage.fulfilled, state => {
         state.businessInfo.companyLogo = '';
         state.loading = {
           ...state.loading,
           companyLogoLoading: LoadingStatusEnum.Success,
         };
       })
-      .addCase(deleteCompanyLogo.rejected, state => {
+      .addCase(deleteCompanyImage.rejected, state => {
         state.loading = {
           ...state.loading,
           companyLogoLoading: LoadingStatusEnum.Failed,

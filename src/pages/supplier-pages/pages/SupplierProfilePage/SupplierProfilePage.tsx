@@ -12,7 +12,7 @@ import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
 import { AccountManagement } from 'elements';
-import { getCompanyNumberEmployees, getCountries } from 'store/reducers/commonSlice';
+import { getCountries } from 'store/reducers/commonSlice';
 import {
   getBusinessInfo,
   getSupplierNotifications,
@@ -37,7 +37,6 @@ export const SupplierProfilePage = WithLayout((): JSX.Element => {
       await dispatch(getCountries());
       await dispatch(getPersonalInfo());
       await dispatch(getBusinessInfo());
-      await dispatch(getCompanyNumberEmployees());
       await dispatch(getSupplierNotifications());
 
       setIsFetchingData(false);

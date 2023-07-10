@@ -9,7 +9,7 @@ import { isAuthSelector, userRoleSelector } from 'store/reducers/authSlice';
 import { ButtonIcon, MainLogo } from 'ui-kit';
 
 export const AdditionalHeaderBlock = (): JSX.Element => {
-  const isAuth = useAppSelector(isAuthSelector);
+  const isAuthorized = useAppSelector(isAuthSelector);
   const userRole = useAppSelector(userRoleSelector);
   const navigate = useNavigate();
 
@@ -27,18 +27,20 @@ export const AdditionalHeaderBlock = (): JSX.Element => {
 
   return (
     <nav className={style.header_wrapper}>
-      <div className={style.header_block}>
-        <MainLogo className={style.header_logo} />
+      <div className={style.header_container}>
+        <div className={style.header_block}>
+          <MainLogo className={style.header_logo} />
 
-        {isAuth ? (
-          <ButtonIcon onClick={handleProfileTransition}>
-            <HeaderProfileIcon />
-          </ButtonIcon>
-        ) : (
-          <ButtonIcon onClick={handleHomeTransition}>
-            <Home />
-          </ButtonIcon>
-        )}
+          {isAuthorized ? (
+            <ButtonIcon onClick={handleProfileTransition}>
+              <HeaderProfileIcon />
+            </ButtonIcon>
+          ) : (
+            <ButtonIcon onClick={handleHomeTransition}>
+              <Home />
+            </ButtonIcon>
+          )}
+        </div>
       </div>
     </nav>
   );

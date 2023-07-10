@@ -1,8 +1,8 @@
-.address_form{
+.address_form {
   min-width: 600px;
 }
 
-.address_form_header_title{
+.address_form_header_title {
   font-size: var(--fz-l2);
   font-weight: var(--bold);
   line-height: 24px;
@@ -26,7 +26,7 @@
   gap: 48px;
 }
 
-.checkbox{
+.checkbox {
   font-size: var(--fz-s2);
   font-weight: var(--regular);
   line-height: 20px;
@@ -68,13 +68,13 @@
   margin-top: 15px;
 }
 
-.select{
+.select {
   font-size: var(--fz-s);
   background: #F2F2F2;
   border-radius: 12px;
 }
 
-.delete_address{
+.delete_address {
   cursor: pointer;
 
   display: flex;

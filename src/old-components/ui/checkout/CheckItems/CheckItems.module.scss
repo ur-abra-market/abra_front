@@ -3,26 +3,6 @@
   border-radius: 12px;
 }
 
-.check_items>h4 {
-  margin-top: 32px;
-  margin-bottom: -8px;
-}
-
-.check_items_container {
-  padding: 0 32px;
-
-}
-
-.check_items_title {
-  padding-top: 29px;
-}
-
-.check_items {
-  display: flex;
-  flex-direction: column;
-  background-color: #FFF;
-}
-
 .check_items_block {
   display: flex;
   flex-direction: row;
@@ -104,8 +84,8 @@
   display: flex;
   align-items: center;
 
-  margin-left: 32px;
-  padding: 12px 0 12px 32px;
+  margin: 0 -32px;
+  padding: 12px 32px;
 
   background: rgba(252, 19, 61, 0.2);
 }
@@ -167,6 +147,13 @@
   font-weight: 500;
   line-height: 20px;
   color: #FC133D;
+}
+
+.image {
+  overflow: hidden;
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
 }
 
 .arrow_right {

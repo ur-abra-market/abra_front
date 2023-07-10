@@ -12,8 +12,7 @@ import {
   ISellerAddressRequest,
 } from 'services/seller/seller.serviceTypes';
 import { countriesSelector } from 'store/reducers/commonSlice';
-import { ISellerAddress } from 'store/reducers/seller/profile/slice';
-import { updateSellerAddresses } from 'store/reducers/seller/profile/thunks';
+import { updateSellerAddresses, ISellerAddress } from 'store/reducers/seller/profile';
 
 interface ISellerEditAddressChangeForm {
   address: ISellerAddressData;

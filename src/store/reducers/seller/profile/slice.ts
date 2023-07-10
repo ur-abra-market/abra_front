@@ -4,41 +4,12 @@ import {
   getSellerAddresses,
   getSellerAvatar,
   getSellerNotifications,
+  updateSellerAvatar,
   updateSellerNotifications,
-} from './thunks';
+  ISellerProfileSliceInitialState,
+} from '.';
 
 import { LoadingStatusEnum } from 'common/types';
-import {
-  ISellerAddressData,
-  ISellerNotifications,
-} from 'services/seller/seller.serviceTypes';
-
-export interface ISellerAddress {
-  apartment: string;
-  area: string;
-  building: string;
-  city: string;
-  country: number;
-  firstName: string;
-  isMain: boolean;
-  lastName: string;
-  phoneNumber: string;
-  postalCode: string;
-  street: string;
-}
-
-export interface ILoading {
-  avatarLoading: LoadingStatusEnum;
-  notificationsLoading: LoadingStatusEnum;
-  addressesLoading: LoadingStatusEnum;
-}
-
-interface ISellerProfileSliceInitialState {
-  loading: ILoading;
-  addresses: ISellerAddressData[] | null;
-  notifications: ISellerNotifications | null;
-  sellerAvatar: string;
-}
 
 const initialState: ISellerProfileSliceInitialState = {
   loading: {
@@ -124,6 +95,19 @@ const sellerProfileSlice = createSlice({
         };
       })
       .addCase(getSellerAvatar.rejected, state => {
+        state.loading = {
+          ...state.loading,
+          avatarLoading: LoadingStatusEnum.Failed,
+        };
+      })
+
+      .addCase(updateSellerAvatar.pending, state => {
+        state.loading = {
+          ...state.loading,
+          avatarLoading: LoadingStatusEnum.Loading,
+        };
+      })
+      .addCase(updateSellerAvatar.rejected, state => {
         state.loading = {
           ...state.loading,
           avatarLoading: LoadingStatusEnum.Failed,
