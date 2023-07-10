@@ -69,9 +69,9 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
     <div className={style.sliders_container}>
       <div className={style.swiper_second_wrapper}>
         {arrLength > minLength && (
-          <Button color="white" onClick={handlePrev}>
-            <ArrowIcon className={style.arrow_up} />
-          </Button>
+          <button type="button" className={style.btn} onClick={handlePrev}>
+            <ArrowIcon className={`${style.arrow} ${style.arrow_up}`} />
+          </button>
         )}
 
         <Swiper
@@ -107,9 +107,9 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
         </Swiper>
 
         {arrLength > minLength && (
-          <Button color="white" onClick={handleNext}>
-            <ArrowIcon />
-          </Button>
+          <button type="button" className={style.btn} onClick={handleNext}>
+            <ArrowIcon className={style.arrow} />
+          </button>
         )}
       </div>
 
