@@ -3,6 +3,7 @@
 .product_container {
   @include content_container;
 
+  padding-top: 38px;
   padding-bottom: 100px;
   background: var(--color-super-light-gray);
 }
