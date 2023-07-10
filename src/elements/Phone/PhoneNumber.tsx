@@ -27,8 +27,6 @@ export const PhoneNumber = (): JSX.Element => {
   const {
     handleSubmit,
     register,
-    watch,
-    setValue,
     setError,
     clearErrors,
     formState: { errors },
@@ -57,13 +55,8 @@ export const PhoneNumber = (): JSX.Element => {
     const country = countries.find(country => country.id === value.value);
 
     if (country) setPhoneCountryShort(country.country_short as PhoneCountryShortType);
-    setPhoneCountryCode(value);
+    setPhoneCountryCode({ label: `+${country?.country_code}`, value: value.value });
   };
-
-  const getFormattedPhoneNumberBody = (
-    phoneNumberBody: string,
-    phoneNumberCountryCode: PhoneCountryShortType,
-  ): string => formatPhoneNumber(phoneNumberBody, phoneNumberCountryCode);
 
   const onChangePhoneNumberBody = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const phoneNumberBodyRawValue = e.currentTarget.value.replace(/\D/g, ''); // оставляем из пришедшего значения инпута только цифры
@@ -76,10 +69,7 @@ export const PhoneNumber = (): JSX.Element => {
       return;
     }
 
-    const formattedNumber = getFormattedPhoneNumberBody(
-      phoneNumberBodyRawValue,
-      phoneCountryShort,
-    ); // получаем отформатированное по маске страны с countryCode тело телефонного номера
+    const formattedNumber = formatPhoneNumber(phoneNumberBodyRawValue, phoneCountryShort); // получаем отформатированное по маске страны с countryCode тело телефонного номера
 
     if (!formattedNumber) return; // если вернулась пустая строка (то есть телефон превысил значение маски) тогда мы ничего не будем сохранять в инпут и выводить на ui
 
@@ -100,6 +90,7 @@ export const PhoneNumber = (): JSX.Element => {
         <form onSubmit={handleSubmit(onSubmit)} className={style.wrapper}>
           <Select
             controlledValue={phoneCountryCode}
+            width="160"
             onChange={handlePhoneCountryCodeOnChange}
             options={countries.map(c => ({
               label: `+${c.country_code} ${c.country}`,
