@@ -11,9 +11,31 @@ import { IProductCard, IProductSliceInitialState } from './types';
 
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 
+const initialState: IProductSliceInitialState = {
+  isFavorite: false,
+  productCard: {
+    grade_average: '',
+    id: null,
+    name: '',
+    datetime: '',
+    description: '',
+    is_active: false,
+    uuid: '',
+    total_orders: null,
+    category: { name: '', level: null, id: null, parent_id: null },
+    supplier: { id: null, grade_average: null, additional_info: '', license_number: '' },
+    images: [],
+    prices: [],
+    tags: [],
+    variations: [],
+  },
+  popularProducts: [],
+  similarProducts: [],
+};
+
 const productSlice = createSlice({
   name: 'Product',
-  initialState: {} as IProductSliceInitialState,
+  initialState,
   reducers: {},
   extraReducers: builder => {
     builder

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import style from './BreadCrumbs.module.scss';
 
 interface IBreadCrumbsProps {
-  parentId: number;
+  parentId: number | null;
   categoryName: string;
 }
 

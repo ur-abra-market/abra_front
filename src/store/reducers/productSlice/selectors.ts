@@ -9,10 +9,10 @@ export const productCategorySelector = (state: RootStateType): ICategory =>
 export const favoriteProductSelector = (state: RootStateType): boolean =>
   state.product.isFavorite || false;
 
-export const productGradeSelector = (state: RootStateType): number =>
+export const productGradeSelector = (state: RootStateType): number | string =>
   state.product.productCard.grade_average;
 
-export const productTotalOrdersSelector = (state: RootStateType): number =>
+export const productTotalOrdersSelector = (state: RootStateType): number | null =>
   state.product.productCard.total_orders;
 
 export const productImagesSelector = (state: RootStateType): IImage[] =>
