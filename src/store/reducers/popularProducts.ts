@@ -9,7 +9,7 @@ export const getPopularProductsById = createAsyncThunk<[], IPopularProductReques
   'popularProducts/getPopularProducts',
   async (payload, { rejectWithValue }) => {
     try {
-      const { result } = await productService.getPopularProductById(payload);
+      const { result } = await productService.getPopularProduct(payload);
 
       return result;
     } catch (error: unknown) {

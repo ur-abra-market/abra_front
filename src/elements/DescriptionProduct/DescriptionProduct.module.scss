@@ -1,0 +1,16 @@
+.description_container {
+  min-height: 407px;
+  padding: 32px;
+  background: var(--color-white);
+  border-radius: 12px;
+}
+
+.title {
+  margin-bottom: 28px;
+  font: var(--bold) var(--fz-xxl2) / 34px var(--roboto);
+}
+
+.description {
+  max-width: 551px;
+  font: var(--regular) var(--fz-s2) / 20px var(--roboto);
+}

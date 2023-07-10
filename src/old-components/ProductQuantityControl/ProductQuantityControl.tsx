@@ -17,7 +17,7 @@ const ProductQuantityControl: FC<ProductQuantityControlProps> = ({
   const dispatch = useAppDispatch();
   // const [value, setValue] = useState(obj.sum)
   const [value, setValue] = useState(min);
-  const max = useAppSelector(state => state.product.max);
+  const max = useAppSelector(state => state.productListOld.max);
 
   const handlerInput = (): void => {
     const newObj = { ...obj };

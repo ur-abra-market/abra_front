@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { ProductCard } from 'elements';
 import { ProductsPreview } from 'modules';
-import style from 'pages/seller-pages/ProductPage/ProductPage.module.scss';
+import style from 'old-components/ProductPageOld/ProductPage.module.scss';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 
 export const SimilarProduct = (): JSX.Element => {
@@ -11,6 +11,7 @@ export const SimilarProduct = (): JSX.Element => {
     description: 'shirt description',
     grade_average: 4.2,
     id: 12,
+    uuid: '',
     images: [
       {
         image_url:

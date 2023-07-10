@@ -2,15 +2,16 @@ import React, { FC, useId } from 'react';
 
 export interface IStar {
   percent: string;
+  sizes?: string;
 }
 
-export const Star: FC<IStar> = ({ percent }) => {
+export const Star: FC<IStar> = ({ percent, sizes }) => {
   const uniqueId = useId();
 
   return (
     <svg
-      width="16"
-      height="15"
+      width={sizes || '16'}
+      height={sizes || '15'}
       viewBox="0 0 16 15"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

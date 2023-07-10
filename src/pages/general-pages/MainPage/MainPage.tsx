@@ -48,7 +48,7 @@ const CATEGORIES: Category = {
 
 export const MainPage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();
-  const filter = useAppSelector(state => state.product.statusProduct);
+  const filter = useAppSelector(state => state.productListOld.statusProduct);
   const { products, isLoading } = useAppSelector(state => state.mainPageProducts);
 
   useEffect(() => {

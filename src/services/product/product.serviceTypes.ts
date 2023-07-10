@@ -53,7 +53,6 @@ interface IProductImage {
   id?: number;
   image_url?: string;
   order?: number;
-  product?: string;
 }
 
 interface IProductSupplier {
@@ -65,26 +64,26 @@ interface IProductSupplier {
 }
 
 export interface IProductCompilation {
-  datetime: string;
-  description: string;
-  grade_average: number;
   id: number;
-  images: IProductImage[];
-  is_active: boolean;
   name: string;
+  description: string;
+  datetime: string;
+  grade_average: number;
+  total_orders: number;
+  uuid: string;
+  is_active: boolean;
+  images: IProductImage[];
   prices: IProductPrice[];
   supplier?: IProductSupplier;
-  total_orders: number;
-  uuid?: string;
 }
 
 export interface IProductPrice {
-  discount: number;
-  end_date: string;
   id: number;
+  value: number;
+  discount: number;
   min_quantity: number;
   start_date: string;
-  value?: number;
+  end_date: string;
 }
 
 interface IPrice {

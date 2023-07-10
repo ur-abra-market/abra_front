@@ -1,0 +1,11 @@
+.product_details_container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product_title {
+  margin-bottom: 8px;
+  font: var(--bold) var(--fz-xxl2) / 54px var(--roboto);
+}
+

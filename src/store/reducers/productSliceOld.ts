@@ -35,7 +35,7 @@ const initialState = {
   step: 100,
 };
 
-export const productSlice = createSlice({
+export const productSliceOld = createSlice({
   name: 'product',
   initialState,
   extraReducers: builder => {
@@ -75,5 +75,5 @@ export const productSlice = createSlice({
     },
   },
 });
-export const { status, category, input } = productSlice.actions;
-export default productSlice.reducer;
+export const { status, category, input } = productSliceOld.actions;
+export default productSliceOld.reducer;
