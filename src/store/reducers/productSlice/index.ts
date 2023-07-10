@@ -20,3 +20,11 @@ export {
   getPopularProducts,
 } from './thunks';
 export { productReducer } from './slice';
+export type {
+  IProductCard,
+  IProductSliceInitialState,
+  IImage,
+  IPrice,
+  ICategory,
+  ISupplier,
+} from './types';
