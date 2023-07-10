@@ -5,6 +5,9 @@ export {
   updateBusinessInfo,
   uploadCompanyLogo,
   fetchCompanyLogo,
+  deleteCompanyImage,
+  hasPersonalInfo,
+  hasCompanyInfo,
   createAccountBusinessInfo,
 } from './thunks';
 export {
@@ -13,4 +16,11 @@ export {
   supplierBusinessInfoSelector,
   supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
+  hasCompanyInfoSelector,
+  hasPersonalInfoSelector,
 } from './selectors';
+export type {
+  ILoading,
+  ISupplierProfileSliceInitialState,
+  ISupplierBusinessInfo,
+} from './types';

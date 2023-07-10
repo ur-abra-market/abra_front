@@ -6,7 +6,7 @@ import { SupplierPersonalInfoForm } from '.';
 
 import { useAppSelector } from 'common/hooks';
 import { HOME } from 'routes';
-import { hasPersonalInfoSelector } from 'store/reducers/supplier/profile/selectors';
+import { hasPersonalInfoSelector } from 'store/reducers/supplier/profile';
 
 export const AccountSetupPersonalInfoPage = (): JSX.Element => {
   const hasPersonalInfoResult = useAppSelector(hasPersonalInfoSelector);

@@ -13,9 +13,9 @@ import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
 import Modal from 'elements/Modal';
 import { ModalChildPhoneCheck } from 'elements/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
 import { PersonalInfoChangeForm } from 'modules';
-import { ACCOUNT_SETUP_BUSINESS_INFO, ACCOUNT_SETUP_PERSONAL_INFO } from 'routes';
+import { ACCOUNT_SETUP_BUSINESS_INFO } from 'routes';
 import { IPersonalInfoRequest } from 'services/auth/auth.serviceTypes';
-import { createAccountPersonalInfo } from 'store/reducers/authSlice/thunks';
+import { createAccountPersonalInfo } from 'store/reducers/authSlice';
 import { getCountries } from 'store/reducers/commonSlice';
 import { Button, SupplierRegisterFormStep } from 'ui-kit';
 

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { UseFormSetValue } from 'react-hook-form';
 
 import { ICountry } from 'services/common/common.serviceTypes';
-import { IUserPersonalInfo } from 'store/reducers/userSlice/slice';
+import { IUserPersonalInfo } from 'store/reducers/userSlice';
 
 export const useSetPersonalInfoValues = (
   setValue: UseFormSetValue<any>,

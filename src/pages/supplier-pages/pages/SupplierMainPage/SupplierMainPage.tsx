@@ -8,8 +8,9 @@ import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
 import {
   hasCompanyInfoSelector,
   hasPersonalInfoSelector,
-} from 'store/reducers/supplier/profile/selectors';
-import { hasCompanyInfo, hasPersonalInfo } from 'store/reducers/supplier/profile/thunks';
+  hasCompanyInfo,
+  hasPersonalInfo,
+} from 'store/reducers/supplier/profile';
 import { LoaderCircular } from 'ui-kit';
 
 export const SupplierMainPage = (): JSX.Element => {

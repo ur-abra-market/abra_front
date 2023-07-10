@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ContentMessage } from 'elements';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
 import { LOGIN } from 'routes';
-import { confirmEmail } from 'store/reducers/authSlice/thunks';
+import { confirmEmail } from 'store/reducers/authSlice';
 import { LoaderCircular } from 'ui-kit';
 
 export const ConfirmEmailPage = (): JSX.Element => {
