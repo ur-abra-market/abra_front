@@ -4,7 +4,7 @@ export interface IProductSliceInitialState {
   productCard: IProductCard;
   similarProducts: IProductCompilation[];
   popularProducts: IProductCompilation[];
-  isFavorite: boolean;
+  isFavorite: boolean; // времянка пока бэк не отдаёт нам состояние, после удалить
 }
 export interface IProductCard {
   id: number;
