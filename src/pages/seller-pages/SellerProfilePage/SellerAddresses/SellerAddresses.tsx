@@ -1,32 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { Address } from './Address/Address';
 import { makeMainAddressFirst } from './helpers/makeMainAddressFirst';
 import { SellerAddAddressChangeForm } from './SellerAddAddressChangeForm/SellerAddAddressChangeForm';
 import style from './SellerAddresses.module.scss';
 
-import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { useAppSelector } from 'common/hooks';
 import Modal from 'elements/Modal';
 import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
 import { sellerAddressesSelector } from 'store/reducers/seller/profile/selectors';
-import { getSellerAddresses } from 'store/reducers/seller/profile/thunks';
 
 export const SellerAddresses = (): JSX.Element => {
+  const addresses = useAppSelector(sellerAddressesSelector);
   const [modal, setModal] = useState(false);
 
   const onClickAddAddressModal = (): void => {
     setModal(true);
   };
 
-  const addresses = useAppSelector(sellerAddressesSelector);
   const sortedAddresses: ISellerAddressData[] | undefined = makeMainAddressFirst(
     addresses!,
   );
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getSellerAddresses());
-  }, [dispatch]);
 
   return (
     <>

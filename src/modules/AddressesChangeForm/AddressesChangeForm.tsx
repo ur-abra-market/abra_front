@@ -6,10 +6,15 @@ import style from './AddressesChangeForm.module.scss';
 
 import { DeleteTrashCanIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { LoadingStatusEnum } from 'common/types';
 import { PhoneNumberInput } from 'elements';
 import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
+import { countriesSelector } from 'store/reducers/commonSlice';
+import {
+  sellerLoadingSelector,
+  deleteSellerAddress,
+} from 'store/reducers/seller/profile';
 import { ISellerAddress } from 'store/reducers/seller/profile/slice';
-import { deleteSellerAddress } from 'store/reducers/seller/profile/thunks';
 import { Button, Checkbox, Input, Label, Select } from 'ui-kit';
 
 interface IAddressesChangeForm {
@@ -27,6 +32,9 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
   onSubmit,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
+  const countries = useAppSelector(countriesSelector);
+  const isLoading =
+    useAppSelector(sellerLoadingSelector).avatarLoading === LoadingStatusEnum.Loading;
 
   const {
     register,
@@ -36,7 +44,6 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
     formState: { isValid, errors },
   } = useFormContext<ISellerAddress>();
 
-  const countries = useAppSelector(state => state.common.countries);
   const listCountry = countries.map(el => ({
     value: el.id,
     label: el.country,
@@ -50,172 +57,176 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.address_form}>
-      <div className={style.address_form_header}>
-        <h4 className={style.address_form_header_title}>
-          {isEditForm ? 'Edit Address' : 'Add Address'}
-        </h4>
-        <div className={style.address_form_checkbox}>
-          {isEditForm && (
-            <button
-              className={style.delete_address}
-              onClick={removeAddress}
-              type="button"
-            >
-              <DeleteTrashCanIcon />
-              <span>Remove Address</span>
-            </button>
-          )}
-          <Controller
-            control={control}
-            name="isMain"
-            defaultValue={isEditForm ? address?.is_main : undefined}
-            render={({ field }) => (
-              <Checkbox
-                checked={field.value || false}
-                className={style.checkbox}
-                variant="default"
-                label="Main Address"
-                onChange={event => field.onChange(event.currentTarget.checked)}
-              />
+      <fieldset disabled={isLoading}>
+        <div className={style.address_form_header}>
+          <h4 className={style.address_form_header_title}>
+            {isEditForm ? 'Edit Address' : 'Add Address'}
+          </h4>
+          <div className={style.address_form_checkbox}>
+            {isEditForm && (
+              <button
+                className={style.delete_address}
+                onClick={removeAddress}
+                type="button"
+              >
+                <DeleteTrashCanIcon />
+                <span>Remove Address</span>
+              </button>
             )}
-          />
-        </div>
-      </div>
-      <div className={style.address_form_block}>
-        <div className={style.address_form_block_title}>Recipient Info</div>
-        <div className={style.address_form_block_row}>
-          <div className={style.address_form_item}>
-            <Label label="First name">
-              <Input
-                {...register('firstName')}
-                classNameWrapper={style.address_form_input}
-                placeholder="Recipient’s first name"
-                defaultValue={isEditForm ? address?.first_name : ''}
-                error={errors.firstName?.message}
-              />
-            </Label>
-          </div>
-          <div className={style.address_form_item}>
-            <Label label="Last name">
-              <Input
-                {...register('lastName')}
-                classNameWrapper={style.address_form_input}
-                placeholder="Recipient’s last name"
-                defaultValue={isEditForm ? address?.last_name : ''}
-                error={errors.lastName?.message}
-              />
-            </Label>
+            <Controller
+              control={control}
+              name="isMain"
+              defaultValue={isEditForm ? address?.is_main : undefined}
+              render={({ field }) => (
+                <Checkbox
+                  checked={field.value || false}
+                  className={style.checkbox}
+                  variant="default"
+                  label="Main Address"
+                  onChange={event => field.onChange(event.currentTarget.checked)}
+                />
+              )}
+            />
           </div>
         </div>
-        <div className={style.address_popup_phone}>
-          <PhoneNumberInput
-            label="Personal phone number"
-            countryShort={address?.phone.country.country_short}
-          />
-        </div>
-      </div>
-      <div className={style.address_form_block}>
-        <div className={style.address_popup_block_title}>Where to deliver</div>
-        <div className={style.address_form_block_row}>
-          <Controller
-            control={control}
-            name="country"
-            render={({ field }) => (
-              <Label label="Country">
-                <Select
-                  {...field}
-                  options={listCountry}
-                  placeholder="Select a country"
-                  padding="23px"
-                  className={style.select}
-                  error={errors.country?.message}
-                  defaultValue={watch('country')}
-                  onChange={value => {
-                    field.onChange(value.value as number);
-                  }}
+        <div className={style.address_form_block}>
+          <div className={style.address_form_block_title}>Recipient Info</div>
+          <div className={style.address_form_block_row}>
+            <div className={style.address_form_item}>
+              <Label label="First name">
+                <Input
+                  {...register('firstName')}
+                  classNameWrapper={style.address_form_input}
+                  placeholder="Recipient’s first name"
+                  defaultValue={isEditForm ? address?.first_name : ''}
+                  error={errors.firstName?.message}
                 />
               </Label>
-            )}
-          />
-
-          <div className={style.address_form_item}>
-            <Label label="State / Province (optional)">
-              <Input
-                {...register('area')}
-                classNameWrapper={style.address_form_input}
-                placeholder="Enter a state or province name"
-                defaultValue={isEditForm ? address?.area : ''}
-                error={errors.area?.message}
-              />
-            </Label>
+            </div>
+            <div className={style.address_form_item}>
+              <Label label="Last name">
+                <Input
+                  {...register('lastName')}
+                  classNameWrapper={style.address_form_input}
+                  placeholder="Recipient’s last name"
+                  defaultValue={isEditForm ? address?.last_name : ''}
+                  error={errors.lastName?.message}
+                />
+              </Label>
+            </div>
+          </div>
+          <div className={style.address_popup_phone}>
+            <PhoneNumberInput
+              label="Personal phone number"
+              countryShort={address?.phone.country.country_short}
+              disabled={isLoading}
+            />
           </div>
         </div>
-        <div className={style.address_form_block_row}>
+        <div className={style.address_form_block}>
+          <div className={style.address_popup_block_title}>Where to deliver</div>
+          <div className={style.address_form_block_row}>
+            <Controller
+              control={control}
+              name="country"
+              render={({ field }) => (
+                <Label label="Country">
+                  <Select
+                    {...field}
+                    options={listCountry}
+                    placeholder="Select a country"
+                    padding="23px"
+                    className={style.select}
+                    error={errors.country?.message}
+                    defaultValue={watch('country')}
+                    onChange={value => {
+                      field.onChange(value.value as number);
+                    }}
+                    disabled={isLoading}
+                  />
+                </Label>
+              )}
+            />
+
+            <div className={style.address_form_item}>
+              <Label label="State / Province (optional)">
+                <Input
+                  {...register('area')}
+                  classNameWrapper={style.address_form_input}
+                  placeholder="Enter a state or province name"
+                  defaultValue={isEditForm ? address?.area : ''}
+                  error={errors.area?.message}
+                />
+              </Label>
+            </div>
+          </div>
+          <div className={style.address_form_block_row}>
+            <div className={style.address_form_item}>
+              <Label label="City / Town">
+                <Input
+                  {...register('city')}
+                  classNameWrapper={style.address_form_input}
+                  placeholder="Enter a city or town name"
+                  defaultValue={isEditForm ? address?.city : ''}
+                  error={errors.city?.message}
+                />
+              </Label>
+            </div>
+            <div className={style.address_form_block_row}>
+              <Label label="Building (optional)">
+                <Input
+                  {...register('building')}
+                  classNameWrapper={style.address_form_input}
+                  placeholder="Enter a building number"
+                  defaultValue={isEditForm ? address?.building : ''}
+                  error={errors.building?.message}
+                />
+              </Label>
+            </div>
+          </div>
           <div className={style.address_form_item}>
-            <Label label="City / Town">
+            <Label label="Street address">
               <Input
-                {...register('city')}
+                {...register('street')}
                 classNameWrapper={style.address_form_input}
-                placeholder="Enter a city or town name"
-                defaultValue={isEditForm ? address?.city : ''}
-                error={errors.city?.message}
+                placeholder="Enter a street name and number"
+                defaultValue={isEditForm ? address?.street : ''}
+                error={errors.street?.message}
               />
             </Label>
           </div>
           <div className={style.address_form_block_row}>
-            <Label label="Building (optional)">
-              <Input
-                {...register('building')}
-                classNameWrapper={style.address_form_input}
-                placeholder="Enter a building number"
-                defaultValue={isEditForm ? address?.building : ''}
-                error={errors.building?.message}
-              />
-            </Label>
+            <div className={style.address_form_item}>
+              <Label label="Apt, suite, office (optional)">
+                <Input
+                  {...register('apartment')}
+                  classNameWrapper={style.address_form_input}
+                  placeholder="Enter a number or a letter"
+                  defaultValue={isEditForm ? address?.apartment : ''}
+                  error={errors.apartment?.message}
+                />
+              </Label>
+            </div>
+            <div className={style.address_form_item}>
+              <Label label="Zip Code">
+                <Input
+                  {...register('postalCode')}
+                  classNameWrapper={style.address_form_input}
+                  placeholder="Enter a postal code"
+                  defaultValue={isEditForm ? address?.postal_code : ''}
+                  error={errors.postalCode?.message}
+                />
+              </Label>
+            </div>
           </div>
+          <Button
+            className={style.address_form_button}
+            type="submit"
+            label="Confirm"
+            disabled={!isValid || (isEditForm && isAddressFormDisable)}
+          />
         </div>
-        <div className={style.address_form_item}>
-          <Label label="Street address">
-            <Input
-              {...register('street')}
-              classNameWrapper={style.address_form_input}
-              placeholder="Enter a street name and number"
-              defaultValue={isEditForm ? address?.street : ''}
-              error={errors.street?.message}
-            />
-          </Label>
-        </div>
-        <div className={style.address_form_block_row}>
-          <div className={style.address_form_item}>
-            <Label label="Apt, suite, office (optional)">
-              <Input
-                {...register('apartment')}
-                classNameWrapper={style.address_form_input}
-                placeholder="Enter a number or a letter"
-                defaultValue={isEditForm ? address?.apartment : ''}
-                error={errors.apartment?.message}
-              />
-            </Label>
-          </div>
-          <div className={style.address_form_item}>
-            <Label label="Zip Code">
-              <Input
-                {...register('postalCode')}
-                classNameWrapper={style.address_form_input}
-                placeholder="Enter a postal code"
-                defaultValue={isEditForm ? address?.postal_code : ''}
-                error={errors.postalCode?.message}
-              />
-            </Label>
-          </div>
-        </div>
-        <Button
-          className={style.address_form_button}
-          type="submit"
-          label="Confirm"
-          disabled={!isValid || (isEditForm && isAddressFormDisable)}
-        />
-      </div>
+      </fieldset>
     </form>
   );
 };

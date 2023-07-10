@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -15,14 +15,13 @@ import { ButtonLogOut } from 'elements/ButtonLogOut/ButtonLogOut';
 import { PersonalInfoChangeForm } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
 import {
-  getSellerAvatar,
   sellerAvatarSelector,
   sellerLoadingSelector,
   updateSellerAvatar,
 } from 'store/reducers/seller/profile';
 import {
-  getPersonalInfo,
   updatePersonalInfo,
+  userLoadingSelector,
   userPersonalInfoSelector,
 } from 'store/reducers/userSlice';
 import { Button } from 'ui-kit';
@@ -32,29 +31,30 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
 
   const userPersonalInfo = useAppSelector(userPersonalInfoSelector);
   const userAvatar = useAppSelector(sellerAvatarSelector);
-  const sellerLoading = useAppSelector(sellerLoadingSelector);
+  const isAvatarLoading =
+    useAppSelector(sellerLoadingSelector).avatarLoading === LoadingStatusEnum.Loading;
+  const isPersonalInfoLoading =
+    useAppSelector(userLoadingSelector).personalInfoLoading === LoadingStatusEnum.Loading;
 
   const { countryShort, phoneNumber, lastName, firstName } = userPersonalInfo;
-
-  const isDisabled = sellerLoading.avatarLoading === LoadingStatusEnum.Loading;
 
   const formMethods = useForm<IPersonalInfoFormData>({
     resolver: yupResolver(personalInfoFormValidationSchema),
     mode: 'all',
   });
 
-  const { watch, handleSubmit, formState, setValue } = formMethods;
+  const {
+    watch,
+    handleSubmit,
+    formState: { isValid },
+    setValue,
+  } = formMethods;
 
   const countries = useAppSelector(countriesSelector);
 
   const numberCountry = countries.find(c => c.country_short === countryShort);
 
   useSetPersonalInfoValues(setValue, userPersonalInfo, numberCountry);
-
-  useEffect(() => {
-    dispatch(getPersonalInfo());
-    dispatch(getSellerAvatar());
-  }, [dispatch]);
 
   const [phoneNumberValue, lastNameValue, firstNameValue, countryShortValue] = watch([
     'phoneNumber',
@@ -109,7 +109,7 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
         type="avatar"
         image={userAvatar || ''}
         description="avatar"
-        isDisabled={isDisabled}
+        isDisabled={isAvatarLoading}
       />
 
       <FormProvider {...formMethods}>
@@ -118,7 +118,7 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
 
           <Button
             type="submit"
-            disabled={!formState.isValid || isPersonalInfoFormDisable}
+            disabled={!isValid || isPersonalInfoFormDisable || isPersonalInfoLoading}
             className={style.submit_button}
             label="Save"
           />

@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { NotificationsChangeForm } from 'modules';
 import { ISellerNotifications } from 'services/seller/seller.serviceTypes';
 import {
-  getSellerNotifications,
   updateSellerNotifications,
   sellerLoadingSelector,
   sellerNotificationSelector,
@@ -33,12 +32,6 @@ export const SellerNotifications = (): JSX.Element => {
   const onNotificationChange = (id: string, value: boolean): void => {
     dispatch(updateSellerNotifications({ id, value }));
   };
-
-  useEffect(() => {
-    if (!notifications) {
-      dispatch(getSellerNotifications());
-    }
-  }, []);
 
   return (
     <NotificationsChangeForm

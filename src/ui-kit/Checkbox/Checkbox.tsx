@@ -12,7 +12,6 @@ export interface ICheckbox
   variant?: 'notification' | 'default';
   label?: string;
   size?: 'md' | 'sm';
-  disabled?: boolean;
 }
 
 export const Checkbox = forwardRef<HTMLInputElement, ICheckbox>((props, ref) => {

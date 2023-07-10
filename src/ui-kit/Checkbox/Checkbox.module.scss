@@ -13,6 +13,12 @@
   line-height: 20px;
   color: #000;
   letter-spacing: -0.24px;
+
+  &:has(input:disabled) {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.5;
+  }
 }
 
 .input_notification {
@@ -28,44 +34,42 @@
   padding: 1px;
 
   appearance: none;
-  background: #F2F2F2;
+  background: #f2f2f2;
   border: none;
 
   transition: 0.1s;
-}
 
-.input_notification::before,
-.input_notification::after {
-  content: '';
-  position: absolute;
-  display: inline-block;
-}
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    display: inline-block;
+  }
 
-.input_notification::before {
-  transform: matrix(-1, 0, 0, 1, 0, 0);
+  &::before {
+    transform: matrix(-1, 0, 0, 1, 0, 0);
 
-  background: #FFF;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  border-radius: 100px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.16),
-    0 3px 1px rgba(0, 0, 0, 0.1);
-}
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: 100px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.16), 0 3px 1px rgba(0, 0, 0, 0.1);
+  }
 
-.input_notification::after {
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.16),
-    0 3px 1px rgba(0, 0, 0, 0.1);
-}
+  &::after {
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.16), 0 3px 1px rgba(0, 0, 0, 0.1);
+  }
 
-.input_notification:checked {
-  justify-content: right;
-  background: #FC133D;
-}
+  &:checked {
+    justify-content: right;
+    background: #fc133d;
+  }
 
-.input_notification:disabled {
-  /*justify-content: right;*/
-  /*display: none;*/
-  background: #999;
+  &:disabled {
+    /*justify-content: right;*/
+    /*display: none;*/
+    background: #999;
+  }
 }
 
 .input_default {
@@ -77,49 +81,53 @@
   height: 24px;
 
   appearance: none;
-  background: #F4F4F4;
+  background: #f4f4f4;
   border: none;
   border-radius: 4px;
 
   transition: 0.1s;
-}
 
-.input_default:checked {
-  background: #FC133D;
-}
+  &:checked {
+    background: #fc133d;
+  }
 
-.input_default:checked::after {
-  content: '';
+  &:checked::after {
+    content: "";
 
-  position: absolute;
-  top: 0;
+    position: absolute;
+    top: 0;
 
-  display: block;
+    display: block;
 
-  width: 24px;
-  height: 24px;
+    width: 24px;
+    height: 24px;
 
-  background: url('../../assets/icons/files/check-mark-white.svg') no-repeat center;
+    background: url("../../assets/icons/files/check-mark-white.svg") no-repeat center;
+  }
 }
 
 .md {
   width: 52px;
   height: 32px;
   border-radius: 37px;
-}
 
-.md::before {
-  width: 28px;
-  height: 28px;
+  &::before {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .sm {
   width: 36px;
   height: 24px;
   border-radius: 50px;
+
+  &::before {
+    width: 18px;
+    height: 18px;
+  }
 }
 
-.sm::before {
-  width: 18px;
-  height: 18px;
+.disabled {
+  opacity: 0.6;
 }
