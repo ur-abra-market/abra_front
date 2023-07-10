@@ -3,7 +3,6 @@ export { CartPage } from './CartPage/CartPage';
 export { ProductPage } from './ProductPage/ProductPage';
 export { SellerProfilePage } from 'pages/seller-pages/SellerProfilePage/SellerProfilePage';
 export { SellerFavoritesList } from './SellerFavoritesList/SellerFavoritesList';
-export { ProductListPage } from './ProductListPage/ProductListPage';
 export { OrderDetailsPage } from './OrderDetailsPage/OrderDetailsPage';
 export { OrderHistoryPage } from './OrderHistoryPage/OrderHistoryPage';
 export { CheckoutPage } from './CheckoutPage/CheckoutPage';

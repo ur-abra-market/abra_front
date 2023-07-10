@@ -1,0 +1,21 @@
+export const {
+  PRODUCT_DETAILS,
+  PERSONAL_ACCOUNT,
+  CART,
+  CHECKOUT,
+  CHECKOUT_SUCCESS,
+  ORDER_HISTORY,
+  ORDER_HISTORY_DETAILS,
+  FAVORITES,
+  HELP,
+} = {
+  PRODUCT_DETAILS: '/product',
+  PERSONAL_ACCOUNT: '/personal_account',
+  CART: '/cart',
+  CHECKOUT: '/checkout',
+  CHECKOUT_SUCCESS: '/checkout_success',
+  ORDER_HISTORY: '/order_history',
+  ORDER_HISTORY_DETAILS: '/order_history/4784437395989684',
+  FAVORITES: '/favorites',
+  HELP: '/help',
+} as const;

@@ -11,6 +11,7 @@
     "declaration-property-value-disallowed-list": {
       "border": []
     },
-    "property-no-vendor-prefix": null
+    "property-no-vendor-prefix": null,
+    "block-opening-brace-space-before": "always"
   }
 }

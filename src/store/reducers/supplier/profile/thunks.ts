@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IAsyncThunkConfig, IServerResponse } from 'common/types';
+import { IAsyncThunkConfig, IBaseResponse } from 'common/types';
 import { supplierService } from 'services';
 import {
   ISupplierErrorResponse,
@@ -43,6 +43,28 @@ export const createAccountBusinessInfo = createAsyncThunk<
   },
 );
 
+export const hasCompanyInfo = createAsyncThunk<boolean, void, IAsyncThunkConfig>(
+  'supplierProfile/hasCompanyInfo',
+  async (_, { rejectWithValue }) => {
+    try {
+      return await supplierService.hasBusinessInfo();
+    } catch (error) {
+      return rejectWithValue('[hasCompanyInfo]: Error');
+    }
+  },
+);
+
+export const hasPersonalInfo = createAsyncThunk<boolean, void, IAsyncThunkConfig>(
+  'supplierProfile/hasPersonalInfo',
+  async (_, { rejectWithValue }) => {
+    try {
+      return await supplierService.hasPersonalInfo();
+    } catch (error) {
+      return rejectWithValue('[hasPersonalInfo]: Error');
+    }
+  },
+);
+
 export const updateBusinessInfo = createAsyncThunk<
   void,
   ISupplierUpdateBusinessInfo,
@@ -66,7 +88,7 @@ export const fetchCompanyLogo = createAsyncThunk<string, void, IAsyncThunkConfig
   async (_, { rejectWithValue }) => {
     try {
       return await supplierService.fetchCompanyLogo();
-    } catch (error: unknown) {
+    } catch (error) {
       const err = error as AxiosError<ISupplierErrorResponse>;
 
       return rejectWithValue(err.message);
@@ -75,7 +97,7 @@ export const fetchCompanyLogo = createAsyncThunk<string, void, IAsyncThunkConfig
 );
 
 export const uploadCompanyLogo = createAsyncThunk<
-  IServerResponse<{
+  IBaseResponse<{
     id: number;
     url: string;
     image: string;
@@ -87,20 +109,20 @@ export const uploadCompanyLogo = createAsyncThunk<
     const data = await supplierService.uploadCompanyLogo(img);
 
     return { ...data, result: { ...data.result, image: URL.createObjectURL(img) } };
-  } catch (error: unknown) {
+  } catch (error) {
     const err = error as AxiosError<ISupplierErrorResponse>;
 
     return rejectWithValue(err.message);
   }
 });
 
-export const deleteCompanyLogo = createAsyncThunk<
-  IServerResponse<boolean>,
+export const deleteCompanyImage = createAsyncThunk<
+  IBaseResponse<boolean>,
   number,
   IAsyncThunkConfig
 >('supplierProfile/deleteCompanyLogo', async (id, { rejectWithValue }) => {
   try {
-    return await supplierService.deleteCompanyLogo(id);
+    return await supplierService.deleteCompanyImage(id);
   } catch (error) {
     const err = error as AxiosError<ISupplierErrorResponse>;
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -7,6 +7,9 @@ import { useSelector } from 'react-redux';
 import style from './SupplierBusinessInfoChangeForm.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { useSupplierBusinessInfoFormDirty } from 'common/hooks/useSupplierBusinessInfoFormDirty';
+import { useSupplierBusinessInfoSetValue } from 'common/hooks/useSupplierBusinessInfoSetValue';
+import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
 import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
 import { UploadImage } from 'elements';
 import {
@@ -15,56 +18,44 @@ import {
 } from 'pages/supplier-pages/supplier-pages-common';
 import { ISupplierUpdateBusinessInfo } from 'services/supplier/supplier.serviceTypes';
 import {
-  getBusinessInfo,
   supplierBusinessInfoSelector,
   updateBusinessInfo,
-} from 'store/reducers/supplier/profile';
-import {
-  supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
-} from 'store/reducers/supplier/profile/selectors';
-import { ISupplierBusinessInfo } from 'store/reducers/supplier/profile/slice';
-import {
-  deleteCompanyLogo,
-  uploadCompanyLogo,
-} from 'store/reducers/supplier/profile/thunks';
+  supplierLoadingSelector,
+} from 'store/reducers/supplier/profile';
+import { uploadCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const businessInfoData = useAppSelector(supplierBusinessInfoSelector);
   const companyLogo = useSelector(supplierCompanyLogoSelector);
-  const companyLogoId = useSelector(supplierCompanyLogoIdSelector);
+  const supplierLoading = useAppSelector(supplierLoadingSelector);
 
-  const { phoneNumber, countryCode } = businessInfoData;
+  const isDisabled = supplierLoading.companyLogoLoading === LoadingStatusEnum.Loading;
+
+  const formMethods = useForm<ISupplierBusinessInfoFormData>({
+    resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
+    mode: 'onChange',
+  });
+  const { setValue, watch } = formMethods;
 
   const handleUploadImage = (image: File): void => {
     dispatch(uploadCompanyLogo(image));
   };
-  const handleDeleteImage = (): void => {
-    if (companyLogoId !== null) dispatch(deleteCompanyLogo(companyLogoId));
-  };
 
-  useEffect(() => {
-    dispatch(getBusinessInfo());
-  }, []);
+  useSupplierBusinessInfoSetValue(setValue, businessInfoData);
 
-  useEffect(() => {
-    reset(businessInfoData);
-    setValue('phoneNumber', `${countryCode}${phoneNumber}`);
-  }, [businessInfoData]);
+  const { isDirty, isPhoneNumberDisable } = useSupplierBusinessInfoFormDirty(
+    businessInfoData,
+    watch,
+  );
 
-  const formMethods = useForm<ISupplierBusinessInfo>({
-    resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
-    mode: 'onChange',
-  });
-  const { reset, setValue, watch } = formMethods;
-
-  const phoneNumberData = watch('phoneNumber');
-
-  const isPhoneNumberDisable = phoneNumberData === `${countryCode}${phoneNumber}`;
-
-  const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
+  const onSubmit = async (data: ISupplierBusinessInfoFormData): Promise<void> => {
     const { numberBody } = parsePhoneNumber(data.phoneNumber);
+    const currentPhoneNumber = isPhoneNumberDisable
+      ? businessInfoData.phoneNumber
+      : numberBody;
+
     const updateData: ISupplierUpdateBusinessInfo = {
       supplier_data_request: {
         license_number: data.license,
@@ -81,8 +72,8 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
         description: data.description,
       },
       company_phone_data_request: {
-        phone_number: numberBody,
-        country_id: data.phoneId!,
+        phone_number: currentPhoneNumber,
+        country_id: data.countryId!,
       },
     };
 
@@ -98,11 +89,12 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
         label="Add logo or profile image"
         placeholder="The customers will recognize your store by this image"
         uploadImage={handleUploadImage}
-        deleteImage={handleDeleteImage}
         description="company logo"
+        isDisabled={isDisabled}
       />
       <FormProvider {...formMethods}>
         <SupplierBusinessInfoForm
+          isDirty={isDirty}
           updateForm
           onSubmit={onSubmit}
           countryShort={businessInfoData.countryShort}

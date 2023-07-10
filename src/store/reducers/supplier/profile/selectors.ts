@@ -1,12 +1,8 @@
-import { ISupplierPersonalInfo, ISupplierBusinessInfo } from './slice';
+import { ISupplierBusinessInfo, ILoading } from './slice';
 
-import { LoadingStatusEnum } from 'common/types';
 import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
 import { RootStateType } from 'store/createStore';
 
-export const supplierPersonalInfoSelector = (
-  state: RootStateType,
-): ISupplierPersonalInfo => state.supplierProfile.personalInfo;
 export const supplierCompanyLogoSelector = (state: RootStateType): string =>
   state.supplierProfile.businessInfo.companyLogo;
 export const supplierCompanyLogoIdSelector = (state: RootStateType): number | null =>
@@ -20,5 +16,11 @@ export const supplierNotificationsSelector = (
   state: RootStateType,
 ): ISupplierNotifications | null => state.supplierProfile.notifications;
 
-export const supplierLoadingSelector = (state: RootStateType): LoadingStatusEnum =>
+export const supplierLoadingSelector = (state: RootStateType): ILoading =>
   state.supplierProfile.loading;
+
+export const hasPersonalInfoSelector = (state: RootStateType): boolean | null =>
+  state.supplierProfile.hasPersonalInfo;
+
+export const hasCompanyInfoSelector = (state: RootStateType): boolean | null =>
+  state.supplierProfile.hasCompanyInfo;

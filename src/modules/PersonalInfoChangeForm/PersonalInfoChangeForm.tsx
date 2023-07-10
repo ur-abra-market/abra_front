@@ -4,8 +4,10 @@ import { useFormContext } from 'react-hook-form';
 
 import style from './PersonalInfoChangeForm.module.scss';
 
-import { IPersonalInfoFormData } from 'common/types';
+import { useAppSelector } from 'common/hooks';
+import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
 import { PhoneNumberInput } from 'elements';
+import { userLoadingSelector } from 'store/reducers/userSlice';
 import { Input, Label } from 'ui-kit';
 
 interface IPersonalInfoChangeForm {
@@ -17,6 +19,8 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
   phoneInputClass,
   countryShort,
 }): JSX.Element => {
+  const isLoading =
+    useAppSelector(userLoadingSelector).personalInfoLoading === LoadingStatusEnum.Loading;
   const {
     register,
     formState: { errors },
@@ -27,6 +31,7 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
       <div className={style.name_container}>
         <Label label="First name" htmlFor="firstName">
           <Input
+            disabled={isLoading}
             id="firstName"
             placeholder="John"
             {...register('firstName')}
@@ -36,6 +41,7 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
 
         <Label label="Last name" htmlFor="lastName">
           <Input
+            disabled={isLoading}
             id="lastName"
             placeholder="Johnson"
             {...register('lastName')}
@@ -45,6 +51,7 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
       </div>
 
       <PhoneNumberInput
+        disabled={isLoading}
         countryShort={countryShort}
         phoneInputClass={phoneInputClass}
         label="Personal phone number"

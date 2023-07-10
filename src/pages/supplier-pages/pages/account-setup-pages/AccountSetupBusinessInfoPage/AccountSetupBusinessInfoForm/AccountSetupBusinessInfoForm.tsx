@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import style from './AccountSetupBusinessInfoForm.module.scss';
 
 import { useAppDispatch } from 'common/hooks';
+import { ISupplierBusinessInfoFormData } from 'common/types';
 import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
 import { UploadImage } from 'elements';
 import {
@@ -16,21 +17,16 @@ import {
 } from 'pages/supplier-pages/supplier-pages-common';
 import { IBusinessInfoRequest } from 'services/supplier/supplier.serviceTypes';
 import { getCountries } from 'store/reducers/commonSlice';
-import { uploadCompanyLogo } from 'store/reducers/supplier/profile';
 import {
-  supplierCompanyLogoIdSelector,
+  uploadCompanyLogo,
   supplierCompanyLogoSelector,
-} from 'store/reducers/supplier/profile/selectors';
-import { ISupplierBusinessInfo } from 'store/reducers/supplier/profile/slice';
-import {
   createAccountBusinessInfo,
-  deleteCompanyLogo,
-} from 'store/reducers/supplier/profile/thunks';
+} from 'store/reducers/supplier/profile';
+import { ISupplierBusinessInfo } from 'store/reducers/supplier/profile/slice';
 import { SupplierRegisterFormStep } from 'ui-kit';
 
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   const companyLogo = useSelector(supplierCompanyLogoSelector);
-  const companyLogoId = useSelector(supplierCompanyLogoIdSelector);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const formMethods = useForm<ISupplierBusinessInfo>({
@@ -40,9 +36,9 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(getCountries());
-  }, []);
+  }, [dispatch]);
 
-  const onSubmit = async (data: ISupplierBusinessInfo): Promise<void> => {
+  const onSubmit = async (data: ISupplierBusinessInfoFormData): Promise<void> => {
     const { numberBody } = parsePhoneNumber(data.phoneNumber);
     const businessInfoData: IBusinessInfoRequest = {
       supplier_data_request: {
@@ -62,7 +58,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
       },
       company_phone_data_request: {
         phone_number: numberBody,
-        country_id: data.phoneId!,
+        country_id: data.countryId!,
       },
     };
 
@@ -74,9 +70,6 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   };
   const handleUploadImage = (img: File): void => {
     dispatch(uploadCompanyLogo(img));
-  };
-  const handleDeleteImage = (): void => {
-    if (companyLogoId !== null) dispatch(deleteCompanyLogo(companyLogoId));
   };
 
   return (
@@ -90,7 +83,6 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
         <div className={style.add_logo}>
           <UploadImage
             uploadImage={handleUploadImage}
-            deleteImage={handleDeleteImage}
             image={companyLogo}
             type="logo"
             label="Add logo or profile image"

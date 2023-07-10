@@ -1,0 +1,44 @@
+.header_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header {
+  font-size: var(--fz-l2);
+  font-weight: var(--bold);
+  font-style: normal;
+  line-height: 24px;
+  color: var(--color-black);
+  text-align: left;
+}
+
+.header_link {
+  cursor: pointer;
+
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
+  font-style: normal;
+  line-height: 20px;
+  color: var(--color-accent);
+  text-decoration-line: underline;
+
+  background: none;
+}
+
+.my_addresses_wrapper {
+  margin-top: 24px;
+}
+
+.no_address {
+  font-size: var(--fz-s2);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  color: var(--color-black);
+
+}
+
+.addresses_container>div {
+  width: 100%;
+}

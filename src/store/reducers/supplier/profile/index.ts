@@ -4,10 +4,13 @@ export {
   updateSupplierNotifications,
   updateBusinessInfo,
   uploadCompanyLogo,
+  fetchCompanyLogo,
+  createAccountBusinessInfo,
 } from './thunks';
 export {
-  supplierPersonalInfoSelector,
   supplierLoadingSelector,
   supplierNotificationsSelector,
   supplierBusinessInfoSelector,
+  supplierCompanyLogoIdSelector,
+  supplierCompanyLogoSelector,
 } from './selectors';

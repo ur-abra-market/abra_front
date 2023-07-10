@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 
+import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { LoaderCircular } from 'ui-kit';
 
 interface TableBodyProps {
@@ -25,7 +26,7 @@ const TableBody: FC<TableBodyProps> = ({ data, columns, classes }): JSX.Element 
     const fieldValue = columns[column].path;
 
     if (fieldValue === 'image_url') {
-      return <img width="40px" height="40px" src={`${item.image_url}`} alt="img" />;
+      return <LazyImage width={40} height={40} src={`${item.image_url}`} alt="img" />;
     }
     if (fieldValue === 'with_discount' && item.with_discount === 0) return 'Off-sale';
 

@@ -7,6 +7,7 @@ import style from './ChangePasswordPage.module.scss';
 import { ChangePasswordForm } from '.';
 
 import { useAppSelector } from 'common/hooks';
+import { IAuthFooterData } from 'common/types';
 import Modal from 'elements/Modal';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
 import { FORGOT_PASSWORD, HOME, PERSONAL_ACCOUNT } from 'routes';
@@ -17,6 +18,10 @@ export const ChangePasswordPage = (): JSX.Element => {
   const navigate = useNavigate();
   const userRole = useAppSelector(userRoleSelector);
   const [isModalOpen, setOpenModal] = useState(false);
+
+  const passwordFooterData: IAuthFooterData[] = [
+    { link: FORGOT_PASSWORD, title: 'Forgot password?' },
+  ];
 
   const handleModalOnClose = (value: boolean): void => {
     setOpenModal(value);
@@ -30,7 +35,7 @@ export const ChangePasswordPage = (): JSX.Element => {
 
   return (
     <>
-      <AuthPageLayout footerLink={FORGOT_PASSWORD} footerTitle="Forgot password?">
+      <AuthPageLayout withHeader footerData={passwordFooterData}>
         <div className={style.header}>Change password</div>
         <div className={style.subheader}>Enter your current and new passwords</div>
         <ChangePasswordForm setOpenModal={setOpenModal} />

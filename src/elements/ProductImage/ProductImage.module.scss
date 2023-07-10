@@ -1,0 +1,54 @@
+.image_wrapper {
+  cursor: pointer;
+  position: relative;
+  width: 220px;
+  height: 220px;
+}
+
+.image_wrapper:hover .hover {
+  opacity: 1;
+}
+
+.image {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.hover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.4); /* Darken the background */
+  border-radius: 8px;
+
+  transition: opacity 0.3s ease;
+}
+
+.hover_text {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  font-family: Roboto, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 27px;
+  color: #FFF;
+}
+
+.flag{
+  position: absolute;
+  z-index: 11;
+  top: 16px;
+  right: 16px;
+}

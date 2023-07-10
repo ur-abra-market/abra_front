@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import style from './ShopItem.module.scss';
 
-import { ArrowRightIcon, DotIcon, StarEmptyIcon } from 'assets/icons'; // 5 10px for ArrowRightIcon
+import { ArrowIcon, DotIcon, StarEmptyIcon } from 'assets/icons'; // 5 10px for ArrowRightIcon
 import ProductItem from 'old-components/ui/TypesView/cart/ProductItem/ProductItem';
 import { Checkbox } from 'ui-kit';
 
@@ -24,7 +24,7 @@ const ShopItem: FC<ShopItemProps> = ({ shopItem }) => {
         <StarEmptyIcon className={style.star} />
         <div className={style.rating}>{shopItem.rating}</div>
         <div>{shopItem.name}</div>
-        <ArrowRightIcon className={style.arrow_right} />
+        <ArrowIcon className={style.arrow_right} />
       </div>
 
       {shopItem.products.map((prodItem: any) => (

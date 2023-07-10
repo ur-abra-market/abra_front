@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  DetailedHTMLProps,
-  FC,
-  HTMLAttributes,
-  useEffect,
-} from 'react';
+import React, { ChangeEvent, DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
@@ -12,8 +6,8 @@ import style from './UploadImage.module.scss';
 
 import { CrossRedIcon, UploadItemImageIcon, UploadLogoImageIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
+import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
-import { fetchCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 
 interface IUploadImage
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -24,6 +18,7 @@ interface IUploadImage
   uploadImage?: (img: File) => void;
   deleteImage?: () => void;
   description: string;
+  isDisabled?: boolean;
 }
 
 const MAX_FILE_SIZE = 5000000;
@@ -37,9 +32,11 @@ export const UploadImage: FC<IUploadImage> = ({
   deleteImage,
   uploadImage,
   description,
+  isDisabled,
   ...restProps
 }) => {
   const dispatch = useAppDispatch();
+
   const uploadImageIcon =
     type === 'logo' || type === 'avatar' ? (
       <UploadLogoImageIcon />
@@ -51,6 +48,7 @@ export const UploadImage: FC<IUploadImage> = ({
     [style.input_logo]: type === 'logo',
     [style.input_avatar]: type === 'avatar',
     [style.input_default]: type !== 'logo' && type !== 'avatar',
+    [style.input_disabled]: isDisabled,
   });
 
   const imgClasses = cn({
@@ -82,14 +80,14 @@ export const UploadImage: FC<IUploadImage> = ({
       e.target.value = '';
     }
   };
-
-  useEffect(() => {
-    if (type === 'logo') dispatch(fetchCompanyLogo());
-  }, [dispatch, type]);
+  const labelClasses = cn(style.label, {
+    [style.label_disabled]: isDisabled,
+  });
 
   return (
     <div className={cn(style.wrapper, className)} {...restProps}>
       <input
+        disabled={isDisabled}
         type="file"
         className={inputClasses}
         id="profileLogo"
@@ -98,7 +96,7 @@ export const UploadImage: FC<IUploadImage> = ({
       <div className={style.img_wrapper}>
         {image ? (
           <div>
-            <img className={imgClasses} src={image} alt={description} />
+            <LazyImage src={image} alt={description} className={imgClasses} />
 
             {type === 'default' && (
               <button className={crossClasses} onClick={deleteImage} type="button">
@@ -113,7 +111,7 @@ export const UploadImage: FC<IUploadImage> = ({
 
       {(type === 'logo' || type === 'avatar') && (
         <div className={style.description}>
-          <label className={style.label} htmlFor="profileLogo">
+          <label className={labelClasses} htmlFor="profileLogo">
             {label}
           </label>
           <p className={style.placeholder}>{placeholder}</p>

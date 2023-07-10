@@ -1,8 +1,4 @@
 export { ReactComponent as ApplePayIcon } from './files/apple-pay.svg';
-export { ReactComponent as ArrowDownIcon } from './files/arrow-down.svg';
-export { ReactComponent as ArrowLeftIcon } from './files/arrow-left.svg';
-export { ReactComponent as ArrowRightIcon } from './files/arrow-right.svg';
-export { ReactComponent as ArrowUpIcon } from './files/arrow-up.svg';
 export { ReactComponent as BreadcrumbsArrowIcon } from './files/breadcrumbs-arrow.svg';
 export { ReactComponent as CheckMarkWhiteIcon } from './files/check-mark-white.svg';
 export { ReactComponent as ContactUsQuestionMarkIcon } from './files/contact-us-question-mark.svg';
@@ -44,6 +40,7 @@ export { ReactComponent as TelegramIcon } from './files/telegram.svg';
 export { ReactComponent as ViewGridDisabledIcon } from './files/view-grid-disabled.svg';
 export { ReactComponent as ViewGridEnabledIcon } from './files/view-grid-enabled.svg';
 export { ReactComponent as ViewListDisabledIcon } from './files/view-list-disabled.svg';
+export { ReactComponent as ViewListEnabledIcon } from './files/view-list-enabled.svg';
 export { ReactComponent as VisaIcon } from './files/visa.svg';
 export { ReactComponent as VkIcon } from './files/vk.svg';
 export { ReactComponent as WhatsappIcon } from './files/whatsapp.svg';
@@ -51,3 +48,4 @@ export { ReactComponent as UploadLogoImageIcon } from './files/upload-logo-image
 export { ReactComponent as UploadItemImageIcon } from './files/upload-item-image.svg';
 export { ReactComponent as LogoCompanyPlaceholder } from './files/logo-company-placeholder.svg';
 export { ReactComponent as ArrowIcon } from './files/arrow.svg';
+export { ReactComponent as Home } from './files/home.svg';

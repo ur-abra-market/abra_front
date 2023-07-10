@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
@@ -6,14 +6,24 @@ import { Link } from 'react-router-dom';
 import style from './SupplierTop.module.scss';
 
 import { ArrowIcon, HeaderNotificationsIcon, LogoCompanyPlaceholder } from 'assets/icons';
-import { useOnClickOutside } from 'common/hooks';
+import { useOnClickOutside, useAppDispatch, useAppSelector } from 'common/hooks';
 import { HeaderMenu } from 'elements';
 import { HOME } from 'routes';
+import {
+  fetchCompanyLogo,
+  supplierCompanyLogoSelector,
+} from 'store/reducers/supplier/profile';
 import { MainLogo } from 'ui-kit';
 
 export const SupplierTop = (): JSX.Element => {
   const [isShowPopupMenu, setIsShowPopupMenu] = useState(false);
   const triggerRef = useOnClickOutside(setIsShowPopupMenu);
+  const companyLogo = useAppSelector(supplierCompanyLogoSelector);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCompanyLogo());
+  }, [dispatch]);
 
   return (
     <div className={style.wrapper}>
@@ -31,7 +41,17 @@ export const SupplierTop = (): JSX.Element => {
           <HeaderNotificationsIcon />
         </Link>
         <div role="presentation" className={style.btn_menu} ref={triggerRef}>
-          <LogoCompanyPlaceholder />
+          <div className={style.company_logo_wrapper}>
+            {companyLogo ? (
+              <img
+                className={style.company_logo_img}
+                src={companyLogo}
+                alt="company logo"
+              />
+            ) : (
+              <LogoCompanyPlaceholder className={style.company_logo_img} />
+            )}
+          </div>
           <button
             className={style.menu_icons}
             onClick={() => setIsShowPopupMenu(!isShowPopupMenu)}

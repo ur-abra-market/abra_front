@@ -1,17 +1,49 @@
-export interface ISellerAddressData {
-  phone_country_code: string;
-  phone_number: string;
-  address_id: number;
+import { ICountry } from 'services/common/common.serviceTypes';
+
+interface ISellerAddress {
+  country_id: number;
+  is_main: boolean;
   first_name: string;
   last_name: string;
+  area?: string;
+  city: string;
+  street: string;
+  building?: string;
+  apartment?: string;
+  postal_code: string;
+}
+
+interface ISellerAddressPhone {
+  country_id: number;
+  phone_number: string;
+}
+
+export interface ISellerAddressRequest {
+  address_id?: number;
+  seller_address_request: ISellerAddress;
+  seller_address_phone_request: ISellerAddressPhone;
+}
+
+export interface IPhone {
   id: number;
-  country: string;
+  phone_number: string;
+  country: ICountry;
+}
+
+export interface ISellerAddressData {
+  id: number;
+  first_name: string;
+  last_name: string;
+  full_name: string;
+  is_main: boolean;
   area: string;
   city: string;
   street: string;
   building: string;
   apartment: string;
   postal_code: string;
+  country: ICountry;
+  phone: IPhone;
 }
 
 export interface ISellerNotifications {

@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactNode, useEffect, useRef, useState } from 'react';
+import React, { forwardRef, ReactNode, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -21,7 +21,7 @@ export type SelectPositionType = 'up' | 'down';
 
 export interface ISelectOption {
   label: string;
-  value: string | number;
+  value: any;
 }
 
 export interface ISelect {
@@ -32,12 +32,13 @@ export interface ISelect {
   children?: ReactNode;
   placeholder?: string;
   menuHeight?: string;
-  defaultValue?: string;
+  defaultValue?: string | number;
   width?: string;
   className?: string;
   menuItemsPosition?: SelectPositionType;
   header?: boolean; // to add header use --> header={true}
   padding?: string;
+  disabled?: boolean;
 }
 
 export const Select = forwardRef(
@@ -56,6 +57,7 @@ export const Select = forwardRef(
       header = false,
       padding = '14px',
       defaultValue,
+      disabled,
     }: ISelect,
     ref,
   ) => {
@@ -100,6 +102,7 @@ export const Select = forwardRef(
       [styles.header_active]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active_up]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active]: header && menuItemsPosition === 'down' && isOpenItemsMenu,
+      [styles.header_disabled]: disabled,
     });
     const menuClassname = cn({
       [styles.closed_menu]: !header,
@@ -109,8 +112,15 @@ export const Select = forwardRef(
     });
 
     const handleChangeSelectState = (): void => {
-      setIsOpenItemsMenu(!isOpenItemsMenu);
+      if (disabled) {
+        setIsOpenItemsMenu(false);
+
+        return;
+      }
+
+      setIsOpenItemsMenu(prev => !prev);
     };
+
     const handleCloseSelectMenu = (): void => {
       setIsOpenItemsMenu(false);
     };
@@ -138,6 +148,12 @@ export const Select = forwardRef(
     // disable scrolling by click on space or arrows on keyboard
     useEffect(() => {
       let currentItemId = 0;
+
+      if (disabled) {
+        handleCloseSelectMenu();
+
+        return;
+      }
 
       if (isOpenItemsMenu) {
         const test = window.scrollY;
@@ -177,16 +193,15 @@ export const Select = forwardRef(
           return true;
         };
       }
-    }, [isOpenItemsMenu, options]);
+    }, [disabled, isOpenItemsMenu, options]);
 
     const selectWidth = width ? { width } : {};
 
-    const mainClasses = cn(styles.main, className, { [styles.main_has_header]: header });
+    const mainClasses = cn(className, styles.main, { [styles.main_has_header]: header });
 
     return (
       <div style={selectWidth} className={mainClasses} ref={mainDivRef}>
         <SelectHeader
-          menuItemsPosition={menuItemsPosition}
           className={headerClassname}
           currentSelectedValue={currentSelectedValue}
           isOpenMenu={isOpenItemsMenu}

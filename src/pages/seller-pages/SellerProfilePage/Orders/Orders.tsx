@@ -1,4 +1,6 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import style from './Orders.module.scss';
 
 import {
   OrderStatusShippedIcon,
@@ -7,18 +9,17 @@ import {
   OrderStatusUnpaidIcon,
   OrderStatusCompletedIcon,
 } from 'assets/icons';
-import style from 'pages/seller-pages/SellerProfilePage/SellerProfilePage.module.scss';
 import { ORDER_HISTORY } from 'routes';
 import { Button } from 'ui-kit';
 
 const Orders = (): JSX.Element => {
   return (
     <>
-      <div className={style.header_wrapper}>
-        <div className={style.header}>Orders</div>
-        <NavLink className={style.header_link} to={ORDER_HISTORY}>
+      <div className={style.header}>
+        <h3 className={style.title}>Orders</h3>
+        <Link className={style.header_link} to={ORDER_HISTORY}>
           View All
-        </NavLink>
+        </Link>
       </div>
       <div className={style.category_wrapper}>
         <Button color="white" className={style.orders_button}>
@@ -35,11 +36,11 @@ const Orders = (): JSX.Element => {
         </Button>
         <Button color="white" className={style.orders_button}>
           <div className={style.button_title}>To be reviewed</div>
-          <OrderStatusToBeReviewedIcon />
+          <OrderStatusToBeReviewedIcon className={style.icon} />
         </Button>
         <Button color="white" className={style.orders_button}>
           <div className={style.button_title}>To be reviewed</div>
-          <OrderStatusCompletedIcon className={style.completed_icon} />
+          <OrderStatusCompletedIcon className={style.icon} />
         </Button>
       </div>
     </>

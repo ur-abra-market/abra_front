@@ -11,7 +11,7 @@
   grid-template-columns: minmax(auto, 450px) minmax(auto, 622px) minmax(auto, 280px);
   grid-template-rows: auto 1fr;
 
-  max-width: 1440px;
+  max-width: var(--main-content-width);
   margin: 0 auto;
   padding: 12px 32px 17px;
 }
@@ -51,6 +51,12 @@
 
 .notifications {
   grid-area: notifications;
+
+  height: fit-content;
+  padding: 32px;
+
+  background: var(--color-white);
+  border-radius: 12px;
 }
 
 .account_details {

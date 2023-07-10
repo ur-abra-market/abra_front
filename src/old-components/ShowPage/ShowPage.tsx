@@ -1,8 +1,8 @@
-import { useState, MouseEvent } from 'react';
+import { MouseEvent, useState } from 'react';
 
 import style from './ShowPage.module.scss';
 
-import { ArrowDownIcon } from 'assets/icons'; // 24px
+import { ArrowIcon } from 'assets/icons'; // 24px
 import { useAppDispatch } from 'common/hooks';
 import { amount } from 'store/reducers/paginateSlice';
 
@@ -36,7 +36,7 @@ const ShowPage = (): JSX.Element => {
           className={style.show_page_img}
           onClick={() => setListSwitch(!listSwitch)}
         >
-          <ArrowDownIcon />
+          <ArrowIcon />
         </div>
       </div>
       <ul className={style.show_page_list} style={styleList}>

@@ -1,4 +1,5 @@
 export { ProductCard } from './ProductCard/ProductCard';
+export { ProductCardFull } from './ProductCardFull/ProductCardFull';
 export { Feedback } from './feedbacks/Feedback/Feedback';
 export { AccountManagementLink } from './AccountManagement/AccountManagmentLink/AccountManagmentLink';
 export { PasswordComplexity } from '../pages/general-pages/auth-pages/assets/components/PasswordComplexity/PasswordComplexity';
@@ -8,3 +9,5 @@ export { AccountManagement } from './AccountManagement/AccountManagement';
 export { ContentMessage } from './ContentMessage/ContentMessage';
 export { PhoneNumberInput } from './PhoneNumberInput/PhoneNumberInput';
 export { HeaderMenu } from './HeaderMenu/HeaderMenu';
+export { ProductList } from './ProductList/ProductList';
+export { AdditionalHeaderBlock } from './AdditionalHeaderBlock/AdditionalHeaderBlock';

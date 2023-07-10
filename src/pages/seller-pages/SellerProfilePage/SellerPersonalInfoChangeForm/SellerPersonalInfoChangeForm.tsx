@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -8,23 +8,35 @@ import style from './SellerPersonalInfoChangeForm.module.scss';
 import { personalInfoFormValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
-import { IPersonalInfoFormData } from 'common/types';
+import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
 import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
 import { UploadImage } from 'elements';
 import { ButtonLogOut } from 'elements/ButtonLogOut/ButtonLogOut';
 import { PersonalInfoChangeForm } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
-import { sellerPersonalInfoSelector } from 'store/reducers/seller/profile';
-import { getSellerAvatar } from 'store/reducers/seller/profile/thunks';
-import { getPersonalInfo, updatePersonalInfo } from 'store/reducers/userSlice';
+import {
+  getSellerAvatar,
+  sellerAvatarSelector,
+  sellerLoadingSelector,
+  updateSellerAvatar,
+} from 'store/reducers/seller/profile';
+import {
+  getPersonalInfo,
+  updatePersonalInfo,
+  userPersonalInfoSelector,
+} from 'store/reducers/userSlice';
 import { Button } from 'ui-kit';
 
 export const SellerPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
-  const data = useAppSelector(sellerPersonalInfoSelector);
+  const userPersonalInfo = useAppSelector(userPersonalInfoSelector);
+  const userAvatar = useAppSelector(sellerAvatarSelector);
+  const sellerLoading = useAppSelector(sellerLoadingSelector);
 
-  const { countryShort, phoneNumber, lastName, firstName, avatar } = data;
+  const { countryShort, phoneNumber, lastName, firstName } = userPersonalInfo;
+
+  const isDisabled = sellerLoading.avatarLoading === LoadingStatusEnum.Loading;
 
   const formMethods = useForm<IPersonalInfoFormData>({
     resolver: yupResolver(personalInfoFormValidationSchema),
@@ -37,7 +49,7 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
 
   const numberCountry = countries.find(c => c.country_short === countryShort);
 
-  useSetPersonalInfoValues(setValue, data, numberCountry);
+  useSetPersonalInfoValues(setValue, userPersonalInfo, numberCountry);
 
   useEffect(() => {
     dispatch(getPersonalInfo());
@@ -80,7 +92,9 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
     dispatch(updatePersonalInfo(updatePersonalInfoData));
   };
 
-  const handleUploadImage = useCallback((image: File): void => {}, []); // пока нету санки
+  const handleUploadImage = (image: File): void => {
+    dispatch(updateSellerAvatar(image));
+  };
 
   return (
     <div className={style.wrapper}>
@@ -93,8 +107,9 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
         uploadImage={handleUploadImage}
         label="Add image"
         type="avatar"
-        image={avatar || ''}
+        image={userAvatar || ''}
         description="avatar"
+        isDisabled={isDisabled}
       />
 
       <FormProvider {...formMethods}>

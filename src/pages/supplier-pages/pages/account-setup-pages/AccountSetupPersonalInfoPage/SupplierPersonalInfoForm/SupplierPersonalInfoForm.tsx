@@ -13,7 +13,7 @@ import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
 import Modal from 'elements/Modal';
 import { ModalChildPhoneCheck } from 'elements/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
 import { PersonalInfoChangeForm } from 'modules';
-import { ACCOUNT_SETUP_PERSONAL_INFO } from 'routes';
+import { ACCOUNT_SETUP_BUSINESS_INFO, ACCOUNT_SETUP_PERSONAL_INFO } from 'routes';
 import { IPersonalInfoRequest } from 'services/auth/auth.serviceTypes';
 import { createAccountPersonalInfo } from 'store/reducers/authSlice/thunks';
 import { getCountries } from 'store/reducers/commonSlice';
@@ -50,8 +50,8 @@ export const SupplierPersonalInfoForm = (): JSX.Element => {
 
     const actionResult = await dispatch(createAccountPersonalInfo(personalInfoData));
 
-    if (createAccountPersonalInfo.fulfilled.match(actionResult)) {
-      navigate(ACCOUNT_SETUP_PERSONAL_INFO);
+    if (actionResult.payload.result) {
+      navigate(ACCOUNT_SETUP_BUSINESS_INFO);
     }
   };
 

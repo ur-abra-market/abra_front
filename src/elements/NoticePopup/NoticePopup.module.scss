@@ -17,8 +17,15 @@
   font-size: var(--fz-s);
   color: var(--color-white);
 
-  background: var(--color-accent);
   border-radius: 12px;
+}
+
+.success {
+  background: var(--color-green);
+}
+
+.error {
+  background: var(--color-accent);
 }
 
 .message {
