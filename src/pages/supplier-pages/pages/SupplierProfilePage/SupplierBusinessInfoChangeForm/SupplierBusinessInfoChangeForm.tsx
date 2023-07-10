@@ -22,11 +22,9 @@ import {
   updateBusinessInfo,
   supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
-} from 'store/reducers/supplier/profile';
-import {
   deleteCompanyLogo,
   uploadCompanyLogo,
-} from 'store/reducers/supplier/profile/thunks';
+} from 'store/reducers/supplier/profile';
 
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();

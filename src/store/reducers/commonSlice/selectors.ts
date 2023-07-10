@@ -1,4 +1,4 @@
-import { INumberEmployees } from './slice';
+import { INumberEmployees } from '.';
 
 import { ICountry } from 'services/common/common.serviceTypes';
 import { RootStateType } from 'store/createStore';

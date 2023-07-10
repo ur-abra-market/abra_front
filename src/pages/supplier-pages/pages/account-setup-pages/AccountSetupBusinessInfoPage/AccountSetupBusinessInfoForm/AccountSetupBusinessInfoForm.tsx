@@ -21,12 +21,10 @@ import {
   uploadCompanyLogo,
   supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
-} from 'store/reducers/supplier/profile';
-import { ISupplierBusinessInfo } from 'store/reducers/supplier/profile/slice';
-import {
+  ISupplierBusinessInfo,
   createAccountBusinessInfo,
   deleteCompanyLogo,
-} from 'store/reducers/supplier/profile/thunks';
+} from 'store/reducers/supplier/profile';
 import { SupplierRegisterFormStep } from 'ui-kit';
 
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {

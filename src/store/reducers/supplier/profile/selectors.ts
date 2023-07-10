@@ -1,4 +1,4 @@
-import { ISupplierBusinessInfo, ILoading } from './slice';
+import { ILoading, ISupplierBusinessInfo } from '.';
 
 import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
 import { RootStateType } from 'store/createStore';

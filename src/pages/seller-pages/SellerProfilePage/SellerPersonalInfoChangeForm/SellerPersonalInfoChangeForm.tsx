@@ -14,8 +14,7 @@ import { UploadImage } from 'elements';
 import { ButtonLogOut } from 'elements/ButtonLogOut/ButtonLogOut';
 import { PersonalInfoChangeForm } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
-import { sellerAvatarSelector } from 'store/reducers/seller/profile';
-import { getSellerAvatar } from 'store/reducers/seller/profile/thunks';
+import { sellerAvatarSelector, getSellerAvatar } from 'store/reducers/seller/profile';
 import {
   getPersonalInfo,
   updatePersonalInfo,

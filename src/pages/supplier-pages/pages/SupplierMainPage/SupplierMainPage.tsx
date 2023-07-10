@@ -7,8 +7,9 @@ import { ACCOUNT_SETUP_BUSINESS_INFO, ACCOUNT_SETUP_PERSONAL_INFO } from 'routes
 import {
   hasCompanyInfoSelector,
   hasPersonalInfoSelector,
-} from 'store/reducers/supplier/profile/selectors';
-import { hasCompanyInfo, hasPersonalInfo } from 'store/reducers/supplier/profile/thunks';
+  hasCompanyInfo,
+  hasPersonalInfo,
+} from 'store/reducers/supplier/profile';
 import { LoaderCircular } from 'ui-kit';
 
 export const SupplierMainPage = (): JSX.Element => {

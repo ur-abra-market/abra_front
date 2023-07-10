@@ -8,8 +8,10 @@ import style from './SellerAddresses.module.scss';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import Modal from 'elements/Modal';
 import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
-import { sellerAddressesSelector } from 'store/reducers/seller/profile/selectors';
-import { getSellerAddresses } from 'store/reducers/seller/profile/thunks';
+import {
+  sellerAddressesSelector,
+  getSellerAddresses,
+} from 'store/reducers/seller/profile';
 
 export const SellerAddresses = (): JSX.Element => {
   const [modal, setModal] = useState(false);
