@@ -11,9 +11,9 @@ import manageProductsReducer from './reducers/manageProductsSlice';
 import modalReducer from './reducers/modalSlice';
 import paginateReducer from './reducers/paginateSlice';
 import { popularProductsReducer } from './reducers/popularProducts';
+import productListReducer from './reducers/productListSlice';
 import productPaginateReducer from './reducers/productPaginateSlice';
-import productReducer from './reducers/productSlice';
-import { productReducerNew } from './reducers/productSliceNew';
+import { productReducer } from './reducers/productSlice';
 import { sellerProfileReducer } from './reducers/seller/profile/slice';
 import { similarProductsReducer } from './reducers/similarProducts';
 import { supplierOtherReducer } from './reducers/supplier/other/slice';
@@ -30,9 +30,9 @@ export const store = configureStore({
     supplierProfile: supplierProfileReducer,
     supplierOther: supplierOtherReducer,
     sellerProfile: sellerProfileReducer,
-    productNew: productReducerNew,
-
     product: productReducer,
+
+    productList: productListReducer,
     targetProduct: targetProductReducer,
     paginate: paginateReducer,
     productPaginate: productPaginateReducer,

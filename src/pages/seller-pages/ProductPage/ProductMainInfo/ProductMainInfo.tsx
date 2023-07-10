@@ -3,7 +3,7 @@ import style from './ProductMainInfo.module.scss';
 
 import { useAppSelector } from 'common/hooks';
 import { ProductCarousel } from 'elements/ProductCarousel/ProductCarousel';
-import { productImagesSelector } from 'store/reducers/productSliceNew';
+import { productImagesSelector } from 'store/reducers/productSlice';
 
 export const ProductMainInfo = (): JSX.Element => {
   const images = useAppSelector(productImagesSelector);

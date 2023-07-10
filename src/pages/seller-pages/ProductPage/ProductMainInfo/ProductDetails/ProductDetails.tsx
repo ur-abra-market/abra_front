@@ -5,7 +5,7 @@ import style from './ProductDetails.module.scss';
 import { useAppSelector } from 'common/hooks';
 import { Tags } from 'elements';
 // import { ProductColor } from 'elements';
-import { productNameSelector, productTagsSelector } from 'store/reducers/productSliceNew';
+import { productNameSelector, productTagsSelector } from 'store/reducers/productSlice';
 
 export const ProductDetails = (): JSX.Element => {
   const title = useAppSelector(productNameSelector);

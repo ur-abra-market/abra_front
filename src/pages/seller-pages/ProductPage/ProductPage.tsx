@@ -14,7 +14,7 @@ import {
   getPopularProducts,
   getProductById,
   getSimilarProducts,
-} from 'store/reducers/productSliceNew';
+} from 'store/reducers/productSlice';
 import { LoaderLinear } from 'ui-kit';
 
 export const ProductPage = WithLayout((): JSX.Element => {

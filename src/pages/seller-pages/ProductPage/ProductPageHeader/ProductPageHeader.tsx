@@ -11,11 +11,11 @@ import {
   favoriteProductSelector,
   productGradeSelector,
   productTotalOrdersSelector,
-} from 'store/reducers/productSliceNew';
+} from 'store/reducers/productSlice';
 
 export const ProductPageHeader = (): JSX.Element => {
   const { productId } = useParams<string>();
-  const categoryName = useAppSelector(productCategorySelector).name;
+  const { name, parent_id } = useAppSelector(productCategorySelector);
   const isFavorite = useAppSelector(favoriteProductSelector);
 
   const grade = useAppSelector(productGradeSelector);
@@ -24,7 +24,7 @@ export const ProductPageHeader = (): JSX.Element => {
   return (
     <header className={style.header}>
       <div className={style.inner_wrapper}>
-        <BreadCrumbs categoryName={categoryName} />
+        <BreadCrumbs categoryName={name} parentId={parent_id} />
         <Grades grade={grade} count={totalOrders} />
         <Favorite product_id={Number(productId)} isFavorite={isFavorite} />
       </div>

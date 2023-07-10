@@ -9,7 +9,7 @@ import { IProductCompilation } from 'services/product/product.serviceTypes';
 import {
   popularProductsSelector,
   similarProductsSelector,
-} from 'store/reducers/productSliceNew';
+} from 'store/reducers/productSlice';
 import { ViewMoreProducts } from 'ui-kit';
 
 export const ProductRecommendations = (): JSX.Element => {

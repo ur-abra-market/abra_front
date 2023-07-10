@@ -41,4 +41,4 @@ const productSlice = createSlice({
   },
 });
 
-export const productReducerNew = productSlice.reducer;
+export const productReducer = productSlice.reducer;

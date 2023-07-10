@@ -5,11 +5,14 @@ import { NavLink } from 'react-router-dom';
 import style from './BreadCrumbs.module.scss';
 
 interface IBreadCrumbsProps {
-  // categoryPath?: string[];
+  parentId: number;
   categoryName: string;
 }
 
-export const BreadCrumbs: FC<IBreadCrumbsProps> = ({ categoryName }): JSX.Element => {
+export const BreadCrumbs: FC<IBreadCrumbsProps> = ({
+  categoryName,
+  parentId,
+}): JSX.Element => {
   const itemList = [
     { id: 1, name: 'Clothing' },
     { id: 2, name: 'For women' },

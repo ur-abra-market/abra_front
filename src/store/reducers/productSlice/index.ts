@@ -19,4 +19,4 @@ export {
   getSimilarProducts,
   getPopularProducts,
 } from './thunks';
-export { productReducerNew } from './slice';
+export { productReducer } from './slice';

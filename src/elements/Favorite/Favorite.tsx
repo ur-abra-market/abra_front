@@ -4,10 +4,7 @@ import style from './Favorite.module.scss';
 
 import { FavouriteAddedIcon, FavouriteAddedToIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
-import {
-  addFavoriteProduct,
-  removeFavoriteProduct,
-} from 'store/reducers/productSliceNew';
+import { addFavoriteProduct, removeFavoriteProduct } from 'store/reducers/productSlice';
 import { ButtonIcon } from 'ui-kit';
 
 interface IFavoriteProps {

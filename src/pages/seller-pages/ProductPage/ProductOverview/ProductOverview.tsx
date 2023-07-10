@@ -4,7 +4,7 @@ import style from './ProductOverview.module.scss';
 
 import { useAppSelector } from 'common/hooks';
 import { AboutProduct, DescriptionProduct, FeedBacksProduct } from 'elements';
-import { productDescriptionSelector } from 'store/reducers/productSliceNew';
+import { productDescriptionSelector } from 'store/reducers/productSlice';
 
 export const ProductOverview = (): JSX.Element => {
   const description = useAppSelector(productDescriptionSelector);
