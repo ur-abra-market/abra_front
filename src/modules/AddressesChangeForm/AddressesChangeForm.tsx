@@ -13,8 +13,8 @@ import { countriesSelector } from 'store/reducers/commonSlice';
 import {
   sellerLoadingSelector,
   deleteSellerAddress,
+  ISellerAddress,
 } from 'store/reducers/seller/profile';
-import { ISellerAddress } from 'store/reducers/seller/profile/slice';
 import { Button, Checkbox, Input, Label, Select } from 'ui-kit';
 
 interface IAddressesChangeForm {
@@ -99,7 +99,7 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
                   classNameWrapper={style.address_form_input}
                   placeholder="Recipient’s first name"
                   defaultValue={isEditForm ? address?.first_name : ''}
-                  error={errors.firstName?.message}
+                  error={errors?.firstName?.message}
                 />
               </Label>
             </div>
