@@ -177,14 +177,14 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
       </div>
 
       <div>
-        <p className={style.subtitle}>Contacts</p>
+        <p className={style.subtitle}>Contacts (optional)</p>
         <PhoneNumberInput
           disabled={isLoading}
-          label="Business phone number (optional)"
+          label="Business phone number"
           countryShort={countryShort}
         />
         <div className={style.contacts_inputs}>
-          <Label label="Business email address (optional)">
+          <Label label="Business email address">
             <Input
               disabled={isLoading}
               {...register('email')}
@@ -194,7 +194,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
             />
           </Label>
 
-          <Label label="Main company address (optional)">
+          <Label label="Main company address">
             <Input
               disabled={isLoading}
               {...register('address')}
