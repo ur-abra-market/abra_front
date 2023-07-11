@@ -49,3 +49,15 @@ export { ReactComponent as UploadItemImageIcon } from './files/upload-item-image
 export { ReactComponent as LogoCompanyPlaceholder } from './files/logo-company-placeholder.svg';
 export { ReactComponent as ArrowIcon } from './files/arrow.svg';
 export { ReactComponent as Home } from './files/home.svg';
+
+// ------------------------------------flags------------------------------------
+
+export { ReactComponent as Country1 } from './flags/1_Azerbaijan.svg';
+export { ReactComponent as Country2 } from './flags/2_Belarus.svg';
+export { ReactComponent as Country3 } from './flags/3_Kazakhstan.svg';
+export { ReactComponent as Country4 } from './flags/4_Kyrgyzstan.svg';
+export { ReactComponent as Country5 } from './flags/5_Russian _Federation.svg';
+export { ReactComponent as Country6 } from './flags/6_Tajikistan.svg';
+export { ReactComponent as Country7 } from './flags/7_Turkey.svg';
+export { ReactComponent as Country8 } from './flags/8_Ukraine.svg';
+export { ReactComponent as Country9 } from './flags/9_Uzbekistan.svg';
