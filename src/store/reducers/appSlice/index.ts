@@ -5,3 +5,5 @@ export {
 } from './selectors';
 
 export { getUserRole } from './thunks';
+
+export type { IResponseNotice, IAppSliceInitialState } from './types';

@@ -9,8 +9,7 @@ import { AddressesChangeForm } from 'modules/AddressesChangeForm/AddressesChange
 import { addressFormValidationSchema } from 'modules/AddressesChangeForm/AddressFormValidationSchema';
 import { ISellerAddressRequest } from 'services/seller/seller.serviceTypes';
 import { countriesSelector } from 'store/reducers/commonSlice';
-import { ISellerAddress } from 'store/reducers/seller/profile/slice';
-import { addSellerAddresses } from 'store/reducers/seller/profile/thunks';
+import { ISellerAddress, addSellerAddresses } from 'store/reducers/seller/profile';
 
 interface ISellerAddAddressChangeForm {
   closeModal?: (modal: boolean) => void;

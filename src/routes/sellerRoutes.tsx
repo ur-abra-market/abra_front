@@ -16,7 +16,6 @@ import {
 
 import {
   CartPage,
-  ProductPage,
   CheckoutPage,
   OrderDetailsPage,
   OrderHistoryPage,
@@ -24,6 +23,7 @@ import {
   SellerFavoritesList,
   CheckoutSuccessPage,
 } from 'pages/seller-pages';
+import { ProductPage } from 'pages/seller-pages/ProductPage/ProductPage';
 
 export const sellerRoutes: RouteObject[] = [
   {

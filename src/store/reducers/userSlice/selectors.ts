@@ -1,4 +1,4 @@
-import { ILoading, IUserPersonalInfo } from './slice';
+import { ILoading, IUserPersonalInfo } from '.';
 
 import { RootStateType } from 'store/createStore';
 
