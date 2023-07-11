@@ -76,4 +76,4 @@ export const productSliceOld = createSlice({
   },
 });
 export const { status, category, input } = productSliceOld.actions;
-export default productSliceOld.reducer;
+export const productOldReducer = productSliceOld.reducer;
