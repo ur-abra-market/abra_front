@@ -13,7 +13,7 @@ import paginateReducer from './reducers/paginateSlice';
 import { popularProductsReducer } from './reducers/popularProducts';
 import productPaginateReducer from './reducers/productPaginateSlice';
 import { productReducer } from './reducers/productSlice';
-import productReducerOld from './reducers/productSliceOld';
+import { productOldReducer } from './reducers/productSliceOld';
 import { sellerProfileReducer } from './reducers/seller/profile/slice';
 import { similarProductsReducer } from './reducers/similarProducts';
 import { supplierOtherReducer } from './reducers/supplier/other/slice';
@@ -32,7 +32,7 @@ export const store = configureStore({
     sellerProfile: sellerProfileReducer,
     product: productReducer,
 
-    productListOld: productReducerOld,
+    productListOld: productOldReducer,
     targetProduct: targetProductReducer,
     paginate: paginateReducer,
     productPaginate: productPaginateReducer,
