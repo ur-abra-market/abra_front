@@ -11,7 +11,7 @@ interface IGradeProps {
   grade: string | number;
   fiveStar?: boolean;
   variant?: 'deals' | 'reviews';
-  count: number;
+  count: number | null;
 }
 
 export const Grades: FC<IGradeProps> = ({
