@@ -54,10 +54,12 @@ export const SellerProfilePage = WithLayout((): JSX.Element => {
   return (
     <div className={style.seller_cabinet}>
       {isLoading && <LoaderLinear />}
+
       <div className={style.seller_cabinet_content_wrapper}>
         <div className={cn(style.section, style.personal_info)}>
           <SellerPersonalInfoChangeForm />
         </div>
+
         <div className={style.business_info}>
           <div className={style.section}>
             <Orders />

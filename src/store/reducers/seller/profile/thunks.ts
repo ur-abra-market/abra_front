@@ -149,12 +149,13 @@ export const updateSellerNotifications = createAsyncThunk<
   }
 });
 
-export const updateSellerAvatar = createAsyncThunk<void, File, IAsyncThunkConfig>(
+export const updateSellerAvatar = createAsyncThunk<string, File, IAsyncThunkConfig>(
   'seller/updateAvatar',
-  async (img, { rejectWithValue, dispatch }) => {
+  async (img, { rejectWithValue }) => {
     try {
       await sellerService.updateAvatar(img);
-      dispatch(getSellerAvatar());
+
+      return URL.createObjectURL(img);
     } catch (error) {
       const errorMessage =
         error instanceof AxiosError

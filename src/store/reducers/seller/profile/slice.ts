@@ -38,7 +38,7 @@ interface ISellerProfileSliceInitialState {
   loading: ILoading;
   addresses: ISellerAddressData[] | null;
   notifications: ISellerNotifications | null;
-  sellerAvatar: string;
+  avatar: string;
 }
 
 const initialState: ISellerProfileSliceInitialState = {
@@ -49,7 +49,7 @@ const initialState: ISellerProfileSliceInitialState = {
   },
   addresses: null,
   notifications: null,
-  sellerAvatar: '',
+  avatar: '',
 };
 
 const sellerProfileSlice = createSlice({
@@ -88,13 +88,14 @@ const sellerProfileSlice = createSlice({
       })
 
       .addCase(getSellerAvatar.fulfilled, (state, action) => {
-        state.sellerAvatar = action.payload.result.thumbnail_url;
+        state.avatar = action.payload.result.thumbnail_url;
       })
 
       .addCase(updateSellerAvatar.pending, state => {
         state.loading.avatarLoading = LoadingStatusEnum.Loading;
       })
-      .addCase(updateSellerAvatar.fulfilled, state => {
+      .addCase(updateSellerAvatar.fulfilled, (state, action) => {
+        state.avatar = action.payload;
         state.loading.avatarLoading = LoadingStatusEnum.Success;
       })
       .addCase(updateSellerAvatar.rejected, state => {

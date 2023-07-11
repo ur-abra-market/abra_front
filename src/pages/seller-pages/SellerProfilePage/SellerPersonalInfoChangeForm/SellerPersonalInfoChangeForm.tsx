@@ -28,7 +28,6 @@ import { Button } from 'ui-kit';
 
 export const SellerPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
-
   const userPersonalInfo = useAppSelector(userPersonalInfoSelector);
   const userAvatar = useAppSelector(sellerAvatarSelector);
   const isAvatarLoading =
@@ -104,10 +103,10 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
       </div>
 
       <UploadImage
+        image={userAvatar}
         uploadImage={handleUploadImage}
         label="Add image"
         type="avatar"
-        image={userAvatar || ''}
         description="avatar"
         isDisabled={isAvatarLoading}
       />
