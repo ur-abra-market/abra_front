@@ -7,12 +7,12 @@ export interface IProductSliceInitialState {
   isFavorite: boolean; // времянка пока бэк не отдаёт нам состояние, после удалить
 }
 export interface IProductCard {
-  id: number;
+  id: number | null;
   name: string;
   description: string;
   datetime: string;
-  grade_average: number;
-  total_orders: number;
+  grade_average: number | string;
+  total_orders: number | null;
   uuid: string;
   is_active: boolean;
   category: ICategory;
@@ -24,16 +24,16 @@ export interface IProductCard {
 }
 
 export interface ICategory {
-  id: number;
+  id: number | null;
   name: string;
-  level: number;
-  parent_id: number;
+  level: number | null;
+  parent_id: number | null;
 }
 
 export interface ISupplier {
-  id: number;
+  id: number | null;
   license_number: string;
-  grade_average: number;
+  grade_average: number | null;
   additional_info: string;
 }
 
