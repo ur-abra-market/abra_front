@@ -74,7 +74,7 @@ export const authService = {
   },
 
   changeEmail: (params: IChangeEmailRequest) => {
-    return baseConfigService.patch<IPasswordResponse>('users/changeEmail/', params);
+    return baseConfigService.post<IPasswordResponse>('users/changeEmail/', params);
   },
 };
 
