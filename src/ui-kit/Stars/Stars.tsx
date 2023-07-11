@@ -5,9 +5,10 @@ import style from './Stars.module.scss';
 
 export interface IStars {
   reward: number;
+  sizes?: string;
 }
 
-export const Stars: FC<IStars> = ({ reward }): JSX.Element => {
+export const Stars: FC<IStars> = ({ reward, sizes }): JSX.Element => {
   const value = `${100 * (reward - Math.floor(reward))}%`;
   let percent = ['100%', '100%', '100%', '100%', '100%'];
 
@@ -41,7 +42,7 @@ export const Stars: FC<IStars> = ({ reward }): JSX.Element => {
   return (
     <div className={style.stars}>
       {percent.map((p, i) => {
-        return <Star key={i} percent={p} />;
+        return <Star key={i} percent={p} sizes={sizes} />;
       })}
     </div>
   );

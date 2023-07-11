@@ -6,7 +6,7 @@ import { AccountSetupBusinessInfoForm } from '.';
 
 import { useAppSelector } from 'common/hooks';
 import { HOME } from 'routes';
-import { hasCompanyInfoSelector } from 'store/reducers/supplier/profile/selectors';
+import { hasCompanyInfoSelector } from 'store/reducers/supplier/profile';
 
 export const AccountSetupBusinessInfoPage = (): JSX.Element => {
   const hasCompanyInfoResult = useAppSelector(hasCompanyInfoSelector);

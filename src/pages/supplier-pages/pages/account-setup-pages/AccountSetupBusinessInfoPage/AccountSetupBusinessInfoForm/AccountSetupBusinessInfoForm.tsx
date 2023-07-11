@@ -21,8 +21,8 @@ import {
   uploadCompanyLogo,
   supplierCompanyLogoSelector,
   createAccountBusinessInfo,
+  ISupplierBusinessInfo,
 } from 'store/reducers/supplier/profile';
-import { ISupplierBusinessInfo } from 'store/reducers/supplier/profile/slice';
 import { SupplierRegisterFormStep } from 'ui-kit';
 
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {

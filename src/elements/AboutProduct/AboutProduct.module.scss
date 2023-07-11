@@ -1,0 +1,38 @@
+.about_product_container {
+  width: 50%;
+  padding: 32px;
+  background: var(--color-white);
+  border-radius: 12px;
+}
+
+.table {
+  width: 100%;
+  font: var(--regular) var(--fz-s2) / 20px var(--roboto);
+}
+
+.caption {
+  margin-bottom: 28px;
+  font: var(--bold) var(--fz-xxl2) / 34px var(--roboto);
+  text-align: start;
+}
+
+.tr {
+  height: 40px;
+  vertical-align: top;
+
+  &:last-child {
+    height: 20px;
+  }
+}
+
+.th {
+  width: 50%;
+  font: inherit;
+  text-align: start;
+}
+
+.td {
+  width: 50%;
+  font: inherit;
+  text-align: end;
+}

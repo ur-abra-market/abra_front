@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 
 import { ProductCard } from 'elements';
 import { ProductsPreview } from 'modules';
-import style from 'pages/seller-pages/ProductPage/ProductPage.module.scss';
+// @ts-ignore
+import style from 'old-components/ProductPageOld/ProductPage.module.scss';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 
-export const SimilarProduct = (): JSX.Element => {
+export const PopularProduct = (): JSX.Element => {
   const product: IProductCompilation = {
     datetime: '2023-03-06',
     description: 'shirt description',
     grade_average: 4.2,
     id: 12,
+    uuid: '',
     images: [
       {
         image_url:
@@ -25,12 +27,12 @@ export const SimilarProduct = (): JSX.Element => {
     total_orders: 96,
   };
 
-  const [similarProducts] = useState(Array(10).fill(product));
+  const [popularProducts] = useState(Array(10).fill(product));
 
-  const buildCarouselSimilarProducts = (): JSX.Element[] => {
+  const buildCarouselPopularProducts = (): JSX.Element[] => {
     return (
-      similarProducts &&
-      similarProducts.map((data: any) => {
+      popularProducts &&
+      popularProducts.map((data: any) => {
         return <ProductCard product={data} key={data.id + data.name} />;
       })
     );
@@ -38,10 +40,10 @@ export const SimilarProduct = (): JSX.Element => {
 
   return (
     <ProductsPreview
-      title="Similar products in this category"
+      title="Popular products in this category"
       className={style.popular_products_wrapper}
     >
-      {similarProducts && buildCarouselSimilarProducts()}
+      {popularProducts && buildCarouselPopularProducts()}
     </ProductsPreview>
   );
 };

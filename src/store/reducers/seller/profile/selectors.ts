@@ -1,4 +1,4 @@
-import { ILoading } from './slice';
+import { ILoading } from '.';
 
 import {
   ISellerAddressData,

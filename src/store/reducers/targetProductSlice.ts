@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
+import { IProductCard } from './productSlice';
+
 import { IImageProduct, LoadingStatusEnum } from 'common/types';
 import { productService } from 'services/product/product.service';
 import {
@@ -9,7 +11,7 @@ import {
   IGradeProductResponse,
 } from 'services/product/product.serviceTypes';
 
-export const getProductById = createAsyncThunk<IProduct, IProductRequest>(
+export const getProductById = createAsyncThunk<IProductCard, IProductRequest>(
   'targetProduct/getProductById',
   async (payload, { rejectWithValue }) => {
     try {
@@ -132,7 +134,7 @@ const targetProductSlice = createSlice({
       state.status = LoadingStatusEnum.Loading;
     });
     builder.addCase(getProductById.fulfilled, (state, action) => {
-      state.product = action.payload;
+      // state.product = action.payload;
 
       state.status = LoadingStatusEnum.Success;
     });

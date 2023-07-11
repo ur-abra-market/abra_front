@@ -1,6 +1,5 @@
 import {
   IGradeProductResponse,
-  IProduct,
   IProductCompilation,
   ICategoryRequest,
   IPopularProductRequest,
@@ -10,6 +9,7 @@ import {
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
+import { IProductCard } from 'store/reducers/productSlice';
 
 export const productService = {
   getList: async (params: ICategoryRequest) => {
@@ -24,11 +24,30 @@ export const productService = {
     return data.result;
   },
 
-  getProductById: async (params: IProductRequest) => {
-    const { data } = await baseConfigService.post<IBaseResponse<IProduct>>(
-      `products/product_card_p1/`,
+  getProductById: async ({ product_id }: IProductRequest) => {
+    const { data } = await baseConfigService.get<IBaseResponse<IProductCard>>(
+      `products/productCard/${product_id}/`,
+    );
+
+    return data.result;
+  },
+
+  addFavorite: async (params: IProductRequest) => {
+    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+      `/products/addFavorite/`,
       {},
       { params },
+    );
+
+    return data.result;
+  },
+
+  removeFavorite: async (params: IProductRequest) => {
+    const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
+      `/products/removeFavorite/`,
+      {
+        params,
+      },
     );
 
     return data.result;
@@ -40,7 +59,7 @@ export const productService = {
     return data.result;
   },
 
-  getPopularProductById: async (params: IPopularProductRequest) => {
+  getPopularProduct: async (params: IPopularProductRequest) => {
     const { data } = await baseConfigService.get(`products/popular/`, {
       params,
     });

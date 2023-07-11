@@ -22,8 +22,8 @@ import {
   updateBusinessInfo,
   supplierCompanyLogoSelector,
   supplierLoadingSelector,
+  uploadCompanyLogo,
 } from 'store/reducers/supplier/profile';
-import { uploadCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
