@@ -1,14 +1,14 @@
-.categories{
+.categories {
   display: grid;
   margin-bottom: 16px;
 }
 
-.item{
+.item {
   justify-content: space-around;
   text-align: center;
 }
 
-.button{
+.button {
   cursor: pointer;
 
   font-family: var(--roboto);
@@ -19,18 +19,18 @@
   background: none;
 }
 
-.btn_active{
+.btn_active {
   color: var(--color-accent);
   transition: all 0.3s;
 }
 
-.border_line{
+.border_line {
   height: 3px;
   background: var(--color-gray);
   border-radius: 8px;
 }
 
-.border_line_active{
+.border_line_active {
   position: relative;
   height: 3px;
   background-color: var(--color-accent);

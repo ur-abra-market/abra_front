@@ -32,7 +32,7 @@
   gap: 120px;
 }
 
-.stars_block{
+.stars_block {
   display: flex;
   justify-content: space-between;
 
@@ -52,7 +52,7 @@
   /* identical to box height, or 133% */
 }
 
-.rating_line{
+.rating_line {
   display: flex;
   gap: 15px;
   align-items: center;
@@ -65,19 +65,19 @@
   color: #000;
 }
 
-.line, .line_accent{
+.line, .line_accent {
   display: inline-block;
   height: 4px;
   border-radius: 8px;
 }
 
-.line{
+.line {
   position: relative;
   width: 224px;
   background: #D4D4D4;
 }
 
-.line_accent{
+.line_accent {
   position: absolute;
   background: #FC133D;
 }

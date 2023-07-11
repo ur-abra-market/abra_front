@@ -94,6 +94,9 @@ const sellerProfileSlice = createSlice({
       .addCase(updateSellerAvatar.pending, state => {
         state.loading.avatarLoading = LoadingStatusEnum.Loading;
       })
+      .addCase(updateSellerAvatar.fulfilled, state => {
+        state.loading.avatarLoading = LoadingStatusEnum.Success;
+      })
       .addCase(updateSellerAvatar.rejected, state => {
         state.loading.avatarLoading = LoadingStatusEnum.Failed;
       });
