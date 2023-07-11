@@ -1,6 +1,6 @@
-@import "common/styles/mixins";
+@import "src/common/styles/mixins";
 
-.images_box{
+.images_box {
   text-transform: uppercase;
 }
 
@@ -8,7 +8,7 @@
   @include content_container
 }
 
-.image_box_main{
+.image_box_main {
   position: relative;
 
   width: 100%;
@@ -33,27 +33,27 @@
   border-radius: 40px;
 }
 
-.grid_item_main_ad_text:first-child{
+.grid_item_main_ad_text:first-child {
   display: block;
   font-size: 106px;
   font-weight: var(--bold);
   line-height: 124px;
 }
 
-.grid_item_main_ad_text:nth-child(2){
+.grid_item_main_ad_text:nth-child(2) {
   font-family: 'SF Pro Display', sans-serif;
   font-size: 62px;
   font-weight: var(--semi-bold);
   line-height: 78px;
 }
 
-.grid_item_main_ad_text:last-child{
+.grid_item_main_ad_text:last-child {
   font-size: var(--fz-l2);
   font-weight: var(--semi-bold);
   line-height: 26px;
 }
 
-.images_box_grid{
+.images_box_grid {
   display: grid;
   grid-template-areas:
     "item1 item2 item2"
@@ -62,30 +62,30 @@
   padding: 0 32px;
 }
 
-.banner_img{
+.banner_img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 8px;
 }
 
-.grid_item1, .grid_item2, .grid_item3, .grid_item4{
+.grid_item1, .grid_item2, .grid_item3, .grid_item4 {
   position: relative;
   font-family: var(--roboto);
   font-style: normal;
   color: var(--color-accent);
 }
 
-.grid_item_ad1, .grid_item_ad2, .grid_item_ad3, .grid_item_ad4{
+.grid_item_ad1, .grid_item_ad2, .grid_item_ad3, .grid_item_ad4 {
   position: absolute;
   font-weight: var(--bold);
 }
 
-.grid_item1{
+.grid_item1 {
   grid-area: item1;
 }
 
-.grid_item_ad1{
+.grid_item_ad1 {
   top: 170px;
   left: 25px;
 
@@ -95,37 +95,37 @@
   line-height: 85%;
 }
 
-.grid_item2{
+.grid_item2 {
   grid-area: item2;
 }
 
-.grid_item_ad2{
+.grid_item_ad2 {
   top: 96px;
   right: 63px;
   max-width: 230px;
 }
 
-.grid_item_ad2_text:first-child{
+.grid_item_ad2_text:first-child {
   font-size: var(--fz-xl);
   font-weight: var(--medium);
   line-height: 85%;
 }
 
-.grid_item_ad2_text:last-child{
+.grid_item_ad2_text:last-child {
   display: block;
   font-size: 45px;
   line-height: 85%;
 }
 
-.grid_item3{
+.grid_item3 {
   grid-area: item3;
 }
 
-.grid_item4{
+.grid_item4 {
   grid-area: item4;
 }
 
-.grid_item_ad3, .grid_item_ad4{
+.grid_item_ad3, .grid_item_ad4 {
   top: 62px;
   left: 20px;
 
