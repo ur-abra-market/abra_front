@@ -18,9 +18,9 @@ const LINKS = [
 
 export const Social: FC<SocialProps> = ({ className }): JSX.Element => {
   const buildLinkList = (): JSX.Element[] => {
-    return LINKS.map(({ href, icon: Icon }) => {
+    return LINKS.map(({ href, icon: Icon }, i) => {
       return (
-        <li key={href} className={style.li}>
+        <li key={i + 1} className={style.li}>
           <a href={href} className={style.link} rel="noreferrer">
             <Icon />
           </a>
