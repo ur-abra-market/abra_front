@@ -48,7 +48,7 @@ export const supplierService = {
   },
 
   updateBusinessInfo: async (params: Partial<ISupplierUpdateBusinessInfo>) => {
-    const { data } = await baseConfigService.patch<IBaseResponse<boolean>>(
+    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
       `suppliers/businessInfo/update/`,
       params,
     );
@@ -130,7 +130,7 @@ export const supplierService = {
   },
 
   updateNotifications: async (params: Partial<ISupplierNotifications>) => {
-    await baseConfigService.patch<IBaseResponse<boolean>>(
+    await baseConfigService.post<IBaseResponse<boolean>>(
       `suppliers/notifications/update/`,
       params,
     );

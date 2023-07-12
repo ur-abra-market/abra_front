@@ -76,7 +76,7 @@ export const productService = {
   },
 
   deleteList: async (id: string[]) => {
-    const { data } = await baseConfigService.patch(`suppliers/deleteProducts/`, [...id]);
+    const { data } = await baseConfigService.post(`suppliers/deleteProducts/`, [...id]);
 
     return data.result;
   },
