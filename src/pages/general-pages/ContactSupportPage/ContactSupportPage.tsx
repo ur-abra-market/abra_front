@@ -18,7 +18,7 @@ export const ContactSupportPage = WithLayout(() => {
 
         <div className={style.contacts}>
           <WhatsappIcon className={style.whatsapp_icon} />
-          <p className={style.number_phone}>+79385656431</p>
+          <p className={style.number_phone}>+7 911 968-18-44</p>
         </div>
 
         <Social />
