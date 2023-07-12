@@ -11,6 +11,7 @@ import { emailValidationSchema, passwordValidationSchema } from 'common/constant
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum, ResponseUserRoleType } from 'common/types';
 import { PasswordComplexity } from 'pages/general-pages/auth-pages/assets';
+import { AuthWithGoogle } from 'pages/general-pages/auth-pages/AuthWithGoogle/AuthWithGoogle';
 import { CHECK_EMAIL } from 'routes';
 import { IRegisterRequest } from 'services/auth/auth.serviceTypes';
 import { loadingSelector } from 'store/reducers/appSlice';
@@ -103,6 +104,8 @@ export const RegisterForm = (): JSX.Element => {
         type="submit"
         disabled={!isValid || isLoading}
       />
+
+      <AuthWithGoogle />
     </form>
   );
 };

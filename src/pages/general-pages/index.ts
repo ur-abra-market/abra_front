@@ -17,3 +17,4 @@ export { LoginPage } from './auth-pages/LoginPage/LoginPage';
 export { RegisterPage } from './auth-pages/RegisterPage/RegisterPage';
 export { MainPage } from './MainPage/MainPage';
 export { ProductListPage } from './ProductListPage/ProductListPage';
+export { AuthWithGoogle } from './auth-pages/AuthWithGoogle/AuthWithGoogle';
