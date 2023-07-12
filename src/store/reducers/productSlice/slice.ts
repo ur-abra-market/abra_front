@@ -4,6 +4,7 @@ import {
   addFavoriteProduct,
   getPopularProducts,
   getProductById,
+  getProductsCompilation,
   getSimilarProducts,
   removeFavoriteProduct,
 } from './thunks';
@@ -31,6 +32,7 @@ const initialState: IProductSliceInitialState = {
   },
   popularProducts: [],
   similarProducts: [],
+  productsCompilation: {},
 };
 
 const productSlice = createSlice({
@@ -59,7 +61,13 @@ const productSlice = createSlice({
         (state, action: PayloadAction<IProductCompilation[]>) => {
           state.popularProducts = action.payload;
         },
-      );
+      )
+      .addCase(getProductsCompilation.fulfilled, (state, action) => {
+        state.productsCompilation = {
+          ...state.productsCompilation,
+          [action.payload.category]: action.payload.data,
+        };
+      });
   },
 });
 

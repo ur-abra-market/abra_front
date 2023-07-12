@@ -17,7 +17,7 @@ export const productService = {
     const payload = { category_id, sort_type, ascending };
 
     const { data } = await baseConfigService.post(
-      `products/compilation/?offset=${offset}&limit=${limit}`,
+      `/products/compilation/?offset=${offset}&limit=${limit}`,
       payload,
     );
 
