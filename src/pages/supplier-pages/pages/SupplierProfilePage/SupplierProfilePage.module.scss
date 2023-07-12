@@ -1,5 +1,7 @@
+@import "common/styles/mixins";
+
 .supplier_cabinet {
-  background: #F5F5F5;
+  @include content_container;
 }
 
 .supplier_cabinet_content_wrapper {

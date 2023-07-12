@@ -1,0 +1,7 @@
+@import "common/styles/mixins";
+
+.dashboard_container {
+  @include content_container;
+
+  margin: 48px auto;
+}
