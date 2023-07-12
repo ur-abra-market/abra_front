@@ -1,6 +1,9 @@
+
+
 .table_row {
   display: flex;
   align-items: center;
+  margin-top: 43px;
 }
 
 .table_head {
@@ -19,38 +22,38 @@
 }
 
 
-th:nth-child(1),
-th:nth-child(2) {
+td:nth-child(1),
+td:nth-child(2) {
   padding-right: 34px;
 }
 
-th:nth-child(2),
-th:nth-child(3) {
+td:nth-child(2),
+td:nth-child(3) {
   padding-right: 52px;
 }
 
-th:nth-child(3),
-th:nth-child(4) {
+td:nth-child(3),
+td:nth-child(4) {
   padding-right: 45px;
 }
 
-th:nth-child(4),
-th:nth-child(5) {
+td:nth-child(4),
+td:nth-child(5) {
   padding-right: 250px;
 }
 
-th:nth-child(5),
-th:nth-child(6) {
+td:nth-child(5),
+td:nth-child(6) {
   padding-right: 58px;
 }
 
-th:nth-child(6),
-th:nth-child(7) {
+td:nth-child(6),
+td:nth-child(7) {
   padding-right: 57px;
 }
 
-th:nth-child(7),
-th:nth-child(8) {
+td:nth-child(7),
+td:nth-child(8) {
   padding-right: 54px;
 }
 
