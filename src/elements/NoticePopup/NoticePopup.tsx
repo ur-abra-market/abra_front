@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import cn from 'classnames';
 import { createPortal } from 'react-dom';
 
 import style from './NoticePopup.module.scss';
@@ -35,7 +36,12 @@ export const NoticePopup = (): JSX.Element => {
 
   return createPortal(
     open && (
-      <div className={style.notice_container}>
+      <div
+        className={cn(style.notice_container, {
+          [style.error]: noticeType === 'error',
+          [style.success]: noticeType === 'success',
+        })}
+      >
         <p className={style.message}>{message}</p>
         <CrossWhiteIcon className={style.cross} onClick={handleNoticePopupClose} />
       </div>

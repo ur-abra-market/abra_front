@@ -8,4 +8,8 @@ export {
   forgotPassword,
   resetPassword,
   changeEmail,
+  confirmEmail,
+  createAccountPersonalInfo,
 } from './thunks';
+
+export type { IAuthSliceInitialState } from './types';

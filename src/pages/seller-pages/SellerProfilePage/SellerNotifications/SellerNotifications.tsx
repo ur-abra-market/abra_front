@@ -28,7 +28,7 @@ const NOTIFICATIONS_SELLER_DATA: INotificationSellerData[] = [
 export const SellerNotifications = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const notifications = useAppSelector(sellerNotificationSelector);
-  const loading = useAppSelector(sellerLoadingSelector);
+  const loading = useAppSelector(sellerLoadingSelector).notificationsLoading;
 
   const onNotificationChange = (id: string, value: boolean): void => {
     dispatch(updateSellerNotifications({ id, value }));

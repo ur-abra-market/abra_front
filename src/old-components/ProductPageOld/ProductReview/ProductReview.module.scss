@@ -1,0 +1,103 @@
+.title {
+  display: inline-block;
+
+  margin-right: 10px;
+  margin-bottom: 40px;
+
+  font-family: Roboto, sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 34px;
+  color: #000;
+}
+
+.link {
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+
+
+
+  /* Accent Color */
+
+  color: #FC133D;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 120px;
+}
+
+.stars_block {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 8px;
+
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+
+
+  /* Medium grey */
+
+  color: #828282;
+
+  /* identical to box height, or 133% */
+}
+
+.rating_line {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 20px;
+  color: #000;
+}
+
+.line, .line_accent {
+  display: inline-block;
+  height: 4px;
+  border-radius: 8px;
+}
+
+.line {
+  position: relative;
+  width: 224px;
+  background: #D4D4D4;
+}
+
+.line_accent {
+  position: absolute;
+  background: #FC133D;
+}
+
+
+.image_list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 13px;
+}
+
+.image {
+  width: 100%;
+  max-width: 295px;
+  height: 155px;
+  background-color: var(--color-accent);
+}
+
+.image > img {
+  width: 100%;
+  max-width: 295px;
+  height: 155px;
+}

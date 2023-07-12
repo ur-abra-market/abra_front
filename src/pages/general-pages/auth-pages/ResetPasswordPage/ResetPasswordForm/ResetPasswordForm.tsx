@@ -41,8 +41,9 @@ export const ResetPasswordForm: FC<IResetPasswordForm> = ({
   token,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
-  const loading = useAppSelector(loadingSelector);
   const isAuthorized = useAppSelector(isAuthSelector);
+  const loading = useAppSelector(loadingSelector);
+  const isLoading = loading === LoadingStatusEnum.Loading;
 
   const {
     register,
@@ -81,6 +82,7 @@ export const ResetPasswordForm: FC<IResetPasswordForm> = ({
         type="password"
         variant="password"
         error={errors.new_password?.message}
+        disabled={isLoading}
       />
       <Input
         {...register('confirm_password')}
@@ -89,13 +91,14 @@ export const ResetPasswordForm: FC<IResetPasswordForm> = ({
         type="password"
         variant="password"
         error={errors.confirm_password?.message}
+        disabled={isLoading}
       />
       <PasswordComplexity password={watchPassword} />
       <Button
         label="Save"
         className={style.button_save}
         type="submit"
-        disabled={!isValid || loading === LoadingStatusEnum.Loading}
+        disabled={!isValid || isLoading}
       />
     </form>
   );

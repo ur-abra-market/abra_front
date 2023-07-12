@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 
 import style from './CheckItems.module.scss';
 
-import { ArrowRightIcon, DotIcon, StarFilledIcon } from 'assets/icons';
+import { ArrowIcon, DotIcon, StarFilledIcon } from 'assets/icons';
 import { Banner1Image } from 'assets/images';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 
@@ -28,7 +28,7 @@ const CheckItems: FC<CheckItemsProps> = ({ index }): JSX.Element => {
             <StarFilledIcon />
             <span className={style.check_items_rating}>4.1</span>
             <div className={style.check_items_block_seller}>Ningbo Beilun Lonsyne</div>
-            <ArrowRightIcon />
+            <ArrowIcon className={style.arrow_right} />
           </div>
 
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions */}
@@ -37,7 +37,9 @@ const CheckItems: FC<CheckItemsProps> = ({ index }): JSX.Element => {
           </div>
         </div>
         <div className={style.check_items_product}>
-          <LazyImage src={Banner1Image} alt="" />
+          <div className={style.image}>
+            <LazyImage src={Banner1Image} alt="" />
+          </div>
           <div className={style.check_items_product_info}>
             <div className={style.check_items_product_info_name}>
               Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall Clothes

@@ -9,8 +9,7 @@ import { AddressesChangeForm } from 'modules/AddressesChangeForm/AddressesChange
 import { addressFormValidationSchema } from 'modules/AddressesChangeForm/AddressFormValidationSchema';
 import { ISellerAddressRequest } from 'services/seller/seller.serviceTypes';
 import { countriesSelector } from 'store/reducers/commonSlice';
-import { ISellerAddress } from 'store/reducers/seller/profile/slice';
-import { addSellerAddresses } from 'store/reducers/seller/profile/thunks';
+import { ISellerAddress, addSellerAddresses } from 'store/reducers/seller/profile';
 
 interface ISellerAddAddressChangeForm {
   closeModal?: (modal: boolean) => void;
@@ -36,21 +35,20 @@ export const SellerAddAddressChangeForm: FC<ISellerAddAddressChangeForm> = ({
     if (!isValid) return;
     const { numberBody, countryCode } = parsePhoneNumber(data.phoneNumber);
 
-    const countryId = countries.find(el => el.country === data.country)?.id!;
     const phoneCountryId = countries.find(el => el.country_code === countryCode)?.id;
 
     const updateSellerAddressData: ISellerAddressRequest = {
       seller_address_request: {
         is_main: data.isMain || false,
-        area: data.area,
         city: data.city,
         street: data.street,
-        building: data.building,
-        apartment: data.apartment,
         postal_code: data.postalCode,
-        country_id: countryId,
+        country_id: data.country,
         first_name: data.firstName,
         last_name: data.lastName,
+        ...(data.area && { area: data.area }),
+        ...(data.building && { building: data.building }),
+        ...(data.apartment && { apartment: data.apartment }),
       },
       seller_address_phone_request: {
         country_id: phoneCountryId!,

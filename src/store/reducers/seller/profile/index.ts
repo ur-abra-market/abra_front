@@ -1,6 +1,17 @@
-export { getSellerNotifications, updateSellerNotifications } from './thunks';
+export {
+  getSellerNotifications,
+  updateSellerNotifications,
+  addSellerAddresses,
+  getSellerAddresses,
+  deleteSellerAddress,
+  updateSellerAddresses,
+  getSellerAvatar,
+  updateSellerAvatar,
+} from './thunks';
 export {
   sellerLoadingSelector,
   sellerNotificationSelector,
-  sellerPersonalInfoSelector,
+  sellerAvatarSelector,
+  sellerAddressesSelector,
 } from './selectors';
+export type { ISellerAddress, ILoading, ISellerProfileSliceInitialState } from './types';

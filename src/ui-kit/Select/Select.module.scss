@@ -1,6 +1,9 @@
 .main {
   position: relative;
+
+  font-family: Roboto, sans-serif;
   font-size: var(--fz-s);
+
   background-color: var(--color-light-gray);
   border-radius: 12px;
 }
@@ -49,6 +52,16 @@
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.2) 7px 6px 5px, rgba(0, 0, 0, 0.2) -4px 6px 5px;
+  }
+
+  &.header_disabled {
+    pointer-events: none;
+    cursor: default;
+
+    color: var(--color-medium-gray);
+
+    opacity: 0.5;
+    border-radius: 8px;
   }
 }
 

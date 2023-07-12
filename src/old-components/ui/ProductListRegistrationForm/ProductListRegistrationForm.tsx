@@ -270,7 +270,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                             className={style.select}
                             error={errors?.category?.message}
                             onChange={value => {
-                              field.onChange(value.value);
+                              field.onChange(value.value as string);
                               handleSetCategory(value.label, setFirstCategory);
                             }}
                           />
@@ -292,7 +292,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                             padding="23px"
                             className={style.select}
                             onChange={value => {
-                              field.onChange(value.value);
+                              field.onChange(value.value as string);
                               handleSetCategory(value.label, setSecondCategory);
                             }}
                           />
@@ -314,7 +314,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                               error={errors?.type2?.message}
                               className={style.select}
                               onChange={value => {
-                                field.onChange(value.value);
+                                field.onChange(value.value as string);
                                 handleSetCategory(value.label, setThirdCategory);
                               }}
                             />

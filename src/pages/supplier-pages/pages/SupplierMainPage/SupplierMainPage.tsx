@@ -4,11 +4,13 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ACCOUNT_SETUP_BUSINESS_INFO, ACCOUNT_SETUP_PERSONAL_INFO } from 'routes';
+import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
 import {
   hasCompanyInfoSelector,
   hasPersonalInfoSelector,
-} from 'store/reducers/supplier/profile/selectors';
-import { hasCompanyInfo, hasPersonalInfo } from 'store/reducers/supplier/profile/thunks';
+  hasCompanyInfo,
+  hasPersonalInfo,
+} from 'store/reducers/supplier/profile';
 import { LoaderCircular } from 'ui-kit';
 
 export const SupplierMainPage = (): JSX.Element => {
@@ -21,6 +23,7 @@ export const SupplierMainPage = (): JSX.Element => {
     (async () => {
       await dispatch(hasPersonalInfo());
       await dispatch(hasCompanyInfo());
+      await dispatch(getCompanyNumberEmployees());
       setIsLoading(false);
     })();
   }, []);

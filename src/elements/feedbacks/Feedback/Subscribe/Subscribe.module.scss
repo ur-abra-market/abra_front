@@ -1,18 +1,18 @@
-
-
-.title, .subtitle{
+.title,
+.subtitle {
   font-family: var(--roboto);
   font-style: normal;
   line-height: 120%;
   color: var(--color-black);
+  letter-spacing: 0.00001em;
 }
 
-.title{
+.title {
   font-size: 34px;
   font-weight: var(--semi-bold);
 }
 
-.subtitle{
+.subtitle {
   margin-bottom: 23px;
   font-size: 24px;
   font-weight: var(--bold);
@@ -24,4 +24,3 @@
   gap: 12px;
   align-items: center;
 }
-

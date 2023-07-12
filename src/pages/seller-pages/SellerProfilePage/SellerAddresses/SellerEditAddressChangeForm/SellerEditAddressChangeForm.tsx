@@ -12,8 +12,7 @@ import {
   ISellerAddressRequest,
 } from 'services/seller/seller.serviceTypes';
 import { countriesSelector } from 'store/reducers/commonSlice';
-import { ISellerAddress } from 'store/reducers/seller/profile/slice';
-import { updateSellerAddresses } from 'store/reducers/seller/profile/thunks';
+import { updateSellerAddresses, ISellerAddress } from 'store/reducers/seller/profile';
 
 interface ISellerEditAddressChangeForm {
   address: ISellerAddressData;
@@ -73,7 +72,7 @@ export const SellerEditAddressChangeForm: FC<ISellerEditAddressChangeForm> = ({
     lastNameValue === address?.last_name &&
     `${address?.phone.country.country_code}${address?.phone.phone_number}` ===
       currentPhoneNumber &&
-    countryValue === address?.country.country &&
+    countryValue === address?.country.id &&
     cityValue === address?.city &&
     buildingValue === address?.building &&
     streetValue === address?.street &&
@@ -95,21 +94,20 @@ export const SellerEditAddressChangeForm: FC<ISellerEditAddressChangeForm> = ({
       phoneCountryCode = countryCode;
     }
 
-    const countryId = countries.find(el => el.country === data.country)?.id;
     const phoneCountryId = countries.find(el => el.country_code === phoneCountryCode)?.id;
     const updateSellerAddressData: ISellerAddressRequest = {
       address_id: address.id,
       seller_address_request: {
         is_main: data.isMain,
-        area: data.area,
         city: data.city,
         street: data.street,
-        building: data.building,
-        apartment: data.apartment,
         postal_code: data.postalCode,
-        country_id: countryId!,
+        country_id: data.country,
         first_name: data.firstName,
         last_name: data.lastName,
+        ...(data.area && { area: data.area }),
+        ...(data.building && { building: data.building }),
+        ...(data.apartment && { apartment: data.apartment }),
       },
       seller_address_phone_request: {
         country_id: phoneCountryId! || address.phone.country.id,
@@ -128,12 +126,12 @@ export const SellerEditAddressChangeForm: FC<ISellerEditAddressChangeForm> = ({
       'phoneNumber',
       `${address.phone.country.country_code}${address.phone.phone_number}`,
     );
-    setValue('country', address.country.country);
+    setValue('country', address.country.id);
     setValue('isMain', address.is_main);
   }, [
     address.phone.country.country_code,
     address.phone.phone_number,
-    address.country.country,
+    address.country.id,
     address.is_main,
     setValue,
   ]);

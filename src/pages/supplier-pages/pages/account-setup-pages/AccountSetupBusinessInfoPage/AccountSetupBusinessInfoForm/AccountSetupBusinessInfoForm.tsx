@@ -19,19 +19,14 @@ import { IBusinessInfoRequest } from 'services/supplier/supplier.serviceTypes';
 import { getCountries } from 'store/reducers/commonSlice';
 import {
   uploadCompanyLogo,
-  supplierCompanyLogoIdSelector,
   supplierCompanyLogoSelector,
-} from 'store/reducers/supplier/profile';
-import { ISupplierBusinessInfo } from 'store/reducers/supplier/profile/slice';
-import {
   createAccountBusinessInfo,
-  deleteCompanyLogo,
-} from 'store/reducers/supplier/profile/thunks';
+  ISupplierBusinessInfo,
+} from 'store/reducers/supplier/profile';
 import { SupplierRegisterFormStep } from 'ui-kit';
 
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   const companyLogo = useSelector(supplierCompanyLogoSelector);
-  const companyLogoId = useSelector(supplierCompanyLogoIdSelector);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const formMethods = useForm<ISupplierBusinessInfo>({
@@ -76,9 +71,6 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   const handleUploadImage = (img: File): void => {
     dispatch(uploadCompanyLogo(img));
   };
-  const handleDeleteImage = (): void => {
-    if (companyLogoId !== null) dispatch(deleteCompanyLogo(companyLogoId));
-  };
 
   return (
     <div className={style.wrapper}>
@@ -91,7 +83,6 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
         <div className={style.add_logo}>
           <UploadImage
             uploadImage={handleUploadImage}
-            deleteImage={handleDeleteImage}
             image={companyLogo}
             type="logo"
             label="Add logo or profile image"

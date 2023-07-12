@@ -1,5 +1,6 @@
-import React, { FC, useCallback, useRef, useState } from 'react';
+import React, { FC, SyntheticEvent, useState } from 'react';
 
+import cn from 'classnames';
 import type { Swiper as SwiperType } from 'swiper';
 import { Mousewheel, Thumbs } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,94 +9,133 @@ import 'swiper/swiper-bundle.min.css';
 
 import style from './ProductCarousel.module.scss';
 
-import { ArrowDownIcon, ArrowUpIcon } from 'assets/icons'; // 24px
-import { LazyImage } from 'elements/LazyImage/LazyImage';
-import { Button } from 'ui-kit';
+import { ArrowIcon } from 'assets/icons';
+import { DefaultProductImage } from 'assets/images';
+import { IImage } from 'store/reducers/productSlice';
 
-const ProductCarousel: FC<Props> = props => {
-  const { photoArray } = props;
+type Props = {
+  photoArray: IImage[];
+};
 
-  const [activeThumb, setActiveThumb] = useState<SwiperType | null>(null);
+const minLength = 1;
+const maxLength = 5;
+const baseLength = 5;
+const rowGap = 8;
+const heightSlide = 106;
 
-  const swiperEl = useRef<SwiperType>();
+type ReturnType = {
+  slidesPerViewQuantity: number;
+  stylesSlidersContainer: object;
+};
 
-  const handlePrev = useCallback((): void => {
-    swiperEl.current?.slidePrev();
-  }, []);
+const getSecondSliderInfo = (arrLength: number): ReturnType => {
+  const slidesPerViewQuantity =
+    arrLength >= minLength && arrLength < maxLength ? arrLength : baseLength;
 
-  const handleNext = useCallback((): void => {
-    swiperEl.current?.slideNext();
-  }, []);
+  const sizeSlidersContainerPx = heightSlide * arrLength + rowGap * (arrLength - 1);
 
-  const onBeforeInit = (swiper: SwiperType): void => {
-    if (!swiper) return;
-    swiperEl.current = swiper;
+  const stylesSlidersContainer = {
+    height: arrLength < maxLength ? `${sizeSlidersContainerPx}px` : '562px',
+  };
+
+  return {
+    slidesPerViewQuantity,
+    stylesSlidersContainer,
+  };
+};
+
+export const ProductCarousel: FC<Props> = ({ photoArray }) => {
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const arrLength = photoArray.length;
+  const { stylesSlidersContainer, slidesPerViewQuantity } =
+    getSecondSliderInfo(arrLength);
+
+  const handlePrev = (): void => {
+    thumbsSwiper?.slidePrev();
+  };
+  const handleNext = (): void => {
+    thumbsSwiper?.slideNext();
+  };
+
+  const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
+    const newEvent = { ...event };
+
+    newEvent.currentTarget.src = DefaultProductImage;
   };
 
   return (
-    <section className={style.slider}>
-      <div className={style.flex_container}>
-        <div className={style.col}>
-          <Button color="white" onClick={handlePrev}>
-            <ArrowUpIcon />
-          </Button>
+    <div className={style.sliders_container}>
+      <div className={style.swiper_second_wrapper}>
+        {arrLength > minLength && (
+          <button type="button" className={style.btn} onClick={handlePrev}>
+            <ArrowIcon className={`${style.arrow} ${style.arrow_up}`} />
+          </button>
+        )}
 
-          <div className={style.thumbs}>
-            <Swiper
-              onBeforeInit={onBeforeInit}
-              onSwiper={setActiveThumb}
-              direction="vertical"
-              spaceBetween={10}
-              slidesPerView="auto"
-              loop
-              className={style.swiper_container1}
-              modules={[Thumbs]}
-            >
-              {photoArray.map((slide, index) => {
-                return (
-                  <SwiperSlide key={`preview${index}`} style={{ height: 106 }}>
-                    <div className={style.preview_image}>
-                      <LazyImage src={slide} alt="" />
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
-          </div>
+        <Swiper
+          direction="vertical"
+          slidesPerView={slidesPerViewQuantity}
+          spaceBetween={8}
+          className={style.swiper_second}
+          slideToClickedSlide
+          mousewheel={arrLength !== minLength}
+          allowTouchMove={false}
+          style={stylesSlidersContainer}
+          loop
+          onSwiper={setThumbsSwiper}
+          watchSlidesProgress
+          modules={[Thumbs, Mousewheel]}
+        >
+          {photoArray.map((el, index) => {
+            return (
+              <SwiperSlide key={el.id} className={style.swiper_second_el}>
+                {() => (
+                  <img
+                    className={cn(style.swiper_second_el, {
+                      [style.active_swipe]: activeIndex === index,
+                    })}
+                    src={el.image_url}
+                    alt=""
+                    onError={handleImageError}
+                  />
+                )}
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
 
-          <Button color="white" onClick={handleNext}>
-            <ArrowDownIcon />
-          </Button>
-        </div>
-
-        <div className={style.images}>
-          <Swiper
-            thumbs={{ swiper: activeThumb }}
-            direction="vertical"
-            slidesPerView={1}
-            spaceBetween={32}
-            mousewheel
-            className={style.swiper_container2}
-            modules={[Thumbs, Mousewheel]}
-          >
-            {photoArray.map((slide, index) => {
-              return (
-                <SwiperSlide key={`image${index}`}>
-                  <div className={style.slider_showed}>
-                    <LazyImage src={slide} alt="" />
-                  </div>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
-        </div>
+        {arrLength > minLength && (
+          <button type="button" className={style.btn} onClick={handleNext}>
+            <ArrowIcon className={style.arrow} />
+          </button>
+        )}
       </div>
-    </section>
+
+      <div>
+        <Swiper
+          direction="vertical"
+          slidesPerView={1}
+          spaceBetween={8}
+          className={style.swiper_main}
+          allowTouchMove={false}
+          mousewheel={arrLength !== minLength}
+          thumbs={{ swiper: thumbsSwiper }}
+          modules={[Thumbs, Mousewheel]}
+          loop
+          onActiveIndexChange={s => {
+            setActiveIndex(s.realIndex);
+          }}
+        >
+          {photoArray.map(el => {
+            return (
+              <SwiperSlide key={el.id}>
+                <img src={el.image_url} alt="" onError={handleImageError} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
+    </div>
   );
-};
-
-export default ProductCarousel;
-
-type Props = {
-  photoArray: string[];
 };

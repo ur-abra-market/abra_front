@@ -4,56 +4,22 @@ import {
   getSellerAddresses,
   getSellerAvatar,
   getSellerNotifications,
+  updateSellerAvatar,
   updateSellerNotifications,
-} from './thunks';
+  ISellerProfileSliceInitialState,
+} from '.';
 
 import { LoadingStatusEnum } from 'common/types';
-import {
-  ISellerNotifications,
-  ISellerAddressData,
-} from 'services/seller/seller.serviceTypes';
-import { getPersonalInfo } from 'store/reducers/userSlice';
-
-export interface ISellerPersonalInfo {
-  firstName: string;
-  lastName: string;
-  countryShort: string;
-  phoneNumber: string;
-  avatar: string;
-}
-
-export interface ISellerAddress {
-  apartment: string;
-  area: string;
-  building: string;
-  city: string;
-  country: string;
-  firstName: string;
-  isMain: boolean;
-  lastName: string;
-  phoneNumber: string;
-  postalCode: string;
-  street: string;
-}
-
-interface ISellerProfileSliceInitialState {
-  loading: LoadingStatusEnum;
-  personalInfo: ISellerPersonalInfo;
-  addresses: ISellerAddressData[] | null;
-  notifications: ISellerNotifications | null;
-}
 
 const initialState: ISellerProfileSliceInitialState = {
-  loading: LoadingStatusEnum.Idle,
-  personalInfo: {
-    firstName: '',
-    lastName: '',
-    countryShort: '',
-    phoneNumber: '',
-    avatar: '',
+  loading: {
+    avatarLoading: LoadingStatusEnum.Idle,
+    notificationsLoading: LoadingStatusEnum.Idle,
+    addressesLoading: LoadingStatusEnum.Idle,
   },
   addresses: null,
   notifications: null,
+  sellerAvatar: '',
 };
 
 const sellerProfileSlice = createSlice({
@@ -62,48 +28,90 @@ const sellerProfileSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(getPersonalInfo.pending, state => {
-        state.loading = LoadingStatusEnum.Loading;
-      })
-      .addCase(getPersonalInfo.fulfilled, (state, action) => {
-        if (!action.payload.is_supplier) {
-          state.personalInfo.lastName = action.payload.last_name;
-          state.personalInfo.firstName = action.payload.first_name;
-          if (action.payload.country) {
-            state.personalInfo.countryShort = action.payload.country.country_short;
-          }
-          state.personalInfo.phoneNumber = action.payload.phone_number;
-          state.loading = LoadingStatusEnum.Success;
-        }
-      })
       .addCase(getSellerNotifications.pending, state => {
-        state.loading = LoadingStatusEnum.Loading;
+        state.loading = {
+          ...state.loading,
+          notificationsLoading: LoadingStatusEnum.Loading,
+        };
       })
       .addCase(getSellerNotifications.fulfilled, (state, action) => {
         state.notifications = action.payload;
-        state.loading = LoadingStatusEnum.Success;
+        state.loading = {
+          ...state.loading,
+          notificationsLoading: LoadingStatusEnum.Success,
+        };
       })
       .addCase(getSellerNotifications.rejected, state => {
-        state.loading = LoadingStatusEnum.Failed;
+        state.loading = {
+          ...state.loading,
+          notificationsLoading: LoadingStatusEnum.Failed,
+        };
       })
+
       .addCase(updateSellerNotifications.pending, state => {
-        state.loading = LoadingStatusEnum.Loading;
+        state.loading = {
+          ...state.loading,
+          notificationsLoading: LoadingStatusEnum.Loading,
+        };
       })
       .addCase(updateSellerNotifications.rejected, state => {
-        state.loading = LoadingStatusEnum.Failed;
+        state.loading = {
+          ...state.loading,
+          notificationsLoading: LoadingStatusEnum.Failed,
+        };
       })
+
       .addCase(getSellerAddresses.pending, state => {
-        state.loading = LoadingStatusEnum.Loading;
+        state.loading = {
+          ...state.loading,
+          addressesLoading: LoadingStatusEnum.Loading,
+        };
       })
       .addCase(getSellerAddresses.fulfilled, (state, action) => {
         state.addresses = action.payload;
-        state.loading = LoadingStatusEnum.Success;
+        state.loading = {
+          ...state.loading,
+          addressesLoading: LoadingStatusEnum.Success,
+        };
       })
       .addCase(getSellerAddresses.rejected, state => {
-        state.loading = LoadingStatusEnum.Failed;
+        state.loading = {
+          ...state.loading,
+          addressesLoading: LoadingStatusEnum.Failed,
+        };
+      })
+
+      .addCase(getSellerAvatar.pending, state => {
+        state.loading = {
+          ...state.loading,
+          avatarLoading: LoadingStatusEnum.Loading,
+        };
       })
       .addCase(getSellerAvatar.fulfilled, (state, action) => {
-        state.personalInfo.avatar = action.payload.result.thumbnail_url;
+        state.sellerAvatar = action.payload.result.thumbnail_url;
+        state.loading = {
+          ...state.loading,
+          avatarLoading: LoadingStatusEnum.Success,
+        };
+      })
+      .addCase(getSellerAvatar.rejected, state => {
+        state.loading = {
+          ...state.loading,
+          avatarLoading: LoadingStatusEnum.Failed,
+        };
+      })
+
+      .addCase(updateSellerAvatar.pending, state => {
+        state.loading = {
+          ...state.loading,
+          avatarLoading: LoadingStatusEnum.Loading,
+        };
+      })
+      .addCase(updateSellerAvatar.rejected, state => {
+        state.loading = {
+          ...state.loading,
+          avatarLoading: LoadingStatusEnum.Failed,
+        };
       });
   },
 });

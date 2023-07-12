@@ -2,16 +2,7 @@ import { IAccountPersonalInfoResponse } from './user.serviceTypes';
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
-import {
-  IAccountPersonalInfoRequest,
-  IDeleteImageRequest,
-} from 'services/common/common.serviceTypes';
-
-export enum Action {
-  UPLOAD_LOGO_IMAGE = 'suppliers/uploadCompanyImage/',
-  UPLOAD_ITEM_IMAGE = 'suppliers/uploadProductImage/',
-  UPLOAD_SELLER_AVATAR = 'sellers/avatar/update/',
-}
+import { IAccountPersonalInfoRequest } from 'services/common/common.serviceTypes';
 
 export const userService = {
   fetchAccountPersonalInfo: async () => {
@@ -23,28 +14,12 @@ export const userService = {
   },
 
   updateAccountPersonalInfo: async (params: IAccountPersonalInfoRequest) => {
-    const { data } = await baseConfigService.patch(
+    const { data } = await baseConfigService.post(
       `users/account/personalInfo/update/`,
       params,
     );
 
     return data.result;
-  },
-
-  uploadLogoImage: async (img: File) => {
-    const formData = new FormData();
-
-    formData.append('file', img);
-
-    const { data } = await baseConfigService.post('users/uploadLogoImage/', formData);
-
-    return data;
-  },
-
-  deleteImage: async ({ queries, action }: IDeleteImageRequest) => {
-    const { data } = await baseConfigService.delete(action, {
-      params: queries,
-    });
   },
 
   getFavoritesProducts: async () => {

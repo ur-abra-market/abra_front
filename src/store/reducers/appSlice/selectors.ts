@@ -1,4 +1,4 @@
-import { IResponseNotice } from './slice';
+import { IResponseNotice } from '.';
 
 import { LoadingStatusEnum } from 'common/types';
 import { RootStateType } from 'store/createStore';

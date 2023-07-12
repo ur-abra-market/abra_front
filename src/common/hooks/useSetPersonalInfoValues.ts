@@ -3,12 +3,11 @@ import { useEffect } from 'react';
 import { UseFormSetValue } from 'react-hook-form';
 
 import { ICountry } from 'services/common/common.serviceTypes';
-import { ISellerPersonalInfo } from 'store/reducers/seller/profile/slice';
-import { ISupplierPersonalInfo } from 'store/reducers/supplier/profile/slice';
+import { IUserPersonalInfo } from 'store/reducers/userSlice';
 
 export const useSetPersonalInfoValues = (
   setValue: UseFormSetValue<any>,
-  data: ISellerPersonalInfo | ISupplierPersonalInfo,
+  data: IUserPersonalInfo,
   country?: ICountry,
 ): void => {
   const { lastName, firstName, countryShort, phoneNumber } = data;

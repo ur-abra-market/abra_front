@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
-  deleteCompanyLogo,
+  deleteCompanyImage,
   fetchCompanyLogo,
   getBusinessInfo,
   getSupplierNotifications,
@@ -10,71 +10,16 @@ import {
   hasPersonalInfo,
   hasCompanyInfo,
   uploadCompanyLogo,
-} from './thunks';
+  ISupplierProfileSliceInitialState,
+} from '.';
 
 import { LoadingStatusEnum } from 'common/types';
-import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
-import { getPersonalInfo, updatePersonalInfo } from 'store/reducers/userSlice';
-
-export interface ISupplierPersonalInfo {
-  firstName: string;
-  lastName: string;
-  countryShort: string;
-  phoneNumber: string;
-}
-
-interface IBusinessSector {
-  value: string;
-}
-
-export interface ISupplierBusinessInfo {
-  storeName: string;
-  businessSector: IBusinessSector;
-  isManufacturer: boolean;
-  license: string;
-  yearEstablished: number | null;
-  numEmployees: number | null;
-  countryRegistration: number | null;
-  description: string;
-  email: string;
-  phoneNumber: string;
-  phoneId: number | null;
-  countryShort: string;
-  countryCode: string;
-  address: string;
-  companyLogo: string;
-  companyLogoId: number | null;
-  countryId: number | null;
-}
-
-export interface ISupplierProfileLoading {
-  personalInfoLoading: LoadingStatusEnum;
-  businessInfoLoading: LoadingStatusEnum;
-  notificationsLoading: LoadingStatusEnum;
-  companyLogoLoading: LoadingStatusEnum;
-}
-
-interface ISupplierProfileSliceInitialState {
-  loading: ISupplierProfileLoading;
-  personalInfo: ISupplierPersonalInfo;
-  businessInfo: ISupplierBusinessInfo;
-  notifications: ISupplierNotifications | null;
-  hasCompanyInfo: boolean;
-  hasPersonalInfo: boolean;
-}
 
 const initialState: ISupplierProfileSliceInitialState = {
   loading: {
-    personalInfoLoading: LoadingStatusEnum.Idle,
     businessInfoLoading: LoadingStatusEnum.Idle,
     notificationsLoading: LoadingStatusEnum.Idle,
     companyLogoLoading: LoadingStatusEnum.Idle,
-  },
-  personalInfo: {
-    firstName: '',
-    lastName: '',
-    countryShort: '',
-    phoneNumber: '',
   },
   businessInfo: {
     storeName: '',
@@ -96,8 +41,8 @@ const initialState: ISupplierProfileSliceInitialState = {
     countryId: null,
   },
   notifications: null,
-  hasPersonalInfo: false,
-  hasCompanyInfo: false,
+  hasPersonalInfo: null,
+  hasCompanyInfo: null,
 };
 
 export const supplierProfileSlice = createSlice({
@@ -106,45 +51,6 @@ export const supplierProfileSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(getPersonalInfo.pending, state => {
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Loading,
-        };
-      })
-      .addCase(getPersonalInfo.fulfilled, (state, action) => {
-        if (action.payload.is_supplier) {
-          state.personalInfo.lastName = action.payload.last_name;
-          state.personalInfo.firstName = action.payload.first_name;
-          state.personalInfo.countryShort =
-            action.payload.country && action.payload.country.country_short;
-          state.personalInfo.phoneNumber = action.payload.phone_number;
-        }
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Success,
-        };
-      })
-      .addCase(getPersonalInfo.rejected, state => {
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Failed,
-        };
-      })
-
-      .addCase(updatePersonalInfo.pending, state => {
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Loading,
-        };
-      })
-      .addCase(updatePersonalInfo.rejected, state => {
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Failed,
-        };
-      })
-
       .addCase(getBusinessInfo.pending, state => {
         state.loading = {
           ...state.loading,
@@ -279,20 +185,20 @@ export const supplierProfileSlice = createSlice({
         };
       })
 
-      .addCase(deleteCompanyLogo.pending, state => {
+      .addCase(deleteCompanyImage.pending, state => {
         state.loading = {
           ...state.loading,
           companyLogoLoading: LoadingStatusEnum.Loading,
         };
       })
-      .addCase(deleteCompanyLogo.fulfilled, state => {
+      .addCase(deleteCompanyImage.fulfilled, state => {
         state.businessInfo.companyLogo = '';
         state.loading = {
           ...state.loading,
           companyLogoLoading: LoadingStatusEnum.Success,
         };
       })
-      .addCase(deleteCompanyLogo.rejected, state => {
+      .addCase(deleteCompanyImage.rejected, state => {
         state.loading = {
           ...state.loading,
           companyLogoLoading: LoadingStatusEnum.Failed,

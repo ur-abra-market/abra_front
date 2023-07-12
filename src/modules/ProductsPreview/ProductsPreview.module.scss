@@ -19,7 +19,7 @@
 
 }
 
-.title{
+.title {
   font-family: var(--roboto);
   font-size: 34px;
   font-weight: var(--bold);
@@ -46,7 +46,14 @@
   width: 64px;
 }
 
-.icon_left, .icon_right {
+.icon_left {
+  transform: rotate(90deg);
+  width: 24px;
+  height: 24px;
+}
+
+.icon_right {
+  transform: rotate(270deg);
   width: 24px;
   height: 24px;
 }

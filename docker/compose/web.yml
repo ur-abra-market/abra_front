@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  web:
+    container_name: web
+    build:
+      context: ${PWD}
+      dockerfile: docker/Dockerfile
+    command: /bin/sh -c \
+      "echo '[+] Run nginx server' && \
+      nginx -g 'daemon off;'"
+    ports:
+      - ${EXPOSE_PORT}:${EXPOSE_PORT}
+    expose:
+      - ${EXPOSE_PORT}
+    env_file:
+      - ${PWD}/.env
+    restart: unless-stopped

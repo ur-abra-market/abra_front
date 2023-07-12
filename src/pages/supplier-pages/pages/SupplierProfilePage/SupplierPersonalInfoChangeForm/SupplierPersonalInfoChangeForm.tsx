@@ -14,19 +14,18 @@ import { ButtonLogOut } from 'elements/ButtonLogOut/ButtonLogOut';
 import { PersonalInfoChangeForm } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
 import {
-  supplierLoadingSelector,
-  supplierPersonalInfoSelector,
-} from 'store/reducers/supplier/profile';
-import { updatePersonalInfo } from 'store/reducers/userSlice';
+  updatePersonalInfo,
+  userLoadingSelector,
+  userPersonalInfoSelector,
+} from 'store/reducers/userSlice';
 import { Button } from 'ui-kit';
 
 export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const isLoading =
-    useAppSelector(supplierLoadingSelector).personalInfoLoading ===
-    LoadingStatusEnum.Loading;
+    useAppSelector(userLoadingSelector).personalInfoLoading === LoadingStatusEnum.Loading;
 
-  const data = useAppSelector(supplierPersonalInfoSelector);
+  const data = useAppSelector(userPersonalInfoSelector);
 
   const { lastName, firstName, countryShort, phoneNumber } = data;
 

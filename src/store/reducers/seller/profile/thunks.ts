@@ -6,6 +6,7 @@ import { sellerService } from 'services/seller/seller.service';
 import {
   ISellerAddressData,
   ISellerAddressRequest,
+  ISellerNotifications,
 } from 'services/seller/seller.serviceTypes';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
 
@@ -49,12 +50,18 @@ export const addSellerAddresses = createAsyncThunk<
 >('seller/addSellerAddresses', async (arg, { rejectWithValue, dispatch }) => {
   try {
     await sellerService.addAddress(arg);
+    dispatch(
+      setResponseNotice({ noticeType: 'success', message: 'Address successfully added' }),
+    );
     dispatch(getSellerAddresses());
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
         ? error.response?.data?.error || error.message
         : '[addSellerAddresses]: Error';
+
+    if (error instanceof AxiosError)
+      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
 
     return rejectWithValue(errorMessage);
   }
@@ -67,12 +74,21 @@ export const updateSellerAddresses = createAsyncThunk<
 >('seller/updateSellerAddresses', async (arg, { rejectWithValue, dispatch }) => {
   try {
     await sellerService.updateAddress(arg);
+    dispatch(
+      setResponseNotice({
+        noticeType: 'success',
+        message: 'Address successfully changed',
+      }),
+    );
     dispatch(getSellerAddresses());
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
         ? error.response?.data?.error || error.message
         : '[updateSellerAddresses]: Error';
+
+    if (error instanceof AxiosError)
+      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
 
     return rejectWithValue(errorMessage);
   }
@@ -95,28 +111,30 @@ export const deleteSellerAddress = createAsyncThunk<void, number, IAsyncThunkCon
   },
 );
 
-export const getSellerNotifications = createAsyncThunk<any, void>(
-  'seller/getSellerNotifications',
-  async (_, { rejectWithValue, dispatch }) => {
-    try {
-      return await sellerService.fetchNotifications();
-    } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error || error.message
-          : '[getSellerNotifications]: Error';
+export const getSellerNotifications = createAsyncThunk<
+  ISellerNotifications,
+  void,
+  IAsyncThunkConfig
+>('seller/getSellerNotifications', async (_, { rejectWithValue, dispatch }) => {
+  try {
+    return await sellerService.fetchNotifications();
+  } catch (error) {
+    const errorMessage =
+      error instanceof AxiosError
+        ? error.response?.data?.error || error.message
+        : '[getSellerNotifications]: Error';
 
-      if (error instanceof AxiosError)
-        dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
+    if (error instanceof AxiosError)
+      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
 
-      return rejectWithValue(errorMessage);
-    }
-  },
-);
+    return rejectWithValue(errorMessage);
+  }
+});
 
 export const updateSellerNotifications = createAsyncThunk<
   void,
-  { id: string; value: boolean }
+  { id: string; value: boolean },
+  IAsyncThunkConfig
 >('seller/updateSellerNotifications', async (param, { rejectWithValue, dispatch }) => {
   try {
     await sellerService.updateNotifications({ [param.id]: param.value });
@@ -133,3 +151,20 @@ export const updateSellerNotifications = createAsyncThunk<
     return rejectWithValue(errorMessage);
   }
 });
+
+export const updateSellerAvatar = createAsyncThunk<void, File, IAsyncThunkConfig>(
+  'seller/updateAvatar',
+  async (img, { rejectWithValue, dispatch }) => {
+    try {
+      await sellerService.updateAvatar(img);
+      dispatch(getSellerAvatar());
+    } catch (error) {
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.error || error.message
+          : '[updateSellerNotifications]: Error';
+
+      return rejectWithValue(errorMessage);
+    }
+  },
+);

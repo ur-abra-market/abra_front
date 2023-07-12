@@ -8,11 +8,11 @@ import { commonReducer } from './reducers/commonSlice/slice';
 import filterReducer from './reducers/filterSlice';
 import { mainPageReducer } from './reducers/mainPageSlice';
 import manageProductsReducer from './reducers/manageProductsSlice';
-import modalReducer from './reducers/modalSlice';
 import paginateReducer from './reducers/paginateSlice';
 import { popularProductsReducer } from './reducers/popularProducts';
 import productPaginateReducer from './reducers/productPaginateSlice';
-import productReducer from './reducers/productSlice';
+import { productReducer } from './reducers/productSlice';
+import { productOldReducer } from './reducers/productSliceOld';
 import { sellerProfileReducer } from './reducers/seller/profile/slice';
 import { similarProductsReducer } from './reducers/similarProducts';
 import { supplierOtherReducer } from './reducers/supplier/other/slice';
@@ -29,8 +29,9 @@ export const store = configureStore({
     supplierProfile: supplierProfileReducer,
     supplierOther: supplierOtherReducer,
     sellerProfile: sellerProfileReducer,
-
     product: productReducer,
+
+    productListOld: productOldReducer,
     targetProduct: targetProductReducer,
     paginate: paginateReducer,
     productPaginate: productPaginateReducer,
@@ -39,7 +40,6 @@ export const store = configureStore({
     category: categoryReducer,
     manageProducts: manageProductsReducer,
     mainPageProducts: mainPageReducer,
-    modal: modalReducer,
     similarProducts: similarProductsReducer,
     popularProducts: popularProductsReducer,
   },
