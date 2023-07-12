@@ -14,7 +14,7 @@ export const userService = {
   },
 
   updateAccountPersonalInfo: async (params: IAccountPersonalInfoRequest) => {
-    const { data } = await baseConfigService.patch(
+    const { data } = await baseConfigService.post(
       `users/account/personalInfo/update/`,
       params,
     );

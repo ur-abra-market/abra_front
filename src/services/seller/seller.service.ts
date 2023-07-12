@@ -32,7 +32,7 @@ export const sellerService = {
   },
 
   updateAddress: async (params: ISellerAddressRequest) => {
-    const { data } = await baseConfigService.patch<Omit<IBaseResponse<any>, 'result'>>(
+    const { data } = await baseConfigService.post<Omit<IBaseResponse<any>, 'result'>>(
       `sellers/updateAddress/${params.address_id}/`,
       params,
     );
@@ -55,7 +55,7 @@ export const sellerService = {
   },
 
   updateNotifications: async (params: Partial<ISellerNotifications>) => {
-    await baseConfigService.patch<IBaseResponse<boolean>>(
+    await baseConfigService.post<IBaseResponse<boolean>>(
       `sellers/notifications/update/`,
       params,
     );
