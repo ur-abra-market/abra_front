@@ -22,7 +22,7 @@ export const WhatsApp: FC<IWhatsApp> = (props): JSX.Element => {
         rel="noreferrer"
       >
         <WhatsappIcon className={style.icon} />
-        <span>+79385656431</span>
+        <span>+79119681844</span>
       </a>
     </div>
   );
