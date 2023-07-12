@@ -1,8 +1,9 @@
 import style from './ContactSupport.module.scss';
 
-import { GoogleIcon, VkIcon, WhatsappIcon } from 'assets/icons';
+import { WhatsappIcon } from 'assets/icons';
 import { Banner3Image } from 'assets/images';
 import { WithLayout } from 'common/hocs/WithLayout';
+import { Social } from 'elements/feedbacks/Feedback';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 
 export const ContactSupportPage = WithLayout(() => {
@@ -20,15 +21,7 @@ export const ContactSupportPage = WithLayout(() => {
           <p className={style.number_phone}>+79385656431</p>
         </div>
 
-        <div>
-          <p className={style.social_network}>We in social media</p>
-          <a href="/">
-            <VkIcon className={style.social_icon} />
-          </a>
-          <a href="/">
-            <GoogleIcon className={style.social_icon} />
-          </a>
-        </div>
+        <Social />
       </div>
     </div>
   );

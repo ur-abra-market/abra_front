@@ -10,10 +10,10 @@ export interface SocialProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 const LINKS = [
-  { href: 'https://telegram.com', icon: TelegramIcon },
-  { href: 'https://instagram.com', icon: InstagramIcon },
-  { href: 'https://vk.com', icon: VkIcon },
-  { href: 'https://google.com', icon: GoogleIcon },
+  { href: '#', icon: TelegramIcon },
+  { href: '#', icon: InstagramIcon },
+  { href: '#', icon: VkIcon },
+  { href: '#', icon: GoogleIcon },
 ];
 
 export const Social: FC<SocialProps> = ({ className }): JSX.Element => {
@@ -21,7 +21,7 @@ export const Social: FC<SocialProps> = ({ className }): JSX.Element => {
     return LINKS.map(({ href, icon: Icon }) => {
       return (
         <li key={href} className={style.li}>
-          <a href={href} className={style.link} target="_blank" rel="noreferrer">
+          <a href={href} className={style.link} rel="noreferrer">
             <Icon />
           </a>
         </li>
