@@ -41,15 +41,18 @@ export const SelectItem: FC<ISelectItem> = ({
   });
 
   return (
-    <div
-      role="presentation"
+    <li
+      role="option"
+      onKeyUp={() => console.log('fd')}
+      aria-selected="false"
       onClick={handleClickOnItem}
       className={selectedItemClassName}
       onMouseEnter={handleHoverOnItem}
       onMouseLeave={handleLeaveHoverOnItem}
       style={style}
     >
-      {value.label}
-    </div>
+      {value.label.image_src && <img src={value.label.image_src} alt="" />}
+      <p>{value.label.text}</p>
+    </li>
   );
 };

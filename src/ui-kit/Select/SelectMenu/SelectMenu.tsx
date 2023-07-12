@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, ReactNode, useRef } from 'react';
+import React, { CSSProperties, FC, ReactNode } from 'react';
 
 import cn from 'classnames';
 
@@ -19,8 +19,6 @@ export const SelectMenu: FC<ISelectMenuPropsType> = ({
   className,
   style,
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-
   const inlineStyles = height ? { maxHeight: height, ...style } : { ...style };
 
   if (!isOpen) return null;
@@ -28,8 +26,8 @@ export const SelectMenu: FC<ISelectMenuPropsType> = ({
   const mainClassName = cn(className, styles.main);
 
   return (
-    <div style={inlineStyles} className={mainClassName} ref={ref}>
+    <ul style={inlineStyles} className={mainClassName} role="listbox" id="listbox">
       {children}
-    </div>
+    </ul>
   );
 };

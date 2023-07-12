@@ -38,7 +38,7 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
   const countries = useAppSelector(state => state.common.countries);
   const listCountry = countries.map(el => ({
     value: el.id,
-    label: el.country,
+    label: { text: el.country },
   }));
 
   const removeAddress = (): void => {

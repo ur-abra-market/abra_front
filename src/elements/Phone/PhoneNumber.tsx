@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
@@ -28,6 +28,7 @@ import flag7 from 'assets/icons/flags/7_Turkey.svg';
 import flag8 from 'assets/icons/flags/8_Ukraine.svg';
 import flag9 from 'assets/icons/flags/9_Uzbekistan.svg';
 import { useAppSelector } from 'common/hooks';
+import { ICountry } from 'services/common/common.serviceTypes';
 import { Input, ISelectOption, Select } from 'ui-kit';
 
 const thisForm = yup.object({ phoneNumberBody: yup.string().required() });
@@ -36,7 +37,7 @@ interface formType {
   phoneNumberBody: string;
 }
 
-const countryFlags = {
+const countryFlags: { [key: number]: string } = {
   1: flag1,
   2: flag2,
   3: flag3,
@@ -48,16 +49,19 @@ const countryFlags = {
   9: flag9,
 };
 
+interface ICountryWithFlag extends ICountry {
+  country_flag: string;
+}
 export const PhoneNumber = (): JSX.Element => {
   const countries = useAppSelector(state => state.common.countries);
-  const countriesWithFlag = countries.map(c => ({
+  const countriesWithFlag: ICountryWithFlag[] = countries.map(c => ({
     ...c,
     country_flag: countryFlags[c.id],
   }));
 
   console.log(countriesWithFlag);
   const [phoneCountryCode, setPhoneCountryCode] = useState<ISelectOption>({
-    label: 'Russia',
+    label: { text: '+7', image_src: flag5 },
     value: 5,
   });
   const [phoneNumberBody, setPhoneNumberBody] = useState('');
@@ -81,23 +85,21 @@ export const PhoneNumber = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (countries.length) {
-      setPhoneCountryCode({
-        label: `+${countries[0].country_code} ${countries[0].country}`,
-        value: countries[0].id,
-      });
-    }
-  }, [countries]);
+    getPhoneNumberBodyWithMask(phoneNumberBody);
+  }, [phoneCountryShort]);
 
   const handlePhoneCountryCodeOnChange = (value: ISelectOption): void => {
-    const country = countries.find(country => country.id === value.value);
+    const country = countriesWithFlag.find(country => country.id === value.value);
 
     if (country) setPhoneCountryShort(country.country_short as PhoneCountryShortType);
-    setPhoneCountryCode({ label: `+${country?.country_code}`, value: value.value });
+    setPhoneCountryCode({
+      label: { text: `+${country?.country_code}`, image_src: country?.country_flag },
+      value: value.value,
+    });
   };
 
-  const onChangePhoneNumberBody = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const phoneNumberBodyRawValue = e.currentTarget.value.replace(/\D/g, ''); // оставляем из пришедшего значения инпута только цифры
+  function getPhoneNumberBodyWithMask(numberBody: string): void {
+    const phoneNumberBodyRawValue = numberBody.replace(/\D/g, ''); // оставляем из пришедшего значения инпута только цифры
 
     if (!phoneNumberBodyRawValue && phoneNumberBody) {
       // если пришла пуста строка вместо цифр и при этом есть текущее значение тела номера телефона - значит пользователь хочет очистить инпут телефона. поэтому мы сохраняем пустую строку в тело номера телефона и выкидываем ошибку
@@ -118,36 +120,34 @@ export const PhoneNumber = (): JSX.Element => {
     } else {
       clearErrors('phoneNumberBody');
     }
+  }
+
+  const onChangePhoneNumberBody = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    getPhoneNumberBodyWithMask(e.currentTarget.value);
   };
 
-  if (!countries.length) return <div />;
-
-  console.log(countriesWithFlag[3]);
+  if (!countriesWithFlag.length) return <div />;
 
   return (
     <div className={style.wrapper}>
-      {/* {countriesWithFlag[3] && ( */}
-      {/*  <img src={countriesWithFlag[1].country_flag} alt="" width="20" /> */}
-      {/* )} */}
-      {countries.length && (
-        <form onSubmit={handleSubmit(onSubmit)} className={style.wrapper}>
-          <Select
-            controlledValue={phoneCountryCode}
-            width="160"
-            onChange={handlePhoneCountryCodeOnChange}
-            options={countries.map(c => ({
-              label: `+${c.country_code} ${c.country}`,
-              value: c.id,
-            }))}
-          />
-          <Input
-            {...register('phoneNumberBody')}
-            value={phoneNumberBody}
-            onChange={onChangePhoneNumberBody}
-            error={errors?.phoneNumberBody?.message}
-          />
-        </form>
-      )}
+      <form onSubmit={handleSubmit(onSubmit)} className={style.wrapper}>
+        <Select
+          controlledValue={phoneCountryCode}
+          width="160"
+          className={style.select}
+          onChange={handlePhoneCountryCodeOnChange}
+          options={countriesWithFlag.map(c => ({
+            label: { text: `+${c.country_code} ${c.country}`, image_src: c.country_flag },
+            value: c.id,
+          }))}
+        />
+        <Input
+          {...register('phoneNumberBody')}
+          value={phoneNumberBody}
+          onChange={onChangePhoneNumberBody}
+          error={errors?.phoneNumberBody?.message}
+        />
+      </form>
     </div>
   );
 };

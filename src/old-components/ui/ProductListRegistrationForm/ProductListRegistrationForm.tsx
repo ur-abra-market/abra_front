@@ -82,13 +82,13 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
   const [openDropDownField, setOpenDropDownField] = useState<null | number>(null);
 
   const FIRST_CATEGORIES_DATA: ISelectOption[] = firstStageCategories?.map(el => {
-    return { label: el, value: el };
+    return { label: { text: el }, value: el };
   });
   const SECOND_CATEGORIES_DATA: ISelectOption[] = secondStageCategories?.map(el => {
-    return { label: el, value: el };
+    return { label: { text: el }, value: el };
   });
   const THIRD_CATEGORIES_DATA: ISelectOption[] = thirdStageCategories?.map(el => {
-    return { label: el, value: el };
+    return { label: { text: el }, value: el };
   });
 
   const {
@@ -271,7 +271,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                             error={errors?.category?.message}
                             onChange={value => {
                               field.onChange(value.value as string);
-                              handleSetCategory(value.label, setFirstCategory);
+                              handleSetCategory(value.label.text, setFirstCategory);
                             }}
                           />
                         </Label>
@@ -293,7 +293,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                             className={style.select}
                             onChange={value => {
                               field.onChange(value.value as string);
-                              handleSetCategory(value.label, setSecondCategory);
+                              handleSetCategory(value.label.text, setSecondCategory);
                             }}
                           />
                         </Label>
@@ -315,7 +315,7 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                               className={style.select}
                               onChange={value => {
                                 field.onChange(value.value as string);
-                                handleSetCategory(value.label, setThirdCategory);
+                                handleSetCategory(value.label.text, setThirdCategory);
                               }}
                             />
                           </Label>

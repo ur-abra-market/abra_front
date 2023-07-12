@@ -21,9 +21,18 @@ export const SelectHeader: FC<ISelectHeaderPropsType> = ({
   isOpenMenu,
 }) => {
   return (
-    <div onClick={onClick} role="presentation" className={className}>
-      {currentSelectedValue.label}
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(className, style.button)}
+      aria-controls="listbox"
+      aria-labelledby="combo-label"
+    >
+      {currentSelectedValue.label.image_src && (
+        <img src={currentSelectedValue.label.image_src} alt="" />
+      )}
+      {currentSelectedValue.label.text}
       <ArrowIcon className={cn({ [style.arrow_up]: isOpenMenu })} width="14" />
-    </div>
+    </button>
   );
 };

@@ -25,14 +25,14 @@ import {
 import { Checkbox, Input, ISelectOption, Search, Select } from 'ui-kit';
 
 export const CATEGORY_SELECT: ISelectOption[] = [
-  { label: 'S', value: '1' },
-  { label: 'M', value: '2' },
-  { label: 'L', value: '3' },
-  { label: 'XL', value: '4' },
+  { label: { text: 'S' }, value: '1' },
+  { label: { text: 'M' }, value: '2' },
+  { label: { text: 'L' }, value: '3' },
+  { label: { text: 'XL' }, value: '4' },
 ];
 export const STATUS_SELECT: ISelectOption[] = [
-  { label: 'On Sale', value: '1' },
-  { label: 'Off-sale', value: '2' },
+  { label: { text: 'On Sale' }, value: '1' },
+  { label: { text: 'Off-sale' }, value: '2' },
 ];
 // interface ItemType {
 //   id: number;

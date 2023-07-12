@@ -495,8 +495,8 @@
   margin: 15px 15px 15px 0;
 
   background: var(--color-white);
-  border: 1px solid var(--color-medium-gray);
   border-radius: 4px;
+  outline: 1px solid var(--color-medium-gray);
 }
 
 .input_checkbox:checked {

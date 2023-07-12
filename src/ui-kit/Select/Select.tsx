@@ -20,7 +20,7 @@ const NEXT = 1;
 export type SelectPositionType = 'up' | 'down';
 
 export interface ISelectOption {
-  label: string;
+  label: { text: string; image_src?: string };
   value: any;
 }
 
@@ -62,7 +62,7 @@ export const Select = forwardRef(
     ref,
   ) => {
     const placeholderObj = placeholder
-      ? { label: placeholder, value: placeholder }
+      ? { label: { text: placeholder }, value: placeholder }
       : null;
 
     const defaultSelectedValue = placeholderObj || options[0];
@@ -200,7 +200,18 @@ export const Select = forwardRef(
     const mainClasses = cn(className, styles.main, { [styles.main_has_header]: header });
 
     return (
-      <div style={selectWidth} className={mainClasses} ref={mainDivRef}>
+      <div
+        style={selectWidth}
+        className={mainClasses}
+        ref={mainDivRef}
+        role="combobox"
+        aria-expanded="false"
+        aria-owns="listbox"
+        aria-haspopup="listbox"
+        aria-controls="listbox"
+        onKeyUp={() => console.log('sd')}
+        tabIndex={0}
+      >
         <SelectHeader
           className={headerClassname}
           currentSelectedValue={currentSelectedValue}
