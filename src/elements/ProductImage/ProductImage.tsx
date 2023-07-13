@@ -25,12 +25,12 @@ const ProductImage: FC<IProductCard> = ({
     <div className={cn(style.image_wrapper, className)} {...restProps}>
       <Flag className={style.flag} isFavorite={isFavorite} />
       <LazyImage src={imageUrl || ''} alt={name} className={style.image} />
-      <span className={style.hover}>
-        <span className={style.hover_text}>
+      <div className={style.hover}>
+        <div className={style.hover_text}>
           <MagnifierLightGreyIcon />
           <span>Quick View</span>
-        </span>
-      </span>
+        </div>
+      </div>
     </div>
   );
 };

@@ -2,11 +2,10 @@ import React from 'react';
 
 import style from './ContactSupport.module.scss';
 
-import { GoogleIcon, VkIcon } from 'assets/icons';
 import { Banner3Image } from 'assets/images';
 import { WithLayout } from 'common/hocs/WithLayout';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
-import { WhatsappPhoneNumber } from 'ui-kit';
+import { SocialNetworks, WhatsappPhoneNumber } from 'ui-kit';
 
 export const ContactSupportPage = WithLayout(() => {
   return (
@@ -22,15 +21,7 @@ export const ContactSupportPage = WithLayout(() => {
           <WhatsappPhoneNumber />
         </div>
 
-        <div>
-          <p className={style.social_network}>We in social media</p>
-          <a href="/">
-            <VkIcon className={style.social_icon} />
-          </a>
-          <a href="/">
-            <GoogleIcon className={style.social_icon} />
-          </a>
-        </div>
+        <SocialNetworks />
       </div>
     </div>
   );
