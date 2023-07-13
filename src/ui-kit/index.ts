@@ -13,4 +13,5 @@ export { Stars } from './Stars/Stars';
 export { ViewMoreProducts } from './ViewMoreProducts/ViewMoreProducts';
 export { SimpleLink } from './SimpleLink/SimpleLink';
 export { MainLogo } from './MainLogo/MainLogo';
-export { SupplierRegisterFormStep } from './SupplierRegisterFormStep/SupplierRegisterFormStep';
+export { WhatsappPhoneNumber } from './WhatsappPhoneNumber/WhatsappPhoneNumber';
+export { SocialNetworks } from './SocialNetworks/SocialNetworks';
