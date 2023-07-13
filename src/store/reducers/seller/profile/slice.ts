@@ -1,12 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
+  addSellerAddresses,
+  updateSellerAddresses,
   getSellerAddresses,
   getSellerAvatar,
   getSellerNotifications,
   updateSellerAvatar,
   updateSellerNotifications,
   ISellerProfileSliceInitialState,
+  deleteSellerAddress,
 } from '.';
 
 import { LoadingStatusEnum } from 'common/types';
@@ -54,6 +57,36 @@ const sellerProfileSlice = createSlice({
         state.loading.addressesLoading = LoadingStatusEnum.Success;
       })
       .addCase(getSellerAddresses.rejected, state => {
+        state.loading.addressesLoading = LoadingStatusEnum.Failed;
+      })
+
+      .addCase(addSellerAddresses.pending, state => {
+        state.loading.addressesLoading = LoadingStatusEnum.Loading;
+      })
+      .addCase(addSellerAddresses.fulfilled, state => {
+        state.loading.addressesLoading = LoadingStatusEnum.Success;
+      })
+      .addCase(addSellerAddresses.rejected, state => {
+        state.loading.addressesLoading = LoadingStatusEnum.Failed;
+      })
+
+      .addCase(updateSellerAddresses.pending, state => {
+        state.loading.addressesLoading = LoadingStatusEnum.Loading;
+      })
+      .addCase(updateSellerAddresses.fulfilled, state => {
+        state.loading.addressesLoading = LoadingStatusEnum.Success;
+      })
+      .addCase(updateSellerAddresses.rejected, state => {
+        state.loading.addressesLoading = LoadingStatusEnum.Failed;
+      })
+
+      .addCase(deleteSellerAddress.pending, state => {
+        state.loading.addressesLoading = LoadingStatusEnum.Loading;
+      })
+      .addCase(deleteSellerAddress.fulfilled, state => {
+        state.loading.addressesLoading = LoadingStatusEnum.Success;
+      })
+      .addCase(deleteSellerAddress.rejected, state => {
         state.loading.addressesLoading = LoadingStatusEnum.Failed;
       })
 

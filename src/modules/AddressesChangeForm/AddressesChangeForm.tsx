@@ -34,7 +34,7 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
   const dispatch = useAppDispatch();
   const countries = useAppSelector(countriesSelector);
   const isLoading =
-    useAppSelector(sellerLoadingSelector).avatarLoading === LoadingStatusEnum.Loading;
+    useAppSelector(sellerLoadingSelector).addressesLoading === LoadingStatusEnum.Loading;
 
   const {
     register,
@@ -49,7 +49,7 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
     label: el.country,
   }));
 
-  const removeAddress = (): void => {
+  const removeAddress = async (): Promise<void> => {
     if (address) {
       dispatch(deleteSellerAddress(address.id));
     }

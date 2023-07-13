@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Address } from './Address/Address';
 import { makeMainAddressFirst } from './helpers/makeMainAddressFirst';
@@ -12,10 +12,10 @@ import { sellerAddressesSelector } from 'store/reducers/seller/profile/selectors
 
 export const SellerAddresses = (): JSX.Element => {
   const addresses = useAppSelector(sellerAddressesSelector);
-  const [modal, setModal] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const onClickAddAddressModal = (): void => {
-    setModal(true);
+    setModalOpen(true);
   };
 
   const sortedAddresses: ISellerAddressData[] | undefined = makeMainAddressFirst(
@@ -33,8 +33,8 @@ export const SellerAddresses = (): JSX.Element => {
         >
           Add new
         </button>
-        <Modal showModal={modal} closeModal={setModal}>
-          <SellerAddAddressChangeForm closeModal={setModal} />
+        <Modal showModal={isModalOpen} closeModal={setModalOpen}>
+          <SellerAddAddressChangeForm closeModal={setModalOpen} />
         </Modal>
       </div>
       <div className={style.my_addresses_wrapper}>
