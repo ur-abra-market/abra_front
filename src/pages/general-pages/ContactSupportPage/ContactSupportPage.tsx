@@ -4,9 +4,8 @@ import style from './ContactSupport.module.scss';
 
 import { Banner3Image } from 'assets/images';
 import { WithLayout } from 'common/hocs/WithLayout';
-import { Social } from 'elements/feedbacks/Feedback';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
-import { WhatsappPhoneNumber } from 'ui-kit';
+import { SocialNetworks, WhatsappPhoneNumber } from 'ui-kit';
 
 export const ContactSupportPage = WithLayout(() => {
   return (
@@ -22,7 +21,7 @@ export const ContactSupportPage = WithLayout(() => {
           <WhatsappPhoneNumber />
         </div>
 
-        <Social />
+        <SocialNetworks />
       </div>
     </div>
   );
