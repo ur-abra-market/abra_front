@@ -1,15 +1,16 @@
 import {
-  IGradeProductResponse,
-  IProductCompilation,
   ICategoryRequest,
+  IGradeProductResponse,
   IPopularProductRequest,
-  IProductRequest,
+  IProductCompilation,
   IProductPaginateList,
+  IProductRequest,
 } from './product.serviceTypes';
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
 import { IProductCard } from 'store/reducers/productSlice';
+import { IProductsListRequest } from 'store/reducers/productSlice/types';
 
 export const productService = {
   getList: async (params: ICategoryRequest) => {
@@ -91,7 +92,9 @@ export const productService = {
   },
 
   getListManageProducts: async () => {
-    const { data } = await baseConfigService.get(`suppliers/manageProducts/`); // нужно подгружать только позиции, которые не были удалены
+    const { data } = await baseConfigService.get<IBaseResponse<IProductsListRequest[]>>(
+      `suppliers/manageProducts/`,
+    ); // нужно подгружать только позиции, которые не были удалены
 
     return data.result;
   },

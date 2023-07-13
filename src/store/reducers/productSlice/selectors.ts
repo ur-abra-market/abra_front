@@ -1,4 +1,4 @@
-import { ICategory, IImage } from './types';
+import { ICategory, IImage, IProductsListRequest } from './types';
 
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { RootStateType } from 'store/createStore';
@@ -35,3 +35,7 @@ export const popularProductsSelector = (state: RootStateType): IProductCompilati
 
 export const similarProductsSelector = (state: RootStateType): IProductCompilation[] =>
   state.product.similarProducts;
+
+export const manageProductsSelector = (
+  state: RootStateType,
+): IProductsListRequest[] | null => state.product.products;

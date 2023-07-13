@@ -19,6 +19,8 @@ export const FilterItem: FC<ItemProps> = ({
     setRestFilters(!restFilters);
   };
 
+  const styleIconClass = restFilters ? style.vector_down : style.vector_up;
+
   return (
     <>
       <span
@@ -28,7 +30,7 @@ export const FilterItem: FC<ItemProps> = ({
       >
         {text}
       </span>
-      <Icon onClick={handleRestFiltersSet} className={style.vector_up} />
+      <Icon onClick={handleRestFiltersSet} className={styleIconClass} />
       {restFilters && <div className={style.reset_link}>Reset Filters</div>}
     </>
   );

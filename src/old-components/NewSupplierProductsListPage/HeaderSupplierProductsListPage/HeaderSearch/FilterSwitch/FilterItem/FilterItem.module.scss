@@ -7,8 +7,12 @@
   color: var(--color-black);
 }
 
-.vector_up{
+.vector_up, .vector_down {
   margin-right: 25px;
+}
+
+.vector_down {
+  transform: rotate(180deg) ;
 }
 
 .reset_link {

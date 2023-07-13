@@ -2,26 +2,27 @@ import React, { FC, useEffect } from 'react';
 
 import style from './TableList.module.scss';
 
+import defaultImg from 'assets/images/files/default-product-image.png';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { manageProductsService } from 'store/reducers/manageProductsSlice';
-import { state } from 'store/reducers/modalSlice';
+import { manageProductsSelector } from 'store/reducers/productSlice/selectors';
+import { manageProductsService } from 'store/reducers/productSlice/thunks';
+import { IProductsListRequest } from 'store/reducers/productSlice/types';
 import { Checkbox } from 'ui-kit';
-
-const columns = [
-  { id: 1, name: <Checkbox variant="default" /> },
-  { id: 2, name: 'SKU' },
-  { id: 3, name: 'Picture' },
-  { id: 4, name: 'Name' },
-  { id: 5, name: 'Creation Date' },
-  { id: 6, name: 'Status' },
-  { id: 7, name: 'Price' },
-  { id: 8, name: 'Balance, units' },
-  { id: 9, name: 'Visibility' },
-];
 
 export const TableList: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const products = useAppSelector(state => state.manageProducts.products);
+  const products = useAppSelector(manageProductsSelector);
+
+  const testProductsArray = (): IProductsListRequest[] | undefined => {
+    if (products?.length) {
+      return [...products];
+    }
+  };
+
+  // тестовый массив для отрисовки из 20 элементов
+  const array = testProductsArray()?.splice(0, 20);
+
+  console.log(array);
 
   useEffect(() => {
     dispatch(manageProductsService());
@@ -29,13 +30,29 @@ export const TableList: FC = (): JSX.Element => {
 
   return (
     <tbody>
-      <tr className={style.table_row}>
-        {columns.map(column => (
-          <td key={column.id} className={style.table_head}>
-            {column.name}
+      {array?.map(el => (
+        <tr className={style.table_row} key={el.id}>
+          <td className={style.table_head}>
+            <Checkbox variant="default" />
           </td>
-        ))}
-      </tr>
+          <td className={style.table_head}>{el.id}</td>
+          <td>
+            <img className={style.image} src={defaultImg} alt="product" />
+          </td>
+          <td className={style.table_head}>{el.name}</td>
+          <td className={style.table_head}>{el.datetime}</td>
+
+          {el.prices.map(item => (
+            <React.Fragment key={item.id}>
+              <td className={style.table_head}>{item.discount}</td>
+              <td className={style.table_head}>{item.value}</td>
+              <td className={style.table_head}>Balance,units</td>
+            </React.Fragment>
+          ))}
+
+          <td className={style.table_head}>{el.is_active ? 'Visible' : 'Hidden'}</td>
+        </tr>
+      ))}
     </tbody>
   );
 };
