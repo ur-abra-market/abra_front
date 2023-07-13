@@ -13,6 +13,7 @@ export const TableList: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const products = useAppSelector(manageProductsSelector);
 
+  // делаем копию массива products
   const testProductsArray = (): IProductsListRequest[] | undefined => {
     if (products?.length) {
       return [...products];
