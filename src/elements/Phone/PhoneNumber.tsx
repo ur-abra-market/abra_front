@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
@@ -53,6 +53,7 @@ interface ICountryWithFlag extends ICountry {
   country_flag: string;
 }
 export const PhoneNumber = (): JSX.Element => {
+  const inputElement = useRef<HTMLInputElement>(null);
   const countries = useAppSelector(state => state.common.countries);
   const countriesWithFlag: ICountryWithFlag[] = countries.map(c => ({
     ...c,
@@ -101,6 +102,10 @@ export const PhoneNumber = (): JSX.Element => {
   function getPhoneNumberBodyWithMask(numberBody: string): void {
     const phoneNumberBodyRawValue = numberBody.replace(/\D/g, ''); // оставляем из пришедшего значения инпута только цифры
 
+    // save cursor position
+    const selectionStart = inputElement.current?.selectionStart;
+    const selectionEnd = inputElement.current?.selectionEnd;
+
     if (!phoneNumberBodyRawValue && phoneNumberBody) {
       // если пришла пуста строка вместо цифр и при этом есть текущее значение тела номера телефона - значит пользователь хочет очистить инпут телефона. поэтому мы сохраняем пустую строку в тело номера телефона и выкидываем ошибку
       setPhoneNumberBody('');
@@ -114,6 +119,14 @@ export const PhoneNumber = (): JSX.Element => {
     if (!formattedNumber) return; // если вернулась пустая строка (то есть телефон превысил значение маски) тогда мы ничего не будем сохранять в инпут и выводить на ui
 
     setPhoneNumberBody(formattedNumber); // в противном случае сохраняем значение на ui
+
+    // restore cursor position after state update
+    setTimeout(() => {
+      if (inputElement.current) {
+        inputElement.current.selectionStart = selectionStart || 0;
+        inputElement.current.selectionEnd = selectionEnd || 0;
+      }
+    }, 0);
 
     if (!validatePhoneNumber(phoneNumberBodyRawValue, phoneCountryShort)) {
       setError('phoneNumberBody', { message: 'Please, enter a valid phone number' });
@@ -143,6 +156,7 @@ export const PhoneNumber = (): JSX.Element => {
         />
         <Input
           {...register('phoneNumberBody')}
+          ref={inputElement}
           value={phoneNumberBody}
           onChange={onChangePhoneNumberBody}
           error={errors?.phoneNumberBody?.message}
