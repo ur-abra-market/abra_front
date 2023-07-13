@@ -17,15 +17,13 @@ const SOCIAL_NETWORKS = [
 ];
 
 export const SocialNetworks: FC<SocialProps> = ({ className }): JSX.Element => {
-  const networks = SOCIAL_NETWORKS.map(({ href, icon: Icon }, i) => {
-    return (
-      <li key={i + 1} className={style.network}>
-        <a href={href} className={style.link} rel="noreferrer">
-          <Icon />
-        </a>
-      </li>
-    );
-  });
+  const networks = SOCIAL_NETWORKS.map(({ href, icon: Icon }, i) => (
+    <li key={i + 1} className={style.network}>
+      <a href={href} className={style.link} rel="noreferrer">
+        <Icon />
+      </a>
+    </li>
+  ));
 
   return (
     <div className={cn(style.social, className)}>

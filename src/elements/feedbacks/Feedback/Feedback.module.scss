@@ -8,11 +8,6 @@
 .container {
   @include content_container;
 
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.social_block {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  justify-content: space-between;
 }
