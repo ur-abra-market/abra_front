@@ -14,6 +14,7 @@ import { UploadImage } from 'elements';
 import {
   SupplierBusinessInfoForm,
   supplierBusinessInfoFormValidationSchema,
+  SupplierRegisterFormStep,
 } from 'pages/supplier-pages/supplier-pages-common';
 import { IBusinessInfoRequest } from 'services/supplier/supplier.serviceTypes';
 import { getCountries } from 'store/reducers/commonSlice';
@@ -23,7 +24,6 @@ import {
   createAccountBusinessInfo,
   ISupplierBusinessInfo,
 } from 'store/reducers/supplier/profile';
-import { SupplierRegisterFormStep } from 'ui-kit';
 
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   const companyLogo = useSelector(supplierCompanyLogoSelector);
