@@ -3,7 +3,7 @@
 @include seller_section();
 
 .seller_cabinet {
-  background: #F5F5F5;
+  background: var(--color-super-light-gray);
 }
 
 .seller_cabinet_content_wrapper {
