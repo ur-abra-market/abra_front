@@ -52,10 +52,7 @@ export const supplierProfileSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getBusinessInfo.pending, state => {
-        state.loading = {
-          ...state.loading,
-          businessInfoLoading: LoadingStatusEnum.Loading,
-        };
+        state.loading.businessInfoLoading = LoadingStatusEnum.Loading;
       })
       .addCase(getBusinessInfo.fulfilled, (state, action) => {
         const {
@@ -86,123 +83,63 @@ export const supplierProfileSlice = createSlice({
         state.businessInfo.countryShort = phone.country.country_short;
         state.businessInfo.countryCode = phone.country.country_code;
         state.businessInfo.countryId = phone.country.id;
-        state.loading = {
-          ...state.loading,
-          businessInfoLoading: LoadingStatusEnum.Success,
-        };
+        state.loading.businessInfoLoading = LoadingStatusEnum.Success;
       })
       .addCase(getBusinessInfo.rejected, state => {
-        state.loading = {
-          ...state.loading,
-          businessInfoLoading: LoadingStatusEnum.Failed,
-        };
+        state.loading.businessInfoLoading = LoadingStatusEnum.Failed;
       })
 
       .addCase(updateBusinessInfo.pending, state => {
-        state.loading = {
-          ...state.loading,
-          businessInfoLoading: LoadingStatusEnum.Loading,
-        };
+        state.loading.businessInfoLoading = LoadingStatusEnum.Loading;
       })
       .addCase(updateBusinessInfo.rejected, state => {
-        state.loading = {
-          ...state.loading,
-          businessInfoLoading: LoadingStatusEnum.Failed,
-        };
+        state.loading.businessInfoLoading = LoadingStatusEnum.Failed;
       })
 
-      .addCase(getSupplierNotifications.pending, state => {
-        state.loading = {
-          ...state.loading,
-          notificationsLoading: LoadingStatusEnum.Loading,
-        };
-      })
       .addCase(getSupplierNotifications.fulfilled, (state, action) => {
         state.notifications = action.payload;
-        state.loading = {
-          ...state.loading,
-          notificationsLoading: LoadingStatusEnum.Success,
-        };
-      })
-      .addCase(getSupplierNotifications.rejected, state => {
-        state.loading = {
-          ...state.loading,
-          notificationsLoading: LoadingStatusEnum.Failed,
-        };
+        state.loading.notificationsLoading = LoadingStatusEnum.Success;
       })
 
       .addCase(updateSupplierNotifications.pending, state => {
-        state.loading = {
-          ...state.loading,
-          notificationsLoading: LoadingStatusEnum.Loading,
-        };
+        state.loading.notificationsLoading = LoadingStatusEnum.Loading;
       })
       .addCase(updateSupplierNotifications.rejected, state => {
-        state.loading = {
-          ...state.loading,
-          notificationsLoading: LoadingStatusEnum.Failed,
-        };
+        state.loading.notificationsLoading = LoadingStatusEnum.Failed;
       })
 
       .addCase(fetchCompanyLogo.pending, state => {
-        state.loading = {
-          ...state.loading,
-          companyLogoLoading: LoadingStatusEnum.Loading,
-        };
+        state.loading.companyLogoLoading = LoadingStatusEnum.Loading;
       })
       .addCase(fetchCompanyLogo.fulfilled, (state, action) => {
         state.businessInfo.companyLogo = action.payload;
-        state.loading = {
-          ...state.loading,
-          companyLogoLoading: LoadingStatusEnum.Success,
-        };
+        state.loading.companyLogoLoading = LoadingStatusEnum.Success;
       })
       .addCase(fetchCompanyLogo.rejected, state => {
-        state.loading = {
-          ...state.loading,
-          companyLogoLoading: LoadingStatusEnum.Failed,
-        };
+        state.loading.companyLogoLoading = LoadingStatusEnum.Failed;
       })
 
       .addCase(uploadCompanyLogo.pending, state => {
-        state.loading = {
-          ...state.loading,
-          companyLogoLoading: LoadingStatusEnum.Loading,
-        };
+        state.loading.companyLogoLoading = LoadingStatusEnum.Loading;
       })
       .addCase(uploadCompanyLogo.fulfilled, (state, action) => {
         state.businessInfo.companyLogo = action.payload.result.image;
         state.businessInfo.companyLogoId = action.payload.result.id;
-        state.loading = {
-          ...state.loading,
-          companyLogoLoading: LoadingStatusEnum.Success,
-        };
+        state.loading.companyLogoLoading = LoadingStatusEnum.Success;
       })
       .addCase(uploadCompanyLogo.rejected, state => {
-        state.loading = {
-          ...state.loading,
-          companyLogoLoading: LoadingStatusEnum.Failed,
-        };
+        state.loading.companyLogoLoading = LoadingStatusEnum.Failed;
       })
 
       .addCase(deleteCompanyImage.pending, state => {
-        state.loading = {
-          ...state.loading,
-          companyLogoLoading: LoadingStatusEnum.Loading,
-        };
+        state.loading.companyLogoLoading = LoadingStatusEnum.Loading;
       })
       .addCase(deleteCompanyImage.fulfilled, state => {
         state.businessInfo.companyLogo = '';
-        state.loading = {
-          ...state.loading,
-          companyLogoLoading: LoadingStatusEnum.Success,
-        };
+        state.loading.companyLogoLoading = LoadingStatusEnum.Success;
       })
       .addCase(deleteCompanyImage.rejected, state => {
-        state.loading = {
-          ...state.loading,
-          companyLogoLoading: LoadingStatusEnum.Failed,
-        };
+        state.loading.companyLogoLoading = LoadingStatusEnum.Failed;
       })
 
       .addCase(hasPersonalInfo.fulfilled, (state, action) => {

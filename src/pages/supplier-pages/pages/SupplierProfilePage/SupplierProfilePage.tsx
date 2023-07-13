@@ -29,8 +29,8 @@ export const SupplierProfilePage = WithLayout((): JSX.Element => {
   const { notificationsLoading, ...restLoading } = loading;
 
   const isLoading =
-    Object.values(restLoading).every(value => value !== LoadingStatusEnum.Loading) &&
-    personalInfoLoading !== LoadingStatusEnum.Loading;
+    Object.values(restLoading).some(value => value === LoadingStatusEnum.Loading) ||
+    personalInfoLoading === LoadingStatusEnum.Loading;
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
@@ -43,7 +43,7 @@ export const SupplierProfilePage = WithLayout((): JSX.Element => {
     };
 
     fetchData();
-  }, [dispatch]); // notifications не добавил так как дважды уйдут все запросы, сдесь это не надо
+  }, [dispatch]);
 
   if (isFetchingData) {
     return <LoaderLinear />;
@@ -51,7 +51,7 @@ export const SupplierProfilePage = WithLayout((): JSX.Element => {
 
   return (
     <div className={style.supplier_cabinet}>
-      {!isLoading && <LoaderLinear />}
+      {isLoading && <LoaderLinear />}
       <div className={style.supplier_cabinet_content_wrapper}>
         <SupplierPersonalInfoChangeForm />
 
