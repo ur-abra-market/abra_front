@@ -5,6 +5,7 @@ import { IProductCard } from './types';
 
 import { productService } from 'services/product/product.service';
 import {
+  ICategoryRequest,
   IPopularProductRequest,
   IProductCompilation,
   IProductRequest,
@@ -85,6 +86,26 @@ export const getPopularProducts = createAsyncThunk<[], IPopularProductRequest>(
       }
 
       return rejectWithValue('[Error]: getPopularProductsById');
+    }
+  },
+);
+
+export const getProductsCompilation = createAsyncThunk<any, ICategoryRequest>(
+  'product/getProductsCompilation',
+  async (productData, { rejectWithValue }) => {
+    try {
+      const response = await productService.getList(productData);
+
+      return {
+        data: response,
+        category: productData.category_id,
+      };
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[getProductsCompilation]: ERROR');
     }
   },
 );
