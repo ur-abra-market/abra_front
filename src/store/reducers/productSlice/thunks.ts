@@ -105,7 +105,7 @@ export const getProductsCompilation = createAsyncThunk<any, ICategoryRequest>(
         return rejectWithValue(error.message);
       }
 
-      return rejectWithValue('[fetchProductsList]: ERROR');
+      return rejectWithValue('[getProductsCompilation]: ERROR');
     }
   },
 );

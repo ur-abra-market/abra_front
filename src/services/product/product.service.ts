@@ -17,7 +17,7 @@ export const productService = {
     const payload = { category_id, sort_type, ascending };
 
     const { data } = await baseConfigService.post(
-      `/products/compilation/?offset=${offset}&limit=${limit}`,
+      `products/compilation/?offset=${offset}&limit=${limit}/`,
       payload,
     );
 
@@ -34,7 +34,7 @@ export const productService = {
 
   addFavorite: async (params: IProductRequest) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      `/products/addFavorite/`,
+      `products/addFavorite/`,
       {},
       { params },
     );
@@ -44,7 +44,7 @@ export const productService = {
 
   removeFavorite: async (params: IProductRequest) => {
     const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
-      `/products/removeFavorite/`,
+      `products/removeFavorite/`,
       {
         params,
       },
