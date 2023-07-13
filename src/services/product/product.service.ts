@@ -17,7 +17,7 @@ export const productService = {
     const payload = { category_id, sort_type, ascending };
 
     const { data } = await baseConfigService.post(
-      `products/compilation/?offset=${offset}&limit=${limit}/`,
+      `products/compilation/?offset=${offset}&limit=${limit}`,
       payload,
     );
 
@@ -26,7 +26,7 @@ export const productService = {
 
   getProductById: async ({ product_id }: IProductRequest) => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductCard>>(
-      `products/productCard/${product_id}/`,
+      `products/productCard/${product_id}`,
     );
 
     return data.result;
