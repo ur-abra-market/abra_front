@@ -6,7 +6,6 @@ import basketReducer from './reducers/basketSlice';
 import categoryReducer from './reducers/categorySlice';
 import { commonReducer } from './reducers/commonSlice/slice';
 import filterReducer from './reducers/filterSlice';
-import { mainPageReducer } from './reducers/mainPageSlice';
 import manageProductsReducer from './reducers/manageProductsSlice';
 import paginateReducer from './reducers/paginateSlice';
 import { popularProductsReducer } from './reducers/popularProducts';
@@ -39,7 +38,6 @@ export const store = configureStore({
     filter: filterReducer,
     category: categoryReducer,
     manageProducts: manageProductsReducer,
-    mainPageProducts: mainPageReducer,
     similarProducts: similarProductsReducer,
     popularProducts: popularProductsReducer,
   },

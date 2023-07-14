@@ -115,8 +115,9 @@ export const SellerEditAddressChangeForm: FC<ISellerEditAddressChangeForm> = ({
       },
     };
 
-    await dispatch(updateSellerAddresses(updateSellerAddressData));
-    if (closeModal) {
+    const actionResult = await dispatch(updateSellerAddresses(updateSellerAddressData));
+
+    if (updateSellerAddresses.fulfilled.match(actionResult) && closeModal) {
       closeModal(false);
     }
   };

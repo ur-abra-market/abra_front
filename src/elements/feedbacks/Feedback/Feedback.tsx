@@ -2,7 +2,9 @@ import React from 'react';
 
 import style from './Feedback.module.scss';
 
-import { Social, Subscribe, WhatsApp } from '.';
+import { Subscribe, WhatsApp } from '.';
+
+import { SocialNetworks } from 'ui-kit';
 
 export const Feedback = (): JSX.Element => {
   return (
@@ -13,7 +15,7 @@ export const Feedback = (): JSX.Element => {
         </div>
         <div className={style.social_block}>
           <WhatsApp />
-          <Social />
+          <SocialNetworks />
         </div>
       </div>
     </div>

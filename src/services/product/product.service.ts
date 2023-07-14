@@ -27,7 +27,7 @@ export const productService = {
 
   getProductById: async ({ product_id }: IProductRequest) => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductCard>>(
-      `products/productCard/${product_id}/`,
+      `products/productCard/${product_id}`,
     );
 
     return data.result;
@@ -35,7 +35,7 @@ export const productService = {
 
   addFavorite: async (params: IProductRequest) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      `/products/addFavorite/`,
+      `products/addFavorite/`,
       {},
       { params },
     );
@@ -45,7 +45,7 @@ export const productService = {
 
   removeFavorite: async (params: IProductRequest) => {
     const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
-      `/products/removeFavorite/`,
+      `products/removeFavorite/`,
       {
         params,
       },

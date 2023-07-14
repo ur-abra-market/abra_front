@@ -21,17 +21,17 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
 }): JSX.Element => {
   const isLoading =
     useAppSelector(userLoadingSelector).personalInfoLoading === LoadingStatusEnum.Loading;
+
   const {
     register,
     formState: { errors },
   } = useFormContext<IPersonalInfoFormData>();
 
   return (
-    <>
+    <fieldset disabled={isLoading}>
       <div className={style.name_container}>
         <Label label="First name" htmlFor="firstName">
           <Input
-            disabled={isLoading}
             id="firstName"
             placeholder="John"
             {...register('firstName')}
@@ -41,7 +41,6 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
 
         <Label label="Last name" htmlFor="lastName">
           <Input
-            disabled={isLoading}
             id="lastName"
             placeholder="Johnson"
             {...register('lastName')}
@@ -56,6 +55,6 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
         phoneInputClass={phoneInputClass}
         label="Personal phone number"
       />
-    </>
+    </fieldset>
   );
 };

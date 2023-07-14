@@ -31,9 +31,9 @@ export const sellerService = {
     return data;
   },
 
-  updateAddress: async (params: ISellerAddressRequest) => {
+  updateAddress: async ({ address_id, ...params }: ISellerAddressRequest) => {
     const { data } = await baseConfigService.post<Omit<IBaseResponse<any>, 'result'>>(
-      `sellers/updateAddress/${params.address_id}/`,
+      `sellers/updateAddress/${address_id}/`,
       params,
     );
 

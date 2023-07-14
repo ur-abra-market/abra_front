@@ -9,12 +9,12 @@
   color: var(--color-black);
 }
 
-.list {
+.networks_list {
   display: flex;
   gap: 12px;
 }
 
-.li {
+.network {
   width: 44px;
   height: 44px;
   background: linear-gradient(180deg, #F3F3F3 0%, #EBEBEB 100%);

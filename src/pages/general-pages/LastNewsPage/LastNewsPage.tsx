@@ -18,18 +18,19 @@ export const LastNewsPage = WithLayout((): JSX.Element => {
 
   return (
     <div className={style.container}>
-      <p className={style.last_news}>Last News</p>
-      <div className={style.container_block}>
-        {text.map((el, index) => {
-          return (
-            <div key={index}>
-              <News text={el.text} title={el.title} image={el.image} />
-              <News text={el.text} title={el.title} image={el.image} />
-              <News text={el.text} title={el.title} image={el.image} />
-            </div>
-          );
-        })}
-      </div>
+      <h2>Coming soon...</h2>
+      {/* <p className={style.last_news}>Last News</p> */}
+      {/* <div className={style.container_block}> */}
+      {/*  {text.map((el, index) => { */}
+      {/*    return ( */}
+      {/*      <div key={index}> */}
+      {/*        <News text={el.text} title={el.title} image={el.image} /> */}
+      {/*        <News text={el.text} title={el.title} image={el.image} /> */}
+      {/*        <News text={el.text} title={el.title} image={el.image} /> */}
+      {/*      </div> */}
+      {/*    ); */}
+      {/*  })} */}
+      {/* </div> */}
     </div>
   );
 });

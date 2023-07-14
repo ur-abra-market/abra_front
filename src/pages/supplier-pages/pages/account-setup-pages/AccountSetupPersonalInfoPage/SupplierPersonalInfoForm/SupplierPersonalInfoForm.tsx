@@ -13,11 +13,12 @@ import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
 import Modal from 'elements/Modal';
 import { ModalChildPhoneCheck } from 'elements/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
 import { PersonalInfoChangeForm } from 'modules';
+import { SupplierRegisterFormStep } from 'pages/supplier-pages/supplier-pages-common';
 import { ACCOUNT_SETUP_BUSINESS_INFO } from 'routes';
 import { IPersonalInfoRequest } from 'services/auth/auth.serviceTypes';
 import { createAccountPersonalInfo } from 'store/reducers/authSlice';
 import { getCountries } from 'store/reducers/commonSlice';
-import { Button, SupplierRegisterFormStep } from 'ui-kit';
+import { Button } from 'ui-kit';
 
 export const SupplierPersonalInfoForm = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
