@@ -18,4 +18,4 @@ export const sellerAddressesSelector = (
 ): ISellerAddressData[] | null => state.sellerProfile.addresses;
 
 export const sellerAvatarSelector = (state: RootStateType): string =>
-  state.sellerProfile.sellerAvatar;
+  state.sellerProfile.avatar;

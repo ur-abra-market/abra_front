@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { PopularProduct } from './PopularProduct/PopularProduct';
+// @ts-ignore
 import style from './ProductPage.module.scss';
 import { SimilarProduct } from './SimilarProduct/SimilarProduct';
 

@@ -50,10 +50,10 @@ export const addSellerAddresses = createAsyncThunk<
 >('seller/addSellerAddresses', async (arg, { rejectWithValue, dispatch }) => {
   try {
     await sellerService.addAddress(arg);
+    await dispatch(getSellerAddresses());
     dispatch(
       setResponseNotice({ noticeType: 'success', message: 'Address successfully added' }),
     );
-    dispatch(getSellerAddresses());
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
@@ -74,13 +74,13 @@ export const updateSellerAddresses = createAsyncThunk<
 >('seller/updateSellerAddresses', async (arg, { rejectWithValue, dispatch }) => {
   try {
     await sellerService.updateAddress(arg);
+    await dispatch(getSellerAddresses());
     dispatch(
       setResponseNotice({
         noticeType: 'success',
         message: 'Address successfully changed',
       }),
     );
-    dispatch(getSellerAddresses());
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
@@ -100,7 +100,7 @@ export const deleteSellerAddress = createAsyncThunk<void, number, IAsyncThunkCon
     try {
       await sellerService.deleteAddress(id);
 
-      dispatch(getSellerAddresses());
+      await dispatch(getSellerAddresses());
     } catch (error) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
@@ -152,12 +152,13 @@ export const updateSellerNotifications = createAsyncThunk<
   }
 });
 
-export const updateSellerAvatar = createAsyncThunk<void, File, IAsyncThunkConfig>(
+export const updateSellerAvatar = createAsyncThunk<string, File, IAsyncThunkConfig>(
   'seller/updateAvatar',
-  async (img, { rejectWithValue, dispatch }) => {
+  async (img, { rejectWithValue }) => {
     try {
       await sellerService.updateAvatar(img);
-      dispatch(getSellerAvatar());
+
+      return URL.createObjectURL(img);
     } catch (error) {
       const errorMessage =
         error instanceof AxiosError

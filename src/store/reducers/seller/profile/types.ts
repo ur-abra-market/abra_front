@@ -28,5 +28,5 @@ export interface ISellerProfileSliceInitialState {
   loading: ILoading;
   addresses: ISellerAddressData[] | null;
   notifications: ISellerNotifications | null;
-  sellerAvatar: string;
+  avatar: string;
 }

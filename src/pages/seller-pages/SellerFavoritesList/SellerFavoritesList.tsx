@@ -3,7 +3,6 @@ import React from 'react';
 import style from './SellerFavoritesList.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
-import { Feedback } from 'elements';
 import { ButtonInfo, Search } from 'ui-kit';
 
 export const SellerFavoritesList = WithLayout((): JSX.Element => {
@@ -49,8 +48,6 @@ export const SellerFavoritesList = WithLayout((): JSX.Element => {
           <ButtonInfo />
         </div>
       </div>
-      {/* <Feedback /> */}
-      {/* TODO Feedback crashing app */}
     </div>
   );
 });

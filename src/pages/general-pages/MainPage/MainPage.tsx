@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 import style from './MainPage.module.scss';
 
-import { ImagesBlock, StatusProduct } from '.';
+import { ImagesBlock, StatusProduct, SubscriptionAndContacts } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ProductSortEnum } from 'common/types';
-import { Feedback, ProductCard } from 'elements';
+import { ProductCard } from 'elements';
 import { ProductsPreview } from 'modules';
 import {
   getProductsCompilation,
@@ -44,7 +44,7 @@ const CATEGORIES: Category = {
     category_id: Categories.ACCESSORIES,
   },
   3: {
-    label: `Cosmetics and Self Care`,
+    label: `Cosmetics and Self-Care`,
     category_id: Categories.COSMETICS,
   },
 };
@@ -102,7 +102,7 @@ export const MainPage = WithLayout((): JSX.Element => {
               <ButtonInfo className={style.info_btn} />
             </div>
           </div>
-          <Feedback />
+          <SubscriptionAndContacts />
         </div>
       )}
     </div>
