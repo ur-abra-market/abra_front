@@ -7,7 +7,10 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ProductCard, ProductCardFull } from 'elements';
 import PaginatorProduct from 'old-components/ui/TypesView/product/PaginatorProduct';
 import { ICategoryRequest } from 'services/product/product.serviceTypes';
-import { fetchProductList } from 'store/reducers/mainPageSlice';
+import {
+  getProductsCompilation,
+  productsCompilationSelector,
+} from 'store/reducers/productSlice';
 import { ButtonInfo } from 'ui-kit';
 
 export type ViewType = 'grid' | 'list';
@@ -19,9 +22,7 @@ export const ProductList = (): JSX.Element => {
 
   const category_id = 0;
 
-  const products = useAppSelector(
-    state => state.mainPageProducts.products?.[category_id],
-  );
+  const products = useAppSelector(productsCompilationSelector)[category_id];
 
   const dispatch = useAppDispatch();
 
@@ -34,7 +35,7 @@ export const ProductList = (): JSX.Element => {
       ascending: false,
     } as ICategoryRequest;
 
-    dispatch(fetchProductList(param));
+    dispatch(getProductsCompilation(param));
   }, [dispatch]);
 
   return (

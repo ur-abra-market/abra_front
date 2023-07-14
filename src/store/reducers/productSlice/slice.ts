@@ -4,6 +4,7 @@ import {
   addFavoriteProduct,
   getPopularProducts,
   getProductById,
+  getProductsCompilation,
   getSimilarProducts,
   manageProductsService,
   removeFavoriteProduct,
@@ -32,6 +33,7 @@ const initialState: IProductSliceInitialState = {
   },
   popularProducts: [],
   similarProducts: [],
+  productsCompilation: {},
   products: null,
 };
 
@@ -67,7 +69,13 @@ const productSlice = createSlice({
         (state, action: PayloadAction<IProductCompilation[]>) => {
           state.popularProducts = action.payload;
         },
-      );
+      )
+      .addCase(getProductsCompilation.fulfilled, (state, action) => {
+        state.productsCompilation = {
+          ...state.productsCompilation,
+          [action.payload.category]: action.payload.data,
+        };
+      });
   },
 });
 

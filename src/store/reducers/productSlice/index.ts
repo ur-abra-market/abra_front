@@ -10,6 +10,7 @@ export {
   productDescriptionSelector,
   similarProductsSelector,
   popularProductsSelector,
+  productsCompilationSelector,
 } from './selectors';
 
 export {
@@ -18,6 +19,7 @@ export {
   removeFavoriteProduct,
   getSimilarProducts,
   getPopularProducts,
+  getProductsCompilation,
 } from './thunks';
 export { productReducer } from './slice';
 export type {

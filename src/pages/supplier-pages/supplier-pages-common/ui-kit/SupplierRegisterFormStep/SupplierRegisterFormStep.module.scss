@@ -1,0 +1,35 @@
+.text_wrapper {
+  position: relative;
+}
+
+.title {
+  font-size: var(--fz-xxl2);
+  font-weight: var(--bold);
+  text-align: left;
+}
+
+.description {
+  margin-top: 16px;
+  font-size: var(--fz-s2);
+  text-align: left;
+}
+
+.step_wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.step {
+  margin-bottom: 6px;
+
+  font-size: var(--fz-xxl2);
+  font-weight: var(--bold);
+  color: var(--color-gray);
+  text-align: right;
+}
+
+.link {
+  color: var(--color-accent);
+  text-decoration: underline;
+}

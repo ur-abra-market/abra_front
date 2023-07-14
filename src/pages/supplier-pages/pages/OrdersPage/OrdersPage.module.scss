@@ -1,3 +1,11 @@
+@import "src/common/styles/mixins";
+
+.orders_container {
+  @include content_container;
+
+  margin: 48px auto;
+}
+
 .search_with_rest_filters {
   display: flex;
   gap: 15px;
@@ -139,7 +147,7 @@
 
   background-color: #FFF;
   border-radius: 4px;
-  box-shadow: 5px 0 10px rgb(0 0 0 / 25%);
+  //box-shadow: 5px 0 10px rgb(0 0 0 / 25%);
 
   transition: 0.4s;
 }
@@ -275,7 +283,7 @@
   margin-left: 90px;
 
   background-color: #999;
-  box-shadow: 5px 0 10px rgb(0 0 0 / 25%);
+  //box-shadow: 5px 0 10px rgb(0 0 0 / 25%);
 
   transition: 0.4s;
 }

@@ -35,6 +35,9 @@ export const popularProductsSelector = (state: RootStateType): IProductCompilati
 
 export const similarProductsSelector = (state: RootStateType): IProductCompilation[] =>
   state.product.similarProducts;
+export const productsCompilationSelector = (
+  state: RootStateType,
+): { [key: number]: IProductCompilation[] } => state.product.productsCompilation;
 
 export const manageProductsSelector = (
   state: RootStateType,

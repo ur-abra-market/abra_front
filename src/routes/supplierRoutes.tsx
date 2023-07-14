@@ -15,8 +15,6 @@ import {
   PRODUCTS,
 } from '.';
 
-import { NewSupplierProductsListPage } from 'old-components/NewSupplierProductsListPage/NewSupplierProductsListPage';
-import { SupplierProductsListPage } from 'old-components/SupplierProductsListPage/SupplierProductsListPage';
 import {
   AccountSetupBusinessInfoPage,
   AccountSetupPersonalInfoPage,
@@ -29,6 +27,7 @@ import {
   SupplierMainPage,
   SupplierProfilePage,
 } from 'pages/supplier-pages';
+import { SupplierProducts } from 'pages/supplier-pages/pages/SupplierProducts/SupplierProducts';
 
 export const supplierRoutes: RouteObject[] = [
   {
@@ -45,8 +44,7 @@ export const supplierRoutes: RouteObject[] = [
       },
       {
         path: PRODUCTS,
-        element: <NewSupplierProductsListPage />,
-        // element: <SupplierProductsListPage />,
+        element: <SupplierProducts />,
       },
       {
         path: ORDERS,

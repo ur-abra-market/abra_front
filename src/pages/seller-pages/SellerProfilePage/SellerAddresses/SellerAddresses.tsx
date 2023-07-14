@@ -5,30 +5,22 @@ import { makeMainAddressFirst } from './helpers/makeMainAddressFirst';
 import { SellerAddAddressChangeForm } from './SellerAddAddressChangeForm/SellerAddAddressChangeForm';
 import style from './SellerAddresses.module.scss';
 
-import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { useAppSelector } from 'common/hooks';
 import Modal from 'elements/Modal';
 import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
-import {
-  sellerAddressesSelector,
-  getSellerAddresses,
-} from 'store/reducers/seller/profile';
+import { sellerAddressesSelector } from 'store/reducers/seller/profile/selectors';
 
 export const SellerAddresses = (): JSX.Element => {
-  const [modal, setModal] = useState(false);
+  const addresses = useAppSelector(sellerAddressesSelector);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const onClickAddAddressModal = (): void => {
-    setModal(true);
+    setModalOpen(true);
   };
 
-  const addresses = useAppSelector(sellerAddressesSelector);
   const sortedAddresses: ISellerAddressData[] | undefined = makeMainAddressFirst(
     addresses!,
   );
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getSellerAddresses());
-  }, [dispatch]);
 
   return (
     <>
@@ -41,8 +33,8 @@ export const SellerAddresses = (): JSX.Element => {
         >
           Add new
         </button>
-        <Modal showModal={modal} closeModal={setModal}>
-          <SellerAddAddressChangeForm closeModal={setModal} />
+        <Modal showModal={isModalOpen} closeModal={setModalOpen}>
+          <SellerAddAddressChangeForm closeModal={setModalOpen} />
         </Modal>
       </div>
       <div className={style.my_addresses_wrapper}>

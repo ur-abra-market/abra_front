@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import style from './MainPage.module.scss';
 
@@ -9,7 +9,10 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ProductSortEnum } from 'common/types';
 import { Feedback, ProductCard } from 'elements';
 import { ProductsPreview } from 'modules';
-import { fetchProductList } from 'store/reducers/mainPageSlice';
+import {
+  getProductsCompilation,
+  productsCompilationSelector,
+} from 'store/reducers/productSlice';
 import { ButtonInfo, LoaderCircular, ViewMoreProducts } from 'ui-kit';
 
 export enum Categories {
@@ -49,26 +52,35 @@ const CATEGORIES: Category = {
 export const MainPage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();
   const filter = useAppSelector(state => state.productListOld.statusProduct);
-  const { products, isLoading } = useAppSelector(state => state.mainPageProducts);
+
+  const [isFetchingData, setIsFetchingData] = useState(true);
+
+  const products = useAppSelector(productsCompilationSelector);
 
   useEffect(() => {
-    Object.values(CATEGORIES).forEach(({ category_id }) => {
-      dispatch(
-        fetchProductList({
-          offset: 0,
-          limit: 23,
-          category_id,
-          sort_type: ProductSortEnum.DATE,
-          ascending: false,
-        }),
-      );
-    });
+    const fetchData = async (): Promise<void> => {
+      await Object.values(CATEGORIES).forEach(({ category_id }) => {
+        dispatch(
+          getProductsCompilation({
+            offset: 0,
+            limit: 23,
+            category_id,
+            sort_type: ProductSortEnum.DATE,
+            ascending: false,
+          }),
+        );
+      });
+      setIsFetchingData(false);
+    };
+
+    fetchData();
   }, [dispatch, filter]);
 
   return (
     <div className={style.main_page}>
-      {isLoading === true && <LoaderCircular variant="circular-min" />}
-      {isLoading === false && (
+      {isFetchingData ? (
+        <LoaderCircular variant="circular-min" />
+      ) : (
         <div>
           <ImagesBlock className={style.images_block} />
           <div className={style.container}>

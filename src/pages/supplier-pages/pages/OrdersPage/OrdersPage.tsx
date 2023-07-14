@@ -1,5 +1,7 @@
 import React from 'react';
 
+import style from './OrdersPage.module.scss';
+
 import { WithLayout } from 'common/hocs/WithLayout';
 // import FiltersList from "../../../common/filtersList/filtersList";
 // import Table from "../../../common/table/table";
@@ -18,7 +20,11 @@ import { WithLayout } from 'common/hocs/WithLayout';
 // import Loader from "../../../common/Loader";
 
 export const OrdersPage = WithLayout((): JSX.Element => {
-  return <h2>OrdersPage</h2>;
+  return (
+    <div className={style.orders_container}>
+      <h2>Coming soon...</h2>
+    </div>
+  );
 
   // const activePage = useSelector((state) => state.paginate.page_num);
   // const amountPages = useSelector((state) => state.paginate.amountPages);

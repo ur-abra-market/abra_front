@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { ProductCard } from 'elements';
 import { ProductsPreview } from 'modules';
+// @ts-ignore
 import style from 'old-components/ProductPageOld/ProductPage.module.scss';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 

@@ -1,0 +1,11 @@
+.phone_number {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  height: 33px;
+
+  font-size: var(--fz-xl);
+  font-weight: var(--medium);
+  color: inherit;
+}
