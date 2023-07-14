@@ -1,10 +1,10 @@
 import React from 'react';
 
-import style from './Feedback.module.scss';
+import style from './SubscriptionAndContacts.module.scss';
 
 import { Button, Input, SocialNetworks, WhatsappPhoneNumber } from 'ui-kit';
 
-export const Feedback = (): JSX.Element => {
+export const SubscriptionAndContacts = (): JSX.Element => {
   return (
     <div className={style.wrapper}>
       <div className={style.container}>
