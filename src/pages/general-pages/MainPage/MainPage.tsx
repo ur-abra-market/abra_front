@@ -45,7 +45,7 @@ const CATEGORIES: Category = {
     category_id: Categories.ACCESSORIES,
   },
   3: {
-    label: `Cosmetics and Self Care`,
+    label: `Cosmetics and Self-Care`,
     category_id: Categories.COSMETICS,
   },
 };
