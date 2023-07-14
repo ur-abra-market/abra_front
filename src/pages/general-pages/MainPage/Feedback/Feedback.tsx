@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './Feedback.module.scss';
 
-import { Subscribe, WhatsApp } from '.';
+import { Subscribe, WhatsApp } from './index';
 
 import { SocialNetworks } from 'ui-kit';
 

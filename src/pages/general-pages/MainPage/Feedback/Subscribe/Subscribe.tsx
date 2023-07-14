@@ -1,20 +1,12 @@
-import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
-
-import cn from 'classnames';
+import React from 'react';
 
 import style from './Subscribe.module.scss';
 
 import { Button, Input } from 'ui-kit';
 
-export interface SubscribeProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
-
-export const Subscribe: FC<SubscribeProps> = ({
-  className,
-  ...restProps
-}): JSX.Element => {
+export const Subscribe = (): JSX.Element => {
   return (
-    <div className={cn(className)} {...restProps}>
+    <div>
       <div className={style.title}>Do you want to be the first</div>
       <div className={style.subtitle}>to know about new products and hype products?</div>
       <div className={style.input_box}>
