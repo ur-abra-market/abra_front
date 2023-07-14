@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Feedback } from './Feedback/Feedback';
+import { Feedback } from './Feedback';
 import style from './MainPage.module.scss';
 
 import { ImagesBlock, StatusProduct } from '.';
