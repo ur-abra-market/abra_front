@@ -4,7 +4,7 @@ import { FilterItem } from './FilterItem/FilterItem';
 import style from './FilterSwitch.module.scss';
 
 import { ArrowIcon } from 'assets/icons';
-import { IHeaderSearch } from 'old-components/NewSupplierProductsListPage/HeaderSupplierProductsListPage/HeaderSearch/HeaderSearch';
+import { IHeaderSearch } from 'pages/supplier-pages/pages/SupplierProducts/HeaderSupplierProducts/HeaderSearch/HeaderSearch';
 
 export const FilterSwitch: FC<IHeaderSearch> = ({
   restFilters,

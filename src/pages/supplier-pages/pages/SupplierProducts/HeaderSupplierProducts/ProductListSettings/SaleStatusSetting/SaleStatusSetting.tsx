@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import style from 'old-components/NewSupplierProductsListPage/HeaderSupplierProductsListPage/ProductListSettings/ProductListSettings.module.scss';
+import style from 'pages/supplier-pages/pages/SupplierProducts/HeaderSupplierProducts/ProductListSettings/ProductListSettings.module.scss';
 import { ISelectOption, Select } from 'ui-kit';
 
 export const SaleStatusSetting: FC = (): JSX.Element => {

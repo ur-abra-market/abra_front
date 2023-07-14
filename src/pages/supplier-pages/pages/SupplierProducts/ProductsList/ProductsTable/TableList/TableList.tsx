@@ -4,6 +4,7 @@ import style from './TableList.module.scss';
 
 import defaultImg from 'assets/images/files/default-product-image.png';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { formatDate } from 'common/utils/formatDateProductsList';
 import { manageProductsSelector } from 'store/reducers/productSlice/selectors';
 import { manageProductsService } from 'store/reducers/productSlice/thunks';
 import { IProductsListRequest } from 'store/reducers/productSlice/types';
@@ -33,25 +34,29 @@ export const TableList: FC = (): JSX.Element => {
     <tbody>
       {array?.map(el => (
         <tr className={style.table_row} key={el.id}>
-          <td className={style.table_head}>
+          <td className={style.table_data_checkbox}>
             <Checkbox variant="default" />
           </td>
-          <td className={style.table_head}>{el.id}</td>
-          <td>
+          <td className={style.table_data_id}>{el.id}</td>
+          <td className={style.table_data_image}>
             <img className={style.image} src={defaultImg} alt="product" />
           </td>
-          <td className={style.table_head}>{el.name}</td>
-          <td className={style.table_head}>{el.datetime}</td>
+          <td className={style.table_data_name}>{el.name}</td>
+          <td className={style.table_data_date}>
+            {el.datetime && formatDate(el.datetime)}
+          </td>
 
           {el.prices.map(item => (
             <React.Fragment key={item.id}>
-              <td className={style.table_head}>{item.discount}</td>
-              <td className={style.table_head}>{item.value}</td>
-              <td className={style.table_head}>Balance,units</td>
+              <td className={style.table_data_status}>
+                {item.discount ? 'On Sale' : 'Off Sale'}
+              </td>
+              <td className={style.table_data_price}>{`$${item.value}`}</td>
+              <td className={style.table_data_balance}>empty</td>
             </React.Fragment>
           ))}
 
-          <td className={style.table_head}>{el.is_active ? 'Visible' : 'Hidden'}</td>
+          <td className={style.table_data}>{el.is_active ? 'Visible' : 'Hidden'}</td>
         </tr>
       ))}
     </tbody>

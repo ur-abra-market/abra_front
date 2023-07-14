@@ -1,0 +1,78 @@
+.table_row {
+  display: flex;
+  align-items: center;
+  margin-top: 43px;
+}
+
+.table_data_checkbox,
+.table_data_id,
+.table_data_image,
+.table_data_name,
+.table_data_date,
+.table_data_status,
+.table_data_price,
+.table_data_balance {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+
+  min-height: 20px;
+  max-height: 48px;
+
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
+  line-height: 20px;
+  color: var(--color-black);
+
+  background-color: var(--color-white);
+}
+
+.table_data_checkbox {
+  margin-right: 34px;
+}
+
+.table_data_id {
+  min-width: 52px;
+  max-width: 52px;
+  margin-right: 52px;
+}
+
+.table_data_image {
+  margin-right: 40px;
+}
+
+.table_data_name {
+  width: 236px;
+  margin-right: 40px;
+}
+
+.table_data_date {
+  width: 76px;
+  margin-right: 74px;
+}
+
+.table_data_status {
+  min-width: 52px;
+  max-width: 52px;
+  margin-right: 60px;
+}
+
+.table_data_price {
+  min-width: 67px;
+  max-width: 67px;
+  margin-right: 70px;
+}
+
+.table_data_balance {
+  min-width: 40px;
+  max-width: 40px;
+  margin-right: 103px;
+}
+
+.image {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+}
+
+

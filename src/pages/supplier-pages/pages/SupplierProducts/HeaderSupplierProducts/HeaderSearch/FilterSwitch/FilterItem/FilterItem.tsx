@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import style from './FilterItem.module.scss';
 
-import { IHeaderSearch } from 'old-components/NewSupplierProductsListPage/HeaderSupplierProductsListPage/HeaderSearch/HeaderSearch';
+import { IHeaderSearch } from 'pages/supplier-pages/pages/SupplierProducts/HeaderSupplierProducts/HeaderSearch/HeaderSearch';
 
 interface ItemProps extends IHeaderSearch {
   text: string;
