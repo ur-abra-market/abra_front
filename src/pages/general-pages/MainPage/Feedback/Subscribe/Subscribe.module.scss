@@ -7,13 +7,13 @@
 }
 
 .title {
-  font-size: 34px;
+  font-size: var(--fz-xxl2);
   font-weight: var(--semi-bold);
 }
 
 .subtitle {
   margin-bottom: 23px;
-  font-size: 24px;
+  font-size: var(--fz-xl);
   font-weight: var(--bold);
 }
 
