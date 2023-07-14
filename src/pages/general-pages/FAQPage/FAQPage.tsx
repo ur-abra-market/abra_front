@@ -27,7 +27,7 @@ const FAQData = [
     id: nanoid(),
     question: '3 Is there a fee to use the platform?',
     answer:
-      'Registration and basic usage of Abra Bulk Marketplace are free. However, we offer premium subscription plans for sellers and buyers who want access to additional features, such as priority listings, advanced search options, and dedicated customer support.',
+      'Registration and basic usage of the Abra Bulk Marketplace are free. However, we offer premium subscription plans for sellers and buyers who want access to additional features, such as priority listings, advanced search options, and dedicated customer support.',
   },
   {
     id: nanoid(),
@@ -69,7 +69,7 @@ const FAQData = [
     id: nanoid(),
     question: '10 How can I leave feedbacks for a seller?',
     answer:
-      'After receiving your order, you can leave feedbacks for the seller by visiting the "My Orders" section in your account. Click on the "Leave Feedback" button and rate the seller based on your experience. Your feedbacks helps other buyers make informed decisions and contributes to the overall quality of our marketplace.',
+      'After receiving your order, you can leave feedbacks for the seller by visiting the "My Orders" section in your account. Click on the "Leave Feedback" button and rate the seller based on your experience. Your feedbacks help other buyers make informed decisions and contributes to the overall quality of our marketplace.',
   },
   {
     id: nanoid(),

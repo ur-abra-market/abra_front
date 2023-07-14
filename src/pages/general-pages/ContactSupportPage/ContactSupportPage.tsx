@@ -15,7 +15,7 @@ export const ContactSupportPage = WithLayout(() => {
       </div>
 
       <div className={style.content_container}>
-        <h2 className={style.title}>Got any questions? Contact us via Whatsapp</h2>
+        <h2 className={style.title}>Got any questions? Contact us via WhatsApp</h2>
 
         <div className={style.contacts}>
           <WhatsappPhoneNumber />
