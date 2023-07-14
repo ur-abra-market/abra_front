@@ -11,10 +11,12 @@ import cn from 'classnames';
 
 import style from './LazyImage.module.scss';
 
-import { DefaultProductImage } from 'assets/images';
+import uploadItemImage from 'assets/icons/files/upload-item-image.svg';
+import uploadLogoImage from 'assets/icons/files/upload-logo-image.svg';
 
 interface ILazyImage extends ImgHTMLAttributes<HTMLImageElement> {
   children?: ReactNode;
+  type?: 'logo' | 'avatar' | 'default';
 }
 
 export const LazyImage: FC<ILazyImage> = ({
@@ -24,15 +26,16 @@ export const LazyImage: FC<ILazyImage> = ({
   width,
   height,
   className,
+  type,
   ...restProps
 }): JSX.Element => {
   const [loaded, setLoaded] = useState(false);
-
+  const defaultImages = type === 'logo' ? uploadLogoImage : uploadItemImage;
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
     const newEvent = { ...event };
 
     setLoaded(true);
-    newEvent.currentTarget.src = DefaultProductImage;
+    newEvent.currentTarget.src = defaultImages;
   };
 
   useEffect(() => {
@@ -55,7 +58,7 @@ export const LazyImage: FC<ILazyImage> = ({
         image.removeEventListener('load', handleImageLoad);
       };
     }
-  }, [width, height]);
+  }, [width, height, src]);
 
   return (
     <div className={cn(style.image_container, { [style.loaded]: loaded })}>
@@ -66,8 +69,8 @@ export const LazyImage: FC<ILazyImage> = ({
         alt={alt}
         height={height}
         width={width}
-        onError={handleImageError}
         {...restProps}
+        onError={handleImageError}
       />
     </div>
   );
