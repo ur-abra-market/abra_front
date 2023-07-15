@@ -38,7 +38,7 @@ export const UploadImage: FC<IUploadImage> = ({
   const dispatch = useAppDispatch();
 
   const uploadImageIcon =
-    type === 'logo' ? <UploadLogoImageIcon /> : <UploadItemImageIcon />;
+    type === 'default' ? <UploadItemImageIcon /> : <UploadLogoImageIcon />;
 
   const inputClasses = cn({
     [style.input_logo]: type === 'logo',
