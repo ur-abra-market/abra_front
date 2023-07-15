@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 
+import { ProductList } from './ProductList/ProductList';
 import style from './ProductListPage.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { ProductList } from 'elements';
 import ProductFilter from 'old-components/ui/product/ProductFilter';
 import { productPaginateService } from 'store/reducers/productPaginateSlice';
 

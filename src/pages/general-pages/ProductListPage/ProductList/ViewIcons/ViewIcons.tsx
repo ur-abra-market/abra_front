@@ -8,12 +8,14 @@ import {
   ViewListDisabledIcon,
   ViewListEnabledIcon,
 } from 'assets/icons';
-import { ViewType } from 'elements/ProductList/ProductList';
 
 interface ISelectedView {
   selectedView: ViewType;
   setSelectedView: (view: ViewType) => void;
 }
+
+export type ViewType = 'grid' | 'list';
+
 export const ViewGrid: FC<ISelectedView> = ({
   selectedView,
   setSelectedView,
