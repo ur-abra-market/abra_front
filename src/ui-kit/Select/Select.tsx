@@ -165,6 +165,7 @@ export const Select = forwardRef(
           const keyCode = e.code;
 
           if (keyCode === ENTER_KEYBOARD) {
+            e.preventDefault();
             handleCloseSelectMenu();
           }
 
@@ -177,7 +178,10 @@ export const Select = forwardRef(
             currentItemId += NEXT;
           }
 
-          if (keyCode === SPACE_KEYBOARD) e.preventDefault();
+          if (keyCode === SPACE_KEYBOARD) {
+            e.preventDefault();
+            handleCloseSelectMenu();
+          }
 
           setSelectedVale(options[currentItemId]);
         };
