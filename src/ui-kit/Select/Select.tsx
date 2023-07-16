@@ -13,6 +13,7 @@ const SPACE_KEYBOARD = 'Space';
 const ENTER_KEYBOARD = 'Enter';
 const ARROW_UP_KEYBOARD = 'ArrowUp';
 const ARROW_DOWN_KEYBOARD = 'ArrowDown';
+const ESCAPE_KEYBOARD = 'Escape';
 
 const PREV = 1;
 const NEXT = 1;
@@ -179,6 +180,11 @@ export const Select = forwardRef(
           }
 
           if (keyCode === SPACE_KEYBOARD) {
+            e.preventDefault();
+            handleCloseSelectMenu();
+          }
+
+          if (keyCode === ESCAPE_KEYBOARD) {
             e.preventDefault();
             handleCloseSelectMenu();
           }

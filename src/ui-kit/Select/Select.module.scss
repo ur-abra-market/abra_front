@@ -59,7 +59,9 @@
   }
 
   &:focus {
+    background-color: var(--color-light-gray);
     border: 1px solid var(--color-medium-gray);
+    border-radius: 12px;
   }
 
   &.header_disabled {

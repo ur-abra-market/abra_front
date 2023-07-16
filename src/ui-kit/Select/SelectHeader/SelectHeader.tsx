@@ -5,7 +5,7 @@ import cn from 'classnames';
 import style from './SelectHeader.module.scss';
 
 import { ArrowIcon } from 'assets/icons';
-import { Button, ISelectOption } from 'ui-kit';
+import { ISelectOption } from 'ui-kit';
 
 interface ISelectHeaderPropsType {
   isOpenMenu: boolean;
@@ -21,15 +21,21 @@ export const SelectHeader: FC<ISelectHeaderPropsType> = ({
   isOpenMenu,
 }) => {
   return (
-    <Button
-      color="white"
-      onChange={() => currentSelectedValue.label}
-      onClick={onClick}
-      role="presentation"
+    <div
+      role="combobox"
       className={className}
+      tabIndex={0}
+      onClick={onClick}
+      onKeyPress={onClick}
+      aria-expanded={isOpenMenu}
+      aria-haspopup="listbox"
+      aria-autocomplete="list"
+      aria-owns="combobox-list"
+      aria-controls="combobox-list"
+      aria-labelledby="combobox-list"
     >
       {currentSelectedValue.label}
       <ArrowIcon className={cn({ [style.arrow_up]: isOpenMenu })} width="14" />
-    </Button>
+    </div>
   );
 };

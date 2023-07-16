@@ -19,7 +19,7 @@ export const SelectMenu: FC<ISelectMenuPropsType> = ({
   className,
   style,
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLUListElement>(null);
 
   const inlineStyles = height ? { maxHeight: height, ...style } : { ...style };
 
@@ -28,8 +28,16 @@ export const SelectMenu: FC<ISelectMenuPropsType> = ({
   const mainClassName = cn(className, styles.main);
 
   return (
-    <div style={inlineStyles} className={mainClassName} ref={ref}>
+    <ul
+      id="combobox-list"
+      role="listbox"
+      style={inlineStyles}
+      className={mainClassName}
+      ref={ref}
+      aria-multiselectable="false"
+      aria-orientation="vertical"
+    >
       {children}
-    </div>
+    </ul>
   );
 };

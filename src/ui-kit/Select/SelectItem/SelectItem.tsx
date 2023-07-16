@@ -41,15 +41,17 @@ export const SelectItem: FC<ISelectItem> = ({
   });
 
   return (
-    <div
-      role="presentation"
-      onClick={handleClickOnItem}
+    <li
+      role="option"
       className={selectedItemClassName}
+      style={style}
+      onClick={handleClickOnItem}
+      onKeyDown={handleClickOnItem}
       onMouseEnter={handleHoverOnItem}
       onMouseLeave={handleLeaveHoverOnItem}
-      style={style}
+      aria-selected={currentSelectedItem.label === value.label}
     >
       {value.label}
-    </div>
+    </li>
   );
 };
