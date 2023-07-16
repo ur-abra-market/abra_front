@@ -51,6 +51,7 @@ baseConfigService.interceptors.response.use(
         ),
       );
     } else if (error.code === 'ERR_NETWORK') {
+      console.log(error);
       store.dispatch(
         setResponseError(
           'No internet connection. Please check your network and try again.',

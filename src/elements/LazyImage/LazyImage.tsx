@@ -30,7 +30,7 @@ export const LazyImage: FC<ILazyImage> = ({
   ...restProps
 }): JSX.Element => {
   const [loaded, setLoaded] = useState(false);
-  const defaultImages = type === 'logo' ? uploadLogoImage : uploadItemImage;
+  const defaultImages = type === 'default' ? uploadItemImage : uploadLogoImage;
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
     const newEvent = { ...event };
 

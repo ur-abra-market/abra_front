@@ -63,7 +63,7 @@ export const UploadImage: FC<IUploadImage> = ({
     if (e.target?.files?.length) {
       const file = e.target.files[0];
 
-      if (file.size >= MAX_FILE_SIZE) {
+      if ((type === 'logo' || type === 'avatar') && file.size >= MAX_FILE_SIZE) {
         dispatch(
           setResponseNotice({
             noticeType: 'error',
