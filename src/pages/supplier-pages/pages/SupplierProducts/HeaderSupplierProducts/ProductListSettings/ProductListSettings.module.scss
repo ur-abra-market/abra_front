@@ -1,0 +1,36 @@
+.rest_filters_wrapper {
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+  margin-top: 30px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  width: 261px;
+}
+
+.filter_name {
+  font-size: var(--fz-l);
+  font-weight: var(--bold);
+  font-style: normal;
+  color: var(--color-black);
+}
+
+.filter_input_date::placeholder {
+  font-size: var(--fz-s2);
+  font-style: normal;
+  color: var(--color-black);
+}
+
+.select {
+  font-size: var(--fz-s);
+  background: var(--color-light-gray);
+  border-radius: 12px;
+}
+
+.checkbox {
+  padding-bottom: 3px;
+}
