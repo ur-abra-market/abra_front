@@ -38,11 +38,7 @@ export const UploadImage: FC<IUploadImage> = ({
   const dispatch = useAppDispatch();
 
   const uploadImageIcon =
-    type === 'logo' || type === 'avatar' ? (
-      <UploadLogoImageIcon />
-    ) : (
-      <UploadItemImageIcon />
-    );
+    type === 'default' ? <UploadItemImageIcon /> : <UploadLogoImageIcon />;
 
   const inputClasses = cn({
     [style.input_logo]: type === 'logo',
@@ -67,7 +63,7 @@ export const UploadImage: FC<IUploadImage> = ({
     if (e.target?.files?.length) {
       const file = e.target.files[0];
 
-      if (type === 'logo' && file.size >= MAX_FILE_SIZE) {
+      if ((type === 'logo' || type === 'avatar') && file.size >= MAX_FILE_SIZE) {
         dispatch(
           setResponseNotice({
             noticeType: 'error',
@@ -96,7 +92,7 @@ export const UploadImage: FC<IUploadImage> = ({
       <div className={style.img_wrapper}>
         {image ? (
           <div>
-            <LazyImage src={image} alt={description} className={imgClasses} />
+            <LazyImage src={image} alt={description} className={imgClasses} type={type} />
 
             {type === 'default' && (
               <button className={crossClasses} onClick={deleteImage} type="button">
