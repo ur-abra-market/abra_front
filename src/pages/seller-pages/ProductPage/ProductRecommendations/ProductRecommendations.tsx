@@ -3,8 +3,7 @@ import React from 'react';
 import style from './ProductRecommendations.module.scss';
 
 import { useAppSelector } from 'common/hooks';
-import { ProductCard } from 'elements';
-import { ProductsPreview } from 'modules';
+import { ProductsPreview, ProductCard } from 'modules';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import {
   popularProductsSelector,

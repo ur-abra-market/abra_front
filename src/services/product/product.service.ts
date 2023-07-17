@@ -27,7 +27,7 @@ export const productService = {
 
   getProductById: async ({ product_id }: IProductRequest) => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductCard>>(
-      `products/productCard/${product_id}`,
+      `products/productCard/${product_id}/`,
     );
 
     return data.result;

@@ -43,7 +43,7 @@ export const AboutUsPage = WithLayout((): JSX.Element => {
             <li>
               <b>2.</b> Unmatched Quality: At Abra Bulk Marketplace, quality is our top
               priority. We work closely with our suppliers to ensure that all products
-              meet our strict quality standards. Our team of experts handpicks each item,
+              meet our strict quality standards. Our team of experts hand-picks each item,
               ensuring that only the finest products make their way to our customers.
             </li>
 
@@ -70,24 +70,21 @@ export const AboutUsPage = WithLayout((): JSX.Element => {
 
             <li>
               <b>6.</b> Easy and Secure Payment Options: We offer a range of secure
-              payment payment options, including credit cards, bank transfers, and more.
-              equipped with top-of-the-line security measures to protect your sensitive
+              payment options, including credit cards, bank transfers, and more. Equipped
+              with top-of-the-line security measures to protect your sensitive
               information, giving you peace of mind while shopping with us. Discover the
-              Best of Turkey with Abra Bulk Marketplace
+              Best of Turkey with Abra Bulk Marketplace.
             </li>
           </ul>
         </div>
 
         <p className={style.default_text}>
-          At Abra Bulk Marketplace, we believe that every business deserves access to the
-          finest Turkish products at competitive prices. Our platform simplifies the
+          At the Abra Bulk Marketplace, we believe that every business deserves access to
+          the finest Turkish products at competitive prices. Our platform simplifies the
           process of sourcing and purchasing wholesale items, allowing you to focus on
-          growing your business. By choosing Abra Bulk
-        </p>
-
-        <p className={style.default_text}>
-          Marketplace, you&apos;re not only investing in quality Turkish products, but
-          also in a partnership that values your success and satisfaction.
+          growing your business. By choosing Abra Bulk Marketplace, you&apos;re not only
+          investing in quality Turkish products, but also in a partnership that values
+          your success and satisfaction.
         </p>
 
         <p className={style.default_text}>

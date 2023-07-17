@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import style from './ProductList.module.scss';
-import { ViewGrid, ViewList } from './ViewIcons/ViewIcons';
+import { ViewGrid, ViewList, ViewType } from './ViewIcons/ViewIcons';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { ProductCard, ProductCardFull } from 'elements';
+import { ProductCardFull, ProductCard } from 'modules';
 import PaginatorProduct from 'old-components/ui/TypesView/product/PaginatorProduct';
 import { ICategoryRequest } from 'services/product/product.serviceTypes';
 import {
@@ -12,8 +12,6 @@ import {
   productsCompilationSelector,
 } from 'store/reducers/productSlice';
 import { ButtonInfo } from 'ui-kit';
-
-export type ViewType = 'grid' | 'list';
 
 export const ProductList = (): JSX.Element => {
   // const dataArr = useAppSelector(state => state.productPaginate.productsPage);

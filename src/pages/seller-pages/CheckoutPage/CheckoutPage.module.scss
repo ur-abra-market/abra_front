@@ -2,7 +2,7 @@
 
 .wrapper {
   position: relative;
-  background: #F5F5F5;
+  background: var(--color-super-light-gray);
 }
 
 .container {
@@ -17,7 +17,7 @@
   height: max-content;
   padding: 32px;
 
-  background-color: #FFF;
+  background-color: var(--color-white);
   border-radius: 12px;
 }
 

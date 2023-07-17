@@ -1,0 +1,43 @@
+@import "src/common/styles/mixins";
+
+.wrapper {
+  padding: 60px 0 80px;
+  background-color: rgba(252, 19, 61, 0.02);
+}
+
+.container {
+  @include content_container;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.subscribe_title {
+  font-size: var(--fz-xxl2);
+  font-weight: var(--semi-bold);
+  line-height: 120%;
+  letter-spacing: 0.00001em;
+}
+
+.subscribe_subtitle {
+  margin-bottom: 23px;
+  font-size: var(--fz-xl);
+  font-weight: var(--bold);
+  line-height: 120%;
+}
+
+.input_box {
+  display: grid;
+  grid-template-columns: max(393px) 162px;
+  gap: 12px;
+  align-items: center;
+}
+
+.phone_title {
+  margin-bottom: 12px;
+
+  font-family: var(--roboto);
+  font-size: var(--fz-l2);
+  font-weight: var(--semi-bold);
+  color: var(--color-black);
+}
