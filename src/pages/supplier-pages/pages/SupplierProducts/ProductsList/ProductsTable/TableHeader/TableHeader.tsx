@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import style from './TableHeader.module.scss';
 
@@ -17,7 +17,7 @@ const columns = [
   { id: 9, name: 'Visibility' },
 ];
 
-export const TableHeader: FC = (): JSX.Element => {
+export const TableHeader = (): JSX.Element => {
   return (
     <thead>
       <tr className={style.table_row}>

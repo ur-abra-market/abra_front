@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import style from './TableList.module.scss';
 
@@ -6,11 +6,11 @@ import defaultImg from 'assets/images/files/default-product-image.png';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { formatDate } from 'common/utils/formatDateProductsList';
 import { manageProductsSelector } from 'store/reducers/productSlice/selectors';
-import { manageProductsService } from 'store/reducers/productSlice/thunks';
+import { manageProducts } from 'store/reducers/productSlice/thunks';
 import { IProductsListRequest } from 'store/reducers/productSlice/types';
 import { Checkbox } from 'ui-kit';
 
-export const TableList: FC = (): JSX.Element => {
+export const TableList = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const products = useAppSelector(manageProductsSelector);
 
@@ -24,10 +24,8 @@ export const TableList: FC = (): JSX.Element => {
   // тестовый массив для отрисовки из 20 элементов
   const array = testProductsArray()?.splice(0, 20);
 
-  console.log(array);
-
   useEffect(() => {
-    dispatch(manageProductsService());
+    dispatch(manageProducts());
   }, [dispatch]);
 
   return (

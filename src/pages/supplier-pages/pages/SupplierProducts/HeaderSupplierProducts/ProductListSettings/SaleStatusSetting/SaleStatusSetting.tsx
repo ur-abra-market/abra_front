@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import style from 'pages/supplier-pages/pages/SupplierProducts/HeaderSupplierProducts/ProductListSettings/ProductListSettings.module.scss';
 import { ISelectOption, Select } from 'ui-kit';
 
-export const SaleStatusSetting: FC = (): JSX.Element => {
+export const SaleStatusSetting = (): JSX.Element => {
   const STATUS_SELECT: ISelectOption[] = [
     { label: 'On Sale', value: '1' },
     { label: 'Off-sale', value: '2' },

@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import React from 'react';
 
 import style from 'pages/supplier-pages/pages/SupplierProducts/HeaderSupplierProducts/ProductListSettings/ProductListSettings.module.scss';
 import { ISelectOption, Select } from 'ui-kit';
 
-export const SortBySetting: FC = (): JSX.Element => {
+export const SortBySetting = (): JSX.Element => {
   const CATEGORY_SELECT: ISelectOption[] = [
     { label: 'S', value: '1' },
     { label: 'M', value: '2' },

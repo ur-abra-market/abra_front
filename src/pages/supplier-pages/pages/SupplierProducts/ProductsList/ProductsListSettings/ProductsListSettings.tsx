@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 
 import cn from 'classnames';
 
@@ -12,7 +12,7 @@ enum ActiveList {
   OFF_SALE = 'off sale',
 }
 
-export const ProductsListSettings: FC = (): JSX.Element => {
+export const ProductsListSettings = (): JSX.Element => {
   const [activeList, setActiveList] = useState<ActiveList>(ActiveList.ALL_PRODUCTS);
 
   const setAll = (): void => {

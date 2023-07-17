@@ -13,24 +13,21 @@
 }
 
 .filter_name {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: var(--fz-l);
+  font-weight: var(--bold);
   font-style: normal;
-  line-height: 22px;
-  color: #000;
+  color: var(--color-black);
 }
 
 .filter_input_date::placeholder {
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--fz-s2);
   font-style: normal;
-  line-height: 22px;
-  color: #000;
+  color: var(--color-black);
 }
 
 .select {
-  font-size: 14px;
-  background: #F2F2F2;
+  font-size: var(--fz-s);
+  background: var(--color-light-gray);
   border-radius: 12px;
 }
 

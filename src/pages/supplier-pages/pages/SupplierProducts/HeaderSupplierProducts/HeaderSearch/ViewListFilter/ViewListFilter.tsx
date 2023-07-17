@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 
 import cn from 'classnames';
 
@@ -6,7 +6,7 @@ import style from './ViewListFilter.module.scss';
 
 import { ViewGridDisabledIcon, ViewListDisabledIcon } from 'assets/icons';
 
-export const ViewListFilter: FC = (): JSX.Element => {
+export const ViewListFilter = (): JSX.Element => {
   const [layout, setLayout] = useState('tableLayout');
 
   const handleLayoutSet = (): void => {

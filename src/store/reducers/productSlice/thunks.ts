@@ -11,8 +11,8 @@ import {
   IProductRequest,
 } from 'services/product/product.serviceTypes';
 
-export const manageProductsService = createAsyncThunk<IProductsListRequest[], void>(
-  'manageProducts/manageProductsService',
+export const manageProducts = createAsyncThunk<IProductsListRequest[], void>(
+  'product/manageProducts',
 
   async (_, { rejectWithValue }) => {
     try {

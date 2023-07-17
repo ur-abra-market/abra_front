@@ -6,7 +6,7 @@ import {
   getProductById,
   getProductsCompilation,
   getSimilarProducts,
-  manageProductsService,
+  manageProducts,
   removeFavoriteProduct,
 } from './thunks';
 import { IProductCard, IProductSliceInitialState, IProductsListRequest } from './types';
@@ -44,7 +44,7 @@ const productSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(
-        manageProductsService.fulfilled,
+        manageProducts.fulfilled,
         (state, action: PayloadAction<IProductsListRequest[]>) => {
           state.products = action.payload;
         },

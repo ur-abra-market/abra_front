@@ -94,7 +94,7 @@ export const productService = {
   getListManageProducts: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductsListRequest[]>>(
       `suppliers/manageProducts/`,
-    ); // нужно подгружать только позиции, которые не были удалены
+    );
 
     return data.result;
   },

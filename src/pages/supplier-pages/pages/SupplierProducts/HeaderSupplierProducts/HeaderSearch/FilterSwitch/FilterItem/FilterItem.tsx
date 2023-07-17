@@ -23,13 +23,9 @@ export const FilterItem: FC<ItemProps> = ({
 
   return (
     <>
-      <span
-        role="presentation"
-        className={style.rest_filters}
-        onClick={handleRestFiltersSet}
-      >
+      <button className={style.rest_filters} type="button" onClick={handleRestFiltersSet}>
         {text}
-      </span>
+      </button>
       <Icon onClick={handleRestFiltersSet} className={styleIconClass} />
       {restFilters && <div className={style.reset_link}>Reset Filters</div>}
     </>
