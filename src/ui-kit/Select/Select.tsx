@@ -185,9 +185,12 @@ export const Select = forwardRef(
         document.onkeydown = e => {
           const keyCode = e.code;
 
-          if (keyCode === SPACE_KEYBOARD) return true;
-          if (keyCode === ARROW_UP_KEYBOARD) return true;
-          if (keyCode === ARROW_DOWN_KEYBOARD) return true;
+          if (
+            keyCode === SPACE_KEYBOARD ||
+            keyCode === ARROW_UP_KEYBOARD ||
+            keyCode === ARROW_DOWN_KEYBOARD
+          )
+            return true;
         };
         window.onscroll = () => {
           return true;

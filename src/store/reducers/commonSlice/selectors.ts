@@ -5,5 +5,5 @@ import { RootStateType } from 'store/createStore';
 
 export const numberEmployeesSelector = (state: RootStateType): INumberEmployees[] =>
   state.common.numberEmployees;
-export const countriesSelector = (state: RootStateType): ICountry[] =>
+export const countriesSelector = (state: RootStateType): ICountry[] | null =>
   state.common.countries;

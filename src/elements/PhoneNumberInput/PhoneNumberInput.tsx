@@ -9,7 +9,7 @@ import PhoneInput, { CountryData } from 'react-phone-input-2';
 import style from './PhoneNumberInput.module.scss';
 
 import { useAppSelector } from 'common/hooks';
-import { IPersonalInfoFormData } from 'common/types';
+
 import { Label } from 'ui-kit';
 
 interface IPhoneNumberInput {
@@ -43,7 +43,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
     event: ChangeEvent<HTMLInputElement>,
     formattedValue: string,
   ): void => {
-    const countryId = countries.find(el => el.country_short === data.countryCode)?.id;
+    const countryId = countries?.find(el => el.country_short === data.countryCode)?.id;
 
     setValue('phoneNumber', formattedValue);
     setValue('countryShort', data?.countryCode);
@@ -83,7 +83,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
 
   return (
     <div className={style.phone_number}>
-      <Label label={label} htmlFor="tel">
+      {/*     <Label label={label} htmlFor="tel">
         {countries.length && (
           <PhoneInput
             disabled={disabled}
@@ -99,7 +99,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
           />
         )}
         {phoneNumberError && <span className={style.error}>{phoneNumberError}</span>}
-      </Label>
+      </Label>*/}
     </div>
   );
 };

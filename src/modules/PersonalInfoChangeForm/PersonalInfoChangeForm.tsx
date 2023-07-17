@@ -5,9 +5,9 @@ import { useFormContext } from 'react-hook-form';
 import style from './PersonalInfoChangeForm.module.scss';
 
 import { useAppSelector } from 'common/hooks';
-import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
-import { PhoneNumberInput } from 'elements';
-import { userLoadingSelector } from 'store/reducers/userSlice';
+import { LoadingStatusEnum } from 'common/types';
+import { PhoneNumber } from 'elements/Phone/PhoneNumber';
+import { IUserPersonalInfo, userLoadingSelector } from 'store/reducers/userSlice';
 import { Input, Label } from 'ui-kit';
 
 interface IPersonalInfoChangeForm {
@@ -19,13 +19,12 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
   phoneInputClass,
   countryShort,
 }): JSX.Element => {
-  const isLoading =
-    useAppSelector(userLoadingSelector).personalInfoLoading === LoadingStatusEnum.Loading;
+  const isLoading = useAppSelector(userLoadingSelector) === LoadingStatusEnum.Loading;
 
   const {
     register,
     formState: { errors },
-  } = useFormContext<IPersonalInfoFormData>();
+  } = useFormContext<IUserPersonalInfo>();
 
   return (
     <fieldset disabled={isLoading}>
@@ -48,13 +47,13 @@ export const PersonalInfoChangeForm: FC<IPersonalInfoChangeForm> = ({
           />
         </Label>
       </div>
-
-      <PhoneNumberInput
-        disabled={isLoading}
-        countryShort={countryShort}
-        phoneInputClass={phoneInputClass}
-        label="Personal phone number"
-      />
+      <PhoneNumber />
+      {/* <PhoneNumberInput */}
+      {/*  disabled={isLoading} */}
+      {/*  countryShort={countryShort} */}
+      {/*  phoneInputClass={phoneInputClass} */}
+      {/*  label="Personal phone number" */}
+      {/* /> */}
     </fieldset>
   );
 };

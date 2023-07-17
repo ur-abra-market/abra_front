@@ -8,7 +8,7 @@ import style from './SupplierPersonalInfoForm.module.scss';
 
 import { personalInfoFormValidationSchema } from 'common/constants';
 import { useAppDispatch } from 'common/hooks';
-import { IPersonalInfoFormData } from 'common/types';
+
 import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
 import Modal from 'elements/Modal';
 import { ModalChildPhoneCheck } from 'elements/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
@@ -19,13 +19,14 @@ import { IPersonalInfoRequest } from 'services/auth/auth.serviceTypes';
 import { createAccountPersonalInfo } from 'store/reducers/authSlice';
 import { getCountries } from 'store/reducers/commonSlice';
 import { Button } from 'ui-kit';
+import { IUserPersonalInfo } from '../../../../../../store/reducers/userSlice';
 
 export const SupplierPersonalInfoForm = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const formMethods = useForm<IPersonalInfoFormData>({
+  const formMethods = useForm<IUserPersonalInfo>({
     resolver: yupResolver(personalInfoFormValidationSchema),
     mode: 'all',
   });
@@ -39,14 +40,12 @@ export const SupplierPersonalInfoForm = (): JSX.Element => {
     dispatch(getCountries());
   }, []);
 
-  const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
-    const { numberBody } = parsePhoneNumber(data.phoneNumber);
-
+  const onSubmit = async (data: IUserPersonalInfo): Promise<void> => {
     const personalInfoData: IPersonalInfoRequest = {
       first_name: data.firstName,
       last_name: data.lastName,
-      country_id: data.countryId,
-      phone_number: numberBody,
+      country_id: data.phoneNumberCountryId as number,
+      phone_number: data.phoneNumberBody,
     };
 
     const actionResult = await dispatch(createAccountPersonalInfo(personalInfoData));
@@ -84,7 +83,7 @@ export const SupplierPersonalInfoForm = (): JSX.Element => {
         >
           <ModalChildPhoneCheck
             setShowModal={setShowModal}
-            phone={watch('phoneNumber')}
+            //phone={watch('phoneNumber')}
           />
         </Modal>
       </div>

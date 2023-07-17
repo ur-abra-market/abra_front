@@ -3,16 +3,12 @@ import { LoadingStatusEnum } from 'common/types';
 export interface IUserPersonalInfo {
   firstName: string;
   lastName: string;
-  countryShort: string;
-  phoneNumber: string;
-}
-
-export interface ILoading {
-  personalInfoLoading: LoadingStatusEnum;
+  phoneNumberBody: string;
+  phoneNumberCountryId: number | null;
 }
 
 export interface IUserSliceInitialState {
-  loading: ILoading;
+  loading: LoadingStatusEnum;
   personalInfo: IUserPersonalInfo;
   favoritesProducts: any[];
 }

@@ -33,7 +33,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
   isDirty,
 }): JSX.Element => {
   const numberEmployees = useAppSelector(numberEmployeesSelector);
-  const countries = useAppSelector(countriesSelector);
+  const countries = useAppSelector(countriesSelector) || [];
   const isLoading =
     useAppSelector(supplierLoadingSelector).businessInfoLoading ===
     LoadingStatusEnum.Loading;

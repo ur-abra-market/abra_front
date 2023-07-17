@@ -26,7 +26,7 @@ export const SellerProfilePage = WithLayout((): JSX.Element => {
   const [isFetchingData, setIsFetchingData] = useState(true);
   const dispatch = useAppDispatch();
   const loading = useAppSelector(sellerLoadingSelector);
-  const { personalInfoLoading } = useAppSelector(userLoadingSelector);
+  const personalInfoLoading = useAppSelector(userLoadingSelector);
   const { notificationsLoading, ...restLoading } = loading;
 
   const isLoading =

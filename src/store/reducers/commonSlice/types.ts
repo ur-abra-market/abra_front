@@ -7,6 +7,6 @@ export interface INumberEmployees {
 
 export interface IInitialState {
   categories: null | ICategoryResponse[];
-  countries: ICountry[];
+  countries: ICountry[] | null;
   numberEmployees: INumberEmployees[];
 }

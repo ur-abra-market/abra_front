@@ -2,23 +2,20 @@ import { useEffect } from 'react';
 
 import { UseFormSetValue } from 'react-hook-form';
 
-import { ICountry } from 'services/common/common.serviceTypes';
 import { IUserPersonalInfo } from 'store/reducers/userSlice';
 
 export const useSetPersonalInfoValues = (
   setValue: UseFormSetValue<any>,
   data: IUserPersonalInfo,
-  country?: ICountry,
 ): void => {
-  const { lastName, firstName, countryShort, phoneNumber } = data;
+  const { lastName, firstName, phoneNumberCountryId, phoneNumberBody } = data;
 
   useEffect(() => {
-    if (lastName && firstName && country) {
+    if (lastName && firstName && phoneNumberCountryId && phoneNumberBody) {
       setValue('firstName', firstName);
       setValue('lastName', lastName);
-      setValue('phoneNumber', `${country.country_code}${phoneNumber}`);
-      setValue('countryId', country.id);
-      setValue('countryShort', countryShort);
+      setValue('phoneNumberCountryId', phoneNumberCountryId);
+      setValue('phoneNumberBody', phoneNumberBody);
     }
-  }, [lastName, firstName, phoneNumber, setValue, countryShort, country]);
+  }, [lastName, firstName, phoneNumberBody, phoneNumberCountryId, phoneNumberBody]);
 };

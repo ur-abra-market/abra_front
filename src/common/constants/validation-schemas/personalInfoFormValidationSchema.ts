@@ -18,6 +18,6 @@ export const personalInfoFormValidationSchema = yup
       .test('no-spaces', 'Please enter a valid name', value => {
         return value === undefined || value.trim() !== '';
       }),
-    phoneNumber: yup.string().required('Field is required'),
+    phoneNumberBody: yup.string().required('Field is required'),
   })
   .required();

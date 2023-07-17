@@ -11,14 +11,12 @@ import { LoadingStatusEnum } from 'common/types';
 import { logout } from 'store/reducers/authSlice';
 
 const initialState: IUserSliceInitialState = {
-  loading: {
-    personalInfoLoading: LoadingStatusEnum.Idle,
-  },
+  loading: LoadingStatusEnum.Idle,
   personalInfo: {
     firstName: '',
     lastName: '',
-    countryShort: '',
-    phoneNumber: '',
+    phoneNumberBody: '',
+    phoneNumberCountryId: null,
   },
   favoritesProducts: [],
 };
@@ -30,41 +28,25 @@ const userSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getPersonalInfo.pending, state => {
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Loading,
-        };
+        state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(getPersonalInfo.fulfilled, (state, action) => {
         state.personalInfo.lastName = action.payload.last_name;
         state.personalInfo.firstName = action.payload.first_name;
-        state.personalInfo.countryShort =
-          action.payload.country && action.payload.country.country_short;
-        state.personalInfo.phoneNumber = action.payload.phone_number;
+        state.personalInfo.phoneNumberCountryId = action.payload.country.id;
+        state.personalInfo.phoneNumberBody = action.payload.phone_number;
 
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Success,
-        };
+        state.loading = LoadingStatusEnum.Success;
       })
       .addCase(getPersonalInfo.rejected, state => {
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Failed,
-        };
+        state.loading = LoadingStatusEnum.Failed;
       })
 
       .addCase(updatePersonalInfo.pending, state => {
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Loading,
-        };
+        state.loading = LoadingStatusEnum.Loading;
       })
       .addCase(updatePersonalInfo.rejected, state => {
-        state.loading = {
-          ...state.loading,
-          personalInfoLoading: LoadingStatusEnum.Failed,
-        };
+        state.loading = LoadingStatusEnum.Failed;
       })
 
       .addCase(getFavoritesProductsService.fulfilled, (state, action) => {
@@ -75,8 +57,8 @@ const userSlice = createSlice({
         state.personalInfo = {
           firstName: '',
           lastName: '',
-          countryShort: '',
-          phoneNumber: '',
+          phoneNumberBody: '',
+          phoneNumberCountryId: null,
         };
       });
   },
