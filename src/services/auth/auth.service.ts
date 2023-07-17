@@ -10,6 +10,7 @@ import {
   IChangeEmailRequest,
 } from './auth.serviceTypes';
 
+import { IBaseResponse } from 'common/types';
 import { baseConfigService } from 'services/baseConfig.service';
 
 export const authService = {
@@ -45,7 +46,7 @@ export const authService = {
   },
 
   logout: async () => {
-    const { data } = await baseConfigService.delete<IPasswordResponse>(`logout/`);
+    const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(`logout/`);
 
     return data;
   },

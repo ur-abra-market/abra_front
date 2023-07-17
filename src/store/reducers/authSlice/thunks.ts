@@ -97,13 +97,15 @@ export const loginUser = createAsyncThunk<
   }
 });
 
-export const logout = createAsyncThunk<IPasswordResponse, void, IAsyncThunkConfig>(
+export const logout = createAsyncThunk<boolean, void, IAsyncThunkConfig>(
   'login/logout',
   async (_, { rejectWithValue, dispatch }) => {
     dispatch(setLoading(LoadingStatusEnum.Loading));
 
     try {
-      return await authService.logout();
+      const result = await authService.logout();
+
+      return result.ok;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         dispatch(

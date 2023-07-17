@@ -45,9 +45,10 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ active, setActive }) => {
     return () => document.removeEventListener('scroll', handleOnScroll);
   }, [setActive]);
 
-  const handleClickLogout = (): void => {
-    dispatch(logout());
-    navigate(HOME);
+  const handleClickLogout = async (): Promise<void> => {
+    const result = await dispatch(logout());
+
+    if (result) navigate(HOME);
   };
 
   return (
