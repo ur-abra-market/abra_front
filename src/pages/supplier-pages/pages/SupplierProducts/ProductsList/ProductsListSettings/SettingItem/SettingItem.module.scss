@@ -1,0 +1,13 @@
+.inner {
+  cursor: pointer;
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+}

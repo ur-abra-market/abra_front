@@ -2,62 +2,48 @@ import React, { useState } from 'react';
 
 import cn from 'classnames';
 
+import { actionData, filtersData } from './consts/data';
 import style from './ProductsListSettings.module.scss';
-
-import { AddNewProduct, RecentlyDeleted } from 'assets/icons';
-
-enum ActiveList {
-  ALL_PRODUCTS = 'all products',
-  ON_SALE = 'on sale',
-  OFF_SALE = 'off sale',
-}
+import { SettingItem } from './SettingItem/SettingItem';
+import { ActiveList } from './types/products-types';
 
 export const ProductsListSettings = (): JSX.Element => {
   const [activeList, setActiveList] = useState<ActiveList>(ActiveList.ALL_PRODUCTS);
 
-  const setAll = (): void => {
-    setActiveList(ActiveList.ALL_PRODUCTS);
-  };
-  const setOnSale = (): void => {
-    setActiveList(ActiveList.ON_SALE);
-  };
-  const setOffSale = (): void => {
-    setActiveList(ActiveList.OFF_SALE);
+  // тестовый стейт. Имитируем что чекбокс выделен на странице
+  const [isCheckboxSelected, setIsCheckboxSelected] = useState(false);
+
+  const onSetListByFilter = (list: ActiveList): void => {
+    setActiveList(list);
   };
 
-  const allProductsClasses = cn(style.filter, {
-    [style.active]: activeList === ActiveList.ALL_PRODUCTS,
-  });
-  const onSaleClasses = cn(style.filter, {
-    [style.active]: activeList === ActiveList.ON_SALE,
-  });
-  const offSaleClasses = cn(style.filter, {
-    [style.active]: activeList === ActiveList.OFF_SALE,
-  });
+  // эти элементы будут всегда отображаться 'Add a new product' и 'Recently deleted'
+  const filteredData = actionData.filter(el => el.id === 4 || el.id === 5);
+
+  const renderedData = isCheckboxSelected ? actionData : filteredData;
+
+  const getActiveClasses = (activeList: string, currentList: string): string =>
+    cn(style.filter, {
+      [style.active]: activeList === currentList,
+    });
 
   return (
     <div className={style.container}>
       <div className={style.wrapper}>
-        <span className={allProductsClasses} onClick={setAll} role="presentation">
-          All Products
-        </span>
-        <span className={onSaleClasses} onClick={setOnSale} role="presentation">
-          On-sale
-        </span>
-        <span className={offSaleClasses} onClick={setOffSale} role="presentation">
-          Off-sale
-        </span>
+        {filtersData.map(({ id, label, list }) => (
+          <SettingItem
+            key={id}
+            text={label}
+            classname={getActiveClasses(activeList, list)}
+            onClick={() => onSetListByFilter(list)}
+          />
+        ))}
       </div>
 
       <div className={style.wrapper}>
-        <div className={style.inner}>
-          <AddNewProduct />
-          <span className={style.add_and_removed}>Add a new product</span>
-        </div>
-        <div className={style.inner}>
-          <RecentlyDeleted />
-          <span className={style.addAndRemoved}>Recently deleted</span>
-        </div>
+        {renderedData.map(({ id, label, Icon }) => (
+          <SettingItem key={id} text={label} Icon={Icon} />
+        ))}
       </div>
     </div>
   );
