@@ -46,7 +46,7 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
 
   const listCountry = countries.map(el => ({
     value: el.id,
-    label: el.country,
+    label: { text: el.country },
   }));
 
   const removeAddress = async (): Promise<void> => {

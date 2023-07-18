@@ -9,18 +9,18 @@ import { ISelectOption } from 'ui-kit';
 interface ISelectItem {
   currentSelectedItem: ISelectOption;
   value: ISelectOption;
-  onClick: (value: ISelectOption) => void;
+  handleSelectedValue: (value: ISelectOption) => void;
   style?: CSSProperties;
 }
 
 export const SelectItem: FC<ISelectItem> = ({
   currentSelectedItem,
   value,
-  onClick,
+  handleSelectedValue,
   style,
 }) => {
   const handleClickOnItem = (): void => {
-    onClick(value);
+    handleSelectedValue(value);
   };
 
   const [currentClassName, setCurrentClassName] = useState(styles.main);
@@ -49,9 +49,10 @@ export const SelectItem: FC<ISelectItem> = ({
       onKeyDown={handleClickOnItem}
       onMouseEnter={handleHoverOnItem}
       onMouseLeave={handleLeaveHoverOnItem}
-      aria-selected={currentSelectedItem.label === value.label}
+      aria-selected={currentSelectedItem.label === value.label} // indicates that the item is selected or active
     >
-      {value.label}
+      {value.label.image_src && <img src={value.label.image_src} alt="" />}
+      <p>{value.label.text}</p>
     </li>
   );
 };

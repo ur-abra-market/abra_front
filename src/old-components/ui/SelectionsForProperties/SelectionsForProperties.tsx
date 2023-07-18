@@ -54,7 +54,7 @@ const SelectionsForProperties: FC<ISelectionsForPropertiesProps> = ({
                   className={styles.select}
                   onChange={value => {
                     field.onChange(value.value);
-                    handleSetCurrentValue(value.label);
+                    handleSetCurrentValue(value.label.text);
                   }}
                 />
               </Label>
