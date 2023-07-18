@@ -5,8 +5,8 @@ import { ISelectOption, Select } from 'ui-kit';
 
 export const SaleStatusSetting = (): JSX.Element => {
   const STATUS_SELECT: ISelectOption[] = [
-    { label: 'On Sale', value: '1' },
-    { label: 'Off-sale', value: '2' },
+    { label: { text: 'On Sale' }, value: '1' },
+    { label: { text: 'Off-sale' }, value: '2' },
   ];
 
   return (
