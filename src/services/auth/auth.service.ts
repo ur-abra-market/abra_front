@@ -14,14 +14,14 @@ import { baseConfigService } from 'services/baseConfig.service';
 
 export const authService = {
   userRole: () => {
-    return baseConfigService.get(`login/role/`);
+    return baseConfigService.get(`login/role`);
   },
 
   register: async ({ email, password, role }: IRegisterRequest) => {
-    const { data } = await baseConfigService.post<IPasswordResponse>(
-      `register/${role}/`,
-      { email, password },
-    );
+    const { data } = await baseConfigService.post<IPasswordResponse>(`register/${role}`, {
+      email,
+      password,
+    });
 
     return data;
   },
@@ -35,17 +35,17 @@ export const authService = {
   },
 
   sendAccountPersonalInfo: async (params: IPersonalInfoRequest) => {
-    const { data } = await baseConfigService.post(`register/account/sendInfo/`, params);
+    const { data } = await baseConfigService.post(`register/account/sendInfo`, params);
 
     return data;
   },
 
   login: (params: ILoginRequest) => {
-    return baseConfigService.post<ILoginResponse>(`login/`, params);
+    return baseConfigService.post<ILoginResponse>(`login`, params);
   },
 
   logout: async () => {
-    const { data } = await baseConfigService.delete<IPasswordResponse>(`logout/`);
+    const { data } = await baseConfigService.delete<IPasswordResponse>(`logout`);
 
     return data;
   },
@@ -70,11 +70,11 @@ export const authService = {
   },
 
   changePassword: (params: IChangePasswordRequest) => {
-    return baseConfigService.post<IPasswordResponse>('password/change/', params);
+    return baseConfigService.post<IPasswordResponse>('password/change', params);
   },
 
   changeEmail: (params: IChangeEmailRequest) => {
-    return baseConfigService.post<IPasswordResponse>('users/changeEmail/', params);
+    return baseConfigService.post<IPasswordResponse>('users/changeEmail', params);
   },
 };
 
