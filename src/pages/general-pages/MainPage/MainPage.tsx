@@ -7,8 +7,7 @@ import { ImagesBlock, StatusProduct, SubscriptionAndContacts } from '.';
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ProductSortEnum } from 'common/types';
-import { ProductCard } from 'elements';
-import { ProductsPreview } from 'modules';
+import { ProductsPreview, ProductCard } from 'modules';
 import {
   getProductsCompilation,
   productsCompilationSelector,

@@ -49,6 +49,9 @@ export { ReactComponent as UploadItemImageIcon } from './files/upload-item-image
 export { ReactComponent as LogoCompanyPlaceholder } from './files/logo-company-placeholder.svg';
 export { ReactComponent as ArrowIcon } from './files/arrow.svg';
 export { ReactComponent as Home } from './files/home.svg';
+export { ReactComponent as AddNewProduct } from './files/add-product.svg';
+export { ReactComponent as RecentlyDeleted } from './files/delete-trash-red.svg';
+export { ReactComponent as ArrowSort } from './files/arrow-sort.svg';
 
 // ------------------------------------flags------------------------------------
 
