@@ -1,6 +1,7 @@
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 
 export interface IProductSliceInitialState {
+  products: IProductsListRequest[] | null;
   productCard: IProductCard;
   similarProducts: IProductCompilation[];
   popularProducts: IProductCompilation[];
@@ -51,4 +52,23 @@ export interface IPrice {
   min_quantity: number;
   start_date: string;
   end_date: string;
+}
+
+interface IProductPriceInfo {
+  discount: number;
+  end_date: string;
+  id: number;
+  min_quantity: number;
+  start_date: string;
+  value: number;
+}
+
+export interface IProductsListRequest {
+  datetime: string;
+  description: string;
+  grade_average: number;
+  id: number;
+  is_active: boolean;
+  name: string;
+  prices: IProductPriceInfo[];
 }
