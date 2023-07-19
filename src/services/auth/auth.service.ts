@@ -14,7 +14,7 @@ import { baseConfigService } from 'services/baseConfig.service';
 
 export const authService = {
   userRole: () => {
-    return baseConfigService.get(`login/role`);
+    return baseConfigService.get(`auth/login/role`);
   },
 
   register: async ({ email, password, role }: IRegisterRequest) => {
@@ -41,11 +41,11 @@ export const authService = {
   },
 
   login: (params: ILoginRequest) => {
-    return baseConfigService.post<ILoginResponse>(`login`, params);
+    return baseConfigService.post<ILoginResponse>(`auth/login`, params);
   },
 
   logout: async () => {
-    const { data } = await baseConfigService.delete<IPasswordResponse>(`logout`);
+    const { data } = await baseConfigService.delete<IPasswordResponse>(`auth/logout`);
 
     return data;
   },
