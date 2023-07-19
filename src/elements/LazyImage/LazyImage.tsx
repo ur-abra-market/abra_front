@@ -11,13 +11,21 @@ import cn from 'classnames';
 
 import style from './LazyImage.module.scss';
 
-import uploadItemImage from 'assets/icons/files/upload-item-image.svg';
-import uploadLogoImage from 'assets/icons/files/upload-logo-image.svg';
+import defaultLogoImage from 'assets/icons/files/default-logo-image.svg';
+import defaultSupplierItemImage from 'assets/icons/files/default-supplier-item-image.svg';
+import defaultUserItemImage from 'assets/images/files/default-product-image.png';
 
 interface ILazyImage extends ImgHTMLAttributes<HTMLImageElement> {
   children?: ReactNode;
-  type?: 'logo' | 'avatar' | 'default';
+  type?: 'logo' | 'avatar' | 'supplier_default' | 'user_default';
 }
+
+const defaultImages = {
+  logo: defaultLogoImage,
+  avatar: defaultLogoImage,
+  supplier_default: defaultSupplierItemImage,
+  user_default: defaultUserItemImage,
+};
 
 export const LazyImage: FC<ILazyImage> = ({
   alt,
@@ -30,12 +38,12 @@ export const LazyImage: FC<ILazyImage> = ({
   ...restProps
 }): JSX.Element => {
   const [loaded, setLoaded] = useState(false);
-  const defaultImages = type === 'default' ? uploadItemImage : uploadLogoImage;
+
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
     const newEvent = { ...event };
 
     setLoaded(true);
-    newEvent.currentTarget.src = defaultImages;
+    if (type) newEvent.currentTarget.src = defaultImages[type];
   };
 
   useEffect(() => {

@@ -24,7 +24,12 @@ const ProductImage: FC<IProductCard> = ({
   return (
     <div className={cn(style.image_wrapper, className)} {...restProps}>
       <Flag className={style.flag} isFavorite={isFavorite} />
-      <LazyImage src={imageUrl || ''} alt={name} className={style.image} />
+      <LazyImage
+        src={imageUrl || ''}
+        alt={name}
+        className={style.image}
+        type="user_default"
+      />
       <div className={style.hover}>
         <div className={style.hover_text}>
           <MagnifierLightGreyIcon />
