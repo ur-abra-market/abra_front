@@ -21,6 +21,10 @@ import {
 } from 'store/reducers/userSlice';
 import { Button } from 'ui-kit';
 
+interface IPhoneData {
+  phoneNumberBody: string;
+  phoneNumberCountryId: number;
+}
 export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const isLoading =
@@ -79,6 +83,14 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
     dispatch(updatePersonalInfo(updatePersonalInfoData));
   };
 
+  const formMethodsPhone = useForm<IPhoneData>({
+    mode: 'all',
+  });
+
+  const onSubmitPhone = (data: any): void => {
+    console.log(data);
+  };
+
   return (
     <div className={style.wrapper}>
       <div className={style.header}>
@@ -99,7 +111,13 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
         </form>
       </FormProvider>
 
-      <PhoneNumber />
+      <FormProvider {...formMethodsPhone}>
+        <form onSubmit={handleSubmit(onSubmitPhone)} className={style.phone_form}>
+          <PhoneNumber />
+
+          <Button type="submit" className={style.submit_button} label="Save" />
+        </form>
+      </FormProvider>
     </div>
   );
 };

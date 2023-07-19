@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
+import { Controller, useFormContext } from 'react-hook-form';
 
 import style from './PhoneNumber.module.scss';
 import {
@@ -17,10 +15,9 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { getCountries } from 'store/reducers/commonSlice';
 import { Input, ISelectOption, Select } from 'ui-kit';
 
-const thisForm = yup.object({ phoneNumberBody: yup.string().required() });
-
-interface formType {
+interface IPhoneNumber {
   phoneNumberBody: string;
+  phoneNumberCountryId: number;
 }
 
 export const PhoneNumber = (): JSX.Element => {
@@ -37,18 +34,12 @@ export const PhoneNumber = (): JSX.Element => {
   );
 
   const {
-    handleSubmit,
-    register,
+    control,
+    setValue,
     setError,
     clearErrors,
     formState: { errors },
-  } = useForm<formType>({
-    resolver: yupResolver(thisForm),
-    mode: 'onChange',
-    defaultValues: {
-      phoneNumberBody: '',
-    },
-  });
+  } = useFormContext<IPhoneNumber>();
 
   useEffect(() => {
     if (!countries.length) {
@@ -61,8 +52,8 @@ export const PhoneNumber = (): JSX.Element => {
     const phoneNumberBodyRawValue = numberBody.replace(/\D/g, '');
 
     // save cursor position
-    const selectionStart = inputElement.current?.selectionStart;
-    const selectionEnd = inputElement.current?.selectionEnd;
+    // const selectionStart = inputElement.current?.selectionStart;
+    // const selectionEnd = inputElement.current?.selectionEnd;
 
     // if an empty string is received and phoneNumberBody exists, it means the input should be cleared
     if (!phoneNumberBodyRawValue && phoneNumberBody) {
@@ -84,12 +75,12 @@ export const PhoneNumber = (): JSX.Element => {
     setPhoneNumberBody(formattedNumber);
 
     // restore cursor position after state update
-    setTimeout(() => {
-      if (inputElement.current) {
-        inputElement.current.selectionStart = selectionStart || 0;
-        inputElement.current.selectionEnd = selectionEnd || 0;
-      }
-    }, 0);
+    // setTimeout(() => {
+    //   if (inputElement.current) {
+    //     inputElement.current.selectionStart = selectionStart || 0;
+    //     inputElement.current.selectionEnd = selectionEnd || 0;
+    //   }
+    // }, 0);
 
     if (!validatePhoneNumber(phoneNumberBodyRawValue, phoneCountryShort)) {
       setError('phoneNumberBody', { message: 'Please, enter a valid phone number' });
@@ -110,39 +101,45 @@ export const PhoneNumber = (): JSX.Element => {
       label: { text: `+${country?.country_code}`, image_src: country?.country_flag },
       value: value.value,
     });
+
+    setValue('phoneNumberCountryId', value.value);
   };
 
   const handlePhoneNumberBodyChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     formatAndValidatePhoneNumberBody(e.currentTarget.value);
   };
 
-  const onSubmit = (data: any): void => {
-    console.log(data);
-  };
-
   if (!countriesWithFlag.length) return <div />;
 
   return (
     <div className={style.wrapper}>
-      <form onSubmit={handleSubmit(onSubmit)} className={style.wrapper}>
-        <Select
-          controlledValue={phoneCountryCode}
-          width="160"
-          className={style.select}
-          onChange={handlePhoneCountryCodeChange}
-          options={countriesWithFlag.map(c => ({
-            label: { text: `+${c.country_code} ${c.country}`, image_src: c.country_flag },
-            value: c.id,
-          }))}
-        />
-        <Input
-          {...register('phoneNumberBody')}
-          ref={inputElement}
-          value={phoneNumberBody}
-          onChange={handlePhoneNumberBodyChange}
-          error={errors?.phoneNumberBody?.message}
-        />
-      </form>
+      <Select
+        controlledValue={phoneCountryCode}
+        width="160"
+        className={style.select}
+        onChange={handlePhoneCountryCodeChange}
+        options={countriesWithFlag.map(c => ({
+          label: { text: `+${c.country_code} ${c.country}`, image_src: c.country_flag },
+          value: c.id,
+        }))}
+      />
+
+      <Controller
+        control={control}
+        name="phoneNumberBody"
+        render={({ field }) => (
+          <Input
+            {...field}
+            onChange={e => {
+              const processedValue = formatAndValidatePhoneNumberBody(e.target.value);
+
+              console.log(e.target.value);
+              field.onChange(processedValue); // передайте обработанное значение в обработчик onChange из поля
+            }}
+            error={errors?.phoneNumberBody?.message}
+          />
+        )}
+      />
     </div>
   );
 };
