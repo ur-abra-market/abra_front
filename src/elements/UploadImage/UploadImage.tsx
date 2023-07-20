@@ -4,7 +4,11 @@ import cn from 'classnames';
 
 import style from './UploadImage.module.scss';
 
-import { CrossRedIcon, UploadItemImageIcon, UploadLogoImageIcon } from 'assets/icons';
+import {
+  CrossRedIcon,
+  DefaultLogoImageIcon,
+  DefaultProductImageSupplierIcon,
+} from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
@@ -14,7 +18,7 @@ interface IUploadImage
   image?: string;
   label?: string;
   placeholder?: string;
-  type: 'default' | 'logo' | 'avatar';
+  type: 'product_image_supplier' | 'logo' | 'avatar';
   uploadImage?: (img: File) => void;
   deleteImage?: () => void;
   description: string;
@@ -38,7 +42,11 @@ export const UploadImage: FC<IUploadImage> = ({
   const dispatch = useAppDispatch();
 
   const uploadImageIcon =
-    type === 'default' ? <UploadItemImageIcon /> : <UploadLogoImageIcon />;
+    type === 'product_image_supplier' ? (
+      <DefaultProductImageSupplierIcon />
+    ) : (
+      <DefaultLogoImageIcon />
+    );
 
   const inputClasses = cn({
     [style.input_logo]: type === 'logo',
@@ -94,7 +102,7 @@ export const UploadImage: FC<IUploadImage> = ({
           <div>
             <LazyImage src={image} alt={description} className={imgClasses} type={type} />
 
-            {type === 'default' && (
+            {type === 'product_image_supplier' && (
               <button className={crossClasses} onClick={deleteImage} type="button">
                 <CrossRedIcon />
               </button>
