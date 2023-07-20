@@ -34,7 +34,7 @@ export const PhoneNumber = (): JSX.Element => {
   );
 
   const {
-    control,
+    register,
     setValue,
     setError,
     clearErrors,
@@ -105,8 +105,13 @@ export const PhoneNumber = (): JSX.Element => {
     setValue('phoneNumberCountryId', value.value);
   };
 
-  const handlePhoneNumberBodyChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    formatAndValidatePhoneNumberBody(e.currentTarget.value);
+  const handlePhoneNumberBodyChange = (e: React.ChangeEvent<HTMLInputElement>): any => {
+    console.log(e.currentTarget.value);
+    const result = formatAndValidatePhoneNumberBody(e.currentTarget.value);
+
+    // if (result) return result;
+
+    return '';
   };
 
   if (!countriesWithFlag.length) return <div />;
@@ -124,21 +129,10 @@ export const PhoneNumber = (): JSX.Element => {
         }))}
       />
 
-      <Controller
-        control={control}
-        name="phoneNumberBody"
-        render={({ field }) => (
-          <Input
-            {...field}
-            onChange={e => {
-              const processedValue = formatAndValidatePhoneNumberBody(e.target.value);
-
-              console.log(e.target.value);
-              field.onChange(processedValue); // передайте обработанное значение в обработчик onChange из поля
-            }}
-            error={errors?.phoneNumberBody?.message}
-          />
-        )}
+      <Input
+        {...register('phoneNumberBody')}
+        // onChange={handlePhoneNumberBodyChange}
+        error={errors?.phoneNumberBody?.message}
       />
     </div>
   );
