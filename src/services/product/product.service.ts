@@ -27,7 +27,7 @@ export const productService = {
 
   getProductById: async ({ product_id }: IProductRequest) => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductCard>>(
-      `products/productCard/${product_id}/`,
+      `products/productCard/${product_id}`,
     );
 
     return data.result;
@@ -35,7 +35,7 @@ export const productService = {
 
   addFavorite: async (params: IProductRequest) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      `products/addFavorite/`,
+      `products/addFavorite`,
       {},
       { params },
     );
@@ -45,7 +45,7 @@ export const productService = {
 
   removeFavorite: async (params: IProductRequest) => {
     const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
-      `products/removeFavorite/`,
+      `products/removeFavorite`,
       {
         params,
       },
@@ -55,13 +55,13 @@ export const productService = {
   },
 
   getProductImagesById: async ({ product_id }: IProductRequest) => {
-    const { data } = await baseConfigService.get(`products/${product_id}/images/`, {});
+    const { data } = await baseConfigService.get(`products/${product_id}/images`, {});
 
     return data.result;
   },
 
   getPopularProduct: async (params: IPopularProductRequest) => {
-    const { data } = await baseConfigService.get(`products/popular/`, {
+    const { data } = await baseConfigService.get(`products/popular`, {
       params,
     });
 
@@ -70,21 +70,21 @@ export const productService = {
 
   getGradesByProductId: async ({ product_id }: IProductRequest) => {
     const { data } = await baseConfigService.get<IGradeProductResponse>(
-      `products/${product_id}/grades/`,
+      `products/${product_id}/grades`,
     );
 
     return data;
   },
 
   deleteList: async (id: string[]) => {
-    const { data } = await baseConfigService.post(`suppliers/deleteProducts/`, [...id]);
+    const { data } = await baseConfigService.post(`suppliers/deleteProducts`, [...id]);
 
     return data.result;
   },
 
   getSimilarProducts: async (params: IPopularProductRequest) => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductCompilation[]>>(
-      `products/similar/`,
+      `products/similar`,
       { params },
     );
 
@@ -93,7 +93,7 @@ export const productService = {
 
   getListManageProducts: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductsListRequest[]>>(
-      `suppliers/manageProducts/`,
+      `suppliers/manageProducts`,
     );
 
     return data.result;
@@ -116,7 +116,7 @@ export const productService = {
       ascending: params.ascending,
     };
 
-    const { data } = await baseConfigService.post('products/pagination/', body, {
+    const { data } = await baseConfigService.post('products/pagination', body, {
       params: queryParams,
     });
 
