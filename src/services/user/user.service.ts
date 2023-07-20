@@ -8,14 +8,14 @@ export const userService = {
   fetchAccountPersonalInfo: async () => {
     const { data } = await baseConfigService.get<
       IBaseResponse<IAccountPersonalInfoResponse>
-    >(`users/account/personalInfo/`);
+    >(`users/account/personalInfo`);
 
     return data.result;
   },
 
   updateAccountPersonalInfo: async (params: IAccountPersonalInfoRequest) => {
     const { data } = await baseConfigService.post(
-      `users/account/personalInfo/update/`,
+      `users/account/personalInfo/update`,
       params,
     );
 
@@ -23,7 +23,7 @@ export const userService = {
   },
 
   getFavoritesProducts: async () => {
-    const { data } = await baseConfigService.get(`users/showFavorites/`);
+    const { data } = await baseConfigService.get(`users/showFavorites`);
 
     return data;
   },
