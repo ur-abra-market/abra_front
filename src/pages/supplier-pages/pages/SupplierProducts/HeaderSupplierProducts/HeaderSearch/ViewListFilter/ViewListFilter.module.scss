@@ -1,0 +1,14 @@
+.layouts {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.active_layout path {
+  fill: var(--color-accent) ;
+}
+
+.inactive_layout {
+  color: var(--color-medium-gray);
+}

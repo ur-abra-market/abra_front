@@ -11,7 +11,7 @@ import { baseConfigService } from 'services/baseConfig.service';
 export const supplierService = {
   hasBusinessInfo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<boolean>>(
-      `suppliers/hasBusinessInfo/`,
+      `suppliers/hasBusinessInfo`,
     );
 
     return data.result;
@@ -19,21 +19,21 @@ export const supplierService = {
 
   hasPersonalInfo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<boolean>>(
-      `suppliers/hasPersonalInfo/`,
+      `suppliers/hasPersonalInfo`,
     );
 
     return data.result;
   },
 
   createBusinessInfo: async (params: IBusinessInfoRequest) => {
-    const { data } = await baseConfigService.post(`register/business/sendInfo/`, params);
+    const { data } = await baseConfigService.post(`register/business/sendInfo`, params);
 
     return data;
   },
 
   fetchCompanyLogo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<string>>(
-      `suppliers/companyLogo/`,
+      `suppliers/companyLogo`,
     );
 
     return data.result;
@@ -41,7 +41,7 @@ export const supplierService = {
 
   fetchBusinessInfo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISupplierBusinessInfo>>(
-      `suppliers/businessInfo/`,
+      `suppliers/businessInfo`,
     );
 
     return data.result;
@@ -49,7 +49,7 @@ export const supplierService = {
 
   updateBusinessInfo: async (params: Partial<ISupplierUpdateBusinessInfo>) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      `suppliers/businessInfo/update/`,
+      `suppliers/businessInfo/update`,
       params,
     );
 
@@ -58,7 +58,7 @@ export const supplierService = {
 
   fetchNotifications: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISupplierNotifications>>(
-      `suppliers/notifications/`,
+      `suppliers/notifications`,
     );
 
     return data.result;
@@ -66,7 +66,7 @@ export const supplierService = {
 
   getProductProperties: async (categoryId: any) => {
     const { data } = await baseConfigService.get(
-      `suppliers/getCategoryProperties/${categoryId}/`,
+      `suppliers/getCategoryProperties/${categoryId}`,
     );
 
     return data;
@@ -74,14 +74,14 @@ export const supplierService = {
 
   getProductVariations: async (categoryId: any) => {
     const { data } = await baseConfigService.get(
-      `suppliers/getCategoryVariations/${categoryId}/`,
+      `suppliers/getCategoryVariations/${categoryId}`,
     );
 
     return data;
   },
 
   addProduct: async (params: any) => {
-    const { data } = await baseConfigService.post(`suppliers/addProduct/`, params);
+    const { data } = await baseConfigService.post(`suppliers/addProduct`, params);
 
     return data;
   },
@@ -92,7 +92,7 @@ export const supplierService = {
     formData.append('file', img);
 
     const { data } = await baseConfigService.post(
-      `suppliers/uploadProductImage/`,
+      `suppliers/uploadProductImage`,
       formData,
       {
         params: {
@@ -115,14 +115,14 @@ export const supplierService = {
         id: number;
         url: string;
       }>
-    >('suppliers/companyLogo/update/', formData);
+    >('suppliers/companyLogo/update', formData);
 
     return data;
   },
 
   deleteCompanyImage: async (company_image_id: number) => {
     const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
-      `suppliers/deleteCompanyImage/`,
+      `suppliers/deleteCompanyImage`,
       { params: { company_image_id } },
     );
 
@@ -131,7 +131,7 @@ export const supplierService = {
 
   updateNotifications: async (params: Partial<ISupplierNotifications>) => {
     await baseConfigService.post<IBaseResponse<boolean>>(
-      `suppliers/notifications/update/`,
+      `suppliers/notifications/update`,
       params,
     );
   },

@@ -6,7 +6,7 @@ import { baseConfigService } from 'services/baseConfig.service';
 export const commonService = {
   getCountry: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ICountry[]>>(
-      `common/country/`,
+      `common/country`,
     );
 
     return data.result;
@@ -14,14 +14,14 @@ export const commonService = {
 
   fetchCompanyNumberEmployees: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<INumberEmployees[]>>(
-      'common/numberEmployees/',
+      'common/numberEmployees',
     );
 
     return data.result;
   },
 
   fetchAllCategories: async () => {
-    const { data } = await baseConfigService.get<IAllCategories>(`categories/all/`);
+    const { data } = await baseConfigService.get<IAllCategories>(`categories/all`);
 
     return data;
   },

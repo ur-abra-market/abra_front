@@ -18,10 +18,8 @@ import ShowPage from 'old-components/ShowPage';
 import { tableStyleClasses } from 'old-components/SupplierProductsListPage/constantsOfClassesStyles';
 import Table from 'old-components/table';
 import Pagination from 'old-components/ui/Pagination';
-import {
-  deleteProducts,
-  manageProductsService,
-} from 'store/reducers/manageProductsSlice';
+import { deleteProducts } from 'store/reducers/manageProductsSlice';
+import { manageProducts } from 'store/reducers/productSlice/thunks';
 import { Checkbox, Input, ISelectOption, Search, Select } from 'ui-kit';
 
 export const CATEGORY_SELECT: ISelectOption[] = [
@@ -59,7 +57,7 @@ export const SupplierProductsListPage: FC = WithLayout((): JSX.Element => {
   // const { isLoading, products } = useAppSelector(state => state.manageProducts);
 
   useEffect(() => {
-    dispatch(manageProductsService());
+    dispatch(manageProducts());
   }, [dispatch]);
 
   const handleChangeModalActive = (): void => {
