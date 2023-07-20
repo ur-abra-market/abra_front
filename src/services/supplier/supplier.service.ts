@@ -25,10 +25,10 @@ export const supplierService = {
     return data.result;
   },
 
-  createBusinessInfo: async (params: IBusinessInfoRequest) => {
+  createBusinessInfo: async (params: FormData) => {
     const { data } = await baseConfigService.post(`register/business/sendInfo`, params);
 
-    return data;
+    return data.result;
   },
 
   fetchCompanyLogo: async () => {
@@ -105,7 +105,7 @@ export const supplierService = {
     return data;
   },
 
-  uploadCompanyLogo: async (image: File) => {
+  updateCompanyLogo: async (image: File) => {
     const formData = new FormData();
 
     formData.append('file', image);
@@ -116,6 +116,19 @@ export const supplierService = {
         url: string;
       }>
     >('suppliers/companyLogo/update', formData);
+
+    return data;
+  },
+
+  uploadCompanyImage: async (image: File) => {
+    const formData = new FormData();
+
+    formData.append('file', image);
+
+    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+      'suppliers/uploadCompanyImage/',
+      formData,
+    );
 
     return data;
   },

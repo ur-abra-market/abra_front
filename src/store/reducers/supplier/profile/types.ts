@@ -21,7 +21,6 @@ export interface ISupplierBusinessInfo {
   countryCode: string;
   address: string;
   companyLogo: string;
-  companyLogoId: number | null;
   countryId: number | null;
 }
 

@@ -22,8 +22,8 @@ import {
   updateBusinessInfo,
   supplierCompanyLogoSelector,
   supplierLoadingSelector,
-  uploadCompanyLogo,
 } from 'store/reducers/supplier/profile';
+import { updateCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -39,8 +39,8 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   });
   const { setValue, watch } = formMethods;
 
-  const handleUploadImage = (image: File): void => {
-    dispatch(uploadCompanyLogo(image));
+  const handleUpdateImage = (image: File): void => {
+    dispatch(updateCompanyLogo(image));
   };
 
   useSupplierBusinessInfoSetValue(setValue, businessInfoData);
@@ -85,7 +85,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
       <p className={style.subtitle}>Business Profile</p>
       <UploadImage
         image={companyLogo}
-        uploadImage={handleUploadImage}
+        uploadImage={handleUpdateImage}
         type="logo"
         label="Add logo or profile image"
         placeholder="The customers will recognize your store by this image"

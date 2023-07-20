@@ -23,13 +23,8 @@ export interface ISupplierCompanyInfo {
   images: any[];
 }
 
-export interface IBusinessInfoRequest
-  extends Omit<ISupplierUpdateBusinessInfo, 'company_data_request'> {
-  company_data_request: ISendISupplierCompanyInfo;
-}
-
-interface ISendISupplierCompanyInfo extends ISupplierUpdateCompanyInfo {
-  logo_url: string;
+export interface IBusinessInfoRequest extends ISupplierUpdateBusinessInfo {
+  file: File | undefined;
 }
 
 export interface ISupplierNotifications {

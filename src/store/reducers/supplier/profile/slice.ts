@@ -9,8 +9,9 @@ import {
   updateSupplierNotifications,
   hasPersonalInfo,
   hasCompanyInfo,
-  uploadCompanyLogo,
   ISupplierProfileSliceInitialState,
+  updateCompanyLogo,
+  createAccountBusinessInfo,
 } from '.';
 
 import { LoadingStatusEnum } from 'common/types';
@@ -33,7 +34,6 @@ const initialState: ISupplierProfileSliceInitialState = {
     email: '',
     address: '',
     companyLogo: '',
-    companyLogoId: null,
     countryShort: '',
     phoneNumber: '',
     phoneId: null,
@@ -51,6 +51,15 @@ export const supplierProfileSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
+      .addCase(createAccountBusinessInfo.pending, state => {
+        state.loading.businessInfoLoading = LoadingStatusEnum.Loading;
+      })
+      .addCase(createAccountBusinessInfo.fulfilled, state => {
+        state.loading.businessInfoLoading = LoadingStatusEnum.Success;
+      })
+      .addCase(createAccountBusinessInfo.rejected, state => {
+        state.loading.businessInfoLoading = LoadingStatusEnum.Failed;
+      })
       .addCase(getBusinessInfo.pending, state => {
         state.loading.businessInfoLoading = LoadingStatusEnum.Loading;
       })
@@ -118,19 +127,16 @@ export const supplierProfileSlice = createSlice({
       .addCase(fetchCompanyLogo.rejected, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Failed;
       })
-
-      .addCase(uploadCompanyLogo.pending, state => {
+      .addCase(updateCompanyLogo.pending, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Loading;
       })
-      .addCase(uploadCompanyLogo.fulfilled, (state, action) => {
-        state.businessInfo.companyLogo = action.payload.result.image;
-        state.businessInfo.companyLogoId = action.payload.result.id;
+      .addCase(updateCompanyLogo.fulfilled, (state, action) => {
+        state.businessInfo.companyLogo = action.payload;
         state.loading.companyLogoLoading = LoadingStatusEnum.Success;
       })
-      .addCase(uploadCompanyLogo.rejected, state => {
+      .addCase(updateCompanyLogo.rejected, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Failed;
       })
-
       .addCase(deleteCompanyImage.pending, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Loading;
       })
@@ -141,7 +147,6 @@ export const supplierProfileSlice = createSlice({
       .addCase(deleteCompanyImage.rejected, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Failed;
       })
-
       .addCase(hasPersonalInfo.fulfilled, (state, action) => {
         state.hasPersonalInfo = action.payload;
       })
