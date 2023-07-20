@@ -8,6 +8,7 @@ import {
   ISupplierBusinessInfo,
   ISupplierUpdateBusinessInfo,
   ISupplierNotifications,
+  IBusinessInfoRequest,
 } from 'services/supplier/supplier.serviceTypes';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
 
@@ -30,7 +31,7 @@ export const getBusinessInfo = createAsyncThunk<
 
 export const createAccountBusinessInfo = createAsyncThunk<
   void,
-  FormData,
+  IBusinessInfoRequest,
   IAsyncThunkConfig
 >(
   'createAccount/createAccountBusinessInfo',

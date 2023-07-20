@@ -66,25 +66,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
       file: logo,
     };
 
-    const formData = new FormData();
-
-    formData.append(
-      'supplier_data_request',
-      JSON.stringify(businessInfoData.supplier_data_request),
-    );
-    formData.append(
-      'company_data_request',
-      JSON.stringify(businessInfoData.company_data_request),
-    );
-    formData.append(
-      'company_phone_data_request',
-      JSON.stringify(businessInfoData.company_phone_data_request),
-    );
-    if (businessInfoData.file) {
-      formData.append('file', businessInfoData.file!);
-    }
-
-    const result = await dispatch(createAccountBusinessInfo(formData));
+    const result = await dispatch(createAccountBusinessInfo(businessInfoData));
 
     if (createAccountBusinessInfo.fulfilled.match(result)) {
       navigate(HOME);

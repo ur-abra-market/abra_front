@@ -1,4 +1,5 @@
 import {
+  IBusinessInfoRequest,
   ISupplierBusinessInfo,
   ISupplierNotifications,
   ISupplierUpdateBusinessInfo,
@@ -24,8 +25,23 @@ export const supplierService = {
     return data.result;
   },
 
-  createBusinessInfo: async (params: FormData) => {
-    const { data } = await baseConfigService.post(`register/business/sendInfo`, params);
+  createBusinessInfo: async (params: IBusinessInfoRequest) => {
+    const formData = new FormData();
+
+    formData.append(
+      'supplier_data_request',
+      JSON.stringify(params.supplier_data_request),
+    );
+    formData.append('company_data_request', JSON.stringify(params.company_data_request));
+    formData.append(
+      'company_phone_data_request',
+      JSON.stringify(params.company_phone_data_request),
+    );
+    if (params.file) {
+      formData.append('file', params.file!);
+    }
+
+    const { data } = await baseConfigService.post(`register/business/sendInfo`, formData);
 
     return data.result;
   },
