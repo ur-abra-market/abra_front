@@ -64,6 +64,11 @@
     outline: none;
   }
 
+  &:active {
+    border-radius: 0;
+    outline: none;
+  }
+
   &.header_disabled {
     pointer-events: none;
     cursor: default;
