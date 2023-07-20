@@ -128,7 +128,6 @@ export const Select = forwardRef(
       };
     });
 
-    // disable scrolling by click on space or arrows on keyboard
     useEffect(() => {
       let currentItemId = 0;
 

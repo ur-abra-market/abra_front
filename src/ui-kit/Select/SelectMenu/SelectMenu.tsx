@@ -40,8 +40,8 @@ export const SelectMenu: FC<ISelectMenuPropsType> = ({
       role="listbox"
       aria-expanded={isOpen}
       className={mainClassName}
-      aria-multiselectable="false" // indicates that multiple items can be selected from the list
-      aria-orientation="vertical" // specifies the orientation of an interface or component
+      aria-multiselectable="false" // indicates that multiple list items can't be selected
+      aria-orientation="vertical" // indicates that the orientation of the component is vertical
     >
       {mappedSelectItems}
     </ul>
