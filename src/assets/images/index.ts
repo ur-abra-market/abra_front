@@ -6,9 +6,8 @@ import Banner4Image from './files/banner4.jpg';
 import Banner5Image from './files/banner5.jpg';
 import Banner6Image from './files/banner6.jpg';
 import Banner7Image from './files/banner7.jpg';
-import DefaultProductImage from './files/default-product-image.png';
+import UserDefaultProductImage from './files/default-product-image.png';
 import HangerImage from './files/hanger.png';
-import ImageDefaultImage from './files/image-default.png';
 import PaymentOptionsImage from './files/payment-options.png';
 
 export {
@@ -21,7 +20,6 @@ export {
   Banner6Image,
   Banner7Image,
   HangerImage,
-  ImageDefaultImage,
   PaymentOptionsImage,
-  DefaultProductImage,
+  UserDefaultProductImage,
 };
