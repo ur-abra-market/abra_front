@@ -8,11 +8,11 @@ import { SelectMenu } from './SelectMenu/SelectMenu';
 
 import { useOnClickOutside, useOnHoverOutside } from 'common/hooks';
 
-const keyboardKeys = {
-  ENTER_KEYBOARD: 'Enter',
-  ARROW_UP_KEYBOARD: 'ArrowUp',
-  ARROW_DOWN_KEYBOARD: 'ArrowDown',
-  ESCAPE_KEYBOARD: 'Escape',
+const KEYBOARD = {
+  ENTER: 'Enter',
+  ARROW_UP: 'ArrowUp',
+  ARROW_DOWN: 'ArrowDown',
+  ESCAPE: 'Escape',
 };
 
 const PREV = 1;
@@ -36,7 +36,6 @@ export interface ISelect {
   className?: string;
   menuItemsPosition?: SelectPositionType;
   header?: boolean; // to add header use --> header={true}
-  padding?: string;
   disabled?: boolean;
 }
 
@@ -52,7 +51,6 @@ export const Select = forwardRef(
       className,
       menuItemsPosition = 'down',
       header = false,
-      padding = '14px',
       defaultValue,
       disabled,
     }: ISelect,
@@ -150,25 +148,14 @@ export const Select = forwardRef(
           const keyCode = e.code;
 
           e.preventDefault();
-          if (
-            keyCode === keyboardKeys.ENTER_KEYBOARD ||
-            keyCode === keyboardKeys.ESCAPE_KEYBOARD
-          ) {
+          if (keyCode === KEYBOARD.ENTER || keyCode === KEYBOARD.ESCAPE) {
             handleCloseSelectMenu();
           }
 
-          if (
-            keyCode === keyboardKeys.ARROW_UP_KEYBOARD &&
-            options[currentItemId - PREV]
-          ) {
-            e.preventDefault();
+          if (keyCode === KEYBOARD.ARROW_UP && options[currentItemId - PREV]) {
             currentItemId -= PREV;
           }
-          if (
-            keyCode === keyboardKeys.ARROW_DOWN_KEYBOARD &&
-            options[currentItemId + NEXT]
-          ) {
-            e.preventDefault();
+          if (keyCode === KEYBOARD.ARROW_DOWN && options[currentItemId + NEXT]) {
             currentItemId += NEXT;
           }
 
@@ -178,10 +165,7 @@ export const Select = forwardRef(
         document.onkeydown = e => {
           const keyCode = e.code;
 
-          if (
-            keyCode === keyboardKeys.ARROW_UP_KEYBOARD ||
-            keyCode === keyboardKeys.ARROW_DOWN_KEYBOARD
-          )
+          if (keyCode === KEYBOARD.ARROW_UP || keyCode === KEYBOARD.ARROW_DOWN)
             return true;
         };
         window.onscroll = () => {
@@ -210,7 +194,6 @@ export const Select = forwardRef(
           isOpen={isOpenItemsMenu}
           className={menuClassname}
           options={options}
-          padding={padding}
         />
       </div>
     );

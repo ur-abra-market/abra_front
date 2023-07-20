@@ -13,7 +13,6 @@ interface ISelectMenuPropsType {
   options: ISelectOption[];
   isOpen: boolean;
   className?: string;
-  padding: string;
 }
 
 export const SelectMenu: FC<ISelectMenuPropsType> = ({
@@ -22,7 +21,6 @@ export const SelectMenu: FC<ISelectMenuPropsType> = ({
   options,
   selectedValue,
   handleSelectedValue,
-  padding,
 }) => {
   if (!isOpen) return null;
 
@@ -33,7 +31,6 @@ export const SelectMenu: FC<ISelectMenuPropsType> = ({
       value={el}
       handleSelectedValue={handleSelectedValue}
       currentSelectedItem={selectedValue}
-      style={{ padding }}
     />
   ));
 

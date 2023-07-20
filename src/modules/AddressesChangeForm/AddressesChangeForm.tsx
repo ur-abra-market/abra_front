@@ -135,7 +135,6 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
                     {...field}
                     options={listCountry}
                     placeholder="Select a country"
-                    padding="23px"
                     className={style.select}
                     error={errors.country?.message}
                     defaultValue={watch('country')}

@@ -202,11 +202,11 @@ export const SupplierProductsListPage: FC = WithLayout((): JSX.Element => {
           </div>
           <div className={style.filter}>
             <div className={style.filter_name}>Sort by:</div>
-            <Select options={CATEGORY_SELECT} padding="23px" className={style.select} />
+            <Select options={CATEGORY_SELECT} className={style.select} />
           </div>
 
           <div className={style.filter}>
-            <Select options={STATUS_SELECT} padding="23px" className={style.select} />
+            <Select options={STATUS_SELECT} className={style.select} />
           </div>
           <Checkbox
             label="Include Hidden"

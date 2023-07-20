@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -10,14 +10,12 @@ interface ISelectItem {
   currentSelectedItem: ISelectOption;
   value: ISelectOption;
   handleSelectedValue: (value: ISelectOption) => void;
-  style?: CSSProperties;
 }
 
 export const SelectItem: FC<ISelectItem> = ({
   currentSelectedItem,
   value,
   handleSelectedValue,
-  style,
 }) => {
   const handleClickOnItem = (): void => {
     handleSelectedValue(value);
@@ -44,7 +42,6 @@ export const SelectItem: FC<ISelectItem> = ({
     <li
       role="option"
       className={selectedItemClassName}
-      style={style}
       onClick={handleClickOnItem}
       onKeyDown={handleClickOnItem}
       onMouseEnter={handleHoverOnItem}
