@@ -1,3 +1,19 @@
+@mixin input {
+  cursor: pointer;
+
+  position: relative;
+
+  appearance: none;
+  background: var(--color-light-gray);
+  border: none;
+
+  transition: 0.1s;
+
+  &:focus {
+    outline: 1px solid var(--color-medium-gray);
+  }
+}
+
 .label {
   cursor: pointer;
 
@@ -7,11 +23,11 @@
 
   width: max-content;
 
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--fz-s2);
+  font-weight: var(--regular);
   font-style: normal;
   line-height: 20px;
-  color:var(--color-black);
+  color: var(--color-black);
   letter-spacing: -0.24px;
 
   &:has(input:disabled) {
@@ -22,26 +38,21 @@
 }
 
 .input_notification {
-  cursor: pointer;
-
-  position: relative;
+  @include input;
 
   display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: left;
 
-  padding: 1px;
+  width: 52px;
+  height: 32px;
 
-  appearance: none;
-  background: var(--color-light-gray);
-  border: none;
-
-  transition: 0.1s;
+  border-radius: 37px;
 
   &::before,
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     display: inline-block;
   }
@@ -49,20 +60,25 @@
   &::before {
     transform: matrix(-1, 0, 0, 1, 0, 0);
 
+    width: 28px;
+    height: 28px;
+
     background: var(--color-white);
     border: 1px solid rgba(0, 0, 0, 0.04);
     border-radius: 100px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.16), 0 3px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.16),
+      0 3px 1px rgba(0, 0, 0, 0.1);
   }
 
   &::after {
     border: 1px solid rgba(0, 0, 0, 0.04);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.16), 0 3px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.16),
+      0 3px 1px rgba(0, 0, 0, 0.1);
   }
 
   &:checked {
     justify-content: right;
-    background:  var(--color-accent);
+    background: var(--color-accent);
   }
 
   &:disabled {
@@ -71,26 +87,18 @@
 }
 
 .input_default {
-  cursor: pointer;
-
-  position: relative;
+  @include input;
 
   width: 24px;
   height: 24px;
-
-  appearance: none;
-  background: var(--color-light-gray);
-  border: none;
   border-radius: 4px;
-
-  transition: 0.1s;
 
   &:checked {
     background: var(--color-accent);
   }
 
   &:checked::after {
-    content: "";
+    content: '';
 
     position: absolute;
     top: 0;
@@ -100,29 +108,7 @@
     width: 24px;
     height: 24px;
 
-    background: url("../../assets/icons/files/check-mark-white.svg") no-repeat center;
-  }
-}
-
-.md {
-  width: 52px;
-  height: 32px;
-  border-radius: 37px;
-
-  &::before {
-    width: 28px;
-    height: 28px;
-  }
-}
-
-.sm {
-  width: 36px;
-  height: 24px;
-  border-radius: 50px;
-
-  &::before {
-    width: 18px;
-    height: 18px;
+    background: url('../../assets/icons/files/check-mark-white.svg') no-repeat center;
   }
 }
 
