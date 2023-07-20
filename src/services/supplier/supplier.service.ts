@@ -2,7 +2,6 @@ import {
   ISupplierBusinessInfo,
   ISupplierNotifications,
   ISupplierUpdateBusinessInfo,
-  IBusinessInfoRequest,
 } from './supplier.serviceTypes';
 
 import { IBaseResponse } from 'common/types';
