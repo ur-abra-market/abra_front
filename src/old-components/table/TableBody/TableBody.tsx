@@ -26,7 +26,15 @@ const TableBody: FC<TableBodyProps> = ({ data, columns, classes }): JSX.Element 
     const fieldValue = columns[column].path;
 
     if (fieldValue === 'image_url') {
-      return <LazyImage width={40} height={40} src={`${item.image_url}`} alt="img" />;
+      return (
+        <LazyImage
+          width={40}
+          height={40}
+          src={`${item.image_url}`}
+          alt="img"
+          type="default_image"
+        />
+      );
     }
     if (fieldValue === 'with_discount' && item.with_discount === 0) return 'Off-sale';
 

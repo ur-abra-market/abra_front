@@ -7,7 +7,7 @@ import style from './UploadImage.module.scss';
 import {
   CrossRedIcon,
   DefaultLogoImageIcon,
-  DefaultSupplierItemImageIcon,
+  DefaultProductImageSupplierIcon,
 } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
@@ -18,7 +18,7 @@ interface IUploadImage
   image?: string;
   label?: string;
   placeholder?: string;
-  type: 'supplier_default' | 'logo' | 'avatar';
+  type: 'product_image_supplier' | 'logo' | 'avatar';
   uploadImage?: (img: File) => void;
   deleteImage?: () => void;
   description: string;
@@ -42,8 +42,8 @@ export const UploadImage: FC<IUploadImage> = ({
   const dispatch = useAppDispatch();
 
   const uploadImageIcon =
-    type === 'supplier_default' ? (
-      <DefaultSupplierItemImageIcon />
+    type === 'product_image_supplier' ? (
+      <DefaultProductImageSupplierIcon />
     ) : (
       <DefaultLogoImageIcon />
     );
@@ -102,7 +102,7 @@ export const UploadImage: FC<IUploadImage> = ({
           <div>
             <LazyImage src={image} alt={description} className={imgClasses} type={type} />
 
-            {type === 'supplier_default' && (
+            {type === 'product_image_supplier' && (
               <button className={crossClasses} onClick={deleteImage} type="button">
                 <CrossRedIcon />
               </button>

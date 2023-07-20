@@ -38,7 +38,7 @@ const CheckItems: FC<CheckItemsProps> = ({ index }): JSX.Element => {
         </div>
         <div className={style.check_items_product}>
           <div className={style.image}>
-            <LazyImage src={Banner1Image} alt="" />
+            <LazyImage src={Banner1Image} alt="" type="default_image" />
           </div>
           <div className={style.check_items_product_info}>
             <div className={style.check_items_product_info_name}>

@@ -11,20 +11,27 @@ import cn from 'classnames';
 
 import style from './LazyImage.module.scss';
 
+import defaultImage from 'assets/icons/files/default-image.svg';
 import defaultLogoImage from 'assets/icons/files/default-logo-image.svg';
 import defaultSupplierItemImage from 'assets/icons/files/default-supplier-item-image.svg';
 import defaultUserItemImage from 'assets/images/files/default-product-image.png';
 
 interface ILazyImage extends ImgHTMLAttributes<HTMLImageElement> {
   children?: ReactNode;
-  type?: 'logo' | 'avatar' | 'supplier_default' | 'user_default';
+  type:
+    | 'logo'
+    | 'avatar'
+    | 'product_image_supplier'
+    | 'product_image_user'
+    | 'default_image';
 }
 
 const defaultImages = {
   logo: defaultLogoImage,
   avatar: defaultLogoImage,
-  supplier_default: defaultSupplierItemImage,
-  user_default: defaultUserItemImage,
+  product_image_supplier: defaultSupplierItemImage,
+  product_image_user: defaultUserItemImage,
+  default_image: defaultImage,
 };
 
 export const LazyImage: FC<ILazyImage> = ({

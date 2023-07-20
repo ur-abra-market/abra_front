@@ -28,7 +28,7 @@ const ProductImage: FC<IProductCard> = ({
         src={imageUrl || ''}
         alt={name}
         className={style.image}
-        type="user_default"
+        type="product_image_user"
       />
       <div className={style.hover}>
         <div className={style.hover_text}>
