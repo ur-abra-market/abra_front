@@ -12,9 +12,9 @@ import { supplierLoadingSelector } from 'store/reducers/supplier/profile';
 import { Button, Checkbox, Input, ISelectOption, Label, Select } from 'ui-kit';
 
 const BUSINESS_SECTOR_DATA: ISelectOption[] = [
-  { label: 'Clothes', value: 'Clothes' },
-  { label: 'Accessories', value: 'Accessories' },
-  { label: 'Electronics', value: 'Electronics' },
+  { label: { text: 'Clothes' }, value: 'Clothes' },
+  { label: { text: 'Accessories' }, value: 'Accessories' },
+  { label: { text: 'Electronics' }, value: 'Electronics' },
 ];
 
 interface IBusinessProfileForm {
@@ -128,7 +128,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   error={errors?.numEmployees?.message}
                   options={numberEmployees.map(el => ({
                     value: el.id,
-                    label: el.number,
+                    label: { text: el.number },
                   }))}
                   className={style.select}
                   defaultValue={typeof field.value === 'number' ? field.value : undefined}
@@ -155,7 +155,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                 error={errors?.countryRegistration?.message}
                 options={countries.map(el => ({
                   value: el.id,
-                  label: el.country,
+                  label: { text: el.country },
                 }))}
                 placeholder="Select"
                 onChange={value => {
