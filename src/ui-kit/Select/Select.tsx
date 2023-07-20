@@ -96,6 +96,7 @@ export const Select = forwardRef(
       [styles.header_active]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active_up]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active]: header && menuItemsPosition === 'down' && isOpenItemsMenu,
+      [styles.focus_disabled]: isOpenItemsMenu,
       [styles.header_disabled]: disabled,
     });
     const menuClassname = cn({
