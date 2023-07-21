@@ -1,6 +1,11 @@
 .main {
   cursor: pointer;
+
+  display: flex;
+  column-gap: 10px;
+
   padding: 14px;
+
   word-break: break-word;
 
   &.item_selected {
@@ -20,3 +25,6 @@
   background-color: var(--color-dark-gray);
 }
 
+.image {
+  width: 20px;
+}

@@ -25,6 +25,7 @@ export const SelectMenu: FC<ISelectMenuPropsType> = ({
   if (!isOpen) return null;
 
   const mainClassName = cn(className, styles.main);
+
   const mappedSelectItems = options.map(el => (
     <SelectItem
       key={el.value}
