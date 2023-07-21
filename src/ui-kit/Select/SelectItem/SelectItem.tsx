@@ -22,20 +22,21 @@ export const SelectItem: FC<ISelectItem> = ({
     handleSelectedValue(value);
   };
 
-  const [currentClassName, setCurrentClassName] = useState('');
+  const [isItemHover, setItemHover] = useState(false);
 
   const handleHoverOnItem = (): void => {
     if (currentSelectedItem.label !== value.label) {
-      setCurrentClassName(styles.main_hover);
+      setItemHover(true);
     }
   };
   const handleLeaveHoverOnItem = (): void => {
     if (currentSelectedItem.label !== value.label) {
-      setCurrentClassName(styles.main);
+      setItemHover(false);
     }
   };
 
-  const selectedItemClassName = cn(styles.main, currentClassName, {
+  const selectedItemClassName = cn(styles.item, {
+    [styles.item_hover]: isItemHover,
     [styles.item_selected]: currentSelectedItem.label === value.label,
   });
 

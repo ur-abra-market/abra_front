@@ -1,4 +1,4 @@
-.main {
+.item {
   cursor: pointer;
 
   display: flex;
@@ -7,14 +7,14 @@
   padding: 14px;
 
   word-break: break-word;
-
-  &.item_selected {
-    color: var(--color-white);
-    background-color: var(--color-medium-gray);
-  }
 }
 
-.main_hover {
+.item_selected {
+  color: var(--color-white);
+  background-color: var(--color-medium-gray);
+}
+
+.item_hover {
   cursor: pointer;
 
   padding: 14px;
