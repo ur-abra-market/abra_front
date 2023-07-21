@@ -5,13 +5,13 @@ import { ISelectOption, Select } from 'ui-kit';
 
 export const SaleStatusSetting = (): JSX.Element => {
   const STATUS_SELECT: ISelectOption[] = [
-    { label: 'On Sale', value: '1' },
-    { label: 'Off-sale', value: '2' },
+    { label: { text: 'On Sale' }, value: '1' },
+    { label: { text: 'Off-sale' }, value: '2' },
   ];
 
   return (
     <div className={style.filter}>
-      <Select options={STATUS_SELECT} padding="23px" className={style.select} />
+      <Select options={STATUS_SELECT} className={style.select} />
     </div>
   );
 };

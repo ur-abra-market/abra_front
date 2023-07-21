@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -9,18 +9,16 @@ import { ISelectOption } from 'ui-kit';
 interface ISelectItem {
   currentSelectedItem: ISelectOption;
   value: ISelectOption;
-  onClick: (value: ISelectOption) => void;
-  style?: CSSProperties;
+  handleSelectedValue: (value: ISelectOption) => void;
 }
 
 export const SelectItem: FC<ISelectItem> = ({
   currentSelectedItem,
   value,
-  onClick,
-  style,
+  handleSelectedValue,
 }) => {
   const handleClickOnItem = (): void => {
-    onClick(value);
+    handleSelectedValue(value);
   };
 
   const [currentClassName, setCurrentClassName] = useState(styles.main);
@@ -41,15 +39,17 @@ export const SelectItem: FC<ISelectItem> = ({
   });
 
   return (
-    <div
-      role="presentation"
-      onClick={handleClickOnItem}
+    <li
+      role="option"
       className={selectedItemClassName}
+      onClick={handleClickOnItem}
+      onKeyDown={handleClickOnItem}
       onMouseEnter={handleHoverOnItem}
       onMouseLeave={handleLeaveHoverOnItem}
-      style={style}
+      aria-selected={currentSelectedItem.label === value.label} // indicates that the item is selected or active
     >
-      {value.label}
-    </div>
+      {value.label.image_src && <img src={value.label.image_src} alt="" />}
+      <p>{value.label.text}</p>
+    </li>
   );
 };

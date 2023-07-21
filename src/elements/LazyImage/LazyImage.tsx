@@ -11,13 +11,28 @@ import cn from 'classnames';
 
 import style from './LazyImage.module.scss';
 
-import uploadItemImage from 'assets/icons/files/upload-item-image.svg';
-import uploadLogoImage from 'assets/icons/files/upload-logo-image.svg';
+import defaultImage from 'assets/icons/files/default-image.svg';
+import defaultLogoImage from 'assets/icons/files/default-logo-image.svg';
+import defaultSupplierItemImage from 'assets/icons/files/default-supplier-item-image.svg';
+import defaultUserItemImage from 'assets/images/files/default-product-image.png';
 
 interface ILazyImage extends ImgHTMLAttributes<HTMLImageElement> {
   children?: ReactNode;
-  type?: 'logo' | 'avatar' | 'default';
+  type:
+    | 'logo'
+    | 'avatar'
+    | 'product_image_supplier'
+    | 'product_image_user'
+    | 'default_image';
 }
+
+const defaultImages = {
+  logo: defaultLogoImage,
+  avatar: defaultLogoImage,
+  product_image_supplier: defaultSupplierItemImage,
+  product_image_user: defaultUserItemImage,
+  default_image: defaultImage,
+};
 
 export const LazyImage: FC<ILazyImage> = ({
   alt,
@@ -30,12 +45,12 @@ export const LazyImage: FC<ILazyImage> = ({
   ...restProps
 }): JSX.Element => {
   const [loaded, setLoaded] = useState(false);
-  const defaultImages = type === 'default' ? uploadItemImage : uploadLogoImage;
+
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
     const newEvent = { ...event };
 
     setLoaded(true);
-    newEvent.currentTarget.src = defaultImages;
+    if (type) newEvent.currentTarget.src = defaultImages[type];
   };
 
   useEffect(() => {
