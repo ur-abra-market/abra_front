@@ -1,18 +1,29 @@
-@mixin input {
+@mixin input($width, $height, $border-rd) {
   cursor: pointer;
 
   position: relative;
 
+  width: $width;
+  height: $height;
+
   appearance: none;
   background: var(--color-light-gray);
   border: none;
+  border-radius: $border-rd;
 
   transition: 0.1s;
 
   &:focus {
     outline: 1px solid var(--color-medium-gray);
   }
+
+  &:disabled {
+    opacity: 0.5;
+    transition: 0.3s;
+  }
 }
+
+$shadow-color: #000;
 
 .label {
   cursor: pointer;
@@ -29,69 +40,48 @@
   line-height: 20px;
   color: var(--color-black);
   letter-spacing: -0.24px;
-
-  &:has(input:disabled) {
-    pointer-events: none;
-    cursor: default;
-    opacity: 0.5;
-  }
 }
 
 .input_notification {
-  @include input;
+  @include input(52px, 32px, 37px);
 
   display: flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: left;
 
-  width: 52px;
-  height: 32px;
-
-  border-radius: 37px;
-
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    display: inline-block;
-  }
-
   &::before {
-    transform: matrix(-1, 0, 0, 1, 0, 0);
+    content: '';
 
-    width: 28px;
-    height: 28px;
+    position: absolute;
+    left: 4px;
+
+    width: 26px;
+    height: 26px;
 
     background: var(--color-white);
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    border-radius: 100px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.16),
-      0 3px 1px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba($shadow-color, 0.04);
+    border-radius: 50%;
+    box-shadow: 0 3px 8px rgba($shadow-color, 0.15), 0 1px 1px rgba($shadow-color, 0.16),
+      0 3px 1px rgba($shadow-color, 0.1);
+
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
   }
 
-  &::after {
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.16),
-      0 3px 1px rgba(0, 0, 0, 0.1);
+  &:checked::before {
+    -webkit-transform: translateX(18px);
+    -ms-transform: translateX(18px);
+    transform: translateX(18px);
   }
 
   &:checked {
-    justify-content: right;
     background: var(--color-accent);
-  }
-
-  &:disabled {
-    opacity: 0.5;
   }
 }
 
 .input_default {
-  @include input;
-
-  width: 24px;
-  height: 24px;
-  border-radius: 4px;
+  @include input(24px, 24px, 4px);
 
   &:checked {
     background: var(--color-accent);
@@ -113,5 +103,7 @@
 }
 
 .disabled {
+  pointer-events: none;
+  cursor: default;
   opacity: 0.5;
 }

@@ -15,7 +15,9 @@ export interface ICheckbox
 
 export const Checkbox = forwardRef<HTMLInputElement, ICheckbox>(
   ({ label, variant, className, disabled, ...restProps }, ref): JSX.Element => {
-    const labelClasses = cn(style.label, className);
+    const labelClasses = cn(style.label, className, {
+      [style.disabled]: variant === 'default' && disabled,
+    });
     const inputClasses = cn({
       [style.input_notification]: variant === 'notification',
       [style.input_default]: variant === 'default',

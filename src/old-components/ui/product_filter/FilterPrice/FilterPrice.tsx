@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import SwitchBox from 'old-components/SwitchBox';
 import { priceFrom, priceTo } from 'store/reducers/filterSlice';
 import { productPaginateService } from 'store/reducers/productPaginateSlice';
+import { Checkbox } from 'ui-kit';
 
 const FilterPrice = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -46,7 +47,12 @@ const FilterPrice = (): JSX.Element => {
           />
         </div>
       </div>
-      <SwitchBox label="Only discounted items" />
+      <Checkbox
+        variant="default"
+        label="Only discounted items"
+        className={style.filter_price_checkbox}
+      />
+      {/* <SwitchBox label="Only discounted items" /> */}
       {/* <SwitchDiscount /> */}
     </div>
   );
