@@ -1,35 +1,49 @@
-import React, { CSSProperties, FC, ReactNode, useRef } from 'react';
+import React, { FC } from 'react';
 
 import cn from 'classnames';
 
 import styles from './SelectMenu.module.scss';
 
+import { ISelectOption } from 'ui-kit/Select/Select';
+import { SelectItem } from 'ui-kit/Select/SelectItem/SelectItem';
+
 interface ISelectMenuPropsType {
+  selectedValue: ISelectOption;
+  handleSelectedValue: (value: ISelectOption) => void;
+  options: ISelectOption[];
   isOpen: boolean;
-  children: ReactNode;
-  height?: string;
   className?: string;
-  style?: CSSProperties;
 }
 
 export const SelectMenu: FC<ISelectMenuPropsType> = ({
-  children,
   isOpen,
-  height,
   className,
-  style,
+  options,
+  selectedValue,
+  handleSelectedValue,
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const inlineStyles = height ? { maxHeight: height, ...style } : { ...style };
-
   if (!isOpen) return null;
 
   const mainClassName = cn(className, styles.main);
+  const mappedSelectItems = options.map(el => (
+    <SelectItem
+      key={el.value}
+      value={el}
+      handleSelectedValue={handleSelectedValue}
+      currentSelectedItem={selectedValue}
+    />
+  ));
 
   return (
-    <div style={inlineStyles} className={mainClassName} ref={ref}>
-      {children}
-    </div>
+    <ul
+      id="combobox-list"
+      role="listbox"
+      aria-expanded={isOpen}
+      className={mainClassName}
+      aria-multiselectable="false" // indicates that multiple list items can't be selected
+      aria-orientation="vertical" // indicates that the orientation of the component is vertical
+    >
+      {mappedSelectItems}
+    </ul>
   );
 };

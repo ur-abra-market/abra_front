@@ -10,7 +10,7 @@ import 'swiper/swiper-bundle.min.css';
 import style from './ProductCarousel.module.scss';
 
 import { ArrowIcon } from 'assets/icons';
-import { DefaultProductImage } from 'assets/images';
+import { UserDefaultProductImage } from 'assets/images';
 import { IImage } from 'store/reducers/productSlice';
 
 type Props = {
@@ -61,7 +61,7 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
     const newEvent = { ...event };
 
-    newEvent.currentTarget.src = DefaultProductImage;
+    newEvent.currentTarget.src = UserDefaultProductImage;
   };
 
   return (

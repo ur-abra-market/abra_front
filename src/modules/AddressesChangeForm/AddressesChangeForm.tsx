@@ -46,7 +46,7 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
 
   const listCountry = countries.map(el => ({
     value: el.id,
-    label: el.country,
+    label: { text: el.country },
   }));
 
   const removeAddress = async (): Promise<void> => {
@@ -135,7 +135,6 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
                     {...field}
                     options={listCountry}
                     placeholder="Select a country"
-                    padding="23px"
                     className={style.select}
                     error={errors.country?.message}
                     defaultValue={watch('country')}

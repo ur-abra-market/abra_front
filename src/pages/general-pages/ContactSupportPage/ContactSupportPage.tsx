@@ -11,7 +11,12 @@ export const ContactSupportPage = WithLayout(() => {
   return (
     <div>
       <div className={style.image_container}>
-        <LazyImage className={style.image_header} src={Banner3Image} alt="" />
+        <LazyImage
+          className={style.image_header}
+          src={Banner3Image}
+          alt=""
+          type="default_image"
+        />
       </div>
 
       <div className={style.content_container}>
