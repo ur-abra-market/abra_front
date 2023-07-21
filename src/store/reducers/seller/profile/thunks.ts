@@ -100,7 +100,7 @@ export const deleteSellerAddress = createAsyncThunk<void, number, IAsyncThunkCon
     try {
       await sellerService.deleteAddress(id);
 
-      await dispatch(getSellerAddresses());
+      dispatch(getSellerAddresses());
     } catch (error) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

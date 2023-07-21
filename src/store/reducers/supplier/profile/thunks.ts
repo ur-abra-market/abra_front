@@ -37,7 +37,7 @@ export const createAccountBusinessInfo = createAsyncThunk<
   'createAccount/createAccountBusinessInfo',
   async (businessInfoData, { rejectWithValue }) => {
     try {
-      return await supplierService.createBusinessInfo(businessInfoData);
+      await supplierService.createBusinessInfo(businessInfoData);
     } catch (error) {
       return rejectWithValue('[createAccountBusinessInfo]: Error');
     }
@@ -73,6 +73,7 @@ export const updateBusinessInfo = createAsyncThunk<
 >('supplierProfile/updateBusinessInfo', async (arg, { rejectWithValue, dispatch }) => {
   try {
     await supplierService.updateBusinessInfo(arg);
+
     dispatch(getBusinessInfo());
   } catch (error) {
     const errorMessage =
@@ -117,19 +118,18 @@ export const uploadCompanyLogo = createAsyncThunk<
   }
 });
 
-export const deleteCompanyImage = createAsyncThunk<
-  IBaseResponse<boolean>,
-  number,
-  IAsyncThunkConfig
->('supplierProfile/deleteCompanyLogo', async (id, { rejectWithValue }) => {
-  try {
-    return await supplierService.deleteCompanyImage(id);
-  } catch (error) {
-    const err = error as AxiosError<ISupplierErrorResponse>;
+export const deleteCompanyImage = createAsyncThunk<void, number, IAsyncThunkConfig>(
+  'supplierProfile/deleteCompanyLogo',
+  async (id, { rejectWithValue }) => {
+    try {
+      await supplierService.deleteCompanyImage(id);
+    } catch (error) {
+      const err = error as AxiosError<ISupplierErrorResponse>;
 
-    return rejectWithValue(err.message);
-  }
-});
+      return rejectWithValue(err.message);
+    }
+  },
+);
 
 export const getSupplierNotifications = createAsyncThunk<
   ISupplierNotifications,

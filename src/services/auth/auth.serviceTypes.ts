@@ -19,10 +19,6 @@ export interface ILoginResponse {
   is_supplier: boolean;
 }
 
-export interface IPasswordResponse {
-  result: string;
-}
-
 export interface IResetPasswordRequest {
   new_password: string;
   confirm_password: string;

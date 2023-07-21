@@ -4,30 +4,33 @@ import {
   IChangePasswordRequest,
   ILoginRequest,
   ILoginResponse,
-  IPasswordResponse,
   IResetPasswordRequest,
   IPersonalInfoRequest,
   IChangeEmailRequest,
 } from './auth.serviceTypes';
 
+import { IBaseResponse, ResponseUserRoleType } from 'common/types';
 import { baseConfigService } from 'services/baseConfig.service';
 
 export const authService = {
   userRole: () => {
-    return baseConfigService.get(`auth/login/role`);
+    return baseConfigService.get<IBaseResponse<ResponseUserRoleType>>(`auth/login/role`);
   },
 
   register: async ({ email, password, role }: IRegisterRequest) => {
-    const { data } = await baseConfigService.post<IPasswordResponse>(`register/${role}`, {
-      email,
-      password,
-    });
+    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+      `register/${role}`,
+      {
+        email,
+        password,
+      },
+    );
 
     return data;
   },
 
   confirmEmail: async ({ token }: IConfirmEmailRequest) => {
-    const { data } = await baseConfigService.get<IPasswordResponse>(
+    const { data } = await baseConfigService.get<IBaseResponse<boolean>>(
       `register/confirmEmail/?token=${token}`,
     );
 
@@ -35,7 +38,10 @@ export const authService = {
   },
 
   sendAccountPersonalInfo: async (params: IPersonalInfoRequest) => {
-    const { data } = await baseConfigService.post(`register/account/sendInfo`, params);
+    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+      `register/account/sendInfo`,
+      params,
+    );
 
     return data;
   },
@@ -45,17 +51,21 @@ export const authService = {
   },
 
   logout: async () => {
-    const { data } = await baseConfigService.delete<IPasswordResponse>(`auth/logout`);
+    const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
+      `auth/logout`,
+    );
 
     return data;
   },
 
   forgotPassword: (email: string) => {
-    return baseConfigService.post<IPasswordResponse>(`password/forgot/?email=${email}`);
+    return baseConfigService.post<IBaseResponse<boolean>>(
+      `password/forgot/?email=${email}`,
+    );
   },
 
   checkToken: (token: string) => {
-    return baseConfigService.get<IPasswordResponse>(
+    return baseConfigService.get<IBaseResponse<boolean>>(
       `password/checkToken/?token=${token}`,
     );
   },
@@ -63,18 +73,18 @@ export const authService = {
   resetPassword: (params: IResetPasswordRequest) => {
     const { token, ...restParams } = params;
 
-    return baseConfigService.post<IPasswordResponse>(
+    return baseConfigService.post<IBaseResponse<boolean>>(
       `password/reset/?token=${token}`,
       restParams,
     );
   },
 
   changePassword: (params: IChangePasswordRequest) => {
-    return baseConfigService.post<IPasswordResponse>('password/change', params);
+    return baseConfigService.post<IBaseResponse<boolean>>('password/change', params);
   },
 
   changeEmail: (params: IChangeEmailRequest) => {
-    return baseConfigService.post<IPasswordResponse>('users/changeEmail', params);
+    return baseConfigService.post<IBaseResponse<boolean>>('users/changeEmail', params);
   },
 };
 

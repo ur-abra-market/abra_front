@@ -6,6 +6,7 @@ import {
 
 import { IBaseResponse } from 'common/types';
 import { baseConfigService } from 'services/baseConfig.service';
+import { ISellerAddress } from 'store/reducers/seller/profile';
 
 export const sellerService = {
   getSellerAvatar: async () => {
@@ -23,7 +24,7 @@ export const sellerService = {
   },
 
   addAddress: async (params: ISellerAddressRequest) => {
-    const { data } = await baseConfigService.post<Omit<IBaseResponse<any>, 'result'>>(
+    const { data } = await baseConfigService.post<IBaseResponse<ISellerAddress>>(
       'sellers/addAddress',
       params,
     );
@@ -32,7 +33,7 @@ export const sellerService = {
   },
 
   updateAddress: async ({ address_id, ...params }: ISellerAddressRequest) => {
-    const { data } = await baseConfigService.post<Omit<IBaseResponse<any>, 'result'>>(
+    const { data } = await baseConfigService.post<IBaseResponse<ISellerAddress>>(
       `sellers/updateAddress/${address_id}`,
       params,
     );

@@ -9,7 +9,7 @@ import {
   INumberEmployees,
 } from 'services/common/common.serviceTypes';
 
-export const getCountries = createAsyncThunk<ICountry[], void, any>(
+export const getCountries = createAsyncThunk<ICountry[], void, IAsyncThunkConfig>(
   'common/getCountries',
   async (_, { rejectWithValue }) => {
     try {
@@ -46,9 +46,7 @@ export const getAllCategories = createAsyncThunk<
   IAsyncThunkConfig
 >('category/getAllCategories', async (_, { rejectWithValue }) => {
   try {
-    const data = await commonService.fetchAllCategories();
-
-    return data.result;
+    return await commonService.fetchAllCategories();
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError

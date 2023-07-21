@@ -26,9 +26,12 @@ export const supplierService = {
   },
 
   createBusinessInfo: async (params: IBusinessInfoRequest) => {
-    const { data } = await baseConfigService.post(`register/business/sendInfo`, params);
+    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+      `register/business/sendInfo`,
+      params,
+    );
 
-    return data;
+    return data.result;
   },
 
   fetchCompanyLogo: async () => {

@@ -29,7 +29,7 @@ export const categoryService = createAsyncThunk<any, void>(
     try {
       const data = await commonService.fetchAllCategories();
 
-      return data.result;
+      return data;
     } catch (error: unknown) {
       // @ts-ignore
       const err = error.response.data.result ? error.response.data.result : error.message;
