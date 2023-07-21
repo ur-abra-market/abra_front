@@ -24,7 +24,7 @@ const initialState: ISupplierProfileSliceInitialState = {
   },
   businessInfo: {
     storeName: '',
-    businessSector: { value: '' },
+    businessSector: '',
     isManufacturer: false,
     license: '',
     yearEstablished: null,
@@ -78,7 +78,7 @@ export const supplierProfileSlice = createSlice({
         } = action.payload.company;
 
         state.businessInfo.storeName = name;
-        state.businessInfo.businessSector.value = business_sector;
+        state.businessInfo.businessSector = business_sector;
         state.businessInfo.isManufacturer = is_manufacturer;
         state.businessInfo.license = action.payload.license_number;
         state.businessInfo.yearEstablished = year_established;
@@ -87,11 +87,11 @@ export const supplierProfileSlice = createSlice({
         state.businessInfo.description = description;
         state.businessInfo.email = business_email;
         state.businessInfo.address = address;
-        state.businessInfo.phoneId = phone.id;
-        state.businessInfo.phoneNumber = phone.phone_number;
-        state.businessInfo.countryShort = phone.country.country_short;
-        state.businessInfo.countryCode = phone.country.country_code;
-        state.businessInfo.countryId = phone.country.id;
+        state.businessInfo.phoneId = phone?.id;
+        state.businessInfo.phoneNumber = phone?.phone_number;
+        state.businessInfo.countryShort = phone?.country?.country_short;
+        state.businessInfo.countryCode = phone?.country?.country_code;
+        state.businessInfo.countryId = phone?.country?.id;
         state.loading.businessInfoLoading = LoadingStatusEnum.Success;
       })
       .addCase(getBusinessInfo.rejected, state => {

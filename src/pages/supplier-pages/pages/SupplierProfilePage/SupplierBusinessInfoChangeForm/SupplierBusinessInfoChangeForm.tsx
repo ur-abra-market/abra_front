@@ -51,7 +51,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   );
 
   const onSubmit = async (data: ISupplierBusinessInfoFormData): Promise<void> => {
-    const { numberBody } = parsePhoneNumber(data.phoneNumber);
+    const numberBody = data.phoneNumber && parsePhoneNumber(data.phoneNumber).numberBody;
     const currentPhoneNumber = isPhoneNumberDisable
       ? businessInfoData.phoneNumber
       : numberBody;
@@ -61,20 +61,23 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
         license_number: data.license,
       },
       company_data_request: {
-        business_email: data.email,
-        business_sector: data.businessSector.value,
+        ...(data.email && { business_email: data.email }),
+        business_sector: data.businessSector,
         country_id: data.countryRegistration!,
         is_manufacturer: data.isManufacturer,
-        address: data.address,
+        ...(data.address && { address: data.address }),
         number_employees: Number(data.numEmployees!),
         year_established: Number(data.yearEstablished!),
         name: data.storeName,
-        description: data.description,
+        ...(data.description && { description: data.description }),
       },
-      company_phone_data_request: {
-        phone_number: currentPhoneNumber,
-        country_id: data.countryId!,
-      },
+      ...(data.countryId &&
+        currentPhoneNumber && {
+          company_phone_data_request: {
+            phone_number: currentPhoneNumber,
+            country_id: data.countryId,
+          },
+        }),
     };
 
     await dispatch(updateBusinessInfo(updateData));

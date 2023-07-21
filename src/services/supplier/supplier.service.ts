@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import {
   IBusinessInfoRequest,
   ISupplierBusinessInfo,
@@ -32,11 +34,16 @@ export const supplierService = {
       'supplier_data_request',
       JSON.stringify(params.supplier_data_request),
     );
+
     formData.append('company_data_request', JSON.stringify(params.company_data_request));
-    formData.append(
-      'company_phone_data_request',
-      JSON.stringify(params.company_phone_data_request),
-    );
+
+    if (!_.isEmpty(params.company_phone_data_request)) {
+      formData.append(
+        'company_phone_data_request',
+        JSON.stringify(params.company_phone_data_request),
+      );
+    }
+
     if (params.file) {
       formData.append('file', params.file!);
     }

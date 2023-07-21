@@ -19,7 +19,7 @@ export const useSupplierBusinessInfoFormDirty = (
         );
       }
       if (key === 'businessSector') {
-        return data.businessSector?.value !== formValues.businessSector?.value;
+        return data.businessSector !== formValues.businessSector;
       }
 
       return false;

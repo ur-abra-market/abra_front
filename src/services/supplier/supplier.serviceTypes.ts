@@ -1,3 +1,4 @@
+import { MakeFieldsOptionalType } from 'common/types';
 import { ICountry } from 'services/common/common.serviceTypes';
 
 export interface ISupplierBusinessInfo {
@@ -19,12 +20,14 @@ export interface ISupplierCompanyInfo {
   address: string;
   business_sector: string;
   country: ICountry;
-  phone: ISupplierPhoneInfo;
+  phone: Partial<ISupplierPhoneInfo>;
   images: any[];
 }
 
-export interface IBusinessInfoRequest extends ISupplierUpdateBusinessInfo {
-  file: File | undefined;
+export interface IBusinessInfoRequest
+  extends Omit<ISupplierUpdateBusinessInfo, 'company_phone_data_request'> {
+  file?: File;
+  company_phone_data_request?: ISuppliersCompanyPhoneData;
 }
 
 export interface ISupplierNotifications {
@@ -53,8 +56,11 @@ interface ISupplierPhoneInfo {
 
 export interface ISupplierUpdateBusinessInfo {
   supplier_data_request: { license_number: string };
-  company_data_request: ISupplierUpdateCompanyInfo;
-  company_phone_data_request: ISuppliersCompanyPhoneData;
+  company_data_request: MakeFieldsOptionalType<
+    ISupplierUpdateCompanyInfo,
+    'address' | 'business_email' | 'description'
+  >;
+  company_phone_data_request?: ISuppliersCompanyPhoneData;
 }
 
 export interface ISupplierUpdateCompanyInfo

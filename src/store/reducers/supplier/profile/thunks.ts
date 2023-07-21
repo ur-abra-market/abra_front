@@ -89,6 +89,10 @@ export const updateBusinessInfo = createAsyncThunk<
         ? error.response?.data?.error || error.message
         : '[updateBusinessInfo]: Error';
 
+    if (error instanceof AxiosError) {
+      dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
+    }
+
     return rejectWithValue(errorMessage);
   }
 });
