@@ -48,12 +48,10 @@ export const supplierService = {
       formData.append('file', params.file!);
     }
 
-    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+    return baseConfigService.post<IBaseResponse<boolean>>(
       `register/business/sendInfo`,
       formData,
     );
-
-    return data.result;
   },
 
   fetchCompanyLogo: async () => {
@@ -73,12 +71,10 @@ export const supplierService = {
   },
 
   updateBusinessInfo: async (params: Partial<ISupplierUpdateBusinessInfo>) => {
-    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+    return baseConfigService.post<IBaseResponse<boolean>>(
       `suppliers/businessInfo/update`,
       params,
     );
-
-    return data.result;
   },
 
   fetchNotifications: async () => {

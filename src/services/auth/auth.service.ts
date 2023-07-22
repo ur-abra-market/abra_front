@@ -18,23 +18,16 @@ export const authService = {
   },
 
   register: async ({ email, password, role }: IRegisterRequest) => {
-    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      `register/${role}`,
-      {
-        email,
-        password,
-      },
-    );
-
-    return data;
+    return baseConfigService.post<IBaseResponse<boolean>>(`register/${role}`, {
+      email,
+      password,
+    });
   },
 
   confirmEmail: async ({ token }: IConfirmEmailRequest) => {
-    const { data } = await baseConfigService.get<IBaseResponse<boolean>>(
+    return baseConfigService.get<IBaseResponse<boolean>>(
       `register/confirmEmail/?token=${token}`,
     );
-
-    return data;
   },
 
   sendAccountPersonalInfo: async (params: IPersonalInfoRequest) => {
@@ -51,11 +44,7 @@ export const authService = {
   },
 
   logout: async () => {
-    const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
-      `auth/logout`,
-    );
-
-    return data;
+    return baseConfigService.delete<IBaseResponse<boolean>>(`auth/logout`);
   },
 
   forgotPassword: (email: string) => {

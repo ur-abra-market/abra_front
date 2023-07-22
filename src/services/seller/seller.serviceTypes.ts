@@ -55,3 +55,9 @@ export interface ISellerNotifications {
   on_your_favorites_new: boolean;
   on_account_support: boolean;
 }
+
+export interface ISellerAvatarResponse {
+  id: number;
+  source_url: string;
+  thumbnail_url: string;
+}

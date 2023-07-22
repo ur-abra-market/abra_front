@@ -2,6 +2,7 @@ import {
   ISellerNotifications,
   ISellerAddressData,
   ISellerAddressRequest,
+  ISellerAvatarResponse,
 } from './seller.serviceTypes';
 
 import { IBaseResponse } from 'common/types';
@@ -10,9 +11,11 @@ import { ISellerAddress } from 'store/reducers/seller/profile';
 
 export const sellerService = {
   getSellerAvatar: async () => {
-    const { data } = await baseConfigService.get('sellers/avatar');
+    const { data } = await baseConfigService.get<IBaseResponse<ISellerAvatarResponse>>(
+      'sellers/avatar',
+    );
 
-    return data;
+    return data.result;
   },
 
   getSellerAddresses: async () => {
@@ -56,7 +59,7 @@ export const sellerService = {
   },
 
   updateNotifications: async (params: Partial<ISellerNotifications>) => {
-    await baseConfigService.post<IBaseResponse<boolean>>(
+    return baseConfigService.post<IBaseResponse<boolean>>(
       `sellers/notifications/update`,
       params,
     );
@@ -67,11 +70,9 @@ export const sellerService = {
 
     formData.append('file', image);
 
-    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+    return baseConfigService.post<IBaseResponse<boolean>>(
       `sellers/avatar/update`,
       formData,
     );
-
-    return data;
   },
 };
