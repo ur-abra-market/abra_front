@@ -7,27 +7,10 @@ import { setResponseError } from 'store/reducers/appSlice/slice';
 export const baseConfigService = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL || 'http://localhost/',
   withCredentials: true,
+  headers: {
+    'X-CSRF-Token': getCookie('csrf_access_token') || '',
+  },
 });
-
-baseConfigService.interceptors.request.use(
-  config => {
-    if (process.env.REACT_APP_SERVER_URL) {
-      const csrfToken = getCookie('csrf_access_token');
-
-      if (csrfToken) {
-        // eslint-disable-next-line no-param-reassign
-        config.headers = config.headers || {};
-        // eslint-disable-next-line no-param-reassign
-        config.headers['X-CSRF-Token'] = csrfToken;
-      }
-    }
-
-    return config;
-  },
-  error => {
-    return Promise.reject(error);
-  },
-);
 
 baseConfigService.interceptors.response.use(
   response => response,

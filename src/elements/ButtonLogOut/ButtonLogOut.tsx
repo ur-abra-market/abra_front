@@ -11,13 +11,15 @@ import { Button } from 'ui-kit';
 export const ButtonLogOut = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const onClickHAndlerLogout = (): void => {
-    dispatch(logout());
-    navigate(HOME);
+
+  const handleClickLogout = async (): Promise<void> => {
+    const result = await dispatch(logout());
+
+    if (result) navigate(HOME);
   };
 
   return (
-    <Button color="white" className={style.button} onClick={onClickHAndlerLogout}>
+    <Button color="white" className={style.button} onClick={handleClickLogout}>
       <div className={style.button_title}>Log Out</div>
       <LogoutIcon />
     </Button>
