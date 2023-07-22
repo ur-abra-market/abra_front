@@ -2,36 +2,38 @@ import { forwardRef, DetailedHTMLProps, InputHTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import styles from './Checkbox.module.scss';
+import style from './Checkbox.module.scss';
 
 export interface ICheckbox
   extends Omit<
     DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-    'type' | 'size'
+    'type'
   > {
   variant?: 'notification' | 'default';
   label?: string;
-  size?: 'md' | 'sm';
 }
 
-export const Checkbox = forwardRef<HTMLInputElement, ICheckbox>((props, ref) => {
-  const { label, variant, size = 'md', className, disabled, ...restProps } = props;
+export const Checkbox = forwardRef<HTMLInputElement, ICheckbox>(
+  ({ label, variant, className, disabled, ...restProps }, ref): JSX.Element => {
+    const labelClasses = cn(style.label, className, {
+      [style.disabled]: variant === 'default' && disabled,
+    });
+    const inputClasses = cn({
+      [style.input_notification]: variant === 'notification',
+      [style.input_default]: variant === 'default',
+    });
 
-  return (
-    <label className={cn(styles.label, className)}>
-      <input
-        ref={ref}
-        type="checkbox"
-        disabled={disabled}
-        className={cn({
-          [styles.input_notification]: variant === 'notification',
-          [styles.input_default]: variant === 'default',
-          [styles.md]: variant === 'notification' && size === 'md',
-          [styles.sm]: variant === 'notification' && size === 'sm',
-        })}
-        {...restProps}
-      />
-      {label}
-    </label>
-  );
-});
+    return (
+      <label className={labelClasses}>
+        <input
+          ref={ref}
+          type="checkbox"
+          disabled={disabled}
+          className={inputClasses}
+          {...restProps}
+        />
+        {label}
+      </label>
+    );
+  },
+);
