@@ -12,9 +12,9 @@ import { supplierLoadingSelector } from 'store/reducers/supplier/profile';
 import { Button, Checkbox, Input, ISelectOption, Label, Select } from 'ui-kit';
 
 const BUSINESS_SECTOR_DATA: ISelectOption[] = [
-  { label: 'Clothes', value: 'Clothes' },
-  { label: 'Accessories', value: 'Accessories' },
-  { label: 'Electronics', value: 'Electronics' },
+  { label: { text: 'Clothes' }, value: 'Clothes' },
+  { label: { text: 'Accessories' }, value: 'Accessories' },
+  { label: { text: 'Electronics' }, value: 'Electronics' },
 ];
 
 interface IBusinessProfileForm {
@@ -42,6 +42,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
     register,
     handleSubmit,
     control,
+    watch,
     formState: { errors, isValid },
   } = useFormContext<ISupplierBusinessInfoFormData>();
 
@@ -70,9 +71,9 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   error={errors?.businessSector?.message}
                   options={BUSINESS_SECTOR_DATA}
                   placeholder="Select"
-                  defaultValue={field?.value?.value}
+                  defaultValue={watch('businessSector')}
                   onChange={value => {
-                    field.onChange(value);
+                    field.onChange(value.value as number);
                   }}
                 />
               </Label>
@@ -80,13 +81,18 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
           />
         </div>
 
-        <Checkbox
-          {...register('isManufacturer')}
-          className={style.checkbox}
-          disabled={isLoading}
-          label="I am a manufacturer"
-          variant="default"
-          size="sm"
+        <Controller
+          control={control}
+          name="isManufacturer"
+          render={({ field }) => (
+            <Checkbox
+              checked={field.value || false}
+              className={style.checkbox}
+              variant="default"
+              label="I am a manufacturer"
+              onChange={event => field.onChange(event.currentTarget.checked)}
+            />
+          )}
         />
 
         <Label label="License or entrepreneur number">
@@ -128,7 +134,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   error={errors?.numEmployees?.message}
                   options={numberEmployees.map(el => ({
                     value: el.id,
-                    label: el.number,
+                    label: { text: el.number },
                   }))}
                   className={style.select}
                   defaultValue={typeof field.value === 'number' ? field.value : undefined}
@@ -155,7 +161,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                 error={errors?.countryRegistration?.message}
                 options={countries.map(el => ({
                   value: el.id,
-                  label: el.country,
+                  label: { text: el.country },
                 }))}
                 placeholder="Select"
                 onChange={value => {

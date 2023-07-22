@@ -18,21 +18,19 @@ import ShowPage from 'old-components/ShowPage';
 import { tableStyleClasses } from 'old-components/SupplierProductsListPage/constantsOfClassesStyles';
 import Table from 'old-components/table';
 import Pagination from 'old-components/ui/Pagination';
-import {
-  deleteProducts,
-  manageProductsService,
-} from 'store/reducers/manageProductsSlice';
+import { deleteProducts } from 'store/reducers/manageProductsSlice';
+import { manageProducts } from 'store/reducers/productSlice/thunks';
 import { Checkbox, Input, ISelectOption, Search, Select } from 'ui-kit';
 
 export const CATEGORY_SELECT: ISelectOption[] = [
-  { label: 'S', value: '1' },
-  { label: 'M', value: '2' },
-  { label: 'L', value: '3' },
-  { label: 'XL', value: '4' },
+  { label: { text: 'S' }, value: '1' },
+  { label: { text: 'M' }, value: '2' },
+  { label: { text: 'L' }, value: '3' },
+  { label: { text: 'XL' }, value: '4' },
 ];
 export const STATUS_SELECT: ISelectOption[] = [
-  { label: 'On Sale', value: '1' },
-  { label: 'Off-sale', value: '2' },
+  { label: { text: 'On Sale' }, value: '1' },
+  { label: { text: 'Off-sale' }, value: '2' },
 ];
 // interface ItemType {
 //   id: number;
@@ -59,7 +57,7 @@ export const SupplierProductsListPage: FC = WithLayout((): JSX.Element => {
   // const { isLoading, products } = useAppSelector(state => state.manageProducts);
 
   useEffect(() => {
-    dispatch(manageProductsService());
+    dispatch(manageProducts());
   }, [dispatch]);
 
   const handleChangeModalActive = (): void => {
@@ -204,11 +202,11 @@ export const SupplierProductsListPage: FC = WithLayout((): JSX.Element => {
           </div>
           <div className={style.filter}>
             <div className={style.filter_name}>Sort by:</div>
-            <Select options={CATEGORY_SELECT} padding="23px" className={style.select} />
+            <Select options={CATEGORY_SELECT} className={style.select} />
           </div>
 
           <div className={style.filter}>
-            <Select options={STATUS_SELECT} padding="23px" className={style.select} />
+            <Select options={STATUS_SELECT} className={style.select} />
           </div>
           <Checkbox
             label="Include Hidden"

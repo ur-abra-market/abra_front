@@ -75,3 +75,16 @@
   font-size: 14px;
   font-weight: 400;
 }
+
+.filter_price_checkbox {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+
+  width: 257px;
+
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 17px;
+}

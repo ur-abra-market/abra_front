@@ -5,17 +5,28 @@ import cn from 'classnames';
 import style from './LocationAndCurrencySelection.module.scss';
 import { LocationAndCurrencySelectionProps } from './LocationAndCurrencySelection.props';
 
+import { CountriesEnum } from 'common/types';
+import { COUNTRY_FLAGS } from 'common/utils/getCountryFlags';
 import { ISelectOption, Select } from 'ui-kit';
 
 const CURRENCY_DATA: ISelectOption[] = [
-  { label: 'Russian / RUB', value: 'ru' },
-  { label: 'English / USD', value: 'usd' },
+  { label: { text: 'Russian / RUB' }, value: 'ru' },
+  { label: { text: 'English / USD' }, value: 'usd' },
 ];
 
 const COUNTRY_DATA: ISelectOption[] = [
-  { label: 'Russia', value: 'russia' },
-  { label: 'Turkey', value: 'turkey' },
-  { label: 'Belarus', value: 'belarus' },
+  {
+    label: { text: 'Russia', image_src: COUNTRY_FLAGS[CountriesEnum.RUSSIAN] },
+    value: CountriesEnum.RUSSIAN,
+  },
+  {
+    label: { text: 'Turkey', image_src: COUNTRY_FLAGS[CountriesEnum.TURKEY] },
+    value: CountriesEnum.TURKEY,
+  },
+  {
+    label: { text: 'Belarus', image_src: COUNTRY_FLAGS[CountriesEnum.BELARUS] },
+    value: CountriesEnum.BELARUS,
+  },
 ];
 
 export const LocationAndCurrencySelection: FC<

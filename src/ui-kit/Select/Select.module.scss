@@ -54,6 +54,21 @@
     box-shadow: rgba(0, 0, 0, 0.2) 7px 6px 5px, rgba(0, 0, 0, 0.2) -4px 6px 5px;
   }
 
+  &:focus-visible {
+    border-radius: 12px;
+    outline: 1px solid var(--color-medium-gray);
+  }
+
+  &.focus_disabled {
+    border-radius: 0;
+    outline: none;
+  }
+
+  &:active {
+    border-radius: 0;
+    outline: none;
+  }
+
   &.header_disabled {
     pointer-events: none;
     cursor: default;
