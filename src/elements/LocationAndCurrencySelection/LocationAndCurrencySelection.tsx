@@ -8,14 +8,14 @@ import { LocationAndCurrencySelectionProps } from './LocationAndCurrencySelectio
 import { ISelectOption, Select } from 'ui-kit';
 
 const CURRENCY_DATA: ISelectOption[] = [
-  { label: 'Russian / RUB', value: 'ru' },
-  { label: 'English / USD', value: 'usd' },
+  { label: { text: 'Russian / RUB' }, value: 'ru' },
+  { label: { text: 'English / USD' }, value: 'usd' },
 ];
 
 const COUNTRY_DATA: ISelectOption[] = [
-  { label: 'Russia', value: 'russia' },
-  { label: 'Turkey', value: 'turkey' },
-  { label: 'Belarus', value: 'belarus' },
+  { label: { text: 'Russia' }, value: 'russia' },
+  { label: { text: 'Turkey' }, value: 'turkey' },
+  { label: { text: 'Belarus' }, value: 'belarus' },
 ];
 
 export const LocationAndCurrencySelection: FC<
