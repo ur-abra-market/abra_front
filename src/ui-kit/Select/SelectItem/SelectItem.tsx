@@ -5,6 +5,7 @@ import cn from 'classnames';
 import styles from './SelectItem.module.scss';
 
 import { ISelectOption } from 'ui-kit';
+import style from 'ui-kit/Select/SelectHeader/SelectHeader.module.scss';
 
 interface ISelectItem {
   currentSelectedItem: ISelectOption;
@@ -21,20 +22,21 @@ export const SelectItem: FC<ISelectItem> = ({
     handleSelectedValue(value);
   };
 
-  const [currentClassName, setCurrentClassName] = useState(styles.main);
+  const [isItemHover, setItemHover] = useState(false);
 
   const handleHoverOnItem = (): void => {
     if (currentSelectedItem.label !== value.label) {
-      setCurrentClassName(styles.main_hover);
+      setItemHover(true);
     }
   };
   const handleLeaveHoverOnItem = (): void => {
     if (currentSelectedItem.label !== value.label) {
-      setCurrentClassName(styles.main);
+      setItemHover(false);
     }
   };
 
-  const selectedItemClassName = cn(currentClassName, {
+  const selectedItemClassName = cn(styles.item, {
+    [styles.item_hover]: isItemHover,
     [styles.item_selected]: currentSelectedItem.label === value.label,
   });
 
@@ -48,7 +50,9 @@ export const SelectItem: FC<ISelectItem> = ({
       onMouseLeave={handleLeaveHoverOnItem}
       aria-selected={currentSelectedItem.label === value.label} // indicates that the item is selected or active
     >
-      {value.label.image_src && <img src={value.label.image_src} alt="" />}
+      {value.label.image_src && (
+        <img src={value.label.image_src} alt="" className={style.image} />
+      )}
       <p>{value.label.text}</p>
     </li>
   );
