@@ -3,7 +3,6 @@ import React from 'react';
 import style from './FilterPrice.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import SwitchBox from 'old-components/SwitchBox';
 import { priceFrom, priceTo } from 'store/reducers/filterSlice';
 import { productPaginateService } from 'store/reducers/productPaginateSlice';
 import { Checkbox } from 'ui-kit';
