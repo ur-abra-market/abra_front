@@ -145,19 +145,6 @@ export const supplierService = {
     return data;
   },
 
-  uploadCompanyImage: async (image: File) => {
-    const formData = new FormData();
-
-    formData.append('file', image);
-
-    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      'suppliers/uploadCompanyImage/',
-      formData,
-    );
-
-    return data;
-  },
-
   deleteCompanyImage: async (company_image_id: number) => {
     const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
       `suppliers/deleteCompanyImage`,
