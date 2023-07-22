@@ -86,7 +86,6 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
           disabled={isLoading}
           label="I am a manufacturer"
           variant="default"
-          size="sm"
         />
 
         <Label label="License or entrepreneur number">
