@@ -90,7 +90,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
         image={companyLogo}
         uploadImage={handleUpdateImage}
         type="logo"
-        label="Add logo or profile image"
+        label="Add logo or profile image (optional)"
         placeholder="The customers will recognize your store by this image"
         description="company logo"
         isDisabled={isDisabled}
