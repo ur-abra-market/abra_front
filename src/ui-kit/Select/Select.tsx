@@ -133,7 +133,9 @@ export const Select = forwardRef(
     });
 
     useEffect(() => {
-      let currentItemId = 0;
+      let currentItemId = options
+        ? options.findIndex(el => el.label.text === currentSelectedValue.label.text)
+        : 0;
 
       if (disabled) {
         handleCloseSelectMenu();
@@ -151,8 +153,8 @@ export const Select = forwardRef(
           const keyCode = e.code;
 
           e.preventDefault();
-          if (keyCode === KEYBOARD.ENTER || keyCode === KEYBOARD.ESCAPE) {
-            handleCloseSelectMenu();
+          if (keyCode === KEYBOARD.ENTER) {
+            handleSetSelectedValue(options[currentItemId]);
           }
           if (keyCode === KEYBOARD.ARROW_UP && options[currentItemId - PREV]) {
             currentItemId -= PREV;
@@ -160,7 +162,9 @@ export const Select = forwardRef(
           if (keyCode === KEYBOARD.ARROW_DOWN && options[currentItemId + NEXT]) {
             currentItemId += NEXT;
           }
-
+          if (keyCode === KEYBOARD.ESCAPE) {
+            handleCloseSelectMenu();
+          }
           if (keyCode !== KEYBOARD.ESCAPE) setSelectedValue(options[currentItemId]);
         };
       } else {
