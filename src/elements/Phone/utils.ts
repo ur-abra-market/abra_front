@@ -1,3 +1,5 @@
+import { CountriesEnum } from 'common/types';
+import { COUNTRY_FLAGS } from 'common/utils';
 import { ICountry } from 'services/common/common.serviceTypes';
 import { ISelectOption } from 'ui-kit';
 
@@ -31,8 +33,8 @@ export interface ICountryWithFlag extends ICountry {
 // --------------values--------------
 export const defaultPhoneNumberValue: IDefaultPhoneNumberValue = {
   countryCode: {
-    label: { text: '+7', image_src: '' },
-    value: 5,
+    label: { text: '+7', image_src: COUNTRY_FLAGS[CountriesEnum.RUSSIAN] },
+    value: CountriesEnum.RUSSIAN,
   },
   countryShort: 'ru',
 };
@@ -90,7 +92,7 @@ const countryPhoneInfo: Record<PhoneCountryShortType, ICountryPhoneInfo> = {
 export const getCountriesWithFlags = (countries: ICountry[]): ICountryWithFlag[] => {
   return countries.map(c => ({
     ...c,
-    country_flag: '',
+    country_flag: COUNTRY_FLAGS[c.id],
   }));
 };
 
