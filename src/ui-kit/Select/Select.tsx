@@ -117,7 +117,10 @@ export const Select = forwardRef(
     };
 
     const handleCloseSelectMenu = (): void => {
-      setIsOpenItemsMenu(false);
+      if (isOpenItemsMenu) {
+        setSelectedVale(currentSelectedValue);
+        setIsOpenItemsMenu(false);
+      }
     };
     const mainDivRef = useOnClickOutside(handleCloseSelectMenu);
 
@@ -151,7 +154,6 @@ export const Select = forwardRef(
           if (keyCode === KEYBOARD.ENTER || keyCode === KEYBOARD.ESCAPE) {
             handleCloseSelectMenu();
           }
-
           if (keyCode === KEYBOARD.ARROW_UP && options[currentItemId - PREV]) {
             currentItemId -= PREV;
           }
@@ -159,7 +161,7 @@ export const Select = forwardRef(
             currentItemId += NEXT;
           }
 
-          setSelectedVale(options[currentItemId]);
+          if (keyCode !== KEYBOARD.ESCAPE) setSelectedVale(options[currentItemId]);
         };
       } else {
         document.onkeydown = e => {
