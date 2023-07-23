@@ -11,7 +11,7 @@ export const SaleStatusSetting = (): JSX.Element => {
 
   return (
     <div className={style.filter}>
-      <Select options={STATUS_SELECT} padding="23px" className={style.select} />
+      <Select options={STATUS_SELECT} className={style.select} />
     </div>
   );
 };

@@ -1,18 +1,19 @@
-import React, { forwardRef, ReactNode, useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
 import styles from './Select.module.scss';
 import { SelectHeader } from './SelectHeader/SelectHeader';
-import { SelectItem } from './SelectItem/SelectItem';
 import { SelectMenu } from './SelectMenu/SelectMenu';
 
 import { useOnClickOutside, useOnHoverOutside } from 'common/hooks';
 
-const SPACE_KEYBOARD = 'Space';
-const ENTER_KEYBOARD = 'Enter';
-const ARROW_UP_KEYBOARD = 'ArrowUp';
-const ARROW_DOWN_KEYBOARD = 'ArrowDown';
+const KEYBOARD = {
+  ENTER: 'Enter',
+  ARROW_UP: 'ArrowUp',
+  ARROW_DOWN: 'ArrowDown',
+  ESCAPE: 'Escape',
+};
 
 const PREV = 1;
 const NEXT = 1;
@@ -29,15 +30,12 @@ export interface ISelect {
   controlledValue?: ISelectOption;
   onChange?: (value: ISelectOption) => void;
   error?: string;
-  children?: ReactNode;
   placeholder?: string;
-  menuHeight?: string;
   defaultValue?: string | number;
   width?: string;
   className?: string;
   menuItemsPosition?: SelectPositionType;
   header?: boolean; // to add header use --> header={true}
-  padding?: string;
   disabled?: boolean;
 }
 
@@ -49,13 +47,10 @@ export const Select = forwardRef(
       placeholder,
       onChange,
       error,
-      children,
-      menuHeight = '200px',
       width,
       className,
       menuItemsPosition = 'down',
       header = false,
-      padding = '14px',
       defaultValue,
       disabled,
     }: ISelect,
@@ -69,8 +64,7 @@ export const Select = forwardRef(
     const [selectedValue, setSelectedVale] =
       useState<ISelectOption>(defaultSelectedValue);
 
-    const currentSelectedValue =
-      controlledValue !== undefined ? controlledValue : selectedValue;
+    const currentSelectedValue = controlledValue || selectedValue;
 
     useEffect(() => {
       if (defaultValue) {
@@ -82,7 +76,7 @@ export const Select = forwardRef(
 
     const handleSetSelectedValue = (option: ISelectOption): void => {
       if (option !== currentSelectedValue) {
-        if (controlledValue !== undefined) {
+        if (controlledValue) {
           setSelectedVale(controlledValue);
         } else {
           setSelectedVale(option);
@@ -102,6 +96,7 @@ export const Select = forwardRef(
       [styles.header_active]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active_up]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active]: header && menuItemsPosition === 'down' && isOpenItemsMenu,
+      [styles.focus_disabled]: isOpenItemsMenu,
       [styles.header_disabled]: disabled,
     });
     const menuClassname = cn({
@@ -134,18 +129,6 @@ export const Select = forwardRef(
       };
     });
 
-    // if the menu is open and the user tries to scroll behind the menu, then we add the ability to scroll and hide the menu
-    const mappedSelectItems = options.map(el => (
-      <SelectItem
-        key={el.value}
-        value={el}
-        onClick={handleSetSelectedValue}
-        currentSelectedItem={selectedValue}
-        style={{ padding }}
-      />
-    ));
-
-    // disable scrolling by click on space or arrows on keyboard
     useEffect(() => {
       let currentItemId = 0;
 
@@ -164,20 +147,17 @@ export const Select = forwardRef(
         document.onkeydown = e => {
           const keyCode = e.code;
 
-          if (keyCode === ENTER_KEYBOARD) {
+          e.preventDefault();
+          if (keyCode === KEYBOARD.ENTER || keyCode === KEYBOARD.ESCAPE) {
             handleCloseSelectMenu();
           }
 
-          if (keyCode === ARROW_UP_KEYBOARD && options[currentItemId - PREV]) {
-            e.preventDefault();
+          if (keyCode === KEYBOARD.ARROW_UP && options[currentItemId - PREV]) {
             currentItemId -= PREV;
           }
-          if (keyCode === ARROW_DOWN_KEYBOARD && options[currentItemId + NEXT]) {
-            e.preventDefault();
+          if (keyCode === KEYBOARD.ARROW_DOWN && options[currentItemId + NEXT]) {
             currentItemId += NEXT;
           }
-
-          if (keyCode === SPACE_KEYBOARD) e.preventDefault();
 
           setSelectedVale(options[currentItemId]);
         };
@@ -185,9 +165,8 @@ export const Select = forwardRef(
         document.onkeydown = e => {
           const keyCode = e.code;
 
-          if (keyCode === SPACE_KEYBOARD) return true;
-          if (keyCode === ARROW_UP_KEYBOARD) return true;
-          if (keyCode === ARROW_DOWN_KEYBOARD) return true;
+          if (keyCode === KEYBOARD.ARROW_UP || keyCode === KEYBOARD.ARROW_DOWN)
+            return true;
         };
         window.onscroll = () => {
           return true;
@@ -216,18 +195,17 @@ export const Select = forwardRef(
           className={headerClassname}
           currentSelectedValue={currentSelectedValue}
           isOpenMenu={isOpenItemsMenu}
-          onClick={handleChangeSelectState}
+          handleSelectState={handleChangeSelectState}
         />
         <span className={styles.error}>{error}</span>
 
         <SelectMenu
+          handleSelectedValue={handleSetSelectedValue}
+          selectedValue={selectedValue}
           isOpen={isOpenItemsMenu}
-          height={menuHeight}
           className={menuClassname}
-        >
-          {mappedSelectItems}
-          {children}
-        </SelectMenu>
+          options={options}
+        />
       </div>
     );
   },

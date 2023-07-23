@@ -9,7 +9,7 @@ import { personalInfoFormValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
 import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
-import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import { parsePhoneNumber } from 'common/utils';
 import { ButtonLogOut } from 'elements/ButtonLogOut/ButtonLogOut';
 import { PhoneNumber } from 'elements/Phone/PhoneNumber';
 import { PersonalInfoChangeForm } from 'modules';

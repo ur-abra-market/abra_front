@@ -44,23 +44,12 @@ export { ReactComponent as ViewListEnabledIcon } from './files/view-list-enabled
 export { ReactComponent as VisaIcon } from './files/visa.svg';
 export { ReactComponent as VkIcon } from './files/vk.svg';
 export { ReactComponent as WhatsappIcon } from './files/whatsapp.svg';
-export { ReactComponent as UploadLogoImageIcon } from './files/upload-logo-image.svg';
-export { ReactComponent as UploadItemImageIcon } from './files/upload-item-image.svg';
+export { ReactComponent as DefaultLogoImageIcon } from 'assets/icons/files/default-logo-image.svg';
+export { ReactComponent as DefaultProductImageSupplierIcon } from 'assets/icons/files/default-supplier-item-image.svg';
 export { ReactComponent as LogoCompanyPlaceholder } from './files/logo-company-placeholder.svg';
 export { ReactComponent as ArrowIcon } from './files/arrow.svg';
 export { ReactComponent as Home } from './files/home.svg';
 export { ReactComponent as AddNewProduct } from './files/add-product.svg';
 export { ReactComponent as RecentlyDeleted } from './files/delete-trash-red.svg';
 export { ReactComponent as ArrowSort } from './files/arrow-sort.svg';
-
-// ------------------------------------flags------------------------------------
-
-export { ReactComponent as Country1 } from './flags/1_Azerbaijan.svg';
-export { ReactComponent as Country2 } from './flags/2_Belarus.svg';
-export { ReactComponent as Country3 } from './flags/3_Kazakhstan.svg';
-export { ReactComponent as Country4 } from './flags/4_Kyrgyzstan.svg';
-export { ReactComponent as Country5 } from './flags/5_Russian _Federation.svg';
-export { ReactComponent as Country6 } from './flags/6_Tajikistan.svg';
-export { ReactComponent as Country7 } from './flags/7_Turkey.svg';
-export { ReactComponent as Country8 } from './flags/8_Ukraine.svg';
-export { ReactComponent as Country9 } from './flags/9_Uzbekistan.svg';
+export { ReactComponent as DefaultImageIcon } from './files/arrow-sort.svg';

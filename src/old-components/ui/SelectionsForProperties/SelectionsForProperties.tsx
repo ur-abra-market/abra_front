@@ -50,7 +50,6 @@ const SelectionsForProperties: FC<ISelectionsForPropertiesProps> = ({
                 <Select
                   options={options}
                   placeholder="Select"
-                  padding="23px"
                   className={styles.select}
                   onChange={value => {
                     field.onChange(value.value);
@@ -73,7 +72,6 @@ const SelectionsForProperties: FC<ISelectionsForPropertiesProps> = ({
                   <Select
                     options={OPTIONAL_PROPERTIES_DATA}
                     placeholder="Select"
-                    padding="23px"
                     className={styles.select}
                     onChange={value => {
                       field.onChange(value.value);

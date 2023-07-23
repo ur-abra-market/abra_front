@@ -12,7 +12,7 @@ type NewsType = {
 export const News: FC<NewsType> = ({ title, text, image }) => {
   return (
     <div className={style.container_content}>
-      <LazyImage src={image} className={style.image} alt="" />
+      <LazyImage src={image} className={style.image} alt="" type="default_image" />
       <div className={style.text_container}>
         <p className={style.title}>{title}</p>
         <p className={style.text}>{text}</p>
