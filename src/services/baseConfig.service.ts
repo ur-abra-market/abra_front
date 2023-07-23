@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { getCookie } from 'common/utils/getCookie';
+import { getCookie } from 'common/utils';
 import { store } from 'store/createStore';
 import { setResponseError } from 'store/reducers/appSlice/slice';
 

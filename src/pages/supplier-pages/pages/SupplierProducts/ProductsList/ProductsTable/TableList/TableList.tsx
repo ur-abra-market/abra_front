@@ -4,7 +4,7 @@ import style from './TableList.module.scss';
 
 import defaultImg from 'assets/images/files/default-product-image.png';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { formatDate } from 'common/utils/formatDateProductsList';
+import { formatDate } from 'common/utils';
 import { manageProductsSelector } from 'store/reducers/productSlice/selectors';
 import { manageProducts } from 'store/reducers/productSlice/thunks';
 import { IProductsListRequest } from 'store/reducers/productSlice/types';
