@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSupplierBusinessInfoFormDirty } from 'common/hooks/useSupplierBusinessInfoFormDirty';
 import { useSupplierBusinessInfoSetValue } from 'common/hooks/useSupplierBusinessInfoSetValue';
 import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
-import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import { parsePhoneNumber } from 'common/utils';
 import { UploadImage } from 'elements';
 import {
   SupplierBusinessInfoForm,

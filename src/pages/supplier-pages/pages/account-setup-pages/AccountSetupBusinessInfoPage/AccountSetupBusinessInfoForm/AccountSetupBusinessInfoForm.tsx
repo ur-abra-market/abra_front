@@ -8,7 +8,7 @@ import style from './AccountSetupBusinessInfoForm.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
-import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import { parsePhoneNumber } from 'common/utils';
 import { UploadImage } from 'elements';
 import {
   SupplierBusinessInfoForm,
