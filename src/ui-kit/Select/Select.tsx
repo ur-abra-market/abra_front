@@ -61,7 +61,7 @@ export const Select = forwardRef(
       : null;
 
     const defaultSelectedValue = placeholderObj || options[0];
-    const [selectedValue, setSelectedVale] =
+    const [selectedValue, setSelectedValue] =
       useState<ISelectOption>(defaultSelectedValue);
 
     const currentSelectedValue = controlledValue || selectedValue;
@@ -70,16 +70,16 @@ export const Select = forwardRef(
       if (defaultValue) {
         const currentValue = options.find(el => el.value === defaultValue);
 
-        if (currentValue) setSelectedVale(currentValue);
+        if (currentValue) setSelectedValue(currentValue);
       }
     }, [defaultValue, options]);
 
     const handleSetSelectedValue = (option: ISelectOption): void => {
       if (option !== currentSelectedValue) {
         if (controlledValue) {
-          setSelectedVale(controlledValue);
+          setSelectedValue(controlledValue);
         } else {
-          setSelectedVale(option);
+          setSelectedValue(option);
         }
         if (onChange) {
           onChange(option);
@@ -118,7 +118,7 @@ export const Select = forwardRef(
 
     const handleCloseSelectMenu = (): void => {
       if (isOpenItemsMenu) {
-        setSelectedVale(currentSelectedValue);
+        setSelectedValue(currentSelectedValue);
         setIsOpenItemsMenu(false);
       }
     };
@@ -161,7 +161,7 @@ export const Select = forwardRef(
             currentItemId += NEXT;
           }
 
-          if (keyCode !== KEYBOARD.ESCAPE) setSelectedVale(options[currentItemId]);
+          if (keyCode !== KEYBOARD.ESCAPE) setSelectedValue(options[currentItemId]);
         };
       } else {
         document.onkeydown = e => {
