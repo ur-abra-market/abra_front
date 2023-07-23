@@ -5,32 +5,7 @@
 }
 
 .select {
-  img {
-    width: 24px;
-    height: 16px;
-    object-fit: cover;
-    border-radius: 4px;
-  }
-
-  button {
-    display: flex;
-    row-gap: 10px;
-    align-items: center;
-
-    width: 166px;
-
-    border-radius: 12px;
-  }
-
   li {
-    display: flex;
-    column-gap: 10px;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
-  ul {
-    width: 200px;
-    border-radius: 12px;
+    column-gap: 6px;
   }
 }

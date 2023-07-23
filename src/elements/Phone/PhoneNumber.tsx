@@ -120,7 +120,7 @@ export const PhoneNumber = (): JSX.Element => {
     <div className={style.wrapper}>
       <Select
         controlledValue={phoneCountryCode}
-        width="160"
+        width="166px"
         className={style.select}
         onChange={handlePhoneCountryCodeChange}
         options={countriesWithFlag.map(c => ({

@@ -179,18 +179,7 @@ export const Select = forwardRef(
     const mainClasses = cn(className, styles.main, { [styles.main_has_header]: header });
 
     return (
-      <div
-        style={selectWidth}
-        className={mainClasses}
-        ref={mainDivRef}
-        role="combobox"
-        aria-expanded="false"
-        aria-owns="listbox"
-        aria-haspopup="listbox"
-        aria-controls="listbox"
-        onKeyUp={() => console.log('sd')}
-        tabIndex={0}
-      >
+      <div style={selectWidth} className={mainClasses} ref={mainDivRef}>
         <SelectHeader
           className={headerClassname}
           currentSelectedValue={currentSelectedValue}
