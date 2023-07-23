@@ -133,9 +133,8 @@ export const Select = forwardRef(
     });
 
     useEffect(() => {
-      let currentItemId = options
-        ? options.findIndex(el => el.label.text === currentSelectedValue.label.text)
-        : 0;
+      let currentItemId =
+        options.findIndex(el => el.label.text === currentSelectedValue.label.text) || 0;
 
       if (disabled) {
         handleCloseSelectMenu();
