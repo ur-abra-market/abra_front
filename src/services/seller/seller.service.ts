@@ -9,14 +9,14 @@ import { baseConfigService } from 'services/baseConfig.service';
 
 export const sellerService = {
   getSellerAvatar: async () => {
-    const { data } = await baseConfigService.get('sellers/avatar/');
+    const { data } = await baseConfigService.get('sellers/avatar');
 
     return data;
   },
 
   getSellerAddresses: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISellerAddressData[]>>(
-      'sellers/addresses/',
+      'sellers/addresses',
     );
 
     return data.result;
@@ -24,7 +24,7 @@ export const sellerService = {
 
   addAddress: async (params: ISellerAddressRequest) => {
     const { data } = await baseConfigService.post<Omit<IBaseResponse<any>, 'result'>>(
-      'sellers/addAddress/',
+      'sellers/addAddress',
       params,
     );
 
@@ -33,7 +33,7 @@ export const sellerService = {
 
   updateAddress: async ({ address_id, ...params }: ISellerAddressRequest) => {
     const { data } = await baseConfigService.post<Omit<IBaseResponse<any>, 'result'>>(
-      `sellers/updateAddress/${address_id}/`,
+      `sellers/updateAddress/${address_id}`,
       params,
     );
 
@@ -42,13 +42,13 @@ export const sellerService = {
 
   deleteAddress: (id: number) => {
     return baseConfigService.delete<IBaseResponse<boolean>>(
-      `sellers/removeAddress/${id}/`,
+      `sellers/removeAddress/${id}`,
     );
   },
 
   fetchNotifications: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISellerNotifications>>(
-      `sellers/notifications/`,
+      `sellers/notifications`,
     );
 
     return data.result;
@@ -56,7 +56,7 @@ export const sellerService = {
 
   updateNotifications: async (params: Partial<ISellerNotifications>) => {
     await baseConfigService.post<IBaseResponse<boolean>>(
-      `sellers/notifications/update/`,
+      `sellers/notifications/update`,
       params,
     );
   },
@@ -67,7 +67,7 @@ export const sellerService = {
     formData.append('file', image);
 
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      `sellers/avatar/update/`,
+      `sellers/avatar/update`,
       formData,
     );
 

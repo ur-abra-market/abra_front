@@ -29,6 +29,7 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
           width={1440}
           alt=""
           className={style.banner_img}
+          type="default_image"
         >
           <div className={style.grid_item_main_ad}>
             <span className={style.grid_item_main_ad_text}>GLASSES</span>
@@ -47,6 +48,7 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
               width={682}
               alt=""
               className={style.banner_img}
+              type="default_image"
             >
               <span className={style.grid_item_ad1}>AUTUMN SALE</span>
             </LazyImage>
@@ -59,6 +61,7 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
               width={682}
               alt=""
               className={style.banner_img}
+              type="default_image"
             >
               <div className={style.grid_item_ad2}>
                 <span className={style.grid_item_ad2_text}>special price for</span>
@@ -74,6 +77,7 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
               width={355}
               alt=""
               className={style.banner_img}
+              type="default_image"
             >
               <span className={style.grid_item_ad3}>MEN’S CLOTHES</span>
             </LazyImage>
@@ -86,6 +90,7 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
               width={355}
               alt=""
               className={style.banner_img}
+              type="default_image"
             >
               <span className={style.grid_item_ad4}>WOMEN’S CLOTHES</span>
             </LazyImage>

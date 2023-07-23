@@ -266,7 +266,6 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                           <Select
                             options={FIRST_CATEGORIES_DATA}
                             placeholder="Select"
-                            padding="23px"
                             className={style.select}
                             error={errors?.category?.message}
                             onChange={value => {
@@ -289,7 +288,6 @@ const ProductListRegistrationForm: FC<ProductListRegistrationFormProps> = ({
                             options={SECOND_CATEGORIES_DATA}
                             placeholder="Select"
                             error={errors?.type1?.message}
-                            padding="23px"
                             className={style.select}
                             onChange={value => {
                               field.onChange(value.value as string);

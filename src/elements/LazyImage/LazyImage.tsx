@@ -11,11 +11,28 @@ import cn from 'classnames';
 
 import style from './LazyImage.module.scss';
 
-import { DefaultProductImage } from 'assets/images';
+import defaultImage from 'assets/icons/files/default-image.svg';
+import defaultLogoImage from 'assets/icons/files/default-logo-image.svg';
+import defaultSupplierItemImage from 'assets/icons/files/default-supplier-item-image.svg';
+import defaultUserItemImage from 'assets/images/files/default-product-image.png';
 
 interface ILazyImage extends ImgHTMLAttributes<HTMLImageElement> {
   children?: ReactNode;
+  type:
+    | 'logo'
+    | 'avatar'
+    | 'product_image_supplier'
+    | 'product_image_user'
+    | 'default_image';
 }
+
+const defaultImages = {
+  logo: defaultLogoImage,
+  avatar: defaultLogoImage,
+  product_image_supplier: defaultSupplierItemImage,
+  product_image_user: defaultUserItemImage,
+  default_image: defaultImage,
+};
 
 export const LazyImage: FC<ILazyImage> = ({
   alt,
@@ -24,6 +41,7 @@ export const LazyImage: FC<ILazyImage> = ({
   width,
   height,
   className,
+  type,
   ...restProps
 }): JSX.Element => {
   const [loaded, setLoaded] = useState(false);
@@ -32,7 +50,7 @@ export const LazyImage: FC<ILazyImage> = ({
     const newEvent = { ...event };
 
     setLoaded(true);
-    newEvent.currentTarget.src = DefaultProductImage;
+    if (type) newEvent.currentTarget.src = defaultImages[type];
   };
 
   useEffect(() => {
@@ -55,7 +73,7 @@ export const LazyImage: FC<ILazyImage> = ({
         image.removeEventListener('load', handleImageLoad);
       };
     }
-  }, [width, height]);
+  }, [width, height, src]);
 
   return (
     <div className={cn(style.image_container, { [style.loaded]: loaded })}>
@@ -66,8 +84,8 @@ export const LazyImage: FC<ILazyImage> = ({
         alt={alt}
         height={height}
         width={width}
-        onError={handleImageError}
         {...restProps}
+        onError={handleImageError}
       />
     </div>
   );

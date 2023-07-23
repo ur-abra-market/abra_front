@@ -4,7 +4,11 @@ import cn from 'classnames';
 
 import style from './UploadImage.module.scss';
 
-import { CrossRedIcon, UploadItemImageIcon, UploadLogoImageIcon } from 'assets/icons';
+import {
+  CrossRedIcon,
+  DefaultLogoImageIcon,
+  DefaultProductImageSupplierIcon,
+} from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
@@ -14,7 +18,7 @@ interface IUploadImage
   image?: string;
   label?: string;
   placeholder?: string;
-  type: 'default' | 'logo' | 'avatar';
+  type: 'product_image_supplier' | 'logo' | 'avatar';
   uploadImage?: (img: File) => void;
   deleteImage?: () => void;
   description: string;
@@ -38,10 +42,10 @@ export const UploadImage: FC<IUploadImage> = ({
   const dispatch = useAppDispatch();
 
   const uploadImageIcon =
-    type === 'logo' || type === 'avatar' ? (
-      <UploadLogoImageIcon />
+    type === 'product_image_supplier' ? (
+      <DefaultProductImageSupplierIcon />
     ) : (
-      <UploadItemImageIcon />
+      <DefaultLogoImageIcon />
     );
 
   const inputClasses = cn({
@@ -67,7 +71,7 @@ export const UploadImage: FC<IUploadImage> = ({
     if (e.target?.files?.length) {
       const file = e.target.files[0];
 
-      if (type === 'logo' && file.size >= MAX_FILE_SIZE) {
+      if ((type === 'logo' || type === 'avatar') && file.size >= MAX_FILE_SIZE) {
         dispatch(
           setResponseNotice({
             noticeType: 'error',
@@ -96,9 +100,9 @@ export const UploadImage: FC<IUploadImage> = ({
       <div className={style.img_wrapper}>
         {image ? (
           <div>
-            <LazyImage src={image} alt={description} className={imgClasses} />
+            <LazyImage src={image} alt={description} className={imgClasses} type={type} />
 
-            {type === 'default' && (
+            {type === 'product_image_supplier' && (
               <button className={crossClasses} onClick={deleteImage} type="button">
                 <CrossRedIcon />
               </button>

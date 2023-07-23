@@ -5,8 +5,6 @@ import { RootStateType } from 'store/createStore';
 
 export const supplierCompanyLogoSelector = (state: RootStateType): string =>
   state.supplierProfile.businessInfo.companyLogo;
-export const supplierCompanyLogoIdSelector = (state: RootStateType): number | null =>
-  state.supplierProfile.businessInfo.companyLogoId;
 
 export const supplierBusinessInfoSelector = (
   state: RootStateType,
