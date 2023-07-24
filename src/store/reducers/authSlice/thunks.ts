@@ -74,7 +74,7 @@ export const loginUser = createAsyncThunk<void, ILoginRequest, IAsyncThunkConfig
     dispatch(setLoading(LoadingStatusEnum.Loading));
 
     try {
-      const { data } = await authService.login(dataUser);
+      await authService.login(dataUser);
 
       const userRole = await dispatch(getUserRole());
 
@@ -83,8 +83,6 @@ export const loginUser = createAsyncThunk<void, ILoginRequest, IAsyncThunkConfig
         await dispatch(hasBusinessInfo());
         await dispatch(getCompanyNumberEmployees());
       }
-
-      return data;
     } catch (error) {
       if (error instanceof AxiosError) {
         dispatch(

@@ -37,7 +37,7 @@ export const createAccountBusinessInfo = createAsyncThunk<
   'createAccount/createAccountBusinessInfo',
   async (businessInfoData, { rejectWithValue, dispatch }) => {
     try {
-      return await supplierService.createBusinessInfo(businessInfoData);
+      await supplierService.createBusinessInfo(businessInfoData);
     } catch (error) {
       const errorMessage =
         error instanceof AxiosError
