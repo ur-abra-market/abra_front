@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { IAsyncThunkConfig, IBaseResponse, LoadingStatusEnum } from 'common/types';
-import authService from 'services/auth/auth.service';
+import { authService } from 'services/auth/auth.service';
 import {
   IChangeEmailRequest,
   IChangePasswordRequest,
