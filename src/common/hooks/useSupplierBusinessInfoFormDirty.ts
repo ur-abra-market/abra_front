@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { ISupplierBusinessInfoFormData } from 'common/types';
-import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import { parsePhoneNumber } from 'common/utils';
 
 export const useSupplierBusinessInfoFormDirty = (
   data: ISupplierBusinessInfoFormData,

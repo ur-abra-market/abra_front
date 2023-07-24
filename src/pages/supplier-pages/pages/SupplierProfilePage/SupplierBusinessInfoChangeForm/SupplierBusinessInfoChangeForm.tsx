@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSupplierBusinessInfoFormDirty } from 'common/hooks/useSupplierBusinessInfoFormDirty';
 import { useSupplierBusinessInfoSetValue } from 'common/hooks/useSupplierBusinessInfoSetValue';
 import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
-import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import { parsePhoneNumber } from 'common/utils';
 import { UploadImage } from 'elements';
 import {
   SupplierBusinessInfoForm,
@@ -90,7 +90,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
         image={companyLogo}
         uploadImage={handleUpdateImage}
         type="logo"
-        label="Add logo or profile image"
+        label="Add logo or profile image (optional)"
         placeholder="The customers will recognize your store by this image"
         description="company logo"
         isDisabled={isDisabled}

@@ -6,7 +6,7 @@ import style from './LocationAndCurrencySelection.module.scss';
 import { LocationAndCurrencySelectionProps } from './LocationAndCurrencySelection.props';
 
 import { CountriesEnum } from 'common/types';
-import { COUNTRY_FLAGS } from 'common/utils/getCountryFlags';
+import { COUNTRY_FLAGS } from 'common/utils';
 import { ISelectOption, Select } from 'ui-kit';
 
 const CURRENCY_DATA: ISelectOption[] = [

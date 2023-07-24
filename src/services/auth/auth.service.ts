@@ -76,5 +76,3 @@ export const authService = {
     return baseConfigService.post<IBaseResponse<boolean>>('users/changeEmail', params);
   },
 };
-
-export default authService;
