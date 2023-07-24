@@ -1,14 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IAsyncThunkConfig } from 'common/types';
+import { IAsyncThunkConfig, IBaseResponse } from 'common/types';
 import { supplierService } from 'services';
 import {
-  ISupplierErrorResponse,
-  ISupplierBusinessInfo,
-  ISupplierUpdateBusinessInfo,
-  ISupplierNotifications,
   IBusinessInfoRequest,
+  ISupplierBusinessInfo,
+  ISupplierErrorResponse,
+  ISupplierNotifications,
+  ISupplierUpdateBusinessInfo,
 } from 'services/supplier/supplier.serviceTypes';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
 

@@ -14,6 +14,8 @@ import {
 } from 'services/auth/auth.serviceTypes';
 import { getUserRole } from 'store/reducers/appSlice';
 import { setLoading, setResponseNotice } from 'store/reducers/appSlice/slice';
+import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
+import { hasBusinessInfo, hasPersonalInfo } from 'store/reducers/supplier/profile';
 
 export const registerUser = createAsyncThunk<void, IRegisterRequest, IAsyncThunkConfig>(
   'auth/registerUser',
@@ -74,7 +76,13 @@ export const loginUser = createAsyncThunk<void, ILoginRequest, IAsyncThunkConfig
     try {
       await authService.login(dataUser);
 
-      await dispatch(getUserRole());
+      const userRole = await dispatch(getUserRole());
+
+      if (userRole.payload === 'supplier') {
+        await dispatch(hasPersonalInfo());
+        await dispatch(hasBusinessInfo());
+        await dispatch(getCompanyNumberEmployees());
+      }
     } catch (error) {
       if (error instanceof AxiosError) {
         dispatch(

@@ -43,6 +43,8 @@ const initialState: ISupplierProfileSliceInitialState = {
   notifications: null,
   hasPersonalInfo: null,
   hasCompanyInfo: null,
+  initDataLoading: LoadingStatusEnum.Idle,
+  data: null,
 };
 
 export const supplierProfileSlice = createSlice({
