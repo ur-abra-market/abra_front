@@ -29,64 +29,64 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const isLoading =
     useAppSelector(userLoadingSelector).personalInfoLoading === LoadingStatusEnum.Loading;
-
   const data = useAppSelector(userPersonalInfoSelector);
 
   const { lastName, firstName, countryShort, phoneNumber } = data;
-
-  const formMethods = useForm<IPersonalInfoFormData>({
-    resolver: yupResolver(personalInfoFormValidationSchema),
-    mode: 'all',
-  });
-
-  const { watch, handleSubmit, formState, setValue } = formMethods;
-
   const countries = useAppSelector(countriesSelector);
 
-  const numberCountry = countries.find(c => c.country_short === countryShort);
+  // const formMethods = useForm<IPersonalInfoFormData>({
+  //   resolver: yupResolver(personalInfoFormValidationSchema),
+  //   mode: 'all',
+  // });
+  //
+  // const { watch, handleSubmit, formState, setValue } = formMethods;
+  //
 
-  useSetPersonalInfoValues(setValue, data, numberCountry);
-
-  const [phoneNumberValue, lastNameValue, firstNameValue, countryShortValue] = watch([
-    'phoneNumber',
-    'lastName',
-    'firstName',
-    'countryShort',
-  ]);
-
-  const serverPhoneNumber = `${numberCountry?.country_code}${phoneNumber}`;
-
-  const { numberFull: currentPhoneNumber } = parsePhoneNumber(phoneNumberValue || '');
-
-  const isPersonalInfoFormDisable =
-    currentPhoneNumber === serverPhoneNumber &&
-    lastNameValue === lastName &&
-    firstNameValue === firstName &&
-    countryShortValue === countryShort;
-
-  const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
-    let phoneNumberBody;
-
-    if (currentPhoneNumber !== serverPhoneNumber) {
-      const { numberBody } = parsePhoneNumber(data.phoneNumber);
-
-      phoneNumberBody = numberBody;
-    }
-
-    const updatePersonalInfoData = {
-      first_name: data.firstName,
-      last_name: data.lastName,
-      phone_number: phoneNumberBody || phoneNumber,
-      country_id: data.countryId,
-    };
-
-    dispatch(updatePersonalInfo(updatePersonalInfoData));
-  };
+  //
+  // const numberCountry = countries.find(c => c.country_short === countryShort);
+  //
+  // useSetPersonalInfoValues(setValue, data, numberCountry);
+  //
+  // const [phoneNumberValue, lastNameValue, firstNameValue, countryShortValue] = watch([
+  //   'phoneNumber',
+  //   'lastName',
+  //   'firstName',
+  //   'countryShort',
+  // ]);
+  //
+  // const serverPhoneNumber = `${numberCountry?.country_code}${phoneNumber}`;
+  //
+  // const { numberFull: currentPhoneNumber } = parsePhoneNumber(phoneNumberValue || '');
+  //
+  // const isPersonalInfoFormDisable =
+  //   currentPhoneNumber === serverPhoneNumber &&
+  //   lastNameValue === lastName &&
+  //   firstNameValue === firstName &&
+  //   countryShortValue === countryShort;
+  //
+  // const onSubmit = async (data: IPersonalInfoFormData): Promise<void> => {
+  //   let phoneNumberBody;
+  //
+  //   if (currentPhoneNumber !== serverPhoneNumber) {
+  //     const { numberBody } = parsePhoneNumber(data.phoneNumber);
+  //
+  //     phoneNumberBody = numberBody;
+  //   }
+  //
+  //   const updatePersonalInfoData = {
+  //     first_name: data.firstName,
+  //     last_name: data.lastName,
+  //     phone_number: phoneNumberBody || phoneNumber,
+  //     country_id: data.countryId,
+  //   };
+  //
+  //   dispatch(updatePersonalInfo(updatePersonalInfoData));
+  // };
 
   const formMethodsPhone = useForm<IPhoneData>({
     mode: 'all',
   });
-
+  const { handleSubmit } = formMethodsPhone;
   const onSubmitPhone = (data: any): void => {
     console.log(data);
   };
@@ -98,22 +98,22 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
         <ButtonLogOut />
       </div>
 
-      <FormProvider {...formMethods}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <PersonalInfoChangeForm countryShort={countryShort} />
+      {/* <FormProvider {...formMethods}> */}
+      {/*  <form onSubmit={handleSubmit(onSubmit)}> */}
+      {/*    <PersonalInfoChangeForm countryShort={countryShort} /> */}
 
-          <Button
-            type="submit"
-            disabled={isLoading || !formState.isValid || isPersonalInfoFormDisable}
-            className={style.submit_button}
-            label="Save"
-          />
-        </form>
-      </FormProvider>
+      {/*    <Button */}
+      {/*      type="submit" */}
+      {/*      disabled={isLoading || !formState.isValid || isPersonalInfoFormDisable} */}
+      {/*      className={style.submit_button} */}
+      {/*      label="Save" */}
+      {/*    /> */}
+      {/*  </form> */}
+      {/* </FormProvider> */}
 
       <FormProvider {...formMethodsPhone}>
         <form onSubmit={handleSubmit(onSubmitPhone)} className={style.phone_form}>
-          <PhoneNumber />
+          <PhoneNumber countryId={countryShort} />
 
           <Button type="submit" className={style.submit_button} label="Save" />
         </form>

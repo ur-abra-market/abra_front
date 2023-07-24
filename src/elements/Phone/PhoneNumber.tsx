@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState, useRef, FC } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
@@ -15,12 +15,19 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { getCountries } from 'store/reducers/commonSlice';
 import { Input, ISelectOption, Select } from 'ui-kit';
 
-interface IPhoneNumber {
+interface IPhoneNumberForm {
   phoneNumberBody: string;
   phoneNumberCountryId: number;
 }
+interface IPhoneNumber {
+  countryId?: string;
+  phoneNumber?: string;
+}
 
-export const PhoneNumber = (): JSX.Element => {
+export const PhoneNumber: FC<IPhoneNumber> = ({
+  countryId,
+  phoneNumber,
+}): JSX.Element => {
   const inputElement = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
   const countries = useAppSelector(state => state.common.countries);
@@ -34,17 +41,17 @@ export const PhoneNumber = (): JSX.Element => {
   );
 
   const {
-    register,
     setValue,
     setError,
     clearErrors,
     formState: { errors },
-  } = useFormContext<IPhoneNumber>();
+  } = useFormContext<IPhoneNumberForm>();
 
   useEffect(() => {
     if (!countries.length) {
       dispatch(getCountries());
     }
+    setValue('phoneNumberCountryId', defaultPhoneNumberValue.countryCode.value);
   }, []);
 
   const formatAndValidatePhoneNumberBody = (numberBody: string): void => {
@@ -52,8 +59,8 @@ export const PhoneNumber = (): JSX.Element => {
     const phoneNumberBodyRawValue = numberBody.replace(/\D/g, '');
 
     // save cursor position
-    // const selectionStart = inputElement.current?.selectionStart;
-    // const selectionEnd = inputElement.current?.selectionEnd;
+    const selectionStart = inputElement.current?.selectionStart;
+    const selectionEnd = inputElement.current?.selectionEnd;
 
     // if an empty string is received and phoneNumberBody exists, it means the input should be cleared
     if (!phoneNumberBodyRawValue && phoneNumberBody) {
@@ -73,14 +80,15 @@ export const PhoneNumber = (): JSX.Element => {
 
     // if formattedNumber exists, set it to phoneNumberBody so that the number is displayed on ui
     setPhoneNumberBody(formattedNumber);
+    setValue('phoneNumberBody', formattedNumber.replace(/\D/g, ''));
 
     // restore cursor position after state update
-    // setTimeout(() => {
-    //   if (inputElement.current) {
-    //     inputElement.current.selectionStart = selectionStart || 0;
-    //     inputElement.current.selectionEnd = selectionEnd || 0;
-    //   }
-    // }, 0);
+    setTimeout(() => {
+      if (inputElement.current) {
+        inputElement.current.selectionStart = selectionStart || 0;
+        inputElement.current.selectionEnd = selectionEnd || 0;
+      }
+    }, 0);
 
     if (!validatePhoneNumber(phoneNumberBodyRawValue, phoneCountryShort)) {
       setError('phoneNumberBody', { message: 'Please, enter a valid phone number' });
@@ -106,12 +114,7 @@ export const PhoneNumber = (): JSX.Element => {
   };
 
   const handlePhoneNumberBodyChange = (e: React.ChangeEvent<HTMLInputElement>): any => {
-    console.log(e.currentTarget.value);
-    const result = formatAndValidatePhoneNumberBody(e.currentTarget.value);
-
-    // if (result) return result;
-
-    return '';
+    formatAndValidatePhoneNumberBody(e.currentTarget.value);
   };
 
   if (!countriesWithFlag.length) return <div />;
@@ -130,8 +133,8 @@ export const PhoneNumber = (): JSX.Element => {
       />
 
       <Input
-        {...register('phoneNumberBody')}
-        // onChange={handlePhoneNumberBodyChange}
+        value={phoneNumberBody}
+        onChange={handlePhoneNumberBodyChange}
         error={errors?.phoneNumberBody?.message}
       />
     </div>
