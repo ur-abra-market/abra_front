@@ -3,7 +3,7 @@ export {
   getSupplierNotifications,
   updateSupplierNotifications,
   updateBusinessInfo,
-  fetchCompanyLogo,
+  getCompanyLogo,
   deleteCompanyImage,
   updateCompanyLogo,
   hasPersonalInfo,

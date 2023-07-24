@@ -51,7 +51,7 @@ export const SupplierPersonalInfoForm = (): JSX.Element => {
 
     const actionResult = await dispatch(createAccountPersonalInfo(personalInfoData));
 
-    if (actionResult.payload.result) {
+    if (actionResult.payload) {
       navigate(ACCOUNT_SETUP_BUSINESS_INFO);
     }
   };

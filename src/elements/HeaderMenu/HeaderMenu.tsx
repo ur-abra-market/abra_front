@@ -8,7 +8,7 @@ import { HEADER_MENU_CONTENT } from './headerMenuContent';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { HOME, PERSONAL_ACCOUNT } from 'routes';
-import { logout } from 'store/reducers/authSlice';
+import { logoutUser } from 'store/reducers/authSlice';
 import { isAuthSelector, userRoleSelector } from 'store/reducers/authSlice/selectors';
 import { Button } from 'ui-kit';
 
@@ -46,7 +46,7 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ active, setActive }) => {
   }, [setActive]);
 
   const handleClickLogout = async (): Promise<void> => {
-    const result = await dispatch(logout());
+    const result = await dispatch(logoutUser());
 
     if (result) navigate(HOME);
   };

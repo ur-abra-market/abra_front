@@ -48,12 +48,13 @@ export const supplierService = {
       formData.append('file', params.file!);
     }
 
-    const { data } = await baseConfigService.post(`register/business/sendInfo`, formData);
-
-    return data.result;
+    return baseConfigService.post<IBaseResponse<boolean>>(
+      `register/business/sendInfo`,
+      formData,
+    );
   },
 
-  fetchCompanyLogo: async () => {
+  getCompanyLogo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<string>>(
       `suppliers/companyLogo`,
     );
@@ -61,7 +62,7 @@ export const supplierService = {
     return data.result;
   },
 
-  fetchBusinessInfo: async () => {
+  getBusinessInfo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISupplierBusinessInfo>>(
       `suppliers/businessInfo`,
     );
@@ -70,15 +71,13 @@ export const supplierService = {
   },
 
   updateBusinessInfo: async (params: Partial<ISupplierUpdateBusinessInfo>) => {
-    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+    return baseConfigService.post<IBaseResponse<boolean>>(
       `suppliers/businessInfo/update`,
       params,
     );
-
-    return data.result;
   },
 
-  fetchNotifications: async () => {
+  getNotifications: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISupplierNotifications>>(
       `suppliers/notifications`,
     );
@@ -102,7 +101,7 @@ export const supplierService = {
     return data;
   },
 
-  addProduct: async (params: any) => {
+  createProduct: async (params: any) => {
     const { data } = await baseConfigService.post(`suppliers/addProduct`, params);
 
     return data;
@@ -138,19 +137,6 @@ export const supplierService = {
         url: string;
       }>
     >('suppliers/companyLogo/update', formData);
-
-    return data;
-  },
-
-  uploadCompanyImage: async (image: File) => {
-    const formData = new FormData();
-
-    formData.append('file', image);
-
-    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      'suppliers/uploadCompanyImage/',
-      formData,
-    );
 
     return data;
   },

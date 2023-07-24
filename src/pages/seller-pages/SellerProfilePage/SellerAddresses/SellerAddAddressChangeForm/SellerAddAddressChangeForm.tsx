@@ -9,7 +9,7 @@ import { AddressesChangeForm } from 'modules/AddressesChangeForm/AddressesChange
 import { addressFormValidationSchema } from 'modules/AddressesChangeForm/AddressFormValidationSchema';
 import { ISellerAddressRequest } from 'services/seller/seller.serviceTypes';
 import { countriesSelector } from 'store/reducers/commonSlice';
-import { addSellerAddresses, ISellerAddress } from 'store/reducers/seller/profile';
+import { createSellerAddresses, ISellerAddress } from 'store/reducers/seller/profile';
 
 interface ISellerAddAddressChangeForm {
   closeModal?: (modal: boolean) => void;
@@ -56,9 +56,9 @@ export const SellerAddAddressChangeForm: FC<ISellerAddAddressChangeForm> = ({
       },
     };
 
-    const actionResult = await dispatch(addSellerAddresses(updateSellerAddressData));
+    const actionResult = await dispatch(createSellerAddresses(updateSellerAddressData));
 
-    if (addSellerAddresses.fulfilled.match(actionResult) && closeModal) {
+    if (createSellerAddresses.fulfilled.match(actionResult) && closeModal) {
       closeModal(false);
     }
   };
