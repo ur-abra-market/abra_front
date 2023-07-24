@@ -1,7 +1,7 @@
 .wrapper {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  gap: 40px;
+  gap: 20px;
   align-items: center;
 
   width: 100%;
@@ -11,6 +11,10 @@
   border-bottom: 1px solid var(--color-light-gray);
 }
 
+.logo {
+  font-size: var(--fz-xl2);
+}
+
 .inner_buttons {
   display: flex;
   gap: 32px;
@@ -18,8 +22,4 @@
 
 .wrapper_btn {
   position: relative;
-}
-
-.logo_font_size {
-  font-size: var(--fz-xl2);
 }
