@@ -12,7 +12,7 @@ import { LoadingStatusEnum } from 'common/types';
 import { PasswordComplexity } from 'pages/general-pages/auth-pages/assets';
 import { IResetPasswordRequest } from 'services/auth/auth.serviceTypes';
 import { loadingSelector } from 'store/reducers/appSlice';
-import { isAuthSelector, logout, resetPassword } from 'store/reducers/authSlice';
+import { isAuthSelector, logoutUser, resetPassword } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
 
 const TRIGGER_FIELD = 'confirm_password';
@@ -67,7 +67,7 @@ export const ResetPasswordForm: FC<IResetPasswordForm> = ({
 
     if (resetPassword.fulfilled.match(actionResult)) {
       if (isAuthorized) {
-        await dispatch(logout());
+        await dispatch(logoutUser());
       }
       setModalOpen(true);
     }

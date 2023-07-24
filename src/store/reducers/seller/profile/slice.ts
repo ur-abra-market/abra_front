@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
-  addSellerAddresses,
+  createSellerAddresses,
   updateSellerAddresses,
   getSellerAddresses,
   getSellerAvatar,
@@ -60,13 +60,13 @@ const sellerProfileSlice = createSlice({
         state.loading.addressesLoading = LoadingStatusEnum.Failed;
       })
 
-      .addCase(addSellerAddresses.pending, state => {
+      .addCase(createSellerAddresses.pending, state => {
         state.loading.addressesLoading = LoadingStatusEnum.Loading;
       })
-      .addCase(addSellerAddresses.fulfilled, state => {
+      .addCase(createSellerAddresses.fulfilled, state => {
         state.loading.addressesLoading = LoadingStatusEnum.Success;
       })
-      .addCase(addSellerAddresses.rejected, state => {
+      .addCase(createSellerAddresses.rejected, state => {
         state.loading.addressesLoading = LoadingStatusEnum.Failed;
       })
 

@@ -26,7 +26,7 @@ export const sellerService = {
     return data.result;
   },
 
-  addAddress: async (params: ISellerAddressRequest) => {
+  createAddress: async (params: ISellerAddressRequest) => {
     const { data } = await baseConfigService.post<IBaseResponse<ISellerAddress>>(
       'sellers/addAddress',
       params,
@@ -50,7 +50,7 @@ export const sellerService = {
     );
   },
 
-  fetchNotifications: async () => {
+  getNotifications: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISellerNotifications>>(
       `sellers/notifications`,
     );

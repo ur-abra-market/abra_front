@@ -54,7 +54,7 @@ export const supplierService = {
     );
   },
 
-  fetchCompanyLogo: async () => {
+  getCompanyLogo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<string>>(
       `suppliers/companyLogo`,
     );
@@ -62,7 +62,7 @@ export const supplierService = {
     return data.result;
   },
 
-  fetchBusinessInfo: async () => {
+  getBusinessInfo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISupplierBusinessInfo>>(
       `suppliers/businessInfo`,
     );
@@ -77,7 +77,7 @@ export const supplierService = {
     );
   },
 
-  fetchNotifications: async () => {
+  getNotifications: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISupplierNotifications>>(
       `suppliers/notifications`,
     );
@@ -101,7 +101,7 @@ export const supplierService = {
     return data;
   },
 
-  addProduct: async (params: any) => {
+  createProduct: async (params: any) => {
     const { data } = await baseConfigService.post(`suppliers/addProduct`, params);
 
     return data;

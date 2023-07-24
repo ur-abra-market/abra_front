@@ -8,7 +8,7 @@ import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
 import {
   hasCompanyInfoSelector,
   hasPersonalInfoSelector,
-  hasCompanyInfo,
+  hasBusinessInfo,
   hasPersonalInfo,
 } from 'store/reducers/supplier/profile';
 import { LoaderCircular } from 'ui-kit';
@@ -22,7 +22,7 @@ export const SupplierMainPage = (): JSX.Element => {
   useEffect(() => {
     (async () => {
       await dispatch(hasPersonalInfo());
-      await dispatch(hasCompanyInfo());
+      await dispatch(hasBusinessInfo());
       await dispatch(getCompanyNumberEmployees());
       setIsLoading(false);
     })();

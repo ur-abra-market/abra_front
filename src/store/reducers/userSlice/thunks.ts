@@ -8,7 +8,7 @@ export const getPersonalInfo = createAsyncThunk<IAccountPersonalInfoResponse, vo
   'user/getPersonalInfo',
   async (_, { rejectWithValue }) => {
     try {
-      return await userService.fetchAccountPersonalInfo();
+      return await userService.getUserPersonalInfo();
     } catch (error) {
       const errorMessage =
         error instanceof AxiosError
@@ -24,7 +24,7 @@ export const updatePersonalInfo = createAsyncThunk<any, any>(
   'user/updatePersonalInfo',
   async (personalInfoData, { rejectWithValue, dispatch }) => {
     try {
-      const result = await userService.updateAccountPersonalInfo(personalInfoData);
+      const result = await userService.updateUserPersonalInfo(personalInfoData);
 
       if (result) dispatch(getPersonalInfo());
 

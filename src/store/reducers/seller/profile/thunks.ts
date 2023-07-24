@@ -45,13 +45,13 @@ export const getSellerAddresses = createAsyncThunk<
   }
 });
 
-export const addSellerAddresses = createAsyncThunk<
+export const createSellerAddresses = createAsyncThunk<
   void,
   ISellerAddressRequest,
   IAsyncThunkConfig
->('seller/addSellerAddresses', async (arg, { rejectWithValue, dispatch }) => {
+>('seller/createSellerAddresses', async (arg, { rejectWithValue, dispatch }) => {
   try {
-    await sellerService.addAddress(arg);
+    await sellerService.createAddress(arg);
     await dispatch(getSellerAddresses());
     dispatch(
       setResponseNotice({ noticeType: 'success', message: 'Address successfully added' }),
@@ -119,7 +119,7 @@ export const getSellerNotifications = createAsyncThunk<
   IAsyncThunkConfig
 >('seller/getSellerNotifications', async (_, { rejectWithValue, dispatch }) => {
   try {
-    return await sellerService.fetchNotifications();
+    return await sellerService.getNotifications();
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError

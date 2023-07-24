@@ -10,7 +10,7 @@ import { useOnClickOutside, useAppDispatch, useAppSelector } from 'common/hooks'
 import { HeaderMenu } from 'elements';
 import { HOME } from 'routes';
 import {
-  fetchCompanyLogo,
+  getCompanyLogo,
   supplierCompanyLogoSelector,
 } from 'store/reducers/supplier/profile';
 import { MainLogo } from 'ui-kit';
@@ -22,7 +22,7 @@ export const SupplierTop = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchCompanyLogo());
+    dispatch(getCompanyLogo());
   }, [dispatch]);
 
   return (

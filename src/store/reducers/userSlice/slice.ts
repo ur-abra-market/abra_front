@@ -8,7 +8,7 @@ import {
 } from '.';
 
 import { LoadingStatusEnum } from 'common/types';
-import { logout } from 'store/reducers/authSlice';
+import { logoutUser } from 'store/reducers/authSlice';
 
 const initialState: IUserSliceInitialState = {
   loading: {
@@ -71,7 +71,7 @@ const userSlice = createSlice({
         state.favoritesProducts = action.payload;
       })
 
-      .addCase(logout.fulfilled, state => {
+      .addCase(logoutUser.fulfilled, state => {
         state.personalInfo = {
           firstName: '',
           lastName: '',

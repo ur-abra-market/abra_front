@@ -30,7 +30,7 @@ export const getCompanyNumberEmployees = createAsyncThunk<
   IAsyncThunkConfig
 >('common/getCompanyNumberEmployees', async (_, { rejectWithValue }) => {
   try {
-    return await commonService.fetchCompanyNumberEmployees();
+    return await commonService.getCompanyNumberEmployees();
   } catch (error) {
     if (error instanceof AxiosError) {
       return rejectWithValue(error.message);
@@ -46,7 +46,7 @@ export const getAllCategories = createAsyncThunk<
   IAsyncThunkConfig
 >('category/getAllCategories', async (_, { rejectWithValue }) => {
   try {
-    return await commonService.fetchAllCategories();
+    return await commonService.getAllCategories();
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
