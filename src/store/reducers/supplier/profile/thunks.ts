@@ -3,7 +3,6 @@ import { AxiosError } from 'axios';
 
 import { IAsyncThunkConfig, IBaseResponse } from 'common/types';
 import { supplierService } from 'services';
-import { commonService } from 'services/common/common.service';
 import {
   IBusinessInfoRequest,
   ISupplierBusinessInfo,
@@ -187,25 +186,19 @@ export const updateSupplierNotifications = createAsyncThunk<
   },
 );
 
-export const getData = createAsyncThunk<any, void, IAsyncThunkConfig>(
-  'supplierProfile/getData',
-  async (_, { rejectWithValue, dispatch }) => {
-    try {
-      debugger;
-      const hasPersonalInfo = await supplierService.hasPersonalInfo();
-
-      debugger;
-      const hasBusinessInfo = await supplierService.hasBusinessInfo();
-
-      debugger;
-      const companyNumberEmployees = await commonService.fetchCompanyNumberEmployees();
-
-      console.log({ hasPersonalInfo, hasBusinessInfo, companyNumberEmployees });
-      debugger;
-
-      return { hasPersonalInfo, hasBusinessInfo, companyNumberEmployees };
-    } catch (error) {
-      return rejectWithValue('[hasPersonalInfo]: Error');
-    }
-  },
-);
+// export const getData = createAsyncThunk<any, void, IAsyncThunkConfig>(
+//   'supplierProfile/getData',
+//   async (_, { rejectWithValue, dispatch }) => {
+//     try {
+//       await dispatch(hasPersonalInfo());
+//
+//       await dispatch(hasBusinessInfo());
+//
+//       await dispatch(getCompanyNumberEmployees());
+//
+//       return { companyNumberEmployees };
+//     } catch (error) {
+//       return rejectWithValue('[hasPersonalInfo]: Error');
+//     }
+//   },
+// );

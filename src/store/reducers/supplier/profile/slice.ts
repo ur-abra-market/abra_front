@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { getData } from './thunks';
-
 import {
   deleteCompanyImage,
   fetchCompanyLogo,
@@ -156,16 +154,6 @@ export const supplierProfileSlice = createSlice({
       })
       .addCase(hasBusinessInfo.fulfilled, (state, action) => {
         state.hasCompanyInfo = action.payload;
-      })
-
-      .addCase(getData.pending, state => {
-        state.initDataLoading = LoadingStatusEnum.Loading;
-      })
-      .addCase(getData.fulfilled, (state, action) => {
-        state.hasPersonalInfo = action.payload.hasPersonalInfo;
-        state.hasCompanyInfo = action.payload.hasBusinessInfo;
-        state.data = true;
-        state.initDataLoading = LoadingStatusEnum.Success;
       });
   },
 });
