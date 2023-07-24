@@ -1,62 +1,60 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IAsyncThunkConfig, LoadingStatusEnum } from 'common/types';
-import authService from 'services/auth/auth.service';
+import { IAsyncThunkConfig, IBaseResponse, LoadingStatusEnum } from 'common/types';
+import { authService } from 'services/auth/auth.service';
 import {
-  IChangePasswordRequest,
-  IPersonalInfoRequest,
-  ILoginRequest,
-  ILoginResponse,
-  IResetPasswordRequest,
   IChangeEmailRequest,
-  IRegisterRequest,
+  IChangePasswordRequest,
   IConfirmEmailRequest,
-  IPasswordResponse,
+  ILoginRequest,
+  IPersonalInfoRequest,
+  IRegisterRequest,
+  IResetPasswordRequest,
 } from 'services/auth/auth.serviceTypes';
 import { getUserRole } from 'store/reducers/appSlice';
 import { setLoading, setResponseNotice } from 'store/reducers/appSlice/slice';
 
-export const registerUser = createAsyncThunk<
-  IPasswordResponse,
-  IRegisterRequest,
-  IAsyncThunkConfig
->('auth/registerUser', async (dataUser, { rejectWithValue, dispatch }) => {
-  dispatch(setLoading(LoadingStatusEnum.Loading));
+export const registerUser = createAsyncThunk<void, IRegisterRequest, IAsyncThunkConfig>(
+  'auth/registerUser',
+  async (dataUser, { rejectWithValue, dispatch }) => {
+    dispatch(setLoading(LoadingStatusEnum.Loading));
 
-  try {
-    return await authService.register(dataUser);
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      dispatch(
-        setResponseNotice({
-          noticeType: 'error',
-          message: error.response?.data?.error || error.message,
-        }),
-      );
+    try {
+      await authService.register(dataUser);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        dispatch(
+          setResponseNotice({
+            noticeType: 'error',
+            message: error.response?.data?.error || error.message,
+          }),
+        );
+      }
+
+      return rejectWithValue('[registerUser]: Error');
+    } finally {
+      dispatch(setLoading(LoadingStatusEnum.Idle));
     }
-
-    return rejectWithValue('[registerUser]: Error');
-  } finally {
-    dispatch(setLoading(LoadingStatusEnum.Idle));
-  }
-});
+  },
+);
 
 export const confirmEmail = createAsyncThunk<
-  IPasswordResponse,
+  void,
   IConfirmEmailRequest,
   IAsyncThunkConfig
 >('auth/confirmEmail', async (dataUser, { rejectWithValue }) => {
   try {
-    return await authService.confirmEmail(dataUser);
+    await authService.confirmEmail(dataUser);
   } catch (error) {
     return rejectWithValue('[confirmEmail]: Error');
   }
 });
 
 export const createAccountPersonalInfo = createAsyncThunk<
-  any, // todo fix any -> need common request interface
-  IPersonalInfoRequest
+  IBaseResponse<boolean>,
+  IPersonalInfoRequest,
+  IAsyncThunkConfig
 >(
   'createAccount/createAccountPersonalInfo',
   async (personalInfoData, { rejectWithValue }) => {
@@ -68,44 +66,39 @@ export const createAccountPersonalInfo = createAsyncThunk<
   },
 );
 
-export const loginUser = createAsyncThunk<
-  ILoginResponse,
-  ILoginRequest,
-  IAsyncThunkConfig
->('auth/loginUser', async (dataUser, { rejectWithValue, dispatch }) => {
-  dispatch(setLoading(LoadingStatusEnum.Loading));
+export const loginUser = createAsyncThunk<void, ILoginRequest, IAsyncThunkConfig>(
+  'auth/loginUser',
+  async (dataUser, { rejectWithValue, dispatch }) => {
+    dispatch(setLoading(LoadingStatusEnum.Loading));
 
-  try {
-    const { data } = await authService.login(dataUser);
+    try {
+      await authService.login(dataUser);
 
-    dispatch(getUserRole());
+      dispatch(getUserRole());
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        dispatch(
+          setResponseNotice({
+            noticeType: 'error',
+            message: error.response?.data?.error || error.message,
+          }),
+        );
+      }
 
-    return data;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      dispatch(
-        setResponseNotice({
-          noticeType: 'error',
-          message: error.response?.data?.error || error.message,
-        }),
-      );
+      return rejectWithValue('[loginUser]: Error');
+    } finally {
+      dispatch(setLoading(LoadingStatusEnum.Idle));
     }
+  },
+);
 
-    return rejectWithValue('[loginUser]: Error');
-  } finally {
-    dispatch(setLoading(LoadingStatusEnum.Idle));
-  }
-});
-
-export const logout = createAsyncThunk<boolean, void, IAsyncThunkConfig>(
+export const logout = createAsyncThunk<void, void, IAsyncThunkConfig>(
   'login/logout',
   async (_, { rejectWithValue, dispatch }) => {
     dispatch(setLoading(LoadingStatusEnum.Loading));
 
     try {
-      const result = await authService.logout();
-
-      return result.ok;
+      await authService.logout();
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         dispatch(
@@ -123,14 +116,12 @@ export const logout = createAsyncThunk<boolean, void, IAsyncThunkConfig>(
   },
 );
 
-export const forgotPassword = createAsyncThunk<string, string, IAsyncThunkConfig>(
+export const forgotPassword = createAsyncThunk<void, string, IAsyncThunkConfig>(
   'password/forgotPassword',
   async (email, { dispatch, rejectWithValue }) => {
     dispatch(setLoading(LoadingStatusEnum.Loading));
     try {
-      const response = await authService.forgotPassword(email);
-
-      return response.data.result;
+      await authService.forgotPassword(email);
     } catch (error) {
       if (error instanceof AxiosError) {
         dispatch(
@@ -148,13 +139,11 @@ export const forgotPassword = createAsyncThunk<string, string, IAsyncThunkConfig
   },
 );
 
-export const checkToken = createAsyncThunk<string, string, IAsyncThunkConfig>(
+export const checkToken = createAsyncThunk<void, string, IAsyncThunkConfig>(
   'password/checkToken',
   async (token, { rejectWithValue }) => {
     try {
-      const response = await authService.checkToken(token);
-
-      return response.data.result;
+      await authService.checkToken(token);
     } catch (error) {
       return rejectWithValue('[checkToken]: Error');
     }
@@ -162,16 +151,14 @@ export const checkToken = createAsyncThunk<string, string, IAsyncThunkConfig>(
 );
 
 export const resetPassword = createAsyncThunk<
-  string,
+  void,
   IResetPasswordRequest,
   IAsyncThunkConfig
 >('password/resetPassword', async (param, { dispatch, rejectWithValue }) => {
   dispatch(setLoading(LoadingStatusEnum.Loading));
 
   try {
-    const response = await authService.resetPassword(param);
-
-    return response.data.result;
+    await authService.resetPassword(param);
   } catch (error) {
     if (error instanceof AxiosError) {
       dispatch(
@@ -189,15 +176,13 @@ export const resetPassword = createAsyncThunk<
 });
 
 export const changePassword = createAsyncThunk<
-  string,
+  void,
   IChangePasswordRequest,
   IAsyncThunkConfig
 >('password/changePassword', async (param, { dispatch, rejectWithValue }) => {
   dispatch(setLoading(LoadingStatusEnum.Loading));
   try {
-    const response = await authService.changePassword(param);
-
-    return response.data.result;
+    await authService.changePassword(param);
   } catch (error) {
     if (error instanceof AxiosError) {
       dispatch(
@@ -214,28 +199,25 @@ export const changePassword = createAsyncThunk<
   }
 });
 
-export const changeEmail = createAsyncThunk<
-  string,
-  IChangeEmailRequest,
-  IAsyncThunkConfig
->('auth/changeEmail', async (params, { dispatch, rejectWithValue }) => {
-  dispatch(setLoading(LoadingStatusEnum.Loading));
-  try {
-    const response = await authService.changeEmail(params);
+export const changeEmail = createAsyncThunk<void, IChangeEmailRequest, IAsyncThunkConfig>(
+  'auth/changeEmail',
+  async (params, { dispatch, rejectWithValue }) => {
+    dispatch(setLoading(LoadingStatusEnum.Loading));
+    try {
+      await authService.changeEmail(params);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        dispatch(
+          setResponseNotice({
+            noticeType: 'error',
+            message: error.response?.data?.error || error.message,
+          }),
+        );
+      }
 
-    return response.data.result;
-  } catch (error) {
-    if (error instanceof AxiosError) {
-      dispatch(
-        setResponseNotice({
-          noticeType: 'error',
-          message: error.response?.data?.error || error.message,
-        }),
-      );
+      return rejectWithValue('[changeEmail]: Error');
+    } finally {
+      dispatch(setLoading(LoadingStatusEnum.Idle));
     }
-
-    return rejectWithValue('[changeEmail]: Error');
-  } finally {
-    dispatch(setLoading(LoadingStatusEnum.Idle));
-  }
-});
+  },
+);

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IAsyncThunkConfig, IBaseResponse } from 'common/types';
+import { IAsyncThunkConfig } from 'common/types';
 import { supplierService } from 'services';
 import {
   ISupplierErrorResponse,
@@ -37,7 +37,7 @@ export const createAccountBusinessInfo = createAsyncThunk<
   'createAccount/createAccountBusinessInfo',
   async (businessInfoData, { rejectWithValue, dispatch }) => {
     try {
-      return await supplierService.createBusinessInfo(businessInfoData);
+      await supplierService.createBusinessInfo(businessInfoData);
     } catch (error) {
       const errorMessage =
         error instanceof AxiosError
@@ -82,6 +82,7 @@ export const updateBusinessInfo = createAsyncThunk<
 >('supplierProfile/updateBusinessInfo', async (arg, { rejectWithValue, dispatch }) => {
   try {
     await supplierService.updateBusinessInfo(arg);
+
     dispatch(getBusinessInfo());
   } catch (error) {
     const errorMessage =
@@ -125,19 +126,18 @@ export const updateCompanyLogo = createAsyncThunk<string, File, IAsyncThunkConfi
   },
 );
 
-export const deleteCompanyImage = createAsyncThunk<
-  IBaseResponse<boolean>,
-  number,
-  IAsyncThunkConfig
->('supplierProfile/deleteCompanyLogo', async (id, { rejectWithValue }) => {
-  try {
-    return await supplierService.deleteCompanyImage(id);
-  } catch (error) {
-    const err = error as AxiosError<ISupplierErrorResponse>;
+export const deleteCompanyImage = createAsyncThunk<void, number, IAsyncThunkConfig>(
+  'supplierProfile/deleteCompanyLogo',
+  async (id, { rejectWithValue }) => {
+    try {
+      await supplierService.deleteCompanyImage(id);
+    } catch (error) {
+      const err = error as AxiosError<ISupplierErrorResponse>;
 
-    return rejectWithValue(err.message);
-  }
-});
+      return rejectWithValue(err.message);
+    }
+  },
+);
 
 export const getSupplierNotifications = createAsyncThunk<
   ISupplierNotifications,

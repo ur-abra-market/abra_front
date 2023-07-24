@@ -48,9 +48,10 @@ export const supplierService = {
       formData.append('file', params.file!);
     }
 
-    const { data } = await baseConfigService.post(`register/business/sendInfo`, formData);
-
-    return data.result;
+    return baseConfigService.post<IBaseResponse<boolean>>(
+      `register/business/sendInfo`,
+      formData,
+    );
   },
 
   fetchCompanyLogo: async () => {
@@ -70,12 +71,10 @@ export const supplierService = {
   },
 
   updateBusinessInfo: async (params: Partial<ISupplierUpdateBusinessInfo>) => {
-    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+    return baseConfigService.post<IBaseResponse<boolean>>(
       `suppliers/businessInfo/update`,
       params,
     );
-
-    return data.result;
   },
 
   fetchNotifications: async () => {
@@ -138,19 +137,6 @@ export const supplierService = {
         url: string;
       }>
     >('suppliers/companyLogo/update', formData);
-
-    return data;
-  },
-
-  uploadCompanyImage: async (image: File) => {
-    const formData = new FormData();
-
-    formData.append('file', image);
-
-    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      'suppliers/uploadCompanyImage/',
-      formData,
-    );
 
     return data;
   },
