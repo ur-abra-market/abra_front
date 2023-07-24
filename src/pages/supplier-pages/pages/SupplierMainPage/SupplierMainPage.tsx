@@ -31,7 +31,7 @@ export const SupplierMainPage = (): JSX.Element => {
     };
 
     fetch();
-  }, [dispatch]);
+  }, [dispatch, hasPersonalInfoResult]);
 
   if (isFetching && !hasCompanyInfoResult) return <LoaderCircular />;
   if (!hasPersonalInfoResult) return <Navigate to={ACCOUNT_SETUP_PERSONAL_INFO} />;
