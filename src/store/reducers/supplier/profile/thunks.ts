@@ -3,12 +3,13 @@ import { AxiosError } from 'axios';
 
 import { IAsyncThunkConfig, IBaseResponse } from 'common/types';
 import { supplierService } from 'services';
+import { commonService } from 'services/common/common.service';
 import {
-  ISupplierErrorResponse,
-  ISupplierBusinessInfo,
-  ISupplierUpdateBusinessInfo,
-  ISupplierNotifications,
   IBusinessInfoRequest,
+  ISupplierBusinessInfo,
+  ISupplierErrorResponse,
+  ISupplierNotifications,
+  ISupplierUpdateBusinessInfo,
 } from 'services/supplier/supplier.serviceTypes';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
 
@@ -53,7 +54,7 @@ export const createAccountBusinessInfo = createAsyncThunk<
   },
 );
 
-export const hasCompanyInfo = createAsyncThunk<boolean, void, IAsyncThunkConfig>(
+export const hasBusinessInfo = createAsyncThunk<boolean, void, IAsyncThunkConfig>(
   'supplierProfile/hasCompanyInfo',
   async (_, { rejectWithValue }) => {
     try {
@@ -182,6 +183,29 @@ export const updateSupplierNotifications = createAsyncThunk<
         dispatch(setResponseNotice({ noticeType: 'error', message: errorMessage }));
 
       return rejectWithValue(errorMessage);
+    }
+  },
+);
+
+export const getData = createAsyncThunk<any, void, IAsyncThunkConfig>(
+  'supplierProfile/getData',
+  async (_, { rejectWithValue, dispatch }) => {
+    try {
+      debugger;
+      const hasPersonalInfo = await supplierService.hasPersonalInfo();
+
+      debugger;
+      const hasBusinessInfo = await supplierService.hasBusinessInfo();
+
+      debugger;
+      const companyNumberEmployees = await commonService.fetchCompanyNumberEmployees();
+
+      console.log({ hasPersonalInfo, hasBusinessInfo, companyNumberEmployees });
+      debugger;
+
+      return { hasPersonalInfo, hasBusinessInfo, companyNumberEmployees };
+    } catch (error) {
+      return rejectWithValue('[hasPersonalInfo]: Error');
     }
   },
 );

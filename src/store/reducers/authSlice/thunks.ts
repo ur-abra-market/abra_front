@@ -16,6 +16,8 @@ import {
 } from 'services/auth/auth.serviceTypes';
 import { getUserRole } from 'store/reducers/appSlice';
 import { setLoading, setResponseNotice } from 'store/reducers/appSlice/slice';
+import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
+import { hasBusinessInfo, hasPersonalInfo } from 'store/reducers/supplier/profile';
 
 export const registerUser = createAsyncThunk<
   IPasswordResponse,
@@ -78,7 +80,13 @@ export const loginUser = createAsyncThunk<
   try {
     const { data } = await authService.login(dataUser);
 
-    dispatch(getUserRole());
+    const userRole = await dispatch(getUserRole());
+
+    if (userRole.payload === 'supplier') {
+      await dispatch(hasPersonalInfo());
+      await dispatch(hasBusinessInfo());
+      await dispatch(getCompanyNumberEmployees());
+    }
 
     return data;
   } catch (error) {

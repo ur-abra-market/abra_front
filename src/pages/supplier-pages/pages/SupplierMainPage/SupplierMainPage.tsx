@@ -1,34 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 
 import { Navigate, Outlet } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { LoadingStatusEnum } from 'common/types';
 import { ACCOUNT_SETUP_BUSINESS_INFO, ACCOUNT_SETUP_PERSONAL_INFO } from 'routes';
-import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
 import {
   hasCompanyInfoSelector,
   hasPersonalInfoSelector,
-  hasCompanyInfo,
-  hasPersonalInfo,
 } from 'store/reducers/supplier/profile';
+import { getData } from 'store/reducers/supplier/profile/thunks';
 import { LoaderCircular } from 'ui-kit';
 
 export const SupplierMainPage = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(true);
   const hasPersonalInfoResult = useAppSelector(hasPersonalInfoSelector);
   const hasCompanyInfoResult = useAppSelector(hasCompanyInfoSelector);
+  const initializedLoading = useAppSelector(
+    state => state.supplierProfile.initDataLoading,
+  );
+  const data = useAppSelector(state => state.supplierProfile.data);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    (async () => {
-      await dispatch(hasPersonalInfo());
-      await dispatch(hasCompanyInfo());
-      await dispatch(getCompanyNumberEmployees());
-      setIsLoading(false);
-    })();
+  useLayoutEffect(() => {
+    dispatch(getData());
+    debugger;
   }, []);
 
-  if (isLoading) return <LoaderCircular />;
+  if (initializedLoading === LoadingStatusEnum.Loading) return <LoaderCircular />;
   if (!hasPersonalInfoResult) return <Navigate to={ACCOUNT_SETUP_PERSONAL_INFO} />;
   if (!hasCompanyInfoResult) return <Navigate to={ACCOUNT_SETUP_BUSINESS_INFO} />;
 

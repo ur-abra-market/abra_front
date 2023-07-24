@@ -7,6 +7,8 @@ import {
   IInitialState,
 } from '.';
 
+import { getData } from 'store/reducers/supplier/profile/thunks';
+
 const initialState: IInitialState = {
   categories: null,
   countries: [],
@@ -33,6 +35,9 @@ const commonSlice = createSlice({
       })
       .addCase(getAllCategories.rejected, (state, action) => {
         console.log(action.payload);
+      })
+      .addCase(getData.fulfilled, (state, action) => {
+        state.numberEmployees = action.payload.companyNumberEmployees;
       });
   },
 });

@@ -7,7 +7,7 @@ export {
   deleteCompanyImage,
   updateCompanyLogo,
   hasPersonalInfo,
-  hasCompanyInfo,
+  hasBusinessInfo,
   createAccountBusinessInfo,
 } from './thunks';
 export {
