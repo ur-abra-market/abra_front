@@ -23,8 +23,9 @@ export const SupplierMainPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
-    dispatch(getData());
-    debugger;
+    if (!data) {
+      dispatch(getData());
+    }
   }, []);
 
   if (initializedLoading === LoadingStatusEnum.Loading) return <LoaderCircular />;
