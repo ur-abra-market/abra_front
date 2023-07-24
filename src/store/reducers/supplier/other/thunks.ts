@@ -41,7 +41,7 @@ export const addProductService = createAsyncThunk<any, any>(
   'supplier/addProductService',
   async ({ product }, { rejectWithValue }) => {
     try {
-      const data = await supplierService.addProduct(product);
+      const data = await supplierService.createProduct(product);
 
       return data.product_id;
     } catch (error: unknown) {

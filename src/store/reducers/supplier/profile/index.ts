@@ -3,11 +3,11 @@ export {
   getSupplierNotifications,
   updateSupplierNotifications,
   updateBusinessInfo,
-  fetchCompanyLogo,
+  getCompanyLogo,
   deleteCompanyImage,
   updateCompanyLogo,
   hasPersonalInfo,
-  hasCompanyInfo,
+  hasBusinessInfo,
   createAccountBusinessInfo,
 } from './thunks';
 export {

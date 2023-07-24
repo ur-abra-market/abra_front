@@ -5,7 +5,7 @@ import { baseConfigService } from 'services/baseConfig.service';
 import { IAccountPersonalInfoRequest } from 'services/common/common.serviceTypes';
 
 export const userService = {
-  fetchAccountPersonalInfo: async () => {
+  getUserPersonalInfo: async () => {
     const { data } = await baseConfigService.get<
       IBaseResponse<IAccountPersonalInfoResponse>
     >(`users/account/personalInfo`);
@@ -13,7 +13,7 @@ export const userService = {
     return data.result;
   },
 
-  updateAccountPersonalInfo: async (params: IAccountPersonalInfoRequest) => {
+  updateUserPersonalInfo: async (params: IAccountPersonalInfoRequest) => {
     const { data } = await baseConfigService.post(
       `users/account/personalInfo/update`,
       params,

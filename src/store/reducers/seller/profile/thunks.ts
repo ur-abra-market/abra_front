@@ -6,25 +6,27 @@ import { sellerService } from 'services/seller/seller.service';
 import {
   ISellerAddressData,
   ISellerAddressRequest,
+  ISellerAvatarResponse,
   ISellerNotifications,
 } from 'services/seller/seller.serviceTypes';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
 
-export const getSellerAvatar = createAsyncThunk<any, void>(
-  'seller/getSellerAvatar',
-  async (_, { rejectWithValue }) => {
-    try {
-      return await sellerService.getSellerAvatar();
-    } catch (error) {
-      const errorMessage =
-        error instanceof AxiosError
-          ? error.response?.data?.error || error.message
-          : '[getSellerAvatar]: Error';
+export const getSellerAvatar = createAsyncThunk<
+  ISellerAvatarResponse,
+  void,
+  IAsyncThunkConfig
+>('seller/getSellerAvatar', async (_, { rejectWithValue }) => {
+  try {
+    return await sellerService.getSellerAvatar();
+  } catch (error) {
+    const errorMessage =
+      error instanceof AxiosError
+        ? error.response?.data?.error || error.message
+        : '[getSellerAvatar]: Error';
 
-      return rejectWithValue(errorMessage);
-    }
-  },
-);
+    return rejectWithValue(errorMessage);
+  }
+});
 
 export const getSellerAddresses = createAsyncThunk<
   ISellerAddressData[],
@@ -43,13 +45,13 @@ export const getSellerAddresses = createAsyncThunk<
   }
 });
 
-export const addSellerAddresses = createAsyncThunk<
+export const createSellerAddresses = createAsyncThunk<
   void,
   ISellerAddressRequest,
   IAsyncThunkConfig
->('seller/addSellerAddresses', async (arg, { rejectWithValue, dispatch }) => {
+>('seller/createSellerAddresses', async (arg, { rejectWithValue, dispatch }) => {
   try {
-    await sellerService.addAddress(arg);
+    await sellerService.createAddress(arg);
     await dispatch(getSellerAddresses());
     dispatch(
       setResponseNotice({ noticeType: 'success', message: 'Address successfully added' }),
@@ -100,7 +102,7 @@ export const deleteSellerAddress = createAsyncThunk<void, number, IAsyncThunkCon
     try {
       await sellerService.deleteAddress(id);
 
-      await dispatch(getSellerAddresses());
+      dispatch(getSellerAddresses());
     } catch (error) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
@@ -117,7 +119,7 @@ export const getSellerNotifications = createAsyncThunk<
   IAsyncThunkConfig
 >('seller/getSellerNotifications', async (_, { rejectWithValue, dispatch }) => {
   try {
-    return await sellerService.fetchNotifications();
+    return await sellerService.getNotifications();
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
