@@ -2,16 +2,20 @@ import {
   ISellerNotifications,
   ISellerAddressData,
   ISellerAddressRequest,
+  ISellerAvatarResponse,
 } from './seller.serviceTypes';
 
 import { IBaseResponse } from 'common/types';
 import { baseConfigService } from 'services/baseConfig.service';
+import { ISellerAddress } from 'store/reducers/seller/profile';
 
 export const sellerService = {
   getSellerAvatar: async () => {
-    const { data } = await baseConfigService.get('sellers/avatar');
+    const { data } = await baseConfigService.get<IBaseResponse<ISellerAvatarResponse>>(
+      'sellers/avatar',
+    );
 
-    return data;
+    return data.result;
   },
 
   getSellerAddresses: async () => {
@@ -22,8 +26,8 @@ export const sellerService = {
     return data.result;
   },
 
-  addAddress: async (params: ISellerAddressRequest) => {
-    const { data } = await baseConfigService.post<Omit<IBaseResponse<any>, 'result'>>(
+  createAddress: async (params: ISellerAddressRequest) => {
+    const { data } = await baseConfigService.post<IBaseResponse<ISellerAddress>>(
       'sellers/addAddress',
       params,
     );
@@ -32,7 +36,7 @@ export const sellerService = {
   },
 
   updateAddress: async ({ address_id, ...params }: ISellerAddressRequest) => {
-    const { data } = await baseConfigService.post<Omit<IBaseResponse<any>, 'result'>>(
+    const { data } = await baseConfigService.post<IBaseResponse<ISellerAddress>>(
       `sellers/updateAddress/${address_id}`,
       params,
     );
@@ -46,7 +50,7 @@ export const sellerService = {
     );
   },
 
-  fetchNotifications: async () => {
+  getNotifications: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISellerNotifications>>(
       `sellers/notifications`,
     );
@@ -55,7 +59,7 @@ export const sellerService = {
   },
 
   updateNotifications: async (params: Partial<ISellerNotifications>) => {
-    await baseConfigService.post<IBaseResponse<boolean>>(
+    return baseConfigService.post<IBaseResponse<boolean>>(
       `sellers/notifications/update`,
       params,
     );
@@ -66,11 +70,9 @@ export const sellerService = {
 
     formData.append('file', image);
 
-    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+    return baseConfigService.post<IBaseResponse<boolean>>(
       `sellers/avatar/update`,
       formData,
     );
-
-    return data;
   },
 };

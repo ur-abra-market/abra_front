@@ -2,13 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   deleteCompanyImage,
-  fetchCompanyLogo,
+  getCompanyLogo,
   getBusinessInfo,
   getSupplierNotifications,
   updateBusinessInfo,
   updateSupplierNotifications,
   hasPersonalInfo,
-  hasCompanyInfo,
+  hasBusinessInfo,
   ISupplierProfileSliceInitialState,
   updateCompanyLogo,
   createAccountBusinessInfo,
@@ -43,6 +43,8 @@ const initialState: ISupplierProfileSliceInitialState = {
   notifications: null,
   hasPersonalInfo: null,
   hasCompanyInfo: null,
+  initDataLoading: LoadingStatusEnum.Idle,
+  data: null,
 };
 
 export const supplierProfileSlice = createSlice({
@@ -117,14 +119,14 @@ export const supplierProfileSlice = createSlice({
         state.loading.notificationsLoading = LoadingStatusEnum.Failed;
       })
 
-      .addCase(fetchCompanyLogo.pending, state => {
+      .addCase(getCompanyLogo.pending, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Loading;
       })
-      .addCase(fetchCompanyLogo.fulfilled, (state, action) => {
+      .addCase(getCompanyLogo.fulfilled, (state, action) => {
         state.businessInfo.companyLogo = action.payload;
         state.loading.companyLogoLoading = LoadingStatusEnum.Success;
       })
-      .addCase(fetchCompanyLogo.rejected, state => {
+      .addCase(getCompanyLogo.rejected, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Failed;
       })
       .addCase(updateCompanyLogo.pending, state => {
@@ -150,7 +152,7 @@ export const supplierProfileSlice = createSlice({
       .addCase(hasPersonalInfo.fulfilled, (state, action) => {
         state.hasPersonalInfo = action.payload;
       })
-      .addCase(hasCompanyInfo.fulfilled, (state, action) => {
+      .addCase(hasBusinessInfo.fulfilled, (state, action) => {
         state.hasCompanyInfo = action.payload;
       });
   },

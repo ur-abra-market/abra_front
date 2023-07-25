@@ -32,4 +32,6 @@ export interface ISupplierProfileSliceInitialState {
   notifications: ISupplierNotifications | null;
   hasCompanyInfo: boolean | null;
   hasPersonalInfo: boolean | null;
+  initDataLoading: LoadingStatusEnum;
+  data: boolean | null;
 }

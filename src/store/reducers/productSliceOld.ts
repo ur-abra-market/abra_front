@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { CategoryType } from 'pages/general-pages/MainPage/StatusProduct/StatusProduct';
@@ -9,9 +9,7 @@ export const productFetch = createAsyncThunk<any, ICategoryRequest>(
   'product/productService',
   async (productData, { rejectWithValue }) => {
     try {
-      const data = await productService.getList(productData);
-
-      return data.result;
+      return await productService.getList(productData);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

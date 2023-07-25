@@ -6,29 +6,34 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ACCOUNT_SETUP_BUSINESS_INFO, ACCOUNT_SETUP_PERSONAL_INFO } from 'routes';
 import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
 import {
+  hasBusinessInfo,
   hasCompanyInfoSelector,
-  hasPersonalInfoSelector,
-  hasCompanyInfo,
   hasPersonalInfo,
+  hasPersonalInfoSelector,
 } from 'store/reducers/supplier/profile';
 import { LoaderCircular } from 'ui-kit';
 
 export const SupplierMainPage = (): JSX.Element => {
-  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const [isFetching, setIsFetching] = useState(true);
   const hasPersonalInfoResult = useAppSelector(hasPersonalInfoSelector);
   const hasCompanyInfoResult = useAppSelector(hasCompanyInfoSelector);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    (async () => {
+    if (hasCompanyInfoResult) return;
+    const fetch = async (): Promise<void> => {
       await dispatch(hasPersonalInfo());
-      await dispatch(hasCompanyInfo());
-      await dispatch(getCompanyNumberEmployees());
-      setIsLoading(false);
-    })();
-  }, []);
 
-  if (isLoading) return <LoaderCircular />;
+      await dispatch(hasBusinessInfo());
+
+      await dispatch(getCompanyNumberEmployees());
+      setIsFetching(false);
+    };
+
+    fetch();
+  }, [dispatch, hasCompanyInfoResult]);
+
+  if (isFetching && !hasCompanyInfoResult) return <LoaderCircular />;
   if (!hasPersonalInfoResult) return <Navigate to={ACCOUNT_SETUP_PERSONAL_INFO} />;
   if (!hasCompanyInfoResult) return <Navigate to={ACCOUNT_SETUP_BUSINESS_INFO} />;
 

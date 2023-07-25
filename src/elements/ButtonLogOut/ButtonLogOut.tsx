@@ -5,7 +5,7 @@ import style from './ButtonLogOut.module.scss';
 import { LogoutIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
 import { HOME } from 'routes';
-import { logout } from 'store/reducers/authSlice';
+import { logoutUser } from 'store/reducers/authSlice';
 import { Button } from 'ui-kit';
 
 export const ButtonLogOut = (): JSX.Element => {
@@ -13,7 +13,7 @@ export const ButtonLogOut = (): JSX.Element => {
   const navigate = useNavigate();
 
   const handleClickLogout = async (): Promise<void> => {
-    const result = await dispatch(logout());
+    const result = await dispatch(logoutUser());
 
     if (result) navigate(HOME);
   };
