@@ -1,6 +1,6 @@
 import { CountriesEnum } from 'common/types';
 import { COUNTRY_FLAGS } from 'common/utils';
-import { ICountry } from 'services/common/common.serviceTypes';
+import { CountiesType, ICountry } from 'services/common/common.serviceTypes';
 import { ISelectOption } from 'ui-kit';
 
 // --------------types--------------
@@ -21,8 +21,8 @@ interface ICountryPhoneInfo {
   startRegex: RegExp;
   maskRegex: RegExp;
 }
-export interface IDefaultPhoneNumberValue {
-  countryCode: ISelectOption;
+export interface IPhoneNumberValue {
+  countryCodeData: ISelectOption;
   countryShort: PhoneCountryShortType;
 }
 
@@ -31,12 +31,30 @@ export interface ICountryWithFlag extends ICountry {
 }
 
 // --------------values--------------
-export const defaultPhoneNumberValue: IDefaultPhoneNumberValue = {
-  countryCode: {
+export const defaultPhoneNumberValue: IPhoneNumberValue = {
+  countryCodeData: {
     label: { text: '+7', image_src: COUNTRY_FLAGS[CountriesEnum.RUSSIAN] },
     value: CountriesEnum.RUSSIAN,
   },
   countryShort: 'ru',
+};
+
+export const getPhoneNumberValue = (
+  countryId: number,
+  countriesWithFlag: CountiesType,
+): IPhoneNumberValue => {
+  const country = countriesWithFlag.find(c => c.id === countryId) as ICountryWithFlag;
+
+  return {
+    countryCodeData: {
+      label: {
+        text: country.country_code,
+        image_src: country.country_flag,
+      },
+      value: country.id,
+    },
+    countryShort: country.country_short as PhoneCountryShortType,
+  };
 };
 
 const countryPhoneInfo: Record<PhoneCountryShortType, ICountryPhoneInfo> = {
@@ -109,7 +127,7 @@ export const validatePhoneNumber = (
   return countryInfo.startRegex.test(phoneNumber);
 };
 
-export const formatPhoneNumber = (
+export const formatPhoneNumberBody = (
   phoneNumberBody: string,
   phoneNumberCountryCode: PhoneCountryShortType,
 ): string => {
