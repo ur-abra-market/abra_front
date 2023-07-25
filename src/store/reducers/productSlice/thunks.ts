@@ -11,6 +11,43 @@ import {
   IProductRequest,
 } from 'services/product/product.serviceTypes';
 
+export const activateProducts = createAsyncThunk<boolean, number[]>(
+  'product/activateProducts',
+  async (ids: number[], { rejectWithValue, dispatch }) => {
+    try {
+      const res = await productService.restoreList(ids);
+
+      dispatch(manageProducts());
+
+      return res;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[deleteProducts]: ERROR');
+    }
+  },
+);
+export const deActivateProducts = createAsyncThunk<boolean, number[]>(
+  'product/deleteProducts',
+  async (ids: number[], { rejectWithValue, dispatch }) => {
+    try {
+      const res = await productService.deleteList(ids);
+
+      dispatch(manageProducts());
+
+      return res;
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[deleteProducts]: ERROR');
+    }
+  },
+);
+
 export const manageProducts = createAsyncThunk<IProductsListRequest[], void>(
   'product/manageProducts',
 
@@ -125,3 +162,75 @@ export const getProductsCompilation = createAsyncThunk<any, ICategoryRequest>(
     }
   },
 );
+
+//
+// import { createAsyncThunk } from '@reduxjs/toolkit';
+// import { RootStateType } from './yourRootStateType';
+// import { productService } from './yourProductService'; // Импортируйте ваш сервис продуктов
+//
+// interface Product {
+//   id: number;
+//   checked: boolean;
+// }
+//
+// interface ProductState {
+//   deactivationProductIds: Product[];
+//   restoreProductIds: number[];
+// }
+//
+// const initialState: ProductState = {
+//   deactivationProductIds: [],
+//   restoreProductIds: [],
+// };
+//
+// export const deActivateProducts = createAsyncThunk<boolean, number[]>(
+//   'product/deleteProducts',
+//   async (ids: number[], { rejectWithValue, dispatch, getState }) => {
+//     try {
+//       const deactivatedIds = getDeactivatedIds(getState() as RootStateType);
+//
+//       // Удаление продуктов с помощью сервиса продуктов
+//       const res = await productService.deleteList(ids);
+//
+//       // Извлечение идентификаторов из массива объектов deactivatedIds
+//       const restoreProductIds = deactivatedIds.map((product) => product.id);
+//
+//       // Удаление объектов из deactivatedIds на основе переданных идентификаторов
+//       const updatedDeactivationProductIds = deactivatedIds.filter(
+//         (product) => !ids.includes(product.id)
+//       );
+//
+//       // Диспатчим действие для обновления состояния с новыми массивами
+//       dispatch(productSlice.actions.updateProductsArrays({ restoreProductIds, updatedDeactivationProductIds }));
+//
+//       // Диспатчим другие необходимые действия
+//       dispatch(manageProducts());
+//
+//       console.log(res);
+//
+//       return res;
+//     } catch (error: unknown) {
+//       if (error instanceof AxiosError) {
+//         return rejectWithValue(error.message);
+//       }
+//
+//       return rejectWithValue('[deleteProducts]: ERROR');
+//     }
+//   },
+// );
+//
+// const productSlice = createSlice({
+//   name: 'product',
+//   initialState,
+//   reducers: {
+//     // Этот редьюсер будет обновлять массивы restoreProductIds и deactivationProductIds
+//     updateProductsArrays: (state, action: PayloadAction<{ restoreProductIds: number[]; updatedDeactivationProductIds: Product[] }>) => {
+//       state.restoreProductIds = action.payload.restoreProductIds;
+//       state.deactivationProductIds = action.payload.updatedDeactivationProductIds;
+//     },
+//   },
+// });
+//
+// // Экспортируем действие и редьюсер
+// export const { updateProductsArrays } = productSlice.actions;
+// export default productSlice.reducer;

@@ -112,7 +112,7 @@ export const SupplierProductsListPage: FC = WithLayout((): JSX.Element => {
     handleChangeModalActive();
   }
 
-  const getDeletedItems = (items: string[]): void => {
+  const getDeletedItems = (items: any[]): void => {
     dispatch(deleteProducts(items));
   };
 

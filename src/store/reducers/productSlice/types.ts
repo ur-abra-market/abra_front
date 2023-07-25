@@ -1,7 +1,11 @@
+import { IActivateStatus } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsListSettings/types/products-types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 
 export interface IProductSliceInitialState {
-  products: IProductsListRequest[] | null;
+  selectAllProducts: boolean;
+  products: IProductsListRequest[];
+  deactivationProductIds: IActivateStatus[];
+  activationProductIds: IActivateStatus[];
   productCard: IProductCard;
   similarProducts: IProductCompilation[];
   popularProducts: IProductCompilation[];

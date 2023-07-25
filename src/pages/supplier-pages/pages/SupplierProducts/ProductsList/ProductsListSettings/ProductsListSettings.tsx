@@ -1,26 +1,49 @@
 import React, { useState } from 'react';
 
 import cn from 'classnames';
+import { useSelector } from 'react-redux';
 
-import { actionData, filtersData } from './consts/data';
 import style from './ProductsListSettings.module.scss';
 import { SettingItem } from './SettingItem/SettingItem';
-import { ActiveList } from './types/products-types';
+import { ActiveListEnum } from './types/products-types';
+
+import { useAppDispatch } from 'common/hooks';
+import {
+  actionData,
+  activateStatusProducts,
+  deactivateStatusProducts,
+  filtersData,
+} from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/utils/productUtils';
+import {
+  getActivatedIds,
+  getDeactivatedIds,
+} from 'store/reducers/productSlice/selectors';
 
 export const ProductsListSettings = (): JSX.Element => {
-  const [activeList, setActiveList] = useState<ActiveList>(ActiveList.ALL_PRODUCTS);
+  const [activeList, setActiveList] = useState<ActiveListEnum>(
+    ActiveListEnum.ALL_PRODUCTS,
+  );
+  const dispatch = useAppDispatch();
+  const deactivatedProductsIds = useSelector(getDeactivatedIds);
+  const activatedProductsIds = useSelector(getActivatedIds);
 
-  // тестовый стейт. Имитируем что чекбокс выделен на странице
-  const [isCheckboxSelected, setIsCheckboxSelected] = useState(false);
-
-  const onSetListByFilter = (list: ActiveList): void => {
-    setActiveList(list);
+  const deactivateProducts = (): void => {
+    deactivateStatusProducts(dispatch, deactivatedProductsIds);
   };
 
-  // эти элементы будут всегда отображаться 'Add a new product' и 'Recently deleted'
+  const activateProducts = (): void => {
+    activateStatusProducts(dispatch, activatedProductsIds);
+  };
+
+  // show only 'Add a new product' и 'Recently deleted'
   const filteredData = actionData.filter(el => el.id === 4 || el.id === 5);
 
-  const renderedData = isCheckboxSelected ? actionData : filteredData;
+  // show either all buttons or only 'Add a new product' and 'Recently deleted'
+  const renderedData = deactivatedProductsIds.length ? actionData : filteredData;
+
+  const onSetListByFilter = (list: ActiveListEnum): void => {
+    setActiveList(list);
+  };
 
   const getActiveClasses = (activeList: string, currentList: string): string =>
     cn(style.filter, {
@@ -41,9 +64,29 @@ export const ProductsListSettings = (): JSX.Element => {
       </div>
 
       <div className={style.wrapper}>
-        {renderedData.map(({ id, label, Icon }) => (
-          <SettingItem key={id} text={label} Icon={Icon} />
-        ))}
+        {renderedData.map(({ id, label, Icon }) => {
+          const disabledBtn = id === 5 && !activatedProductsIds.length;
+          let func;
+
+          if (id === 3) {
+            func = deactivateProducts;
+          } else if (id === 5) {
+            func = activateProducts;
+          } else {
+            func = undefined;
+          }
+
+          return (
+            <SettingItem
+              key={id}
+              classname={style.filter}
+              Icon={Icon}
+              text={label}
+              onClick={func}
+              disabled={disabledBtn}
+            />
+          );
+        })}
       </div>
     </div>
   );

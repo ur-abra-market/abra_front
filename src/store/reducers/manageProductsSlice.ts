@@ -8,7 +8,7 @@ import { productService } from 'services/product/product.service';
 
 export const deleteProducts = createAsyncThunk<any, any>(
   'manageProducts/deleteProducts',
-  async (id: string[], { rejectWithValue, dispatch }) => {
+  async (id: number[], { rejectWithValue, dispatch }) => {
     try {
       const response = await productService.deleteList(id);
 

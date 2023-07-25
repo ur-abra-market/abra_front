@@ -12,9 +12,12 @@
 
 .filter {
   cursor: pointer;
+
   font-size: var(--fz-s2);
   font-weight: var(--regular);
   color: var(--color-black);
+
+  background: none;
 }
 
 .active {

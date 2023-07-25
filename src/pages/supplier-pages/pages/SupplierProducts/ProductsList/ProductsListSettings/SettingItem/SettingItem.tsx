@@ -1,25 +1,45 @@
 import React from 'react';
 
+import cn from 'classnames';
+
 import style from './SettingItem.module.scss';
 
-import { ISettingItemProps } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsListSettings/types/products-types';
+import { ISettingItem } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsListSettings/types/products-types';
 
-export const SettingItem: React.FC<ISettingItemProps> = ({
+export const SettingItem: React.FC<ISettingItem> = ({
   classname,
   text,
   Icon,
   onClick,
+  disabled,
 }): JSX.Element => {
+  const actionButtonClasses = cn(style.icon, {
+    [style.disabled]: disabled === true,
+  });
+  const filterButtonClasses = cn(classname, {
+    [style.disabled]: disabled === true,
+  });
+
   return (
     <div className={style.inner}>
       {Icon && (
-        <div className={style.icon}>
+        <button
+          type="button"
+          className={actionButtonClasses}
+          onClick={onClick}
+          disabled={disabled}
+        >
           <Icon />
-        </div>
+        </button>
       )}
-      <span className={classname} onClick={onClick} role="presentation">
+      <button
+        type="button"
+        className={filterButtonClasses}
+        onClick={onClick}
+        disabled={disabled}
+      >
         {text}
-      </span>
+      </button>
     </div>
   );
 };

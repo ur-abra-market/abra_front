@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
+  activateProducts,
   addFavoriteProduct,
+  deActivateProducts,
   getPopularProducts,
   getProductById,
   getProductsCompilation,
@@ -11,6 +13,7 @@ import {
 } from './thunks';
 import { IProductCard, IProductSliceInitialState, IProductsListRequest } from './types';
 
+import { IActivateStatus } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsListSettings/types/products-types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 
 const initialState: IProductSliceInitialState = {
@@ -34,15 +37,59 @@ const initialState: IProductSliceInitialState = {
   popularProducts: [],
   similarProducts: [],
   productsCompilation: {},
-  products: null,
+  products: [],
+  deactivationProductIds: [],
+  activationProductIds: [],
+  selectAllProducts: false,
 };
 
 const productSlice = createSlice({
   name: 'Product',
   initialState,
-  reducers: {},
+  reducers: {
+    selectAllProducts(state, action: PayloadAction<boolean>) {
+      state.selectAllProducts = action.payload;
+    },
+    setArrayForProductsDeactivation(state, action: PayloadAction<IActivateStatus[]>) {
+      state.deactivationProductIds = action.payload;
+    },
+    setArrayForProductsActivation(state, action: PayloadAction<IActivateStatus[]>) {
+      state.activationProductIds = action.payload;
+    },
+    setProductStatus(state, action: PayloadAction<IActivateStatus>) {
+      const { checked, id, status } = action.payload;
+
+      if (checked && status) {
+        state.deactivationProductIds.push(action.payload);
+      } else if (!checked && status) {
+        const index = state.deactivationProductIds.findIndex(el => el.id === id);
+
+        if (index > -1) {
+          state.deactivationProductIds.splice(index, 1);
+        }
+      } else if (checked && !status) {
+        state.activationProductIds.push(action.payload);
+      } else if (!checked && !status) {
+        const index = state.activationProductIds.findIndex(el => el.id === id);
+
+        if (index > -1) {
+          state.activationProductIds.splice(index, 1);
+        }
+      }
+    },
+  },
   extraReducers: builder => {
     builder
+      .addCase(activateProducts.fulfilled, state => {
+        state.activationProductIds = [];
+        state.deactivationProductIds = [];
+        state.selectAllProducts = false;
+      })
+      .addCase(deActivateProducts.fulfilled, state => {
+        state.deactivationProductIds = [];
+        state.activationProductIds = [];
+        state.selectAllProducts = false;
+      })
       .addCase(
         manageProducts.fulfilled,
         (state, action: PayloadAction<IProductsListRequest[]>) => {
@@ -80,3 +127,4 @@ const productSlice = createSlice({
 });
 
 export const productReducer = productSlice.reducer;
+export const productActions = productSlice.actions;

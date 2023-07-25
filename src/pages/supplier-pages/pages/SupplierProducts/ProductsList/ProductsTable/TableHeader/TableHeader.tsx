@@ -1,26 +1,36 @@
-import React from 'react';
+import React, { FC } from 'react';
+
+import { useSelector } from 'react-redux';
 
 import style from './TableHeader.module.scss';
 
-import { ArrowSort } from 'assets/icons';
+import { useAppDispatch } from 'common/hooks';
+import { ITableData } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsTable/ProductsTable';
+import {
+  columns,
+  selectAllCheckbox,
+} from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/utils/productUtils';
+import { getMainCheckedStatus } from 'store/reducers/productSlice/selectors';
 import { Checkbox } from 'ui-kit';
 
-const columns = [
-  { id: 1, name: <Checkbox variant="default" /> },
-  { id: 2, name: 'SKU', arrow: <ArrowSort /> },
-  { id: 3, name: 'Picture' },
-  { id: 4, name: 'Name' },
-  { id: 5, name: 'Creation Date', arrow: <ArrowSort /> },
-  { id: 6, name: 'Status', arrow: <ArrowSort /> },
-  { id: 7, name: 'Price', arrow: <ArrowSort /> },
-  { id: 8, name: 'Balance, units', arrow: <ArrowSort /> },
-  { id: 9, name: 'Visibility' },
-];
+export const TableHeader: FC<ITableData> = ({ data }): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const checked = useSelector(getMainCheckedStatus);
 
-export const TableHeader = (): JSX.Element => {
+  const setStatusForMainCheckBox = (checked: boolean): void => {
+    selectAllCheckbox(data, checked, dispatch);
+  };
+
   return (
     <thead>
       <tr className={style.table_row}>
+        <th className={style.table_head}>
+          <Checkbox
+            variant="default"
+            checked={checked}
+            onChange={e => setStatusForMainCheckBox(e.currentTarget.checked)}
+          />
+        </th>
         {columns.map(column => (
           <th key={column.id} className={style.table_head}>
             {column.name}

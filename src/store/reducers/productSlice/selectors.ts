@@ -1,7 +1,17 @@
 import { ICategory, IImage, IProductsListRequest } from './types';
 
+import { IActivateStatus } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsListSettings/types/products-types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { RootStateType } from 'store/createStore';
+
+export const getActivatedIds = (state: RootStateType): IActivateStatus[] =>
+  state.product.activationProductIds;
+
+export const getMainCheckedStatus = (state: RootStateType): boolean =>
+  state.product.selectAllProducts;
+
+export const getDeactivatedIds = (state: RootStateType): IActivateStatus[] =>
+  state.product.deactivationProductIds;
 
 export const productCategorySelector = (state: RootStateType): ICategory =>
   state.product.productCard.category ?? {};
@@ -39,6 +49,5 @@ export const productsCompilationSelector = (
   state: RootStateType,
 ): { [key: number]: IProductCompilation[] } => state.product.productsCompilation;
 
-export const manageProductsSelector = (
-  state: RootStateType,
-): IProductsListRequest[] | null => state.product.products;
+export const manageProductsSelector = (state: RootStateType): IProductsListRequest[] =>
+  state.product.products;

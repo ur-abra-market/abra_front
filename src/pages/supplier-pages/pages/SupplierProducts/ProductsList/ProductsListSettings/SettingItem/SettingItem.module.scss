@@ -5,9 +5,19 @@
   align-items: center;
 }
 
+.disabled {
+  opacity: 0.4;
+}
+
 .icon {
+  cursor: pointer;
+
   display: flex;
   align-items: center;
+
   width: 24px;
   height: 24px;
+
+  background: none;
 }
+
