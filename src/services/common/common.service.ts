@@ -1,4 +1,4 @@
-import { IAllCategories, ICountry, INumberEmployees } from './common.serviceTypes';
+import { ICategoryResponse, ICountry, INumberEmployees } from './common.serviceTypes';
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
@@ -12,7 +12,7 @@ export const commonService = {
     return data.result;
   },
 
-  fetchCompanyNumberEmployees: async () => {
+  getCompanyNumberEmployees: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<INumberEmployees[]>>(
       'common/numberEmployees',
     );
@@ -20,9 +20,11 @@ export const commonService = {
     return data.result;
   },
 
-  fetchAllCategories: async () => {
-    const { data } = await baseConfigService.get<IAllCategories>(`categories/all`);
+  getAllCategories: async () => {
+    const { data } = await baseConfigService.get<IBaseResponse<ICategoryResponse[]>>(
+      `categories/all`,
+    );
 
-    return data;
+    return data.result;
   },
 };

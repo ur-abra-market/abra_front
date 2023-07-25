@@ -52,15 +52,10 @@ export const supplierBusinessInfoFormValidationSchema = yup.object({
     .test('not-only-numbers', 'Address cannot contain only numeric values', value =>
       !value || value.trim() === '' ? true : /\D/.test(value),
     ),
-  numEmployees: yup.string().required('Field is required'),
-  businessSector: yup
-    .object()
-    .shape({
-      label: yup.string(),
-      value: yup.string(),
-    })
-    .required('Please select your business sector'),
+  numEmployees: yup.number().required('Field is required'),
+  businessSector: yup.string().required('Please select your business sector'),
   countryRegistration: yup
     .number()
     .required('Please select country of company registration'),
+  is_manufacturer: yup.boolean(),
 });

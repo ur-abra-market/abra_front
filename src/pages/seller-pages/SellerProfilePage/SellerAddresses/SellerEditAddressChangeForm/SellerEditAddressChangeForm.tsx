@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import { parsePhoneNumber } from 'common/utils';
 import { AddressesChangeForm } from 'modules/AddressesChangeForm/AddressesChangeForm';
 import { addressFormValidationSchema } from 'modules/AddressesChangeForm/AddressFormValidationSchema';
 import {

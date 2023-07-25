@@ -1,8 +1,10 @@
+import _ from 'lodash';
+
 import {
+  IBusinessInfoRequest,
   ISupplierBusinessInfo,
   ISupplierNotifications,
   ISupplierUpdateBusinessInfo,
-  IBusinessInfoRequest,
 } from './supplier.serviceTypes';
 
 import { IBaseResponse } from 'common/types';
@@ -26,12 +28,33 @@ export const supplierService = {
   },
 
   createBusinessInfo: async (params: IBusinessInfoRequest) => {
-    const { data } = await baseConfigService.post(`register/business/sendInfo`, params);
+    const formData = new FormData();
 
-    return data;
+    formData.append(
+      'supplier_data_request',
+      JSON.stringify(params.supplier_data_request),
+    );
+
+    formData.append('company_data_request', JSON.stringify(params.company_data_request));
+
+    if (!_.isEmpty(params.company_phone_data_request)) {
+      formData.append(
+        'company_phone_data_request',
+        JSON.stringify(params.company_phone_data_request),
+      );
+    }
+
+    if (params.file) {
+      formData.append('file', params.file!);
+    }
+
+    return baseConfigService.post<IBaseResponse<boolean>>(
+      `register/business/sendInfo`,
+      formData,
+    );
   },
 
-  fetchCompanyLogo: async () => {
+  getCompanyLogo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<string>>(
       `suppliers/companyLogo`,
     );
@@ -39,7 +62,7 @@ export const supplierService = {
     return data.result;
   },
 
-  fetchBusinessInfo: async () => {
+  getBusinessInfo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISupplierBusinessInfo>>(
       `suppliers/businessInfo`,
     );
@@ -48,15 +71,13 @@ export const supplierService = {
   },
 
   updateBusinessInfo: async (params: Partial<ISupplierUpdateBusinessInfo>) => {
-    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+    return baseConfigService.post<IBaseResponse<boolean>>(
       `suppliers/businessInfo/update`,
       params,
     );
-
-    return data.result;
   },
 
-  fetchNotifications: async () => {
+  getNotifications: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISupplierNotifications>>(
       `suppliers/notifications`,
     );
@@ -80,7 +101,7 @@ export const supplierService = {
     return data;
   },
 
-  addProduct: async (params: any) => {
+  createProduct: async (params: any) => {
     const { data } = await baseConfigService.post(`suppliers/addProduct`, params);
 
     return data;
@@ -105,7 +126,7 @@ export const supplierService = {
     return data;
   },
 
-  uploadCompanyLogo: async (image: File) => {
+  updateCompanyLogo: async (image: File) => {
     const formData = new FormData();
 
     formData.append('file', image);

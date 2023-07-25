@@ -1,6 +1,7 @@
 import { LoadingStatusEnum } from 'common/types';
 
 type NoticeType = 'error' | 'success' | null;
+
 export interface IResponseNotice {
   noticeType: NoticeType;
   message: string | null;

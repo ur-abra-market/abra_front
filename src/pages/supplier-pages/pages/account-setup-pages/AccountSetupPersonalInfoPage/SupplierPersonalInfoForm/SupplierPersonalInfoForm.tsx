@@ -9,7 +9,7 @@ import style from './SupplierPersonalInfoForm.module.scss';
 import { personalInfoFormValidationSchema } from 'common/constants';
 import { useAppDispatch } from 'common/hooks';
 import { IPersonalInfoFormData } from 'common/types';
-import { parsePhoneNumber } from 'common/utils/parsePhoneNumber';
+import { parsePhoneNumber } from 'common/utils';
 import Modal from 'elements/Modal';
 import { ModalChildPhoneCheck } from 'elements/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
 import { PersonalInfoChangeForm } from 'modules';
@@ -51,7 +51,7 @@ export const SupplierPersonalInfoForm = (): JSX.Element => {
 
     const actionResult = await dispatch(createAccountPersonalInfo(personalInfoData));
 
-    if (actionResult.payload.result) {
+    if (actionResult.payload) {
       navigate(ACCOUNT_SETUP_BUSINESS_INFO);
     }
   };

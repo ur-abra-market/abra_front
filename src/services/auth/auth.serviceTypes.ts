@@ -14,13 +14,10 @@ export interface ILoginRequest {
   email: string;
   password: string;
 }
+
 export interface ILoginResponse {
   result: string;
   is_supplier: boolean;
-}
-
-export interface IPasswordResponse {
-  result: string;
 }
 
 export interface IResetPasswordRequest {

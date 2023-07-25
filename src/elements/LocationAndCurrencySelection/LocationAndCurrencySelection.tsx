@@ -5,6 +5,8 @@ import cn from 'classnames';
 import style from './LocationAndCurrencySelection.module.scss';
 import { LocationAndCurrencySelectionProps } from './LocationAndCurrencySelection.props';
 
+import { CountriesEnum } from 'common/types';
+import { COUNTRY_FLAGS } from 'common/utils';
 import { ISelectOption, Select } from 'ui-kit';
 
 const CURRENCY_DATA: ISelectOption[] = [
@@ -13,9 +15,18 @@ const CURRENCY_DATA: ISelectOption[] = [
 ];
 
 const COUNTRY_DATA: ISelectOption[] = [
-  { label: { text: 'Russia' }, value: 'russia' },
-  { label: { text: 'Turkey' }, value: 'turkey' },
-  { label: { text: 'Belarus' }, value: 'belarus' },
+  {
+    label: { text: 'Russia', image_src: COUNTRY_FLAGS[CountriesEnum.RUSSIAN] },
+    value: CountriesEnum.RUSSIAN,
+  },
+  {
+    label: { text: 'Turkey', image_src: COUNTRY_FLAGS[CountriesEnum.TURKEY] },
+    value: CountriesEnum.TURKEY,
+  },
+  {
+    label: { text: 'Belarus', image_src: COUNTRY_FLAGS[CountriesEnum.BELARUS] },
+    value: CountriesEnum.BELARUS,
+  },
 ];
 
 export const LocationAndCurrencySelection: FC<

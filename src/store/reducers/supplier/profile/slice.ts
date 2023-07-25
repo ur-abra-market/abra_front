@@ -2,15 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   deleteCompanyImage,
-  fetchCompanyLogo,
+  getCompanyLogo,
   getBusinessInfo,
   getSupplierNotifications,
   updateBusinessInfo,
   updateSupplierNotifications,
   hasPersonalInfo,
-  hasCompanyInfo,
-  uploadCompanyLogo,
+  hasBusinessInfo,
   ISupplierProfileSliceInitialState,
+  updateCompanyLogo,
+  createAccountBusinessInfo,
 } from '.';
 
 import { LoadingStatusEnum } from 'common/types';
@@ -23,7 +24,7 @@ const initialState: ISupplierProfileSliceInitialState = {
   },
   businessInfo: {
     storeName: '',
-    businessSector: { value: '' },
+    businessSector: '',
     isManufacturer: false,
     license: '',
     yearEstablished: null,
@@ -33,7 +34,6 @@ const initialState: ISupplierProfileSliceInitialState = {
     email: '',
     address: '',
     companyLogo: '',
-    companyLogoId: null,
     countryShort: '',
     phoneNumber: '',
     phoneId: null,
@@ -43,6 +43,8 @@ const initialState: ISupplierProfileSliceInitialState = {
   notifications: null,
   hasPersonalInfo: null,
   hasCompanyInfo: null,
+  initDataLoading: LoadingStatusEnum.Idle,
+  data: null,
 };
 
 export const supplierProfileSlice = createSlice({
@@ -51,6 +53,15 @@ export const supplierProfileSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
+      .addCase(createAccountBusinessInfo.pending, state => {
+        state.loading.businessInfoLoading = LoadingStatusEnum.Loading;
+      })
+      .addCase(createAccountBusinessInfo.fulfilled, state => {
+        state.loading.businessInfoLoading = LoadingStatusEnum.Success;
+      })
+      .addCase(createAccountBusinessInfo.rejected, state => {
+        state.loading.businessInfoLoading = LoadingStatusEnum.Failed;
+      })
       .addCase(getBusinessInfo.pending, state => {
         state.loading.businessInfoLoading = LoadingStatusEnum.Loading;
       })
@@ -69,7 +80,7 @@ export const supplierProfileSlice = createSlice({
         } = action.payload.company;
 
         state.businessInfo.storeName = name;
-        state.businessInfo.businessSector.value = business_sector;
+        state.businessInfo.businessSector = business_sector;
         state.businessInfo.isManufacturer = is_manufacturer;
         state.businessInfo.license = action.payload.license_number;
         state.businessInfo.yearEstablished = year_established;
@@ -78,11 +89,11 @@ export const supplierProfileSlice = createSlice({
         state.businessInfo.description = description;
         state.businessInfo.email = business_email;
         state.businessInfo.address = address;
-        state.businessInfo.phoneId = phone.id;
-        state.businessInfo.phoneNumber = phone.phone_number;
-        state.businessInfo.countryShort = phone.country.country_short;
-        state.businessInfo.countryCode = phone.country.country_code;
-        state.businessInfo.countryId = phone.country.id;
+        state.businessInfo.phoneId = phone?.id;
+        state.businessInfo.phoneNumber = phone?.phone_number;
+        state.businessInfo.countryShort = phone?.country?.country_short;
+        state.businessInfo.countryCode = phone?.country?.country_code;
+        state.businessInfo.countryId = phone?.country?.id;
         state.loading.businessInfoLoading = LoadingStatusEnum.Success;
       })
       .addCase(getBusinessInfo.rejected, state => {
@@ -108,29 +119,26 @@ export const supplierProfileSlice = createSlice({
         state.loading.notificationsLoading = LoadingStatusEnum.Failed;
       })
 
-      .addCase(fetchCompanyLogo.pending, state => {
+      .addCase(getCompanyLogo.pending, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Loading;
       })
-      .addCase(fetchCompanyLogo.fulfilled, (state, action) => {
+      .addCase(getCompanyLogo.fulfilled, (state, action) => {
         state.businessInfo.companyLogo = action.payload;
         state.loading.companyLogoLoading = LoadingStatusEnum.Success;
       })
-      .addCase(fetchCompanyLogo.rejected, state => {
+      .addCase(getCompanyLogo.rejected, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Failed;
       })
-
-      .addCase(uploadCompanyLogo.pending, state => {
+      .addCase(updateCompanyLogo.pending, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Loading;
       })
-      .addCase(uploadCompanyLogo.fulfilled, (state, action) => {
-        state.businessInfo.companyLogo = action.payload.result.image;
-        state.businessInfo.companyLogoId = action.payload.result.id;
+      .addCase(updateCompanyLogo.fulfilled, (state, action) => {
+        state.businessInfo.companyLogo = action.payload;
         state.loading.companyLogoLoading = LoadingStatusEnum.Success;
       })
-      .addCase(uploadCompanyLogo.rejected, state => {
+      .addCase(updateCompanyLogo.rejected, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Failed;
       })
-
       .addCase(deleteCompanyImage.pending, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Loading;
       })
@@ -141,11 +149,10 @@ export const supplierProfileSlice = createSlice({
       .addCase(deleteCompanyImage.rejected, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Failed;
       })
-
       .addCase(hasPersonalInfo.fulfilled, (state, action) => {
         state.hasPersonalInfo = action.payload;
       })
-      .addCase(hasCompanyInfo.fulfilled, (state, action) => {
+      .addCase(hasBusinessInfo.fulfilled, (state, action) => {
         state.hasCompanyInfo = action.payload;
       });
   },

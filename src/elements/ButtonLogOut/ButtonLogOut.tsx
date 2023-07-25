@@ -5,19 +5,21 @@ import style from './ButtonLogOut.module.scss';
 import { LogoutIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
 import { HOME } from 'routes';
-import { logout } from 'store/reducers/authSlice';
+import { logoutUser } from 'store/reducers/authSlice';
 import { Button } from 'ui-kit';
 
 export const ButtonLogOut = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const onClickHAndlerLogout = (): void => {
-    dispatch(logout());
-    navigate(HOME);
+
+  const handleClickLogout = async (): Promise<void> => {
+    const result = await dispatch(logoutUser());
+
+    if (result) navigate(HOME);
   };
 
   return (
-    <Button color="white" className={style.button} onClick={onClickHAndlerLogout}>
+    <Button color="white" className={style.button} onClick={handleClickLogout}>
       <div className={style.button_title}>Log Out</div>
       <LogoutIcon />
     </Button>
