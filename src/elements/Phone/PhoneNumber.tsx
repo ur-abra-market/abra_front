@@ -1,18 +1,18 @@
-import React, { useEffect, useState, useRef, FC } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
 import style from './PhoneNumber.module.scss';
 import {
-  defaultPhoneNumberValue,
+  defaultPhoneCountryCodeValue,
   formatPhoneNumberBody,
   getCountriesWithFlags,
-  getPhoneNumberValue,
-  PhoneCountryShortType,
+  getPhoneCountryCodeValue,
   validatePhoneNumber,
 } from './utils';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { CountriesEnum } from 'common/types';
 import { countriesSelector, getCountries } from 'store/reducers/commonSlice';
 import { Input, ISelectOption, Select } from 'ui-kit';
 
@@ -20,6 +20,7 @@ interface IPhoneNumberForm {
   phoneNumberBody: string;
   phoneNumberCountryId: number;
 }
+
 interface IPhoneNumber {
   countryId?: number;
   phoneNumber?: string;
@@ -33,21 +34,12 @@ export const PhoneNumber: FC<IPhoneNumber> = ({
   const inputElement = useRef<HTMLInputElement>(null);
   const countries = useAppSelector(countriesSelector);
   const countriesWithFlag = getCountriesWithFlags(countries);
-  let initPhoneValue;
-
-  if (countryId) {
-    initPhoneValue = getPhoneNumberValue(countryId, countriesWithFlag);
-  }
-
   const [phoneCountryCode, setPhoneCountryCode] = useState<ISelectOption>(
-    initPhoneValue
-      ? initPhoneValue.countryCodeData
-      : defaultPhoneNumberValue.countryCodeData,
+    countryId
+      ? getPhoneCountryCodeValue(countryId, countriesWithFlag)
+      : defaultPhoneCountryCodeValue,
   );
   const [phoneNumberBody, setPhoneNumberBody] = useState(phoneNumber || '');
-  const [phoneCountryShort, setPhoneCountryShort] = useState<PhoneCountryShortType>(
-    initPhoneValue ? initPhoneValue.countryShort : defaultPhoneNumberValue.countryShort,
-  );
 
   const {
     setValue,
@@ -60,7 +52,7 @@ export const PhoneNumber: FC<IPhoneNumber> = ({
     if (!countries.length) {
       dispatch(getCountries());
     }
-    setValue('phoneNumberCountryId', defaultPhoneNumberValue.countryCodeData.value);
+    setValue('phoneNumberCountryId', defaultPhoneCountryCodeValue.value);
   }, []);
 
   const formatAndValidatePhoneNumberBody = (numberBody: string): void => {
@@ -84,7 +76,7 @@ export const PhoneNumber: FC<IPhoneNumber> = ({
     // get the phone number body formatted by the country mask with countryCode
     const formattedNumber = formatPhoneNumberBody(
       phoneNumberBodyRawValue,
-      phoneCountryShort,
+      phoneCountryCode.value as CountriesEnum,
     );
 
     // if formattedNumber is empty, then do not display anything on ui
@@ -102,7 +94,12 @@ export const PhoneNumber: FC<IPhoneNumber> = ({
       }
     }, 0);
 
-    if (!validatePhoneNumber(phoneNumberBodyRawValue, phoneCountryShort)) {
+    if (
+      !validatePhoneNumber(
+        phoneNumberBodyRawValue,
+        phoneCountryCode.value as CountriesEnum,
+      )
+    ) {
       setError('phoneNumberBody', { message: 'Please, enter a valid phone number' });
     } else {
       clearErrors('phoneNumberBody');
@@ -111,12 +108,10 @@ export const PhoneNumber: FC<IPhoneNumber> = ({
 
   useEffect(() => {
     formatAndValidatePhoneNumberBody(phoneNumberBody);
-  }, [phoneCountryShort]);
+  }, [phoneCountryCode]);
 
   const handlePhoneCountryCodeChange = (value: ISelectOption): void => {
     const country = countriesWithFlag.find(country => country.id === value.value);
-
-    if (country) setPhoneCountryShort(country.country_short as PhoneCountryShortType);
 
     setPhoneCountryCode({
       label: { text: `+${country?.country_code}`, image_src: country?.country_flag },
