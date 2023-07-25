@@ -20,11 +20,7 @@ export const SupplierMainPage = (): JSX.Element => {
   const hasCompanyInfoResult = useAppSelector(hasCompanyInfoSelector);
 
   useEffect(() => {
-    if (hasCompanyInfoResult) {
-      setIsFetching(false);
-
-      return;
-    }
+    if (hasCompanyInfoResult) return;
     const fetch = async (): Promise<void> => {
       await dispatch(hasPersonalInfo());
 
@@ -37,7 +33,7 @@ export const SupplierMainPage = (): JSX.Element => {
     fetch();
   }, [dispatch, hasCompanyInfoResult]);
 
-  if (isFetching) return <LoaderCircular />;
+  if (isFetching && !hasCompanyInfoResult) return <LoaderCircular />;
   if (!hasPersonalInfoResult) return <Navigate to={ACCOUNT_SETUP_PERSONAL_INFO} />;
   if (!hasCompanyInfoResult) return <Navigate to={ACCOUNT_SETUP_BUSINESS_INFO} />;
 
