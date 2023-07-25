@@ -1,5 +1,3 @@
-import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
-
 export interface ICategoryResponse {
   id: number;
   name: string;
@@ -28,10 +26,3 @@ export interface IAccountPersonalInfoRequest {
   phone_country_code: string;
   phone_number: string;
 }
-
-export interface IDeleteImageRequest {
-  action: string;
-  queries: { company_image_id: number; order?: number };
-}
-
-export type IAllCategories = Pick<IBaseResponse<ICategoryResponse[]>, 'ok' | 'result'>;

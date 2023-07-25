@@ -1,7 +1,7 @@
 export {
   getSellerNotifications,
   updateSellerNotifications,
-  addSellerAddresses,
+  createSellerAddresses,
   getSellerAddresses,
   deleteSellerAddress,
   updateSellerAddresses,

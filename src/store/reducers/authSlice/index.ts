@@ -2,7 +2,7 @@ export { userRoleSelector, isAuthSelector } from './selectors';
 export {
   registerUser,
   loginUser,
-  logout,
+  logoutUser,
   changePassword,
   checkToken,
   forgotPassword,

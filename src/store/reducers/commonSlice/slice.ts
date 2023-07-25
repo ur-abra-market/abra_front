@@ -22,18 +22,14 @@ const commonSlice = createSlice({
       .addCase(getCountries.fulfilled, (state, action) => {
         state.countries = action.payload;
       })
-      .addCase(getCountries.rejected, (state, action) => {
-        console.log(action.payload);
-      })
+      .addCase(getCountries.rejected, (state, action) => {})
       .addCase(getCompanyNumberEmployees.fulfilled, (state, action) => {
         state.numberEmployees = action.payload;
       })
       .addCase(getAllCategories.fulfilled, (state, action) => {
         state.categories = action.payload;
       })
-      .addCase(getAllCategories.rejected, (state, action) => {
-        console.log(action.payload);
-      });
+      .addCase(getAllCategories.rejected, (state, action) => {});
   },
 });
 
