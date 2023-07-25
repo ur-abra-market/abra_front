@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { HeaderSellerActions } from './HeaderSellerActions/HeaderSellerActions';
-import { HeaderUserActionsGuest } from './HeaderUserActionsGuest/HeaderUserActionsGuest';
+import { HeaderGuestUserActions } from './HeaderUserActionsGuest/HeaderGuestUserActions';
 import style from './Top.module.scss';
 
 import { useAppSelector } from 'common/hooks';
@@ -35,15 +35,17 @@ export const Top = (): JSX.Element => {
 
   return (
     <div className={style.wrapper}>
-      <MainLogo className={style.logo} />
-      <Search placeholder="Search" />
+      <div className={style.container}>
+        <MainLogo className={style.logo} />
+        <Search placeholder="Search" />
 
-      <div className={style.inner_buttons}>
-        {isAuth ? (
-          <HeaderSellerActions callBack={handleOnClick} />
-        ) : (
-          <HeaderUserActionsGuest callBack={handleOnClick} />
-        )}
+        <div className={style.inner_buttons}>
+          {isAuth ? (
+            <HeaderSellerActions callBack={handleOnClick} />
+          ) : (
+            <HeaderGuestUserActions callBack={handleOnClick} />
+          )}
+        </div>
       </div>
     </div>
   );

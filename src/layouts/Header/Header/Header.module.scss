@@ -1,12 +1,12 @@
 @import "src/common/styles/mixins";
 
 .container {
-  @include content_container;
-
   position: relative;
 }
 
 .wrapper {
+  @include content_container;
+
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -40,12 +40,13 @@
 }
 
 .nav_container {
+  display: flex;
   grid-column-end: 3;
   grid-column-start: 2;
-  column-gap: 50px;
-  justify-content: center;
+  column-gap: 10px;
+  justify-content: space-between;
 
-  margin: 0 10px;
+  padding: 0 calc(10px + 8%);
 
   border-right: 1px solid var(--color-black);
 }

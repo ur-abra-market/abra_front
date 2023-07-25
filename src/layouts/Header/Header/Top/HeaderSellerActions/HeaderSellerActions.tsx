@@ -29,7 +29,7 @@ export const HeaderSellerActions: FC<IHeaderSellerActionsProps> = ({
 
   return (
     <>
-      <div className={style.wrapper_btn} ref={triggerRef}>
+      <div className={style.wrapper_button} ref={triggerRef}>
         <ButtonIcon onClick={() => handleMenuOpen(!active)}>
           <HeaderProfileIcon />
         </ButtonIcon>

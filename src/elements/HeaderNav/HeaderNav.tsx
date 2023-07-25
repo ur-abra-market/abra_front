@@ -18,7 +18,7 @@ export const HeaderNav: FC<IHeaderNav> = ({ userRole, className }): JSX.Element 
   return (
     <ul className={cn(style.container, className)}>
       {navItems.map(el => (
-        <li key={el.id}>
+        <li className={style.item} key={el.id}>
           <NavLink
             to={el.path}
             className={({ isActive }) =>
