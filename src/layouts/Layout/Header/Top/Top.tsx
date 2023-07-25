@@ -13,7 +13,6 @@ import { MainLogo, Search } from 'ui-kit';
 
 export const Top = (): JSX.Element => {
   const navigate = useNavigate();
-
   const isAuth = useAppSelector(isAuthSelector);
 
   const handleOnClick = useCallback(
@@ -36,8 +35,9 @@ export const Top = (): JSX.Element => {
 
   return (
     <div className={style.wrapper}>
-      <MainLogo className={style.logo_font_size} />
+      <MainLogo className={style.logo} />
       <Search placeholder="Search" />
+
       <div className={style.inner_buttons}>
         {isAuth ? (
           <HeaderSellerActions callBack={handleOnClick} />
