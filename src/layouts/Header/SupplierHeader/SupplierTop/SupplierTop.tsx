@@ -30,11 +30,10 @@ export const SupplierTop = (): JSX.Element => {
       <div className={style.logo}>
         <MainLogo className={style.logo_font_size} />
         <span className={style.vertical_line} />
-        <span>
-          <Link className={style.supplier_link} to={HOME}>
-            SUPPLIER
-          </Link>
-        </span>
+
+        <Link className={style.supplier_link} to={HOME}>
+          SUPPLIER
+        </Link>
       </div>
       <div className={style.inner_buttons}>
         <Link to={HOME}>
