@@ -1,7 +1,5 @@
-import React from 'react';
-
 import { HeaderSupplierProducts } from './HeaderSupplierProducts/HeaderSupplierProducts';
-import PaginationSettings from './HeaderSupplierProducts/PaginationSettings/PaginationSettings';
+import { PaginationSettings } from './HeaderSupplierProducts/PaginationSettings/PaginationSettings';
 import { ProductsList } from './ProductsList/ProductsList';
 import style from './SupplierProducts.module.scss';
 
