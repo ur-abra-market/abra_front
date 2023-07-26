@@ -19,7 +19,6 @@ export const Pagination: FC<IProps> = ({
   onPageChanged,
   disabled = false,
 }) => {
-  const [currentButton, setCurrentButton] = useState(currentPage);
   const [visibleButtons, setVisibleButtons] = useState<Array<number | string>>([]);
   const pageNumbers: number[] = [];
 
@@ -34,12 +33,12 @@ export const Pagination: FC<IProps> = ({
 
     if (pageNumbers.length < 6) {
       updatedVisibleButtons = pageNumbers; // [1, 2, 3, 4, 5]
-    } else if (currentButton <= 4) {
+    } else if (currentPage <= 4) {
       updatedVisibleButtons = [1, 2, 3, 4, 5, dotsStr, pageNumbers.length]; // [1, 2, 3, 4, 5, '...', 20]
-    } else if (currentButton >= 4 && currentButton < pageNumbers.length - 3) {
+    } else if (currentPage >= 4 && currentPage < pageNumbers.length - 3) {
       // from 5 to 17 -> (20 - 3)
-      const sliced1 = pageNumbers.slice(currentButton - 2, currentButton); // sliced1 (5-2, 5) -> [4,5]
-      const sliced2 = pageNumbers.slice(currentButton, currentButton + 1); // sliced1 (5, 5+1) -> [6]
+      const sliced1 = pageNumbers.slice(currentPage - 2, currentPage); // sliced1 (5-2, 5) -> [4,5]
+      const sliced2 = pageNumbers.slice(currentPage, currentPage + 1); // sliced1 (5, 5+1) -> [6]
 
       updatedVisibleButtons = [
         1,
@@ -49,7 +48,7 @@ export const Pagination: FC<IProps> = ({
         dotsStr,
         pageNumbers.length,
       ]; // [1, '...', 4, 5, 6, '...', 10]
-    } else if (currentButton > pageNumbers.length - 4) {
+    } else if (currentPage > pageNumbers.length - 4) {
       // > 16
       const sliced = pageNumbers.slice(pageNumbers.length - 5); // slice(20-5)
 
@@ -57,18 +56,17 @@ export const Pagination: FC<IProps> = ({
     }
 
     setVisibleButtons(updatedVisibleButtons);
-    onPageChanged(currentButton);
-  }, [currentButton]);
+  }, [currentPage]);
 
   const handlerPrevPage = (): void => {
-    setCurrentButton(prev => (prev <= 1 ? prev : prev - 1));
+    onPageChanged(currentPage <= 1 ? currentPage : currentPage - 1);
   };
   const handlerNextPage = (): void => {
-    setCurrentButton(prev => (prev >= pageNumbers.length ? prev : prev + 1));
+    onPageChanged(currentPage >= pageNumbers.length ? currentPage : currentPage + 1);
   };
   const handlerSelectPage = (item: string | number): void => {
     if (typeof item === 'number') {
-      setCurrentButton(item);
+      onPageChanged(item);
     }
   };
 
@@ -76,10 +74,10 @@ export const Pagination: FC<IProps> = ({
     [style.disabled]: disabled,
   };
   const modsArrowRight = {
-    [style.disabled]: currentButton === pageNumbers.length || disabled,
+    [style.disabled]: currentPage === pageNumbers.length || disabled,
   };
   const modsArrowLeft = {
-    [style.disabled]: currentButton === 1 || disabled,
+    [style.disabled]: currentPage === 1 || disabled,
   };
 
   return (
@@ -96,7 +94,7 @@ export const Pagination: FC<IProps> = ({
       {visibleButtons.map((item, index) => {
         const modsCurrentButton = {
           [style.is_disabled_dot]: item === '...',
-          [style.active]: currentButton === item,
+          [style.active]: currentPage === item,
         };
 
         return (
