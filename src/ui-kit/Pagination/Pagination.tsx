@@ -58,13 +58,13 @@ export const Pagination: FC<IPagination> = ({
     setVisibleButtons(updatedVisibleButtons);
   }, [currentPage]);
 
-  const handlerPrevPage = (): void => {
+  const handlePrevPage = (): void => {
     onPageChanged(currentPage <= 1 ? currentPage : currentPage - 1);
   };
-  const handlerNextPage = (): void => {
+  const handleNextPage = (): void => {
     onPageChanged(currentPage >= pageNumbers.length ? currentPage : currentPage + 1);
   };
-  const handlerSelectPage = (item: string | number): void => {
+  const handleSelectPage = (item: string | number): void => {
     if (typeof item === 'number') {
       onPageChanged(item);
     }
@@ -85,7 +85,7 @@ export const Pagination: FC<IPagination> = ({
       <button
         type="button"
         className={classNames(style.button, modsArrowLeft)}
-        onClick={handlerPrevPage}
+        onClick={handlePrevPage}
         disabled={disabled}
       >
         <ArrowIcon className={classNames(style.arrow, style.arrow_left)} />
@@ -102,7 +102,7 @@ export const Pagination: FC<IPagination> = ({
             type="button"
             key={index}
             className={classNames(style.button, modsCurrentButton, modsButtons)}
-            onClick={() => handlerSelectPage(item)}
+            onClick={() => handleSelectPage(item)}
             disabled={disabled}
           >
             {item}
@@ -113,7 +113,7 @@ export const Pagination: FC<IPagination> = ({
       <button
         type="button"
         className={classNames(style.button, modsArrowRight)}
-        onClick={handlerNextPage}
+        onClick={handleNextPage}
         disabled={disabled}
       >
         <ArrowIcon className={classNames(style.arrow, style.arrow_right)} />
