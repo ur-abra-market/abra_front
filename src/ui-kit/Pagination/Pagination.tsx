@@ -6,14 +6,14 @@ import style from './Pagination.module.scss';
 
 import { ArrowIcon } from 'assets/icons';
 
-interface IProps {
+interface IPagination {
   totalPages: number;
   currentPage: number;
   onPageChanged: (pageNumber: number) => void;
   disabled?: boolean;
 }
 
-export const Pagination: FC<IProps> = ({
+export const Pagination: FC<IPagination> = ({
   currentPage,
   totalPages,
   onPageChanged,
@@ -88,7 +88,7 @@ export const Pagination: FC<IProps> = ({
         onClick={handlerPrevPage}
         disabled={disabled}
       >
-        <ArrowIcon className={`${style.arrow} ${style.arrow_left}`} />
+        <ArrowIcon className={classNames(style.arrow, style.arrow_left)} />
       </button>
 
       {visibleButtons.map((item, index) => {
@@ -116,7 +116,7 @@ export const Pagination: FC<IProps> = ({
         onClick={handlerNextPage}
         disabled={disabled}
       >
-        <ArrowIcon className={`${style.arrow} ${style.arrow_right}`} />
+        <ArrowIcon className={classNames(style.arrow, style.arrow_right)} />
       </button>
     </div>
   );

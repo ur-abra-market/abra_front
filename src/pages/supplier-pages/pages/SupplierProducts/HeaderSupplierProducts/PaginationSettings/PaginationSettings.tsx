@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC } from 'react';
 
 import { useDispatch } from 'react-redux';
 
@@ -9,12 +9,12 @@ import ShowPage from 'old-components/ShowPage';
 import { active } from 'store/reducers/paginateSlice';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
 
-const PaginationSettings: FC = (): JSX.Element => {
+export const PaginationSettings: FC = (): JSX.Element => {
   const activePage = useAppSelector(state => state.paginate.page_num);
   const amountPages = useAppSelector(state => state.paginate.amountPages);
   const dispatch = useDispatch();
 
-  const handlerSetActivePage = (pageNumber: number): void => {
+  const handleSetActivePage = (pageNumber: number): void => {
     dispatch(active(pageNumber));
   };
 
@@ -24,10 +24,8 @@ const PaginationSettings: FC = (): JSX.Element => {
       <Pagination
         currentPage={activePage}
         totalPages={amountPages}
-        onPageChanged={handlerSetActivePage}
+        onPageChanged={handleSetActivePage}
       />
     </div>
   );
 };
-
-export default PaginationSettings;

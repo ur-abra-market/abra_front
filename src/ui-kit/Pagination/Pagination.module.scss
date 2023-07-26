@@ -4,7 +4,6 @@
   user-select: none;
 
   display: flex;
-  column-gap: 6px;
   align-items: center;
   justify-content: center;
 
@@ -30,7 +29,7 @@
 
   transition: color .2s;
 
-  &:focus-visible {
+  &:focus-visible:not(.is_disabled_dot):not(.disabled) {
     outline: 2px solid var(--color-accent);
   }
 
