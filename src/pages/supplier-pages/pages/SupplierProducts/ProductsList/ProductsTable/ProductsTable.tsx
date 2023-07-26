@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import style from './ProductsTable.module.scss';
 import { TableHeader } from './TableHeader/TableHeader';
 import { TableList } from './TableList/TableList';
 
-import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { useAppSelector } from 'common/hooks';
 import { manageProductsSelector } from 'store/reducers/productSlice/selectors';
-import { manageProducts } from 'store/reducers/productSlice/thunks';
 import { IProductsListRequest } from 'store/reducers/productSlice/types';
 
 export interface ITableData {
@@ -15,11 +14,6 @@ export interface ITableData {
 
 export const ProductsTable = (): JSX.Element => {
   const products = useAppSelector(manageProductsSelector);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(manageProducts());
-  }, [dispatch]);
 
   // make a copy of the products array
   const testProductsArray = (): IProductsListRequest[] | undefined => {

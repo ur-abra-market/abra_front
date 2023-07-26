@@ -105,7 +105,7 @@ export const productService = {
 
   getListManageProducts: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductsListRequest[]>>(
-      `suppliers/manageProducts`,
+      `suppliers/products`,
     );
 
     return data.result;
