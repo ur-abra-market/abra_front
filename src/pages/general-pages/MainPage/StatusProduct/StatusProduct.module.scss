@@ -17,6 +17,10 @@
   color: var(--color-black);
 
   background: none;
+
+  &:focus-visible {
+    outline: 1px solid var(--color-medium-gray);
+  }
 }
 
 .btn_active {

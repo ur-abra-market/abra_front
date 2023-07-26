@@ -18,27 +18,33 @@
   font-size: var(--fz-xl2);
 
   transition: all 0.3s ease;
-}
 
-.view_more::before {
-  content: "";
+  &::before {
+    content: "";
 
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
-  opacity: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15));
-  border-radius: 8px;
+    opacity: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15));
+    border-radius: 8px;
 
-  transition: opacity 0.3s ease;
-}
+    transition: opacity 0.3s ease;
+  }
 
-.view_more:hover {
-  color: var(--color-accent);
+  &:focus-visible {
+    color: var(--color-white);
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+  }
+
+  &:hover {
+    color: var(--color-white);
+  }
 }
 
 .view_more:hover::before {

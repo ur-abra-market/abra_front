@@ -8,4 +8,8 @@
   font-size: var(--fz-xl);
   font-weight: var(--medium);
   color: inherit;
+
+  &:focus-visible {
+    outline: 1px solid var(--color-medium-gray);
+  }
 }

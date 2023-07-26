@@ -3,10 +3,10 @@
   position: relative;
   width: 220px;
   height: 220px;
-}
 
-.image_wrapper:hover .hover {
-  opacity: 1;
+  &:hover .hover, &:focus-visible .hover {
+    opacity: 1;
+  }
 }
 
 .image {

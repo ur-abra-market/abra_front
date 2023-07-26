@@ -1,17 +1,20 @@
-import React, { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
+import React, { DetailedHTMLProps, FC, HTMLAttributes, KeyboardEvent } from 'react';
 
 import cn from 'classnames';
+import { useNavigate } from 'react-router-dom';
 
 import { MagnifierLightGreyIcon } from 'assets/icons';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import style from 'elements/ProductImage/ProductImage.module.scss';
 import Flag from 'old-components/Flag';
+import { PRODUCT_DETAILS } from 'routes';
 
 interface IProductCard
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   isFavorite: boolean;
   name: string;
   imageUrl: string;
+  productId?: number;
 }
 
 const ProductImage: FC<IProductCard> = ({
@@ -19,10 +22,22 @@ const ProductImage: FC<IProductCard> = ({
   isFavorite,
   name,
   imageUrl,
+  productId,
   ...restProps
 }): JSX.Element => {
+  const navigate = useNavigate();
+  const handleLinkClick = (e: KeyboardEvent<HTMLDivElement>): void => {
+    if (e.key === 'Enter') navigate(`${PRODUCT_DETAILS}/${productId}`);
+  };
+
   return (
-    <div className={cn(style.image_wrapper, className)} {...restProps}>
+    <div
+      role="link"
+      tabIndex={0}
+      onKeyPress={handleLinkClick}
+      className={cn(style.image_wrapper, className)}
+      {...restProps}
+    >
       <Flag className={style.flag} isFavorite={isFavorite} />
       <LazyImage
         src={imageUrl || ''}
