@@ -113,7 +113,7 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
 
       <FormProvider {...formMethodsPhone}>
         <form onSubmit={handleSubmit(onSubmitPhone)} className={style.phone_form}>
-          <PhoneNumber countryId={countryShort} />
+          <PhoneNumber countryId={2} phoneNumber="555555555" />
 
           <Button type="submit" className={style.submit_button} label="Save" />
         </form>
