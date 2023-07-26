@@ -104,6 +104,7 @@ export const Pagination: FC<IPagination> = ({
             className={classNames(style.button, modsCurrentButton, modsButtons)}
             onClick={() => handleSelectPage(item)}
             disabled={disabled}
+            tabIndex={item === '...' ? -1 : 0}
           >
             {item}
           </button>

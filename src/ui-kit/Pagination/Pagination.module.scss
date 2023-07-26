@@ -27,9 +27,9 @@
   background: none;
   border-radius: 2px;
 
-  transition: color .2s;
+  transition: color 0.2s;
 
-  &:focus-visible:not(.is_disabled_dot):not(.disabled) {
+  &:focus-visible:not(.disabled) {
     outline: 2px solid var(--color-accent);
   }
 
