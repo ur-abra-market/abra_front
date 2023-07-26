@@ -18,13 +18,13 @@
 
 .default,
 .red {
-  color: #FFF;
-  background: #FC133D;
+  color: var(--color-white);
+  background: var(--color-accent);
 }
 
 .default:hover,
 .red:hover {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #FC133D;
+  background: #E70831;
 }
 
 .default:active,

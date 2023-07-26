@@ -2,9 +2,9 @@ import React, { useCallback } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { HeaderSellerActions } from './HeaderSellerActions/HeaderSellerActions';
-import { HeaderGuestUserActions } from './HeaderUserActionsGuest/HeaderGuestUserActions';
 import style from './Top.module.scss';
+
+import { HeaderGuestUserActions, HeaderSellerActions } from '.';
 
 import { useAppSelector } from 'common/hooks';
 import { CART, HOME, LOGIN, REGISTER } from 'routes';
