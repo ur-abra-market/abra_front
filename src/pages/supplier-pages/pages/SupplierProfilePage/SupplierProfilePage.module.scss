@@ -427,27 +427,6 @@
   background: #B5B5B5;
 }
 
-/* .companyPhoto_backgroung:hover::before,
-.companyPhoto_backgroung:hover::after {
-  position: absolute;
-  top: 12px;
-  right: 3px;
-  content: "";
-  width: 20px;
-  height: 2px;
-  background: #000000;
-  transform: rotate(45deg);
-  cursor: pointer;
-}
-
-.companyPhoto_backgroung:hover::before {
-  transform: rotate(45deg);
-}
-
-.companyPhoto_backgroung:hover::after {
-  transform: rotate(-45deg);
-} */
-
 .company_photo_wrapper {
   display: flex;
   gap: 10px;
