@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import style from './Header.module.scss';
 
-import { Top } from './index';
+import { Top } from '.';
 
 import { IHtmlHeaderProps } from 'common/types';
 import { CategoriesMenu } from 'elements/CategoriesMenu/CategoriesMenu';

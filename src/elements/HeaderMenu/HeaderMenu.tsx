@@ -14,11 +14,12 @@ import { Button } from 'ui-kit';
 
 export interface IHeaderMenu
   extends DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement> {
-  active: boolean;
-  setActive: () => void;
+  isMenuOpen: boolean;
+  setMenuOpen: () => void;
 }
 
-export const HeaderMenu: FC<IHeaderMenu> = ({ active, setActive }) => {
+export const HeaderMenu: FC<IHeaderMenu> = ({ isMenuOpen, setMenuOpen }) => {
+  const navigate = useNavigate();
   const isAuth = useAppSelector(isAuthSelector);
   const userRole = useAppSelector(userRoleSelector);
   const dispatch = useAppDispatch();
@@ -26,10 +27,10 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ active, setActive }) => {
     userRole === 'supplier' ? HEADER_MENU_CONTENT.SUPPLIER : HEADER_MENU_CONTENT.SELLER;
   const buildMenu = !isAuth ? HEADER_MENU_CONTENT.UNAUTHORIZED : menuContent;
   const location = useMatch(PERSONAL_ACCOUNT);
-  const navigate = useNavigate();
+
   const menuCLasses = cn(style.menu, {
-    [style.menu_active]: active,
-    [style.menu_inactive]: !active,
+    [style.menu_active]: isMenuOpen,
+    [style.menu_inactive]: !isMenuOpen,
     [style.menu_main]: location?.pathname !== `${PERSONAL_ACCOUNT}/*`,
     [style.menu_profile]: location?.pathname === PERSONAL_ACCOUNT,
     [style.menu_supplier]: userRole === 'supplier',
@@ -37,13 +38,13 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ active, setActive }) => {
 
   useEffect(() => {
     const handleOnScroll = (): void => {
-      setActive();
+      setMenuOpen();
     };
 
     document.addEventListener('scroll', handleOnScroll);
 
     return () => document.removeEventListener('scroll', handleOnScroll);
-  }, [setActive]);
+  }, [setMenuOpen]);
 
   const handleClickLogout = async (): Promise<void> => {
     const result = await dispatch(logoutUser());
@@ -56,7 +57,7 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ active, setActive }) => {
       {buildMenu.map(({ href, label }) => (
         <li key={label} className={style.item}>
           {href !== '/logout' ? (
-            <NavLink to={href} state={label} onClick={() => setActive()}>
+            <NavLink to={href} state={label} onClick={() => setMenuOpen()}>
               {label}
             </NavLink>
           ) : (

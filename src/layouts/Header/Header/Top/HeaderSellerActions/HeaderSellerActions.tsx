@@ -12,17 +12,17 @@ import { useOnClickOutside } from 'common/hooks';
 import { HeaderMenu } from 'elements';
 import { ButtonIcon } from 'ui-kit';
 
-interface IHeaderSellerActionsProps {
+interface IHeaderSellerActions {
   callBack: (target: string) => void;
 }
 
-export const HeaderSellerActions: FC<IHeaderSellerActionsProps> = ({
+export const HeaderSellerActions: FC<IHeaderSellerActions> = ({
   callBack,
 }): JSX.Element => {
-  const [active, setActive] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
   const handleMenuOpen = (value: boolean): void => {
-    setActive(value);
+    setMenuOpen(value);
   };
 
   const triggerRef = useOnClickOutside(handleMenuOpen);
@@ -30,11 +30,11 @@ export const HeaderSellerActions: FC<IHeaderSellerActionsProps> = ({
   return (
     <>
       <div className={style.wrapper_button} ref={triggerRef}>
-        <ButtonIcon onClick={() => handleMenuOpen(!active)}>
+        <ButtonIcon onClick={() => handleMenuOpen(!isMenuOpen)}>
           <HeaderProfileIcon />
         </ButtonIcon>
 
-        <HeaderMenu active={active} setActive={() => setActive(false)} />
+        <HeaderMenu isMenuOpen={isMenuOpen} setMenuOpen={() => setMenuOpen(false)} />
       </div>
 
       <ButtonIcon onClick={() => callBack('note')}>

@@ -16,8 +16,8 @@ import {
 import { ButtonIcon, MainLogo } from 'ui-kit';
 
 export const SupplierTop = (): JSX.Element => {
-  const [isShowPopupMenu, setIsShowPopupMenu] = useState(false);
-  const triggerRef = useOnClickOutside(setIsShowPopupMenu);
+  const [isShowPopupMenu, setShowPopupMenu] = useState(false);
+  const triggerRef = useOnClickOutside(setShowPopupMenu);
   const companyLogo = useAppSelector(supplierCompanyLogoSelector);
   const dispatch = useAppDispatch();
 
@@ -58,7 +58,7 @@ export const SupplierTop = (): JSX.Element => {
 
             <ButtonIcon
               className={style.menu_icons}
-              onClick={() => setIsShowPopupMenu(!isShowPopupMenu)}
+              onClick={() => setShowPopupMenu(!isShowPopupMenu)}
               type="button"
             >
               <span className={style.business_name}>Business Name</span>
@@ -67,8 +67,8 @@ export const SupplierTop = (): JSX.Element => {
             </ButtonIcon>
 
             <HeaderMenu
-              active={isShowPopupMenu}
-              setActive={() => setIsShowPopupMenu(false)}
+              isMenuOpen={isShowPopupMenu}
+              setMenuOpen={() => setShowPopupMenu(false)}
             />
           </div>
         </div>
