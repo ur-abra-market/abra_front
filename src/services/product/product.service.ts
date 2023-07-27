@@ -103,9 +103,15 @@ export const productService = {
     return data;
   },
 
-  getListManageProducts: async () => {
+  getListManageProducts: async (offset: number, limit: number) => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductsListRequest[]>>(
       `suppliers/products`,
+      {
+        params: {
+          offset,
+          limit,
+        },
+      },
     );
 
     return data.result;

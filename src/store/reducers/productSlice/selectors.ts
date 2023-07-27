@@ -1,8 +1,14 @@
+import { createSelector } from '@reduxjs/toolkit';
+
 import { ICategory, IImage, IProductsListRequest } from './types';
 
 import { IActivateStatus } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsListSettings/types/products-types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { RootStateType } from 'store/createStore';
+
+export const getPageNumber = (state: RootStateType): number => state.paginate.page_num;
+
+export const getPageSize = (state: RootStateType): number => state.paginate.page_size;
 
 export const getActivatedIds = (state: RootStateType): IActivateStatus[] =>
   state.product.activationProductIds;
@@ -51,3 +57,18 @@ export const productsCompilationSelector = (
 
 export const manageProductsSelector = (state: RootStateType): IProductsListRequest[] =>
   state.product.products;
+
+export const getSortedData = createSelector([manageProductsSelector], data => {
+  const copyOfData = [...data];
+
+  return copyOfData.sort((a, b) => {
+    if (a.is_active && !b.is_active) {
+      return -1;
+    }
+    if (!a.is_active && b.is_active) {
+      return 1;
+    }
+
+    return 0;
+  });
+});

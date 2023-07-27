@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
+import { getPageNumber, getPageSize } from './selectors';
 import { IProductCard, IProductsListRequest } from './types';
 
 import { productService } from 'services/product/product.service';
@@ -10,6 +11,7 @@ import {
   IProductCompilation,
   IProductRequest,
 } from 'services/product/product.serviceTypes';
+import { RootStateType } from 'store/createStore';
 
 export const activateProducts = createAsyncThunk<boolean, number[]>(
   'product/activateProducts',
@@ -51,9 +53,14 @@ export const deActivateProducts = createAsyncThunk<boolean, number[]>(
 export const manageProducts = createAsyncThunk<IProductsListRequest[], void>(
   'product/manageProducts',
 
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, getState }) => {
+    const page = getPageNumber(getState() as RootStateType);
+    const pageSize = getPageSize(getState() as RootStateType);
+
+    const offset = (page - 1) * 20;
+
     try {
-      return await productService.getListManageProducts();
+      return await productService.getListManageProducts(offset, pageSize);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
