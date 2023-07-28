@@ -37,6 +37,7 @@ export interface ISelect {
   menuItemsPosition?: SelectPositionType;
   header?: boolean; // to add header use --> header={true}
   disabled?: boolean;
+  dropOnUp?: boolean;
 }
 
 export const Select = forwardRef(
@@ -53,6 +54,7 @@ export const Select = forwardRef(
       header = false,
       defaultValue,
       disabled,
+      dropOnUp = false,
     }: ISelect,
     ref,
   ) => {
@@ -90,13 +92,14 @@ export const Select = forwardRef(
 
     const [isOpenItemsMenu, setIsOpenItemsMenu] = useState(false);
 
-    const headerClassname = cn(styles.header, {
+    const headerClassname = cn(className, styles.header, {
       [styles.opened_menu_up_pos_header]:
         header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active_up]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active]: header && menuItemsPosition === 'down' && isOpenItemsMenu,
-      [styles.focus_disabled]: isOpenItemsMenu,
+      [styles.focus_disabled]: isOpenItemsMenu && !dropOnUp,
+      [styles.dropOnUp]: isOpenItemsMenu && dropOnUp,
       [styles.header_disabled]: disabled,
     });
     const menuClassname = cn({
@@ -194,6 +197,7 @@ export const Select = forwardRef(
         <span className={styles.error}>{error}</span>
 
         <SelectMenu
+          dropOnUp={dropOnUp}
           handleSelectedValue={handleSetSelectedValue}
           selectedValue={selectedValue}
           isOpen={isOpenItemsMenu}

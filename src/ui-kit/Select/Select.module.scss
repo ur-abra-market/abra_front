@@ -1,10 +1,7 @@
 .main {
   position: relative;
-
   font-family: Roboto, sans-serif;
   font-size: var(--fz-s);
-
-  background-color: var(--color-light-gray);
   border-radius: 12px;
 
   &:focus-visible {
@@ -64,12 +61,17 @@
   }
 
   &.focus_disabled {
-    border-radius: 0;
+    border-radius: 12px 12px 0 0;
     outline: none;
   }
 
+  &.droponup {
+    border-radius: 0 0 12px 12px;
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.2) 7px -3px 5px, rgba(0, 0, 0, 0.2) -4px -6px 5px;
+  }
+
   &:active {
-    border-radius: 0;
     outline: none;
   }
 
