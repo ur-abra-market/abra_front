@@ -1,11 +1,15 @@
-import { ICategoryResponse, ICountry, INumberEmployees } from './common.serviceTypes';
+import {
+  CountriesArrayType,
+  ICategoryResponse,
+  INumberEmployees,
+} from './common.serviceTypes';
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
 
 export const commonService = {
   getCountry: async () => {
-    const { data } = await baseConfigService.get<IBaseResponse<ICountry[]>>(
+    const { data } = await baseConfigService.get<IBaseResponse<CountriesArrayType>>(
       `common/country`,
     );
 
