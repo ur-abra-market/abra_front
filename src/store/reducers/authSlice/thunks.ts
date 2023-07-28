@@ -17,7 +17,6 @@ import {
   IRegisterRequest,
   IResetPasswordRequest,
 } from 'services/auth/auth.serviceTypes';
-import { getUserRole } from 'store/reducers/appSlice';
 import { setLoading, setResponseNotice } from 'store/reducers/appSlice/slice';
 import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
 import { hasBusinessInfo, hasPersonalInfo } from 'store/reducers/supplier/profile';
