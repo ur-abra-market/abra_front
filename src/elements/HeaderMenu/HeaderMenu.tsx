@@ -9,7 +9,7 @@ import { HEADER_MENU_CONTENT } from './headerMenuContent';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { HOME, PERSONAL_ACCOUNT } from 'routes';
 import { logoutUser } from 'store/reducers/authSlice';
-import { isAuthSelector, userRoleSelector } from 'store/reducers/authSlice/selectors';
+import { userRoleSelector } from 'store/reducers/authSlice/selectors';
 import { Button, LoaderLinear } from 'ui-kit';
 
 export interface IHeaderMenu
@@ -21,12 +21,10 @@ export interface IHeaderMenu
 export const HeaderMenu: FC<IHeaderMenu> = ({ isMenuOpen, setMenuOpen }) => {
   const [isLogOut, setLogOut] = useState<boolean>(false);
   const navigate = useNavigate();
-  const isAuth = useAppSelector(isAuthSelector);
   const userRole = useAppSelector(userRoleSelector);
   const dispatch = useAppDispatch();
   const menuContent =
     userRole === 'supplier' ? HEADER_MENU_CONTENT.SUPPLIER : HEADER_MENU_CONTENT.SELLER;
-  const buildMenu = !isAuth ? HEADER_MENU_CONTENT.UNAUTHORIZED : menuContent;
   const location = useMatch(PERSONAL_ACCOUNT);
 
   const menuCLasses = cn(style.menu, {
@@ -60,9 +58,9 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ isMenuOpen, setMenuOpen }) => {
     <>
       {isLogOut && <LoaderLinear />}
       <ul className={menuCLasses}>
-        {buildMenu.map(({ href, label }) => (
+        {menuContent.map(({ href, label }) => (
           <li key={label} className={style.item}>
-            {href !== '/logout' ? (
+            {href !== '/logout' ? ( // данная конструкция нужна просто чтобы понять когда отрисовать кнопку логаут, а когда навлинку
               <NavLink to={href} state={label} onClick={() => setMenuOpen()}>
                 {label}
               </NavLink>
