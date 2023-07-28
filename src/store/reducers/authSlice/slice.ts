@@ -24,8 +24,9 @@ const authSlice = createSlice({
       },
     );
 
-    builder.addCase(loginUser.fulfilled, state => {
+    builder.addCase(loginUser.fulfilled, (state, action: PayloadAction<UserRoleType>) => {
       state.isAuthorized = true;
+      state.userRole = action.payload;
     });
 
     builder.addCase(logoutUser.fulfilled, state => {

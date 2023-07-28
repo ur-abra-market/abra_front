@@ -1,7 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IAsyncThunkConfig, IBaseResponse, LoadingStatusEnum } from 'common/types';
+import {
+  IAsyncThunkConfig,
+  IBaseResponse,
+  LoadingStatusEnum,
+  ResponseUserRoleType,
+} from 'common/types';
 import { authService } from 'services/auth/auth.service';
 import {
   IChangeEmailRequest,
@@ -68,37 +73,40 @@ export const createAccountPersonalInfo = createAsyncThunk<
   },
 );
 
-export const loginUser = createAsyncThunk<void, ILoginRequest, IAsyncThunkConfig>(
-  'auth/loginUser',
-  async (dataUser, { rejectWithValue, dispatch }) => {
-    dispatch(setLoading(LoadingStatusEnum.Loading));
+export const loginUser = createAsyncThunk<
+  ResponseUserRoleType,
+  ILoginRequest,
+  IAsyncThunkConfig
+>('auth/loginUser', async (dataUser, { rejectWithValue, dispatch }) => {
+  dispatch(setLoading(LoadingStatusEnum.Loading));
 
-    try {
-      await authService.login(dataUser);
+  try {
+    await authService.login(dataUser);
 
-      const userRole = await dispatch(getUserRole());
+    const userRole = await authService.userRole();
 
-      if (userRole.payload === 'supplier') {
-        await dispatch(hasPersonalInfo());
-        await dispatch(hasBusinessInfo());
-        await dispatch(getCompanyNumberEmployees());
-      }
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        dispatch(
-          setResponseNotice({
-            noticeType: 'error',
-            message: error.response?.data?.error || error.message,
-          }),
-        );
-      }
-
-      return rejectWithValue('[loginUser]: Error');
-    } finally {
-      dispatch(setLoading(LoadingStatusEnum.Idle));
+    if (userRole.data.result === 'supplier') {
+      await dispatch(hasPersonalInfo());
+      await dispatch(hasBusinessInfo());
+      await dispatch(getCompanyNumberEmployees());
     }
-  },
-);
+
+    return userRole.data.result;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      dispatch(
+        setResponseNotice({
+          noticeType: 'error',
+          message: error.response?.data?.error || error.message,
+        }),
+      );
+    }
+
+    return rejectWithValue('[loginUser]: Error');
+  } finally {
+    dispatch(setLoading(LoadingStatusEnum.Idle));
+  }
+});
 
 export const logoutUser = createAsyncThunk<void, void, IAsyncThunkConfig>(
   'login/logoutUser',
