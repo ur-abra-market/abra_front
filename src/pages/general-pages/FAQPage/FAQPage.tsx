@@ -89,10 +89,10 @@ export const FAQPage = WithLayout((): JSX.Element => {
         ))}
       </div>
       <p>
-        For any further questions, please visit our Help Center or{' '}
+        For any further questions, please visit our Help Center or
         <SimpleLink to={CONTACT} color="accent" className={style.link}>
-          contact
-        </SimpleLink>{' '}
+          <span> contact </span>
+        </SimpleLink>
         our Customer Support Team
       </p>
     </div>
