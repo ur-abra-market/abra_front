@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, FC, HTMLAttributes, useEffect } from 'react';
+import React, { DetailedHTMLProps, FC, HTMLAttributes, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 import { NavLink, useMatch, useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { HOME, PERSONAL_ACCOUNT } from 'routes';
 import { logoutUser } from 'store/reducers/authSlice';
 import { isAuthSelector, userRoleSelector } from 'store/reducers/authSlice/selectors';
-import { Button } from 'ui-kit';
+import { Button, LoaderLinear } from 'ui-kit';
 
 export interface IHeaderMenu
   extends DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement> {
@@ -19,6 +19,7 @@ export interface IHeaderMenu
 }
 
 export const HeaderMenu: FC<IHeaderMenu> = ({ isMenuOpen, setMenuOpen }) => {
+  const [isLogOut, setLogOut] = useState<boolean>(false);
   const navigate = useNavigate();
   const isAuth = useAppSelector(isAuthSelector);
   const userRole = useAppSelector(userRoleSelector);
@@ -47,31 +48,37 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ isMenuOpen, setMenuOpen }) => {
   }, [setMenuOpen]);
 
   const handleClickLogout = async (): Promise<void> => {
+    setLogOut(true);
     const result = await dispatch(logoutUser());
+
+    setLogOut(false);
 
     if (result) navigate(HOME);
   };
 
   return (
-    <ul className={menuCLasses}>
-      {buildMenu.map(({ href, label }) => (
-        <li key={label} className={style.item}>
-          {href !== '/logout' ? (
-            <NavLink to={href} state={label} onClick={() => setMenuOpen()}>
-              {label}
-            </NavLink>
-          ) : (
-            <Button
-              type="button"
-              onClick={handleClickLogout}
-              color="white"
-              className={style.logout_btn}
-            >
-              {label}
-            </Button>
-          )}
-        </li>
-      ))}
-    </ul>
+    <>
+      {isLogOut && <LoaderLinear />}
+      <ul className={menuCLasses}>
+        {buildMenu.map(({ href, label }) => (
+          <li key={label} className={style.item}>
+            {href !== '/logout' ? (
+              <NavLink to={href} state={label} onClick={() => setMenuOpen()}>
+                {label}
+              </NavLink>
+            ) : (
+              <Button
+                type="button"
+                onClick={handleClickLogout}
+                color="white"
+                className={style.logout_btn}
+              >
+                {label}
+              </Button>
+            )}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
