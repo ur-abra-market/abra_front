@@ -15,6 +15,8 @@ export interface ICountry {
   flag: string;
 }
 
+export type CountriesArrayType = ICountry[];
+
 export interface INumberEmployees {
   id: number;
   number: string;
