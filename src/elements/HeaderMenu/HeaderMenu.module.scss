@@ -118,16 +118,3 @@
 .item a:hover {
   color: var(--color-accent);
 }
-
-.logout_btn {
-  padding: 0;
-  font-size: var(--fz-l);
-
-  //font-size: 18px;
-  //transition: all 0.3s;
-
-
-  &:hover {
-    color: var(--color-accent);
-  }
-}
