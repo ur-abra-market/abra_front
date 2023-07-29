@@ -12,7 +12,7 @@ import {
   getProductsCompilation,
   productsCompilationSelector,
 } from 'store/reducers/productSlice';
-import { ButtonInfo, LoaderCircular, LoaderLinear, ViewMoreProducts } from 'ui-kit';
+import { ButtonInfo, LoaderLinear, ViewMoreProducts } from 'ui-kit';
 
 export enum Categories {
   ALL,

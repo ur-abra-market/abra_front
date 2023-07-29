@@ -12,7 +12,7 @@ import {
   hasPersonalInfo,
   hasPersonalInfoSelector,
 } from 'store/reducers/supplier/profile';
-import { LoaderCircular, LoaderLinear } from 'ui-kit';
+import { LoaderLinear } from 'ui-kit';
 
 export const SupplierMainPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -20,8 +20,6 @@ export const SupplierMainPage = (): JSX.Element => {
   const [isFetching, setIsFetching] = useState(true);
   const hasPersonalInfoResult = useAppSelector(hasPersonalInfoSelector);
   const hasCompanyInfoResult = useAppSelector(hasCompanyInfoSelector);
-
-  console.log(isAuth);
 
   useEffect(() => {
     const fetch = async (): Promise<void> => {

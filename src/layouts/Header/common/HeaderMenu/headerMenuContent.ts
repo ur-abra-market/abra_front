@@ -1,4 +1,4 @@
-import { HOME, LOGIN, PERSONAL_ACCOUNT, REGISTER } from 'routes';
+import { HOME, PERSONAL_ACCOUNT } from 'routes';
 
 export const HEADER_MENU_CONTENT = {
   SELLER: [
