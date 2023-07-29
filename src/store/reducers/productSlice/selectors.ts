@@ -6,12 +6,11 @@ import { IActivateStatus } from 'pages/supplier-pages/pages/SupplierProducts/Pro
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { RootStateType } from 'store/createStore';
 
-export const getPageNumber = (state: RootStateType): number => state.paginate.page_num;
+export const pageNumber = (state: RootStateType): number => state.paginate.page_num;
 
-export const getPageSize = (state: RootStateType): number => state.paginate.page_size;
+export const pageSize = (state: RootStateType): number => state.paginate.page_size;
 
-export const getAmountPages = (state: RootStateType): number =>
-  state.paginate.amountPages;
+export const amountPages = (state: RootStateType): number => state.paginate.amountPages;
 
 export const getActivatedIds = (state: RootStateType): IActivateStatus[] =>
   state.product.activationProductIds;

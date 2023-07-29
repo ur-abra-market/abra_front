@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { getPageNumber, getPageSize } from './selectors';
+import { pageNumber, pageSize } from './selectors';
 import { IProductCard, IProductsListRequest } from './types';
 
 import { productService } from 'services/product/product.service';
@@ -15,11 +15,11 @@ import { RootStateType } from 'store/createStore';
 
 export const activateProducts = createAsyncThunk<boolean, number[]>(
   'product/activateProducts',
-  async (ids: number[], { rejectWithValue, dispatch }) => {
+  async (productsId: number[], { rejectWithValue, dispatch }) => {
     try {
-      const res = await productService.restoreList(ids);
+      const res = await productService.restoreList(productsId);
 
-      dispatch(manageProducts());
+      await dispatch(manageProducts());
 
       return res;
     } catch (error: unknown) {
@@ -33,11 +33,11 @@ export const activateProducts = createAsyncThunk<boolean, number[]>(
 );
 export const deActivateProducts = createAsyncThunk<boolean, number[]>(
   'product/deleteProducts',
-  async (ids: number[], { rejectWithValue, dispatch }) => {
+  async (productsId: number[], { rejectWithValue, dispatch }) => {
     try {
-      const res = await productService.deleteList(ids);
+      const res = await productService.deleteList(productsId);
 
-      dispatch(manageProducts());
+      await dispatch(manageProducts());
 
       return res;
     } catch (error: unknown) {
@@ -54,13 +54,13 @@ export const manageProducts = createAsyncThunk<IProductsListRequest[], void>(
   'product/manageProducts',
 
   async (_, { rejectWithValue, getState }) => {
-    const page = getPageNumber(getState() as RootStateType);
-    const pageSize = getPageSize(getState() as RootStateType);
+    const page = pageNumber(getState() as RootStateType);
+    const sizeOfPages = pageSize(getState() as RootStateType);
 
     const offset = (page - 1) * 20;
 
     try {
-      return await productService.getListManageProducts(offset, pageSize);
+      return await productService.getListManageProducts(offset, sizeOfPages);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

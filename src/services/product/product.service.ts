@@ -76,19 +76,19 @@ export const productService = {
     return data;
   },
 
-  deleteList: async (ids: number[]) => {
+  deleteList: async (productsId: number[]) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
       `suppliers/deleteProducts`,
-      [...ids],
+      [...productsId],
     );
 
     return data.result;
   },
 
-  restoreList: async (ids: number[]) => {
+  restoreList: async (productsId: number[]) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
       `suppliers/restoreProducts`,
-      [...ids],
+      [...productsId],
     );
 
     return data.result;

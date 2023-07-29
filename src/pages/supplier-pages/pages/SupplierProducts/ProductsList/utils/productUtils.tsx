@@ -19,16 +19,26 @@ import { productActions } from 'store/reducers/productSlice/slice';
 import { activateProducts, deActivateProducts } from 'store/reducers/productSlice/thunks';
 import { IProductsListRequest } from 'store/reducers/productSlice/types';
 
+// --------------types---------------
+
+interface IColumns {
+  id: number;
+  name: string;
+  arrow?: React.ReactElement<React.SVGProps<SVGSVGElement>>;
+}
+
 // ProductsListSettings:
+
+// --------------functions--------------
 
 export const deactivateStatusProducts = (
   dispatch: AppDispatchType,
   deactivatedIds: IActivateStatus[],
 ): void => {
   if (deactivatedIds.length) {
-    const ids = deactivatedIds.map(el => el.id);
+    const productsId = deactivatedIds.map(el => el.id);
 
-    dispatch(deActivateProducts(ids));
+    dispatch(deActivateProducts(productsId));
   }
 };
 
@@ -37,27 +47,15 @@ export const activateStatusProducts = (
   activatedIds: IActivateStatus[],
 ): void => {
   if (activatedIds.length) {
-    const ids = activatedIds.map(el => el.id);
+    const productsId = activatedIds.map(el => el.id);
 
-    dispatch(activateProducts(ids));
+    dispatch(activateProducts(productsId));
   }
 };
 
-export const filtersData: IFilterData[] = [
-  { id: 1, label: 'All Products', list: ActiveListEnum.ALL_PRODUCTS },
-  { id: 2, label: 'On-sale', list: ActiveListEnum.ON_SALE },
-  { id: 3, label: 'Off-sale', list: ActiveListEnum.OFF_SALE },
-];
-
-export const actionData: IActionData[] = [
-  { id: 1, label: 'Edit', Icon: EditPencilIcon },
-  { id: 2, label: 'Copy', Icon: Copy },
-  { id: 3, label: 'Delete', Icon: DeleteTrashCanIcon },
-  { id: 4, label: 'Add a new product', Icon: AddNewProduct },
-  { id: 5, label: 'Recently deleted', Icon: RecentlyDeleted },
-];
-
 // TableHeader:
+
+// --------------functions--------------
 
 export const selectAllCheckbox = (
   data: IProductsListRequest[] | undefined,
@@ -92,11 +90,19 @@ export const selectAllCheckbox = (
   }
 };
 
-interface IColumns {
-  id: number;
-  name: string;
-  arrow?: React.ReactElement<React.SVGProps<SVGSVGElement>>;
-}
+export const filtersData: IFilterData[] = [
+  { id: 1, label: 'All Products', list: ActiveListEnum.ALL_PRODUCTS },
+  { id: 2, label: 'On-sale', list: ActiveListEnum.ON_SALE },
+  { id: 3, label: 'Off-sale', list: ActiveListEnum.OFF_SALE },
+];
+
+export const actionData: IActionData[] = [
+  { id: 1, label: 'Edit', Icon: EditPencilIcon },
+  { id: 2, label: 'Copy', Icon: Copy },
+  { id: 3, label: 'Delete', Icon: DeleteTrashCanIcon },
+  { id: 4, label: 'Add a new product', Icon: AddNewProduct },
+  { id: 5, label: 'Recently deleted', Icon: RecentlyDeleted },
+];
 
 export const columns: IColumns[] = [
   { id: 1, name: 'SKU', arrow: <ArrowSort /> },
