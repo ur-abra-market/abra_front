@@ -50,6 +50,17 @@ export const ProductsListSettings = (): JSX.Element => {
       [style.active]: activeList === currentList,
     });
 
+  const getFuncForId = (id: number): undefined | (() => void) => {
+    if (id === 3) {
+      return deactivateProducts;
+    }
+    if (id === 5) {
+      return activateProducts;
+    }
+
+    return undefined;
+  };
+
   return (
     <div className={style.container}>
       <div className={style.wrapper}>
@@ -66,15 +77,6 @@ export const ProductsListSettings = (): JSX.Element => {
       <div className={style.wrapper}>
         {renderedData.map(({ id, label, Icon }) => {
           const disabledBtn = id === 5 && !activatedProductsIds.length;
-          let func;
-
-          if (id === 3) {
-            func = deactivateProducts;
-          } else if (id === 5) {
-            func = activateProducts;
-          } else {
-            func = undefined;
-          }
 
           return (
             <SettingItem
@@ -82,7 +84,7 @@ export const ProductsListSettings = (): JSX.Element => {
               classname={style.filter}
               Icon={Icon}
               text={label}
-              onClick={func}
+              onClick={getFuncForId(id)}
               disabled={disabledBtn}
             />
           );

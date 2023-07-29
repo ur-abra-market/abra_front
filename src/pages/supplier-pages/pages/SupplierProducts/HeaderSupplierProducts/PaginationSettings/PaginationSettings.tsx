@@ -1,7 +1,3 @@
-import { FC } from 'react';
-
-import { useDispatch } from 'react-redux';
-
 import style from './PaginationSettings.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';

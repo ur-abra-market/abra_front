@@ -4,7 +4,7 @@ import style from './FilterItem.module.scss';
 
 import { IHeaderSearch } from 'pages/supplier-pages/pages/SupplierProducts/HeaderSupplierProducts/HeaderSearch/HeaderSearch';
 
-export interface ItemProps extends IHeaderSearch {
+interface ItemProps extends IHeaderSearch {
   text: string;
   Icon: React.VFC<React.SVGProps<SVGSVGElement>>;
 }
