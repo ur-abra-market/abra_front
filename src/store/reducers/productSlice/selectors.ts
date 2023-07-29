@@ -10,6 +10,9 @@ export const getPageNumber = (state: RootStateType): number => state.paginate.pa
 
 export const getPageSize = (state: RootStateType): number => state.paginate.page_size;
 
+export const getAmountPages = (state: RootStateType): number =>
+  state.paginate.amountPages;
+
 export const getActivatedIds = (state: RootStateType): IActivateStatus[] =>
   state.product.activationProductIds;
 

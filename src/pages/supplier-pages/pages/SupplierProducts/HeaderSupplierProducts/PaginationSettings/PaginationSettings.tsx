@@ -3,12 +3,13 @@ import style from './PaginationSettings.module.scss';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import ShowPage from 'old-components/ShowPage';
 import { active } from 'store/reducers/paginateSlice';
+import { getAmountPages, getPageNumber } from 'store/reducers/productSlice/selectors';
 import { manageProducts } from 'store/reducers/productSlice/thunks';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
 
 export const PaginationSettings = (): JSX.Element => {
-  const activePage = useAppSelector(state => state.paginate.page_num);
-  const amountPages = useAppSelector(state => state.paginate.amountPages);
+  const activePage = useAppSelector(getPageNumber);
+  const amountPages = useAppSelector(getAmountPages);
   const dispatch = useAppDispatch();
 
   const handleSetActivePage = (pageNumber: number): void => {
