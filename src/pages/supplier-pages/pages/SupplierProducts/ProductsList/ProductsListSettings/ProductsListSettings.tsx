@@ -74,7 +74,7 @@ export const ProductsListSettings = (): JSX.Element => {
         ))}
       </div>
 
-      <div className={style.wrapper}>
+      <div className={`${style.wrapper} ${style.gap}`}>
         {renderedData.map(({ id, label, Icon }) => {
           const disabledBtn = id === 5 && !activatedProductsIds.length;
 

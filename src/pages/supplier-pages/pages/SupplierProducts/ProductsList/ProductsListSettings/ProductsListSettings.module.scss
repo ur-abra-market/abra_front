@@ -10,13 +10,14 @@
   align-items: center;
 }
 
+.gap {
+  column-gap: 36px;
+}
+
 .filter {
   cursor: pointer;
-
   font-size: var(--fz-s2);
-  font-weight: var(--regular);
   color: var(--color-black);
-
   background: none;
 }
 
