@@ -1,25 +1,7 @@
-import { createSelector } from '@reduxjs/toolkit';
+import { ICategory, IImage } from './types';
 
-import { ICategory, IImage, IProductsListRequest } from './types';
-
-import { IActivateStatus } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsListSettings/types/products-types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { RootStateType } from 'store/createStore';
-
-export const pageNumber = (state: RootStateType): number => state.paginate.page_num;
-
-export const pageSize = (state: RootStateType): number => state.paginate.page_size;
-
-export const amountPages = (state: RootStateType): number => state.paginate.amountPages;
-
-export const getActivatedIds = (state: RootStateType): IActivateStatus[] =>
-  state.product.activationProductIds;
-
-export const getMainCheckedStatus = (state: RootStateType): boolean =>
-  state.product.selectAllProducts;
-
-export const getDeactivatedIds = (state: RootStateType): IActivateStatus[] =>
-  state.product.deactivationProductIds;
 
 export const productCategorySelector = (state: RootStateType): ICategory =>
   state.product.productCard.category ?? {};
@@ -56,21 +38,3 @@ export const similarProductsSelector = (state: RootStateType): IProductCompilati
 export const productsCompilationSelector = (
   state: RootStateType,
 ): { [key: number]: IProductCompilation[] } => state.product.productsCompilation;
-
-export const manageProductsSelector = (state: RootStateType): IProductsListRequest[] =>
-  state.product.products;
-
-export const getSortedData = createSelector([manageProductsSelector], data => {
-  const copyOfData = [...data];
-
-  return copyOfData.sort((a, b) => {
-    if (a.is_active && !b.is_active) {
-      return -1;
-    }
-    if (!a.is_active && b.is_active) {
-      return 1;
-    }
-
-    return 0;
-  });
-});

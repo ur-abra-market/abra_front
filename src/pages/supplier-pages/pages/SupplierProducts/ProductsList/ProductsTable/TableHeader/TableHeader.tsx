@@ -10,7 +10,7 @@ import {
   columns,
   selectAllCheckbox,
 } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/utils/productUtils';
-import { getMainCheckedStatus } from 'store/reducers/productSlice/selectors';
+import { getMainCheckedStatus } from 'store/reducers/supplierProductSlice';
 import { Checkbox } from 'ui-kit';
 
 export const TableHeader: FC<ITableData> = ({ data }): JSX.Element => {

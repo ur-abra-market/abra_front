@@ -14,10 +14,7 @@ import {
   deactivateStatusProducts,
   filtersData,
 } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/utils/productUtils';
-import {
-  getActivatedIds,
-  getDeactivatedIds,
-} from 'store/reducers/productSlice/selectors';
+import { getActivatedIds, getDeactivatedIds } from 'store/reducers/supplierProductSlice';
 
 export const ProductsListSettings = (): JSX.Element => {
   const [activeList, setActiveList] = useState<ActiveListEnum>(

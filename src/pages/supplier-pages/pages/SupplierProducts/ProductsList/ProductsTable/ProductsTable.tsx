@@ -5,8 +5,7 @@ import { TableHeader } from './TableHeader/TableHeader';
 import { TableList } from './TableList/TableList';
 
 import { useAppSelector } from 'common/hooks';
-import { getSortedData } from 'store/reducers/productSlice/selectors';
-import { IProductsListRequest } from 'store/reducers/productSlice/types';
+import { getSortedData, IProductsListRequest } from 'store/reducers/supplierProductSlice';
 
 export interface ITableData {
   data: IProductsListRequest[] | undefined;

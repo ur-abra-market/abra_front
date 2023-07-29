@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IProductsListRequest } from './productSlice/types';
+import { IProductsListRequest } from './supplierProductSlice';
 
 import { LoadingStatusEnum } from 'common/types';
 import { productService } from 'services/product/product.service';

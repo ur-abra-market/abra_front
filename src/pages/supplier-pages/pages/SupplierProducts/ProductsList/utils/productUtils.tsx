@@ -15,9 +15,12 @@ import {
   IFilterData,
 } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsListSettings/types/products-types';
 import { AppDispatchType } from 'store/createStore';
-import { productActions } from 'store/reducers/productSlice/slice';
-import { activateProducts, deActivateProducts } from 'store/reducers/productSlice/thunks';
-import { IProductsListRequest } from 'store/reducers/productSlice/types';
+import {
+  activateProducts,
+  deActivateProducts,
+  IProductsListRequest,
+} from 'store/reducers/supplierProductSlice';
+import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
 
 // --------------types---------------
 
@@ -62,11 +65,11 @@ export const selectAllCheckbox = (
   checked: boolean,
   dispatch: AppDispatchType,
 ): void => {
-  dispatch(productActions.selectAllProducts(checked));
+  dispatch(supplierProductActions.selectAllProducts(checked));
 
   if (!checked) {
-    dispatch(productActions.setArrayForProductsDeactivation([]));
-    dispatch(productActions.setArrayForProductsActivation([]));
+    dispatch(supplierProductActions.setArrayForProductsDeactivation([]));
+    dispatch(supplierProductActions.setArrayForProductsActivation([]));
   }
 
   if (checked) {
@@ -81,11 +84,15 @@ export const selectAllCheckbox = (
 
     if (arrayForDeactivateProducts) {
       dispatch(
-        productActions.setArrayForProductsDeactivation(arrayForDeactivateProducts),
+        supplierProductActions.setArrayForProductsDeactivation(
+          arrayForDeactivateProducts,
+        ),
       );
     }
     if (arrayForActivateProducts) {
-      dispatch(productActions.setArrayForProductsActivation(arrayForActivateProducts));
+      dispatch(
+        supplierProductActions.setArrayForProductsActivation(arrayForActivateProducts),
+      );
     }
   }
 };

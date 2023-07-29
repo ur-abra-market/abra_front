@@ -5,7 +5,7 @@ import { ProductsListSettings } from './ProductsListSettings/ProductsListSetting
 import { ProductsTable } from './ProductsTable/ProductsTable';
 
 import { useAppDispatch } from 'common/hooks';
-import { manageProducts } from 'store/reducers/productSlice/thunks';
+import { manageProducts } from 'store/reducers/supplierProductSlice';
 
 export const ProductsList = (): JSX.Element => {
   const dispatch = useAppDispatch();
