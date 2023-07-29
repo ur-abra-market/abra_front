@@ -1,4 +1,9 @@
-.container {
-  min-height: 100%;
+@import "src/common/styles/mixins";
+
+.wrapper {
   background: var(--color-super-light-gray);
+}
+
+.content_container {
+  @include content_container;
 }
