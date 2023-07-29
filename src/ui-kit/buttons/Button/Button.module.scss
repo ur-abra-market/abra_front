@@ -24,7 +24,7 @@
 
 .default:hover,
 .red:hover {
-  background: #E70831;
+  background: var(--color_accent_dark);
 }
 
 .default:active,

@@ -7,7 +7,7 @@ import style from './SupplierTop.module.scss';
 
 import { ArrowIcon, HeaderNotificationsIcon, LogoCompanyPlaceholder } from 'assets/icons';
 import { useOnClickOutside, useAppDispatch, useAppSelector } from 'common/hooks';
-import { HeaderMenu } from 'elements';
+import { HeaderMenu } from 'layouts/Header/common';
 import { HOME } from 'routes';
 import {
   getCompanyLogo,

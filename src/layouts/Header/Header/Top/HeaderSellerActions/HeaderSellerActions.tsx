@@ -9,7 +9,7 @@ import {
   HeaderProfileIcon,
 } from 'assets/icons';
 import { useOnClickOutside } from 'common/hooks';
-import { HeaderMenu } from 'elements';
+import { HeaderMenu } from 'layouts/Header/common';
 import { ButtonIcon } from 'ui-kit';
 
 interface IHeaderSellerActions {

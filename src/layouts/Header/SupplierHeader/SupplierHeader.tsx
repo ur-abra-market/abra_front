@@ -7,7 +7,7 @@ import style from './SupplierHeader.module.scss';
 import { Top } from '.';
 
 import { IHtmlHeaderProps } from 'common/types';
-import { HeaderNav } from 'elements/HeaderNav/HeaderNav';
+import { HeaderNav } from 'layouts/Header/common';
 
 export const SupplierHeader: FC<IHtmlHeaderProps> = ({
   className,

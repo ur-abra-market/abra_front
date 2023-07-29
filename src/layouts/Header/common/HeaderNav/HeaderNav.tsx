@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 import style from './HeaderNav.module.scss';
 
-import { HEADER_NAV_CONTENT } from 'elements/HeaderNav/HeaderNavContent';
+import { HEADER_NAV_CONTENT } from 'layouts/Header/common/HeaderNav/HeaderNavContent';
 
 interface IHeaderNav {
   userRole: 'seller' | 'supplier';

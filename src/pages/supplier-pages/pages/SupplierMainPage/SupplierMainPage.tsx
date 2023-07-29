@@ -4,6 +4,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ACCOUNT_SETUP_BUSINESS_INFO, ACCOUNT_SETUP_PERSONAL_INFO } from 'routes';
+import { isAuthSelector } from 'store/reducers/authSlice';
 import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
 import {
   hasBusinessInfo,
@@ -11,20 +12,18 @@ import {
   hasPersonalInfo,
   hasPersonalInfoSelector,
 } from 'store/reducers/supplier/profile';
-import { LoaderCircular } from 'ui-kit';
+import { LoaderCircular, LoaderLinear } from 'ui-kit';
 
 export const SupplierMainPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
+  const isAuth = useAppSelector(isAuthSelector);
   const [isFetching, setIsFetching] = useState(true);
   const hasPersonalInfoResult = useAppSelector(hasPersonalInfoSelector);
   const hasCompanyInfoResult = useAppSelector(hasCompanyInfoSelector);
 
-  useEffect(() => {
-    if (hasCompanyInfoResult) {
-      setIsFetching(false);
+  console.log(isAuth);
 
-      return;
-    }
+  useEffect(() => {
     const fetch = async (): Promise<void> => {
       await dispatch(hasPersonalInfo());
 
@@ -35,9 +34,9 @@ export const SupplierMainPage = (): JSX.Element => {
     };
 
     fetch();
-  }, [dispatch, hasCompanyInfoResult]);
+  }, [dispatch]);
 
-  if (isFetching) return <LoaderCircular />;
+  if (isFetching) return <LoaderLinear />;
   if (!hasPersonalInfoResult) return <Navigate to={ACCOUNT_SETUP_PERSONAL_INFO} />;
   if (!hasCompanyInfoResult) return <Navigate to={ACCOUNT_SETUP_BUSINESS_INFO} />;
 

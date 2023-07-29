@@ -8,8 +8,8 @@ import { Top } from '.';
 
 import { IHtmlHeaderProps } from 'common/types';
 import { CategoriesMenu } from 'elements/CategoriesMenu/CategoriesMenu';
-import { HeaderNav } from 'elements/HeaderNav/HeaderNav';
 import { LocationAndCurrencySelection } from 'elements/LocationAndCurrencySelection/LocationAndCurrencySelection';
+import { HeaderNav } from 'layouts/Header/common';
 
 export const Header: FC<IHtmlHeaderProps> = ({
   className,

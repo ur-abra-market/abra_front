@@ -5,7 +5,6 @@ export { NoticePopup } from './NoticePopup/NoticePopup';
 export { AccountManagement } from './AccountManagement/AccountManagement';
 export { ContentMessage } from './ContentMessage/ContentMessage';
 export { PhoneNumberInput } from './PhoneNumberInput/PhoneNumberInput';
-export { HeaderMenu } from './HeaderMenu/HeaderMenu';
 export { AdditionalHeaderBlock } from './AdditionalHeaderBlock/AdditionalHeaderBlock';
 export { Grades } from './Grades/Grades';
 export { AboutProduct } from './AboutProduct/AboutProduct';

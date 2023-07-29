@@ -11,9 +11,9 @@ import { hasCompanyInfoSelector } from 'store/reducers/supplier/profile';
 export const AccountSetupBusinessInfoPage = (): JSX.Element => {
   const hasCompanyInfoResult = useAppSelector(hasCompanyInfoSelector);
 
-  if (hasCompanyInfoResult || hasCompanyInfoResult === null) {
-    return <Navigate to={HOME} />;
-  }
+  // if (hasCompanyInfoResult || hasCompanyInfoResult === null) {
+  //   return <Navigate to={HOME} />;
+  // }
 
   return <AccountSetupBusinessInfoForm />;
 };
