@@ -5,7 +5,15 @@
 }
 
 .table_deactivated {
-  opacity: 0.4;
+  .table_data_id,
+  .table_data_image,
+  .table_data_name,
+  .table_data_date,
+  .table_data_status,
+  .table_data_price,
+  .table_data_balance {
+    opacity: .4;
+  }
 }
 
 .table_data_checkbox,
