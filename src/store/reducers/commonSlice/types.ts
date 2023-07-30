@@ -1,4 +1,7 @@
-import { ICategoryResponse, ICountry } from 'services/common/common.serviceTypes';
+import {
+  CountriesArrayType,
+  ICategoryResponse,
+} from 'services/common/common.serviceTypes';
 
 export interface INumberEmployees {
   id: number;
@@ -7,6 +10,6 @@ export interface INumberEmployees {
 
 export interface IInitialState {
   categories: null | ICategoryResponse[];
-  countries: ICountry[];
+  countries: CountriesArrayType;
   numberEmployees: INumberEmployees[];
 }

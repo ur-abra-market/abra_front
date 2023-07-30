@@ -34,10 +34,17 @@ export const SelectHeader: FC<ISelectHeaderPropsType> = ({
       aria-controls="combobox-list"
       aria-labelledby="combobox-list"
     >
-      {currentSelectedValue.label.image_src && (
-        <img src={currentSelectedValue.label.image_src} alt="" className={style.image} />
-      )}
-      {currentSelectedValue.label.text}
+      <div className={style.content_wrapper}>
+        {currentSelectedValue.label.image_src && (
+          <img
+            src={currentSelectedValue.label.image_src}
+            className={style.image}
+            alt=""
+          />
+        )}
+        {currentSelectedValue.label.text}
+      </div>
+
       <ArrowIcon className={cn({ [style.arrow_up]: isOpenMenu })} width="14" />
     </div>
   );
