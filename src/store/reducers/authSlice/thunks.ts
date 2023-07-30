@@ -1,4 +1,4 @@
-import { createAsyncThunk, unwrapResult } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import {
@@ -18,8 +18,6 @@ import {
   IResetPasswordRequest,
 } from 'services/auth/auth.serviceTypes';
 import { setLoading, setResponseNotice } from 'store/reducers/appSlice/slice';
-import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
-import { hasBusinessInfo, hasPersonalInfo } from 'store/reducers/supplier/profile';
 
 export const registerUser = createAsyncThunk<void, IRegisterRequest, IAsyncThunkConfig>(
   'auth/registerUser',

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import { Navigate, NavLink, Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ErrorPage } from 'pages/general-pages';
-import { ACCOUNT_SETUP_BUSINESS_INFO, ACCOUNT_SETUP_PERSONAL_INFO, HOME } from 'routes';
+import { ACCOUNT_SETUP_BUSINESS_INFO, ACCOUNT_SETUP_PERSONAL_INFO } from 'routes';
 import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
 import {
   hasBusinessInfo,
