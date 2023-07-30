@@ -8,16 +8,16 @@ import { HeaderGuestUserActions, HeaderSellerActions } from '.';
 
 import { useAppSelector } from 'common/hooks';
 import { CART, HOME, LOGIN, REGISTER } from 'routes';
-import { isAuthSelector } from 'store/reducers/authSlice/selectors';
+import { isAuthorizedSelector } from 'store/reducers/authSlice/selectors';
 import { MainLogo, Search } from 'ui-kit';
 
 export const Top = (): JSX.Element => {
   const navigate = useNavigate();
-  const isAuth = useAppSelector(isAuthSelector);
+  const isAuthorized = useAppSelector(isAuthorizedSelector);
 
   const handleOnClick = useCallback(
     (target: string): void => {
-      if (!isAuth) {
+      if (!isAuthorized) {
         return target === 'login' ? navigate(LOGIN) : navigate(REGISTER);
       }
       switch (target) {
@@ -30,7 +30,7 @@ export const Top = (): JSX.Element => {
         default:
       }
     },
-    [isAuth, navigate],
+    [isAuthorized, navigate],
   );
 
   return (
@@ -40,7 +40,7 @@ export const Top = (): JSX.Element => {
         <Search placeholder="Search" />
 
         <div className={style.inner_buttons}>
-          {isAuth ? (
+          {isAuthorized ? (
             <HeaderSellerActions callBack={handleOnClick} />
           ) : (
             <HeaderGuestUserActions callBack={handleOnClick} />

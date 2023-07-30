@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from 'react';
 
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, NavLink, Outlet } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { ACCOUNT_SETUP_BUSINESS_INFO, ACCOUNT_SETUP_PERSONAL_INFO } from 'routes';
-import { isAuthSelector } from 'store/reducers/authSlice';
+import { ACCOUNT_SETUP_BUSINESS_INFO, ACCOUNT_SETUP_PERSONAL_INFO, HOME } from 'routes';
 import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
 import {
   hasBusinessInfo,
+  hasCompanyInfoErrorSelector,
   hasCompanyInfoSelector,
   hasPersonalInfo,
+  hasPersonalInfoErrorSelector,
   hasPersonalInfoSelector,
 } from 'store/reducers/supplier/profile';
 import { LoaderLinear } from 'ui-kit';
 
 export const SupplierMainPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const isAuth = useAppSelector(isAuthSelector);
   const [isFetching, setIsFetching] = useState(true);
   const hasPersonalInfoResult = useAppSelector(hasPersonalInfoSelector);
   const hasCompanyInfoResult = useAppSelector(hasCompanyInfoSelector);
+  const hasPersonalInfoError = useAppSelector(hasPersonalInfoErrorSelector);
+  const hasCompanyInfoError = useAppSelector(hasCompanyInfoErrorSelector);
 
   useEffect(() => {
     const fetch = async (): Promise<void> => {
@@ -35,6 +37,13 @@ export const SupplierMainPage = (): JSX.Element => {
   }, [dispatch]);
 
   if (isFetching) return <LoaderLinear />;
+  if (hasPersonalInfoError || hasCompanyInfoError)
+    return (
+      <div>
+        <h2>Server Error</h2>
+        <NavLink to={HOME}>Reload page</NavLink>
+      </div>
+    );
   if (!hasPersonalInfoResult) return <Navigate to={ACCOUNT_SETUP_PERSONAL_INFO} />;
   if (!hasCompanyInfoResult) return <Navigate to={ACCOUNT_SETUP_BUSINESS_INFO} />;
 

@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, unwrapResult } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import {
@@ -84,14 +84,25 @@ export const loginUser = createAsyncThunk<
 
     const userRole = await authService.userRole();
 
-    if (userRole.data.result === 'supplier') {
-      await dispatch(hasPersonalInfo());
-      await dispatch(hasBusinessInfo());
-      await dispatch(getCompanyNumberEmployees());
-    }
+    // if (userRole.data.result === 'supplier') {
+    //   const actionsToDispatch = [
+    //     hasPersonalInfo(),
+    //     hasBusinessInfo(),
+    //     getCompanyNumberEmployees(),
+    //   ];
+    //
+    //   const dispatchPromises = actionsToDispatch.map(async (action: any) => {
+    //     const resultAction = await dispatch(action);
+    //
+    //     return unwrapResult(resultAction); // Развернуть результат, чтобы обработать ошибку
+    //   });
+    //
+    //   await Promise.all(dispatchPromises);
+    // }
 
     return userRole.data.result;
   } catch (error) {
+    // dispatch(logoutUser());
     if (error instanceof AxiosError) {
       dispatch(
         setResponseNotice({

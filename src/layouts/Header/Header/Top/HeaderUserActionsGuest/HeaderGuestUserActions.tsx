@@ -12,7 +12,7 @@ export const HeaderGuestUserActions: FC<IHeaderGuestUserActions> = ({
   callBack,
 }): JSX.Element => {
   return (
-    <div className={style.group_button}>
+    <div className={style.buttons_wrapper}>
       <Button
         onClick={() => callBack('register')}
         color="light-red"

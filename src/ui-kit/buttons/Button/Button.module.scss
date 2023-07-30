@@ -29,12 +29,12 @@
 
 .default:active,
 .red:active {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), #FC133D;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--color-accent);
 }
 
 .default:disabled {
-  color: #D4D4D4;
-  background: #FFF;
+  color: var(--color-gray);
+  background: var(--color-white);
   border: 1px solid #E3E3E3;
 }
 
@@ -43,17 +43,17 @@
 }
 
 .red:disabled:hover {
-  color: #000;
+  color: var(--color-black);
   background: rgba(252, 19, 61, 0.4);
 }
 
 .red:disabled:active {
-  color: #FFF;
+  color: var(--color-white);
   background: rgba(252, 19, 61, 0.8);
 }
 
 .light_red {
-  color: #000;
+  color: var(--color-black);
   background: rgba(252, 19, 61, 0.2);
 }
 
@@ -62,31 +62,31 @@
 }
 
 .light_red:active {
-  color: #FFF;
+  color: var(--color-white);
   background: rgba(252, 19, 61, 0.8);
 }
 
 .light_red:disabled {
-  color: #FFF;
-  background: #FC133D;
+  color: var(--color-white);
+  background: var(--color-accent);
 }
 
 .light_red:disabled:hover {
-  color: #FFF;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #FC133D;
+  color: var(--color-white);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), var(--color-accent);
 }
 
 .light_red:disabled:active {
-  color: #FFF;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), #FC133D;
+  color: var(--color-white);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--color-accent);
 }
 
 .white {
-  color: #000;
-  background: #FFF;
+  color: var(--color-black);
+  background: var(--color-white);
 }
 
 .black {
-  color: #FFF;
-  background: #000;
+  color: var(--color-white);
+  background: var(--color-black);
 }

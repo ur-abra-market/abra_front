@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
 import { HOME } from 'routes';
 import { loadingSelector } from 'store/reducers/appSlice';
-import { loginUser, isAuthSelector } from 'store/reducers/authSlice';
+import { loginUser, isAuthorizedSelector } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
 
 const MAX_COUNT = 32;
@@ -33,7 +33,7 @@ export interface IFormValues {
 export const LoginForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const isAuthorized = useAppSelector(isAuthSelector);
+  const isAuthorized = useAppSelector(isAuthorizedSelector);
   const loading = useAppSelector(loadingSelector);
   const isLoading = loading === LoadingStatusEnum.Loading;
 
