@@ -30,10 +30,6 @@ const authSlice = createSlice({
       state.userRole = action.payload;
     });
 
-    builder.addCase(loginUser.rejected, state => {
-      state.userRole = null;
-    });
-
     builder.addCase(logoutUser.pending, state => {
       state.isLogoutLoading = true;
     });

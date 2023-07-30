@@ -9,7 +9,7 @@ import { Top } from '.';
 import { IHtmlHeaderProps } from 'common/types';
 import { CategoriesMenu } from 'elements/CategoriesMenu/CategoriesMenu';
 import { LocationAndCurrencySelection } from 'elements/LocationAndCurrencySelection/LocationAndCurrencySelection';
-import { HeaderNav } from 'layouts/Header/common';
+import { HeaderNav } from 'layouts/Header/components';
 
 export const Header: FC<IHtmlHeaderProps> = ({
   className,

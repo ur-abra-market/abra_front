@@ -57,6 +57,7 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ isMenuOpen, setMenuOpen }) => {
             </NavLink>
           </li>
         ))}
+
         <li className={style.item}>
           <ButtonLogout />
         </li>
