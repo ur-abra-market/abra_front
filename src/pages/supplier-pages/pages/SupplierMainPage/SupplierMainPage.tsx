@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, NavLink, Outlet } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { ErrorPage } from 'pages/general-pages';
 import { ACCOUNT_SETUP_BUSINESS_INFO, ACCOUNT_SETUP_PERSONAL_INFO, HOME } from 'routes';
 import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
 import {
@@ -37,13 +38,8 @@ export const SupplierMainPage = (): JSX.Element => {
   }, [dispatch]);
 
   if (isFetching) return <LoaderLinear />;
-  if (hasPersonalInfoError || hasCompanyInfoError)
-    return (
-      <div>
-        <h2>Server Error</h2>
-        <NavLink to={HOME}>Reload page</NavLink>
-      </div>
-    );
+  if (hasPersonalInfoError || hasCompanyInfoError) return <ErrorPage />;
+
   if (!hasPersonalInfoResult) return <Navigate to={ACCOUNT_SETUP_PERSONAL_INFO} />;
   if (!hasCompanyInfoResult) return <Navigate to={ACCOUNT_SETUP_BUSINESS_INFO} />;
 
