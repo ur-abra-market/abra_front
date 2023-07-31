@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { nanoid } from '@reduxjs/toolkit';
-import { Link } from 'react-router-dom';
 
 import style from './FAQ.module.scss';
 
@@ -9,6 +8,7 @@ import { ContentBox } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { CONTACT } from 'routes';
+import { SimpleLink } from 'ui-kit';
 
 const FAQData = [
   {
@@ -89,8 +89,11 @@ export const FAQPage = WithLayout((): JSX.Element => {
         ))}
       </div>
       <p>
-        For any further questions, please visit our Help Center or{' '}
-        <Link to={CONTACT}>contact</Link> our Customer Support Team
+        For any further questions, please visit our Help Center or
+        <SimpleLink to={CONTACT} color="accent">
+          &nbsp;<span className={style.link_text}>contact</span>&nbsp;
+        </SimpleLink>
+        our Customer Support Team
       </p>
     </div>
   );
