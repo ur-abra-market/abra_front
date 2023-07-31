@@ -15,11 +15,9 @@ export const Header: FC<IHtmlHeaderProps> = ({
   className,
   ...restProps
 }): JSX.Element => {
-  const [categoriesIsOpen, setCategoriesIsOpen] = useState(false);
-
   const categoriesRef = useRef() as RefObject<HTMLDivElement>;
-
   const buttonRef = useRef() as RefObject<HTMLButtonElement>;
+  const [categoriesIsOpen, setCategoriesIsOpen] = useState(false);
 
   useEffect(() => {
     const handler = (e: Event): void => {

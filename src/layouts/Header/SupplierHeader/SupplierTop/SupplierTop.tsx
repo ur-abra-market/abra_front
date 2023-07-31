@@ -16,10 +16,10 @@ import {
 import { ButtonIcon, MainLogo } from 'ui-kit';
 
 export const SupplierTop = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const companyLogo = useAppSelector(supplierCompanyLogoSelector);
   const [isShowPopupMenu, setShowPopupMenu] = useState(false);
   const triggerRef = useOnClickOutside(setShowPopupMenu);
-  const companyLogo = useAppSelector(supplierCompanyLogoSelector);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getCompanyLogo());
