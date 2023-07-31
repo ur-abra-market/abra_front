@@ -10,18 +10,15 @@
   align-items: center;
 }
 
-.inner {
-  cursor: pointer;
-  display: flex;
-  column-gap: 8px;
-  align-items: center;
+.gap {
+  column-gap: 36px;
 }
 
-.filter, .add_and_removed {
+.filter {
   cursor: pointer;
   font-size: var(--fz-s2);
-  font-weight: var(--regular);
   color: var(--color-black);
+  background: none;
 }
 
 .active {

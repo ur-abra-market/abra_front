@@ -4,13 +4,16 @@ import style from './ForgotPasswordPage.module.scss';
 
 import { ForgotPasswordForm } from '.';
 
+import { IAuthFooterData } from 'common/types';
 import { ContentMessage } from 'elements';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
+import { LOGIN } from 'routes';
 
 export type pageType = 'forgotPassword' | 'recoveryEmailIsSent';
 
 export const ForgotPasswordPage = (): JSX.Element => {
   const [pageType, setPageType] = useState<pageType>('forgotPassword');
+  const forgotPasswordFooterData: IAuthFooterData[] = [{ link: LOGIN, title: 'Log in' }];
 
   const togglePageType = (): void => {
     setPageType(prevState =>
@@ -19,7 +22,7 @@ export const ForgotPasswordPage = (): JSX.Element => {
   };
 
   return (
-    <AuthPageLayout>
+    <AuthPageLayout footerData={forgotPasswordFooterData}>
       {pageType === 'forgotPassword' ? (
         <>
           <ContentMessage

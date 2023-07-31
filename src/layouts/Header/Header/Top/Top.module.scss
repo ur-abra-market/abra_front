@@ -1,0 +1,28 @@
+@import "src/common/styles/mixins";
+
+.wrapper {
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
+.container {
+  @include content_container;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 20px;
+  align-items: center;
+
+  width: 100%;
+  padding: 26px 32px;
+
+  background-color: var(--color-white);
+}
+
+.logo {
+  font-size: var(--fz-xl2);
+}
+
+.inner_buttons {
+  display: flex;
+  gap: 32px;
+}

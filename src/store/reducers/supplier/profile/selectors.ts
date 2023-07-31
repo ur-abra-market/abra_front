@@ -22,3 +22,9 @@ export const hasPersonalInfoSelector = (state: RootStateType): boolean | null =>
 
 export const hasCompanyInfoSelector = (state: RootStateType): boolean | null =>
   state.supplierProfile.hasCompanyInfo;
+
+export const hasPersonalInfoErrorSelector = (state: RootStateType): boolean =>
+  state.supplierProfile.hasPersonalInfoError;
+
+export const hasCompanyInfoErrorSelector = (state: RootStateType): boolean =>
+  state.supplierProfile.hasCompanyInfoError;

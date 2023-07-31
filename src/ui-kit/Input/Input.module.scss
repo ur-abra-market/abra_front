@@ -14,7 +14,6 @@
   letter-spacing: 0.24px;
 
   background-color: var(--color-light-gray);
-  border: 1px solid transparent;
   border-radius: 12px;
   outline: none;
 
@@ -25,13 +24,13 @@
     opacity: 0.5;
   }
 
-  &:not(.input_error):focus {
-    border: 1px solid var(--color-medium-gray);
+  &:not(.input_error):focus, &:focus-visible {
+    outline: 1px solid var(--color-medium-gray);
   }
 }
 
 .input_error {
-  border: 1px solid var(--color-accent);
+  outline: 1px solid var(--color-accent);
 }
 
 .error {

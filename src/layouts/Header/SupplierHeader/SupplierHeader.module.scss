@@ -1,0 +1,13 @@
+@import "src/common/styles/mixins";
+
+.container {
+  position: relative;
+}
+
+.nav_container {
+  @include content_container;
+
+  column-gap: 64px;
+  justify-content: flex-start;
+  padding: 16px 32px;
+}

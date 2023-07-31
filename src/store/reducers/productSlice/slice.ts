@@ -6,10 +6,9 @@ import {
   getProductById,
   getProductsCompilation,
   getSimilarProducts,
-  manageProducts,
   removeFavoriteProduct,
 } from './thunks';
-import { IProductCard, IProductSliceInitialState, IProductsListRequest } from './types';
+import { IProductCard, IProductSliceInitialState } from './types';
 
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 
@@ -34,7 +33,6 @@ const initialState: IProductSliceInitialState = {
   popularProducts: [],
   similarProducts: [],
   productsCompilation: {},
-  products: null,
 };
 
 const productSlice = createSlice({
@@ -43,12 +41,6 @@ const productSlice = createSlice({
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(
-        manageProducts.fulfilled,
-        (state, action: PayloadAction<IProductsListRequest[]>) => {
-          state.products = action.payload;
-        },
-      )
       .addCase(getProductById.fulfilled, (state, action: PayloadAction<IProductCard>) => {
         state.productCard = action.payload;
       })
@@ -80,3 +72,4 @@ const productSlice = createSlice({
 });
 
 export const productReducer = productSlice.reducer;
+export const productActions = productSlice.actions;

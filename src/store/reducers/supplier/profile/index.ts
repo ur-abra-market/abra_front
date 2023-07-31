@@ -17,6 +17,8 @@ export {
   supplierCompanyLogoSelector,
   hasCompanyInfoSelector,
   hasPersonalInfoSelector,
+  hasCompanyInfoErrorSelector,
+  hasPersonalInfoErrorSelector,
 } from './selectors';
 export type {
   ILoading,

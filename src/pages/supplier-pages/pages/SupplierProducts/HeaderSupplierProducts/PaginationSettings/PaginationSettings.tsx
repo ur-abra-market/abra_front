@@ -1,21 +1,28 @@
-import React, { FC } from 'react';
-
 import style from './PaginationSettings.module.scss';
 
-import { useAppSelector } from 'common/hooks';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import ShowPage from 'old-components/ShowPage';
-import Pagination from 'old-components/ui/Pagination';
+import { manageProducts, pageNumber } from 'store/reducers/supplierProductSlice';
+import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
+import { Pagination } from 'ui-kit/Pagination/Pagination';
 
-const PaginationSettings: FC = (): JSX.Element => {
-  const activePage = useAppSelector(state => state.paginate.page_num);
-  const amountPages = useAppSelector(state => state.paginate.amountPages);
+export const PaginationSettings = (): JSX.Element => {
+  const activePage = useAppSelector(pageNumber);
+  const dispatch = useAppDispatch();
+
+  const handleSetActivePage = (pageNumber: number): void => {
+    dispatch(supplierProductActions.setPage(pageNumber));
+    dispatch(manageProducts());
+  };
 
   return (
     <div className={style.select_and_pagination_wrapper}>
       <ShowPage />
-      <Pagination activePage={activePage} amountPages={amountPages} />
+      <Pagination
+        currentPage={activePage}
+        totalPages={10}
+        onPageChanged={handleSetActivePage}
+      />
     </div>
   );
 };
-
-export default PaginationSettings;

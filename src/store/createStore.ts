@@ -16,6 +16,7 @@ import { sellerProfileReducer } from './reducers/seller/profile/slice';
 import { similarProductsReducer } from './reducers/similarProducts';
 import { supplierOtherReducer } from './reducers/supplier/other/slice';
 import { supplierProfileReducer } from './reducers/supplier/profile/slice';
+import { supplierProductReducer } from './reducers/supplierProductSlice/supplierProductSlice';
 import { targetProductReducer } from './reducers/targetProductSlice';
 import { userReducer } from './reducers/userSlice/slice';
 
@@ -29,6 +30,7 @@ export const store = configureStore({
     supplierOther: supplierOtherReducer,
     sellerProfile: sellerProfileReducer,
     product: productReducer,
+    supplierProduct: supplierProductReducer,
 
     productListOld: productOldReducer,
     targetProduct: targetProductReducer,

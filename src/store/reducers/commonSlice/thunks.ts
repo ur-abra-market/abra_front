@@ -4,12 +4,12 @@ import { AxiosError } from 'axios';
 import { IAsyncThunkConfig } from 'common/types';
 import { commonService } from 'services/common/common.service';
 import {
+  CountriesArrayType,
   ICategoryResponse,
-  ICountry,
   INumberEmployees,
 } from 'services/common/common.serviceTypes';
 
-export const getCountries = createAsyncThunk<ICountry[], void, IAsyncThunkConfig>(
+export const getCountries = createAsyncThunk<CountriesArrayType, void, IAsyncThunkConfig>(
   'common/getCountries',
   async (_, { rejectWithValue }) => {
     try {

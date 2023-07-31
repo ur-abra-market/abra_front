@@ -73,7 +73,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   placeholder="Select"
                   defaultValue={watch('businessSector')}
                   onChange={value => {
-                    field.onChange(value.value as string);
+                    field.onChange(value.value);
                   }}
                 />
               </Label>
@@ -141,7 +141,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   placeholder="Select"
                   width="266px"
                   onChange={value => {
-                    field.onChange(value.value as number);
+                    field.onChange(value.value);
                   }}
                 />
               </Label>
@@ -165,7 +165,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                 }))}
                 placeholder="Select"
                 onChange={value => {
-                  field.onChange(value.value as number);
+                  field.onChange(value.value);
                 }}
               />
             </Label>
