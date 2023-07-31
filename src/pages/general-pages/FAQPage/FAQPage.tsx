@@ -90,8 +90,8 @@ export const FAQPage = WithLayout((): JSX.Element => {
       </div>
       <p>
         For any further questions, please visit our Help Center or
-        <SimpleLink to={CONTACT} color="accent" className={style.link}>
-          <span> contact </span>
+        <SimpleLink to={CONTACT} color="accent">
+          &nbsp;<span className={style.link_text}>contact</span>&nbsp;
         </SimpleLink>
         our Customer Support Team
       </p>

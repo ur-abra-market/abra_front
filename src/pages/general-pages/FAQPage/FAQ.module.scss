@@ -21,6 +21,7 @@
   justify-content: space-between;
 }
 
-.container .link {
+.container .link_text {
   font-size: var(--fz-m);
+  text-decoration: underline;
 }
