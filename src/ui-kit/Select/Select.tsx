@@ -121,7 +121,6 @@ export const Select = forwardRef(
 
     const handleCloseSelectMenu = (): void => {
       if (isOpenItemsMenu) {
-        setSelectedValue(currentSelectedValue);
         setIsOpenItemsMenu(false);
       }
     };

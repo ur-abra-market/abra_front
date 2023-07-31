@@ -10,7 +10,7 @@ import {
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
 import { IProductCard } from 'store/reducers/productSlice';
-import { IProductsListRequest } from 'store/reducers/productSlice/types';
+import { IProductsListRequest } from 'store/reducers/supplierProductSlice';
 
 export const productService = {
   getList: async (params: ICategoryRequest) => {
@@ -76,8 +76,20 @@ export const productService = {
     return data;
   },
 
-  deleteList: async (id: string[]) => {
-    const { data } = await baseConfigService.post(`suppliers/deleteProducts`, [...id]);
+  deleteList: async (productsId: number[]) => {
+    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+      `suppliers/deleteProducts`,
+      [...productsId],
+    );
+
+    return data.result;
+  },
+
+  restoreList: async (productsId: number[]) => {
+    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+      `suppliers/restoreProducts`,
+      [...productsId],
+    );
 
     return data.result;
   },
@@ -91,9 +103,15 @@ export const productService = {
     return data;
   },
 
-  getListManageProducts: async () => {
+  getListManageProducts: async (offset: number, limit: number) => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductsListRequest[]>>(
-      `suppliers/manageProducts`,
+      `suppliers/products`,
+      {
+        params: {
+          offset,
+          limit,
+        },
+      },
     );
 
     return data.result;

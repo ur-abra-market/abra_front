@@ -1,21 +1,18 @@
-import { FC } from 'react';
-
-import { useDispatch } from 'react-redux';
-
 import style from './PaginationSettings.module.scss';
 
-import { useAppSelector } from 'common/hooks';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import ShowPage from 'old-components/ShowPage';
-import { active } from 'store/reducers/paginateSlice';
+import { manageProducts, pageNumber } from 'store/reducers/supplierProductSlice';
+import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
 
-export const PaginationSettings: FC = (): JSX.Element => {
-  const activePage = useAppSelector(state => state.paginate.page_num);
-  const amountPages = useAppSelector(state => state.paginate.amountPages);
-  const dispatch = useDispatch();
+export const PaginationSettings = (): JSX.Element => {
+  const activePage = useAppSelector(pageNumber);
+  const dispatch = useAppDispatch();
 
   const handleSetActivePage = (pageNumber: number): void => {
-    dispatch(active(pageNumber));
+    dispatch(supplierProductActions.setPage(pageNumber));
+    dispatch(manageProducts());
   };
 
   return (
@@ -23,7 +20,7 @@ export const PaginationSettings: FC = (): JSX.Element => {
       <ShowPage />
       <Pagination
         currentPage={activePage}
-        totalPages={amountPages}
+        totalPages={10}
         onPageChanged={handleSetActivePage}
       />
     </div>
