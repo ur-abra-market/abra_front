@@ -18,23 +18,21 @@ import { LoaderLinear } from 'ui-kit';
 
 export const SupplierMainPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const [isFetching, setIsFetching] = useState(true);
   const hasPersonalInfoResult = useAppSelector(hasPersonalInfoSelector);
   const hasCompanyInfoResult = useAppSelector(hasCompanyInfoSelector);
   const hasPersonalInfoError = useAppSelector(hasPersonalInfoErrorSelector);
   const hasCompanyInfoError = useAppSelector(hasCompanyInfoErrorSelector);
+  const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
-    const fetch = async (): Promise<void> => {
+    const getInitialSupplierData = async (): Promise<void> => {
       await dispatch(hasPersonalInfo());
-
       await dispatch(hasBusinessInfo());
-
       await dispatch(getCompanyNumberEmployees());
       setIsFetching(false);
     };
 
-    fetch();
+    getInitialSupplierData();
   }, [dispatch]);
 
   if (isFetching) return <LoaderLinear />;
