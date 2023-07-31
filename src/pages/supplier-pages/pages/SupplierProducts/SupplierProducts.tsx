@@ -7,11 +7,13 @@ import { WithLayout } from 'common/hocs/WithLayout';
 
 export const SupplierProducts = WithLayout((): JSX.Element => {
   return (
-    <div className={style.container}>
-      <HeaderSupplierProducts />
-      <PaginationSettings />
-      <ProductsList />
-      <PaginationSettings />
-    </div>
+    <section className={style.wrapper}>
+      <div className={style.content_container}>
+        <HeaderSupplierProducts />
+        <PaginationSettings />
+        <ProductsList />
+        <PaginationSettings />
+      </div>
+    </section>
   );
 }, 'supplier');
