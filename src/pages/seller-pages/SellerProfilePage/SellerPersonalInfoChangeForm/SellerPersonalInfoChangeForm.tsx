@@ -10,8 +10,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
 import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
 import { parsePhoneNumber } from 'common/utils';
-import { UploadImage } from 'elements';
-import { ButtonLogOut } from 'elements/ButtonLogOut/ButtonLogOut';
+import { UploadImage, ButtonLogout } from 'elements';
 import { PersonalInfoChangeForm } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
 import {
@@ -99,7 +98,7 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
     <div className={style.wrapper}>
       <div className={style.header}>
         <h3 className={style.title}>Personal Info</h3>
-        <ButtonLogOut />
+        <ButtonLogout withIcon />
       </div>
 
       <UploadImage

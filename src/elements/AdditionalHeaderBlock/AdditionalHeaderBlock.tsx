@@ -5,11 +5,11 @@ import style from './AdditionalHeaderBlock.module.scss';
 import { HeaderProfileIcon, Home } from 'assets/icons';
 import { useAppSelector } from 'common/hooks';
 import { HOME, PERSONAL_ACCOUNT } from 'routes';
-import { isAuthSelector, userRoleSelector } from 'store/reducers/authSlice';
+import { isAuthorizedSelector, userRoleSelector } from 'store/reducers/authSlice';
 import { ButtonIcon, MainLogo } from 'ui-kit';
 
 export const AdditionalHeaderBlock = (): JSX.Element => {
-  const isAuthorized = useAppSelector(isAuthSelector);
+  const isAuthorized = useAppSelector(isAuthorizedSelector);
   const userRole = useAppSelector(userRoleSelector);
   const navigate = useNavigate();
 
