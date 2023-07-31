@@ -27,7 +27,7 @@ export const SelectMenu: FC<ISelectMenuPropsType> = ({
   if (!isOpen) return null;
 
   const mainClassName = cn(className, styles.main, {
-    [styles.dropOnUp]: dropOnUp,
+    [styles.droponup]: dropOnUp,
   });
 
   const mappedSelectItems = options.map(el => (

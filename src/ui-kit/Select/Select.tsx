@@ -99,7 +99,7 @@ export const Select = forwardRef(
       [styles.header_active_up]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active]: header && menuItemsPosition === 'down' && isOpenItemsMenu,
       [styles.focus_disabled]: isOpenItemsMenu && !dropOnUp,
-      [styles.dropOnUp]: isOpenItemsMenu && dropOnUp,
+      [styles.droponup]: isOpenItemsMenu && dropOnUp,
       [styles.header_disabled]: disabled,
     });
     const menuClassname = cn({
@@ -146,6 +146,8 @@ export const Select = forwardRef(
 
       if (isOpenItemsMenu) {
         const test = window.scrollY;
+        const select = document.getElementById('combobox-list')!;
+        const selectOptions = Array.from(select.querySelectorAll('li'));
 
         window.onscroll = () => {
           window.scroll(0, test);
@@ -155,18 +157,22 @@ export const Select = forwardRef(
 
           e.preventDefault();
           if (keyCode === KEYBOARD.ENTER) {
-            handleSetSelectedValue(options[currentItemId]);
+            if (currentItemId >= 0) handleSetSelectedValue(options[currentItemId]);
           }
           if (keyCode === KEYBOARD.ARROW_UP && options[currentItemId - PREV]) {
             currentItemId -= PREV;
+            selectOptions[currentItemId].scrollIntoView({ block: 'nearest' });
           }
           if (keyCode === KEYBOARD.ARROW_DOWN && options[currentItemId + NEXT]) {
             currentItemId += NEXT;
+            selectOptions[currentItemId].scrollIntoView({ block: 'nearest' });
           }
-          if (keyCode === KEYBOARD.ESCAPE) {
+          if (keyCode !== KEYBOARD.ESCAPE && currentItemId >= 0) {
+            setSelectedValue(options[currentItemId]);
+          }
+          if (keyCode === KEYBOARD.ESCAPE || currentItemId < 0) {
             handleCloseSelectMenu();
           }
-          if (keyCode !== KEYBOARD.ESCAPE) setSelectedValue(options[currentItemId]);
         };
       } else {
         document.onkeydown = e => {
