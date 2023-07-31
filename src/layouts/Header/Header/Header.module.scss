@@ -1,17 +1,17 @@
 @import "src/common/styles/mixins";
 
 .container {
-  @include content_container;
-
   position: relative;
 }
 
 .wrapper {
+  @include content_container;
+
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
 
-  padding: 21px 0;
+  padding: 21px 32px;
 
   font-family: var(--roboto);
   font-size: var(--fz-s2);
@@ -40,12 +40,11 @@
 }
 
 .nav_container {
+  display: flex;
   grid-column-end: 3;
   grid-column-start: 2;
-  column-gap: 50px;
-  justify-content: center;
-
-  margin: 0 10px;
+  column-gap: 10px;
+  justify-content: space-around;
 
   border-right: 1px solid var(--color-black);
 }

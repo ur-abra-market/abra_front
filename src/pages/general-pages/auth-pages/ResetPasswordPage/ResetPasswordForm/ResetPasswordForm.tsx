@@ -12,7 +12,11 @@ import { LoadingStatusEnum } from 'common/types';
 import { PasswordComplexity } from 'pages/general-pages/auth-pages/assets';
 import { IResetPasswordRequest } from 'services/auth/auth.serviceTypes';
 import { loadingSelector } from 'store/reducers/appSlice';
-import { isAuthSelector, logoutUser, resetPassword } from 'store/reducers/authSlice';
+import {
+  isAuthorizedSelector,
+  logoutUser,
+  resetPassword,
+} from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
 
 const TRIGGER_FIELD = 'confirm_password';
@@ -41,7 +45,7 @@ export const ResetPasswordForm: FC<IResetPasswordForm> = ({
   token,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
-  const isAuthorized = useAppSelector(isAuthSelector);
+  const isAuthorized = useAppSelector(isAuthorizedSelector);
   const loading = useAppSelector(loadingSelector);
   const isLoading = loading === LoadingStatusEnum.Loading;
 

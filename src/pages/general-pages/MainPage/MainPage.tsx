@@ -12,7 +12,7 @@ import {
   getProductsCompilation,
   productsCompilationSelector,
 } from 'store/reducers/productSlice';
-import { ButtonInfo, LoaderCircular, ViewMoreProducts } from 'ui-kit';
+import { ButtonInfo, LoaderLinear, ViewMoreProducts } from 'ui-kit';
 
 export enum Categories {
   ALL,
@@ -78,7 +78,7 @@ export const MainPage = WithLayout((): JSX.Element => {
   return (
     <div className={style.main_page}>
       {isFetchingData ? (
-        <LoaderCircular variant="circular-min" />
+        <LoaderLinear />
       ) : (
         <div>
           <ImagesBlock className={style.images_block} />
