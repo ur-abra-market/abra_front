@@ -8,6 +8,7 @@ import { getUserRole } from 'store/reducers/appSlice';
 const AuthSliceInitialState: IAuthSliceInitialState = {
   userRole: null,
   isAuthorized: false,
+  isLogoutLoading: false,
 };
 
 const authSlice = createSlice({
@@ -24,15 +25,22 @@ const authSlice = createSlice({
       },
     );
 
-    builder.addCase(loginUser.fulfilled, state => {
+    builder.addCase(loginUser.fulfilled, (state, action: PayloadAction<UserRoleType>) => {
       state.isAuthorized = true;
+      state.userRole = action.payload;
+    });
+
+    builder.addCase(logoutUser.pending, state => {
+      state.isLogoutLoading = true;
     });
 
     builder.addCase(logoutUser.fulfilled, state => {
+      state.isLogoutLoading = false;
       state.isAuthorized = false;
       state.userRole = null;
     });
     builder.addCase(logoutUser.rejected, state => {
+      state.isLogoutLoading = false;
       state.isAuthorized = false;
     });
   },

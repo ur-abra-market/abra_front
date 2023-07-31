@@ -43,6 +43,8 @@ const initialState: ISupplierProfileSliceInitialState = {
   notifications: null,
   hasPersonalInfo: null,
   hasCompanyInfo: null,
+  hasPersonalInfoError: false,
+  hasCompanyInfoError: false,
   initDataLoading: LoadingStatusEnum.Idle,
   data: null,
 };
@@ -149,11 +151,23 @@ export const supplierProfileSlice = createSlice({
       .addCase(deleteCompanyImage.rejected, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Failed;
       })
+      .addCase(hasPersonalInfo.pending, state => {
+        state.hasPersonalInfoError = false;
+      })
       .addCase(hasPersonalInfo.fulfilled, (state, action) => {
         state.hasPersonalInfo = action.payload;
       })
+      .addCase(hasPersonalInfo.rejected, state => {
+        state.hasPersonalInfoError = true;
+      })
+      .addCase(hasBusinessInfo.pending, state => {
+        state.hasCompanyInfoError = false;
+      })
       .addCase(hasBusinessInfo.fulfilled, (state, action) => {
         state.hasCompanyInfo = action.payload;
+      })
+      .addCase(hasBusinessInfo.rejected, state => {
+        state.hasCompanyInfoError = true;
       });
   },
 });

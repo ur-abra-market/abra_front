@@ -1,13 +1,20 @@
+@import "src/common/styles/mixins";
+
+.container {
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
 .wrapper {
+  @include content_container;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   width: 100%;
-  padding: 26px 0;
+  padding: 26px 32px;
 
   background-color: var(--color-white);
-  border-bottom: 1px solid var(--color-light-gray);
 }
 
 .logo {
@@ -70,11 +77,8 @@
 
 .menu_icons {
   cursor: pointer;
-
   display: flex;
-  flex-direction: row;
   align-items: center;
-
   background: none;
 }
 
