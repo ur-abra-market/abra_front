@@ -41,23 +41,20 @@ export interface ISelect {
 }
 
 export const Select = forwardRef(
-  (
-    {
-      options,
-      controlledValue,
-      placeholder,
-      onChange,
-      error,
-      width,
-      className,
-      menuItemsPosition = 'down',
-      header = false,
-      defaultValue,
-      disabled,
-      dropOnUp = false,
-    }: ISelect,
-    ref,
-  ) => {
+  ({
+    options,
+    controlledValue,
+    placeholder,
+    onChange,
+    error,
+    width,
+    className,
+    menuItemsPosition = 'down',
+    header = false,
+    defaultValue,
+    disabled,
+    dropOnUp = false,
+  }: ISelect) => {
     const placeholderObj = placeholder
       ? { label: { text: placeholder }, value: placeholder }
       : null;
@@ -149,6 +146,12 @@ export const Select = forwardRef(
         const select = document.getElementById('combobox-list')!;
         const selectOptions = Array.from(select.querySelectorAll('li'));
 
+        if (currentItemId >= 0 && select) {
+          const selectOptions = Array.from(select.querySelectorAll('li'));
+
+          selectOptions[currentItemId].scrollIntoView({ block: 'nearest' });
+        }
+
         window.onscroll = () => {
           window.scroll(0, test);
         };
@@ -156,19 +159,18 @@ export const Select = forwardRef(
           const keyCode = e.code;
 
           e.preventDefault();
-          if (keyCode === KEYBOARD.ENTER) {
-            if (currentItemId >= 0) handleSetSelectedValue(options[currentItemId]);
+          if (keyCode === KEYBOARD.ENTER && currentItemId >= 0) {
+            handleSetSelectedValue(options[currentItemId]);
           }
           if (keyCode === KEYBOARD.ARROW_UP && options[currentItemId - PREV]) {
             currentItemId -= PREV;
-            selectOptions[currentItemId].scrollIntoView({ block: 'nearest' });
           }
           if (keyCode === KEYBOARD.ARROW_DOWN && options[currentItemId + NEXT]) {
             currentItemId += NEXT;
-            selectOptions[currentItemId].scrollIntoView({ block: 'nearest' });
           }
           if (keyCode !== KEYBOARD.ESCAPE && currentItemId >= 0) {
             setSelectedValue(options[currentItemId]);
+            selectOptions[currentItemId].scrollIntoView({ block: 'nearest' });
           }
           if (keyCode === KEYBOARD.ESCAPE || currentItemId < 0) {
             handleCloseSelectMenu();
