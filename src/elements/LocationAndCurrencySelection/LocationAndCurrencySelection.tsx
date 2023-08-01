@@ -32,14 +32,26 @@ const COUNTRY_DATA: ISelectOption[] = [
 export const LocationAndCurrencySelection: FC<
   LocationAndCurrencySelectionProps
 > = props => {
-  const { className } = props;
+  const { className, dropOnUp = false } = props;
 
   return (
     <div className={cn(style.wrapper, className)}>
-      <Select options={CURRENCY_DATA} width="172px" header className={style.select} />
+      <Select
+        dropOnUp={dropOnUp}
+        options={CURRENCY_DATA}
+        width="172px"
+        header
+        className={style.select}
+      />
       <div className={style.select_box}>
         <span>Ship to</span>
-        <Select options={COUNTRY_DATA} header width="150px" className={style.select} />
+        <Select
+          dropOnUp={dropOnUp}
+          options={COUNTRY_DATA}
+          header
+          width="150px"
+          className={style.select}
+        />
       </div>
     </div>
   );

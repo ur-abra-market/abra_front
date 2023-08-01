@@ -13,6 +13,7 @@ interface ISelectMenuPropsType {
   options: ISelectOption[];
   isOpen: boolean;
   className?: string;
+  dropOnUp: boolean;
 }
 
 export const SelectMenu: FC<ISelectMenuPropsType> = ({
@@ -21,10 +22,13 @@ export const SelectMenu: FC<ISelectMenuPropsType> = ({
   options,
   selectedValue,
   handleSelectedValue,
+  dropOnUp,
 }) => {
   if (!isOpen) return null;
 
-  const mainClassName = cn(className, styles.main);
+  const mainClassName = cn(className, styles.main, {
+    [styles.droponup]: dropOnUp,
+  });
 
   const mappedSelectItems = options.map(el => (
     <SelectItem
