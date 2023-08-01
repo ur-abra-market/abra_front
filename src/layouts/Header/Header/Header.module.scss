@@ -25,17 +25,21 @@
   grid-column-end: 2;
   grid-column-start: 1;
 
-  padding-right: 16px;
+  margin-right: 16px;
 
   font-family: var(--roboto);
   font-size: var(--fz-s2);
   font-weight: var(--medium);
 
   background: transparent;
-  border-right: 1px solid var(--color-black);
 
   &:hover {
     color: var(--color-accent)
+  }
+
+  &:focus-visible {
+    border-radius: 12px;
+    outline: 1px solid var(--color-medium-gray);
   }
 }
 
@@ -47,6 +51,7 @@
   justify-content: space-around;
 
   border-right: 1px solid var(--color-black);
+  border-left: 1px solid var(--color-black);
 }
 
 .selected {

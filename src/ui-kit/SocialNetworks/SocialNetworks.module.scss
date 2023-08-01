@@ -30,6 +30,7 @@
   height: 100%;
 
   &:focus-visible {
+    border-radius: 12px;
     outline: 1px solid var(--color-medium-gray);
   }
 }
