@@ -37,25 +37,24 @@ export interface ISelect {
   menuItemsPosition?: SelectPositionType;
   header?: boolean; // to add header use --> header={true}
   disabled?: boolean;
+  dropOnUp?: boolean;
 }
 
 export const Select = forwardRef(
-  (
-    {
-      options,
-      controlledValue,
-      placeholder,
-      onChange,
-      error,
-      width,
-      className,
-      menuItemsPosition = 'down',
-      header = false,
-      defaultValue,
-      disabled,
-    }: ISelect,
-    ref,
-  ) => {
+  ({
+    options,
+    controlledValue,
+    placeholder,
+    onChange,
+    error,
+    width,
+    className,
+    menuItemsPosition = 'down',
+    header = false,
+    defaultValue,
+    disabled,
+    dropOnUp = false,
+  }: ISelect) => {
     const placeholderObj = placeholder
       ? { label: { text: placeholder }, value: placeholder }
       : null;
@@ -90,13 +89,14 @@ export const Select = forwardRef(
 
     const [isOpenItemsMenu, setIsOpenItemsMenu] = useState(false);
 
-    const headerClassname = cn(styles.header, {
+    const headerClassname = cn(className, styles.header, {
       [styles.opened_menu_up_pos_header]:
         header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active_up]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
       [styles.header_active]: header && menuItemsPosition === 'down' && isOpenItemsMenu,
-      [styles.focus_disabled]: isOpenItemsMenu,
+      [styles.focus_disabled]: isOpenItemsMenu && !dropOnUp,
+      [styles.droponup]: isOpenItemsMenu && dropOnUp,
       [styles.header_disabled]: disabled,
     });
     const menuClassname = cn({
@@ -143,6 +143,14 @@ export const Select = forwardRef(
 
       if (isOpenItemsMenu) {
         const test = window.scrollY;
+        const select = document.getElementById('combobox-list')!;
+        const selectOptions = Array.from(select.querySelectorAll('li'));
+
+        if (currentItemId >= 0 && select) {
+          const selectOptions = Array.from(select.querySelectorAll('li'));
+
+          selectOptions[currentItemId].scrollIntoView({ block: 'nearest' });
+        }
 
         window.onscroll = () => {
           window.scroll(0, test);
@@ -151,7 +159,7 @@ export const Select = forwardRef(
           const keyCode = e.code;
 
           e.preventDefault();
-          if (keyCode === KEYBOARD.ENTER) {
+          if (keyCode === KEYBOARD.ENTER && currentItemId >= 0) {
             handleSetSelectedValue(options[currentItemId]);
           }
           if (keyCode === KEYBOARD.ARROW_UP && options[currentItemId - PREV]) {
@@ -160,10 +168,13 @@ export const Select = forwardRef(
           if (keyCode === KEYBOARD.ARROW_DOWN && options[currentItemId + NEXT]) {
             currentItemId += NEXT;
           }
-          if (keyCode === KEYBOARD.ESCAPE) {
+          if (keyCode !== KEYBOARD.ESCAPE && currentItemId >= 0) {
+            setSelectedValue(options[currentItemId]);
+            selectOptions[currentItemId].scrollIntoView({ block: 'nearest' });
+          }
+          if (keyCode === KEYBOARD.ESCAPE || currentItemId < 0) {
             handleCloseSelectMenu();
           }
-          if (keyCode !== KEYBOARD.ESCAPE) setSelectedValue(options[currentItemId]);
         };
       } else {
         document.onkeydown = e => {
@@ -193,6 +204,7 @@ export const Select = forwardRef(
         <span className={styles.error}>{error}</span>
 
         <SelectMenu
+          dropOnUp={dropOnUp}
           handleSelectedValue={handleSetSelectedValue}
           selectedValue={selectedValue}
           isOpen={isOpenItemsMenu}

@@ -67,6 +67,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
               <Label label="Your main business sector">
                 <Select
                   {...field}
+                  className={style.select}
                   disabled={isLoading}
                   error={errors?.businessSector?.message}
                   options={BUSINESS_SECTOR_DATA}
@@ -163,6 +164,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   value: el.id,
                   label: { text: el.country },
                 }))}
+                className={style.select}
                 placeholder="Select"
                 onChange={value => {
                   field.onChange(value.value);

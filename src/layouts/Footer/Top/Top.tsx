@@ -11,7 +11,7 @@ export const Top = (): JSX.Element => {
     <div className={style.container}>
       <MainLogo className={style.logo} />
       <HeaderNav userRole="seller" className={style.nav_container} />
-      <LocationAndCurrencySelection className={style.selects} />
+      <LocationAndCurrencySelection dropOnUp className={style.selects} />
     </div>
   );
 };
