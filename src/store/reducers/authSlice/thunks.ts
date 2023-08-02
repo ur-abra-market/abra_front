@@ -7,6 +7,7 @@ import {
   LoadingStatusEnum,
   ResponseUserRoleType,
 } from 'common/types';
+import { getCookie } from 'common/utils';
 import { authService } from 'services/auth/auth.service';
 import {
   IChangeEmailRequest,
@@ -17,6 +18,7 @@ import {
   IRegisterRequest,
   IResetPasswordRequest,
 } from 'services/auth/auth.serviceTypes';
+import { baseConfigService } from 'services/baseConfig.service';
 import { setLoading, setResponseNotice } from 'store/reducers/appSlice/slice';
 
 export const registerUser = createAsyncThunk<void, IRegisterRequest, IAsyncThunkConfig>(
@@ -79,6 +81,10 @@ export const loginUser = createAsyncThunk<
 
   try {
     await authService.login(dataUser);
+
+    const { headers }: any = baseConfigService.defaults;
+
+    headers['X-CSRF-Token'] = getCookie('csrf_access_token');
 
     const userRole = await authService.userRole();
 
