@@ -28,8 +28,13 @@ export const ProductCard: FC<IProductCard> = ({
 
   return (
     <div className={cn(style.card, className)} {...restProps}>
-      <ProductImage imageUrl={image_url || ''} name={name} isFavorite={is_active} />
-      <Link to={`${PRODUCT_DETAILS}/${id}`} className={style.link}>
+      <ProductImage
+        imageUrl={image_url || ''}
+        name={name}
+        isFavorite={is_active}
+        productId={id}
+      />
+      <Link tabIndex={-1} to={`${PRODUCT_DETAILS}/${id}`} className={style.link}>
         <div className={style.direction}>
           <span>{name}</span>
           <span>{description}</span>

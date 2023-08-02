@@ -20,6 +20,10 @@
   background: #F4F4F4 url("../../assets/icons/files/magnifier-dark-grey.svg") no-repeat 17px center;
   border-radius: 12px;
   outline: none;
+
+  &:focus-visible {
+    outline: 1px solid var(--color-medium-gray);
+  }
 }
 
 .input::placeholder {

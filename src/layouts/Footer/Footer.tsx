@@ -35,7 +35,7 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
           <div className={style.flex_box}>
             {variant === 'default' ? (
               <>
-                <div className={style.links_default}>
+                <div className={style.links}>
                   <NavLink
                     className={({ isActive }) =>
                       isActive ? style.is_disabled : style.link

@@ -13,14 +13,14 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.32);
 
   transition: all 0.3s;
+
+  &:active {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.32);
+  }
 }
 
 .icon {
   display: block;
   width: 40px;
   height: 40px;
-}
-
-.button:active {
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.32);
 }
