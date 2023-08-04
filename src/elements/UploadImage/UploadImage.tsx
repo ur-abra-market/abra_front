@@ -1,4 +1,10 @@
-import React, { ChangeEvent, DetailedHTMLProps, FC, HTMLAttributes } from 'react';
+import React, {
+  ChangeEvent,
+  DetailedHTMLProps,
+  FC,
+  HTMLAttributes,
+  useState,
+} from 'react';
 
 import cn from 'classnames';
 
@@ -40,6 +46,15 @@ export const UploadImage: FC<IUploadImage> = ({
   ...restProps
 }) => {
   const dispatch = useAppDispatch();
+  const [isFocused, setIsFocused] = useState<boolean>(false);
+
+  const handleFocus = (): void => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = (): void => {
+    setIsFocused(false);
+  };
 
   const uploadImageIcon =
     type === 'product_image_supplier' ? (
@@ -58,6 +73,7 @@ export const UploadImage: FC<IUploadImage> = ({
   const imgClasses = cn({
     [style.logo_img]: type === 'logo',
     [style.avatar_img]: type === 'avatar',
+    [style.focus_img]: (type === 'logo' || type === 'avatar') && isFocused,
     [style.default_img]: type !== 'logo' && type !== 'avatar',
   });
 
@@ -96,6 +112,8 @@ export const UploadImage: FC<IUploadImage> = ({
         className={inputClasses}
         id="profileLogo"
         onChange={handleOnChange}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       />
       <div className={style.img_wrapper}>
         {image ? (
