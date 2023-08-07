@@ -41,7 +41,6 @@ const authSlice = createSlice({
     });
     builder.addCase(logoutUser.rejected, state => {
       state.isLogoutLoading = false;
-      state.isAuthorized = false;
     });
   },
 });
