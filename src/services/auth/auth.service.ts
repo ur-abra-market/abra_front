@@ -44,7 +44,11 @@ export const authService = {
   },
 
   logout: async () => {
-    return baseConfigService.delete<IBaseResponse<boolean>>(`auth/logout`);
+    const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
+      `auth/logout`,
+    );
+
+    return data.result;
   },
 
   forgotPassword: (email: string) => {
