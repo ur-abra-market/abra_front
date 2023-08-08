@@ -122,7 +122,7 @@ export const logoutUser = createAsyncThunk<boolean, void, IAsyncThunkConfig>(
         );
       }
 
-      return rejectWithValue('[logoutUser]: Error');
+      return rejectWithValue(false);
     } finally {
       dispatch(setLoading(LoadingStatusEnum.Idle));
     }
