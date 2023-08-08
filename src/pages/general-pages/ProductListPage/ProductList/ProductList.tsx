@@ -18,7 +18,7 @@ export const ProductList = (): JSX.Element => {
 
   const [selectedView, setSelectedView] = useState<ViewType>('grid');
 
-  const category_id = 0;
+  const category_id: number = 10;
 
   const products = useAppSelector(productsCompilationSelector)[category_id];
 
@@ -29,7 +29,6 @@ export const ProductList = (): JSX.Element => {
       offset: 0,
       limit: 20,
       category_id,
-      sort_type: 'rating',
       ascending: false,
     } as ICategoryRequest;
 
