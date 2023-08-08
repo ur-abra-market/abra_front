@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import style from './ViewIcons.module.scss';
 
@@ -27,7 +27,7 @@ export const ViewGrid: FC<ISelectedView> = ({
   return (
     <div className={style.control_blocks}>
       {selectedView === 'grid' ? (
-        <ViewGridEnabledIcon />
+        <ViewGridEnabledIcon width={20} height={20} />
       ) : (
         <ViewGridDisabledIcon onClick={() => hanldeIconOnChange('grid')} />
       )}
@@ -46,7 +46,7 @@ export const ViewList: FC<ISelectedView> = ({
   return (
     <div className={style.control_blocks}>
       {selectedView === 'list' ? (
-        <ViewListEnabledIcon />
+        <ViewListEnabledIcon width={20} height={20} />
       ) : (
         <ViewListDisabledIcon onClick={() => hanldeIconOnChange('list')} />
       )}

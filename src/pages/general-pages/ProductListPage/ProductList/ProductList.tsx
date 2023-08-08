@@ -5,16 +5,17 @@ import { ViewGrid, ViewList, ViewType } from './ViewIcons/ViewIcons';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ProductCardFull, ProductCard } from 'modules';
-import PaginatorProduct from 'old-components/ui/TypesView/product/PaginatorProduct';
 import { ICategoryRequest } from 'services/product/product.serviceTypes';
 import {
   getProductsCompilation,
   productsCompilationSelector,
 } from 'store/reducers/productSlice';
 import { ButtonInfo } from 'ui-kit';
+import { Pagination } from 'ui-kit/Pagination/Pagination';
 
 export const ProductList = (): JSX.Element => {
   // const dataArr = useAppSelector(state => state.productPaginate.productsPage);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [selectedView, setSelectedView] = useState<ViewType>('grid');
 
@@ -38,14 +39,19 @@ export const ProductList = (): JSX.Element => {
 
   return (
     <div className={style.wrapper}>
-      <div className={style.control}>
-        <div className={style.control_btns}>
+      <div className={style.control_panel}>
+        <div className={style.view_switchers}>
           <ViewGrid selectedView={selectedView} setSelectedView={setSelectedView} />
           <ViewList selectedView={selectedView} setSelectedView={setSelectedView} />
-          <div className={style.control_category}>{`< Clothes and Accessories`}</div>
+          <div className={style.branch_crumbs}>{`bread > crumb > plug`}</div>
         </div>
-        <PaginatorProduct />
+        <Pagination
+          totalPages={5}
+          currentPage={currentPage}
+          onPageChanged={setCurrentPage}
+        />
       </div>
+
       <div className={style.list}>
         {products &&
           products.map((product, index) =>
@@ -56,11 +62,17 @@ export const ProductList = (): JSX.Element => {
             ),
           )}
       </div>
-      <div className="control">
-        {/* <ShowPageProduct /> */}
-        <PaginatorProduct />
+
+      <div className={style.control_panel}>
+        <div>show page (TODO)</div>
+        <Pagination
+          totalPages={5}
+          currentPage={currentPage}
+          onPageChanged={setCurrentPage}
+        />
       </div>
-      <div className={style.info_btn}>
+
+      <div className={style.info_button}>
         <ButtonInfo />
       </div>
     </div>
