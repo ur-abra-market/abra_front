@@ -1,5 +1,4 @@
 // -----------------------Enums-----------------------
-export { ProductSortEnum } from './enums/ProductSortEnum';
 export { LoadingStatusEnum } from './enums/LoadingStatusEnum';
 export { CountriesEnum } from './enums/CountriesEnum';
 
