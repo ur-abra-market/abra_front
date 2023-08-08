@@ -1,3 +1,4 @@
+// ? - remove?
 export enum ProductSortEnum {
   RATING = 'rating',
   PRICE = 'price',
