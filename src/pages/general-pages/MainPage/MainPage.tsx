@@ -58,8 +58,8 @@ export const MainPage = WithLayout((): JSX.Element => {
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
-      await Object.values(CATEGORIES).forEach(({ category_id }) => {
-        dispatch(
+      Object.values(CATEGORIES).forEach(async ({ category_id }) => {
+        await dispatch(
           getProductsCompilation({
             offset: 0,
             limit: 23,

@@ -138,3 +138,7 @@ h4 {
   font-size: var(--fz-l2);
   letter-spacing: 0.38px;
 }
+
+#root {
+  overflow: hidden;
+}
