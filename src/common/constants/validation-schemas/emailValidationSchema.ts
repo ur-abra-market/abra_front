@@ -5,5 +5,6 @@ const emailRegex =
 
 export const emailValidationSchema = yup
   .string()
+  .trim()
   .matches(emailRegex, 'Invalid email')
   .required('Email is required');
