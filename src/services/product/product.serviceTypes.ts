@@ -1,4 +1,3 @@
-import { ProductSortEnum } from 'common/types';
 import { Categories } from 'pages/general-pages/MainPage/MainPage';
 
 interface IGradeDetails {

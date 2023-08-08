@@ -18,7 +18,7 @@ export const ProductList = (): JSX.Element => {
 
   const [selectedView, setSelectedView] = useState<ViewType>('grid');
 
-  const category_id: number = 0;
+  const category_id: number = 10;
 
   const products = useAppSelector(productsCompilationSelector)[category_id];
 
