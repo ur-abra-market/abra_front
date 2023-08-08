@@ -1,4 +1,3 @@
-import { ProductSortEnum } from 'common/types';
 import { Categories } from 'pages/general-pages/MainPage/MainPage';
 
 interface IGradeDetails {
@@ -41,7 +40,6 @@ export interface ICategoryRequest {
   offset: number;
   limit: number;
   category_id: Categories;
-  sort_type: ProductSortEnum;
   ascending: boolean;
 }
 
