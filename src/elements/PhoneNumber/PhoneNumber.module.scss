@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.select {
+  li {
+    column-gap: 6px;
+  }
+}
