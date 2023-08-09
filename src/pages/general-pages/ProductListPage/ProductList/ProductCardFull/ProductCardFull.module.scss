@@ -1,9 +1,7 @@
 .card_full {
   display: flex;
-  flex-direction: row;
-  gap: 32px;
+  gap: 36px;
   justify-content: space-between;
-
   width: 100%;
 }
 
@@ -13,7 +11,6 @@
   flex-grow: 1;
   justify-content: center;
 
-  box-sizing: border-box;
   height: 100%;
 }
 
@@ -43,7 +40,6 @@
 .reviews_info {
   display: flex;
   margin-top: 4px;
-  margin-bottom: 15px;
 }
 
 .reviews {
@@ -56,8 +52,9 @@
 
 .orders_container {
   display: flex;
-  align-items: flex-end;
-  margin-bottom: 31px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
 }
 
 .orders {
@@ -68,8 +65,45 @@
   letter-spacing: 0.38px;
 }
 
+.supplier_wrapper {
+  cursor: pointer;
+  display: flex;
+  column-gap: 12px;
+  align-items: center;
+}
 
+.supplier_logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
 
+.supplier_info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+}
 
+.suppler_name_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.supplier_name {
+  font-size: var(--fz-s2);
+  font-weight: var(--medium);
+  line-height: 20px;
+  letter-spacing: 0.16px;
+}
 
+.supplier_arrow {
+  transform: rotate(-90deg);
+}
+
+.suppler_details {
+  font-size: var(--fz-xs);
+  line-height: 16px;
+  color: var(--color-medium-gray);
+  letter-spacing: 0.16px;
+}

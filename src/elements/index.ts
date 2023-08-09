@@ -15,3 +15,5 @@ export { ProductColor } from './ProductColor/ProductColor';
 export { FeedBacksProduct } from './FeedBacksProduct/FeedBacksProduct';
 export { DescriptionProduct } from './DescriptionProduct/DescriptionProduct';
 export { ButtonLogout } from './ButtonLogout/ButtonLogout';
+export { ShowBy } from './ShowBy/ShowBy';
+export { PageViewSwitcher } from './PageViewSwitcher/PageViewSwitcher';

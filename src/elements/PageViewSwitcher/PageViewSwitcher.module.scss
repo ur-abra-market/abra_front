@@ -1,0 +1,13 @@
+.layouts {
+  display: flex;
+  column-gap: 8px;
+}
+
+.active_layout {
+  color: var(--color-accent);
+}
+
+.inactive_layout {
+  cursor: pointer;
+  color: var(--color-medium-gray);
+}

@@ -13,9 +13,16 @@ import { IProductCard } from 'store/reducers/productSlice';
 import { IProductsListRequest } from 'store/reducers/supplierProductSlice';
 
 export const productService = {
-  getList: async ({ offset, limit, category_id, ascending }: ICategoryRequest) => {
+  getList: async (params: ICategoryRequest) => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductCompilation[]>>(
-      `products/compilation/?offset=${offset}&limit=${limit}&category_id=${category_id}&ascending=${ascending}`,
+      `products/compilation`,
+      {
+        params: {
+          offset: params.offset,
+          limit: params.limit,
+          ascending: params.ascending,
+        },
+      },
     );
 
     return data.result;
@@ -115,19 +122,34 @@ export const productService = {
 
   getProductPaginateList: async (params: IProductPaginateList) => {
     const body = {
-      sizes: params.sizes,
-      brands: params.brands,
-      materials: params.materials,
+      colors: ['string'],
+      sizes: ['string'],
+      materials: ['string'],
+      age_groups: ['string'],
+      genders: ['string'],
+      technics: ['string'],
+      bottom_price: params.price_from > 0 ? params.price_to : 0,
+      top_price: params.price_to > 0 ? params.price_to : 0,
+      with_discount: false,
+      category_id: 1,
+      sort_type: params.sort_type,
+      ascending: params.ascending,
+      // sizes: params.sizes,
+      // brands: params.brands,
+      // materials: params.materials,
     };
     const queryParams = {
-      page_num: params.page_num,
-      page_size: params.page_size,
-      category: params.category !== '' ? params.category : '',
-      with_discount: params.discount,
-      sort_type: params.sort_type,
-      bottom_price: params.price_from > 0 ? params.price_to : '',
-      top_price: params.price_to > 0 ? params.price_to : '',
-      ascending: params.ascending,
+      offset: 0,
+      limit: 20,
+
+      // page_num: params.page_num,
+      // page_size: params.page_size,
+      // category: params.category !== '' ? params.category : '',
+      // with_discount: params.discount,
+      // sort_type: params.sort_type,
+      // bottom_price: params.price_from > 0 ? params.price_to : '',
+      // top_price: params.price_to > 0 ? params.price_to : '',
+      // ascending: params.ascending,
     };
 
     const { data } = await baseConfigService.post('products/pagination', body, {

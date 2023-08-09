@@ -53,26 +53,59 @@ interface IProductImage {
   order?: number;
 }
 
+interface ICategory {
+  id: number;
+  level: number;
+  name: string;
+  parent_id: number;
+}
+
 interface IProductSupplier {
   additional_info: string;
+  company: {
+    address: string;
+    business_email: string;
+    business_sector: string;
+    description: string;
+    id: number;
+    is_manufacturer: boolean;
+    logo_url: string;
+    name: string;
+    number_employees: number;
+    year_established: number;
+  };
   grade_average: number;
   id: number;
-  license_number: string;
-  user: IProductUser;
+  license_number: number;
+  user: {
+    datetime: string;
+    email: string;
+    first_name: string;
+    full_name: string;
+    id: number;
+    is_deleted: boolean;
+    is_supplier: boolean;
+    is_verified: boolean;
+    last_name: string;
+    phone_number: string;
+  };
+  total_orders: 0;
+  uuid: string;
 }
 
 export interface IProductCompilation {
-  id: number;
-  name: string;
-  description: string;
+  category: ICategory;
   datetime: string;
+  description: string;
   grade_average: number;
-  total_orders: number;
-  uuid: string;
-  is_active: boolean;
+  id: number;
   images: IProductImage[];
+  is_active: boolean;
+  name: string;
   prices: IProductPrice[];
   supplier?: IProductSupplier;
+  total_orders: number;
+  uuid: string;
 }
 
 export interface IProductPrice {

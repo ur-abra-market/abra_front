@@ -21,26 +21,24 @@
 
 .branch_crumbs {
   margin-left: 16px;
-  font-family: var(--roboto);
   font-size: var(--fz-m);
   font-weight: var(--semi-bold);
 }
 
 .list {
-  overflow-y: scroll;
   display: flex;
   flex-wrap: wrap;
-  row-gap: 16px;
-  column-gap: 11px;
-
-  width: 100%;
-  max-height: 1968px;
   margin-top: 24px;
-  margin-bottom: 80px;
+  margin-bottom: 68px;
 }
 
-.list::-webkit-scrollbar {
-  width: 0;
+.list_container {
+  row-gap: 16px;
+}
+
+.grid_container {
+  row-gap: 32px;
+  column-gap: 11px;
 }
 
 .info_button {
@@ -48,4 +46,10 @@
   align-self: flex-end;
   width: fit-content;
   margin-right: -118px;
+}
+
+.select {
+  column-gap: 12px;
+  font-size: var(--fz-m);
+  font-weight: var(--semi-bold);
 }

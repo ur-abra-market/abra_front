@@ -7,6 +7,12 @@ import { IProductCompilation } from 'services/product/product.serviceTypes';
 
 export const PopularProduct = (): JSX.Element => {
   const product: IProductCompilation = {
+    category: {
+      id: 1,
+      level: 1,
+      name: 'sdfsdfs',
+      parent_id: 1,
+    },
     datetime: '2023-03-06',
     description: 'shirt description',
     grade_average: 4.2,
