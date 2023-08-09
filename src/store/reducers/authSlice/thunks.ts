@@ -105,13 +105,13 @@ export const loginUser = createAsyncThunk<
   }
 });
 
-export const logoutUser = createAsyncThunk<void, void, IAsyncThunkConfig>(
+export const logoutUser = createAsyncThunk<boolean, void, IAsyncThunkConfig>(
   'login/logoutUser',
   async (_, { rejectWithValue, dispatch }) => {
     dispatch(setLoading(LoadingStatusEnum.Loading));
 
     try {
-      await authService.logout();
+      return await authService.logout();
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         dispatch(
@@ -122,7 +122,7 @@ export const logoutUser = createAsyncThunk<void, void, IAsyncThunkConfig>(
         );
       }
 
-      return rejectWithValue('[logoutUser]: Error');
+      return rejectWithValue(false);
     } finally {
       dispatch(setLoading(LoadingStatusEnum.Idle));
     }
