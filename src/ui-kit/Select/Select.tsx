@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -40,178 +40,173 @@ export interface ISelect {
   dropOnUp?: boolean;
 }
 
-export const Select = forwardRef(
-  ({
-    options,
-    controlledValue,
-    placeholder,
-    onChange,
-    error,
-    width,
-    className,
-    menuItemsPosition = 'down',
-    header = false,
-    defaultValue,
-    disabled,
-    dropOnUp = false,
-  }: ISelect) => {
-    const placeholderObj = placeholder
-      ? { label: { text: placeholder }, value: placeholder }
-      : null;
+export const Select: FC<ISelect> = ({
+  options,
+  controlledValue,
+  placeholder,
+  onChange,
+  error,
+  width,
+  className,
+  menuItemsPosition = 'down',
+  header = false,
+  defaultValue,
+  disabled,
+  dropOnUp = false,
+}) => {
+  const placeholderObj = placeholder
+    ? { label: { text: placeholder }, value: placeholder }
+    : null;
 
-    const defaultSelectedValue = placeholderObj || options[0];
-    const [selectedValue, setSelectedValue] =
-      useState<ISelectOption>(defaultSelectedValue);
+  const defaultSelectedValue = placeholderObj || options[0];
+  const [selectedValue, setSelectedValue] = useState<ISelectOption>(defaultSelectedValue);
 
-    const currentSelectedValue = controlledValue || selectedValue;
+  const currentSelectedValue = controlledValue || selectedValue;
 
-    useEffect(() => {
-      if (defaultValue) {
-        const currentValue = options.find(el => el.value === defaultValue);
+  useEffect(() => {
+    if (defaultValue) {
+      const currentValue = options.find(el => el.value === defaultValue);
 
-        if (currentValue) setSelectedValue(currentValue);
+      if (currentValue) setSelectedValue(currentValue);
+    }
+  }, [defaultValue, options]);
+
+  const handleSetSelectedValue = (option: ISelectOption): void => {
+    if (option !== currentSelectedValue) {
+      if (controlledValue) {
+        setSelectedValue(controlledValue);
+      } else {
+        setSelectedValue(option);
       }
-    }, [defaultValue, options]);
-
-    const handleSetSelectedValue = (option: ISelectOption): void => {
-      if (option !== currentSelectedValue) {
-        if (controlledValue) {
-          setSelectedValue(controlledValue);
-        } else {
-          setSelectedValue(option);
-        }
-        if (onChange) {
-          onChange(option);
-        }
+      if (onChange) {
+        onChange(option);
       }
+    }
+    handleCloseSelectMenu();
+  };
+
+  const [isOpenItemsMenu, setIsOpenItemsMenu] = useState(false);
+
+  const headerClassname = cn(className, styles.header, {
+    [styles.opened_menu_up_pos_header]:
+      header && menuItemsPosition === 'up' && isOpenItemsMenu,
+    [styles.header_active]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
+    [styles.header_active_up]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
+    [styles.header_active]: header && menuItemsPosition === 'down' && isOpenItemsMenu,
+    [styles.focus_disabled]: isOpenItemsMenu && !dropOnUp,
+    [styles.droponup]: isOpenItemsMenu && dropOnUp,
+    [styles.header_disabled]: disabled,
+  });
+  const menuClassname = cn({
+    [styles.closed_menu]: !header,
+    [styles.opened_menu_up_pos]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
+    [styles.menu_up_pos]: menuItemsPosition === 'up' && isOpenItemsMenu,
+  });
+
+  const handleChangeSelectState = (): void => {
+    if (disabled) {
+      setIsOpenItemsMenu(false);
+
+      return;
+    }
+
+    setIsOpenItemsMenu(prev => !prev);
+  };
+
+  const handleCloseSelectMenu = (): void => {
+    if (isOpenItemsMenu) {
+      setIsOpenItemsMenu(false);
+    }
+  };
+  const mainDivRef = useOnClickOutside(handleCloseSelectMenu);
+
+  useOnHoverOutside(mainDivRef, () => {
+    window.onscroll = () => {
+      setIsOpenItemsMenu(false);
+
+      return true;
+    };
+  });
+
+  useEffect(() => {
+    let currentItemId =
+      options.findIndex(el => el.label.text === currentSelectedValue.label.text) || 0;
+
+    if (disabled) {
       handleCloseSelectMenu();
-    };
 
-    const [isOpenItemsMenu, setIsOpenItemsMenu] = useState(false);
+      return;
+    }
 
-    const headerClassname = cn(className, styles.header, {
-      [styles.opened_menu_up_pos_header]:
-        header && menuItemsPosition === 'up' && isOpenItemsMenu,
-      [styles.header_active]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
-      [styles.header_active_up]: header && menuItemsPosition === 'up' && isOpenItemsMenu,
-      [styles.header_active]: header && menuItemsPosition === 'down' && isOpenItemsMenu,
-      [styles.focus_disabled]: isOpenItemsMenu && !dropOnUp,
-      [styles.droponup]: isOpenItemsMenu && dropOnUp,
-      [styles.header_disabled]: disabled,
-    });
-    const menuClassname = cn({
-      [styles.closed_menu]: !header,
-      [styles.opened_menu_up_pos]:
-        header && menuItemsPosition === 'up' && isOpenItemsMenu,
-      [styles.menu_up_pos]: menuItemsPosition === 'up' && isOpenItemsMenu,
-    });
+    if (isOpenItemsMenu) {
+      const test = window.scrollY;
+      const select = document.getElementById('combobox-list')!;
+      const selectOptions = Array.from(select.querySelectorAll('li'));
 
-    const handleChangeSelectState = (): void => {
-      if (disabled) {
-        setIsOpenItemsMenu(false);
-
-        return;
-      }
-
-      setIsOpenItemsMenu(prev => !prev);
-    };
-
-    const handleCloseSelectMenu = (): void => {
-      if (isOpenItemsMenu) {
-        setIsOpenItemsMenu(false);
-      }
-    };
-    const mainDivRef = useOnClickOutside(handleCloseSelectMenu);
-
-    useOnHoverOutside(mainDivRef, () => {
-      window.onscroll = () => {
-        setIsOpenItemsMenu(false);
-
-        return true;
-      };
-    });
-
-    useEffect(() => {
-      let currentItemId =
-        options.findIndex(el => el.label.text === currentSelectedValue.label.text) || 0;
-
-      if (disabled) {
-        handleCloseSelectMenu();
-
-        return;
-      }
-
-      if (isOpenItemsMenu) {
-        const test = window.scrollY;
-        const select = document.getElementById('combobox-list')!;
+      if (currentItemId >= 0 && select) {
         const selectOptions = Array.from(select.querySelectorAll('li'));
 
-        if (currentItemId >= 0 && select) {
-          const selectOptions = Array.from(select.querySelectorAll('li'));
+        selectOptions[currentItemId].scrollIntoView({ block: 'nearest' });
+      }
 
+      window.onscroll = () => {
+        window.scroll(0, test);
+      };
+      document.onkeydown = e => {
+        const keyCode = e.code;
+
+        e.preventDefault();
+        if (keyCode === KEYBOARD.ENTER && currentItemId >= 0) {
+          handleSetSelectedValue(options[currentItemId]);
+        }
+        if (keyCode === KEYBOARD.ARROW_UP && options[currentItemId - PREV]) {
+          currentItemId -= PREV;
+        }
+        if (keyCode === KEYBOARD.ARROW_DOWN && options[currentItemId + NEXT]) {
+          currentItemId += NEXT;
+        }
+        if (keyCode !== KEYBOARD.ESCAPE && currentItemId >= 0) {
+          setSelectedValue(options[currentItemId]);
           selectOptions[currentItemId].scrollIntoView({ block: 'nearest' });
         }
+        if (keyCode === KEYBOARD.ESCAPE || currentItemId < 0) {
+          handleCloseSelectMenu();
+        }
+      };
+    } else {
+      document.onkeydown = e => {
+        const keyCode = e.code;
 
-        window.onscroll = () => {
-          window.scroll(0, test);
-        };
-        document.onkeydown = e => {
-          const keyCode = e.code;
+        if (keyCode === KEYBOARD.ARROW_UP || keyCode === KEYBOARD.ARROW_DOWN) return true;
+      };
+      window.onscroll = () => {
+        return true;
+      };
+    }
+  }, [disabled, isOpenItemsMenu, options]);
 
-          e.preventDefault();
-          if (keyCode === KEYBOARD.ENTER && currentItemId >= 0) {
-            handleSetSelectedValue(options[currentItemId]);
-          }
-          if (keyCode === KEYBOARD.ARROW_UP && options[currentItemId - PREV]) {
-            currentItemId -= PREV;
-          }
-          if (keyCode === KEYBOARD.ARROW_DOWN && options[currentItemId + NEXT]) {
-            currentItemId += NEXT;
-          }
-          if (keyCode !== KEYBOARD.ESCAPE && currentItemId >= 0) {
-            setSelectedValue(options[currentItemId]);
-            selectOptions[currentItemId].scrollIntoView({ block: 'nearest' });
-          }
-          if (keyCode === KEYBOARD.ESCAPE || currentItemId < 0) {
-            handleCloseSelectMenu();
-          }
-        };
-      } else {
-        document.onkeydown = e => {
-          const keyCode = e.code;
+  const selectWidth = width ? { width } : {};
 
-          if (keyCode === KEYBOARD.ARROW_UP || keyCode === KEYBOARD.ARROW_DOWN)
-            return true;
-        };
-        window.onscroll = () => {
-          return true;
-        };
-      }
-    }, [disabled, isOpenItemsMenu, options]);
+  const mainClasses = cn(className, styles.main, { [styles.main_has_header]: header });
 
-    const selectWidth = width ? { width } : {};
+  return (
+    <div style={selectWidth} className={mainClasses} ref={mainDivRef}>
+      <SelectHeader
+        className={headerClassname}
+        currentSelectedValue={currentSelectedValue}
+        isOpenMenu={isOpenItemsMenu}
+        handleSelectState={handleChangeSelectState}
+      />
+      <span className={styles.error}>{error}</span>
 
-    const mainClasses = cn(className, styles.main, { [styles.main_has_header]: header });
-
-    return (
-      <div style={selectWidth} className={mainClasses} ref={mainDivRef}>
-        <SelectHeader
-          className={headerClassname}
-          currentSelectedValue={currentSelectedValue}
-          isOpenMenu={isOpenItemsMenu}
-          handleSelectState={handleChangeSelectState}
-        />
-        <span className={styles.error}>{error}</span>
-
-        <SelectMenu
-          dropOnUp={dropOnUp}
-          handleSelectedValue={handleSetSelectedValue}
-          selectedValue={selectedValue}
-          isOpen={isOpenItemsMenu}
-          className={menuClassname}
-          options={options}
-        />
-      </div>
-    );
-  },
-);
+      <SelectMenu
+        dropOnUp={dropOnUp}
+        handleSelectedValue={handleSetSelectedValue}
+        selectedValue={selectedValue}
+        isOpen={isOpenItemsMenu}
+        className={menuClassname}
+        options={options}
+      />
+    </div>
+  );
+};
