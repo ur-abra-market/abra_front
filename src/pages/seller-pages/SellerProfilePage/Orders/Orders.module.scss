@@ -39,6 +39,11 @@
   align-items: center;
 
   padding: 0;
+
+  &:hover {
+    color: var(--color_accent_medium);
+    text-decoration: underline;
+  }
 }
 
 .button_title {
