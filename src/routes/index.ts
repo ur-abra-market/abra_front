@@ -41,6 +41,7 @@ export {
   DASHBOARD,
   PRODUCTS,
   FEEDBACK,
+  PROFILE,
 } from './path-constants/supplier';
 
 export { supplierRoutes } from './supplierRoutes';
