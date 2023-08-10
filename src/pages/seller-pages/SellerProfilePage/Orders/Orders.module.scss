@@ -24,9 +24,12 @@
   font-style: normal;
   line-height: 20px;
   color: var(--color-accent);
-  text-decoration-line: underline;
 
   background: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .orders_button {
