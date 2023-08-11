@@ -79,6 +79,12 @@
   transition: all 0.3s;
 }
 
-.item a:hover {
-  color: var(--color-accent);
+.item a, .item button {
+  color: inherit;
+  transition: all 0.3s;
+
+  &:hover, &:focus-visible {
+    color: var(--color-accent);
+    outline: none;
+  }
 }
