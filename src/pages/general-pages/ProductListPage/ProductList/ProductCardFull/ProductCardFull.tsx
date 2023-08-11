@@ -38,7 +38,7 @@ export const ProductCardFull: FC<IProductCard> = ({ product }): JSX.Element => {
       />
 
       <div className={style.card_info}>
-        <div className={style.name}>{name}</div>
+        <p className={style.name}>{name}</p>
 
         <div className={style.categories}>
           {categoryArr.map(el => (

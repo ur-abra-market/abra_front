@@ -1,4 +1,5 @@
 .card_full {
+  //
   display: flex;
   gap: 36px;
   justify-content: space-between;
@@ -6,6 +7,7 @@
 }
 
 .card_info {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -15,12 +17,17 @@
 }
 
 .name {
+  overflow: hidden;
+
   margin-bottom: 8px;
 
   font-size: var(--fz-l2);
   font-weight: var(--bold);
+  line-height: 22px;
   color: var(--color-black);
+  text-overflow: ellipsis;
   letter-spacing: 0.16px;
+  white-space: nowrap;
 }
 
 .categories {
@@ -87,9 +94,15 @@
 }
 
 .supplier_name {
+  overflow: hidden;
+
+  width: 200px;
+
   font-size: var(--fz-s2);
   font-weight: var(--medium);
+  text-overflow: ellipsis;
   letter-spacing: 0.16px;
+  white-space: nowrap;
 }
 
 .supplier_arrow {
