@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { productService } from 'services/product/product.service';
@@ -11,6 +11,8 @@ const initialState = {
   pageSize: 20,
   amountPages: 1,
   pageNum: 1,
+
+  showBy: 20,
 };
 
 export const productPaginateService = createAsyncThunk<any, any>(
@@ -65,10 +67,14 @@ export const productPaginateSlice = createSlice({
     amount: () => {
       // TODO заглушка так как возможно amount перезатерся в процессе merge
     },
+    setShowBy: (state, action: PayloadAction<number>) => {
+      state.showBy = action.payload;
+    },
   },
 });
 
-export const { active, amount, activeNum, sizePage } = productPaginateSlice.actions;
+export const { active, amount, activeNum, sizePage, setShowBy } =
+  productPaginateSlice.actions;
 export default productPaginateSlice.reducer;
 
 // import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
