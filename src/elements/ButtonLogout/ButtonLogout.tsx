@@ -24,7 +24,7 @@ export const ButtonLogout: FC<IButtonLogOutProps> = ({
   const handleClickLogout = async (): Promise<void> => {
     const result = await dispatch(logoutUser());
 
-    if (result) navigate(HOME);
+    if (result.payload) navigate(HOME);
   };
 
   const logoutButtonClasses = cn({

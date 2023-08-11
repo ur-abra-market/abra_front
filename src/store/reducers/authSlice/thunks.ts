@@ -7,6 +7,7 @@ import {
   LoadingStatusEnum,
   ResponseUserRoleType,
 } from 'common/types';
+import { getCookie } from 'common/utils';
 import { authService } from 'services/auth/auth.service';
 import {
   IChangeEmailRequest,
@@ -17,6 +18,7 @@ import {
   IRegisterRequest,
   IResetPasswordRequest,
 } from 'services/auth/auth.serviceTypes';
+import { baseConfigService } from 'services/baseConfig.service';
 import { setLoading, setResponseNotice } from 'store/reducers/appSlice/slice';
 
 export const registerUser = createAsyncThunk<void, IRegisterRequest, IAsyncThunkConfig>(
@@ -80,6 +82,10 @@ export const loginUser = createAsyncThunk<
   try {
     await authService.login(dataUser);
 
+    const { headers }: any = baseConfigService.defaults;
+
+    headers['X-CSRF-Token'] = getCookie('csrf_access_token');
+
     const userRole = await authService.userRole();
 
     return userRole.data.result;
@@ -99,13 +105,13 @@ export const loginUser = createAsyncThunk<
   }
 });
 
-export const logoutUser = createAsyncThunk<void, void, IAsyncThunkConfig>(
+export const logoutUser = createAsyncThunk<boolean, void, IAsyncThunkConfig>(
   'login/logoutUser',
   async (_, { rejectWithValue, dispatch }) => {
     dispatch(setLoading(LoadingStatusEnum.Loading));
 
     try {
-      await authService.logout();
+      return await authService.logout();
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         dispatch(
@@ -116,7 +122,7 @@ export const logoutUser = createAsyncThunk<void, void, IAsyncThunkConfig>(
         );
       }
 
-      return rejectWithValue('[logoutUser]: Error');
+      return rejectWithValue(false);
     } finally {
       dispatch(setLoading(LoadingStatusEnum.Idle));
     }

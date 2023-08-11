@@ -13,13 +13,9 @@ import { IProductCard } from 'store/reducers/productSlice';
 import { IProductsListRequest } from 'store/reducers/supplierProductSlice';
 
 export const productService = {
-  getList: async (params: ICategoryRequest) => {
-    const { offset, limit, category_id, sort_type, ascending } = params;
-    const payload = { category_id, sort_type, ascending };
-
-    const { data } = await baseConfigService.post<IBaseResponse<IProductCompilation[]>>(
-      `products/compilation/?offset=${offset}&limit=${limit}`,
-      payload,
+  getList: async ({ offset, limit, category_id, ascending }: ICategoryRequest) => {
+    const { data } = await baseConfigService.get<IBaseResponse<IProductCompilation[]>>(
+      `products/compilation?offset=${offset}&limit=${limit}&category_id=${category_id}&ascending=${ascending}`,
     );
 
     return data.result;
