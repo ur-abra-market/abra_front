@@ -2,11 +2,10 @@ import { useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
-import { calculateOffsetAndLimit } from './calculateOffsetAndLimit/calculateOffsetAndLimit';
 import style from './ProductList.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { ShowBy, PageViewSwitcher } from 'elements';
+import { ProductsPerPage, PageViewSwitcher } from 'elements';
 import { ViewType } from 'elements/PageViewSwitcher/PageViewSwitcher';
 import { ProductCardFull, ProductCard } from 'modules';
 import { ICategoryRequest } from 'services/product/product.serviceTypes';
@@ -27,11 +26,9 @@ export const ProductList = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const { offset, limit } = calculateOffsetAndLimit(currentPage, showBy);
-
     const param = {
-      offset,
-      limit,
+      offset: (currentPage - 1) * showBy,
+      limit: showBy,
       category_id,
       ascending: false,
     } as ICategoryRequest;
@@ -76,7 +73,7 @@ export const ProductList = (): JSX.Element => {
       </div>
 
       <div className={style.control_panel}>
-        <ShowBy onChange={handlerChangeSelect} />
+        <ProductsPerPage onChange={handlerChangeSelect} />
         <Pagination
           totalPages={10}
           currentPage={currentPage}
@@ -84,9 +81,7 @@ export const ProductList = (): JSX.Element => {
         />
       </div>
 
-      <div className={style.info_button}>
-        <ButtonInfo />
-      </div>
+      <ButtonInfo className={style.info_button} />
     </div>
   );
 };

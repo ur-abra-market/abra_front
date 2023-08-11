@@ -1,4 +1,6 @@
+import { ICategory } from 'common/types';
 import { Categories } from 'pages/general-pages/MainPage/MainPage';
+import { ISupplierCompanyInfo } from 'services/supplier/supplier.serviceTypes';
 
 interface IGradeDetails {
   grade: number;
@@ -53,27 +55,20 @@ interface IProductImage {
   order?: number;
 }
 
-interface ICategory {
-  id: number;
-  level: number;
-  name: string;
-  parent_id: number;
-}
+// interface ICategory {
+//   id: number;
+//   level: number;
+//   name: string;
+//   parent_id: number;
+// }
+
+type ICompany = Omit<ISupplierCompanyInfo, 'country, images, phone'> & {
+  logo_url: string;
+};
 
 interface IProductSupplier {
   additional_info: string;
-  company: {
-    address: string;
-    business_email: string;
-    business_sector: string;
-    description: string;
-    id: number;
-    is_manufacturer: boolean;
-    logo_url: string;
-    name: string;
-    number_employees: number;
-    year_established: number;
-  };
+  company: ICompany;
   grade_average: number;
   id: number;
   license_number: number;

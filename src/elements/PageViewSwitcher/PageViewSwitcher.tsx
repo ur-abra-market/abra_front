@@ -17,14 +17,12 @@ export const PageViewSwitcher: FC<ISelectedView> = ({
   selectedView,
   setSelectedView,
 }) => {
-  const viewGridClasses = cn({
+  const viewGridClasses = {
     [style.active_layout]: selectedView === 'grid',
-    [style.inactive_layout]: selectedView !== 'grid',
-  });
+  };
 
   const viewListClasses = cn({
     [style.active_layout]: selectedView === 'list',
-    [style.inactive_layout]: selectedView !== 'list',
   });
 
   const handleSetViewGrid = (): void => setSelectedView('grid');
@@ -33,15 +31,11 @@ export const PageViewSwitcher: FC<ISelectedView> = ({
   return (
     <div className={style.layouts}>
       <ViewGridEnabledIcon
-        width={20}
-        height={20}
-        className={viewGridClasses}
+        className={cn(style.default_icon, viewGridClasses)}
         onClick={handleSetViewGrid}
       />
       <ViewListEnabledIcon
-        width={20}
-        height={20}
-        className={viewListClasses}
+        className={cn(style.default_icon, viewListClasses)}
         onClick={handleSetViewList}
       />
     </div>

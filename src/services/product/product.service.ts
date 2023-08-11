@@ -16,13 +16,7 @@ export const productService = {
   getList: async (params: ICategoryRequest) => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductCompilation[]>>(
       `products/compilation`,
-      {
-        params: {
-          offset: params.offset,
-          limit: params.limit,
-          ascending: params.ascending,
-        },
-      },
+      { params },
     );
 
     return data.result;

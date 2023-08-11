@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
-import style from './ShowBy.module.scss';
+import style from './ProductsPerPage.module.scss';
 
 import { Select, ISelectOption } from 'ui-kit';
 
-const dataForShowBy = [
+const dataForProductsPerPage = [
   {
     label: { text: '20' },
     value: 20,
@@ -31,7 +31,7 @@ interface IShowBy {
   onChange: (value: number) => void;
 }
 
-export const ShowBy: FC<IShowBy> = ({ onChange }) => {
+export const ProductsPerPage: FC<IShowBy> = ({ onChange }) => {
   const handlerChangeSelect = (selectOption: ISelectOption): void => {
     onChange(selectOption.value);
   };
@@ -40,7 +40,7 @@ export const ShowBy: FC<IShowBy> = ({ onChange }) => {
     <div className={style.wrapper}>
       <p className={style.title}>Show by</p>
       <Select
-        options={dataForShowBy}
+        options={dataForProductsPerPage}
         menuItemsPosition="up"
         className={style.select}
         onChange={handlerChangeSelect}

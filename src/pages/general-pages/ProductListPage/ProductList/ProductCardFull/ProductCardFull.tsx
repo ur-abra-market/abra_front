@@ -12,7 +12,10 @@ import { Stars } from 'ui-kit';
 interface IProductCard {
   product: IProductCompilation;
 }
+
 export const ProductCardFull: FC<IProductCard> = ({ product }): JSX.Element => {
+  console.log(product);
+
   const {
     images,
     name,
@@ -43,9 +46,6 @@ export const ProductCardFull: FC<IProductCard> = ({ product }): JSX.Element => {
               {el}
             </p>
           ))}
-          <p className={style.category}>Clothes for women</p>
-          <div className={style.category}>Dress</div>
-          <div className={style.category}>Spring-Summer</div>
         </div>
 
         <div>
@@ -55,6 +55,7 @@ export const ProductCardFull: FC<IProductCard> = ({ product }): JSX.Element => {
           />
           <div className={style.reviews_info}>
             <Stars reward={grade_average} />
+            {/* TODO (fake data) */}
             <span className={style.reviews}>/ 9 859 reviews</span>
           </div>
         </div>
@@ -74,6 +75,7 @@ export const ProductCardFull: FC<IProductCard> = ({ product }): JSX.Element => {
                 <p className={style.supplier_name}>{supplier?.company.name}</p>
                 <ArrowIcon className={style.supplier_arrow} />
               </div>
+              {/* TODO (fake data) */}
               <p className={style.suppler_details}>
                 1 Years : 1 Deals : On-time delivery 1%
               </p>

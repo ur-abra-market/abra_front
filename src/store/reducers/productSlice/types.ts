@@ -1,3 +1,4 @@
+import { ICategory } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 
 export interface IProductSliceInitialState {
@@ -22,13 +23,6 @@ export interface IProductCard {
   tags: string[];
   prices: IPrice[];
   variations: any[];
-}
-
-export interface ICategory {
-  id: number | null;
-  name: string;
-  level: number | null;
-  parent_id: number | null;
 }
 
 export interface ISupplier {

@@ -3,11 +3,13 @@
   column-gap: 8px;
 }
 
-.active_layout {
-  color: var(--color-accent);
+.default_icon {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  color: var(--color-medium-gray);
 }
 
-.inactive_layout {
-  cursor: pointer;
-  color: var(--color-medium-gray);
+.active_layout {
+  color: var(--color-accent);
 }

@@ -5,12 +5,13 @@
 
   margin-top: 8px;
 
-  font-family: 'SF Pro Display Bold', serif;
   font-size: var(--fz-l2);
+  font-weight: var(--semi-bold);
 }
 
 .min_quantity {
   font-size: var(--fz-xs);
+  font-weight: var(--medium);
   line-height: 100%;
   color: var(--color-medium-gray);
 }

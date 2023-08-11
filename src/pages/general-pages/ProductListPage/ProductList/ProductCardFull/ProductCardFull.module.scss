@@ -15,11 +15,10 @@
 }
 
 .name {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 
   font-size: var(--fz-l2);
   font-weight: var(--bold);
-  line-height: 24px;
   color: var(--color-black);
   letter-spacing: 0.16px;
 }
@@ -32,7 +31,6 @@
 
 .category {
   font-size: var(--fz-xs2);
-  line-height: 18px;
   color: var(--color-accent);
   letter-spacing: 0.16px;
 }
@@ -45,7 +43,6 @@
 .reviews {
   font-size: var(--fz-xs);
   font-weight: var(--medium);
-  line-height: 16px;
   color: var(--color-medium-gray);
   letter-spacing: 0.16px;
 }
@@ -60,7 +57,6 @@
 .orders {
   font-size: var(--fz-s2);
   font-weight: (var(--medium));
-  line-height: 20px;
   color: var(--color-black);
   letter-spacing: 0.38px;
 }
@@ -93,7 +89,6 @@
 .supplier_name {
   font-size: var(--fz-s2);
   font-weight: var(--medium);
-  line-height: 20px;
   letter-spacing: 0.16px;
 }
 
@@ -103,7 +98,6 @@
 
 .suppler_details {
   font-size: var(--fz-xs);
-  line-height: 16px;
   color: var(--color-medium-gray);
   letter-spacing: 0.16px;
 }
