@@ -55,13 +55,6 @@ interface IProductImage {
   order?: number;
 }
 
-// interface ICategory {
-//   id: number;
-//   level: number;
-//   name: string;
-//   parent_id: number;
-// }
-
 type ICompany = Omit<ISupplierCompanyInfo, 'country, images, phone'> & {
   logo_url: string;
 };
