@@ -7,6 +7,7 @@ export interface IProductSliceInitialState {
   productsCompilation: { [key: number]: IProductCompilation[] };
   isFavorite: boolean; // времянка пока бэк не отдаёт нам состояние, после удалить
 }
+
 export interface IProductCard {
   id: number | null;
   name: string;
