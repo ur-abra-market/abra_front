@@ -9,13 +9,11 @@ import ProductPrice from 'old-components/ui/product/ProductPrice';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { Stars } from 'ui-kit';
 
-interface IProductCard {
+interface IProductCardFull {
   product: IProductCompilation;
 }
 
-export const ProductCardFull: FC<IProductCard> = ({ product }): JSX.Element => {
-  console.log(product);
-
+export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element => {
   const {
     images,
     name,

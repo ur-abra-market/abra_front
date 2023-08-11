@@ -4,7 +4,7 @@ import style from './ProductsPerPage.module.scss';
 
 import { Select, ISelectOption } from 'ui-kit';
 
-const dataForProductsPerPage = [
+const productsPerPageOptions = [
   {
     label: { text: '20' },
     value: 20,
@@ -27,11 +27,11 @@ const dataForProductsPerPage = [
   },
 ];
 
-interface IShowBy {
+interface IProductsPerPage {
   onChange: (value: number) => void;
 }
 
-export const ProductsPerPage: FC<IShowBy> = ({ onChange }) => {
+export const ProductsPerPage: FC<IProductsPerPage> = ({ onChange }) => {
   const handlerChangeSelect = (selectOption: ISelectOption): void => {
     onChange(selectOption.value);
   };
@@ -39,8 +39,9 @@ export const ProductsPerPage: FC<IShowBy> = ({ onChange }) => {
   return (
     <div className={style.wrapper}>
       <p className={style.title}>Show by</p>
+
       <Select
-        options={dataForProductsPerPage}
+        options={productsPerPageOptions}
         menuItemsPosition="up"
         className={style.select}
         onChange={handlerChangeSelect}

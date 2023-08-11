@@ -54,6 +54,7 @@ export const ProductList = (): JSX.Element => {
             setSelectedView={setSelectedView}
           />
           <div className={style.branch_crumbs}>{`bread > crumb > plug`}</div>
+          {/* TODO (fake data) */}
         </div>
         <Pagination
           totalPages={10}
@@ -74,6 +75,7 @@ export const ProductList = (): JSX.Element => {
 
       <div className={style.control_panel}>
         <ProductsPerPage onChange={handlerChangeSelect} />
+
         <Pagination
           totalPages={10}
           currentPage={currentPage}

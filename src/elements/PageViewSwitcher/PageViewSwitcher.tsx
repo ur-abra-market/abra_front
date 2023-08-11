@@ -6,14 +6,14 @@ import style from './PageViewSwitcher.module.scss';
 
 import { ViewGridEnabledIcon, ViewListEnabledIcon } from 'assets/icons';
 
-interface ISelectedView {
+interface IPageViewSwitcher {
   selectedView: ViewType;
   setSelectedView: (view: ViewType) => void;
 }
 
 export type ViewType = 'grid' | 'list';
 
-export const PageViewSwitcher: FC<ISelectedView> = ({
+export const PageViewSwitcher: FC<IPageViewSwitcher> = ({
   selectedView,
   setSelectedView,
 }) => {
@@ -25,18 +25,16 @@ export const PageViewSwitcher: FC<ISelectedView> = ({
     [style.active_layout]: selectedView === 'list',
   });
 
-  const handleSetViewGrid = (): void => setSelectedView('grid');
-  const handleSetViewList = (): void => setSelectedView('list');
-
   return (
-    <div className={style.layouts}>
+    <div className={style.wrapper}>
       <ViewGridEnabledIcon
         className={cn(style.default_icon, viewGridClasses)}
-        onClick={handleSetViewGrid}
+        onClick={() => setSelectedView('grid')}
       />
+
       <ViewListEnabledIcon
         className={cn(style.default_icon, viewListClasses)}
-        onClick={handleSetViewList}
+        onClick={() => setSelectedView('list')}
       />
     </div>
   );
