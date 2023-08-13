@@ -55,12 +55,12 @@ export const SupplierProfilePage = WithLayout((): JSX.Element => {
       <div className={style.supplier_cabinet_content_wrapper}>
         <SupplierPersonalInfoChangeForm />
 
-        <div className={style.business_profile}>
-          <SupplierBusinessInfoChangeForm />
-        </div>
-
         <div className={style.account_details}>
           <AccountManagement />
+        </div>
+
+        <div className={style.business_profile}>
+          <SupplierBusinessInfoChangeForm />
         </div>
 
         <div className={style.notifications}>

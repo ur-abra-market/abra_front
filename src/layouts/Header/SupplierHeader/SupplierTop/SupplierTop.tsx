@@ -33,7 +33,7 @@ export const SupplierTop = (): JSX.Element => {
 
           <span className={style.vertical_line} />
 
-          <Link className={style.supplier_link} to={HOME}>
+          <Link className={style.supplier_link} to={HOME} tabIndex={-1}>
             SUPPLIER
           </Link>
         </div>
@@ -44,7 +44,7 @@ export const SupplierTop = (): JSX.Element => {
           </Link>
 
           <div className={style.btn_menu} ref={triggerRef}>
-            <div className={style.company_logo_wrapper}>
+            <div role="button" tabIndex={0} className={style.company_logo_wrapper}>
               {companyLogo ? (
                 <img
                   className={style.company_logo_img}
