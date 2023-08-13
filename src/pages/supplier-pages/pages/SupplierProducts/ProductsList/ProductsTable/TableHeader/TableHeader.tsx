@@ -4,25 +4,56 @@ import { useSelector } from 'react-redux';
 
 import style from './TableHeader.module.scss';
 
-import { useAppDispatch } from 'common/hooks';
+import { ArrowSort } from 'assets/icons';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ITableData } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsTable/ProductsTable';
 import {
   columns,
   selectAllCheckbox,
 } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/utils/productUtils';
-import { getMainCheckedStatus } from 'store/reducers/supplierProductSlice';
-import { Checkbox } from 'ui-kit';
+import {
+  getMainCheckedStatus,
+  getParamsSelector,
+  SortType,
+} from 'store/reducers/supplierProductSlice';
+import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
+import { ButtonIcon, Checkbox } from 'ui-kit';
 
 export const TableHeader: FC<ITableData> = ({ data }): JSX.Element => {
   const dispatch = useAppDispatch();
+  const params = useAppSelector(getParamsSelector);
   const checked = useSelector(getMainCheckedStatus);
 
   const setStatusForMainCheckBox = (checked: boolean): void => {
     selectAllCheckbox(data, checked, dispatch);
   };
 
+  const onChangeSortData = (sortKey?: string, sortValue?: SortType): void => {
+    if (!sortKey) return;
+    const [[key, value]] = Object.entries(params).filter(([key]) => key === sortKey);
+
+    if (!sortValue) {
+      dispatch(supplierProductActions.setParams({ ...params, [key]: !value }));
+    } else if (sortValue === params.sort) {
+      dispatch(
+        supplierProductActions.setParams({
+          ...params,
+          ascending: !params.ascending,
+        }),
+      );
+    } else {
+      dispatch(
+        supplierProductActions.setParams({
+          ...params,
+          [key]: sortValue,
+          ascending: true,
+        }),
+      );
+    }
+  };
+
   return (
-    <thead>
+    <thead className={style.thead}>
       <tr className={style.table_row}>
         <th className={style.table_head}>
           <Checkbox
@@ -34,7 +65,13 @@ export const TableHeader: FC<ITableData> = ({ data }): JSX.Element => {
         {columns.map(column => (
           <th key={column.id} className={style.table_head}>
             {column.name}
-            {column.arrow && column.arrow}
+            {column.arrow && (
+              <ButtonIcon
+                onClick={() => onChangeSortData(column.sortKey, column.sortValue)}
+              >
+                <ArrowSort />
+              </ButtonIcon>
+            )}
           </th>
         ))}
       </tr>

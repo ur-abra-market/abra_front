@@ -1,8 +1,5 @@
-import React from 'react';
-
 import {
   AddNewProduct,
-  ArrowSort,
   Copy,
   DeleteTrashCanIcon,
   EditPencilIcon,
@@ -19,6 +16,7 @@ import {
   activateProducts,
   deActivateProducts,
   IProductsListRequest,
+  SortType,
 } from 'store/reducers/supplierProductSlice';
 import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
 
@@ -27,7 +25,9 @@ import { supplierProductActions } from 'store/reducers/supplierProductSlice/supp
 interface IColumns {
   id: number;
   name: string;
-  arrow?: React.ReactElement<React.SVGProps<SVGSVGElement>>;
+  arrow?: boolean;
+  sortKey?: 'ascending' | 'sort' | 'onSale';
+  sortValue?: SortType;
 }
 
 // ProductsListSettings:
@@ -99,8 +99,8 @@ export const selectAllCheckbox = (
 
 export const filtersData: IFilterData[] = [
   { id: 1, label: 'All Products', list: ActiveListEnum.ALL_PRODUCTS },
-  { id: 2, label: 'On-sale', list: ActiveListEnum.ON_SALE },
-  { id: 3, label: 'Off-sale', list: ActiveListEnum.OFF_SALE },
+  // { id: 2, label: 'On-sale', list: ActiveListEnum.ON_SALE },
+  // { id: 3, label: 'Off-sale', list: ActiveListEnum.OFF_SALE },
 ];
 
 export const actionData: IActionData[] = [
@@ -112,12 +112,18 @@ export const actionData: IActionData[] = [
 ];
 
 export const columns: IColumns[] = [
-  { id: 1, name: 'SKU', arrow: <ArrowSort /> },
+  { id: 1, name: 'SKU' },
   { id: 2, name: 'Picture' },
   { id: 3, name: 'Name' },
-  { id: 4, name: 'Creation Date', arrow: <ArrowSort /> },
-  { id: 5, name: 'Status', arrow: <ArrowSort /> },
-  { id: 6, name: 'Price', arrow: <ArrowSort /> },
-  { id: 7, name: 'Balance, units', arrow: <ArrowSort /> },
+  {
+    id: 4,
+    name: 'Creation Date',
+    arrow: true,
+    sortKey: 'sort',
+    sortValue: 'date',
+  },
+  { id: 5, name: 'Status', arrow: true, sortKey: 'onSale' },
+  { id: 6, name: 'Price', arrow: true, sortKey: 'sort', sortValue: 'price' },
+  { id: 7, name: 'Balance, units' },
   { id: 8, name: 'Visibility' },
 ];

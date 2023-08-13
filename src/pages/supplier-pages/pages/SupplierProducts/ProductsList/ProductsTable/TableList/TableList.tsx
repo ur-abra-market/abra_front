@@ -42,34 +42,42 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
           [style.table_deactivated]: !el.is_active,
         });
 
+        const formattedDateTime = formatDate(el.datetime);
+        const [formattedDate, formattedTime] = formattedDateTime.split(' ');
+
         return (
           <tr className={deactivatedClasses} key={el.id}>
-            <td className={style.table_data_checkbox}>
+            <td className={style.table_td}>
               <Checkbox
                 checked={checked}
                 variant="default"
                 onChange={event => onChangeChecked(event, el.id, el.is_active)}
               />
             </td>
-            <td className={style.table_data_id}>{el.id}</td>
-            <td className={style.table_data_image}>
+            <td className={style.table_td}>{el.id}</td>
+            <td className={style.table_td}>
               <img className={style.image} src={defaultImg} alt="product" />
             </td>
-            <td className={style.table_data_name}>{el.name}</td>
-            <td className={style.table_data_date}>
-              {el.datetime && formatDate(el.datetime)}
+            <td className={style.table_td}>{el.name}</td>
+            <td className={style.table_td}>
+              {el.datetime && (
+                <div className={style.datetime_container}>
+                  <span>{formattedDate}</span>
+                  <span className={style.formatted_time}>{formattedTime}</span>
+                </div>
+              )}
             </td>
 
             {el.prices.map(item => (
               <React.Fragment key={item.id}>
-                <td className={style.table_data_status}>
+                <td className={style.table_td}>
                   {item.discount ? 'On Sale' : 'Off Sale'}
                 </td>
-                <td className={style.table_data_price}>{`$${item.value}`}</td>
-                <td className={style.table_data_balance}>empty</td>
+                <td className={style.table_td}>{`$${item.value}`}</td>
+                <td className={style.table_td}>empty</td>
               </React.Fragment>
             ))}
-            <td className={style.table_data}>{el.is_active ? 'Visible' : 'Hidden'}</td>
+            <td className={style.table_td}>{el.is_active ? 'Visible' : 'Hidden'}</td>
           </tr>
         );
       })}

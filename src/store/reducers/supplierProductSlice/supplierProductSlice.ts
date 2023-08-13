@@ -1,7 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { activateProducts, deActivateProducts, manageProducts } from './thunks';
-import { IProductsListRequest, ISupplierProductSliceInitialState } from './types';
+import {
+  IProductsListRequest,
+  IProductSortOptions,
+  ISupplierProductSliceInitialState,
+} from './types';
 
 import { IActivateStatus } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsListSettings/types/products-types';
 
@@ -10,8 +14,17 @@ const initialState: ISupplierProductSliceInitialState = {
   deactivationProductIds: [],
   activationProductIds: [],
   selectAllProducts: false,
-  page_size: 20,
-  page_num: 1,
+  hasChanged: false,
+  page: 1,
+  params: {
+    offset: 0,
+    limit: 20,
+    ascending: true,
+    categoryId: 0,
+    sort: 'date',
+    onSale: true,
+    isActive: true,
+  },
 };
 
 const supplierProductSlice = createSlice({
@@ -19,10 +32,13 @@ const supplierProductSlice = createSlice({
   initialState,
   reducers: {
     setPage: (state, action: PayloadAction<number>) => {
-      state.page_num = action.payload;
+      state.page = action.payload;
     },
     setPageSize: (state, action: PayloadAction<number>) => {
-      state.page_size = action.payload;
+      state.params.limit = action.payload;
+    },
+    setParams: (state, action: PayloadAction<IProductSortOptions>) => {
+      state.params = action.payload;
     },
     selectAllProducts(state, action: PayloadAction<boolean>) {
       state.selectAllProducts = action.payload;
@@ -72,6 +88,7 @@ const supplierProductSlice = createSlice({
         state.deactivationProductIds = [];
         state.activationProductIds = [];
         state.selectAllProducts = false;
+        state.hasChanged = !state.hasChanged;
       });
   },
 });

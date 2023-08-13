@@ -2,7 +2,7 @@ import style from './PaginationSettings.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import ShowPage from 'old-components/ShowPage';
-import { manageProducts, pageNumber } from 'store/reducers/supplierProductSlice';
+import { pageNumber } from 'store/reducers/supplierProductSlice';
 import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
 
@@ -12,7 +12,6 @@ export const PaginationSettings = (): JSX.Element => {
 
   const handleSetActivePage = (pageNumber: number): void => {
     dispatch(supplierProductActions.setPage(pageNumber));
-    dispatch(manageProducts());
   };
 
   return (

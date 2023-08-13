@@ -2,7 +2,11 @@ import React, { FC } from 'react';
 
 import style from './FilterItem.module.scss';
 
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { IHeaderSearch } from 'pages/supplier-pages/pages/SupplierProducts/HeaderSupplierProducts/HeaderSearch/HeaderSearch';
+import { getParamsSelector } from 'store/reducers/supplierProductSlice';
+import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
+import { ButtonIcon } from 'ui-kit';
 
 interface ItemProps extends IHeaderSearch {
   text: string;
@@ -15,8 +19,23 @@ export const FilterItem: FC<ItemProps> = ({
   Icon,
   text,
 }): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const params = useAppSelector(getParamsSelector);
   const handleRestFiltersSet = (): void => {
     setRestFilters(!restFilters);
+  };
+
+  const onResetFiltersHandler = (): void => {
+    dispatch(
+      supplierProductActions.setParams({
+        ...params,
+        categoryId: 0,
+        ascending: true,
+        isActive: true,
+        onSale: true,
+        sort: 'date',
+      }),
+    );
   };
 
   const styleIconClass = restFilters ? style.vector_down : style.vector_up;
@@ -27,7 +46,11 @@ export const FilterItem: FC<ItemProps> = ({
         {text}
       </button>
       <Icon onClick={handleRestFiltersSet} className={styleIconClass} />
-      {restFilters && <div className={style.reset_link}>Reset Filters</div>}
+      {restFilters && (
+        <ButtonIcon onClick={onResetFiltersHandler} className={style.reset_link}>
+          Reset Filters
+        </ButtonIcon>
+      )}
     </>
   );
 };

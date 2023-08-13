@@ -11,6 +11,7 @@ import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
 import { IProductCard } from 'store/reducers/productSlice';
 import { IProductsListRequest } from 'store/reducers/supplierProductSlice';
+import { IProductsSortRequest } from 'store/reducers/supplierProductSlice/types';
 
 export const productService = {
   getList: async ({ offset, limit, category_id, ascending }: ICategoryRequest) => {
@@ -99,15 +100,10 @@ export const productService = {
     return data;
   },
 
-  getListManageProducts: async (offset: number, limit: number) => {
+  getListManageProducts: async (params: IProductsSortRequest) => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductsListRequest[]>>(
       `suppliers/products`,
-      {
-        params: {
-          offset,
-          limit,
-        },
-      },
+      { params },
     );
 
     return data.result;

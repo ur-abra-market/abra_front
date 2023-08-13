@@ -6,8 +6,15 @@ export {
   getMainCheckedStatus,
   getSortedData,
   manageProductsSelector,
+  getParamsSelector,
+  hasChangedSelector,
 } from './selectors';
 
 export { activateProducts, deActivateProducts, manageProducts } from './thunks';
 
-export type { IProductsListRequest, ISupplierProductSliceInitialState } from './types';
+export type {
+  IProductsListRequest,
+  ISupplierProductSliceInitialState,
+  IProductSortOptions,
+  SortType,
+} from './types';

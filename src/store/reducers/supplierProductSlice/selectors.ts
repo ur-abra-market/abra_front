@@ -1,14 +1,14 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { IProductsListRequest } from './types';
+import { IProductsListRequest, IProductSortOptions } from './types';
 
 import { IActivateStatus } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsListSettings/types/products-types';
 import { RootStateType } from 'store/createStore';
 
-export const pageNumber = (state: RootStateType): number =>
-  state.supplierProduct.page_num;
+export const pageNumber = (state: RootStateType): number => state.supplierProduct.page;
 
-export const pageSize = (state: RootStateType): number => state.supplierProduct.page_size;
+export const pageSize = (state: RootStateType): number =>
+  state.supplierProduct.params.limit;
 
 export const getActivatedIds = (state: RootStateType): IActivateStatus[] =>
   state.supplierProduct.activationProductIds;
@@ -36,3 +36,9 @@ export const getSortedData = createSelector([manageProductsSelector], data => {
     return 0;
   });
 });
+
+export const getParamsSelector = (state: RootStateType): IProductSortOptions =>
+  state.supplierProduct.params;
+
+export const hasChangedSelector = (state: RootStateType): boolean =>
+  state.supplierProduct.hasChanged;

@@ -24,6 +24,26 @@ export interface ISupplierProductSliceInitialState {
   deactivationProductIds: IActivateStatus[];
   activationProductIds: IActivateStatus[];
   selectAllProducts: boolean;
-  page_size: number;
-  page_num: number;
+  hasChanged: boolean;
+  page: number;
+  params: IProductSortOptions;
+}
+
+export type SortType = 'date' | 'price' | 'rating';
+
+export interface IProductSortOptions {
+  offset: number;
+  limit: number;
+  categoryId: number;
+  onSale: boolean;
+  isActive: boolean;
+  sort: SortType;
+  ascending: boolean;
+}
+
+export interface IProductsSortRequest
+  extends Omit<IProductSortOptions, 'categoryId' | 'onSale' | 'isActive'> {
+  category_id: number;
+  on_sale: boolean;
+  is_active: boolean;
 }
