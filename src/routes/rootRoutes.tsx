@@ -62,7 +62,7 @@ export function createRoutes(userRole: UserRoleType): Routes {
     {
       path: HOME,
       errorElement: (
-        <main style={{ padding: '1rem' }}>
+        <main>
           <ErrorPage />
         </main>
       ),
