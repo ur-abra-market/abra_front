@@ -40,7 +40,7 @@
 .default:disabled {
   color: var(--color-gray);
   background: var(--color-white);
-  border: 1px solid #E3E3E3;
+  border: 1px solid #e3e3e3;
 }
 
 .red:disabled {
@@ -94,4 +94,10 @@
 .black {
   color: var(--color-white);
   background: var(--color-black);
+}
+
+@media only screen and (max-width: 768px) {
+  .button {
+    padding: 12px;
+  }
 }

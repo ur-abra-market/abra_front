@@ -1,0 +1,21 @@
+.button {
+  cursor: pointer;
+
+  margin-right: 16px;
+
+  white-space: nowrap;
+  font-family: var(--roboto);
+  font-size: var(--fz-s2);
+  font-weight: var(--medium);
+
+  background: transparent;
+
+  &:hover {
+    color: var(--color-accent);
+  }
+
+  &:focus-visible {
+    border-radius: 4px;
+    outline: 1px solid var(--color-medium-gray);
+  }
+}

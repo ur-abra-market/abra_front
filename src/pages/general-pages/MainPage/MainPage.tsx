@@ -80,8 +80,10 @@ export const MainPage = WithLayout((): JSX.Element => {
       ) : (
         <div>
           <ImagesBlock className={style.images_block} />
-          <div className={style.container}>
+          <div className={style.status_container}>
             <StatusProduct />
+          </div>
+          <div className={style.container}>
             <div className={style.main_sliders}>
               {products &&
                 Object.keys(products).map(key => {

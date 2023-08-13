@@ -30,6 +30,11 @@
   max-width: var(--main-content-width);
   margin: 0 auto;
   padding: 0 32px;
+
+  @media only screen and (max-width: 768px) {
+    max-width: 632px;
+    padding: 0 16px;
+  }
 }
 
 @mixin seller_section_header {
@@ -55,5 +60,24 @@
     padding: 32px;
     background: var(--color-white);
     border-radius: 12px;
+  }
+}
+
+@function calcFluidFontSize($fMin, $fMax, $vMin, $vMax) {
+  $k: ($fMax - $fMin)/ ($vMax - $vMin);
+  $b: $fMin - $k * $vMin;
+
+  $b: $b;
+
+  @return calc(#{$k} * 100vw + #{$b});
+}
+@mixin fluidFontSize($fMin, $fMax, $wMin: 425px, $wMax: 1440px) {
+  font-size: $fMin;
+
+  @media (min-width: $wMin) {
+    font-size: calcFluidFontSize($fMin, $fMax, $wMin, $wMax);
+  }
+  @media (min-width: $wMax) {
+    font-size: $fMax;
   }
 }

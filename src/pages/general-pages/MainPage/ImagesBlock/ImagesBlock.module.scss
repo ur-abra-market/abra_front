@@ -5,7 +5,7 @@
 }
 
 .container {
-  @include content_container
+  @include content_container;
 }
 
 .image_box_main {
@@ -39,7 +39,7 @@
 }
 
 .main_block_text:nth-child(2) {
-  font-family: 'SF Pro Display', sans-serif;
+  font-family: "SF Pro Display", sans-serif;
   font-size: 0.59em;
   line-height: 1.26;
   font-weight: var(--semi-bold);
@@ -64,13 +64,19 @@
   border-radius: 12px;
 }
 
-.grid_item1, .grid_item2, .grid_item3, .grid_item4 {
+.grid_item1,
+.grid_item2,
+.grid_item3,
+.grid_item4 {
   position: relative;
   font-family: var(--roboto);
   color: var(--color-accent);
 }
 
-.grid_item1_block, .grid_item2_block, .grid_item3_block, .grid_item4_block {
+.grid_item1_block,
+.grid_item2_block,
+.grid_item3_block,
+.grid_item4_block {
   position: absolute;
   font-weight: var(--bold);
 }
@@ -119,7 +125,8 @@
   grid-area: item4;
 }
 
-.grid_item3_block, .grid_item4_block {
+.grid_item3_block,
+.grid_item4_block {
   top: 24.6%;
   left: 6%;
 
@@ -129,6 +136,71 @@
   line-height: 85%;
 }
 
-@media only screen and (max-width: 1200px) {
-  
+@media only screen and (max-width: 1140px) {
+  .main_block {
+    font-size: 82px;
+  }
+  .image_box_grid {
+    font-size: 38px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .main_block {
+    font-size: 72px;
+  }
+  .image_box_grid {
+    font-size: 32px;
+  }
+  .grid_item3_block,
+  .grid_item4_block {
+    max-width: 70px;
+  }
+  .grid_item1_block {
+    max-width: 150px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .main_block {
+    font-size: 62px;
+    top: auto;
+    right: auto;
+    left: 50%;
+    bottom: 32px;
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  .image_box_main {
+    height: 385px;
+    margin: 0 auto 16px;
+
+    img {
+      object-position: 15%;
+    }
+  }
+
+  .image_box_grid {
+    grid-template:
+      "item1 item1" 210px
+      "item2 item2" 160px
+      "item3 item4" 160px / 1fr 1fr;
+    gap: 8px;
+  }
+
+  .grid_item3_block,
+  .grid_item4_block {
+    top: 13%;
+    left: 5%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .image_box_grid {
+    font-size: 25px;
+    grid-template:
+      "item1 item1" 184px
+      "item2 item2" 123px
+      "item3 item4" 123px / 1fr 1fr;
+  }
 }

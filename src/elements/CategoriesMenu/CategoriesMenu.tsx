@@ -46,7 +46,7 @@ export const CategoriesMenu = forwardRef(
     }, [dispatch, categories]);
 
     return (
-      <div ref={ref} className={cn(style.menu_container)}>
+      <div ref={ref} className={cn(style.menu_container, props.className)}>
         <ul className={style.list}>
           <FilterButton
             key="12"
