@@ -10,8 +10,8 @@ interface ProductPriceProps {
 const ProductPrice: FC<ProductPriceProps> = ({ price, quantity }): JSX.Element => {
   return (
     <div className={style.product_price}>
-      <div className="amount">${price}/pc</div>
-      <span>{`/from ${quantity} pcs`}</span>
+      <p>${price}/pc</p>
+      <p className={style.min_quantity}>{`/from ${quantity} pcs`}</p>
     </div>
   );
 };
