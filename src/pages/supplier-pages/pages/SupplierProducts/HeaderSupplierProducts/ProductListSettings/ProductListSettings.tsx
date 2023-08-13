@@ -6,8 +6,7 @@ import { SaleStatusSetting } from './SaleStatusSetting/SaleStatusSetting';
 import { SortBySetting } from './SortBySetting/SortBySetting';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { getParamsSelector } from 'store/reducers/supplierProductSlice';
-import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
+import { getParamsSelector } from 'store/reducers/supplier/product';
 import { Checkbox } from 'ui-kit';
 
 export const ProductListSettings = (): JSX.Element => {
@@ -15,7 +14,7 @@ export const ProductListSettings = (): JSX.Element => {
   // const params = useAppSelector(getParamsSelector);
   // const onChangeHidden = (value: ChangeEvent<HTMLInputElement>): void => {
   //   dispatch(
-  //     supplierProductActions.setParams({
+  //     setParams({
   //       ...params,
   //       isActive: value.currentTarget.checked,
   //     }),

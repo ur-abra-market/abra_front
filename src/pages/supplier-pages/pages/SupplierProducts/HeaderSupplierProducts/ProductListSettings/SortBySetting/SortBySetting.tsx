@@ -2,8 +2,7 @@ import React, { useCallback } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import style from 'pages/supplier-pages/pages/SupplierProducts/HeaderSupplierProducts/ProductListSettings/ProductListSettings.module.scss';
-import { getParamsSelector } from 'store/reducers/supplierProductSlice';
-import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
+import { getParamsSelector, setPage, setParams } from 'store/reducers/supplier/product';
 import { ISelectOption, Select } from 'ui-kit';
 
 export const SortBySetting = (): JSX.Element => {
@@ -20,8 +19,8 @@ export const SortBySetting = (): JSX.Element => {
     (selectOption: ISelectOption) => {
       const { value } = selectOption;
 
-      dispatch(supplierProductActions.setPage(1));
-      dispatch(supplierProductActions.setParams({ ...params, categoryId: value }));
+      dispatch(setPage(1));
+      dispatch(setParams({ ...params, categoryId: value }));
     },
     [dispatch, params],
   );

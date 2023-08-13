@@ -16,9 +16,11 @@ import {
   activateProducts,
   deActivateProducts,
   IProductsListRequest,
+  selectAllProducts,
+  setArrayForProductsActivation,
+  setArrayForProductsDeactivation,
   SortType,
-} from 'store/reducers/supplierProductSlice';
-import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
+} from 'store/reducers/supplier/product';
 
 // --------------types---------------
 
@@ -65,11 +67,11 @@ export const selectAllCheckbox = (
   checked: boolean,
   dispatch: AppDispatchType,
 ): void => {
-  dispatch(supplierProductActions.selectAllProducts(checked));
+  dispatch(selectAllProducts(checked));
 
   if (!checked) {
-    dispatch(supplierProductActions.setArrayForProductsDeactivation([]));
-    dispatch(supplierProductActions.setArrayForProductsActivation([]));
+    dispatch(setArrayForProductsDeactivation([]));
+    dispatch(setArrayForProductsActivation([]));
   }
 
   if (checked) {
@@ -83,16 +85,10 @@ export const selectAllCheckbox = (
     const arrayForActivateProducts = arrayForDeactivate?.filter(el => !el.status);
 
     if (arrayForDeactivateProducts) {
-      dispatch(
-        supplierProductActions.setArrayForProductsDeactivation(
-          arrayForDeactivateProducts,
-        ),
-      );
+      dispatch(setArrayForProductsDeactivation(arrayForDeactivateProducts));
     }
     if (arrayForActivateProducts) {
-      dispatch(
-        supplierProductActions.setArrayForProductsActivation(arrayForActivateProducts),
-      );
+      dispatch(setArrayForProductsActivation(arrayForActivateProducts));
     }
   }
 };

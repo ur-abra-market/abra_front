@@ -94,4 +94,12 @@ const supplierProductSlice = createSlice({
 });
 
 export const supplierProductReducer = supplierProductSlice.reducer;
-export const supplierProductActions = supplierProductSlice.actions;
+export const {
+  setPage,
+  setPageSize,
+  selectAllProducts,
+  setProductStatus,
+  setArrayForProductsDeactivation,
+  setArrayForProductsActivation,
+  setParams,
+} = supplierProductSlice.actions;

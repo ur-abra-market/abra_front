@@ -9,8 +9,11 @@ import defaultImg from 'assets/images/files/default-product-image.png';
 import { useAppDispatch } from 'common/hooks';
 import { formatDate } from 'common/utils/formatDateProductsList';
 import { ITableData } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsTable/ProductsTable';
-import { getActivatedIds, getDeactivatedIds } from 'store/reducers/supplierProductSlice';
-import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
+import {
+  getActivatedIds,
+  getDeactivatedIds,
+  setProductStatus,
+} from 'store/reducers/supplier/product';
 import { Checkbox } from 'ui-kit';
 
 export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
@@ -23,7 +26,7 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
   const productsIdsArray = deactivatedArray.concat(activatedArray);
 
   const getProductId = (checked: boolean, id: number, status: boolean): void => {
-    dispatch(supplierProductActions.setProductStatus({ checked, id, status }));
+    dispatch(setProductStatus({ checked, id, status }));
   };
 
   const onChangeChecked = (

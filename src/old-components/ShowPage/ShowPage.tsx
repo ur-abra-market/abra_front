@@ -4,8 +4,7 @@ import style from './ShowPage.module.scss';
 
 import { ArrowIcon } from 'assets/icons'; // 24px
 import { useAppDispatch } from 'common/hooks';
-// import { amount } from 'store/reducers/paginateSlice';
-import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
+import { setPage } from 'store/reducers/supplier/product';
 
 const ShowPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -49,7 +48,7 @@ const ShowPage = (): JSX.Element => {
             onClick={() => {
               setOption(e);
               setListSwitch(!listSwitch);
-              dispatch(supplierProductActions.setPage(+e));
+              dispatch(setPage(+e));
             }}
           >
             {e}

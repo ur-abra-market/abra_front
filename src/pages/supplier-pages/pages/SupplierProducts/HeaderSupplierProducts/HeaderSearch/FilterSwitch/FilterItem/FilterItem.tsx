@@ -4,8 +4,7 @@ import style from './FilterItem.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { IHeaderSearch } from 'pages/supplier-pages/pages/SupplierProducts/HeaderSupplierProducts/HeaderSearch/HeaderSearch';
-import { getParamsSelector } from 'store/reducers/supplierProductSlice';
-import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
+import { getParamsSelector, setParams } from 'store/reducers/supplier/product';
 import { ButtonIcon } from 'ui-kit';
 
 interface ItemProps extends IHeaderSearch {
@@ -27,7 +26,7 @@ export const FilterItem: FC<ItemProps> = ({
 
   const onResetFiltersHandler = (): void => {
     dispatch(
-      supplierProductActions.setParams({
+      setParams({
         ...params,
         categoryId: 0,
         ascending: true,

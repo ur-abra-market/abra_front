@@ -17,4 +17,16 @@ export type {
   ISupplierProductSliceInitialState,
   IProductSortOptions,
   SortType,
+  IProductsSortRequest,
 } from './types';
+
+export {
+  setProductStatus,
+  selectAllProducts,
+  setArrayForProductsDeactivation,
+  setArrayForProductsActivation,
+  setPageSize,
+  setPage,
+  setParams,
+  supplierProductReducer,
+} from './supplierProductSlice';

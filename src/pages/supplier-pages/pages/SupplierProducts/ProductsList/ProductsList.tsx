@@ -10,7 +10,7 @@ import {
   hasChangedSelector,
   manageProducts,
   pageNumber,
-} from 'store/reducers/supplierProductSlice';
+} from 'store/reducers/supplier/product';
 
 export const ProductsList = (): JSX.Element => {
   const dispatch = useAppDispatch();

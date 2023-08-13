@@ -14,9 +14,9 @@ import {
 import {
   getMainCheckedStatus,
   getParamsSelector,
+  setParams,
   SortType,
-} from 'store/reducers/supplierProductSlice';
-import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
+} from 'store/reducers/supplier/product';
 import { ButtonIcon, Checkbox } from 'ui-kit';
 
 export const TableHeader: FC<ITableData> = ({ data }): JSX.Element => {
@@ -33,17 +33,17 @@ export const TableHeader: FC<ITableData> = ({ data }): JSX.Element => {
     const [[key, value]] = Object.entries(params).filter(([key]) => key === sortKey);
 
     if (!sortValue) {
-      dispatch(supplierProductActions.setParams({ ...params, [key]: !value }));
+      dispatch(setParams({ ...params, [key]: !value }));
     } else if (sortValue === params.sort) {
       dispatch(
-        supplierProductActions.setParams({
+        setParams({
           ...params,
           ascending: !params.ascending,
         }),
       );
     } else {
       dispatch(
-        supplierProductActions.setParams({
+        setParams({
           ...params,
           [key]: sortValue,
           ascending: true,

@@ -10,8 +10,10 @@ import {
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
 import { IProductCard } from 'store/reducers/productSlice';
-import { IProductsListRequest } from 'store/reducers/supplierProductSlice';
-import { IProductsSortRequest } from 'store/reducers/supplierProductSlice/types';
+import {
+  IProductsListRequest,
+  IProductsSortRequest,
+} from 'store/reducers/supplier/product';
 
 export const productService = {
   getList: async ({ offset, limit, category_id, ascending }: ICategoryRequest) => {
