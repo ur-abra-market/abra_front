@@ -30,16 +30,16 @@
   transition: color 0.2s;
 
   &:focus-visible:not(.disabled) {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color_accent_dark);
   }
 
   &:hover:not(.active):not(.disabled):not(.is_disabled_dot) {
-    color: var(--color-accent);
-    opacity: 0.5;
+    color: var(--color_accent_dark);
+    text-decoration: underline var(--color_accent_dark);
   }
 
   &:hover:not(.disabled) svg {
-    fill: var(--color-accent);
+    fill: var(--color_accent_dark);
   }
 }
 
@@ -61,6 +61,11 @@
 .arrow {
   width: 14px;
   height: 14px;
+  fill: var(--color-black);
+}
+
+.disabled .arrow {
+  fill: var(--color-medium-gray);
 }
 
 .arrow_left {

@@ -1,4 +1,6 @@
+import { ICategory } from 'common/types';
 import { Categories } from 'pages/general-pages/MainPage/MainPage';
+import { ISupplierCompanyInfo } from 'services/supplier/supplier.serviceTypes';
 
 interface IGradeDetails {
   grade: number;
@@ -53,26 +55,45 @@ interface IProductImage {
   order?: number;
 }
 
+type ICompany = Omit<ISupplierCompanyInfo, 'country, images, phone'> & {
+  logo_url: string;
+};
+
 interface IProductSupplier {
   additional_info: string;
+  company: ICompany;
   grade_average: number;
   id: number;
-  license_number: string;
-  user: IProductUser;
+  license_number: number;
+  user: {
+    datetime: string;
+    email: string;
+    first_name: string;
+    full_name: string;
+    id: number;
+    is_deleted: boolean;
+    is_supplier: boolean;
+    is_verified: boolean;
+    last_name: string;
+    phone_number: string;
+  };
+  total_orders: 0;
+  uuid: string;
 }
 
 export interface IProductCompilation {
-  id: number;
-  name: string;
-  description: string;
+  category: ICategory;
   datetime: string;
+  description: string;
   grade_average: number;
-  total_orders: number;
-  uuid: string;
-  is_active: boolean;
+  id: number;
   images: IProductImage[];
+  is_active: boolean;
+  name: string;
   prices: IProductPrice[];
   supplier?: IProductSupplier;
+  total_orders: number;
+  uuid: string;
 }
 
 export interface IProductPrice {

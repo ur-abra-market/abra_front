@@ -27,6 +27,5 @@ export type {
   IProductSliceInitialState,
   IImage,
   IPrice,
-  ICategory,
   ISupplier,
 } from './types';
