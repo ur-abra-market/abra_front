@@ -5,6 +5,6 @@ const emailRegex =
 
 export const emailValidationSchema = yup
   .string()
-  .trim()
-  .matches(emailRegex, 'Invalid email')
+  .matches(/@/, 'You forgot about “@”')
+  .email('Invalid email')
   .required('Email is required');
