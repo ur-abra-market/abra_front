@@ -29,9 +29,10 @@ const productsPerPageOptions = [
 
 interface IProductsPerPage {
   onChange: (value: number) => void;
+  controlledValue?: ISelectOption;
 }
 
-export const ProductsPerPage: FC<IProductsPerPage> = ({ onChange }) => {
+export const ProductsPerPage: FC<IProductsPerPage> = ({ onChange, controlledValue }) => {
   const handlerChangeSelect = (selectOption: ISelectOption): void => {
     onChange(selectOption.value);
   };
@@ -41,6 +42,7 @@ export const ProductsPerPage: FC<IProductsPerPage> = ({ onChange }) => {
       <p className={style.title}>Show by</p>
 
       <Select
+        controlledValue={controlledValue}
         options={productsPerPageOptions}
         menuItemsPosition="up"
         className={style.select}

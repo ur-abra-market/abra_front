@@ -20,7 +20,7 @@ export const SortBySetting = (): JSX.Element => {
       const { value } = selectOption;
 
       dispatch(setPage(1));
-      dispatch(setParams({ ...params, categoryId: value }));
+      dispatch(setParams({ ...params, categoryId: value, limit: 20 }));
     },
     [dispatch, params],
   );
