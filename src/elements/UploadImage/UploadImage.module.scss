@@ -39,7 +39,11 @@
   font-style: normal;
   line-height: 20px;
   color: var(--color-accent);
-  text-decoration-line: underline;
+
+  &:hover {
+    color: var(--color_accent_medium);
+    text-decoration: underline;
+  }
 }
 
 .placeholder {

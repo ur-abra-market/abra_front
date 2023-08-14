@@ -23,5 +23,8 @@
 
 .container .link_text {
   font-size: var(--fz-m);
-  text-decoration: underline;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
