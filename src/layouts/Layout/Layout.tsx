@@ -37,11 +37,12 @@ export const Layout: FC<ILayout> = ({
 
   return (
     <div className={styles.wrapper}>
-      {headerVariant === 'default' && isMobileView ? (
-        <MobileHeader className={styles.header} />
-      ) : (
-        <Header className={styles.header} />
-      )}
+      {headerVariant === 'default' &&
+        (isMobileView ? (
+          <MobileHeader className={styles.header} />
+        ) : (
+          <Header className={styles.header} />
+        ))}
 
       {headerVariant === 'supplier' && <SupplierHeader className={styles.header} />}
 
