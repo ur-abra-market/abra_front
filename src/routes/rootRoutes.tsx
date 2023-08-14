@@ -33,6 +33,7 @@ import {
   ChangePasswordPage,
   ConfirmEmailPage,
   ContactSupportPage,
+  ErrorServer,
   ErrorPage,
   FAQPage,
   ForgotPasswordPage,
@@ -63,7 +64,7 @@ export function createRoutes(userRole: UserRoleType): Routes {
       path: HOME,
       errorElement: (
         <main>
-          <ErrorPage />
+          <ErrorServer />
         </main>
       ),
       children: [
