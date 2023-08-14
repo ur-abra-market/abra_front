@@ -48,21 +48,6 @@ export const UploadImage: FC<IUploadImage> = ({
   const dispatch = useAppDispatch();
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
-  const handleFocus = (): void => {
-    setIsFocused(true);
-  };
-
-  const handleBlur = (): void => {
-    setIsFocused(false);
-  };
-
-  const uploadImageIcon =
-    type === 'product_image_supplier' ? (
-      <DefaultProductImageSupplierIcon />
-    ) : (
-      <DefaultLogoImageIcon />
-    );
-
   const inputClasses = cn({
     [style.input_logo]: type === 'logo',
     [style.input_avatar]: type === 'avatar',
@@ -83,6 +68,10 @@ export const UploadImage: FC<IUploadImage> = ({
     [style.default_cross]: type !== 'logo' && type !== 'avatar',
   });
 
+  const labelClasses = cn(style.label, {
+    [style.label_disabled]: isDisabled,
+  });
+
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>): void => {
     if (e.target?.files?.length) {
       const file = e.target.files[0];
@@ -100,9 +89,13 @@ export const UploadImage: FC<IUploadImage> = ({
       e.target.value = '';
     }
   };
-  const labelClasses = cn(style.label, {
-    [style.label_disabled]: isDisabled,
-  });
+
+  const uploadImageIcon =
+    type === 'product_image_supplier' ? (
+      <DefaultProductImageSupplierIcon />
+    ) : (
+      <DefaultLogoImageIcon />
+    );
 
   return (
     <div className={cn(style.wrapper, className)} {...restProps}>
@@ -112,9 +105,10 @@ export const UploadImage: FC<IUploadImage> = ({
         className={inputClasses}
         id="profileLogo"
         onChange={handleOnChange}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
+
       <div className={style.img_wrapper}>
         {image ? (
           <div>

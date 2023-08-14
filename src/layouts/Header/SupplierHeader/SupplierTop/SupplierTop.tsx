@@ -44,7 +44,7 @@ export const SupplierTop = (): JSX.Element => {
           </Link>
 
           <div className={style.btn_menu} ref={triggerRef}>
-            <div role="button" tabIndex={0} className={style.company_logo_wrapper}>
+            <div className={style.company_logo_wrapper}>
               {companyLogo ? (
                 <img
                   className={style.company_logo_img}
