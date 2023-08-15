@@ -3,6 +3,7 @@
   font-weight: var(--regular);
   line-height: 20px;
   text-align: left;
+  text-decoration: none;
 
   transition: all 0.3s;
 }
@@ -18,8 +19,13 @@
 .accent {
   color: var(--color-accent);
 
-  &:hover {
-    color: var(--color-black);
+  &:active {
+    color: var(--color_accent_dark);
+  }
+
+  &:hover, &:focus-visible {
+    color: var(--color_accent_medium);
+    text-decoration: underline;
   }
 }
 
