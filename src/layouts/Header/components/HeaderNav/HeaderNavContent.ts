@@ -11,6 +11,7 @@ import {
   PRICE,
   SELL,
   TUTORIALS,
+  PROFILE,
 } from 'routes';
 
 export const HEADER_NAV_CONTENT = {
@@ -23,6 +24,7 @@ export const HEADER_NAV_CONTENT = {
     { id: 6, label: 'About Us', path: ABOUT },
   ],
   supplier: [
+    { id: 1, label: 'Profile', path: PROFILE },
     { id: 1, label: 'Dashboard', path: DASHBOARD },
     { id: 2, label: 'Products List', path: PRODUCTS },
     { id: 3, label: 'Orders', path: ORDERS },

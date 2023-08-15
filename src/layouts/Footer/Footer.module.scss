@@ -61,23 +61,24 @@
 
   &:hover {
     color: var(--color-accent);
+    text-decoration: underline;
   }
 }
 
 .link_white {
   color: var(--color-accent);
-  text-decoration: underline;
 
   &:hover {
-    color: var(--color-black);
+    color: var(--color_accent_medium);
   }
 }
 
 .links a {
   &:focus-visible {
-    border-radius:4px;
+    border-radius: 4px;
     outline: 1px solid var(--color-white);
-  };
+  }
+;
 }
 
 .is_disabled_white,

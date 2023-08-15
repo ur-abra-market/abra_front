@@ -1,4 +1,5 @@
 export const {
+  PROFILE,
   DASHBOARD,
   PRODUCTS,
   ORDERS,
@@ -9,6 +10,7 @@ export const {
   ACCOUNT_SETUP_BUSINESS_INFO,
   ADD_PRODUCT,
 } = {
+  PROFILE: '/',
   DASHBOARD: '/dashboard',
   PRODUCTS: '/products',
   ORDERS: '/orders',

@@ -4,9 +4,9 @@ import styles from './ErrorPage.module.scss';
 
 export const ErrorPage = (): JSX.Element => {
   return (
-    <div id="error-page" className={styles.error_page}>
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
+    <div className={styles.error_page}>
+      <h2>Oops!</h2>
+      <h3>Sorry, an unexpected error has occurred.</h3>
     </div>
   );
 };

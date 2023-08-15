@@ -17,5 +17,9 @@
 
   color: var(--color-accent);
 
-  border: none
+  border: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
