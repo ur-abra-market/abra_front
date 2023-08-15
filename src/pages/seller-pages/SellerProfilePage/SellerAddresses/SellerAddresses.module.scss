@@ -21,9 +21,12 @@
   font-style: normal;
   line-height: 20px;
   color: var(--color-accent);
-  text-decoration-line: underline;
 
   background: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 
   &:focus-visible {
     border-radius: 4px;
@@ -44,6 +47,6 @@
 
 }
 
-.addresses_container>div {
+.addresses_container > div {
   width: 100%;
 }
