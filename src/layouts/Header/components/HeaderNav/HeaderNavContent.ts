@@ -25,11 +25,11 @@ export const HEADER_NAV_CONTENT = {
   ],
   supplier: [
     { id: 1, label: 'Profile', path: PROFILE },
-    { id: 1, label: 'Dashboard', path: DASHBOARD },
-    { id: 2, label: 'Products List', path: PRODUCTS },
-    { id: 3, label: 'Orders', path: ORDERS },
-    { id: 4, label: 'Price Management', path: PRICE },
-    { id: 5, label: 'Analytics', path: ANALYTICS },
-    { id: 6, label: 'Feedback and questions', path: FEEDBACK },
+    { id: 2, label: 'Dashboard', path: DASHBOARD },
+    { id: 3, label: 'Products List', path: PRODUCTS },
+    { id: 4, label: 'Orders', path: ORDERS },
+    { id: 5, label: 'Price Management', path: PRICE },
+    { id: 6, label: 'Analytics', path: ANALYTICS },
+    { id: 7, label: 'Feedback and questions', path: FEEDBACK },
   ],
 };
