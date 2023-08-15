@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { ErrorServer } from 'pages/general-pages';
+import { ErrorServerPage } from 'pages/general-pages';
 import { ACCOUNT_SETUP_BUSINESS_INFO, ACCOUNT_SETUP_PERSONAL_INFO } from 'routes';
 import { getCompanyNumberEmployees } from 'store/reducers/commonSlice';
 import {
@@ -36,7 +36,7 @@ export const SupplierMainPage = (): JSX.Element => {
   }, [dispatch]);
 
   if (isFetching) return <LoaderLinear />;
-  if (hasPersonalInfoError || hasCompanyInfoError) return <ErrorServer />;
+  if (hasPersonalInfoError || hasCompanyInfoError) return <ErrorServerPage />;
 
   if (!hasPersonalInfoResult) return <Navigate to={ACCOUNT_SETUP_PERSONAL_INFO} />;
   if (!hasCompanyInfoResult) return <Navigate to={ACCOUNT_SETUP_BUSINESS_INFO} />;

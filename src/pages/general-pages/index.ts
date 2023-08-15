@@ -5,7 +5,7 @@ export { CheckEmailPage } from './auth-pages/CheckEmailPage/CheckEmailPage';
 export { ConfirmEmailPage } from './auth-pages/ConfirmEmailPage/ConfirmEmailPage';
 export { ContactSupportPage } from './ContactSupportPage/ContactSupportPage';
 export { ErrorPage } from './errors/ErrorPage/ErrorPage';
-export { ErrorServer } from './errors/ErrorServer/ErrorServer';
+export { ErrorServerPage } from './errors/ErrorServerPage/ErrorServerPage';
 export { FAQPage } from './FAQPage/FAQPage';
 export { ForgotPasswordPage } from './auth-pages/ForgotPasswordPage/ForgotPasswordPage';
 export { LastNewsPage } from './LastNewsPage/LastNewsPage';

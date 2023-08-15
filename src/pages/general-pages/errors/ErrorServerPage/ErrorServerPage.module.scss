@@ -10,22 +10,31 @@
 
   min-height: 100vh;
   padding: 0;
-
-  background-color: var(--color-super-light-gray);
 }
 
-.header {
+.header_wrapper {
   display: flex;
   grid-area: header;
   align-items: center;
-  justify-content: space-between;
 
-  padding: 35px;
+  height: 96px;
 
   font-weight: var(--bold);
   color: var(--color-accent);
 
   background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-light-gray);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: var(--main-content-width);
+  margin: 0 auto;
+  padding: 0 32px;
 }
 
 .logo {
@@ -35,15 +44,6 @@
 .icon_home {
   width: 20px; 
   height: 20px;
-}
-
-.button_info {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-
-  margin-right: 32px;
-  margin-bottom: 80px;
 }
 
 .error_page {
