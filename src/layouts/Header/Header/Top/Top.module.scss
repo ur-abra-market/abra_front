@@ -1,6 +1,9 @@
 @import "src/common/styles/mixins";
 
 .wrapper {
+  display: flex;
+  align-items: center;
+  height: 96px;
   border-bottom: 1px solid var(--color-light-gray);
 }
 
@@ -13,7 +16,7 @@
   align-items: center;
 
   width: 100%;
-  padding: 26px 32px;
+  padding: 0 32px;
 
   background-color: var(--color-white);
 }

@@ -4,7 +4,8 @@ export { ChangePasswordPage } from './auth-pages/ChangePasswordPage/ChangePasswo
 export { CheckEmailPage } from './auth-pages/CheckEmailPage/CheckEmailPage';
 export { ConfirmEmailPage } from './auth-pages/ConfirmEmailPage/ConfirmEmailPage';
 export { ContactSupportPage } from './ContactSupportPage/ContactSupportPage';
-export { ErrorPage } from './ErrorPage/ErrorPage';
+export { ErrorPage } from './errors/ErrorPage/ErrorPage';
+export { ErrorServerPage } from './errors/ErrorServerPage/ErrorServerPage';
 export { FAQPage } from './FAQPage/FAQPage';
 export { ForgotPasswordPage } from './auth-pages/ForgotPasswordPage/ForgotPasswordPage';
 export { LastNewsPage } from './LastNewsPage/LastNewsPage';
