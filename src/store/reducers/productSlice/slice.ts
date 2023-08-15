@@ -65,7 +65,7 @@ const productSlice = createSlice({
       .addCase(getProductsCompilation.fulfilled, (state, action) => {
         state.productsCompilation = {
           ...state.productsCompilation,
-          [action.payload.category]: action.payload.data,
+          [action.payload.category]: action.payload.data.products,
         };
       });
   },
