@@ -24,4 +24,10 @@
 
 .active_item {
   color: var(--color-accent);
+
+  &:focus-visible {
+    border-radius: 4px;
+    outline: 1px solid var(--color-medium-gray);
+    transition: none;
+  }
 }

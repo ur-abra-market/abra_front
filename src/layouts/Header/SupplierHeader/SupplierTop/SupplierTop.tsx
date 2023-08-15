@@ -19,7 +19,7 @@ export const SupplierTop = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const companyLogo = useAppSelector(supplierCompanyLogoSelector);
   const [isShowPopupMenu, setShowPopupMenu] = useState(false);
-  const triggerRef = useOnClickOutside(setShowPopupMenu);
+  const triggerRef = useOnClickOutside(setShowPopupMenu, isShowPopupMenu);
 
   useEffect(() => {
     dispatch(getCompanyLogo());
