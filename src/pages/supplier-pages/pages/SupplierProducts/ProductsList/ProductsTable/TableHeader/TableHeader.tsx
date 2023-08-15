@@ -14,6 +14,7 @@ import {
 import {
   getMainCheckedStatus,
   getParamsSelector,
+  isLoadingSelector,
   setParams,
   SortType,
 } from 'store/reducers/supplier/product';
@@ -23,6 +24,7 @@ export const TableHeader: FC<ITableData> = ({ data }): JSX.Element => {
   const dispatch = useAppDispatch();
   const params = useAppSelector(getParamsSelector);
   const checked = useSelector(getMainCheckedStatus);
+  const isLoading = useAppSelector(isLoadingSelector);
 
   const setStatusForMainCheckBox = (checked: boolean): void => {
     selectAllCheckbox(data, checked, dispatch);
@@ -57,6 +59,7 @@ export const TableHeader: FC<ITableData> = ({ data }): JSX.Element => {
       <tr className={style.table_row}>
         <th className={style.table_head}>
           <Checkbox
+            disabled={isLoading}
             variant="default"
             checked={checked}
             onChange={e => setStatusForMainCheckBox(e.currentTarget.checked)}
@@ -67,6 +70,7 @@ export const TableHeader: FC<ITableData> = ({ data }): JSX.Element => {
             {column.name}
             {column.arrow && (
               <ButtonIcon
+                disabled={isLoading}
                 onClick={() => onChangeSortData(column.sortKey, column.sortValue)}
               >
                 <ArrowSort />

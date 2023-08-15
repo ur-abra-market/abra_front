@@ -20,6 +20,7 @@ export interface IProductsListRequest {
 }
 
 export interface ISupplierProductSliceInitialState {
+  isLoading: boolean;
   products: IProductsListRequest[];
   deactivationProductIds: IActivateStatus[];
   activationProductIds: IActivateStatus[];

@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ProductsPerPage } from 'elements';
 import {
   getParamsSelector,
+  isLoadingSelector,
   pageNumber,
   setPage,
   setParams,
@@ -16,6 +17,7 @@ export const PaginationSettings = (): JSX.Element => {
   const activePage = useAppSelector(pageNumber);
   const dispatch = useAppDispatch();
   const params = useAppSelector(getParamsSelector);
+  const isLoading = useAppSelector(isLoadingSelector);
 
   const handleSetActivePage = (pageNumber: number): void => {
     dispatch(setPage(pageNumber));
@@ -35,8 +37,13 @@ export const PaginationSettings = (): JSX.Element => {
 
   return (
     <div className={style.select_and_pagination_wrapper}>
-      <ProductsPerPage controlledValue={controlledValue} onChange={onChangeLimit} />
+      <ProductsPerPage
+        disabled={isLoading}
+        controlledValue={controlledValue}
+        onChange={onChangeLimit}
+      />
       <Pagination
+        disabled={isLoading}
         currentPage={activePage}
         totalPages={10}
         onPageChanged={handleSetActivePage}

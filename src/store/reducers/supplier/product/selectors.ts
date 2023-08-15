@@ -42,3 +42,6 @@ export const getParamsSelector = (state: RootStateType): IProductSortOptions =>
 
 export const hasChangedSelector = (state: RootStateType): boolean =>
   state.supplierProduct.hasChanged;
+
+export const isLoadingSelector = (state: RootStateType): boolean =>
+  state.supplierProduct.isLoading;

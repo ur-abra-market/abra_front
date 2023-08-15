@@ -6,12 +6,13 @@ import { useSelector } from 'react-redux';
 import style from './TableList.module.scss';
 
 import defaultImg from 'assets/images/files/default-product-image.png';
-import { useAppDispatch } from 'common/hooks';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { formatDate } from 'common/utils/formatDateProductsList';
 import { ITableData } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsTable/ProductsTable';
 import {
   getActivatedIds,
   getDeactivatedIds,
+  isLoadingSelector,
   setProductStatus,
 } from 'store/reducers/supplier/product';
 import { Checkbox } from 'ui-kit';
@@ -20,6 +21,7 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
   const deactivatedProductsIds = useSelector(getDeactivatedIds);
   const activatedProductsIds = useSelector(getActivatedIds);
   const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(isLoadingSelector);
 
   const deactivatedArray = deactivatedProductsIds?.map(product => product.id);
   const activatedArray = activatedProductsIds?.map(product => product.id);
@@ -52,6 +54,7 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
           <tr className={deactivatedClasses} key={el.id}>
             <td className={style.table_td}>
               <Checkbox
+                disabled={isLoading}
                 checked={checked}
                 variant="default"
                 onChange={event => onChangeChecked(event, el.id, el.is_active)}

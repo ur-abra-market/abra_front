@@ -8,9 +8,11 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import {
   getParamsSelector,
   hasChangedSelector,
+  isLoadingSelector,
   manageProducts,
   pageNumber,
 } from 'store/reducers/supplier/product';
+import { LoaderLinear } from 'ui-kit';
 
 export const ProductsList = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -18,6 +20,7 @@ export const ProductsList = (): JSX.Element => {
     useAppSelector(getParamsSelector);
   const page = useAppSelector(pageNumber);
   const hasChanged = useAppSelector(hasChangedSelector);
+  const isLoading = useAppSelector(isLoadingSelector);
 
   useEffect(() => {
     dispatch(
@@ -46,6 +49,7 @@ export const ProductsList = (): JSX.Element => {
 
   return (
     <div className={style.container}>
+      {isLoading && <LoaderLinear />}
       <ProductsListSettings />
       <ProductsTable />
     </div>

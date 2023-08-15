@@ -11,6 +11,7 @@ import { IActivateStatus } from 'pages/supplier-pages/pages/SupplierProducts/Pro
 
 const initialState: ISupplierProductSliceInitialState = {
   products: [],
+  isLoading: false,
   deactivationProductIds: [],
   activationProductIds: [],
   selectAllProducts: false,
@@ -73,12 +74,19 @@ const supplierProductSlice = createSlice({
   },
   extraReducers: builder => {
     builder
+      .addCase(manageProducts.pending, state => {
+        state.isLoading = true;
+      })
       .addCase(
         manageProducts.fulfilled,
         (state, action: PayloadAction<IProductsListRequest[]>) => {
           state.products = action.payload;
+          state.isLoading = false;
         },
       )
+      .addCase(manageProducts.rejected, state => {
+        state.isLoading = false;
+      })
       .addCase(activateProducts.fulfilled, state => {
         state.activationProductIds = [];
         state.deactivationProductIds = [];

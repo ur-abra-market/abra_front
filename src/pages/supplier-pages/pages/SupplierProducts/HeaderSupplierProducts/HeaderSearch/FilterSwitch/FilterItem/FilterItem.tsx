@@ -4,7 +4,11 @@ import style from './FilterItem.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { IHeaderSearch } from 'pages/supplier-pages/pages/SupplierProducts/HeaderSupplierProducts/HeaderSearch/HeaderSearch';
-import { getParamsSelector, setParams } from 'store/reducers/supplier/product';
+import {
+  getParamsSelector,
+  isLoadingSelector,
+  setParams,
+} from 'store/reducers/supplier/product';
 import { ButtonIcon } from 'ui-kit';
 
 interface ItemProps extends IHeaderSearch {
@@ -19,6 +23,7 @@ export const FilterItem: FC<ItemProps> = ({
   text,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
+  const isLoading = useAppSelector(isLoadingSelector);
   const params = useAppSelector(getParamsSelector);
   const handleRestFiltersSet = (): void => {
     setRestFilters(!restFilters);
@@ -46,7 +51,11 @@ export const FilterItem: FC<ItemProps> = ({
       </button>
       <Icon onClick={handleRestFiltersSet} className={styleIconClass} />
       {restFilters && (
-        <ButtonIcon onClick={onResetFiltersHandler} className={style.reset_link}>
+        <ButtonIcon
+          disabled={isLoading}
+          onClick={onResetFiltersHandler}
+          className={style.reset_link}
+        >
           Reset Filters
         </ButtonIcon>
       )}

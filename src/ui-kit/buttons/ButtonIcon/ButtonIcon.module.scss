@@ -10,4 +10,8 @@
   &:focus-visible {
     outline: 1px solid var(--color-medium-gray);
   }
+
+  &:disabled {
+    color: var(--color-gray);
+  }
 }

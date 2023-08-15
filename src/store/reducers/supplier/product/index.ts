@@ -8,6 +8,7 @@ export {
   manageProductsSelector,
   getParamsSelector,
   hasChangedSelector,
+  isLoadingSelector,
 } from './selectors';
 
 export { activateProducts, deActivateProducts, manageProducts } from './thunks';
