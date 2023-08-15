@@ -16,7 +16,7 @@ import { LoaderLinear } from 'ui-kit';
 
 export const ProductsList = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { offset, limit, onSale, sort, ascending, categoryId, isActive } =
+  const { offset, limit, onSale, sort, ascending, categoryIds, isActive } =
     useAppSelector(getParamsSelector);
   const page = useAppSelector(pageNumber);
   const hasChanged = useAppSelector(hasChangedSelector);
@@ -28,7 +28,7 @@ export const ProductsList = (): JSX.Element => {
         offset: (page - 1) * limit,
         limit,
         ascending,
-        category_id: categoryId,
+        category_ids: categoryIds,
         sort,
         on_sale: onSale,
         is_active: isActive,
@@ -41,7 +41,7 @@ export const ProductsList = (): JSX.Element => {
     onSale,
     sort,
     ascending,
-    categoryId,
+    categoryIds,
     isActive,
     page,
     hasChanged,

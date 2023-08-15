@@ -15,7 +15,7 @@ import { AppDispatchType } from 'store/createStore';
 import {
   activateProducts,
   deActivateProducts,
-  IProductsListRequest,
+  IProduct,
   selectAllProducts,
   setArrayForProductsActivation,
   setArrayForProductsDeactivation,
@@ -63,7 +63,7 @@ export const activateStatusProducts = (
 // --------------functions--------------
 
 export const selectAllCheckbox = (
-  data: IProductsListRequest[] | undefined,
+  data: IProduct[] | undefined,
   checked: boolean,
   dispatch: AppDispatchType,
 ): void => {
@@ -118,7 +118,7 @@ export const columns: IColumns[] = [
     sortKey: 'sort',
     sortValue: 'date',
   },
-  { id: 5, name: 'Status', arrow: true, sortKey: 'onSale' },
+  { id: 5, name: 'Status' },
   { id: 6, name: 'Price', arrow: true, sortKey: 'sort', sortValue: 'price' },
   { id: 7, name: 'Balance, units' },
   { id: 8, name: 'Visibility' },

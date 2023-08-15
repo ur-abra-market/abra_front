@@ -7,6 +7,7 @@ import { IHeaderSearch } from 'pages/supplier-pages/pages/SupplierProducts/Heade
 import {
   getParamsSelector,
   isLoadingSelector,
+  setPage,
   setParams,
 } from 'store/reducers/supplier/product';
 import { ButtonIcon } from 'ui-kit';
@@ -33,13 +34,15 @@ export const FilterItem: FC<ItemProps> = ({
     dispatch(
       setParams({
         ...params,
-        categoryId: 0,
-        ascending: true,
-        isActive: true,
-        onSale: true,
+        limit: 20,
+        categoryIds: [],
+        ascending: false,
         sort: 'date',
+        isActive: undefined,
+        onSale: undefined,
       }),
     );
+    dispatch(setPage(1));
   };
 
   const styleIconClass = restFilters ? style.vector_down : style.vector_up;

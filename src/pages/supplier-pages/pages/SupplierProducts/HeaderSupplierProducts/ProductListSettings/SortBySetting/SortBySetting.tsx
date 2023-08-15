@@ -10,32 +10,38 @@ import {
 } from 'store/reducers/supplier/product';
 import { ISelectOption, Select } from 'ui-kit';
 
+const CATEGORY_SELECT: ISelectOption[] = [
+  { label: { text: 'All' }, value: 0 },
+  { label: { text: 'Clothes' }, value: 3 },
+  { label: { text: 'Cosmetics' }, value: 4 },
+  { label: { text: 'Accessories' }, value: 5 },
+];
+
 export const SortBySetting = (): JSX.Element => {
   const params = useAppSelector(getParamsSelector);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
-  const CATEGORY_SELECT: ISelectOption[] = [
-    { label: { text: 'All' }, value: 0 },
-    { label: { text: 'Closes' }, value: 10 },
-    { label: { text: 'Cosmetics' }, value: 5 },
-    { label: { text: 'Accessories' }, value: 7 },
-  ];
 
   const onChangeCategory = useCallback(
     (selectOption: ISelectOption) => {
       const { value } = selectOption;
+      const categoryIds = !value ? [] : [value];
 
       dispatch(setPage(1));
-      dispatch(setParams({ ...params, categoryId: value, limit: 20 }));
+      dispatch(setParams({ ...params, categoryIds, limit: 20 }));
     },
     [dispatch, params],
   );
 
-  const controlledValue = CATEGORY_SELECT.find(el => el.value === params.categoryId);
+  const controlledValue = CATEGORY_SELECT.find(el => {
+    if (!params.categoryIds.length) return CATEGORY_SELECT[0];
+
+    return el.value === params.categoryIds[0];
+  });
 
   return (
     <div className={style.filter}>
-      <div className={style.filter_name}>Sort by:</div>
+      <div className={style.filter_name}>Choose categories</div>
       <Select
         disabled={isLoading}
         controlledValue={controlledValue}

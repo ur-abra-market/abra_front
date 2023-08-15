@@ -10,6 +10,7 @@ import {
   pageNumber,
   setPage,
   setParams,
+  totalCountSelector,
 } from 'store/reducers/supplier/product';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
 
@@ -18,6 +19,7 @@ export const PaginationSettings = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const params = useAppSelector(getParamsSelector);
   const isLoading = useAppSelector(isLoadingSelector);
+  const totalItems = useAppSelector(totalCountSelector);
 
   const handleSetActivePage = (pageNumber: number): void => {
     dispatch(setPage(pageNumber));
@@ -35,6 +37,8 @@ export const PaginationSettings = (): JSX.Element => {
     value: params.limit,
   };
 
+  const totalPage = Math.ceil(totalItems / params.limit);
+
   return (
     <div className={style.select_and_pagination_wrapper}>
       <ProductsPerPage
@@ -45,7 +49,7 @@ export const PaginationSettings = (): JSX.Element => {
       <Pagination
         disabled={isLoading}
         currentPage={activePage}
-        totalPages={10}
+        totalPages={totalPage}
         onPageChanged={handleSetActivePage}
       />
     </div>

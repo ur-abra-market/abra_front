@@ -1,7 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IProductsListRequest, IProductsSortRequest } from './types';
+import {
+  IProductPaginationParams,
+  IProductsListRequest,
+  IProductSortParams,
+  IProductsSortRequest,
+} from './types';
 
 import { productService } from 'services/product/product.service';
 
@@ -35,14 +40,34 @@ export const deActivateProducts = createAsyncThunk<boolean, number[]>(
 );
 
 export const manageProducts = createAsyncThunk<
-  IProductsListRequest[],
+  IProductsListRequest,
   IProductsSortRequest
 >(
   'product/manageProducts',
 
-  async (params: IProductsSortRequest, { rejectWithValue }) => {
+  async (
+    {
+      category_ids,
+      sort,
+      on_sale,
+      ascending,
+      is_active,
+      limit,
+      offset,
+    }: IProductsSortRequest,
+    { rejectWithValue },
+  ) => {
+    const params: IProductPaginationParams = { offset, limit };
+    const body: IProductSortParams = {
+      sort,
+      category_ids,
+      ascending,
+      is_active,
+      on_sale,
+    };
+
     try {
-      return await productService.getListManageProducts(params);
+      return await productService.getListManageProducts(body, params);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

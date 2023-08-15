@@ -56,7 +56,7 @@ export const Pagination: FC<IPagination> = ({
     }
 
     setVisibleButtons(updatedVisibleButtons);
-  }, [currentPage]);
+  }, [currentPage, totalPages]);
 
   const handlePrevPage = (): void => {
     onPageChanged(currentPage <= 1 ? currentPage : currentPage - 1);

@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { IProductsListRequest, IProductSortOptions } from './types';
+import { IProduct, IProductSortOptions } from './types';
 
 import { IActivateStatus } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsListSettings/types/products-types';
 import { RootStateType } from 'store/createStore';
@@ -19,7 +19,7 @@ export const getMainCheckedStatus = (state: RootStateType): boolean =>
 export const getDeactivatedIds = (state: RootStateType): IActivateStatus[] =>
   state.supplierProduct.deactivationProductIds;
 
-export const manageProductsSelector = (state: RootStateType): IProductsListRequest[] =>
+export const manageProductsSelector = (state: RootStateType): IProduct[] =>
   state.supplierProduct.products;
 
 export const getSortedData = createSelector([manageProductsSelector], data => {
@@ -45,3 +45,6 @@ export const hasChangedSelector = (state: RootStateType): boolean =>
 
 export const isLoadingSelector = (state: RootStateType): boolean =>
   state.supplierProduct.isLoading;
+
+export const totalCountSelector = (state: RootStateType): number =>
+  state.supplierProduct.totalCount;

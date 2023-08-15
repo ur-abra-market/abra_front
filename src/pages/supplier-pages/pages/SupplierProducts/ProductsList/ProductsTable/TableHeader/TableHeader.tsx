@@ -32,11 +32,9 @@ export const TableHeader: FC<ITableData> = ({ data }): JSX.Element => {
 
   const onChangeSortData = (sortKey?: string, sortValue?: SortType): void => {
     if (!sortKey) return;
-    const [[key, value]] = Object.entries(params).filter(([key]) => key === sortKey);
+    const [[key]] = Object.entries(params).filter(([key]) => key === sortKey);
 
-    if (!sortValue) {
-      dispatch(setParams({ ...params, [key]: !value }));
-    } else if (sortValue === params.sort) {
+    if (sortValue === params.sort) {
       dispatch(
         setParams({
           ...params,
@@ -48,7 +46,7 @@ export const TableHeader: FC<ITableData> = ({ data }): JSX.Element => {
         setParams({
           ...params,
           [key]: sortValue,
-          ascending: true,
+          ascending: false,
         }),
       );
     }

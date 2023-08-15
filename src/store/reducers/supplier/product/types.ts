@@ -9,7 +9,7 @@ interface IProductPriceInfo {
   value: number;
 }
 
-export interface IProductsListRequest {
+export interface IProduct {
   datetime: string;
   description: string;
   grade_average: number;
@@ -19,9 +19,15 @@ export interface IProductsListRequest {
   prices: IProductPriceInfo[];
 }
 
+export interface IProductsListRequest {
+  total_count: number;
+  products: IProduct[];
+}
+
 export interface ISupplierProductSliceInitialState {
+  totalCount: number;
   isLoading: boolean;
-  products: IProductsListRequest[];
+  products: IProduct[];
   deactivationProductIds: IActivateStatus[];
   activationProductIds: IActivateStatus[];
   selectAllProducts: boolean;
@@ -35,16 +41,31 @@ export type SortType = 'date' | 'price' | 'rating';
 export interface IProductSortOptions {
   offset: number;
   limit: number;
-  categoryId: number;
-  onSale: boolean;
-  isActive: boolean;
+  categoryIds: number[];
+  onSale?: boolean;
+  isActive?: boolean;
   sort: SortType;
   ascending: boolean;
 }
 
 export interface IProductsSortRequest
-  extends Omit<IProductSortOptions, 'categoryId' | 'onSale' | 'isActive'> {
-  category_id: number;
-  on_sale: boolean;
-  is_active: boolean;
+  extends Omit<IProductSortOptions, 'categoryIds' | 'onSale' | 'isActive'> {
+  category_ids: number[];
+  on_sale?: boolean;
+  is_active?: boolean;
+}
+
+export interface IProductPaginationParams {
+  offset: number;
+  limit: number;
+}
+
+export interface IProductSortParams
+  extends Omit<
+    IProductSortOptions,
+    'categoryIds' | 'onSale' | 'isActive' | 'offset' | 'limit'
+  > {
+  category_ids: number[];
+  on_sale?: boolean;
+  is_active?: boolean;
 }

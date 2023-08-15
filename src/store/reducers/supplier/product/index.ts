@@ -9,6 +9,7 @@ export {
   getParamsSelector,
   hasChangedSelector,
   isLoadingSelector,
+  totalCountSelector,
 } from './selectors';
 
 export { activateProducts, deActivateProducts, manageProducts } from './thunks';
@@ -19,6 +20,9 @@ export type {
   IProductSortOptions,
   SortType,
   IProductsSortRequest,
+  IProduct,
+  IProductPaginationParams,
+  IProductSortParams,
 } from './types';
 
 export {
