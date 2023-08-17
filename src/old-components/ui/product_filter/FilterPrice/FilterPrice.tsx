@@ -4,23 +4,22 @@ import style from './FilterPrice.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { priceFrom, priceTo } from 'store/reducers/filterSlice';
-import { productPaginateService } from 'store/reducers/productPaginateSlice';
 import { Checkbox } from 'ui-kit';
 
 const FilterPrice = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const filter = useAppSelector(state => state.filter);
-  const paginate = useAppSelector(state => state.paginate);
-  const data = { ...paginate, ...filter };
+  // const paginate = useAppSelector(state => state.paginate);
+  // const data = { ...paginate, ...filter };
 
   const handlerPriceFrom = (value: string): void => {
     dispatch(priceFrom(+value));
-    dispatch(productPaginateService(data));
+    // dispatch(productPaginateService(data));
   };
 
   const handlerPriceTo = (value: string): void => {
     dispatch(priceTo(+value));
-    dispatch(productPaginateService(data));
+    // dispatch(productPaginateService(data));
   };
 
   return (

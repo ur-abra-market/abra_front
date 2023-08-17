@@ -5,6 +5,7 @@ import {
   IProductCompilation,
   IProductPaginateList,
   IProductRequest,
+  IProductsCompilationResponse,
 } from './product.serviceTypes';
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
@@ -14,10 +15,9 @@ import { IProductsListRequest } from 'store/reducers/supplierProductSlice';
 
 export const productService = {
   getList: async (params: ICategoryRequest) => {
-    const { data } = await baseConfigService.get<IBaseResponse<IProductCompilation[]>>(
-      `products/compilation`,
-      { params },
-    );
+    const { data } = await baseConfigService.post<
+      IBaseResponse<IProductsCompilationResponse>
+    >(`products/compilation`, params);
 
     return data.result;
   },
