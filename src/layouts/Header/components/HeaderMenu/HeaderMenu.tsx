@@ -120,7 +120,7 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ isMenuOpen, setMenuOpen }) => {
       {isLogoutLoading && <LoaderLinear />}
       <ul id="header-popup" className={menuCLasses}>
         {menuContent.map((menuItem, index) => (
-          <li key={(menuItem as MenuItemBase).label} className={style.item}>
+          <li className={style.item} key={index}>
             {'component' in menuItem && menuItem.component ? (
               React.createElement(menuItem.component)
             ) : (

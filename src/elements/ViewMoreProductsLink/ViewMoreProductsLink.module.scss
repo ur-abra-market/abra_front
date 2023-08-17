@@ -1,0 +1,12 @@
+.wrapper .view_more_link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 220px;
+  height: 220px;
+
+  font-size: var(--fz-xl2);
+
+  transition: all 0.3s ease;
+}
