@@ -5,19 +5,23 @@ import {
   IProductCompilation,
   IProductPaginateList,
   IProductRequest,
+  IProductsCompilationResponse,
 } from './product.serviceTypes';
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
 import { IProductCard } from 'store/reducers/productSlice';
-import { IProductsListRequest } from 'store/reducers/supplierProductSlice';
+import { IProductsListRequest } from 'store/reducers/supplier/product';
+import {
+  IProductPaginationParams,
+  IProductSortParams,
+} from 'store/reducers/supplier/product/types';
 
 export const productService = {
   getList: async (params: ICategoryRequest) => {
-    const { data } = await baseConfigService.get<IBaseResponse<IProductCompilation[]>>(
-      `products/compilation`,
-      { params },
-    );
+    const { data } = await baseConfigService.post<
+      IBaseResponse<IProductsCompilationResponse>
+    >(`products/compilation`, params);
 
     return data.result;
   },
@@ -73,10 +77,10 @@ export const productService = {
     return data;
   },
 
-  deleteList: async (productsId: number[]) => {
+  deleteProducts: async (selectedProductIds: number[]) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
       `suppliers/deleteProducts`,
-      [...productsId],
+      [...selectedProductIds],
     );
 
     return data.result;
@@ -100,15 +104,14 @@ export const productService = {
     return data;
   },
 
-  getListManageProducts: async (offset: number, limit: number) => {
-    const { data } = await baseConfigService.get<IBaseResponse<IProductsListRequest[]>>(
+  getListSupplierProducts: async (
+    body: IProductSortParams,
+    params: IProductPaginationParams,
+  ) => {
+    const { data } = await baseConfigService.post<IBaseResponse<IProductsListRequest>>(
       `suppliers/products`,
-      {
-        params: {
-          offset,
-          limit,
-        },
-      },
+      body,
+      { params },
     );
 
     return data.result;

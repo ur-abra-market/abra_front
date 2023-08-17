@@ -19,7 +19,7 @@ export const SupplierTop = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const companyLogo = useAppSelector(supplierCompanyLogoSelector);
   const [isShowPopupMenu, setShowPopupMenu] = useState(false);
-  const triggerRef = useOnClickOutside(setShowPopupMenu);
+  const triggerRef = useOnClickOutside(setShowPopupMenu, isShowPopupMenu);
 
   useEffect(() => {
     dispatch(getCompanyLogo());
@@ -33,7 +33,7 @@ export const SupplierTop = (): JSX.Element => {
 
           <span className={style.vertical_line} />
 
-          <Link className={style.supplier_link} to={HOME}>
+          <Link className={style.supplier_link} to={HOME} tabIndex={-1}>
             SUPPLIER
           </Link>
         </div>

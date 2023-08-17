@@ -14,17 +14,16 @@ import {
 import { countriesSelector } from 'store/reducers/commonSlice';
 import { updateSellerAddresses, ISellerAddress } from 'store/reducers/seller/profile';
 
-interface ISellerEditAddressChangeForm {
+interface ISellerEditAddressForm {
   address: ISellerAddressData;
   closeModal?: (modal: boolean) => void;
 }
 
-export const SellerEditAddressChangeForm: FC<ISellerEditAddressChangeForm> = ({
+export const SellerEditAddressForm: FC<ISellerEditAddressForm> = ({
   address,
   closeModal,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
-
   const countries = useAppSelector(countriesSelector);
 
   const formMethods = useForm<ISellerAddress>({

@@ -81,6 +81,11 @@ interface IProductSupplier {
   uuid: string;
 }
 
+export interface IProductsCompilationResponse {
+  products: IProductCompilation[];
+  total_count: number;
+}
+
 export interface IProductCompilation {
   category: ICategory;
   datetime: string;

@@ -1,4 +1,10 @@
-import React, { ChangeEvent, DetailedHTMLProps, FC, HTMLAttributes } from 'react';
+import React, {
+  ChangeEvent,
+  DetailedHTMLProps,
+  FC,
+  HTMLAttributes,
+  useState,
+} from 'react';
 
 import cn from 'classnames';
 
@@ -40,13 +46,7 @@ export const UploadImage: FC<IUploadImage> = ({
   ...restProps
 }) => {
   const dispatch = useAppDispatch();
-
-  const uploadImageIcon =
-    type === 'product_image_supplier' ? (
-      <DefaultProductImageSupplierIcon />
-    ) : (
-      <DefaultLogoImageIcon />
-    );
+  const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const inputClasses = cn({
     [style.input_logo]: type === 'logo',
@@ -58,6 +58,7 @@ export const UploadImage: FC<IUploadImage> = ({
   const imgClasses = cn({
     [style.logo_img]: type === 'logo',
     [style.avatar_img]: type === 'avatar',
+    [style.focus_img]: (type === 'logo' || type === 'avatar') && isFocused,
     [style.default_img]: type !== 'logo' && type !== 'avatar',
   });
 
@@ -65,6 +66,10 @@ export const UploadImage: FC<IUploadImage> = ({
     [style.logo_cross]: type === 'logo',
     [style.avatar_cross]: type === 'avatar',
     [style.default_cross]: type !== 'logo' && type !== 'avatar',
+  });
+
+  const labelClasses = cn(style.label, {
+    [style.label_disabled]: isDisabled,
   });
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -84,9 +89,13 @@ export const UploadImage: FC<IUploadImage> = ({
       e.target.value = '';
     }
   };
-  const labelClasses = cn(style.label, {
-    [style.label_disabled]: isDisabled,
-  });
+
+  const uploadImageIcon =
+    type === 'product_image_supplier' ? (
+      <DefaultProductImageSupplierIcon />
+    ) : (
+      <DefaultLogoImageIcon />
+    );
 
   return (
     <div className={cn(style.wrapper, className)} {...restProps}>
@@ -96,7 +105,10 @@ export const UploadImage: FC<IUploadImage> = ({
         className={inputClasses}
         id="profileLogo"
         onChange={handleOnChange}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
+
       <div className={style.img_wrapper}>
         {image ? (
           <div>

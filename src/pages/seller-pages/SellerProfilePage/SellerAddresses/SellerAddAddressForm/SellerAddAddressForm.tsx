@@ -11,11 +11,11 @@ import { ISellerAddressRequest } from 'services/seller/seller.serviceTypes';
 import { countriesSelector } from 'store/reducers/commonSlice';
 import { createSellerAddresses, ISellerAddress } from 'store/reducers/seller/profile';
 
-interface ISellerAddAddressChangeForm {
+interface ISellerAddAddressForm {
   closeModal?: (modal: boolean) => void;
 }
 
-export const SellerAddAddressChangeForm: FC<ISellerAddAddressChangeForm> = ({
+export const SellerAddAddressForm: FC<ISellerAddAddressForm> = ({
   closeModal,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -34,7 +34,6 @@ export const SellerAddAddressChangeForm: FC<ISellerAddAddressChangeForm> = ({
   const onSubmit = async (data: ISellerAddress): Promise<void> => {
     if (!isValid) return;
     const { numberBody, countryCode } = parsePhoneNumber(data.phoneNumber);
-
     const phoneCountryId = countries.find(el => el.country_code === countryCode)?.id;
 
     const updateSellerAddressData: ISellerAddressRequest = {

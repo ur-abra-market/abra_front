@@ -1,28 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import cn from 'classnames';
 import { useSelector } from 'react-redux';
 
 import style from './ProductsListSettings.module.scss';
 import { SettingItem } from './SettingItem/SettingItem';
-import { ActiveListEnum } from './types/products-types';
 
 import { useAppDispatch } from 'common/hooks';
 import {
   actionData,
   activateStatusProducts,
   deactivateStatusProducts,
-  filtersData,
 } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/utils/productUtils';
-import { getActivatedIds, getDeactivatedIds } from 'store/reducers/supplierProductSlice';
+import { getActiveIds, getDeactivatedIds } from 'store/reducers/supplier/product';
 
 export const ProductsListSettings = (): JSX.Element => {
-  const [activeList, setActiveList] = useState<ActiveListEnum>(
-    ActiveListEnum.ALL_PRODUCTS,
-  );
   const dispatch = useAppDispatch();
   const deactivatedProductsIds = useSelector(getDeactivatedIds);
-  const activatedProductsIds = useSelector(getActivatedIds);
+  const activatedProductsIds = useSelector(getActiveIds);
 
   const deactivateProducts = (): void => {
     deactivateStatusProducts(dispatch, deactivatedProductsIds);
@@ -38,15 +32,6 @@ export const ProductsListSettings = (): JSX.Element => {
   // show either all buttons or only 'Add a new product' and 'Recently deleted'
   const renderedData = deactivatedProductsIds.length ? actionData : filteredData;
 
-  const onSetListByFilter = (list: ActiveListEnum): void => {
-    setActiveList(list);
-  };
-
-  const getActiveClasses = (activeList: string, currentList: string): string =>
-    cn(style.filter, {
-      [style.active]: activeList === currentList,
-    });
-
   const getFuncForId = (id: number): undefined | (() => void) => {
     if (id === 3) {
       return deactivateProducts;
@@ -60,17 +45,6 @@ export const ProductsListSettings = (): JSX.Element => {
 
   return (
     <div className={style.container}>
-      <div className={style.wrapper}>
-        {filtersData.map(({ id, label, list }) => (
-          <SettingItem
-            key={id}
-            text={label}
-            classname={getActiveClasses(activeList, list)}
-            onClick={() => onSetListByFilter(list)}
-          />
-        ))}
-      </div>
-
       <div className={`${style.wrapper} ${style.gap}`}>
         {renderedData.map(({ id, label, Icon }) => {
           const disabledBtn = id === 5 && !activatedProductsIds.length;

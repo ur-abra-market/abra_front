@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import Modal from 'elements/Modal';
 import { Address } from 'pages/seller-pages/SellerProfilePage/SellerAddresses/Address/Address';
 import { makeMainAddressFirst } from 'pages/seller-pages/SellerProfilePage/SellerAddresses/helpers/makeMainAddressFirst';
-import { SellerAddAddressChangeForm } from 'pages/seller-pages/SellerProfilePage/SellerAddresses/SellerAddAddressChangeForm/SellerAddAddressChangeForm';
+import { SellerAddAddressForm } from 'pages/seller-pages/SellerProfilePage/SellerAddresses/SellerAddAddressForm/SellerAddAddressForm';
 import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
 import { getSellerAddresses } from 'store/reducers/seller/profile/thunks';
 
@@ -37,7 +37,7 @@ export const CheckoutAddresses = (): JSX.Element => {
         </button>
       </div>
       <Modal showModal={isModalOpen} closeModal={setModalOpen}>
-        <SellerAddAddressChangeForm />
+        <SellerAddAddressForm />
       </Modal>
     </>
   );

@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import { Address } from './Address/Address';
-import { makeMainAddressFirst } from './helpers/makeMainAddressFirst';
-import { SellerAddAddressChangeForm } from './SellerAddAddressChangeForm/SellerAddAddressChangeForm';
 import style from './SellerAddresses.module.scss';
+
+import { Address, makeMainAddressFirst, SellerAddAddressForm } from '.';
 
 import { useAppSelector } from 'common/hooks';
 import Modal from 'elements/Modal';
@@ -13,10 +12,6 @@ import { sellerAddressesSelector } from 'store/reducers/seller/profile/selectors
 export const SellerAddresses = (): JSX.Element => {
   const addresses = useAppSelector(sellerAddressesSelector);
   const [isModalOpen, setModalOpen] = useState(false);
-
-  const onClickAddAddressModal = (): void => {
-    setModalOpen(true);
-  };
 
   const sortedAddresses: ISellerAddressData[] | undefined = makeMainAddressFirst(
     addresses!,
@@ -29,14 +24,16 @@ export const SellerAddresses = (): JSX.Element => {
         <button
           type="button"
           className={style.header_link}
-          onClick={onClickAddAddressModal}
+          onClick={() => setModalOpen(true)}
         >
           Add new
         </button>
+
         <Modal showModal={isModalOpen} closeModal={setModalOpen}>
-          <SellerAddAddressChangeForm closeModal={setModalOpen} />
+          <SellerAddAddressForm closeModal={setModalOpen} />
         </Modal>
       </div>
+
       <div className={style.my_addresses_wrapper}>
         {addresses?.length ? (
           <div className={style.addresses_container}>

@@ -83,6 +83,8 @@ $black-color: #000;
 .input_default {
   @include input(24px, 24px, 4px);
 
+  position: relative;
+
   &:checked {
     background: var(--color-accent);
   }
@@ -91,16 +93,22 @@ $black-color: #000;
     content: '';
 
     position: absolute;
-    top: 0;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-48deg);
 
     display: block;
 
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 8px;
 
-    background: url('../../assets/icons/files/check-mark-white.svg') no-repeat center;
+    border: 2px solid var(--color-white);
+    border-top: none;
+    border-right: none;
   }
 }
+
+
 
 .disabled {
   pointer-events: none;

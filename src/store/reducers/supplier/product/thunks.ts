@@ -1,21 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { pageNumber, pageSize } from './selectors';
-import { IProductsListRequest } from './types';
+import {
+  IProductPaginationParams,
+  IProductsListRequest,
+  IProductSortParams,
+  IProductsSortRequest,
+} from './types';
 
 import { productService } from 'services/product/product.service';
-import { RootStateType } from 'store/createStore';
 
 export const activateProducts = createAsyncThunk<boolean, number[]>(
   'product/activateProducts',
-  async (productsId: number[], { rejectWithValue, dispatch }) => {
+  async (productsId: number[], { rejectWithValue }) => {
     try {
-      const res = await productService.restoreList(productsId);
-
-      await dispatch(manageProducts());
-
-      return res;
+      return await productService.restoreList(productsId);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
@@ -27,13 +26,9 @@ export const activateProducts = createAsyncThunk<boolean, number[]>(
 );
 export const deActivateProducts = createAsyncThunk<boolean, number[]>(
   'product/deleteProducts',
-  async (productsId: number[], { rejectWithValue, dispatch }) => {
+  async (selectedProductIds: number[], { rejectWithValue }) => {
     try {
-      const res = await productService.deleteList(productsId);
-
-      await dispatch(manageProducts());
-
-      return res;
+      return await productService.deleteProducts(selectedProductIds);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
@@ -44,17 +39,35 @@ export const deActivateProducts = createAsyncThunk<boolean, number[]>(
   },
 );
 
-export const manageProducts = createAsyncThunk<IProductsListRequest[], void>(
+export const getSupplierProducts = createAsyncThunk<
+  IProductsListRequest,
+  IProductsSortRequest
+>(
   'product/manageProducts',
 
-  async (_, { rejectWithValue, getState }) => {
-    const page = pageNumber(getState() as RootStateType);
-    const sizeOfPages = pageSize(getState() as RootStateType);
-
-    const offset = (page - 1) * 20;
+  async (
+    {
+      category_ids,
+      sort,
+      on_sale,
+      ascending,
+      is_active,
+      limit,
+      offset,
+    }: IProductsSortRequest,
+    { rejectWithValue },
+  ) => {
+    const params: IProductPaginationParams = { offset, limit };
+    const body: IProductSortParams = {
+      sort,
+      category_ids,
+      ascending,
+      is_active,
+      on_sale,
+    };
 
     try {
-      return await productService.getListManageProducts(offset, sizeOfPages);
+      return await productService.getListSupplierProducts(body, params);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

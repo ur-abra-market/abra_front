@@ -3,13 +3,13 @@ import React from 'react';
 import style from './ProductRecommendations.module.scss';
 
 import { useAppSelector } from 'common/hooks';
-import { ProductsPreview, ProductCard } from 'modules';
+import { ViewMoreProductsLink } from 'elements';
+import { ProductCard, ProductsPreview } from 'modules';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import {
   popularProductsSelector,
   similarProductsSelector,
 } from 'store/reducers/productSlice';
-import { ViewMoreProducts } from 'ui-kit';
 
 export const ProductRecommendations = (): JSX.Element => {
   const popularProducts = useAppSelector(popularProductsSelector);
@@ -24,11 +24,12 @@ export const ProductRecommendations = (): JSX.Element => {
               {similarProducts.map((product: IProductCompilation) => (
                 <ProductCard key={product.uuid} product={product} />
               ))}
-              <ViewMoreProducts />
+              <ViewMoreProductsLink />
             </ProductsPreview>
           );
         })}
       </div>
+
       <div>
         {Object.keys(popularProducts).map(key => {
           return (
@@ -36,7 +37,7 @@ export const ProductRecommendations = (): JSX.Element => {
               {popularProducts.map((product: IProductCompilation) => (
                 <ProductCard key={product.uuid} product={product} />
               ))}
-              <ViewMoreProducts />
+              <ViewMoreProductsLink />
             </ProductsPreview>
           );
         })}
