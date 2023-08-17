@@ -60,6 +60,10 @@ export const SellerProfilePage = WithLayout((): JSX.Element => {
           <SellerPersonalInfoChangeForm />
         </div>
 
+        <div className={style.account_details}>
+          <AccountManagement />
+        </div>
+
         <div className={style.business_info}>
           <div className={style.section}>
             <Orders />
@@ -68,10 +72,6 @@ export const SellerProfilePage = WithLayout((): JSX.Element => {
           <div className={cn(style.section)}>
             <SellerAddresses />
           </div>
-        </div>
-
-        <div className={style.account_details}>
-          <AccountManagement />
         </div>
 
         <div className={cn(style.section, style.notifications)}>
