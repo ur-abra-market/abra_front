@@ -1,8 +1,5 @@
-import React from 'react';
-
 import {
   AddNewProduct,
-  ArrowSort,
   Copy,
   DeleteTrashCanIcon,
   EditPencilIcon,
@@ -18,16 +15,21 @@ import { AppDispatchType } from 'store/createStore';
 import {
   activateProducts,
   deActivateProducts,
-  IProductsListRequest,
-} from 'store/reducers/supplierProductSlice';
-import { supplierProductActions } from 'store/reducers/supplierProductSlice/supplierProductSlice';
+  IProduct,
+  selectAllProducts,
+  setArrayForProductsActivation,
+  setArrayForProductsDeactivation,
+  SortType,
+} from 'store/reducers/supplier/product';
 
 // --------------types---------------
 
 interface IColumns {
   id: number;
   name: string;
-  arrow?: React.ReactElement<React.SVGProps<SVGSVGElement>>;
+  arrow?: boolean;
+  sortKey?: 'ascending' | 'sort' | 'onSale';
+  sortValue?: SortType;
 }
 
 // ProductsListSettings:
@@ -61,15 +63,15 @@ export const activateStatusProducts = (
 // --------------functions--------------
 
 export const selectAllCheckbox = (
-  data: IProductsListRequest[] | undefined,
+  data: IProduct[] | undefined,
   checked: boolean,
   dispatch: AppDispatchType,
 ): void => {
-  dispatch(supplierProductActions.selectAllProducts(checked));
+  dispatch(selectAllProducts(checked));
 
   if (!checked) {
-    dispatch(supplierProductActions.setArrayForProductsDeactivation([]));
-    dispatch(supplierProductActions.setArrayForProductsActivation([]));
+    dispatch(setArrayForProductsDeactivation([]));
+    dispatch(setArrayForProductsActivation([]));
   }
 
   if (checked) {
@@ -83,24 +85,18 @@ export const selectAllCheckbox = (
     const arrayForActivateProducts = arrayForDeactivate?.filter(el => !el.status);
 
     if (arrayForDeactivateProducts) {
-      dispatch(
-        supplierProductActions.setArrayForProductsDeactivation(
-          arrayForDeactivateProducts,
-        ),
-      );
+      dispatch(setArrayForProductsDeactivation(arrayForDeactivateProducts));
     }
     if (arrayForActivateProducts) {
-      dispatch(
-        supplierProductActions.setArrayForProductsActivation(arrayForActivateProducts),
-      );
+      dispatch(setArrayForProductsActivation(arrayForActivateProducts));
     }
   }
 };
 
 export const filtersData: IFilterData[] = [
   { id: 1, label: 'All Products', list: ActiveListEnum.ALL_PRODUCTS },
-  { id: 2, label: 'On-sale', list: ActiveListEnum.ON_SALE },
-  { id: 3, label: 'Off-sale', list: ActiveListEnum.OFF_SALE },
+  // { id: 2, label: 'On-sale', list: ActiveListEnum.ON_SALE },
+  // { id: 3, label: 'Off-sale', list: ActiveListEnum.OFF_SALE },
 ];
 
 export const actionData: IActionData[] = [
@@ -112,12 +108,18 @@ export const actionData: IActionData[] = [
 ];
 
 export const columns: IColumns[] = [
-  { id: 1, name: 'SKU', arrow: <ArrowSort /> },
+  { id: 1, name: 'SKU' },
   { id: 2, name: 'Picture' },
   { id: 3, name: 'Name' },
-  { id: 4, name: 'Creation Date', arrow: <ArrowSort /> },
-  { id: 5, name: 'Status', arrow: <ArrowSort /> },
-  { id: 6, name: 'Price', arrow: <ArrowSort /> },
-  { id: 7, name: 'Balance, units', arrow: <ArrowSort /> },
+  {
+    id: 4,
+    name: 'Creation Date',
+    arrow: true,
+    sortKey: 'sort',
+    sortValue: 'date',
+  },
+  { id: 5, name: 'Status' },
+  { id: 6, name: 'Price', arrow: true, sortKey: 'sort', sortValue: 'price' },
+  { id: 7, name: 'Balance, units' },
   { id: 8, name: 'Visibility' },
 ];

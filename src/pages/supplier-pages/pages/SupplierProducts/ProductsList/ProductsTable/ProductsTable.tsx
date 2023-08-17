@@ -5,10 +5,10 @@ import { TableHeader } from './TableHeader/TableHeader';
 import { TableList } from './TableList/TableList';
 
 import { useAppSelector } from 'common/hooks';
-import { getSortedData, IProductsListRequest } from 'store/reducers/supplierProductSlice';
+import { getSortedData, IProduct } from 'store/reducers/supplier/product';
 
 export interface ITableData {
-  data: IProductsListRequest[] | undefined;
+  data: IProduct[] | undefined;
 }
 
 export const ProductsTable = (): JSX.Element => {
