@@ -26,7 +26,7 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
     [style.footer_white]: variant === 'white',
   });
 
-  const linksStyle = cn({
+  const linksClasses = cn({
     [style.links]: variant === 'default',
     [style.links_white]: variant === 'white',
   });
@@ -38,7 +38,7 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
       <div className={footerClasses}>
         <div className={style.container}>
           <div className={style.flex_box}>
-            <div className={linksStyle}>
+            <div className={linksClasses}>
               {variant === 'white' && <span>&#169; 2022 Abra.</span>}
               <NavLink
                 className={({ isActive }) =>
