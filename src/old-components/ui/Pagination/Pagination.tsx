@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import styles from './Pagination.module.scss';
 
 import { ArrowIcon } from 'assets/icons'; // 24px
-import { active } from 'store/reducers/paginateSlice';
 
 interface PaginationProps {
   activePage: number;
@@ -37,7 +36,7 @@ const Pagination: FC<PaginationProps> = ({ activePage, amountPages }) => {
   });
 
   const handlePage = (page: number): void => {
-    dispatch(active(page));
+    // dispatch(active(page));
   };
 
   return (

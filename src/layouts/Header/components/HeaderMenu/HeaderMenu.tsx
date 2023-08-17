@@ -1,4 +1,11 @@
-import React, { DetailedHTMLProps, FC, HTMLAttributes, useEffect } from 'react';
+import React, {
+  DetailedHTMLProps,
+  FC,
+  HTMLAttributes,
+  useEffect,
+  useState,
+  KeyboardEvent,
+} from 'react';
 
 import cn from 'classnames';
 import { NavLink, useMatch } from 'react-router-dom';
@@ -21,12 +28,36 @@ export interface IHeaderMenu
   setMenuOpen: () => void;
 }
 
+interface MenuItemBase {
+  label: string;
+  href: string;
+}
+
+interface MenuItemWithComponentType {
+  component: React.ComponentType;
+}
+
+type MenuItemUnionType = MenuItemBase | MenuItemWithComponentType;
+
 export const HeaderMenu: FC<IHeaderMenu> = ({ isMenuOpen, setMenuOpen }) => {
   const isLogoutLoading = useAppSelector(isLogoutLoadingSelector);
   const userRole = useAppSelector(userRoleSelector);
-  const menuContent =
+  const userMenu =
     userRole === 'supplier' ? HEADER_MENU_CONTENT.SUPPLIER : HEADER_MENU_CONTENT.SELLER;
   const location = useMatch(PERSONAL_ACCOUNT);
+  const [selectedItem, setSelectedItem] = useState(-1);
+
+  const handleMenuItemClick = (index: number): void => {
+    setSelectedItem(index);
+    setMenuOpen();
+  };
+
+  const menuContent: MenuItemUnionType[] = [
+    ...userMenu,
+    {
+      component: ButtonLogout,
+    },
+  ];
 
   const menuCLasses = cn(style.menu, {
     [style.menu_active]: isMenuOpen,
@@ -46,21 +77,63 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ isMenuOpen, setMenuOpen }) => {
     return () => document.removeEventListener('scroll', handleOnScroll);
   }, [setMenuOpen]);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      const select = document.getElementById('header-popup') as HTMLUListElement;
+      const selectOptions = Array.from(
+        select.querySelectorAll<HTMLAnchorElement | HTMLButtonElement>('a, button'),
+      );
+
+      if (selectOptions[selectedItem]) {
+        selectOptions[selectedItem].focus();
+        selectOptions[selectedItem].setAttribute('tabindex', '0');
+      }
+    }
+  }, [selectedItem, isMenuOpen]);
+
+  const handleKeyDown = (e: Event): void => {
+    const keyboardEvent = e as unknown as KeyboardEvent;
+
+    if (keyboardEvent.key === 'ArrowDown' || keyboardEvent.key === 'ArrowUp') {
+      keyboardEvent.preventDefault();
+      const increment = keyboardEvent.key === 'ArrowDown' ? 1 : -1;
+
+      setSelectedItem(
+        prev => (prev + increment + menuContent.length) % menuContent.length,
+      );
+    } else if (keyboardEvent.key === 'Escape') {
+      keyboardEvent.preventDefault();
+      setMenuOpen();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
     <>
       {isLogoutLoading && <LoaderLinear />}
-      <ul className={menuCLasses}>
-        {menuContent.map(({ href, label }) => (
-          <li key={label} className={style.item}>
-            <NavLink to={href} state={label} onClick={() => setMenuOpen()}>
-              {label}
-            </NavLink>
+      <ul id="header-popup" className={menuCLasses}>
+        {menuContent.map((menuItem, index) => (
+          <li key={(menuItem as MenuItemBase).label} className={style.item}>
+            {'component' in menuItem && menuItem.component ? (
+              React.createElement(menuItem.component)
+            ) : (
+              <NavLink
+                to={(menuItem as MenuItemBase).href}
+                state={(menuItem as MenuItemBase).label}
+                onClick={() => handleMenuItemClick(index)}
+              >
+                {(menuItem as MenuItemBase).label}
+              </NavLink>
+            )}
           </li>
         ))}
-
-        <li className={style.item}>
-          <ButtonLogout />
-        </li>
       </ul>
     </>
   );
