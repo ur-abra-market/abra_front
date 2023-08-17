@@ -63,7 +63,7 @@
   }
 }
 
-@function calcFluidFontSize($fMin, $fMax, $vMin, $vMax) {
+@function calc-fluid-font-size($fMin, $fMax, $vMin, $vMax) {
   $k: ($fMax - $fMin)/ ($vMax - $vMin);
   $b: $fMin - $k * $vMin;
 
@@ -71,12 +71,14 @@
 
   @return calc(#{$k} * 100vw + #{$b});
 }
+
 @mixin fluidFontSize($fMin, $fMax, $wMin: 425px, $wMax: 1440px) {
   font-size: $fMin;
 
   @media (min-width: $wMin) {
-    font-size: calcFluidFontSize($fMin, $fMax, $wMin, $wMax);
+    font-size: calc-fluid-font-size($fMin, $fMax, $wMin, $wMax);
   }
+
   @media (min-width: $wMax) {
     font-size: $fMax;
   }

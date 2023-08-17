@@ -35,18 +35,20 @@
   }
 
   .nav_wrapper {
-    grid-row: 1;
     grid-column: 1 / span 2;
+    grid-row: 1;
     padding: calc(max(8px, min(1.8%, 26px))) 0;
   }
+
   .nav_content {
-    border: none;
     justify-content: space-between;
+    border: none;
   }
 
   .button {
     justify-self: start;
   }
+
   .selected_wrapper {
     justify-self: end;
   }

@@ -1,13 +1,14 @@
 @import "src/common/styles/mixins";
 
 .categories {
+  scrollbar-width: none;
+
+  overflow: -moz-scrollbars-none;
+  overflow-y: scroll;
   display: grid;
   gap: 16px 0;
 
-  overflow-y: scroll;
   -ms-overflow-style: none;
-  scrollbar-width: none;
-  overflow: -moz-scrollbars-none;
 
   &::-webkit-scrollbar {
     width: 0;
@@ -23,20 +24,19 @@
 }
 
 .item {
-  justify-content: space-around;
-  text-align: center;
-  min-width: 160px;
-
   user-select: none;
+  justify-content: space-around;
+  min-width: 160px;
+  text-align: center;
 }
 
 .button {
-  cursor: pointer;
-
-  font-family: var(--roboto);
   // font-size: var(--fz-l2);
   @include fluidFontSize(17px, 20px);
 
+  cursor: pointer;
+
+  font-family: var(--roboto);
   font-weight: var(--semi-bold);
   color: var(--color-black);
 
