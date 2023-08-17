@@ -10,8 +10,8 @@ export const pageNumber = (state: RootStateType): number => state.supplierProduc
 export const pageSize = (state: RootStateType): number =>
   state.supplierProduct.params.limit;
 
-export const getActivatedIds = (state: RootStateType): IActivateStatus[] =>
-  state.supplierProduct.activationProductIds;
+export const getActiveIds = (state: RootStateType): IActivateStatus[] =>
+  state.supplierProduct.activeProductIds;
 
 export const getMainCheckedStatus = (state: RootStateType): boolean =>
   state.supplierProduct.selectAllProducts;
@@ -19,10 +19,10 @@ export const getMainCheckedStatus = (state: RootStateType): boolean =>
 export const getDeactivatedIds = (state: RootStateType): IActivateStatus[] =>
   state.supplierProduct.deactivationProductIds;
 
-export const manageProductsSelector = (state: RootStateType): IProduct[] =>
+export const supplierProductsSelector = (state: RootStateType): IProduct[] =>
   state.supplierProduct.products;
 
-export const getSortedData = createSelector([manageProductsSelector], data => {
+export const getSortedData = createSelector([supplierProductsSelector], data => {
   const copyOfData = [...data];
 
   return copyOfData.sort((a, b) => {

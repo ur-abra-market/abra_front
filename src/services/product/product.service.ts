@@ -77,10 +77,10 @@ export const productService = {
     return data;
   },
 
-  deleteList: async (productsId: number[]) => {
+  deleteProducts: async (selectedProductIds: number[]) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
       `suppliers/deleteProducts`,
-      [...productsId],
+      [...selectedProductIds],
     );
 
     return data.result;
@@ -104,7 +104,7 @@ export const productService = {
     return data;
   },
 
-  getListManageProducts: async (
+  getListSupplierProducts: async (
     body: IProductSortParams,
     params: IProductPaginationParams,
   ) => {

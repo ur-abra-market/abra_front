@@ -1,7 +1,10 @@
 import React, { FC } from 'react';
 
+import cn from 'classnames';
+
 import style from './FilterItem.module.scss';
 
+import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { IHeaderSearch } from 'pages/supplier-pages/pages/SupplierProducts/HeaderSupplierProducts/HeaderSearch/HeaderSearch';
 import {
@@ -14,18 +17,17 @@ import { ButtonIcon } from 'ui-kit';
 
 interface ItemProps extends IHeaderSearch {
   text: string;
-  Icon: React.VFC<React.SVGProps<SVGSVGElement>>;
 }
 
 export const FilterItem: FC<ItemProps> = ({
   setRestFilters,
   restFilters,
-  Icon,
   text,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
   const params = useAppSelector(getParamsSelector);
+
   const handleRestFiltersSet = (): void => {
     setRestFilters(!restFilters);
   };
@@ -45,14 +47,18 @@ export const FilterItem: FC<ItemProps> = ({
     dispatch(setPage(1));
   };
 
-  const styleIconClass = restFilters ? style.vector_down : style.vector_up;
+  const iconClasses = cn({
+    [style.vector_down]: restFilters,
+    [style.vector_up]: !restFilters,
+  });
 
   return (
     <>
       <button className={style.rest_filters} type="button" onClick={handleRestFiltersSet}>
         {text}
       </button>
-      <Icon onClick={handleRestFiltersSet} className={styleIconClass} />
+      <ArrowIcon onClick={handleRestFiltersSet} className={iconClasses} />
+
       {restFilters && (
         <ButtonIcon
           disabled={isLoading}

@@ -11,12 +11,12 @@ import {
   activateStatusProducts,
   deactivateStatusProducts,
 } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/utils/productUtils';
-import { getActivatedIds, getDeactivatedIds } from 'store/reducers/supplier/product';
+import { getActiveIds, getDeactivatedIds } from 'store/reducers/supplier/product';
 
 export const ProductsListSettings = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const deactivatedProductsIds = useSelector(getDeactivatedIds);
-  const activatedProductsIds = useSelector(getActivatedIds);
+  const activatedProductsIds = useSelector(getActiveIds);
 
   const deactivateProducts = (): void => {
     deactivateStatusProducts(dispatch, deactivatedProductsIds);

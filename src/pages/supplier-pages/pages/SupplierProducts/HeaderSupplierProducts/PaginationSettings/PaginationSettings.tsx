@@ -20,6 +20,7 @@ export const PaginationSettings = (): JSX.Element => {
   const params = useAppSelector(getParamsSelector);
   const isLoading = useAppSelector(isLoadingSelector);
   const totalItems = useAppSelector(totalCountSelector);
+  const totalPage = Math.ceil(totalItems / params.limit);
 
   const handleSetActivePage = (pageNumber: number): void => {
     dispatch(setPage(pageNumber));
@@ -36,8 +37,6 @@ export const PaginationSettings = (): JSX.Element => {
     label: { text: String(params.limit) },
     value: params.limit,
   };
-
-  const totalPage = Math.ceil(totalItems / params.limit);
 
   return (
     <div className={style.select_and_pagination_wrapper}>

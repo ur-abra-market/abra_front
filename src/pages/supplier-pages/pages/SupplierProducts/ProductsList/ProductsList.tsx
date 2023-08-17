@@ -9,7 +9,7 @@ import {
   getParamsSelector,
   hasChangedSelector,
   isLoadingSelector,
-  manageProducts,
+  getSupplierProducts,
   pageNumber,
 } from 'store/reducers/supplier/product';
 import { LoaderLinear } from 'ui-kit';
@@ -24,7 +24,7 @@ export const ProductsList = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(
-      manageProducts({
+      getSupplierProducts({
         offset: (page - 1) * limit,
         limit,
         ascending,

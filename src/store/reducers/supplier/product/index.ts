@@ -2,17 +2,17 @@ export {
   pageNumber,
   pageSize,
   getDeactivatedIds,
-  getActivatedIds,
+  getActiveIds,
   getMainCheckedStatus,
   getSortedData,
-  manageProductsSelector,
+  supplierProductsSelector,
   getParamsSelector,
   hasChangedSelector,
   isLoadingSelector,
   totalCountSelector,
 } from './selectors';
 
-export { activateProducts, deActivateProducts, manageProducts } from './thunks';
+export { activateProducts, deActivateProducts, getSupplierProducts } from './thunks';
 
 export type {
   IProductsListRequest,

@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { formatDate } from 'common/utils/formatDateProductsList';
 import { ITableData } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsTable/ProductsTable';
 import {
-  getActivatedIds,
+  getActiveIds,
   getDeactivatedIds,
   isLoadingSelector,
   setProductStatus,
@@ -19,7 +19,7 @@ import { Checkbox } from 'ui-kit';
 
 export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
   const deactivatedProductsIds = useSelector(getDeactivatedIds);
-  const activatedProductsIds = useSelector(getActivatedIds);
+  const activatedProductsIds = useSelector(getActiveIds);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
 

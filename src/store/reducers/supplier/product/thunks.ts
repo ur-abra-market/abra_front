@@ -26,9 +26,9 @@ export const activateProducts = createAsyncThunk<boolean, number[]>(
 );
 export const deActivateProducts = createAsyncThunk<boolean, number[]>(
   'product/deleteProducts',
-  async (productsId: number[], { rejectWithValue }) => {
+  async (selectedProductIds: number[], { rejectWithValue }) => {
     try {
-      return await productService.deleteList(productsId);
+      return await productService.deleteProducts(selectedProductIds);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
@@ -39,7 +39,7 @@ export const deActivateProducts = createAsyncThunk<boolean, number[]>(
   },
 );
 
-export const manageProducts = createAsyncThunk<
+export const getSupplierProducts = createAsyncThunk<
   IProductsListRequest,
   IProductsSortRequest
 >(
@@ -67,7 +67,7 @@ export const manageProducts = createAsyncThunk<
     };
 
     try {
-      return await productService.getListManageProducts(body, params);
+      return await productService.getListSupplierProducts(body, params);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

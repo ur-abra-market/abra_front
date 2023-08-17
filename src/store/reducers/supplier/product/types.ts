@@ -29,7 +29,7 @@ export interface ISupplierProductSliceInitialState {
   isLoading: boolean;
   products: IProduct[];
   deactivationProductIds: IActivateStatus[];
-  activationProductIds: IActivateStatus[];
+  activeProductIds: IActivateStatus[];
   selectAllProducts: boolean;
   hasChanged: boolean;
   page: number;
