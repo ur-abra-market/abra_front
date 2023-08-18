@@ -57,7 +57,9 @@ export const Header: FC<IHtmlHeaderProps> = ({
         <LocationAndCurrencySelection className={style.selected} />
       </div>
 
-      {categoriesIsOpen && <CategoriesMenu ref={categoriesRef} />}
+      {categoriesIsOpen && (
+        <CategoriesMenu ref={categoriesRef} onClose={setCategoriesIsOpen} />
+      )}
     </header>
   );
 };

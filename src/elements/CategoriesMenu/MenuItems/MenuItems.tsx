@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, KeyboardEvent, RefObject, useEffect, useRef } from 'react';
 
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
@@ -10,20 +10,45 @@ import { ICategoryResponse } from 'services/common/common.serviceTypes';
 
 export interface IMenuItems {
   items?: ICategoryResponse[];
+  focusedItem: string | '';
+  focusedItemParent: string | '';
+  indexActiveRow: number;
+  activeParentId: number;
 }
 
-export const MenuItems: FC<IMenuItems> = ({ items }): JSX.Element => {
+export const MenuItems: FC<IMenuItems> = ({
+  items,
+  focusedItem,
+  focusedItemParent,
+  indexActiveRow,
+  activeParentId,
+}): JSX.Element => {
   const mappedItems = items?.map(item => (
-    <li className={style.list_item} key={item.id}>
-      <NavLink className={style.link} to={`${PRODUCTS_LIST}/${item.id}`}>
+    <li key={item.id} className={style.list_item}>
+      <NavLink
+        className={`${style.link} ${
+          focusedItemParent === item.name && indexActiveRow < 0 && style.focus_item
+        }`}
+        to={`${PRODUCTS_LIST}/${item.id}`}
+      >
         {item.name}
       </NavLink>
 
-      {item.children?.map(i => (
-        <div className={style.items_links} key={i.id}>
-          {i.name}
-        </div>
-      ))}
+      {item.children?.map(i => {
+        const focusElement =
+          focusedItem === i.name &&
+          activeParentId === i.parent_id &&
+          indexActiveRow !== -1;
+
+        return (
+          <div
+            className={`${style.items_links} ${focusElement && style.focus_item}`}
+            key={i.id}
+          >
+            {i.name}
+          </div>
+        );
+      })}
     </li>
   ));
 
