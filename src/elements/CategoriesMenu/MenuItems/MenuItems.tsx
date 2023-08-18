@@ -23,34 +23,34 @@ export const MenuItems: FC<IMenuItems> = ({
   indexActiveRow,
   activeParentId,
 }): JSX.Element => {
-  const mappedItems = items?.map(item => (
-    <li key={item.id} className={style.list_item}>
-      <NavLink
-        className={`${style.link} ${
-          focusedItemParent === item.name && indexActiveRow < 0 && style.focus_item
-        }`}
-        to={`${PRODUCTS_LIST}/${item.id}`}
-      >
-        {item.name}
-      </NavLink>
+  const mappedItems = items?.map(item => {
+    const selectCategory = cn(style.link, {
+      [style.focus_item]: focusedItemParent === item.name && indexActiveRow < 0,
+    });
 
-      {item.children?.map(i => {
-        const focusElement =
-          focusedItem === i.name &&
-          activeParentId === i.parent_id &&
-          indexActiveRow !== -1;
+    return (
+      <li key={item.id} className={style.list_item}>
+        <NavLink className={selectCategory} to={`${PRODUCTS_LIST}/${item.id}`}>
+          {item.name}
+        </NavLink>
 
-        return (
-          <div
-            className={`${style.items_links} ${focusElement && style.focus_item}`}
-            key={i.id}
-          >
-            {i.name}
-          </div>
-        );
-      })}
-    </li>
-  ));
+        {item.children?.map(i => {
+          const selectChildren = cn(style.items_links, {
+            [style.focus_item]:
+              focusedItem === i.name &&
+              activeParentId === i.parent_id &&
+              indexActiveRow !== -1,
+          });
+
+          return (
+            <div className={selectChildren} key={i.id}>
+              {i.name}
+            </div>
+          );
+        })}
+      </li>
+    );
+  });
 
   return (
     <div className={style.items_wrapper}>
