@@ -1,4 +1,4 @@
-import React, { FC, KeyboardEvent, RefObject, useEffect, useRef } from 'react';
+import React, { FC } from 'react';
 
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
