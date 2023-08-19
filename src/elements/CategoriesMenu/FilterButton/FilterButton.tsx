@@ -4,8 +4,6 @@ import cn from 'classnames';
 
 import style from './FilterButton.module.scss';
 
-// import { Categories } from 'elements/CategoriesMenu/CategoriesMenu';
-
 interface IFilterButton {
   children: string;
   value: number;

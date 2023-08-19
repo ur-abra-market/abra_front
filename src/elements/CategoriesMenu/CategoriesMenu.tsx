@@ -21,6 +21,9 @@ import { PRODUCTS_LIST } from 'routes';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
 import { getAllCategories } from 'store/reducers/commonSlice';
 
+// todo need discus about this type
+// export type Categories = 'Clothes' | 'Accessories' | 'Cosmetics and Self Care';
+
 export interface CategoriesMenuProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   onClose: (isOpen: boolean) => void;
