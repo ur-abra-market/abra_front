@@ -1,5 +1,5 @@
-import { HeaderSupplierProducts } from './HeaderSupplierProducts/HeaderSupplierProducts';
-import { PaginationSettings } from './HeaderSupplierProducts/PaginationSettings/PaginationSettings';
+import { PaginationSettings } from './ProductHeader/PaginationSettings/PaginationSettings';
+import { ProductHeader } from './ProductHeader/ProductHeader';
 import { ProductsList } from './ProductsList/ProductsList';
 import style from './SupplierProducts.module.scss';
 
@@ -9,7 +9,7 @@ export const SupplierProducts = WithLayout((): JSX.Element => {
   return (
     <section className={style.wrapper}>
       <div className={style.content_container}>
-        <HeaderSupplierProducts />
+        <ProductHeader />
         <PaginationSettings />
         <ProductsList />
         <PaginationSettings />

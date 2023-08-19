@@ -1,8 +1,8 @@
-.rest_filters_wrapper {
+.filter_container {
   display: flex;
   gap: 15px;
-  align-items: flex-end;
-  margin-top: 30px;
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
 }
 
 .filter {
@@ -19,18 +19,19 @@
   color: var(--color-black);
 }
 
-.filter_input_date::placeholder {
-  font-size: var(--fz-s2);
-  font-style: normal;
-  color: var(--color-black);
-}
 
 .select {
   font-size: var(--fz-s);
-  background: var(--color-light-gray);
+  background: var(--color-white);
   border-radius: 12px;
 }
 
-.checkbox {
-  padding-bottom: 3px;
+.expanded {
+  max-height: 700px;
+  opacity: 1;
+}
+
+.collapsed {
+  max-height: 0;
+  opacity: 0;
 }
