@@ -9,8 +9,9 @@ import { ProductsPerPage, PageViewSwitcher } from 'elements';
 import { ViewType } from 'elements/PageViewSwitcher/PageViewSwitcher';
 import { ProductCardFull, ProductCard } from 'modules';
 import { ICategoryRequest } from 'services/product/product.serviceTypes';
-import { setShowBy } from 'store/reducers/productPaginateSlice';
 import {
+  showBySelector,
+  setShowBy,
   getProductsCompilation,
   productsCompilationSelector,
 } from 'store/reducers/productSlice';
@@ -20,7 +21,7 @@ import { Pagination } from 'ui-kit/Pagination/Pagination';
 export const ProductList = (): JSX.Element => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedView, setSelectedView] = useState<ViewType>('grid');
-  const showBy = useAppSelector(state => state.productPaginate.showBy);
+  const showBy = useAppSelector(showBySelector);
   const category_id: number = 10;
   const products = useAppSelector(productsCompilationSelector)[category_id];
   const dispatch = useAppDispatch();

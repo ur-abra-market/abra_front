@@ -15,7 +15,7 @@ import {
   size,
   sort,
 } from 'store/reducers/filterSlice';
-import { activeNum } from 'store/reducers/productPaginateSlice';
+// import { activeNum } from 'store/reducers/productPaginateSlice';
 
 const FilterSort = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -29,7 +29,7 @@ const FilterSort = (): JSX.Element => {
     dispatch(material([]));
     dispatch(size([]));
     dispatch(ascending(false));
-    dispatch(activeNum(1));
+    // dispatch(activeNum(1));
   };
 
   return (

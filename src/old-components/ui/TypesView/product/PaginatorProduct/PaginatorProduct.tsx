@@ -4,13 +4,13 @@ import style from './PaginatorProduct.module.scss';
 
 import { ArrowIcon } from 'assets/icons'; // 24px
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { activeNum } from 'store/reducers/productPaginateSlice';
+// import { activeNum } from 'store/reducers/productPaginateSlice';
 
 const PaginatorProduct = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
-  const activePage = useAppSelector(state => state.productPaginate.pageNum);
-  const amountPages = useAppSelector(state => state.productPaginate.amountPages);
+  const activePage = 1;
+  const amountPages = 10;
 
   const arrPages = amountPages > 2 ? Array(amountPages - 2).fill(2) : Array(1).fill(1);
   const pages = amountPages > 2 ? arrPages.map((_, i) => i + 2) : [];
@@ -34,7 +34,7 @@ const PaginatorProduct = (): JSX.Element => {
   });
 
   const handlePage = (page: number): void => {
-    dispatch(activeNum(page));
+    // dispatch(activeNum(page));
   };
 
   return (
@@ -70,7 +70,7 @@ const PaginatorProduct = (): JSX.Element => {
           <div
             role="presentation"
             className={cn(style.cursor, {
-              [style.active_page]: activePage === amountPages,
+              // [style.active_page]: activePage === amountPages,
             })}
             onClick={() => handlePage(amountPages)}
           >

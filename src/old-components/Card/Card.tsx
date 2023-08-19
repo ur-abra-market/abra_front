@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import style from './Card.module.scss';
 
 import ImgSlider from 'old-components/ImgSlider';
-import { active } from 'store/reducers/productPaginateSlice';
+// import { active } from 'store/reducers/productPaginateSlice';
 import { Stars } from 'ui-kit';
 
 interface CardProps {
@@ -44,7 +44,7 @@ const Card: FC<CardProps> = (props): JSX.Element => {
 
   const productClickHandler = (): void => {
     navigate('../product');
-    dispatch(active({ ...param, ...{ sum: 0 } }));
+    // dispatch(active({ ...param, ...{ sum: 0 } }));
   };
 
   return (

@@ -39,3 +39,5 @@ export const similarProductsSelector = (state: RootStateType): IProductCompilati
 export const productsCompilationSelector = (
   state: RootStateType,
 ): { [key: number]: IProductCompilation[] } => state.product.productsCompilation;
+
+export const showBySelector = (state: RootStateType): number => state.product.showBy;

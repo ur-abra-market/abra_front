@@ -1,3 +1,5 @@
+import { productActions } from './slice';
+
 export {
   favoriteProductSelector,
   productCategorySelector,
@@ -11,6 +13,7 @@ export {
   similarProductsSelector,
   popularProductsSelector,
   productsCompilationSelector,
+  showBySelector,
 } from './selectors';
 
 export {
@@ -21,7 +24,7 @@ export {
   getPopularProducts,
   getProductsCompilation,
 } from './thunks';
-export { productReducer } from './slice';
+export { productReducer, setShowBy } from './slice';
 export type {
   IProductCard,
   IProductSliceInitialState,

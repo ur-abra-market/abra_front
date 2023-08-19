@@ -12,7 +12,7 @@ import ProductPath from 'old-components/ui/product/ProductPath';
 import ProductPrice from 'old-components/ui/product/ProductPrice';
 import SupplierCard from 'old-components/ui/product/SupplierCard';
 import { changeById } from 'store/reducers/basketSlice';
-import { active } from 'store/reducers/productPaginateSlice';
+// import { active } from 'store/reducers/productPaginateSlice';
 import { Stars } from 'ui-kit';
 
 interface CardFullProps {
@@ -57,7 +57,7 @@ const CardFull: FC<CardFullProps> = ({ props }): JSX.Element => {
               type="button"
               onClick={() => {
                 navigate('../product');
-                dispatch(active(propsNew));
+                // dispatch(active(propsNew));
               }}
             >
               {propsNew.info.name}
