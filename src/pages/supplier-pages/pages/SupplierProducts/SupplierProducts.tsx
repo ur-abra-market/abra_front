@@ -1,4 +1,4 @@
-import { PaginationSettings } from './ProductHeader/PaginationSettings/PaginationSettings';
+import { PaginationSettings } from './PaginationSettings/PaginationSettings';
 import { ProductHeader } from './ProductHeader/ProductHeader';
 import { ProductsList } from './ProductsList/ProductsList';
 import style from './SupplierProducts.module.scss';
