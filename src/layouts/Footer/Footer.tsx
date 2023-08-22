@@ -31,48 +31,33 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
     [style.links_white]: variant === 'white',
   });
 
+  const navlinkClasses = cn(style.link, {
+    [style.link_white]: variant === 'white',
+  });
+
   return (
     <div className={cn(style.wrapper, className)}>
       {isShowTopNav && <Top />}
 
       <div className={footerClasses}>
         <div className={style.container}>
-          <div className={style.flex_box}>
-            <div className={linksClasses}>
-              {variant === 'white' && <span>&#169; 2022 Abra.</span>}
-              <NavLink
-                className={({ isActive }) =>
-                  cn({
-                    [style.is_disabled]: variant === 'default' && isActive,
-                    [style.is_disabled_white]: variant === 'white' && isActive,
-                    [style.link]: variant === 'default',
-                    [style.link_white]: variant === 'white',
-                  })
-                }
-                to={TERMS_AND_CONDITIONS}
-              >
-                Terms & conditions
-              </NavLink>
-              {variant === 'white' && <span>and&nbsp;</span>}
-              <NavLink
-                className={({ isActive }) =>
-                  cn({
-                    [style.is_disabled]: variant === 'default' && isActive,
-                    [style.is_disabled_white]: variant === 'white' && isActive,
-                    [style.link]: variant === 'default',
-                    [style.link_white]: variant === 'white',
-                  })
-                }
-                to={PRIVACY_POLICY}
-              >
-                Privacy policy
-              </NavLink>
-            </div>
+          <div className={style.links_container}>
             {variant === 'default' && (
               <div className={style.copyright}>
                 <span>&#169; Copyright 2023</span>
               </div>
             )}
+            <div className={linksClasses}>
+              {variant === 'white' && <span>&#169; 2022 Abra.</span>}
+
+              <NavLink className={navlinkClasses} to={TERMS_AND_CONDITIONS}>
+                Terms & conditions
+              </NavLink>
+              {variant === 'white' && <span>and&nbsp;</span>}
+              <NavLink className={navlinkClasses} to={PRIVACY_POLICY}>
+                Privacy policy
+              </NavLink>
+            </div>
           </div>
         </div>
       </div>
