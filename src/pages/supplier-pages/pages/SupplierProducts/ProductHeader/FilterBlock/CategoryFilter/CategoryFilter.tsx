@@ -25,7 +25,7 @@ export const CategoryFilter = (): JSX.Element => {
   const onChangeCategory = useCallback(
     (selectOption: ISelectOption) => {
       const { value } = selectOption;
-      const categoryIds = !value ? [] : [value];
+      const categoryIds = !value ? [] : [Number(value)];
 
       dispatch(setPage(1));
       dispatch(setParams({ ...params, categoryIds, limit: 20 }));

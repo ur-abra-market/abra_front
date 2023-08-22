@@ -5,7 +5,6 @@ import style from './ProductCardFull.module.scss';
 import { ArrowIcon } from 'assets/icons';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import ProductImage from 'elements/ProductImage/ProductImage';
-import ProductPrice from 'old-components/ui/product/ProductPrice';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { Stars } from 'ui-kit';
 
@@ -47,10 +46,6 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
         </div>
 
         <div>
-          <ProductPrice
-            price={String(prices[0].value)}
-            quantity={String(prices[0].min_quantity)}
-          />
           <div className={style.reviews_info}>
             <Stars reward={grade_average} />
             {/* TODO (fake data) */}
