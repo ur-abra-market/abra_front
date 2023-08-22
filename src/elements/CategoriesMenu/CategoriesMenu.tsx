@@ -33,17 +33,15 @@ const VALUE_OUTSIDE_LIST = -1;
 const STEP = 1;
 
 export const CategoriesMenu = forwardRef(
-  (props: CategoriesMenuProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+  ({ onClose }: CategoriesMenuProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-
-    const [indexActiveParentCategory, setIndexActiveParentCategory] = useState<number>(0);
+    const [indexActiveParentCategory, setIndexActiveParentCategory] = useState(0);
     const [indexActiveChildrenColumn, setIndexActiveChildrenColumn] =
-      useState<number>(VALUE_OUTSIDE_LIST);
+      useState(VALUE_OUTSIDE_LIST);
     const [indexActiveChildrenRow, setIndexActiveChildrenRow] =
-      useState<number>(VALUE_OUTSIDE_LIST);
-    const [isChildrenSelected, setIsChildrenSelected] = useState<boolean>(false);
-
+      useState(VALUE_OUTSIDE_LIST);
+    const [isChildrenSelected, setIsChildrenSelected] = useState(false);
     const menuRef = useRef<HTMLUListElement | null>(null);
     const categories = useAppSelector(state => state.common.categories);
     const wearerCategory = categories ? categories.filter(c => c.level === 1) : [];
@@ -107,7 +105,7 @@ export const CategoriesMenu = forwardRef(
       }
 
       if (code === 'Escape') {
-        props.onClose(false);
+        onClose(false);
       } else if (
         code === 'ArrowDown' &&
         indexActiveParentCategory < categoriesMenu.length - 1
@@ -120,6 +118,7 @@ export const CategoriesMenu = forwardRef(
         setIndexActiveChildrenColumn(prevState => prevState + STEP);
       }
     };
+
     const handleChildrenMenuKeyboard = (event: KeyboardEvent): void => {
       const { code } = event;
       const activeCategory = categoriesMenu[indexActiveParentCategory];
