@@ -13,7 +13,7 @@ export {
   similarProductsSelector,
   popularProductsSelector,
   productsCompilationSelector,
-  showBySelector,
+  productsPerPageSelector,
 } from './selectors';
 
 export {
@@ -24,7 +24,7 @@ export {
   getPopularProducts,
   getProductsCompilation,
 } from './thunks';
-export { productReducer, setShowBy } from './slice';
+export { productReducer, setProductsPerPage } from './slice';
 export type {
   IProductCard,
   IProductSliceInitialState,

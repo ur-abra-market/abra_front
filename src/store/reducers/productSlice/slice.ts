@@ -14,7 +14,7 @@ import { IProductCompilation } from 'services/product/product.serviceTypes';
 
 const initialState: IProductSliceInitialState = {
   isFavorite: false,
-  showBy: 20,
+  productsPerPage: 20,
   productCard: {
     grade_average: '',
     id: null,
@@ -40,8 +40,8 @@ const productSlice = createSlice({
   name: 'Product',
   initialState,
   reducers: {
-    setShowBy: (state, action: PayloadAction<number>) => {
-      state.showBy = action.payload;
+    setProductsPerPage: (state, action: PayloadAction<number>) => {
+      state.productsPerPage = action.payload;
     },
   },
   extraReducers: builder => {
@@ -78,4 +78,4 @@ const productSlice = createSlice({
 
 export const productReducer = productSlice.reducer;
 export const productActions = productSlice.actions;
-export const { setShowBy } = productActions;
+export const { setProductsPerPage } = productActions;

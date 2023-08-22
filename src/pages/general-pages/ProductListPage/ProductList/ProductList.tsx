@@ -10,8 +10,8 @@ import { ViewType } from 'elements/PageViewSwitcher/PageViewSwitcher';
 import { ProductCardFull, ProductCard } from 'modules';
 import { ICategoryRequest } from 'services/product/product.serviceTypes';
 import {
-  showBySelector,
-  setShowBy,
+  productsPerPageSelector,
+  setProductsPerPage,
   getProductsCompilation,
   productsCompilationSelector,
 } from 'store/reducers/productSlice';
@@ -21,24 +21,24 @@ import { Pagination } from 'ui-kit/Pagination/Pagination';
 export const ProductList = (): JSX.Element => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedView, setSelectedView] = useState<ViewType>('grid');
-  const showBy = useAppSelector(showBySelector);
+  const productsPerPage = useAppSelector(productsPerPageSelector);
   const category_id: number = 10;
   const products = useAppSelector(productsCompilationSelector)[category_id];
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     const param = {
-      offset: (currentPage - 1) * showBy,
-      limit: showBy,
+      offset: (currentPage - 1) * productsPerPage,
+      limit: productsPerPage,
       category_id,
       ascending: false,
     } as ICategoryRequest;
 
     dispatch(getProductsCompilation(param));
-  }, [dispatch, showBy, currentPage]);
+  }, [dispatch, productsPerPage, currentPage]);
 
   const handlerChangeSelect = (value: number): void => {
-    dispatch(setShowBy(value));
+    dispatch(setProductsPerPage(value));
   };
 
   const modsProductsContainer = {

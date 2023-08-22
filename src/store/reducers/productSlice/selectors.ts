@@ -40,4 +40,5 @@ export const productsCompilationSelector = (
   state: RootStateType,
 ): { [key: number]: IProductCompilation[] } => state.product.productsCompilation;
 
-export const showBySelector = (state: RootStateType): number => state.product.showBy;
+export const productsPerPageSelector = (state: RootStateType): number =>
+  state.product.productsPerPage;
