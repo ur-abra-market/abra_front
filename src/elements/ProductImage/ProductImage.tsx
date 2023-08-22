@@ -7,7 +7,6 @@ import { MagnifierLightGreyIcon } from 'assets/icons';
 import { useAppSelector } from 'common/hooks';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import style from 'elements/ProductImage/ProductImage.module.scss';
-import Flag from 'old-components/Flag';
 import { PRODUCT_DETAILS } from 'routes';
 import { userRoleSelector } from 'store/reducers/authSlice';
 
@@ -38,11 +37,10 @@ const ProductImage: FC<IProductCard> = ({
     <div
       role="link"
       tabIndex={0}
-      onKeyPress={handleLinkClick}
+      onKeyDown={handleLinkClick}
       className={cn(style.image_wrapper, className)}
       {...restProps}
     >
-      {userRole && <Flag className={style.flag} isFavorite={isFavorite} />}
       <LazyImage
         src={imageUrl || ''}
         alt={name}
