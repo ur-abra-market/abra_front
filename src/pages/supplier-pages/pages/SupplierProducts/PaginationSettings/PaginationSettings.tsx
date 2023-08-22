@@ -29,6 +29,7 @@ export const PaginationSettings = (): JSX.Element => {
   const onChangeLimit = useCallback(
     (limit: number): void => {
       dispatch(setParams({ ...params, limit }));
+      dispatch(setPage(1));
     },
     [dispatch, params],
   );
