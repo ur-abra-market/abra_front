@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './FilterItem.module.scss';
+import style from './FilterSwitcher.module.scss';
 
 import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { IHeaderSearch } from 'pages/supplier-pages/pages/SupplierProducts/HeaderSupplierProducts/HeaderSearch/HeaderSearch';
+import { IHeaderSearch } from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/Switchers/Switchers';
 import {
   getParamsSelector,
   isLoadingSelector,
@@ -15,18 +15,14 @@ import {
 } from 'store/reducers/supplier/product';
 import { ButtonIcon } from 'ui-kit';
 
-interface ItemProps extends IHeaderSearch {
-  text: string;
-}
-
-export const FilterItem: FC<ItemProps> = ({
-  setRestFilters,
+export const FilterSwitcher: FC<IHeaderSearch> = ({
   restFilters,
-  text,
+  setRestFilters,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
   const params = useAppSelector(getParamsSelector);
+  const text = restFilters ? 'Hide filters' : 'Show Filters';
 
   const handleRestFiltersSet = (): void => {
     setRestFilters(!restFilters);
@@ -53,10 +49,14 @@ export const FilterItem: FC<ItemProps> = ({
   });
 
   return (
-    <>
-      <button className={style.rest_filters} type="button" onClick={handleRestFiltersSet}>
+    <div className={style.wrapper}>
+      <ButtonIcon
+        className={style.rest_filters}
+        type="button"
+        onClick={handleRestFiltersSet}
+      >
         {text}
-      </button>
+      </ButtonIcon>
       <ArrowIcon onClick={handleRestFiltersSet} className={iconClasses} />
 
       {restFilters && (
@@ -68,6 +68,6 @@ export const FilterItem: FC<ItemProps> = ({
           Reset Filters
         </ButtonIcon>
       )}
-    </>
+    </div>
   );
 };

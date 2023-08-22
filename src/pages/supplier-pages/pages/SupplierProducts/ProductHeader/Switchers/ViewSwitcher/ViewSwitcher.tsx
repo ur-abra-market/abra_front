@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 import cn from 'classnames';
 
-import style from './ViewListFilter.module.scss';
+import style from './ViewSwitcher.module.scss';
 
 import { ViewGridDisabledIcon, ViewListDisabledIcon } from 'assets/icons';
 
-export const ViewListFilter = (): JSX.Element => {
+export const ViewSwitcher = (): JSX.Element => {
   const [layout, setLayout] = useState('tableLayout');
 
   const handleLayoutSet = (): void => {

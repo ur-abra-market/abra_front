@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import style from 'pages/supplier-pages/pages/SupplierProducts/HeaderSupplierProducts/ProductListSettings/ProductListSettings.module.scss';
+import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
 import {
   getParamsSelector,
   isLoadingSelector,
@@ -17,7 +17,7 @@ const CATEGORY_SELECT: ISelectOption[] = [
   { label: { text: 'Accessories' }, value: 5 },
 ];
 
-export const SortBySetting = (): JSX.Element => {
+export const CategoryFilter = (): JSX.Element => {
   const params = useAppSelector(getParamsSelector);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);

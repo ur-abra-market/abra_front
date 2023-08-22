@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import style from 'pages/supplier-pages/pages/SupplierProducts/HeaderSupplierProducts/ProductListSettings/ProductListSettings.module.scss';
+import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
 import {
   getParamsSelector,
   isLoadingSelector,
@@ -15,7 +15,7 @@ const SALE_SELECT: ISelectOption[] = [
   { label: { text: 'Off sale' }, value: 0 },
 ];
 
-export const SaleStatusSetting = (): JSX.Element => {
+export const SaleFilter = (): JSX.Element => {
   const params = useAppSelector(getParamsSelector);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
