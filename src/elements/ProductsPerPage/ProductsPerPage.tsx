@@ -39,7 +39,7 @@ export const ProductsPerPage: FC<IProductsPerPage> = ({
   disabled,
 }) => {
   const handlerChangeSelect = (selectOption: ISelectOption): void => {
-    onChange(selectOption.value);
+    onChange(Number(selectOption.value));
   };
 
   return (

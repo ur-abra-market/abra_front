@@ -7,7 +7,6 @@ import categoryReducer from './reducers/categorySlice';
 import { commonReducer } from './reducers/commonSlice/slice';
 import filterReducer from './reducers/filterSlice';
 import { popularProductsReducer } from './reducers/popularProducts';
-import productPaginateReducer from './reducers/productPaginateSlice';
 import { productReducer } from './reducers/productSlice';
 import { productOldReducer } from './reducers/productSliceOld';
 import { sellerProfileReducer } from './reducers/seller/profile/slice';
@@ -32,7 +31,6 @@ export const store = configureStore({
 
     productListOld: productOldReducer,
     targetProduct: targetProductReducer,
-    productPaginate: productPaginateReducer,
     basket: basketReducer,
     filter: filterReducer,
     category: categoryReducer,
