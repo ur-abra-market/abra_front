@@ -3,8 +3,6 @@ import React from 'react';
 import { RouteObject } from 'react-router-dom';
 
 import {
-  CART,
-  CHECKOUT,
   CHECKOUT_SUCCESS,
   FAVORITES,
   HELP,
@@ -15,8 +13,6 @@ import {
 } from '.';
 
 import {
-  CartPage,
-  CheckoutPage,
   OrderDetailsPage,
   OrderHistoryPage,
   SellerProfilePage,
@@ -38,14 +34,6 @@ export const sellerRoutes: RouteObject[] = [
   {
     path: PERSONAL_ACCOUNT,
     element: <SellerProfilePage />,
-  },
-  {
-    path: CART,
-    element: <CartPage />,
-  },
-  {
-    path: CHECKOUT,
-    element: <CheckoutPage />,
   },
   {
     path: CHECKOUT_SUCCESS,
