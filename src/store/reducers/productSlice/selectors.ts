@@ -1,6 +1,6 @@
 import { IImage } from './types';
 
-import { ICategory } from 'common/types';
+import { ICategory, LoadingStatusEnum } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { RootStateType } from 'store/createStore';
 
@@ -39,6 +39,9 @@ export const similarProductsSelector = (state: RootStateType): IProductCompilati
 export const productsCompilationSelector = (
   state: RootStateType,
 ): { [key: number]: IProductCompilation[] } => state.product.productsCompilation;
+
+export const loadingProductsSelector = (state: RootStateType): LoadingStatusEnum =>
+  state.product.loading;
 
 export const productsPerPageSelector = (state: RootStateType): number =>
   state.product.productsPerPage;

@@ -72,12 +72,11 @@ export const ProductsPreview: FC<IProductsPreview> = ({
             </Link>
           )}
         </div>
-
         <div className={style.buttons}>
           <ButtonIcon disabled={disableLeftArrow} onClick={handlePrev}>
             <ArrowIcon
               className={cn(style.icon_left, {
-                [style.disable_button]: swiperEl.current?.isBeginning,
+                [style.disable_button]: disableLeftArrow,
               })}
             />
           </ButtonIcon>

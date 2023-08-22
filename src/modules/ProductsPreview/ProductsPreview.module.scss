@@ -46,23 +46,42 @@
   width: 64px;
 }
 
+.buttons button {
+  cursor: default;
+}
+
 .icon_left {
+  cursor: pointer;
   transform: rotate(90deg);
   width: 24px;
   height: 24px;
+
+  &:hover {
+    fill: var(--color-accent);
+  }
 }
 
 .icon_right {
+  cursor: pointer;
   transform: rotate(270deg);
   width: 24px;
   height: 24px;
+
+  &:hover {
+    fill: var(--color-accent);
+  }
 }
 
 .disable_button {
   cursor: default;
+
+  &:hover {
+    fill: var(--color-gray);
+  }
 }
 
 .disable_button path {
+  pointer-events: none;
   fill: var(--color-gray);
 }
 
