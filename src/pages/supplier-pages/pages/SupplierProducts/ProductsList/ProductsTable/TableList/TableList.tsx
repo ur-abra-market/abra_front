@@ -13,7 +13,7 @@ import {
   isLoadingSelector,
   selectActiveProduct,
 } from 'store/reducers/supplier/product';
-import { Checkbox } from 'ui-kit';
+import { Checkbox, Stars } from 'ui-kit';
 
 export interface ITableData {
   data: IProduct[] | undefined;
@@ -27,6 +27,11 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
   const onChangeChecked = (e: ChangeEvent<HTMLInputElement>, id: number): void => {
     dispatch(selectActiveProduct(id));
   };
+
+  const tableCellClasses = cn({
+    [style.table_td]: true,
+    [style.center]: true,
+  });
 
   return (
     <tbody>
@@ -72,7 +77,10 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
                 <td className={style.table_td}>empty</td>
               </React.Fragment>
             ))}
-            <td className={style.table_td}>{el.is_active ? 'Visible' : 'Hidden'}</td>
+            <td className={style.table_td}>
+              <Stars sizes="14" reward={el.grade_average} />
+            </td>
+            <td className={tableCellClasses}>{el.is_active ? 'Visible' : 'Hidden'}</td>
           </tr>
         );
       })}

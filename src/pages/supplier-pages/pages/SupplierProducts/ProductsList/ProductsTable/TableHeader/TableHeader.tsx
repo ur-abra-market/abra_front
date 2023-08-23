@@ -6,7 +6,7 @@ import style from './TableHeader.module.scss';
 
 import { ArrowSort } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { tableSortData } from 'pages/supplier-pages/pages/SupplierProducts/#utils/tableData';
+import { tableSortData } from 'pages/supplier-pages/pages/SupplierProducts/utils/tableData';
 import {
   selectAllProductsSelector,
   getParamsSelector,

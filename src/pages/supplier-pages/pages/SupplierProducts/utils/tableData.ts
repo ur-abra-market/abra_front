@@ -36,5 +36,12 @@ export const tableSortData: IColumns[] = [
     sortKey: 'sort',
     sortValue: 'total_orders',
   },
-  { id: 8, name: 'Visibility' },
+  {
+    id: 8,
+    name: 'Rating',
+    arrow: true,
+    sortKey: 'sort',
+    sortValue: 'rating',
+  },
+  { id: 9, name: 'Visibility' },
 ];

@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { CATEGORY_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/#utils/filterOptions';
 import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
+import { CATEGORY_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/utils/filterOptions';
 import {
   getParamsSelector,
   isLoadingSelector,
