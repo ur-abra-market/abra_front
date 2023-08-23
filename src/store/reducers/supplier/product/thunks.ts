@@ -57,11 +57,9 @@ export const getSupplierProducts = createAsyncThunk<
     }: IProductsSortRequest,
     { rejectWithValue },
   ) => {
-    const params: IProductPaginationParams = { offset, limit };
+    const params: IProductPaginationParams = { offset, limit, sort, ascending };
     const body: IProductSortParams = {
-      sort,
       category_ids,
-      ascending,
       is_active,
       on_sale,
     };
