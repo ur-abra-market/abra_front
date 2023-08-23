@@ -39,6 +39,11 @@ export const LocationAndCurrencySelection: FC<ILocationAndCurrencySelection> = (
 }) => {
   const [isOpenOnMobile, setOpenOnMobile] = useState(false);
 
+  const containerClassName = cn(style.container, className, {
+    [style.mobile]: isMobileView,
+    [style.show]: isMobileView && isOpenOnMobile,
+  });
+
   const toggleOpenOnMobile = (): void => {
     setOpenOnMobile(prev => !prev);
   };
@@ -60,12 +65,7 @@ export const LocationAndCurrencySelection: FC<ILocationAndCurrencySelection> = (
           <ArrowIcon className={cn({ [style.arrow_up]: isOpenOnMobile })} width="14" />
         </div>
       )}
-      <div
-        className={cn(style.container, className, {
-          [style.mobile]: isMobileView,
-          [style.show]: isMobileView && isOpenOnMobile,
-        })}
-      >
+      <div className={containerClassName}>
         <Select
           dropOnUp={dropOnUp}
           options={CURRENCY_DATA}

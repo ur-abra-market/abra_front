@@ -4,25 +4,22 @@
 .center_container,
 .bottom_container {
   @include content_container;
+}
 
+.top_container,
+.center_container,
+.bottom_container {
   position: relative;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
 
-.top_container {
-  padding: 8px 16px;
-}
-
-.center_container {
-  position: static;
   padding: 12px 16px;
+}
+
+.center_wrapper {
   border-bottom: solid 1px var(--color-light-gray);
-}
-
-.bottom_container {
-  padding: 12px 16px;
 }
 
 .logo {

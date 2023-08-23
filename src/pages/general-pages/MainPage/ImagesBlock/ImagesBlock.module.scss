@@ -36,20 +36,20 @@
 .main_block_text:first-child {
   display: block;
   font-weight: var(--bold);
-  line-height: 1.17;
+  line-height: 117%;
 }
 
 .main_block_text:nth-child(2) {
   font-family: "SF Pro Display", sans-serif;
   font-size: 0.59em;
   font-weight: var(--semi-bold);
-  line-height: 1.26;
+  line-height: 126%;
 }
 
 .main_block_text:last-child {
   font-size: 0.19em;
   font-weight: var(--semi-bold);
-  line-height: 1.33;
+  line-height: 133%;
 }
 
 .image_box_grid {

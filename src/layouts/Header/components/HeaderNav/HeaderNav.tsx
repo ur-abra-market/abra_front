@@ -23,6 +23,11 @@ export const HeaderNav: FC<IHeaderNav> = ({
   const navItems = HEADER_NAV_CONTENT[userRole];
   const [isOpenOnMobile, setOpenOnMobile] = useState(false);
 
+  const ulClassName = cn(style.container, className, {
+    [style.mobile]: isMobileView,
+    [style.show]: isMobileView && isOpenOnMobile,
+  });
+
   const onBurgerClick = (): void => {
     setOpenOnMobile(prev => !prev);
   };
@@ -43,12 +48,7 @@ export const HeaderNav: FC<IHeaderNav> = ({
             <span />
           </button>
         )}
-        <ul
-          className={cn(style.container, className, {
-            [style.mobile]: isMobileView,
-            [style.show]: isMobileView && isOpenOnMobile,
-          })}
-        >
+        <ul className={ulClassName}>
           {navItems.map(el => (
             <li className={style.item} key={el.id}>
               <NavLink

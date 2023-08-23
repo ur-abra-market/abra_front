@@ -23,7 +23,10 @@ export interface CategoriesMenuProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 export const CategoriesMenu = forwardRef(
-  (props: CategoriesMenuProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+  (
+    { className }: CategoriesMenuProps,
+    ref: ForwardedRef<HTMLDivElement>,
+  ): JSX.Element => {
     const [activeCategories, setActiveCategories] = useState<Categories>('Clothes');
     const categories = useAppSelector(state => state.common.categories);
     const wearerCategory = categories ? categories.filter(c => c.level === 1) : [];
@@ -46,7 +49,7 @@ export const CategoriesMenu = forwardRef(
     }, [dispatch, categories]);
 
     return (
-      <div ref={ref} className={cn(style.menu_container, props.className)}>
+      <div ref={ref} className={cn(style.menu_container, className)}>
         <ul className={style.list}>
           <FilterButton
             key="12"

@@ -17,9 +17,11 @@ export const MobileHeader: FC<IHtmlProps> = ({ className }): JSX.Element => {
         <MainLogo className={style.logo} />
         <LocationAndCurrencySelection isMobileView />
       </div>
-      <div className={style.center_container}>
-        <HeaderNav userRole="seller" isMobileView />
-        <HeaderActions />
+      <div className={style.center_wrapper}>
+        <div className={style.center_container}>
+          <HeaderNav userRole="seller" isMobileView />
+          <HeaderActions />
+        </div>
       </div>
       <div className={style.bottom_container}>
         <HeaderCategories />
@@ -27,6 +29,7 @@ export const MobileHeader: FC<IHtmlProps> = ({ className }): JSX.Element => {
           type="button"
           className={style.button_search}
           onClick={() => {
+            // TODO - navigate to *SearchPage*
             console.log('---Here navigate to search page---');
           }}
         >

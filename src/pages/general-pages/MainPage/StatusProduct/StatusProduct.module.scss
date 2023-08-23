@@ -31,7 +31,6 @@
 }
 
 .button {
-  // font-size: var(--fz-l2);
   @include fluidFontSize(17px, 20px);
 
   cursor: pointer;
