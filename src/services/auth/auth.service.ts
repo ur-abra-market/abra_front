@@ -26,7 +26,7 @@ export const authService = {
 
   confirmEmail: async ({ token }: IConfirmEmailRequest) => {
     return baseConfigService.get<IBaseResponse<boolean>>(
-      `register/confirmEmail/?token=${token}`,
+      `register/confirmEmail?token=${token}`,
     );
   },
 
@@ -53,13 +53,13 @@ export const authService = {
 
   forgotPassword: (email: string) => {
     return baseConfigService.post<IBaseResponse<boolean>>(
-      `password/forgot/?email=${email}`,
+      `password/forgot?email=${email}`,
     );
   },
 
   checkToken: (token: string) => {
     return baseConfigService.get<IBaseResponse<boolean>>(
-      `password/checkToken/?token=${token}`,
+      `password/checkToken?token=${token}`,
     );
   },
 
@@ -67,7 +67,7 @@ export const authService = {
     const { token, ...restParams } = params;
 
     return baseConfigService.post<IBaseResponse<boolean>>(
-      `password/reset/?token=${token}`,
+      `password/reset?token=${token}`,
       restParams,
     );
   },

@@ -1,0 +1,115 @@
+.card_full {
+  display: flex;
+  gap: 36px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card_info {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+
+  height: 100%;
+}
+
+.name {
+  overflow: hidden;
+
+  margin-bottom: 8px;
+
+  font-size: var(--fz-l2);
+  font-weight: var(--bold);
+  line-height: 22px;
+  color: var(--color-black);
+  text-overflow: ellipsis;
+  letter-spacing: 0.16px;
+  white-space: nowrap;
+}
+
+.categories {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.category {
+  font-size: var(--fz-xs2);
+  color: var(--color-accent);
+  letter-spacing: 0.16px;
+}
+
+.reviews_info {
+  display: flex;
+  margin-top: 4px;
+}
+
+.reviews {
+  font-size: var(--fz-xs);
+  font-weight: var(--medium);
+  color: var(--color-medium-gray);
+  letter-spacing: 0.16px;
+}
+
+.orders_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.orders {
+  font-size: var(--fz-s2);
+  font-weight: (var(--medium));
+  color: var(--color-black);
+  letter-spacing: 0.38px;
+}
+
+.supplier_wrapper {
+  cursor: pointer;
+  display: flex;
+  column-gap: 12px;
+  align-items: center;
+}
+
+.supplier_logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.supplier_info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+}
+
+.suppler_name_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.supplier_name {
+  overflow: hidden;
+
+  width: 200px;
+
+  font-size: var(--fz-s2);
+  font-weight: var(--medium);
+  text-overflow: ellipsis;
+  letter-spacing: 0.16px;
+  white-space: nowrap;
+}
+
+.supplier_arrow {
+  transform: rotate(-90deg);
+}
+
+.suppler_details {
+  font-size: var(--fz-xs);
+  color: var(--color-medium-gray);
+  letter-spacing: 0.16px;
+}

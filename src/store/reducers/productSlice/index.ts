@@ -1,3 +1,5 @@
+import { productActions } from './slice';
+
 export {
   favoriteProductSelector,
   productCategorySelector,
@@ -11,6 +13,7 @@ export {
   similarProductsSelector,
   popularProductsSelector,
   productsCompilationSelector,
+  productsPerPageSelector,
 } from './selectors';
 
 export {
@@ -21,12 +24,11 @@ export {
   getPopularProducts,
   getProductsCompilation,
 } from './thunks';
-export { productReducer } from './slice';
+export { productReducer, setProductsPerPage } from './slice';
 export type {
   IProductCard,
   IProductSliceInitialState,
   IImage,
   IPrice,
-  ICategory,
   ISupplier,
 } from './types';

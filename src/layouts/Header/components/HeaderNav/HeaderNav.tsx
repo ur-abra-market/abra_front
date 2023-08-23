@@ -49,8 +49,8 @@ export const HeaderNav: FC<IHeaderNav> = ({
           </button>
         )}
         <ul className={ulClassName}>
-          {navItems.map(el => (
-            <li className={style.item} key={el.id}>
+          {navItems.map((el, index) => (
+            <li className={style.item} key={index}>
               <NavLink
                 to={el.path}
                 className={({ isActive }) =>

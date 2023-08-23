@@ -6,12 +6,13 @@ import { ImagesBlock, StatusProduct, SubscriptionAndContacts } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { ViewMoreProductsLink } from 'elements';
 import { ProductsPreview, ProductCard } from 'modules';
 import {
   getProductsCompilation,
   productsCompilationSelector,
 } from 'store/reducers/productSlice';
-import { ButtonInfo, LoaderLinear, ViewMoreProducts } from 'ui-kit';
+import { ButtonInfo, LoaderLinear } from 'ui-kit';
 
 export enum Categories {
   ALL = 8,
@@ -92,13 +93,13 @@ export const MainPage = WithLayout((): JSX.Element => {
                       {products[+key].map(product => (
                         <ProductCard key={product.uuid} product={product} />
                       ))}
-                      <ViewMoreProducts />
+                      <ViewMoreProductsLink />
                     </ProductsPreview>
                   );
                 })}
             </div>
             <div className={style.info_block}>
-              <ButtonInfo className={style.info_btn} />
+              <ButtonInfo className={style.info_button} />
             </div>
           </div>
           <SubscriptionAndContacts />

@@ -6,17 +6,14 @@ import basketReducer from './reducers/basketSlice';
 import categoryReducer from './reducers/categorySlice';
 import { commonReducer } from './reducers/commonSlice/slice';
 import filterReducer from './reducers/filterSlice';
-import manageProductsReducer from './reducers/manageProductsSlice';
-import paginateReducer from './reducers/paginateSlice';
 import { popularProductsReducer } from './reducers/popularProducts';
-import productPaginateReducer from './reducers/productPaginateSlice';
 import { productReducer } from './reducers/productSlice';
 import { productOldReducer } from './reducers/productSliceOld';
 import { sellerProfileReducer } from './reducers/seller/profile/slice';
 import { similarProductsReducer } from './reducers/similarProducts';
 import { supplierOtherReducer } from './reducers/supplier/other/slice';
+import { supplierProductReducer } from './reducers/supplier/product';
 import { supplierProfileReducer } from './reducers/supplier/profile/slice';
-import { supplierProductReducer } from './reducers/supplierProductSlice/supplierProductSlice';
 import { targetProductReducer } from './reducers/targetProductSlice';
 import { userReducer } from './reducers/userSlice/slice';
 
@@ -34,12 +31,9 @@ export const store = configureStore({
 
     productListOld: productOldReducer,
     targetProduct: targetProductReducer,
-    paginate: paginateReducer,
-    productPaginate: productPaginateReducer,
     basket: basketReducer,
     filter: filterReducer,
     category: categoryReducer,
-    manageProducts: manageProductsReducer,
     similarProducts: similarProductsReducer,
     popularProducts: popularProductsReducer,
   },

@@ -79,7 +79,7 @@ export const LazyImage: FC<ILazyImage> = ({
     <div className={cn(style.image_container, { [style.loaded]: loaded })}>
       {children}
       <img
-        className={cn(style.image, className)}
+        className={cn(className, style.image)}
         src={src}
         alt={alt}
         height={height}

@@ -3,20 +3,26 @@ import {
   IGradeProductResponse,
   IPopularProductRequest,
   IProductCompilation,
-  IProductPaginateList,
   IProductRequest,
+  IProductsCompilationResponse,
 } from './product.serviceTypes';
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
 import { IProductCard } from 'store/reducers/productSlice';
-import { IProductsListRequest } from 'store/reducers/supplierProductSlice';
+import { IProductsListRequest } from 'store/reducers/supplier/product';
+import {
+  IProductPaginationParams,
+  IProductSortParams,
+} from 'store/reducers/supplier/product/types';
 
 export const productService = {
-  getList: async ({ offset, limit, category_id, ascending }: ICategoryRequest) => {
-    const { data } = await baseConfigService.get<IBaseResponse<IProductCompilation[]>>(
-      `products/compilation/?offset=${offset}&limit=${limit}&category_id=${category_id}&ascending=${ascending}`,
-    );
+  getList: async ({ ascending, category_id, limit, offset }: ICategoryRequest) => {
+    const params = { offset, limit };
+
+    const { data } = await baseConfigService.post<
+      IBaseResponse<IProductsCompilationResponse>
+    >(`products/compilation`, { category_ids: [category_id], ascending }, { params });
 
     return data.result;
   },
@@ -72,10 +78,10 @@ export const productService = {
     return data;
   },
 
-  deleteList: async (productsId: number[]) => {
+  deleteProducts: async (selectedProductIds: number[]) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
       `suppliers/deleteProducts`,
-      [...productsId],
+      [...selectedProductIds],
     );
 
     return data.result;
@@ -99,41 +105,16 @@ export const productService = {
     return data;
   },
 
-  getListManageProducts: async (offset: number, limit: number) => {
-    const { data } = await baseConfigService.get<IBaseResponse<IProductsListRequest[]>>(
+  getListSupplierProducts: async (
+    body: IProductSortParams,
+    params: IProductPaginationParams,
+  ) => {
+    const { data } = await baseConfigService.post<IBaseResponse<IProductsListRequest>>(
       `suppliers/products`,
-      {
-        params: {
-          offset,
-          limit,
-        },
-      },
+      body,
+      { params },
     );
 
     return data.result;
-  },
-
-  getProductPaginateList: async (params: IProductPaginateList) => {
-    const body = {
-      sizes: params.sizes,
-      brands: params.brands,
-      materials: params.materials,
-    };
-    const queryParams = {
-      page_num: params.page_num,
-      page_size: params.page_size,
-      category: params.category !== '' ? params.category : '',
-      with_discount: params.discount,
-      sort_type: params.sort_type,
-      bottom_price: params.price_from > 0 ? params.price_to : '',
-      top_price: params.price_to > 0 ? params.price_to : '',
-      ascending: params.ascending,
-    };
-
-    const { data } = await baseConfigService.post('products/pagination', body, {
-      params: queryParams,
-    });
-
-    return data;
   },
 };

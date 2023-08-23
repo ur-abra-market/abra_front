@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  align-items: flex-end;
+}
+
+.title {
+  font-size: var(--fz-m);
+  font-weight: var(--semi-bold);
+}
+
+.select {
+  column-gap: 12px;
+
+  height: fit-content;
+  padding: 10px 10px 0;
+
+  font-size: var(--fz-m);
+  font-weight: var(--semi-bold);
+}

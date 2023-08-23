@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
-import Orders from './Orders/Orders';
-import { SellerAddresses } from './SellerAddresses/SellerAddresses';
-import { SellerNotifications } from './SellerNotifications/SellerNotifications';
+import { Orders } from './Orders/Orders';
 import { SellerPersonalInfoChangeForm } from './SellerPersonalInfoChangeForm/SellerPersonalInfoChangeForm';
 import style from './SellerProfilePage.module.scss';
+
+import { SellerAddresses, SellerNotifications } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
@@ -60,6 +60,10 @@ export const SellerProfilePage = WithLayout((): JSX.Element => {
           <SellerPersonalInfoChangeForm />
         </div>
 
+        <div className={style.account_details}>
+          <AccountManagement />
+        </div>
+
         <div className={style.business_info}>
           <div className={style.section}>
             <Orders />
@@ -68,10 +72,6 @@ export const SellerProfilePage = WithLayout((): JSX.Element => {
           <div className={cn(style.section)}>
             <SellerAddresses />
           </div>
-        </div>
-
-        <div className={style.account_details}>
-          <AccountManagement />
         </div>
 
         <div className={cn(style.section, style.notifications)}>

@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  padding-top: 48px;
+}
+
+.inner_wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.search {
+  width: 514px;
+  margin-right: 24px;
+  background-color: var(--color-white);
+  border-radius: 12px;
+}
+

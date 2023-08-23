@@ -33,7 +33,6 @@ import {
   ChangePasswordPage,
   ConfirmEmailPage,
   ContactSupportPage,
-  ErrorPage,
   FAQPage,
   ForgotPasswordPage,
   LastNewsPage,
@@ -47,6 +46,7 @@ import {
   LoginPage,
   RegisterPage,
   MainPage,
+  ErrorPage,
 } from 'pages/general-pages';
 
 type Routes = ReturnType<typeof createBrowserRouter>;
@@ -62,7 +62,7 @@ export function createRoutes(userRole: UserRoleType): Routes {
     {
       path: HOME,
       errorElement: (
-        <main style={{ padding: '1rem' }}>
+        <main>
           <ErrorPage />
         </main>
       ),

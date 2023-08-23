@@ -67,6 +67,10 @@
   height: 40px;
 
   border-radius: 50%;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-medium-gray);
+  }
 }
 
 .company_logo_img {

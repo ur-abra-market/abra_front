@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -22,7 +22,7 @@ export type SelectPositionType = 'up' | 'down';
 
 export interface ISelectOption {
   label: { text: string; image_src?: string };
-  value: any;
+  value: number | string;
 }
 
 export interface ISelect {
@@ -41,20 +41,23 @@ export interface ISelect {
 }
 
 export const Select = forwardRef(
-  ({
-    options,
-    controlledValue,
-    placeholder,
-    onChange,
-    error,
-    width,
-    className,
-    menuItemsPosition = 'down',
-    header = false,
-    defaultValue,
-    disabled,
-    dropOnUp = false,
-  }: ISelect) => {
+  (
+    {
+      options,
+      controlledValue,
+      placeholder,
+      onChange,
+      error,
+      width,
+      className,
+      menuItemsPosition = 'down',
+      header = false,
+      defaultValue,
+      disabled,
+      dropOnUp = false,
+    }: ISelect,
+    ref,
+  ) => {
     const placeholderObj = placeholder
       ? { label: { text: placeholder }, value: placeholder }
       : null;

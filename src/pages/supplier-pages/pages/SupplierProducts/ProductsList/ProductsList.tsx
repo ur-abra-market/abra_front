@@ -4,18 +4,52 @@ import style from './ProductsList.module.scss';
 import { ProductsListSettings } from './ProductsListSettings/ProductsListSettings';
 import { ProductsTable } from './ProductsTable/ProductsTable';
 
-import { useAppDispatch } from 'common/hooks';
-import { manageProducts } from 'store/reducers/supplierProductSlice';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import {
+  getParamsSelector,
+  hasChangedSelector,
+  isLoadingSelector,
+  getSupplierProducts,
+  pageNumber,
+} from 'store/reducers/supplier/product';
+import { LoaderLinear } from 'ui-kit';
 
 export const ProductsList = (): JSX.Element => {
   const dispatch = useAppDispatch();
+  const { offset, limit, onSale, sort, ascending, categoryIds, isActive } =
+    useAppSelector(getParamsSelector);
+  const page = useAppSelector(pageNumber);
+  const hasChanged = useAppSelector(hasChangedSelector);
+  const isLoading = useAppSelector(isLoadingSelector);
 
   useEffect(() => {
-    dispatch(manageProducts());
-  }, [dispatch]);
+    dispatch(
+      getSupplierProducts({
+        offset: (page - 1) * limit,
+        limit,
+        ascending,
+        category_ids: categoryIds,
+        sort,
+        on_sale: onSale,
+        is_active: isActive,
+      }),
+    );
+  }, [
+    dispatch,
+    offset,
+    limit,
+    onSale,
+    sort,
+    ascending,
+    categoryIds,
+    isActive,
+    page,
+    hasChanged,
+  ]);
 
   return (
     <div className={style.container}>
+      {isLoading && <LoaderLinear />}
       <ProductsListSettings />
       <ProductsTable />
     </div>

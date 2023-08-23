@@ -2,7 +2,6 @@ export { SupplierMainPage } from './pages/SupplierMainPage/SupplierMainPage';
 export { AccountSetupPersonalInfoPage } from './pages/account-setup-pages/AccountSetupPersonalInfoPage/AccountSetupPersonalInfoPage';
 export { AccountSetupBusinessInfoPage } from './pages/account-setup-pages/AccountSetupBusinessInfoPage/AccountSetupBusinessInfoPage';
 export { SupplierProfilePage } from './pages/SupplierProfilePage/SupplierProfilePage';
-export { ProductListRegistrationPage } from './pages/ProductListRegistrationPage/ProductListRegistrationPage';
 export { DashboardPage } from './pages/DashboardPage/DashboardPage';
 export { FeedbackAndQuestionsPage } from './pages/FeedbackAndQuestionsPage/FeedbackAndQuestionsPage';
 export { OrdersPage } from './pages/OrdersPage/OrdersPage';

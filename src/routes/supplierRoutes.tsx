@@ -5,7 +5,6 @@ import { RouteObject } from 'react-router-dom';
 import {
   ACCOUNT_SETUP_BUSINESS_INFO,
   ACCOUNT_SETUP_PERSONAL_INFO,
-  ADD_PRODUCT,
   ANALYTICS,
   DASHBOARD,
   FEEDBACK,
@@ -23,7 +22,6 @@ import {
   FeedbackAndQuestionsPage,
   OrdersPage,
   PriceManagementPage,
-  ProductListRegistrationPage,
   SupplierMainPage,
   SupplierProfilePage,
 } from 'pages/supplier-pages';
@@ -72,9 +70,5 @@ export const supplierRoutes: RouteObject[] = [
   {
     path: ACCOUNT_SETUP_BUSINESS_INFO,
     element: <AccountSetupBusinessInfoPage />,
-  },
-  {
-    path: ADD_PRODUCT,
-    element: <ProductListRegistrationPage />,
   },
 ];

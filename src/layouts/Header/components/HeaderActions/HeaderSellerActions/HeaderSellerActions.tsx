@@ -25,7 +25,7 @@ export const HeaderSellerActions: FC<IHeaderSellerActions> = ({
     setMenuOpen(value);
   };
 
-  const triggerRef = useOnClickOutside(handleMenuOpen);
+  const triggerRef = useOnClickOutside(handleMenuOpen, isMenuOpen);
 
   return (
     <>
