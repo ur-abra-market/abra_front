@@ -1,4 +1,4 @@
-import React, { FC, JSX, MouseEvent, useState } from 'react';
+import React, { FC, JSX, MouseEvent, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
@@ -28,13 +28,9 @@ export const HeaderNav: FC<IHeaderNav> = ({
     [style.show]: isMobileView && isOpenOnMobile,
   });
 
-  const onBurgerClick = (): void => {
-    setOpenOnMobile(prev => !prev);
-  };
-
-  const onOutSideClick = (): void => {
-    setOpenOnMobile(false);
-  };
+  useEffect(() => {
+    document.body.style.overflow = isOpenOnMobile ? 'hidden' : '';
+  }, [isOpenOnMobile]);
 
   return (
     <>
@@ -42,7 +38,7 @@ export const HeaderNav: FC<IHeaderNav> = ({
         {isMobileView && (
           <button
             type="button"
-            onClick={onBurgerClick}
+            onClick={() => setOpenOnMobile(prev => !prev)}
             className={cn(style.burger, { [style.close_btn]: isOpenOnMobile })}
           >
             <span />
@@ -65,7 +61,7 @@ export const HeaderNav: FC<IHeaderNav> = ({
       </div>
       {isMobileView && (
         <div
-          onClickCapture={onOutSideClick}
+          onClickCapture={() => setOpenOnMobile(false)}
           className={cn(style.mobile_background, { [style.show]: isOpenOnMobile })}
         />
       )}
