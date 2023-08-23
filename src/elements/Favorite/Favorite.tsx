@@ -1,33 +1,37 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
+
+import cn from 'classnames';
 
 import style from './Favorite.module.scss';
 
-import { FavouriteAddedIcon, FavouriteAddedToIcon } from 'assets/icons';
-import { useAppDispatch } from 'common/hooks';
-import { addFavoriteProduct, removeFavoriteProduct } from 'store/reducers/productSlice';
+import { FavoriteAddedToIcon } from 'assets/icons';
 import { ButtonIcon } from 'ui-kit';
 
 interface IFavoriteProps {
   isFavorite: boolean;
-  product_id: number;
+  onChange: (isFavorite: boolean) => void;
+  className?: string;
+  variant?: 'productCard' | 'product';
 }
 
 export const Favorite: FC<IFavoriteProps> = ({
-  isFavorite = false,
-  product_id,
+  isFavorite,
+  onChange,
+  className,
+  variant = 'productCard',
 }): JSX.Element => {
-  const dispatch = useAppDispatch();
   const onClickHandler = (): void => {
-    if (isFavorite) {
-      dispatch(removeFavoriteProduct({ product_id }));
-    } else {
-      dispatch(addFavoriteProduct({ product_id }));
-    }
+    onChange(!isFavorite);
   };
 
+  const modsButton = cn(style.favorite_button, className, {
+    [style.product_button]: variant === 'product',
+    [style.product_card_button]: variant === 'productCard',
+  });
+
   return (
-    <ButtonIcon className={style.favorite_container} onClick={onClickHandler}>
-      {isFavorite ? <FavouriteAddedIcon /> : <FavouriteAddedToIcon />}
+    <ButtonIcon className={modsButton} onClick={onClickHandler}>
+      <FavoriteAddedToIcon className={isFavorite ? style.active : ''} />
     </ButtonIcon>
   );
 };
