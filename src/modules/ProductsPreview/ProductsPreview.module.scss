@@ -59,6 +59,10 @@
   &:hover {
     fill: var(--color-accent);
   }
+
+  &:active {
+    fill: var(--color_accent_medium);
+  }
 }
 
 .icon_right {
@@ -69,6 +73,10 @@
 
   &:hover {
     fill: var(--color-accent);
+  }
+
+  &:active {
+    fill: var(--color_accent_medium);
   }
 }
 
