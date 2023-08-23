@@ -3,7 +3,6 @@ import {
   IGradeProductResponse,
   IPopularProductRequest,
   IProductCompilation,
-  IProductPaginateList,
   IProductRequest,
   IProductsCompilationResponse,
 } from './product.serviceTypes';
@@ -18,10 +17,12 @@ import {
 } from 'store/reducers/supplier/product/types';
 
 export const productService = {
-  getList: async (params: ICategoryRequest) => {
+  getList: async ({ ascending, category_id, limit, offset }: ICategoryRequest) => {
+    const params = { offset, limit };
+
     const { data } = await baseConfigService.post<
       IBaseResponse<IProductsCompilationResponse>
-    >(`products/compilation`, params);
+    >(`products/compilation`, { category_ids: [category_id], ascending }, { params });
 
     return data.result;
   },
@@ -115,44 +116,5 @@ export const productService = {
     );
 
     return data.result;
-  },
-
-  getProductPaginateList: async (params: IProductPaginateList) => {
-    const body = {
-      colors: ['string'],
-      sizes: ['string'],
-      materials: ['string'],
-      age_groups: ['string'],
-      genders: ['string'],
-      technics: ['string'],
-      bottom_price: params.price_from > 0 ? params.price_to : 0,
-      top_price: params.price_to > 0 ? params.price_to : 0,
-      with_discount: false,
-      category_id: 1,
-      sort_type: params.sort_type,
-      ascending: params.ascending,
-      // sizes: params.sizes,
-      // brands: params.brands,
-      // materials: params.materials,
-    };
-    const queryParams = {
-      offset: 0,
-      limit: 20,
-
-      // page_num: params.page_num,
-      // page_size: params.page_size,
-      // category: params.category !== '' ? params.category : '',
-      // with_discount: params.discount,
-      // sort_type: params.sort_type,
-      // bottom_price: params.price_from > 0 ? params.price_to : '',
-      // top_price: params.price_to > 0 ? params.price_to : '',
-      // ascending: params.ascending,
-    };
-
-    const { data } = await baseConfigService.post('products/pagination', body, {
-      params: queryParams,
-    });
-
-    return data;
   },
 };

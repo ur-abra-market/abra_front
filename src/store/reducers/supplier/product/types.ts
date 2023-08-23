@@ -36,7 +36,7 @@ export interface ISupplierProductSliceInitialState {
   params: IProductSortOptions;
 }
 
-export type SortType = 'date' | 'price' | 'rating';
+export type SortType = 'date' | 'price' | 'rating' | 'total_orders';
 
 export interface IProductSortOptions {
   offset: number;
@@ -58,13 +58,11 @@ export interface IProductsSortRequest
 export interface IProductPaginationParams {
   offset: number;
   limit: number;
+  sort: SortType;
+  ascending: boolean;
 }
 
-export interface IProductSortParams
-  extends Omit<
-    IProductSortOptions,
-    'categoryIds' | 'onSale' | 'isActive' | 'offset' | 'limit'
-  > {
+export interface IProductSortParams {
   category_ids: number[];
   on_sale?: boolean;
   is_active?: boolean;

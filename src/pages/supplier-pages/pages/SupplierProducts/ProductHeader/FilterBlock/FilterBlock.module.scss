@@ -1,0 +1,37 @@
+.filter_container {
+  display: flex;
+  gap: 15px;
+  opacity: 0;
+  transition: all 0.25s ease-in-out;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  width: 261px;
+}
+
+.filter_name {
+  font-size: var(--fz-l);
+  font-weight: var(--bold);
+  font-style: normal;
+  color: var(--color-black);
+}
+
+
+.select {
+  font-size: var(--fz-s);
+  background: var(--color-white);
+  border-radius: 12px;
+}
+
+.expanded {
+  max-height: 700px;
+  opacity: 1;
+}
+
+.collapsed {
+  max-height: 0;
+  opacity: 0;
+}
