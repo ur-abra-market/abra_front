@@ -1,5 +1,3 @@
-import { IActivateStatus } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsListSettings/types/products-types';
-
 interface IProductPriceInfo {
   discount: number;
   end_date: string;
@@ -24,12 +22,17 @@ export interface IProductsListRequest {
   products: IProduct[];
 }
 
+export interface IActivateStatus {
+  id: number;
+  checked: boolean;
+}
+
 export interface ISupplierProductSliceInitialState {
   totalCount: number;
   isLoading: boolean;
   products: IProduct[];
   deactivationProductIds: IActivateStatus[];
-  activeProductIds: IActivateStatus[];
+  activeProductIds: number[];
   selectAllProducts: boolean;
   hasChanged: boolean;
   page: number;

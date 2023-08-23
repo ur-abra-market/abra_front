@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { SALE_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/#utils/filterOptions';
 import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
 import {
   getParamsSelector,
@@ -8,12 +9,6 @@ import {
   setParams,
 } from 'store/reducers/supplier/product';
 import { ISelectOption, Select } from 'ui-kit';
-
-const SALE_SELECT: ISelectOption[] = [
-  { label: { text: 'All' }, value: -1 },
-  { label: { text: 'On sale' }, value: 1 },
-  { label: { text: 'Off sale' }, value: 0 },
-];
 
 export const SaleFilter = (): JSX.Element => {
   const params = useAppSelector(getParamsSelector);
