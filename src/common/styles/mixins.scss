@@ -57,3 +57,10 @@
     border-radius: 12px;
   }
 }
+
+@mixin account_mix {
+  display: flex;
+  grid-area: account_details;
+  flex-direction: column;
+  gap: 8px;
+}

@@ -1,4 +1,4 @@
-@import "src/common/styles/mixins";
+@import 'src/common/styles/mixins';
 
 @include seller_section();
 
@@ -25,15 +25,12 @@
   grid-area: personal_info;
 }
 
-.business_info {
-  grid-area: business_info;
+.account_details {
+  @include account_mix;
 }
 
-.account_details {
-  display: flex;
-  grid-area: account_details;
-  flex-direction: column;
-  gap: 8px;
+.business_info {
+  grid-area: business_info;
 }
 
 .notifications {
