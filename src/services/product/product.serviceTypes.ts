@@ -132,19 +132,3 @@ export interface IProduct {
   prices: IPrice[];
   supplier_info?: any;
 }
-
-export interface IProductPaginateList {
-  page_size: number;
-  amountPages: number;
-  page_num: number;
-  allItems: number;
-  sort_type: string;
-  category: string;
-  price_from: number;
-  price_to: number;
-  discount: boolean;
-  ascending: boolean;
-  brands: [];
-  materials: [];
-  sizes: [];
-}

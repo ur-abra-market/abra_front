@@ -16,7 +16,7 @@ export type SelectPositionType = 'up' | 'down';
 
 export interface ISelectOption {
   label: { text: string; image_src?: string };
-  value: any;
+  value: number | string;
 }
 
 export interface ISelect {

@@ -1,4 +1,4 @@
-@import "src/common/styles/mixins";
+@import 'src/common/styles/mixins';
 
 .wrapper {
   display: flex;
@@ -7,7 +7,7 @@
 }
 
 .container {
-  @include content_container
+  @include content_container;
 }
 
 .footer {
@@ -32,16 +32,20 @@
   background: var(--color-white);
 }
 
-.flex_box {
-  position: relative;
-  display: flex;
-  justify-content: center;
+.links_container {
+  display: grid;
+  grid-template-areas: 'copy main other';
+  grid-template-columns: 125px auto 125px;
 }
 
 .links,
 .links_white {
+  position: relative;
+
   display: flex;
+  grid-area: main;
   gap: 5px;
+  justify-content: center;
 }
 
 .links {
@@ -49,8 +53,7 @@
 }
 
 .copyright {
-  position: absolute;
-  left: 0;
+  grid-area: copy;
 }
 
 .link_white,
@@ -59,18 +62,25 @@
   text-decoration: none;
   transition: all 0.3s;
 
-  &:hover {
-    color: var(--color-accent);
+  &:active {
+    color: var(--color_accent);
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color_accent_medium);
     text-decoration: underline;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    cursor: default;
+    color: var(--color-grey-innactive);
   }
 }
 
 .link_white {
   color: var(--color-accent);
-
-  &:hover {
-    color: var(--color_accent_medium);
-  }
 }
 
 .links a {
@@ -78,17 +88,13 @@
     border-radius: 4px;
     outline: 1px solid var(--color-white);
   }
-;
 }
 
-.is_disabled_white,
-.is_disabled {
-  cursor: not-allowed;
-  color: var(--color-white);
-  text-decoration: none;
-  opacity: 0.5;
+.link[aria-current] {
+  pointer-events: none;
+  color: var(--color-accent);
 }
 
-.is_disabled_white {
+.link_white[aria-current] {
   color: var(--color-accent);
 }

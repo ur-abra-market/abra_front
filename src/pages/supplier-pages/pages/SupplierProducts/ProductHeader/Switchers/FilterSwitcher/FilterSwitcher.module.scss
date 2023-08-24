@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+}
+
+.rest_filters {
+  margin-right: 9px;
+
+  font-size: var(--fz-s2);
+  font-weight: 500;
+  color: var(--color-black);
+
+  background-color: inherit;
+}
+
+.vector_up, .vector_down {
+  cursor: pointer;
+  margin-right: 25px;
+}
+
+.vector_down {
+  transform: rotate(180deg) ;
+}
+
+.reset_link {
+  font-size: var(--fz-s2);
+  color:var(--color-accent);
+  text-decoration-line: underline;
+}

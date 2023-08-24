@@ -1,4 +1,4 @@
-import { ICategory } from 'common/types';
+import { ICategory, LoadingStatusEnum } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 
 export interface IProductSliceInitialState {
@@ -7,6 +7,8 @@ export interface IProductSliceInitialState {
   popularProducts: IProductCompilation[];
   productsCompilation: { [key: number]: IProductCompilation[] };
   isFavorite: boolean; // времянка пока бэк не отдаёт нам состояние, после удалить
+  productsPerPage: number;
+  loading: LoadingStatusEnum;
 }
 
 export interface IProductCard {

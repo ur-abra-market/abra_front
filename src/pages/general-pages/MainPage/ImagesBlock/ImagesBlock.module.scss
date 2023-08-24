@@ -5,7 +5,7 @@
 }
 
 .container {
-  @include content_container
+  @include content_container;
 }
 
 .image_box_main {
@@ -17,66 +17,67 @@
   margin: 0 auto 32px;
 }
 
-.grid_item_main_ad {
+.main_block {
   position: absolute;
   top: 50%;
   right: 32px;
   transform: translateY(-50%);
 
-  max-width: 586px;
-  padding: 33px 100px 24px 27px;
+  padding: 0.3em 0.94em 0.23em 0.26em;
 
   font-family: var(--roboto);
+  font-size: 106px;
   color: var(--color-white);
 
   background-color: var(--color-accent);
-  border-radius: 40px;
+  border-radius: 0.38em;
 }
 
-.grid_item_main_ad_text:first-child {
+.main_block_text:first-child {
   display: block;
-  font-size: 106px;
   font-weight: var(--bold);
-  line-height: 124px;
+  line-height: 117%;
 }
 
-.grid_item_main_ad_text:nth-child(2) {
-  font-family: 'SF Pro Display', sans-serif;
-  font-size: 62px;
+.main_block_text:nth-child(2) {
+  font-family: "SF Pro Display", sans-serif;
+  font-size: 0.59em;
   font-weight: var(--semi-bold);
-  line-height: 78px;
+  line-height: 126%;
 }
 
-.grid_item_main_ad_text:last-child {
-  font-size: var(--fz-l2);
+.main_block_text:last-child {
+  font-size: 0.19em;
   font-weight: var(--semi-bold);
-  line-height: 26px;
+  line-height: 133%;
 }
 
-.images_box_grid {
+.image_box_grid {
   display: grid;
-  grid-template-areas:
-    "item1 item2 item2"
-    "item1 item3 item4";
+  grid-template:
+    "item1 item2 item2" auto
+    "item1 item3 item4" 1fr / 2fr 1fr 1fr;
   gap: 12px;
-  padding: 0 32px;
+  font-size: 50px;
 }
 
-.banner_img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 8px;
+.border_radius {
+  border-radius: 12px;
 }
 
-.grid_item1, .grid_item2, .grid_item3, .grid_item4 {
+.grid_item1,
+.grid_item2,
+.grid_item3,
+.grid_item4 {
   position: relative;
   font-family: var(--roboto);
-  font-style: normal;
   color: var(--color-accent);
 }
 
-.grid_item_ad1, .grid_item_ad2, .grid_item_ad3, .grid_item_ad4 {
+.grid_item1_block,
+.grid_item2_block,
+.grid_item3_block,
+.grid_item4_block {
   position: absolute;
   font-weight: var(--bold);
 }
@@ -85,13 +86,10 @@
   grid-area: item1;
 }
 
-.grid_item_ad1 {
-  top: 170px;
-  left: 25px;
-
+.grid_item1_block {
+  top: 34%;
+  left: 5.4%;
   max-width: 240px;
-
-  font-size: 50px;
   line-height: 85%;
 }
 
@@ -99,21 +97,22 @@
   grid-area: item2;
 }
 
-.grid_item_ad2 {
-  top: 96px;
-  right: 63px;
+.grid_item2_block {
+  top: 50%;
+  right: 9.2%;
+  transform: translate3d(0, -54%, 0);
   max-width: 230px;
 }
 
-.grid_item_ad2_text:first-child {
-  font-size: var(--fz-xl);
+.grid_item2_text:first-child {
+  font-size: 0.48em;
   font-weight: var(--medium);
   line-height: 85%;
 }
 
-.grid_item_ad2_text:last-child {
+.grid_item2_text:last-child {
   display: block;
-  font-size: 45px;
+  font-size: 0.9em;
   line-height: 85%;
 }
 
@@ -125,12 +124,87 @@
   grid-area: item4;
 }
 
-.grid_item_ad3, .grid_item_ad4 {
-  top: 62px;
-  left: 20px;
+.grid_item3_block,
+.grid_item4_block {
+  top: 24.6%;
+  left: 6%;
 
   max-width: 160px;
 
-  font-size: 30px;
+  font-size: 0.6em;
   line-height: 85%;
+}
+
+@media only screen and (max-width: 1140px) {
+  .main_block {
+    font-size: 82px;
+  }
+
+  .image_box_grid {
+    font-size: 38px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .main_block {
+    font-size: 72px;
+  }
+
+  .image_box_grid {
+    font-size: 32px;
+  }
+
+  .grid_item3_block,
+  .grid_item4_block {
+    max-width: 70px;
+  }
+
+  .grid_item1_block {
+    max-width: 150px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .main_block {
+    top: auto;
+    right: auto;
+    bottom: 32px;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+
+    font-size: 62px;
+  }
+
+  .image_box_main {
+    height: 385px;
+    margin: 0 auto 16px;
+
+    img {
+      object-position: 15%;
+    }
+  }
+
+  .image_box_grid {
+    grid-template:
+      "item1 item1" 210px
+      "item2 item2" 160px
+      "item3 item4" 160px / 1fr 1fr;
+    gap: 8px;
+  }
+
+  .grid_item3_block,
+  .grid_item4_block {
+    top: 13%;
+    left: 5%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .image_box_grid {
+    grid-template:
+      "item1 item1" 184px
+      "item2 item2" 123px
+      "item3 item4" 123px / 1fr 1fr;
+    font-size: 25px;
+  }
 }
