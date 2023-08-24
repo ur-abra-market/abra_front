@@ -15,7 +15,7 @@ import {
   getProductsCompilation,
   productsCompilationSelector,
 } from 'store/reducers/productSlice';
-import { ButtonInfo } from 'ui-kit';
+import { ButtonQuestion } from 'ui-kit';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
 
 export const ProductList = (): JSX.Element => {
@@ -84,7 +84,7 @@ export const ProductList = (): JSX.Element => {
         />
       </div>
 
-      <ButtonInfo />
+      <ButtonQuestion />
     </div>
   );
 };

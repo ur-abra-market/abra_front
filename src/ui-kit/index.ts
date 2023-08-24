@@ -1,6 +1,6 @@
 export { Button } from './buttons/Button/Button';
 export { ButtonIcon } from './buttons/ButtonIcon/ButtonIcon';
-export { ButtonInfo } from './buttons/ButtonInfo/ButtonInfo';
+export { ButtonQuestion } from './buttons/ButtonQuestion/ButtonQuestion';
 export { Label } from './Label/Label';
 export { Input } from './Input/Input';
 export { Select } from './Select/Select';

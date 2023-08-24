@@ -2,15 +2,15 @@ import { FC } from 'react';
 
 import cn from 'classnames';
 
-import styles from './ButtonInfo.module.scss';
+import styles from './ButtonQuestion.module.scss';
 
 import { ContactUsQuestionMarkIcon } from 'assets/icons';
 
-export interface IButtonInfo {
+interface IButtonQuestion {
   className?: string;
 }
 
-export const ButtonInfo: FC<IButtonInfo> = ({ className }): JSX.Element => {
+export const ButtonQuestion: FC<IButtonQuestion> = ({ className }): JSX.Element => {
   return (
     <a
       className={cn(styles.link, className)}
