@@ -39,12 +39,12 @@ export const LocationAndCurrencySelection: FC<ILocationAndCurrencySelection> = (
 }) => {
   const [isOpenOnMobile, setOpenOnMobile] = useState(false);
 
-  const containerClassName = cn(style.container, className, {
+  const containerClasses = cn(style.container, className, {
     [style.mobile]: isMobileView,
     [style.show]: isMobileView && isOpenOnMobile,
   });
 
-  const toggleOpenOnMobile = (): void => {
+  const handleToggleOpenOnMobile = (): void => {
     setOpenOnMobile(prev => !prev);
   };
 
@@ -53,19 +53,22 @@ export const LocationAndCurrencySelection: FC<ILocationAndCurrencySelection> = (
   return (
     <div ref={refObj} className={cn(style.wrapper, wrapperClassName)}>
       {isMobileView && (
-        <div onClickCapture={toggleOpenOnMobile} className={style.mobile_header}>
+        <div onClickCapture={handleToggleOpenOnMobile} className={style.mobile_header}>
           <div>
             {CURRENCY_DATA[0].label.text.substring(
               CURRENCY_DATA[0].label.text.length - 3,
             )}
           </div>
+
           <div>
             <img width="20px" src={COUNTRY_DATA[0].label.image_src} alt="flag" />
           </div>
+
           <ArrowIcon className={cn({ [style.arrow_up]: isOpenOnMobile })} width="14" />
         </div>
       )}
-      <div className={containerClassName}>
+
+      <div className={containerClasses}>
         <Select
           dropOnUp={dropOnUp}
           options={CURRENCY_DATA}
@@ -73,6 +76,7 @@ export const LocationAndCurrencySelection: FC<ILocationAndCurrencySelection> = (
           header
           className={style.select}
         />
+
         <div className={style.select_box}>
           <span className={style.select_title}>Ship to</span>
           <Select

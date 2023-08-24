@@ -28,7 +28,7 @@ export const StatusProduct = (): JSX.Element => {
   const [initMousePosition, setInitMousePosition] = useState(-1);
   const [lastScrollLeft, setLastScrollLeft] = useState(0);
 
-  const categoriesClassName = cn(style.categories, {
+  const categoriesClasses = cn(style.categories, {
     [style.grab]: ref.current?.scrollWidth !== ref.current?.clientWidth,
     [style.grabbing]: initMousePosition !== -1,
   });
@@ -61,7 +61,7 @@ export const StatusProduct = (): JSX.Element => {
       onMouseDownCapture={handleMouseDown}
       onMouseUpCapture={handleMouseUp}
       onMouseMove={handleMouseMove}
-      className={categoriesClassName}
+      className={categoriesClasses}
       style={{ gridTemplateColumns: `repeat(${STATUS_ARRAY.length}, 1fr)` }}
     >
       {STATUS_ARRAY.map(({ label, value }, index) => (
@@ -77,6 +77,7 @@ export const StatusProduct = (): JSX.Element => {
           </button>
         </div>
       ))}
+
       <div
         className={style.border_line}
         style={{

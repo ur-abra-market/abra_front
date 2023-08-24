@@ -16,7 +16,7 @@
   letter-spacing: 0.16px;
 }
 
-.item {
+.menu_item {
   color: var(--color-black);
   white-space: nowrap;
   transition: 0.1s;
@@ -33,12 +33,15 @@
 }
 
 .burger {
+  cursor:pointer;
+
   position: relative;
-  position: relative;
-  z-index: 5;
+  z-index: 10;
 
   width: 19px;
   height: 14px;
+
+  background: transparent;
 
   &::before {
     top: 0;
@@ -68,7 +71,7 @@
   }
 }
 
-.close_btn {
+.close_button {
   &::after,
   &::before {
     z-index: 2;

@@ -51,9 +51,7 @@ const CATEGORIES: Category = {
 export const MainPage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();
   const filter = useAppSelector(state => state.productListOld.statusProduct);
-
   const [isFetchingData, setIsFetchingData] = useState(true);
-
   const products = useAppSelector(productsCompilationSelector);
 
   useEffect(() => {
@@ -81,9 +79,11 @@ export const MainPage = WithLayout((): JSX.Element => {
       ) : (
         <div>
           <ImagesBlock className={style.images_block} />
+
           <div className={style.status_container}>
             <StatusProduct />
           </div>
+
           <div className={style.container}>
             <div className={style.main_sliders}>
               {products &&
@@ -98,10 +98,12 @@ export const MainPage = WithLayout((): JSX.Element => {
                   );
                 })}
             </div>
+
             <div className={style.info_block}>
               <ButtonInfo className={style.info_button} />
             </div>
           </div>
+
           <SubscriptionAndContacts />
         </div>
       )}

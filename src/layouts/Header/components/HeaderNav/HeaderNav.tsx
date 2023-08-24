@@ -1,4 +1,4 @@
-import React, { FC, JSX, MouseEvent, useEffect, useState } from 'react';
+import React, { FC, JSX, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
@@ -23,7 +23,7 @@ export const HeaderNav: FC<IHeaderNav> = ({
   const navItems = HEADER_NAV_CONTENT[userRole];
   const [isOpenOnMobile, setOpenOnMobile] = useState(false);
 
-  const ulClassName = cn(style.container, className, {
+  const menuListClasses = cn(style.container, className, {
     [style.mobile]: isMobileView,
     [style.show]: isMobileView && isOpenOnMobile,
   });
@@ -39,14 +39,15 @@ export const HeaderNav: FC<IHeaderNav> = ({
           <button
             type="button"
             onClick={() => setOpenOnMobile(prev => !prev)}
-            className={cn(style.burger, { [style.close_btn]: isOpenOnMobile })}
+            className={cn(style.burger, { [style.close_button]: isOpenOnMobile })}
           >
             <span />
           </button>
         )}
-        <ul className={ulClassName}>
+
+        <ul className={menuListClasses}>
           {navItems.map((el, index) => (
-            <li className={style.item} key={index}>
+            <li className={style.menu_item} key={index}>
               <NavLink
                 to={el.path}
                 className={({ isActive }) =>
@@ -59,6 +60,7 @@ export const HeaderNav: FC<IHeaderNav> = ({
           ))}
         </ul>
       </div>
+
       {isMobileView && (
         <div
           onClickCapture={() => setOpenOnMobile(false)}
