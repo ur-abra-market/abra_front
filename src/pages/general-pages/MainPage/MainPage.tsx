@@ -55,7 +55,6 @@ export const MainPage = WithLayout((): JSX.Element => {
   const filter = useAppSelector(state => state.productListOld.statusProduct);
   const loadingSlider = useAppSelector(loadingProductsSelector);
   const [isFetchingData, setIsFetchingData] = useState(true);
-
   const products = useAppSelector(productsCompilationSelector);
 
   useEffect(() => {
@@ -83,12 +82,17 @@ export const MainPage = WithLayout((): JSX.Element => {
       ) : (
         <div>
           <ImagesBlock className={style.images_block} />
-          <div className={style.container}>
+
+          <div className={style.status_container}>
             <StatusProduct />
+          </div>
+
+          <div className={style.container}>
             <div className={style.main_sliders}>
               {loadingSlider === LoadingStatusEnum.Loading && (
                 <LoaderCircular className={style.loading_slider} />
               )}
+
               {products &&
                 Object.keys(products).map(key => {
                   return (
@@ -101,10 +105,12 @@ export const MainPage = WithLayout((): JSX.Element => {
                   );
                 })}
             </div>
+
             <div className={style.info_block}>
               <ButtonInfo className={style.info_button} />
             </div>
           </div>
+
           <SubscriptionAndContacts />
         </div>
       )}
