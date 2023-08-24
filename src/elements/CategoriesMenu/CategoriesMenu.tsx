@@ -16,24 +16,26 @@ import style from './CategoriesMenu.module.scss';
 
 import { FilterButton, MenuItems } from '.';
 
+import { KeyboardSchema } from 'common/constants/index';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { PRODUCTS_LIST } from 'routes';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
 import { getAllCategories } from 'store/reducers/commonSlice';
 
-// todo need discus about this type
-// export type Categories = 'Clothes' | 'Accessories' | 'Cosmetics and Self Care';
-
 export interface CategoriesMenuProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   onClose: (isOpen: boolean) => void;
+  handleFocus: () => void;
 }
 
 const VALUE_OUTSIDE_LIST = -1;
 const STEP = 1;
 
 export const CategoriesMenu = forwardRef(
-  ({ onClose }: CategoriesMenuProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
+  (
+    { onClose, handleFocus }: CategoriesMenuProps,
+    ref: ForwardedRef<HTMLDivElement>,
+  ): JSX.Element => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const [indexActiveParentCategory, setIndexActiveParentCategory] = useState(0);
@@ -46,11 +48,10 @@ export const CategoriesMenu = forwardRef(
     const categories = useAppSelector(state => state.common.categories);
     const wearerCategory = categories ? categories.filter(c => c.level === 1) : [];
     const categoriesMenu = [
-      { id: 12, name: 'All categories', level: 0, children: [] },
+      { id: 0, name: 'All categories', level: 0, children: [] },
       ...wearerCategory,
     ];
-
-    const maxLengthDepthChildren =
+    const menuDepth =
       categoriesMenu[indexActiveParentCategory]?.children?.[indexActiveChildrenColumn]
         ?.children?.length ?? null;
 
@@ -68,6 +69,8 @@ export const CategoriesMenu = forwardRef(
       if (menuRef.current) {
         menuRef.current.focus();
       }
+
+      return () => {};
     }, []);
 
     useEffect(() => {
@@ -82,70 +85,67 @@ export const CategoriesMenu = forwardRef(
         setIndexActiveChildrenRow(VALUE_OUTSIDE_LIST);
         setIndexActiveChildrenColumn(VALUE_OUTSIDE_LIST);
       }
-      if (
-        maxLengthDepthChildren !== null &&
-        maxLengthDepthChildren <= indexActiveChildrenRow
-      ) {
-        setIndexActiveChildrenRow(maxLengthDepthChildren - 1);
+      if (menuDepth !== null && menuDepth <= indexActiveChildrenRow) {
+        setIndexActiveChildrenRow(menuDepth - 1);
       }
-    }, [indexActiveChildrenColumn, indexActiveChildrenRow, maxLengthDepthChildren]);
+    }, [indexActiveChildrenColumn, indexActiveChildrenRow, menuDepth]);
 
-    const maxIndexChildren = (parent: ICategoryResponse): number =>
+    const maxIndexChild = (parent: ICategoryResponse): number =>
       parent.children ? parent.children.length - 1 : 0;
 
-    const handleGeneralMenuKeyboard = (event: KeyboardEvent): void => {
-      const { code } = event;
+    const handleKeyDown = (event: KeyboardEvent): void => {
+      const keyCode = event.code;
+      const category = categoriesMenu[indexActiveParentCategory];
+      const maxIndex = maxIndexChild(category);
+      const categoryId = category.children?.[indexActiveChildrenColumn]?.id;
 
       event.preventDefault();
 
       if (isChildrenSelected) {
-        handleChildrenMenuKeyboard(event);
+        if (
+          keyCode === KeyboardSchema.ARROW_RIGHT &&
+          indexActiveChildrenColumn < maxIndex
+        ) {
+          setIndexActiveChildrenColumn(prevState => prevState + STEP);
+        }
 
-        return;
-      }
+        if (keyCode === KeyboardSchema.ARROW_LEFT) {
+          setIndexActiveChildrenColumn(prevState => prevState - STEP);
+        }
 
-      if (code === 'Escape') {
+        if (
+          keyCode === KeyboardSchema.ARROW_UP &&
+          indexActiveChildrenRow > VALUE_OUTSIDE_LIST
+        ) {
+          setIndexActiveChildrenRow(prevState => prevState - STEP);
+        }
+
+        if (
+          keyCode === KeyboardSchema.ARROW_DOWN &&
+          menuDepth !== null &&
+          menuDepth - 1 > indexActiveChildrenRow
+        ) {
+          setIndexActiveChildrenRow(prevState => prevState + STEP);
+        }
+        if (keyCode === KeyboardSchema.ENTER && categoryId) {
+          navigate(`${PRODUCTS_LIST}/${categoryId}`);
+        }
+      } else if (keyCode === KeyboardSchema.ESCAPE) {
+        handleFocus();
         onClose(false);
       } else if (
-        code === 'ArrowDown' &&
+        keyCode === KeyboardSchema.ARROW_DOWN &&
         indexActiveParentCategory < categoriesMenu.length - 1
       ) {
         setIndexActiveParentCategory(prevState => prevState + STEP);
-      } else if (code === 'ArrowUp' && indexActiveParentCategory > 0) {
+      } else if (keyCode === KeyboardSchema.ARROW_UP && indexActiveParentCategory > 0) {
         setIndexActiveParentCategory(prevState => prevState - STEP);
-      } else if (code === 'ArrowRight') {
+      } else if (
+        keyCode === KeyboardSchema.ARROW_RIGHT &&
+        categoriesMenu[indexActiveParentCategory].id !== 0
+      ) {
         setIsChildrenSelected(true);
         setIndexActiveChildrenColumn(prevState => prevState + STEP);
-      }
-    };
-
-    const handleChildrenMenuKeyboard = (event: KeyboardEvent): void => {
-      const { code } = event;
-      const activeCategory = categoriesMenu[indexActiveParentCategory];
-      const maxChildrenIndex = maxIndexChildren(activeCategory);
-      const pageId = activeCategory.children?.[indexActiveChildrenColumn].id;
-
-      if (code === 'ArrowRight' && indexActiveChildrenColumn < maxChildrenIndex) {
-        setIndexActiveChildrenColumn(prevState => prevState + STEP);
-      }
-
-      if (code === 'ArrowLeft') {
-        setIndexActiveChildrenColumn(prevState => prevState - STEP);
-      }
-
-      if (code === 'ArrowUp' && indexActiveChildrenRow > VALUE_OUTSIDE_LIST) {
-        setIndexActiveChildrenRow(prevState => prevState - STEP);
-      }
-
-      if (
-        code === 'ArrowDown' &&
-        maxLengthDepthChildren !== null &&
-        maxLengthDepthChildren - 1 > indexActiveChildrenRow
-      ) {
-        setIndexActiveChildrenRow(prevState => prevState + STEP);
-      }
-      if (code === 'Enter' && pageId) {
-        navigate(`${PRODUCTS_LIST}/${pageId}`);
       }
     };
 
@@ -156,7 +156,7 @@ export const CategoriesMenu = forwardRef(
           ref={menuRef}
           role="listbox"
           tabIndex={0}
-          onKeyDown={event => handleGeneralMenuKeyboard(event)}
+          onKeyDown={handleKeyDown}
         >
           {categoriesMenu.map((c, index) => {
             return (
@@ -185,9 +185,9 @@ export const CategoriesMenu = forwardRef(
                 key={c.id}
                 items={items}
                 activeParentId={activeParentId}
-                focusedItem={row ? row.name : ''}
+                selectedCategory={row ? row.name : ''}
                 indexActiveRow={indexActiveChildrenRow}
-                focusedItemParent={items[indexActiveChildrenColumn]?.name || ''}
+                selectedCategoryItem={items[indexActiveChildrenColumn]?.name || ''}
               />
             );
           })}

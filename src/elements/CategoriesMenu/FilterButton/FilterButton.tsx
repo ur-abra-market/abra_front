@@ -22,7 +22,7 @@ export const FilterButton: FC<IFilterButton> = ({
   });
 
   const updateActiveCategory = (): void => {
-    callback(value as number);
+    callback(value);
   };
 
   return (

@@ -6,14 +6,8 @@ import styles from './Select.module.scss';
 import { SelectHeader } from './SelectHeader/SelectHeader';
 import { SelectMenu } from './SelectMenu/SelectMenu';
 
+import { KeyboardSchema } from 'common/constants';
 import { useOnClickOutside, useOnHoverOutside } from 'common/hooks';
-
-const KEYBOARD = {
-  ENTER: 'Enter',
-  ARROW_UP: 'ArrowUp',
-  ARROW_DOWN: 'ArrowDown',
-  ESCAPE: 'Escape',
-};
 
 const PREV = 1;
 const NEXT = 1;
@@ -162,20 +156,20 @@ export const Select = forwardRef(
           const keyCode = e.code;
 
           e.preventDefault();
-          if (keyCode === KEYBOARD.ENTER && currentItemId >= 0) {
+          if (keyCode === KeyboardSchema.ENTER && currentItemId >= 0) {
             handleSetSelectedValue(options[currentItemId]);
           }
-          if (keyCode === KEYBOARD.ARROW_UP && options[currentItemId - PREV]) {
+          if (keyCode === KeyboardSchema.ARROW_UP && options[currentItemId - PREV]) {
             currentItemId -= PREV;
           }
-          if (keyCode === KEYBOARD.ARROW_DOWN && options[currentItemId + NEXT]) {
+          if (keyCode === KeyboardSchema.ARROW_DOWN && options[currentItemId + NEXT]) {
             currentItemId += NEXT;
           }
-          if (keyCode !== KEYBOARD.ESCAPE && currentItemId >= 0) {
+          if (keyCode !== KeyboardSchema.ESCAPE && currentItemId >= 0) {
             setSelectedValue(options[currentItemId]);
             selectOptions[currentItemId].scrollIntoView({ block: 'nearest' });
           }
-          if (keyCode === KEYBOARD.ESCAPE || currentItemId < 0) {
+          if (keyCode === KeyboardSchema.ESCAPE || currentItemId < 0) {
             handleCloseSelectMenu();
           }
         };
@@ -183,7 +177,10 @@ export const Select = forwardRef(
         document.onkeydown = e => {
           const keyCode = e.code;
 
-          if (keyCode === KEYBOARD.ARROW_UP || keyCode === KEYBOARD.ARROW_DOWN)
+          if (
+            keyCode === KeyboardSchema.ARROW_UP ||
+            keyCode === KeyboardSchema.ARROW_DOWN
+          )
             return true;
         };
         window.onscroll = () => {

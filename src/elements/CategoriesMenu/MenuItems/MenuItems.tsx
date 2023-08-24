@@ -10,22 +10,22 @@ import { ICategoryResponse } from 'services/common/common.serviceTypes';
 
 export interface IMenuItems {
   items?: ICategoryResponse[];
-  focusedItem: string | '';
-  focusedItemParent: string | '';
+  selectedCategory: string | '';
+  selectedCategoryItem: string | '';
   indexActiveRow: number;
   activeParentId: number;
 }
 
 export const MenuItems: FC<IMenuItems> = ({
   items,
-  focusedItem,
-  focusedItemParent,
+  selectedCategory,
+  selectedCategoryItem,
   indexActiveRow,
   activeParentId,
 }): JSX.Element => {
   const mappedItems = items?.map(item => {
     const selectCategory = cn(style.link, {
-      [style.focus_item]: focusedItemParent === item.name && indexActiveRow < 0,
+      [style.focus_item]: selectedCategoryItem === item.name && indexActiveRow < 0,
     });
 
     return (
@@ -37,7 +37,7 @@ export const MenuItems: FC<IMenuItems> = ({
         {item.children?.map(i => {
           const selectChildren = cn(style.items_links, {
             [style.focus_item]:
-              focusedItem === i.name &&
+              selectedCategory === i.name &&
               activeParentId === i.parent_id &&
               indexActiveRow !== -1,
           });

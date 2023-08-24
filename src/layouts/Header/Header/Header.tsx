@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useEffect, useRef, useState } from 'react';
+import React, { createRef, FC, RefObject, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -15,7 +15,7 @@ export const Header: FC<IHtmlHeaderProps> = ({
   className,
   ...restProps
 }): JSX.Element => {
-  const categoriesRef = useRef() as RefObject<HTMLDivElement>;
+  const categoriesRef = createRef() as RefObject<HTMLDivElement>;
   const buttonRef = useRef() as RefObject<HTMLButtonElement>;
   const [categoriesIsOpen, setCategoriesIsOpen] = useState(false);
 
@@ -40,6 +40,10 @@ export const Header: FC<IHtmlHeaderProps> = ({
     };
   });
 
+  const handleFocus = (): void => {
+    buttonRef.current?.focus();
+  };
+
   return (
     <header className={cn(style.container, className)} {...restProps}>
       <Top />
@@ -55,11 +59,14 @@ export const Header: FC<IHtmlHeaderProps> = ({
         </button>
         <HeaderNav userRole="seller" className={style.nav_container} />
         <LocationAndCurrencySelection className={style.selected} />
+        {categoriesIsOpen && (
+          <CategoriesMenu
+            ref={categoriesRef}
+            onClose={setCategoriesIsOpen}
+            handleFocus={handleFocus}
+          />
+        )}
       </div>
-
-      {categoriesIsOpen && (
-        <CategoriesMenu ref={categoriesRef} onClose={setCategoriesIsOpen} />
-      )}
     </header>
   );
 };
