@@ -40,6 +40,11 @@
   }
 }
 
+.loading_slider {
+  display: flex;
+  justify-content: center;
+}
+
 @media only screen and (max-width: 1140px) {
   .images_block {
     margin-bottom: 82px;
