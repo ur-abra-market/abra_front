@@ -69,8 +69,6 @@ export const CategoriesMenu = forwardRef(
       if (menuRef.current) {
         menuRef.current.focus();
       }
-
-      return () => {};
     }, []);
 
     useEffect(() => {
