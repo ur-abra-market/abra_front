@@ -58,7 +58,7 @@
   }
 }
 
-@mixin account_mix {
+@mixin account_layout {
   display: flex;
   grid-area: account_details;
   flex-direction: column;

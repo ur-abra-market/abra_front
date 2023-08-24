@@ -2,11 +2,11 @@
 
 @include seller_section();
 
-.seller_cabinet {
+.wrapper {
   background: var(--color-super-light-gray);
 }
 
-.seller_cabinet_content_wrapper {
+.content_container {
   display: grid;
   grid-column-gap: 12px;
   grid-template-areas:
@@ -25,8 +25,8 @@
   grid-area: personal_info;
 }
 
-.account_details {
-  @include account_mix;
+.account_management {
+  @include account_layout;
 }
 
 .business_info {

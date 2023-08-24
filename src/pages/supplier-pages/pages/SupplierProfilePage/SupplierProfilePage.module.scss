@@ -1,10 +1,10 @@
 @import 'src/common/styles/mixins';
 
-.supplier_cabinet {
+.wrapper {
   background: var(--color-super-light-gray);
 }
 
-.supplier_cabinet_content_wrapper {
+.content_container {
   display: grid;
   grid-gap: 12px;
   grid-template-areas:
@@ -15,11 +15,11 @@
 
   max-width: var(--main-content-width);
   margin: 0 auto;
-  padding: 12px 32px 17px;
+  padding: 12px 32px 16px;
 }
 
-.account_details {
-  @include account_mix;
+.account_management {
+  @include account_layout;
 }
 
 .business_profile {
