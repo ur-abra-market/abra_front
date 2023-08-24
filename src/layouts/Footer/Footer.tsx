@@ -31,7 +31,7 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
     [style.links_white]: variant === 'white',
   });
 
-  const navlinkClasses = cn(style.link, {
+  const navLinkClasses = cn(style.link, {
     [style.link_white]: variant === 'white',
   });
 
@@ -47,13 +47,15 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
                 <span>&#169; Copyright 2023</span>
               </div>
             )}
+
             <div className={linksClasses}>
               {variant === 'white' && <span>&#169; 2022 Abra.</span>}
-              <NavLink className={navlinkClasses} to={TERMS_AND_CONDITIONS}>
+              <NavLink className={navLinkClasses} to={TERMS_AND_CONDITIONS}>
                 Terms & conditions
               </NavLink>
+
               {variant === 'white' && <span>and&nbsp;</span>}
-              <NavLink className={navlinkClasses} to={PRIVACY_POLICY}>
+              <NavLink className={navLinkClasses} to={PRIVACY_POLICY}>
                 Privacy policy
               </NavLink>
             </div>

@@ -91,6 +91,7 @@
 }
 
 .link[aria-current] {
+  pointer-events: none;
   color: var(--color-accent);
 }
 
