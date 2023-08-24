@@ -1,10 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
 
 import style from './LocationAndCurrencySelection.module.scss';
-import { LocationAndCurrencySelectionProps } from './LocationAndCurrencySelection.props';
+import { ILocationAndCurrencySelection } from './LocationAndCurrencySelection.props';
 
+import { ArrowIcon } from 'assets/icons';
+import { useOnClickOutside } from 'common/hooks/useOnClickOutside';
 import { CountriesEnum } from 'common/types';
 import { COUNTRY_FLAGS } from 'common/utils';
 import { ISelectOption, Select } from 'ui-kit';
@@ -29,29 +31,62 @@ const COUNTRY_DATA: ISelectOption[] = [
   },
 ];
 
-export const LocationAndCurrencySelection: FC<
-  LocationAndCurrencySelectionProps
-> = props => {
-  const { className, dropOnUp = false } = props;
+export const LocationAndCurrencySelection: FC<ILocationAndCurrencySelection> = ({
+  className,
+  dropOnUp = false,
+  isMobileView,
+  wrapperClassName,
+}) => {
+  const [isOpenOnMobile, setOpenOnMobile] = useState(false);
+
+  const containerClasses = cn(style.container, className, {
+    [style.mobile]: isMobileView,
+    [style.show]: isMobileView && isOpenOnMobile,
+  });
+
+  const handleToggleOpenOnMobile = (): void => {
+    setOpenOnMobile(prev => !prev);
+  };
+
+  const refObj = useOnClickOutside(setOpenOnMobile);
 
   return (
-    <div className={cn(style.wrapper, className)}>
-      <Select
-        dropOnUp={dropOnUp}
-        options={CURRENCY_DATA}
-        width="172px"
-        header
-        className={style.select}
-      />
-      <div className={style.select_box}>
-        <span>Ship to</span>
+    <div ref={refObj} className={cn(style.wrapper, wrapperClassName)}>
+      {isMobileView && (
+        <div onClickCapture={handleToggleOpenOnMobile} className={style.mobile_header}>
+          <div>
+            {CURRENCY_DATA[0].label.text.substring(
+              CURRENCY_DATA[0].label.text.length - 3,
+            )}
+          </div>
+
+          <div>
+            <img width="20px" src={COUNTRY_DATA[0].label.image_src} alt="flag" />
+          </div>
+
+          <ArrowIcon className={cn({ [style.arrow_up]: isOpenOnMobile })} width="14" />
+        </div>
+      )}
+
+      <div className={containerClasses}>
         <Select
           dropOnUp={dropOnUp}
-          options={COUNTRY_DATA}
+          options={CURRENCY_DATA}
+          width="172px"
           header
-          width="150px"
           className={style.select}
         />
+
+        <div className={style.select_box}>
+          <span className={style.select_title}>Ship to</span>
+          <Select
+            dropOnUp={dropOnUp}
+            options={COUNTRY_DATA}
+            header
+            width="150px"
+            className={style.select}
+          />
+        </div>
       </div>
     </div>
   );

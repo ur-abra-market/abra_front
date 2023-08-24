@@ -6,10 +6,10 @@ import style from './SupplierHeader.module.scss';
 
 import { Top } from '.';
 
-import { IHtmlHeaderProps } from 'common/types';
+import { IHtmlProps } from 'common/types';
 import { HeaderNav } from 'layouts/Header/components';
 
-export const SupplierHeader: FC<IHtmlHeaderProps> = ({
+export const SupplierHeader: FC<IHtmlProps> = ({
   className,
   ...restProps
 }): JSX.Element => {
