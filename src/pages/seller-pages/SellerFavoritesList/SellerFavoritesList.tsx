@@ -3,7 +3,7 @@ import React from 'react';
 import style from './SellerFavoritesList.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
-import { ButtonInfo, Search } from 'ui-kit';
+import { ButtonQuestion, Search } from 'ui-kit';
 
 export const SellerFavoritesList = WithLayout((): JSX.Element => {
   const arr = [];
@@ -45,7 +45,7 @@ export const SellerFavoritesList = WithLayout((): JSX.Element => {
           ))}
         </div>
         <div className={style.bottom}>
-          <ButtonInfo />
+          <ButtonQuestion />
         </div>
       </div>
     </div>

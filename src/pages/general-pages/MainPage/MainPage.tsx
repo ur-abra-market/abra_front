@@ -14,7 +14,7 @@ import {
   productsCompilationSelector,
 } from 'store/reducers/productSlice';
 import { loadingProductsSelector } from 'store/reducers/productSlice/selectors';
-import { ButtonInfo, LoaderCircular, LoaderLinear } from 'ui-kit';
+import { ButtonQuestion, LoaderCircular, LoaderLinear } from 'ui-kit';
 
 export enum Categories {
   ALL = 8,
@@ -105,10 +105,7 @@ export const MainPage = WithLayout((): JSX.Element => {
                   );
                 })}
             </div>
-
-            <div className={style.info_block}>
-              <ButtonInfo className={style.info_button} />
-            </div>
+            <ButtonQuestion />
           </div>
 
           <SubscriptionAndContacts />
