@@ -1,4 +1,4 @@
-import { FC, ButtonHTMLAttributes, DetailedHTMLProps, useCallback } from 'react';
+import { FC } from 'react';
 
 import cn from 'classnames';
 
@@ -6,30 +6,19 @@ import styles from './ButtonInfo.module.scss';
 
 import { ContactUsQuestionMarkIcon } from 'assets/icons';
 
-export interface IButtonInfo
-  extends Omit<
-    DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
-    'children'
-  > {}
-export const ButtonInfo: FC<IButtonInfo> = ({ className, ...restProps }): JSX.Element => {
-  const handleClickLink = useCallback(() => {
-    const link = document.createElement('a');
+export interface IButtonInfo {
+  className?: string;
+}
 
-    link.href = 'https://wa.me/79119681844?text=Hi%2C%20';
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }, []);
-
+export const ButtonInfo: FC<IButtonInfo> = ({ className }): JSX.Element => {
   return (
-    <button
-      type="button"
-      className={cn(styles.button, className)}
-      onClick={handleClickLink}
-      {...restProps}
+    <a
+      className={cn(styles.link, className)}
+      href="https://wa.me/79119681844?text=Hi%2C%20"
+      target="_blank"
+      rel="noreferrer"
     >
       <ContactUsQuestionMarkIcon className={styles.icon} />
-    </button>
+    </a>
   );
 };
