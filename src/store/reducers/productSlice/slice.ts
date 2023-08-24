@@ -10,6 +10,7 @@ import {
 } from './thunks';
 import { IProductCard, IProductSliceInitialState } from './types';
 
+import { LoadingStatusEnum } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 
 const initialState: IProductSliceInitialState = {
@@ -34,6 +35,7 @@ const initialState: IProductSliceInitialState = {
   popularProducts: [],
   similarProducts: [],
   productsCompilation: {},
+  loading: LoadingStatusEnum.Idle,
 };
 
 const productSlice = createSlice({
@@ -67,11 +69,19 @@ const productSlice = createSlice({
           state.popularProducts = action.payload;
         },
       )
+
+      .addCase(getProductsCompilation.pending, state => {
+        state.loading = LoadingStatusEnum.Loading;
+      })
+      .addCase(getProductsCompilation.rejected, state => {
+        state.loading = LoadingStatusEnum.Failed;
+      })
       .addCase(getProductsCompilation.fulfilled, (state, action) => {
         state.productsCompilation = {
           ...state.productsCompilation,
           [action.payload.category]: action.payload.data.products,
         };
+        state.loading = LoadingStatusEnum.Success;
       });
   },
 });

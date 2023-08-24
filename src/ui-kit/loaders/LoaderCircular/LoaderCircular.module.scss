@@ -40,6 +40,11 @@
   border-top: 5px solid var(--color-gray);
 }
 
+.loader_local_indicator {
+  border: 10px solid var(--color-gray);
+  border-top: 10px solid var(--color-medium-gray);
+}
+
 /* Safari */
 @keyframes spin {
   0% {

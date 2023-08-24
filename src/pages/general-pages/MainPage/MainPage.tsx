@@ -6,13 +6,15 @@ import { ImagesBlock, StatusProduct, SubscriptionAndContacts } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { LoadingStatusEnum } from 'common/types';
 import { ViewMoreProductsLink } from 'elements';
-import { ProductsPreview, ProductCard } from 'modules';
+import { ProductCard, ProductsPreview } from 'modules';
 import {
   getProductsCompilation,
   productsCompilationSelector,
 } from 'store/reducers/productSlice';
-import { ButtonInfo, LoaderLinear } from 'ui-kit';
+import { loadingProductsSelector } from 'store/reducers/productSlice/selectors';
+import { ButtonInfo, LoaderCircular, LoaderLinear } from 'ui-kit';
 
 export enum Categories {
   ALL = 8,
@@ -51,9 +53,8 @@ const CATEGORIES: Category = {
 export const MainPage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();
   const filter = useAppSelector(state => state.productListOld.statusProduct);
-
+  const loadingSlider = useAppSelector(loadingProductsSelector);
   const [isFetchingData, setIsFetchingData] = useState(true);
-
   const products = useAppSelector(productsCompilationSelector);
 
   useEffect(() => {
@@ -81,9 +82,17 @@ export const MainPage = WithLayout((): JSX.Element => {
       ) : (
         <div>
           <ImagesBlock className={style.images_block} />
-          <div className={style.container}>
+
+          <div className={style.status_container}>
             <StatusProduct />
+          </div>
+
+          <div className={style.container}>
             <div className={style.main_sliders}>
+              {loadingSlider === LoadingStatusEnum.Loading && (
+                <LoaderCircular className={style.loading_slider} />
+              )}
+
               {products &&
                 Object.keys(products).map(key => {
                   return (
@@ -98,6 +107,7 @@ export const MainPage = WithLayout((): JSX.Element => {
             </div>
             <ButtonInfo />
           </div>
+
           <SubscriptionAndContacts />
         </div>
       )}
