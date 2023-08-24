@@ -84,7 +84,7 @@ export const ProductList = (): JSX.Element => {
         />
       </div>
 
-      <ButtonInfo className={style.info_button} />
+      <ButtonInfo />
     </div>
   );
 };

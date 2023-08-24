@@ -96,9 +96,7 @@ export const MainPage = WithLayout((): JSX.Element => {
                   );
                 })}
             </div>
-            <div className={style.info_block}>
-              <ButtonInfo className={style.info_button} />
-            </div>
+            <ButtonInfo />
           </div>
           <SubscriptionAndContacts />
         </div>

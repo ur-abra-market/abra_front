@@ -1,27 +1,32 @@
-import { FC, ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
+import { FC, ButtonHTMLAttributes, DetailedHTMLProps, useCallback } from 'react';
 
 import cn from 'classnames';
 
 import styles from './ButtonInfo.module.scss';
 
 import { ContactUsQuestionMarkIcon } from 'assets/icons';
-import { useAppDispatch } from 'common/hooks';
-import { toggleInfoForm } from 'store/reducers/appSlice/slice';
 
 export interface IButtonInfo
   extends Omit<
     DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
     'children'
   > {}
-
 export const ButtonInfo: FC<IButtonInfo> = ({ className, ...restProps }): JSX.Element => {
-  const dispatch = useAppDispatch();
+  const handleClickLink = useCallback(() => {
+    const link = document.createElement('a');
+
+    link.href = 'https://wa.me/79119681844?text=Hi%2C%20';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, []);
 
   return (
     <button
       type="button"
       className={cn(styles.button, className)}
-      onClick={() => dispatch(toggleInfoForm())}
+      onClick={handleClickLink}
       {...restProps}
     >
       <ContactUsQuestionMarkIcon className={styles.icon} />
