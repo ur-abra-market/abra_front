@@ -6,7 +6,6 @@ import style from './FilterSwitcher.module.scss';
 
 import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { IHeaderSearch } from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/Switchers/Switchers';
 import {
   getParamsSelector,
   isLoadingSelector,
@@ -14,6 +13,11 @@ import {
   setParams,
 } from 'store/reducers/supplier/product';
 import { ButtonIcon } from 'ui-kit';
+
+export interface IHeaderSearch {
+  restFilters: boolean;
+  setRestFilters: (value: boolean) => void;
+}
 
 export const FilterSwitcher: FC<IHeaderSearch> = ({
   restFilters,

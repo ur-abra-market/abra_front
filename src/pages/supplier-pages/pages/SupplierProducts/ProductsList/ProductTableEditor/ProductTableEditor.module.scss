@@ -14,11 +14,39 @@
   column-gap: 36px;
 }
 
-.filter {
-  cursor: pointer;
+.product_editor {
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+
+
   font-size: var(--fz-s2);
   color: var(--color-black);
+
   background: none;
+
+  transition: opacity 100ms ease-in-out;
+
+  &:hover {
+    opacity: .75;
+  }
+}
+
+.in_active {
+  display: none;
+}
+
+.in_active_edit {
+  display: none;
+}
+
+.disabled {
+  cursor: auto;
+  opacity: .6;
+
+  &:hover {
+    opacity: .6;
+  }
 }
 
 .active {

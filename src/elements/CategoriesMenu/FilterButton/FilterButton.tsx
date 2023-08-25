@@ -4,13 +4,11 @@ import cn from 'classnames';
 
 import style from './FilterButton.module.scss';
 
-import { Categories } from 'elements/CategoriesMenu/CategoriesMenu';
-
 interface IFilterButton {
   children: string;
-  value: string;
-  activeValue: string;
-  callback: (value: Categories) => void;
+  value: number;
+  activeValue: number;
+  callback: (value: number) => void;
 }
 
 export const FilterButton: FC<IFilterButton> = ({
@@ -24,7 +22,7 @@ export const FilterButton: FC<IFilterButton> = ({
   });
 
   const updateActiveCategory = (): void => {
-    callback(value as Categories);
+    callback(value);
   };
 
   return (

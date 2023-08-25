@@ -1,9 +1,10 @@
-import { useCallback } from 'react';
+import { FC, useCallback } from 'react';
 
 import style from './PaginationSettings.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ProductsPerPage } from 'elements';
+import { ViewSwitcher } from 'pages/supplier-pages/pages/SupplierProducts/Switchers/ViewSwitcher/ViewSwitcher';
 import {
   getParamsSelector,
   isLoadingSelector,
@@ -14,7 +15,12 @@ import {
 } from 'store/reducers/supplier/product';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
 
-export const PaginationSettings = (): JSX.Element => {
+interface IPaginationSettings {
+  withSwitcher?: boolean;
+}
+export const PaginationSettings: FC<IPaginationSettings> = ({
+  withSwitcher,
+}): JSX.Element => {
   const activePage = useAppSelector(pageNumber);
   const dispatch = useAppDispatch();
   const params = useAppSelector(getParamsSelector);
@@ -41,11 +47,16 @@ export const PaginationSettings = (): JSX.Element => {
 
   return (
     <div className={style.select_and_pagination_wrapper}>
-      <ProductsPerPage
-        disabled={isLoading}
-        controlledValue={controlledValue}
-        onChange={onChangeLimit}
-      />
+      <div className={style.inner_block_wrapper}>
+        <ProductsPerPage
+          disabled={isLoading}
+          controlledValue={controlledValue}
+          onChange={onChangeLimit}
+        />
+
+        {withSwitcher && <ViewSwitcher />}
+      </div>
+
       <Pagination
         disabled={isLoading}
         currentPage={activePage}

@@ -16,16 +16,12 @@
   align-items: center;
 
   width: 100%;
-  padding: 0 32px;
+  padding-top: calc(max(8px, min(1.8%, 26px)));
+  padding-bottom: calc(max(8px, min(1.8%, 26px)));
 
   background-color: var(--color-white);
 }
 
 .logo {
   font-size: var(--fz-xl2);
-}
-
-.inner_buttons {
-  display: flex;
-  gap: 32px;
 }

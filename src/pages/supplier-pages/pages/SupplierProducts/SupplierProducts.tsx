@@ -10,7 +10,7 @@ export const SupplierProducts = WithLayout((): JSX.Element => {
     <section className={style.wrapper}>
       <div className={style.content_container}>
         <ProductHeader />
-        <PaginationSettings />
+        <PaginationSettings withSwitcher />
         <ProductsList />
         <PaginationSettings />
       </div>

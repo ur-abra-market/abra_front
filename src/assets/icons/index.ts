@@ -25,6 +25,7 @@ export { ReactComponent as LockIcon } from './files/lock.svg';
 export { ReactComponent as LogoutIcon } from './files/logout.svg';
 export { ReactComponent as MagnifierDarkGreyIcon } from './files/magnifier-dark-grey.svg';
 export { ReactComponent as MagnifierLightGreyIcon } from './files/magnifier-light-grey.svg';
+export { ReactComponent as MagnifierBlackIcon } from './files/magnifier-black.svg';
 export { ReactComponent as MastercardIcon } from './files/mastercard.svg';
 export { ReactComponent as OrderStatusCompletedIcon } from './files/order-status-completed.svg';
 export { ReactComponent as OrderStatusShippedIcon } from './files/order-status-shipped.svg';

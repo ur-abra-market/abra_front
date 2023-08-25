@@ -1,8 +1,9 @@
 .table_row {
   display: grid;
-  grid-template-columns: 4.50% 8.48% 6.83% 38.76% 11.12% 9.33% 6.60% 10.10% 4.26%;
+  grid-template-columns: 4.50% 8.48% 6.83% 33.76% 10.12% 8.33% 6.60% 9.86% 8% 4%;
   grid-template-rows: 1fr;
 }
+
 
 .table_head {
   display: flex;
@@ -18,8 +19,15 @@
   color: var(--color-black);
 
   background-color: var(--color-white);
-}
 
+  &:nth-child(9) {
+    justify-content: center;
+  }
+
+  &:nth-child(10) {
+    justify-content: center;
+  }
+}
 
 @media (max-width: 1025px) {
   .table_head {

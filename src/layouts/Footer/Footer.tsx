@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
+import { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 import { NavLink, useLocation } from 'react-router-dom';
@@ -26,59 +26,39 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
     [style.footer_white]: variant === 'white',
   });
 
+  const linksClasses = cn({
+    [style.links]: variant === 'default',
+    [style.links_white]: variant === 'white',
+  });
+
+  const navLinkClasses = cn(style.link, {
+    [style.link_white]: variant === 'white',
+  });
+
   return (
     <div className={cn(style.wrapper, className)}>
       {isShowTopNav && <Top />}
 
       <div className={footerClasses}>
         <div className={style.container}>
-          <div className={style.flex_box}>
-            {variant === 'default' ? (
-              <>
-                <div className={style.links}>
-                  <NavLink
-                    className={({ isActive }) =>
-                      isActive ? style.is_disabled : style.link
-                    }
-                    to={TERMS_AND_CONDITIONS}
-                  >
-                    Terms & conditions
-                  </NavLink>
-                  <NavLink
-                    className={({ isActive }) =>
-                      isActive ? style.is_disabled : style.link
-                    }
-                    to={PRIVACY_POLICY}
-                  >
-                    Privacy policy
-                  </NavLink>
-                </div>
-                <div className={style.copyright}>
-                  <span>&#169; Copyright 2023</span>
-                </div>
-              </>
-            ) : (
-              <div className={style.links_white}>
-                &#169; 2022 Abra.
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? style.is_disabled_white : style.link_white
-                  }
-                  to={TERMS_AND_CONDITIONS}
-                >
-                  Terms & conditions
-                </NavLink>
-                and&nbsp;
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? style.is_disabled_white : style.link_white
-                  }
-                  to={PRIVACY_POLICY}
-                >
-                  Privacy policy
-                </NavLink>
+          <div className={style.links_container}>
+            {variant === 'default' && (
+              <div className={style.copyright}>
+                <span>&#169; Copyright 2023</span>
               </div>
             )}
+
+            <div className={linksClasses}>
+              {variant === 'white' && <span>&#169; 2022 Abra.</span>}
+              <NavLink className={navLinkClasses} to={TERMS_AND_CONDITIONS}>
+                Terms & conditions
+              </NavLink>
+
+              {variant === 'white' && <span>and&nbsp;</span>}
+              <NavLink className={navLinkClasses} to={PRIVACY_POLICY}>
+                Privacy policy
+              </NavLink>
+            </div>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
+import { CATEGORY_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/utils/filterOptions';
 import {
   getParamsSelector,
   isLoadingSelector,
@@ -9,13 +10,6 @@ import {
   setParams,
 } from 'store/reducers/supplier/product';
 import { ISelectOption, Select } from 'ui-kit';
-
-const CATEGORY_SELECT: ISelectOption[] = [
-  { label: { text: 'All' }, value: 0 },
-  { label: { text: 'Clothes' }, value: 3 },
-  { label: { text: 'Cosmetics' }, value: 4 },
-  { label: { text: 'Accessories' }, value: 5 },
-];
 
 export const CategoryFilter = (): JSX.Element => {
   const params = useAppSelector(getParamsSelector);
