@@ -18,12 +18,18 @@
   }
 }
 
+.focus_item {
+  font-weight: var(--medium);
+  color: var(--color-accent);
+}
+
 .items_links {
   margin-top: 14px;
   transition: all .1s;
 
   &:hover {
     cursor: pointer;
+    font-weight: var(--medium);
     color: var(--color-accent);
   }
 }

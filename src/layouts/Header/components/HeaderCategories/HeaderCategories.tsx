@@ -1,4 +1,4 @@
-import React, { FC, RefObject, useEffect, useRef, useState } from 'react';
+import React, { createRef, FC, RefObject, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -40,6 +40,10 @@ export const HeaderCategories: FC<IHeaderCategories> = ({
     };
   });
 
+  const handleFocus = (): void => {
+    buttonRef.current?.focus();
+  };
+
   return (
     <div className={cn(style.wrapper, wrapperClassName)}>
       <button
@@ -50,7 +54,13 @@ export const HeaderCategories: FC<IHeaderCategories> = ({
       >
         All categories
       </button>
-      {categoriesIsOpen && <CategoriesMenu ref={categoriesRef} className={className} />}
+      {categoriesIsOpen && (
+        <CategoriesMenu
+          ref={categoriesRef}
+          onClose={setCategoriesIsOpen}
+          handleFocus={handleFocus}
+        />
+      )}
     </div>
   );
 };
