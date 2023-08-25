@@ -1,0 +1,22 @@
+.favorite_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.product_card_variant {
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-white);
+}
+
+.product_variant {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-accent);
+}
+
+.active {
+  fill: var(--color-accent);
+}

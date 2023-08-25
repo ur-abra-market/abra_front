@@ -1,10 +1,11 @@
-import React, { DetailedHTMLProps, FC, HTMLAttributes, KeyboardEvent } from 'react';
+import { DetailedHTMLProps, FC, HTMLAttributes, KeyboardEvent, useState } from 'react';
 
 import cn from 'classnames';
 import { useNavigate } from 'react-router-dom';
 
 import { MagnifierLightGreyIcon } from 'assets/icons';
 import { useAppSelector } from 'common/hooks';
+import { FavoriteButton } from 'elements/FavoriteButton/FavoriteButton';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import style from 'elements/ProductImage/ProductImage.module.scss';
 import { PRODUCT_DETAILS } from 'routes';
@@ -28,19 +29,32 @@ const ProductImage: FC<IProductCard> = ({
 }): JSX.Element => {
   const navigate = useNavigate();
   const userRole = useAppSelector(userRoleSelector);
+  // TODO add request to favorite (fake Data)
+  const [fakeIsFavorite, setIsFakeFavorite] = useState(false);
 
-  const handleLinkClick = (e: KeyboardEvent<HTMLDivElement>): void => {
+  const handleNavigateToProduct = (e: KeyboardEvent<HTMLDivElement>): void => {
     if (e.key === 'Enter') navigate(`${PRODUCT_DETAILS}/${productId}`);
+  };
+
+  const handleChangeFavorite = (isFavorite: boolean): void => {
+    setIsFakeFavorite(isFavorite);
   };
 
   return (
     <div
       role="link"
       tabIndex={0}
-      onKeyDown={handleLinkClick}
+      onKeyDown={handleNavigateToProduct}
       className={cn(style.image_wrapper, className)}
       {...restProps}
     >
+      {userRole && (
+        <FavoriteButton
+          isFavorite={fakeIsFavorite}
+          onChange={handleChangeFavorite}
+          className={style.flag}
+        />
+      )}
       <LazyImage
         src={imageUrl || ''}
         alt={name}

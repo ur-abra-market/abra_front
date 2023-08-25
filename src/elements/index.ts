@@ -9,7 +9,7 @@ export { AdditionalHeaderBlock } from './AdditionalHeaderBlock/AdditionalHeaderB
 export { Grades } from './Grades/Grades';
 export { AboutProduct } from './AboutProduct/AboutProduct';
 export { BreadCrumbs } from './BreadCrumbs/BreadCrumbs';
-export { Favorite } from './Favorite/Favorite';
+export { FavoriteButton } from './FavoriteButton/FavoriteButton';
 export { Tags } from './Tags/Tags';
 export { ProductColor } from './ProductColor/ProductColor';
 export { FeedBacksProduct } from './FeedBacksProduct/FeedBacksProduct';
