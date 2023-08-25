@@ -10,7 +10,6 @@ export { ReactComponent as EditPencilInCircleIcon } from './files/edit-pencil-in
 export { ReactComponent as EditPencilIcon } from './files/edit-pencil.svg';
 export { ReactComponent as EyeHiddenIcon } from './files/eye-hidden.svg';
 export { ReactComponent as EyeVisibleIcon } from './files/eye-visible.svg';
-export { ReactComponent as FavouriteAddedIcon } from './files/favourite-added.svg';
 export { ReactComponent as FavoriteIcon } from './files/favourites-add-to.svg';
 export { ReactComponent as GooglePayIcon } from './files/google-pay.svg';
 export { ReactComponent as GoogleIcon } from './files/google.svg';
