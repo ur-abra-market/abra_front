@@ -39,8 +39,6 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
     }
   };
 
-  console.log(activeProduct, deactivatedProduct);
-
   const tableCellClasses = cn({
     [style.table_td]: true,
     [style.center]: true,
