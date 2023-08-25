@@ -7,8 +7,6 @@ import {
   ISupplierProductSliceInitialState,
 } from './types';
 
-import { IActivateStatus } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsListSettings/types/products-types';
-
 const initialState: ISupplierProductSliceInitialState = {
   products: [],
   totalCount: 0,
@@ -33,6 +31,7 @@ const supplierProductSlice = createSlice({
   reducers: {
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
+      state.selectAllProducts = false;
     },
     setPageSize: (state, action: PayloadAction<number>) => {
       state.params.limit = action.payload;
@@ -40,35 +39,42 @@ const supplierProductSlice = createSlice({
     setParams: (state, action: PayloadAction<IProductSortOptions>) => {
       state.params = action.payload;
     },
-    selectAllProducts(state, action: PayloadAction<boolean>) {
-      state.selectAllProducts = action.payload;
-    },
-    setArrayForProductsDeactivation(state, action: PayloadAction<IActivateStatus[]>) {
-      state.deactivationProductIds = action.payload;
-    },
-    setArrayForProductsActivation(state, action: PayloadAction<IActivateStatus[]>) {
-      state.activeProductIds = action.payload;
-    },
-    setProductStatus(state, action: PayloadAction<IActivateStatus>) {
-      const { checked, id, status } = action.payload;
+    selectActiveProduct: (state, action: PayloadAction<number>) => {
+      const existingIndex = state.activeProductIds.findIndex(el => el === action.payload);
 
-      if (checked && status) {
-        state.deactivationProductIds.push(action.payload);
-      } else if (!checked && status) {
-        const index = state.deactivationProductIds.findIndex(el => el.id === id);
-
-        if (index > -1) {
-          state.deactivationProductIds.splice(index, 1);
-        }
-      } else if (checked && !status) {
+      if (existingIndex !== -1) {
+        // Если элемент с таким числом уже есть, удаляем его
+        state.activeProductIds.splice(existingIndex, 1);
+      } else {
+        // Если элемента с таким числом нет, добавляем его
         state.activeProductIds.push(action.payload);
-      } else if (!checked && !status) {
-        const index = state.activeProductIds.findIndex(el => el.id === id);
-
-        if (index > -1) {
-          state.activeProductIds.splice(index, 1);
-        }
       }
+
+      state.selectAllProducts = false;
+    },
+
+    selectAllProducts(state, action: PayloadAction<boolean>) {
+      if (action.payload) {
+        // Если action.payload истинен (выбраны все продукты)
+
+        // Находим идентификаторы продуктов, которых еще нет в state.activeProductIds
+        const newIds = state.products
+          .filter(el => el.id && !state.activeProductIds.includes(el.id))
+          .map(el => el.id);
+
+        // Добавляем новые идентификаторы к существующим в state.activeProductIds
+        state.activeProductIds = [...state.activeProductIds, ...newIds];
+      } else {
+        // Если action.payload ложен (снимаем выбор со всех продуктов)
+
+        // Фильтруем state.activeProductIds, оставляя только идентификаторы, которые не присутствуют в state.products
+        state.activeProductIds = state.activeProductIds.filter(
+          id => !state.products.some(product => product.id === id),
+        );
+      }
+
+      // Устанавливаем значение state.selectAllProducts равным action.payload
+      state.selectAllProducts = action.payload;
     },
   },
   extraReducers: builder => {
@@ -102,12 +108,5 @@ const supplierProductSlice = createSlice({
 });
 
 export const supplierProductReducer = supplierProductSlice.reducer;
-export const {
-  setPage,
-  setPageSize,
-  selectAllProducts,
-  setProductStatus,
-  setArrayForProductsDeactivation,
-  setArrayForProductsActivation,
-  setParams,
-} = supplierProductSlice.actions;
+export const { setPage, setPageSize, selectAllProducts, selectActiveProduct, setParams } =
+  supplierProductSlice.actions;

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 
 import style from './ProductsList.module.scss';
-import { ProductsListSettings } from './ProductsListSettings/ProductsListSettings';
 import { ProductsTable } from './ProductsTable/ProductsTable';
+import { ProductTableEditor } from './ProductTableEditor/ProductTableEditor';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import {
@@ -50,7 +50,7 @@ export const ProductsList = (): JSX.Element => {
   return (
     <div className={style.container}>
       {isLoading && <LoaderLinear />}
-      <ProductsListSettings />
+      <ProductTableEditor />
       <ProductsTable />
     </div>
   );
