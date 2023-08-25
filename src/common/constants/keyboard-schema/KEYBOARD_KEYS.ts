@@ -1,4 +1,4 @@
-export const KeyboardSchema = {
+export const KEYBOARD_KEYS = {
   ENTER: 'Enter',
   ARROW_UP: 'ArrowUp',
   ARROW_DOWN: 'ArrowDown',

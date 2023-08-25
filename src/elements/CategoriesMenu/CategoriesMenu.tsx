@@ -16,7 +16,7 @@ import style from './CategoriesMenu.module.scss';
 
 import { FilterButton, MenuItems } from '.';
 
-import { KeyboardSchema } from 'common/constants/index';
+import { KEYBOARD_KEYS } from 'common/constants/index';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { PRODUCTS_LIST } from 'routes';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
@@ -101,45 +101,45 @@ export const CategoriesMenu = forwardRef(
 
       if (isChildrenSelected) {
         if (
-          keyCode === KeyboardSchema.ARROW_RIGHT &&
+          keyCode === KEYBOARD_KEYS.ARROW_RIGHT &&
           indexActiveChildrenColumn < maxIndex
         ) {
           setIndexActiveChildrenColumn(prevState => prevState + STEP);
         }
 
-        if (keyCode === KeyboardSchema.ARROW_LEFT) {
+        if (keyCode === KEYBOARD_KEYS.ARROW_LEFT) {
           setIndexActiveChildrenColumn(prevState => prevState - STEP);
         }
 
         if (
-          keyCode === KeyboardSchema.ARROW_UP &&
+          keyCode === KEYBOARD_KEYS.ARROW_UP &&
           indexActiveChildrenRow > VALUE_OUTSIDE_LIST
         ) {
           setIndexActiveChildrenRow(prevState => prevState - STEP);
         }
 
         if (
-          keyCode === KeyboardSchema.ARROW_DOWN &&
+          keyCode === KEYBOARD_KEYS.ARROW_DOWN &&
           menuDepth !== null &&
           menuDepth - 1 > indexActiveChildrenRow
         ) {
           setIndexActiveChildrenRow(prevState => prevState + STEP);
         }
-        if (keyCode === KeyboardSchema.ENTER && categoryId) {
+        if (keyCode === KEYBOARD_KEYS.ENTER && categoryId) {
           navigate(`${PRODUCTS_LIST}/${categoryId}`);
         }
-      } else if (keyCode === KeyboardSchema.ESCAPE) {
+      } else if (keyCode === KEYBOARD_KEYS.ESCAPE) {
         handleFocus();
         onClose(false);
       } else if (
-        keyCode === KeyboardSchema.ARROW_DOWN &&
+        keyCode === KEYBOARD_KEYS.ARROW_DOWN &&
         indexActiveParentCategory < categoriesMenu.length - 1
       ) {
         setIndexActiveParentCategory(prevState => prevState + STEP);
-      } else if (keyCode === KeyboardSchema.ARROW_UP && indexActiveParentCategory > 0) {
+      } else if (keyCode === KEYBOARD_KEYS.ARROW_UP && indexActiveParentCategory > 0) {
         setIndexActiveParentCategory(prevState => prevState - STEP);
       } else if (
-        keyCode === KeyboardSchema.ARROW_RIGHT &&
+        keyCode === KEYBOARD_KEYS.ARROW_RIGHT &&
         categoriesMenu[indexActiveParentCategory].id !== 0
       ) {
         setIsChildrenSelected(true);
