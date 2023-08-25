@@ -1,7 +1,7 @@
 export {
   pageNumber,
   pageSize,
-  getDeactivatedIds,
+  deactivatedProductSelector,
   selectAllProductsSelector,
   getSortedData,
   supplierProductsSelector,
@@ -23,7 +23,6 @@ export type {
   IProduct,
   IProductPaginationParams,
   IProductSortParams,
-  IActivateStatus,
 } from './types';
 
 export {
@@ -33,4 +32,5 @@ export {
   setParams,
   supplierProductReducer,
   selectActiveProduct,
+  selectDeactivatedProduct,
 } from './supplierProductSlice';

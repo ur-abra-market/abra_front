@@ -4,7 +4,7 @@ import { FilterBlock } from './FilterBlock/FilterBlock';
 import style from './ProductHeader.module.scss';
 
 import { useAppSelector } from 'common/hooks';
-import { FilterSwitcher } from 'pages/supplier-pages/pages/SupplierProducts/Switchers/FilterSwitcher/FilterSwitcher';
+import { FilterSwitcher } from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterSwitcher/FilterSwitcher';
 import { isLoadingSelector } from 'store/reducers/supplier/product';
 import { Search } from 'ui-kit';
 

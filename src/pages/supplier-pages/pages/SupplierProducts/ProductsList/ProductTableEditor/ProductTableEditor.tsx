@@ -7,7 +7,9 @@ import style from './ProductTableEditor.module.scss';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { productEditorData } from 'pages/supplier-pages/pages/SupplierProducts/utils/tableData';
 import {
+  activateProducts,
   activeProductSelector,
+  deactivatedProductSelector,
   deActivateProducts,
   getParamsSelector,
 } from 'store/reducers/supplier/product';
@@ -16,12 +18,16 @@ import { ButtonIcon } from 'ui-kit';
 export const ProductTableEditor = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const activeProduct = useAppSelector(activeProductSelector);
+  const deactivatedProduct = useAppSelector(deactivatedProductSelector);
   const { isActive } = useAppSelector(getParamsSelector);
 
   const onClickHandler = (label: string): void => {
     switch (label) {
       case 'Delete':
         dispatch(deActivateProducts(activeProduct));
+        break;
+      case 'Recently deleted':
+        dispatch(activateProducts(deactivatedProduct));
         break;
       default:
     }

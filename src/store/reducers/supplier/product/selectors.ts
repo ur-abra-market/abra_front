@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { IActivateStatus, IProduct, IProductSortOptions } from './types';
+import { IProduct, IProductSortOptions } from './types';
 
 import { RootStateType } from 'store/createStore';
 
@@ -12,8 +12,8 @@ export const pageSize = (state: RootStateType): number =>
 export const selectAllProductsSelector = (state: RootStateType): boolean =>
   state.supplierProduct.selectAllProducts;
 
-export const getDeactivatedIds = (state: RootStateType): IActivateStatus[] =>
-  state.supplierProduct.deactivationProductIds;
+export const deactivatedProductSelector = (state: RootStateType): number[] =>
+  state.supplierProduct.deactivatedProductIds;
 
 export const supplierProductsSelector = (state: RootStateType): IProduct[] =>
   state.supplierProduct.products;
