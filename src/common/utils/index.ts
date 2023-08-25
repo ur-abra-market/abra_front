@@ -1,3 +1,4 @@
+export { getScrollBarWidth } from './getScrollBarWidth';
 export { filterEmptyValues } from './filterEmptyValues';
 export { formatDate } from './formatDateProductsList';
 export { getCookie } from './getCookie';

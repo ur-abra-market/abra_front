@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 import style from './HeaderNav.module.scss';
 
+import { useBodyOverflowHidden } from 'common/hooks';
 import { HEADER_NAV_CONTENT } from 'layouts/Header/components/HeaderNav/HeaderNavContent';
 
 interface IHeaderNav {
@@ -28,9 +29,7 @@ export const HeaderNav: FC<IHeaderNav> = ({
     [style.show]: isMobileView && isOpenOnMobile,
   });
 
-  useEffect(() => {
-    document.body.style.overflow = isOpenOnMobile ? 'hidden' : '';
-  }, [isOpenOnMobile]);
+  useBodyOverflowHidden(isOpenOnMobile);
 
   return (
     <>
