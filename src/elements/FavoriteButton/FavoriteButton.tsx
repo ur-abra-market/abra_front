@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import style from './FavoriteButton.module.scss';
 
-import { FavoriteAddedToIcon } from 'assets/icons';
+import { FavoriteIcon } from 'assets/icons';
 import { ButtonIcon } from 'ui-kit';
 
 interface IFavoriteButton {
@@ -24,14 +24,14 @@ export const FavoriteButton: FC<IFavoriteButton> = ({
     onChange(!isFavorite);
   };
 
-  const modsButtonClasses = cn(style.favorite_button, className, {
+  const buttonVariantClasses = cn(style.favorite_button, className, {
     [style.product_variant]: variant === 'product',
     [style.product_card_variant]: variant === 'productCard',
   });
 
   return (
-    <ButtonIcon className={modsButtonClasses} onClick={handleChangeFavorite}>
-      <FavoriteAddedToIcon className={isFavorite ? style.active : ''} />
+    <ButtonIcon className={buttonVariantClasses} onClick={handleChangeFavorite}>
+      <FavoriteIcon className={isFavorite ? style.active : ''} />
     </ButtonIcon>
   );
 };
