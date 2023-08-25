@@ -1,12 +1,12 @@
-@import "src/common/styles/mixins";
+@import 'src/common/styles/mixins';
 
 @include seller_section();
 
-.seller_cabinet {
+.wrapper {
   background: var(--color-super-light-gray);
 }
 
-.seller_cabinet_content_wrapper {
+.content_container {
   display: grid;
   grid-column-gap: 12px;
   grid-template-areas:
@@ -25,15 +25,12 @@
   grid-area: personal_info;
 }
 
-.business_info {
-  grid-area: business_info;
+.account_management {
+  @include account_layout;
 }
 
-.account_details {
-  display: flex;
-  grid-area: account_details;
-  flex-direction: column;
-  gap: 8px;
+.business_info {
+  grid-area: business_info;
 }
 
 .notifications {

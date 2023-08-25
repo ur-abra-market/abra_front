@@ -63,6 +63,13 @@
   }
 }
 
+@mixin account_layout {
+  display: flex;
+  grid-area: account_details;
+  flex-direction: column;
+  gap: 8px;
+}
+
 @function calc-fluid-font-size($fMin, $fMax, $vMin, $vMax) {
   $k: ($fMax - $fMin)/ ($vMax - $vMin);
   $b: $fMin - $k * $vMin;
