@@ -3,11 +3,12 @@ import { DetailedHTMLProps, FC, HTMLAttributes, KeyboardEvent, useState } from '
 import cn from 'classnames';
 import { useNavigate } from 'react-router-dom';
 
+import style from './ProductImage.module.scss';
+
 import { MagnifierLightGreyIcon } from 'assets/icons';
 import { useAppSelector } from 'common/hooks';
 import { FavoriteButton } from 'elements/FavoriteButton/FavoriteButton';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
-import style from 'elements/ProductImage/ProductImage.module.scss';
 import { PRODUCT_DETAILS } from 'routes';
 import { userRoleSelector } from 'store/reducers/authSlice';
 
