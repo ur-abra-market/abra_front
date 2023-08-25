@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import style from './ProductPageHeader.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { Grades, BreadCrumbs, Favorite } from 'elements';
+import { Grades, BreadCrumbs, FavoriteButton } from 'elements';
 import {
   productCategorySelector,
   favoriteProductSelector,
@@ -22,7 +22,7 @@ export const ProductPageHeader = (): JSX.Element => {
   const grade = useAppSelector(productGradeSelector);
   const totalOrders = useAppSelector(productTotalOrdersSelector);
 
-  const onChangeIsFavorite = (isFavorite: boolean): void => {
+  const handleChangeFavorite = (isFavorite: boolean): void => {
     if (isFavorite) {
       dispatch(addFavoriteProduct({ product_id: Number(productId) }));
     } else {
@@ -35,9 +35,9 @@ export const ProductPageHeader = (): JSX.Element => {
       <div className={style.inner_wrapper}>
         <BreadCrumbs categoryName={name} parentId={parent_id} />
         <Grades grade={grade} count={totalOrders} />
-        <Favorite
+        <FavoriteButton
           isFavorite={isFavorite}
-          onChange={onChangeIsFavorite}
+          onChange={handleChangeFavorite}
           variant="product"
         />
       </div>

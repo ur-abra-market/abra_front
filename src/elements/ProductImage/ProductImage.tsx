@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { MagnifierLightGreyIcon } from 'assets/icons';
 import { useAppSelector } from 'common/hooks';
-import { Favorite } from 'elements/Favorite/Favorite';
+import { FavoriteButton } from 'elements/FavoriteButton/FavoriteButton';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import style from 'elements/ProductImage/ProductImage.module.scss';
 import { PRODUCT_DETAILS } from 'routes';
@@ -32,11 +32,11 @@ const ProductImage: FC<IProductCard> = ({
   // TODO add request to favorite (fake Data)
   const [fakeIsFavorite, setIsFakeFavorite] = useState(false);
 
-  const handleLinkClick = (e: KeyboardEvent<HTMLDivElement>): void => {
+  const handleNavigateToProduct = (e: KeyboardEvent<HTMLDivElement>): void => {
     if (e.key === 'Enter') navigate(`${PRODUCT_DETAILS}/${productId}`);
   };
 
-  const onChangeIsFavorite = (isFavorite: boolean): void => {
+  const handleChangeFavorite = (isFavorite: boolean): void => {
     setIsFakeFavorite(isFavorite);
   };
 
@@ -44,14 +44,14 @@ const ProductImage: FC<IProductCard> = ({
     <div
       role="link"
       tabIndex={0}
-      onKeyDown={handleLinkClick}
+      onKeyDown={handleNavigateToProduct}
       className={cn(style.image_wrapper, className)}
       {...restProps}
     >
       {userRole && (
-        <Favorite
+        <FavoriteButton
           isFavorite={fakeIsFavorite}
-          onChange={onChangeIsFavorite}
+          onChange={handleChangeFavorite}
           className={style.flag}
         />
       )}

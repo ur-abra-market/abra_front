@@ -5,18 +5,18 @@
   border-radius: 50%;
 }
 
-.product_card_button {
+.product_card_variant {
   width: 32px;
   height: 32px;
-  background-color: #FFF;
+  background-color: var(--color-white);
 }
 
-.product_button {
+.product_variant {
   width: 40px;
   height: 40px;
   border: 1px solid var(--color-accent);
 }
 
 .active {
-  fill: #FC133D;
+  fill: var(--color-accent);
 }
