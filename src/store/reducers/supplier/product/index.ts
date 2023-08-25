@@ -33,4 +33,5 @@ export {
   supplierProductReducer,
   selectActiveProduct,
   selectDeactivatedProduct,
+  resetFilters,
 } from './supplierProductSlice';

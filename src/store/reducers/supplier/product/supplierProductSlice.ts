@@ -105,6 +105,21 @@ const supplierProductSlice = createSlice({
       // Set the value of state.selectAllProducts to action.payload
       state.selectAllProducts = action.payload;
     },
+    resetFilters: state => {
+      state.params = {
+        offset: 0,
+        limit: 20,
+        categoryIds: [],
+        ascending: false,
+        sort: 'date',
+        isActive: undefined,
+        onSale: undefined,
+      };
+      state.page = 1;
+      state.activeProductIds = [];
+      state.deactivatedProductIds = [];
+      state.selectAllProducts = false;
+    },
   },
   extraReducers: builder => {
     builder
@@ -123,15 +138,14 @@ const supplierProductSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(activateProducts.fulfilled, state => {
-        state.activeProductIds = [];
         state.deactivatedProductIds = [];
+        state.hasChanged = !state.hasChanged;
         state.selectAllProducts = false;
       })
       .addCase(deActivateProducts.fulfilled, state => {
-        state.deactivatedProductIds = [];
         state.activeProductIds = [];
-        state.selectAllProducts = false;
         state.hasChanged = !state.hasChanged;
+        state.selectAllProducts = false;
       });
   },
 });
@@ -144,4 +158,5 @@ export const {
   selectActiveProduct,
   selectDeactivatedProduct,
   setParams,
+  resetFilters,
 } = supplierProductSlice.actions;

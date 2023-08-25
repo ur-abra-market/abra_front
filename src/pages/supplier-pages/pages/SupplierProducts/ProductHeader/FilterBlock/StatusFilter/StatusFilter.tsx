@@ -6,6 +6,7 @@ import { STATUS_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/utils
 import {
   getParamsSelector,
   isLoadingSelector,
+  setPage,
   setParams,
 } from 'store/reducers/supplier/product';
 import { ISelectOption, Select } from 'ui-kit';
@@ -24,6 +25,7 @@ export const StatusFilter = (): JSX.Element => {
           : { ...params, isActive: Boolean(value) };
 
       dispatch(setParams(newParams));
+      dispatch(setPage(1));
     },
     [dispatch, params],
   );
