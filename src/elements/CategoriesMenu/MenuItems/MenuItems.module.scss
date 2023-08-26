@@ -12,14 +12,14 @@
 
   &:hover {
     font-weight: var(--bold);
-    color: var(--color-accent);
+    color: var(--color-red);
     transition: all .1s;
   }
 }
 
 .focus_item {
   font-weight: var(--medium);
-  color: var(--color-accent);
+  color: var(--color-red);
 }
 
 .items_links {
@@ -29,7 +29,7 @@
   &:hover {
     cursor: pointer;
     font-weight: var(--medium);
-    color: var(--color-accent);
+    color: var(--color-red);
   }
 }
 

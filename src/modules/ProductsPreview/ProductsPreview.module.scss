@@ -35,7 +35,7 @@
   font-size: 15px;
   font-weight: var(--regular);
   line-height: 20px;
-  color:var(--color-accent);
+  color:var(--color-red);
   text-decoration: underline;
 }
 
@@ -57,11 +57,11 @@
   height: 24px;
 
   &:hover {
-    fill: var(--color-accent);
+    fill: var(--color-red);
   }
 
   &:active {
-    fill: var(--color_accent_medium);
+    fill: var(--color-red-medium);
   }
 }
 
@@ -72,11 +72,11 @@
   height: 24px;
 
   &:hover {
-    fill: var(--color-accent);
+    fill: var(--color-red);
   }
 
   &:active {
-    fill: var(--color_accent_medium);
+    fill: var(--color-red-medium);
   }
 }
 
@@ -84,13 +84,13 @@
   cursor: default;
 
   &:hover {
-    fill: var(--color-gray);
+    fill: var(--color-gray-light);
   }
 }
 
 .disable_button path {
   pointer-events: none;
-  fill: var(--color-gray);
+  fill: var(--color-gray-light);
 }
 
 
