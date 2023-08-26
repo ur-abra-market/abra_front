@@ -6,9 +6,9 @@ import * as yup from 'yup';
 
 import style from './ForgotPasswordForm.module.scss';
 
-import { emailValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
+import { getEmailValidationSchema } from 'common/utils';
 import { loadingSelector } from 'store/reducers/appSlice';
 import { forgotPassword } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
@@ -22,7 +22,7 @@ interface IForgotPasswordForm {
 }
 const schema = yup
   .object({
-    email: emailValidationSchema,
+    email: getEmailValidationSchema(true),
   })
   .required();
 

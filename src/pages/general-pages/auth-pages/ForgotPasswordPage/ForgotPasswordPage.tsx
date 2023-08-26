@@ -27,6 +27,7 @@ export const ForgotPasswordPage = (): JSX.Element => {
             text="Enter your email address to receive a link to reset your password"
             className={style.message}
           />
+
           <ForgotPasswordForm togglePageType={togglePageType} />
         </>
       ) : (
@@ -34,6 +35,7 @@ export const ForgotPasswordPage = (): JSX.Element => {
           <div className={style.header}>
             A link to reset your password <br /> has been sent to your email address.
           </div>
+
           <div className={style.subheader}>
             Make sure the email you received is indeed from Abra platform <br /> and
             follow the link to create a new password.

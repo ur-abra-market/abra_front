@@ -15,3 +15,8 @@ export { Tags } from './Tags/Tags';
 export { ProductColor } from './ProductColor/ProductColor';
 export { FeedBacksProduct } from './FeedBacksProduct/FeedBacksProduct';
 export { DescriptionProduct } from './DescriptionProduct/DescriptionProduct';
+<<<<<<< Updated upstream
+=======
+export { ButtonLogout } from './ButtonLogout/ButtonLogout';
+export { PhoneNumber } from './PhoneNumber/PhoneNumber';
+>>>>>>> Stashed changes

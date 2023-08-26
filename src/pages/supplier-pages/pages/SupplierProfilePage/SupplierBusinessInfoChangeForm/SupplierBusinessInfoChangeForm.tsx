@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -10,7 +10,6 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSupplierBusinessInfoFormDirty } from 'common/hooks/useSupplierBusinessInfoFormDirty';
 import { useSupplierBusinessInfoSetValue } from 'common/hooks/useSupplierBusinessInfoSetValue';
 import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
-import { parsePhoneNumber } from 'common/utils';
 import { UploadImage } from 'elements';
 import {
   SupplierBusinessInfoForm,
@@ -19,11 +18,12 @@ import {
 import { ISupplierUpdateBusinessInfo } from 'services/supplier/supplier.serviceTypes';
 import {
   supplierBusinessInfoSelector,
-  updateBusinessInfo,
   supplierCompanyLogoSelector,
   supplierLoadingSelector,
+  updateBusinessInfo,
 } from 'store/reducers/supplier/profile';
 import { updateCompanyLogo } from 'store/reducers/supplier/profile/thunks';
+import { ITestSupplierBusinessInfo } from 'store/reducers/supplier/profile/types';
 
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -35,7 +35,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
 
   const formMethods = useForm<ISupplierBusinessInfoFormData>({
     resolver: yupResolver(supplierBusinessInfoFormValidationSchema),
-    mode: 'onChange',
+    mode: 'all',
   });
   const { setValue, watch } = formMethods;
 
@@ -45,39 +45,30 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
 
   useSupplierBusinessInfoSetValue(setValue, businessInfoData);
 
-  const { isDirty, isPhoneNumberDisable } = useSupplierBusinessInfoFormDirty(
-    businessInfoData,
-    watch,
-  );
+  const isDirty = useSupplierBusinessInfoFormDirty(businessInfoData, watch);
 
-  const onSubmit = async (data: ISupplierBusinessInfoFormData): Promise<void> => {
-    const numberBody = data.phoneNumber && parsePhoneNumber(data.phoneNumber).numberBody;
-    const currentPhoneNumber = isPhoneNumberDisable
-      ? businessInfoData.phoneNumber
-      : numberBody;
-
+  const onSubmit = async (data: ITestSupplierBusinessInfo): Promise<void> => {
     const updateData: ISupplierUpdateBusinessInfo = {
       supplier_data_request: {
         license_number: data.license,
       },
       company_data_request: {
-        ...(data.email && { business_email: data.email }),
-        business_sector: data.businessSector,
-        country_id: data.countryRegistration!,
-        is_manufacturer: data.isManufacturer,
-        ...(data.address && { address: data.address }),
-        number_employees: Number(data.numEmployees!),
-        year_established: Number(data.yearEstablished!),
         name: data.storeName,
+        business_sector: data.businessSector,
+        is_manufacturer: data.isManufacturer,
+        year_established: Number(data.yearEstablished!),
+        number_employees: Number(data.numberEmployees!),
+        country_id: data.countryRegistration!,
         ...(data.description && { description: data.description }),
+        ...(data.businessEmail && { business_email: data.businessEmail }),
+        ...(data.companyAddress && { address: data.companyAddress }),
       },
-      ...(data.countryId &&
-        currentPhoneNumber && {
-          company_phone_data_request: {
-            phone_number: currentPhoneNumber,
-            country_id: data.countryId,
-          },
-        }),
+      ...(data.businessPhoneNumberBody && {
+        company_phone_data_request: {
+          phone_number: data.businessPhoneNumberBody,
+          country_id: data.businessPhoneNumberCountryId,
+        },
+      }),
     };
 
     await dispatch(updateBusinessInfo(updateData));
@@ -95,14 +86,9 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
         description="company logo"
         isDisabled={isDisabled}
       />
+
       <FormProvider {...formMethods}>
-        <SupplierBusinessInfoForm
-          isDirty={isDirty}
-          updateForm
-          onSubmit={onSubmit}
-          countryShort={businessInfoData.countryShort}
-          isPhoneNumber={isPhoneNumberDisable}
-        />
+        <SupplierBusinessInfoForm isDirty={isDirty} updateForm onSubmit={onSubmit} />
       </FormProvider>
     </>
   );

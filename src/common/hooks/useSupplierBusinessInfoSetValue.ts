@@ -8,17 +8,11 @@ export const useSupplierBusinessInfoSetValue = (
   setValue: UseFormSetValue<any>,
   data: ISupplierBusinessInfoFormData,
 ): void => {
-  const { countryCode, countryRegistration, countryShort } = data;
-
   useEffect(() => {
     if (data) {
       Object.entries(data).forEach(([key, value]) => {
-        if (key === 'phoneNumber') {
-          setValue(key, `${countryCode}${value}`);
-        } else {
-          setValue(key, value);
-        }
+        setValue(key, value);
       });
     }
-  }, [data, setValue, countryRegistration, countryShort, countryCode]);
+  }, [data, setValue]);
 };

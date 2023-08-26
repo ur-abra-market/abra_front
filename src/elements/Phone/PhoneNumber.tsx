@@ -5,57 +5,66 @@ import { useFormContext } from 'react-hook-form';
 import style from './PhoneNumber.module.scss';
 import {
   defaultPhoneCountryCodeValue,
-  formatPhoneNumberBody,
+  getFormattedPhoneNumberBody,
   getCountriesWithFlags,
   getPhoneCountryCodeValue,
-  validatePhoneNumber,
 } from './utils';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { CountriesEnum } from 'common/types';
 import { countriesSelector, getCountries } from 'store/reducers/commonSlice';
 import { Input, ISelectOption, Select } from 'ui-kit';
 
-interface IPhoneNumberForm {
-  phoneNumberBody: string;
-  phoneNumberCountryId: number;
-}
-
 interface IPhoneNumber {
-  countryId?: number;
-  phoneNumber?: string;
+  countryIdField: string;
+  phoneNumberBodyField: string;
+  disabled: boolean;
+  label?: string;
 }
 
 export const PhoneNumber: FC<IPhoneNumber> = ({
-  countryId,
-  phoneNumber,
+  countryIdField,
+  phoneNumberBodyField,
+  label,
+  disabled,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const inputElement = useRef<HTMLInputElement>(null);
   const countries = useAppSelector(countriesSelector);
   const countriesWithFlag = getCountriesWithFlags(countries);
   const [phoneCountryCode, setPhoneCountryCode] = useState<ISelectOption>(
-    countryId
-      ? getPhoneCountryCodeValue(countryId, countriesWithFlag)
-      : defaultPhoneCountryCodeValue,
+    defaultPhoneCountryCodeValue,
   );
-  const [phoneNumberBody, setPhoneNumberBody] = useState(phoneNumber || '');
-
+  const [phoneNumberBody, setPhoneNumberBody] = useState('');
   const {
     setValue,
-    setError,
-    clearErrors,
+    register,
+    watch,
     formState: { errors },
-  } = useFormContext<IPhoneNumberForm>();
+  } = useFormContext();
+  const { onChange: onRegisterChange } = register(phoneNumberBodyField);
+  const phoneNumberBodyValue = watch(phoneNumberBodyField);
+  const phoneNumberCountryIdValue = watch(countryIdField);
 
   useEffect(() => {
     if (!countries.length) {
       dispatch(getCountries());
     }
-    setValue('phoneNumberCountryId', defaultPhoneCountryCodeValue.value);
+    setValue(countryIdField, defaultPhoneCountryCodeValue.value);
   }, []);
 
-  const formatAndValidatePhoneNumberBody = (numberBody: string): void => {
+  useEffect(() => {
+    if (!phoneNumberBody && phoneNumberBodyValue) {
+      setPhoneNumberBody(
+        getFormattedPhoneNumberBody(phoneNumberBodyValue, phoneNumberCountryIdValue),
+      );
+
+      setPhoneCountryCode(
+        getPhoneCountryCodeValue(phoneNumberCountryIdValue, countriesWithFlag),
+      );
+    }
+  }, [phoneNumberBodyValue]);
+
+  const formatPhoneNumberBody = (numberBody: string): void => {
     // keep only the numbers from the incoming input value
     const phoneNumberBodyRawValue = numberBody.replace(/\D/g, '');
 
@@ -67,24 +76,32 @@ export const PhoneNumber: FC<IPhoneNumber> = ({
     if (!phoneNumberBodyRawValue && phoneNumberBody) {
       // to clear the input set the empty string to phoneNumberBody
       setPhoneNumberBody('');
-      // set an error, because the empty phoneNumberBody input is not valid
-      setError('phoneNumberBody', { message: 'Please, enter a valid phone number' });
+      setValue(phoneNumberBodyField, '', {
+        // Recalculate validation after setting the value
+        shouldValidate: true,
+      });
 
       return;
     }
-
+    debugger;
     // get the phone number body formatted by the country mask with countryCode
-    const formattedNumber = formatPhoneNumberBody(
+    const formattedNumber = getFormattedPhoneNumberBody(
       phoneNumberBodyRawValue,
-      phoneCountryCode.value as CountriesEnum,
+      phoneCountryCode.value,
     );
 
+    debugger;
     // if formattedNumber is empty, then do not display anything on ui
-    if (!formattedNumber) return;
-
+    if (!formattedNumber) {
+      return;
+    }
+    debugger;
     // if formattedNumber exists, set it to phoneNumberBody so that the number is displayed on ui
     setPhoneNumberBody(formattedNumber);
-    setValue('phoneNumberBody', formattedNumber.replace(/\D/g, ''));
+    setValue(phoneNumberBodyField, formattedNumber.replace(/\D/g, ''), {
+      // Recalculate validation after setting the value
+      shouldValidate: true,
+    });
 
     // restore cursor position after state update
     setTimeout(() => {
@@ -93,21 +110,12 @@ export const PhoneNumber: FC<IPhoneNumber> = ({
         inputElement.current.selectionEnd = selectionEnd || 0;
       }
     }, 0);
-
-    if (
-      !validatePhoneNumber(
-        phoneNumberBodyRawValue,
-        phoneCountryCode.value as CountriesEnum,
-      )
-    ) {
-      setError('phoneNumberBody', { message: 'Please, enter a valid phone number' });
-    } else {
-      clearErrors('phoneNumberBody');
-    }
   };
 
   useEffect(() => {
-    formatAndValidatePhoneNumberBody(phoneNumberBody);
+    if (phoneNumberBodyValue) {
+      formatPhoneNumberBody(phoneNumberBodyValue);
+    }
   }, [phoneCountryCode]);
 
   const handlePhoneCountryCodeChange = (value: ISelectOption): void => {
@@ -118,34 +126,50 @@ export const PhoneNumber: FC<IPhoneNumber> = ({
       value: value.value,
     });
 
-    setValue('phoneNumberCountryId', value.value);
+    setValue(countryIdField, value.value);
   };
 
-  const handlePhoneNumberBodyChange = (e: React.ChangeEvent<HTMLInputElement>): any => {
-    formatAndValidatePhoneNumberBody(e.currentTarget.value);
+  const handlePhoneNumberBodyChange = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ): Promise<any> => {
+    onRegisterChange(e);
+    formatPhoneNumberBody(e.currentTarget.value);
   };
 
   if (!countriesWithFlag.length) return <div />;
 
   return (
-    <div className={style.wrapper}>
-      <Select
-        controlledValue={phoneCountryCode}
-        width="166px"
-        className={style.select}
-        onChange={handlePhoneCountryCodeChange}
-        options={countriesWithFlag.map(c => ({
-          label: { text: `+${c.country_code} ${c.country}`, image_src: c.country_flag },
-          value: c.id,
-        }))}
-      />
+    <>
+      {label && (
+        <label htmlFor="phone_number_input" className={style.label}>
+          {label}
+        </label>
+      )}
 
-      <Input
-        ref={inputElement}
-        value={phoneNumberBody}
-        onChange={handlePhoneNumberBodyChange}
-        error={errors?.phoneNumberBody?.message}
-      />
-    </div>
+      <div className={style.wrapper}>
+        <Select
+          controlledValue={phoneCountryCode}
+          width="166px"
+          className={style.select}
+          disabled={disabled}
+          onChange={handlePhoneCountryCodeChange}
+          options={countriesWithFlag.map(c => ({
+            label: { text: `+${c.country_code} ${c.country}`, image_src: c.country_flag },
+            value: c.id,
+          }))}
+        />
+
+        <Input
+          {...register(phoneNumberBodyField)}
+          id="phone_number_input"
+          ref={inputElement}
+          className={style.input}
+          value={phoneNumberBody}
+          onChange={handlePhoneNumberBodyChange}
+          error={errors?.[phoneNumberBodyField]?.message as string}
+          disabled={disabled}
+        />
+      </div>
+    </>
   );
 };

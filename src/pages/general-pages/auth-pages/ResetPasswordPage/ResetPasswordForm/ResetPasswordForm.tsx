@@ -6,9 +6,9 @@ import * as yup from 'yup';
 
 import style from './ResetPasswordForm.module.scss';
 
-import { passwordValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
+import { passwordValidationSchema } from 'common/utils';
 import { PasswordComplexity } from 'pages/general-pages/auth-pages/assets';
 import { IResetPasswordRequest } from 'services/auth/auth.serviceTypes';
 import { loadingSelector } from 'store/reducers/appSlice';
@@ -84,6 +84,7 @@ export const ResetPasswordForm: FC<IResetPasswordForm> = ({
         error={errors.new_password?.message}
         disabled={isLoading}
       />
+
       <Input
         {...register('confirm_password')}
         classNameWrapper={style.input_wrapper}
@@ -93,7 +94,9 @@ export const ResetPasswordForm: FC<IResetPasswordForm> = ({
         error={errors.confirm_password?.message}
         disabled={isLoading}
       />
+
       <PasswordComplexity password={watchPassword} />
+
       <Button
         label="Save"
         className={style.button_save}

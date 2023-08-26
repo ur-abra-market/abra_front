@@ -8,11 +8,11 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ContentMessage } from 'elements';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
 import { LOGIN } from 'routes';
-import { confirmEmail } from 'store/reducers/authSlice';
+import { confirmEmail, isAuthorizedSelector } from 'store/reducers/authSlice';
 import { LoaderCircular } from 'ui-kit';
 
 export const ConfirmEmailPage = (): JSX.Element => {
-  const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
+  const isAuthorized = useAppSelector(isAuthorizedSelector);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [emailStatus, setEmailStatus] = useState<'confirmed' | 'unconfirmed' | null>(

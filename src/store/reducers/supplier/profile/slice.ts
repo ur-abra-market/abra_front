@@ -22,29 +22,37 @@ const initialState: ISupplierProfileSliceInitialState = {
     notificationsLoading: LoadingStatusEnum.Idle,
     companyLogoLoading: LoadingStatusEnum.Idle,
   },
+
+  hasPersonalInfo: null,
+  hasPersonalInfoError: false,
+
+  hasCompanyInfo: null,
+  hasCompanyInfoError: false,
+
   businessInfo: {
+    companyLogo: '',
     storeName: '',
     businessSector: '',
     isManufacturer: false,
     license: '',
     yearEstablished: null,
-    numEmployees: null,
+    numberEmployees: null,
     countryRegistration: null,
     description: '',
-    email: '',
-    address: '',
-    companyLogo: '',
-    countryShort: '',
-    phoneNumber: '',
-    phoneId: null,
-    countryCode: '',
-    countryId: null,
+    businessPhoneNumberBody: '',
+    businessPhoneNumberCountryId: null,
+    businessEmail: '',
+    companyAddress: '',
   },
+
   notifications: null,
+<<<<<<< Updated upstream
   hasPersonalInfo: null,
   hasCompanyInfo: null,
   initDataLoading: LoadingStatusEnum.Idle,
   data: null,
+=======
+>>>>>>> Stashed changes
 };
 
 export const supplierProfileSlice = createSlice({
@@ -62,38 +70,28 @@ export const supplierProfileSlice = createSlice({
       .addCase(createAccountBusinessInfo.rejected, state => {
         state.loading.businessInfoLoading = LoadingStatusEnum.Failed;
       })
+
       .addCase(getBusinessInfo.pending, state => {
         state.loading.businessInfoLoading = LoadingStatusEnum.Loading;
       })
       .addCase(getBusinessInfo.fulfilled, (state, action) => {
-        const {
-          name,
-          country,
-          description,
-          address,
-          year_established,
-          is_manufacturer,
-          business_sector,
-          business_email,
-          number_employees,
-          phone,
-        } = action.payload.company;
+        const { company } = action.payload;
 
-        state.businessInfo.storeName = name;
-        state.businessInfo.businessSector = business_sector;
-        state.businessInfo.isManufacturer = is_manufacturer;
+        state.businessInfo.storeName = company.name;
+        state.businessInfo.businessSector = company.business_sector;
+        state.businessInfo.isManufacturer = company.is_manufacturer;
         state.businessInfo.license = action.payload.license_number;
-        state.businessInfo.yearEstablished = year_established;
-        state.businessInfo.numEmployees = number_employees;
-        state.businessInfo.countryRegistration = country.id;
-        state.businessInfo.description = description;
-        state.businessInfo.email = business_email;
-        state.businessInfo.address = address;
-        state.businessInfo.phoneId = phone?.id;
-        state.businessInfo.phoneNumber = phone?.phone_number;
-        state.businessInfo.countryShort = phone?.country?.country_short;
-        state.businessInfo.countryCode = phone?.country?.country_code;
-        state.businessInfo.countryId = phone?.country?.id;
+        state.businessInfo.yearEstablished = company.year_established;
+        state.businessInfo.numberEmployees = company.number_employees;
+        state.businessInfo.countryRegistration = company.country.id;
+        state.businessInfo.description = company.description;
+        state.businessInfo.businessEmail = company.business_email;
+        state.businessInfo.companyAddress = company.address;
+        if (company.phone.id && company.phone.phone_number) {
+          state.businessInfo.businessPhoneNumberCountryId = company.phone.country.id;
+          state.businessInfo.businessPhoneNumberBody = company.phone.phone_number;
+        }
+
         state.loading.businessInfoLoading = LoadingStatusEnum.Success;
       })
       .addCase(getBusinessInfo.rejected, state => {
@@ -129,6 +127,7 @@ export const supplierProfileSlice = createSlice({
       .addCase(getCompanyLogo.rejected, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Failed;
       })
+
       .addCase(updateCompanyLogo.pending, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Loading;
       })
@@ -139,6 +138,7 @@ export const supplierProfileSlice = createSlice({
       .addCase(updateCompanyLogo.rejected, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Failed;
       })
+
       .addCase(deleteCompanyImage.pending, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Loading;
       })
@@ -149,9 +149,26 @@ export const supplierProfileSlice = createSlice({
       .addCase(deleteCompanyImage.rejected, state => {
         state.loading.companyLogoLoading = LoadingStatusEnum.Failed;
       })
+<<<<<<< Updated upstream
       .addCase(hasPersonalInfo.fulfilled, (state, action) => {
         state.hasPersonalInfo = action.payload;
       })
+=======
+
+      .addCase(hasPersonalInfo.pending, state => {
+        state.hasPersonalInfoError = false;
+      })
+      .addCase(hasPersonalInfo.fulfilled, (state, action) => {
+        state.hasPersonalInfo = action.payload;
+      })
+      .addCase(hasPersonalInfo.rejected, state => {
+        state.hasPersonalInfoError = true;
+      })
+
+      .addCase(hasBusinessInfo.pending, state => {
+        state.hasCompanyInfoError = false;
+      })
+>>>>>>> Stashed changes
       .addCase(hasBusinessInfo.fulfilled, (state, action) => {
         state.hasCompanyInfo = action.payload;
       });

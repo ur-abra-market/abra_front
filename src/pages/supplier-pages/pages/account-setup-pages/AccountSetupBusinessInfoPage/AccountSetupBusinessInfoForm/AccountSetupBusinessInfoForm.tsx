@@ -43,40 +43,40 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   }, [dispatch]);
 
   const onSubmit = async (data: ISupplierBusinessInfoFormData): Promise<void> => {
-    const numberBody = data.phoneNumber && parsePhoneNumber(data.phoneNumber).numberBody;
-    const businessInfoData: IBusinessInfoRequest = {
-      supplier_data_request: {
-        license_number: data.license,
-      },
-      company_data_request: {
-        ...(data.email && { business_email: data.email }),
-        business_sector: data.businessSector,
-        country_id: data.countryRegistration!,
-        is_manufacturer: data.isManufacturer,
-        ...(data.address && { address: data.address }),
-        number_employees: Number(data.numEmployees!),
-        year_established: Number(data.yearEstablished!),
-        name: data.storeName,
-        ...(data.description && { description: data.description }),
-      },
-      ...(data.countryId &&
-        numberBody && {
-          company_phone_data_request: {
-            phone_number: numberBody,
-            country_id: data.countryId,
-          },
-        }),
-      file: logo,
-    };
-
-    const result = await dispatch(createAccountBusinessInfo(businessInfoData));
-
-    if (createAccountBusinessInfo.fulfilled.match(result)) {
-      navigate(HOME);
-    }
+    // const numberBody = data.phoneNumber && parsePhoneNumber(data.phoneNumber).numberBody;
+    // const businessInfoData: IBusinessInfoRequest = {
+    //   supplier_data_request: {
+    //     license_number: data.license,
+    //   },
+    //   company_data_request: {
+    //     ...(data.email && { business_email: data.email }),
+    //     business_sector: data.businessSector,
+    //     country_id: data.countryRegistration!,
+    //     is_manufacturer: data.isManufacturer,
+    //     ...(data.address && { address: data.address }),
+    //     number_employees: Number(data.numEmployees!),
+    //     year_established: Number(data.yearEstablished!),
+    //     name: data.storeName,
+    //     ...(data.description && { description: data.description }),
+    //   },
+    //   ...(data.countryId &&
+    //     numberBody && {
+    //       company_phone_data_request: {
+    //         phone_number: numberBody,
+    //         country_id: data.countryId,
+    //       },
+    //     }),
+    //   file: logo,
   };
+
+  // const result = await dispatch(createAccountBusinessInfo(businessInfoData));
+  //
+  // if (createAccountBusinessInfo.fulfilled.match(result)) {
+  //   navigate(HOME);
+  // }
+  // };
   const handleUploadImage = (img: File): void => {
-    setLogo(img);
+    // setLogo(img);
   };
 
   return (
@@ -100,7 +100,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
         </div>
 
         <FormProvider {...formMethods}>
-          <SupplierBusinessInfoForm onSubmit={onSubmit} updateForm />
+          {/*  <SupplierBusinessInfoForm onSubmit={onSubmit} updateForm /> */}
         </FormProvider>
       </div>
     </div>

@@ -5,13 +5,17 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import style from './SellerPersonalInfoChangeForm.module.scss';
 
-import { personalInfoFormValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
 import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
+<<<<<<< Updated upstream
 import { parsePhoneNumber } from 'common/utils';
 import { UploadImage } from 'elements';
 import { ButtonLogOut } from 'elements/ButtonLogOut/ButtonLogOut';
+=======
+import { parsePhoneNumber, personalInfoFormValidationSchema } from 'common/utils';
+import { UploadImage, ButtonLogout } from 'elements';
+>>>>>>> Stashed changes
 import { PersonalInfoChangeForm } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
 import {

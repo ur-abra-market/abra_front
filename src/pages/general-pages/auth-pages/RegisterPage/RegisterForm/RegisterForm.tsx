@@ -7,14 +7,14 @@ import * as yup from 'yup';
 
 import style from './RegisterForm.module.scss';
 
-import { emailValidationSchema, passwordValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum, ResponseUserRoleType } from 'common/types';
+import { getEmailValidationSchema, passwordValidationSchema } from 'common/utils';
 import { PasswordComplexity } from 'pages/general-pages/auth-pages/assets';
 import { CHECK_EMAIL } from 'routes';
 import { IRegisterRequest } from 'services/auth/auth.serviceTypes';
 import { loadingSelector } from 'store/reducers/appSlice';
-import { registerUser } from 'store/reducers/authSlice';
+import { isAuthorizedSelector, registerUser } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
 
 export interface IRegisterFormData extends Omit<IRegisterRequest, 'role'> {}
@@ -22,18 +22,17 @@ export interface IRegisterFormData extends Omit<IRegisterRequest, 'role'> {}
 const formValidationSchema = yup
   .object()
   .shape({
-    email: emailValidationSchema,
+    email: getEmailValidationSchema(true),
     password: passwordValidationSchema,
   })
   .required();
 
 export const RegisterForm = (): JSX.Element => {
-  const [userRole, setUserRole] = useState<ResponseUserRoleType>('seller');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
-  const loading = useAppSelector(loadingSelector);
-  const isLoading = loading === LoadingStatusEnum.Loading;
+  const isAuthorized = useAppSelector(isAuthorizedSelector);
+  const isLoading = useAppSelector(loadingSelector) === LoadingStatusEnum.Loading;
+  const [userRole, setUserRole] = useState<ResponseUserRoleType>('seller');
 
   const {
     register,

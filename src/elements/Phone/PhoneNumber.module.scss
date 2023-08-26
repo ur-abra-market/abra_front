@@ -1,10 +1,22 @@
+.label {
+  font-size: var(--fz-xs2);
+  color: var(--color-medium-gray);
+}
+
 .wrapper {
   display: flex;
   gap: 15px;
-  margin-bottom: 20px;
+}
+
+.input {
+  width: 100%;
 }
 
 .select {
+  flex-shrink: 0;
+  background-color: var(--color-light-gray);
+  border-radius: 12px;
+
   li {
     column-gap: 6px;
   }

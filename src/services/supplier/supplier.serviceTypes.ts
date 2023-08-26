@@ -1,4 +1,4 @@
-import { MakeFieldsOptionalType } from 'common/types';
+import { IPhoneNumber } from 'common/types';
 import { ICountry } from 'services/common/common.serviceTypes';
 
 export interface ISupplierBusinessInfo {
@@ -20,14 +20,25 @@ export interface ISupplierCompanyInfo {
   address: string;
   business_sector: string;
   country: ICountry;
-  phone: Partial<ISupplierPhoneInfo>;
-  images: any[];
+  phone: {
+    id: 1;
+    phone_number: string;
+    country: {
+      id: number;
+      country: string;
+      country_code: string;
+      country_short: string;
+      currency: string;
+      flag: string;
+    };
+  };
+  images: string[];
 }
 
 export interface IBusinessInfoRequest
   extends Omit<ISupplierUpdateBusinessInfo, 'company_phone_data_request'> {
   file?: File;
-  company_phone_data_request?: ISuppliersCompanyPhoneData;
+  company_phone_data_request?: Partial<IPhoneNumber>;
 }
 
 export interface ISupplierNotifications {
@@ -48,27 +59,20 @@ export interface ISupplierErrorResponse {
   error: { loc: string[]; msg: string; type: string }[];
 }
 
-interface ISupplierPhoneInfo {
-  id: number;
-  phone_number: string;
-  country: ICountry;
-}
-
 export interface ISupplierUpdateBusinessInfo {
-  supplier_data_request: { license_number: string };
-  company_data_request: MakeFieldsOptionalType<
-    ISupplierUpdateCompanyInfo,
-    'address' | 'business_email' | 'description'
-  >;
-  company_phone_data_request?: ISuppliersCompanyPhoneData;
-}
-
-export interface ISupplierUpdateCompanyInfo
-  extends Omit<ISupplierCompanyInfo, 'id' | 'country' | 'phone' | 'images'> {
-  country_id: number;
-}
-
-interface ISuppliersCompanyPhoneData {
-  country_id: number;
-  phone_number: string;
+  supplier_data_request: {
+    license_number: string;
+  };
+  company_data_request: {
+    country_id: number;
+    name: string;
+    is_manufacturer: boolean;
+    year_established: number;
+    number_employees: number;
+    description?: string;
+    address?: string;
+    business_sector: string;
+    business_email?: string;
+  };
+  company_phone_data_request?: IPhoneNumber;
 }

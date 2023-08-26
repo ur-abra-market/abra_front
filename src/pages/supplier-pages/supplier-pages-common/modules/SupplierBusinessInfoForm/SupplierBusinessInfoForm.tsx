@@ -5,10 +5,11 @@ import { Controller, useFormContext } from 'react-hook-form';
 import style from './SupplierBusinessInfoForm.module.scss';
 
 import { useAppSelector } from 'common/hooks';
-import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
-import { PhoneNumberInput } from 'elements';
+import { LoadingStatusEnum } from 'common/types';
+import { PhoneNumber } from 'elements';
 import { countriesSelector, numberEmployeesSelector } from 'store/reducers/commonSlice';
 import { supplierLoadingSelector } from 'store/reducers/supplier/profile';
+import { ITestSupplierBusinessInfo } from 'store/reducers/supplier/profile/types';
 import { Button, Checkbox, Input, ISelectOption, Label, Select } from 'ui-kit';
 
 const BUSINESS_SECTOR_DATA: ISelectOption[] = [
@@ -19,17 +20,13 @@ const BUSINESS_SECTOR_DATA: ISelectOption[] = [
 
 interface IBusinessProfileForm {
   updateForm?: boolean;
-  countryShort?: string;
-  onSubmit: (data: ISupplierBusinessInfoFormData) => void;
-  isPhoneNumber?: boolean;
+  onSubmit: (data: ITestSupplierBusinessInfo) => void;
   isDirty?: boolean;
 }
 
 export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
   updateForm,
   onSubmit,
-  countryShort,
-  isPhoneNumber,
   isDirty,
 }): JSX.Element => {
   const numberEmployees = useAppSelector(numberEmployeesSelector);
@@ -44,7 +41,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
     control,
     watch,
     formState: { errors, isValid },
-  } = useFormContext<ISupplierBusinessInfoFormData>();
+  } = useFormContext<ITestSupplierBusinessInfo>();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -112,7 +109,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
       </div>
 
       <div className={style.company_info}>
-        <p className={style.subtitle}>Company Info</p>
+        <h3 className={style.subtitle}>Company Info</h3>
         <div className={style.select_info_inputs}>
           <Label label="Year established">
             <Input
@@ -125,13 +122,13 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
 
           <Controller
             control={control}
-            name="numEmployees"
+            name="numberEmployees"
             render={({ field }) => (
               <Label label="Number of employees">
                 <Select
                   {...field}
                   disabled={isLoading}
-                  error={errors?.numEmployees?.message}
+                  error={errors?.numberEmployees?.message}
                   options={numberEmployees.map(el => ({
                     value: el.id,
                     label: { text: el.number },
@@ -183,18 +180,21 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
       </div>
 
       <div>
-        <p className={style.subtitle}>Contacts (optional)</p>
-        <PhoneNumberInput
-          disabled={isLoading}
-          label="Business phone number"
-          countryShort={countryShort}
-        />
-        <div className={style.contacts_inputs}>
+        <h3 className={style.subtitle}>Contacts (optional)</h3>
+
+        <div className={style.contacts}>
+          <PhoneNumber
+            label="Business phone number"
+            disabled={isLoading}
+            phoneNumberBodyField="businessPhoneNumberBody"
+            countryIdField="businessPhoneNumberCountryId"
+          />
+
           <Label label="Business email address">
             <Input
               disabled={isLoading}
-              {...register('email')}
-              error={errors?.email?.message}
+              {...register('businessEmail')}
+              error={errors?.businessEmail?.message}
               width="266px"
               placeholder="business@email.com"
             />
@@ -203,8 +203,8 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
           <Label label="Main company address">
             <Input
               disabled={isLoading}
-              {...register('address')}
-              error={errors?.address?.message}
+              {...register('companyAddress')}
+              error={errors?.companyAddress?.message}
               placeholder="Enter address"
             />
           </Label>
@@ -215,7 +215,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         type="submit"
         className={style.button}
         label="Save"
-        disabled={!isValid || (!isDirty && isPhoneNumber) || isLoading}
+        disabled={!isValid || !isDirty || isLoading}
       />
     </form>
   );

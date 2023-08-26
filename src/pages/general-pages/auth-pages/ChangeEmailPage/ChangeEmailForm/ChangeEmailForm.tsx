@@ -6,9 +6,9 @@ import * as yup from 'yup';
 
 import style from './ChangeEmailForm.module.scss';
 
-import { emailValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
+import { getEmailValidationSchema } from 'common/utils';
 import { IChangeEmailRequest } from 'services/auth/auth.serviceTypes';
 import { loadingSelector } from 'store/reducers/appSlice';
 import { changeEmail } from 'store/reducers/authSlice';
@@ -21,7 +21,7 @@ interface IChangeEmailForm {
 }
 const schema = yup
   .object({
-    new_email: emailValidationSchema,
+    new_email: getEmailValidationSchema(true),
     confirm_email: yup.string().oneOf([yup.ref('new_email')], 'Emails must match'),
   })
   .required();

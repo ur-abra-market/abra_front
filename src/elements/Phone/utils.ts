@@ -20,7 +20,7 @@ export const defaultPhoneCountryCodeValue: ISelectOption = {
   value: CountriesEnum.RUSSIAN,
 };
 
-const countryPhoneInfo: Record<CountriesEnum, ICountryPhoneInfo> = {
+export const countryPhoneInfo: Record<CountriesEnum, ICountryPhoneInfo> = {
   [CountriesEnum.RUSSIAN]: {
     maxPhoneLength: 10,
     startRegex: /^9\d{9}$/,
@@ -91,28 +91,17 @@ export const getPhoneCountryCodeValue = (
   };
 };
 
-export const validatePhoneNumber = (
-  phoneNumber: string,
-  phoneCountryId: CountriesEnum,
-): boolean => {
-  const countryInfo = countryPhoneInfo[phoneCountryId];
-
-  if (!countryInfo) {
-    return false;
-  }
-
-  return countryInfo.startRegex.test(phoneNumber);
-};
-
-export const formatPhoneNumberBody = (
+export const getFormattedPhoneNumberBody = (
   phoneNumberBody: string,
   phoneCountryId: CountriesEnum,
 ): string => {
   const countryInfo = countryPhoneInfo[phoneCountryId];
 
+  debugger;
   if (!countryInfo || phoneNumberBody.length > countryInfo.maxPhoneLength) {
     return '';
   }
+  debugger;
 
   return phoneNumberBody.replace(countryInfo.maskRegex, (match, g1, g2, g3, g4) => {
     let result = '';

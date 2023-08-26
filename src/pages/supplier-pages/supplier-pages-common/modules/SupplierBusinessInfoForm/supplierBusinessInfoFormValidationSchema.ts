@@ -1,5 +1,9 @@
 import * as yup from 'yup';
 
+import { CountriesEnum } from 'common/types';
+import { getPhoneNumberBodyValidationSchema } from 'common/utils';
+import { countryPhoneInfo } from 'elements/PhoneNumber/utils';
+
 const date = new Date();
 
 const year = date.getFullYear();
@@ -11,10 +15,11 @@ export const supplierBusinessInfoFormValidationSchema = yup.object({
     .required('Please enter your company name')
     .min(2, 'Should be min 2 symbols')
     .max(100)
-    // .typeError('Should be min 2 symbols')
     .test('no-spaces', 'Please enter a valid text', value => {
       return value === undefined || value.trim() !== '';
     }),
+  businessSector: yup.string().required('Please select your business sector'),
+  is_manufacturer: yup.boolean(),
   license: yup
     .string()
     .required('Please enter a valid license or entrepreneur number')
@@ -42,9 +47,15 @@ export const supplierBusinessInfoFormValidationSchema = yup.object({
         return parseInt(value, 10) <= year;
       }
     }),
-  email: yup.string().email('Invalid email'),
+  numberEmployees: yup.number().required('Field is required'),
+  countryRegistration: yup
+    .number()
+    .required('Please select country of company registration'),
   description: yup.string().max(1000, 'Description should be max 1000 symbols'),
-  address: yup
+  businessPhoneNumberCountryId: yup.number(),
+  businessPhoneNumberBody: getPhoneNumberBodyValidationSchema(true),
+  businessEmail: yup.string().email('Invalid email'),
+  companyAddress: yup
     .string()
     .test('check-address', 'Should be min 10 symbols and max 300 symbols', value =>
       !value || value.trim() === '' ? true : !(value.length < 10 || value.length > 300),
@@ -52,10 +63,4 @@ export const supplierBusinessInfoFormValidationSchema = yup.object({
     .test('not-only-numbers', 'Address cannot contain only numeric values', value =>
       !value || value.trim() === '' ? true : /\D/.test(value),
     ),
-  numEmployees: yup.number().required('Field is required'),
-  businessSector: yup.string().required('Please select your business sector'),
-  countryRegistration: yup
-    .number()
-    .required('Please select country of company registration'),
-  is_manufacturer: yup.boolean(),
 });

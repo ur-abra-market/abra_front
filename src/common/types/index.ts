@@ -15,3 +15,4 @@ export type { IBaseResponse } from './interfaces/IBaseResponse';
 export type { ISupplierBusinessInfoFormData } from './interfaces/ISupplierBusinessInfoFormData';
 export type { IAuthFooterData } from './interfaces/IAuthFooterData';
 export type { MakeFieldsOptionalType } from './types/MakeFieldsOptionalType';
+export type { IPhoneNumber } from './interfaces/IPhoneNumber';

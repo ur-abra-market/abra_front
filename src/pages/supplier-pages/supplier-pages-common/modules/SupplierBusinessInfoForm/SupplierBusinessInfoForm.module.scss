@@ -20,11 +20,12 @@
   font-size: var(--fz-xs);
 }
 
-.contacts_inputs {
+.contacts {
   display: flex;
   flex-direction: column;
   gap: var(--form-row-gap);
-  margin-bottom: 36px;
+  margin: 20px 0 36px;
+
 }
 
 .button {
