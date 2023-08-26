@@ -1,4 +1,4 @@
-import React, { FC, JSX, useEffect, useState } from 'react';
+import React, { FC, JSX, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
@@ -24,12 +24,17 @@ export const HeaderNav: FC<IHeaderNav> = ({
   const navItems = HEADER_NAV_CONTENT[userRole];
   const [isOpenOnMobile, setOpenOnMobile] = useState(false);
 
+  const refUl = useRef<HTMLUListElement>(null);
+
   const menuListClasses = cn(style.container, className, {
     [style.mobile]: isMobileView,
     [style.show]: isMobileView && isOpenOnMobile,
   });
 
-  useBodyOverflowHidden(isOpenOnMobile);
+  const { top, height } = refUl.current?.getBoundingClientRect() ?? { top: 0, height: 0 };
+  const padding = 20;
+
+  useBodyOverflowHidden(isOpenOnMobile, top + height + padding);
 
   return (
     <>
@@ -44,7 +49,7 @@ export const HeaderNav: FC<IHeaderNav> = ({
           </button>
         )}
 
-        <ul className={menuListClasses}>
+        <ul ref={refUl} className={menuListClasses}>
           {navItems.map((el, index) => (
             <li className={style.menu_item} key={index}>
               <NavLink

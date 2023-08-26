@@ -1,15 +1,12 @@
 import { useEffect } from 'react';
 
-// import { getScrollBarWidth } from 'common/utils';
-
-export const useBodyOverflowHidden = (isHidden: boolean): void => {
+export const useBodyOverflowHidden = (isHidden: boolean, minHeigth?: number): void => {
   useEffect(() => {
-    // const scrollWidth = getScrollBarWidth();
-
     [
       document.body.style.overflow,
       document.body.style.maxHeight,
+      document.body.style.minHeight,
       document.querySelector('html')!.style.overflowY,
-    ] = isHidden ? ['hidden', '100vh', 'scroll'] : ['', '', ''];
-  }, [isHidden]);
+    ] = isHidden ? ['hidden', '100vh', `${minHeigth}px`, 'scroll'] : ['', '', '', ''];
+  }, [isHidden, minHeigth]);
 };
