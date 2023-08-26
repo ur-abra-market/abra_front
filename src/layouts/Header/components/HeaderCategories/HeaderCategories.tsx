@@ -1,4 +1,4 @@
-import React, { createRef, FC, RefObject, useEffect, useRef, useState } from 'react';
+import React, { FC, RefObject, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -12,7 +12,6 @@ interface IHeaderCategories extends IHtmlProps {
 }
 
 export const HeaderCategories: FC<IHeaderCategories> = ({
-  className,
   wrapperClassName,
 }): JSX.Element => {
   const categoriesRef = useRef() as RefObject<HTMLDivElement>;
@@ -54,6 +53,7 @@ export const HeaderCategories: FC<IHeaderCategories> = ({
       >
         All categories
       </button>
+
       {categoriesIsOpen && (
         <CategoriesMenu
           ref={categoriesRef}
