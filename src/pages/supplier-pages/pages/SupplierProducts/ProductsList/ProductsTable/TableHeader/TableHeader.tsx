@@ -9,18 +9,31 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { tableSortData } from 'pages/supplier-pages/pages/SupplierProducts/utils/tableData';
 import {
   selectAllProductsSelector,
-  getParamsSelector,
+  paramsSelector,
   isLoadingSelector,
   selectAllProducts,
   setParams,
   SortType,
+  activeProductSelector,
+  deactivatedProductSelector,
+  supplierProductsSelector,
 } from 'store/reducers/supplier/product';
 import { ButtonIcon, Checkbox } from 'ui-kit';
 
 export const TableHeader = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const params = useAppSelector(getParamsSelector);
-  const checked = useSelector(selectAllProductsSelector);
+  const params = useAppSelector(paramsSelector);
+  const activeProduct = useAppSelector(activeProductSelector);
+  const deactivatedProduct = useAppSelector(deactivatedProductSelector);
+  const products = useAppSelector(supplierProductsSelector);
+
+  const allProductsAreHandled = products.length
+    ? products.every(
+        pr => activeProduct.includes(pr.id) || deactivatedProduct.includes(pr.id),
+      )
+    : false;
+
+  const checked = useSelector(selectAllProductsSelector) || allProductsAreHandled;
   const isLoading = useAppSelector(isLoadingSelector);
 
   const setAllCheckboxesState = useCallback(

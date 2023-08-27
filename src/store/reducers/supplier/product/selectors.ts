@@ -4,9 +4,10 @@ import { IProduct, IProductSortOptions } from './types';
 
 import { RootStateType } from 'store/createStore';
 
-export const pageNumber = (state: RootStateType): number => state.supplierProduct.page;
+export const pageNumberSelector = (state: RootStateType): number =>
+  state.supplierProduct.page;
 
-export const pageSize = (state: RootStateType): number =>
+export const pageSizeSelector = (state: RootStateType): number =>
   state.supplierProduct.params.limit;
 
 export const selectAllProductsSelector = (state: RootStateType): boolean =>
@@ -21,7 +22,7 @@ export const supplierProductsSelector = (state: RootStateType): IProduct[] =>
 export const activeProductSelector = (state: RootStateType): number[] =>
   state.supplierProduct.activeProductIds;
 
-export const getSortedData = createSelector([supplierProductsSelector], data => {
+export const sortedDataSelector = createSelector([supplierProductsSelector], data => {
   const copyOfData = [...data];
 
   return copyOfData.sort((a, b) => {
@@ -36,7 +37,7 @@ export const getSortedData = createSelector([supplierProductsSelector], data => 
   });
 });
 
-export const getParamsSelector = (state: RootStateType): IProductSortOptions =>
+export const paramsSelector = (state: RootStateType): IProductSortOptions =>
   state.supplierProduct.params;
 
 export const hasChangedSelector = (state: RootStateType): boolean =>

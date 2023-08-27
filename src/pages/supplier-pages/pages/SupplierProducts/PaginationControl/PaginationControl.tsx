@@ -5,9 +5,9 @@ import style from './PaginationControl.module.scss';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ProductsPerPage } from 'elements';
 import {
-  getParamsSelector,
+  paramsSelector,
   isLoadingSelector,
-  pageNumber,
+  pageNumberSelector,
   setPage,
   setParams,
   totalCountSelector,
@@ -15,9 +15,9 @@ import {
 import { Pagination } from 'ui-kit/Pagination/Pagination';
 
 export const PaginationControl = (): JSX.Element => {
-  const activePage = useAppSelector(pageNumber);
+  const activePage = useAppSelector(pageNumberSelector);
   const dispatch = useAppDispatch();
-  const params = useAppSelector(getParamsSelector);
+  const params = useAppSelector(paramsSelector);
   const isLoading = useAppSelector(isLoadingSelector);
   const totalItems = useAppSelector(totalCountSelector);
   const totalPage = Math.ceil(totalItems / params.limit);
