@@ -9,7 +9,7 @@ import { ViewGridDisabledIcon, ViewListDisabledIcon } from 'assets/icons';
 export const ViewSwitcher = (): JSX.Element => {
   const [layout, setLayout] = useState('tableLayout');
 
-  const handleLayoutSet = (): void => {
+  const handleSetLayout = (): void => {
     setLayout(prevState => (prevState === 'tableLayout' ? 'tileLayout' : 'tableLayout'));
   };
 
@@ -25,8 +25,8 @@ export const ViewSwitcher = (): JSX.Element => {
 
   return (
     <div className={style.layouts}>
-      <ViewGridDisabledIcon className={viewGridClasses} onClick={handleLayoutSet} />
-      <ViewListDisabledIcon className={viewListClasses} onClick={handleLayoutSet} />
+      <ViewGridDisabledIcon className={viewGridClasses} onClick={handleSetLayout} />
+      <ViewListDisabledIcon className={viewListClasses} onClick={handleSetLayout} />
     </div>
   );
 };

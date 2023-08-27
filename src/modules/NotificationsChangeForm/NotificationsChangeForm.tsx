@@ -22,7 +22,7 @@ export const NotificationsChangeForm: FC<INotificationsChangeForm> = ({
   notificationsData,
   disabled,
 }): JSX.Element => {
-  const onNotificationChange = (id: string, value: boolean): void => {
+  const handleNotificationChange = (id: string, value: boolean): void => {
     callBack(id, value);
   };
 
@@ -41,7 +41,10 @@ export const NotificationsChangeForm: FC<INotificationsChangeForm> = ({
               className={style.notifications_item}
               checked={notifications ? notifications[el.id] : false}
               onChange={event =>
-                onNotificationChange(event.currentTarget.id, event.currentTarget.checked)
+                handleNotificationChange(
+                  event.currentTarget.id,
+                  event.currentTarget.checked,
+                )
               }
             />
           );

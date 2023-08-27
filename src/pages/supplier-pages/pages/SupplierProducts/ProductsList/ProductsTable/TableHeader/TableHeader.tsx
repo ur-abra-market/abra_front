@@ -23,14 +23,14 @@ export const TableHeader = (): JSX.Element => {
   const checked = useSelector(selectAllProductsSelector);
   const isLoading = useAppSelector(isLoadingSelector);
 
-  const setAllCheckboxesState = useCallback(
+  const handleCheckboxState = useCallback(
     (e: ChangeEvent<HTMLInputElement>): void => {
       dispatch(selectAllProducts(e.currentTarget.checked));
     },
     [dispatch],
   );
 
-  const onChangeSortData = (sortKey?: string, sortValue?: SortType): void => {
+  const handleSortDataChange = (sortKey?: string, sortValue?: SortType): void => {
     if (!sortKey) return;
     const [[key]] = Object.entries(params).filter(([key]) => key === sortKey);
 
@@ -60,7 +60,7 @@ export const TableHeader = (): JSX.Element => {
             disabled={isLoading}
             variant="default"
             checked={checked}
-            onChange={setAllCheckboxesState}
+            onChange={handleCheckboxState}
           />
         </th>
         {tableSortData.map(column => (
@@ -69,7 +69,7 @@ export const TableHeader = (): JSX.Element => {
             {column.arrow && (
               <ButtonIcon
                 disabled={isLoading}
-                onClick={() => onChangeSortData(column.sortKey, column.sortValue)}
+                onClick={() => handleSortDataChange(column.sortKey, column.sortValue)}
               >
                 <ArrowSort />
               </ButtonIcon>

@@ -29,14 +29,14 @@ export const SellerNotifications = (): JSX.Element => {
   const notifications = useAppSelector(sellerNotificationSelector);
   const loading = useAppSelector(sellerLoadingSelector).notificationsLoading;
 
-  const onNotificationChange = (id: string, value: boolean): void => {
+  const handleNotificationChange = (id: string, value: boolean): void => {
     dispatch(updateSellerNotifications({ id, value }));
   };
 
   return (
     <NotificationsChangeForm
       notifications={notifications}
-      callBack={onNotificationChange}
+      callBack={handleNotificationChange}
       notificationsData={NOTIFICATIONS_SELLER_DATA}
       disabled={loading}
     />

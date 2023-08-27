@@ -196,7 +196,7 @@ export const Select = forwardRef(
           className={headerClassname}
           currentSelectedValue={currentSelectedValue}
           isOpenMenu={isOpenItemsMenu}
-          handleSelectState={handleChangeSelectState}
+          handleSelectedState={handleChangeSelectState}
         />
         <span className={styles.error}>{error}</span>
 

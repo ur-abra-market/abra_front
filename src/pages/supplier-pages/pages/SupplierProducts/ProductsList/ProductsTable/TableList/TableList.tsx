@@ -24,7 +24,7 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
 
-  const onChangeChecked = (e: ChangeEvent<HTMLInputElement>, id: number): void => {
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>, id: number): void => {
     dispatch(selectActiveProduct(id));
   };
 
@@ -51,7 +51,7 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
                 disabled={isLoading}
                 checked={checked}
                 variant="default"
-                onChange={event => onChangeChecked(event, el.id)}
+                onChange={event => handleCheckboxChange(event, el.id)}
               />
             </td>
             <td className={style.table_td}>{el.id}</td>

@@ -10,13 +10,13 @@ import { ISelectOption } from 'ui-kit';
 interface ISelectHeaderPropsType {
   isOpenMenu: boolean;
   currentSelectedValue: ISelectOption;
-  handleSelectState: () => void;
+  handleSelectedState: () => void;
   className: string;
 }
 
 export const SelectHeader: FC<ISelectHeaderPropsType> = ({
   currentSelectedValue,
-  handleSelectState,
+  handleSelectedState,
   className,
   isOpenMenu,
 }) => {
@@ -25,8 +25,8 @@ export const SelectHeader: FC<ISelectHeaderPropsType> = ({
       role="combobox"
       className={className}
       tabIndex={0}
-      onClick={handleSelectState}
-      onKeyPress={handleSelectState}
+      onClick={handleSelectedState}
+      onKeyPress={handleSelectedState}
       aria-expanded={isOpenMenu}
       aria-haspopup="listbox"
       aria-autocomplete="list"

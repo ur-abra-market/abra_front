@@ -10,10 +10,10 @@ import { Button } from 'ui-kit';
 
 export const CheckoutSuccessPage = WithLayout((): JSX.Element => {
   const navigate = useNavigate();
-  const onClickMain = (): void => {
+  const handleHomeTransition = (): void => {
     return navigate(HOME);
   };
-  const onClickHistory = (): void => {
+  const handleOrderHistoryTransition = (): void => {
     return navigate(ORDER_HISTORY);
   };
 
@@ -26,12 +26,12 @@ export const CheckoutSuccessPage = WithLayout((): JSX.Element => {
         </span>
         <div className={style.container_button}>
           <Button
-            onClick={onClickMain}
+            onClick={handleHomeTransition}
             className={style.button_red}
             label="Go to Main Page"
           />
           <Button
-            onClick={onClickHistory}
+            onClick={handleOrderHistoryTransition}
             className={style.button_back}
             label="Go to Order History"
           />

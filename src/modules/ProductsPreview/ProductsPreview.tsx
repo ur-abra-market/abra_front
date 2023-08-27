@@ -57,7 +57,7 @@ export const ProductsPreview: FC<IProductsPreview> = ({
     swiperEl.current?.slideNext(SPEED_TRANSITION);
   }, []);
 
-  const onBeforeInit = (swiper: SwiperType): void => {
+  const handleBeforeInit = (swiper: SwiperType): void => {
     swiperEl.current = swiper;
   };
 
@@ -93,7 +93,7 @@ export const ProductsPreview: FC<IProductsPreview> = ({
 
       <Carousel
         onAfterInit={handleInitialSlide}
-        onBeforeInit={onBeforeInit}
+        onBeforeInit={handleBeforeInit}
         onSlideChange={handleChangeSlide}
         spaceBetween={11}
         slidesPerView="auto"

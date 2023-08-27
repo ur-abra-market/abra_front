@@ -19,7 +19,7 @@ export const HeaderCategories: FC<IHeaderCategories> = ({
   const [categoriesIsOpen, setCategoriesIsOpen] = useState(false);
 
   useEffect(() => {
-    const handler = (e: Event): void => {
+    const listner = (e: Event): void => {
       const target = e.target as Element;
 
       if (
@@ -32,10 +32,10 @@ export const HeaderCategories: FC<IHeaderCategories> = ({
       }
     };
 
-    document.addEventListener('mousedown', handler);
+    document.addEventListener('mousedown', listner);
 
     return () => {
-      document.removeEventListener('mousedown', handler);
+      document.removeEventListener('mousedown', listner);
     };
   });
 

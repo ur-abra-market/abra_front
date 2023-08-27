@@ -32,7 +32,7 @@ export const PaginationSettings: FC<IPaginationSettings> = ({
     dispatch(setPage(pageNumber));
   };
 
-  const onChangeLimit = useCallback(
+  const handleChangeLimit = useCallback(
     (limit: number): void => {
       dispatch(setParams({ ...params, limit }));
       dispatch(setPage(1));
@@ -51,7 +51,7 @@ export const PaginationSettings: FC<IPaginationSettings> = ({
         <ProductsPerPage
           disabled={isLoading}
           controlledValue={controlledValue}
-          onChange={onChangeLimit}
+          onChange={handleChangeLimit}
         />
 
         {withSwitcher && <ViewSwitcher />}

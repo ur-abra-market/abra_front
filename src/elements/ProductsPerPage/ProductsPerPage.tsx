@@ -38,7 +38,7 @@ export const ProductsPerPage: FC<IProductsPerPage> = ({
   controlledValue,
   disabled,
 }) => {
-  const handlerChangeSelect = (selectOption: ISelectOption): void => {
+  const handleChangeSelect = (selectOption: ISelectOption): void => {
     onChange(Number(selectOption.value));
   };
 
@@ -52,7 +52,7 @@ export const ProductsPerPage: FC<IProductsPerPage> = ({
         options={productsPerPageOptions}
         menuItemsPosition="up"
         className={style.select}
-        onChange={handlerChangeSelect}
+        onChange={handleChangeSelect}
       />
     </div>
   );

@@ -22,7 +22,7 @@ export const ProductPageHeader = (): JSX.Element => {
   const grade = useAppSelector(productGradeSelector);
   const totalOrders = useAppSelector(productTotalOrdersSelector);
 
-  const handleChangeFavorite = (isFavorite: boolean): void => {
+  const handleFavoriteChange = (isFavorite: boolean): void => {
     if (isFavorite) {
       dispatch(addFavoriteProduct({ product_id: Number(productId) }));
     } else {
@@ -37,7 +37,7 @@ export const ProductPageHeader = (): JSX.Element => {
         <Grades grade={grade} count={totalOrders} />
         <FavoriteButton
           isFavorite={isFavorite}
-          onChange={handleChangeFavorite}
+          onChange={handleFavoriteChange}
           variant="product"
         />
       </div>
