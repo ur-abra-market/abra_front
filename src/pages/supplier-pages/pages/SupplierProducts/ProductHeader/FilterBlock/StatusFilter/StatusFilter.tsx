@@ -4,14 +4,15 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
 import { STATUS_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/utils/filterOptions';
 import {
-  getParamsSelector,
+  paramsSelector,
   isLoadingSelector,
+  setPage,
   setParams,
 } from 'store/reducers/supplier/product';
 import { ISelectOption, Select } from 'ui-kit';
 
 export const StatusFilter = (): JSX.Element => {
-  const params = useAppSelector(getParamsSelector);
+  const params = useAppSelector(paramsSelector);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
 
@@ -24,6 +25,7 @@ export const StatusFilter = (): JSX.Element => {
           : { ...params, isActive: Boolean(value) };
 
       dispatch(setParams(newParams));
+      dispatch(setPage(1));
     },
     [dispatch, params],
   );

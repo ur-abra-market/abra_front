@@ -9,9 +9,11 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { formatDate } from 'common/utils/formatDateProductsList';
 import {
   activeProductSelector,
+  deactivatedProductSelector,
   IProduct,
   isLoadingSelector,
   selectActiveProduct,
+  selectDeactivatedProduct,
 } from 'store/reducers/supplier/product';
 import { Checkbox, Stars } from 'ui-kit';
 
@@ -21,11 +23,20 @@ export interface ITableData {
 
 export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
   const activeProduct = useAppSelector(activeProductSelector);
+  const deactivatedProduct = useAppSelector(deactivatedProductSelector);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
 
-  const onChangeChecked = (e: ChangeEvent<HTMLInputElement>, id: number): void => {
-    dispatch(selectActiveProduct(id));
+  const onChangeChecked = (
+    e: ChangeEvent<HTMLInputElement>,
+    id: number,
+    status: boolean,
+  ): void => {
+    if (status) {
+      dispatch(selectActiveProduct(id));
+    } else {
+      dispatch(selectDeactivatedProduct(id));
+    }
   };
 
   const tableCellClasses = cn({
@@ -36,7 +47,8 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
   return (
     <tbody>
       {data?.map(el => {
-        const checked = activeProduct.includes(el.id);
+        const checked =
+          activeProduct.includes(el.id) || deactivatedProduct.includes(el.id);
         const deactivatedClasses = cn(style.table_row, {
           [style.table_deactivated]: !el.is_active,
         });
@@ -51,7 +63,7 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
                 disabled={isLoading}
                 checked={checked}
                 variant="default"
-                onChange={event => onChangeChecked(event, el.id)}
+                onChange={event => onChangeChecked(event, el.id, el.is_active)}
               />
             </td>
             <td className={style.table_td}>{el.id}</td>
