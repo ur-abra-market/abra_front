@@ -84,6 +84,7 @@ export const RegisterForm = (): JSX.Element => {
         placeholder="Email"
         error={errors.email?.message}
         disabled={isLoading}
+        autoComplete="off"
       />
 
       <Input
@@ -94,6 +95,7 @@ export const RegisterForm = (): JSX.Element => {
         placeholder="Password"
         error={errors.password?.message}
         disabled={isLoading}
+        autoComplete="new-password"
       />
       <PasswordComplexity password={watch('password')} />
 
