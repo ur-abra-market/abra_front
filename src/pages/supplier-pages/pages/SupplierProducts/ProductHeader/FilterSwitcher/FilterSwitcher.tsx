@@ -6,12 +6,7 @@ import style from './FilterSwitcher.module.scss';
 
 import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import {
-  getParamsSelector,
-  isLoadingSelector,
-  setPage,
-  setParams,
-} from 'store/reducers/supplier/product';
+import { isLoadingSelector, resetFilters } from 'store/reducers/supplier/product';
 import { ButtonIcon } from 'ui-kit';
 
 export interface IHeaderSearch {
@@ -25,26 +20,14 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
-  const params = useAppSelector(getParamsSelector);
   const text = restFilters ? 'Hide filters' : 'Show Filters';
 
-  const handleSetRestFilters = (): void => {
+  const handleRestFiltersSet = (): void => {
     setRestFilters(!restFilters);
   };
 
-  const handleResetFilters = (): void => {
-    dispatch(
-      setParams({
-        ...params,
-        limit: 20,
-        categoryIds: [],
-        ascending: false,
-        sort: 'date',
-        isActive: undefined,
-        onSale: undefined,
-      }),
-    );
-    dispatch(setPage(1));
+  const onResetFiltersHandler = (): void => {
+    dispatch(resetFilters());
   };
 
   const iconClasses = cn({
@@ -57,16 +40,16 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
       <ButtonIcon
         className={style.rest_filters}
         type="button"
-        onClick={handleSetRestFilters}
+        onClick={handleRestFiltersSet}
       >
         {text}
       </ButtonIcon>
-      <ArrowIcon onClick={handleSetRestFilters} className={iconClasses} />
+      <ArrowIcon onClick={handleRestFiltersSet} className={iconClasses} />
 
       {restFilters && (
         <ButtonIcon
           disabled={isLoading}
-          onClick={handleResetFilters}
+          onClick={onResetFiltersHandler}
           className={style.reset_link}
         >
           Reset Filters
