@@ -33,7 +33,7 @@ export const StatusProduct = (): JSX.Element => {
     [style.grabbing]: initMousePosition !== -1,
   });
 
-  const handleCategoryCheck = (category: string, index: number): void => {
+  const handleCheckCategory = (category: string, index: number): void => {
     setIndexActiveCategory(index);
     dispatch(status(category));
   };
@@ -71,7 +71,7 @@ export const StatusProduct = (): JSX.Element => {
             className={cn(style.button, {
               [style.btn_active]: index === indexActiveCategory,
             })}
-            onClick={() => handleCategoryCheck(value, index)}
+            onClick={() => handleCheckCategory(value, index)}
           >
             {label}
           </button>

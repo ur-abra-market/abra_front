@@ -51,10 +51,10 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
   const { stylesSlidersContainer, slidesPerViewQuantity } =
     getSecondSliderInfo(arrLength);
 
-  const handlePrevSlide = (): void => {
+  const prevSlide = (): void => {
     thumbsSwiper?.slidePrev();
   };
-  const handleNextSlide = (): void => {
+  const nextSlide = (): void => {
     thumbsSwiper?.slideNext();
   };
 
@@ -68,7 +68,7 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
     <div className={style.sliders_container}>
       <div className={style.swiper_second_wrapper}>
         {arrLength > minLength && (
-          <button type="button" className={style.btn} onClick={handlePrevSlide}>
+          <button type="button" className={style.btn} onClick={prevSlide}>
             <ArrowIcon className={`${style.arrow} ${style.arrow_up}`} />
           </button>
         )}
@@ -106,7 +106,7 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
         </Swiper>
 
         {arrLength > minLength && (
-          <button type="button" className={style.btn} onClick={handleNextSlide}>
+          <button type="button" className={style.btn} onClick={nextSlide}>
             <ArrowIcon className={style.arrow} />
           </button>
         )}

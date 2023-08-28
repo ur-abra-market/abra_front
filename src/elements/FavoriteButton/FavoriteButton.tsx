@@ -20,7 +20,7 @@ export const FavoriteButton: FC<IFavoriteButton> = ({
   className,
   variant = 'productCard',
 }): JSX.Element => {
-  const handleFavoriteChange = (): void => {
+  const handleChangeFavorite = (): void => {
     onChange(!isFavorite);
   };
 
@@ -30,7 +30,7 @@ export const FavoriteButton: FC<IFavoriteButton> = ({
   });
 
   return (
-    <ButtonIcon className={buttonVariantClasses} onClick={handleFavoriteChange}>
+    <ButtonIcon className={buttonVariantClasses} onClick={handleChangeFavorite}>
       <FavoriteIcon className={isFavorite ? style.active : ''} />
     </ButtonIcon>
   );

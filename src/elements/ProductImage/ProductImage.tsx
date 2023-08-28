@@ -33,11 +33,11 @@ const ProductImage: FC<IProductCard> = ({
   // TODO add request to favorite (fake Data)
   const [fakeIsFavorite, setIsFakeFavorite] = useState(false);
 
-  const handleProductTransition = (e: KeyboardEvent<HTMLDivElement>): void => {
+  const navigateToProductPage = (e: KeyboardEvent<HTMLDivElement>): void => {
     if (e.key === 'Enter') navigate(`${PRODUCT_DETAILS}/${productId}`);
   };
 
-  const handleFavoriteChange = (isFavorite: boolean): void => {
+  const handleChangeFavorite = (isFavorite: boolean): void => {
     setIsFakeFavorite(isFavorite);
   };
 
@@ -45,14 +45,14 @@ const ProductImage: FC<IProductCard> = ({
     <div
       role="link"
       tabIndex={0}
-      onKeyDown={handleProductTransition}
+      onKeyDown={navigateToProductPage}
       className={cn(style.image_wrapper, className)}
       {...restProps}
     >
       {userRole && (
         <FavoriteButton
           isFavorite={fakeIsFavorite}
-          onChange={handleFavoriteChange}
+          onChange={handleChangeFavorite}
           className={style.flag}
         />
       )}

@@ -22,11 +22,11 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
   const isLoading = useAppSelector(isLoadingSelector);
   const text = restFilters ? 'Hide filters' : 'Show Filters';
 
-  const handleRestFiltersSet = (): void => {
+  const handleToggleFilters = (): void => {
     setRestFilters(!restFilters);
   };
 
-  const onResetFiltersHandler = (): void => {
+  const handleResetFilters = (): void => {
     dispatch(resetFilters());
   };
 
@@ -40,16 +40,16 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
       <ButtonIcon
         className={style.rest_filters}
         type="button"
-        onClick={handleRestFiltersSet}
+        onClick={handleToggleFilters}
       >
         {text}
       </ButtonIcon>
-      <ArrowIcon onClick={handleRestFiltersSet} className={iconClasses} />
+      <ArrowIcon onClick={handleToggleFilters} className={iconClasses} />
 
       {restFilters && (
         <ButtonIcon
           disabled={isLoading}
-          onClick={onResetFiltersHandler}
+          onClick={handleResetFilters}
           className={style.reset_link}
         >
           Reset Filters

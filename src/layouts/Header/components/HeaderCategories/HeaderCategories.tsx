@@ -39,7 +39,7 @@ export const HeaderCategories: FC<IHeaderCategories> = ({
     };
   });
 
-  const handleFocus = (): void => {
+  const handleSetFocusCategory = (): void => {
     buttonRef.current?.focus();
   };
 
@@ -58,7 +58,7 @@ export const HeaderCategories: FC<IHeaderCategories> = ({
         <CategoriesMenu
           ref={categoriesRef}
           onClose={setCategoriesIsOpen}
-          handleFocus={handleFocus}
+          handleFocus={handleSetFocusCategory}
         />
       )}
     </div>
