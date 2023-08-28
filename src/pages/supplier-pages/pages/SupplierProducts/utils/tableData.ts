@@ -10,10 +10,10 @@ import {
 
 export const productEditorData: IActionData[] = [
   { id: 1, label: 'Edit', Icon: EditPencilIcon },
-  { id: 2, label: 'Copy', Icon: Copy },
-  { id: 3, label: 'Delete', Icon: DeleteTrashCanIcon },
-  { id: 4, label: 'Add a new product', Icon: AddNewProduct },
-  { id: 5, label: 'Recently deleted', Icon: RecentlyDeleted },
+  // { id: 2, label: 'Copy', Icon: Copy },
+  { id: 3, label: 'Deactivated product', Icon: DeleteTrashCanIcon },
+  { id: 4, label: 'Activated product', Icon: RecentlyDeleted },
+  { id: 5, label: 'Add a new product', Icon: AddNewProduct },
 ];
 
 export const tableSortData: IColumns[] = [

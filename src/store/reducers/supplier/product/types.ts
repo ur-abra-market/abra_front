@@ -22,16 +22,11 @@ export interface IProductsListRequest {
   products: IProduct[];
 }
 
-export interface IActivateStatus {
-  id: number;
-  checked: boolean;
-}
-
 export interface ISupplierProductSliceInitialState {
   totalCount: number;
   isLoading: boolean;
   products: IProduct[];
-  deactivationProductIds: IActivateStatus[];
+  deactivatedProductIds: number[];
   activeProductIds: number[];
   selectAllProducts: boolean;
   hasChanged: boolean;
