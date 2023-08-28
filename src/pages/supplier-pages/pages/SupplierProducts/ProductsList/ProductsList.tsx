@@ -6,19 +6,19 @@ import { ProductTableEditor } from './ProductTableEditor/ProductTableEditor';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import {
-  getParamsSelector,
+  paramsSelector,
   hasChangedSelector,
   isLoadingSelector,
   getSupplierProducts,
-  pageNumber,
+  pageNumberSelector,
 } from 'store/reducers/supplier/product';
 import { LoaderLinear } from 'ui-kit';
 
 export const ProductsList = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { offset, limit, onSale, sort, ascending, categoryIds, isActive } =
-    useAppSelector(getParamsSelector);
-  const page = useAppSelector(pageNumber);
+    useAppSelector(paramsSelector);
+  const page = useAppSelector(pageNumberSelector);
   const hasChanged = useAppSelector(hasChangedSelector);
   const isLoading = useAppSelector(isLoadingSelector);
 

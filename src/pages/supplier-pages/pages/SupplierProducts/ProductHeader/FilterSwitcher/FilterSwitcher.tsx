@@ -6,12 +6,7 @@ import style from './FilterSwitcher.module.scss';
 
 import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import {
-  getParamsSelector,
-  isLoadingSelector,
-  setPage,
-  setParams,
-} from 'store/reducers/supplier/product';
+import { isLoadingSelector, resetFilters } from 'store/reducers/supplier/product';
 import { ButtonIcon } from 'ui-kit';
 
 export interface IHeaderSearch {
@@ -25,7 +20,6 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
-  const params = useAppSelector(getParamsSelector);
   const text = restFilters ? 'Hide filters' : 'Show Filters';
 
   const handleRestFiltersSet = (): void => {
@@ -33,18 +27,7 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
   };
 
   const onResetFiltersHandler = (): void => {
-    dispatch(
-      setParams({
-        ...params,
-        limit: 20,
-        categoryIds: [],
-        ascending: false,
-        sort: 'date',
-        isActive: undefined,
-        onSale: undefined,
-      }),
-    );
-    dispatch(setPage(1));
+    dispatch(resetFilters());
   };
 
   const iconClasses = cn({
