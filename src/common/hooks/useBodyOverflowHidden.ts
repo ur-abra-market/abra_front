@@ -15,9 +15,15 @@ export const useBodyOverflowHidden = (isHidden: boolean, minHeigth?: number): vo
     };
 
     if (isHidden) {
-      setStyle('hidden', '100vh', `${minHeigth}px`, 'scroll');
+      // setStyle('hidden', '100vh', `${minHeigth}px`, 'scroll');
+      document.body.style.maxHeight = '100vh';
+      document.body.style.marginRight = '17px';
+      document.body.style.overflow = 'hidden';
     } else {
-      setStyle();
+      // setStyle();
+      document.body.style.maxHeight = '';
+      document.body.style.marginRight = '';
+      document.body.style.overflow = '';
     }
   }, [isHidden, minHeigth]);
 };
