@@ -3,10 +3,16 @@
   align-items: center;
   justify-content: center;
 
-  width: 220px;
-  height: 220px;
+  aspect-ratio: 1/1;
+  width: 100%;
 
   font-size: var(--fz-xl2);
 
   transition: all 0.3s ease;
+}
+
+@media only screen and (max-width: 425px) {
+  .wrapper .view_more_link {
+    font-size: var(--fz-l2);
+  }
 }

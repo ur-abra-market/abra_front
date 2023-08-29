@@ -3,6 +3,7 @@ import React, {
   FC,
   HTMLAttributes,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -33,8 +34,42 @@ export const ProductsPreview: FC<IProductsPreview> = ({
   ...restProps
 }) => {
   const swiperEl = useRef<SwiperType>();
+  const containerRef = useRef<HTMLDivElement>(null);
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);
   const [disableRightArrow, setDisableRightArrow] = useState(false);
+
+  const [cardsPerGroup, setCardsPerGroup] = useState(6);
+  const [cardWidth, setCardWidth] = useState(220);
+  const [cardsGap, setCardsGap] = useState(11);
+
+  useEffect(() => {
+    const handleCardsCountPerGroup = (): void => {
+      let tempWidth = 220;
+      let tempGap = 11;
+
+      if (document.body.clientWidth <= 425) {
+        tempWidth = 152;
+        tempGap = 8;
+      } else if (document.body.clientWidth <= 768) {
+        tempWidth = 180;
+      }
+
+      const result = containerRef.current
+        ? Math.floor((containerRef.current.clientWidth + tempGap) / (tempWidth + tempGap))
+        : 6;
+
+      setCardsPerGroup(result);
+      setCardWidth(tempWidth);
+      setCardsGap(tempGap);
+    };
+
+    window.addEventListener('resize', handleCardsCountPerGroup);
+    handleCardsCountPerGroup();
+
+    return () => {
+      window.removeEventListener('resize', handleCardsCountPerGroup);
+    };
+  }, []);
 
   const handleInitialSlide = (): void => {
     if (swiperEl.current?.isEnd) {
@@ -62,7 +97,7 @@ export const ProductsPreview: FC<IProductsPreview> = ({
   };
 
   return (
-    <div className={cn(style.container, className)} {...restProps}>
+    <div ref={containerRef} className={cn(style.container, className)} {...restProps}>
       <div className={style.inner}>
         <div className={style.title_box}>
           <h2 className={style.title}>{title}</h2>
@@ -95,10 +130,10 @@ export const ProductsPreview: FC<IProductsPreview> = ({
         onAfterInit={handleInitialSlide}
         onBeforeInit={onBeforeInit}
         onSlideChange={handleChangeSlide}
-        spaceBetween={11}
+        spaceBetween={cardsGap}
         slidesPerView="auto"
-        slidesPerGroup={6}
-        slideProps={{ style: { width: 220 } }}
+        slidesPerGroup={cardsPerGroup}
+        slideProps={{ style: { width: cardWidth } }}
       >
         {children}
       </Carousel>
