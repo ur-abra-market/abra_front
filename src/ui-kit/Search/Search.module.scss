@@ -22,11 +22,11 @@
   outline: none;
 
   &:focus-visible {
-    outline: 1px solid var(--color-medium-gray);
+    outline: 1px solid var(--color-gray-medium);
   }
 
   &:disabled {
-    color: var(--color-medium-gray);
+    color: var(--color-gray-medium);
     opacity: 0.5;
   }
 }
