@@ -19,7 +19,7 @@ export const ProductTableEditor = (): JSX.Element => {
   const activeProduct = useAppSelector(activeProductSelector);
   const deactivatedProduct = useAppSelector(deactivatedProductSelector);
 
-  const onClickHandler = (label: string): void => {
+  const handleClick = (label: string): void => {
     switch (label) {
       case 'Deactivated product':
         dispatch(deActivateProducts(activeProduct));
@@ -75,7 +75,7 @@ export const ProductTableEditor = (): JSX.Element => {
 
           return (
             <ButtonIcon
-              onClick={() => onClickHandler(label)}
+              onClick={() => handleClick(label)}
               disabled={isEditorDisabled}
               className={productEditorClasses}
               key={id}

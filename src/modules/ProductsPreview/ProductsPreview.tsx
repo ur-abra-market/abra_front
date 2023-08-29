@@ -36,7 +36,7 @@ export const ProductsPreview: FC<IProductsPreview> = ({
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);
   const [disableRightArrow, setDisableRightArrow] = useState(false);
 
-  const handleInitialSlide = (): void => {
+  const handleDisableLastSlide = (): void => {
     if (swiperEl.current?.isEnd) {
       setDisableRightArrow(true);
     }
@@ -49,15 +49,15 @@ export const ProductsPreview: FC<IProductsPreview> = ({
     else setDisableRightArrow(false);
   };
 
-  const handlePrev = useCallback((): void => {
+  const handleTransitionToPrevSlide = useCallback((): void => {
     swiperEl.current?.slidePrev(SPEED_TRANSITION);
   }, []);
 
-  const handleNext = useCallback((): void => {
+  const handleTransitionToNextSlide = useCallback((): void => {
     swiperEl.current?.slideNext(SPEED_TRANSITION);
   }, []);
 
-  const onBeforeInit = (swiper: SwiperType): void => {
+  const handleDisableFirstSlide = (swiper: SwiperType): void => {
     swiperEl.current = swiper;
   };
 
@@ -73,7 +73,7 @@ export const ProductsPreview: FC<IProductsPreview> = ({
           )}
         </div>
         <div className={style.buttons}>
-          <ButtonIcon disabled={disableLeftArrow} onClick={handlePrev}>
+          <ButtonIcon disabled={disableLeftArrow} onClick={handleTransitionToPrevSlide}>
             <ArrowIcon
               className={cn(style.icon_left, {
                 [style.disable_button]: disableLeftArrow,
@@ -81,7 +81,7 @@ export const ProductsPreview: FC<IProductsPreview> = ({
             />
           </ButtonIcon>
 
-          <ButtonIcon disabled={disableRightArrow} onClick={handleNext}>
+          <ButtonIcon disabled={disableRightArrow} onClick={handleTransitionToNextSlide}>
             <ArrowIcon
               className={cn(style.icon_right, {
                 [style.disable_button]: swiperEl.current?.isEnd,
@@ -92,8 +92,8 @@ export const ProductsPreview: FC<IProductsPreview> = ({
       </div>
 
       <Carousel
-        onAfterInit={handleInitialSlide}
-        onBeforeInit={onBeforeInit}
+        onAfterInit={handleDisableLastSlide}
+        onBeforeInit={handleDisableFirstSlide}
         onSlideChange={handleChangeSlide}
         spaceBetween={11}
         slidesPerView="auto"
