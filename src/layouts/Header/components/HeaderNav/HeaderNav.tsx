@@ -1,4 +1,4 @@
-import React, { FC, JSX } from 'react';
+import React, { FC, JSX, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
@@ -10,25 +10,63 @@ import { HEADER_NAV_CONTENT } from 'layouts/Header/components/HeaderNav/HeaderNa
 interface IHeaderNav {
   userRole: 'seller' | 'supplier';
   className?: string;
+  wrapperClassName?: string;
+  isMobileView?: boolean;
 }
 
-export const HeaderNav: FC<IHeaderNav> = ({ userRole, className }): JSX.Element => {
+export const HeaderNav: FC<IHeaderNav> = ({
+  userRole,
+  className,
+  wrapperClassName,
+  isMobileView,
+}): JSX.Element => {
   const navItems = HEADER_NAV_CONTENT[userRole];
+  const [isOpenOnMobile, setOpenOnMobile] = useState(false);
+
+  const menuListClasses = cn(style.container, className, {
+    [style.mobile]: isMobileView,
+    [style.show]: isMobileView && isOpenOnMobile,
+  });
+
+  useEffect(() => {
+    document.body.style.overflow = isOpenOnMobile ? 'hidden' : '';
+  }, [isOpenOnMobile]);
 
   return (
-    <ul className={cn(style.container, className)}>
-      {navItems.map((el, index) => (
-        <li className={style.item} key={index}>
-          <NavLink
-            to={el.path}
-            className={({ isActive }) =>
-              isActive ? `${style.active_item}` : `${style.item}`
-            }
+    <>
+      <div className={cn(style.wrapper, wrapperClassName)}>
+        {isMobileView && (
+          <button
+            type="button"
+            onClick={() => setOpenOnMobile(prev => !prev)}
+            className={cn(style.burger, { [style.close_button]: isOpenOnMobile })}
           >
-            {el.label}
-          </NavLink>
-        </li>
-      ))}
-    </ul>
+            <span />
+          </button>
+        )}
+
+        <ul className={menuListClasses}>
+          {navItems.map((el, index) => (
+            <li className={style.menu_item} key={index}>
+              <NavLink
+                to={el.path}
+                className={({ isActive }) =>
+                  isActive ? `${style.active_item}` : `${style.item}`
+                }
+              >
+                {el.label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {isMobileView && (
+        <div
+          onClickCapture={() => setOpenOnMobile(false)}
+          className={cn(style.mobile_background, { [style.show]: isOpenOnMobile })}
+        />
+      )}
+    </>
   );
 };

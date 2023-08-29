@@ -24,21 +24,21 @@
 .default,
 .red {
   color: var(--color-white);
-  background: var(--color-accent);
+  background: var(--color-red);
 }
 
 .default:hover,
 .red:hover {
-  background: var(--color_accent_medium);
+  background: var(--color-red-medium);
 }
 
 .default:active,
 .red:active {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--color-accent);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--color-red);
 }
 
 .default:disabled {
-  color: var(--color-gray);
+  color: var(--color-gray-light);
   background: var(--color-white);
   border: 1px solid #E3E3E3;
 }
@@ -73,17 +73,17 @@
 
 .light_red:disabled {
   color: var(--color-white);
-  background: var(--color-accent);
+  background: var(--color-red);
 }
 
 .light_red:disabled:hover {
   color: var(--color-white);
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), var(--color-accent);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), var(--color-red);
 }
 
 .light_red:disabled:active {
   color: var(--color-white);
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--color-accent);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--color-red);
 }
 
 .white {
@@ -94,4 +94,10 @@
 .black {
   color: var(--color-white);
   background: var(--color-black);
+}
+
+@media only screen and (max-width: 768px) {
+  .button {
+    padding: 12px;
+  }
 }

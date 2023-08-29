@@ -28,29 +28,28 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
           height={388}
           width={1440}
           alt=""
-          className={style.banner_img}
           type="default_image"
         >
-          <div className={style.grid_item_main_ad}>
-            <span className={style.grid_item_main_ad_text}>GLASSES</span>
-            <span className={style.grid_item_main_ad_text}>$8.50/pc </span>
-            <span className={style.grid_item_main_ad_text}>/from 100pcs</span>
+          <div className={style.main_block}>
+            <span className={style.main_block_text}>GLASSES</span>
+            <span className={style.main_block_text}>$8.50/pc </span>
+            <span className={style.main_block_text}>/from 100pcs</span>
           </div>
         </LazyImage>
       </div>
 
       <div className={style.container}>
-        <div className={style.images_box_grid}>
+        <div className={style.image_box_grid}>
           <div className={style.grid_item1}>
             <LazyImage
               src={Banner4Image}
               height={500}
               width={682}
               alt=""
-              className={style.banner_img}
+              className={style.border_radius}
               type="default_image"
             >
-              <span className={style.grid_item_ad1}>AUTUMN SALE</span>
+              <span className={style.grid_item1_block}>AUTUMN SALE</span>
             </LazyImage>
           </div>
 
@@ -60,12 +59,12 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
               height={244}
               width={682}
               alt=""
-              className={style.banner_img}
+              className={style.border_radius}
               type="default_image"
             >
-              <div className={style.grid_item_ad2}>
-                <span className={style.grid_item_ad2_text}>special price for</span>
-                <span className={style.grid_item_ad2_text}>sneakers</span>
+              <div className={style.grid_item2_block}>
+                <span className={style.grid_item2_text}>special price for</span>
+                <span className={style.grid_item2_text}>sneakers</span>
               </div>
             </LazyImage>
           </div>
@@ -76,10 +75,10 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
               height={244}
               width={355}
               alt=""
-              className={style.banner_img}
+              className={style.border_radius}
               type="default_image"
             >
-              <span className={style.grid_item_ad3}>MEN’S CLOTHES</span>
+              <span className={style.grid_item3_block}>MEN’S CLOTHES</span>
             </LazyImage>
           </div>
 
@@ -89,10 +88,10 @@ export const ImagesBlock: FC<ImagesBlockProps> = ({
               height={244}
               width={355}
               alt=""
-              className={style.banner_img}
+              className={style.border_radius}
               type="default_image"
             >
-              <span className={style.grid_item_ad4}>WOMEN’S CLOTHES</span>
+              <span className={style.grid_item4_block}>WOMEN’S CLOTHES</span>
             </LazyImage>
           </div>
         </div>

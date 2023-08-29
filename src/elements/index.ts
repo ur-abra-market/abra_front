@@ -9,11 +9,11 @@ export { AdditionalHeaderBlock } from './AdditionalHeaderBlock/AdditionalHeaderB
 export { Grades } from './Grades/Grades';
 export { AboutProduct } from './AboutProduct/AboutProduct';
 export { BreadCrumbs } from './BreadCrumbs/BreadCrumbs';
-export { Favorite } from './Favorite/Favorite';
 export { Tags } from './Tags/Tags';
 export { ProductColor } from './ProductColor/ProductColor';
 export { FeedBacksProduct } from './FeedBacksProduct/FeedBacksProduct';
 export { DescriptionProduct } from './DescriptionProduct/DescriptionProduct';
+export { FavoriteButton } from './FavoriteButton/FavoriteButton';
 export { ButtonLogout } from './ButtonLogout/ButtonLogout';
 export { ProductsPerPage } from './ProductsPerPage/ProductsPerPage';
 export { PageViewSwitcher } from './PageViewSwitcher/PageViewSwitcher';

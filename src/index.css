@@ -35,18 +35,18 @@
 :root {
   /* -------colors------ */
   --color-black: #000;
-  --color-dark-gray: #4E4E4E;
-  --color-medium-gray: #828282;
-  --color-grey-innactive: #999;
-  --color-gray: #D4D4D4;
-  --color-light-gray: #F4F4F4;
-  --color-super-light-gray: #F9F9F9;
+  --color-gray-dark: #4E4E4E;
+  --color-gray-medium: #828282;
+  --color-gray: #999;
+  --color-gray-light: #D4D4D4;
+  --color-white-ivory: #F4F4F4;
+  --color-white-snow: #F9F9F9;
   --color-white: #FFF;
-  --color-rating-star:#FFAB5E;
-  --color-accent: #FC133D;
-  --color_accent_medium: #CA0F31;
-  --color_accent_dark: #B00D2B;
-  --color-green:#34E145;
+  --color-orange:#FFAB5E;
+  --color-red: #FC133D;
+  --color-red-medium: #CA0F31;
+  --color-red-dark: #B00D2B;
+  --color-green-lime:#34E145;
 
   /* -------font-sizes------ */
   --fz-xxs: 10px;    /* Extra Extra Small */
@@ -138,4 +138,9 @@ h3 {
 h4 {
   font-size: var(--fz-l2);
   letter-spacing: 0.38px;
+}
+
+button,
+a {
+  color: inherit;
 }

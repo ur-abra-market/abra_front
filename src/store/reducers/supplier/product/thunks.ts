@@ -12,9 +12,9 @@ import { productService } from 'services/product/product.service';
 
 export const activateProducts = createAsyncThunk<boolean, number[]>(
   'product/activateProducts',
-  async (productsId: number[], { rejectWithValue }) => {
+  async (productsIds: number[], { rejectWithValue }) => {
     try {
-      return await productService.restoreList(productsId);
+      return await productService.restoreList(productsIds);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

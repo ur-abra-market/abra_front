@@ -72,7 +72,7 @@ export const UploadImage: FC<IUploadImage> = ({
     [style.label_disabled]: isDisabled,
   });
 
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement>): void => {
+  const handleUploadImage = (e: ChangeEvent<HTMLInputElement>): void => {
     if (e.target?.files?.length) {
       const file = e.target.files[0];
 
@@ -104,7 +104,7 @@ export const UploadImage: FC<IUploadImage> = ({
         type="file"
         className={inputClasses}
         id="profileLogo"
-        onChange={handleOnChange}
+        onChange={handleUploadImage}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />

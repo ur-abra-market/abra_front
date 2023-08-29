@@ -1,15 +1,15 @@
 export {
-  pageNumber,
-  pageSize,
-  getDeactivatedIds,
-  getActiveIds,
-  getMainCheckedStatus,
-  getSortedData,
+  pageNumberSelector,
+  pageSizeSelector,
+  deactivatedProductSelector,
+  selectAllProductsSelector,
+  sortedDataSelector,
   supplierProductsSelector,
-  getParamsSelector,
+  paramsSelector,
   hasChangedSelector,
   isLoadingSelector,
   totalCountSelector,
+  activeProductSelector,
 } from './selectors';
 
 export { activateProducts, deActivateProducts, getSupplierProducts } from './thunks';
@@ -26,12 +26,12 @@ export type {
 } from './types';
 
 export {
-  setProductStatus,
   selectAllProducts,
-  setArrayForProductsDeactivation,
-  setArrayForProductsActivation,
   setPageSize,
   setPage,
   setParams,
   supplierProductReducer,
+  selectActiveProduct,
+  selectDeactivatedProduct,
+  resetFilters,
 } from './supplierProductSlice';

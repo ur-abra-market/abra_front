@@ -15,7 +15,7 @@ import {
   getProductsCompilation,
   productsCompilationSelector,
 } from 'store/reducers/productSlice';
-import { ButtonInfo } from 'ui-kit';
+import { ButtonQuestion } from 'ui-kit';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
 
 export const ProductList = (): JSX.Element => {
@@ -37,7 +37,7 @@ export const ProductList = (): JSX.Element => {
     dispatch(getProductsCompilation(param));
   }, [dispatch, productsPerPage, currentPage]);
 
-  const handlerChangeSelect = (value: number): void => {
+  const handleChangeSelect = (value: number): void => {
     dispatch(setProductsPerPage(value));
   };
 
@@ -75,7 +75,7 @@ export const ProductList = (): JSX.Element => {
       </div>
 
       <div className={style.control_panel}>
-        <ProductsPerPage onChange={handlerChangeSelect} />
+        <ProductsPerPage onChange={handleChangeSelect} />
 
         <Pagination
           totalPages={10}
@@ -84,7 +84,7 @@ export const ProductList = (): JSX.Element => {
         />
       </div>
 
-      <ButtonInfo className={style.info_button} />
+      <ButtonQuestion />
     </div>
   );
 };

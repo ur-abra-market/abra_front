@@ -9,10 +9,10 @@
 
   &:focus-visible {
     border-radius: 4px;
-    outline: 1px solid var(--color-medium-gray);
+    outline: 1px solid var(--color-gray-medium);
   }
 
   &:disabled {
-    color: var(--color-gray);
+    color: var(--color-gray-light);
   }
 }

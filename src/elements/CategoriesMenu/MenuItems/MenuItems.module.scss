@@ -1,10 +1,8 @@
 .list_item {
-  margin-bottom: 16px;
-
   font-size: var(--fz-l);
   font-weight: var(--regular);
   font-style: normal;
-  line-height: 24px;
+  line-height: 22px;
 }
 
 .link {
@@ -13,9 +11,15 @@
   color: var(--color-black);
 
   &:hover {
-    color: var(--color-accent);
+    font-weight: var(--bold);
+    color: var(--color-red);
     transition: all .1s;
   }
+}
+
+.focus_item {
+  font-weight: var(--medium);
+  color: var(--color-red);
 }
 
 .items_links {
@@ -24,7 +28,8 @@
 
   &:hover {
     cursor: pointer;
-    color: var(--color-accent);
+    font-weight: var(--medium);
+    color: var(--color-red);
   }
 }
 
@@ -36,6 +41,5 @@
 .items_container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 26px;
-  margin-top: 12px;
+  gap: 22px;
 }

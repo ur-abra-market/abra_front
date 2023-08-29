@@ -10,8 +10,7 @@ export { ReactComponent as EditPencilInCircleIcon } from './files/edit-pencil-in
 export { ReactComponent as EditPencilIcon } from './files/edit-pencil.svg';
 export { ReactComponent as EyeHiddenIcon } from './files/eye-hidden.svg';
 export { ReactComponent as EyeVisibleIcon } from './files/eye-visible.svg';
-export { ReactComponent as FavouriteAddedIcon } from './files/favourite-added.svg';
-export { ReactComponent as FavouriteAddedToIcon } from './files/favourites-add-to.svg';
+export { ReactComponent as FavoriteIcon } from './files/favourites-add-to.svg';
 export { ReactComponent as GooglePayIcon } from './files/google-pay.svg';
 export { ReactComponent as GoogleIcon } from './files/google.svg';
 export { ReactComponent as HeaderCartIcon } from './files/header-cart.svg';
@@ -25,6 +24,7 @@ export { ReactComponent as LockIcon } from './files/lock.svg';
 export { ReactComponent as LogoutIcon } from './files/logout.svg';
 export { ReactComponent as MagnifierDarkGreyIcon } from './files/magnifier-dark-grey.svg';
 export { ReactComponent as MagnifierLightGreyIcon } from './files/magnifier-light-grey.svg';
+export { ReactComponent as MagnifierBlackIcon } from './files/magnifier-black.svg';
 export { ReactComponent as MastercardIcon } from './files/mastercard.svg';
 export { ReactComponent as OrderStatusCompletedIcon } from './files/order-status-completed.svg';
 export { ReactComponent as OrderStatusShippedIcon } from './files/order-status-shipped.svg';

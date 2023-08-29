@@ -1,48 +1,54 @@
 import React, { ChangeEvent, FC } from 'react';
 
 import cn from 'classnames';
-import { useSelector } from 'react-redux';
 
 import style from './TableList.module.scss';
 
 import defaultImg from 'assets/images/files/default-product-image.png';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { formatDate } from 'common/utils/formatDateProductsList';
-import { ITableData } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsTable/ProductsTable';
 import {
-  getActiveIds,
-  getDeactivatedIds,
+  activeProductSelector,
+  deactivatedProductSelector,
+  IProduct,
   isLoadingSelector,
-  setProductStatus,
+  selectActiveProduct,
+  selectDeactivatedProduct,
 } from 'store/reducers/supplier/product';
-import { Checkbox } from 'ui-kit';
+import { Checkbox, Stars } from 'ui-kit';
+
+export interface ITableData {
+  data: IProduct[] | undefined;
+}
 
 export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
-  const deactivatedProductsIds = useSelector(getDeactivatedIds);
-  const activatedProductsIds = useSelector(getActiveIds);
+  const activeProduct = useAppSelector(activeProductSelector);
+  const deactivatedProduct = useAppSelector(deactivatedProductSelector);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
 
-  const deactivatedArray = deactivatedProductsIds?.map(product => product.id);
-  const activatedArray = activatedProductsIds?.map(product => product.id);
-  const productsIdsArray = deactivatedArray.concat(activatedArray);
-
-  const getProductId = (checked: boolean, id: number, status: boolean): void => {
-    dispatch(setProductStatus({ checked, id, status }));
-  };
-
-  const onChangeChecked = (
+  const handleChangeCheckbox = (
     e: ChangeEvent<HTMLInputElement>,
     id: number,
     status: boolean,
   ): void => {
-    getProductId(e.currentTarget.checked, id, status);
+    if (status) {
+      dispatch(selectActiveProduct(id));
+    } else {
+      dispatch(selectDeactivatedProduct(id));
+    }
   };
+
+  const tableCellClasses = cn({
+    [style.table_td]: true,
+    [style.center]: true,
+  });
 
   return (
     <tbody>
       {data?.map(el => {
-        const checked = productsIdsArray?.includes(el.id);
+        const checked =
+          activeProduct.includes(el.id) || deactivatedProduct.includes(el.id);
         const deactivatedClasses = cn(style.table_row, {
           [style.table_deactivated]: !el.is_active,
         });
@@ -57,7 +63,7 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
                 disabled={isLoading}
                 checked={checked}
                 variant="default"
-                onChange={event => onChangeChecked(event, el.id, el.is_active)}
+                onChange={event => handleChangeCheckbox(event, el.id, el.is_active)}
               />
             </td>
             <td className={style.table_td}>{el.id}</td>
@@ -83,7 +89,10 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
                 <td className={style.table_td}>empty</td>
               </React.Fragment>
             ))}
-            <td className={style.table_td}>{el.is_active ? 'Visible' : 'Hidden'}</td>
+            <td className={style.table_td}>
+              <Stars sizes="14" reward={el.grade_average} />
+            </td>
+            <td className={tableCellClasses}>{el.is_active ? 'Visible' : 'Hidden'}</td>
           </tr>
         );
       })}

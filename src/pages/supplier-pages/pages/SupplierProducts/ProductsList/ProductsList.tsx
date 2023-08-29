@@ -1,24 +1,24 @@
 import React, { useEffect } from 'react';
 
 import style from './ProductsList.module.scss';
-import { ProductsListSettings } from './ProductsListSettings/ProductsListSettings';
 import { ProductsTable } from './ProductsTable/ProductsTable';
+import { ProductTableEditor } from './ProductTableEditor/ProductTableEditor';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import {
-  getParamsSelector,
+  paramsSelector,
   hasChangedSelector,
   isLoadingSelector,
   getSupplierProducts,
-  pageNumber,
+  pageNumberSelector,
 } from 'store/reducers/supplier/product';
 import { LoaderLinear } from 'ui-kit';
 
 export const ProductsList = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { offset, limit, onSale, sort, ascending, categoryIds, isActive } =
-    useAppSelector(getParamsSelector);
-  const page = useAppSelector(pageNumber);
+    useAppSelector(paramsSelector);
+  const page = useAppSelector(pageNumberSelector);
   const hasChanged = useAppSelector(hasChangedSelector);
   const isLoading = useAppSelector(isLoadingSelector);
 
@@ -50,7 +50,7 @@ export const ProductsList = (): JSX.Element => {
   return (
     <div className={style.container}>
       {isLoading && <LoaderLinear />}
-      <ProductsListSettings />
+      <ProductTableEditor />
       <ProductsTable />
     </div>
   );

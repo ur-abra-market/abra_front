@@ -1,4 +1,4 @@
-import { PaginationSettings } from './PaginationSettings/PaginationSettings';
+import { PaginationControl } from './PaginationControl/PaginationControl';
 import { ProductHeader } from './ProductHeader/ProductHeader';
 import { ProductsList } from './ProductsList/ProductsList';
 import style from './SupplierProducts.module.scss';
@@ -10,9 +10,9 @@ export const SupplierProducts = WithLayout((): JSX.Element => {
     <section className={style.wrapper}>
       <div className={style.content_container}>
         <ProductHeader />
-        <PaginationSettings />
+        <PaginationControl />
         <ProductsList />
-        <PaginationSettings />
+        <PaginationControl />
       </div>
     </section>
   );

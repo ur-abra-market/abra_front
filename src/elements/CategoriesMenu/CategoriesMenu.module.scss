@@ -1,14 +1,15 @@
 .menu_container {
   position: absolute;
   z-index: 100;
+  top: 52px;
   left: 0;
 
   display: flex;
-  gap: 34px;
+  gap: 22px;
 
   min-width: 600px;
   min-height: 464px;
-  padding: 24px;
+  padding: 22px 22px 22px 12px;
 
   background-color: var(--color-white);
   border-radius: 8px;
@@ -18,5 +19,4 @@
 .list {
   display: flex;
   flex-direction: column;
-  row-gap: 16px;
 }

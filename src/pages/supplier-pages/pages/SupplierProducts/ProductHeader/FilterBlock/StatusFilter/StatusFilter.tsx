@@ -2,21 +2,17 @@ import React, { useCallback } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
+import { STATUS_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/utils/filterOptions';
 import {
-  getParamsSelector,
+  paramsSelector,
   isLoadingSelector,
+  setPage,
   setParams,
 } from 'store/reducers/supplier/product';
 import { ISelectOption, Select } from 'ui-kit';
 
-const STATUS_SELECT: ISelectOption[] = [
-  { label: { text: 'All' }, value: -1 },
-  { label: { text: 'Active' }, value: 1 },
-  { label: { text: 'Inactive' }, value: 0 },
-];
-
 export const StatusFilter = (): JSX.Element => {
-  const params = useAppSelector(getParamsSelector);
+  const params = useAppSelector(paramsSelector);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
 
@@ -29,6 +25,7 @@ export const StatusFilter = (): JSX.Element => {
           : { ...params, isActive: Boolean(value) };
 
       dispatch(setParams(newParams));
+      dispatch(setPage(1));
     },
     [dispatch, params],
   );

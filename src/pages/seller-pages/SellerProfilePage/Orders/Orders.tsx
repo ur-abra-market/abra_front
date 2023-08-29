@@ -27,22 +27,22 @@ export const Orders = (): JSX.Element => {
         </Button>
 
         <Button color="white" className={style.orders_button}>
-          <p className={style.button_title}>To be shipped</p>
+          To be shipped
           <OrderStatusToBeShippedIcon />
         </Button>
 
         <Button color="white" className={style.orders_button}>
-          <p className={style.button_title}>Shipped</p>
+          Shipped
           <OrderStatusShippedIcon />
         </Button>
 
         <Button color="white" className={style.orders_button}>
-          <p className={style.button_title}>To be reviewed</p>
+          To be reviewed
           <OrderStatusToBeReviewedIcon className={style.icon} />
         </Button>
 
         <Button color="white" className={style.orders_button}>
-          <p className={style.button_title}>To be reviewed</p>
+          To be reviewed
           <OrderStatusCompletedIcon className={style.icon} />
         </Button>
       </div>

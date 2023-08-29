@@ -20,18 +20,18 @@
   font-weight: var(--regular);
   font-style: normal;
   line-height: 20px;
-  color: var(--color-accent);
+  color: var(--color-red);
 
   background: none;
 
   &:hover {
-    color: var(--color_accent_medium);
+    color: var(--color-red-medium);
     text-decoration: underline;
   }
 
   &:focus-visible {
     border-radius: 4px;
-    outline: 1px solid var(--color-medium-gray);
+    outline: 1px solid var(--color-gray-medium);
   }
 }
 

@@ -22,11 +22,11 @@ import { getPersonalInfo, userLoadingSelector } from 'store/reducers/userSlice';
 import { LoaderLinear } from 'ui-kit';
 
 export const SupplierProfilePage = WithLayout((): JSX.Element => {
-  const [isFetchingData, setIsFetchingData] = useState(true);
   const dispatch = useAppDispatch();
   const loading = useAppSelector(supplierLoadingSelector);
   const { personalInfoLoading } = useAppSelector(userLoadingSelector);
   const { notificationsLoading, ...restLoading } = loading;
+  const [isFetchingData, setIsFetchingData] = useState(true);
 
   const isLoading =
     Object.values(restLoading).some(value => value === LoadingStatusEnum.Loading) ||
@@ -50,12 +50,13 @@ export const SupplierProfilePage = WithLayout((): JSX.Element => {
   }
 
   return (
-    <div className={style.supplier_cabinet}>
+    <div className={style.wrapper}>
       {isLoading && <LoaderLinear />}
-      <div className={style.supplier_cabinet_content_wrapper}>
+
+      <div className={style.content_container}>
         <SupplierPersonalInfoChangeForm />
 
-        <div className={style.account_details}>
+        <div className={style.account_management}>
           <AccountManagement />
         </div>
 

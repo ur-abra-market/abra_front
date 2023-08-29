@@ -1,0 +1,16 @@
+.buttons_wrapper {
+  display: flex;
+  column-gap: 12px;
+  align-items: center;
+}
+
+.button {
+  width: 150px;
+  border: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .button {
+    width: 120px;
+  }
+}

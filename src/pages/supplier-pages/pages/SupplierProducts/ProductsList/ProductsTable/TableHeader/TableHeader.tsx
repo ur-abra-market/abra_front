@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 
 import { useSelector } from 'react-redux';
 
@@ -6,29 +6,42 @@ import style from './TableHeader.module.scss';
 
 import { ArrowSort } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { ITableData } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/ProductsTable/ProductsTable';
+import { tableSortData } from 'pages/supplier-pages/pages/SupplierProducts/utils/tableData';
 import {
-  columns,
-  selectAllCheckbox,
-} from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/utils/productUtils';
-import {
-  getMainCheckedStatus,
-  getParamsSelector,
+  selectAllProductsSelector,
+  paramsSelector,
   isLoadingSelector,
+  selectAllProducts,
   setParams,
   SortType,
+  activeProductSelector,
+  deactivatedProductSelector,
+  supplierProductsSelector,
 } from 'store/reducers/supplier/product';
 import { ButtonIcon, Checkbox } from 'ui-kit';
 
-export const TableHeader: FC<ITableData> = ({ data }): JSX.Element => {
+export const TableHeader = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const params = useAppSelector(getParamsSelector);
-  const checked = useSelector(getMainCheckedStatus);
+  const params = useAppSelector(paramsSelector);
+  const activeProduct = useAppSelector(activeProductSelector);
+  const deactivatedProduct = useAppSelector(deactivatedProductSelector);
+  const products = useAppSelector(supplierProductsSelector);
+
+  const allProductsAreHandled = products.length
+    ? products.every(
+        pr => activeProduct.includes(pr.id) || deactivatedProduct.includes(pr.id),
+      )
+    : false;
+
+  const checked = useSelector(selectAllProductsSelector) || allProductsAreHandled;
   const isLoading = useAppSelector(isLoadingSelector);
 
-  const setStatusForMainCheckBox = (checked: boolean): void => {
-    selectAllCheckbox(data, checked, dispatch);
-  };
+  const setAllCheckboxesState = useCallback(
+    (e: ChangeEvent<HTMLInputElement>): void => {
+      dispatch(selectAllProducts(e.currentTarget.checked));
+    },
+    [dispatch],
+  );
 
   const onChangeSortData = (sortKey?: string, sortValue?: SortType): void => {
     if (!sortKey) return;
@@ -60,10 +73,10 @@ export const TableHeader: FC<ITableData> = ({ data }): JSX.Element => {
             disabled={isLoading}
             variant="default"
             checked={checked}
-            onChange={e => setStatusForMainCheckBox(e.currentTarget.checked)}
+            onChange={setAllCheckboxesState}
           />
         </th>
-        {columns.map(column => (
+        {tableSortData.map(column => (
           <th key={column.id} className={style.table_head}>
             {column.name}
             {column.arrow && (

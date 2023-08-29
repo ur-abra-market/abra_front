@@ -4,13 +4,11 @@ import cn from 'classnames';
 
 import style from './FilterButton.module.scss';
 
-import { Categories } from 'elements/CategoriesMenu/CategoriesMenu';
-
 interface IFilterButton {
   children: string;
-  value: string;
-  activeValue: string;
-  callback: (value: Categories) => void;
+  value: number;
+  activeValue: number;
+  callback: (value: number) => void;
 }
 
 export const FilterButton: FC<IFilterButton> = ({
@@ -23,13 +21,17 @@ export const FilterButton: FC<IFilterButton> = ({
     [style.active_button]: activeValue === value,
   });
 
-  const updateActiveCategory = (): void => {
-    callback(value as Categories);
+  const handleSelectActiveCategory = (): void => {
+    callback(value);
   };
 
   return (
-    <li className={style.filter_button} onMouseEnter={updateActiveCategory}>
-      <button type="button" onMouseEnter={updateActiveCategory} className={buttonClasses}>
+    <li className={style.filter_button} onMouseEnter={handleSelectActiveCategory}>
+      <button
+        type="button"
+        onMouseEnter={handleSelectActiveCategory}
+        className={buttonClasses}
+      >
         {children}
       </button>
     </li>
