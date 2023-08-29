@@ -49,46 +49,55 @@
 }
 
 @media only screen and (max-width: 1050px) {
+  .container {
+    .nav_container {
+      display: block;
+      columns: 2;
+      column-gap: 20px;
+    }
+  }
+
   .nav_container {
+    max-width: 80%;
+    padding-left: 30px;
+
     li {
-      flex-basis: 35%;
+      flex-basis: initial;
+      margin-bottom: 12px;
     }
   }
 }
+
 
 @media only screen and (max-width: 920px) {
   .container {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    column-gap: 0;
-
-    padding: 20px 32px;
+    padding: 20px;
 
     h1 {
       align-self: start;
+      margin-bottom: 24px;
+    }
+
+    .nav_container {
+      column-gap: 6px;
+
+      width: 370px;
+      padding-left: 22px;
+
+      border-right: none;
+      border-left: none;
+
+      li {
+        margin-right: initial;
+      }
+    }
+
+    .selects {
+      zoom: 99%;
+      gap: 0;
     }
   }
 
-  .nav_container {
-    max-width: 450px;
-    border-right: none;
-    border-left: none;
-  }
-}
-
-@media only screen and (max-width: 560px) {
-  .nav_container {
-    max-width: 350px;
-
-    li {
-      flex-basis: 45%;
-    }
-  }
-}
-
-@media only screen and (max-width: 440px) {
-  .container {
-    padding: 20px 16px;
-  }
 }
