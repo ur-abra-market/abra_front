@@ -21,13 +21,17 @@ export const FilterButton: FC<IFilterButton> = ({
     [style.active_button]: activeValue === value,
   });
 
-  const updateActiveCategory = (): void => {
+  const handleSelectActiveCategory = (): void => {
     callback(value);
   };
 
   return (
-    <li className={style.filter_button} onMouseEnter={updateActiveCategory}>
-      <button type="button" onMouseEnter={updateActiveCategory} className={buttonClasses}>
+    <li className={style.filter_button} onMouseEnter={handleSelectActiveCategory}>
+      <button
+        type="button"
+        onMouseEnter={handleSelectActiveCategory}
+        className={buttonClasses}
+      >
         {children}
       </button>
     </li>

@@ -13,11 +13,11 @@
   transition: all .1s;
 
   &:hover {
-    background-color: var(--color-light-gray);
+    background-color: var(--color-white-ivory);
   }
 
   &:has(.active_button) {
-    background-color: var(--color-light-gray);
+    background-color: var(--color-white-ivory);
   };
 }
 
@@ -33,5 +33,5 @@
 }
 
 .active_button {
-  color: var(--color-accent);
+  color: var(--color-red);
 }

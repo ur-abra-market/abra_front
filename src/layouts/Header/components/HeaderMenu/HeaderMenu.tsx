@@ -47,7 +47,7 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ isMenuOpen, setMenuOpen }) => {
   const location = useMatch(PERSONAL_ACCOUNT);
   const [selectedItem, setSelectedItem] = useState(-1);
 
-  const handleMenuItemClick = (index: number): void => {
+  const handleClickOnMenuItem = (index: number): void => {
     setSelectedItem(index);
     setMenuOpen();
   };
@@ -127,7 +127,7 @@ export const HeaderMenu: FC<IHeaderMenu> = ({ isMenuOpen, setMenuOpen }) => {
               <NavLink
                 to={(menuItem as MenuItemBase).href}
                 state={(menuItem as MenuItemBase).label}
-                onClick={() => handleMenuItemClick(index)}
+                onClick={() => handleClickOnMenuItem(index)}
               >
                 {(menuItem as MenuItemBase).label}
               </NavLink>

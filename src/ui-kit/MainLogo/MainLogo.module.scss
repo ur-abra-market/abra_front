@@ -1,7 +1,7 @@
 .title {
   height: fit-content;
   font-weight: var(--bold);
-  color: var(--color-accent);
+  color: var(--color-red);
 }
 
 .link {
@@ -11,6 +11,6 @@
 
   &:focus-visible {
     border-radius: 4px;
-    outline: 1px solid var(--color-medium-gray);
+    outline: 1px solid var(--color-gray-medium);
   }
 }

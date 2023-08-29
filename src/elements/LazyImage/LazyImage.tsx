@@ -60,17 +60,17 @@ export const LazyImage: FC<ILazyImage> = ({
       image.src = src;
     }
 
-    const handleImageLoad = (): void => {
+    const handleLoadingImage = (): void => {
       setLoaded(true);
     };
 
     if (image.complete) {
-      handleImageLoad();
+      handleLoadingImage();
     } else {
-      image.addEventListener('load', handleImageLoad);
+      image.addEventListener('load', handleLoadingImage);
 
       return () => {
-        image.removeEventListener('load', handleImageLoad);
+        image.removeEventListener('load', handleLoadingImage);
       };
     }
   }, [width, height, src]);

@@ -63,24 +63,24 @@
   transition: all 0.3s;
 
   &:active {
-    color: var(--color_accent);
+    color: var(--color-red);
   }
 
   &:hover,
   &:focus-visible {
-    color: var(--color_accent_medium);
+    color: var(--color-red-medium);
     text-decoration: underline;
   }
 
   &:disabled {
     pointer-events: none;
     cursor: default;
-    color: var(--color-grey-innactive);
+    color: var(--color-gray);
   }
 }
 
 .link_white {
-  color: var(--color-accent);
+  color: var(--color-red);
 }
 
 .links a {
@@ -92,11 +92,11 @@
 
 .link[aria-current] {
   pointer-events: none;
-  color: var(--color-accent);
+  color: var(--color-red);
 }
 
 .link_white[aria-current] {
-  color: var(--color-accent);
+  color: var(--color-red);
 }
 
 

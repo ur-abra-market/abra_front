@@ -84,7 +84,7 @@
   transition: all 0.3s;
 
   &:hover, &:focus-visible {
-    color: var(--color-accent);
+    color: var(--color-red);
     outline: none;
   }
 }

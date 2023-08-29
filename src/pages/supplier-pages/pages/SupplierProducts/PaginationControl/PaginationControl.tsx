@@ -26,7 +26,7 @@ export const PaginationControl = (): JSX.Element => {
     dispatch(setPage(pageNumber));
   };
 
-  const onChangeLimit = useCallback(
+  const handleChangeLimit = useCallback(
     (limit: number): void => {
       dispatch(setParams({ ...params, limit }));
       dispatch(setPage(1));
@@ -45,7 +45,7 @@ export const PaginationControl = (): JSX.Element => {
         <ProductsPerPage
           disabled={isLoading}
           controlledValue={controlledValue}
-          onChange={onChangeLimit}
+          onChange={handleChangeLimit}
         />
       </div>
 
