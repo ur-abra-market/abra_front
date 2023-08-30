@@ -1,0 +1,42 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  width: 260px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.title {
+  font-size: var(--fz-l2);
+  font-weight: var(--semi-bold);
+  letter-spacing: 0.38px;
+}
+
+.button_reset {
+  cursor: pointer;
+
+  font-family: Roboto;
+  font-size: var(--fz-s2);
+  color: var(--color-red);
+  letter-spacing: 0.16px;
+
+  background: none;
+  border-bottom: 1px solid var(--color-red);
+}
+
+.sort_select {
+  background-color: var(--color-white-ivory);
+  border-radius: 12px;
+}
+
+.switcher_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

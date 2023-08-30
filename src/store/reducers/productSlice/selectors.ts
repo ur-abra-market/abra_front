@@ -1,4 +1,4 @@
-import { IImage } from './types';
+import { IImage, ISortBy, ISortField } from './types';
 
 import { ICategory, LoadingStatusEnum } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
@@ -45,3 +45,14 @@ export const loadingProductsSelector = (state: RootStateType): LoadingStatusEnum
 
 export const productsPerPageSelector = (state: RootStateType): number =>
   state.product.productsPerPage;
+
+export const productsListSelector = (state: RootStateType): IProductCompilation[] =>
+  state.product.productsList;
+
+export const totalProductsCountSelector = (state: RootStateType): number =>
+  state.product.totalProductsCount;
+
+export const sortFieldSelector = (state: RootStateType): ISortField =>
+  state.product.sortField;
+
+export const sortBySelector = (state: RootStateType): ISortBy => state.product.sortBy;

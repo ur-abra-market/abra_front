@@ -14,6 +14,9 @@ export {
   popularProductsSelector,
   productsCompilationSelector,
   productsPerPageSelector,
+  productsListSelector,
+  totalProductsCountSelector,
+  sortFieldSelector,
 } from './selectors';
 
 export {
@@ -23,8 +26,15 @@ export {
   getSimilarProducts,
   getPopularProducts,
   getProductsCompilation,
+  getProductsListCompilation,
 } from './thunks';
-export { productReducer, setProductsPerPage } from './slice';
+export {
+  productReducer,
+  setProductsPerPage,
+  setSortField,
+  setSortBy,
+  setResetAllFilters,
+} from './slice';
 export type {
   IProductCard,
   IProductSliceInitialState,

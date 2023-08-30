@@ -41,8 +41,9 @@ export interface IPopularProductRequest {
 export interface ICategoryRequest {
   offset: number;
   limit: number;
-  category_id: Categories;
+  category_id: Categories | string;
   ascending: boolean;
+  sort?: 'total_orders' | 'date' | 'price' | 'rating';
 }
 
 export interface IProductRequest {

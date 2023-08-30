@@ -17,12 +17,17 @@ import {
 } from 'store/reducers/supplier/product/types';
 
 export const productService = {
-  getList: async ({ ascending, category_id, limit, offset }: ICategoryRequest) => {
-    const params = { offset, limit };
+  getList: async ({ ascending, category_id, limit, offset, sort }: ICategoryRequest) => {
+    const params = { offset, limit, sort, ascending };
+    const categoryIds = [];
+
+    if (category_id !== 'all') {
+      categoryIds.push(+category_id);
+    }
 
     const { data } = await baseConfigService.post<
       IBaseResponse<IProductsCompilationResponse>
-    >(`products/compilation`, { category_ids: [category_id], ascending }, { params });
+    >(`products/compilation`, { category_ids: categoryIds }, { params });
 
     return data.result;
   },
