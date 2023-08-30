@@ -1,6 +1,6 @@
 .wrapper {
   position: relative;
-  z-index: 5;
+  z-index: 102;
 
   &:has(.mobile) {
     display: flex;
@@ -33,7 +33,7 @@
 }
 
 .burger {
-  cursor:pointer;
+  cursor: pointer;
 
   position: relative;
   z-index: 10;
@@ -106,7 +106,7 @@
   pointer-events: none;
 
   position: fixed;
-  z-index: 4;
+  z-index: 101;
   top: 0;
   left: 0;
 
@@ -115,6 +115,8 @@
 
   opacity: 0;
   background: var(--color-black);
+
+  transition: opacity 0.3s linear;
 
   &.show {
     pointer-events: all;
@@ -126,9 +128,9 @@
   pointer-events: none;
 
   position: absolute;
-  z-index: 5;
   top: calc(100% + 20px);
   left: -10.5px;
+  transform: translate3d(-150%, 0, 0);
 
   flex-direction: column;
   gap: 16px;
@@ -140,8 +142,11 @@
   background: var(--color-white);
   border-radius: 12px;
 
+  transition: opacity 0.3s linear, transform 0.3s ease-in-out;
+
   &.show {
     pointer-events: all;
+    transform: translate3d(0, 0, 0);
     opacity: 1;
   }
 }
