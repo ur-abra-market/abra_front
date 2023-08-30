@@ -1,11 +1,6 @@
 .link {
   cursor: pointer;
 
-  position: fixed;
-  z-index: 100;
-  right: 20px;
-  bottom: 20px;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,6 +17,19 @@
   &:active {
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.32);
   }
+}
+
+.wrapper {
+  position: fixed;
+  z-index: 100;
+  bottom: 20px;
+
+  display: flex;
+  justify-content: right;
+
+  width: 100%;
+  max-width: var(--main-content-width);
+  padding-right: 46px;
 }
 
 .icon {
