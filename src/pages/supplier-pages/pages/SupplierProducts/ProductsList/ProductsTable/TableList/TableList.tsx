@@ -41,7 +41,7 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
 
   const tableCellClasses = cn({
     [style.table_td]: true,
-    [style.center]: true,
+    // [style.center]: true,
   });
 
   return (
@@ -90,7 +90,7 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
               </React.Fragment>
             ))}
             <td className={style.table_td}>
-              <Stars sizes="14" reward={el.grade_average} />
+              <Stars sizes="10" reward={el.grade_average} />
             </td>
             <td className={tableCellClasses}>{el.is_active ? 'Visible' : 'Hidden'}</td>
           </tr>

@@ -22,7 +22,7 @@ export const supplierProductsSelector = (state: RootStateType): IProduct[] =>
 export const activeProductSelector = (state: RootStateType): number[] =>
   state.supplierProduct.activeProductIds;
 
-export const sortedDataSelector = createSelector([supplierProductsSelector], data => {
+export const sortedProductSelector = createSelector([supplierProductsSelector], data => {
   const copyOfData = [...data];
 
   return copyOfData.sort((a, b) => {

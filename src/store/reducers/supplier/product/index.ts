@@ -3,7 +3,7 @@ export {
   pageSizeSelector,
   deactivatedProductSelector,
   selectAllProductsSelector,
-  sortedDataSelector,
+  sortedProductSelector,
   supplierProductsSelector,
   paramsSelector,
   hasChangedSelector,

@@ -78,7 +78,7 @@ export const TableHeader = (): JSX.Element => {
         </th>
         {tableSortData.map(column => (
           <th key={column.id} className={style.table_head}>
-            {column.name}
+            <span className={style.text}>{column.name}</span>
             {column.arrow && (
               <ButtonIcon
                 disabled={isLoading}
