@@ -37,7 +37,7 @@ export const ProductList = (): JSX.Element => {
     dispatch(getProductsCompilation(param));
   }, [dispatch, productsPerPage, currentPage]);
 
-  const handlerChangeSelect = (value: number): void => {
+  const handleChangeSelect = (value: number): void => {
     dispatch(setProductsPerPage(value));
   };
 
@@ -75,7 +75,7 @@ export const ProductList = (): JSX.Element => {
       </div>
 
       <div className={style.control_panel}>
-        <ProductsPerPage onChange={handlerChangeSelect} />
+        <ProductsPerPage onChange={handleChangeSelect} />
 
         <Pagination
           totalPages={10}

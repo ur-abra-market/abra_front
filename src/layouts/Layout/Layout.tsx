@@ -19,7 +19,7 @@ export const Layout: FC<ILayout> = ({
 
   useLayoutEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 768px)');
-    const handleMediaQueryChange = (e: MediaQueryListEvent | MediaQueryList): void => {
+    const handleChangeMediaQuery = (e: MediaQueryListEvent | MediaQueryList): void => {
       if (e.matches) {
         setIsMobileView(true);
       } else {
@@ -27,11 +27,11 @@ export const Layout: FC<ILayout> = ({
       }
     };
 
-    mediaQuery.addEventListener('change', handleMediaQueryChange);
-    handleMediaQueryChange(mediaQuery);
+    mediaQuery.addEventListener('change', handleChangeMediaQuery);
+    handleChangeMediaQuery(mediaQuery);
 
     return () => {
-      mediaQuery.removeEventListener('change', handleMediaQueryChange);
+      mediaQuery.removeEventListener('change', handleChangeMediaQuery);
     };
   }, []);
 

@@ -103,7 +103,7 @@ export const Select = forwardRef(
       [styles.menu_up_pos]: menuItemsPosition === 'up' && isOpenItemsMenu,
     });
 
-    const handleChangeSelectState = (): void => {
+    const handleToggleMenu = (): void => {
       if (disabled) {
         setIsOpenItemsMenu(false);
 
@@ -196,7 +196,7 @@ export const Select = forwardRef(
           className={headerClassname}
           currentSelectedValue={currentSelectedValue}
           isOpenMenu={isOpenItemsMenu}
-          handleSelectState={handleChangeSelectState}
+          handleToggleMenu={handleToggleMenu}
         />
         <span className={styles.error}>{error}</span>
 
