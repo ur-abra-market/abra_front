@@ -98,3 +98,9 @@
 .link_white[aria-current] {
   color: var(--color-red);
 }
+
+@media (max-width: 768px) {
+  .wrapper {
+    display: none;
+  }
+}

@@ -49,3 +49,24 @@
   background: linear-gradient(180deg, #F3F3F3 0%, #EBEBEB 100%);
   border-radius: 12px;
 }
+
+@media (max-width: 768px) {
+  .content_container {
+    padding: 16px;
+  }
+
+  .mobile_copyright {
+    display: block;
+
+    margin: 8px 34px;
+
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+  }
+  
+  .link {
+    color: var(--color-red);
+    border-bottom: 1px solid var(--color-red);
+  }
+}

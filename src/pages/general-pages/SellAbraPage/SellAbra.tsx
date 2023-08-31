@@ -1,10 +1,14 @@
 import React from 'react';
 
+import { NavLink } from 'react-router-dom';
+
 import style from './SellAbra.module.scss';
 
 import { Item } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
+import { Footer } from 'layouts';
+import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from 'routes';
 
 export const SellAbraPage = WithLayout(() => (
   <div className={style.container}>
@@ -30,6 +34,16 @@ export const SellAbraPage = WithLayout(() => (
         numberItem={4}
         title="Tell us about your first product"
       />
+    </div>
+    <div className={style.mobile_copyright}>
+      © 2022 Abra.&nbsp;
+      <NavLink className={style.link} to={TERMS_AND_CONDITIONS}>
+        Terms & condition
+      </NavLink>
+      &nbsp;and&nbsp;
+      <NavLink className={style.link} to={PRIVACY_POLICY}>
+        Privacy policy
+      </NavLink>
     </div>
   </div>
 ));
