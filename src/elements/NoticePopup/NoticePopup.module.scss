@@ -4,14 +4,16 @@
   position: fixed;
   z-index: 100;
   top: 30px;
-  left: calc(50% - 200px);
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
 
   display: flex;
   flex-shrink: 1;
   column-gap: 16px;
   align-items: center;
 
-  width: 400px;
+  width: calc(min(100%, 100vw - 32px));
+  max-width: 400px;
   padding: 12px;
 
   font-size: var(--fz-s);
@@ -21,11 +23,11 @@
 }
 
 .success {
-  background: var(--color-green);
+  background: var(--color-green-lime);
 }
 
 .error {
-  background: var(--color-accent);
+  background: var(--color-red);
 }
 
 .message {

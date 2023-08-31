@@ -41,7 +41,7 @@
 
 .category {
   font-size: var(--fz-xs2);
-  color: var(--color-accent);
+  color: var(--color-red);
   letter-spacing: 0.16px;
 }
 
@@ -53,7 +53,7 @@
 .reviews {
   font-size: var(--fz-xs);
   font-weight: var(--medium);
-  color: var(--color-medium-gray);
+  color: var(--color-gray-medium);
   letter-spacing: 0.16px;
 }
 
@@ -114,6 +114,6 @@
 
 .suppler_details {
   font-size: var(--fz-xs);
-  color: var(--color-medium-gray);
+  color: var(--color-gray-medium);
   letter-spacing: 0.16px;
 }

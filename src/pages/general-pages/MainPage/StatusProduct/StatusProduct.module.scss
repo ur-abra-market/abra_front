@@ -44,7 +44,7 @@
 
   &:focus-visible {
     border-radius: 4px;
-    outline: 1px solid var(--color-medium-gray);
+    outline: 1px solid var(--color-gray-medium);
   }
 }
 
@@ -54,19 +54,19 @@
 }
 
 .btn_active {
-  color: var(--color-accent);
+  color: var(--color-red);
   transition: all 0.3s;
 }
 
 .border_line {
   height: 3px;
-  background: var(--color-gray);
+  background: var(--color-gray-light);
   border-radius: 8px;
 }
 
 .border_line_active {
   position: relative;
   height: 3px;
-  background-color: var(--color-accent);
+  background-color: var(--color-red);
   transition: all 0.3s;
 }
