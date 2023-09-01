@@ -40,7 +40,6 @@
   font-weight: var(--regular);
   line-height: 20px;
   color:var(--color-red);
-  color:var(--color-red);
   text-decoration: underline;
 }
 
@@ -79,13 +78,13 @@
   cursor: default;
 
   &:hover {
-    fill: var(--color-gray-light-light);
+    fill: var(--color-gray-light);
   }
 }
 
 .disable_button path {
   pointer-events: none;
-  fill: var(--color-gray-light-light);
+  fill: var(--color-gray-light);
 }
 
 @media only screen and (max-width: 768px) {
