@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-  width: 260px;
 }
 
 .wrapper {
@@ -33,10 +32,4 @@
 .sort_select {
   background-color: var(--color-white-ivory);
   border-radius: 12px;
-}
-
-.switcher_wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }

@@ -13,11 +13,11 @@ export const Price = (): JSX.Element => {
         <div className={style.inputs_wrapper}>
           <div className={style.input_wrapper}>
             <p className={style.input_title}>From</p>
-            <Input className={classNames(style.input, style.input_left)} />
+            <Input className={classNames(style.input, style.input_left)} type="number" />
           </div>
           <div className={style.input_wrapper}>
             <p className={style.input_title}>Up To</p>
-            <Input className={classNames(style.input, style.input_right)} />
+            <Input className={classNames(style.input, style.input_right)} type="number" />
           </div>
         </div>
 

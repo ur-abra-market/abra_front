@@ -1,14 +1,14 @@
-import { ChangeEvent, FC } from 'react';
+import { FC } from 'react';
 
 import style from './Filters.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { setSortBy, setSortField } from 'store/reducers/productSlice';
 import { sortBySelector, sortFieldSelector } from 'store/reducers/productSlice/selectors';
-import { ISortField } from 'store/reducers/productSlice/types';
-import { Checkbox, ISelectOption, Select } from 'ui-kit';
+import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
+import { ISelectOption, Select } from 'ui-kit';
 
-const selectData = [
+const selectSortFieldData = [
   {
     label: { text: 'Sort By Rating' },
     value: 'rating',
@@ -27,6 +27,17 @@ const selectData = [
   },
 ];
 
+const selectSortByData = [
+  {
+    label: { text: 'By Ascending' },
+    value: 'asc',
+  },
+  {
+    label: { text: 'By Descending' },
+    value: 'desc',
+  },
+];
+
 interface IFilters {
   onResetAllFilters: () => void;
 }
@@ -40,10 +51,8 @@ export const Filters: FC<IFilters> = ({ onResetAllFilters }): JSX.Element => {
     dispatch(setSortField(data.value as ISortField));
   };
 
-  const handleChangeSortBy = (e: ChangeEvent<HTMLInputElement>): void => {
-    const isChecked = e.currentTarget.checked;
-
-    dispatch(setSortBy(isChecked ? 'asc' : 'desc'));
+  const handleChangeSortBy = (data: ISelectOption): void => {
+    dispatch(setSortBy(data.value as ISortBy));
   };
 
   return (
@@ -57,19 +66,17 @@ export const Filters: FC<IFilters> = ({ onResetAllFilters }): JSX.Element => {
 
       <Select
         defaultValue={sortField}
-        options={selectData}
+        options={selectSortFieldData}
         onChange={handleChangeSortField}
         className={style.sort_select}
       />
 
-      <div className={style.switcher_wrapper}>
-        <p>ascending</p>
-        <Checkbox
-          checked={sortBy === 'asc'}
-          onChange={handleChangeSortBy}
-          variant="notification"
-        />
-      </div>
+      <Select
+        defaultValue={sortBy}
+        options={selectSortByData}
+        onChange={handleChangeSortBy}
+        className={style.sort_select}
+      />
     </div>
   );
 };
