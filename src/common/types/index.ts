@@ -1,6 +1,7 @@
 // -----------------------Enums-----------------------
 export { LoadingStatusEnum } from './enums/LoadingStatusEnum';
 export { CountriesEnum } from './enums/CountriesEnum';
+export { UserRoleEnum } from './enums/UserRoleEnum';
 
 // -----------------------Types-----------------------
 export type { UserRoleType, ResponseUserRoleType } from './types/UserRoleTypes';

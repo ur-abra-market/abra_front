@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,10 @@ import {
 } from 'store/reducers/supplier/profile';
 import { ButtonIcon, MainLogo } from 'ui-kit';
 
-export const SupplierTop = (): JSX.Element => {
+interface ISupplierTop {
+  isMobileView?: boolean;
+}
+export const SupplierTop: FC<ISupplierTop> = ({ isMobileView }): JSX.Element => {
   const dispatch = useAppDispatch();
   const companyLogo = useAppSelector(supplierCompanyLogoSelector);
   const [isShowPopupMenu, setShowPopupMenu] = useState(false);
@@ -26,7 +29,11 @@ export const SupplierTop = (): JSX.Element => {
   }, [dispatch]);
 
   return (
-    <div className={style.container}>
+    <div
+      className={cn(style.container, {
+        [style.mobile_container]: isMobileView,
+      })}
+    >
       <div className={style.wrapper}>
         <div className={style.logo}>
           <MainLogo className={style.logo_font_size} />
@@ -61,7 +68,9 @@ export const SupplierTop = (): JSX.Element => {
               onClick={() => setShowPopupMenu(!isShowPopupMenu)}
               type="button"
             >
-              <span className={style.business_name}>Business Name</span>
+              {!isMobileView && (
+                <span className={style.business_name}>Business Name</span>
+              )}
 
               <ArrowIcon className={cn({ [style.arrow]: isShowPopupMenu })} />
             </ButtonIcon>

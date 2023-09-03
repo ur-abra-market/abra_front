@@ -1,7 +1,15 @@
 @import "src/common/styles/mixins";
 
 .container {
+  display: flex;
+  align-items: center;
+  height: 96px;
   border-bottom: 1px solid var(--color-white-ivory);
+}
+
+.mobile_container {
+  height: auto;
+  padding: 8px 0;
 }
 
 .wrapper {
@@ -12,7 +20,8 @@
   justify-content: space-between;
 
   width: 100%;
-  padding: 26px 32px;
+  padding-top: calc(max(8px, min(1.8%, 26px)));
+  padding-bottom: calc(max(8px, min(1.8%, 26px)));
 
   background-color: var(--color-white);
 }
@@ -43,6 +52,10 @@
   display: flex;
   gap: 24px;
   align-items: center;
+
+  @media screen and (max-width: 768px) {
+    gap: 17px;
+  }
 }
 
 .btn_menu {
