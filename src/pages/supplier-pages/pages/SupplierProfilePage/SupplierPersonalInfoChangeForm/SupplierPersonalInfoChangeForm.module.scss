@@ -1,4 +1,5 @@
 .wrapper {
+  grid-area: personal_info;
   padding: 32px;
   background: var(--color-white);
   border-radius: 12px;
@@ -20,4 +21,10 @@
 
 .submit_button {
   width: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+  .wrapper {
+    padding: 16px;
+  }
 }

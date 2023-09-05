@@ -35,3 +35,21 @@
   background: var(--color-white-ivory);
   border-radius: 12px;
 }
+
+@media only screen and (max-width: 1000px) {
+  .select_info_inputs {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .select_info_inputs {
+    flex-direction: row;
+  }
+}
+
+@media only screen and (max-width: 485px) {
+  .select_info_inputs {
+    flex-direction: column;
+  }
+}
