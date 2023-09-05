@@ -5,6 +5,7 @@ import styles from './Layout.module.scss';
 import { Footer } from 'layouts/Footer/Footer';
 import { Header, SupplierHeader } from 'layouts/Header';
 import { MobileHeader } from 'layouts/Header/MobileHeader/MobileHeader';
+import { MobileSupplierHeader } from 'layouts/Header/MobileSupplierHeader/MobileSupplierHeader';
 
 interface ILayout {
   children: ReactNode;
@@ -44,7 +45,12 @@ export const Layout: FC<ILayout> = ({
           <Header className={styles.header} />
         ))}
 
-      {headerVariant === 'supplier' && <SupplierHeader className={styles.header} />}
+      {headerVariant === 'supplier' &&
+        (isMobileView ? (
+          <MobileSupplierHeader className={styles.header} />
+        ) : (
+          <SupplierHeader className={styles.header} />
+        ))}
 
       <main className={styles.body} role="main">
         {children}

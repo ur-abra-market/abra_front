@@ -20,8 +20,7 @@
 
   width: 100%;
   height: fit-content;
-  margin-top: 96px;
-  margin-bottom: 116px;
+  margin: 96px 0 116px;
 }
 
 .loading_slider {
@@ -35,7 +34,7 @@
   }
 
   .main_sliders {
-    margin-top: 76px;
+    margin: 76px 0 96px;
   }
 }
 
@@ -50,7 +49,8 @@
   }
 
   .main_sliders {
-    margin-top: 56px;
+    gap: 40px;
+    margin: 56px 0 76px;
   }
 }
 
@@ -60,6 +60,7 @@
   }
 
   .main_sliders {
-    margin-top: 32px;
+    gap: 24px;
+    margin: 32px 0;
   }
 }

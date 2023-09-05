@@ -6,7 +6,7 @@ import style from './Header.module.scss';
 
 import { Top } from '.';
 
-import { IHtmlProps } from 'common/types';
+import { IHtmlProps, UserRoleEnum } from 'common/types';
 import { LocationAndCurrencySelection } from 'elements/LocationAndCurrencySelection/LocationAndCurrencySelection';
 import { HeaderCategories, HeaderNav } from 'layouts/Header/components';
 
@@ -18,7 +18,7 @@ export const Header: FC<IHtmlProps> = ({ className, ...restProps }): JSX.Element
       <div className={style.wrapper}>
         <HeaderCategories wrapperClassName={style.categories} />
         <HeaderNav
-          userRole="seller"
+          userRole={UserRoleEnum.SELLER}
           wrapperClassName={style.nav_wrapper}
           className={style.nav_content}
         />

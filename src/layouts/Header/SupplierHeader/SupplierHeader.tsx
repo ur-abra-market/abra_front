@@ -6,7 +6,7 @@ import style from './SupplierHeader.module.scss';
 
 import { Top } from '.';
 
-import { IHtmlProps } from 'common/types';
+import { IHtmlProps, UserRoleEnum } from 'common/types';
 import { HeaderNav } from 'layouts/Header/components';
 
 export const SupplierHeader: FC<IHtmlProps> = ({
@@ -16,7 +16,13 @@ export const SupplierHeader: FC<IHtmlProps> = ({
   return (
     <header className={cn(style.container, className)} {...restProps}>
       <Top />
-      <HeaderNav userRole="supplier" className={style.nav_container} />
+      <div className={style.wrapper}>
+        <HeaderNav
+          userRole={UserRoleEnum.SUPPLIER}
+          wrapperClassName={style.nav_wrapper}
+          className={style.nav_container}
+        />
+      </div>
     </header>
   );
 };

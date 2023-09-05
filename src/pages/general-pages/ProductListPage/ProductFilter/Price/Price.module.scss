@@ -1,0 +1,57 @@
+.price {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+}
+
+.title {
+  font-size: var(--fz-l2);
+  font-weight: var(--semi-bold);
+  letter-spacing: 0.38px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.inputs_wrapper {
+  display: flex;
+}
+
+.input_wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.input_title {
+  font-size: var(--fz-s);
+  color: var(--color-gray-medium);
+}
+
+.input {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-medium);
+}
+
+.input_left {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input_right {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.switcher_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.switcher_title {
+  font-size: var(--fz-s);
+}
