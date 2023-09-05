@@ -35,9 +35,8 @@
   }
 }
 
-@media (max-width: 768px) {
-  .networks_list {
-    display: flex;
-    gap: 12px;
+@media (max-width: 425px) {
+  .title {
+    margin-bottom: 16px;
   }
 }

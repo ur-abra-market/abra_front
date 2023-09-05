@@ -44,7 +44,7 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
           <div className={style.links_container}>
             {variant === 'default' && (
               <div className={style.copyright}>
-                <span>&#169; Copyright 2023</span>
+                <span>&#169; Abra 2023</span>
               </div>
             )}
 
