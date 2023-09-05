@@ -4,10 +4,16 @@
   position: relative;
 }
 
+.wrapper {
+  @include content_container;
+
+  position: relative;
+  align-items: center;
+  padding: 0 2px;
+}
+
 .nav_container {
   @include content_container;
 
-  column-gap: 64px;
-  justify-content: flex-start;
   padding: 16px 32px;
 }

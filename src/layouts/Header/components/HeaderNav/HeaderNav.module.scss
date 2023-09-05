@@ -7,9 +7,14 @@
   }
 }
 
+.arrow {
+  transform: rotate(180deg);
+}
+
 .container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   font-size: var(--fz-s2);
   font-weight: var(--medium);
@@ -32,7 +37,7 @@
   }
 }
 
-.burger {
+.burger_seller {
   cursor: pointer;
 
   position: relative;
@@ -69,6 +74,19 @@
     top: 50%;
     transform: translate3d(0, -50%, 0);
   }
+}
+
+.burger_supplier {
+  cursor: pointer;
+
+  position: relative;
+  z-index: 10;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  background: transparent;
 }
 
 .close_button {
@@ -161,7 +179,13 @@
   }
 }
 
-@media only screen and (max-width: 425px) {
+.current_page {
+  font-family: Roboto, sans-serif;
+  font-size: var(--fz-s2);
+}
+
+
+@media only screen and (max-width: 350px) {
   .mobile {
     width: calc(100vw - 12px);
   }
