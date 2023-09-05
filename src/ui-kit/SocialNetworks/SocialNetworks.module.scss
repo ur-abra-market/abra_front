@@ -34,3 +34,10 @@
     outline: 1px solid var(--color-gray-medium);
   }
 }
+
+@media only screen and (max-width: 1130px) {
+  .title {
+    font-size: calc(0.01182 * 100vw + 16.97537px);
+    white-space: nowrap;
+  }
+}

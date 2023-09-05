@@ -76,7 +76,7 @@
   .our_media {
     flex-direction: column;
     align-items: start;
-    width: 230px;
+    width: 340px;
   }
 
 
@@ -92,10 +92,24 @@
     }
   }
 
+  .subscribe_title {
+    font-size: calc(0.01182 * 100vw + 16.97537px);
+    font-weight: var(--bold);
+  }
+
+  .subscribe_subtitle {
+    font-size: calc(0.01182 * 100vw + 9px);
+  }
+
+  .phone_title {
+    font-size: calc(0.01182 * 100vw + 16.97537px);
+    white-space: nowrap;
+  }
+
 }
 
 
-@media only screen and (max-width: 890px) {
+@media only screen and (max-width: 950px) {
   .wrapper {
     padding: 32px 0 40px;
   }
@@ -139,21 +153,19 @@
     align-items: center;
   }
 
-  .subscribe_title {
-    font-size: var(--fz-xl);
-  }
-
-  .subscribe_subtitle {
-    font-size: var(--fz-s);
-  }
 
   .our_media {
     flex-direction: column;
-    width: 230px;
+    width: 280px;
   }
 
   .our_media > .feedback_wrapper, .social_network_wrapper > div {
     align-items: center;
+    width: 100%;
+  }
+
+  .social_network_wrapper {
+    width: 100%;
   }
 
   .input_box {
