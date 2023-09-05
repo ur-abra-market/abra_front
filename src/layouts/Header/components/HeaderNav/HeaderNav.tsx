@@ -5,14 +5,21 @@ import { NavLink } from 'react-router-dom';
 
 import style from './HeaderNav.module.scss';
 
+import { ArrowIcon } from 'assets/icons';
 import { useBodyOverflowHidden } from 'common/hooks';
+import { UserRoleEnum } from 'common/types';
 import { HEADER_NAV_CONTENT } from 'layouts/Header/components/HeaderNav/HeaderNavContent';
 
 interface IHeaderNav {
-  userRole: 'seller' | 'supplier';
+  userRole: UserRoleEnum;
   className?: string;
   wrapperClassName?: string;
   isMobileView?: boolean;
+}
+interface INavItem {
+  id: number;
+  label: string;
+  path: string;
 }
 
 export const HeaderNav: FC<IHeaderNav> = ({
@@ -21,35 +28,63 @@ export const HeaderNav: FC<IHeaderNav> = ({
   wrapperClassName,
   isMobileView,
 }): JSX.Element => {
-  const navItems = HEADER_NAV_CONTENT[userRole];
+  const navItems: INavItem[] = HEADER_NAV_CONTENT[userRole];
   const [isOpenOnMobile, setOpenOnMobile] = useState(false);
+  const [currentItem, setCurrentItem] = useState<INavItem | null>(null);
+  const menuRef = useRef<HTMLUListElement>(null);
+  const { top, height } = menuRef.current?.getBoundingClientRect() ?? {
+    top: 0,
+    height: 0,
+  };
+  const padding = 20;
 
-  const refUl = useRef<HTMLUListElement>(null);
+  useBodyOverflowHidden(isOpenOnMobile, top + height + padding);
+
+  useEffect(() => {
+    const currentUrl = window.location.pathname;
+    const foundValue = navItems.find(el => el.path === currentUrl);
+
+    if (foundValue) setCurrentItem(foundValue);
+  }, []);
 
   const menuListClasses = cn(style.container, className, {
     [style.mobile]: isMobileView,
     [style.show]: isMobileView && isOpenOnMobile,
   });
 
-  const { top, height } = refUl.current?.getBoundingClientRect() ?? { top: 0, height: 0 };
-  const padding = 20;
-
-  useBodyOverflowHidden(isOpenOnMobile, top + height + padding);
+  const closeButtonClasses = cn(style.burger_seller, {
+    [style.close_button]: isOpenOnMobile,
+  });
 
   return (
     <>
       <div className={cn(style.wrapper, wrapperClassName)}>
         {isMobileView && (
-          <button
-            type="button"
-            onClick={() => setOpenOnMobile(prev => !prev)}
-            className={cn(style.burger, { [style.close_button]: isOpenOnMobile })}
-          >
-            <span />
-          </button>
+          <>
+            {userRole === UserRoleEnum.SELLER && (
+              <button
+                type="button"
+                onClick={() => setOpenOnMobile(prev => !prev)}
+                className={closeButtonClasses}
+              >
+                <span />
+              </button>
+            )}
+
+            {userRole === UserRoleEnum.SUPPLIER && (
+              <button
+                type="button"
+                onClick={() => setOpenOnMobile(prev => !prev)}
+                className={style.burger_supplier}
+              >
+                <p className={style.current_page}>{currentItem?.label}</p>
+                <ArrowIcon className={cn({ [style.arrow]: isOpenOnMobile })} />
+              </button>
+            )}
+          </>
         )}
 
-        <ul ref={refUl} className={menuListClasses}>
+        <ul ref={menuRef} className={menuListClasses}>
           {navItems.map((el, index) => (
             <li className={style.menu_item} key={index}>
               <NavLink

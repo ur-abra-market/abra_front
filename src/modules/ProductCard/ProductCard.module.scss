@@ -1,8 +1,10 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 220px;
-  height: 325px;
+
+  width: 100%;
+  max-width: 220px;
+  max-height: 325px;
 }
 
 .link {
@@ -18,49 +20,77 @@
   margin-top: 12px;
 
   font-size: var(--fz-s2);
-}
 
-.direction > span {
-  overflow: hidden;
-  display: inline-block;
+  > span {
+    overflow: hidden;
+    display: inline-block;
 
-  width: 100%;
+    width: 100%;
 
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 20px;
-  text-overflow: ellipsis;
-  letter-spacing: 0.16px;
-  white-space: nowrap;
+    font-size: var(--fz-s2);
+    font-weight: var(--medium);
+    line-height: 133%;
+    text-overflow: ellipsis;
+    letter-spacing: 0.16px;
+    white-space: nowrap;
 
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
 }
 
 .price {
   display: flex;
   flex-direction: row;
   gap: 4px;
+  margin: 8px 0 4px;
 
-  margin-top: 8px;
-  margin-bottom: 4px;
+  > span {
+    display: block;
+    align-self: flex-end;
 
-  font-family: 'SF Pro Display Bold', sans-serif;
-  font-size: var(--fz-l2);
-}
-
-.price > span {
-  display: block;
-  align-self: flex-end;
-
-  font-family: Roboto, sans-serif;
-  font-size: var(--fz-xs2);
-  color: #828282;
+    font-size: var(--fz-xs2);
+    font-weight: var(--medium);
+    color: var(--color-medium-gray);
+  }
 }
 
 .amount {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 20px;
+  font-family: "SF Pro Display Bold", sans-serif;
+  font-size: var(--fz-l2);
+  font-weight: var(--semi-bold);
+  line-height: 100%;
   letter-spacing: 0.38px;
+}
+
+@media only screen and (max-width: 768px) {
+  .card {
+    max-width: 180px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .card {
+    max-width: 152px;
+  }
+
+  .direction {
+    margin: 8px 0 0;
+
+    > span {
+      font-size: var(--fz-xs2);
+    }
+  }
+
+  .amount {
+    font-size: var(--fz-m2);
+  }
+
+  .price {
+    margin: 6px 0 4px;
+
+    > span {
+      font-size: var(--fz-xxs);
+    }
+  }
 }
