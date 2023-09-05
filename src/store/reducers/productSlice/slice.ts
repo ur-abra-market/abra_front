@@ -5,10 +5,11 @@ import {
   getPopularProducts,
   getProductById,
   getProductsCompilation,
+  getProductsListCompilation,
   getSimilarProducts,
   removeFavoriteProduct,
 } from './thunks';
-import { IProductCard, IProductSliceInitialState } from './types';
+import { IProductCard, IProductSliceInitialState, ISortField, ISortBy } from './types';
 
 import { LoadingStatusEnum } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
@@ -36,6 +37,10 @@ const initialState: IProductSliceInitialState = {
   similarProducts: [],
   productsCompilation: {},
   loading: LoadingStatusEnum.Idle,
+  productsList: [],
+  sortField: 'rating',
+  sortBy: 'desc',
+  totalProductsCount: 0,
 };
 
 const productSlice = createSlice({
@@ -44,6 +49,16 @@ const productSlice = createSlice({
   reducers: {
     setProductsPerPage: (state, action: PayloadAction<number>) => {
       state.productsPerPage = action.payload;
+    },
+    setSortField: (state, action: PayloadAction<ISortField>) => {
+      state.sortField = action.payload;
+    },
+    setSortBy: (state, action: PayloadAction<ISortBy>) => {
+      state.sortBy = action.payload;
+    },
+    setResetAllFilters: state => {
+      state.sortField = 'rating';
+      state.sortBy = 'desc';
     },
   },
   extraReducers: builder => {
@@ -81,11 +96,17 @@ const productSlice = createSlice({
           ...state.productsCompilation,
           [action.payload.category]: action.payload.data.products,
         };
+
         state.loading = LoadingStatusEnum.Success;
+      })
+      .addCase(getProductsListCompilation.fulfilled, (state, action) => {
+        state.productsList = action.payload.data.products;
+        state.totalProductsCount = action.payload.data.total_count;
       });
   },
 });
 
 export const productReducer = productSlice.reducer;
 export const productActions = productSlice.actions;
-export const { setProductsPerPage } = productActions;
+export const { setProductsPerPage, setSortField, setSortBy, setResetAllFilters } =
+  productActions;

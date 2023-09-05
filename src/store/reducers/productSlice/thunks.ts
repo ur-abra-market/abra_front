@@ -109,3 +109,22 @@ export const getProductsCompilation = createAsyncThunk<any, ICategoryRequest>(
     }
   },
 );
+
+export const getProductsListCompilation = createAsyncThunk<any, ICategoryRequest>(
+  'product/getProductsListCompilation',
+  async (productData, { rejectWithValue }) => {
+    try {
+      const response = await productService.getList(productData);
+
+      return {
+        data: response,
+      };
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[getProductsCompilation]: ERROR');
+    }
+  },
+);
