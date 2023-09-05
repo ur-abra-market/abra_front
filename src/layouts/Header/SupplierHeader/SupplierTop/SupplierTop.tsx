@@ -28,13 +28,13 @@ export const SupplierTop: FC<ISupplierTop> = ({ isMobileView }): JSX.Element => 
     dispatch(getCompanyLogo());
   }, [dispatch]);
 
+  const wrapperClasses = cn(style.wrapper, {
+    [style.mobile_container]: isMobileView,
+  });
+
   return (
-    <div
-      className={cn(style.container, {
-        [style.mobile_container]: isMobileView,
-      })}
-    >
-      <div className={style.wrapper}>
+    <div className={wrapperClasses}>
+      <div className={style.container}>
         <div className={style.logo}>
           <MainLogo className={style.logo_font_size} />
 
@@ -50,7 +50,7 @@ export const SupplierTop: FC<ISupplierTop> = ({ isMobileView }): JSX.Element => 
             <HeaderNotificationsIcon />
           </Link>
 
-          <div className={style.btn_menu} ref={triggerRef}>
+          <div className={style.menu_button} ref={triggerRef}>
             <div className={style.company_logo_wrapper}>
               {companyLogo ? (
                 <img

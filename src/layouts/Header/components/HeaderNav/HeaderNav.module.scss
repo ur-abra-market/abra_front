@@ -78,8 +78,14 @@
 
 .burger_supplier {
   cursor: pointer;
+
   position: relative;
   z-index: 10;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
   background: transparent;
 }
 
@@ -173,7 +179,13 @@
   }
 }
 
-@media only screen and (max-width: 425px) {
+.current_page {
+  font-family: Roboto, sans-serif;
+  font-size: var(--fz-s2);
+}
+
+
+@media only screen and (max-width: 350px) {
   .mobile {
     width: calc(100vw - 12px);
   }

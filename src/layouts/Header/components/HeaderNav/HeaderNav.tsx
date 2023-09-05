@@ -31,6 +31,14 @@ export const HeaderNav: FC<IHeaderNav> = ({
   const navItems: INavItem[] = HEADER_NAV_CONTENT[userRole];
   const [isOpenOnMobile, setOpenOnMobile] = useState(false);
   const [currentItem, setCurrentItem] = useState<INavItem | null>(null);
+  const menuRef = useRef<HTMLUListElement>(null);
+  const { top, height } = menuRef.current?.getBoundingClientRect() ?? {
+    top: 0,
+    height: 0,
+  };
+  const padding = 20;
+
+  useBodyOverflowHidden(isOpenOnMobile, top + height + padding);
 
   useEffect(() => {
     const currentUrl = window.location.pathname;
@@ -39,17 +47,14 @@ export const HeaderNav: FC<IHeaderNav> = ({
     if (foundValue) setCurrentItem(foundValue);
   }, []);
 
-  const refUl = useRef<HTMLUListElement>(null);
-
   const menuListClasses = cn(style.container, className, {
     [style.mobile]: isMobileView,
     [style.show]: isMobileView && isOpenOnMobile,
   });
 
-  const { top, height } = refUl.current?.getBoundingClientRect() ?? { top: 0, height: 0 };
-  const padding = 20;
-
-  useBodyOverflowHidden(isOpenOnMobile, top + height + padding);
+  const closeButtonClasses = cn(style.burger_seller, {
+    [style.close_button]: isOpenOnMobile,
+  });
 
   return (
     <>
@@ -60,9 +65,7 @@ export const HeaderNav: FC<IHeaderNav> = ({
               <button
                 type="button"
                 onClick={() => setOpenOnMobile(prev => !prev)}
-                className={cn(style.burger_seller, {
-                  [style.close_button]: isOpenOnMobile,
-                })}
+                className={closeButtonClasses}
               >
                 <span />
               </button>
@@ -74,16 +77,14 @@ export const HeaderNav: FC<IHeaderNav> = ({
                 onClick={() => setOpenOnMobile(prev => !prev)}
                 className={style.burger_supplier}
               >
-                <span style={{ fontSize: '15px', paddingRight: '17px' }}>
-                  {currentItem?.label}
-                </span>
+                <p className={style.current_page}>{currentItem?.label}</p>
                 <ArrowIcon className={cn({ [style.arrow]: isOpenOnMobile })} />
               </button>
             )}
           </>
         )}
 
-        <ul ref={refUl} className={menuListClasses}>
+        <ul ref={menuRef} className={menuListClasses}>
           {navItems.map((el, index) => (
             <li className={style.menu_item} key={index}>
               <NavLink
