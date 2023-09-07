@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 
 import {
   IProductPaginationParams,
-  IProductsListRequest,
+  IProductsListResponse,
   IProductSortParams,
   IProductsSortRequest,
 } from './types';
@@ -40,7 +40,7 @@ export const deActivateProducts = createAsyncThunk<boolean, number[]>(
 );
 
 export const getSupplierProducts = createAsyncThunk<
-  IProductsListRequest,
+  IProductsListResponse,
   IProductsSortRequest
 >(
   'product/manageProducts',

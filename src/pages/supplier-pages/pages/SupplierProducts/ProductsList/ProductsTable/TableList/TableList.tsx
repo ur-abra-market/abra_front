@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC } from 'react';
+import React, { ChangeEvent } from 'react';
 
 import cn from 'classnames';
 
@@ -10,18 +10,15 @@ import { formatDate } from 'common/utils/formatDateProductsList';
 import {
   activeProductSelector,
   deactivatedProductSelector,
-  IProduct,
   isLoadingSelector,
   selectActiveProduct,
   selectDeactivatedProduct,
+  sortedProductSelector,
 } from 'store/reducers/supplier/product';
 import { Checkbox, Stars } from 'ui-kit';
 
-export interface ITableData {
-  data: IProduct[] | undefined;
-}
-
-export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
+export const TableList = (): JSX.Element => {
+  const products = useAppSelector(sortedProductSelector);
   const activeProduct = useAppSelector(activeProductSelector);
   const deactivatedProduct = useAppSelector(deactivatedProductSelector);
   const dispatch = useAppDispatch();
@@ -39,14 +36,9 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
     }
   };
 
-  const tableCellClasses = cn({
-    [style.table_td]: true,
-    // [style.center]: true,
-  });
-
   return (
     <tbody>
-      {data?.map(el => {
+      {products?.map(el => {
         const checked =
           activeProduct.includes(el.id) || deactivatedProduct.includes(el.id);
         const deactivatedClasses = cn(style.table_row, {
@@ -92,7 +84,7 @@ export const TableList: FC<ITableData> = ({ data }): JSX.Element => {
             <td className={style.table_td}>
               <Stars sizes="10" reward={el.grade_average} />
             </td>
-            <td className={tableCellClasses}>{el.is_active ? 'Visible' : 'Hidden'}</td>
+            <td className={style.table_td}>{el.is_active ? 'Visible' : 'Hidden'}</td>
           </tr>
         );
       })}

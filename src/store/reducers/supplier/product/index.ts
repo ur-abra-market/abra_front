@@ -1,11 +1,8 @@
 export {
-  pageNumberSelector,
-  pageSizeSelector,
   deactivatedProductSelector,
   selectAllProductsSelector,
   sortedProductSelector,
   supplierProductsSelector,
-  paramsSelector,
   hasChangedSelector,
   isLoadingSelector,
   totalCountSelector,
@@ -15,7 +12,7 @@ export {
 export { activateProducts, deActivateProducts, getSupplierProducts } from './thunks';
 
 export type {
-  IProductsListRequest,
+  IProductsListResponse,
   ISupplierProductSliceInitialState,
   IProductSortOptions,
   SortType,
@@ -27,9 +24,7 @@ export type {
 
 export {
   selectAllProducts,
-  setPageSize,
-  setPage,
-  setParams,
+  hasPageChanged,
   supplierProductReducer,
   selectActiveProduct,
   selectDeactivatedProduct,

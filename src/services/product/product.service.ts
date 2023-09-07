@@ -10,7 +10,7 @@ import {
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
 import { IProductCard } from 'store/reducers/productSlice';
-import { IProductsListRequest } from 'store/reducers/supplier/product';
+import { IProductsListResponse } from 'store/reducers/supplier/product';
 import {
   IProductPaginationParams,
   IProductSortParams,
@@ -109,7 +109,7 @@ export const productService = {
     body: IProductSortParams,
     params: IProductPaginationParams,
   ) => {
-    const { data } = await baseConfigService.post<IBaseResponse<IProductsListRequest>>(
+    const { data } = await baseConfigService.post<IBaseResponse<IProductsListResponse>>(
       `suppliers/products`,
       body,
       { params },

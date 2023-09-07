@@ -1,11 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { activateProducts, deActivateProducts, getSupplierProducts } from './thunks';
-import {
-  IProductsListRequest,
-  IProductSortOptions,
-  ISupplierProductSliceInitialState,
-} from './types';
+import { IProductsListResponse, ISupplierProductSliceInitialState } from './types';
 
 const initialState: ISupplierProductSliceInitialState = {
   products: [],
@@ -15,29 +11,14 @@ const initialState: ISupplierProductSliceInitialState = {
   activeProductIds: [],
   selectAllProducts: false,
   hasChanged: false,
-  page: 1,
-  params: {
-    offset: 0,
-    limit: 20,
-    ascending: false,
-    categoryIds: [],
-    sort: 'date',
-  },
 };
 
 const supplierProductSlice = createSlice({
   name: 'Product',
   initialState,
   reducers: {
-    setPage: (state, action: PayloadAction<number>) => {
-      state.page = action.payload;
+    hasPageChanged: state => {
       state.selectAllProducts = false;
-    },
-    setPageSize: (state, action: PayloadAction<number>) => {
-      state.params.limit = action.payload;
-    },
-    setParams: (state, action: PayloadAction<IProductSortOptions>) => {
-      state.params = action.payload;
     },
     selectActiveProduct: (state, action: PayloadAction<number>) => {
       const existingIndex = state.activeProductIds.findIndex(el => el === action.payload);
@@ -106,16 +87,6 @@ const supplierProductSlice = createSlice({
       state.selectAllProducts = action.payload;
     },
     resetFilters: state => {
-      state.params = {
-        offset: 0,
-        limit: 20,
-        categoryIds: [],
-        ascending: false,
-        sort: 'date',
-        isActive: undefined,
-        onSale: undefined,
-      };
-      state.page = 1;
       state.activeProductIds = [];
       state.deactivatedProductIds = [];
       state.selectAllProducts = false;
@@ -128,7 +99,7 @@ const supplierProductSlice = createSlice({
       })
       .addCase(
         getSupplierProducts.fulfilled,
-        (state, action: PayloadAction<IProductsListRequest>) => {
+        (state, action: PayloadAction<IProductsListResponse>) => {
           state.products = action.payload.products;
           state.totalCount = action.payload.total_count;
           state.isLoading = false;
@@ -152,11 +123,9 @@ const supplierProductSlice = createSlice({
 
 export const supplierProductReducer = supplierProductSlice.reducer;
 export const {
-  setPage,
-  setPageSize,
+  hasPageChanged,
   selectAllProducts,
   selectActiveProduct,
   selectDeactivatedProduct,
-  setParams,
   resetFilters,
 } = supplierProductSlice.actions;

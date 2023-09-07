@@ -20,7 +20,7 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
-  const text = restFilters ? 'Hide filters' : 'Show Filters';
+  const text = restFilters ? 'Hide filters' : 'Show filters';
 
   const handleRestFiltersSet = (): void => {
     setRestFilters(!restFilters);
@@ -43,18 +43,16 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
         onClick={handleRestFiltersSet}
       >
         {text}
+        <ArrowIcon onClick={handleRestFiltersSet} className={iconClasses} />
       </ButtonIcon>
-      <ArrowIcon onClick={handleRestFiltersSet} className={iconClasses} />
 
-      {restFilters && (
-        <ButtonIcon
-          disabled={isLoading}
-          onClick={onResetFiltersHandler}
-          className={style.reset_link}
-        >
-          Reset Filters
-        </ButtonIcon>
-      )}
+      <ButtonIcon
+        disabled={isLoading}
+        onClick={onResetFiltersHandler}
+        className={style.reset_link}
+      >
+        Reset Filters
+      </ButtonIcon>
     </div>
   );
 };

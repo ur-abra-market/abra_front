@@ -1,37 +1,38 @@
 import React, { useCallback } from 'react';
 
-import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { useAppSelector } from 'common/hooks';
 import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
 import { CATEGORY_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/utils/filterOptions';
 import {
-  paramsSelector,
-  isLoadingSelector,
-  setPage,
-  setParams,
-} from 'store/reducers/supplier/product';
+  DEFAULT_QUERY_PARAMS,
+  QUERY_PARAMS_KEY,
+  QUERY_PARAMS_VALUE,
+} from 'pages/supplier-pages/pages/SupplierProducts/utils/queryParameters';
+import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/utils/useUpdateSearchParams';
+import { isLoadingSelector } from 'store/reducers/supplier/product';
 import { ISelectOption, Select } from 'ui-kit';
 
 export const CategoryFilter = (): JSX.Element => {
-  const params = useAppSelector(paramsSelector);
-  const dispatch = useAppDispatch();
+  const { updateUrlQueryParams, searchParams } = useUpdateSearchParams();
   const isLoading = useAppSelector(isLoadingSelector);
+  const categoryIdsQueryParam = searchParams.get(QUERY_PARAMS_KEY.CATEGORY_IDS);
+
+  const categoryIds = categoryIdsQueryParam || QUERY_PARAMS_VALUE.ALL;
 
   const onChangeCategory = useCallback(
     (selectOption: ISelectOption) => {
       const { value } = selectOption;
-      const categoryIds = !value ? [] : [Number(value)];
 
-      dispatch(setPage(1));
-      dispatch(setParams({ ...params, categoryIds, limit: 20 }));
+      updateUrlQueryParams([
+        [QUERY_PARAMS_KEY.CATEGORY_IDS, value],
+        [QUERY_PARAMS_KEY.PAGE, DEFAULT_QUERY_PARAMS.page],
+        [QUERY_PARAMS_KEY.LIMIT, DEFAULT_QUERY_PARAMS.limit],
+      ]);
     },
-    [dispatch, params],
+    [updateUrlQueryParams],
   );
 
-  const controlledValue = CATEGORY_SELECT.find(el => {
-    if (!params.categoryIds.length) return CATEGORY_SELECT[0];
-
-    return el.value === params.categoryIds[0];
-  });
+  const controlledValue = CATEGORY_SELECT.find(el => String(el.value) === categoryIds);
 
   return (
     <div className={style.filter}>

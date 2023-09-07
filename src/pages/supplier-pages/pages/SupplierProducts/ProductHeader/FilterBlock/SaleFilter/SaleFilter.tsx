@@ -1,37 +1,38 @@
 import React, { useCallback } from 'react';
 
-import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { useAppSelector } from 'common/hooks';
 import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
 import { SALE_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/utils/filterOptions';
 import {
-  paramsSelector,
-  isLoadingSelector,
-  setParams,
-} from 'store/reducers/supplier/product';
+  DEFAULT_QUERY_PARAMS,
+  QUERY_PARAMS_KEY,
+  QUERY_PARAMS_VALUE,
+} from 'pages/supplier-pages/pages/SupplierProducts/utils/queryParameters';
+import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/utils/useUpdateSearchParams';
+import { isLoadingSelector } from 'store/reducers/supplier/product';
 import { ISelectOption, Select } from 'ui-kit';
 
 export const SaleFilter = (): JSX.Element => {
-  const params = useAppSelector(paramsSelector);
-  const dispatch = useAppDispatch();
+  const { updateUrlQueryParams, searchParams } = useUpdateSearchParams();
   const isLoading = useAppSelector(isLoadingSelector);
+  const onSaleQueryParam = searchParams.get(QUERY_PARAMS_KEY.SALE);
+
+  const onSale = onSaleQueryParam || QUERY_PARAMS_VALUE.ALL;
 
   const onChangeSaleStatusFilter = useCallback(
     (selectOption: ISelectOption) => {
       const { value } = selectOption;
-      const newParams =
-        value === -1
-          ? { ...params, onSale: undefined }
-          : { ...params, onSale: Boolean(value) };
 
-      dispatch(setParams(newParams));
+      updateUrlQueryParams([
+        [QUERY_PARAMS_KEY.SALE, value],
+        [QUERY_PARAMS_KEY.PAGE, DEFAULT_QUERY_PARAMS.page],
+        [QUERY_PARAMS_KEY.LIMIT, DEFAULT_QUERY_PARAMS.limit],
+      ]);
     },
-    [dispatch, params],
+    [updateUrlQueryParams],
   );
 
-  const controlledValue =
-    params.onSale === undefined
-      ? SALE_SELECT[0]
-      : SALE_SELECT.find(el => el.value >= 0 && !!el.value === params.onSale);
+  const controlledValue = SALE_SELECT.find(el => el.value === onSale);
 
   return (
     <div className={style.filter}>

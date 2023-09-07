@@ -1,17 +1,23 @@
 .wrapper {
   display: flex;
   align-items: center;
-  margin-right: auto;
 }
 
 .rest_filters {
-  margin-right: 9px;
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+
+  width: 140px;
+  margin-right: 5px;
 
   font-size: var(--fz-s2);
   font-weight: 500;
   color: var(--color-black);
 
   background-color: inherit;
+
+  transition: background-color 0.4s;
 }
 
 .vector_up, .vector_down {

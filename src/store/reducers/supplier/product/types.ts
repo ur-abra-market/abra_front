@@ -17,7 +17,7 @@ export interface IProduct {
   prices: IProductPriceInfo[];
 }
 
-export interface IProductsListRequest {
+export interface IProductsListResponse {
   total_count: number;
   products: IProduct[];
 }
@@ -30,27 +30,31 @@ export interface ISupplierProductSliceInitialState {
   activeProductIds: number[];
   selectAllProducts: boolean;
   hasChanged: boolean;
-  page: number;
-  params: IProductSortOptions;
 }
 
 export type SortType = 'date' | 'price' | 'rating' | 'total_orders';
 
 export interface IProductSortOptions {
+  page: number;
   offset: number;
   limit: number;
   categoryIds: number[];
-  onSale?: boolean;
-  isActive?: boolean;
-  sort: SortType;
-  ascending: boolean;
+  sale?: boolean;
+  status?: boolean;
+  sortField: SortType;
+  sortBy: boolean;
 }
 
 export interface IProductsSortRequest
-  extends Omit<IProductSortOptions, 'categoryIds' | 'onSale' | 'isActive'> {
+  extends Omit<
+    IProductSortOptions,
+    'categoryIds' | 'onSale' | 'isActive' | 'page' | 'sortBy' | 'sortField'
+  > {
   category_ids: number[];
   on_sale?: boolean;
   is_active?: boolean;
+  sort: SortType;
+  ascending: boolean;
 }
 
 export interface IProductPaginationParams {
