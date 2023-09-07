@@ -4,11 +4,11 @@ import style from './PaginationControl.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ProductsPerPage } from 'elements';
+import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/hoocks/useUpdateSearchParams';
 import {
   DEFAULT_QUERY_PARAMS,
   QUERY_PARAMS_KEY,
-} from 'pages/supplier-pages/pages/SupplierProducts/utils/queryParameters';
-import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/utils/useUpdateSearchParams';
+} from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParameters';
 import {
   hasPageChanged,
   isLoadingSelector,

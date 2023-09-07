@@ -1,5 +1,4 @@
 import { QUERY_PARAMS_VALUE } from './queryParameters';
-import { IActionData, IColumns } from './types';
 
 import {
   AddNewProduct,
@@ -7,6 +6,10 @@ import {
   EditPencilIcon,
   RecentlyDeleted,
 } from 'assets/icons';
+import {
+  IActionData,
+  IColumns,
+} from 'pages/supplier-pages/pages/SupplierProducts/common/types/types';
 
 export const productEditorData: IActionData[] = [
   { id: 1, label: 'Edit', Icon: EditPencilIcon },

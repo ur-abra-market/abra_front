@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
+import { useGetSearchParams } from './common/hoocks/useGetSearchParams';
 import { PaginationControl } from './PaginationControl/PaginationControl';
 import { ProductHeader } from './ProductHeader/ProductHeader';
 import { ProductsList } from './ProductsList/ProductsList';
 import style from './SupplierProducts.module.scss';
-import { useGetSearchParams } from './utils/useGetSearchParams';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';

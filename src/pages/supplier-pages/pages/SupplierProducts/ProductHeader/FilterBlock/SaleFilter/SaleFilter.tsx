@@ -1,14 +1,14 @@
 import React, { useCallback } from 'react';
 
 import { useAppSelector } from 'common/hooks';
-import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
-import { SALE_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/utils/filterOptions';
+import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/hoocks/useUpdateSearchParams';
+import { SALE_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/filterOptions';
 import {
   DEFAULT_QUERY_PARAMS,
   QUERY_PARAMS_KEY,
   QUERY_PARAMS_VALUE,
-} from 'pages/supplier-pages/pages/SupplierProducts/utils/queryParameters';
-import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/utils/useUpdateSearchParams';
+} from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParameters';
+import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
 import { isLoadingSelector } from 'store/reducers/supplier/product';
 import { ISelectOption, Select } from 'ui-kit';
 

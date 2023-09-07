@@ -5,8 +5,8 @@ import cn from 'classnames';
 import style from './ProductTableEditor.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { shouldShowInActiveEdit } from 'pages/supplier-pages/pages/SupplierProducts/utils/shouldShowInActiveEdit';
-import { productEditorData } from 'pages/supplier-pages/pages/SupplierProducts/utils/tableData';
+import { shouldShowInActiveEdit } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/shouldShowInActiveEdit';
+import { productEditorData } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/tableData';
 import {
   activateProducts,
   activeProductSelector,

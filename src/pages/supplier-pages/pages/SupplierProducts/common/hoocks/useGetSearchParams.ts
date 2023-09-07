@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router-dom';
 
-import { convertValue } from './convertValue';
-import { QUERY_PARAMS_KEY } from './queryParameters';
-import { ISearchParams } from './types';
+import { ISearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/types/types';
+import { convertValue } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/convertValue';
+import { QUERY_PARAMS_KEY } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParameters';
 
 const defaultRequestParams: ISearchParams = {
   sortField: 'date',
