@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 
-import { useAppSelector } from 'common/hooks';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/hoocks/useUpdateSearchParams';
 import { STATUS_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/filterOptions';
 import {
@@ -9,10 +9,11 @@ import {
   QUERY_PARAMS_VALUE,
 } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParameters';
 import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
-import { isLoadingSelector } from 'store/reducers/supplier/product';
+import { isLoadingSelector, resetProductStatus } from 'store/reducers/supplier/product';
 import { ISelectOption, Select } from 'ui-kit';
 
 export const StatusFilter = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const { updateUrlQueryParams, searchParams } = useUpdateSearchParams();
   const isLoading = useAppSelector(isLoadingSelector);
   const onStatusQueryParam = searchParams.get(QUERY_PARAMS_KEY.STATUS);
@@ -28,8 +29,10 @@ export const StatusFilter = (): JSX.Element => {
         [QUERY_PARAMS_KEY.PAGE, DEFAULT_QUERY_PARAMS.page],
         [QUERY_PARAMS_KEY.LIMIT, DEFAULT_QUERY_PARAMS.limit],
       ]);
+
+      dispatch(resetProductStatus());
     },
-    [updateUrlQueryParams],
+    [updateUrlQueryParams, dispatch],
   );
 
   const controlledValue = STATUS_SELECT.find(el => el.value === isActive);

@@ -1,12 +1,14 @@
 import React, { FC } from 'react';
 
 import cn from 'classnames';
+import { useSearchParams } from 'react-router-dom';
 
 import style from './FilterSwitcher.module.scss';
 
 import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { isLoadingSelector, resetFilters } from 'store/reducers/supplier/product';
+import { DEFAULT_QUERY_PARAMS } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParameters';
+import { isLoadingSelector, resetProductStatus } from 'store/reducers/supplier/product';
 import { ButtonIcon } from 'ui-kit';
 
 export interface IHeaderSearch {
@@ -18,6 +20,7 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
   restFilters,
   setRestFilters,
 }): JSX.Element => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
   const text = restFilters ? 'Hide filters' : 'Show filters';
@@ -27,7 +30,8 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
   };
 
   const onResetFiltersHandler = (): void => {
-    dispatch(resetFilters());
+    setSearchParams(DEFAULT_QUERY_PARAMS);
+    dispatch(resetProductStatus());
   };
 
   const iconClasses = cn({
