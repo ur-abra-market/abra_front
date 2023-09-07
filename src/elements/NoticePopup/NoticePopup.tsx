@@ -11,9 +11,14 @@ import { responseNoticeSelector } from 'store/reducers/appSlice';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
 
 export const NoticePopup = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const { noticeType, message } = useAppSelector(responseNoticeSelector);
   const [open, setOpen] = useState(false);
-  const dispatch = useAppDispatch();
+
+  const noticeContainerClasses = cn(style.notice_container, {
+    [style.error]: noticeType === 'error',
+    [style.success]: noticeType === 'success',
+  });
 
   const handleNoticePopupClose = (): void => {
     setOpen(false);
@@ -36,12 +41,7 @@ export const NoticePopup = (): JSX.Element => {
 
   return createPortal(
     open && (
-      <div
-        className={cn(style.notice_container, {
-          [style.error]: noticeType === 'error',
-          [style.success]: noticeType === 'success',
-        })}
-      >
+      <div className={noticeContainerClasses}>
         <p className={style.message}>{message}</p>
         <CrossWhiteIcon className={style.cross} onClick={handleNoticePopupClose} />
       </div>

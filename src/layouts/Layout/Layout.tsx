@@ -5,6 +5,7 @@ import styles from './Layout.module.scss';
 import { Footer } from 'layouts/Footer/Footer';
 import { Header, SupplierHeader } from 'layouts/Header';
 import { MobileHeader } from 'layouts/Header/MobileHeader/MobileHeader';
+import { MobileSupplierHeader } from 'layouts/Header/MobileSupplierHeader/MobileSupplierHeader';
 
 interface ILayout {
   children: ReactNode;
@@ -19,7 +20,7 @@ export const Layout: FC<ILayout> = ({
 
   useLayoutEffect(() => {
     const mediaQuery = window.matchMedia('(max-width: 768px)');
-    const handleMediaQueryChange = (e: MediaQueryListEvent | MediaQueryList): void => {
+    const handleChangeMediaQuery = (e: MediaQueryListEvent | MediaQueryList): void => {
       if (e.matches) {
         setIsMobileView(true);
       } else {
@@ -27,11 +28,11 @@ export const Layout: FC<ILayout> = ({
       }
     };
 
-    mediaQuery.addEventListener('change', handleMediaQueryChange);
-    handleMediaQueryChange(mediaQuery);
+    mediaQuery.addEventListener('change', handleChangeMediaQuery);
+    handleChangeMediaQuery(mediaQuery);
 
     return () => {
-      mediaQuery.removeEventListener('change', handleMediaQueryChange);
+      mediaQuery.removeEventListener('change', handleChangeMediaQuery);
     };
   }, []);
 
@@ -44,7 +45,12 @@ export const Layout: FC<ILayout> = ({
           <Header className={styles.header} />
         ))}
 
-      {headerVariant === 'supplier' && <SupplierHeader className={styles.header} />}
+      {headerVariant === 'supplier' &&
+        (isMobileView ? (
+          <MobileSupplierHeader className={styles.header} />
+        ) : (
+          <SupplierHeader className={styles.header} />
+        ))}
 
       <main className={styles.body} role="main">
         {children}

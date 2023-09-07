@@ -53,7 +53,7 @@ export const OrderHistoryPage = WithLayout((): JSX.Element => {
   const [check, setCheck] = useState<LinkType>('All');
   const [ordersArray, setOrdersArray] = useState<Array<OrderType>>(ordersInfo);
 
-  const handleButtonCategoryClick = (link: LinkType): void => {
+  const handleClickButtonCategory = (link: LinkType): void => {
     setCheck(link);
 
     if (link === 'All') setOrdersArray(ordersInfo);
@@ -77,7 +77,7 @@ export const OrderHistoryPage = WithLayout((): JSX.Element => {
             <button
               type="button"
               className={cn([style.link], { [style.active]: link === check })}
-              onClick={() => handleButtonCategoryClick(link)}
+              onClick={() => handleClickButtonCategory(link)}
               key={`status_${link}`}
             >
               {link}

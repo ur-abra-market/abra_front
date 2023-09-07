@@ -5,7 +5,7 @@ import cn from 'classnames';
 import style from './MobileHeader.module.scss';
 
 import { MagnifierBlackIcon } from 'assets/icons';
-import { IHtmlProps } from 'common/types';
+import { IHtmlProps, UserRoleEnum } from 'common/types';
 import { LocationAndCurrencySelection } from 'elements/LocationAndCurrencySelection/LocationAndCurrencySelection';
 import { HeaderActions, HeaderCategories, HeaderNav } from 'layouts/Header/components';
 import { MainLogo } from 'ui-kit/MainLogo/MainLogo';
@@ -19,7 +19,7 @@ export const MobileHeader: FC<IHtmlProps> = ({ className }): JSX.Element => {
       </div>
       <div className={style.center_wrapper}>
         <div className={style.center_container}>
-          <HeaderNav userRole="seller" isMobileView />
+          <HeaderNav userRole={UserRoleEnum.SELLER} isMobileView />
           <HeaderActions />
         </div>
       </div>

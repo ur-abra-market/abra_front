@@ -1,4 +1,4 @@
-import React, { createRef, FC, RefObject, useEffect, useRef, useState } from 'react';
+import React, { FC, RefObject, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -12,7 +12,6 @@ interface IHeaderCategories extends IHtmlProps {
 }
 
 export const HeaderCategories: FC<IHeaderCategories> = ({
-  className,
   wrapperClassName,
 }): JSX.Element => {
   const categoriesRef = useRef() as RefObject<HTMLDivElement>;
@@ -20,7 +19,7 @@ export const HeaderCategories: FC<IHeaderCategories> = ({
   const [categoriesIsOpen, setCategoriesIsOpen] = useState(false);
 
   useEffect(() => {
-    const handler = (e: Event): void => {
+    const listner = (e: Event): void => {
       const target = e.target as Element;
 
       if (
@@ -33,14 +32,14 @@ export const HeaderCategories: FC<IHeaderCategories> = ({
       }
     };
 
-    document.addEventListener('mousedown', handler);
+    document.addEventListener('mousedown', listner);
 
     return () => {
-      document.removeEventListener('mousedown', handler);
+      document.removeEventListener('mousedown', listner);
     };
   });
 
-  const handleFocus = (): void => {
+  const handleSetFocusCategory = (): void => {
     buttonRef.current?.focus();
   };
 
@@ -54,11 +53,12 @@ export const HeaderCategories: FC<IHeaderCategories> = ({
       >
         All categories
       </button>
+
       {categoriesIsOpen && (
         <CategoriesMenu
           ref={categoriesRef}
           onClose={setCategoriesIsOpen}
-          handleFocus={handleFocus}
+          handleFocus={handleSetFocusCategory}
         />
       )}
     </div>

@@ -12,19 +12,19 @@
   color: var(--color-black);
 
   &:hover {
-    color: var(--color-accent);
+    color: var(--color-red);
   }
 }
 
 .accent {
-  color: var(--color-accent);
+  color: var(--color-red);
 
   &:active {
-    color: var(--color_accent_dark);
+    color: var(--color-red-dark);
   }
 
   &:hover, &:focus-visible {
-    color: var(--color_accent_medium);
+    color: var(--color-red-medium);
     text-decoration: underline;
   }
 }
@@ -32,5 +32,5 @@
 .disabled {
   pointer-events: none;
   cursor: default;
-  color: var(--color-grey-innactive);
+  color: var(--color-gray);
 }

@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { ScrollRestoration } from 'react-router-dom';
+import { NavLink, ScrollRestoration } from 'react-router-dom';
 
 import style from './PrivacyPolicy.module.scss';
 
 import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
+import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from 'routes';
 
 export const PrivacyPolicyPage = (): JSX.Element => {
   return (
@@ -207,7 +208,17 @@ export const PrivacyPolicyPage = (): JSX.Element => {
           </p>
         </div>
       </div>
-      <Footer variant="default" />
+      <Footer className={style.footer} variant="default" />
+      <div className={style.mobile_copyright}>
+        © 2022 Abra.&nbsp;
+        <NavLink className={style.link} to={TERMS_AND_CONDITIONS}>
+          Terms & conditions
+        </NavLink>
+        &nbsp;and&nbsp;
+        <NavLink className={style.link} to={PRIVACY_POLICY}>
+          Privacy policy
+        </NavLink>
+      </div>
     </div>
   );
 };

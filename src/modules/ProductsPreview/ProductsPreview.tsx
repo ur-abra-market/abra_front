@@ -3,6 +3,7 @@ import React, {
   FC,
   HTMLAttributes,
   useCallback,
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -33,10 +34,44 @@ export const ProductsPreview: FC<IProductsPreview> = ({
   ...restProps
 }) => {
   const swiperEl = useRef<SwiperType>();
+  const containerRef = useRef<HTMLDivElement>(null);
   const [disableLeftArrow, setDisableLeftArrow] = useState(true);
   const [disableRightArrow, setDisableRightArrow] = useState(false);
 
-  const handleInitialSlide = (): void => {
+  const [cardsPerGroup, setCardsPerGroup] = useState(6);
+  const [cardWidth, setCardWidth] = useState(220);
+  const [cardsGap, setCardsGap] = useState(11);
+
+  useEffect(() => {
+    const handleCardsCountPerGroup = (): void => {
+      let tempWidth = 220;
+      let tempGap = 11;
+
+      if (document.body.clientWidth <= 425) {
+        tempWidth = 152;
+        tempGap = 8;
+      } else if (document.body.clientWidth <= 768) {
+        tempWidth = 180;
+      }
+
+      const result = containerRef.current
+        ? Math.floor((containerRef.current.clientWidth + tempGap) / (tempWidth + tempGap))
+        : 6;
+
+      setCardsPerGroup(result);
+      setCardWidth(tempWidth);
+      setCardsGap(tempGap);
+    };
+
+    window.addEventListener('resize', handleCardsCountPerGroup);
+    handleCardsCountPerGroup();
+
+    return () => {
+      window.removeEventListener('resize', handleCardsCountPerGroup);
+    };
+  }, []);
+
+  const handleDisableLastSlide = (): void => {
     if (swiperEl.current?.isEnd) {
       setDisableRightArrow(true);
     }
@@ -49,20 +84,20 @@ export const ProductsPreview: FC<IProductsPreview> = ({
     else setDisableRightArrow(false);
   };
 
-  const handlePrev = useCallback((): void => {
+  const handleTransitionToPrevSlide = useCallback((): void => {
     swiperEl.current?.slidePrev(SPEED_TRANSITION);
   }, []);
 
-  const handleNext = useCallback((): void => {
+  const handleTransitionToNextSlide = useCallback((): void => {
     swiperEl.current?.slideNext(SPEED_TRANSITION);
   }, []);
 
-  const onBeforeInit = (swiper: SwiperType): void => {
+  const handleDisableFirstSlide = (swiper: SwiperType): void => {
     swiperEl.current = swiper;
   };
 
   return (
-    <div className={cn(style.container, className)} {...restProps}>
+    <div ref={containerRef} className={cn(style.container, className)} {...restProps}>
       <div className={style.inner}>
         <div className={style.title_box}>
           <h2 className={style.title}>{title}</h2>
@@ -73,7 +108,7 @@ export const ProductsPreview: FC<IProductsPreview> = ({
           )}
         </div>
         <div className={style.buttons}>
-          <ButtonIcon disabled={disableLeftArrow} onClick={handlePrev}>
+          <ButtonIcon disabled={disableLeftArrow} onClick={handleTransitionToPrevSlide}>
             <ArrowIcon
               className={cn(style.icon_left, {
                 [style.disable_button]: disableLeftArrow,
@@ -81,7 +116,7 @@ export const ProductsPreview: FC<IProductsPreview> = ({
             />
           </ButtonIcon>
 
-          <ButtonIcon disabled={disableRightArrow} onClick={handleNext}>
+          <ButtonIcon disabled={disableRightArrow} onClick={handleTransitionToNextSlide}>
             <ArrowIcon
               className={cn(style.icon_right, {
                 [style.disable_button]: swiperEl.current?.isEnd,
@@ -92,13 +127,13 @@ export const ProductsPreview: FC<IProductsPreview> = ({
       </div>
 
       <Carousel
-        onAfterInit={handleInitialSlide}
-        onBeforeInit={onBeforeInit}
+        onAfterInit={handleDisableLastSlide}
+        onBeforeInit={handleDisableFirstSlide}
         onSlideChange={handleChangeSlide}
-        spaceBetween={11}
+        spaceBetween={cardsGap}
         slidesPerView="auto"
-        slidesPerGroup={6}
-        slideProps={{ style: { width: 220 } }}
+        slidesPerGroup={cardsPerGroup}
+        slideProps={{ style: { width: cardWidth } }}
       >
         {children}
       </Carousel>

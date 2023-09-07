@@ -1,10 +1,18 @@
 @import "src/common/styles/mixins";
 
-.container {
-  border-bottom: 1px solid var(--color-light-gray);
+.wrapper {
+  display: flex;
+  align-items: center;
+  height: 96px;
+  border-bottom: 1px solid var(--color-white-ivory);
 }
 
-.wrapper {
+.mobile_container {
+  height: auto;
+  padding: 8px 0;
+}
+
+.container {
   @include content_container;
 
   display: flex;
@@ -12,7 +20,8 @@
   justify-content: space-between;
 
   width: 100%;
-  padding: 26px 32px;
+  padding-top: calc(max(8px, min(1.8%, 26px)));
+  padding-bottom: calc(max(8px, min(1.8%, 26px)));
 
   background-color: var(--color-white);
 }
@@ -43,9 +52,13 @@
   display: flex;
   gap: 24px;
   align-items: center;
+
+  @media screen and (max-width: 768px) {
+    gap: 17px;
+  }
 }
 
-.btn_menu {
+.menu_button {
   position: relative;
 
   display: flex;
@@ -69,7 +82,7 @@
   border-radius: 50%;
 
   &:focus-visible {
-    outline: 2px solid var(--color-medium-gray);
+    outline: 2px solid var(--color-gray-medium);
   }
 }
 

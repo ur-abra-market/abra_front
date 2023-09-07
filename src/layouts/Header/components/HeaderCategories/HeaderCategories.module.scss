@@ -12,11 +12,11 @@
   background: transparent;
 
   &:hover {
-    color: var(--color-accent);
+    color: var(--color-red);
   }
 
   &:focus-visible {
     border-radius: 4px;
-    outline: 1px solid var(--color-medium-gray);
+    outline: 1px solid var(--color-gray-medium);
   }
 }

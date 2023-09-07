@@ -26,7 +26,7 @@
 
   object-fit: cover;
   border-radius: 50%;
-  outline: 2px solid var(--color-dark-gray);
+  outline: 2px solid var(--color-gray-dark);
 }
 
 
@@ -47,10 +47,10 @@
   font-weight: var(--regular);
   font-style: normal;
   line-height: 20px;
-  color: var(--color-accent);
+  color: var(--color-red);
 
   &:hover {
-    color: var(--color_accent_medium);
+    color: var(--color-red-medium);
     text-decoration: underline;
   }
 }
@@ -64,7 +64,7 @@
   font-weight: var(--regular);
   font-style: normal;
   line-height: 12px;
-  color: var(--color-medium-gray);
+  color: var(--color-gray-medium);
 
 }
 

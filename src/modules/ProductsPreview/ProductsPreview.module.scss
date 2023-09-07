@@ -1,3 +1,5 @@
+@import "src/common/styles/mixins";
+
 .container {
   width: 100%;
   height: fit-content;
@@ -6,6 +8,7 @@
 .inner {
   display: flex;
   flex-direction: row;
+  gap: 24px;
   justify-content: space-between;
 
   width: 100%;
@@ -16,15 +19,16 @@
   display: flex;
   gap: 24px;
   align-items: flex-end;
-
 }
 
 .title {
+  // ? - how to set var(--fz-xxl2) <34px> to scss func
+  @include fluidFontSize(22px, 34px);
+
   font-family: var(--roboto);
-  font-size: 34px;
   font-weight: var(--bold);
   font-style: normal;
-  line-height: 34px;
+  line-height: 100%;
   color: var(--color-black);
 }
 
@@ -35,63 +39,62 @@
   font-size: 15px;
   font-weight: var(--regular);
   line-height: 20px;
-  color:var(--color-accent);
+  color:var(--color-red);
   text-decoration: underline;
 }
 
 .buttons {
   display: flex;
   flex-direction: row;
+  gap: 16px;
   justify-content: space-between;
-  width: 64px;
 }
 
 .buttons button {
   cursor: default;
 }
 
-.icon_left {
+.icon_left,
+.icon_right {
   cursor: pointer;
   transform: rotate(90deg);
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
 
   &:hover {
-    fill: var(--color-accent);
+    fill: var(--color-red);
   }
 
   &:active {
-    fill: var(--color_accent_medium);
+    fill: var(--color-red-medium);
   }
 }
 
 .icon_right {
-  cursor: pointer;
   transform: rotate(270deg);
-  width: 24px;
-  height: 24px;
-
-  &:hover {
-    fill: var(--color-accent);
-  }
-
-  &:active {
-    fill: var(--color_accent_medium);
-  }
 }
 
 .disable_button {
   cursor: default;
 
   &:hover {
-    fill: var(--color-gray);
+    fill: var(--color-gray-light);
   }
 }
 
 .disable_button path {
   pointer-events: none;
-  fill: var(--color-gray);
+  fill: var(--color-gray-light);
 }
 
+@media only screen and (max-width: 768px) {
+  .inner {
+    margin-bottom: 24px;
+  }
+}
 
-
+@media only screen and (max-width: 425px) {
+  .inner {
+    margin-bottom: 16px;
+  }
+}
