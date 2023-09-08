@@ -12,8 +12,8 @@ import { baseConfigService } from 'services/baseConfig.service';
 import { IProductCard } from 'store/reducers/productSlice';
 import { IProductsListResponse } from 'store/reducers/supplier/product';
 import {
-  IProductPaginationParams,
-  IProductSortParams,
+  IProductSorting,
+  IProductFilterParams,
 } from 'store/reducers/supplier/product/types';
 
 export const productService = {
@@ -111,8 +111,8 @@ export const productService = {
   },
 
   getListSupplierProducts: async (
-    body: IProductSortParams,
-    params: IProductPaginationParams,
+    body: IProductFilterParams,
+    params: IProductSorting,
   ) => {
     const { data } = await baseConfigService.post<IBaseResponse<IProductsListResponse>>(
       `suppliers/products`,

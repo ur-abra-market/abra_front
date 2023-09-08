@@ -8,10 +8,10 @@ import { ArrowSort } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/hoocks/useUpdateSearchParams';
 import {
-  DEFAULT_QUERY_PARAMS,
+  DEFAULT_QUERY_PARAMS_FOR_URL,
   QUERY_PARAMS_KEY,
   QUERY_PARAMS_VALUE,
-} from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParameters';
+} from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParamsConstants';
 import { tableSortData } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/tableData';
 import {
   selectAllProductsSelector,
@@ -20,7 +20,7 @@ import {
   SortType,
   activeProductSelector,
   deactivatedProductSelector,
-  supplierProductsSelector,
+  productsSelector,
 } from 'store/reducers/supplier/product';
 import { ButtonIcon, Checkbox } from 'ui-kit';
 
@@ -28,12 +28,13 @@ export const TableHeader = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { updateUrlQueryParams, searchParams } = useUpdateSearchParams();
   const activeProduct = useAppSelector(activeProductSelector);
+  const isLoading = useAppSelector(isLoadingSelector);
   const deactivatedProduct = useAppSelector(deactivatedProductSelector);
-  const products = useAppSelector(supplierProductsSelector);
+  const products = useAppSelector(productsSelector);
   const ascendingQueryParam = searchParams.get(QUERY_PARAMS_KEY.ASCENDING);
   const sortQueryParam = searchParams.get(QUERY_PARAMS_KEY.SORT);
-  const ascending = ascendingQueryParam || DEFAULT_QUERY_PARAMS.sortBy;
-  const sort = sortQueryParam || DEFAULT_QUERY_PARAMS.sortField;
+  const ascending = ascendingQueryParam || DEFAULT_QUERY_PARAMS_FOR_URL.sortBy;
+  const sort = sortQueryParam || DEFAULT_QUERY_PARAMS_FOR_URL.sortField;
 
   const allProductsAreHandled = products.length
     ? products.every(
@@ -42,7 +43,6 @@ export const TableHeader = (): JSX.Element => {
     : false;
 
   const checked = useSelector(selectAllProductsSelector) || allProductsAreHandled;
-  const isLoading = useAppSelector(isLoadingSelector);
 
   const setAllCheckboxesState = useCallback(
     (e: ChangeEvent<HTMLInputElement>): void => {

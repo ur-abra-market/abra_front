@@ -1,3 +1,5 @@
+import { createSelector } from '@reduxjs/toolkit';
+
 import { IProduct } from './types';
 
 import { RootStateType } from 'store/createStore';
@@ -8,14 +10,14 @@ export const selectAllProductsSelector = (state: RootStateType): boolean =>
 export const deactivatedProductSelector = (state: RootStateType): number[] =>
   state.supplierProduct.deactivatedProductIds;
 
-export const supplierProductsSelector = (state: RootStateType): IProduct[] =>
+export const productsSelector = (state: RootStateType): IProduct[] =>
   state.supplierProduct.products;
 
 export const activeProductSelector = (state: RootStateType): number[] =>
   state.supplierProduct.activeProductIds;
 
-export const sortedProductSelector = (state: RootStateType): IProduct[] => {
-  const copyOfData = [...state.supplierProduct.products];
+export const sortedProductSelector = createSelector([productsSelector], products => {
+  const copyOfData = [...products];
 
   return copyOfData.sort((a, b) => {
     if (a.is_active && !b.is_active) {
@@ -27,7 +29,7 @@ export const sortedProductSelector = (state: RootStateType): IProduct[] => {
 
     return 0;
   });
-};
+});
 
 export const hasChangedSelector = (state: RootStateType): boolean =>
   state.supplierProduct.hasChanged;

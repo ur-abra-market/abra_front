@@ -1,4 +1,4 @@
-import { QUERY_PARAMS_KEY, QUERY_PARAMS_VALUE } from './queryParameters';
+import { QUERY_PARAMS_KEY, QUERY_PARAMS_VALUE } from './queryParamsConstants';
 
 export const convertValue = (key: string, value: string | null): any => {
   if (value === null) {

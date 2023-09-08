@@ -2,7 +2,7 @@ export {
   deactivatedProductSelector,
   selectAllProductsSelector,
   sortedProductSelector,
-  supplierProductsSelector,
+  productsSelector,
   hasChangedSelector,
   isLoadingSelector,
   totalCountSelector,
@@ -16,10 +16,10 @@ export type {
   ISupplierProductSliceInitialState,
   IProductSortOptions,
   SortType,
-  IProductsSortRequest,
+  IProductRequestParams,
   IProduct,
-  IProductPaginationParams,
-  IProductSortParams,
+  IProductSorting,
+  IProductFilterParams,
 } from './types';
 
 export {
@@ -28,5 +28,5 @@ export {
   supplierProductReducer,
   selectActiveProduct,
   selectDeactivatedProduct,
-  resetProductStatus,
+  resetProductStatusSelection,
 } from './supplierProductSlice';

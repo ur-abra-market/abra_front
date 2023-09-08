@@ -7,8 +7,11 @@ import style from './FilterSwitcher.module.scss';
 
 import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { DEFAULT_QUERY_PARAMS } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParameters';
-import { isLoadingSelector, resetProductStatus } from 'store/reducers/supplier/product';
+import { DEFAULT_QUERY_PARAMS_FOR_URL } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParamsConstants';
+import {
+  isLoadingSelector,
+  resetProductStatusSelection,
+} from 'store/reducers/supplier/product';
 import { ButtonIcon } from 'ui-kit';
 
 export interface IHeaderSearch {
@@ -30,8 +33,8 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
   };
 
   const onResetFiltersHandler = (): void => {
-    setSearchParams(DEFAULT_QUERY_PARAMS);
-    dispatch(resetProductStatus());
+    setSearchParams(DEFAULT_QUERY_PARAMS_FOR_URL);
+    dispatch(resetProductStatusSelection());
   };
 
   const iconClasses = cn({

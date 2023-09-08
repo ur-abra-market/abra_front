@@ -45,7 +45,7 @@ export interface IProductSortOptions {
   sortBy: boolean;
 }
 
-export interface IProductsSortRequest
+export interface IProductRequestParams
   extends Omit<
     IProductSortOptions,
     'categoryIds' | 'onSale' | 'isActive' | 'page' | 'sortBy' | 'sortField'
@@ -57,14 +57,14 @@ export interface IProductsSortRequest
   ascending: boolean;
 }
 
-export interface IProductPaginationParams {
+export interface IProductSorting {
   offset: number;
   limit: number;
   sort: SortType;
   ascending: boolean;
 }
 
-export interface IProductSortParams {
+export interface IProductFilterParams {
   category_ids: number[];
   on_sale?: boolean;
   is_active?: boolean;

@@ -1,4 +1,4 @@
-import { QUERY_PARAMS_VALUE } from './queryParameters';
+import { QUERY_PARAMS_VALUE } from './queryParamsConstants';
 
 import {
   AddNewProduct,

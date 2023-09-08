@@ -86,7 +86,7 @@ const supplierProductSlice = createSlice({
       // Set the value of state.selectAllProducts to action.payload
       state.selectAllProducts = action.payload;
     },
-    resetProductStatus: state => {
+    resetProductStatusSelection: state => {
       state.activeProductIds = [];
       state.deactivatedProductIds = [];
       state.selectAllProducts = false;
@@ -127,5 +127,5 @@ export const {
   selectAllProducts,
   selectActiveProduct,
   selectDeactivatedProduct,
-  resetProductStatus,
+  resetProductStatusSelection,
 } = supplierProductSlice.actions;
