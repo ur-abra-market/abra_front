@@ -50,10 +50,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={style.main_info}>
         <div className={style.select_info_inputs}>
-          <Label
-            style={{ whiteSpace: 'nowrap' }}
-            label="Shop name (will be shown on the profile)"
-          >
+          <Label label="Shop name (will be shown on the profile)">
             <Input
               disabled={isLoading}
               {...register('storeName')}
