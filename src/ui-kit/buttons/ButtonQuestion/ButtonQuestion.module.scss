@@ -37,3 +37,10 @@
   width: 40px;
   height: 40px;
 }
+
+@media only screen and (max-width: 1440px) {
+  .link {
+    width: 64px;
+    height: 64px;
+  }
+}

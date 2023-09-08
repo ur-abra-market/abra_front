@@ -9,7 +9,14 @@ export interface IProductSliceInitialState {
   isFavorite: boolean; // времянка пока бэк не отдаёт нам состояние, после удалить
   productsPerPage: number;
   loading: LoadingStatusEnum;
+  totalProductsCount: number;
+  productsList: IProductCompilation[];
+  sortField: ISortField;
+  sortBy: ISortBy;
 }
+
+export type ISortField = 'rating' | 'price' | 'date' | 'total_orders';
+export type ISortBy = 'asc' | 'desc';
 
 export interface IProductCard {
   id: number | null;
