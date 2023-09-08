@@ -35,9 +35,9 @@
   }
 }
 
-@media only screen and (max-width: 1130px) {
+@media (max-width: 425px) {
   .title {
-    font-size: calc(0.01182 * 100vw + 16.97537px);
+    margin-bottom: 16px;
     white-space: nowrap;
   }
 }
