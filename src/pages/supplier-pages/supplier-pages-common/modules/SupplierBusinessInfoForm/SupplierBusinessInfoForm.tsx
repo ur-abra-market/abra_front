@@ -50,7 +50,10 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={style.main_info}>
         <div className={style.select_info_inputs}>
-          <Label label="Shop name (will be shown on the profile)">
+          <Label
+            style={{ whiteSpace: 'nowrap' }}
+            label="Shop name (will be shown on the profile)"
+          >
             <Input
               disabled={isLoading}
               {...register('storeName')}
@@ -140,7 +143,6 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   className={style.select}
                   defaultValue={typeof field.value === 'number' ? field.value : undefined}
                   placeholder="Select"
-                  width="266px"
                   onChange={value => {
                     field.onChange(Number(value.value));
                   }}

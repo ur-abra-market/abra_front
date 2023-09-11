@@ -11,8 +11,7 @@ interface IItem {
 export const Item: FC<IItem> = ({ numberItem, description, title }) => (
   <div className={style.item}>
     <span className={style.number}>{numberItem}</span>
-
-    <div className={style.content_container}>
+    <div>
       <p className={style.title}>{title}</p>
       <p className={style.description}>{description}</p>
     </div>
