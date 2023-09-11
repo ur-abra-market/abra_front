@@ -54,7 +54,9 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
                 Terms & conditions
               </NavLink>
 
-              {variant === 'white' && <span>and&nbsp;</span>}
+              {variant === 'white' && (
+                <span className={style.link_separator}>and&nbsp;</span>
+              )}
               <NavLink className={navLinkClasses} to={PRIVACY_POLICY}>
                 Privacy policy
               </NavLink>

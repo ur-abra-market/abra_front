@@ -38,6 +38,11 @@
   grid-template-columns: 125px auto 125px;
 }
 
+.links_container_white {
+  display: flex;
+  justify-content: center;
+}
+
 .links,
 .links_white {
   position: relative;
@@ -99,7 +104,6 @@
   color: var(--color-red);
 }
 
-
 @media only screen and (max-width: 768px) {
   .links_container {
     display: flex;
@@ -116,5 +120,15 @@
       color: var(--color-medium-gray);
     }
   }
+}
 
+@media only screen and (max-width: 400px) {
+  .link_separator {
+    display: none;
+  }
+
+  .links_white {
+    flex-direction: column;
+    align-items: center;
+  }
 }
