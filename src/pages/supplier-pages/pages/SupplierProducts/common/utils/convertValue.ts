@@ -5,29 +5,28 @@ export const convertValue = (key: string, value: string | null): any => {
     return null;
   }
 
-  if (key === QUERY_PARAMS_KEY.PAGE || key === QUERY_PARAMS_KEY.LIMIT) {
-    return +value;
-  }
+  switch (key) {
+    case QUERY_PARAMS_KEY.PAGE:
+    case QUERY_PARAMS_KEY.LIMIT:
+      return +value;
 
-  if (key === QUERY_PARAMS_KEY.CATEGORY_IDS) {
-    return value === QUERY_PARAMS_VALUE.ALL ? [] : value.split('_').map(el => +el);
-  }
+    case QUERY_PARAMS_KEY.CATEGORY_IDS:
+      return value === QUERY_PARAMS_VALUE.ALL ? [] : value.split('_').map(el => +el);
 
-  if (key === QUERY_PARAMS_KEY.ASCENDING) {
-    return value === QUERY_PARAMS_VALUE.ASCENDING;
-  }
+    case QUERY_PARAMS_KEY.ASCENDING:
+      return value === QUERY_PARAMS_VALUE.ASCENDING;
 
-  if (key === QUERY_PARAMS_KEY.SALE) {
-    return value === QUERY_PARAMS_VALUE.ALL
-      ? undefined
-      : value === QUERY_PARAMS_VALUE.ON_SALE;
-  }
+    case QUERY_PARAMS_KEY.SALE:
+      return value === QUERY_PARAMS_VALUE.ALL
+        ? undefined
+        : value === QUERY_PARAMS_VALUE.ON_SALE;
 
-  if (key === QUERY_PARAMS_KEY.STATUS) {
-    return value === QUERY_PARAMS_VALUE.ALL
-      ? undefined
-      : value === QUERY_PARAMS_VALUE.ACTIVE;
-  }
+    case QUERY_PARAMS_KEY.STATUS:
+      return value === QUERY_PARAMS_VALUE.ALL
+        ? undefined
+        : value === QUERY_PARAMS_VALUE.ACTIVE;
 
-  return value;
+    default:
+      return value;
+  }
 };

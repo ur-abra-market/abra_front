@@ -34,7 +34,7 @@ export const SaleFilter = (): JSX.Element => {
 
       dispatch(resetProductStatusSelection());
     },
-    [updateUrlQueryParams, dispatch],
+    [updateUrlQueryParams],
   );
 
   const controlledValue = SALE_SELECT.find(el => el.value === onSale);

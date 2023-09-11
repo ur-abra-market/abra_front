@@ -7,11 +7,13 @@ interface IUpdateSearchParams {
   searchParams: URLSearchParams;
 }
 
+type QueryParamUpdate = [string, string | undefined | boolean | number];
+
 export const useUpdateSearchParams = (): IUpdateSearchParams => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const updateUrlQueryParams = useCallback(
-    (updates: [string, string | undefined | boolean | number][]) => {
+    (updates: QueryParamUpdate[]) => {
       updates.forEach(([key, value]) => {
         searchParams.set(key, String(value));
       });
