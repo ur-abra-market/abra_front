@@ -208,9 +208,10 @@ export const PrivacyPolicyPage = (): JSX.Element => {
           </p>
         </div>
       </div>
+
       <Footer className={style.footer} variant="default" />
       <div className={style.mobile_copyright}>
-        © 2022 Abra.&nbsp;
+        &#169; 2023 Abra.&nbsp;
         <NavLink className={style.link} to={TERMS_AND_CONDITIONS}>
           Terms & conditions
         </NavLink>

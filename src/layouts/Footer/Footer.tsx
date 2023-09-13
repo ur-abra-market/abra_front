@@ -44,12 +44,12 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
           <div className={style.links_container}>
             {variant === 'default' && (
               <div className={style.copyright}>
-                <span>&#169; Abra 2023</span>
+                <p>&#169; Abra 2023</p>
               </div>
             )}
 
             <div className={linksClasses}>
-              {variant === 'white' && <span>&#169; 2022 Abra.</span>}
+              {variant === 'white' && <p>&#169; 2023 Abra.</p>}
               <NavLink className={navLinkClasses} to={TERMS_AND_CONDITIONS}>
                 Terms & conditions
               </NavLink>
