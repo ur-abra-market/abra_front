@@ -4,39 +4,48 @@ import style from './PaginationControl.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ProductsPerPage } from 'elements';
+import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/hoocks/useUpdateSearchParams';
 import {
-  paramsSelector,
+  DEFAULT_QUERY_PARAMS_FOR_URL,
+  QUERY_PARAMS_KEY,
+} from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParamsConstants';
+import {
+  hasPageChanged,
   isLoadingSelector,
-  pageNumberSelector,
-  setPage,
-  setParams,
   totalCountSelector,
 } from 'store/reducers/supplier/product';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
 
 export const PaginationControl = (): JSX.Element => {
-  const activePage = useAppSelector(pageNumberSelector);
+  const { updateUrlQueryParams, searchParams } = useUpdateSearchParams();
   const dispatch = useAppDispatch();
-  const params = useAppSelector(paramsSelector);
   const isLoading = useAppSelector(isLoadingSelector);
   const totalItems = useAppSelector(totalCountSelector);
-  const totalPage = Math.ceil(totalItems / params.limit);
+  const limitQueryParam = searchParams.get(QUERY_PARAMS_KEY.LIMIT);
+  const pageQueryParam = searchParams.get(QUERY_PARAMS_KEY.PAGE);
+  const limit = Number(limitQueryParam || DEFAULT_QUERY_PARAMS_FOR_URL.limit);
+  const page = Number(pageQueryParam || DEFAULT_QUERY_PARAMS_FOR_URL.page);
+  const totalPage = Math.ceil(totalItems / limit);
 
   const handleSetActivePage = (pageNumber: number): void => {
-    dispatch(setPage(pageNumber));
+    updateUrlQueryParams([[QUERY_PARAMS_KEY.PAGE, pageNumber]]);
+
+    dispatch(hasPageChanged());
   };
 
-  const handleChangeLimit = useCallback(
+  const onChangeLimit = useCallback(
     (limit: number): void => {
-      dispatch(setParams({ ...params, limit }));
-      dispatch(setPage(1));
+      updateUrlQueryParams([
+        [QUERY_PARAMS_KEY.PAGE, DEFAULT_QUERY_PARAMS_FOR_URL.page],
+        [QUERY_PARAMS_KEY.LIMIT, limit],
+      ]);
     },
-    [dispatch, params],
+    [updateUrlQueryParams],
   );
 
   const controlledValue = {
-    label: { text: String(params.limit) },
-    value: params.limit,
+    label: { text: limitQueryParam || DEFAULT_QUERY_PARAMS_FOR_URL.limit },
+    value: limitQueryParam || DEFAULT_QUERY_PARAMS_FOR_URL.limit,
   };
 
   return (
@@ -45,13 +54,13 @@ export const PaginationControl = (): JSX.Element => {
         <ProductsPerPage
           disabled={isLoading}
           controlledValue={controlledValue}
-          onChange={handleChangeLimit}
+          onChange={onChangeLimit}
         />
       </div>
 
       <Pagination
         disabled={isLoading}
-        currentPage={activePage}
+        currentPage={page}
         totalPages={totalPage}
         onPageChanged={handleSetActivePage}
       />

@@ -2,10 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import {
-  IProductPaginationParams,
-  IProductsListRequest,
-  IProductSortParams,
-  IProductsSortRequest,
+  IProductSorting,
+  IProductsListResponse,
+  IProductFilterParams,
+  IProductRequestParams,
 } from './types';
 
 import { productService } from 'services/product/product.service';
@@ -40,8 +40,8 @@ export const deActivateProducts = createAsyncThunk<boolean, number[]>(
 );
 
 export const getSupplierProducts = createAsyncThunk<
-  IProductsListRequest,
-  IProductsSortRequest
+  IProductsListResponse,
+  IProductRequestParams
 >(
   'product/manageProducts',
 
@@ -54,11 +54,11 @@ export const getSupplierProducts = createAsyncThunk<
       is_active,
       limit,
       offset,
-    }: IProductsSortRequest,
+    }: IProductRequestParams,
     { rejectWithValue },
   ) => {
-    const params: IProductPaginationParams = { offset, limit, sort, ascending };
-    const body: IProductSortParams = {
+    const params: IProductSorting = { offset, limit, sort, ascending };
+    const body: IProductFilterParams = {
       category_ids,
       is_active,
       on_sale,
