@@ -812,7 +812,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
 
       <Footer className={style.footer} variant="default" />
       <div className={style.mobile_copyright}>
-        © Abra 2023 &nbsp;
+        &#169; Abra 2023 &nbsp;
         <NavLink className={style.link} to={TERMS_AND_CONDITIONS}>
           Terms & conditions
         </NavLink>
