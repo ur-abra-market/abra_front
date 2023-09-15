@@ -30,18 +30,7 @@ export const SupplierProducts = WithLayout((): JSX.Element => {
         is_active: status,
       }),
     );
-  }, [
-    dispatch,
-    offset,
-    page,
-    sortField,
-    sale,
-    limit,
-    categoryIds,
-    sortBy,
-    status,
-    hasChanged,
-  ]);
+  }, [offset, page, sortField, sale, limit, categoryIds, sortBy, status, hasChanged]);
 
   return (
     <section className={style.wrapper}>

@@ -7,7 +7,7 @@ import style from './FilterSwitcher.module.scss';
 
 import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { DEFAULT_QUERY_PARAMS_FOR_URL } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParamsConstants';
+import { deleteUrlSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/deleteUrlSearchParams';
 import {
   isLoadingSelector,
   resetProductStatusSelection,
@@ -33,7 +33,7 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
   };
 
   const onResetFiltersHandler = (): void => {
-    setSearchParams(DEFAULT_QUERY_PARAMS_FOR_URL);
+    deleteUrlSearchParams(searchParams, setSearchParams);
     dispatch(resetProductStatusSelection());
   };
 
