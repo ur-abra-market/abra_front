@@ -7,9 +7,6 @@
   max-width: 1176px;
   margin: 0 auto;
   padding: 0 16px;
-
-  font-family: var(--roboto);
-  font-weight: var(--regular);
   letter-spacing: 0.38px;
 }
 
@@ -265,7 +262,7 @@
 
 .address {
   max-width: 427px;
-  font-size: var(--fz-s2);
+  font-size: var(--fz-s);
   font-weight: var(--medium);
   line-height: 20px;
 }
@@ -273,7 +270,7 @@
 .delivery_description {
   margin: 16px 0 0;
 
-  font-size: var(--fz-s2);
+  font-size: var(--fz-s);
   line-height: 20px;
   color: #828282;
   letter-spacing: 0.16px;
@@ -299,7 +296,7 @@
 }
 
 .total_count p {
-  font-size: var(--fz-s2);
+  font-size: var(--fz-s);
   font-weight: var(--medium);
   line-height: 20px;
 }
