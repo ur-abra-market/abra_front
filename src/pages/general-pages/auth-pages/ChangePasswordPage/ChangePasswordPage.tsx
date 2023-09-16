@@ -53,6 +53,7 @@ export const ChangePasswordPage = (): JSX.Element => {
           <div className={style.modal_sub_header}>
             Now you can log in with your new password
           </div>
+
           <Button
             label="Okay"
             className={style.button_modal}

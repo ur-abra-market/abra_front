@@ -41,6 +41,7 @@ export const ChangeEmailPage = (): JSX.Element => {
           <div className={style.modal_header}>
             Your new email has been successfully saved
           </div>
+
           <Button
             className={style.modal_button}
             label="Okay"

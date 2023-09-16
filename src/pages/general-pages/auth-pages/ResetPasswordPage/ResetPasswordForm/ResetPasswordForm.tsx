@@ -6,9 +6,9 @@ import * as yup from 'yup';
 
 import style from './ResetPasswordForm.module.scss';
 
-import { passwordValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
+import { passwordValidationSchema } from 'common/utils';
 import { PasswordComplexity } from 'pages/general-pages/auth-pages/assets';
 import { IResetPasswordRequest } from 'services/auth/auth.serviceTypes';
 import { loadingSelector } from 'store/reducers/appSlice';
@@ -61,10 +61,11 @@ export const ResetPasswordForm: FC<IResetPasswordForm> = ({
   });
 
   const watchPassword = watch('new_password' || 'confirm_password');
+  const watchNewPassword = watch('new_password');
 
   useEffect(() => {
     if (watch(TRIGGER_FIELD)) trigger(TRIGGER_FIELD);
-  }, [watch('new_password')]);
+  }, [watchNewPassword]);
 
   const onSubmit = async (data: IResetPasswordFormData): Promise<void> => {
     const actionResult = await dispatch(resetPassword({ ...data, token }));

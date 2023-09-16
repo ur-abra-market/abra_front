@@ -16,12 +16,13 @@
   align-items: center;
   justify-content: space-between;
 
-  font-size: var(--fz-s2);
+  font-size: var(--fz-l);
   font-weight: var(--medium);
   letter-spacing: 0.16px;
 }
 
 .menu_item {
+  font-size: var(--fz-m);
   color: var(--color-black);
   white-space: nowrap;
   transition: 0.1s;
@@ -181,7 +182,7 @@
 
 .current_page {
   font-family: Roboto, sans-serif;
-  font-size: var(--fz-s2);
+  font-size: var(--fz-m);
 }
 
 

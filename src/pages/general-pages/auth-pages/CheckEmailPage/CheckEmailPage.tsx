@@ -7,14 +7,15 @@ import style from './CheckEmailPage.module.scss';
 import { useAppSelector } from 'common/hooks';
 import { ContentMessage } from 'elements';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
+import { isAuthorizedSelector } from 'store/reducers/authSlice';
 
 export const CheckEmailPage = (): JSX.Element => {
-  const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
   const navigate = useNavigate();
+  const isAuthorized = useAppSelector(isAuthorizedSelector);
 
   useEffect(() => {
     if (isAuthorized) navigate(-1);
-  }, [isAuthorized, navigate]);
+  }, [isAuthorized]);
 
   return (
     <AuthPageLayout>
