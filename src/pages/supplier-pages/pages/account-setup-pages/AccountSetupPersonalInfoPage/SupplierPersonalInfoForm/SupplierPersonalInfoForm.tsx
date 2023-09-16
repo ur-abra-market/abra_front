@@ -6,10 +6,9 @@ import { useNavigate } from 'react-router-dom';
 
 import style from './SupplierPersonalInfoForm.module.scss';
 
-import { personalInfoFormValidationSchema } from 'common/constants';
 import { useAppDispatch } from 'common/hooks';
 import { IPersonalInfoFormData } from 'common/types';
-import { parsePhoneNumber } from 'common/utils';
+import { parsePhoneNumber, personalInfoFormValidationSchema } from 'common/utils';
 import Modal from 'elements/Modal';
 import { ModalChildPhoneCheck } from 'elements/Modal/ModalChildPhoneCheck/ModalChildPhoneCheck';
 import { PersonalInfoChangeForm } from 'modules';

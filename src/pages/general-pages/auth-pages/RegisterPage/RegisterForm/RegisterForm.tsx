@@ -7,9 +7,9 @@ import * as yup from 'yup';
 
 import style from './RegisterForm.module.scss';
 
-import { emailValidationSchema, passwordValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum, ResponseUserRoleType } from 'common/types';
+import { getEmailValidationSchema, passwordValidationSchema } from 'common/utils';
 import { PasswordComplexity } from 'pages/general-pages/auth-pages/assets';
 import { CHECK_EMAIL } from 'routes';
 import { IRegisterRequest } from 'services/auth/auth.serviceTypes';
@@ -19,21 +19,17 @@ import { Button, Input } from 'ui-kit';
 
 export interface IRegisterFormData extends Omit<IRegisterRequest, 'role'> {}
 
-const formValidationSchema = yup
-  .object()
-  .shape({
-    email: emailValidationSchema,
-    password: passwordValidationSchema,
-  })
-  .required();
+const formValidationSchema = yup.object().shape({
+  email: getEmailValidationSchema(),
+  password: passwordValidationSchema,
+});
 
 export const RegisterForm = (): JSX.Element => {
-  const [userRole, setUserRole] = useState<ResponseUserRoleType>('seller');
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [userRole, setUserRole] = useState<ResponseUserRoleType>('seller');
   const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
-  const loading = useAppSelector(loadingSelector);
-  const isLoading = loading === LoadingStatusEnum.Loading;
+  const isLoading = useAppSelector(loadingSelector) === LoadingStatusEnum.Loading;
 
   const {
     register,
@@ -59,7 +55,7 @@ export const RegisterForm = (): JSX.Element => {
 
   useEffect(() => {
     if (isAuthorized) navigate(-1);
-  }, [isAuthorized, navigate]);
+  }, [isAuthorized]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
@@ -97,6 +93,7 @@ export const RegisterForm = (): JSX.Element => {
         disabled={isLoading}
         autoComplete="new-password"
       />
+
       <PasswordComplexity password={watch('password')} />
 
       <Button

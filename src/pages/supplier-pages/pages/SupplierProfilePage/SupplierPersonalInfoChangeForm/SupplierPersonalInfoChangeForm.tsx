@@ -5,11 +5,11 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import style from './SupplierPersonalInfoChangeForm.module.scss';
 
-import { personalInfoFormValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
 import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
 import { parsePhoneNumber } from 'common/utils';
+import { personalInfoFormValidationSchema } from 'common/utils/validation-schemas/personalInfoFormValidationSchema';
 import { ButtonLogout } from 'elements';
 import { PersonalInfoChangeForm } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';

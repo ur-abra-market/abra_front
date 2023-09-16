@@ -51,7 +51,7 @@ export const HeaderCategories: FC<IHeaderCategories> = ({
         className={style.button}
         onClick={() => setCategoriesIsOpen(!categoriesIsOpen)}
       >
-        <p className={style.button}> All categories</p>
+        All categories
       </button>
 
       {categoriesIsOpen && (

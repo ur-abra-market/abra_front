@@ -7,9 +7,9 @@ import * as yup from 'yup';
 
 import style from './LoginForm.module.scss';
 
-import { emailValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
+import { getEmailValidationSchema } from 'common/utils';
 import { HOME } from 'routes';
 import { loadingSelector } from 'store/reducers/appSlice';
 import { loginUser, isAuthorizedSelector } from 'store/reducers/authSlice';
@@ -17,15 +17,16 @@ import { Button, Input } from 'ui-kit';
 
 const MAX_COUNT = 32;
 
-const formValidationSchema = yup
-  .object()
-  .shape({
-    email: emailValidationSchema,
-    password: yup.string().min(8).max(MAX_COUNT).required(),
-  })
-  .required();
+const formValidationSchema = yup.object().shape({
+  email: getEmailValidationSchema(),
+  password: yup
+    .string()
+    .min(8, 'Password must be at least 8 characters')
+    .max(MAX_COUNT, 'Password must be at most 32 characters')
+    .required(),
+});
 
-export interface IFormValues {
+export interface ILoginFormData {
   email: string;
   password: string;
 }
@@ -34,25 +35,24 @@ export const LoginForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isAuthorized = useAppSelector(isAuthorizedSelector);
-  const loading = useAppSelector(loadingSelector);
-  const isLoading = loading === LoadingStatusEnum.Loading;
+  const isLoading = useAppSelector(loadingSelector) === LoadingStatusEnum.Loading;
 
   const {
     register,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm<IFormValues>({
+  } = useForm<ILoginFormData>({
     resolver: yupResolver(formValidationSchema),
     mode: 'all',
   });
 
-  const onSubmit = (data: IFormValues): void => {
+  const onSubmit = (data: ILoginFormData): void => {
     dispatch(loginUser(data));
   };
 
   useEffect(() => {
     if (isAuthorized) navigate(HOME);
-  }, [isAuthorized, navigate]);
+  }, [isAuthorized]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
@@ -62,6 +62,7 @@ export const LoginForm = (): JSX.Element => {
         error={errors.email?.message}
         disabled={isLoading}
       />
+
       <Input
         {...register('password')}
         classNameWrapper={style.input_wrapper}
@@ -71,6 +72,7 @@ export const LoginForm = (): JSX.Element => {
         error={errors.password?.message}
         disabled={isLoading}
       />
+
       <Button
         className={style.button_submit}
         label="Log in"

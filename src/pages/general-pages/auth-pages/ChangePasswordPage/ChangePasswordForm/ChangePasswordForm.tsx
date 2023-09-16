@@ -6,9 +6,9 @@ import * as yup from 'yup';
 
 import style from './ChangePasswordForm.module.scss';
 
-import { passwordValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
+import { passwordValidationSchema } from 'common/utils';
 import { PasswordComplexity } from 'pages/general-pages/auth-pages/assets';
 import { IChangePasswordRequest } from 'services/auth/auth.serviceTypes';
 import { loadingSelector } from 'store/reducers/appSlice';
@@ -49,10 +49,11 @@ export const ChangePasswordForm: FC<IChangePasswordForm> = ({ setOpenModal }) =>
   });
 
   const watchPassword = watch('new_password' || 'old_password');
+  const watchOldPassword = watch('old_password');
 
   useEffect(() => {
     if (watch(TRIGGER_FIELD)) trigger(TRIGGER_FIELD);
-  }, [watch('old_password')]);
+  }, [watchOldPassword]);
 
   const onSubmit = async (data: IChangePasswordRequest): Promise<void> => {
     const actionResult = await dispatch(changePassword(data));
@@ -73,6 +74,7 @@ export const ChangePasswordForm: FC<IChangePasswordForm> = ({ setOpenModal }) =>
         error={errors.old_password?.message}
         disabled={isLoading}
       />
+
       <Input
         {...register('new_password')}
         classNameWrapper={style.input_wrapper}
@@ -82,7 +84,9 @@ export const ChangePasswordForm: FC<IChangePasswordForm> = ({ setOpenModal }) =>
         error={errors.new_password?.message}
         disabled={isLoading}
       />
+
       <PasswordComplexity password={watchPassword} />
+
       <Button
         label="Continue"
         type="submit"
