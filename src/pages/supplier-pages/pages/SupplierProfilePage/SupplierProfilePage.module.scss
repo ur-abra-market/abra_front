@@ -10,7 +10,7 @@
   grid-template-areas:
     'personal_info business_profile notifications'
     'account_details business_profile notifications';
-  grid-template-columns: minmax(auto, 450px) minmax(auto, 622px) minmax(auto, 280px);
+  grid-template-columns: minmax(auto, 495px) minmax(auto, 585px) minmax(auto, 270px);
   grid-template-rows: auto 1fr;
 
   max-width: var(--main-content-width);
@@ -69,7 +69,7 @@
   }
 
   .account_management {
-    gap: 28px;
+    gap: 42px;
   }
 }
 
