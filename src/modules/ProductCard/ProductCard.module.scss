@@ -49,7 +49,7 @@
     display: block;
     align-self: flex-end;
 
-    font-size: var(--fz-xs2);
+    font-size: var(--fz-xs-2);
     font-weight: var(--medium);
     color: var(--color-medium-gray);
   }
@@ -57,7 +57,7 @@
 
 .amount {
   font-family: "SF Pro Display Bold", sans-serif;
-  font-size: var(--fz-l2);
+  font-size: var( --fz-l-2);
   font-weight: var(--semi-bold);
   line-height: 100%;
   letter-spacing: 0.38px;
@@ -78,7 +78,7 @@
     margin: 8px 0 0;
 
     > span {
-      font-size: var(--fz-xs2);
+      font-size: var(--fz-xs-2);
     }
   }
 

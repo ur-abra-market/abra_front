@@ -22,7 +22,7 @@
 }
 
 .title {
-  // ? - how to set var(--fz-xxl2) <34px> to scss func
+  // ? - how to set var(--fz-xxl) <34px> to scss func todo
   @include fluidFontSize(22px, 34px);
 
   font-family: var(--roboto);

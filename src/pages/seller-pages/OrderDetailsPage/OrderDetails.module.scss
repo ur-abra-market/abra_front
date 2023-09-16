@@ -24,7 +24,7 @@
 }
 
 .title {
-  font-size: var(--fz-xxl2);
+  font-size: var(--fz-xxl);
   font-weight: var(--bold);
   line-height: 25px;
   letter-spacing: 0.41px;
@@ -51,7 +51,7 @@
 }
 
 .quantity {
-  font-size: var(--fz-l2);
+  font-size: var( --fz-l-2);
   font-weight: var(--bold);
   line-height: 24px;
   letter-spacing: 0.16px;
@@ -162,7 +162,7 @@
 }
 
 .price>p {
-  font-size: var(--fz-l2);
+  font-size: var( --fz-l-2);
   font-weight: var(--semi-bold);
   line-height: 20px;
 }
@@ -244,7 +244,7 @@
 .delivery_info h2 {
   margin: 0 0 24px;
 
-  font-size: var(--fz-l2);
+  font-size: var( --fz-l-2);
   font-weight: var(--bold);
   line-height: 24px;
   letter-spacing: 0.16px;
@@ -337,7 +337,7 @@
 
 .total_price {
   padding: 12px 0 0;
-  font-size: var(--fz-l2);
+  font-size: var( --fz-l-2);
   font-weight: var(--semi-bold);
   line-height: 20px;
 }
