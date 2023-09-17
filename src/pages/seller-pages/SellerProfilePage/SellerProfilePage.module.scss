@@ -12,7 +12,8 @@
   grid-template-areas:
     'personal_info business_info notifications'
     'account_managment business_info notifications';
-  grid-template-columns: minmax(auto, 450px) minmax(auto, 622px) minmax(auto, 280px);
+  grid-template-columns: minmax(auto, 495px) minmax(auto, 585px) minmax(auto, 270px);
+  grid-template-rows: auto 1fr;
 
   max-width: var(--main-content-width);
   margin: 0 auto;
@@ -71,10 +72,9 @@
 @media only screen and (max-width: 768px) {
   .content_container {
     grid-template-areas:
-      'personal_info'
-      'business_info'
-      'notifications'
-      'account_managment';
+      'personal_info personal_info'
+      'business_info business_info'
+      'account_managment notifications ';
     grid-template-columns: auto;
   }
 
@@ -92,8 +92,13 @@
 
 }
 
-@media only screen and (max-width: 485px) {
+@media only screen and (max-width: 468px) {
   .content_container {
+    grid-template-areas:
+      'personal_info'
+      'business_info'
+      'notifications'
+      'account_managment';
     padding: 12px 0 32px;
   }
 
