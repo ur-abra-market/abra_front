@@ -6,9 +6,9 @@ import * as yup from 'yup';
 
 import style from './ForgotPasswordForm.module.scss';
 
-import { emailValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
+import { getEmailValidationSchema } from 'common/utils';
 import { loadingSelector } from 'store/reducers/appSlice';
 import { forgotPassword } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
@@ -20,16 +20,16 @@ export interface IForgotChangePasswordFormData {
 interface IForgotPasswordForm {
   togglePageType: () => void;
 }
+
 const schema = yup
   .object({
-    email: emailValidationSchema,
+    email: getEmailValidationSchema(),
   })
   .required();
 
 export const ForgotPasswordForm: FC<IForgotPasswordForm> = ({ togglePageType }) => {
   const dispatch = useAppDispatch();
-  const loading = useAppSelector(loadingSelector);
-  const isLoading = loading === LoadingStatusEnum.Loading;
+  const isLoading = useAppSelector(loadingSelector) === LoadingStatusEnum.Loading;
 
   const {
     register,
@@ -57,6 +57,7 @@ export const ForgotPasswordForm: FC<IForgotPasswordForm> = ({ togglePageType }) 
         classNameWrapper={style.input_wrapper}
         disabled={isLoading}
       />
+
       <Button
         label="Reset password"
         className={style.button_submit}
