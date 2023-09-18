@@ -1,12 +1,17 @@
 import React, { FC } from 'react';
 
 import cn from 'classnames';
+import { useSearchParams } from 'react-router-dom';
 
 import style from './FilterSwitcher.module.scss';
 
 import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { isLoadingSelector, resetFilters } from 'store/reducers/supplier/product';
+import { deleteUrlSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/deleteUrlSearchParams';
+import {
+  isLoadingSelector,
+  resetProductStatusSelection,
+} from 'store/reducers/supplier/product';
 import { ButtonIcon } from 'ui-kit';
 
 export interface IHeaderSearch {
@@ -18,16 +23,18 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
   restFilters,
   setRestFilters,
 }): JSX.Element => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
-  const text = restFilters ? 'Hide filters' : 'Show Filters';
+  const text = restFilters ? 'Hide filters' : 'Show filters';
 
-  const handleToggleFilters = (): void => {
+  const handleRestFiltersSet = (): void => {
     setRestFilters(!restFilters);
   };
 
-  const handleResetFilters = (): void => {
-    dispatch(resetFilters());
+  const onResetFiltersHandler = (): void => {
+    deleteUrlSearchParams(searchParams, setSearchParams);
+    dispatch(resetProductStatusSelection());
   };
 
   const iconClasses = cn({
@@ -40,21 +47,19 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
       <ButtonIcon
         className={style.rest_filters}
         type="button"
-        onClick={handleToggleFilters}
+        onClick={handleRestFiltersSet}
       >
         {text}
+        <ArrowIcon onClick={handleRestFiltersSet} className={iconClasses} />
       </ButtonIcon>
-      <ArrowIcon onClick={handleToggleFilters} className={iconClasses} />
 
-      {restFilters && (
-        <ButtonIcon
-          disabled={isLoading}
-          onClick={handleResetFilters}
-          className={style.reset_link}
-        >
-          Reset Filters
-        </ButtonIcon>
-      )}
+      <ButtonIcon
+        disabled={isLoading}
+        onClick={onResetFiltersHandler}
+        className={style.reset_link}
+      >
+        Reset Filters
+      </ButtonIcon>
     </div>
   );
 };

@@ -8,17 +8,17 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ContentMessage } from 'elements';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
 import { LOGIN } from 'routes';
-import { confirmEmail } from 'store/reducers/authSlice';
+import { confirmEmail, isAuthorizedSelector } from 'store/reducers/authSlice';
 import { LoaderCircular } from 'ui-kit';
 
 export const ConfirmEmailPage = (): JSX.Element => {
-  const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const isAuthorized = useAppSelector(isAuthorizedSelector);
   const [emailStatus, setEmailStatus] = useState<'confirmed' | 'unconfirmed' | null>(
     null,
   );
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const token = searchParams.get('token');
@@ -34,7 +34,7 @@ export const ConfirmEmailPage = (): JSX.Element => {
 
   useEffect(() => {
     if (isAuthorized) navigate(-1);
-  }, [isAuthorized, navigate]);
+  }, [isAuthorized]);
 
   if (!emailStatus) return <LoaderCircular />;
 
@@ -50,6 +50,7 @@ export const ConfirmEmailPage = (): JSX.Element => {
             </Link>
           </>
         )}
+
         {emailStatus === 'unconfirmed' && (
           <ContentMessage title="Email not confirmed." text="Please try again later" />
         )}

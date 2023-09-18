@@ -1,17 +1,23 @@
 .wrapper {
   display: flex;
   align-items: center;
-  margin-right: auto;
 }
 
 .rest_filters {
-  margin-right: 9px;
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
 
-  font-size: var(--fz-s2);
-  font-weight: 500;
+  width: 140px;
+  margin-right: 5px;
+
+  font-size: var(--fz-s);
+  font-weight: var(--medium);
   color: var(--color-black);
 
   background-color: inherit;
+
+  transition: background-color 0.4s;
 }
 
 .vector_up, .vector_down {
@@ -24,7 +30,7 @@
 }
 
 .reset_link {
-  font-size: var(--fz-s2);
+  font-size: var(--fz-s);
   color:var(--color-red);
   text-decoration-line: underline;
 }

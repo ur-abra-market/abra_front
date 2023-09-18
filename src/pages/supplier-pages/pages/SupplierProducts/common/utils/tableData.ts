@@ -1,16 +1,18 @@
-import { IActionData, IColumns } from './types';
+import { QUERY_PARAMS_VALUE } from './queryParamsConstants';
 
 import {
   AddNewProduct,
-  Copy,
   DeleteTrashCanIcon,
   EditPencilIcon,
   RecentlyDeleted,
 } from 'assets/icons';
+import {
+  IActionData,
+  IColumns,
+} from 'pages/supplier-pages/pages/SupplierProducts/common/types/types';
 
 export const productEditorData: IActionData[] = [
   { id: 1, label: 'Edit', Icon: EditPencilIcon },
-  // { id: 2, label: 'Copy', Icon: Copy },
   { id: 3, label: 'Deactivated product', Icon: DeleteTrashCanIcon },
   { id: 4, label: 'Activated product', Icon: RecentlyDeleted },
   { id: 5, label: 'Add a new product', Icon: AddNewProduct },
@@ -24,24 +26,21 @@ export const tableSortData: IColumns[] = [
     id: 4,
     name: 'Creation Date',
     arrow: true,
-    sortKey: 'sort',
-    sortValue: 'date',
+    sortValue: QUERY_PARAMS_VALUE.DATE,
   },
   { id: 5, name: 'Status' },
-  { id: 6, name: 'Price', arrow: true, sortKey: 'sort', sortValue: 'price' },
+  { id: 6, name: 'Price', arrow: true, sortValue: QUERY_PARAMS_VALUE.PRICE },
   {
     id: 7,
     name: 'Balance, units',
     arrow: true,
-    sortKey: 'sort',
-    sortValue: 'total_orders',
+    sortValue: QUERY_PARAMS_VALUE.TOTAL_ORDERS,
   },
   {
     id: 8,
     name: 'Rating',
     arrow: true,
-    sortKey: 'sort',
-    sortValue: 'rating',
+    sortValue: QUERY_PARAMS_VALUE.RATING,
   },
   { id: 9, name: 'Visibility' },
 ];

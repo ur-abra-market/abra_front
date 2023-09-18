@@ -6,9 +6,9 @@ import * as yup from 'yup';
 
 import style from './ChangeEmailForm.module.scss';
 
-import { emailValidationSchema } from 'common/constants';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
+import { getEmailValidationSchema } from 'common/utils';
 import { IChangeEmailRequest } from 'services/auth/auth.serviceTypes';
 import { loadingSelector } from 'store/reducers/appSlice';
 import { changeEmail } from 'store/reducers/authSlice';
@@ -21,7 +21,7 @@ interface IChangeEmailForm {
 }
 const schema = yup
   .object({
-    new_email: emailValidationSchema,
+    new_email: getEmailValidationSchema(),
     confirm_email: yup.string().oneOf([yup.ref('new_email')], 'Emails must match'),
   })
   .required();
@@ -41,10 +41,11 @@ export const ChangeEmailForm: FC<IChangeEmailForm> = ({ setOpenModal }) => {
   const dispatch = useAppDispatch();
   const loading = useAppSelector(loadingSelector);
   const isLoading = loading === LoadingStatusEnum.Loading;
+  const watchNewEmail = watch('new_email');
 
   useEffect(() => {
     if (watch(TRIGGER_FIELD)) trigger(TRIGGER_FIELD);
-  }, [watch('new_email')]);
+  }, [watchNewEmail]);
 
   const onSubmit = async (data: IChangeEmailRequest): Promise<void> => {
     const actionResult = await dispatch(changeEmail(data));
@@ -63,6 +64,7 @@ export const ChangeEmailForm: FC<IChangeEmailForm> = ({ setOpenModal }) => {
         error={errors.new_email?.message}
         disabled={isLoading}
       />
+
       <Input
         {...register('confirm_email')}
         placeholder="Confirm email"
@@ -70,6 +72,7 @@ export const ChangeEmailForm: FC<IChangeEmailForm> = ({ setOpenModal }) => {
         error={errors.confirm_email?.message}
         disabled={isLoading}
       />
+
       <Button
         label="Continue"
         type="submit"

@@ -1,42 +1,27 @@
+@import "src/common/styles/mixins";
+
 .table_row {
   display: grid;
-  grid-template-columns: 4.50% 8.48% 6.83% 33.76% 10.12% 8.33% 6.60% 9.86% 8% 4%;
+  grid-template-columns: 4.50% 8.48% 6.83% 30% 10.12% 8.33% 6.60% 11.72% calc(66px + 1%) 6%;
   grid-template-rows: 1fr;
 }
 
 
 .table_head {
+
+  @include fluidFontSize(10px, 15px, 320px, 1376px);
+
   display: flex;
   column-gap: 1px;
   align-items: center;
 
   width: 100%;
   min-height: 20px;
-  max-height: 48px;
 
-  font-size: var(--fz-s2);
   font-weight: var(--medium);
   color: var(--color-black);
+  text-align: left;
+  word-break: break-word;
 
   background-color: var(--color-white);
-
-  &:nth-child(9) {
-    justify-content: center;
-  }
-
-  &:nth-child(10) {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 1025px) {
-  .table_head {
-    font-size: var(--fz-xs2);
-  }
-}
-
-@media (max-width: 769px) {
-  .table_head {
-    font-size: var(--fz-xxs);
-  }
 }

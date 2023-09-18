@@ -6,26 +6,35 @@ import style from './TableHeader.module.scss';
 
 import { ArrowSort } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { tableSortData } from 'pages/supplier-pages/pages/SupplierProducts/utils/tableData';
+import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/hoocks/useUpdateSearchParams';
+import {
+  DEFAULT_QUERY_PARAMS_FOR_URL,
+  QUERY_PARAMS_KEY,
+  QUERY_PARAMS_VALUE,
+} from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParamsConstants';
+import { tableSortData } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/tableData';
 import {
   selectAllProductsSelector,
-  paramsSelector,
   isLoadingSelector,
   selectAllProducts,
-  setParams,
   SortType,
   activeProductSelector,
   deactivatedProductSelector,
-  supplierProductsSelector,
+  productsSelector,
 } from 'store/reducers/supplier/product';
 import { ButtonIcon, Checkbox } from 'ui-kit';
 
 export const TableHeader = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const params = useAppSelector(paramsSelector);
+  const { updateUrlQueryParams, searchParams } = useUpdateSearchParams();
   const activeProduct = useAppSelector(activeProductSelector);
+  const isLoading = useAppSelector(isLoadingSelector);
   const deactivatedProduct = useAppSelector(deactivatedProductSelector);
-  const products = useAppSelector(supplierProductsSelector);
+  const products = useAppSelector(productsSelector);
+  const ascendingQueryParam = searchParams.get(QUERY_PARAMS_KEY.ASCENDING);
+  const sortQueryParam = searchParams.get(QUERY_PARAMS_KEY.SORT);
+  const ascending = ascendingQueryParam || DEFAULT_QUERY_PARAMS_FOR_URL.sortBy;
+  const sort = sortQueryParam || DEFAULT_QUERY_PARAMS_FOR_URL.sortField;
 
   const allProductsAreHandled = products.length
     ? products.every(
@@ -34,7 +43,6 @@ export const TableHeader = (): JSX.Element => {
     : false;
 
   const checked = useSelector(selectAllProductsSelector) || allProductsAreHandled;
-  const isLoading = useAppSelector(isLoadingSelector);
 
   const setAllCheckboxesState = useCallback(
     (e: ChangeEvent<HTMLInputElement>): void => {
@@ -43,25 +51,19 @@ export const TableHeader = (): JSX.Element => {
     [dispatch],
   );
 
-  const onChangeSortData = (sortKey?: string, sortValue?: SortType): void => {
-    if (!sortKey) return;
-    const [[key]] = Object.entries(params).filter(([key]) => key === sortKey);
+  const onChangeSortData = (sortValue?: SortType): void => {
+    if (sortValue === sort) {
+      const newAscendingValue =
+        ascending === QUERY_PARAMS_VALUE.ASCENDING
+          ? QUERY_PARAMS_VALUE.DESCENDING
+          : QUERY_PARAMS_VALUE.ASCENDING;
 
-    if (sortValue === params.sort) {
-      dispatch(
-        setParams({
-          ...params,
-          ascending: !params.ascending,
-        }),
-      );
+      updateUrlQueryParams([[QUERY_PARAMS_KEY.ASCENDING, newAscendingValue]]);
     } else {
-      dispatch(
-        setParams({
-          ...params,
-          [key]: sortValue,
-          ascending: false,
-        }),
-      );
+      updateUrlQueryParams([
+        [QUERY_PARAMS_KEY.ASCENDING, QUERY_PARAMS_VALUE.ASCENDING],
+        [QUERY_PARAMS_KEY.SORT, sortValue],
+      ]);
     }
   };
 
@@ -82,7 +84,7 @@ export const TableHeader = (): JSX.Element => {
             {column.arrow && (
               <ButtonIcon
                 disabled={isLoading}
-                onClick={() => onChangeSortData(column.sortKey, column.sortValue)}
+                onClick={() => onChangeSortData(column.sortValue)}
               >
                 <ArrowSort />
               </ButtonIcon>

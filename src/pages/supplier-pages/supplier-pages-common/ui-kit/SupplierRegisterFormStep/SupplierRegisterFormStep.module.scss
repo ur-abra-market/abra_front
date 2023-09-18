@@ -3,14 +3,14 @@
 }
 
 .title {
-  font-size: var(--fz-xxl2);
+  font-size: var(--fz-xxl);
   font-weight: var(--bold);
   text-align: left;
 }
 
 .description {
   margin-top: 16px;
-  font-size: var(--fz-s2);
+  font-size: var(--fz-s);
   text-align: left;
 }
 
@@ -23,7 +23,7 @@
 .step {
   margin-bottom: 6px;
 
-  font-size: var(--fz-xxl2);
+  font-size: var(--fz-xxl);
   font-weight: var(--bold);
   color: var(--color-gray-light);
   text-align: right;

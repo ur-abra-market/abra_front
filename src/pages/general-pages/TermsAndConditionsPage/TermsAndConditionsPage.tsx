@@ -203,7 +203,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
             <ul>
               <li className={style.li}>Abra</li>
               <li className={style.li}>Antalya, Turkey</li>
-              <li className={style.li}>support@abra-market.com </li>
+              <li className={style.li}>support@abra-market.com</li>
             </ul>
           </p>
           <div className={style.title_block}>12. User Conduct</div>
@@ -304,7 +304,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
             <ul>
               <li className={style.li}>Abra</li>
               <li className={style.li}>Antalya, Turkey</li>
-              <li className={style.li}>support@abra-market.com </li>
+              <li className={style.li}>support@abra-market.com</li>
             </ul>
             Notices shall be deemed to have been given on the date of receipt if delivered
             personally, or on the date of sending if sent by email. We may also provide
@@ -645,7 +645,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
             <ul>
               <li className={style.li}>Abra</li>
               <li className={style.li}>Antalya, Turkey</li>
-              <li className={style.li}>support@abra-market.com </li>
+              <li className={style.li}>support@abra-market.com</li>
             </ul>
           </p>
           <div className={style.title_block}>47. Entire Agreement</div>
@@ -812,7 +812,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
 
       <Footer className={style.footer} variant="default" />
       <div className={style.mobile_copyright}>
-        © 2022 Abra.&nbsp;
+        &#169; Abra 2023 &nbsp;
         <NavLink className={style.link} to={TERMS_AND_CONDITIONS}>
           Terms & conditions
         </NavLink>

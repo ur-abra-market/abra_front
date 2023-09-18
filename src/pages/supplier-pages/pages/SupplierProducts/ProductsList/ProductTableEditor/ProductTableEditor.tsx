@@ -5,7 +5,8 @@ import cn from 'classnames';
 import style from './ProductTableEditor.module.scss';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { productEditorData } from 'pages/supplier-pages/pages/SupplierProducts/utils/tableData';
+import { shouldShowInActiveEdit } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/shouldShowInActiveEdit';
+import { productEditorData } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/tableData';
 import {
   activateProducts,
   activeProductSelector,
@@ -19,7 +20,7 @@ export const ProductTableEditor = (): JSX.Element => {
   const activeProduct = useAppSelector(activeProductSelector);
   const deactivatedProduct = useAppSelector(deactivatedProductSelector);
 
-  const handleClick = (label: string): void => {
+  const onClickHandler = (label: string): void => {
     switch (label) {
       case 'Deactivated product':
         dispatch(deActivateProducts(activeProduct));
@@ -30,33 +31,6 @@ export const ProductTableEditor = (): JSX.Element => {
       default:
     }
   };
-
-  function shouldShowInActiveEdit(
-    activeProduct: number[],
-    deactivatedProduct: number[],
-    label: string,
-  ): boolean {
-    const isActiveProductEmpty = activeProduct.length === 0;
-    const isDeactivatedProductEmpty = deactivatedProduct.length === 0;
-
-    if (label === 'Edit') {
-      const hasSingleElementInArray =
-        (activeProduct.length === 1 && deactivatedProduct.length === 0) ||
-        (activeProduct.length === 0 && deactivatedProduct.length === 1);
-
-      return !hasSingleElementInArray;
-    }
-
-    if (label === 'Activated product') {
-      return !(isActiveProductEmpty && !isDeactivatedProductEmpty);
-    }
-
-    if (label === 'Deactivated product') {
-      return !(isDeactivatedProductEmpty && !isActiveProductEmpty);
-    }
-
-    return false;
-  }
 
   return (
     <div className={style.container}>
@@ -75,7 +49,7 @@ export const ProductTableEditor = (): JSX.Element => {
 
           return (
             <ButtonIcon
-              onClick={() => handleClick(label)}
+              onClick={() => onClickHandler(label)}
               disabled={isEditorDisabled}
               className={productEditorClasses}
               key={id}

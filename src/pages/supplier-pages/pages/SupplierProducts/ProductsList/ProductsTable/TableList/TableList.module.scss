@@ -1,6 +1,8 @@
+@import "src/common/styles/mixins";
+
 .table_row {
   display: grid;
-  grid-template-columns: 4.50% 8.48% 6.83% 33.76% 10.12% 8.33% 6.60% 9.86% 8% 4%;
+  grid-template-columns: 4.50% 8.48% 6.83% 30% 10.12% 8.33% 6.60% 11.72% calc(66px + 1%) 6%;
   grid-template-rows: 1fr;
   align-items: center;
 
@@ -8,18 +10,21 @@
 }
 
 .table_deactivated {
-  .table_td {
-    opacity: .55;
+  .table_td:not(:first-child) {
+    opacity: .4;
   }
 }
 
 .table_td {
+
+  @include fluidFontSize(10px, 15px, 320px, 1376px);
+
   height: 48px;
   max-height: 48px;
 
-  font-size: var(--fz-s);
   font-weight: var(--regular);
   color: var(--color-black);
+  word-break: break-word;
 
   background-color: var(--color-white);
 }
@@ -42,21 +47,7 @@
   align-self: center;
 }
 
-.center {
-  text-align: center;
-}
-
-@media (max-width: 1025px) {
-  .table_td {
-    font-size: var(--fz-xs2);
-  }
-}
-
 @media (max-width: 769px) {
-  .table_td {
-    font-size: var(--fz-xxs);
-  }
-
   .image {
     width: 40px;
     height: 40px;

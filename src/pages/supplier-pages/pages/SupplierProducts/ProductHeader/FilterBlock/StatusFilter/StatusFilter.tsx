@@ -1,39 +1,43 @@
 import React, { useCallback } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
-import { STATUS_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/utils/filterOptions';
+import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/hoocks/useUpdateSearchParams';
 import {
-  paramsSelector,
+  DEFAULT_QUERY_PARAMS_FOR_URL,
+  QUERY_PARAMS_KEY,
+  QUERY_PARAMS_VALUE,
+} from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParamsConstants';
+import { STATUS_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/selectOptions';
+import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
+import {
   isLoadingSelector,
-  setPage,
-  setParams,
+  resetProductStatusSelection,
 } from 'store/reducers/supplier/product';
 import { ISelectOption, Select } from 'ui-kit';
 
 export const StatusFilter = (): JSX.Element => {
-  const params = useAppSelector(paramsSelector);
+  const { updateUrlQueryParams, searchParams } = useUpdateSearchParams();
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
+  const onStatusQueryParam = searchParams.get(QUERY_PARAMS_KEY.STATUS);
+  const isActive = onStatusQueryParam || QUERY_PARAMS_VALUE.ALL;
 
   const onChangeStatusFilter = useCallback(
     (selectOption: ISelectOption) => {
       const { value } = selectOption;
-      const newParams =
-        value === -1
-          ? { ...params, isActive: undefined }
-          : { ...params, isActive: Boolean(value) };
 
-      dispatch(setParams(newParams));
-      dispatch(setPage(1));
+      updateUrlQueryParams([
+        [QUERY_PARAMS_KEY.STATUS, value],
+        [QUERY_PARAMS_KEY.PAGE, DEFAULT_QUERY_PARAMS_FOR_URL.page],
+        [QUERY_PARAMS_KEY.LIMIT, DEFAULT_QUERY_PARAMS_FOR_URL.limit],
+      ]);
+
+      dispatch(resetProductStatusSelection());
     },
-    [dispatch, params],
+    [updateUrlQueryParams, dispatch],
   );
 
-  const controlledValue =
-    params.isActive === undefined
-      ? STATUS_SELECT[0]
-      : STATUS_SELECT.find(el => el.value >= 0 && !!el.value === params.isActive);
+  const controlledValue = STATUS_SELECT.find(el => el.value === isActive);
 
   return (
     <div className={style.filter}>

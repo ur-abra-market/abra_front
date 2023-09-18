@@ -5,7 +5,7 @@
 }
 
 .header {
-  font-size: var(--fz-l2);
+  font-size: var( --fz-l-2);
   font-weight: var(--bold);
   font-style: normal;
   line-height: 24px;
@@ -16,7 +16,7 @@
 .header_link {
   cursor: pointer;
 
-  font-size: var(--fz-s2);
+  font-size: var(--fz-s);
   font-weight: var(--regular);
   font-style: normal;
   line-height: 20px;
@@ -40,7 +40,7 @@
 }
 
 .no_address {
-  font-size: var(--fz-s2);
+  font-size: var(--fz-s);
   font-weight: 400;
   font-style: normal;
   line-height: 20px;

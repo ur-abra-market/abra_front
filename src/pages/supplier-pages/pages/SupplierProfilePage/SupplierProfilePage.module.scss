@@ -67,6 +67,10 @@
   .business_profile {
     padding: 16px;
   }
+
+  .account_management {
+    gap: 28px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -87,5 +91,9 @@
       'notifications'
       'account_details';
     grid-template-columns: auto;
+  }
+
+  .account_management {
+    gap: 8px;
   }
 }
