@@ -9,12 +9,15 @@ import {
 } from 'assets/icons';
 import { ORDER_HISTORY } from 'routes';
 import { Button, SimpleLink } from 'ui-kit';
+import { Title } from 'ui-kit/Title/Title';
 
 export const Orders = (): JSX.Element => {
   return (
     <>
       <div className={style.header}>
-        <h3 className={style.title}>Orders</h3>
+        <Title as="h3" font="xs">
+          Orders
+        </Title>
         <SimpleLink color="accent" to={ORDER_HISTORY}>
           View All
         </SimpleLink>

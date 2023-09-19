@@ -19,6 +19,7 @@ import {
   userPersonalInfoSelector,
 } from 'store/reducers/userSlice';
 import { Button } from 'ui-kit';
+import { Title } from 'ui-kit/Title/Title';
 
 export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -81,7 +82,9 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
   return (
     <div className={style.wrapper}>
       <div className={style.header}>
-        <h3 className={style.title}>Personal Info</h3>
+        <Title font="xs" className={style.title}>
+          Personal Info
+        </Title>
         <ButtonLogout withIcon />
       </div>
 

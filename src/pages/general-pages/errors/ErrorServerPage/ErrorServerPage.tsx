@@ -6,6 +6,7 @@ import { ReactComponent as HomeIcon } from 'assets/icons/files/home.svg';
 import { Footer } from 'layouts';
 import { HOME } from 'routes';
 import { Button, ButtonIcon, MainLogo } from 'ui-kit';
+import { Title } from 'ui-kit/Title/Title';
 
 export const ErrorServerPage = (): JSX.Element => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export const ErrorServerPage = (): JSX.Element => {
     <section className={styles.wrapper}>
       <div className={styles.header_wrapper}>
         <div className={styles.header}>
-          <MainLogo className={styles.logo} />
+          <MainLogo />
 
           <ButtonIcon onClick={() => navigate(HOME)}>
             <HomeIcon className={styles.icon_home} />
@@ -23,7 +24,7 @@ export const ErrorServerPage = (): JSX.Element => {
       </div>
 
       <div className={styles.error_page}>
-        <h2>Server Error</h2>
+        <Title font="s">Server Error</Title>
         <Button className={styles.button} label="Retry" onClick={() => navigate(-1)} />
       </div>
 

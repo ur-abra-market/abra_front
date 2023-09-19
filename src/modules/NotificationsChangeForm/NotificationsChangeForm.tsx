@@ -8,6 +8,7 @@ import { INotificationSupplierData } from 'pages/supplier-pages/pages/SupplierPr
 import { ISellerNotifications } from 'services/seller/seller.serviceTypes';
 import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
 import { Checkbox } from 'ui-kit';
+import { Title } from 'ui-kit/Title/Title';
 
 interface INotificationsChangeForm {
   callBack: (id: string, value: boolean) => void;
@@ -28,7 +29,9 @@ export const NotificationsChangeForm: FC<INotificationsChangeForm> = ({
 
   return (
     <>
-      <div className={style.title}>Notifications</div>
+      <Title as="h3" font="xs">
+        Notifications
+      </Title>
       <div className={style.notifications_list}>
         {notificationsData.map(el => {
           return (

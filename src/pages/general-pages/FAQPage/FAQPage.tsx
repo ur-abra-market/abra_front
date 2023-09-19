@@ -9,6 +9,7 @@ import { ContentBox } from '.';
 import { WithLayout } from 'common/hocs/WithLayout';
 import { CONTACT } from 'routes';
 import { SimpleLink } from 'ui-kit';
+import { Title } from 'ui-kit/Title/Title';
 
 const FAQData = [
   {
@@ -82,7 +83,7 @@ const FAQData = [
 export const FAQPage = WithLayout((): JSX.Element => {
   return (
     <div className={style.container}>
-      <p className={style.title}>FAQs</p>
+      <Title className={style.title}>FAQs</Title>
       <div className={style.content}>
         {FAQData.map(el => (
           <ContentBox key={el.id} question={el.question} answer={el.answer} />

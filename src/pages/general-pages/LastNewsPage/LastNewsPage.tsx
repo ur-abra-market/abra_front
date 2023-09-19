@@ -5,6 +5,7 @@ import style from './LastNews.module.scss';
 import { News } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
+import { Title } from 'ui-kit/Title/Title';
 
 export const LastNewsPage = WithLayout((): JSX.Element => {
   const [text] = useState([
@@ -18,7 +19,7 @@ export const LastNewsPage = WithLayout((): JSX.Element => {
 
   return (
     <div className={style.container}>
-      <h2>Coming soon...</h2>
+      <Title>Coming soon...</Title>
       {/* <p className={style.last_news}>Last News</p> */}
       {/* <div className={style.container_block}> */}
       {/*  {text.map((el, index) => { */}

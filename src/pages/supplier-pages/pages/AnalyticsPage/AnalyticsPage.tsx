@@ -3,11 +3,12 @@ import React from 'react';
 import style from './AnalyticsPage.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
+import { Title } from 'ui-kit/Title/Title';
 
 export const AnalyticsPage = WithLayout((): JSX.Element => {
   return (
     <div className={style.analytics_page_container}>
-      <h2>Coming soon...</h2>
+      <Title>Coming soon...</Title>
     </div>
   );
 }, 'supplier');

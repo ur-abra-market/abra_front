@@ -18,6 +18,7 @@ import { Carousel } from '.';
 
 import { ArrowIcon } from 'assets/icons'; // 24px
 import { ButtonIcon } from 'ui-kit';
+import { Title } from 'ui-kit/Title/Title';
 
 interface IProductsPreview
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -100,7 +101,7 @@ export const ProductsPreview: FC<IProductsPreview> = ({
     <div ref={containerRef} className={cn(style.container, className)} {...restProps}>
       <div className={style.inner}>
         <div className={style.title_box}>
-          <h2 className={style.title}>{title}</h2>
+          <Title className={style.title}>{title}</Title>
           {href && (
             <Link className={style.link} to={href}>
               See all

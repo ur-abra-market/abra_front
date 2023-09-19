@@ -3,11 +3,12 @@ import React from 'react';
 import style from './AboutUsPage.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
+import { Title } from 'ui-kit/Title/Title';
 
 export const AboutUsPage = WithLayout((): JSX.Element => {
   return (
     <div className={style.container}>
-      <h2 className={style.title}>About Us</h2>
+      <Title>About Us</Title>
 
       <div className={style.container_text}>
         <div className={style.title_block}>

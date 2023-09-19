@@ -5,10 +5,11 @@ import style from './SellAbra.module.scss';
 import { Item } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
+import { Title } from 'ui-kit/Title/Title';
 
 export const SellAbraPage = WithLayout(() => (
   <div className={style.container}>
-    <h2 className={style.title}>Sell on Abra</h2>
+    <Title className={style.title}>Sell on Abra</Title>
     <div>
       <Item
         description="You only need email and password"
