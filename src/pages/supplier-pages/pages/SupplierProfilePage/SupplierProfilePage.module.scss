@@ -10,7 +10,7 @@
   grid-template-areas:
     'personal_info business_profile notifications'
     'account_details business_profile notifications';
-  grid-template-columns: minmax(auto, 495px) minmax(auto, 585px) minmax(auto, 270px);
+  grid-template-columns: minmax(auto, 25%) minmax(auto, 55%) minmax(auto, 20%);
   grid-template-rows: auto 1fr;
 
   max-width: var(--main-content-width);
@@ -39,13 +39,13 @@
   border-radius: 12px;
 }
 
-@media only screen and (max-width: 1250px) {
+@media only screen and (max-width: 1280px) {
   .content_container {
     grid-template-areas:
       'personal_info business_profile'
       'notifications business_profile'
       'account_details business_profile';
-    grid-template-columns: minmax(auto, 500px) minmax(auto, 700px);
+    grid-template-columns: minmax(auto, 32%) minmax(auto, 68%);
     padding: 12px 16px 16px;
   }
 }
@@ -57,7 +57,7 @@
       'personal_info business_profile'
       'notifications business_profile'
       'account_details business_profile';
-    grid-template-columns: minmax(auto, 450px) minmax(auto, 550px);
+    grid-template-columns: minmax(auto, 32%) minmax(auto, 68%);
   }
 
   .notifications {
@@ -67,10 +67,6 @@
   .business_profile {
     padding: 16px;
   }
-
-  .account_management {
-    gap: 42px;
-  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -79,7 +75,11 @@
       'personal_info personal_info'
       'business_profile business_profile'
       'notifications account_details';
-    grid-template-columns: auto auto;
+    grid-template-columns: minmax(auto, 55%) minmax(auto, 45%);
+  }
+
+  .account_management {
+    gap: 42px;
   }
 }
 
