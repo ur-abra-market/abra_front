@@ -24,6 +24,10 @@
 }
 
 @media only screen and (max-width: 1000px) {
+  .header {
+    margin-bottom: 0;
+  }
+
   .wrapper {
     padding: 16px;
   }
