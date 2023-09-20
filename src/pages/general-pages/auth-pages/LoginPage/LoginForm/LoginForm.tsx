@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -36,14 +36,18 @@ export const LoginForm = (): JSX.Element => {
   const navigate = useNavigate();
   const isAuthorized = useAppSelector(isAuthorizedSelector);
   const isLoading = useAppSelector(loadingSelector) === LoadingStatusEnum.Loading;
-
   const {
     register,
     formState: { isValid, errors },
+    setFocus,
     handleSubmit,
   } = useForm<ILoginFormData>({
     resolver: yupResolver(formValidationSchema),
     mode: 'all',
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   });
 
   const onSubmit = (data: ILoginFormData): void => {
@@ -53,6 +57,10 @@ export const LoginForm = (): JSX.Element => {
   useEffect(() => {
     if (isAuthorized) navigate(HOME);
   }, [isAuthorized]);
+
+  useEffect(() => {
+    setFocus('email');
+  }, []);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
