@@ -7,10 +7,11 @@ import style from './MainLogo.module.scss';
 
 interface IMainLogo {
   className?: string;
+  variant?: 'm' | 's';
 }
 
-export const MainLogo: FC<IMainLogo> = ({ className }): JSX.Element => {
-  const titleClasses = cn(style.link, className);
+export const MainLogo: FC<IMainLogo> = ({ className, variant = 's' }): JSX.Element => {
+  const titleClasses = cn(style.link, style[variant], className);
 
   return (
     <Link to="/" className={titleClasses}>
