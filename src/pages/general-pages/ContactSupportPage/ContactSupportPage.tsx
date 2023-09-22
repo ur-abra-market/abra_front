@@ -5,7 +5,7 @@ import style from './ContactSupport.module.scss';
 import { Banner3Image } from 'assets/images';
 import { WithLayout } from 'common/hocs/WithLayout';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
-import { SocialNetworks, WhatsappPhoneNumber } from 'ui-kit';
+import { SocialNetworks, WhatsappPhoneNumber, Title } from 'ui-kit';
 
 export const ContactSupportPage = WithLayout(() => {
   return (
@@ -15,7 +15,7 @@ export const ContactSupportPage = WithLayout(() => {
       </div>
 
       <div className={style.content_container}>
-        <h2 className={style.title}>Got any questions? Contact us via WhatsApp</h2>
+        <Title>Got any questions? Contact us via WhatsApp</Title>
 
         <div className={style.contacts}>
           <WhatsappPhoneNumber />

@@ -9,7 +9,7 @@ export const Top = (): JSX.Element => {
   return (
     <div className={style.wrapper}>
       <div className={style.container}>
-        <MainLogo className={style.logo} />
+        <MainLogo />
         <Search placeholder="Search" />
         <HeaderActions />
       </div>

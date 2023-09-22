@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import style from './OrderHistoryPage.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
-import { Search } from 'ui-kit';
+import { Search, Title } from 'ui-kit';
 
 type LinkType = 'All' | 'Preparing' | 'In progress' | 'Completed';
 type OrderType = {
@@ -68,7 +68,7 @@ export const OrderHistoryPage = WithLayout((): JSX.Element => {
     <div className={style.wrapper}>
       <div className={style.main}>
         <div className={style.head}>
-          <h2 className={style.title}>Order History</h2>
+          <Title>Order History</Title>
           <Search className={style.search} placeholder="Search by product name" />
         </div>
 
@@ -90,7 +90,7 @@ export const OrderHistoryPage = WithLayout((): JSX.Element => {
             {ordersArray.map((order, index) => (
               <li key={index} className={style.item}>
                 <div className={style.info}>
-                  <h3 className={style.number}>Order No: {order.number}</h3>
+                  <p className={style.number}>Order No: {order.number}</p>
                   <p className={style.number}>Total: ...</p>
                   <p className={style.date}>{order.date}</p>
                   <div className={style.details}>

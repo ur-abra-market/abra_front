@@ -29,7 +29,7 @@ export const AdditionalHeaderBlock = (): JSX.Element => {
     <nav className={style.header_wrapper}>
       <div className={style.header_container}>
         <div className={style.header_block}>
-          <MainLogo className={style.header_logo} />
+          <MainLogo />
 
           {isAuthorized ? (
             <ButtonIcon onClick={handleProfileTransition}>
