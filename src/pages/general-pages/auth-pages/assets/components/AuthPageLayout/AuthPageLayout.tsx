@@ -37,7 +37,7 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
         {isLoading === LoadingStatusEnum.Loading && <LoaderLinear />}
         {isMainLogoShow && (
           <>
-            <MainLogo />
+            <MainLogo className={style.logo} />
             <div className={style.subtitle}>Start buying in bulk now!</div>
           </>
         )}

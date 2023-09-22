@@ -25,10 +25,10 @@
   }
 }
 
-@mixin content_container {
+@mixin content_container($margin: 0) {
   width: 100%;
   max-width: var(--main-content-width);
-  margin: 0 auto;
+  margin: $margin auto;
   padding: 0 32px;
 
   @media only screen and (max-width: 768px) {
@@ -64,10 +64,6 @@
   grid-area: account_details;
   flex-direction: column;
   gap: 8px;
-}
-
-@mixin margin($top: 0, $right: 0, $bottom: 0, $left: 0) {
-  margin: $top $right $bottom $left;
 }
 
 @function calc-fluid-font-size($fMin, $fMax, $vMin, $vMax) {

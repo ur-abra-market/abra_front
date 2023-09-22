@@ -1,8 +1,7 @@
 @import "src/common/styles/mixins";
 
 .container {
-  @include content_container;
-  @include margin(40px, auto);
+  @include content_container(40px);
 }
 
 .container_text {
