@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 
+import { maxPasswordLength, minPasswordLength } from './constants';
 import style from './PasswordComplexity.module.scss';
 
 import { ReliabilityIndicator } from '.';
@@ -9,7 +10,7 @@ interface IPasswordComplexity {
 }
 
 interface IPassword {
-  minLength: boolean;
+  passwordLength: boolean;
   digitSymbol: boolean;
   capitalSymbol: boolean;
   containsSpecSymbols: boolean;
@@ -26,9 +27,11 @@ export const PasswordComplexity: FC<IPasswordComplexity> = ({ password }) => {
     const specSymbolRegExp = /[!#+*]/g;
     const withoutSpaceRegExp = /^[^]*\s[^]*$/;
     const lowerCaseRegExp = /[a-z]/g;
+    const successPassword =
+      password?.length >= minPasswordLength && password?.length <= maxPasswordLength;
 
     setPasswordValidity({
-      minLength: password?.length >= 8 && password?.length <= 30,
+      passwordLength: successPassword,
       digitSymbol: digitRegExp.test(password),
       capitalSymbol: capitalRegExp.test(password),
       containsSpecSymbols: specSymbolRegExp.test(password),
@@ -50,7 +53,7 @@ export const PasswordComplexity: FC<IPasswordComplexity> = ({ password }) => {
       <ReliabilityIndicator text="1 number" isValid={passwordValidity?.digitSymbol} />
       <ReliabilityIndicator
         text="from 8 to 30 characters"
-        isValid={passwordValidity?.minLength}
+        isValid={passwordValidity?.passwordLength}
       />
       <ReliabilityIndicator
         text="!/#/+/*"

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
@@ -35,6 +35,7 @@ export const RegisterForm = (): JSX.Element => {
     watch,
     formState: { isValid, errors },
     setFocus,
+    clearErrors,
     handleSubmit,
   } = useForm<IRegisterFormData>({
     resolver: yupResolver(formValidationSchema),
@@ -43,6 +44,7 @@ export const RegisterForm = (): JSX.Element => {
 
   const handleButtonUserRoleOnClick = (userStatus: ResponseUserRoleType): void => {
     setUserRole(userStatus);
+    clearErrors();
   };
 
   const onSubmit = async (data: IRegisterFormData): Promise<void> => {

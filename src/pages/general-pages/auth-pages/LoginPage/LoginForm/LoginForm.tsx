@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -40,6 +40,7 @@ export const LoginForm = (): JSX.Element => {
     register,
     formState: { isValid, errors },
     setFocus,
+    clearErrors,
     handleSubmit,
   } = useForm<ILoginFormData>({
     resolver: yupResolver(formValidationSchema),
