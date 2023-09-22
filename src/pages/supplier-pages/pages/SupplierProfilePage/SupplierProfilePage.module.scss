@@ -10,7 +10,7 @@
   grid-template-areas:
     'personal_info business_profile notifications'
     'account_details business_profile notifications';
-  grid-template-columns: minmax(auto, 25%) minmax(auto, 55%) minmax(auto, 20%);
+  grid-template-columns: minmax(auto, 30%) minmax(auto, 46%) minmax(auto, 24%);
   grid-template-rows: auto 1fr;
 
   max-width: var(--main-content-width);
@@ -22,64 +22,53 @@
   @include account_layout;
 }
 
-.business_profile {
-  grid-area: business_profile;
+@mixin block_container {
+  height: fit-content;
   padding: 32px;
   background: var(--color-white);
   border-radius: 12px;
+}
+
+.business_profile {
+  @include block_container;
+
+  grid-area: business_profile;
 }
 
 .notifications {
+  @include block_container;
+
   grid-area: notifications;
-
-  height: fit-content;
-  padding: 32px;
-
-  background: var(--color-white);
-  border-radius: 12px;
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1200px) {
   .content_container {
     grid-template-areas:
       'personal_info business_profile'
       'notifications business_profile'
       'account_details business_profile';
-    grid-template-columns: minmax(auto, 34%) minmax(auto, 66%);
+    grid-template-columns: minmax(auto, 40%) minmax(auto, 60%);
     padding: 12px 16px 16px;
   }
 }
 
-@media only screen and (max-width: 1000px) {
-  .content_container {
-    grid-gap: 12px;
-    grid-template-areas:
-      'personal_info business_profile'
-      'notifications business_profile'
-      'account_details business_profile';
-    grid-template-columns: minmax(auto, 34%) minmax(auto, 66%);
-  }
-
-  .notifications, .business_profile {
-    padding: 16px;
+@media only screen and (max-width: 800px) {
+  @mixin block_container {
+    padding: 26px 20px 20px;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .content_container {
     grid-template-areas:
-      'personal_info personal_info'
+      'personal_info personal_info '
       'business_profile business_profile'
       'notifications account_details';
-    grid-template-columns: minmax(auto, 55%) minmax(auto, 45%);
-  }
-
-  .account_management {
-    gap: 42px;
+    grid-template-columns: minmax(auto, 50%) minmax(auto, 50%);
   }
 }
 
-@media only screen and (max-width: 485px) {
+@media only screen and (max-width: 580px) {
   .content_container {
     grid-template-areas:
       'personal_info'
@@ -87,9 +76,5 @@
       'notifications'
       'account_details';
     grid-template-columns: auto;
-  }
-
-  .account_management {
-    gap: 8px;
   }
 }
