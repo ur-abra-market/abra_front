@@ -7,7 +7,7 @@ import style from './PrivacyPolicy.module.scss';
 import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
 import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from 'routes';
-import { Title } from 'ui-kit/Title/Title';
+import { Title } from 'ui-kit';
 
 export const PrivacyPolicyPage = (): JSX.Element => {
   return (
@@ -16,7 +16,7 @@ export const PrivacyPolicyPage = (): JSX.Element => {
       <AdditionalHeaderBlock />
 
       <div className={style.container}>
-        <Title as="h1" font="xl">
+        <Title as="h1" size="xl">
           Privacy Policy
         </Title>
         <div className={style.container_text}>

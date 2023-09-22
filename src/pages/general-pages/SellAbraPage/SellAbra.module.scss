@@ -2,13 +2,11 @@
 
 .container {
   @include content_container;
-
-  margin: 40px auto;
+  @include margin(40px, auto);
 }
 
-.title {
-  margin-bottom: 48px;
-  letter-spacing: 0.41px;
+.wrapper {
+  margin-top: 48px;
 }
 
 @media (max-width: 768px) {

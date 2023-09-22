@@ -5,7 +5,7 @@ import style from './LastNews.module.scss';
 import { News } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
-import { Title } from 'ui-kit/Title/Title';
+import { Title } from 'ui-kit';
 
 export const LastNewsPage = WithLayout((): JSX.Element => {
   const [text] = useState([

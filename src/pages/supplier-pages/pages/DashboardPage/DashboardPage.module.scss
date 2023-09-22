@@ -2,6 +2,5 @@
 
 .dashboard_container {
   @include content_container;
-
-  margin: 40px auto;
+  @include margin(40px, auto);
 }

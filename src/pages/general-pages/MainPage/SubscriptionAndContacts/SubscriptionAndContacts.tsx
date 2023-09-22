@@ -2,8 +2,7 @@ import React from 'react';
 
 import style from './SubscriptionAndContacts.module.scss';
 
-import { Button, Input, SocialNetworks, WhatsappPhoneNumber } from 'ui-kit';
-import { Title } from 'ui-kit/Title/Title';
+import { Button, Input, SocialNetworks, WhatsappPhoneNumber, Title } from 'ui-kit';
 
 export const SubscriptionAndContacts = (): JSX.Element => {
   return (
@@ -11,7 +10,7 @@ export const SubscriptionAndContacts = (): JSX.Element => {
       <div className={style.container}>
         <div className={style.subscribe_wrapper}>
           <Title className={style.subscribe_title}>
-            <span>Do you want to be the first</span>
+            Do you want to be the first
             <span className={style.subscribe_subtitle}>
               to know about new products and hype products?
             </span>
@@ -24,7 +23,7 @@ export const SubscriptionAndContacts = (): JSX.Element => {
         </div>
         <div className={style.our_media}>
           <div className={style.feedback_wrapper}>
-            <Title className={style.phone_title} as="h3" font="s" weight="semi_bold">
+            <Title className={style.phone_title} as="h3" size="s" weight="semi_bold">
               Contact Us via WhatsApp
             </Title>
             <WhatsappPhoneNumber />

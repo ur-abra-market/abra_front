@@ -2,7 +2,7 @@ import React from 'react';
 
 import style from './FeedBacksProduct.module.scss';
 
-import { Title } from 'ui-kit/Title/Title';
+import { Title } from 'ui-kit';
 
 export const FeedBacksProduct = (): JSX.Element => {
   return (

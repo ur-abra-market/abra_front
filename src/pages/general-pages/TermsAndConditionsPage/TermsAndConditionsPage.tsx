@@ -7,7 +7,7 @@ import style from './TermsAndConditions.module.scss';
 import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
 import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from 'routes';
-import { Title } from 'ui-kit/Title/Title';
+import { Title } from 'ui-kit';
 
 export const TermsAndConditionsPage = (): JSX.Element => {
   return (
@@ -16,7 +16,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
       <AdditionalHeaderBlock />
 
       <div className={style.container}>
-        <Title as="h1" font="xl">
+        <Title as="h1" size="xl">
           Terms & conditions
         </Title>
         <div className={style.container_text}>

@@ -1,12 +1,11 @@
-.title {
-  height: fit-content;
-  color: var(--color-red);
-}
-
 .link {
   display: inline-block;
+
+  height: fit-content;
+
+  font-weight: var(--bold);
   line-height: 100%;
-  color: inherit;
+  color: var(--color-red);
 
   &:focus-visible {
     border-radius: 4px;

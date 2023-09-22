@@ -8,7 +8,7 @@ import { useAppSelector } from 'common/hooks';
 import Modal from 'elements/Modal';
 import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
 import { sellerAddressesSelector } from 'store/reducers/seller/profile/selectors';
-import { Title } from 'ui-kit/Title/Title';
+import { Title } from 'ui-kit';
 
 export const SellerAddresses = (): JSX.Element => {
   const addresses = useAppSelector(sellerAddressesSelector);
@@ -21,7 +21,7 @@ export const SellerAddresses = (): JSX.Element => {
   return (
     <>
       <div className={style.header_wrapper}>
-        <Title as="h3" font="xs">
+        <Title as="h3" size="xs">
           My Addresses
         </Title>
         <button

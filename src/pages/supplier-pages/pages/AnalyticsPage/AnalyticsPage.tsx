@@ -3,7 +3,7 @@ import React from 'react';
 import style from './AnalyticsPage.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
-import { Title } from 'ui-kit/Title/Title';
+import { Title } from 'ui-kit';
 
 export const AnalyticsPage = WithLayout((): JSX.Element => {
   return (

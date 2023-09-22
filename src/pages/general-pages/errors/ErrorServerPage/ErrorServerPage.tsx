@@ -5,8 +5,7 @@ import styles from './ErrorServerPage.module.scss';
 import { ReactComponent as HomeIcon } from 'assets/icons/files/home.svg';
 import { Footer } from 'layouts';
 import { HOME } from 'routes';
-import { Button, ButtonIcon, MainLogo } from 'ui-kit';
-import { Title } from 'ui-kit/Title/Title';
+import { Button, ButtonIcon, MainLogo, Title } from 'ui-kit';
 
 export const ErrorServerPage = (): JSX.Element => {
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ export const ErrorServerPage = (): JSX.Element => {
       </div>
 
       <div className={styles.error_page}>
-        <Title font="s">Server Error</Title>
+        <Title size="s">Server Error</Title>
         <Button className={styles.button} label="Retry" onClick={() => navigate(-1)} />
       </div>
 

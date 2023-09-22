@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import style from './OrderDetails.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
-import { Title } from 'ui-kit/Title/Title';
+import { Title } from 'ui-kit';
 
 export const OrderDetailsPage = WithLayout((): JSX.Element => {
   return (
     <div className={style.wrapper}>
       <div className={style.main}>
         <div className={style.order_details}>
-          <Title className={style.title}>Order Details</Title>
+          <Title>Order Details</Title>
           <div className={style.order_info}>
             <div className={style.order_info_item}>
               <p>Status:</p>

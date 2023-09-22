@@ -6,7 +6,7 @@ import { useAppSelector } from 'common/hooks';
 import { Tags } from 'elements';
 // import { ProductColor } from 'elements';
 import { productNameSelector, productTagsSelector } from 'store/reducers/productSlice';
-import { Title } from 'ui-kit/Title/Title';
+import { Title } from 'ui-kit';
 
 export const ProductDetails = (): JSX.Element => {
   const title = useAppSelector(productNameSelector);

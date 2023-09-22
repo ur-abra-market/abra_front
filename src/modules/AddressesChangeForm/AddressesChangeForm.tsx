@@ -15,8 +15,7 @@ import {
   deleteSellerAddress,
   ISellerAddress,
 } from 'store/reducers/seller/profile';
-import { Button, Checkbox, Input, Label, Select } from 'ui-kit';
-import { Title } from 'ui-kit/Title/Title';
+import { Button, Checkbox, Input, Label, Select, Title } from 'ui-kit';
 
 interface IAddressesChangeForm {
   onSubmit: (data: ISellerAddress) => Promise<void>;
@@ -60,7 +59,7 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
     <form onSubmit={handleSubmit(onSubmit)} className={style.address_form}>
       <fieldset disabled={isLoading}>
         <div className={style.address_form_header}>
-          <Title as="h4" font="xs">
+          <Title as="h4" size="xs">
             {isEditForm ? 'Edit Address' : 'Add Address'}
           </Title>
           <div className={style.address_form_checkbox}>

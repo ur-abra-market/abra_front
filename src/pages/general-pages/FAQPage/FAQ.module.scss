@@ -2,19 +2,14 @@
 
 .container {
   @include content_container;
-
-  margin: 40px auto;
-}
-
-.title {
-  margin-bottom: 28px;
-  letter-spacing: 0.41px;
+  @include margin(40px, auto);
 }
 
 .content {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 28px;
 }
 
 .container .link_text {

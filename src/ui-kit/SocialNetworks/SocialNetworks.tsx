@@ -26,7 +26,7 @@ export const SocialNetworks: FC<SocialProps> = ({ className }): JSX.Element => {
 
   return (
     <div className={className}>
-      <Title as="h3" font="s" weight="semi_bold" className={style.title}>
+      <Title as="h3" size="s" weight="semi_bold" className={style.title}>
         We in social media
       </Title>
       <ul className={style.networks_list}>{networks}</ul>

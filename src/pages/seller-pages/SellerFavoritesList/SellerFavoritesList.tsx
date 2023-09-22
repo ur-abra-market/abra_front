@@ -3,8 +3,7 @@ import React from 'react';
 import style from './SellerFavoritesList.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
-import { ButtonQuestion, Search } from 'ui-kit';
-import { Title } from 'ui-kit/Title/Title';
+import { ButtonQuestion, Search, Title } from 'ui-kit';
 
 export const SellerFavoritesList = WithLayout((): JSX.Element => {
   const arr = [];

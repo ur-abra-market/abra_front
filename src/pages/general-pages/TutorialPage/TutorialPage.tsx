@@ -3,7 +3,7 @@ import React from 'react';
 import style from './Tutorial.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
-import { Title } from 'ui-kit/Title/Title';
+import { Title } from 'ui-kit';
 
 export const TutorialPage = WithLayout((): JSX.Element => {
   return (
