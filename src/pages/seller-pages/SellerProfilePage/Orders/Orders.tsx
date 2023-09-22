@@ -8,13 +8,15 @@ import {
   OrderStatusUnpaidIcon,
 } from 'assets/icons';
 import { ORDER_HISTORY } from 'routes';
-import { Button, SimpleLink } from 'ui-kit';
+import { Button, SimpleLink, Title } from 'ui-kit';
 
 export const Orders = (): JSX.Element => {
   return (
     <>
       <div className={style.header}>
-        <h3 className={style.title}>Orders</h3>
+        <Title as="h3" size="xs">
+          Orders
+        </Title>
         <SimpleLink color="accent" to={ORDER_HISTORY}>
           View All
         </SimpleLink>

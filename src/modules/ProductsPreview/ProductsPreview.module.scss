@@ -25,10 +25,6 @@
   // ? - how to set var(--fz-xxl) <34px> to scss func todo
   @include fluidFontSize(22px, 34px);
 
-  font-family: var(--roboto);
-  font-weight: var(--bold);
-  font-style: normal;
-  line-height: 100%;
   color: var(--color-black);
 }
 

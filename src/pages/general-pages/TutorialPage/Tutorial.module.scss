@@ -1,9 +1,7 @@
 @import "src/common/styles/mixins";
 
 .container {
-  @include content_container;
-
-  margin: 48px auto;
+  @include content_container(40px);
 }
 
 .title {

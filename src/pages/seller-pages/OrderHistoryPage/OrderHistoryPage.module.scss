@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 48px 0 128px;
+  padding: 40px 0 128px;
   background: #F9F9F9;
 }
 
@@ -17,11 +17,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.title {
-  font-weight: var(--bold);
-  line-height: 25px;
 }
 
 .search {
