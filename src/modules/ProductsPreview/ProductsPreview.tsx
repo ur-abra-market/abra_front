@@ -17,8 +17,7 @@ import style from './ProductsPreview.module.scss';
 import { Carousel } from '.';
 
 import { ArrowIcon } from 'assets/icons'; // 24px
-import { ButtonIcon } from 'ui-kit';
-import { Title } from 'ui-kit';
+import { ButtonIcon, Title } from 'ui-kit';
 
 interface IProductsPreview
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
