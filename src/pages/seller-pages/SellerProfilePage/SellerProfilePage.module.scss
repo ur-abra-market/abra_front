@@ -6,22 +6,19 @@
   background: var(--color-white-snow);
 }
 
-.content_container {
-  display: grid;
-  grid-column-gap: 12px;
-  grid-template-areas:
-    'personal_info business_info notifications'
-    'account_managment business_info notifications';
-  grid-template-columns: minmax(auto, 495px) minmax(auto, 585px) minmax(auto, 270px);
-  grid-template-rows: auto 1fr;
-
-  max-width: var(--main-content-width);
-  margin: 0 auto;
-  padding: 12px 32px 17px;
+.personal_info {
+  display: flex;
+  grid-area: personal_info;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.personal_info {
-  grid-area: personal_info;
+.orders {
+  grid-area: orders;
+}
+
+.seller_addresses {
+  grid-area: seller_addresses;
 }
 
 .account_management {
@@ -30,42 +27,64 @@
   grid-area: account_managment;
 }
 
-.business_info {
-  grid-area: business_info;
-}
 
 .notifications {
+  display: flex;
   grid-area: notifications;
+  flex-direction: column;
+  gap: 20px;
 }
+
+.content_container {
+  display: grid;
+  grid-column-gap: 12px;
+  grid-template-areas:
+    'personal_info orders notifications'
+    'personal_info seller_addresses notifications'
+    'personal_info . notifications'
+    'account_managment . .';
+  grid-template-columns: minmax(auto, 30%) minmax(auto, 46%) minmax(auto, 24%);
+  grid-template-rows: 25% 21% 16% 39%;
+
+  max-width: var(--main-content-width);
+  margin: 0 auto;
+  padding: 12px 32px 17px;
+}
+
 
 @media only screen and (max-width: 1250px) {
   .content_container {
     grid-template-areas:
-      'personal_info business_info'
+      'personal_info orders'
+      'personal_info seller_addresses'
+      'personal_info notifications'
       'account_managment notifications';
-    grid-template-columns: minmax(auto, 500px) minmax(auto, 700px);
+    grid-template-columns: minmax(auto, 40%) minmax(auto, 60%);
+    grid-template-rows: 23% 20% 16% 42%;
     padding: 12px 16px;
   }
 
 
-  .business_info > div {
-    margin-bottom: 50px;
+  .personal_info {
+    grid-row: 1/4;
+  }
+
+  .orders {
+    grid-row: 1/2;
+  }
+
+  .seller_addresses {
+    grid-row: 2/3;
+  }
+
+  .notifications {
+    grid-row: 3/5;
   }
 
   .account_management {
-    gap: 36px;
+    grid-row: 4/5;
   }
 
-}
-
-@media only screen and (max-width: 1000px) {
-  .content_container {
-    grid-template-columns: minmax(auto, 450px) minmax(auto, 550px);
-  }
-
-  .notifications, .business_profile, .personal_info, .account_management > div {
-    padding: 32px;
-  }
 
 }
 
@@ -73,42 +92,66 @@
   .content_container {
     grid-template-areas:
       'personal_info personal_info'
-      'business_info business_info'
-      'account_managment notifications ';
-    grid-template-columns: auto;
+      'orders orders'
+      'seller_addresses seller_addresses'
+      'notifications account_managment';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+  }
+
+  .personal_info {
+    grid-row: 1/2;
+  }
+
+  .orders {
+    grid-row: 2/3;
+  }
+
+  .seller_addresses {
+    grid-row: 3/4;
   }
 
   .notifications {
-    padding: 16px 32px;
-  }
-
-  .business_info > div {
-    margin-bottom: 10px;
-  }
-
-
-}
-
-@media only screen and (max-width: 468px) {
-  .content_container {
-    grid-template-areas:
-      'personal_info'
-      'business_info'
-      'notifications'
-      'account_managment';
-    padding: 12px 0 32px;
-  }
-
-  .business_info > div {
-    margin-bottom: 32px;
+    grid-row: 4/5;
   }
 
   .account_management {
-    gap: 8px;
+    grid-row: 4/5;
   }
 
+}
 
-  .notifications, .business_profile, .personal_info, .account_management > div, .section {
-    padding: 16px;
+@media only screen and (max-width: 560px) {
+  .content_container {
+    grid-template-areas:
+      'personal_info'
+      'orders'
+      'seller_addresses'
+      'notifications'
+      'account_managment';
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    //padding: 12px 0 32px;
   }
+
+  .personal_info {
+    grid-row: 1/2;
+  }
+
+  .orders {
+    grid-row: 2/3;
+  }
+
+  .seller_addresses {
+    grid-row: 3/4;
+  }
+
+  .notifications {
+    grid-row: 4/5;
+  }
+
+  .account_management {
+    grid-row: 5/6;
+  }
+
 }

@@ -2,12 +2,11 @@
   cursor: pointer;
 
   box-sizing: border-box;
-  padding: 15px;
+  padding: 14px;
 
   font-family: var(--roboto);
-  font-size: 15px;
+  font-size: var(--fz-s);
   font-weight: var(--medium);
-  line-height: 15px;
 
   border: 1px solid transparent;
   border-radius: 12px;
