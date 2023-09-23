@@ -1,5 +1,5 @@
 @mixin form_subtitle {
-  font-size: var( --fz-l-2);
+  font-size: var(--fz-l-2);
   font-weight: var(--bold);
   text-align: left;
 }
@@ -33,20 +33,6 @@
 
   @media only screen and (max-width: 768px) {
     padding: 0 16px;
-  }
-}
-
-@mixin seller_section_header {
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 24px;
-  }
-
-  .title {
-    color: var(--color-black);
-    letter-spacing: 0.16px;
   }
 }
 

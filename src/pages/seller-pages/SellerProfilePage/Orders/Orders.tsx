@@ -12,15 +12,13 @@ import { Button, SimpleLink, Title } from 'ui-kit';
 
 export const Orders = (): JSX.Element => {
   return (
-    <>
-      <div className={style.header}>
-        <Title as="h3" size="xs">
-          Orders
-        </Title>
-        <SimpleLink color="accent" to={ORDER_HISTORY}>
-          View All
-        </SimpleLink>
-      </div>
+    <div className={style.wrapper}>
+      <Title as="h2" size="xs">
+        Orders
+      </Title>
+      <SimpleLink color="accent" to={ORDER_HISTORY}>
+        View All
+      </SimpleLink>
 
       <div className={style.category_wrapper}>
         <Button color="white" className={style.orders_button}>
@@ -48,6 +46,6 @@ export const Orders = (): JSX.Element => {
           <OrderStatusCompletedIcon className={style.icon} />
         </Button>
       </div>
-    </>
+    </div>
   );
 };
