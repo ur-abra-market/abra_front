@@ -36,7 +36,19 @@
   border-radius: 12px;
 }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 1020px) {
+  .select_info_inputs {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .select_info_inputs {
+    flex-direction: row;
+  }
+}
+
+@media only screen and (max-width: 600px) {
   .select_info_inputs {
     flex-direction: column;
   }
