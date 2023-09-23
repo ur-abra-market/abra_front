@@ -3,6 +3,7 @@ import React, { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 import style from './SocialNetworks.module.scss';
 
 import { GoogleIcon, InstagramIcon, TelegramIcon, VkIcon } from 'assets/icons';
+import { Title } from 'ui-kit/Title/Title';
 
 export interface SocialProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
@@ -25,7 +26,9 @@ export const SocialNetworks: FC<SocialProps> = ({ className }): JSX.Element => {
 
   return (
     <div className={className}>
-      <div className={style.title}>We in social media</div>
+      <Title as="h3" size="s" weight="semi_bold" className={style.title}>
+        We in social media
+      </Title>
       <ul className={style.networks_list}>{networks}</ul>
     </div>
   );

@@ -13,18 +13,11 @@
 }
 
 .title {
-  font-size: var( --fz-l-2);
-  font-weight:var(--bold);
   color: var(--color-black);
   letter-spacing: 0.16px;
 }
 
 .submit_button {
   width: 100%;
-}
-
-@media only screen and (max-width: 1000px) {
-  .wrapper {
-    padding: 16px;
-  }
+  margin-top: 16px;
 }

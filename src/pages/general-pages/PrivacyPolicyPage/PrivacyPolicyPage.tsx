@@ -7,6 +7,7 @@ import style from './PrivacyPolicy.module.scss';
 import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
 import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from 'routes';
+import { Title } from 'ui-kit';
 
 export const PrivacyPolicyPage = (): JSX.Element => {
   return (
@@ -15,7 +16,9 @@ export const PrivacyPolicyPage = (): JSX.Element => {
       <AdditionalHeaderBlock />
 
       <div className={style.container}>
-        <h1 className={style.title}>Privacy Policy</h1>
+        <Title as="h1" size="xl">
+          Privacy Policy
+        </Title>
         <div className={style.container_text}>
           <div className={style.title_block}>Abra&apos;s Privacy Policy</div>
           <div className={style.title_block}>Last updated: 04/11/2023</div>

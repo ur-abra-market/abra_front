@@ -3,6 +3,7 @@ import React from 'react';
 import style from './OrdersPage.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
+import { Title } from 'ui-kit';
 // import FiltersList from "../../../common/filtersList/filtersList";
 // import Table from "../../../common/table/table";
 // import api from "./fakeAPI";
@@ -22,7 +23,7 @@ import { WithLayout } from 'common/hocs/WithLayout';
 export const OrdersPage = WithLayout((): JSX.Element => {
   return (
     <div className={style.orders_container}>
-      <h2>Coming soon...</h2>
+      <Title>Coming soon...</Title>
     </div>
   );
 

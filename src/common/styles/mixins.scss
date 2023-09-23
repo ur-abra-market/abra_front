@@ -25,10 +25,10 @@
   }
 }
 
-@mixin content_container {
+@mixin content_container($margin: 0) {
   width: 100%;
   max-width: var(--main-content-width);
-  margin: 0 auto;
+  margin: $margin auto;
   padding: 0 32px;
 
   @media only screen and (max-width: 768px) {
@@ -45,9 +45,6 @@
   }
 
   .title {
-    font-size: var( --fz-l-2);
-    font-weight: var(--bold);
-    line-height: 24px;
     color: var(--color-black);
     letter-spacing: 0.16px;
   }
