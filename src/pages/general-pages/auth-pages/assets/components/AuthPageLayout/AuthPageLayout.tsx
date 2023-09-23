@@ -33,7 +33,12 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
   useEffect(() => {
     const containerHeightHandler = (): void => {
       if (!containerRef.current) return;
+
       containerRef.current.style.height = `${window.innerHeight}px`;
+
+      if (containerRef.current.scrollHeight - window.innerHeight >= 10) {
+        containerRef.current.style.height = `${containerRef.current.scrollHeight}px`;
+      }
     };
 
     containerHeightHandler();
