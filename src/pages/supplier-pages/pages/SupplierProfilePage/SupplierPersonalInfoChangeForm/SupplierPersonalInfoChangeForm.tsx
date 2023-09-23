@@ -10,8 +10,7 @@ import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues'
 import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
 import { parsePhoneNumber } from 'common/utils';
 import { personalInfoFormValidationSchema } from 'common/utils/validation-schemas/personalInfoFormValidationSchema';
-import { PersonalInfoChangeForm } from 'modules';
-import { PersonalInfoHeader } from 'modules/PersonalInfoHeader/PersonalInfoHeader';
+import { PersonalInfoChangeForm, PersonalInfoHeader } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
 import {
   updatePersonalInfo,

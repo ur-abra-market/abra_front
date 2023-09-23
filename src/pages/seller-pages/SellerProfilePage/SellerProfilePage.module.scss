@@ -27,7 +27,6 @@
   grid-area: account_managment;
 }
 
-
 .notifications {
   display: flex;
   grid-area: notifications;
@@ -51,7 +50,6 @@
   padding: 12px 32px 17px;
 }
 
-
 @media only screen and (max-width: 1250px) {
   .content_container {
     grid-template-areas:
@@ -63,7 +61,6 @@
     grid-template-rows: 23% 20% 16% 42%;
     padding: 12px 16px;
   }
-
 
   .personal_info {
     grid-row: 1/4;
@@ -84,8 +81,6 @@
   .account_management {
     grid-row: 4/5;
   }
-
-
 }
 
 @media only screen and (max-width: 768px) {
@@ -131,7 +126,6 @@
       'account_managment';
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto auto;
-    //padding: 12px 0 32px;
   }
 
   .personal_info {
@@ -153,5 +147,4 @@
   .account_management {
     grid-row: 5/6;
   }
-
 }

@@ -10,8 +10,7 @@ import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues'
 import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
 import { parsePhoneNumber, personalInfoFormValidationSchema } from 'common/utils';
 import { UploadImage } from 'elements';
-import { PersonalInfoChangeForm } from 'modules';
-import { PersonalInfoHeader } from 'modules/PersonalInfoHeader/PersonalInfoHeader';
+import { PersonalInfoChangeForm, PersonalInfoHeader } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
 import {
   sellerAvatarSelector,
