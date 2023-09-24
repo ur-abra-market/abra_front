@@ -9,8 +9,8 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
 import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
 import { parsePhoneNumber, personalInfoFormValidationSchema } from 'common/utils';
-import { UploadImage, ButtonLogout } from 'elements';
-import { PersonalInfoChangeForm } from 'modules';
+import { UploadImage } from 'elements';
+import { PersonalInfoChangeForm, PersonalInfoHeader } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
 import {
   sellerAvatarSelector,
@@ -22,7 +22,7 @@ import {
   userLoadingSelector,
   userPersonalInfoSelector,
 } from 'store/reducers/userSlice';
-import { Button, Title } from 'ui-kit';
+import { Button } from 'ui-kit';
 
 export const SellerPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -94,13 +94,8 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
   };
 
   return (
-    <div className={style.wrapper}>
-      <div className={style.header}>
-        <Title as="h3" size="xs">
-          Personal Info
-        </Title>
-        <ButtonLogout withIcon />
-      </div>
+    <>
+      <PersonalInfoHeader />
 
       <UploadImage
         image={userAvatar}
@@ -123,6 +118,6 @@ export const SellerPersonalInfoChangeForm = (): JSX.Element => {
           />
         </form>
       </FormProvider>
-    </div>
+    </>
   );
 };

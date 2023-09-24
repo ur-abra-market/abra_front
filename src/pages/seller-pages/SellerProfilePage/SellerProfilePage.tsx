@@ -64,14 +64,12 @@ export const SellerProfilePage = WithLayout((): JSX.Element => {
           <AccountManagement />
         </div>
 
-        <div className={style.business_info}>
-          <div className={style.section}>
-            <Orders />
-          </div>
+        <div className={cn(style.section, style.orders)}>
+          <Orders />
+        </div>
 
-          <div className={cn(style.section)}>
-            <SellerAddresses />
-          </div>
+        <div className={cn(style.section, style.seller_addresses)}>
+          <SellerAddresses />
         </div>
 
         <div className={cn(style.section, style.notifications)}>
