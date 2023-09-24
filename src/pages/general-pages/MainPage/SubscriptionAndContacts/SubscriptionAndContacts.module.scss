@@ -19,7 +19,7 @@
 }
 
 .subscribe_subtitle {
-  font-size: var(--fz-xl);
+  font-size: calc(var(--fz-s) + 10 * (100vw - 425px) / 1015);
   font-weight: var(--bold);
   line-height: 100%;
 }
@@ -79,21 +79,6 @@
       flex-direction: column;
     }
   }
-
-  .subscribe_title {
-    font-size: calc(0.01182 * 100vw + 16.97537px);
-    font-weight: var(--bold);
-  }
-
-  .subscribe_subtitle {
-    font-size: calc(0.01182 * 100vw + 9px);
-  }
-
-  .phone_title {
-    font-size: calc(0.01182 * 100vw + 16.97537px);
-    white-space: nowrap;
-  }
-
 }
 
 
