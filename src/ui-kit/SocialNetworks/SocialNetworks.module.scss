@@ -11,8 +11,15 @@
 .network {
   width: 44px;
   height: 44px;
+
   background: linear-gradient(180deg, #F3F3F3 0%, #EBEBEB 100%);
   border-radius: 12px;
+
+  transition: all .1s ease-in-out;
+
+  &:hover, :active {
+    transform: scale(1.1);
+  }
 }
 
 .link {

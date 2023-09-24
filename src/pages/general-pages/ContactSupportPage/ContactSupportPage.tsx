@@ -21,7 +21,7 @@ export const ContactSupportPage = WithLayout(() => {
           <WhatsappPhoneNumber />
         </div>
 
-        <SocialNetworks />
+        <SocialNetworks variant="m" />
       </div>
     </div>
   );

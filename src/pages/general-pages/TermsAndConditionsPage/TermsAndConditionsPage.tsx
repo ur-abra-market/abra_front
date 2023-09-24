@@ -7,7 +7,7 @@ import style from './TermsAndConditions.module.scss';
 import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
 import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from 'routes';
-import { Title } from 'ui-kit';
+import { Paragraph, Title } from 'ui-kit';
 
 export const TermsAndConditionsPage = (): JSX.Element => {
   return (
@@ -17,43 +17,44 @@ export const TermsAndConditionsPage = (): JSX.Element => {
 
       <div className={style.container}>
         <Title as="h1" size="xl">
-          Terms & conditions
+          Terms & Conditions of Use for Abra
         </Title>
         <div className={style.container_text}>
-          <div className={style.title_block}>Terms of Use for Abra</div>
-          <div className={style.title_block}>Last Updated: 4/18/2023</div>
-          <p className={style.text}>
+          <Title as="h3" size="xs" className={style.title_block}>
+            Last Updated: 4/18/2023
+          </Title>
+          <Paragraph size="m" className={style.text}>
             Welcome to the Bulk Marketplace in Turkey (hereinafter referred to as
             &quot;Platform&quot;). The Platform is operated by Abra (hereinafter referred
             to as &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), a company
             incorporated under the laws of Turkey.
-          </p>
-          <p className={style.text}>
+          </Paragraph>
+          <Paragraph size="m" className={style.text}>
             These Terms of Use (the &quot;Terms&quot;) govern your access to and use of
             our Platform and services (collectively, the &quot;Services&quot;). By
             accessing or using our Services, you agree to be bound by these Terms, our
             Privacy Policy, and any additional terms, conditions, policies, or agreements
             that may be applicable to specific features or sections of our Services.
-          </p>
-          <div className={style.title_block}>1. Eligibility</div>
-          <p className={style.text}>
+          </Paragraph>
+          <Title as="h3" size="xs" className={style.title_block}>
+            1. Eligibility
+          </Title>
+          <ul className={style.text}>
             To use our Services, you must:
-            <ul>
-              <li className={style.li}>
-                1.1. Be at least 18 years old or the age of majority in your jurisdiction,
-                whichever is greater.
-              </li>
-              <li className={style.li}>
-                1.2. Be a resident of Turkey or authorized to do business in Turkey if you
-                plan to sell on the Platform
-              </li>
-              <li className={style.li}>
-                1.3. Be able to form legally binding contracts under applicable law.
-              </li>
-            </ul>
-            By accessing or using our Services, you represent and warrant that you meet
-            all of the above eligibility requirements.
-          </p>
+            <li className={style.li}>
+              1.1. Be at least 18 years old or the age of majority in your jurisdiction,
+              whichever is greater.
+            </li>
+            <li className={style.li}>
+              1.2. Be a resident of Turkey or authorized to do business in Turkey if you
+              plan to sell on the Platform
+            </li>
+            <li className={style.li}>
+              1.3. Be able to form legally binding contracts under applicable law.
+            </li>
+          </ul>
+          By accessing or using our Services, you represent and warrant that you meet all
+          of the above eligibility requirements.
           <div className={style.title_block}>2. Registration and Account Security</div>
           <p className={style.text}>
             To access certain features of our Services, you may be required to register

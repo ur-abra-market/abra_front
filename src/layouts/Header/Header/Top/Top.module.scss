@@ -1,10 +1,12 @@
 @import "src/common/styles/mixins";
 
 .wrapper {
+  @include underlined;
+
+  position: relative;
   display: flex;
   align-items: center;
   height: 96px;
-  border-bottom: 1px solid var(--color-white-ivory);
 }
 
 .container {

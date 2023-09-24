@@ -20,9 +20,9 @@
   font-size: calc(var(--fz-l-2) + 12 * (100vw - 425px) / 1015);
 }
 
-//.m {
-//  font-size: var(--fz-xl2);
-//}
+.m {
+  font-size: var(--fz-xl2);  //About as one page, there is no page on the layout, I don’t know the size for the mobile version yet
+}
 
 .s {
   font-size: calc(var(--fz-l) + 6 * (100vw - 425px) / 1015);
@@ -42,9 +42,9 @@
     font-size: var(--fz-xxl);
   }
 
-  //.m {
-  //  font-size: var(--fz-xl2);
-  //}
+  .m {
+    font-size: var(--fz-xl2);
+  }
 
   .s {
     font-size: var(--fz-xl);
@@ -64,9 +64,9 @@
     font-size: var(--fz-l-2);
   }
 
-  //.m {
-  //  font-size: var(--fz-xl2);
-  //}
+  .m {
+    font-size: var(--fz-xl2);
+  }
 
   .s {
     font-size: var(--fz-l);

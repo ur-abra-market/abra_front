@@ -44,6 +44,11 @@
   width: 100%;
 }
 
+@media (min-width: 1440px) {
+  .subscribe_subtitle {
+    font-size: var(--fz-xl);
+  }
+}
 
 @media only screen and (max-width: 1130px) {
   .container {

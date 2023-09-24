@@ -27,8 +27,13 @@
   white-space: nowrap;
   transition: 0.1s;
 
-  a:hover {
-    color: var(--color-red);
+  &:active {
+    color: var(--color-red-dark);
+  }
+
+  &:hover {
+    color: var(--color-red-medium);
+    text-decoration: underline;
   }
 
   a:focus-visible {
