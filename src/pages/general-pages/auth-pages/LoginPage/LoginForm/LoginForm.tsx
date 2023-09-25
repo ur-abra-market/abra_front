@@ -15,14 +15,14 @@ import { loadingSelector } from 'store/reducers/appSlice';
 import { loginUser, isAuthorizedSelector } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
 
-const MAX_COUNT = 32;
+const MAX_COUNT = 30;
 
 const formValidationSchema = yup.object().shape({
   email: getEmailValidationSchema(),
   password: yup
     .string()
     .min(8, 'Password must be at least 8 characters')
-    .max(MAX_COUNT, 'Password must be at most 32 characters')
+    .max(MAX_COUNT, 'Password must be at most 30 characters')
     .required(),
 });
 
@@ -40,7 +40,6 @@ export const LoginForm = (): JSX.Element => {
     register,
     formState: { isValid, errors },
     setFocus,
-    clearErrors,
     handleSubmit,
   } = useForm<ILoginFormData>({
     resolver: yupResolver(formValidationSchema),
