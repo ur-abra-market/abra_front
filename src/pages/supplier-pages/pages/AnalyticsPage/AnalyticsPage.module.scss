@@ -1,7 +1,5 @@
 @import "src/common/styles/mixins";
 
 .analytics_page_container {
-  @include content_container;
-
-  margin: 48px auto;
+  @include content_container(40px);
 }

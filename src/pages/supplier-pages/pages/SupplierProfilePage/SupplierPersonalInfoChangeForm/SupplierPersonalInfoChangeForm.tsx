@@ -10,8 +10,7 @@ import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues'
 import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
 import { parsePhoneNumber } from 'common/utils';
 import { personalInfoFormValidationSchema } from 'common/utils/validation-schemas/personalInfoFormValidationSchema';
-import { ButtonLogout } from 'elements';
-import { PersonalInfoChangeForm } from 'modules';
+import { PersonalInfoChangeForm, PersonalInfoHeader } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
 import {
   updatePersonalInfo,
@@ -80,10 +79,7 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
 
   return (
     <div className={style.wrapper}>
-      <div className={style.header}>
-        <h3 className={style.title}>Personal Info</h3>
-        <ButtonLogout withIcon />
-      </div>
+      <PersonalInfoHeader />
 
       <FormProvider {...formMethods}>
         <form onSubmit={handleSubmit(onSubmit)}>

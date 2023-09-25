@@ -14,3 +14,4 @@ export { SimpleLink } from './SimpleLink/SimpleLink';
 export { MainLogo } from './MainLogo/MainLogo';
 export { WhatsappPhoneNumber } from './WhatsappPhoneNumber/WhatsappPhoneNumber';
 export { SocialNetworks } from './SocialNetworks/SocialNetworks';
+export { Title } from './Title/Title';

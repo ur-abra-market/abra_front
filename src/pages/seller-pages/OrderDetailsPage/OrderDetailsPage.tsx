@@ -5,13 +5,14 @@ import { Link } from 'react-router-dom';
 import style from './OrderDetails.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
+import { Title } from 'ui-kit';
 
 export const OrderDetailsPage = WithLayout((): JSX.Element => {
   return (
     <div className={style.wrapper}>
       <div className={style.main}>
         <div className={style.order_details}>
-          <h1 className={style.title}>Order Details</h1>
+          <Title>Order Details</Title>
           <div className={style.order_info}>
             <div className={style.order_info_item}>
               <p>Status:</p>
@@ -45,10 +46,10 @@ export const OrderDetailsPage = WithLayout((): JSX.Element => {
               <div className={style.description}>
                 <div className={style.image} />
                 <div>
-                  <h2>
+                  <Title>
                     Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall
                     Clothes
-                  </h2>
+                  </Title>
                   <div className={style.properties}>
                     <p>Color: Silver</p>
                     <p>Status: Shipped</p>
@@ -87,10 +88,10 @@ export const OrderDetailsPage = WithLayout((): JSX.Element => {
               <div className={style.description}>
                 <div className={style.image} />
                 <div>
-                  <h2>
+                  <Title>
                     Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall
                     Clothes
-                  </h2>
+                  </Title>
                   <div className={style.properties}>
                     <p>Color: Silver</p>
                     <p>Status: Shipped</p>
@@ -122,7 +123,7 @@ export const OrderDetailsPage = WithLayout((): JSX.Element => {
 
         <div className={style.other_info}>
           <div className={style.delivery_info}>
-            <h2>Delivery Info</h2>
+            <Title>Delivery Info</Title>
             <p className={style.seller}>Olga Andreeva, +79158448547</p>
             <div className={style.line_b} />
             <p className={style.address}>
