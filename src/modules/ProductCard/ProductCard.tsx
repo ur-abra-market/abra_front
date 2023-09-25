@@ -27,24 +27,24 @@ export const ProductCard: FC<IProductCard> = ({
   const image_url = images[0]?.image_url;
 
   return (
-    <div className={cn(style.card, className)} {...restProps}>
-      <ProductImage
-        imageUrl={image_url || ''}
-        name={name}
-        isFavorite={is_active}
-        productId={id}
-      />
+    <article className={cn(style.card, className)} {...restProps}>
       <Link tabIndex={-1} to={`${PRODUCT_DETAILS}/${id}`} className={style.link}>
+        <ProductImage
+          imageUrl={image_url || ''}
+          name={name}
+          isFavorite={is_active}
+          productId={id}
+        />
         <div className={style.direction}>
-          <span>{name}</span>
-          <span>{description}</span>
+          <h4 className={style.card_title}>{name}</h4>
+          <p className={style.card_description}>{description}</p>
+        </div>
+        <div className={style.price}>
+          <p className={style.amount}>{getPriceOneItem(prices)}/pc</p>
+          <span className={style.rating}>{`/from ${min_quantity} pcs`}</span>
         </div>
       </Link>
-      <div className={style.price}>
-        <div className={style.amount}>{getPriceOneItem(prices)}/pc</div>
-        <span>{`/from ${min_quantity} pcs`}</span>
-      </div>
       <Stars reward={grade_average || 0} />
-    </div>
+    </article>
   );
 };
