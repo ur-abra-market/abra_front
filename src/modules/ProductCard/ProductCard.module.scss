@@ -23,27 +23,9 @@
 
   .card_title {
     font-size: var(--fz-m);
-
   }
 
   .card_description {
-    overflow: hidden;
-    display: inline-block;
-
-    width: 100%;
-
-    font-size: var(--fz-s);
-    font-weight: var(--medium);
-    line-height: 133%;
-    text-overflow: ellipsis;
-    letter-spacing: 0.16px;
-    white-space: nowrap;
-
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-  }
-
-  > span {
     overflow: hidden;
     display: inline-block;
 
@@ -98,21 +80,10 @@
 
   .direction {
     margin: 8px 0 0;
-
-    > span {
-      font-size: var(--fz-xs-2);
-    }
-  }
-
-  .amount {
-    font-size: var(--fz-m);
   }
 
   .price {
     margin: 6px 0 4px;
-
-    > span {
-      font-size: var(--fz-xxs);
-    }
+    font-size: var(--fz-s);
   }
 }
