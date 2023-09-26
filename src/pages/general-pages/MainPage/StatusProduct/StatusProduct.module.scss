@@ -32,11 +32,9 @@
 }
 
 .button {
-  @include fluidFontSize(17px, 20px);
-
   cursor: pointer;
 
-  font-family: var(--roboto);
+  font-size: var(--fz-l);
   font-weight: var(--semi-bold);
   color: var(--color-black);
 

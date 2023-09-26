@@ -48,18 +48,31 @@
   --color-red-dark: #B00D2B;
   --color-green-lime: #34E145;
 
+  --xxs: 10px; /* Extra Extra Small */
+  --xs: 12px; /* Extra Small */
+  --xs-2: 13px; /* Extra Small 2 */
+  --s: 14px; /* Small */
+  --m: 16px; /* Medium */
+  --l: 18px; /* Large */
+  --l-2: 22px; /* Large 2 */
+  --xl: 24px; /* Extra Large */
+  --xl2: 26px; /* Extra Large 2 */
+  --xxl: 34px; /* Extra Extra Large */
+  --xxxl: 40px; /* Extra Extra Extra Large */
+
+  /* -- font-size: calc(min + delta(max-min) * (100vw - minViewPort) / delta(maxViewPort - minViewPort)); -- */
   /* -------font-sizes------ */
   --fz-xxs: 10px;     /* Extra Extra Small */
   --fz-xs: 12px;      /* Extra Small */
-  --fz-xs-2: 13px;    /* Extra Small 2 */
+  --fz-xs-2: calc(var(--xs) + 1 * (100vw - 425px) / 1015);;    /* Extra Small 2 */
   --fz-s: 14px;       /* Small */
   --fz-m: 16px;       /* Medium */
-  --fz-l: 18px;       /* Large */
-  --fz-l-2: 22px;     /* Large 2 */
-  --fz-xl: 24px;      /* Extra Large */
-  --fz-xl2: 26px;     /* Extra Large 2 */
-  --fz-xxl: 34px;     /* Extra Extra Large */
-  --fz-xxxl: 40px;    /* Extra Extra Extra Large */
+  --fz-l: calc(var(--m) + 2 * (100vw - 425px) / 1015);       /* Large */
+  --fz-l-2: calc(var(--l) + 4 * (100vw - 425px) / 1015);     /* Large 2 */
+  --fz-xl: calc(var(--l) + 6 * (100vw - 425px) / 1015);      /* Extra Large */
+  --fz-xl2: calc(var(--l-2) + 4 * (100vw - 425px) / 1015);     /* Extra Large 2 */
+  --fz-xxl: calc(var(--l-2) + 12 * (100vw - 425px) / 1015);     /* Extra Extra Large */
+  --fz-xxxl: calc(var(--xl) + 16 * (100vw - 425px) / 1015);    /* Extra Extra Extra Large */
 
   /* -------font-weights------ */
   --roboto: 'Roboto';
@@ -120,4 +133,34 @@ body {
 button,
 a {
   color: inherit;
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --fz-xxs: var(--xxs);
+    --fz-xs-2: var(--xs-2);
+    --fz-s: var(--s);
+    --fz-m: var(--m);
+    --fz-l: var(--l);
+    --fz-l-2: var(--l-2);
+    --fz-xl: var(--xl);
+    --fz-xl2: var(--xl2);
+    --fz-xxl: var(--xxl);
+    --fz-xxxl: var(--xxxl);
+  }
+}
+
+@media (max-width: 425px) {
+  :root {
+    --fz-xxs: var(--xxs);
+    --fz-xs-2: var(--xs-2);
+    --fz-s: var(--xs);
+    --fz-m: var(--m);
+    --fz-l: var(--m);
+    --fz-l-2: var(--l);
+    --fz-xl: var(--l);
+    --fz-xl2: var(--l-2);
+    --fz-xxl: var(--l-2);
+    --fz-xxxl: var(--xl);
+  }
 }

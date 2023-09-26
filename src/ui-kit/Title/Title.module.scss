@@ -10,69 +10,22 @@
   font-weight: var(--semi-bold);
 }
 
-//font-size: calc(min + delta(max-min) * (100vw - minViewPort) / delta(maxViewPort - minViewPort));
-
 .xl {
-  font-size: calc(var(--fz-xl) + 16 * (100vw - 425px) / 1015);
+  font-size: var(--fz-xxxl);
 }
 
 .l {
-  font-size: calc(var(--fz-l-2) + 12 * (100vw - 425px) / 1015);
+  font-size: var(--fz-xxl);
 }
 
 .m {
-  font-size: var(--fz-xl2);  //About as one page, there is no page on the layout, I don’t know the size for the mobile version yet
+  font-size: var(--fz-xl2);
 }
 
 .s {
-  font-size: calc(var(--fz-l) + 6 * (100vw - 425px) / 1015);
+  font-size: var(--fz-xl);
 }
 
 .xs {
-  font-size: calc(var(--fz-l) + 4 * (100vw - 425px) / 1015);
-}
-
-
-@media (min-width: 1440px) {
-  .xl {
-    font-size: var(--fz-xxxl);
-  }
-
-  .l {
-    font-size: var(--fz-xxl);
-  }
-
-  .m {
-    font-size: var(--fz-xl2);
-  }
-
-  .s {
-    font-size: var(--fz-xl);
-  }
-
-  .xs {
-    font-size: var(--fz-l-2);
-  }
-}
-
-@media (max-width: 425px) {
-  .xl {
-    font-size: var(--fz-xl);
-  }
-
-  .l {
-    font-size: var(--fz-l-2);
-  }
-
-  .m {
-    font-size: var(--fz-xl2);
-  }
-
-  .s {
-    font-size: var(--fz-l);
-  }
-
-  .xs {
-    font-size: var(--fz-l);
-  }
+  font-size: var(--fz-l-2);
 }

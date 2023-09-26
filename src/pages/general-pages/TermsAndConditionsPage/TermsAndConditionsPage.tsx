@@ -1,15 +1,19 @@
 import React from 'react';
 
-import { NavLink, ScrollRestoration } from 'react-router-dom';
+import { ScrollRestoration } from 'react-router-dom';
 
 import style from './TermsAndConditions.module.scss';
 
+import { useWindowDimensions } from 'common/hooks';
 import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
-import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from 'routes';
 import { Paragraph, Title } from 'ui-kit';
 
 export const TermsAndConditionsPage = (): JSX.Element => {
+  const { width } = useWindowDimensions();
+  const maxWidth = 768;
+  const footerVariant = width > maxWidth ? 'default' : 'white';
+
   return (
     <div>
       <ScrollRestoration />
@@ -39,69 +43,83 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           <Title as="h3" size="xs" className={style.title_block}>
             1. Eligibility
           </Title>
-          <ul className={style.text}>
-            To use our Services, you must:
-            <li className={style.li}>
-              1.1. Be at least 18 years old or the age of majority in your jurisdiction,
-              whichever is greater.
+          <ul className={style.items}>
+            <li>
+              To use our Services, you must:
+              <ul className={style.items}>
+                <li>
+                  1.1. Be at least 18 years old or the age of majority in your
+                  jurisdiction, whichever is greater.
+                </li>
+                <li>
+                  1.2. Be a resident of Turkey or authorized to do business in Turkey if
+                  you plan to sell on the Platform.
+                </li>
+                <li>
+                  1.3. Be able to form legally binding contracts under applicable law.
+                </li>
+              </ul>
             </li>
-            <li className={style.li}>
-              1.2. Be a resident of Turkey or authorized to do business in Turkey if you
-              plan to sell on the Platform
-            </li>
-            <li className={style.li}>
-              1.3. Be able to form legally binding contracts under applicable law.
+            <li>
+              By accessing or using our Services, you represent and warrant that you meet
+              all of the above eligibility requirements.
             </li>
           </ul>
-          By accessing or using our Services, you represent and warrant that you meet all
-          of the above eligibility requirements.
-          <div className={style.title_block}>2. Registration and Account Security</div>
+
+          <Title as="h3" size="xs" className={style.title_block}>
+            2. Registration and Account Security
+          </Title>
+
+          <ul className={style.items}>
+            <li>
+              To access certain features of our Services, you may be required to register
+              for an account. You agree to:
+              <ul className={style.items}>
+                <li>
+                  2.1. Provide accurate, current, and complete information during the
+                  registration process.
+                </li>
+                <li>
+                  2.2. Maintain and promptly update your account information to keep it
+                  accurate, current, and complete.
+                </li>
+                <li>2.3. Keep your account login information secure and confidential.</li>
+                <li>
+                  2.4. Notify us immediately of any unauthorized use of your account or
+                  any other breach of security.
+                </li>
+                <li>
+                  2.5. Accept responsibility for all activities that occur under your
+                  account.
+                </li>
+              </ul>
+            </li>
+            <li>
+              We reserve the right to suspend or terminate your account at any time if we
+              believe that you have violated these Terms or for any other reason at our
+              sole discretion.
+            </li>
+          </ul>
+          <Title as="h3" size="xs" className={style.title_block}>
+            3. Use of the Services
+          </Title>
           <p className={style.text}>
-            To access certain features of our Services, you may be required to register
-            for an account. You agree to:
-            <ul>
-              <li className={style.li}>
-                2.1. Provide accurate, current, and complete information during the
-                registration process.
-              </li>
-              <li className={style.li}>
-                2.2. Maintain and promptly update your account information to keep it
-                accurate, current, and complete.
-              </li>
-              <li className={style.li}>
-                2.3. Keep your account login information secure and confidential.
-              </li>
-              <li className={style.li}>
-                2.4. Notify us immediately of any unauthorized use of your account or any
-                other breach of security.
-              </li>
-              <li className={style.li}>
-                2.5. Accept responsibility for all activities that occur under your
-                account.
-              </li>
-            </ul>
-            We reserve the right to suspend or terminate your account at any time if we
-            believe that you have violated these Terms or for any other reason at our sole
-            discretion.
-          </p>
-          <div className={style.title_block}>3. Use of the Services</div>
-          <p className={style.text}>
-            <ul>
-              <li className={style.li}>
+            <ul className={style.items}>
+              <li>
                 3.1. You may use our Services only for lawful purposes and in compliance
                 with all applicable laws, regulations, and ordinances.
               </li>
-              <li className={style.li}>
+              <li>
                 3.2. You may not use our Services in any manner that infringes on the
                 rights of any third party, including but not limited to intellectual
                 property rights, privacy rights, and other proprietary rights.
               </li>
-              <li className={style.li}>
+              <li>
                 3.3. You may not use our Services to engage in any fraudulent, deceptive,
                 or misleading activities or to promote or sell illegal or harmful products
                 or services.
               </li>
-              <li className={style.li}>
+              <li>
                 3.4. You are solely responsible for the content you submit, post, or
                 otherwise make available on or through our Services. We may, but are not
                 obligated to, monitor, review, or remove any content at our sole
@@ -109,20 +127,22 @@ export const TermsAndConditionsPage = (): JSX.Element => {
               </li>
             </ul>
           </p>
-          <div className={style.title_block}>4. Intellectual Property</div>
-          <p className={style.text}>
-            <ul>
-              <li className={style.li}>
-                4.1. The Services and all content, materials, trademarks, logos, and other
-                intellectual property rights displayed on or available through our
-                Services are owned by us or our licensors and are protected by copyright,
-                trademark, and other intellectual property laws. You may not copy,
-                reproduce, distribute, or create derivative works from any such content
-                without our prior written consent.
-              </li>
-            </ul>
-          </p>
-          <div className={style.title_block}>5. Limitation of Liability</div>
+          <Title as="h3" size="xs" className={style.title_block}>
+            4. Intellectual Property
+          </Title>
+          <ul className={style.items}>
+            <li>
+              4.1. The Services and all content, materials, trademarks, logos, and other
+              intellectual property rights displayed on or available through our Services
+              are owned by us or our licensors and are protected by copyright, trademark,
+              and other intellectual property laws. You may not copy, reproduce,
+              distribute, or create derivative works from any such content without our
+              prior written consent.
+            </li>
+          </ul>
+          <Title as="h3" size="xs" className={style.title_block}>
+            5. Limitation of Liability
+          </Title>
           <p className={style.text}>
             To the maximum extent permitted by law, we and our affiliates, officers,
             employees, agents, suppliers, and licensors shall not be liable for any
@@ -813,18 +833,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           </p>
         </div>
       </div>
-
-      <Footer className={style.footer} variant="default" />
-      <div className={style.mobile_copyright}>
-        &#169; Abra 2023 &nbsp;
-        <NavLink className={style.link} to={TERMS_AND_CONDITIONS}>
-          Terms & conditions
-        </NavLink>
-        &nbsp;and&nbsp;
-        <NavLink className={style.link} to={PRIVACY_POLICY}>
-          Privacy policy
-        </NavLink>
-      </div>
+      <Footer variant={footerVariant} />
     </div>
   );
 };

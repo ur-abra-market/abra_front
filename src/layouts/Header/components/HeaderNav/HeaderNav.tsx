@@ -8,6 +8,7 @@ import style from './HeaderNav.module.scss';
 import { ArrowIcon } from 'assets/icons';
 import { useBodyOverflowHidden } from 'common/hooks';
 import { UserRoleEnum } from 'common/types';
+import { HeaderMenuItem } from 'layouts/Header/components/HeaderMenu/HeaderMenuItem/HeaderMenuItem';
 import { HEADER_NAV_CONTENT } from 'layouts/Header/components/HeaderNav/HeaderNavContent';
 
 interface IHeaderNav {
@@ -86,16 +87,7 @@ export const HeaderNav: FC<IHeaderNav> = ({
 
         <ul ref={menuRef} className={menuListClasses}>
           {navItems.map((el, index) => (
-            <li className={style.menu_item} key={index}>
-              <NavLink
-                to={el.path}
-                className={({ isActive }) =>
-                  isActive ? `${style.active_item}` : `${style.item}`
-                }
-              >
-                {el.label}
-              </NavLink>
-            </li>
+            <HeaderMenuItem key={index} label={el.label} path={el.path} />
           ))}
         </ul>
       </div>
