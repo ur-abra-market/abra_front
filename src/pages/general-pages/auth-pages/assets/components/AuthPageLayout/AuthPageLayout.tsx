@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect, useRef } from 'react';
 
 import cn from 'classnames';
 
@@ -24,13 +24,33 @@ export const AuthPageLayout: FC<IAuthPageLayout> = ({
   isMainLogoShow = false,
 }): JSX.Element => {
   const isLoading = useAppSelector(state => state.app.loading);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const wrapperClasses = cn(style.wrapper, {
     [style.pointer_none]: isLoading === LoadingStatusEnum.Loading,
   });
 
+  useEffect(() => {
+    const containerHeightHandler = (): void => {
+      if (!containerRef.current) return;
+
+      containerRef.current.style.height = `${window.innerHeight}px`;
+
+      if (containerRef.current.scrollHeight - window.innerHeight >= 10) {
+        containerRef.current.style.height = `${containerRef.current.scrollHeight}px`;
+      }
+    };
+
+    containerHeightHandler();
+    window.addEventListener('resize', containerHeightHandler);
+
+    return () => {
+      window.removeEventListener('resize', containerHeightHandler);
+    };
+  }, []);
+
   return (
-    <div className={wrapperClasses}>
+    <div ref={containerRef} className={wrapperClasses}>
       {withHeader && <AdditionalHeaderBlock />}
 
       <div className={style.content}>

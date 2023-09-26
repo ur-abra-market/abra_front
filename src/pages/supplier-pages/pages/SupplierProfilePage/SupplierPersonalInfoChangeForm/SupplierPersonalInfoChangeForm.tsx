@@ -10,15 +10,14 @@ import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues'
 import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
 import { parsePhoneNumber } from 'common/utils';
 import { personalInfoFormValidationSchema } from 'common/utils/validation-schemas/personalInfoFormValidationSchema';
-import { ButtonLogout } from 'elements';
-import { PersonalInfoChangeForm } from 'modules';
+import { PersonalInfoChangeForm, PersonalInfoHeader } from 'modules';
 import { countriesSelector } from 'store/reducers/commonSlice';
 import {
   updatePersonalInfo,
   userLoadingSelector,
   userPersonalInfoSelector,
 } from 'store/reducers/userSlice';
-import { Button, Title } from 'ui-kit';
+import { Button } from 'ui-kit';
 
 export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -80,12 +79,7 @@ export const SupplierPersonalInfoChangeForm = (): JSX.Element => {
 
   return (
     <div className={style.wrapper}>
-      <div className={style.header}>
-        <Title size="xs" className={style.title}>
-          Personal Info
-        </Title>
-        <ButtonLogout withIcon />
-      </div>
+      <PersonalInfoHeader />
 
       <FormProvider {...formMethods}>
         <form onSubmit={handleSubmit(onSubmit)}>

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { RegisterForm } from '.';
 
 import { IAuthFooterData } from 'common/types';

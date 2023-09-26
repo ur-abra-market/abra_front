@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { minPasswordLength } from './constants';
 import style from './PasswordComplexity.module.scss';
