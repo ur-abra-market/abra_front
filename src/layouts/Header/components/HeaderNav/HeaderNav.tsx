@@ -1,7 +1,6 @@
 import React, { FC, JSX, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
-import { NavLink } from 'react-router-dom';
 
 import style from './HeaderNav.module.scss';
 
