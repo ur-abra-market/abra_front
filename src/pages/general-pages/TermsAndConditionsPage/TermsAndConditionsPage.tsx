@@ -4,16 +4,11 @@ import { ScrollRestoration } from 'react-router-dom';
 
 import style from './TermsAndConditions.module.scss';
 
-import { useWindowDimensions } from 'common/hooks';
 import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
 import { Paragraph, Title } from 'ui-kit';
 
 export const TermsAndConditionsPage = (): JSX.Element => {
-  const { width } = useWindowDimensions();
-  const maxWidth = 768;
-  const footerVariant = width > maxWidth ? 'default' : 'white';
-
   return (
     <div>
       <ScrollRestoration />
@@ -833,7 +828,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           </p>
         </div>
       </div>
-      <Footer variant={footerVariant} />
+      <Footer variant="default" />
     </div>
   );
 };
