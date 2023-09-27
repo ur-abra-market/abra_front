@@ -6,7 +6,7 @@ import style from './Paragraph.module.scss';
 
 export type ParagraphType = {
   size?: 'm' | 's2' | 's' | 'xs2' | 'xs' | 'xxs';
-  weight?: 'regular' | 'medium' | 'light';
+  weight?: 'semi_bold' | 'regular' | 'medium' | 'light';
   className?: string;
 } & ComponentPropsWithoutRef<'p'>;
 

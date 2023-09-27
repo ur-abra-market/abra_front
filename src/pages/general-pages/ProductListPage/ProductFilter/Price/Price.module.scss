@@ -27,7 +27,6 @@
 }
 
 .input_title {
-  font-size: var(--fz-s);
   color: var(--color-gray-medium);
 }
 
@@ -50,8 +49,4 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.switcher_title {
-  font-size: var(--fz-s);
 }

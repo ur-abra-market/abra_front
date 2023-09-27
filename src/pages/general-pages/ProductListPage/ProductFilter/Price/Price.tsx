@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 import style from './Price.module.scss';
 
-import { Checkbox, Input } from 'ui-kit';
+import { Checkbox, Input, Paragraph } from 'ui-kit';
 
 export const Price = (): JSX.Element => {
   return (
@@ -12,17 +12,23 @@ export const Price = (): JSX.Element => {
       <div className={style.wrapper}>
         <div className={style.inputs_wrapper}>
           <div className={style.input_wrapper}>
-            <p className={style.input_title}>From</p>
+            <Paragraph size="s" className={style.input_title}>
+              From
+            </Paragraph>
             <Input className={classNames(style.input, style.input_left)} type="number" />
           </div>
           <div className={style.input_wrapper}>
-            <p className={style.input_title}>Up To</p>
+            <Paragraph size="s" className={style.input_title}>
+              Up To
+            </Paragraph>
             <Input className={classNames(style.input, style.input_right)} type="number" />
           </div>
         </div>
 
         <div className={style.switcher_wrapper}>
-          <p className={style.switcher_title}>Only discounted items</p>
+          <Paragraph size="s" className={style.switcher_title}>
+            Only discounted items
+          </Paragraph>
           <Checkbox variant="notification" />
         </div>
       </div>

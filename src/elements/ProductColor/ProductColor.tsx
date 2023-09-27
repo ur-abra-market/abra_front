@@ -2,6 +2,8 @@ import React, { FC } from 'react';
 
 import style from './ProductColor.module.scss';
 
+import { Paragraph } from 'ui-kit';
+
 interface IProductColorProps {
   colors: any[];
 }
@@ -19,7 +21,9 @@ export const ProductColor: FC<IProductColorProps> = ({ colors }): JSX.Element =>
 
   return (
     <div className={style.product_color_container}>
-      <p className={style.text}>Select color</p>
+      <Paragraph size="s" className={style.text}>
+        Select color
+      </Paragraph>
       <ul className={style.items}>
         {temp.map(el => (
           <li key={el.id} style={{ background: el.color }} className={style.item} />

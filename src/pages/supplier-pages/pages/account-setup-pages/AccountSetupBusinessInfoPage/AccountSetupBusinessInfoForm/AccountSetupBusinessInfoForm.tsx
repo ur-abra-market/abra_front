@@ -23,7 +23,7 @@ import {
   ISupplierBusinessInfo,
   supplierLoadingSelector,
 } from 'store/reducers/supplier/profile';
-import { LoaderLinear } from 'ui-kit';
+import { LoaderLinear, Title } from 'ui-kit';
 
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -86,7 +86,9 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
         <div className={style.step}>
           <SupplierRegisterFormStep step={2} />
         </div>
-        <p className={style.subtitle}>Business Profile</p>
+        <Title as="h2" size="s" className={style.subtitle}>
+          Business Profile
+        </Title>
 
         <div className={style.add_logo}>
           <UploadImage

@@ -9,6 +9,7 @@ import { useBodyOverflowHidden } from 'common/hooks';
 import { UserRoleEnum } from 'common/types';
 import { HeaderMenuItem } from 'layouts/Header/components/HeaderMenu/HeaderMenuItem/HeaderMenuItem';
 import { HEADER_NAV_CONTENT } from 'layouts/Header/components/HeaderNav/HeaderNavContent';
+import { Paragraph } from 'ui-kit';
 
 interface IHeaderNav {
   userRole: UserRoleEnum;
@@ -77,7 +78,7 @@ export const HeaderNav: FC<IHeaderNav> = ({
                 onClick={() => setOpenOnMobile(prev => !prev)}
                 className={style.burger_supplier}
               >
-                <p className={style.current_page}>{currentItem?.label}</p>
+                <Paragraph size="s2">{currentItem?.label}</Paragraph>
                 <ArrowIcon className={cn({ [style.arrow]: isOpenOnMobile })} />
               </button>
             )}

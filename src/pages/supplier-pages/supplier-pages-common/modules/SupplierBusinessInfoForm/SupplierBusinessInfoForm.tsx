@@ -9,7 +9,7 @@ import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
 import { PhoneNumberInput } from 'elements';
 import { countriesSelector, numberEmployeesSelector } from 'store/reducers/commonSlice';
 import { supplierLoadingSelector } from 'store/reducers/supplier/profile';
-import { Button, Checkbox, Input, ISelectOption, Label, Select } from 'ui-kit';
+import { Button, Checkbox, Input, ISelectOption, Label, Select, Title } from 'ui-kit';
 
 const BUSINESS_SECTOR_DATA: ISelectOption[] = [
   { label: { text: 'Clothes' }, value: 'Clothes' },
@@ -113,7 +113,9 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
       </div>
 
       <div className={style.company_info}>
-        <p className={style.subtitle}>Company Info</p>
+        <Title as="h3" size="xs" className={style.subtitle}>
+          Company Info
+        </Title>
         <div className={style.select_info_inputs}>
           <Label label="Year established">
             <Input
@@ -184,7 +186,9 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
       </div>
 
       <div>
-        <p className={style.subtitle}>Contacts (optional)</p>
+        <Title as="h3" size="xs" className={style.subtitle}>
+          Contacts (optional)
+        </Title>
         <PhoneNumberInput
           disabled={isLoading}
           label="Business phone number"

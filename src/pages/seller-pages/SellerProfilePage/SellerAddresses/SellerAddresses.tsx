@@ -8,7 +8,7 @@ import { useAppSelector } from 'common/hooks';
 import Modal from 'elements/Modal';
 import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
 import { sellerAddressesSelector } from 'store/reducers/seller/profile/selectors';
-import { Title } from 'ui-kit';
+import { Paragraph, Title } from 'ui-kit';
 
 export const SellerAddresses = (): JSX.Element => {
   const addresses = useAppSelector(sellerAddressesSelector);
@@ -46,10 +46,12 @@ export const SellerAddresses = (): JSX.Element => {
           </div>
         ) : (
           <div>
-            <p className={style.no_address}>You have not added any address yet.</p>
-            <p className={style.no_address}>
+            <Paragraph size="s" className={style.no_address}>
+              You have not added any address yet.
+            </Paragraph>
+            <Paragraph size="s" className={style.no_address}>
               Once you place your first order, you will be able to save your address.
-            </p>
+            </Paragraph>
           </div>
         )}
       </div>
