@@ -27,7 +27,7 @@ export const productService = {
 
     const { data } = await baseConfigService.post<
       IBaseResponse<IProductsCompilationResponse>
-    >(`products/compilation`, { category_ids: categoryIds }, { params });
+    >(`products`, { category_ids: categoryIds }, { params });
 
     return data.result;
   },
