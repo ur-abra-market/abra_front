@@ -14,11 +14,13 @@ import { baseConfigService } from 'services/baseConfig.service';
 
 export const authService = {
   userRole: () => {
-    return baseConfigService.get<IBaseResponse<ResponseUserRoleType>>(`auth/login/role`);
+    return baseConfigService.get<IBaseResponse<ResponseUserRoleType>>(
+      `auth/sign-in/role`,
+    );
   },
 
   register: async ({ email, password, role }: IRegisterRequest) => {
-    return baseConfigService.post<IBaseResponse<boolean>>(`register/${role}`, {
+    return baseConfigService.post<IBaseResponse<boolean>>(`auth/sign-up/${role}`, {
       email,
       password,
     });
@@ -26,13 +28,13 @@ export const authService = {
 
   confirmEmail: async ({ token }: IConfirmEmailRequest) => {
     return baseConfigService.get<IBaseResponse<boolean>>(
-      `register/confirmEmail?token=${token}`,
+      `auth/sign-up/confirmEmail?token=${token}`,
     );
   },
 
   sendAccountPersonalInfo: async (params: IPersonalInfoRequest) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      `register/account/sendInfo`,
+      `auth/sign-up/account/sendInfo`,
       params,
     );
 
@@ -40,12 +42,12 @@ export const authService = {
   },
 
   login: (params: ILoginRequest) => {
-    return baseConfigService.post<ILoginResponse>(`auth/login`, params);
+    return baseConfigService.post<ILoginResponse>(`auth/sign-in`, params);
   },
 
   logout: async () => {
     const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
-      `auth/logout`,
+      `auth/sign-out`,
     );
 
     return data.result;
@@ -53,13 +55,13 @@ export const authService = {
 
   forgotPassword: (email: string) => {
     return baseConfigService.post<IBaseResponse<boolean>>(
-      `password/forgot?email=${email}`,
+      `users/password/forgot?email=${email}`,
     );
   },
 
   checkToken: (token: string) => {
     return baseConfigService.get<IBaseResponse<boolean>>(
-      `password/checkToken?token=${token}`,
+      `users/password/checkToken?token=${token}`,
     );
   },
 
@@ -67,16 +69,22 @@ export const authService = {
     const { token, ...restParams } = params;
 
     return baseConfigService.post<IBaseResponse<boolean>>(
-      `password/reset?token=${token}`,
+      `users/password/reset?token=${token}`,
       restParams,
     );
   },
 
   changePassword: (params: IChangePasswordRequest) => {
-    return baseConfigService.post<IBaseResponse<boolean>>('password/change', params);
+    return baseConfigService.post<IBaseResponse<boolean>>(
+      'users/password/change',
+      params,
+    );
   },
 
   changeEmail: (params: IChangeEmailRequest) => {
-    return baseConfigService.post<IBaseResponse<boolean>>('users/changeEmail', params);
+    return baseConfigService.post<IBaseResponse<boolean>>(
+      'users/account/changeEmail',
+      params,
+    );
   },
 };
