@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 
+import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 import style from './HeaderMenuItem.module.scss';
@@ -15,7 +16,7 @@ export const HeaderMenuItem: FC<IHeaderMenuItem> = ({ label, path }): JSX.Elemen
       <NavLink
         to={path}
         className={({ isActive }) =>
-          isActive ? `${style.active_item}` : `${style.item}`
+          isActive ? cn(style.item, style.active_item) : style.item
         }
       >
         {label}
