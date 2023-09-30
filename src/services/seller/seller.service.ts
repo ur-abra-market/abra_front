@@ -12,7 +12,7 @@ import { ISellerAddress } from 'store/reducers/seller/profile';
 export const sellerService = {
   getSellerAvatar: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISellerAvatarResponse>>(
-      'sellers/avatar',
+      'sellers/avatar', // TODO have a new params in response body (created, updated)
     );
 
     return data.result;
@@ -20,7 +20,7 @@ export const sellerService = {
 
   getSellerAddresses: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISellerAddressData[]>>(
-      'sellers/addresses',
+      'sellers/addresses', // TODO have a new params in response body (created, updated)
     );
 
     return data.result;
@@ -28,7 +28,7 @@ export const sellerService = {
 
   createAddress: async (params: ISellerAddressRequest) => {
     const { data } = await baseConfigService.post<IBaseResponse<ISellerAddress>>(
-      'sellers/addAddress',
+      'sellers/addresses/add',
       params,
     );
 
@@ -37,7 +37,7 @@ export const sellerService = {
 
   updateAddress: async ({ address_id, ...params }: ISellerAddressRequest) => {
     const { data } = await baseConfigService.post<IBaseResponse<ISellerAddress>>(
-      `sellers/updateAddress/${address_id}`,
+      `sellers/addresses/${address_id}/update`,
       params,
     );
 
@@ -46,13 +46,13 @@ export const sellerService = {
 
   deleteAddress: (id: number) => {
     return baseConfigService.delete<IBaseResponse<boolean>>(
-      `sellers/removeAddress/${id}`,
+      `sellers/addresses/${id}/remove`,
     );
   },
 
   getNotifications: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISellerNotifications>>(
-      `sellers/notifications`,
+      `sellers/notifications`, // TODO have a new params in response body (created, updated)
     );
 
     return data.result;
