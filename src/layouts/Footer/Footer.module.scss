@@ -96,7 +96,6 @@
   color: var(--color-red);
 }
 
-
 @media only screen and (max-width: 768px) {
   .container {
     display: flex;
@@ -113,5 +112,15 @@
       color: var(--color-gray-medium);
     }
   }
+}
 
+@media only screen and (max-width: 425px) {
+  .link_separator {
+    display: none;
+  }
+
+  .links_white {
+    flex-direction: column;
+    align-items: center;
+  }
 }
