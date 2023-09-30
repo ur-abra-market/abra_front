@@ -26,9 +26,7 @@ export const Price = (): JSX.Element => {
         </div>
 
         <div className={style.switcher_wrapper}>
-          <Paragraph size="s" className={style.switcher_title}>
-            Only discounted items
-          </Paragraph>
+          <Paragraph size="s">Only discounted items</Paragraph>
           <Checkbox variant="notification" />
         </div>
       </div>
