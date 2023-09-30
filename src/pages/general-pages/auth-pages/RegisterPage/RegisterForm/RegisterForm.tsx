@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { KeyboardEvent, useEffect, useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
@@ -30,19 +30,25 @@ export const RegisterForm = (): JSX.Element => {
   const [userRole, setUserRole] = useState<ResponseUserRoleType>('seller');
   const isAuthorized = useAppSelector(state => state.auth.isAuthorized);
   const isLoading = useAppSelector(loadingSelector) === LoadingStatusEnum.Loading;
-
   const {
     register,
     watch,
     formState: { isValid, errors },
+    setFocus,
+    clearErrors,
     handleSubmit,
   } = useForm<IRegisterFormData>({
     resolver: yupResolver(formValidationSchema),
     mode: 'all',
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   });
-
   const handleButtonUserRoleOnClick = (userStatus: ResponseUserRoleType): void => {
+    clearErrors();
     setUserRole(userStatus);
+    setFocus('email');
   };
 
   const onSubmit = async (data: IRegisterFormData): Promise<void> => {
@@ -56,6 +62,16 @@ export const RegisterForm = (): JSX.Element => {
   useEffect(() => {
     if (isAuthorized) navigate(-1);
   }, [isAuthorized]);
+
+  useEffect(() => {
+    setFocus('email');
+  }, []);
+
+  const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>): void => {
+    if (event.key === ' ') {
+      event.preventDefault();
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
@@ -91,6 +107,7 @@ export const RegisterForm = (): JSX.Element => {
         placeholder="Password"
         error={errors.password?.message}
         disabled={isLoading}
+        onKeyDown={handleKeyPress}
         autoComplete="new-password"
       />
 
