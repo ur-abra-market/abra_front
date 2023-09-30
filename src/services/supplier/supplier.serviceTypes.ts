@@ -15,10 +15,10 @@ export interface ISupplierCompanyInfo {
   name: string;
   is_manufacturer: boolean;
   year_established: number;
-  number_employees: number;
+  employees_number_id: number;
   description: string;
   address: string;
-  business_sector: string;
+  business_sector?: string;
   country: ICountry;
   phone: Partial<ISupplierPhoneInfo>;
   images: any[];

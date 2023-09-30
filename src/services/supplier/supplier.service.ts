@@ -49,14 +49,14 @@ export const supplierService = {
     }
 
     return baseConfigService.post<IBaseResponse<boolean>>(
-      `register/business/sendInfo`,
+      `auth/sign-up/account/sendInfo`,
       formData,
     );
   },
 
   getCompanyLogo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<string>>(
-      `suppliers/companyLogo`,
+      `suppliers/company/logo`,
     );
 
     return data.result;
@@ -64,7 +64,7 @@ export const supplierService = {
 
   getBusinessInfo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISupplierBusinessInfo>>(
-      `suppliers/businessInfo`,
+      `suppliers/businessInfo`, // TODO have a new data in response body (created, updated) and deleted data business_sector
     );
 
     return data.result;
@@ -72,7 +72,7 @@ export const supplierService = {
 
   updateBusinessInfo: async (params: Partial<ISupplierUpdateBusinessInfo>) => {
     return baseConfigService.post<IBaseResponse<boolean>>(
-      `suppliers/businessInfo/update`,
+      `suppliers/businessInfo/update`, // TODO dont work, maybe change name employees
       params,
     );
   },
@@ -86,23 +86,20 @@ export const supplierService = {
   },
 
   getProductProperties: async (categoryId: any) => {
-    const { data } = await baseConfigService.get(
-      `suppliers/getCategoryProperties/${categoryId}`,
-    );
+    const { data } = await baseConfigService.get(`categories/${categoryId}/properties`); // TODO dont work
 
     return data;
   },
 
   getProductVariations: async (categoryId: any) => {
-    const { data } = await baseConfigService.get(
-      `suppliers/getCategoryVariations/${categoryId}`,
-    );
+    const { data } = await baseConfigService.get(`categories/${categoryId}/variations`); // TODO dont work
 
     return data;
   },
 
   createProduct: async (params: any) => {
-    const { data } = await baseConfigService.post(`suppliers/addProduct`, params);
+    // TODO params type
+    const { data } = await baseConfigService.post(`suppliers/products/add`, params);
 
     return data;
   },
@@ -113,14 +110,8 @@ export const supplierService = {
     formData.append('file', img);
 
     const { data } = await baseConfigService.post(
-      `suppliers/uploadProductImage`,
+      `suppliers/products/${prodId}/images/${index}/upload`,
       formData,
-      {
-        params: {
-          product_id: prodId,
-          order: index,
-        },
-      },
     );
 
     return data;
@@ -136,14 +127,14 @@ export const supplierService = {
         id: number;
         url: string;
       }>
-    >('suppliers/companyLogo/update', formData);
+    >('suppliers/company/logo/update', formData);
 
     return data;
   },
 
   deleteCompanyImage: async (company_image_id: number) => {
     const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
-      `suppliers/deleteCompanyImage`,
+      `suppliers/company/image/delete`,
       { params: { company_image_id } },
     );
 

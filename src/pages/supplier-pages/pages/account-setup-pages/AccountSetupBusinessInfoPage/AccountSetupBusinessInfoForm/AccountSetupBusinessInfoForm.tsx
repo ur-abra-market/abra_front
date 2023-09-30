@@ -54,7 +54,7 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
         country_id: data.countryRegistration!,
         is_manufacturer: data.isManufacturer,
         ...(data.address && { address: data.address }),
-        number_employees: Number(data.numEmployees!),
+        employees_number_id: Number(data.numEmployees!),
         year_established: Number(data.yearEstablished!),
         name: data.storeName,
         ...(data.description && { description: data.description }),
