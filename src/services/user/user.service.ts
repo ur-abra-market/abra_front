@@ -8,7 +8,7 @@ export const userService = {
   getUserPersonalInfo: async () => {
     const { data } = await baseConfigService.get<
       IBaseResponse<IAccountPersonalInfoResponse>
-    >(`users/account/personalInfo`);
+    >(`users/account/personalInfo`); // TODO have a new data in response body (created, updated)
 
     return data.result;
   },
@@ -23,7 +23,7 @@ export const userService = {
   },
 
   getFavoritesProducts: async () => {
-    const { data } = await baseConfigService.get(`users/showFavorites`);
+    const { data } = await baseConfigService.get(`sellers/favorites`); // TODO dont work
 
     return data;
   },
