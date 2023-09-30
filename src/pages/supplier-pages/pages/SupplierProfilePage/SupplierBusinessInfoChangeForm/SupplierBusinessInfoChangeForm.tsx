@@ -24,6 +24,7 @@ import {
   supplierLoadingSelector,
 } from 'store/reducers/supplier/profile';
 import { updateCompanyLogo } from 'store/reducers/supplier/profile/thunks';
+import { Title } from 'ui-kit';
 
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -85,7 +86,9 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
 
   return (
     <>
-      <p className={style.subtitle}>Business Profile</p>
+      <Title as="h2" size="s" className={style.subtitle}>
+        Business Profile
+      </Title>
       <UploadImage
         image={companyLogo}
         uploadImage={handleUpdateImage}

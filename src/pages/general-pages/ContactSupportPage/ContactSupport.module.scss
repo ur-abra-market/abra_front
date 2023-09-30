@@ -10,22 +10,22 @@
   display: flex;
   flex-direction: column;
   row-gap: 20px;
-  margin: 78px auto;
+  margin: 60px auto;
+}
+
+.title {
+  line-height: 1.2;
 }
 
 .contacts {
   display: flex;
   align-items: center;
-  margin-bottom: 120px;
+  margin-bottom: 60px;
 }
 
 @media (max-width: 768px) {
   .content_container {
     margin: 58px auto;
-  }
-
-  .title {
-    font-size: var(--fz-xl);
   }
 
   .contacts {
@@ -40,11 +40,6 @@
 
   .content_container {
     margin: 48px auto;
-  }
-
-  .title {
-    margin-bottom: 10px;
-    font-size: var( --fz-l-2);
   }
 
   .contacts {

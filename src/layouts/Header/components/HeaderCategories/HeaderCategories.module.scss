@@ -3,6 +3,7 @@
 
   margin-right: 16px;
 
+  font-family: var(--roboto);
   font-size: var(--fz-m);
   font-weight: var(--medium);
   color: var(--color-black);
@@ -10,8 +11,13 @@
 
   background: transparent;
 
+  &:active {
+    color: var(--color-red-dark);
+  }
+
   &:hover {
-    color: var(--color-red);
+    color: var(--color-red-medium);
+    text-decoration: underline;
   }
 
   &:focus-visible {

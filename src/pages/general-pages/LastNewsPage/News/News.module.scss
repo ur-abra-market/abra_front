@@ -17,14 +17,13 @@
 .title {
   padding-bottom: 8px;
 
-  font-size: 20px;
+  font-size: var(--fz-l2);
   font-weight: 600;
   line-height: 27px;
   letter-spacing: 0.38px;
 }
 
 .text {
-  font-size: 14px;
-  font-weight: 400;
+  font-size: var(--fz-s);
   line-height: 17px;
 }

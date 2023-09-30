@@ -141,7 +141,7 @@
   }
 
   .image_box_grid {
-    font-size: 38px;
+    font-size: var(--fz-xxxl);
   }
 }
 
@@ -151,7 +151,7 @@
   }
 
   .image_box_grid {
-    font-size: 32px;
+    font-size: var(--fz--xxl);
   }
 
   .grid_item3_block,

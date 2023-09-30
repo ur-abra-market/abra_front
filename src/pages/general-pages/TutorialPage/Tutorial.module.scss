@@ -3,12 +3,3 @@
 .container {
   @include content_container(40px);
 }
-
-.title {
-  margin-bottom: 48px;
-
-  font-size: 34px;
-  font-weight: 700;
-  line-height: 34px;
-  letter-spacing: 0.41px;
-}

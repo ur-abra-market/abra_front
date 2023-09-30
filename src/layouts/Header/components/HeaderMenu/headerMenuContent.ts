@@ -7,10 +7,6 @@ export const HEADER_MENU_CONTENT = {
       href: PERSONAL_ACCOUNT,
     },
     {
-      label: 'Edit profile',
-      href: PERSONAL_ACCOUNT,
-    },
-    {
       label: 'Settings',
       href: PERSONAL_ACCOUNT,
     },
