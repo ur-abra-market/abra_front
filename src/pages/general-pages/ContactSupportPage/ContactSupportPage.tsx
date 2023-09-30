@@ -15,13 +15,13 @@ export const ContactSupportPage = WithLayout(() => {
       </div>
 
       <div className={style.content_container}>
-        <Title>Got any questions? Contact us via WhatsApp</Title>
+        <Title className={style.title}>Got any questions? Contact us via WhatsApp</Title>
 
         <div className={style.contacts}>
           <WhatsappPhoneNumber />
         </div>
 
-        <SocialNetworks />
+        <SocialNetworks variant="m" />
       </div>
     </div>
   );

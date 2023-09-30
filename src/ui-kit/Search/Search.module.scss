@@ -10,14 +10,12 @@
   width: 100%;
   padding: 13px 35px 13px 48px;
 
-  font-family: var(--roboto);
-  font-size: 15px;
+  font-size: var(--fz-s);
   font-weight: var(--medium);
-  font-style: normal;
-  line-height: 15px;
+  line-height: 100%;
 
 
-  background: #F4F4F4 url("../../assets/icons/files/magnifier-dark-grey.svg") no-repeat 17px center;
+  background: var(--color-white-ivory) url("../../assets/icons/files/magnifier-dark-grey.svg") no-repeat 17px center;
   border-radius: 12px;
   outline: none;
 

@@ -17,10 +17,9 @@ export const PrivacyPolicyPage = (): JSX.Element => {
 
       <div className={style.container}>
         <Title as="h1" size="xl">
-          Privacy Policy
+          Abra&apos;s Privacy Policy
         </Title>
         <div className={style.container_text}>
-          <div className={style.title_block}>Abra&apos;s Privacy Policy</div>
           <div className={style.title_block}>Last updated: 04/11/2023</div>
           <p className={style.text}>
             Welcome to Abra&apos;s Marketplace (hereinafter referred to as

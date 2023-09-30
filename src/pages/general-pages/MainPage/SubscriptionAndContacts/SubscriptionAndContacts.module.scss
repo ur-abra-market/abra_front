@@ -44,7 +44,6 @@
   width: 100%;
 }
 
-
 @media only screen and (max-width: 1130px) {
   .container {
     gap: 30px;
@@ -79,21 +78,6 @@
       flex-direction: column;
     }
   }
-
-  .subscribe_title {
-    font-size: calc(0.01182 * 100vw + 16.97537px);
-    font-weight: var(--bold);
-  }
-
-  .subscribe_subtitle {
-    font-size: calc(0.01182 * 100vw + 9px);
-  }
-
-  .phone_title {
-    font-size: calc(0.01182 * 100vw + 16.97537px);
-    white-space: nowrap;
-  }
-
 }
 
 

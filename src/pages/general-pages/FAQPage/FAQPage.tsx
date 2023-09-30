@@ -8,7 +8,7 @@ import { ContentBox } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { CONTACT } from 'routes';
-import { SimpleLink, Title } from 'ui-kit';
+import { Paragraph, SimpleLink, Title } from 'ui-kit';
 
 const FAQData = [
   {
@@ -88,13 +88,13 @@ export const FAQPage = WithLayout((): JSX.Element => {
           <ContentBox key={el.id} question={el.question} answer={el.answer} />
         ))}
       </div>
-      <p>
+      <Paragraph size="m" className={style.text}>
         For any further questions, please visit our Help Center or
         <SimpleLink to={CONTACT} color="accent">
           &nbsp;<span className={style.link_text}>contact</span>&nbsp;
         </SimpleLink>
         our Customer Support Team
-      </p>
+      </Paragraph>
     </div>
   );
 });

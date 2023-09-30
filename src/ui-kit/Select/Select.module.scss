@@ -1,7 +1,7 @@
 .main {
   position: relative;
   font-family: Roboto, sans-serif;
-  font-size: var(--fz-s);
+  font-size: var(--fz-m);
   border-radius: 12px;
 
   &:focus-visible {
@@ -91,7 +91,7 @@
   bottom: -15px;
   left: 0;
 
-  font-size: 13px;
+  font-size: var(--fz-xs-2);
   color: var(--color-red);
 }
 
