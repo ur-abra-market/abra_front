@@ -1,17 +1,15 @@
 .requirement {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
   justify-content: center;
 
-  padding-right: 24px;
+
+
+  white-space: pre;
 }
 
-@media screen and (max-width: 760px) {
-  .requirement {
-    padding-right: 10px;
-  }
-}
+
 
 .requirement_not_met {
   display: block;
@@ -30,6 +28,6 @@
   height: 8px;
 
   opacity: 1;
-  background: #34E145;
+  background: var(--color-green-lime);
   border-radius: 6px;
 }

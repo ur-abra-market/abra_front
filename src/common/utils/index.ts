@@ -8,3 +8,4 @@ export { getCookie } from './getCookie';
 export { COUNTRY_FLAGS } from './getCountryFlags';
 export { parsePhoneNumber } from './parsePhoneNumber';
 export { ucFirst } from './ucFirst';
+export { MAX_COUNT_PASSWORD } from './validation-schemas/passwordValidationSchema';
