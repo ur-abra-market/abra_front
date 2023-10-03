@@ -34,7 +34,7 @@ export const productService = {
 
   getProductById: async ({ product_id }: IProductRequest) => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductCard>>( // TODO have a new params in response body (bundle_variation_pods)
-      `products/productCard/${product_id}`,
+      `products/${product_id}`,
     );
 
     return data.result;

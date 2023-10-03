@@ -24,7 +24,7 @@ export const ProductCard: FC<IProductCard> = ({
   const { name, prices, description, images, id, grade_average, is_active } = product;
 
   // const { min_quantity } = prices[0];
-  const min_quantity = 22; // TODO
+  const min_quantity = 10; // TODO
   const image_url = images[0]?.image_url;
 
   return (

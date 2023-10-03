@@ -2,26 +2,38 @@ import { MakeFieldsOptionalType } from 'common/types';
 import { ICountry } from 'services/common/common.serviceTypes';
 
 export interface ISupplierBusinessInfo {
-  id: number;
-  license_number: string;
-  grade_average: number;
   additional_info: string;
   company: ISupplierCompanyInfo;
+  created_at: string;
+  grade_average: number;
+  id: number;
+  license_number: string;
+  updated_at: string;
 }
 
 export interface ISupplierCompanyInfo {
-  id: number;
-  business_email: string;
-  name: string;
-  is_manufacturer: boolean;
-  year_established: number;
-  employees_number_id: number;
-  description: string;
   address: string;
-  business_sector?: string;
+  business_email: string;
+  business_sector: string;
   country: ICountry;
-  phone: Partial<ISupplierPhoneInfo>;
+  created_at?: string;
+  description: string;
+  employees_number_id: number;
+  id: number;
   images: any[];
+  is_manufacturer: boolean;
+  name: string;
+  phone: Partial<ISupplierPhoneInfo>;
+  updated_at?: string;
+  year_established: number;
+}
+
+interface IBusinessSector {
+  id: number;
+  created_at?: string;
+  updated_at?: string;
+  name: string;
+  level?: number;
 }
 
 export interface IBusinessInfoRequest
@@ -64,8 +76,12 @@ export interface ISupplierUpdateBusinessInfo {
 }
 
 export interface ISupplierUpdateCompanyInfo
-  extends Omit<ISupplierCompanyInfo, 'id' | 'country' | 'phone' | 'images'> {
+  extends Omit<
+    ISupplierCompanyInfo,
+    'id' | 'country' | 'phone' | 'images' | 'business_sector'
+  > {
   country_id: number;
+  business_sector: number;
 }
 
 interface ISuppliersCompanyPhoneData {

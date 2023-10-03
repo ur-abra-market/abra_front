@@ -63,7 +63,7 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
       },
       company_data_request: {
         ...(data.email && { business_email: data.email }),
-        business_sector: data.businessSector,
+        business_sector: Number(data.businessSector),
         country_id: data.countryRegistration!,
         is_manufacturer: data.isManufacturer,
         ...(data.address && { address: data.address }),

@@ -82,7 +82,7 @@ export const supplierProfileSlice = createSlice({
         } = action.payload.company;
 
         state.businessInfo.storeName = name;
-        state.businessInfo.businessSector = business_sector || 'Clothes';
+        state.businessInfo.businessSector = business_sector;
         state.businessInfo.isManufacturer = is_manufacturer;
         state.businessInfo.license = action.payload.license_number;
         state.businessInfo.yearEstablished = year_established;
