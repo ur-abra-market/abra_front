@@ -5,19 +5,16 @@
 }
 
 .container_text {
-  padding-top: 48px;
+  padding-top: 36px;
 }
 
 .title_block {
   margin: 10px 0;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 24px;
+  font-size: var(--fz-l);
 }
 
 .text {
-  font-size: 18px;
-  font-weight: 400;
+  font-size: var(--fz-l);
   line-height: 24px;
 }
 
@@ -31,8 +28,8 @@
   }
 
   .title {
-    font-size: 25px;
-    line-height: 25px;
+    font-size: var(--fz-xl2);
+    line-height: 100%;
   }
 
   .container_text {
@@ -44,7 +41,7 @@
   }
 
   .text {
-    font-size: 15px;
+    font-size: var(--fz-m);
     line-height: 20px;
   }
 
@@ -57,7 +54,7 @@
 
     margin: 8px 34px 16px;
 
-    font-size: 13px;
+    font-size: var(--fz-xs-2);
     line-height: 18px;
     text-align: justify;
   }

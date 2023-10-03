@@ -13,7 +13,7 @@ import {
   getCompanyLogo,
   supplierCompanyLogoSelector,
 } from 'store/reducers/supplier/profile';
-import { ButtonIcon, MainLogo } from 'ui-kit';
+import { ButtonIcon, MainLogo, Paragraph } from 'ui-kit';
 
 interface ISupplierTop {
   isMobileView?: boolean;
@@ -69,7 +69,9 @@ export const SupplierTop: FC<ISupplierTop> = ({ isMobileView }): JSX.Element => 
               type="button"
             >
               {!isMobileView && (
-                <span className={style.business_name}>Business Name</span>
+                <Paragraph size="s" className={style.business_name}>
+                  Business Name
+                </Paragraph>
               )}
 
               <ArrowIcon className={cn({ [style.arrow]: isShowPopupMenu })} />

@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import style from './ProductsPerPage.module.scss';
 
-import { Select, ISelectOption } from 'ui-kit';
+import { Select, ISelectOption, Paragraph } from 'ui-kit';
 
 const productsPerPageOptions = [
   {
@@ -44,7 +44,9 @@ export const ProductsPerPage: FC<IProductsPerPage> = ({
 
   return (
     <div className={style.wrapper}>
-      <p className={style.title}>Show by</p>
+      <Paragraph size="s2" weight="semi_bold">
+        Show by
+      </Paragraph>
 
       <Select
         disabled={disabled}

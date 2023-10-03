@@ -10,6 +10,7 @@ import { Top } from '.';
 import { useAppSelector } from 'common/hooks';
 import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from 'routes';
 import { userRoleSelector } from 'store/reducers/authSlice';
+import { Paragraph } from 'ui-kit';
 
 interface IFooter
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -36,32 +37,32 @@ export const Footer: FC<IFooter> = ({ className, variant }): JSX.Element => {
   });
 
   return (
-    <div className={cn(style.wrapper, className)}>
+    <footer className={cn(style.wrapper, className)}>
       {isShowTopNav && <Top />}
 
       <div className={footerClasses}>
         <div className={style.container}>
-          <div className={style.links_container}>
-            {variant === 'default' && (
-              <div className={style.copyright}>
-                <p>&#169; Abra 2023</p>
-              </div>
+          {variant === 'default' && (
+            <Paragraph className={style.copyright} size="s2">
+              &#169; Abra 2023
+            </Paragraph>
+          )}
+
+          <div className={linksClasses}>
+            {variant === 'white' && <Paragraph size="xs2">&#169; 2023 Abra.</Paragraph>}
+            <NavLink className={navLinkClasses} to={TERMS_AND_CONDITIONS}>
+              Terms & conditions
+            </NavLink>
+
+            {variant === 'white' && (
+              <span className={style.link_separator}>and&nbsp;</span>
             )}
-
-            <div className={linksClasses}>
-              {variant === 'white' && <p>&#169; 2023 Abra.</p>}
-              <NavLink className={navLinkClasses} to={TERMS_AND_CONDITIONS}>
-                Terms & conditions
-              </NavLink>
-
-              {variant === 'white' && <span>and&nbsp;</span>}
-              <NavLink className={navLinkClasses} to={PRIVACY_POLICY}>
-                Privacy policy
-              </NavLink>
-            </div>
+            <NavLink className={navLinkClasses} to={PRIVACY_POLICY}>
+              Privacy policy
+            </NavLink>
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };

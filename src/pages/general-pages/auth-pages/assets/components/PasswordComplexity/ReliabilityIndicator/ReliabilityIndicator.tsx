@@ -21,7 +21,7 @@ export const ReliabilityIndicator: FC<IReliabilityIndicator> = ({
           [style.requirement_not_met]: !isValid,
         })}
       />
-      <div>{text}</div>
+      <p>{text}</p>
     </div>
   );
 };

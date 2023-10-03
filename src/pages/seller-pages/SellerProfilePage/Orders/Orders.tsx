@@ -22,7 +22,7 @@ export const Orders = (): JSX.Element => {
 
       <div className={style.category_wrapper}>
         <Button color="white" className={style.orders_button}>
-          <p className={style.button_title}>Unpaid</p>
+          Unpaid
           <OrderStatusUnpaidIcon />
         </Button>
 

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import style from './PasswordComplexity.module.scss';
 
@@ -9,11 +9,13 @@ interface IPasswordComplexity {
 }
 
 interface IPassword {
-  minLength: boolean;
+  passwordLength: boolean;
   digitSymbol: boolean;
   capitalSymbol: boolean;
   containsSpecSymbols: boolean;
 }
+
+const MIN_PASSWORD_LENGTH = 8;
 
 export const PasswordComplexity: FC<IPasswordComplexity> = ({ password }) => {
   const [passwordValidity, setPasswordValidity] = useState<IPassword>();
@@ -22,11 +24,13 @@ export const PasswordComplexity: FC<IPasswordComplexity> = ({ password }) => {
     const digitRegExp = /\d/g;
     const capitalRegExp = /[A-Z]/g;
     const specSymbolRegExp = /[!#+*]/g;
+    const lowerCaseRegExp = /[a-z]/g;
+    const successPassword = password?.length >= MIN_PASSWORD_LENGTH;
 
     setPasswordValidity({
-      minLength: password?.length >= 8,
+      passwordLength: successPassword,
       digitSymbol: digitRegExp.test(password),
-      capitalSymbol: capitalRegExp.test(password),
+      capitalSymbol: capitalRegExp.test(password) && lowerCaseRegExp.test(password),
       containsSpecSymbols: specSymbolRegExp.test(password),
     });
   }, [password]);
@@ -34,11 +38,14 @@ export const PasswordComplexity: FC<IPasswordComplexity> = ({ password }) => {
   return (
     <div className={style.wrapper}>
       <ReliabilityIndicator
-        text="1 capital letter"
+        text={`1 lowercase and\n1 capital letter`}
         isValid={passwordValidity?.capitalSymbol}
       />
       <ReliabilityIndicator text="1 number" isValid={passwordValidity?.digitSymbol} />
-      <ReliabilityIndicator text="8 symbols" isValid={passwordValidity?.minLength} />
+      <ReliabilityIndicator
+        text="min 8 symbols"
+        isValid={passwordValidity?.passwordLength}
+      />
       <ReliabilityIndicator
         text="!/#/+/*"
         isValid={passwordValidity?.containsSpecSymbols}

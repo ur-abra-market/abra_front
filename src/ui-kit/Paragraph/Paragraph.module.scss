@@ -1,0 +1,43 @@
+.default {
+  line-height: 100%;
+}
+
+.light {
+  font-weight: var(--light);
+}
+
+.regular {
+  font-weight: var(--regular);
+}
+
+.medium {
+  font-weight: var(--medium);
+}
+
+.semi_bold {
+  font-weight: var(--semi-bold);
+}
+
+.m {
+  font-size: var(--fz-l);
+}
+
+.s2 {
+  font-size: var(--fz-m);
+}
+
+.s {
+  font-size: var(--fz-s);
+}
+
+.xs2 {
+  font-size: var(--fz-xs-2);
+}
+
+.xs {
+  font-size: var(--fz-xs);
+}
+
+.xxs {
+  font-size: var(--fz-xxs);
+}

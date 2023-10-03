@@ -5,7 +5,7 @@
 }
 
 .title {
-  font-size: var( --fz-l-2);
+  font-size: var(--fz-l-2);
   font-weight: var(--semi-bold);
   letter-spacing: 0.38px;
 }
@@ -27,13 +27,12 @@
 }
 
 .input_title {
-  font-size: var(--fz-s);
-  color: var(--color-gray-medium);
+  color: var(--color-black);
 }
 
 .input {
   background-color: var(--color-white);
-  border: 1px solid var(--color-gray-medium);
+  border: 1px solid var(--color-black);
 }
 
 .input_left {
@@ -50,8 +49,4 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.switcher_title {
-  font-size: var(--fz-s);
 }

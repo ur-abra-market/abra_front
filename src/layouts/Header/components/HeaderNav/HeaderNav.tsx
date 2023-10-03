@@ -1,14 +1,15 @@
 import React, { FC, JSX, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
-import { NavLink } from 'react-router-dom';
 
 import style from './HeaderNav.module.scss';
 
 import { ArrowIcon } from 'assets/icons';
 import { useBodyOverflowHidden } from 'common/hooks';
 import { UserRoleEnum } from 'common/types';
+import { HeaderMenuItem } from 'layouts/Header/components/HeaderMenu/HeaderMenuItem/HeaderMenuItem';
 import { HEADER_NAV_CONTENT } from 'layouts/Header/components/HeaderNav/HeaderNavContent';
+import { Paragraph } from 'ui-kit';
 
 interface IHeaderNav {
   userRole: UserRoleEnum;
@@ -77,7 +78,7 @@ export const HeaderNav: FC<IHeaderNav> = ({
                 onClick={() => setOpenOnMobile(prev => !prev)}
                 className={style.burger_supplier}
               >
-                <p className={style.current_page}>{currentItem?.label}</p>
+                <Paragraph size="s2">{currentItem?.label}</Paragraph>
                 <ArrowIcon className={cn({ [style.arrow]: isOpenOnMobile })} />
               </button>
             )}
@@ -86,16 +87,7 @@ export const HeaderNav: FC<IHeaderNav> = ({
 
         <ul ref={menuRef} className={menuListClasses}>
           {navItems.map((el, index) => (
-            <li className={style.menu_item} key={index}>
-              <NavLink
-                to={el.path}
-                className={({ isActive }) =>
-                  isActive ? `${style.active_item}` : `${style.item}`
-                }
-              >
-                {el.label}
-              </NavLink>
-            </li>
+            <HeaderMenuItem key={index} label={el.label} path={el.path} />
           ))}
         </ul>
       </div>

@@ -2,6 +2,8 @@ import React, { FC } from 'react';
 
 import style from './Item.module.scss';
 
+import { Paragraph, Title } from 'ui-kit';
+
 interface IItem {
   numberItem: number;
   title: string;
@@ -12,8 +14,10 @@ export const Item: FC<IItem> = ({ numberItem, description, title }) => (
   <div className={style.item}>
     <span className={style.number}>{numberItem}</span>
     <div>
-      <p className={style.title}>{title}</p>
-      <p className={style.description}>{description}</p>
+      <Title as="h3" size="xs" className={style.title}>
+        {title}
+      </Title>
+      <Paragraph size="m">{description}</Paragraph>
     </div>
   </div>
 );

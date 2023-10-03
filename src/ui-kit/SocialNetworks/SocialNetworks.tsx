@@ -6,7 +6,9 @@ import { GoogleIcon, InstagramIcon, TelegramIcon, VkIcon } from 'assets/icons';
 import { Title } from 'ui-kit/Title/Title';
 
 export interface SocialProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  variant?: 'm' | 's';
+}
 
 const SOCIAL_NETWORKS = [
   { id: 1, href: '#', icon: TelegramIcon },
@@ -15,7 +17,10 @@ const SOCIAL_NETWORKS = [
   { id: 4, href: '#', icon: GoogleIcon },
 ];
 
-export const SocialNetworks: FC<SocialProps> = ({ className }): JSX.Element => {
+export const SocialNetworks: FC<SocialProps> = ({
+  className,
+  variant = 's',
+}): JSX.Element => {
   const networks = SOCIAL_NETWORKS.map(({ href, icon: Icon, id }) => (
     <li key={id} className={style.network}>
       <a href={href} className={style.link} rel="noreferrer">
@@ -26,7 +31,7 @@ export const SocialNetworks: FC<SocialProps> = ({ className }): JSX.Element => {
 
   return (
     <div className={className}>
-      <Title as="h3" size="s" weight="semi_bold" className={style.title}>
+      <Title as="h3" size={variant} weight="semi_bold" className={style.title}>
         We in social media
       </Title>
       <ul className={style.networks_list}>{networks}</ul>

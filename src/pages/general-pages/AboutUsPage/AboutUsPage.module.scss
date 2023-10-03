@@ -5,25 +5,23 @@
 }
 
 .container_text {
-  padding-top: 48px;
+  padding-top: 36px;
 }
 
 .title_block {
   margin: 10px 0;
-  font-size: 18px;
-  font-weight: 700;
+}
+
+.items {
+  margin-bottom: 20px;
+  font-size: var(--fz-l);
   line-height: 24px;
 }
 
 .text {
-  font-size: 18px;
-  font-weight: 400;
   line-height: 24px;
-}
 
-.default_text {
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 24px;
+  &:last-child {
+    margin-top: 20px;
+  }
 }

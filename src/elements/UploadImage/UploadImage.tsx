@@ -18,6 +18,7 @@ import {
 import { useAppDispatch } from 'common/hooks';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
+import { Paragraph } from 'ui-kit';
 
 interface IUploadImage
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -130,7 +131,9 @@ export const UploadImage: FC<IUploadImage> = ({
           <label className={labelClasses} htmlFor="profileLogo">
             {label}
           </label>
-          <p className={style.placeholder}>{placeholder}</p>
+          <Paragraph size="xs" className={style.placeholder}>
+            {placeholder}
+          </Paragraph>
         </div>
       )}
     </div>
