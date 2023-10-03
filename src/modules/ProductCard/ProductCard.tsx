@@ -43,8 +43,8 @@ export const ProductCard: FC<IProductCard> = ({
           <p className={style.amount}>{getPriceOneItem(prices)}/pc</p>
           <span className={style.rating}>{`/from ${min_quantity} pcs`}</span>
         </div>
+        <Stars reward={grade_average || 0} />
       </Link>
-      <Stars reward={grade_average || 0} />
     </article>
   );
 };
