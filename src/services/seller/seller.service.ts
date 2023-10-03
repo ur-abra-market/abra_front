@@ -12,7 +12,7 @@ import { ISellerAddress } from 'store/reducers/seller/profile';
 export const sellerService = {
   getSellerAvatar: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISellerAvatarResponse>>(
-      'sellers/avatar', // TODO have a new params in response body (created, updated)
+      'sellers/avatar',
     );
 
     return data.result;
@@ -20,7 +20,7 @@ export const sellerService = {
 
   getSellerAddresses: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISellerAddressData[]>>(
-      'sellers/addresses', // TODO have a new params in response body (created, updated)
+      'sellers/addresses',
     );
 
     return data.result;
@@ -52,7 +52,7 @@ export const sellerService = {
 
   getNotifications: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISellerNotifications>>(
-      `sellers/notifications`, // TODO have a new params in response body (created, updated)
+      `sellers/notifications`,
     );
 
     return data.result;

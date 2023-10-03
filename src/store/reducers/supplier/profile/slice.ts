@@ -75,14 +75,14 @@ export const supplierProfileSlice = createSlice({
           address,
           year_established,
           is_manufacturer,
-          business_sector,
+          business_sectors,
           business_email,
           employees_number_id,
           phone,
         } = action.payload.company;
 
         state.businessInfo.storeName = name;
-        state.businessInfo.businessSector = business_sector;
+        state.businessInfo.businessSector = business_sectors && business_sectors[0].name;
         state.businessInfo.isManufacturer = is_manufacturer;
         state.businessInfo.license = action.payload.license_number;
         state.businessInfo.yearEstablished = year_established;

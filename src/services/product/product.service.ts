@@ -27,13 +27,13 @@ export const productService = {
 
     const { data } = await baseConfigService.post<
       IBaseResponse<IProductsCompilationResponse>
-    >(`products`, { category_ids: categoryIds }, { params }); // TODO dont have price, uuid, datetime in response body
+    >(`products`, { category_ids: categoryIds }, { params });
 
     return data.result;
   },
 
   getProductById: async ({ product_id }: IProductRequest) => {
-    const { data } = await baseConfigService.get<IBaseResponse<IProductCard>>( // TODO have a new params in response body (bundle_variation_pods)
+    const { data } = await baseConfigService.get<IBaseResponse<IProductCard>>(
       `products/${product_id}`,
     );
 
@@ -42,7 +42,7 @@ export const productService = {
 
   addFavorite: async (params: IProductRequest) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      `products/addFavorite`, // TODO dont have params
+      `products/addFavorite`,
       {},
       { params },
     );
@@ -62,7 +62,7 @@ export const productService = {
   },
 
   getProductImagesById: async ({ product_id }: IProductRequest) => {
-    const { data } = await baseConfigService.get(`products/${product_id}/images`, {}); // TODO have a new params in response body (created, updated)
+    const { data } = await baseConfigService.get(`products/${product_id}/images`, {});
 
     return data.result;
   },
@@ -70,7 +70,7 @@ export const productService = {
   getPopularProduct: async (params: IPopularProductRequest) => {
     const { data } = await baseConfigService.get(`products/popular`, {
       params,
-    }); // TODO what data goes into the category_id
+    });
 
     return data;
   },
@@ -103,7 +103,7 @@ export const productService = {
 
   getSimilarProducts: async (params: IPopularProductRequest) => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductCompilation[]>>(
-      `products/similar`, // TODO what data goes into the category_id
+      `products/similar`,
       { params },
     );
 

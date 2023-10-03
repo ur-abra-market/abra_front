@@ -83,7 +83,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                     label: { text: el.name },
                   }))}
                   placeholder="Select"
-                  defaultValue={watch('businessSector')!}
+                  defaultValue={watch('businessSector')}
                   onChange={value => {
                     field.onChange(Number(value.value));
                   }}

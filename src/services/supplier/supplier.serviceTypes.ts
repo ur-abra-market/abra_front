@@ -14,7 +14,7 @@ export interface ISupplierBusinessInfo {
 export interface ISupplierCompanyInfo {
   address: string;
   business_email: string;
-  business_sector: string;
+  business_sectors: IBusinessSector[];
   country: ICountry;
   created_at?: string;
   description: string;
@@ -78,7 +78,7 @@ export interface ISupplierUpdateBusinessInfo {
 export interface ISupplierUpdateCompanyInfo
   extends Omit<
     ISupplierCompanyInfo,
-    'id' | 'country' | 'phone' | 'images' | 'business_sector'
+    'id' | 'country' | 'phone' | 'images' | 'business_sectors'
   > {
   country_id: number;
   business_sector: number;

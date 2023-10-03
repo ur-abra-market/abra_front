@@ -49,7 +49,7 @@ export const supplierService = {
     }
 
     return baseConfigService.post<IBaseResponse<boolean>>(
-      `auth/sign-up/account/sendInfo`,
+      `auth/sign-up/business/sendInfo`,
       formData,
     );
   },
@@ -64,7 +64,7 @@ export const supplierService = {
 
   getBusinessInfo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<ISupplierBusinessInfo>>(
-      `suppliers/businessInfo`, // TODO have a new data in response body (created, updated) and deleted data business_sector
+      `suppliers/businessInfo`,
     );
 
     return data.result;
@@ -72,7 +72,7 @@ export const supplierService = {
 
   updateBusinessInfo: async (params: Partial<ISupplierUpdateBusinessInfo>) => {
     return baseConfigService.post<IBaseResponse<boolean>>(
-      `suppliers/businessInfo/update`, // TODO dont work, maybe change name employees
+      `suppliers/businessInfo/update`,
       params,
     );
   },
@@ -86,13 +86,13 @@ export const supplierService = {
   },
 
   getProductProperties: async (categoryId: any) => {
-    const { data } = await baseConfigService.get(`categories/${categoryId}/properties`); // TODO dont work
+    const { data } = await baseConfigService.get(`categories/${categoryId}/properties`);
 
     return data;
   },
 
   getProductVariations: async (categoryId: any) => {
-    const { data } = await baseConfigService.get(`categories/${categoryId}/variations`); // TODO dont work
+    const { data } = await baseConfigService.get(`categories/${categoryId}/variations`);
 
     return data;
   },
