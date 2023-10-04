@@ -56,7 +56,7 @@ export const Layout: FC<ILayout> = ({
         {children}
       </main>
 
-      <Footer variant="default" className={styles.footer} />
+      <Footer variant="black" className={styles.footer} />
     </div>
   );
 };

@@ -828,7 +828,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           </p>
         </div>
       </div>
-      <Footer variant="default" />
+      <Footer variant="black" />
     </div>
   );
 };
