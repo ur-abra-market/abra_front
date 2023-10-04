@@ -4,12 +4,13 @@ import cn from 'classnames';
 import { CountryCode, isValidNumber } from 'libphonenumber-js';
 import { useFormContext } from 'react-hook-form';
 import PhoneInput, { CountryData } from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
 
 import { useAppSelector } from 'common/hooks';
 import { IPersonalInfoFormData } from 'common/types';
 import { Label } from 'ui-kit';
 
+import 'react-phone-input-2/lib/style.css';
+// eslint-disable-next-line import/order
 import style from './PhoneNumberInput.module.scss';
 
 interface IPhoneNumberInput {

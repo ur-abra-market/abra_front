@@ -4,12 +4,13 @@ import cn from 'classnames';
 import type { Swiper as SwiperType } from 'swiper';
 import { Mousewheel, Thumbs } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.min.css';
 
 import { ArrowIcon } from 'assets/icons';
 import { UserDefaultProductImage } from 'assets/images';
 import { IImage } from 'store/reducers/productSlice';
 
+import 'swiper/swiper-bundle.min.css';
+// eslint-disable-next-line import/order
 import style from './ProductCarousel.module.scss';
 
 type Props = {
