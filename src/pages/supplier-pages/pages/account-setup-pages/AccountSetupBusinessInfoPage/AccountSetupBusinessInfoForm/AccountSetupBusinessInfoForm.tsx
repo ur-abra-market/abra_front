@@ -50,7 +50,6 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
       },
       company_data_request: {
         ...(data.email && { business_email: data.email }),
-        business_sector: Number(data.businessSector),
         country_id: data.countryRegistration!,
         is_manufacturer: data.isManufacturer,
         ...(data.address && { address: data.address }),
@@ -58,6 +57,9 @@ export const AccountSetupBusinessInfoForm = (): JSX.Element => {
         year_established: Number(data.yearEstablished!),
         name: data.storeName,
         ...(data.description && { description: data.description }),
+      },
+      business_sectors_request: {
+        business_sectors: [Number(data.businessSector)],
       },
       ...(data.countryId &&
         numberBody && {

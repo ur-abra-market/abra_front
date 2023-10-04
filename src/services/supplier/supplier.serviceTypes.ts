@@ -36,10 +36,31 @@ interface IBusinessSector {
   level?: number;
 }
 
-export interface IBusinessInfoRequest
-  extends Omit<ISupplierUpdateBusinessInfo, 'company_phone_data_request'> {
-  file?: File;
+export interface ISupplierUpdateCompanyInfo
+  extends Omit<
+    ISupplierCompanyInfo,
+    'id' | 'country' | 'phone' | 'images' | 'business_sectors'
+  > {
+  country_id: number;
+}
+
+interface ISuppliersCompanyPhoneData {
+  country_id: number;
+  phone_number: string;
+}
+
+export interface ISupplierUpdateBusinessInfo {
+  supplier_data_request: { license_number: string };
+  company_data_request: MakeFieldsOptionalType<
+    ISupplierUpdateCompanyInfo,
+    'address' | 'business_email' | 'description'
+  >;
+  business_sectors_request: { business_sectors: number[] };
   company_phone_data_request?: ISuppliersCompanyPhoneData;
+}
+
+export interface IBusinessInfoRequest extends ISupplierUpdateBusinessInfo {
+  file?: File;
 }
 
 export interface ISupplierNotifications {
@@ -64,27 +85,4 @@ interface ISupplierPhoneInfo {
   id: number;
   phone_number: string;
   country: ICountry;
-}
-
-export interface ISupplierUpdateBusinessInfo {
-  supplier_data_request: { license_number: string };
-  company_data_request: MakeFieldsOptionalType<
-    ISupplierUpdateCompanyInfo,
-    'address' | 'business_email' | 'description'
-  >;
-  company_phone_data_request?: ISuppliersCompanyPhoneData;
-}
-
-export interface ISupplierUpdateCompanyInfo
-  extends Omit<
-    ISupplierCompanyInfo,
-    'id' | 'country' | 'phone' | 'images' | 'business_sectors'
-  > {
-  country_id: number;
-  business_sector: number;
-}
-
-interface ISuppliersCompanyPhoneData {
-  country_id: number;
-  phone_number: string;
 }

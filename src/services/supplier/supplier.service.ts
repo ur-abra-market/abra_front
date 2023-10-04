@@ -98,7 +98,6 @@ export const supplierService = {
   },
 
   createProduct: async (params: any) => {
-    // TODO params type
     const { data } = await baseConfigService.post(`suppliers/products/add`, params);
 
     return data;
