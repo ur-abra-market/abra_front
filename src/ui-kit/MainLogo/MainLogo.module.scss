@@ -18,5 +18,11 @@
 }
 
 .m {
-  font-size: var(--fz-xxxl);
+  font-size: calc(34px + 6 * (100vw - 320px) / 1015);
+}
+
+@media (min-width: 1440px) {
+  .m {
+    font-size: 40px;
+  }
 }
