@@ -12,13 +12,13 @@
   width: 44px;
   height: 44px;
 
-  background: linear-gradient(180deg, #F3F3F3 0%, #EBEBEB 100%);
+  background: linear-gradient(180deg, #F4F4F4 0%, #DEDEDE 100%);
   border-radius: 12px;
 
-  transition: all .1s ease-in-out;
+  transition: all 0.4s;
 
   &:hover, :active {
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
 }
 

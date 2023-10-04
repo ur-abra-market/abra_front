@@ -27,9 +27,7 @@ export const ErrorServerPage = (): JSX.Element => {
         <Button className={styles.button} label="Retry" onClick={() => navigate(-1)} />
       </div>
 
-      <div className={styles.footer}>
-        <Footer variant="default" />
-      </div>
+      <Footer variant="black" className={styles.footer} />
     </section>
   );
 };

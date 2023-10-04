@@ -6,6 +6,7 @@
   ],
   "rules": {
     "indentation": 2,
+    "max-nesting-depth": 2,
     "color-hex-case": "upper",
     "selector-class-pattern": "^([a-z][a-z0-9]*)(_[a-z0-9]+)*$",
     "declaration-property-value-disallowed-list": {
@@ -14,4 +15,7 @@
     "property-no-vendor-prefix": null,
     "block-opening-brace-space-before": "always"
   }
+
+
+
 }
