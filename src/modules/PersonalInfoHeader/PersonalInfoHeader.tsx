@@ -8,7 +8,7 @@ import { Title } from 'ui-kit';
 export const PersonalInfoHeader = (): JSX.Element => {
   return (
     <div className={style.header}>
-      <Title as="h2" size="xs">
+      <Title as="h2" size="s">
         Personal Info
       </Title>
       <ButtonLogout withIcon />

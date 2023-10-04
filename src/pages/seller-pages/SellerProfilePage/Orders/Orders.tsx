@@ -13,7 +13,7 @@ import { Button, SimpleLink, Title } from 'ui-kit';
 export const Orders = (): JSX.Element => {
   return (
     <div className={style.wrapper}>
-      <Title as="h2" size="xs">
+      <Title as="h2" size="s">
         Orders
       </Title>
       <SimpleLink color="accent" to={ORDER_HISTORY}>

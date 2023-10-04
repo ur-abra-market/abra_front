@@ -16,9 +16,6 @@
   gap: var(--form-column-gap);
 }
 
-.license_description {
-  font-size: var(--fz-xs);
-}
 
 .contacts_inputs {
   display: flex;
@@ -32,6 +29,7 @@
 }
 
 .select {
+  font-size: var(--fz-s);
   background: var(--color-white-ivory);
   border-radius: 12px;
 }

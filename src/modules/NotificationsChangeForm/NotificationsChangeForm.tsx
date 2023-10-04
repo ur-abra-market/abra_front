@@ -28,7 +28,7 @@ export const NotificationsChangeForm: FC<INotificationsChangeForm> = ({
 
   return (
     <>
-      <Title as="h2" size="xs">
+      <Title as="h2" size="s">
         Notifications
       </Title>
       <div className={style.notifications_list}>
