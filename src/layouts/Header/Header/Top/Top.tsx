@@ -1,9 +1,9 @@
 import React from 'react';
 
-import style from './Top.module.scss';
-
 import { HeaderActions } from 'layouts/Header/components';
 import { MainLogo, Search } from 'ui-kit';
+
+import style from './Top.module.scss';
 
 export const Top = (): JSX.Element => {
   return (

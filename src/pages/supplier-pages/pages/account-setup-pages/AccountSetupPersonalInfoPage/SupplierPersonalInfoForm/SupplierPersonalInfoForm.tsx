@@ -4,8 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import style from './SupplierPersonalInfoForm.module.scss';
-
 import { useAppDispatch } from 'common/hooks';
 import { IPersonalInfoFormData } from 'common/types';
 import { parsePhoneNumber, personalInfoFormValidationSchema } from 'common/utils';
@@ -18,6 +16,8 @@ import { IPersonalInfoRequest } from 'services/auth/auth.serviceTypes';
 import { createAccountPersonalInfo } from 'store/reducers/authSlice';
 import { getCountries } from 'store/reducers/commonSlice';
 import { Button } from 'ui-kit';
+
+import style from './SupplierPersonalInfoForm.module.scss';
 
 export const SupplierPersonalInfoForm = (): JSX.Element => {
   const [showModal, setShowModal] = useState(false);

@@ -10,7 +10,6 @@ import React, {
 import cn from 'classnames';
 import { NavLink, useMatch } from 'react-router-dom';
 
-import style from './HeaderMenu.module.scss';
 import { HEADER_MENU_CONTENT } from './headerMenuContent';
 
 import { useAppSelector } from 'common/hooks';
@@ -21,6 +20,8 @@ import {
   userRoleSelector,
 } from 'store/reducers/authSlice/selectors';
 import { LoaderLinear } from 'ui-kit';
+
+import style from './HeaderMenu.module.scss';
 
 export interface IHeaderMenu
   extends DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement> {

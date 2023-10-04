@@ -1,9 +1,9 @@
 import React from 'react';
 
-import style from './Tutorial.module.scss';
-
 import { WithLayout } from 'common/hocs/WithLayout';
 import { Title } from 'ui-kit';
+
+import style from './Tutorial.module.scss';
 
 export const TutorialPage = WithLayout((): JSX.Element => {
   return (

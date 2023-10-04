@@ -2,13 +2,13 @@ import React, { FC } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 
-import style from './PersonalInfoChangeForm.module.scss';
-
 import { useAppSelector } from 'common/hooks';
 import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
 import { PhoneNumberInput } from 'elements';
 import { userLoadingSelector } from 'store/reducers/userSlice';
 import { Input, Label } from 'ui-kit';
+
+import style from './PersonalInfoChangeForm.module.scss';
 
 interface IPersonalInfoChangeForm {
   phoneInputClass?: string;

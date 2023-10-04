@@ -3,8 +3,6 @@ import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import style from './SellerPersonalInfoChangeForm.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSetPersonalInfoValues } from 'common/hooks/useSetPersonalInfoValues';
 import { IPersonalInfoFormData, LoadingStatusEnum } from 'common/types';
@@ -23,6 +21,8 @@ import {
   userPersonalInfoSelector,
 } from 'store/reducers/userSlice';
 import { Button } from 'ui-kit';
+
+import style from './SellerPersonalInfoChangeForm.module.scss';
 
 export const SellerPersonalInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();

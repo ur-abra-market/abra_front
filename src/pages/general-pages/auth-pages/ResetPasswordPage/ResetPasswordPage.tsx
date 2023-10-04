@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import style from './ResetPasswordPage.module.scss';
-
 import { ResetPasswordForm } from '.';
 
 import { useAppDispatch } from 'common/hooks';
@@ -12,6 +10,8 @@ import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
 import { LOGIN } from 'routes';
 import { checkToken } from 'store/reducers/authSlice';
 import { Button } from 'ui-kit';
+
+import style from './ResetPasswordPage.module.scss';
 
 export const ResetPasswordPage = (): JSX.Element => {
   const dispatch = useAppDispatch();

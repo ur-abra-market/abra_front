@@ -1,8 +1,8 @@
 import React from 'react';
 
-import style from './SubscriptionAndContacts.module.scss';
-
 import { Button, Input, SocialNetworks, WhatsappPhoneNumber, Title } from 'ui-kit';
+
+import style from './SubscriptionAndContacts.module.scss';
 
 export const SubscriptionAndContacts = (): JSX.Element => {
   return (

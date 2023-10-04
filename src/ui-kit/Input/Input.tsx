@@ -2,10 +2,10 @@ import { forwardRef, useState, DetailedHTMLProps, InputHTMLAttributes } from 're
 
 import cn from 'classnames';
 
-import styles from './Input.module.scss';
-
 import { EyeHiddenIcon } from 'assets/icons';
 import { ButtonIcon } from 'ui-kit/buttons/ButtonIcon/ButtonIcon';
+
+import styles from './Input.module.scss';
 
 export interface IInput
   extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {

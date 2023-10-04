@@ -1,11 +1,11 @@
 import React from 'react';
 
-import style from './SellAbra.module.scss';
-
 import { Item } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { Title } from 'ui-kit';
+
+import style from './SellAbra.module.scss';
 
 export const SellAbraPage = WithLayout(() => (
   <div className={style.container}>

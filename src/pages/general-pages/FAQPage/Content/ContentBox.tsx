@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import style from './ContentBox.module.scss';
-
 import { Paragraph, Title } from 'ui-kit';
+
+import style from './ContentBox.module.scss';
 
 interface IContentBox {
   question: string;

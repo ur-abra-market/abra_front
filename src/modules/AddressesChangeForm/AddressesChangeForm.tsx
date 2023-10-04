@@ -2,8 +2,6 @@ import React, { FC } from 'react';
 
 import { Controller, useFormContext } from 'react-hook-form';
 
-import style from './AddressesChangeForm.module.scss';
-
 import { DeleteTrashCanIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
@@ -16,6 +14,8 @@ import {
   ISellerAddress,
 } from 'store/reducers/seller/profile';
 import { Button, Checkbox, Input, Label, Paragraph, Select, Title } from 'ui-kit';
+
+import style from './AddressesChangeForm.module.scss';
 
 interface IAddressesChangeForm {
   onSubmit: (data: ISellerAddress) => Promise<void>;

@@ -4,8 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import style from './ChangePasswordForm.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
 import { passwordValidationSchema } from 'common/utils';
@@ -14,6 +12,8 @@ import { IChangePasswordRequest } from 'services/auth/auth.serviceTypes';
 import { loadingSelector } from 'store/reducers/appSlice';
 import { changePassword } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
+
+import style from './ChangePasswordForm.module.scss';
 
 const TRIGGER_FIELD = 'new_password';
 

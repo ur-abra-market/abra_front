@@ -2,8 +2,6 @@ import React, { ChangeEvent } from 'react';
 
 import cn from 'classnames';
 
-import style from './TableList.module.scss';
-
 import defaultImg from 'assets/images/files/default-product-image.png';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { formatDate } from 'common/utils/formatDateProductsList';
@@ -16,6 +14,8 @@ import {
   sortedProductSelector,
 } from 'store/reducers/supplier/product';
 import { Checkbox, Stars } from 'ui-kit';
+
+import style from './TableList.module.scss';
 
 export const TableList = (): JSX.Element => {
   const products = useAppSelector(sortedProductSelector);

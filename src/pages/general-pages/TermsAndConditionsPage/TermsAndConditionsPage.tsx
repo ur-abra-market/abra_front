@@ -2,11 +2,11 @@ import React from 'react';
 
 import { ScrollRestoration } from 'react-router-dom';
 
-import style from './TermsAndConditions.module.scss';
-
 import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
 import { Paragraph, Title } from 'ui-kit';
+
+import style from './TermsAndConditions.module.scss';
 
 export const TermsAndConditionsPage = (): JSX.Element => {
   return (

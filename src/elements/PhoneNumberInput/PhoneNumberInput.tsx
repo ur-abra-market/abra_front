@@ -1,16 +1,16 @@
 import React, { FC, ChangeEvent } from 'react';
 
-import 'react-phone-input-2/lib/style.css';
 import cn from 'classnames';
 import { CountryCode, isValidNumber } from 'libphonenumber-js';
 import { useFormContext } from 'react-hook-form';
 import PhoneInput, { CountryData } from 'react-phone-input-2';
-
-import style from './PhoneNumberInput.module.scss';
+import 'react-phone-input-2/lib/style.css';
 
 import { useAppSelector } from 'common/hooks';
 import { IPersonalInfoFormData } from 'common/types';
 import { Label } from 'ui-kit';
+
+import style from './PhoneNumberInput.module.scss';
 
 interface IPhoneNumberInput {
   label: string;

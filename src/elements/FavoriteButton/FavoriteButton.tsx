@@ -2,10 +2,10 @@ import { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './FavoriteButton.module.scss';
-
 import { FavoriteIcon } from 'assets/icons';
 import { ButtonIcon } from 'ui-kit';
+
+import style from './FavoriteButton.module.scss';
 
 interface IFavoriteButton {
   isFavorite: boolean;

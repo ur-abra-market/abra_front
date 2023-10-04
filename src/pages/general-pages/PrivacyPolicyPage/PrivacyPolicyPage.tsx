@@ -2,12 +2,12 @@ import React from 'react';
 
 import { NavLink, ScrollRestoration } from 'react-router-dom';
 
-import style from './PrivacyPolicy.module.scss';
-
 import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
 import { PRIVACY_POLICY, TERMS_AND_CONDITIONS } from 'routes';
 import { Title } from 'ui-kit';
+
+import style from './PrivacyPolicy.module.scss';
 
 export const PrivacyPolicyPage = (): JSX.Element => {
   return (

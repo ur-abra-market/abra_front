@@ -2,13 +2,13 @@ import { FC, useState } from 'react';
 
 import cn from 'classnames';
 
-import style from './Address.module.scss';
-
 import { SellerEditAddressForm } from '.';
 
 import { EditPencilIcon } from 'assets/icons';
 import Modal from 'elements/Modal';
 import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
+
+import style from './Address.module.scss';
 
 interface IAddress {
   address: ISellerAddressData;

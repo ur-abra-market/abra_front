@@ -2,13 +2,13 @@ import { FC, ReactNode, useEffect, useRef } from 'react';
 
 import cn from 'classnames';
 
-import style from './AuthPageLayout.module.scss';
-
 import { useAppSelector } from 'common/hooks';
 import { IAuthFooterData, LoadingStatusEnum } from 'common/types';
 import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts';
 import { LoaderLinear, MainLogo, SimpleLink } from 'ui-kit';
+
+import style from './AuthPageLayout.module.scss';
 
 interface IAuthPageLayout {
   children: ReactNode;

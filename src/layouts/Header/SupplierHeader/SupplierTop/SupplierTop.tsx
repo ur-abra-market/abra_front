@@ -3,8 +3,6 @@ import React, { FC, useEffect, useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import style from './SupplierTop.module.scss';
-
 import { ArrowIcon, HeaderNotificationsIcon, LogoCompanyPlaceholder } from 'assets/icons';
 import { useOnClickOutside, useAppDispatch, useAppSelector } from 'common/hooks';
 import { HeaderMenu } from 'layouts/Header/components';
@@ -14,6 +12,8 @@ import {
   supplierCompanyLogoSelector,
 } from 'store/reducers/supplier/profile';
 import { ButtonIcon, MainLogo, Paragraph } from 'ui-kit';
+
+import style from './SupplierTop.module.scss';
 
 interface ISupplierTop {
   isMobileView?: boolean;

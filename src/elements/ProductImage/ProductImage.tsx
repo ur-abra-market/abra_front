@@ -3,14 +3,14 @@ import { DetailedHTMLProps, FC, HTMLAttributes, KeyboardEvent, useState } from '
 import cn from 'classnames';
 import { useNavigate } from 'react-router-dom';
 
-import style from './ProductImage.module.scss';
-
 import { MagnifierLightGreyIcon } from 'assets/icons';
 import { useAppSelector } from 'common/hooks';
 import { FavoriteButton } from 'elements/FavoriteButton/FavoriteButton';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { PRODUCT_DETAILS } from 'routes';
 import { userRoleSelector } from 'store/reducers/authSlice';
+
+import style from './ProductImage.module.scss';
 
 interface IProductCard
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {

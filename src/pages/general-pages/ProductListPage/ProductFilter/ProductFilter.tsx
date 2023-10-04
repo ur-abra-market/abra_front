@@ -4,9 +4,10 @@ import { Brand } from './Brand/Brand';
 import { Filters } from './Filters/Filters';
 import { Material } from './Material/Material';
 import { Price } from './Price/Price';
-import style from './ProductFilter.module.scss';
 
 import { Button } from 'ui-kit';
+
+import style from './ProductFilter.module.scss';
 
 interface IProductFilter {
   onSaveQueryParams: () => void;

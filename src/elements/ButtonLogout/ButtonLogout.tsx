@@ -3,13 +3,13 @@ import { FC } from 'react';
 import cn from 'classnames';
 import { useNavigate } from 'react-router-dom';
 
-import style from './ButtonLogout.module.scss';
-
 import { LogoutIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
 import { HOME } from 'routes';
 import { logoutUser } from 'store/reducers/authSlice';
 import { Button } from 'ui-kit';
+
+import style from './ButtonLogout.module.scss';
 
 interface IButtonLogOutProps {
   withIcon?: boolean;

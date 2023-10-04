@@ -1,9 +1,9 @@
 import React from 'react';
 
-import style from './AboutUsPage.module.scss';
-
 import { WithLayout } from 'common/hocs/WithLayout';
 import { Paragraph, Title } from 'ui-kit';
+
+import style from './AboutUsPage.module.scss';
 
 export const AboutUsPage = WithLayout((): JSX.Element => {
   return (

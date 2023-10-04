@@ -5,8 +5,6 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import style from './LoginForm.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
 import { getEmailValidationSchema, MAX_COUNT_PASSWORD } from 'common/utils';
@@ -14,6 +12,8 @@ import { HOME } from 'routes';
 import { loadingSelector } from 'store/reducers/appSlice';
 import { loginUser, isAuthorizedSelector } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
+
+import style from './LoginForm.module.scss';
 
 const formValidationSchema = yup.object().shape({
   email: getEmailValidationSchema(),

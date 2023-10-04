@@ -4,7 +4,6 @@ import cn from 'classnames';
 
 import { Orders } from './Orders/Orders';
 import { SellerPersonalInfoChangeForm } from './SellerPersonalInfoChangeForm/SellerPersonalInfoChangeForm';
-import style from './SellerProfilePage.module.scss';
 
 import { SellerAddresses, SellerNotifications } from '.';
 
@@ -21,6 +20,8 @@ import {
 } from 'store/reducers/seller/profile';
 import { getPersonalInfo, userLoadingSelector } from 'store/reducers/userSlice';
 import { LoaderLinear } from 'ui-kit';
+
+import style from './SellerProfilePage.module.scss';
 
 export const SellerProfilePage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();

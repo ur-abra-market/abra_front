@@ -2,9 +2,9 @@ import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
 
-import styles from './SelectItem.module.scss';
-
 import { ISelectOption } from 'ui-kit';
+
+import styles from './SelectItem.module.scss';
 import style from 'ui-kit/Select/SelectHeader/SelectHeader.module.scss';
 
 interface ISelectItem {

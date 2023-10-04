@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import style from './News.module.scss';
-
 import { LazyImage } from 'elements/LazyImage/LazyImage';
+
+import style from './News.module.scss';
 
 type NewsType = {
   title: string;

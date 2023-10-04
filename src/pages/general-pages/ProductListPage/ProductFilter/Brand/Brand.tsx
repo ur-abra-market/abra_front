@@ -1,6 +1,6 @@
-import style from './Brand.module.scss';
-
 import { Search } from 'ui-kit';
+
+import style from './Brand.module.scss';
 
 export const Brand = (): JSX.Element => {
   return (
