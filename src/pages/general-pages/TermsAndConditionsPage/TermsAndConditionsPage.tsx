@@ -16,11 +16,12 @@ export const TermsAndConditionsPage = (): JSX.Element => {
 
       <div className={style.container}>
         <Title as="h1" size="xl">
-          Terms & Conditions of Use for Abra
+          Terms & Conditions of use for Abra
         </Title>
         <Title as="h2" size="xs" className={style.title_block}>
           Last Updated: 4/18/2023
         </Title>
+
         <Paragraph size="m" className={style.text}>
           Welcome to the Bulk Marketplace in Turkey (hereinafter referred to as
           &quot;Platform&quot;). The Platform is operated by Abra (hereinafter referred to
@@ -34,6 +35,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           and any additional terms, conditions, policies, or agreements that may be
           applicable to specific features or sections of our Services.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           1. Eligibility
         </Title>
@@ -51,6 +53,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
         <Paragraph size="m" className={style.text}>
           1.3. Be able to form legally binding contracts under applicable law.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           2. Registration and Account Security
         </Title>
@@ -81,6 +84,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           believe that you have violated these Terms or for any other reason at our sole
           discretion.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           3. Use of the Services
         </Title>
@@ -103,6 +107,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           make available on or through our Services. We may, but are not obligated to,
           monitor, review, or remove any content at our sole discretion.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           4. Intellectual Property
         </Title>
@@ -113,6 +118,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           other intellectual property laws. You may not copy, reproduce, distribute, or
           create derivative works from any such content without our prior written consent.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           5. Limitation of Liability
         </Title>
@@ -125,6 +131,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           unauthorized access to or alteration of your account, any content you submit or
           post on our Services, or any other matter relating to our Services.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           6. Indemnification
         </Title>
@@ -137,6 +144,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           infringement of any third party&apos;s rights, or any disputes between you and
           other users of our Services.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           7. Termination
         </Title>
@@ -149,6 +157,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           under these Terms shall cease, except for those provisions which by their nature
           are intended to survive termination.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           8. Governing Law and Dispute Resolution
         </Title>
@@ -164,6 +173,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           either party may submit the dispute to the competent courts of Turkey for
           resolution.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           9. Changes to These Terms
         </Title>
@@ -175,6 +185,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           Services after the posting of the revised Terms constitutes your acceptance of
           the changes.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           10. Miscellaneous
         </Title>
@@ -194,6 +205,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           contemporaneous agreements, communications, or proposals, whether oral or
           written, between you and us.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           11. Contact Information
         </Title>
@@ -202,16 +214,12 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           related matter, please contact us at:
         </Paragraph>
         <Paragraph size="m" className={style.text}>
-          Abra
+          Abra, Antalya, Turkey
         </Paragraph>
-        <Paragraph size="m" className={style.text}>
-          Antalya, Turkey
-        </Paragraph>
-        <Paragraph size="m" className={style.text}>
-          <SimpleLink color="accent" to="mailto:support@abra-market.com">
-            support@abra-market.com
-          </SimpleLink>
-        </Paragraph>
+        <SimpleLink color="accent" to="mailto:support@abra-market.com">
+          support@abra-market.com
+        </SimpleLink>
+
         <Title as="h2" size="xs" className={style.title_block}>
           12. User Conduct
         </Title>
@@ -245,6 +253,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           our Services, suspending or terminating the account of such violators, and
           reporting the violator to the appropriate legal authorities.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           13. Third-Party Websites and Services
         </Title>
@@ -257,6 +266,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           or in connection with your use of or reliance on any such content, goods, or
           services available on or through any such third-party websites or services.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           14. Force Majeure
         </Title>
@@ -267,6 +277,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           not limited to acts of God, war, terrorism, civil unrest, labor strikes, power
           outages, or governmental actions.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           15. Assignment
         </Title>
@@ -274,6 +285,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           These Terms, and any rights and licenses granted hereunder, may not be
           transferred or assigned by you, but may be assigned by us without restriction.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           16. Severability
         </Title>
@@ -283,6 +295,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           the remaining provisions of these Terms, which shall remain in full force and
           effect.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           17. Headings
         </Title>
@@ -290,6 +303,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           The headings in these Terms are for convenience only and have no legal or
           contractual effect.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           18. No Third-Party Beneficiaries
         </Title>
@@ -297,6 +311,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           You agree that, except as otherwise expressly provided in these Terms, there
           shall be no third-party beneficiaries to these Terms.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           19. Entire Agreement
         </Title>
@@ -307,6 +322,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           Services and supersede any prior agreements, communications, or proposals,
           whether oral or written, between you and us.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           20. Notices
         </Title>
@@ -316,22 +332,18 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           writing and sent to the following address:
         </Paragraph>
         <Paragraph size="m" className={style.text}>
-          Abra
+          Abra, Antalya, Turkey
         </Paragraph>
-        <Paragraph size="m" className={style.text}>
-          Antalya, Turkey
-        </Paragraph>
-        <Paragraph size="m" className={style.text}>
-          <SimpleLink color="accent" to="mailto:support@abra-market.com">
-            support@abra-market.com
-          </SimpleLink>
-        </Paragraph>
+        <SimpleLink color="accent" to="mailto:support@abra-market.com">
+          support@abra-market.com
+        </SimpleLink>
         <Paragraph size="m" className={style.text}>
           Notices shall be deemed to have been given on the date of receipt if delivered
           personally, or on the date of sending if sent by email. We may also provide
           Notices to you through posting on our Platform or by other reasonable means of
           communication.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           21. Feedback
         </Title>
@@ -344,6 +356,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           concepts, know-how, techniques, or other intellectual property rights contained
           in your Feedback for any purpose, without compensation to you.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           22. Language
         </Title>
@@ -353,6 +366,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           are provided for convenience only and shall not be binding or have any legal
           effect.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           23. No Waiver
         </Title>
@@ -364,6 +378,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           exercise by either party of any of its remedies under these Terms will be
           without prejudice to its other remedies under these Terms or otherwise.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           24. Relationship of the Parties
         </Title>
@@ -373,6 +388,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           that you have no authority to bind us in any respect and that you are an
           independent contractor in your use of our Services.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           25. Questions and Contact Information
         </Title>
@@ -380,6 +396,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           If you have any questions or concerns about these Terms or our Services, please
           do not hesitate to contact us at the contact information provided in Section 11.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           26. Compliance with Laws
         </Title>
@@ -391,6 +408,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           or export restrictions, customs regulations, or other requirements applicable to
           the products or services you buy or sell on our Platform.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           27. Taxes
         </Title>
@@ -401,6 +419,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           liabilities, penalties, or other costs that may arise as a result of your
           failure to properly fulfill your tax obligations.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           28. Disclaimers
         </Title>
@@ -423,6 +442,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           by our Services. You are responsible for verifying any information before
           relying on it.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           29. Reporting Violations
         </Title>
@@ -433,6 +453,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           take appropriate legal action against anyone who, in our sole discretion,
           violates these Terms.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           30. Amendments and Modifications
         </Title>
@@ -449,6 +470,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           and Privacy Policy. If you do not agree to the modified Terms or Privacy Policy,
           you must stop using our Services.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           31. Confidentiality
         </Title>
@@ -459,6 +481,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           sensitive information, and not to disclose such information to any third party
           without our prior written consent or as required by law.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           32. Prohibited Activities
         </Title>
@@ -486,6 +509,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           servers or networks used to provide our Services, or violating any requirements,
           procedures, policies, or regulations of such networks.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           33. Export Controls
         </Title>
@@ -496,6 +520,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           licenses, permissions, or authorizations required for the export, re-export, or
           import of such products or services.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           34. Sanctions Compliance
         </Title>
@@ -507,6 +532,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           transactions or dealings with any individuals or entities that are subject to
           such sanctions, embargoes, or restrictions.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           35. Acknowledgment
         </Title>
@@ -516,6 +542,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           agreements or policies incorporated by reference. If you do not agree to these
           Terms, you must not access or use our Services.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           36. Electronic Communications
         </Title>
@@ -526,6 +553,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           communications that we provide to you electronically satisfy any legal
           requirement that such communications be in writing.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           37. Indemnification
         </Title>
@@ -553,6 +581,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           This defense and indemnification obligation will survive these Terms and your
           use of our Services.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           38. Limitation of Liability
         </Title>
@@ -572,6 +601,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           the extent of our liability shall be the minimum permitted under such applicable
           law.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           39. International Users
         </Title>
@@ -581,6 +611,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           access our Services from outside Turkey, you do so at your own risk and are
           responsible for compliance with the laws of your jurisdiction.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           40. Notices to Us
         </Title>
@@ -588,6 +619,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           Any notices or other communications that you wish to provide to us under these
           Terms should be sent to the contact information provided in Section 11.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           41. Digital Millennium Copyright Act (DMCA) Compliance
         </Title>
@@ -619,6 +651,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           Our designated Copyright Agent for notice of claims of copyright infringement on
           our Services can be reached at the contact information provided in Section 11.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           42. Governing Law and Jurisdiction
         </Title>
@@ -629,6 +662,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           formation (including non-contractual disputes or claims) shall be subject to the
           exclusive jurisdiction of the courts of Turkey.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           43. Dispute Resolution
         </Title>
@@ -648,6 +682,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           binding on the parties, and judgment upon the award rendered by the arbitrator
           may be entered in any court having jurisdiction thereof.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           44. Miscellaneous
         </Title>
@@ -671,6 +706,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           44.4. The section titles in these Terms are for convenience only and have no
           legal or contractual effect.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           45. Changes to These Terms
         </Title>
@@ -685,6 +721,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           effective, you agree to be bound by the revised terms. If you do not agree to
           the new terms, you are no longer authorized to use our Services.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           46. Contact Information
         </Title>
@@ -692,16 +729,12 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           If you have any questions about these Terms, please contact us at:
         </Paragraph>
         <Paragraph size="m" className={style.text}>
-          Abra
+          Abra, Antalya, Turkey
         </Paragraph>
-        <Paragraph size="m" className={style.text}>
-          Antalya, Turkey
-        </Paragraph>
-        <Paragraph size="m" className={style.text}>
-          <SimpleLink color="accent" to="mailto:support@abra-market.com">
-            support@abra-market.com
-          </SimpleLink>
-        </Paragraph>
+        <SimpleLink color="accent" to="mailto:support@abra-market.com">
+          support@abra-market.com
+        </SimpleLink>
+
         <Title as="h2" size="xs" className={style.title_block}>
           47. Entire Agreement
         </Title>
@@ -713,6 +746,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           communications, whether written or oral, between you and us with respect to the
           subject matter hereof.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           48. Assignment
         </Title>
@@ -725,6 +759,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           Subject to the foregoing, these Terms will bind and insure to the benefit of the
           parties, their successors, and permitted assigns.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           49. Force Majeure
         </Title>
@@ -738,6 +773,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           party and uses its reasonable efforts to resume performance as soon as
           practicable.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           50. Survival
         </Title>
@@ -748,6 +784,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           resolution provisions, shall continue in full force and effect after the
           termination or expiration of these Terms.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           51. Headings
         </Title>
@@ -755,6 +792,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           The headings used in these Terms are for reference purposes only and shall not
           affect the meaning or interpretation of these Terms.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           52. Interpretation
         </Title>
@@ -768,6 +806,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           shall be reformed, construed, and enforced in such jurisdiction as if such
           provision had never been contained herein.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           53. No Third-Party Beneficiaries
         </Title>
@@ -776,6 +815,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           beneficiaries to these Terms. Nothing in these Terms is intended to confer any
           rights or remedies on any person other than the parties to these Terms.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           54. Language
         </Title>
@@ -785,6 +825,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           any other language are provided for reference purposes only and shall have no
           legal or other effect.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           55. No Agency
         </Title>
@@ -794,6 +835,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           Neither party has the authority to bind the other or to incur any obligation on
           its behalf.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           56. Notices to You
         </Title>
@@ -805,6 +847,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           on the date they are posted. Notices provided by email will be deemed effective
           on the date they are sent.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           57. Equitable Relief
         </Title>
@@ -816,6 +859,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           equitable relief as an appropriate and adequate remedy for such breach or
           threatened breach, without the necessity of posting a bond or other security.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           58. Severability
         </Title>
@@ -827,6 +871,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           substitute provision that most nearly affects the parties&apos; intent in
           entering into these Terms.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           59. No Waiver
         </Title>
@@ -839,6 +884,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           Terms will be without prejudice to its other remedies under these Terms or
           otherwise.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           60. Feedback and Suggestions
         </Title>
@@ -851,6 +897,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           copyright, trade secret, moral, and other proprietary or intellectual property
           rights therein.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           61. Mobile Devices
         </Title>
@@ -861,6 +908,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           details about your data plan and any applicable data charges, fees, or other
           costs.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           62. Beta Features
         </Title>
@@ -873,6 +921,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           your own risk and may be subject to greater risks and uncertainties than our
           generally available Services.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           63. Local Laws
         </Title>
@@ -882,6 +931,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           limited to import and export laws and regulations, privacy laws, and any other
           laws and regulations that may apply to your use of our Services.
         </Paragraph>
+
         <Title as="h2" size="xs" className={style.title_block}>
           64. Questions and Contact Information
         </Title>
@@ -897,6 +947,7 @@ export const TermsAndConditionsPage = (): JSX.Element => {
           agree to these Terms, you must not access or use our Services.
         </Paragraph>
       </div>
+
       <Footer variant="default" />
     </div>
   );
