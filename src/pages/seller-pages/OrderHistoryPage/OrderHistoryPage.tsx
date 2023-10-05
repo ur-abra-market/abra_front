@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import style from './OrderHistoryPage.module.scss';
-
 import { WithLayout } from 'common/hocs/WithLayout';
 import { Search, Title } from 'ui-kit';
+
+import style from './OrderHistoryPage.module.scss';
 
 type LinkType = 'All' | 'Preparing' | 'In progress' | 'Completed';
 type OrderType = {

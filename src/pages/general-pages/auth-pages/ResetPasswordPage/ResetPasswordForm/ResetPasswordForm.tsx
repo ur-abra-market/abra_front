@@ -4,8 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import style from './ResetPasswordForm.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
 import { passwordValidationSchema } from 'common/utils';
@@ -18,6 +16,8 @@ import {
   resetPassword,
 } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
+
+import style from './ResetPasswordForm.module.scss';
 
 const TRIGGER_FIELD = 'confirm_password';
 

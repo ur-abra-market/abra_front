@@ -1,7 +1,5 @@
 import React from 'react';
 
-import style from './ProductRecommendations.module.scss';
-
 import { useAppSelector } from 'common/hooks';
 import { ViewMoreProductsLink } from 'elements';
 import { ProductCard, ProductsPreview } from 'modules';
@@ -10,6 +8,8 @@ import {
   popularProductsSelector,
   similarProductsSelector,
 } from 'store/reducers/productSlice';
+
+import style from './ProductRecommendations.module.scss';
 
 export const ProductRecommendations = (): JSX.Element => {
   const popularProducts = useAppSelector(popularProductsSelector);

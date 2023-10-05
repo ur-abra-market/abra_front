@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 
 import { ProductMainInfo } from './ProductMainInfo/ProductMainInfo';
 import { ProductOverview } from './ProductOverview/ProductOverview';
-import style from './ProductPage.module.scss';
 import { ProductPageHeader } from './ProductPageHeader/ProductPageHeader';
 import { ProductRecommendations } from './ProductRecommendations/ProductRecommendations';
 
@@ -16,6 +15,8 @@ import {
   getSimilarProducts,
 } from 'store/reducers/productSlice';
 import { LoaderLinear } from 'ui-kit';
+
+import style from './ProductPage.module.scss';
 
 export const ProductPage = WithLayout((): JSX.Element => {
   const [isFetchingData, setIsFetchingData] = useState(true);

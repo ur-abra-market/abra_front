@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import style from './HeaderGuestUserActions.module.scss';
-
 import { Button } from 'ui-kit';
+
+import style from './HeaderGuestUserActions.module.scss';
 
 interface IHeaderGuestUserActions {
   callBack: (target: string) => void;

@@ -2,12 +2,12 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './SupplierHeader.module.scss';
-
 import { Top } from '.';
 
 import { IHtmlProps, UserRoleEnum } from 'common/types';
 import { HeaderNav } from 'layouts/Header/components';
+
+import style from './SupplierHeader.module.scss';
 
 export const SupplierHeader: FC<IHtmlProps> = ({
   className,

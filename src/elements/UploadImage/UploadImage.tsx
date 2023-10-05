@@ -8,8 +8,6 @@ import React, {
 
 import cn from 'classnames';
 
-import style from './UploadImage.module.scss';
-
 import {
   CrossRedIcon,
   DefaultLogoImageIcon,
@@ -19,6 +17,8 @@ import { useAppDispatch } from 'common/hooks';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
 import { Paragraph } from 'ui-kit';
+
+import style from './UploadImage.module.scss';
 
 interface IUploadImage
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {

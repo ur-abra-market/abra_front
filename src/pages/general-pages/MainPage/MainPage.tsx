@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import style from './MainPage.module.scss';
-
 import { ImagesBlock, StatusProduct, SubscriptionAndContacts } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
@@ -15,6 +13,8 @@ import {
 } from 'store/reducers/productSlice';
 import { loadingProductsSelector } from 'store/reducers/productSlice/selectors';
 import { ButtonQuestion, LoaderCircular, LoaderLinear } from 'ui-kit';
+
+import style from './MainPage.module.scss';
 
 export enum Categories {
   ALL = 8,

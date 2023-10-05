@@ -3,8 +3,6 @@ import React, { FC } from 'react';
 import cn from 'classnames';
 import { useSearchParams } from 'react-router-dom';
 
-import style from './FilterSwitcher.module.scss';
-
 import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { deleteUrlSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/deleteUrlSearchParams';
@@ -13,6 +11,8 @@ import {
   resetProductStatusSelection,
 } from 'store/reducers/supplier/product';
 import { ButtonIcon } from 'ui-kit';
+
+import style from './FilterSwitcher.module.scss';
 
 export interface IHeaderSearch {
   restFilters: boolean;

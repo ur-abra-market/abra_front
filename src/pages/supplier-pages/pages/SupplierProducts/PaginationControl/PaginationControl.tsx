@@ -1,7 +1,5 @@
 import { useCallback } from 'react';
 
-import style from './PaginationControl.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ProductsPerPage } from 'elements';
 import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/hoocks/useUpdateSearchParams';
@@ -15,6 +13,8 @@ import {
   totalCountSelector,
 } from 'store/reducers/supplier/product';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
+
+import style from './PaginationControl.module.scss';
 
 export const PaginationControl = (): JSX.Element => {
   const { updateUrlQueryParams, searchParams } = useUpdateSearchParams();

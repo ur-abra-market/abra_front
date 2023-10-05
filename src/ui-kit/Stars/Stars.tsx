@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import { Star } from './Star/Star';
+
 import style from './Stars.module.scss';
 
 export interface IStars {

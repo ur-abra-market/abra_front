@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import style from './ProductColor.module.scss';
-
 import { Paragraph } from 'ui-kit';
+
+import style from './ProductColor.module.scss';
 
 interface IProductColorProps {
   colors: any[];

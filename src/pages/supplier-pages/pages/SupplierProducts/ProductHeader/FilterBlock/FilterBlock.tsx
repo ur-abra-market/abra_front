@@ -3,9 +3,10 @@ import React, { FC } from 'react';
 import cn from 'classnames';
 
 import { CategoryFilter } from './CategoryFilter/CategoryFilter';
-import style from './FilterBlock.module.scss';
 import { SaleFilter } from './SaleFilter/SaleFilter';
 import { StatusFilter } from './StatusFilter/StatusFilter';
+
+import style from './FilterBlock.module.scss';
 
 interface IFilterBlock {
   isOpen: boolean;

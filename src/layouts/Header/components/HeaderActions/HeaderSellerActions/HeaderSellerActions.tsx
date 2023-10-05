@@ -1,7 +1,5 @@
 import React, { FC, useState } from 'react';
 
-import style from './HeaderSellerActions.module.scss';
-
 import {
   HeaderCartIcon,
   HeaderFavouritesIcon,
@@ -11,6 +9,8 @@ import {
 import { useOnClickOutside } from 'common/hooks';
 import { HeaderMenu } from 'layouts/Header/components';
 import { ButtonIcon } from 'ui-kit';
+
+import style from './HeaderSellerActions.module.scss';
 
 interface IHeaderSellerActions {
   callBack: (target: string) => void;

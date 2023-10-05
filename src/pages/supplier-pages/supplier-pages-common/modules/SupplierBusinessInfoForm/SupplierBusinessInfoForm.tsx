@@ -2,14 +2,14 @@ import React, { FC } from 'react';
 
 import { Controller, useFormContext } from 'react-hook-form';
 
-import style from './SupplierBusinessInfoForm.module.scss';
-
 import { useAppSelector } from 'common/hooks';
 import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
 import { PhoneNumberInput } from 'elements';
 import { countriesSelector, numberEmployeesSelector } from 'store/reducers/commonSlice';
 import { supplierLoadingSelector } from 'store/reducers/supplier/profile';
 import { Button, Checkbox, Input, ISelectOption, Label, Select, Title } from 'ui-kit';
+
+import style from './SupplierBusinessInfoForm.module.scss';
 
 const BUSINESS_SECTOR_DATA: ISelectOption[] = [
   { label: { text: 'Clothes' }, value: 'Clothes' },

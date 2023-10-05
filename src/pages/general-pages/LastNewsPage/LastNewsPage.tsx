@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
-import style from './LastNews.module.scss';
-
 import { News } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { Title } from 'ui-kit';
+
+import style from './LastNews.module.scss';
 
 export const LastNewsPage = WithLayout((): JSX.Element => {
   const [text] = useState([

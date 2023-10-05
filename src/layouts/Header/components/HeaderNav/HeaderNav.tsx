@@ -2,14 +2,14 @@ import React, { FC, JSX, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
-import style from './HeaderNav.module.scss';
-
 import { ArrowIcon } from 'assets/icons';
 import { useBodyOverflowHidden } from 'common/hooks';
 import { UserRoleEnum } from 'common/types';
 import { HeaderMenuItem } from 'layouts/Header/components/HeaderMenu/HeaderMenuItem/HeaderMenuItem';
 import { HEADER_NAV_CONTENT } from 'layouts/Header/components/HeaderNav/HeaderNavContent';
 import { Paragraph } from 'ui-kit';
+
+import style from './HeaderNav.module.scss';
 
 interface IHeaderNav {
   userRole: UserRoleEnum;

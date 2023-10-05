@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './MobileSupplierHeader.module.scss';
-
 import { IHtmlProps, UserRoleEnum } from 'common/types';
 import { HeaderNav } from 'layouts/Header/components';
 import { Top } from 'layouts/Header/SupplierHeader';
+
+import style from './MobileSupplierHeader.module.scss';
 
 export const MobileSupplierHeader: FC<IHtmlProps> = ({
   className,

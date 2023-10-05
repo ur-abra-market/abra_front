@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import style from './SupplierProfilePage.module.scss';
-
 import {
   SupplierBusinessInfoChangeForm,
   SupplierNotifications,
@@ -20,6 +18,8 @@ import {
 } from 'store/reducers/supplier/profile';
 import { getPersonalInfo, userLoadingSelector } from 'store/reducers/userSlice';
 import { LoaderLinear } from 'ui-kit';
+
+import style from './SupplierProfilePage.module.scss';
 
 export const SupplierProfilePage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();

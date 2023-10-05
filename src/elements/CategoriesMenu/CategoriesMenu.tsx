@@ -12,8 +12,6 @@ import {
 import cn from 'classnames';
 import { useNavigate } from 'react-router-dom';
 
-import style from './CategoriesMenu.module.scss';
-
 import { FilterButton, MenuItems } from '.';
 
 import { KEYBOARD_KEYS } from 'common/constants/index';
@@ -21,6 +19,8 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { PRODUCTS_LIST } from 'routes';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
 import { getAllCategories } from 'store/reducers/commonSlice';
+
+import style from './CategoriesMenu.module.scss';
 
 export interface CategoriesMenuProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {

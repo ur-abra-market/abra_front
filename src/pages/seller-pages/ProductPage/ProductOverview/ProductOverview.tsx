@@ -1,10 +1,10 @@
 import React, { JSX } from 'react';
 
-import style from './ProductOverview.module.scss';
-
 import { useAppSelector } from 'common/hooks';
 import { AboutProduct, DescriptionProduct, FeedBacksProduct } from 'elements';
 import { productDescriptionSelector } from 'store/reducers/productSlice';
+
+import style from './ProductOverview.module.scss';
 
 export const ProductOverview = (): JSX.Element => {
   const description = useAppSelector(productDescriptionSelector);

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 
-import style from './ConfirmEmailPage.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ContentMessage } from 'elements';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
 import { LOGIN } from 'routes';
 import { confirmEmail, isAuthorizedSelector } from 'store/reducers/authSlice';
 import { LoaderCircular } from 'ui-kit';
+
+import style from './ConfirmEmailPage.module.scss';
 
 export const ConfirmEmailPage = (): JSX.Element => {
   const dispatch = useAppDispatch();

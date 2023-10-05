@@ -1,9 +1,9 @@
 import React from 'react';
 
-import style from './AnalyticsPage.module.scss';
-
 import { WithLayout } from 'common/hocs/WithLayout';
 import { Title } from 'ui-kit';
+
+import style from './AnalyticsPage.module.scss';
 
 export const AnalyticsPage = WithLayout((): JSX.Element => {
   return (

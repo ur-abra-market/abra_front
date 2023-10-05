@@ -1,9 +1,9 @@
 import React from 'react';
 
-import style from './PersonalInfoHeader.module.scss';
-
 import { ButtonLogout } from 'elements';
 import { Title } from 'ui-kit';
+
+import style from './PersonalInfoHeader.module.scss';
 
 export const PersonalInfoHeader = (): JSX.Element => {
   return (
