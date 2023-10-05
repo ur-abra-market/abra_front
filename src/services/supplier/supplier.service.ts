@@ -37,6 +37,11 @@ export const supplierService = {
 
     formData.append('company_data_request', JSON.stringify(params.company_data_request));
 
+    formData.append(
+      'business_sectors_request',
+      JSON.stringify(params.business_sectors_request),
+    );
+
     if (!_.isEmpty(params.company_phone_data_request)) {
       formData.append(
         'company_phone_data_request',
