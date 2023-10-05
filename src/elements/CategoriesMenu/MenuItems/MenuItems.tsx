@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
@@ -52,9 +52,5 @@ export const MenuItems: FC<IMenuItems> = ({
     );
   });
 
-  return (
-    <div className={style.items_wrapper}>
-      <div className={cn(style.items_container)}>{mappedItems}</div>
-    </div>
-  );
+  return <div className={cn(style.items_container)}>{mappedItems}</div>;
 };
