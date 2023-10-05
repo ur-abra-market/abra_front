@@ -1,3 +1,9 @@
 @import "src/common/styles/mixins";
 
 @include auth_pages_form;
+
+.input_wrapper {
+  input {
+    padding-right: 46px;
+  }
+}
