@@ -9,8 +9,10 @@ const loginFooterData: IAuthFooterData[] = [
   { link: REGISTER, title: 'Create account' },
 ];
 
-export const LoginPage = (): JSX.Element => (
+const LoginPage = (): JSX.Element => (
   <AuthPageLayout isMainLogoShow footerData={loginFooterData}>
     <LoginForm />
   </AuthPageLayout>
 );
+
+export default LoginPage;

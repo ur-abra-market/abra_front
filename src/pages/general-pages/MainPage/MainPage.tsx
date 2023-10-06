@@ -50,7 +50,7 @@ const CATEGORIES: Category = {
   },
 };
 
-export const MainPage = WithLayout((): JSX.Element => {
+const MainPage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();
   const filter = useAppSelector(state => state.productListOld.statusProduct);
   const loadingSlider = useAppSelector(loadingProductsSelector);
@@ -114,3 +114,5 @@ export const MainPage = WithLayout((): JSX.Element => {
     </div>
   );
 });
+
+export default MainPage;

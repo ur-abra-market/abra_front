@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 
 import { RouterProvider } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ import { NoticePopup } from 'elements';
 import { createRoutes } from 'routes';
 import { getUserRole, isAppInitializedSelector } from 'store/reducers/appSlice';
 import { userRoleSelector } from 'store/reducers/authSlice';
-import { LoaderCircular } from 'ui-kit';
+import { LoaderCircular, LoaderLinear } from 'ui-kit';
 
 export const App = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -25,7 +25,9 @@ export const App = (): JSX.Element => {
   return (
     <div className="App">
       <NoticePopup />
-      <RouterProvider router={createRoutes(userRole)} />
+      <Suspense fallback={<LoaderLinear />}>
+        <RouterProvider router={createRoutes(userRole)} />
+      </Suspense>
     </div>
   );
 };

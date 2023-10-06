@@ -7,7 +7,7 @@ import { Title } from 'ui-kit';
 
 import style from './SellAbra.module.scss';
 
-export const SellAbraPage = WithLayout(() => (
+const SellAbraPage = WithLayout(() => (
   <div className={style.container}>
     <Title>Sell on Abra</Title>
     <div className={style.wrapper}>
@@ -34,3 +34,5 @@ export const SellAbraPage = WithLayout(() => (
     </div>
   </div>
 ));
+
+export default SellAbraPage;

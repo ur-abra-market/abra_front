@@ -13,7 +13,7 @@ import { Button } from 'ui-kit';
 
 import style from './ChangeEmailPage.module.scss';
 
-export const ChangeEmailPage = (): JSX.Element => {
+const ChangeEmailPage = (): JSX.Element => {
   const navigate = useNavigate();
   const userRole = useAppSelector(userRoleSelector);
   const [isModalOpen, setOpenModal] = useState(false);
@@ -52,3 +52,5 @@ export const ChangeEmailPage = (): JSX.Element => {
     </>
   );
 };
+
+export default ChangeEmailPage;

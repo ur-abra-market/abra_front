@@ -13,7 +13,7 @@ import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
 
 import style from './ProductListPage.module.scss';
 
-export const ProductListPage = WithLayout((): JSX.Element => {
+const ProductListPage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const sortField = useAppSelector(sortFieldSelector);
@@ -52,3 +52,5 @@ export const ProductListPage = WithLayout((): JSX.Element => {
     </div>
   );
 });
+
+export default ProductListPage;

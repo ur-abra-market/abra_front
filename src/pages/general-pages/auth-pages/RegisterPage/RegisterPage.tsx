@@ -4,7 +4,7 @@ import { IAuthFooterData } from 'common/types';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
 import { LOGIN } from 'routes';
 
-export const RegisterPage = (): JSX.Element => {
+const RegisterPage = (): JSX.Element => {
   const registerFooterData: IAuthFooterData[] = [{ link: LOGIN, title: 'Log in' }];
 
   return (
@@ -13,3 +13,5 @@ export const RegisterPage = (): JSX.Element => {
     </AuthPageLayout>
   );
 };
+
+export default RegisterPage;

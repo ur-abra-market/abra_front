@@ -8,7 +8,7 @@ import { Title } from 'ui-kit';
 
 import style from './PrivacyPolicy.module.scss';
 
-export const PrivacyPolicyPage = (): JSX.Element => {
+const PrivacyPolicyPage = (): JSX.Element => {
   return (
     <div>
       <ScrollRestoration />
@@ -214,3 +214,5 @@ export const PrivacyPolicyPage = (): JSX.Element => {
     </div>
   );
 };
+
+export default PrivacyPolicyPage;

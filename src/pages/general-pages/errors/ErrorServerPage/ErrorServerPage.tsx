@@ -7,7 +7,7 @@ import { Button, ButtonIcon, MainLogo, Title } from 'ui-kit';
 
 import styles from './ErrorServerPage.module.scss';
 
-export const ErrorServerPage = (): JSX.Element => {
+const ErrorServerPage = (): JSX.Element => {
   const navigate = useNavigate();
 
   return (
@@ -31,3 +31,5 @@ export const ErrorServerPage = (): JSX.Element => {
     </section>
   );
 };
+
+export default ErrorServerPage;

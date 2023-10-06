@@ -7,7 +7,7 @@ import { Title } from 'ui-kit';
 
 import style from './LastNews.module.scss';
 
-export const LastNewsPage = WithLayout((): JSX.Element => {
+const LastNewsPage = WithLayout((): JSX.Element => {
   const [text] = useState([
     {
       title: 'This is news title',
@@ -35,3 +35,5 @@ export const LastNewsPage = WithLayout((): JSX.Element => {
     </div>
   );
 });
+
+export default LastNewsPage;

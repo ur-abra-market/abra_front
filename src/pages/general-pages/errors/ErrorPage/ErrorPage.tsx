@@ -4,7 +4,7 @@ import { Paragraph, Title } from 'ui-kit';
 
 import styles from './ErrorPage.module.scss';
 
-export const ErrorPage = (): JSX.Element => {
+const ErrorPage = (): JSX.Element => {
   return (
     <div className={styles.error_page}>
       <Title size="s">Oops!</Title>
@@ -14,3 +14,5 @@ export const ErrorPage = (): JSX.Element => {
     </div>
   );
 };
+
+export default ErrorPage;

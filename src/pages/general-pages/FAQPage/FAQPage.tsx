@@ -79,7 +79,7 @@ const FAQData = [
   },
 ];
 
-export const FAQPage = WithLayout((): JSX.Element => {
+const FAQPage = WithLayout((): JSX.Element => {
   return (
     <div className={style.container}>
       <Title>FAQs</Title>
@@ -98,3 +98,5 @@ export const FAQPage = WithLayout((): JSX.Element => {
     </div>
   );
 });
+
+export default FAQPage;

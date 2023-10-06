@@ -11,7 +11,7 @@ import { LoaderCircular } from 'ui-kit';
 
 import style from './ConfirmEmailPage.module.scss';
 
-export const ConfirmEmailPage = (): JSX.Element => {
+const ConfirmEmailPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -58,3 +58,5 @@ export const ConfirmEmailPage = (): JSX.Element => {
     </AuthPageLayout>
   );
 };
+
+export default ConfirmEmailPage;

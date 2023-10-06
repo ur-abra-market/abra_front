@@ -11,7 +11,7 @@ import style from './ForgotPasswordPage.module.scss';
 
 export type pageType = 'forgotPassword' | 'recoveryEmailIsSent';
 
-export const ForgotPasswordPage = (): JSX.Element => {
+const ForgotPasswordPage = (): JSX.Element => {
   const [pageType, setPageType] = useState<pageType>('forgotPassword');
   const forgotPasswordFooterData: IAuthFooterData[] = [{ link: LOGIN, title: 'Log in' }];
 
@@ -46,3 +46,5 @@ export const ForgotPasswordPage = (): JSX.Element => {
     </AuthPageLayout>
   );
 };
+
+export default ForgotPasswordPage;

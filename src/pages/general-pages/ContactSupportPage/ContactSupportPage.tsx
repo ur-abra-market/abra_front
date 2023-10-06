@@ -7,7 +7,7 @@ import { SocialNetworks, WhatsappPhoneNumber, Title } from 'ui-kit';
 
 import style from './ContactSupport.module.scss';
 
-export const ContactSupportPage = WithLayout(() => {
+const ContactSupportPage = WithLayout(() => {
   return (
     <div>
       <div className={style.image_container}>
@@ -26,3 +26,5 @@ export const ContactSupportPage = WithLayout(() => {
     </div>
   );
 });
+
+export default ContactSupportPage;

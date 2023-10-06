@@ -5,7 +5,7 @@ import { Title } from 'ui-kit';
 
 import style from './Tutorial.module.scss';
 
-export const TutorialPage = WithLayout((): JSX.Element => {
+const TutorialPage = WithLayout((): JSX.Element => {
   return (
     <div className={style.container}>
       <Title>Coming soon...</Title>
@@ -13,3 +13,5 @@ export const TutorialPage = WithLayout((): JSX.Element => {
     </div>
   );
 });
+
+export default TutorialPage;

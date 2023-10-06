@@ -9,7 +9,7 @@ import { isAuthorizedSelector } from 'store/reducers/authSlice';
 
 import style from './CheckEmailPage.module.scss';
 
-export const CheckEmailPage = (): JSX.Element => {
+const CheckEmailPage = (): JSX.Element => {
   const navigate = useNavigate();
   const isAuthorized = useAppSelector(isAuthorizedSelector);
 
@@ -28,3 +28,5 @@ export const CheckEmailPage = (): JSX.Element => {
     </AuthPageLayout>
   );
 };
+
+export default CheckEmailPage;

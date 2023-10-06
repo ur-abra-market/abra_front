@@ -13,7 +13,7 @@ import { Button } from 'ui-kit';
 
 import style from './ResetPasswordPage.module.scss';
 
-export const ResetPasswordPage = (): JSX.Element => {
+const ResetPasswordPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -72,3 +72,5 @@ export const ResetPasswordPage = (): JSX.Element => {
     </>
   );
 };
+
+export default ResetPasswordPage;

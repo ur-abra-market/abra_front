@@ -14,7 +14,7 @@ import { Button } from 'ui-kit';
 
 import style from './ChangePasswordPage.module.scss';
 
-export const ChangePasswordPage = (): JSX.Element => {
+const ChangePasswordPage = (): JSX.Element => {
   const navigate = useNavigate();
   const userRole = useAppSelector(userRoleSelector);
   const [isModalOpen, setOpenModal] = useState(false);
@@ -64,3 +64,5 @@ export const ChangePasswordPage = (): JSX.Element => {
     </>
   );
 };
+
+export default ChangePasswordPage;

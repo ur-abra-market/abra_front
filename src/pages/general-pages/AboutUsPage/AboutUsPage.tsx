@@ -5,7 +5,7 @@ import { Paragraph, Title } from 'ui-kit';
 
 import style from './AboutUsPage.module.scss';
 
-export const AboutUsPage = WithLayout((): JSX.Element => {
+const AboutUsPage = WithLayout((): JSX.Element => {
   return (
     <div className={style.container}>
       <Title>About Us</Title>
@@ -97,3 +97,5 @@ export const AboutUsPage = WithLayout((): JSX.Element => {
     </div>
   );
 });
+
+export default AboutUsPage;

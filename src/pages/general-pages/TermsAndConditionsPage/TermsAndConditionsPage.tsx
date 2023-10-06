@@ -8,7 +8,7 @@ import { Paragraph, SimpleLink, Title } from 'ui-kit';
 
 import style from './TermsAndConditions.module.scss';
 
-export const TermsAndConditionsPage = (): JSX.Element => {
+const TermsAndConditionsPage = (): JSX.Element => {
   return (
     <div>
       <ScrollRestoration />
@@ -952,3 +952,5 @@ export const TermsAndConditionsPage = (): JSX.Element => {
     </div>
   );
 };
+
+export default TermsAndConditionsPage;
