@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import style from './Item.module.scss';
-
 import { Paragraph, Title } from 'ui-kit';
+
+import style from './Item.module.scss';
 
 interface IItem {
   numberItem: number;

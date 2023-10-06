@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
 
-import style from './LocationAndCurrencySelection.module.scss';
 import { ILocationAndCurrencySelection } from './LocationAndCurrencySelection.props';
 
 import { ArrowIcon } from 'assets/icons';
@@ -10,6 +9,8 @@ import { useOnClickOutside } from 'common/hooks/useOnClickOutside';
 import { CountriesEnum } from 'common/types';
 import { COUNTRY_FLAGS } from 'common/utils';
 import { ISelectOption, Select } from 'ui-kit';
+
+import style from './LocationAndCurrencySelection.module.scss';
 
 const CURRENCY_DATA: ISelectOption[] = [
   { label: { text: 'Russian / RUB' }, value: 'ru' },

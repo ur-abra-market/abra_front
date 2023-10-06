@@ -4,8 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
-import style from './SupplierBusinessInfoChangeForm.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSupplierBusinessInfoFormDirty } from 'common/hooks/useSupplierBusinessInfoFormDirty';
 import { useSupplierBusinessInfoSetValue } from 'common/hooks/useSupplierBusinessInfoSetValue';
@@ -25,6 +23,8 @@ import {
 } from 'store/reducers/supplier/profile';
 import { updateCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 import { Title } from 'ui-kit';
+
+import style from './SupplierBusinessInfoChangeForm.module.scss';
 
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import style from './WhatsappPhoneNumber.module.scss';
-
 import { WhatsappIcon } from 'assets/icons';
+
+import style from './WhatsappPhoneNumber.module.scss';
 
 export const WhatsappPhoneNumber = (): JSX.Element => {
   return (

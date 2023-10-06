@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
-import style from './ProductsPerPage.module.scss';
-
 import { Select, ISelectOption, Paragraph } from 'ui-kit';
+
+import style from './ProductsPerPage.module.scss';
 
 const productsPerPageOptions = [
   {

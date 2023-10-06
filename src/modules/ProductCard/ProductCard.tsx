@@ -3,13 +3,13 @@ import { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import style from './ProductCard.module.scss';
-
 import ProductImage from 'elements/ProductImage/ProductImage';
 import { getPriceOneItem } from 'pages/seller-pages/ProductPage/helpers/getPriceOneItem';
 import { PRODUCT_DETAILS } from 'routes';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { Stars } from 'ui-kit';
+
+import style from './ProductCard.module.scss';
 
 interface IProductCard
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -28,24 +28,24 @@ export const ProductCard: FC<IProductCard> = ({
   const image_url = images[0]?.image_url;
 
   return (
-    <div className={cn(style.card, className)} {...restProps}>
-      <ProductImage
-        imageUrl={image_url || ''}
-        name={name}
-        isFavorite={is_active}
-        productId={id}
-      />
+    <article className={cn(style.card, className)} {...restProps}>
       <Link tabIndex={-1} to={`${PRODUCT_DETAILS}/${id}`} className={style.link}>
+        <ProductImage
+          imageUrl={image_url || ''}
+          name={name}
+          isFavorite={is_active}
+          productId={id}
+        />
         <div className={style.direction}>
-          <span>{name}</span>
-          <span>{description}</span>
+          <h4 className={style.card_title}>{name}</h4>
+          <p className={style.card_description}>{description}</p>
         </div>
+        <div className={style.price}>
+          <p className={style.amount}>{getPriceOneItem(prices)}/pc</p>
+          <span className={style.rating}>{`/from ${min_quantity} pcs`}</span>
+        </div>
+        <Stars reward={grade_average || 0} />
       </Link>
-      <div className={style.price}>
-        <div className={style.amount}>{getPriceOneItem(prices)}/pc</div>
-        <span>{`/from ${min_quantity} pcs`}</span>
-      </div>
-      <Stars reward={grade_average || 0} />
-    </div>
+    </article>
   );
 };

@@ -2,9 +2,9 @@ import { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './PageViewSwitcher.module.scss';
-
 import { ViewGridEnabledIcon, ViewListEnabledIcon } from 'assets/icons';
+
+import style from './PageViewSwitcher.module.scss';
 
 interface IPageViewSwitcher {
   selectedView: ViewType;

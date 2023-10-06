@@ -5,6 +5,7 @@
   left: 0;
 
   display: flex;
+  flex-wrap: wrap;
   gap: 22px;
 
   min-width: 600px;
@@ -19,4 +20,24 @@
 .list {
   display: flex;
   flex-direction: column;
+}
+
+@media only screen and (max-width: 1140px) {
+  .menu_container {
+    top: 108px;
+    left: 20px;
+    flex-direction: column;
+    row-gap: 32px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .menu_container {
+    top: 52px;
+    left: 0;
+
+    width: calc(100vw - 20px);
+    min-width: auto;
+    margin: 0 10px;
+  }
 }

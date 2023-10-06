@@ -2,9 +2,9 @@ import { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './ButtonQuestion.module.scss';
-
 import { ContactUsQuestionMarkIcon } from 'assets/icons';
+
+import style from './ButtonQuestion.module.scss';
 
 interface IButtonQuestion {
   className?: string;

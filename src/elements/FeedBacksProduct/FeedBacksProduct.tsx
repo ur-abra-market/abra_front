@@ -1,8 +1,8 @@
 import React from 'react';
 
-import style from './FeedBacksProduct.module.scss';
-
 import { Title } from 'ui-kit';
+
+import style from './FeedBacksProduct.module.scss';
 
 export const FeedBacksProduct = (): JSX.Element => {
   return (

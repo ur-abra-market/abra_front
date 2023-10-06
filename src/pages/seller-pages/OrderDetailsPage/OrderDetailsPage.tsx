@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import style from './OrderDetails.module.scss';
-
 import { WithLayout } from 'common/hocs/WithLayout';
 import { Title } from 'ui-kit';
+
+import style from './OrderDetails.module.scss';
 
 export const OrderDetailsPage = WithLayout((): JSX.Element => {
   return (

@@ -12,12 +12,12 @@ import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import { Swiper as SwiperType } from 'swiper';
 
-import style from './ProductsPreview.module.scss';
-
 import { Carousel } from '.';
 
 import { ArrowIcon } from 'assets/icons'; // 24px
 import { ButtonIcon, Title } from 'ui-kit';
+
+import style from './ProductsPreview.module.scss';
 
 interface IProductsPreview
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {

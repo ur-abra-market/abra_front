@@ -2,9 +2,9 @@ import { FC, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 
-import style from './Pagination.module.scss';
-
 import { ArrowIcon } from 'assets/icons';
+
+import style from './Pagination.module.scss';
 
 interface IPagination {
   totalPages: number;

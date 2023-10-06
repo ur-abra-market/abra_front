@@ -1,11 +1,11 @@
 import React, { JSX } from 'react';
 
-import style from './Top.module.scss';
-
 import { UserRoleEnum } from 'common/types';
 import { LocationAndCurrencySelection } from 'elements/LocationAndCurrencySelection/LocationAndCurrencySelection';
 import { HeaderNav } from 'layouts/Header/components';
 import { MainLogo } from 'ui-kit';
+
+import style from './Top.module.scss';
 
 export const Top = (): JSX.Element => {
   return (

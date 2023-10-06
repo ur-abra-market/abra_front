@@ -4,11 +4,12 @@ import { useGetSearchParams } from './common/hoocks/useGetSearchParams';
 import { PaginationControl } from './PaginationControl/PaginationControl';
 import { ProductHeader } from './ProductHeader/ProductHeader';
 import { ProductsList } from './ProductsList/ProductsList';
-import style from './SupplierProducts.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { getSupplierProducts, hasChangedSelector } from 'store/reducers/supplier/product';
+
+import style from './SupplierProducts.module.scss';
 
 export const SupplierProducts = WithLayout((): JSX.Element => {
   const { status, sale, categoryIds, limit, page, sortField, sortBy } =

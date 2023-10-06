@@ -4,8 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import style from './AccountSetupBusinessInfoForm.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
 import { parsePhoneNumber } from 'common/utils';
@@ -24,6 +22,8 @@ import {
   supplierLoadingSelector,
 } from 'store/reducers/supplier/profile';
 import { LoaderLinear, Title } from 'ui-kit';
+
+import style from './AccountSetupBusinessInfoForm.module.scss';
 
 export const AccountSetupBusinessInfoForm = (): JSX.Element => {
   const dispatch = useAppDispatch();

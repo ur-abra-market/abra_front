@@ -1,11 +1,11 @@
 import React from 'react';
 
-import style from './ContactSupport.module.scss';
-
 import { Banner3Image } from 'assets/images';
 import { WithLayout } from 'common/hocs/WithLayout';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { SocialNetworks, WhatsappPhoneNumber, Title } from 'ui-kit';
+
+import style from './ContactSupport.module.scss';
 
 export const ContactSupportPage = WithLayout(() => {
   return (

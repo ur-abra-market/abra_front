@@ -2,12 +2,13 @@ import { forwardRef, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
-import styles from './Select.module.scss';
 import { SelectHeader } from './SelectHeader/SelectHeader';
 import { SelectMenu } from './SelectMenu/SelectMenu';
 
 import { KEYBOARD_KEYS } from 'common/constants';
 import { useOnClickOutside, useOnHoverOutside } from 'common/hooks';
+
+import styles from './Select.module.scss';
 
 const PREV = 1;
 const NEXT = 1;

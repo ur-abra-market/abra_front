@@ -2,10 +2,10 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import styles from './SelectMenu.module.scss';
-
 import { ISelectOption } from 'ui-kit/Select/Select';
 import { SelectItem } from 'ui-kit/Select/SelectItem/SelectItem';
+
+import styles from './SelectMenu.module.scss';
 
 interface ISelectMenuPropsType {
   selectedValue: ISelectOption;

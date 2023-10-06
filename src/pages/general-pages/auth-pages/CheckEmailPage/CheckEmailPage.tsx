@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import style from './CheckEmailPage.module.scss';
-
 import { useAppSelector } from 'common/hooks';
 import { ContentMessage } from 'elements';
 import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
 import { isAuthorizedSelector } from 'store/reducers/authSlice';
+
+import style from './CheckEmailPage.module.scss';
 
 export const CheckEmailPage = (): JSX.Element => {
   const navigate = useNavigate();

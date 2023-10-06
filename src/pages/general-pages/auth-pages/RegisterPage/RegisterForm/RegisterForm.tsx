@@ -5,8 +5,6 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
-import style from './RegisterForm.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum, ResponseUserRoleType } from 'common/types';
 import { getEmailValidationSchema, passwordValidationSchema } from 'common/utils';
@@ -16,6 +14,8 @@ import { IRegisterRequest } from 'services/auth/auth.serviceTypes';
 import { loadingSelector } from 'store/reducers/appSlice';
 import { registerUser } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
+
+import style from './RegisterForm.module.scss';
 
 export interface IRegisterFormData extends Omit<IRegisterRequest, 'role'> {}
 

@@ -2,13 +2,13 @@ import React from 'react';
 
 import { nanoid } from '@reduxjs/toolkit';
 
-import style from './FAQ.module.scss';
-
 import { ContentBox } from '.';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { CONTACT } from 'routes';
 import { Paragraph, SimpleLink, Title } from 'ui-kit';
+
+import style from './FAQ.module.scss';
 
 const FAQData = [
   {

@@ -4,8 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-import style from './ChangeEmailForm.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
 import { getEmailValidationSchema } from 'common/utils';
@@ -13,6 +11,8 @@ import { IChangeEmailRequest } from 'services/auth/auth.serviceTypes';
 import { loadingSelector } from 'store/reducers/appSlice';
 import { changeEmail } from 'store/reducers/authSlice';
 import { Button, Input } from 'ui-kit';
+
+import style from './ChangeEmailForm.module.scss';
 
 const TRIGGER_FIELD = 'confirm_email';
 

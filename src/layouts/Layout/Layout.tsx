@@ -1,11 +1,11 @@
 import { FC, ReactNode, useLayoutEffect, useState } from 'react';
 
-import styles from './Layout.module.scss';
-
 import { Footer } from 'layouts/Footer/Footer';
 import { Header, SupplierHeader } from 'layouts/Header';
 import { MobileHeader } from 'layouts/Header/MobileHeader/MobileHeader';
 import { MobileSupplierHeader } from 'layouts/Header/MobileSupplierHeader/MobileSupplierHeader';
+
+import styles from './Layout.module.scss';
 
 interface ILayout {
   children: ReactNode;

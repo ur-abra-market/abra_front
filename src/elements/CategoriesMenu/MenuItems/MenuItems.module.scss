@@ -13,7 +13,7 @@
   &:hover {
     font-weight: var(--bold);
     color: var(--color-red);
-    transition: all .1s;
+    transition: all 0.1s;
   }
 }
 
@@ -24,7 +24,7 @@
 
 .items_links {
   margin-top: 14px;
-  transition: all .1s;
+  transition: all 0.1s;
 
   &:hover {
     cursor: pointer;
@@ -33,13 +33,31 @@
   }
 }
 
+.items_container {
+  display: grid;
+  grid-auto-rows: auto;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  row-gap: 32px;
+  column-gap: 22px;
 
-.items_wrapper {
   min-width: 660px;
 }
 
-.items_container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 22px;
+@media only screen and (max-width: 1140px) {
+  .items_container {
+    margin-left: 18px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .items_container {
+    grid-template-columns: 1fr 1fr;
+    min-width: auto;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .items_container {
+    grid-template-columns: 1fr;
+  }
 }

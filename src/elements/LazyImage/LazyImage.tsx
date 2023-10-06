@@ -9,12 +9,12 @@ import React, {
 
 import cn from 'classnames';
 
-import style from './LazyImage.module.scss';
-
 import defaultImage from 'assets/icons/files/default-image.svg';
 import defaultLogoImage from 'assets/icons/files/default-logo-image.svg';
 import defaultSupplierItemImage from 'assets/icons/files/default-supplier-item-image.svg';
 import defaultUserItemImage from 'assets/images/files/default-product-image.png';
+
+import style from './LazyImage.module.scss';
 
 interface ILazyImage extends ImgHTMLAttributes<HTMLImageElement> {
   children?: ReactNode;

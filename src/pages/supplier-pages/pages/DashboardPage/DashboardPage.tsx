@@ -1,9 +1,9 @@
 import React from 'react';
 
-import style from './DashboardPage.module.scss';
-
 import { WithLayout } from 'common/hocs/WithLayout';
 import { Title } from 'ui-kit';
+
+import style from './DashboardPage.module.scss';
 
 export const DashboardPage = WithLayout((): JSX.Element => {
   return (

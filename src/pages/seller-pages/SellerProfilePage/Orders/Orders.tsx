@@ -1,5 +1,3 @@
-import style from './Orders.module.scss';
-
 import {
   OrderStatusCompletedIcon,
   OrderStatusShippedIcon,
@@ -9,6 +7,8 @@ import {
 } from 'assets/icons';
 import { ORDER_HISTORY } from 'routes';
 import { Button, SimpleLink, Title } from 'ui-kit';
+
+import style from './Orders.module.scss';
 
 export const Orders = (): JSX.Element => {
   return (

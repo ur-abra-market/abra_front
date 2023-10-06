@@ -8,12 +8,13 @@ import {
   QUERY_PARAMS_VALUE,
 } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParamsConstants';
 import { CATEGORY_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/selectOptions';
-import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
 import {
   isLoadingSelector,
   resetProductStatusSelection,
 } from 'store/reducers/supplier/product';
 import { ISelectOption, Select } from 'ui-kit';
+
+import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
 
 export const CategoryFilter = (): JSX.Element => {
   const { updateUrlQueryParams, searchParams } = useUpdateSearchParams();

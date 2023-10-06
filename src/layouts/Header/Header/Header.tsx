@@ -2,13 +2,13 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './Header.module.scss';
-
 import { Top } from '.';
 
 import { IHtmlProps, UserRoleEnum } from 'common/types';
 import { LocationAndCurrencySelection } from 'elements/LocationAndCurrencySelection/LocationAndCurrencySelection';
 import { HeaderCategories, HeaderNav } from 'layouts/Header/components';
+
+import style from './Header.module.scss';
 
 export const Header: FC<IHtmlProps> = ({ className, ...restProps }): JSX.Element => {
   return (
