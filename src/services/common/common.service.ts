@@ -10,7 +10,7 @@ import { baseConfigService } from 'services/baseConfig.service';
 export const commonService = {
   getCountry: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<CountriesArrayType>>(
-      `common/country`,
+      `common/countries`,
     );
 
     return data.result;
@@ -18,7 +18,7 @@ export const commonService = {
 
   getCompanyNumberEmployees: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<INumberEmployees[]>>(
-      'common/numberEmployees',
+      'common/employeesNumbers',
     );
 
     return data.result;

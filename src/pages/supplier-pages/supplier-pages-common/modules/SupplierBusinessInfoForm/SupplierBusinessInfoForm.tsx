@@ -1,21 +1,19 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { useAppSelector } from 'common/hooks';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
 import { PhoneNumberInput } from 'elements';
-import { countriesSelector, numberEmployeesSelector } from 'store/reducers/commonSlice';
+import {
+  countriesSelector,
+  getAllCategories,
+  numberEmployeesSelector,
+} from 'store/reducers/commonSlice';
 import { supplierLoadingSelector } from 'store/reducers/supplier/profile';
-import { Button, Checkbox, Input, ISelectOption, Label, Select, Title } from 'ui-kit';
+import { Button, Checkbox, Input, Label, Select, Title } from 'ui-kit';
 
 import style from './SupplierBusinessInfoForm.module.scss';
-
-const BUSINESS_SECTOR_DATA: ISelectOption[] = [
-  { label: { text: 'Clothes' }, value: 'Clothes' },
-  { label: { text: 'Accessories' }, value: 'Accessories' },
-  { label: { text: 'Electronics' }, value: 'Electronics' },
-];
 
 interface IBusinessProfileForm {
   updateForm?: boolean;
@@ -32,6 +30,16 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
   isPhoneNumber,
   isDirty,
 }): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const categories = useAppSelector(state => state.common.categories);
+  const businessSectorData = categories ? categories.filter(c => c.level === 1) : [];
+
+  useEffect(() => {
+    if (!categories) {
+      dispatch(getAllCategories());
+    }
+  }, [dispatch, categories]);
+
   const numberEmployees = useAppSelector(numberEmployeesSelector);
   const countries = useAppSelector(countriesSelector);
   const isLoading =
@@ -70,7 +78,10 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   className={style.select}
                   disabled={isLoading}
                   error={errors?.businessSector?.message}
-                  options={BUSINESS_SECTOR_DATA}
+                  options={businessSectorData.map(el => ({
+                    value: el.id,
+                    label: { text: el.name },
+                  }))}
                   placeholder="Select"
                   defaultValue={watch('businessSector')}
                   onChange={value => {

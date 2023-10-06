@@ -27,14 +27,14 @@ export const productService = {
 
     const { data } = await baseConfigService.post<
       IBaseResponse<IProductsCompilationResponse>
-    >(`products/compilation`, { category_ids: categoryIds }, { params });
+    >(`products`, { category_ids: categoryIds }, { params });
 
     return data.result;
   },
 
   getProductById: async ({ product_id }: IProductRequest) => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductCard>>(
-      `products/productCard/${product_id}`,
+      `products/${product_id}`,
     );
 
     return data.result;
@@ -52,7 +52,7 @@ export const productService = {
 
   removeFavorite: async (params: IProductRequest) => {
     const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
-      `products/removeFavorite`,
+      `sellers/favorites/remove`,
       {
         params,
       },
@@ -77,7 +77,7 @@ export const productService = {
 
   getGradesByProductId: async ({ product_id }: IProductRequest) => {
     const { data } = await baseConfigService.get<IGradeProductResponse>(
-      `products/${product_id}/grades`,
+      `products/${product_id}/reviews/grades`,
     );
 
     return data;
@@ -85,7 +85,7 @@ export const productService = {
 
   deleteProducts: async (selectedProductIds: number[]) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      `suppliers/deleteProducts`,
+      `suppliers/products/delete`,
       [...selectedProductIds],
     );
 
@@ -94,7 +94,7 @@ export const productService = {
 
   restoreList: async (productsId: number[]) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      `suppliers/restoreProducts`,
+      `suppliers/products/restore`,
       [...productsId],
     );
 

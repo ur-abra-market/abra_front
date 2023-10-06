@@ -28,7 +28,7 @@ export const sellerService = {
 
   createAddress: async (params: ISellerAddressRequest) => {
     const { data } = await baseConfigService.post<IBaseResponse<ISellerAddress>>(
-      'sellers/addAddress',
+      'sellers/addresses/add',
       params,
     );
 
@@ -37,7 +37,7 @@ export const sellerService = {
 
   updateAddress: async ({ address_id, ...params }: ISellerAddressRequest) => {
     const { data } = await baseConfigService.post<IBaseResponse<ISellerAddress>>(
-      `sellers/updateAddress/${address_id}`,
+      `sellers/addresses/${address_id}/update`,
       params,
     );
 
@@ -46,7 +46,7 @@ export const sellerService = {
 
   deleteAddress: (id: number) => {
     return baseConfigService.delete<IBaseResponse<boolean>>(
-      `sellers/removeAddress/${id}`,
+      `sellers/addresses/${id}/remove`,
     );
   },
 
