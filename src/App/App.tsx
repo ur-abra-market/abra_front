@@ -25,7 +25,7 @@ export const App = (): JSX.Element => {
   return (
     <div className="App">
       <NoticePopup />
-      <Suspense fallback={<LoaderLinear />}>
+      <Suspense>
         <RouterProvider router={createRoutes(userRole)} />
       </Suspense>
     </div>

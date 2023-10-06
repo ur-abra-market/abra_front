@@ -31,8 +31,8 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
       <ProductImage
         imageUrl={images[0].image_url || ''}
         name={name}
-        isFavorite={is_active}
-        className={style.card_image}
+        // isFavorite={is_active}
+        // className={style.card_image}
       />
 
       <div className={style.card_info}>
