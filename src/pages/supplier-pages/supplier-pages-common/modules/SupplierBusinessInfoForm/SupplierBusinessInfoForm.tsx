@@ -2,8 +2,6 @@ import React, { FC, useEffect } from 'react';
 
 import { Controller, useFormContext } from 'react-hook-form';
 
-import style from './SupplierBusinessInfoForm.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
 import { PhoneNumberInput } from 'elements';
@@ -14,6 +12,8 @@ import {
 } from 'store/reducers/commonSlice';
 import { supplierLoadingSelector } from 'store/reducers/supplier/profile';
 import { Button, Checkbox, Input, Label, Select, Title } from 'ui-kit';
+
+import style from './SupplierBusinessInfoForm.module.scss';
 
 interface IBusinessProfileForm {
   updateForm?: boolean;
