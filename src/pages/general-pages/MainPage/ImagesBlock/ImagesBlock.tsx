@@ -2,8 +2,6 @@ import { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import style from './ImagesBlock.module.scss';
-
 import {
   Banner0Image,
   Banner4Image,
@@ -12,6 +10,8 @@ import {
   Banner7Image,
 } from 'assets/images';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
+
+import style from './ImagesBlock.module.scss';
 
 export interface ImagesBlockProps
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}

@@ -2,10 +2,10 @@ import React, { MouseEvent, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
-import style from './StatusProduct.module.scss';
-
 import { useAppDispatch } from 'common/hooks';
 import { status } from 'store/reducers/productSliceOld';
+
+import style from './StatusProduct.module.scss';
 
 export enum CategoryType {
   BESTSELLERS = 'bestsellers',

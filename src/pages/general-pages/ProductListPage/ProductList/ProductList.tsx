@@ -3,8 +3,6 @@ import { FC, useEffect, useState } from 'react';
 import cn from 'classnames';
 import { useParams } from 'react-router-dom';
 
-import style from './ProductList.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ProductsPerPage, PageViewSwitcher } from 'elements';
 import { ViewType } from 'elements/PageViewSwitcher/PageViewSwitcher';
@@ -20,6 +18,8 @@ import {
 import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
 import { ButtonQuestion } from 'ui-kit';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
+
+import style from './ProductList.module.scss';
 
 interface IProductList {
   currentSortField: ISortField;

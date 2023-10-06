@@ -1,7 +1,5 @@
 import { useParams } from 'react-router-dom';
 
-import style from './ProductPageHeader.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { Grades, BreadCrumbs, FavoriteButton } from 'elements';
 import {
@@ -12,6 +10,8 @@ import {
   removeFavoriteProduct,
   addFavoriteProduct,
 } from 'store/reducers/productSlice';
+
+import style from './ProductPageHeader.module.scss';
 
 export const ProductPageHeader = (): JSX.Element => {
   const { productId } = useParams<string>();

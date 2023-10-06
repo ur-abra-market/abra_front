@@ -1,9 +1,9 @@
 import React from 'react';
 
-import style from './PriceManagementPage.module.scss';
-
 import { WithLayout } from 'common/hocs/WithLayout';
 import { Title } from 'ui-kit';
+
+import style from './PriceManagementPage.module.scss';
 
 export const PriceManagementPage = WithLayout((): JSX.Element => {
   return (

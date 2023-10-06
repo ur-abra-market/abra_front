@@ -3,14 +3,14 @@ import React, { FC, useCallback } from 'react';
 import cn from 'classnames';
 import { useNavigate } from 'react-router-dom';
 
-import style from './HeaderActions.module.scss';
-
 import { HeaderSellerActions, HeaderGuestUserActions } from '.';
 
 import { useAppSelector } from 'common/hooks';
 import { IHtmlProps } from 'common/types';
 import { LOGIN, REGISTER, HOME, CART } from 'routes';
 import { isAuthorizedSelector } from 'store/reducers/authSlice';
+
+import style from './HeaderActions.module.scss';
 
 export const HeaderActions: FC<IHtmlProps> = ({
   className,

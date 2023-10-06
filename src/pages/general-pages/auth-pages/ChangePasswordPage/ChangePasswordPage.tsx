@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import style from './ChangePasswordPage.module.scss';
-
 import { ChangePasswordForm } from '.';
 
 import { useAppSelector } from 'common/hooks';
@@ -13,6 +11,8 @@ import { AuthPageLayout } from 'pages/general-pages/auth-pages/assets';
 import { FORGOT_PASSWORD, HOME, PERSONAL_ACCOUNT } from 'routes';
 import { userRoleSelector } from 'store/reducers/authSlice';
 import { Button } from 'ui-kit';
+
+import style from './ChangePasswordPage.module.scss';
 
 export const ChangePasswordPage = (): JSX.Element => {
   const navigate = useNavigate();

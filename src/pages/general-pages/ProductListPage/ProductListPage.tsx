@@ -4,13 +4,14 @@ import { useSearchParams } from 'react-router-dom';
 
 import { ProductFilter } from './ProductFilter/ProductFilter';
 import { ProductList } from './ProductList/ProductList';
-import style from './ProductListPage.module.scss';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { setResetAllFilters, setSortBy, setSortField } from 'store/reducers/productSlice';
 import { sortBySelector, sortFieldSelector } from 'store/reducers/productSlice/selectors';
 import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
+
+import style from './ProductListPage.module.scss';
 
 export const ProductListPage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();

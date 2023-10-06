@@ -2,10 +2,10 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './Grades.module.scss';
-
 import { Stars } from 'ui-kit';
 import { Star } from 'ui-kit/Stars/Star/Star';
+
+import style from './Grades.module.scss';
 
 interface IGradeProps {
   grade: string | number;

@@ -2,10 +2,10 @@ import React, { FC, RefObject, useEffect, useRef, useState } from 'react';
 
 import cn from 'classnames';
 
-import style from './HeaderCategories.module.scss';
-
 import { IHtmlProps } from 'common/types';
 import { CategoriesMenu } from 'elements/CategoriesMenu/CategoriesMenu';
+
+import style from './HeaderCategories.module.scss';
 
 interface IHeaderCategories extends IHtmlProps {
   wrapperClassName?: string;

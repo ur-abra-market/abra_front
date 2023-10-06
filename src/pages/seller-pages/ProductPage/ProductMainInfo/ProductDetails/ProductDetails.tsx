@@ -1,12 +1,12 @@
 import React from 'react';
 
-import style from './ProductDetails.module.scss';
-
 import { useAppSelector } from 'common/hooks';
 import { Tags } from 'elements';
 // import { ProductColor } from 'elements';
 import { productNameSelector, productTagsSelector } from 'store/reducers/productSlice';
 import { Title } from 'ui-kit';
+
+import style from './ProductDetails.module.scss';
 
 export const ProductDetails = (): JSX.Element => {
   const title = useAppSelector(productNameSelector);

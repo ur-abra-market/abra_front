@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 
-import style from './NotificationsChangeForm.module.scss';
-
 import { LoadingStatusEnum } from 'common/types';
 import { INotificationSellerData } from 'pages/seller-pages/SellerProfilePage/SellerNotifications/SellerNotifications';
 import { INotificationSupplierData } from 'pages/supplier-pages/pages/SupplierProfilePage/SupplierNotifications/SupplierNotifications';
 import { ISellerNotifications } from 'services/seller/seller.serviceTypes';
 import { ISupplierNotifications } from 'services/supplier/supplier.serviceTypes';
 import { Checkbox, Title } from 'ui-kit';
+
+import style from './NotificationsChangeForm.module.scss';
 
 interface INotificationsChangeForm {
   callBack: (id: string, value: boolean) => void;

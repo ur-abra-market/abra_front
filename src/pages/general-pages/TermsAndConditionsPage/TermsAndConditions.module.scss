@@ -4,38 +4,21 @@
   @include content_container(40px);
 }
 
-.container_text {
-  padding-top: 36px;
-}
-
 .title_block {
-  margin: 10px 0;
-}
-
-.items {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-
-  font-size: var(--fz-l);
-  line-height: 20px;
+  margin: 24px 0 12px;
 }
 
 .text {
-  margin-bottom: 10px;
-  line-height: 24px;
+  margin-bottom: 8px;
+  line-height: 120%;
 }
 
 @media (max-width: 768px) {
-  .container_text {
-    padding-top: 0;
-  }
-
   .title_block {
     margin: 16px 0;
   }
 
-  .text, .items {
+  .text {
     line-height: 20px;
   }
 }

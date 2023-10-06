@@ -2,8 +2,6 @@ import React, { ChangeEvent, useCallback } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import style from './TableHeader.module.scss';
-
 import { ArrowSort } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/hoocks/useUpdateSearchParams';
@@ -23,6 +21,8 @@ import {
   productsSelector,
 } from 'store/reducers/supplier/product';
 import { ButtonIcon, Checkbox } from 'ui-kit';
+
+import style from './TableHeader.module.scss';
 
 export const TableHeader = (): JSX.Element => {
   const dispatch = useAppDispatch();

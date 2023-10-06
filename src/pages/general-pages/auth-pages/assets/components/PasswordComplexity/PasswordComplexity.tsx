@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 
-import style from './PasswordComplexity.module.scss';
-
 import { ReliabilityIndicator } from '.';
+
+import style from './PasswordComplexity.module.scss';
 
 interface IPasswordComplexity {
   password: string;

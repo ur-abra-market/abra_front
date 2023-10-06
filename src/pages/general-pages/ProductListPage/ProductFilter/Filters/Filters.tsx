@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
-import style from './Filters.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { setSortBy, setSortField } from 'store/reducers/productSlice';
 import { sortBySelector, sortFieldSelector } from 'store/reducers/productSlice/selectors';
 import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
 import { ISelectOption, Select } from 'ui-kit';
+
+import style from './Filters.module.scss';
 
 const selectSortFieldData = [
   {

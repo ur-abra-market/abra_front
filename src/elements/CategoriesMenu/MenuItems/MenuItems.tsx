@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 
-import style from './MenuItems.module.scss';
-
 import { PRODUCTS_LIST } from 'routes';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
+
+import style from './MenuItems.module.scss';
 
 export interface IMenuItems {
   items?: ICategoryResponse[];
@@ -52,9 +52,5 @@ export const MenuItems: FC<IMenuItems> = ({
     );
   });
 
-  return (
-    <div className={style.items_wrapper}>
-      <div className={cn(style.items_container)}>{mappedItems}</div>
-    </div>
-  );
+  return <div className={cn(style.items_container)}>{mappedItems}</div>;
 };

@@ -3,12 +3,12 @@ import React, { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { createPortal } from 'react-dom';
 
-import style from './NoticePopup.module.scss';
-
 import { CrossWhiteIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { responseNoticeSelector } from 'store/reducers/appSlice';
 import { setResponseNotice } from 'store/reducers/appSlice/slice';
+
+import style from './NoticePopup.module.scss';
 
 export const NoticePopup = (): JSX.Element => {
   const dispatch = useAppDispatch();

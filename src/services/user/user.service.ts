@@ -23,7 +23,7 @@ export const userService = {
   },
 
   getFavoritesProducts: async () => {
-    const { data } = await baseConfigService.get(`users/showFavorites`);
+    const { data } = await baseConfigService.get(`sellers/favorites`);
 
     return data;
   },

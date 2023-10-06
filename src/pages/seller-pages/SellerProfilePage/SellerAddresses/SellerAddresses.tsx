@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import style from './SellerAddresses.module.scss';
-
 import { Address, makeMainAddressFirst, SellerAddAddressForm } from '.';
 
 import { useAppSelector } from 'common/hooks';
@@ -9,6 +7,8 @@ import Modal from 'elements/Modal';
 import { ISellerAddressData } from 'services/seller/seller.serviceTypes';
 import { sellerAddressesSelector } from 'store/reducers/seller/profile/selectors';
 import { Paragraph, Title } from 'ui-kit';
+
+import style from './SellerAddresses.module.scss';
 
 export const SellerAddresses = (): JSX.Element => {
   const addresses = useAppSelector(sellerAddressesSelector);

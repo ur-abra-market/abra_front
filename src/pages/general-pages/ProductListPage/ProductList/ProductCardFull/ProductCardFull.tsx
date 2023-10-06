@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
-import style from './ProductCardFull.module.scss';
-
 import { ArrowIcon } from 'assets/icons';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import ProductImage from 'elements/ProductImage/ProductImage';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { Stars } from 'ui-kit';
+
+import style from './ProductCardFull.module.scss';
 
 interface IProductCardFull {
   product: IProductCompilation;

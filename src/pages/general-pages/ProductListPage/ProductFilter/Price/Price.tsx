@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 
-import style from './Price.module.scss';
-
 import { Checkbox, Input, Paragraph } from 'ui-kit';
+
+import style from './Price.module.scss';
 
 export const Price = (): JSX.Element => {
   return (

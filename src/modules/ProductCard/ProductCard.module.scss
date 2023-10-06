@@ -21,7 +21,11 @@
 
   font-size: var(--fz-s);
 
-  > span {
+  .card_title {
+    font-size: var(--fz-m);
+  }
+
+  .card_description {
     overflow: hidden;
     display: inline-block;
 
@@ -45,11 +49,11 @@
   gap: 4px;
   margin: 8px 0 4px;
 
-  > span {
+  > .rating {
     display: block;
     align-self: flex-end;
 
-    font-size: var(--fz-xs-2);
+    font-size: var(--fz-m);
     font-weight: var(--medium);
     color: var(--color-gray-medium);
   }
@@ -57,7 +61,7 @@
 
 .amount {
   font-family: "SF Pro Display Bold", sans-serif;
-  font-size: var( --fz-l-2);
+  font-size: var(--fz-s);
   font-weight: var(--semi-bold);
   line-height: 100%;
   letter-spacing: 0.38px;
@@ -76,21 +80,10 @@
 
   .direction {
     margin: 8px 0 0;
-
-    > span {
-      font-size: var(--fz-xs-2);
-    }
-  }
-
-  .amount {
-    font-size: var(--fz-m);
   }
 
   .price {
     margin: 6px 0 4px;
-
-    > span {
-      font-size: var(--fz-xxs);
-    }
+    font-size: var(--fz-s);
   }
 }

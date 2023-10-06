@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-import style from './AccountManagmentLink.module.scss';
-
 import { Paragraph, SimpleLink } from 'ui-kit';
+
+import style from './AccountManagmentLink.module.scss';
 
 interface IAccountManagementLink {
   linkLabel: string;

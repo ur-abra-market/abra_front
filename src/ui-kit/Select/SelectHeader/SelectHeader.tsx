@@ -2,10 +2,10 @@ import { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './SelectHeader.module.scss';
-
 import { ArrowIcon } from 'assets/icons';
 import { ISelectOption } from 'ui-kit';
+
+import style from './SelectHeader.module.scss';
 
 interface ISelectHeaderPropsType {
   isOpenMenu: boolean;

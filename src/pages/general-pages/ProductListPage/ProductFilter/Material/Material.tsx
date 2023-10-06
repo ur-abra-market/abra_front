@@ -1,6 +1,6 @@
-import style from './Material.module.scss';
-
 import { Search } from 'ui-kit';
+
+import style from './Material.module.scss';
 
 export const Material = (): JSX.Element => {
   return (

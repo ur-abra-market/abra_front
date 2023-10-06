@@ -37,6 +37,11 @@ export const supplierService = {
 
     formData.append('company_data_request', JSON.stringify(params.company_data_request));
 
+    formData.append(
+      'business_sectors_request',
+      JSON.stringify(params.business_sectors_request),
+    );
+
     if (!_.isEmpty(params.company_phone_data_request)) {
       formData.append(
         'company_phone_data_request',
@@ -49,14 +54,14 @@ export const supplierService = {
     }
 
     return baseConfigService.post<IBaseResponse<boolean>>(
-      `register/business/sendInfo`,
+      `auth/sign-up/business/sendInfo`,
       formData,
     );
   },
 
   getCompanyLogo: async () => {
     const { data } = await baseConfigService.get<IBaseResponse<string>>(
-      `suppliers/companyLogo`,
+      `suppliers/company/logo`,
     );
 
     return data.result;
@@ -86,23 +91,19 @@ export const supplierService = {
   },
 
   getProductProperties: async (categoryId: any) => {
-    const { data } = await baseConfigService.get(
-      `suppliers/getCategoryProperties/${categoryId}`,
-    );
+    const { data } = await baseConfigService.get(`categories/${categoryId}/properties`);
 
     return data;
   },
 
   getProductVariations: async (categoryId: any) => {
-    const { data } = await baseConfigService.get(
-      `suppliers/getCategoryVariations/${categoryId}`,
-    );
+    const { data } = await baseConfigService.get(`categories/${categoryId}/variations`);
 
     return data;
   },
 
   createProduct: async (params: any) => {
-    const { data } = await baseConfigService.post(`suppliers/addProduct`, params);
+    const { data } = await baseConfigService.post(`suppliers/products/add`, params);
 
     return data;
   },
@@ -113,14 +114,8 @@ export const supplierService = {
     formData.append('file', img);
 
     const { data } = await baseConfigService.post(
-      `suppliers/uploadProductImage`,
+      `suppliers/products/${prodId}/images/${index}/upload`,
       formData,
-      {
-        params: {
-          product_id: prodId,
-          order: index,
-        },
-      },
     );
 
     return data;
@@ -136,14 +131,14 @@ export const supplierService = {
         id: number;
         url: string;
       }>
-    >('suppliers/companyLogo/update', formData);
+    >('suppliers/company/logo/update', formData);
 
     return data;
   },
 
   deleteCompanyImage: async (company_image_id: number) => {
     const { data } = await baseConfigService.delete<IBaseResponse<boolean>>(
-      `suppliers/deleteCompanyImage`,
+      `suppliers/company/image/delete`,
       { params: { company_image_id } },
     );
 

@@ -2,8 +2,6 @@ import React from 'react';
 
 import cn from 'classnames';
 
-import style from './ProductTableEditor.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { shouldShowInActiveEdit } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/shouldShowInActiveEdit';
 import { productEditorData } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/tableData';
@@ -14,6 +12,8 @@ import {
   deActivateProducts,
 } from 'store/reducers/supplier/product';
 import { ButtonIcon } from 'ui-kit';
+
+import style from './ProductTableEditor.module.scss';
 
 export const ProductTableEditor = (): JSX.Element => {
   const dispatch = useAppDispatch();

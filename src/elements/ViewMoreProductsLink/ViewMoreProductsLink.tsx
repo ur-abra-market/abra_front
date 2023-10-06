@@ -1,9 +1,9 @@
 import React from 'react';
 
-import style from './ViewMoreProductsLink.module.scss';
-
 import { PRODUCTS_LIST } from 'routes';
 import { SimpleLink } from 'ui-kit/SimpleLink/SimpleLink';
+
+import style from './ViewMoreProductsLink.module.scss';
 
 export const ViewMoreProductsLink = (): JSX.Element => {
   return (

@@ -4,8 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
-import style from './SupplierBusinessInfoChangeForm.module.scss';
-
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useSupplierBusinessInfoFormDirty } from 'common/hooks/useSupplierBusinessInfoFormDirty';
 import { useSupplierBusinessInfoSetValue } from 'common/hooks/useSupplierBusinessInfoSetValue';
@@ -25,6 +23,8 @@ import {
 } from 'store/reducers/supplier/profile';
 import { updateCompanyLogo } from 'store/reducers/supplier/profile/thunks';
 import { Title } from 'ui-kit';
+
+import style from './SupplierBusinessInfoChangeForm.module.scss';
 
 export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -63,14 +63,16 @@ export const SupplierBusinessInfoChangeForm = (): JSX.Element => {
       },
       company_data_request: {
         ...(data.email && { business_email: data.email }),
-        business_sector: data.businessSector,
         country_id: data.countryRegistration!,
         is_manufacturer: data.isManufacturer,
         ...(data.address && { address: data.address }),
-        number_employees: Number(data.numEmployees!),
+        employees_number_id: Number(data.numEmployees!),
         year_established: Number(data.yearEstablished!),
         name: data.storeName,
         ...(data.description && { description: data.description }),
+      },
+      business_sectors_request: {
+        business_sectors: [Number(data.businessSector)],
       },
       ...(data.countryId &&
         currentPhoneNumber && {

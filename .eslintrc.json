@@ -64,8 +64,15 @@
             "pattern": "react",
             "group": "external",
             "position": "before"
+          },
+          {
+            "pattern": "*.{css,scss}",
+            "group": "object",
+            "patternOptions": { "matchBase": true },
+            "position": "after"
           }
-        ]
+        ],
+        "warnOnUnassignedImports": true
       }
     ],
     "import/extensions": "off",
