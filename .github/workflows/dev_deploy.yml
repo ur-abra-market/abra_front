@@ -25,7 +25,7 @@ jobs:
 
       - name: connect and pull
         shell: bash
-        run: ssh -i $VM_SSH_PRIVATE_KEY_PATH $VM_SSH_USER@$VM_SSH_HOST "cd $VM_WORKDIR && git switch $GITHUB_BRANCH && git pull && exit"
+        run: ssh -i $VM_SSH_PRIVATE_KEY_PATH $VM_SSH_USER@$VM_SSH_HOST "cd $VM_WORKDIR && git switch $GITHUB_BRANCH && git remote prune origin && git pull && exit"
 
       - name: destroy previous version
         shell: bash
