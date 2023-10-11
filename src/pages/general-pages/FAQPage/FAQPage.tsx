@@ -89,11 +89,11 @@ export const FAQPage = WithLayout((): JSX.Element => {
         ))}
       </div>
       <Paragraph size="m" className={style.text}>
-        For any further questions, please visit our Help Center or
-        <SimpleLink to={CONTACT} color="accent">
-          &nbsp;<span className={style.link_text}>contact</span>&nbsp;
+        For any further questions, please visit our Help Center or&nbsp;
+        <SimpleLink to={CONTACT} color="accent" className={style.link_text}>
+          contact
         </SimpleLink>
-        our Customer Support Team
+        &nbsp;our Customer Support Team
       </Paragraph>
     </div>
   );
