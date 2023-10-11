@@ -17,7 +17,7 @@
 
   transition: all 0.4s;
 
-  &:hover, :active {
+  &:hover {
     transform: scale(1.2);
   }
 }

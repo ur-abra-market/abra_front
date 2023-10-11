@@ -1,4 +1,4 @@
-@import "src/common/styles/mixins";
+@import 'src/common/styles/mixins';
 
 .container {
   @include content_container(40px);
@@ -12,11 +12,7 @@
 }
 
 .container .link_text {
-  font-size: var(--fz-m);
-
-  &:hover {
-    text-decoration: underline;
-  }
+  font-size: var(--fz-l);
 }
 
 .text {
