@@ -31,16 +31,14 @@ export const ProductPageHeader = (): JSX.Element => {
   };
 
   return (
-    <header className={style.header}>
-      <div className={style.inner_wrapper}>
-        <BreadCrumbs categoryName={name} parentId={parent_id} />
-        <Grades grade={grade} count={totalOrders} />
-        <FavoriteButton
-          isFavorite={isFavorite}
-          onChange={handleChangeFavorite}
-          variant="product"
-        />
-      </div>
-    </header>
+    <>
+      <BreadCrumbs categoryName={name} parentId={parent_id} />
+      <Grades grade={grade} count={totalOrders} />
+      <FavoriteButton
+        isFavorite={isFavorite}
+        onChange={handleChangeFavorite}
+        variant="product"
+      />
+    </>
   );
 };

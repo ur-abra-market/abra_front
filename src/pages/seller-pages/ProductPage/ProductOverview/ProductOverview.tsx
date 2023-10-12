@@ -10,12 +10,12 @@ export const ProductOverview = (): JSX.Element => {
   const description = useAppSelector(productDescriptionSelector);
 
   return (
-    <div className={style.product_overview_container}>
+    <>
       <AboutProduct />
       <div className={style.product_overview_group_container}>
         <FeedBacksProduct />
         <DescriptionProduct description={description} />
       </div>
-    </div>
+    </>
   );
 };

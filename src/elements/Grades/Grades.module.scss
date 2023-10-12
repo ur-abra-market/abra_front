@@ -1,7 +1,9 @@
 .container {
   display: flex;
+  grid-area: Grades;
   column-gap: 8px;
   align-items: center;
+  justify-self: flex-start;
 }
 
 .text_container {
@@ -20,4 +22,11 @@
 
 .is_gap {
   column-gap: 91px
+}
+
+
+@media (max-width: 769px) {
+  .container {
+    display: none;
+  }
 }

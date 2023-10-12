@@ -42,9 +42,8 @@ export const productService = {
 
   addFavorite: async (params: IProductRequest) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      `products/addFavorite`,
-      {},
-      { params },
+      `sellers/favorites/add`,
+      params,
     );
 
     return data.result;

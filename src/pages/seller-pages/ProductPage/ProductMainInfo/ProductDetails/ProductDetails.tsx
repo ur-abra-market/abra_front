@@ -2,7 +2,6 @@ import React from 'react';
 
 import { useAppSelector } from 'common/hooks';
 import { Tags } from 'elements';
-// import { ProductColor } from 'elements';
 import { productNameSelector, productTagsSelector } from 'store/reducers/productSlice';
 import { Title } from 'ui-kit';
 

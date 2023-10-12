@@ -1,4 +1,4 @@
-import { IImage, ISortBy, ISortField } from './types';
+import { IBundleVariationPod, IImage, ISortBy, ISortField, ITag } from './types';
 
 import { ICategory, LoadingStatusEnum } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
@@ -22,11 +22,11 @@ export const productImagesSelector = (state: RootStateType): IImage[] =>
 export const productNameSelector = (state: RootStateType): string =>
   state.product.productCard.name;
 
-export const productTagsSelector = (state: RootStateType): string[] =>
+export const productTagsSelector = (state: RootStateType): ITag[] =>
   state.product.productCard.tags;
 
-export const productVariationsSelector = (state: RootStateType): any[] =>
-  state.product.productCard.variations;
+export const productVariationsSelector = (state: RootStateType): IBundleVariationPod[] =>
+  state.product.productCard.bundle_variation_pods;
 
 export const productDescriptionSelector = (state: RootStateType): string =>
   state.product.productCard.description;

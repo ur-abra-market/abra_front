@@ -27,12 +27,12 @@ export const ProductPage = WithLayout((): JSX.Element => {
     if (!productId) return;
     const fetchData = async (): Promise<void> => {
       await dispatch(getProductById({ product_id: Number(productId) }));
-      await dispatch(
-        getSimilarProducts({ product_id: Number(productId), page_num: 0, page_size: 10 }),
-      );
-      await dispatch(
-        getPopularProducts({ product_id: Number(productId), page_num: 0, page_size: 10 }),
-      );
+      // await dispatch(
+      //   getSimilarProducts({ product_id: Number(productId), page_num: 0, page_size: 10 }),
+      // );
+      // await dispatch(
+      //   getPopularProducts({ product_id: Number(productId), page_num: 0, page_size: 10 }),
+      // );
       setIsFetchingData(false);
     };
 
@@ -46,7 +46,7 @@ export const ProductPage = WithLayout((): JSX.Element => {
       <ProductPageHeader />
       <ProductMainInfo />
       <ProductOverview />
-      <ProductRecommendations />
+      {/* <ProductRecommendations /> */}
     </div>
   );
 });

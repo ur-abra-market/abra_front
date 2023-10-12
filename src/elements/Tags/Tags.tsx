@@ -2,21 +2,23 @@ import React, { FC } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
+import { ITag } from 'store/reducers/productSlice/types';
+
 import style from './Tags.module.scss';
 
 interface ITagsProps {
-  tags: string[];
+  tags: ITag[];
 }
 
 export const Tags: FC<ITagsProps> = ({ tags }): JSX.Element => {
-  const temp = tags.length === 0 ? ['Clothes for women', 'Dress', 'Spring-Summer'] : tags; // когда бэк будет что-то возврвщвть удалить
+  // const temp = tags.length === 0 ? ['Clothes for women', 'Dress', 'Spring-Summer'] : tags; // когда бэк будет что-то возврвщвть удалить
 
   return (
     <ul className={style.items}>
-      {temp.map(el => (
-        <li className={style.item} key={el}>
+      {tags.map(el => (
+        <li className={style.item} key={el.id}>
           <NavLink className={style.link} to="#">
-            {el}
+            {el.name}
           </NavLink>
         </li>
       ))}

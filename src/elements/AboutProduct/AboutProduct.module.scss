@@ -1,6 +1,5 @@
 .about_product_container {
-  width: 50%;
-  padding: 32px;
+  grid-area: AboutProduct;
   background: var(--color-white);
   border-radius: 12px;
 }
