@@ -21,7 +21,7 @@ export const SellerAddresses = (): JSX.Element => {
   return (
     <>
       <div className={style.header_wrapper}>
-        <Title as="h2" size="xs">
+        <Title as="h2" size="s">
           My Addresses
         </Title>
         <button
