@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useAppSelector } from 'common/hooks';
-import { Tags } from 'elements';
+import { ProductParams, ProductPrice, Tags } from 'elements';
 import { productNameSelector, productTagsSelector } from 'store/reducers/productSlice';
 import { Title } from 'ui-kit';
 
@@ -15,7 +15,8 @@ export const ProductDetails = (): JSX.Element => {
     <div className={style.product_details_container}>
       <Title className={style.product_title}>{title}</Title>
       <Tags tags={tags} />
-      {/* <ProductColor colors={variations} /> */}
+      <ProductParams />
+      <ProductPrice />
     </div>
   );
 };

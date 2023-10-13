@@ -1,6 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
-import { Paragraph } from 'ui-kit';
+import cn from 'classnames';
+
+import { ButtonIcon, Paragraph } from 'ui-kit';
 
 import style from './ProductColor.module.scss';
 
@@ -9,6 +11,8 @@ interface IProductColorProps {
 }
 
 export const ProductColor: FC<IProductColorProps> = ({ colors }): JSX.Element => {
+  const [active, setActive] = useState(null);
+
   const temp =
     colors.length === 0
       ? [
@@ -22,11 +26,17 @@ export const ProductColor: FC<IProductColorProps> = ({ colors }): JSX.Element =>
   return (
     <div className={style.product_color_container}>
       <Paragraph size="s" className={style.text}>
-        Select color
+        Select color:
       </Paragraph>
       <ul className={style.items}>
         {temp.map(el => (
-          <li key={el.id} style={{ background: el.color }} className={style.item} />
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
+          <li
+            onClick={() => setActive(el.id)}
+            key={el.id}
+            style={{ background: el.color }}
+            className={cn(style.item, { [style.active]: el.id === active })}
+          />
         ))}
       </ul>
     </div>

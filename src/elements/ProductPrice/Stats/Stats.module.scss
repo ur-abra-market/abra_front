@@ -1,0 +1,32 @@
+.stats_container {
+  display: flex;
+  flex-direction: column;
+  gap: 41px;
+  margin-top: 39px;
+}
+
+.flex_row {
+  display: flex;
+  gap: 16px;
+}
+
+.flex_column {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.text {
+  font-size: var(--fz-xs);
+  color: var(--color-gray);
+}
+
+.price_changes {
+  display: flex;
+  gap: 40px;
+}
+
+.price_changes_text {
+  font-size: var(--fz-m);
+  color: var(--color-gray);
+}
