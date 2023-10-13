@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Button, Input, SocialNetworks, WhatsappPhoneNumber, Title } from 'ui-kit';
 
 import style from './SubscriptionAndContacts.module.scss';
@@ -17,8 +15,8 @@ export const SubscriptionAndContacts = (): JSX.Element => {
           </Title>
 
           <div className={style.input_box}>
-            <Input placeholder="Enter your email address" />
-            <Button label="Subscribe" />
+            <Input className={style.input_email} placeholder="Enter your email address" />
+            <Button className={style.button_subscribe} label="Subscribe" />
           </div>
         </div>
         <div className={style.our_media}>
