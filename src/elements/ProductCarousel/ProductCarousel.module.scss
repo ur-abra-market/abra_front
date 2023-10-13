@@ -70,6 +70,7 @@
   fill: var(--color-white-ivory)
 }
 
+
 @media (max-width: 1200px) {
   .sliders_container {
     justify-self: center;
@@ -79,15 +80,24 @@
 @media (max-width: 801px) {
   .sliders_container {
     flex-direction: column;
+    row-gap: 16px;
   }
   
   .swiper_second_wrapper {
     flex-direction: row;
+    gap: 8px;
     order: 2;
+
+    min-width: 562px;
+    height: 106px;
   }
 
-  .swiper_second > div:first-child {
-    flex-direction: row;
+  .rotate_first {
+    transform: rotate(90deg);
+  }
+
+  .rotate_second {
+    transform: rotate(-90deg);
   }
 }
 
