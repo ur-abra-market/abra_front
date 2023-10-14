@@ -9,11 +9,7 @@ import { ProductRecommendations } from './ProductRecommendations/ProductRecommen
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch } from 'common/hooks';
-import {
-  getPopularProducts,
-  getProductById,
-  getSimilarProducts,
-} from 'store/reducers/productSlice';
+import { getProductById } from 'store/reducers/productSlice';
 import { LoaderLinear } from 'ui-kit';
 
 import style from './ProductPage.module.scss';
