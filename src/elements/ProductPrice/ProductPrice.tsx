@@ -6,6 +6,7 @@ import { Stats } from './Stats/Stats';
 
 import { useAppSelector } from 'common/hooks';
 import { priseSelector } from 'store/reducers/productSlice';
+import { Title } from 'ui-kit';
 
 import style from './ProductPrice.module.scss';
 
@@ -18,7 +19,7 @@ export const ProductPrice = (): JSX.Element => {
   }, []);
 
   return (
-    <div>
+    <div className={style.product_price_container}>
       <div className={style.block_wrapper}>
         <div className={style.group_container}>
           <Quantity count={count} setCount={onChangeCount} />
@@ -26,6 +27,10 @@ export const ProductPrice = (): JSX.Element => {
         </div>
         <Stats price={price} />
       </div>
+      <Title className={style.title} size="xs">
+        <span className={style.total_price}>Total:</span>
+        {`$${(count || 1) * price}`}
+      </Title>
     </div>
   );
 };

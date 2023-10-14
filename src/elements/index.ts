@@ -19,3 +19,4 @@ export { PageViewSwitcher } from './PageViewSwitcher/PageViewSwitcher';
 export { ViewMoreProductsLink } from './ViewMoreProductsLink/ViewMoreProductsLink';
 export { ProductParams } from './ProductParams/ProductParams';
 export { ProductPrice } from './ProductPrice/ProductPrice';
+export { SupplierInfo } from './SupplierInfo/SupplierInfo';

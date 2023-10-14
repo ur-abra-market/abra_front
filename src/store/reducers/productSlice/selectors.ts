@@ -1,4 +1,4 @@
-import { IBundleVariationPod, IImage, IPrice, ISortBy, ISortField, ITag } from './types';
+import { IBundleVariationPod, IImage, ISortBy, ISortField, ITag } from './types';
 
 import { ICategory, LoadingStatusEnum } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
@@ -59,3 +59,6 @@ export const sortBySelector = (state: RootStateType): ISortBy => state.product.s
 
 export const priseSelector = (state: RootStateType): number =>
   state.product.productCard.bundle_variation_pods[0].prices[0].value || 4.5; // imitation
+
+export const supplierNameSelector = (state: RootStateType): string =>
+  state.product.productCard.supplier.company.name;

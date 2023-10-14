@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { useAppSelector } from 'common/hooks';
-import { ProductParams, ProductPrice, Tags } from 'elements';
+import { ProductParams, ProductPrice, SupplierInfo, Tags } from 'elements';
 import { productNameSelector, productTagsSelector } from 'store/reducers/productSlice';
-import { Title } from 'ui-kit';
+import { Button, Title } from 'ui-kit';
 
 import style from './ProductDetails.module.scss';
 
@@ -17,6 +17,8 @@ export const ProductDetails = (): JSX.Element => {
       <Tags tags={tags} />
       <ProductParams />
       <ProductPrice />
+      <Button className={style.button}>Add to Cart</Button>
+      <SupplierInfo />
     </div>
   );
 };

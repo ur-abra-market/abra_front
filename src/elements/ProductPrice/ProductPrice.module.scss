@@ -1,3 +1,7 @@
+.product_price_container {
+  margin-bottom: 40px;
+}
+
 .group_container {
   display: flex;
   flex-direction: column;
@@ -7,4 +11,21 @@
 .block_wrapper {
   display: flex;
   gap: 23px;
+  margin-bottom: 48px;
+}
+
+.title {
+  display: flex;
+  gap: 8px;
+}
+
+.total_price {
+  color: var(--color-gray);
+}
+
+@media (max-width: 710px) {
+  .block_wrapper {
+    flex-direction: column;
+    gap: 24px;
+  }
 }

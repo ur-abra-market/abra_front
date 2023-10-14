@@ -3,14 +3,25 @@
   grid-area: ProductDetails;
   flex-direction: column;
   flex-grow: 1;
+  flex-wrap: wrap;
   row-gap: 8px;
 
   min-width: 288px;
   max-width: 100%;
-  margin-bottom: 48px;
+  margin-bottom: 80px;
   padding-left: 32px;
 }
 
 .product_title {
   margin-bottom: 16px;
+}
+
+.button {
+  margin-bottom: 32px;
+}
+
+@media (max-width: 710px) {
+  .product_details_container {
+    padding: 0;
+  }
 }

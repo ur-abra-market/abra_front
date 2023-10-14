@@ -18,6 +18,7 @@ export {
   totalProductsCountSelector,
   sortFieldSelector,
   priseSelector,
+  supplierNameSelector,
 } from './selectors';
 
 export {

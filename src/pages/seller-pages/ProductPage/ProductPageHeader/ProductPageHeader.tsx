@@ -11,8 +11,6 @@ import {
   addFavoriteProduct,
 } from 'store/reducers/productSlice';
 
-import style from './ProductPageHeader.module.scss';
-
 export const ProductPageHeader = (): JSX.Element => {
   const { productId } = useParams<string>();
   const { name, parent_id } = useAppSelector(productCategorySelector);

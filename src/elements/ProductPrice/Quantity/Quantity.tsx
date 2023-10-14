@@ -16,7 +16,7 @@ export const Quantity: FC<IQuantityProps> = ({ count, setCount }): JSX.Element =
   };
 
   const increment = (): void => {
-    setCount(count + delta);
+    if (count < 500) setCount(count + delta);
   };
 
   return (

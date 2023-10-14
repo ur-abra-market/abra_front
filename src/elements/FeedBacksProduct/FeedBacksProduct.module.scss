@@ -5,8 +5,18 @@
   border-radius: 12px;
 }
 
-.title {
+.title_container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
   margin-bottom: 23px;
+}
+
+.link {
+  transform: translateY(-3px);
+  align-self: flex-end;
+  color: var(--color-red);
+  text-decoration: underline;
 }
 
 .description {
