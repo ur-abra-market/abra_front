@@ -2,7 +2,6 @@
   display: flex;
   grid-area: ProductDetails;
   flex-direction: column;
-  flex-grow: 1;
   flex-wrap: wrap;
   row-gap: 8px;
 
@@ -20,7 +19,7 @@
   margin-bottom: 32px;
 }
 
-@media (max-width: 710px) {
+@media (max-width: 1200px) {
   .product_details_container {
     padding: 0;
   }

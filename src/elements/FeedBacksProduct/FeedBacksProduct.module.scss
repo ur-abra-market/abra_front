@@ -1,13 +1,16 @@
 .feedbacks_container {
-  height: 283px;
+  display: flex;
+  flex-direction: column;
+
   margin-bottom: 16px;
+
   background: var(--color-white);
   border-radius: 12px;
 }
 
 .title_container {
   display: flex;
-  gap: 10px;
+  gap: 6px;
   align-items: center;
   margin-bottom: 23px;
 }
@@ -17,8 +20,4 @@
   align-self: flex-end;
   color: var(--color-red);
   text-decoration: underline;
-}
-
-.description {
-  line-height: 20px;
 }

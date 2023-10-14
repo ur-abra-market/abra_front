@@ -2,11 +2,21 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { Paragraph, Title } from 'ui-kit';
+import { useAppSelector } from 'common/hooks';
+import { Grades } from 'elements/Grades/Grades';
+import {
+  productGradeSelector,
+  productTotalOrdersSelector,
+} from 'store/reducers/productSlice';
+import { Title } from 'ui-kit';
 
 import style from './FeedBacksProduct.module.scss';
 
 export const FeedBacksProduct = (): JSX.Element => {
+  const grade = useAppSelector(productGradeSelector);
+  const totalOrders =
+    useAppSelector(productTotalOrdersSelector) || (Math.random() * 10).toFixed(); // imitation
+
   return (
     <div className={style.feedbacks_container}>
       <div className={style.title_container}>
@@ -18,14 +28,8 @@ export const FeedBacksProduct = (): JSX.Element => {
           See All
         </Link>
       </div>
-      <Paragraph size="s" className={style.description}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A consequatur esse est
-        harum libero molestias officia, quam quidem quo quos sequi sint, sit. Excepturi id
-        itaque soluta totam veniam vero? Lorem ipsum dolor sit amet, consectetur
-        adipisicing elit. Autem consequuntur cum cupiditate expedita itaque nihil quod
-        repellat? Ex ipsa libero magni molestiae recusandae soluta ullam. Aspernatur dolor
-        iste quaerat quasi!
-      </Paragraph>
+
+      <Grades fiveStar variant="reviews" grade={grade} count={+totalOrders} />
     </div>
   );
 };

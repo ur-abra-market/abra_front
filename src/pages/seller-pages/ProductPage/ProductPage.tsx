@@ -46,7 +46,7 @@ export const ProductPage = WithLayout((): JSX.Element => {
       <ProductPageHeader />
       <ProductMainInfo />
       <ProductOverview />
-      {/* <ProductRecommendations /> */}
+      <ProductRecommendations />
     </div>
   );
 });
