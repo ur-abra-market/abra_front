@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
 
-import { ButtonIcon, Paragraph } from 'ui-kit';
+import { Paragraph } from 'ui-kit';
 
 import style from './ProductColor.module.scss';
 

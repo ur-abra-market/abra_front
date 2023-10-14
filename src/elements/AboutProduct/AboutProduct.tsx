@@ -30,7 +30,7 @@ export const AboutProduct: FC<IAboutProductProps> = ({ unknownData }): JSX.Eleme
       <table className={style.table}>
         <caption className={style.caption}>About the product</caption>
         <tbody>
-          {fakeInfo.map((el, i) => (
+          {fakeInfo.map(el => (
             <tr className={style.tr} key={el.id}>
               <th className={style.th}>{el.th}</th>
               <td className={style.td}>{el.td}</td>

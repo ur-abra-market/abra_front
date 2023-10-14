@@ -1,5 +1,3 @@
-import { productActions } from './slice';
-
 export {
   favoriteProductSelector,
   productCategorySelector,
