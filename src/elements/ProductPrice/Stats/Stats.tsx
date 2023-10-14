@@ -34,10 +34,10 @@ export const Stats: FC<IStats> = ({ price }): JSX.Element => {
         <div className={style.price_changes}>
           <Paragraph size="m">Price changes</Paragraph>
           <span className={style.price_changes_text}>
-            {`from ${price - price * 0.1} up to ${price}`}
+            {`from ${(price - price * 0.1).toFixed(2)} up to ${price}`}
           </span>
         </div>
-        <Statistics />
+        <Statistics className={style.img} />
       </div>
     </div>
   );
