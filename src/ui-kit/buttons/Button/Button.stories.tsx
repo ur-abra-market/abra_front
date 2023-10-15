@@ -17,4 +17,7 @@ export const DefaultButton: Story = {
     disabled: false,
     color: 'default',
   },
+  argTypes: {
+    onClick: { action: 'clicked' },
+  },
 };

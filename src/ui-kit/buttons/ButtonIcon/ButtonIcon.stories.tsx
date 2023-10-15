@@ -13,10 +13,6 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof ButtonIcon>;
 
-// export const WithAnImage: Story = {
-//   render: () => <GoogleIcon />,
-// };
-
 export const ButtonWithIcon: Story = {
   args: {
     children: <GoogleIcon />,
