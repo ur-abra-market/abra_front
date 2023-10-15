@@ -74,12 +74,13 @@ export const ProductList: FC<IProductList> = ({
           <div className={style.branch_crumbs}>{`bread > crumb > plug`}</div>
           {/* TODO (fake data) */}
         </div>
-
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          onPageChanged={setCurrentPage}
-        />
+        {products.length > 0 && (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChanged={setCurrentPage}
+          />
+        )}
       </div>
 
       <div className={cn(style.list, modsProductsContainer)}>
@@ -94,7 +95,7 @@ export const ProductList: FC<IProductList> = ({
           <LoaderCircular className={style.loading_slider} />
         )}
       </div>
-      {loadingSlider === LoadingStatusEnum.Success && (
+      {products.length > 0 && (
         <div className={style.control_panel}>
           <ProductsPerPage onChange={handleChangeSelect} />
           <Pagination
