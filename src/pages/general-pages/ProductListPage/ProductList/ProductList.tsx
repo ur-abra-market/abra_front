@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { LoadingStatusEnum } from 'common/types';
 import { ProductsPerPage, PageViewSwitcher } from 'elements';
 import { ViewType } from 'elements/PageViewSwitcher/PageViewSwitcher';
 import { ProductCardFull, ProductCard } from 'modules';
@@ -15,8 +16,9 @@ import {
   productsListSelector,
   totalProductsCountSelector,
 } from 'store/reducers/productSlice';
+import { loadingProductsSelector } from 'store/reducers/productSlice/selectors';
 import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
-import { ButtonQuestion } from 'ui-kit';
+import { ButtonQuestion, LoaderCircular } from 'ui-kit';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
 
 import style from './ProductList.module.scss';
@@ -33,6 +35,7 @@ export const ProductList: FC<IProductList> = ({
   const dispatch = useAppDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedView, setSelectedView] = useState<ViewType>('grid');
+  const loadingSlider = useAppSelector(loadingProductsSelector);
   const productsPerPage = useAppSelector(productsPerPageSelector);
   const totalCount = useAppSelector(totalProductsCountSelector);
   const products = useAppSelector(productsListSelector);
@@ -71,12 +74,13 @@ export const ProductList: FC<IProductList> = ({
           <div className={style.branch_crumbs}>{`bread > crumb > plug`}</div>
           {/* TODO (fake data) */}
         </div>
-
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          onPageChanged={setCurrentPage}
-        />
+        {products.length > 0 && (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChanged={setCurrentPage}
+          />
+        )}
       </div>
 
       <div className={cn(style.list, modsProductsContainer)}>
@@ -87,18 +91,20 @@ export const ProductList: FC<IProductList> = ({
             <ProductCard key={product.id} product={product} />
           ),
         )}
+        {loadingSlider === LoadingStatusEnum.Loading && (
+          <LoaderCircular className={style.loading_slider} />
+        )}
       </div>
-
-      <div className={style.control_panel}>
-        <ProductsPerPage onChange={handleChangeSelect} />
-
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          onPageChanged={setCurrentPage}
-        />
-      </div>
-
+      {products.length > 0 && (
+        <div className={style.control_panel}>
+          <ProductsPerPage onChange={handleChangeSelect} />
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChanged={setCurrentPage}
+          />
+        </div>
+      )}
       <ButtonQuestion />
     </div>
   );
