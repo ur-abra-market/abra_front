@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import cn from 'classnames';
+
 import { Button, Paragraph } from 'ui-kit';
 
 import style from './Quantity.module.scss';
@@ -7,9 +9,14 @@ import style from './Quantity.module.scss';
 interface IQuantityProps {
   count: number;
   setCount: (value: number) => void;
+  className?: string;
 }
 
-export const Quantity: FC<IQuantityProps> = ({ count, setCount }): JSX.Element => {
+export const Quantity: FC<IQuantityProps> = ({
+  count,
+  setCount,
+  className,
+}): JSX.Element => {
   const delta = 100;
   const decrement = (): void => {
     if (count > 0) setCount(count - delta);
@@ -20,7 +27,7 @@ export const Quantity: FC<IQuantityProps> = ({ count, setCount }): JSX.Element =
   };
 
   return (
-    <div className={style.quantity_container}>
+    <div className={cn(style.quantity_container, className)}>
       <Paragraph size="s">
         Quantity <span className={style.text}>/from 100 bundles</span>
       </Paragraph>

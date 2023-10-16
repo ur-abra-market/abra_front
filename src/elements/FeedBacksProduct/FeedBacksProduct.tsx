@@ -29,7 +29,13 @@ export const FeedBacksProduct = (): JSX.Element => {
         </Link>
       </div>
 
-      <Grades fiveStar variant="reviews" grade={grade} count={+totalOrders} />
+      <Grades
+        className={style.grade}
+        fiveStar
+        variant="reviews"
+        grade={grade}
+        count={+totalOrders}
+      />
     </div>
   );
 };

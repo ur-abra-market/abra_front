@@ -1,8 +1,12 @@
 .params_container {
   display: flex;
-  flex-wrap: wrap;
-  row-gap: 24px;
   column-gap: 98px;
-
   margin-bottom: 32px;
+}
+
+@media (max-width: 634px) {
+  .params_container {
+    flex-direction: column;
+    row-gap: 24px;
+  }
 }

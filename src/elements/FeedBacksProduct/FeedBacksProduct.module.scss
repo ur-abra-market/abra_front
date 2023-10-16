@@ -21,3 +21,10 @@
   color: var(--color-red);
   text-decoration: underline;
 }
+
+@media (max-width: 426px) {
+  .grade {
+    column-gap: 0;
+    justify-content: space-between;
+  }
+}

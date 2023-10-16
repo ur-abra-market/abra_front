@@ -11,7 +11,7 @@
   grid-template-areas: "BreadCrumbs Grades"
     "ProductCarousel  ProductDetails"
     "AboutProduct OverviewGroup";
-  grid-template-columns:  repeat(2, minmax(320px, 1fr));
+  grid-template-columns:  repeat(2, minmax(288px, 1fr));
   grid-template-rows: 40px repeat(6, auto);
 
   margin-bottom: 51px;
@@ -44,7 +44,7 @@
       "ProductDetails"
       "AboutProduct"
       "OverviewGroup";;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(1, minmax(268px, 1fr));
     grid-template-rows: 40px repeat(8, max-content);
   }
 }

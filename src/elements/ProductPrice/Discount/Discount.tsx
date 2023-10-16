@@ -6,6 +6,7 @@ import style from './Discount.module.scss';
 
 interface IDiscountProps {
   price: number;
+  className?: string;
 }
 
 const discountList = [
@@ -14,9 +15,9 @@ const discountList = [
   { id: 3, bundles: '500bnd', discount: 0.06 },
 ];
 
-export const Discount: FC<IDiscountProps> = ({ price }): JSX.Element => {
+export const Discount: FC<IDiscountProps> = ({ price, className }): JSX.Element => {
   return (
-    <ul className={style.items}>
+    <ul className={cn(style.items, className)}>
       {discountList.map(el => (
         <li className={style.item} key={el.id}>
           {el.bundles}

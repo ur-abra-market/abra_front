@@ -1,5 +1,7 @@
 import { useCallback, useState } from 'react';
 
+import cn from 'classnames';
+
 import { Discount } from './Discount/Discount';
 import { Quantity } from './Quantity/Quantity';
 import { Stats } from './Stats/Stats';
@@ -20,16 +22,16 @@ export const ProductPrice = (): JSX.Element => {
 
   return (
     <div className={style.product_price_container}>
-      <div className={style.block_wrapper}>
-        <div className={style.group_container}>
-          <Quantity count={count} setCount={onChangeCount} />
-          <Discount price={price} />
-        </div>
-        <Stats price={price} />
+      <div className={style.grid_item}>
+        <Quantity count={count} setCount={onChangeCount} />
+        <Discount price={price} />
       </div>
-      <Title className={style.title} size="xs">
+
+      <Stats className={style.grid_item} price={price} />
+
+      <Title className={cn(style.title, style.grid_item)} size="xs">
         <span className={style.total_price}>Total:</span>
-        {`$${(count || 1) * price}`}
+        {`$${((count || 1) * price).toFixed(1)}`}
       </Title>
     </div>
   );

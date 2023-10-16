@@ -6,12 +6,12 @@
 
 .table {
   width: 100%;
-  font: var(--regular) var(--fz-s) / 20px var(--roboto);
+  font-size: var(--fz-s);
 }
 
 .caption {
   margin-bottom: 28px;
-  font: var(--bold) var(--fz-xxl) / 34px var(--roboto);
+  font-size: var(--fz-xxl);
   text-align: start;
 }
 
