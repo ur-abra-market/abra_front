@@ -1,6 +1,6 @@
 .stats_container {
   display: grid;
-  grid-template-columns: repeat(2, minmax(125px, 1fr));
+  grid-template-columns: repeat(2, minmax(min-content, 1fr));
   grid-template-rows: repeat(3, auto);
   row-gap: 13px;
   column-gap: 16px;
@@ -52,6 +52,6 @@
 }
 
 .price_changes_text {
-  font-size: var(--fz-m);
+  font-size: var(--fz-s);
   color: var(--color-gray);
 }
