@@ -29,7 +29,7 @@ jobs:
 
       - name: destroy previous version
         shell: bash
-        run: ssh -i $VM_SSH_PRIVATE_KEY_PATH $VM_SSH_USER@$VM_SSH_HOST "cd $VM_WORKDIR && make destroy && exit"
+        run: ssh -i $VM_SSH_PRIVATE_KEY_PATH $VM_SSH_USER@$VM_SSH_HOST "cd $VM_WORKDIR && make stop && make destroy && exit"
 
       - name: build
         shell: bash

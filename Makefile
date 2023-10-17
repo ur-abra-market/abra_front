@@ -49,4 +49,5 @@ exec:
 .PHONY: application logs
 logs:
 	$(compose_web) logs -f
+	
 # ======================================DOCKER(COMMON RULES)======================================
