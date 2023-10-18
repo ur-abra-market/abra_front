@@ -117,6 +117,9 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
           watchSlidesProgress
           modules={[Thumbs, Mousewheel]}
           breakpoints={{
+            321: {
+              slidesPerView: 3,
+            },
             800: {
               direction: 'vertical',
             },

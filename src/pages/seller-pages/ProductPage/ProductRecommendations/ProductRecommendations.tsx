@@ -16,32 +16,24 @@ export const ProductRecommendations = (): JSX.Element => {
   const similarProducts = useAppSelector(similarProductsSelector);
 
   return (
-    <div className={style.product_recommendation_container}>
-      <div>
-        {Object.keys(similarProducts).map(key => {
-          return (
-            <ProductsPreview key={key} title="Similar products">
-              {similarProducts.map((product: IProductCompilation) => (
-                <ProductCard key={product.uuid} product={product} />
-              ))}
-              <ViewMoreProductsLink />
-            </ProductsPreview>
-          );
-        })}
+    <>
+      <div className={style.similar_product}>
+        <ProductsPreview title="Similar products">
+          {similarProducts.map((product: IProductCompilation): JSX.Element => {
+            return <ProductCard key={product.uuid} product={product} />;
+          })}
+          <ViewMoreProductsLink />
+        </ProductsPreview>
       </div>
 
-      <div>
-        {Object.keys(popularProducts).map(key => {
-          return (
-            <ProductsPreview key={key} title="Popular products in this category">
-              {popularProducts.map((product: IProductCompilation) => (
-                <ProductCard key={product.uuid} product={product} />
-              ))}
-              <ViewMoreProductsLink />
-            </ProductsPreview>
-          );
-        })}
+      <div className={style.popular_product}>
+        <ProductsPreview title="Popular products in this category">
+          {popularProducts.map((product: IProductCompilation): JSX.Element => {
+            return <ProductCard key={product.uuid} product={product} />;
+          })}
+          <ViewMoreProductsLink />
+        </ProductsPreview>
       </div>
-    </div>
+    </>
   );
 };

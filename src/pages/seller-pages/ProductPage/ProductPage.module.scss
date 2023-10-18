@@ -10,9 +10,11 @@
   grid-row-gap: 34px;
   grid-template-areas: "BreadCrumbs Grades"
     "ProductCarousel  ProductDetails"
-    "AboutProduct OverviewGroup";
+    "AboutProduct OverviewGroup"
+    "SimilarProducts SimilarProducts"
+    "PopularProducts PopularProducts";
   grid-template-columns:  repeat(2, minmax(288px, 1fr));
-  grid-template-rows: 40px repeat(6, auto);
+  grid-template-rows: 40px repeat(5, auto);
 
   margin-bottom: 51px;
   padding-top: 38px;
@@ -27,7 +29,9 @@
       "Grades"
       "ProductDetails"
       "AboutProduct"
-      "OverviewGroup";
+      "OverviewGroup"
+      "SimilarProducts"
+      "PopularProducts";
     grid-template-columns: 1fr;
     grid-template-rows: 40px repeat(8, max-content);
   }
@@ -43,7 +47,9 @@
       "Grades"
       "ProductDetails"
       "AboutProduct"
-      "OverviewGroup";;
+      "OverviewGroup"
+      "SimilarProducts"
+      "PopularProducts";
     grid-template-columns: repeat(1, minmax(268px, 1fr));
     grid-template-rows: 40px repeat(8, max-content);
   }

@@ -21,8 +21,8 @@
 
 .swiper_second_el {
   box-sizing: border-box;
-  width: 106px;
-  height: 106px;
+  min-width: 106px;
+  min-height: 106px;
 }
 
 .swiper_second_el img {

@@ -9,7 +9,11 @@ import { ProductRecommendations } from './ProductRecommendations/ProductRecommen
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch } from 'common/hooks';
-import { getProductById } from 'store/reducers/productSlice';
+import {
+  getPopularProducts,
+  getProductById,
+  getSimilarProducts,
+} from 'store/reducers/productSlice';
 import { LoaderLinear } from 'ui-kit';
 
 import style from './ProductPage.module.scss';
@@ -23,12 +27,12 @@ export const ProductPage = WithLayout((): JSX.Element => {
     if (!productId) return;
     const fetchData = async (): Promise<void> => {
       await dispatch(getProductById({ product_id: Number(productId) }));
-      // await dispatch(
-      //   getSimilarProducts({ product_id: Number(productId), page_num: 0, page_size: 10 }),
-      // );
-      // await dispatch(
-      //   getPopularProducts({ product_id: Number(productId), page_num: 0, page_size: 10 }),
-      // );
+      await dispatch(
+        getSimilarProducts({ category_id: Number(productId), offset: 0, limit: 10 }),
+      );
+      await dispatch(
+        getPopularProducts({ category_id: Number(productId), offset: 0, limit: 10 }),
+      );
       setIsFetchingData(false);
     };
 

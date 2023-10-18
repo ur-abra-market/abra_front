@@ -58,7 +58,7 @@ export const sortFieldSelector = (state: RootStateType): ISortField =>
 export const sortBySelector = (state: RootStateType): ISortBy => state.product.sortBy;
 
 export const priseSelector = (state: RootStateType): number =>
-  state.product.productCard.bundle_variation_pods[0].prices[0].value || 4.5; // imitation
+  state.product.productCard.bundle_variation_pods[0]?.prices[0]?.value || 4.5; // imitation
 
 export const supplierNameSelector = (state: RootStateType): string =>
   state.product.productCard.supplier.company.name;
