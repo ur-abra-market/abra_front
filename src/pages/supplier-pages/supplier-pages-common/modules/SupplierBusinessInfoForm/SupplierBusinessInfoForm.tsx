@@ -11,7 +11,7 @@ import {
   numberEmployeesSelector,
 } from 'store/reducers/commonSlice';
 import { supplierLoadingSelector } from 'store/reducers/supplier/profile';
-import { Button, Checkbox, Input, Label, Select, Title } from 'ui-kit';
+import { Button, Checkbox, Input, Label, Paragraph, Select, Title } from 'ui-kit';
 
 import style from './SupplierBusinessInfoForm.module.scss';
 
@@ -117,14 +117,14 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
         </Label>
 
         {updateForm && (
-          <p className={style.license_description}>
+          <Paragraph size="s" className={style.license_description}>
             Use the number of any document authorizing the sale
-          </p>
+          </Paragraph>
         )}
       </div>
 
       <div className={style.company_info}>
-        <Title as="h3" size="xs" className={style.subtitle}>
+        <Title as="h2" size="s" className={style.subtitle}>
           Company Info
         </Title>
         <div className={style.select_info_inputs}>
@@ -197,7 +197,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
       </div>
 
       <div>
-        <Title as="h3" size="xs" className={style.subtitle}>
+        <Title as="h2" size="s" className={style.subtitle}>
           Contacts (optional)
         </Title>
         <PhoneNumberInput

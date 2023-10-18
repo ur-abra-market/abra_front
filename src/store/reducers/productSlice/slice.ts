@@ -130,9 +130,17 @@ const productSlice = createSlice({
 
         state.loading = LoadingStatusEnum.Success;
       })
+
+      .addCase(getProductsListCompilation.pending, state => {
+        state.loading = LoadingStatusEnum.Loading;
+      })
+      .addCase(getProductsListCompilation.rejected, state => {
+        state.loading = LoadingStatusEnum.Failed;
+      })
       .addCase(getProductsListCompilation.fulfilled, (state, action) => {
         state.productsList = action.payload.data.products;
         state.totalProductsCount = action.payload.data.total_count;
+        state.loading = LoadingStatusEnum.Success;
       });
   },
 });
