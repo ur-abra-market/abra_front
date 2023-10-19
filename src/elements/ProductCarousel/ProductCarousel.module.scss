@@ -2,32 +2,31 @@
   display: flex;
   grid-area: ProductCarousel;
   column-gap: 8px;
-
-  min-width: 288px;
-  max-width: calc(100vw - 64px);
 }
 
 .swiper_second_wrapper {
   display: flex;
   flex-direction: column;
   row-gap: 8px;
-  max-width: 106px;
+
+  height: min-content;
+  max-height: 568px;
 }
 
 .swiper_second {
   width: 106px;
-  height: 562px;
+  height: min-content;
 }
 
 .swiper_second_el {
   box-sizing: border-box;
-  width: 106px;
+  max-width: 108px;
   height: 106px;
 }
 
 .swiper_second_el img {
   box-sizing: border-box;
-  width: 106px;
+  max-width: 106px;
   height: 106px;
 }
 
@@ -82,8 +81,15 @@
     gap: 8px;
     order: 2;
 
-    min-width: 288px;
+    //width: 106px;
+    //height: 100%;
+  }
+
+  .swiper_second {
+    width: min-content;
+    max-width: 100%;
     height: 106px;
+    margin-left: 0;
   }
 
   .rotate_first {

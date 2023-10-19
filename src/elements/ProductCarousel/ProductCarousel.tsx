@@ -56,7 +56,7 @@ const useGetSecondSliderInfo = (arrLength: number): ReturnType => {
 
   const stylesSlidersContainer = isVertical
     ? {
-        height: arrLength < maxLength ? `${sizeSlidersContainerPx}px` : '567px',
+        height: arrLength < maxLength ? `${sizeSlidersContainerPx}px` : '600px',
       }
     : {
         height: arrLength < maxLength ? `${sizeSlidersContainerPx}px` : '106px',
@@ -76,8 +76,9 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const arrLength = photoArray.length;
-  const { stylesSlidersContainer, slidesPerViewQuantity, isVertical } =
-    useGetSecondSliderInfo(arrLength);
+  const slidesPerView =
+    arrLength >= minLength && arrLength < maxLength ? arrLength : baseLength;
+  const { isVertical } = useGetSecondSliderInfo(arrLength);
 
   const prevSlide = (): void => {
     thumbsSwiper?.slidePrev();
@@ -85,6 +86,8 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
   const nextSlide = (): void => {
     thumbsSwiper?.slideNext();
   };
+
+  console.log(slidesPerView * (heightSlide + rowGap));
 
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
     const newEvent = { ...event };
@@ -106,24 +109,27 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
         )}
 
         <Swiper
-          direction={isVertical ? 'vertical' : 'horizontal'}
-          slidesPerView={slidesPerViewQuantity}
+          slidesPerView={
+            arrLength >= minLength && arrLength < maxLength ? arrLength : baseLength
+          }
           spaceBetween={8}
           className={style.swiper_second}
           slideToClickedSlide
           mousewheel={arrLength !== minLength}
           allowTouchMove={false}
-          style={stylesSlidersContainer}
           loop
           onSwiper={setThumbsSwiper}
           watchSlidesProgress
           modules={[Thumbs, Mousewheel]}
           breakpoints={{
             320: {
-              slidesPerView: 2.5,
+              direction: 'horizontal',
+              slidesPerView: arrLength === 1 ? 1 : 2,
             },
-            820: {
-              slidesPerView: 5,
+            801: {
+              direction: 'vertical',
+              slidesPerView,
+              height: slidesPerView * (heightSlide + rowGap),
             },
           }}
         >
