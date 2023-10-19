@@ -39,7 +39,9 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint-fix": "eslint --fix",
-    "stylelint-fix": "stylelint \"**/*.{css, scss}\" --fix"
+    "stylelint-fix": "stylelint \"**/*.{css, scss}\" --fix",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "lint-staged": {
     "**/*.{css,scss}": [
@@ -63,10 +65,20 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.5.0",
+    "@storybook/addon-interactions": "^7.5.0",
+    "@storybook/addon-links": "^7.5.0",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.5.0",
+    "@storybook/preset-create-react-app": "^7.5.0",
+    "@storybook/react": "^7.5.0",
+    "@storybook/react-webpack5": "^7.5.0",
+    "@storybook/testing-library": "^0.2.2",
     "@types/lodash": "^4.14.191",
     "@types/webpack-env": "^1.18.1",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.48.2",
+    "babel-plugin-named-exports-order": "^0.0.2",
     "eslint": "^8.33.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.6.0",
@@ -76,12 +88,15 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.6.15",
     "husky": "^8.0.0",
     "prettier": "^2.8.3",
+    "storybook": "^7.5.0",
     "stylelint": "^14.16.1",
     "stylelint-config-clean-order": "^2.3.1",
     "stylelint-config-prettier": "^9.0.4",
     "stylelint-config-sass-guidelines": "^10.0.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "webpack": "^5.89.0"
   }
 }
