@@ -32,7 +32,7 @@
       "OverviewGroup"
       "SimilarProducts"
       "PopularProducts";
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(1, minmax(268px, 1fr));
     grid-template-rows: 40px repeat(8, max-content);
   }
 }

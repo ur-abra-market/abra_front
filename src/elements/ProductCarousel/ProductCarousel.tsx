@@ -60,8 +60,8 @@ const useGetSecondSliderInfo = (arrLength: number): ReturnType => {
       }
     : {
         height: arrLength < maxLength ? `${sizeSlidersContainerPx}px` : '106px',
-        width: '280px',
-        marginLeft: '0',
+        width: '240px',
+        // marginLeft: '0',
       };
 
   return {
@@ -120,10 +120,7 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
           modules={[Thumbs, Mousewheel]}
           breakpoints={{
             320: {
-              slidesPerView: 2,
-            },
-            425: {
-              slidesPerView: 2,
+              slidesPerView: 2.5,
             },
             820: {
               slidesPerView: 5,
