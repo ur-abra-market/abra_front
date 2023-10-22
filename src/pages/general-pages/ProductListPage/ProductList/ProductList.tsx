@@ -5,20 +5,20 @@ import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
-import { ProductsPerPage, PageViewSwitcher } from 'elements';
+import { PageViewSwitcher, ProductsPerPage, Skeleton } from 'elements';
 import { ViewType } from 'elements/PageViewSwitcher/PageViewSwitcher';
-import { ProductCardFull, ProductCard } from 'modules';
+import { ProductCard, ProductCardFull } from 'modules';
 import { ICategoryRequest } from 'services/product/product.serviceTypes';
 import {
-  productsPerPageSelector,
-  setProductsPerPage,
   getProductsListCompilation,
   productsListSelector,
+  productsPerPageSelector,
+  setProductsPerPage,
   totalProductsCountSelector,
 } from 'store/reducers/productSlice';
 import { loadingProductsSelector } from 'store/reducers/productSlice/selectors';
 import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
-import { ButtonQuestion, LoaderCircular } from 'ui-kit';
+import { ButtonQuestion } from 'ui-kit';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
 
 import style from './ProductList.module.scss';
@@ -62,6 +62,11 @@ export const ProductList: FC<IProductList> = ({
     [style.grid_container]: selectedView === 'grid',
     [style.list_container]: selectedView === 'list',
   };
+  const productSkeleton = [];
+
+  for (let i = 0; i <= productsPerPage; i += 1) {
+    productSkeleton.push(<Skeleton selectedView={selectedView} key={i} />);
+  }
 
   return (
     <div className={style.wrapper}>
@@ -91,9 +96,7 @@ export const ProductList: FC<IProductList> = ({
             <ProductCard key={product.id} product={product} />
           ),
         )}
-        {loadingSlider === LoadingStatusEnum.Loading && (
-          <LoaderCircular className={style.loading_slider} />
-        )}
+        {loadingSlider === LoadingStatusEnum.Loading && productSkeleton}
       </div>
       {products.length > 0 && (
         <div className={style.control_panel}>
