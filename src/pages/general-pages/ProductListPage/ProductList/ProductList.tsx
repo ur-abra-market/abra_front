@@ -3,11 +3,13 @@ import { FC, useEffect, useState } from 'react';
 import cn from 'classnames';
 import { useParams } from 'react-router-dom';
 
+import { ProductCardFull } from './ProductCardFull/ProductCardFull';
+
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
 import { PageViewSwitcher, ProductsPerPage, Skeleton } from 'elements';
 import { ViewType } from 'elements/PageViewSwitcher/PageViewSwitcher';
-import { ProductCard, ProductCardFull } from 'modules';
+import { ProductCard } from 'modules';
 import { ICategoryRequest } from 'services/product/product.serviceTypes';
 import {
   getProductsListCompilation,
@@ -62,11 +64,6 @@ export const ProductList: FC<IProductList> = ({
     [style.grid_container]: selectedView === 'grid',
     [style.list_container]: selectedView === 'list',
   };
-  const productSkeleton = [];
-
-  for (let i = 0; i <= productsPerPage; i += 1) {
-    productSkeleton.push(<Skeleton selectedView={selectedView} key={i} />);
-  }
 
   return (
     <div className={style.wrapper}>
@@ -79,7 +76,7 @@ export const ProductList: FC<IProductList> = ({
           <div className={style.branch_crumbs}>{`bread > crumb > plug`}</div>
           {/* TODO (fake data) */}
         </div>
-        {products.length > 0 && (
+        {loadingSlider === LoadingStatusEnum.Success && (
           <Pagination
             totalPages={totalPages}
             currentPage={currentPage}
@@ -89,16 +86,19 @@ export const ProductList: FC<IProductList> = ({
       </div>
 
       <div className={cn(style.list, modsProductsContainer)}>
-        {products?.map(product =>
-          selectedView === 'list' ? (
-            <ProductCardFull key={product.id} product={product} />
-          ) : (
-            <ProductCard key={product.id} product={product} />
-          ),
-        )}
-        {loadingSlider === LoadingStatusEnum.Loading && productSkeleton}
+        {loadingSlider === LoadingStatusEnum.Loading
+          ? Array.from({ length: productsPerPage }).map((el, i) => (
+              <Skeleton key={i} selectedView={selectedView} />
+            ))
+          : products?.map(product => {
+              return selectedView === 'list' ? (
+                <ProductCardFull key={product.id} product={product} />
+              ) : (
+                <ProductCard key={product.id} product={product} />
+              );
+            })}
       </div>
-      {products.length > 0 && (
+      {loadingSlider === LoadingStatusEnum.Success && (
         <div className={style.control_panel}>
           <ProductsPerPage onChange={handleChangeSelect} />
           <Pagination
