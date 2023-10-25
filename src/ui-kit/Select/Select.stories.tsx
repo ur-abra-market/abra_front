@@ -25,7 +25,7 @@ export const DefaultSelect: Story = {
   },
 };
 
-export const SelectShipTo: Story = {
+export const SelectWithPictures: Story = {
   args: {
     options: [
       {
