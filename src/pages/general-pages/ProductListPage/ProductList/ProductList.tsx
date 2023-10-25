@@ -65,6 +65,29 @@ export const ProductList: FC<IProductList> = ({
     [style.list_container]: selectedView === 'list',
   };
 
+  const isLoading = loadingSlider === LoadingStatusEnum.Loading;
+
+  const paginationComponent = (
+    <Pagination
+      totalPages={totalPages}
+      currentPage={currentPage}
+      onPageChanged={setCurrentPage}
+      disabled={isLoading}
+    />
+  );
+
+  const skeletonView = Array.from({ length: productsPerPage }).map((el, i) => (
+    <Skeleton key={i} selectedView={selectedView} />
+  ));
+
+  const productView = products?.map(product => {
+    return selectedView === 'list' ? (
+      <ProductCardFull key={product.id} product={product} />
+    ) : (
+      <ProductCard key={product.id} product={product} />
+    );
+  });
+
   return (
     <div className={style.wrapper}>
       <div className={style.control_panel}>
@@ -76,38 +99,16 @@ export const ProductList: FC<IProductList> = ({
           <div className={style.branch_crumbs}>{`bread > crumb > plug`}</div>
           {/* TODO (fake data) */}
         </div>
-        {loadingSlider === LoadingStatusEnum.Success && (
-          <Pagination
-            totalPages={totalPages}
-            currentPage={currentPage}
-            onPageChanged={setCurrentPage}
-          />
-        )}
+        {paginationComponent}
       </div>
 
       <div className={cn(style.list, modsProductsContainer)}>
-        {loadingSlider === LoadingStatusEnum.Loading
-          ? Array.from({ length: productsPerPage }).map((el, i) => (
-              <Skeleton key={i} selectedView={selectedView} />
-            ))
-          : products?.map(product => {
-              return selectedView === 'list' ? (
-                <ProductCardFull key={product.id} product={product} />
-              ) : (
-                <ProductCard key={product.id} product={product} />
-              );
-            })}
+        {isLoading ? skeletonView : productView}
       </div>
-      {loadingSlider === LoadingStatusEnum.Success && (
-        <div className={style.control_panel}>
-          <ProductsPerPage onChange={handleChangeSelect} />
-          <Pagination
-            totalPages={totalPages}
-            currentPage={currentPage}
-            onPageChanged={setCurrentPage}
-          />
-        </div>
-      )}
+      <div className={style.control_panel}>
+        <ProductsPerPage disabled={isLoading} onChange={handleChangeSelect} />
+        {paginationComponent}
+      </div>
       <ButtonQuestion />
     </div>
   );

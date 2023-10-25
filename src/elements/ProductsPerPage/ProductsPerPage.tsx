@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import cn from 'classnames';
+
 import { Select, ISelectOption, Paragraph } from 'ui-kit';
 
 import style from './ProductsPerPage.module.scss';
@@ -44,7 +46,11 @@ export const ProductsPerPage: FC<IProductsPerPage> = ({
 
   return (
     <div className={style.wrapper}>
-      <Paragraph size="s2" weight="semi_bold">
+      <Paragraph
+        className={cn({ [style.inactive_paragraph]: disabled })}
+        size="s2"
+        weight="semi_bold"
+      >
         Show by
       </Paragraph>
 

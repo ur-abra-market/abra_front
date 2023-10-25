@@ -22,6 +22,9 @@ export const Pagination: FC<IPagination> = ({
   const [visibleButtons, setVisibleButtons] = useState<Array<number | string>>([]);
   const pageNumbers: number[] = [];
 
+  const firstPage = currentPage === 1;
+  const lastPage = currentPage === totalPages;
+
   // eslint-disable-next-line no-plusplus
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
@@ -86,7 +89,7 @@ export const Pagination: FC<IPagination> = ({
         type="button"
         className={classNames(style.button, modsArrowLeft)}
         onClick={handlePrevPage}
-        disabled={disabled}
+        disabled={disabled || firstPage}
       >
         <ArrowIcon className={classNames(style.arrow, style.arrow_left)} />
       </button>
@@ -115,7 +118,7 @@ export const Pagination: FC<IPagination> = ({
         type="button"
         className={classNames(style.button, modsArrowRight)}
         onClick={handleNextPage}
-        disabled={disabled}
+        disabled={disabled || lastPage}
       >
         <ArrowIcon className={classNames(style.arrow, style.arrow_right)} />
       </button>
