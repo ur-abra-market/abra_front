@@ -6,9 +6,8 @@ import { useParams } from 'react-router-dom';
 import { ProductCardFull } from './ProductCardFull/ProductCardFull';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { LoadingStatusEnum } from 'common/types';
+import { LoadingStatusEnum, SelectedViewEnum } from 'common/types';
 import { PageViewSwitcher, ProductsPerPage, Skeleton } from 'elements';
-import { ViewType } from 'elements/PageViewSwitcher/PageViewSwitcher';
 import { ProductCard } from 'modules';
 import { ICategoryRequest } from 'services/product/product.serviceTypes';
 import {
@@ -36,7 +35,9 @@ export const ProductList: FC<IProductList> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedView, setSelectedView] = useState<ViewType>('grid');
+  const [selectedView, setSelectedView] = useState<SelectedViewEnum>(
+    SelectedViewEnum.GRID,
+  );
   const loadingSlider = useAppSelector(loadingProductsSelector);
   const productsPerPage = useAppSelector(productsPerPageSelector);
   const totalCount = useAppSelector(totalProductsCountSelector);
@@ -61,8 +62,8 @@ export const ProductList: FC<IProductList> = ({
   };
 
   const modsProductsContainer = {
-    [style.grid_container]: selectedView === 'grid',
-    [style.list_container]: selectedView === 'list',
+    [style.grid_container]: selectedView === SelectedViewEnum.GRID,
+    [style.list_container]: selectedView === SelectedViewEnum.LIST,
   };
 
   const isLoading = loadingSlider === LoadingStatusEnum.Loading;
@@ -76,12 +77,12 @@ export const ProductList: FC<IProductList> = ({
     />
   );
 
-  const skeletonView = Array.from({ length: productsPerPage }).map((el, i) => (
+  const skeleton = Array.from({ length: productsPerPage }).map((el, i) => (
     <Skeleton key={i} selectedView={selectedView} />
   ));
 
-  const productView = products?.map(product => {
-    return selectedView === 'list' ? (
+  const productsView = products?.map(product => {
+    return selectedView === SelectedViewEnum.LIST ? (
       <ProductCardFull key={product.id} product={product} />
     ) : (
       <ProductCard key={product.id} product={product} />
@@ -103,7 +104,7 @@ export const ProductList: FC<IProductList> = ({
       </div>
 
       <div className={cn(style.list, modsProductsContainer)}>
-        {isLoading ? skeletonView : productView}
+        {isLoading ? skeleton : productsView}
       </div>
       <div className={style.control_panel}>
         <ProductsPerPage disabled={isLoading} onChange={handleChangeSelect} />

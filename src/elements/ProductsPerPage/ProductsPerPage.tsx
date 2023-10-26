@@ -47,7 +47,7 @@ export const ProductsPerPage: FC<IProductsPerPage> = ({
   return (
     <div className={style.wrapper}>
       <Paragraph
-        className={cn({ [style.inactive_paragraph]: disabled })}
+        className={cn({ [style.text_disabled]: disabled })}
         size="s2"
         weight="semi_bold"
       >

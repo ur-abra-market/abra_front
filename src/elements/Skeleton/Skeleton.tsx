@@ -2,77 +2,55 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
+import { SelectedViewEnum } from 'common/types';
 import { Stars } from 'ui-kit';
 
 import style from './Skeleton.module.scss';
 
 interface ISkeleton {
-  selectedView: 'grid' | 'list';
+  selectedView: SelectedViewEnum;
 }
 
 export const Skeleton: FC<ISkeleton> = ({ selectedView }): JSX.Element => {
-  const skeleton_mods = cn(style.skeleton_wrapper, {
-    [style.grid_view_mod]: selectedView === 'grid',
-    [style.list_view_mod]: selectedView === 'list',
+  const skeletonClasses = cn(style.skeleton, {
+    [style.skeleton_grid_view]: selectedView === SelectedViewEnum.GRID,
+    [style.skeleton_list_view]: selectedView === SelectedViewEnum.LIST,
   });
 
-  const image_container = cn({
-    [style.image_grid_container]: selectedView === 'grid',
-    [style.image_list_container]: selectedView === 'list',
-  });
-
-  const details_block = cn({
-    [style.details_grid_block]: selectedView === 'grid',
-    [style.details_list_block]: selectedView === 'list',
-  });
-
-  const title_block_info = cn({
-    [style.title_grid_info]: selectedView === 'grid',
-    [style.title_list_info]: selectedView === 'list',
-  });
-
-  const description_block_info = cn({
-    [style.description_grid_info]: selectedView === 'grid',
-    [style.description_list_info]: selectedView === 'list',
-  });
-
-  const sales_menu = cn({
-    [style.sales_grid_menu]: selectedView === 'grid',
-    [style.sales_list_menu]: selectedView === 'list',
-  });
-
-  const salesman_info =
-    selectedView === 'grid' ? (
+  const supplier =
+    selectedView === SelectedViewEnum.GRID ? (
       <>
-        <div className={style.salesman_grid_data} />
-        <span className={style.forward_slash}>/</span>
-        <div className={style.number_reviews} />
+        <div className={style.before_slash_line} />
+        <span className={style.slash}>/</span>
+        <div className={style.after_slash_line} />
       </>
     ) : (
       <>
-        <div className={style.salesman_logo} />
-        <div className={style.salesman_list_data} />
+        <div className={style.round_line} />
+        <div className={style.before_slash_line} />
       </>
     );
 
   return (
-    <div className={skeleton_mods}>
-      <div className={image_container} />
-      <div className={details_block}>
-        <div className={style.title_container}>
-          <div className={title_block_info} />
-          <div className={description_block_info} />
+    <div className={skeletonClasses}>
+      <div className={style.image} />
+      <div className={style.details}>
+        <div className={style.header_lines_container}>
+          <div className={style.header_first_line} />
+          <div className={style.header_second_line} />
         </div>
-        <div className={sales_menu}>
-          <div className={style.sales_info_block}>{salesman_info}</div>
-          {selectedView === 'list' && <div className={style.sales_orders} />}
+        <div className={style.supplier_info_container}>
+          <div className={style.info_lines}>{supplier}</div>
+          {selectedView === SelectedViewEnum.LIST && (
+            <div className={style.additional_line} />
+          )}
         </div>
         <div className={style.stars_container}>
           <Stars reward={0} />
-          {selectedView === 'list' && (
+          {selectedView === SelectedViewEnum.LIST && (
             <>
-              <span className={style.forward_slash}>/</span>
-              <div className={style.number_reviews} />
+              <span className={style.slash}>/</span>
+              <div className={style.after_slash_line} />
             </>
           )}
         </div>
