@@ -21,7 +21,7 @@ export const ProductCard: FC<IProductCard> = ({
   className,
   ...restProps
 }): JSX.Element => {
-  const { name, prices, description, images, id, grade_average, is_active } = product;
+  const { name, prices, description, images, id, grade_average } = product;
 
   // const { min_quantity } = prices[0];
   const min_quantity = 10; // TODO
@@ -30,12 +30,7 @@ export const ProductCard: FC<IProductCard> = ({
   return (
     <article className={cn(style.card, className)} {...restProps}>
       <Link tabIndex={-1} to={`${PRODUCT_DETAILS}/${id}`} className={style.link}>
-        <ProductImage
-          imageUrl={image_url || ''}
-          name={name}
-          isFavorite={is_active}
-          productId={id}
-        />
+        <ProductImage imageUrl={image_url || ''} name={name} />
         <div className={style.direction}>
           <h4 className={style.card_title}>{name}</h4>
           <p className={style.card_description}>{description}</p>
