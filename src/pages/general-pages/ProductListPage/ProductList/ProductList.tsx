@@ -7,7 +7,7 @@ import { ProductCardFull } from './ProductCardFull/ProductCardFull';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum, SelectedViewEnum } from 'common/types';
-import { PageViewSwitcher, ProductsPerPage, Skeleton } from 'elements';
+import { PageViewSwitcher, ProductsPerPage, ProductSkeleton } from 'elements';
 import { ProductCard } from 'modules';
 import { ICategoryRequest } from 'services/product/product.serviceTypes';
 import {
@@ -77,8 +77,8 @@ export const ProductList: FC<IProductList> = ({
     />
   );
 
-  const skeleton = Array.from({ length: productsPerPage }).map((el, i) => (
-    <Skeleton key={i} selectedView={selectedView} />
+  const productSkeleton = Array.from({ length: productsPerPage }).map((el, i) => (
+    <ProductSkeleton key={i} selectedView={selectedView} />
   ));
 
   const productsView = products?.map(product => {
@@ -104,7 +104,7 @@ export const ProductList: FC<IProductList> = ({
       </div>
 
       <div className={cn(style.list, modsProductsContainer)}>
-        {isLoading ? skeleton : productsView}
+        {isLoading ? productSkeleton : productsView}
       </div>
       <div className={style.control_panel}>
         <ProductsPerPage disabled={isLoading} onChange={handleChangeSelect} />

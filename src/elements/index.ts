@@ -18,4 +18,4 @@ export { ButtonLogout } from './ButtonLogout/ButtonLogout';
 export { ProductsPerPage } from './ProductsPerPage/ProductsPerPage';
 export { PageViewSwitcher } from './PageViewSwitcher/PageViewSwitcher';
 export { ViewMoreProductsLink } from './ViewMoreProductsLink/ViewMoreProductsLink';
-export { Skeleton } from './Skeleton/Skeleton';
+export { ProductSkeleton } from './ProductSkeleton/ProductSkeleton';
