@@ -6,7 +6,7 @@
   row-gap: 8px;
 
   min-width: 288px;
-  max-width: 100%;
+  max-width: calc(100vw - 64px);
   margin-bottom: 80px;
   padding-left: 32px;
 }
@@ -22,5 +22,11 @@
 @media (max-width: 1200px) {
   .product_details_container {
     padding: 0;
+  }
+}
+
+@media (max-width: 769px) {
+  .product_details_container {
+    max-width: calc(100vw - 32px);
   }
 }
