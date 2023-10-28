@@ -5,13 +5,15 @@ import cn from 'classnames';
 import { SelectedViewEnum } from 'common/types';
 import { Stars } from 'ui-kit';
 
-import style from './ProductSkeleton.module.scss';
+import style from './SkeletonProductCard.module.scss';
 
 interface IProductSkeleton {
   selectedView: SelectedViewEnum;
 }
 
-export const ProductSkeleton: FC<IProductSkeleton> = ({ selectedView }): JSX.Element => {
+export const SkeletonProductCard: FC<IProductSkeleton> = ({
+  selectedView,
+}): JSX.Element => {
   const skeletonClasses = cn(style.skeleton, {
     [style.skeleton_grid_view]: selectedView === SelectedViewEnum.GRID,
     [style.skeleton_list_view]: selectedView === SelectedViewEnum.LIST,

@@ -7,7 +7,7 @@ import { ProductCardFull } from './ProductCardFull/ProductCardFull';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum, SelectedViewEnum } from 'common/types';
-import { PageViewSwitcher, ProductsPerPage, ProductSkeleton } from 'elements';
+import { PageViewSwitcher, ProductsPerPage, SkeletonProductCard } from 'elements';
 import { ProductCard } from 'modules';
 import { ICategoryRequest } from 'services/product/product.serviceTypes';
 import {
@@ -78,7 +78,7 @@ export const ProductList: FC<IProductList> = ({
   );
 
   const productSkeleton = Array.from({ length: productsPerPage }).map((el, i) => (
-    <ProductSkeleton key={i} selectedView={selectedView} />
+    <SkeletonProductCard key={i} selectedView={selectedView} />
   ));
 
   const productsView = products?.map(product => {
