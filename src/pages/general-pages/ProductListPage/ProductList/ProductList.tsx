@@ -3,22 +3,23 @@ import { FC, useEffect, useState } from 'react';
 import cn from 'classnames';
 import { useParams } from 'react-router-dom';
 
+import { ProductCardFull } from './ProductCardFull/ProductCardFull';
+
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { LoadingStatusEnum } from 'common/types';
-import { ProductsPerPage, PageViewSwitcher } from 'elements';
-import { ViewType } from 'elements/PageViewSwitcher/PageViewSwitcher';
-import { ProductCardFull, ProductCard } from 'modules';
+import { LoadingStatusEnum, SelectedViewEnum } from 'common/types';
+import { PageViewSwitcher, ProductsPerPage, SkeletonProductCard } from 'elements';
+import { ProductCard } from 'modules';
 import { ICategoryRequest } from 'services/product/product.serviceTypes';
 import {
-  productsPerPageSelector,
-  setProductsPerPage,
   getProductsListCompilation,
   productsListSelector,
+  productsPerPageSelector,
+  setProductsPerPage,
   totalProductsCountSelector,
 } from 'store/reducers/productSlice';
 import { loadingProductsSelector } from 'store/reducers/productSlice/selectors';
 import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
-import { ButtonQuestion, LoaderCircular } from 'ui-kit';
+import { ButtonQuestion } from 'ui-kit';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
 
 import style from './ProductList.module.scss';
@@ -34,7 +35,9 @@ export const ProductList: FC<IProductList> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedView, setSelectedView] = useState<ViewType>('grid');
+  const [selectedView, setSelectedView] = useState<SelectedViewEnum>(
+    SelectedViewEnum.GRID,
+  );
   const loadingSlider = useAppSelector(loadingProductsSelector);
   const productsPerPage = useAppSelector(productsPerPageSelector);
   const totalCount = useAppSelector(totalProductsCountSelector);
@@ -59,9 +62,32 @@ export const ProductList: FC<IProductList> = ({
   };
 
   const modsProductsContainer = {
-    [style.grid_container]: selectedView === 'grid',
-    [style.list_container]: selectedView === 'list',
+    [style.grid_container]: selectedView === SelectedViewEnum.GRID,
+    [style.list_container]: selectedView === SelectedViewEnum.LIST,
   };
+
+  const isLoading = loadingSlider === LoadingStatusEnum.Loading;
+
+  const paginationComponent = (
+    <Pagination
+      totalPages={totalPages}
+      currentPage={currentPage}
+      onPageChanged={setCurrentPage}
+      disabled={isLoading}
+    />
+  );
+
+  const productSkeleton = Array.from({ length: productsPerPage }).map((el, i) => (
+    <SkeletonProductCard key={i} selectedView={selectedView} />
+  ));
+
+  const productsView = products?.map(product => {
+    return selectedView === SelectedViewEnum.LIST ? (
+      <ProductCardFull key={product.id} product={product} />
+    ) : (
+      <ProductCard key={product.id} product={product} />
+    );
+  });
 
   return (
     <div className={style.wrapper}>
@@ -74,37 +100,16 @@ export const ProductList: FC<IProductList> = ({
           <div className={style.branch_crumbs}>{`bread > crumb > plug`}</div>
           {/* TODO (fake data) */}
         </div>
-        {products.length > 0 && (
-          <Pagination
-            totalPages={totalPages}
-            currentPage={currentPage}
-            onPageChanged={setCurrentPage}
-          />
-        )}
+        {paginationComponent}
       </div>
 
       <div className={cn(style.list, modsProductsContainer)}>
-        {products?.map(product =>
-          selectedView === 'list' ? (
-            <ProductCardFull key={product.id} product={product} />
-          ) : (
-            <ProductCard key={product.id} product={product} />
-          ),
-        )}
-        {loadingSlider === LoadingStatusEnum.Loading && (
-          <LoaderCircular className={style.loading_slider} />
-        )}
+        {isLoading ? productSkeleton : productsView}
       </div>
-      {products.length > 0 && (
-        <div className={style.control_panel}>
-          <ProductsPerPage onChange={handleChangeSelect} />
-          <Pagination
-            totalPages={totalPages}
-            currentPage={currentPage}
-            onPageChanged={setCurrentPage}
-          />
-        </div>
-      )}
+      <div className={style.control_panel}>
+        <ProductsPerPage disabled={isLoading} onChange={handleChangeSelect} />
+        {paginationComponent}
+      </div>
       <ButtonQuestion />
     </div>
   );

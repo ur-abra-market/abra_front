@@ -20,3 +20,4 @@ export { ViewMoreProductsLink } from './ViewMoreProductsLink/ViewMoreProductsLin
 export { ProductParams } from './ProductParams/ProductParams';
 export { ProductPrice } from './ProductPrice/ProductPrice';
 export { SupplierInfo } from './SupplierInfo/SupplierInfo';
+export { SkeletonProductCard } from './SkeletonProductCard/SkeletonProductCard';

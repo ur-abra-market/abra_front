@@ -12,7 +12,6 @@ import style from './ProductImage.module.scss';
 
 interface IProductCard
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-  isFavorite: boolean;
   name: string;
   imageUrl: string;
   productId?: number;

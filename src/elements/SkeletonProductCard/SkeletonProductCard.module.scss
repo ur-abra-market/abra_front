@@ -1,0 +1,166 @@
+.skeleton {
+  display: flex;
+  width: 100%;
+}
+
+@mixin skeleton_animation {
+  width: 100%;
+  background-color: var(--color-white-ivory);
+  border-radius: 8px;
+  animation: skeletonAnimation 1.5s infinite alternate;
+}
+
+.image,
+.header_first_line,
+.header_second_line,
+.additional_line,
+.round_line,
+.before_slash_line,
+.after_slash_line {
+  @include skeleton_animation;
+}
+
+.details {
+  display: grid;
+  width: 100%;
+}
+
+.header_lines_container {
+  grid-area: title_container;
+  width: 100%;
+}
+
+.supplier_info_container {
+  display: grid;
+  grid-area: sales_menu;
+  justify-items: end;
+}
+
+.info_lines {
+  display: flex;
+  grid-area: sales_info;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.slash {
+  color: var(--color-gray-medium);
+}
+
+.stars_container {
+  display: flex;
+  grid-area: stars_container;
+  width: 45%;
+}
+
+.after_slash_line {
+  max-height: 15px;
+  margin-left: 4px;
+}
+
+.skeleton_grid_view {
+  flex-direction: column;
+  max-width: 220px;
+  height: 310px;
+
+  .image {
+    height: 100%;
+  }
+
+  .details {
+    grid-template-areas:
+      'title_container'
+      'sales_menu'
+      'stars_container';
+  }
+
+  .header_first_line {
+    height: 14px;
+    margin-top: 11px;
+  }
+
+  .header_second_line {
+    height: 12px;
+    margin-top: 4px;
+  }
+
+  .supplier_info_container {
+    grid-template-areas: 'sales_info';
+    grid-template-columns: 85%;
+    margin: 14px 0 4px;
+  }
+
+  .before_slash_line {
+    margin-right: 4px;
+  }
+}
+
+.skeleton_list_view {
+  gap: 36px;
+  height: 220px;
+
+  .image {
+    display: flex;
+    align-items: center;
+    max-width: 220px;
+  }
+
+  .details {
+    grid-template-areas:
+      'title_container'
+      'stars_container'
+      'sales_menu';
+    grid-template-rows: 45px 16px 36px;
+    align-content: space-evenly;
+  }
+
+  .header_first_line {
+    width: 45%;
+    height: 22px;
+    margin-bottom: 8px;
+  }
+
+  .header_second_line {
+    width: 45%;
+    height: 14px;
+  }
+
+  .supplier_info_container {
+    grid-template-areas: 'sales_info sales_orders';
+    grid-template-columns: 45% 55%;
+  }
+
+  .additional_line {
+    grid-area: sales_orders;
+    width: 30%;
+    height: 14px;
+    margin-top: 22px;
+  }
+
+  .round_line {
+    width: 36px;
+    margin-right: 8px;
+    border-radius: 50%;
+  }
+
+  .before_slash_line {
+    width: 80%;
+  }
+}
+
+@keyframes skeletonAnimation {
+  0%, 100% {
+    background-color: var(--color-white-ivory);
+  }
+
+  50% {
+    background-color: var(--color-gray-light);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .skeleton_grid_view {
+    max-width: 180px;
+    max-height: 270px;
+  }
+}

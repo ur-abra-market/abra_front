@@ -3,38 +3,37 @@ import { FC } from 'react';
 import cn from 'classnames';
 
 import { ViewGridEnabledIcon, ViewListEnabledIcon } from 'assets/icons';
+import { SelectedViewEnum } from 'common/types';
 
 import style from './PageViewSwitcher.module.scss';
 
 interface IPageViewSwitcher {
-  selectedView: ViewType;
-  setSelectedView: (view: ViewType) => void;
+  selectedView: SelectedViewEnum;
+  setSelectedView: (view: SelectedViewEnum) => void;
 }
-
-export type ViewType = 'grid' | 'list';
 
 export const PageViewSwitcher: FC<IPageViewSwitcher> = ({
   selectedView,
   setSelectedView,
 }) => {
   const viewGridClasses = {
-    [style.active_layout]: selectedView === 'grid',
+    [style.active_layout]: selectedView === SelectedViewEnum.GRID,
   };
 
   const viewListClasses = cn({
-    [style.active_layout]: selectedView === 'list',
+    [style.active_layout]: selectedView === SelectedViewEnum.LIST,
   });
 
   return (
     <div className={style.wrapper}>
       <ViewGridEnabledIcon
         className={cn(style.default_icon, viewGridClasses)}
-        onClick={() => setSelectedView('grid')}
+        onClick={() => setSelectedView(SelectedViewEnum.GRID)}
       />
 
       <ViewListEnabledIcon
         className={cn(style.default_icon, viewListClasses)}
-        onClick={() => setSelectedView('list')}
+        onClick={() => setSelectedView(SelectedViewEnum.LIST)}
       />
     </div>
   );
