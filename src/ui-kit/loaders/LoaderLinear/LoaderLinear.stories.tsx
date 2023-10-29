@@ -5,7 +5,7 @@ import { LoaderLinear } from './LoaderLinear';
 const meta = {
   component: LoaderLinear,
   tags: ['autodocs'],
-  title: 'Components/LoaderLinear',
+  title: 'ui-kit/LoaderLinear',
 } satisfies Meta<typeof LoaderLinear>;
 
 export default meta;

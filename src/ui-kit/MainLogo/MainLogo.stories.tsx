@@ -5,7 +5,7 @@ import { MainLogo } from './MainLogo';
 const meta = {
   component: MainLogo,
   tags: ['autodocs'],
-  title: 'Components/MainLogo',
+  title: 'ui-kit/MainLogo',
 } satisfies Meta<typeof MainLogo>;
 
 export default meta;

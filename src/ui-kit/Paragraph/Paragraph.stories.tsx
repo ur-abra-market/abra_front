@@ -5,7 +5,7 @@ import { Paragraph } from './Paragraph';
 const meta = {
   component: Paragraph,
   tags: ['autodocs'],
-  title: 'Components/Paragraph',
+  title: 'ui-kit/Paragraph',
 } satisfies Meta<typeof Paragraph>;
 
 export default meta;

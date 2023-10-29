@@ -7,7 +7,7 @@ import { WhatsappPhoneNumber } from './WhatsappPhoneNumber';
 const meta = {
   component: WhatsappPhoneNumber,
   tags: ['autodocs'],
-  title: 'Components/WhatsappPhoneNumber',
+  title: 'ui-kit/WhatsappPhoneNumber',
 } satisfies Meta<typeof WhatsappPhoneNumber>;
 
 export default meta;

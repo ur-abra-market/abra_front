@@ -5,7 +5,7 @@ import { SimpleLink } from './SimpleLink';
 const meta = {
   component: SimpleLink,
   tags: ['autodocs'],
-  title: 'Components/SimpleLink',
+  title: 'ui-kit/SimpleLink',
 } satisfies Meta<typeof SimpleLink>;
 
 export default meta;

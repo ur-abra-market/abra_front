@@ -7,7 +7,7 @@ import { SocialNetworks } from './SocialNetworks';
 const meta = {
   component: SocialNetworks,
   tags: ['autodocs'],
-  title: 'Components/SocialNetworks',
+  title: 'ui-kit/SocialNetworks',
 } satisfies Meta<typeof SocialNetworks>;
 
 export default meta;

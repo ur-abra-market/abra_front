@@ -8,7 +8,7 @@ import { COUNTRY_FLAGS } from 'common/utils';
 const meta = {
   component: Select,
   tags: ['autodocs'],
-  title: 'Components/Select',
+  title: 'ui-kit/Select',
 } satisfies Meta<typeof Select>;
 
 export default meta;

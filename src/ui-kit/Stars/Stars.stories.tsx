@@ -5,7 +5,7 @@ import { Stars } from './Stars';
 const meta = {
   component: Stars,
   tags: ['autodocs'],
-  title: 'Components/Stars',
+  title: 'ui-kit/Stars',
 } satisfies Meta<typeof Stars>;
 
 export default meta;

@@ -5,7 +5,7 @@ import { Input } from './Input';
 const meta = {
   component: Input,
   tags: ['autodocs'],
-  title: 'Components/Input',
+  title: 'ui-kit/Input',
 } satisfies Meta<typeof Input>;
 
 export default meta;

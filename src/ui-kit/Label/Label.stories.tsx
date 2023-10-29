@@ -7,7 +7,7 @@ import { Input } from 'ui-kit/Input/Input';
 const meta = {
   component: Label,
   tags: ['autodocs'],
-  title: 'Components/Label',
+  title: 'ui-kit/Label',
 } satisfies Meta<typeof Label>;
 
 export default meta;
