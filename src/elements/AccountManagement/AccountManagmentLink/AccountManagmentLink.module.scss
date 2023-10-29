@@ -19,12 +19,13 @@
 }
 
 .link {
-  text-decoration: underline;
-
   &:focus-visible {
     border-radius: 4px;
     outline: 1px solid var(--color-gray-medium);
     transition: none;
   }
-}
 
+  &:hover {
+    text-decoration: underline;
+  }
+}
