@@ -22,7 +22,7 @@ export const ProductFilter: FC<IProductFilter> = ({
     <div className={style.product_filter}>
       <div className={style.filters_container}>
         <Filters onResetAllFilters={onResetAllFilters} />
-        <Price />
+        {/* <Price /> */}
         <Brand />
         <Material />
       </div>
