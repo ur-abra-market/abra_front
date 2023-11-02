@@ -92,13 +92,12 @@ export const MainPage = WithLayout((): JSX.Element => {
               {loadingSlider === LoadingStatusEnum.Loading && (
                 <LoaderCircular className={style.loading_slider} />
               )}
-
               {products &&
-                Object.keys(products).map(key => {
+                Object.keys(products).map(id => {
                   return (
-                    <ProductsPreview key={key} title={CATEGORIES[+key].label}>
-                      {products[+key].map(product => (
-                        <ProductCard key={product.uuid} product={product} />
+                    <ProductsPreview key={id} title={CATEGORIES[+id].label}>
+                      {products[+id].map(product => (
+                        <ProductCard key={product.id} product={product} />
                       ))}
                       <ViewMoreProductsLink />
                     </ProductsPreview>
