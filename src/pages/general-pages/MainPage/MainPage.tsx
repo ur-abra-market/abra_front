@@ -7,6 +7,8 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum } from 'common/types';
 import { ViewMoreProductsLink } from 'elements';
 import { ProductCard, ProductsPreview } from 'modules';
+import { ICategoryResponse } from 'services/common/common.serviceTypes';
+import { getAllCategories } from 'store/reducers/commonSlice';
 import {
   getProductsCompilation,
   productsCompilationSelector,
@@ -16,64 +18,61 @@ import { ButtonQuestion, LoaderCircular, LoaderLinear } from 'ui-kit';
 
 import style from './MainPage.module.scss';
 
-export enum Categories {
-  ALL = 8,
-  CLOTHES = 9,
-  ACCESSORIES = 10,
-  COSMETICS = 11,
-}
-
 type Category = Record<
   number,
   {
     label: string;
-    category_id: Categories;
+    category_id: number;
   }
 >;
 
-const CATEGORIES: Category = {
-  8: {
-    label: 'All categories',
-    category_id: Categories.ALL,
-  },
-  9: {
-    label: `Clothes`,
-    category_id: Categories.CLOTHES,
-  },
-  10: {
-    label: `Accessories`,
-    category_id: Categories.ACCESSORIES,
-  },
-  11: {
-    label: `Cosmetics and Self-Care`,
-    category_id: Categories.COSMETICS,
-  },
-};
+const TARGET_CATEGORIES = ['Women', 'Men', 'Kids'];
 
 export const MainPage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();
-  const filter = useAppSelector(state => state.productListOld.statusProduct);
   const loadingSlider = useAppSelector(loadingProductsSelector);
   const [isFetchingData, setIsFetchingData] = useState(true);
   const products = useAppSelector(productsCompilationSelector);
+  const categories = useAppSelector(state => state.common.categories);
+  const allCategories = findCategories(categories, TARGET_CATEGORIES);
+
+  const myProducts = allCategories.reduce((result, curr, index, arr) => {
+    if (arr.length - 1 === index) {
+      return {
+        1: { label: 'All categories', category_id: 1 },
+        ...result,
+        [curr.id]: { label: `${curr.name} clothes`, category_id: curr.id },
+      };
+    }
+
+    return {
+      ...result,
+      [curr.id]: { label: `${curr.name} clothes`, category_id: curr.id },
+    };
+  }, {} as Category);
 
   useEffect(() => {
-    const fetchData = async (): Promise<void> => {
-      Object.values(CATEGORIES).forEach(async ({ category_id }): Promise<void> => {
-        await dispatch(
-          getProductsCompilation({
-            offset: 0,
-            limit: 23,
-            category_id,
-            ascending: false,
-          }),
-        );
-      });
-      setIsFetchingData(false);
-    };
+    dispatch(getAllCategories());
+  }, []);
 
+  useEffect(() => {
     fetchData();
-  }, [dispatch, filter]);
+  }, [categories]);
+
+  const fetchData = async (): Promise<void> => {
+    Object.keys(myProducts).forEach(el => {
+      setIsFetchingData(true);
+      dispatch(
+        getProductsCompilation({
+          offset: 0,
+          limit: 23,
+          category_id: el.toString(),
+          ascending: false,
+        }),
+      );
+      setIsFetchingData(false);
+    });
+  };
 
   return (
     <div className={style.main_page}>
@@ -95,8 +94,11 @@ export const MainPage = WithLayout((): JSX.Element => {
               {products &&
                 Object.keys(products).map(id => {
                   return (
-                    <ProductsPreview key={id} title={CATEGORIES[+id].label}>
-                      {products[+id].map(product => (
+                    <ProductsPreview
+                      key={myProducts[+id].category_id}
+                      title={myProducts[+id].label}
+                    >
+                      {products[myProducts[+id].category_id].map(product => (
                         <ProductCard key={product.id} product={product} />
                       ))}
                       <ViewMoreProductsLink />
@@ -113,3 +115,27 @@ export const MainPage = WithLayout((): JSX.Element => {
     </div>
   );
 });
+
+// рекурсивный поиск категорий по имени
+function findCategories(
+  categories: ICategoryResponse[],
+  targetCategories: string[],
+): ICategoryResponse[] {
+  const result: ICategoryResponse[] = [];
+
+  categories.forEach(category => {
+    if (targetCategories.includes(category.name)) {
+      result.push(category);
+    }
+
+    if (category.children) {
+      const childCategories = findCategories(category.children, targetCategories);
+
+      if (childCategories.length > 0) {
+        result.push(...childCategories);
+      }
+    }
+  });
+
+  return result;
+}
