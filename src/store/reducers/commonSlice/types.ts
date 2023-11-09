@@ -9,7 +9,7 @@ export interface INumberEmployees {
 }
 
 export interface IInitialState {
-  categories: null | ICategoryResponse[];
+  categories: [] | ICategoryResponse[];
   countries: CountriesArrayType;
   numberEmployees: INumberEmployees[];
 }
