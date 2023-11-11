@@ -10,6 +10,7 @@ import {
   ORDER_HISTORY_DETAILS,
   PERSONAL_ACCOUNT,
   PRODUCT_DETAILS,
+  CART,
 } from '.';
 
 import {
@@ -18,6 +19,7 @@ import {
   SellerProfilePage,
   SellerFavoritesList,
   CheckoutSuccessPage,
+  SellerCart,
 } from 'pages/seller-pages';
 import { ProductPage } from 'pages/seller-pages/ProductPage/ProductPage';
 
@@ -50,6 +52,10 @@ export const sellerRoutes: RouteObject[] = [
   {
     path: FAVORITES,
     element: <SellerFavoritesList />,
+  },
+  {
+    path: CART,
+    element: <SellerCart />,
   },
   {
     path: HELP,

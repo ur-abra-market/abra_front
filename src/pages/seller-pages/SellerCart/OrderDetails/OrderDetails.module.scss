@@ -1,0 +1,118 @@
+.order_item {
+  display: flex;
+  flex-direction: column;
+
+  width: 335px;
+  height: 100%;
+  padding: 24px;
+
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-light);
+  border-radius: 12px;
+}
+
+.total_count {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  .value_total_count,
+  .title_total_count {
+    font-family: var(--roboto);
+    font-style: normal;
+    line-height: 20px;
+    color: var(--color-black);
+    letter-spacing: 0.38px;
+  }
+}
+
+.total_price {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+
+  .total_shipping_text,
+  .total_cost_text {
+    display: flex;
+
+    width: 100%;
+
+    font-size: var(--fz-m);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 20px;
+    letter-spacing: 0.16px;
+
+    .line {
+      transform: translateY(-5px);
+
+      flex: 1 1 auto;
+      align-self: flex-end;
+
+      height: 1px;
+      margin: 0 4px;
+
+      background: #000;
+    }
+
+
+    &:first-child {
+      margin-bottom: 12px;
+    }
+
+    &:nth-child(2) {
+      margin-bottom: 8px;
+    }
+  }
+
+  .total_price_description {
+    font-style: normal;
+    line-height: 16px;
+    color: var(--color-gray-medium);
+    letter-spacing: 0.16px;
+  }
+}
+
+.line_separate {
+  width: 100%;
+  height: 1px;
+  margin: 24px 0;
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.total_order_price {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 24px;
+
+  font-size: var(--fz-l-2);
+  font-weight: var(--semi-bold);
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: 0.38px;
+}
+
+.button_checkout {
+  margin-bottom: 16px;
+
+  font-size: var(--fz-m);
+  font-weight: var(--medium);
+  font-style: normal;
+  line-height: 15px;
+  color: var(--color-white);
+  text-align: center;
+  letter-spacing: 0.16px;
+}
+
+.order_description {
+  font-size: 15px; /////
+  font-weight: var(--regular);
+  font-style: normal;
+  line-height: 20px;
+  color: var(--color-gray-medium);
+  letter-spacing: 0.16px;
+}
+
