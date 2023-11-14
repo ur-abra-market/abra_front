@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 634px;
+  margin: 0 auto;
+  padding-top: 48px;
+
+  .title {
+    margin-bottom: 16px;
+    font-size: 34px;
+  }
+
+  .paragraph {
+    margin-bottom: 40px;
+    font-size: 15px;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+    
+    li {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 80%;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 90%;
+  }
+}
