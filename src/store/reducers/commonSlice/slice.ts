@@ -8,7 +8,7 @@ import {
 } from '.';
 
 const initialState: IInitialState = {
-  categories: null,
+  categories: [],
   countries: [],
   numberEmployees: [],
 };
