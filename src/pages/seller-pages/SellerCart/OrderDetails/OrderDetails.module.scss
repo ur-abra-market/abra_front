@@ -1,8 +1,9 @@
 .order_item {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 
-  width: 335px;
+  max-width: 335px;
   height: 100%;
   padding: 24px;
 
@@ -19,7 +20,6 @@
 
   .value_total_count,
   .title_total_count {
-    font-family: var(--roboto);
     font-style: normal;
     line-height: 20px;
     color: var(--color-black);
@@ -30,8 +30,8 @@
 .total_price {
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: start;
+  align-items: flex-start;
+  justify-content: flex-start;
 
   .total_shipping_text,
   .total_cost_text {
@@ -39,8 +39,6 @@
 
     width: 100%;
 
-    font-size: var(--fz-m);
-    font-weight: 400;
     font-style: normal;
     line-height: 20px;
     letter-spacing: 0.16px;
@@ -56,7 +54,6 @@
 
       background: #000;
     }
-
 
     &:first-child {
       margin-bottom: 12px;
@@ -88,8 +85,6 @@
 
   margin-bottom: 24px;
 
-  font-size: var(--fz-l-2);
-  font-weight: var(--semi-bold);
   font-style: normal;
   line-height: 20px;
   letter-spacing: 0.38px;
@@ -108,11 +103,8 @@
 }
 
 .order_description {
-  font-size: 15px; /////
-  font-weight: var(--regular);
   font-style: normal;
   line-height: 20px;
   color: var(--color-gray-medium);
   letter-spacing: 0.16px;
 }
-

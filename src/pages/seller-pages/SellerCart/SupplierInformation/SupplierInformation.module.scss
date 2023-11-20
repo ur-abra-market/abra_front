@@ -1,0 +1,29 @@
+.supplier_information {
+  display: flex;
+  align-items: flex-start;
+
+  .supplier_rating {
+    margin-left: 4px;
+    font-style: normal;
+    line-height: 20px;
+    letter-spacing: 0.16px;
+  }
+
+  .supplier_link {
+    display: flex;
+    align-items: center;
+
+    .supplier_name {
+      margin-left: 8px;
+      font-style: normal;
+      line-height: 20px;
+      letter-spacing: 0.16px;
+    }
+
+    .arrow {
+      width: 16px;
+      height: 16px;
+      margin-left: 8px;
+    }
+  }
+}

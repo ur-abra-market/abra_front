@@ -4,4 +4,4 @@ export { SellerFavoritesList } from './SellerFavoritesList/SellerFavoritesList';
 export { OrderDetailsPage } from './OrderDetailsPage/OrderDetailsPage';
 export { OrderHistoryPage } from './OrderHistoryPage/OrderHistoryPage';
 export { CheckoutSuccessPage } from './CheckoutSuccessPage/CheckoutSuccessPage';
-export { SellerCart } from './SellerCart/SellerCart';
+export { SellerCartPage } from './SellerCart/SellerCart';

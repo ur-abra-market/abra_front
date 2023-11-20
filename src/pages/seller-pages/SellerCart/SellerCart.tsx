@@ -1,139 +1,93 @@
-import React from 'react';
-
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 import { OrderDetails } from './OrderDetails';
+import { OrderItemInCart } from './OrderItemInCart';
+import { SupplierInformation } from './SupplierInformation';
 
+import { DotIcon } from 'assets/icons';
 import { WithLayout } from 'common/hocs/WithLayout';
-import { ButtonQuestion, Title } from 'ui-kit';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { getProductById } from 'store/reducers/productSlice';
+import {
+  getAmount,
+  getProductItemsInCart,
+  getSellerDataCart,
+  getTotalAmount,
+  productCardInCart,
+  totalItemsInCart,
+} from 'store/reducers/seller/cart';
+import { Checkbox, LoaderLinear, Paragraph, Title } from 'ui-kit';
 
 import style from './SellerCart.module.scss';
 
-export const SellerCart = WithLayout((): JSX.Element => {
-  // const dispatch = useAppDispatch();
-  // const loading = useAppSelector(sellerLoadingSelector);
-  // const { personalInfoLoading } = useAppSelector(userLoadingSelector);
-  // const { notificationsLoading, ...restLoading } = loading;
-  // const [isFetchingData, setIsFetchingData] = useState(true);
-  // const arr = [];
-  //
-  // const exampleCount = 24;
+export const SellerCartPage = WithLayout((): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const [isFetchingData, setIsFetchingData] = useState(true);
+  const productCart = useAppSelector(productCardInCart);
+  const itemsInCart = useAppSelector(totalItemsInCart);
 
-  // for (let i = 0; i < exampleCount; i += 1) {
-  //   arr.push('item');
-  // }
-  // const isLoading =
-  //   Object.values(restLoading).some(value => value === LoadingStatusEnum.Loading) ||
-  //   personalInfoLoading === LoadingStatusEnum.Loading;
-  //
-  // useEffect(() => {
-  //   const fetchData = async (): Promise<void> => {
-  //     dispatch(getSellerDataCart());
-  //     setIsFetchingData(false);
-  //   };
-  //
-  //   fetchData();
-  // }, [dispatch]);
+  useEffect(() => {
+    const fetchData = async (): Promise<void> => {
+      await dispatch(getSellerDataCart({ offset: 1, limit: 10 }))
+        .unwrap()
+        .then(res => {
+          const products = Object.values(res).map(product => {
+            return product.details[0];
+          });
+
+          products.map(async product => {
+            await dispatch(getProductById({ product_id: product.id }));
+            await dispatch(
+              getAmount({
+                order_id: product.id,
+                amount: product.amount,
+              }),
+            );
+            await dispatch(getProductItemsInCart());
+            await dispatch(getTotalAmount());
+          });
+        });
+
+      setIsFetchingData(false);
+    };
+
+    fetchData();
+  }, [dispatch]);
+
+  if (isFetchingData) return <LoaderLinear />;
 
   return (
     <div className={style.wrapper}>
-      {/* {isLoading && <LoaderLinear />} */}
-      <Title as="h1" weight="bold" className={style.title}>
-        My Cart ({3} Items)
-      </Title>
       <div className={style.content}>
-        <ul className={style.order_list}>
-          <li className={style.order_list_item}>
-            <div className={style.product_info}>
-              <div className={style.name}>
-                {/* <img src='' /> */}
-                <p>4.1</p>
-                <p>Ningbo Beilun Lonsyne</p>
-                <span className={style.arrow} />
-              </div>
-              <div className={style.description}>
-                <div className={style.image} />
-                <div>
-                  <Title>
-                    Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall
-                    Clothes
-                  </Title>
-                  <div className={style.properties}>
-                    <p>Color: Silver</p>
-                    <p>Status: Shipped</p>
-                    <p>Quantity: 200</p>
-                  </div>
-                  <div className={style.price}>
-                    <p>$780</p>
-                    <div className={style.price_details}>
-                      <p>300pcs</p>
-                      <span className={style.line} />
-                      <p className={style.old_price}>$4.2/1pcs</p>
-                      <p className={style.new_price}>$4.0/1pcs</p>
-                    </div>
-                  </div>
+        <div className={style.order_items}>
+          <Title as="h1" weight="bold" className={style.title}>
+            My Cart ({itemsInCart} Items)
+          </Title>
+          {productCart?.map((item: any) => {
+            return (
+              <div className={style.order_items_details} key={item.id}>
+                <div className={style.header_item}>
+                  <Checkbox
+                    variant="default"
+                    className={style.checkbox_header}
+                    onClick={() => {}}
+                  />
+                  <SupplierInformation item={item} />
                 </div>
-              </div>
-            </div>
-            <div className={style.track_info}>
-              <p>
-                Track No: <Link to="/#">JKFRIU548694LLJE</Link>
-              </p>
-              <span />
-              <p>Estimated delivery: 27.07.2022</p>
-              <span />
-              <p>Delivery method: Abra Shipment</p>
-            </div>
-          </li>
-          <li className={style.order_list_item}>
-            <div className={style.product_info}>
-              <div className={style.name}>
-                {/* <img src='' /> */}
-                <p>4.1</p>
-                <p>Ningbo Beilun Lonsyne</p>
-                <span className={style.arrow} />
-              </div>
-              <div className={style.description}>
-                <div className={style.image} />
-                <div>
-                  <Title>
-                    Hot Sale Winter Casual Dresses Drawstring Sweet Hooded Dress Fall
-                    Clothes
-                  </Title>
-                  <div className={style.properties}>
-                    <p>Color: Silver</p>
-                    <p>Status: Shipped</p>
-                    <p>Quantity: 200</p>
-                  </div>
-                  <div className={style.price}>
-                    <p>$780</p>
-                    <div className={style.price_details}>
-                      <p>300pcs</p>
-                      <span className={style.line} />
-                      <p className={style.old_price}>$4.2/1pcs</p>
-                      <p className={style.new_price}>$4.0/1pcs</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className={style.track_info}>
-              <p>
-                Track No: <Link to="/#">JKFRIU548694LLJE</Link>
-              </p>
-              <span />
-              <p>Estimated delivery: 27.07.2022</p>
-              <span />
-              <p>Delivery method: Abra Shipment</p>
-            </div>
-          </li>
-        </ul>
 
+                <ul className={style.cart_list}>
+                  <OrderItemInCart item={item} />
+                </ul>
+                <div className={style.track_info}>
+                  <Paragraph size="s2">Estimated delivery: 27.07.2022</Paragraph>
+                  <DotIcon />
+                  <Paragraph size="s2">Delivery method: Abra Shipment</Paragraph>
+                </div>
+              </div>
+            );
+          })}
+        </div>
         <OrderDetails />
-      </div>
-
-      <div className={style.bottom}>
-        <ButtonQuestion />
       </div>
     </div>
   );

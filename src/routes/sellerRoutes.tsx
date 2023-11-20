@@ -19,7 +19,7 @@ import {
   SellerProfilePage,
   SellerFavoritesList,
   CheckoutSuccessPage,
-  SellerCart,
+  SellerCartPage,
 } from 'pages/seller-pages';
 import { ProductPage } from 'pages/seller-pages/ProductPage/ProductPage';
 
@@ -55,7 +55,7 @@ export const sellerRoutes: RouteObject[] = [
   },
   {
     path: CART,
-    element: <SellerCart />,
+    element: <SellerCartPage />,
   },
   {
     path: HELP,
