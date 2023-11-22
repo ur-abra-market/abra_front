@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { ArrowIcon } from 'assets/icons';
-import { Title } from 'ui-kit';
+import { Paragraph } from 'ui-kit';
 
 import style from './ProductDescription.module.scss';
 
@@ -17,8 +17,10 @@ export const ProductDescription: FC = (): JSX.Element => {
 
   return (
     <div className={style.container}>
-      <Title className={style.title}>Product Description</Title>
-      <p className={style.paragraph}>Enter the information about your first product</p>
+      <h1 className={style.title}>Product Description</h1>
+      <Paragraph size="s" className={style.paragraph}>
+        Enter the information about your first product
+      </Paragraph>
       <ul>
         {items.map((item, index) => (
           <li key={index}>

@@ -24,7 +24,7 @@ export const ProductTableEditor = (): JSX.Element => {
 
   const navigate = useNavigate();
 
-  const onClickHandler = (label: string): void => {
+  const onHandleProductAction = (label: string): void => {
     switch (label) {
       case 'Deactivated product':
         dispatch(deActivateProducts(activeProduct));
@@ -54,7 +54,7 @@ export const ProductTableEditor = (): JSX.Element => {
 
           return (
             <ButtonIcon
-              onClick={() => onClickHandler(label)}
+              onClick={() => onHandleProductAction(label)}
               disabled={isEditorDisabled}
               className={productEditorClasses}
               key={id}
