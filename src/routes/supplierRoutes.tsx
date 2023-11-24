@@ -3,6 +3,7 @@ import React from 'react';
 import { RouteObject } from 'react-router-dom';
 
 import {
+  ADD_PRODUCT,
   ACCOUNT_SETUP_BUSINESS_INFO,
   ACCOUNT_SETUP_PERSONAL_INFO,
   ANALYTICS,
@@ -25,6 +26,7 @@ import {
   SupplierMainPage,
   SupplierProfilePage,
 } from 'pages/supplier-pages';
+import { ProductDescription } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ProductDescription/ProductDescription';
 import { SupplierProducts } from 'pages/supplier-pages/pages/SupplierProducts/SupplierProducts';
 
 export const supplierRoutes: RouteObject[] = [
@@ -43,6 +45,10 @@ export const supplierRoutes: RouteObject[] = [
       {
         path: PRODUCTS,
         element: <SupplierProducts />,
+      },
+      {
+        path: ADD_PRODUCT,
+        element: <ProductDescription />,
       },
       {
         path: ORDERS,
