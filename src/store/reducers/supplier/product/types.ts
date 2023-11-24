@@ -8,13 +8,16 @@ interface IProductPriceInfo {
 }
 
 export interface IProduct {
-  datetime: string;
+  created_at: string;
   description: string;
   grade_average: number;
   id: number;
   is_active: boolean;
   name: string;
   prices: IProductPriceInfo[];
+  total_orders: number;
+  up_to_discount: number;
+  updated_at: string;
 }
 
 export interface IProductsListResponse {
