@@ -56,3 +56,7 @@ export interface IPrice {
   start_date: string;
   end_date: string;
 }
+
+export interface IFavorite {
+  product_id: number;
+}

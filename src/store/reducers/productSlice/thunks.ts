@@ -30,7 +30,12 @@ export const addFavoriteProduct = createAsyncThunk<any, IProductRequest>(
   'favorite/addFavoriteProduct',
   async (payload, { rejectWithValue }) => {
     try {
-      return productService.addFavorite(payload);
+      const result = await productService.addFavorite(payload);
+
+      return {
+        is_favorite: result,
+        product_id: payload.product_id,
+      };
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.response?.data);
@@ -45,7 +50,12 @@ export const removeFavoriteProduct = createAsyncThunk<any, IProductRequest>(
   'favorite/removeFavoriteProduct',
   async (payload, { rejectWithValue }) => {
     try {
-      return productService.removeFavorite(payload);
+      const result = await productService.removeFavorite(payload);
+
+      return {
+        is_favorite: result,
+        product_id: payload.product_id,
+      };
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.response?.data);
