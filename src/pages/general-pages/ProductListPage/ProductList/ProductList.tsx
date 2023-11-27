@@ -18,6 +18,7 @@ import {
   totalProductsCountSelector,
 } from 'store/reducers/productSlice';
 import { loadingProductsSelector } from 'store/reducers/productSlice/selectors';
+import { getProductsBySearch } from 'store/reducers/productSlice/thunks';
 import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
 import { ButtonQuestion } from 'ui-kit';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
@@ -46,15 +47,26 @@ export const ProductList: FC<IProductList> = ({
   const totalPages = Math.ceil(totalCount / productsPerPage);
 
   useEffect(() => {
-    const param = {
-      offset: (currentPage - 1) * productsPerPage,
-      limit: productsPerPage,
-      category_id: id,
-      sort: currentSortField,
-      ascending: currentSortBy === 'asc',
-    } as ICategoryRequest;
+    if (id) {
+      const param = {
+        offset: (currentPage - 1) * productsPerPage,
+        limit: productsPerPage,
+        category_id: id,
+        sort: currentSortField,
+        ascending: currentSortBy === 'asc',
+      } as ICategoryRequest;
 
-    dispatch(getProductsListCompilation(param));
+      /*
+       * все id категорий цифровые,
+       * если при приведении типов NaN,
+       * значит мы пришли по запросу из поиска MainPage
+       * */
+      if (Number(id)) {
+        dispatch(getProductsListCompilation(param));
+      } else {
+        dispatch(getProductsBySearch(id));
+      }
+    }
   }, [productsPerPage, currentPage, id, currentSortField, currentSortBy]);
 
   const handleChangeSelect = (value: number): void => {
