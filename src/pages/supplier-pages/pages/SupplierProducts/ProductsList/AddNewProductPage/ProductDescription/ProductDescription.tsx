@@ -38,7 +38,7 @@ export const ProductDescription: FC = (): JSX.Element => {
         {items.map((item, index) => (
           <li key={index}>
             <div
-              className={style.listItem}
+              className={style.list_item}
               onClick={() => handleClick(index)}
               onKeyDown={event => handleKeyDown(index, event)}
               role="button"
@@ -53,7 +53,7 @@ export const ProductDescription: FC = (): JSX.Element => {
             </div>
             {activeItem === index && (
               <div className={style.additionalInfo}>
-                {/* контент для дополнительной информации */}
+                {/* контент для доп.инфо */}
                 <p>
                   <MainProductInfo />
                 </p>
