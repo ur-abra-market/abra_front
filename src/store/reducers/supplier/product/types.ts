@@ -8,13 +8,16 @@ interface IProductPriceInfo {
 }
 
 export interface IProduct {
-  datetime: string;
+  created_at: string;
   description: string;
   grade_average: number;
   id: number;
   is_active: boolean;
   name: string;
   prices: IProductPriceInfo[];
+  total_orders: number;
+  up_to_discount: number;
+  updated_at: string;
 }
 
 export interface IProductsListResponse {
@@ -39,6 +42,7 @@ export interface IProductSortOptions {
   offset: number;
   limit: number;
   categoryIds: number[];
+  query?: string;
   sale?: boolean;
   status?: boolean;
   sortField: SortType;
@@ -68,4 +72,5 @@ export interface IProductFilterParams {
   category_ids: number[];
   on_sale?: boolean;
   is_active?: boolean;
+  query?: string;
 }

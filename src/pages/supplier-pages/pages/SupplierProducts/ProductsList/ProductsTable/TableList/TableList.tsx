@@ -45,8 +45,9 @@ export const TableList = (): JSX.Element => {
           [style.table_deactivated]: !el.is_active,
         });
 
-        const formattedDateTime = formatDate(el.datetime);
-        const [formattedDate, formattedTime] = formattedDateTime.split(' ');
+        const formattedDateTime = formatDate(el.created_at);
+        const [formattedDate, formattedTime, formattedTimeAMPM] =
+          formattedDateTime.split(' ');
 
         return (
           <tr className={deactivatedClasses} key={el.id}>
@@ -64,10 +65,10 @@ export const TableList = (): JSX.Element => {
             </td>
             <td className={style.table_td}>{el.name}</td>
             <td className={style.table_td}>
-              {el.datetime && (
+              {el.created_at && (
                 <div className={style.datetime_container}>
                   <span>{formattedDate}</span>
-                  <span className={style.formatted_time}>{formattedTime}</span>
+                  <span>{`${formattedTime} ${formattedTimeAMPM.toLowerCase()}`}</span>
                 </div>
               )}
             </td>

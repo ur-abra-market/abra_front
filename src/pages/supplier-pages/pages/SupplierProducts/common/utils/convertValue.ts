@@ -18,13 +18,13 @@ export const convertValue = (key: string, value: string | null): any => {
 
     case QUERY_PARAMS_KEY.SALE:
       return value === QUERY_PARAMS_VALUE.ALL
-        ? undefined
-        : value === QUERY_PARAMS_VALUE.ON_SALE;
+        ? QUERY_PARAMS_VALUE.ALL
+        : String(value === QUERY_PARAMS_VALUE.ON_SALE);
 
     case QUERY_PARAMS_KEY.STATUS:
       return value === QUERY_PARAMS_VALUE.ALL
-        ? undefined
-        : value === QUERY_PARAMS_VALUE.ACTIVE;
+        ? QUERY_PARAMS_VALUE.ALL
+        : String(value === QUERY_PARAMS_VALUE.ACTIVE);
 
     default:
       return value;

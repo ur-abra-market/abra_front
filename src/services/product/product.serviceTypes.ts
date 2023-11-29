@@ -1,5 +1,4 @@
 import { ICategory } from 'common/types';
-import { Categories } from 'pages/general-pages/MainPage/MainPage';
 import { ISupplierCompanyInfo } from 'services/supplier/supplier.serviceTypes';
 
 interface IGradeDetails {
@@ -14,6 +13,7 @@ interface IGrade {
 
 export interface IGradeProductResponse {
   grade_average(grade_average: any): number;
+
   grade: IGrade;
   grade_details: IGradeDetails[];
 }
@@ -41,7 +41,7 @@ export interface IPopularProductRequest {
 export interface ICategoryRequest {
   offset: number;
   limit: number;
-  category_id: Categories | string;
+  category_id: string;
   ascending: boolean;
   sort?: 'total_orders' | 'date' | 'price' | 'rating';
 }
