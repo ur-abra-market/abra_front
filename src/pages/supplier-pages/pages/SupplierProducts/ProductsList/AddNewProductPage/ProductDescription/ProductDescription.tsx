@@ -46,7 +46,7 @@ export const ProductDescription: FC = (): JSX.Element => {
             >
               {item}
               <ArrowIcon
-                className={`${style.arrowIcon} ${
+                className={`${style.arrow_icon} ${
                   activeItem === index ? style.active : ''
                 }`}
               />

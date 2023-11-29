@@ -1,8 +1,44 @@
 .main_info {
+  position: relative;
   width: 634px;
   height: 452px;
 }
 
 .main_product {
   margin-bottom: 16px;
+}
+
+.description {
+  width: 634px;
+  height: 120px;
+  margin-bottom: 16px;
+  padding-bottom: 95px;
+}
+
+.image_container {
+  position: relative;
+  display: inline-block;
+}
+
+.overlay {
+  position: absolute;
+  top: 8px;
+  right: 0;
+  bottom: 0;
+  left: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 23px;
+  height: 23px;
+}
+
+.image_container:hover .overlay {
+  opacity: 1;
+}
+
+.close_icon {
+  cursor: pointer;
 }

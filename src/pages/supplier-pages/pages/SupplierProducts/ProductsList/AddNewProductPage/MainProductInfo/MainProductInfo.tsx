@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 
+import { CrossRedIcon } from 'assets/icons';
 import { Label, Input } from 'ui-kit';
 
 import style from './MainProductInfo.module.scss';
@@ -38,6 +39,13 @@ export const MainProductInfo: React.FC = () => {
     fetchImages();
   }, []);
 
+  const handleRemoveImage = (index: number): void => {
+    const newImages = [...images];
+
+    newImages.splice(index, 1);
+    setImages(newImages);
+  };
+
   return (
     <form>
       <div className={style.main_info}>
@@ -62,7 +70,7 @@ export const MainProductInfo: React.FC = () => {
               <Input
                 {...field}
                 placeholder="Enter description"
-                className={style.main_product}
+                className={style.description}
               />
             )}
           />
@@ -82,12 +90,29 @@ export const MainProductInfo: React.FC = () => {
         </Label>
         <Label label="General photos of the product" htmlFor="photos" />
         {images.map((src, index) => (
-          <img
-            key={index}
-            className={style.image}
-            src={src}
-            alt={`product-${index + 1}`}
-          />
+          <div key={index} className={style.image_container}>
+            <img
+              key={index}
+              className={style.image}
+              src={src}
+              alt={`product-${index + 1}`}
+            />
+            <div className={style.overlay}>
+              <div
+                className={style.close_icon}
+                tabIndex={0}
+                role="button"
+                onClick={() => handleRemoveImage(index)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    handleRemoveImage(index);
+                  }
+                }}
+              >
+                <CrossRedIcon />
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </form>
