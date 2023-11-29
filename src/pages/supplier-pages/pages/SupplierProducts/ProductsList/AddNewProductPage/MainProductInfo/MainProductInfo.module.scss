@@ -8,7 +8,14 @@
 }
 
 .main_product {
+  position: relative;
   margin-bottom: 16px;
+}
+
+.select_icon {
+  position: absolute;
+  bottom: 151px;
+  left: 605px;
 }
 
 .description {

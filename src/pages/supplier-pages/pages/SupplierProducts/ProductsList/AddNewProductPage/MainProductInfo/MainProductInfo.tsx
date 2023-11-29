@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 
-import { CrossRedIcon } from 'assets/icons';
+import { CrossRedIcon, ArrowIcon } from 'assets/icons';
 import { Label, Input } from 'ui-kit';
 
 import style from './MainProductInfo.module.scss';
@@ -87,6 +87,7 @@ export const MainProductInfo: React.FC = () => {
               />
             )}
           />
+          <ArrowIcon className={style.select_icon} />
         </Label>
         <Label label="General photos of the product" htmlFor="photos" />
         {images.map((src, index) => (

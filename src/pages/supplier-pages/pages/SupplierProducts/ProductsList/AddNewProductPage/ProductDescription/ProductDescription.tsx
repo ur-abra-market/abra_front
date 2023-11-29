@@ -49,6 +49,7 @@ export const ProductDescription: FC = (): JSX.Element => {
                 className={`${style.arrow_icon} ${
                   activeItem === index ? style.active : ''
                 }`}
+                style={{ transform: activeItem === index ? 'rotate(180deg)' : '' }}
               />
             </div>
             {activeItem === index && (
