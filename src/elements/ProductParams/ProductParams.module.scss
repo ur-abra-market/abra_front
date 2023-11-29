@@ -1,6 +1,7 @@
 .params_container {
   display: flex;
-  column-gap: 98px;
+  flex-direction: column;
+  gap: 28px;
   margin-bottom: 32px;
 }
 

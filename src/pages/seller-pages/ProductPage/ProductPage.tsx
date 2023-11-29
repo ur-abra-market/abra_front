@@ -45,8 +45,6 @@ export const ProductPage = WithLayout((): JSX.Element => {
     <div className={style.product_container}>
       <ProductPageHeader />
       <ProductMainInfo />
-      <ProductOverview />
-      <ProductRecommendations />
     </div>
   );
 });

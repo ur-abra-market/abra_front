@@ -1,6 +1,6 @@
 .sliders_container {
   display: flex;
-  grid-area: ProductCarousel;
+  flex-basis: 50%;
   column-gap: 8px;
 }
 
@@ -10,7 +10,7 @@
   row-gap: 8px;
 
   height: min-content;
-  max-height: 568px;
+  max-height: 600px;
 }
 
 .swiper_second {
@@ -36,7 +36,7 @@
 
 .swiper_main {
   width: 100%;
-  max-height: 853px;
+  max-height: 600px;
 }
 
 .swiper_main img {
@@ -119,6 +119,6 @@
 @media (max-width: 321px) {
   .swiper_main {
     width: 288px;
-    height:343px;
+    height: 343px;
   }
 }

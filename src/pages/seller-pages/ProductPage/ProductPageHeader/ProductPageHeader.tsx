@@ -11,6 +11,8 @@ import {
   addFavoriteProduct,
 } from 'store/reducers/productSlice';
 
+import style from './ProductPageHeader.module.scss';
+
 export const ProductPageHeader = (): JSX.Element => {
   const { productId } = useParams<string>();
   const { name, parent_id } = useAppSelector(productCategorySelector);
@@ -29,7 +31,7 @@ export const ProductPageHeader = (): JSX.Element => {
   };
 
   return (
-    <>
+    <div className={style.product_page_wrapper}>
       <BreadCrumbs categoryName={name} parentId={parent_id} />
       <Grades grade={grade} count={totalOrders} />
       <FavoriteButton
@@ -37,6 +39,6 @@ export const ProductPageHeader = (): JSX.Element => {
         onChange={handleChangeFavorite}
         variant="product"
       />
-    </>
+    </div>
   );
 };
