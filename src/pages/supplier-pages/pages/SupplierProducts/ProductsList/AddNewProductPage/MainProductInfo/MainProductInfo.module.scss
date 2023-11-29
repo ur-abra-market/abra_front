@@ -1,7 +1,10 @@
 .main_info {
   position: relative;
+
   width: 634px;
   height: 452px;
+  margin-top: 24px;
+  margin-bottom: 40px;
 }
 
 .main_product {
@@ -15,9 +18,18 @@
   padding-bottom: 95px;
 }
 
+.label {
+  margin-bottom: 12px;
+}
+
 .image_container {
   position: relative;
   display: inline-block;
+  margin-top: 8px;
+
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
 }
 
 .overlay {
