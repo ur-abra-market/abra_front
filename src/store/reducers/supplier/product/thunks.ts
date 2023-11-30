@@ -52,6 +52,7 @@ export const getSupplierProducts = createAsyncThunk<
       on_sale,
       ascending,
       is_active,
+      query,
       limit,
       offset,
     }: IProductRequestParams,
@@ -61,6 +62,7 @@ export const getSupplierProducts = createAsyncThunk<
     const body: IProductFilterParams = {
       category_ids,
       is_active,
+      query,
       on_sale,
     };
 

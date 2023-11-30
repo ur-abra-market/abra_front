@@ -8,7 +8,6 @@
 .product_card_variant {
   width: 32px;
   height: 32px;
-  background-color: var(--color-white);
 }
 
 .product_variant {
@@ -19,4 +18,12 @@
 
 .active {
   fill: var(--color-red);
+
+  circle {
+    stroke: var(--color-red);
+  }
+
+  path {
+    stroke: var(--color-red);
+  }
 }

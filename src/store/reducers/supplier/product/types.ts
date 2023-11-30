@@ -42,6 +42,7 @@ export interface IProductSortOptions {
   offset: number;
   limit: number;
   categoryIds: number[];
+  query?: string;
   sale?: boolean;
   status?: boolean;
   sortField: SortType;
@@ -71,4 +72,5 @@ export interface IProductFilterParams {
   category_ids: number[];
   on_sale?: boolean;
   is_active?: boolean;
+  query?: string;
 }
