@@ -13,7 +13,16 @@ interface IProductCardFull {
 }
 
 export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element => {
-  const { images, name, grade_average, total_orders, supplier, category } = product;
+  const {
+    id,
+    images,
+    name,
+    grade_average,
+    total_orders,
+    supplier,
+    category,
+    is_favorite,
+  } = product;
 
   const categoryArr = category.name.split('&');
 
@@ -22,9 +31,10 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
       <ProductImage
         imageUrl={images[0].image_url || ''}
         name={name}
+        productId={id}
+        isFavorite={is_favorite}
         className={style.card_image}
       />
-
       <div className={style.card_info}>
         <p className={style.name}>{name}</p>
 
