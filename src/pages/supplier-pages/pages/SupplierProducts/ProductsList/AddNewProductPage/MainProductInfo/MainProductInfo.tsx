@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 
-import { CrossRedIcon, ArrowIcon } from 'assets/icons';
-import { Label, Input } from 'ui-kit';
+import { CrossRedIcon } from 'assets/icons';
+import { useAppSelector } from 'common/hooks';
+import { Label, Input, Select } from 'ui-kit';
 
 import style from './MainProductInfo.module.scss';
 
@@ -18,6 +19,8 @@ const imagePaths = [
 export const MainProductInfo: React.FC = () => {
   const { control } = useForm();
   const [images, setImages] = useState<string[]>([]);
+  const categories = useAppSelector(state => state.common.categories);
+  const businessSectorData = categories ? categories.filter(c => c.level === 1) : [];
 
   useEffect(() => {
     const fetchImages = async (): Promise<void> => {
@@ -32,7 +35,8 @@ export const MainProductInfo: React.FC = () => {
 
         setImages(loadedImages);
       } catch (error) {
-        // console.error('Error loading images:', error);
+        // eslint-disable-next-line no-console
+        console.error('Error loading images:', error);
       }
     };
 
@@ -75,46 +79,54 @@ export const MainProductInfo: React.FC = () => {
             )}
           />
         </Label>
-        <Label label="Brand name *" htmlFor="brandName">
-          <Controller
-            name="brandName"
-            control={control}
-            render={({ field }) => (
-              <Input
+        <Controller
+          name="brandName"
+          control={control}
+          render={({ field }) => (
+            <Label label="Brand name *" htmlFor="brandName">
+              <Select
                 {...field}
                 placeholder="Select or enter brand name"
-                className={style.main_product}
-              />
-            )}
-          />
-          <ArrowIcon className={style.select_icon} />
-        </Label>
-        <Label label="General photos of the product" htmlFor="photos" />
-        {images.map((src, index) => (
-          <div key={index} className={style.image_container}>
-            <img
-              key={index}
-              className={style.image}
-              src={src}
-              alt={`product-${index + 1}`}
-            />
-            <div className={style.overlay}>
-              <div
-                className={style.close_icon}
-                tabIndex={0}
-                role="button"
-                onClick={() => handleRemoveImage(index)}
-                onKeyDown={e => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    handleRemoveImage(index);
-                  }
+                className={style.main_select}
+                options={businessSectorData.map(el => ({
+                  value: el.id,
+                  label: { text: el.name },
+                }))}
+                onChange={value => {
+                  field.onChange(String(value.value));
                 }}
-              >
-                <CrossRedIcon />
+              />
+            </Label>
+          )}
+        />
+        <Label label="General photos of the product" htmlFor="photos" />
+        <div className={style.container}>
+          {images.map((src, index) => (
+            <div key={index} className={style.image_container}>
+              <img
+                key={index}
+                className={style.image}
+                src={src}
+                alt={`product-${index + 1}`}
+              />
+              <div className={style.overlay}>
+                <div
+                  className={style.close_icon}
+                  tabIndex={0}
+                  role="button"
+                  onClick={() => handleRemoveImage(index)}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      handleRemoveImage(index);
+                    }
+                  }}
+                >
+                  <CrossRedIcon />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </form>
   );
