@@ -28,7 +28,7 @@ export const Quantity: FC<IQuantityProps> = ({
 
   return (
     <div className={cn(style.quantity_container, className)}>
-      <Paragraph size="s">
+      <Paragraph size="m">
         Quantity <span className={style.text}>/from 100 bundles</span>
       </Paragraph>
       <div className={style.counter_container}>

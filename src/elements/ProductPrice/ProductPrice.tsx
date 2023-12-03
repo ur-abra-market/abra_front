@@ -1,14 +1,11 @@
 import { useCallback, useState } from 'react';
 
-import cn from 'classnames';
-
 import { Discount } from './Discount/Discount';
 import { Quantity } from './Quantity/Quantity';
 import { Stats } from './Stats/Stats';
 
 import { useAppSelector } from 'common/hooks';
 import { priseSelector } from 'store/reducers/productSlice';
-import { Title } from 'ui-kit';
 
 import style from './ProductPrice.module.scss';
 
@@ -28,11 +25,6 @@ export const ProductPrice = (): JSX.Element => {
       </div>
 
       <Stats price={price} />
-
-      {/* <Title className={cn(style.title, style.grid_item)} size="xs"> */}
-      {/*  <span className={style.total_price}>Total:</span> */}
-      {/*  {`$${((count || 1) * price).toFixed(1)}`} */}
-      {/* </Title> */}
     </div>
   );
 };

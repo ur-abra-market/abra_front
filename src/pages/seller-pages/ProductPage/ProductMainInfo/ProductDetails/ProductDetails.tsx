@@ -10,6 +10,8 @@ import {
   SupplierInfo,
   Tags,
 } from 'elements';
+import { LatestSearches } from 'elements/LatestSearches/LatestSearches';
+import { Bundles } from 'pages/seller-pages/ProductPage/Bundles/Bundles';
 import {
   productDescriptionSelector,
   productNameSelector,
@@ -28,6 +30,7 @@ export const ProductDetails = (): JSX.Element => {
     <div className={style.product_details_container}>
       <Title className={style.product_title}>{title}</Title>
       <Tags tags={tags} />
+      <Bundles />
       <ProductParams />
       <ProductPrice />
       <Button className={style.button}>Add to Cart</Button>
