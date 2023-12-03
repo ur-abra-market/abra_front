@@ -7,13 +7,16 @@
 
 .main_product {
   margin-bottom: 16px;
-  border-radius: 12px;
+}
+
+.select_container {
+  margin-bottom: 16px;
 }
 
 .main_select {
-  margin-bottom: 16px;
   color: var(--Medium-grey, #828282);
   background: var(--color-white-ivory);
+  border-radius: 12px;
 }
 
 .description {
@@ -57,11 +60,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .main_info {
-    width: 100%;
-    height: 100%;
-  }
-
+  .main_info,
   .description {
     width: 100%;
     height: 100%;
@@ -74,11 +73,7 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .main_info {
-    width: 100%;
-    height: 100%;
-  }
-
+  .main_info,
   .description {
     width: 100%;
     height: 100%;

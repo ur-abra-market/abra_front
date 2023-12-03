@@ -20,7 +20,7 @@ export const MainProductInfo: React.FC = () => {
   const { control } = useForm();
   const [images, setImages] = useState<string[]>([]);
   const categories = useAppSelector(state => state.common.categories);
-  const businessSectorData = categories ? categories.filter(c => c.level === 1) : [];
+  const brandNameData = categories ? categories.filter(c => c.level === 1) : [];
 
   useEffect(() => {
     const fetchImages = async (): Promise<void> => {
@@ -79,26 +79,28 @@ export const MainProductInfo: React.FC = () => {
             )}
           />
         </Label>
-        <Controller
-          name="brandName"
-          control={control}
-          render={({ field }) => (
-            <Label label="Brand name *" htmlFor="brandName">
-              <Select
-                {...field}
-                placeholder="Select or enter brand name"
-                className={style.main_select}
-                options={businessSectorData.map(el => ({
-                  value: el.id,
-                  label: { text: el.name },
-                }))}
-                onChange={value => {
-                  field.onChange(String(value.value));
-                }}
-              />
-            </Label>
-          )}
-        />
+        <Label label="Brand name *" htmlFor="brandName">
+          <Controller
+            name="brandName"
+            control={control}
+            render={({ field }) => (
+              <div className={style.select_container}>
+                <Select
+                  {...field}
+                  placeholder="Select or enter brand name"
+                  className={style.main_select}
+                  options={brandNameData.map(el => ({
+                    value: el.id,
+                    label: { text: el.name },
+                  }))}
+                  onChange={value => {
+                    field.onChange(String(value.value));
+                  }}
+                />
+              </div>
+            )}
+          />
+        </Label>
         <Label label="General photos of the product" htmlFor="photos" />
         <div className={style.container}>
           {images.map((src, index) => (
