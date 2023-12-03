@@ -1,3 +1,4 @@
+import { ArrowIcon } from 'assets/icons';
 import hanger from 'assets/images/files/hanger.png';
 import { useAppSelector } from 'common/hooks';
 import { Grades } from 'elements/Grades/Grades';
@@ -17,10 +18,15 @@ export const SupplierInfo = (): JSX.Element => {
 
   return (
     <div className={style.supplier_info_container}>
-      <img className={style.logo} src={hanger} alt="supplier logo" />
-      <div className={style.flex_column_container}>
-        <Title size="xs">{name || 'Some supplier'}</Title>
-        <Grades className={style.grades} grade={grade} count={totalOrders} />
+      <div className={style.supplier_info}>
+        <img className={style.logo} src={hanger} alt="supplier logo" />
+        <div className={style.flex_column_container}>
+          <Title size="xs">{name || 'Some supplier'}</Title>
+          <Grades className={style.grades} grade={grade} count={totalOrders} />
+        </div>
+      </div>
+      <div className={style.arrow}>
+        <ArrowIcon />
       </div>
     </div>
   );

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { ProductMainInfo } from './ProductMainInfo/ProductMainInfo';
-import { ProductOverview } from './ProductOverview/ProductOverview';
 import { ProductPageHeader } from './ProductPageHeader/ProductPageHeader';
 import { ProductRecommendations } from './ProductRecommendations/ProductRecommendations';
 
@@ -44,10 +43,8 @@ export const ProductPage = WithLayout((): JSX.Element => {
   return (
     <div className={style.product_container}>
       <div className={style.wrapper}>
-        <div>
-          <ProductPageHeader />
-          <ProductMainInfo />
-        </div>
+        <ProductPageHeader />
+        <ProductMainInfo />
         <ProductRecommendations />
       </div>
     </div>
