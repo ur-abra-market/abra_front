@@ -1,5 +1,7 @@
 import React from 'react';
 
+import cn from 'classnames';
+
 import { useAppSelector } from 'common/hooks';
 import { ViewMoreProductsLink } from 'elements';
 import { ProductCard, ProductsPreview } from 'modules';
@@ -17,7 +19,7 @@ export const ProductRecommendations = (): JSX.Element => {
 
   return (
     <>
-      <div className={style.similar_product}>
+      <div className={cn(style.similar_product, style.section)}>
         <ProductsPreview title="Similar products">
           {similarProducts.map((product: IProductCompilation): JSX.Element => {
             return <ProductCard key={product.id} product={product} />;
@@ -26,7 +28,7 @@ export const ProductRecommendations = (): JSX.Element => {
         </ProductsPreview>
       </div>
 
-      <div className={style.popular_product}>
+      <div className={cn(style.popular_product, style.section)}>
         <ProductsPreview title="Popular products in this category">
           {popularProducts.map((product: IProductCompilation): JSX.Element => {
             return <ProductCard key={product.id} product={product} />;

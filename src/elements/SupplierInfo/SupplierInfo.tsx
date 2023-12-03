@@ -20,7 +20,7 @@ export const SupplierInfo = (): JSX.Element => {
       <img className={style.logo} src={hanger} alt="supplier logo" />
       <div className={style.flex_column_container}>
         <Title size="xs">{name || 'Some supplier'}</Title>
-        <Grades grade={grade} count={totalOrders} />
+        <Grades className={style.grades} grade={grade} count={totalOrders} />
       </div>
     </div>
   );

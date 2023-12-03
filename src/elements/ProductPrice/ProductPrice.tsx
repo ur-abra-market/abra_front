@@ -22,17 +22,17 @@ export const ProductPrice = (): JSX.Element => {
 
   return (
     <div className={style.product_price_container}>
-      <div className={style.grid_item}>
+      <div className={style.wrapper}>
         <Quantity count={count} setCount={onChangeCount} />
         <Discount price={price} />
       </div>
 
-      <Stats className={style.grid_item} price={price} />
+      <Stats price={price} />
 
-      <Title className={cn(style.title, style.grid_item)} size="xs">
-        <span className={style.total_price}>Total:</span>
-        {`$${((count || 1) * price).toFixed(1)}`}
-      </Title>
+      {/* <Title className={cn(style.title, style.grid_item)} size="xs"> */}
+      {/*  <span className={style.total_price}>Total:</span> */}
+      {/*  {`$${((count || 1) * price).toFixed(1)}`} */}
+      {/* </Title> */}
     </div>
   );
 };

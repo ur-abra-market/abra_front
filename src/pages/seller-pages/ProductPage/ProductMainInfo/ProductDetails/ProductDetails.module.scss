@@ -1,10 +1,10 @@
 .product_details_container {
   display: flex;
-  grid-area: ProductDetails;
   flex-direction: column;
   flex-wrap: wrap;
   row-gap: 8px;
 
+  width: 45%;
   min-width: 288px;
   max-width: calc(100vw - 64px);
   margin-bottom: 80px;

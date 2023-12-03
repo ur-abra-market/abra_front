@@ -1,6 +1,10 @@
 @import "src/common/styles/mixins";
 
 .product_container {
+  background: var(--color-white-ivory);
+}
+
+.wrapper {
   @include content_container;
 
   position: relative;

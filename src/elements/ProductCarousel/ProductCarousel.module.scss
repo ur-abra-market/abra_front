@@ -1,7 +1,15 @@
 .sliders_container {
+  position: sticky;
+  top: 0;
+
+  float: left;
   display: flex;
   flex-basis: 50%;
   column-gap: 8px;
+
+  width: 50%;
+  height: 650px;
+  margin-right: 48px;
 }
 
 .swiper_second_wrapper {

@@ -43,8 +43,13 @@ export const ProductPage = WithLayout((): JSX.Element => {
 
   return (
     <div className={style.product_container}>
-      <ProductPageHeader />
-      <ProductMainInfo />
+      <div className={style.wrapper}>
+        <div>
+          <ProductPageHeader />
+          <ProductMainInfo />
+        </div>
+        <ProductRecommendations />
+      </div>
     </div>
   );
-});
+}, 'default');

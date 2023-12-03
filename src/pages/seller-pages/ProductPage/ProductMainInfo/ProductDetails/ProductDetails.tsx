@@ -22,7 +22,6 @@ export const ProductDetails = (): JSX.Element => {
       <Button className={style.button}>Add to Cart</Button>
       <SupplierInfo />
       <ProductOverview />
-      <ProductRecommendations />
     </div>
   );
 };

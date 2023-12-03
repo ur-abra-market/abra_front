@@ -1,5 +1,7 @@
 import React, { FC } from 'react';
 
+import cn from 'classnames';
+
 import style from './AboutProduct.module.scss';
 
 interface IAboutProductProps {
@@ -26,7 +28,7 @@ const fakeInfo = [
 
 export const AboutProduct: FC<IAboutProductProps> = ({ unknownData }): JSX.Element => {
   return (
-    <div className={style.about_product_container}>
+    <div className={style.section}>
       <table className={style.table}>
         <caption className={style.caption}>About the product</caption>
         <tbody>
