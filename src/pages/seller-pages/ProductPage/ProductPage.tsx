@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { ProductMainInfo } from './ProductMainInfo/ProductMainInfo';
-import { ProductOverview } from './ProductOverview/ProductOverview';
 import { ProductPageHeader } from './ProductPageHeader/ProductPageHeader';
 import { ProductRecommendations } from './ProductRecommendations/ProductRecommendations';
 
@@ -28,10 +27,10 @@ export const ProductPage = WithLayout((): JSX.Element => {
     const fetchData = async (): Promise<void> => {
       await dispatch(getProductById({ product_id: Number(productId) }));
       await dispatch(
-        getSimilarProducts({ product_id: Number(productId), page_num: 0, page_size: 10 }),
+        getSimilarProducts({ category_id: Number(productId), offset: 0, limit: 10 }),
       );
       await dispatch(
-        getPopularProducts({ product_id: Number(productId), page_num: 0, page_size: 10 }),
+        getPopularProducts({ category_id: Number(productId), offset: 0, limit: 10 }),
       );
       setIsFetchingData(false);
     };
@@ -43,10 +42,11 @@ export const ProductPage = WithLayout((): JSX.Element => {
 
   return (
     <div className={style.product_container}>
-      <ProductPageHeader />
-      <ProductMainInfo />
-      <ProductOverview />
-      <ProductRecommendations />
+      <div className={style.wrapper}>
+        <ProductPageHeader />
+        <ProductMainInfo />
+        <ProductRecommendations />
+      </div>
     </div>
   );
-});
+}, 'default');

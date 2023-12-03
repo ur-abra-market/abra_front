@@ -1,7 +1,12 @@
 .container {
   display: flex;
+  grid-area: Grades;
+  flex-basis: 50%;
   column-gap: 8px;
   align-items: center;
+  justify-self: flex-start;
+
+  padding-left: 48px;
 }
 
 .text_container {
