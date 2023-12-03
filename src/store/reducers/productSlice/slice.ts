@@ -10,7 +10,13 @@ import {
   getSimilarProducts,
   removeFavoriteProduct,
 } from './thunks';
-import { IProductCard, IProductSliceInitialState, ISortField, ISortBy } from './types';
+import {
+  IFavorite,
+  IProductCard,
+  IProductSliceInitialState,
+  ISortBy,
+  ISortField,
+} from './types';
 
 import { LoadingStatusEnum } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
@@ -98,12 +104,48 @@ const productSlice = createSlice({
       .addCase(getProductById.fulfilled, (state, action: PayloadAction<IProductCard>) => {
         state.productCard = action.payload;
       })
-      .addCase(addFavoriteProduct.fulfilled, state => {
-        state.isFavorite = true;
-      })
-      .addCase(removeFavoriteProduct.fulfilled, state => {
-        state.isFavorite = false;
-      })
+      .addCase(
+        addFavoriteProduct.fulfilled,
+        (state, action: PayloadAction<IFavorite>) => {
+          const isFindProduct = (product: IProductCompilation): boolean =>
+            product.id === action.payload.product_id;
+
+          const product = state.productsList.find(isFindProduct);
+
+          if (product) {
+            product.is_favorite = true;
+          } else {
+            Object.values(state.productsCompilation).forEach(products => {
+              const product = products.find(isFindProduct);
+
+              if (product) {
+                product.is_favorite = true;
+              }
+            });
+          }
+        },
+      )
+      .addCase(
+        removeFavoriteProduct.fulfilled,
+        (state, action: PayloadAction<IFavorite>) => {
+          const isFindProduct = (product: IProductCompilation): boolean =>
+            product.id === action.payload.product_id;
+
+          const product = state.productsList.find(isFindProduct);
+
+          if (product) {
+            product.is_favorite = false;
+          } else {
+            Object.values(state.productsCompilation).forEach(products => {
+              const product = products.find(isFindProduct);
+
+              if (product) {
+                product.is_favorite = false;
+              }
+            });
+          }
+        },
+      )
       .addCase(
         getSimilarProducts.fulfilled,
         (state, action: PayloadAction<IProductCompilation[]>) => {

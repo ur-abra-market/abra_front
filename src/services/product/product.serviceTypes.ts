@@ -100,6 +100,7 @@ export interface IProductCompilation {
   supplier?: IProductSupplier;
   total_orders: number;
   uuid: string;
+  is_favorite: boolean;
 }
 
 export interface IProductPrice {

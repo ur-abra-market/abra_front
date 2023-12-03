@@ -40,7 +40,7 @@ export const ProductRecommendations = (): JSX.Element => {
           <ViewMoreProductsLink />
         </ProductsPreview>
       </div>
-      <div className={cn(style.popular_product, style.section)}>
+      <div className={style.section}>
         <LatestSearches tags={tags} />
       </div>
     </>
