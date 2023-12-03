@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 
@@ -16,7 +16,7 @@ const imagePaths = [
   'blackcrop.jpg',
 ];
 
-export const MainProductInfo: React.FC = () => {
+export const MainProductInfo: FC = (): JSX.Element => {
   const { control } = useForm();
   const [images, setImages] = useState<string[]>([]);
   const categories = useAppSelector(state => state.common.categories);
