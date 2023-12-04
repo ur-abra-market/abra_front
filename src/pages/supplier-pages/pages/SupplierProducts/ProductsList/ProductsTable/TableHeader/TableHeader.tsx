@@ -83,6 +83,7 @@ export const TableHeader = (): JSX.Element => {
             {column.name}
             {column.arrow && (
               <ButtonIcon
+                className={style.icon_filter}
                 disabled={isLoading}
                 onClick={() => onChangeSortData(column.sortValue)}
               >

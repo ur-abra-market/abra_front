@@ -1,6 +1,9 @@
 .items {
   display: flex;
+  flex-wrap: wrap;
   column-gap: 16px;
+
+  //min-width: 288px;
   margin-bottom: 40px;
 }
 

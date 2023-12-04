@@ -1,4 +1,4 @@
-import React, { FC, SyntheticEvent, useState } from 'react';
+import React, { FC, SyntheticEvent, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 import type { Swiper as SwiperType } from 'swiper';
@@ -8,10 +8,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { ArrowIcon } from 'assets/icons';
 import { UserDefaultProductImage } from 'assets/images';
 import { IImage } from 'store/reducers/productSlice';
+import { ButtonIcon } from 'ui-kit';
 
-import 'swiper/swiper-bundle.min.css';
 // eslint-disable-next-line import/order
 import style from './ProductCarousel.module.scss';
+import 'swiper/swiper-bundle.min.css';
 
 type Props = {
   photoArray: IImage[];
@@ -26,19 +27,45 @@ const heightSlide = 106;
 type ReturnType = {
   slidesPerViewQuantity: number;
   stylesSlidersContainer: object;
+  isVertical: boolean;
 };
 
-const getSecondSliderInfo = (arrLength: number): ReturnType => {
+const useGetSecondSliderInfo = (arrLength: number): ReturnType => {
+  const [isVertical, setIsVertical] = useState(true);
+
+  useEffect(() => {
+    const handleResize = (): void => {
+      if (window.innerWidth >= 801) {
+        setIsVertical(true); // Переключаем на горизонтальный режим
+      } else {
+        setIsVertical(false); // Переключаем на вертикальный режим
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Вызываем при загрузке страницы
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   const slidesPerViewQuantity =
     arrLength >= minLength && arrLength < maxLength ? arrLength : baseLength;
 
   const sizeSlidersContainerPx = heightSlide * arrLength + rowGap * (arrLength - 1);
 
-  const stylesSlidersContainer = {
-    height: arrLength < maxLength ? `${sizeSlidersContainerPx}px` : '562px',
-  };
+  const stylesSlidersContainer = isVertical
+    ? {
+        height: arrLength < maxLength ? `${sizeSlidersContainerPx}px` : '600px',
+      }
+    : {
+        height: arrLength < maxLength ? `${sizeSlidersContainerPx}px` : '106px',
+        width: '240px',
+        // marginLeft: '0',
+      };
 
   return {
+    isVertical,
     slidesPerViewQuantity,
     stylesSlidersContainer,
   };
@@ -47,9 +74,11 @@ const getSecondSliderInfo = (arrLength: number): ReturnType => {
 export const ProductCarousel: FC<Props> = ({ photoArray }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+
   const arrLength = photoArray.length;
-  const { stylesSlidersContainer, slidesPerViewQuantity } =
-    getSecondSliderInfo(arrLength);
+  const slidesPerView =
+    arrLength >= minLength && arrLength < maxLength ? arrLength : baseLength;
+  const { isVertical } = useGetSecondSliderInfo(arrLength);
 
   const prevSlide = (): void => {
     thumbsSwiper?.slidePrev();
@@ -57,6 +86,8 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
   const nextSlide = (): void => {
     thumbsSwiper?.slideNext();
   };
+
+  console.log(slidesPerView * (heightSlide + rowGap));
 
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
     const newEvent = { ...event };
@@ -68,24 +99,39 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
     <div className={style.sliders_container}>
       <div className={style.swiper_second_wrapper}>
         {arrLength > minLength && (
-          <button type="button" className={style.btn} onClick={prevSlide}>
-            <ArrowIcon className={`${style.arrow} ${style.arrow_up}`} />
-          </button>
+          <ButtonIcon className={style.btn} onClick={prevSlide}>
+            <ArrowIcon
+              className={cn(style.arrow, style.arrow_up, {
+                [style.rotate_first]: !isVertical,
+              })}
+            />
+          </ButtonIcon>
         )}
 
         <Swiper
-          direction="vertical"
-          slidesPerView={slidesPerViewQuantity}
+          slidesPerView={
+            arrLength >= minLength && arrLength < maxLength ? arrLength : baseLength
+          }
           spaceBetween={8}
           className={style.swiper_second}
           slideToClickedSlide
           mousewheel={arrLength !== minLength}
           allowTouchMove={false}
-          style={stylesSlidersContainer}
           loop
           onSwiper={setThumbsSwiper}
           watchSlidesProgress
           modules={[Thumbs, Mousewheel]}
+          breakpoints={{
+            320: {
+              direction: 'horizontal',
+              slidesPerView: arrLength === 1 ? 1 : 2,
+            },
+            801: {
+              direction: 'vertical',
+              slidesPerView,
+              height: slidesPerView * (heightSlide + rowGap),
+            },
+          }}
         >
           {photoArray.map((el, index) => {
             return (
@@ -106,13 +152,15 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
         </Swiper>
 
         {arrLength > minLength && (
-          <button type="button" className={style.btn} onClick={nextSlide}>
-            <ArrowIcon className={style.arrow} />
-          </button>
+          <ButtonIcon className={cn(style.btn)} onClick={nextSlide}>
+            <ArrowIcon
+              className={cn(style.arrow, { [style.rotate_second]: !isVertical })}
+            />
+          </ButtonIcon>
         )}
       </div>
 
-      <div>
+      <div className={style.swiper_main_container}>
         <Swiper
           direction="vertical"
           slidesPerView={1}

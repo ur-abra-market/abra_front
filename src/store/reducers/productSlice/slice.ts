@@ -4,12 +4,19 @@ import {
   addFavoriteProduct,
   getPopularProducts,
   getProductById,
+  getProductsBySearch,
   getProductsCompilation,
   getProductsListCompilation,
   getSimilarProducts,
   removeFavoriteProduct,
 } from './thunks';
-import { IProductCard, IProductSliceInitialState, ISortField, ISortBy } from './types';
+import {
+  IFavorite,
+  IProductCard,
+  IProductSliceInitialState,
+  ISortBy,
+  ISortField,
+} from './types';
 
 import { LoadingStatusEnum } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
@@ -18,20 +25,51 @@ const initialState: IProductSliceInitialState = {
   isFavorite: false,
   productsPerPage: 20,
   productCard: {
-    grade_average: '',
     id: null,
+    created_at: '',
+    updated_at: '',
     name: '',
-    datetime: '',
     description: '',
-    is_active: false,
-    uuid: '',
+    grade_average: '',
     total_orders: null,
-    category: { name: '', level: null, id: null, parent_id: null },
-    supplier: { id: null, grade_average: null, additional_info: '', license_number: '' },
+    is_active: false,
+    category: {
+      id: null,
+      created_at: '',
+      updated_at: '',
+      name: '',
+      level: null,
+      parent_id: null,
+    },
+    supplier: {
+      id: null,
+      created_at: '',
+      updated_at: '',
+      license_number: '',
+      grade_average: null,
+      additional_info: '',
+      user: {
+        first_name: '',
+        last_name: '',
+        is_verified: false,
+      },
+      company: {
+        id: null,
+        created_at: '',
+        updated_at: '',
+        business_email: '',
+        name: '',
+        is_manufacturer: false,
+        year_established: null,
+        employees_number_id: null,
+        description: '',
+        address: '',
+        logo_url: '',
+      },
+    },
     images: [],
-    prices: [],
     tags: [],
-    variations: [],
+    bundle_variation_pods: [],
   },
   popularProducts: [],
   similarProducts: [],
@@ -66,12 +104,48 @@ const productSlice = createSlice({
       .addCase(getProductById.fulfilled, (state, action: PayloadAction<IProductCard>) => {
         state.productCard = action.payload;
       })
-      .addCase(addFavoriteProduct.fulfilled, state => {
-        state.isFavorite = true;
-      })
-      .addCase(removeFavoriteProduct.fulfilled, state => {
-        state.isFavorite = false;
-      })
+      .addCase(
+        addFavoriteProduct.fulfilled,
+        (state, action: PayloadAction<IFavorite>) => {
+          const isFindProduct = (product: IProductCompilation): boolean =>
+            product.id === action.payload.product_id;
+
+          const product = state.productsList.find(isFindProduct);
+
+          if (product) {
+            product.is_favorite = true;
+          } else {
+            Object.values(state.productsCompilation).forEach(products => {
+              const product = products.find(isFindProduct);
+
+              if (product) {
+                product.is_favorite = true;
+              }
+            });
+          }
+        },
+      )
+      .addCase(
+        removeFavoriteProduct.fulfilled,
+        (state, action: PayloadAction<IFavorite>) => {
+          const isFindProduct = (product: IProductCompilation): boolean =>
+            product.id === action.payload.product_id;
+
+          const product = state.productsList.find(isFindProduct);
+
+          if (product) {
+            product.is_favorite = false;
+          } else {
+            Object.values(state.productsCompilation).forEach(products => {
+              const product = products.find(isFindProduct);
+
+              if (product) {
+                product.is_favorite = false;
+              }
+            });
+          }
+        },
+      )
       .addCase(
         getSimilarProducts.fulfilled,
         (state, action: PayloadAction<IProductCompilation[]>) => {
@@ -107,6 +181,17 @@ const productSlice = createSlice({
         state.loading = LoadingStatusEnum.Failed;
       })
       .addCase(getProductsListCompilation.fulfilled, (state, action) => {
+        state.productsList = action.payload.data.products;
+        state.totalProductsCount = action.payload.data.total_count;
+        state.loading = LoadingStatusEnum.Success;
+      })
+      .addCase(getProductsBySearch.pending, state => {
+        state.loading = LoadingStatusEnum.Loading;
+      })
+      .addCase(getProductsBySearch.rejected, state => {
+        state.loading = LoadingStatusEnum.Failed;
+      })
+      .addCase(getProductsBySearch.fulfilled, (state, action) => {
         state.productsList = action.payload.data.products;
         state.totalProductsCount = action.payload.data.total_count;
         state.loading = LoadingStatusEnum.Success;

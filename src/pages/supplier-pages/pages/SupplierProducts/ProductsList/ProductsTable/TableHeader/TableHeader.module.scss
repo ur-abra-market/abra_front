@@ -1,6 +1,6 @@
 .table_row {
   display: grid;
-  grid-template-columns: 4.50% 8.48% 6.83% 30% 10.12% 8.33% 6.60% 11.72% calc(66px + 1%) 6%;
+  grid-template-columns: 4.50% 8.48% 6.83% 29% 11.12% 7.33% 6.60% 11.72% calc(66px + 2%) 6%;
   grid-template-rows: 1fr;
 }
 
@@ -20,4 +20,8 @@
   word-break: break-word;
 
   background-color: var(--color-white);
+}
+
+.icon_filter {
+  margin-right: 12px;
 }
