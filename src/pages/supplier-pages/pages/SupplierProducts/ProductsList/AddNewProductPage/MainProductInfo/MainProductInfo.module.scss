@@ -20,10 +20,20 @@
 }
 
 .description {
+  resize: none;
+
   width: 634px;
   height: 120px;
   margin-bottom: 16px;
-  padding-bottom: 95px;
+  padding: 16px 14px;
+
+  font-family: Roboto, sans-serif;
+  font-size: var(--fz-s);
+  color: var(--color-black);
+  letter-spacing: 0.24px;
+
+  background: var(--color-white-ivory);
+  border-radius: 12px;
 }
 
 .image_container {
@@ -34,49 +44,61 @@
   &:not(:last-child) {
     margin-right: 8px;
   }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
 }
 
 .overlay {
+  cursor: pointer;
+
   position: absolute;
   top: 8px;
-  right: 0;
-  bottom: 0;
-  left: 90px;
+  right: 8px;;
+  bottom: 8px;
+  left: calc(100% - 31px);
 
   display: flex;
   align-items: center;
   justify-content: center;
-
-  width: 23px;
-  height: 23px;
 }
 
 .image_container:hover .overlay {
   opacity: 1;
 }
 
-.close_icon {
-  cursor: pointer;
-}
-
 @media only screen and (max-width: 768px) {
-  .main_info,
-  .description {
+  .main_info {
     width: 100%;
     height: 100%;
   }
 
+  .description {
+    width: 100%;
+    max-height: auto;
+  }
+
   .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); 
     gap: 20px;
     padding: 0 20px;
   }
 }
 
-@media only screen and (max-width: 480px) {
-  .main_info,
-  .description {
+@media only screen and (max-width: 320px) {
+  .main_info {
     width: 100%;
     height: 100%;
+  }
+
+  .description {
+    width: 100%;
+    max-height: none;
   }
 
   .container {

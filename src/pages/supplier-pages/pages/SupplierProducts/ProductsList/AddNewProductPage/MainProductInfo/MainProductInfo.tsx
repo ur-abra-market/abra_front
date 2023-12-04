@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect, ChangeEvent } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 
@@ -21,6 +21,11 @@ export const MainProductInfo: FC = (): JSX.Element => {
   const [images, setImages] = useState<string[]>([]);
   const categories = useAppSelector(state => state.common.categories);
   const brandNameData = categories ? categories.filter(c => c.level === 1) : [];
+  const [textareaValue, setTextareaValue] = useState<string>('');
+
+  const handleTextareaChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
+    setTextareaValue(event.target.value);
+  };
 
   useEffect(() => {
     const fetchImages = async (): Promise<void> => {
@@ -67,16 +72,14 @@ export const MainProductInfo: FC = (): JSX.Element => {
           />
         </Label>
         <Label label="Description *" htmlFor="description">
-          <Controller
-            name="description"
-            control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                placeholder="Enter description"
-                className={style.description}
-              />
-            )}
+          <textarea
+            className={style.description}
+            id="myTextarea"
+            value={textareaValue}
+            placeholder="Enter description"
+            onChange={handleTextareaChange}
+            rows={10}
+            cols={10}
           />
         </Label>
         <Label label="Brand name *" htmlFor="brandName">
@@ -111,21 +114,15 @@ export const MainProductInfo: FC = (): JSX.Element => {
                 src={src}
                 alt={`product-${index + 1}`}
               />
-              <div className={style.overlay}>
-                <div
-                  className={style.close_icon}
-                  tabIndex={0}
-                  role="button"
-                  onClick={() => handleRemoveImage(index)}
-                  onKeyDown={e => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      handleRemoveImage(index);
-                    }
-                  }}
-                >
-                  <CrossRedIcon />
-                </div>
-              </div>
+              <CrossRedIcon
+                className={style.overlay}
+                onClick={() => handleRemoveImage(index)}
+                onKeyDown={e => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    handleRemoveImage(index);
+                  }
+                }}
+              />
             </div>
           ))}
         </div>
