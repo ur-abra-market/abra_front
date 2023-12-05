@@ -9,7 +9,13 @@ import { Label, Input, Select } from 'ui-kit';
 
 import style from './MainProductInfo.module.scss';
 
-const imagePaths = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg'];
+const imagePaths = [
+  'blackcrop.jpg',
+  'blackdress.jpg',
+  'flowerscrop.jpg',
+  'whitesweat.jpg',
+  'shorts.jpg',
+];
 
 export const MainProductInfo: FC = (): JSX.Element => {
   const { control } = useForm();
