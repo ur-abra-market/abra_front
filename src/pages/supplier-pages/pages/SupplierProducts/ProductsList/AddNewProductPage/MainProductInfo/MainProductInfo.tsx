@@ -2,19 +2,14 @@ import { FC, useState, useEffect, ChangeEvent } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 
-import { CrossRedIcon } from 'assets/icons';
+// import { CrossRedIcon } from 'assets/icons';
 import { useAppSelector } from 'common/hooks';
+import { UploadImage } from 'elements';
 import { Label, Input, Select } from 'ui-kit';
 
 import style from './MainProductInfo.module.scss';
 
-const imagePaths = [
-  'whitesweat.jpg',
-  'blackdress.jpg',
-  'shorts.jpg',
-  'flowerscrop.jpg',
-  'blackcrop.jpg',
-];
+const imagePaths = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg'];
 
 export const MainProductInfo: FC = (): JSX.Element => {
   const { control } = useForm();
@@ -48,12 +43,12 @@ export const MainProductInfo: FC = (): JSX.Element => {
     fetchImages();
   }, []);
 
-  const handleRemoveImage = (index: number): void => {
+  /* const handleRemoveImage = (index: number): void => {
     const newImages = [...images];
 
     newImages.splice(index, 1);
     setImages(newImages);
-  };
+  }; */
 
   return (
     <form>
@@ -106,22 +101,14 @@ export const MainProductInfo: FC = (): JSX.Element => {
         </Label>
         <Label label="General photos of the product" htmlFor="photos" />
         <div className={style.container}>
-          {images.map((src, index) => (
+          {images.map(index => (
             <div key={index} className={style.image_container}>
-              <img
+              <UploadImage
                 key={index}
                 className={style.image}
-                src={src}
-                alt={`product-${index + 1}`}
-              />
-              <CrossRedIcon
-                className={style.overlay}
-                onClick={() => handleRemoveImage(index)}
-                onKeyDown={e => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    handleRemoveImage(index);
-                  }
-                }}
+                type="product_image_supplier"
+                label="General photos of the product"
+                description="Product image"
               />
             </div>
           ))}
