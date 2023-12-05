@@ -46,7 +46,7 @@ export const MainProductInfo: FC = (): JSX.Element => {
   return (
     <form>
       <div className={style.main_info}>
-        <Label label="Product name *" htmlFor="productName">
+        <Label label="Product name" htmlFor="productName">
           <Controller
             name="productName"
             control={control}
@@ -59,7 +59,7 @@ export const MainProductInfo: FC = (): JSX.Element => {
             )}
           />
         </Label>
-        <Label label="Description *" htmlFor="description">
+        <Label label="Description" htmlFor="description">
           <textarea
             className={style.description}
             id="myTextarea"
@@ -70,7 +70,7 @@ export const MainProductInfo: FC = (): JSX.Element => {
             cols={10}
           />
         </Label>
-        <Label label="Brand name *" htmlFor="brandName">
+        <Label label="Brand name" htmlFor="brandName">
           <Controller
             name="brandName"
             control={control}
