@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import ProductImage from 'elements/ProductImage/ProductImage';
 import { getPriceOneItem } from 'pages/seller-pages/ProductPage/helpers/getPriceOneItem';
+import { PRODUCT_DETAILS } from 'routes';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { Stars } from 'ui-kit';
 
@@ -24,6 +25,7 @@ export const ProductCard: FC<IProductCard> = ({
   // const { min_quantity } = prices[0];
   const min_quantity = 10; // TODO
   const image_url = images[0]?.image_url;
+  const pathToProduct = `${PRODUCT_DETAILS}/${id}`;
 
   return (
     <article className={cn(style.card, className)} {...restProps}>
@@ -33,7 +35,7 @@ export const ProductCard: FC<IProductCard> = ({
         productId={id}
         isFavorite={is_favorite}
       />
-      <Link tabIndex={-1} to="/#" className={style.link}>
+      <Link tabIndex={-1} to={pathToProduct} className={style.link}>
         <div className={style.direction}>
           <h4 className={style.card_title}>{name}</h4>
           <p className={style.card_description}>{description}</p>
