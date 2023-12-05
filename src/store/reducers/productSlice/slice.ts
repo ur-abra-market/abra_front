@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
   addFavoriteProduct,
+  addFavoriteProductPage,
   getPopularProducts,
   getProductById,
   getProductsBySearch,
@@ -9,6 +10,7 @@ import {
   getProductsListCompilation,
   getSimilarProducts,
   removeFavoriteProduct,
+  removeFavoriteProductPage,
 } from './thunks';
 import {
   IFavorite,
@@ -25,6 +27,7 @@ const initialState: IProductSliceInitialState = {
   isFavorite: false,
   productsPerPage: 20,
   productCard: {
+    breadcrumbs: [],
     id: null,
     created_at: '',
     updated_at: '',
@@ -33,6 +36,7 @@ const initialState: IProductSliceInitialState = {
     grade_average: '',
     total_orders: null,
     is_active: false,
+    is_favorite: false,
     category: {
       id: null,
       created_at: '',
@@ -195,6 +199,12 @@ const productSlice = createSlice({
         state.productsList = action.payload.data.products;
         state.totalProductsCount = action.payload.data.total_count;
         state.loading = LoadingStatusEnum.Success;
+      })
+      .addCase(addFavoriteProductPage.fulfilled, (state, action) => {
+        state.productCard.is_favorite = action.payload;
+      })
+      .addCase(removeFavoriteProductPage.fulfilled, (state, action) => {
+        state.productCard.is_favorite = action.payload;
       });
   },
 });
