@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
 
-  width: 634px;
+  max-width: 634px;
   margin: 0 auto;
   padding-top: 48px;
 
@@ -22,11 +22,15 @@
     gap: 24px;
     list-style: none;
     
-    li {
+    .list_item {
       display: flex;
       justify-content: space-between;
       font-weight: bold;
     }
+  }
+
+  .arrow_icon {
+    cursor: pointer;
   }
 
   @media screen and (max-width: 1024px) {
