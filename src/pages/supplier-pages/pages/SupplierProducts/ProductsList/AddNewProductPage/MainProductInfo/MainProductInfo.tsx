@@ -43,13 +43,6 @@ export const MainProductInfo: FC = (): JSX.Element => {
     fetchImages();
   }, []);
 
-  /* const handleRemoveImage = (index: number): void => {
-    const newImages = [...images];
-
-    newImages.splice(index, 1);
-    setImages(newImages);
-  }; */
-
   return (
     <form>
       <div className={style.main_info}>
