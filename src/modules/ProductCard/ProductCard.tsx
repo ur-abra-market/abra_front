@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
+import { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react';
 
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
@@ -27,9 +27,17 @@ export const ProductCard: FC<IProductCard> = ({
   const image_url = images[0]?.image_url;
   const pathToProduct = `${PRODUCT_DETAILS}/${id}`;
 
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <article className={cn(style.card, className)} {...restProps}>
+    <article
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={cn(style.card, className)}
+      {...restProps}
+    >
       <ProductImage
+        isHovered={isHovered}
         imageUrl={image_url || ''}
         name={name}
         productId={id}
