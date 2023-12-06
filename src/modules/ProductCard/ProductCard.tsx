@@ -26,7 +26,6 @@ export const ProductCard: FC<IProductCard> = ({
   const min_quantity = 10; // TODO
   const image_url = images[0]?.image_url;
   const pathToProduct = `${PRODUCT_DETAILS}/${id}`;
-
   const [isHovered, setIsHovered] = useState(false);
 
   return (

@@ -63,7 +63,7 @@ const ProductImage: FC<IProductCard> = ({
       <div className={style.hover}>
         <div className={style.hover_text}>
           <MagnifierLightGreyIcon />
-          <span>Quick View</span>
+          <span>View more</span>
         </div>
       </div>
     </div>

@@ -30,7 +30,7 @@ export const FavoriteButton: FC<IFavoriteButton> = ({
   });
 
   return (
-    <ButtonIcon className={style.favorite} onClick={handleChangeFavorite}>
+    <ButtonIcon className={cn(style.favorite, className)} onClick={handleChangeFavorite}>
       <div className={buttonVariantClasses}>
         <FavoriteIcon className={isFavorite ? style.active : ''} />
       </div>
