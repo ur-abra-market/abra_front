@@ -14,8 +14,7 @@ import { PasswordComplexity } from 'pages/general-pages/auth-pages/assets';
 import { CHECK_EMAIL } from 'routes';
 import { IRegisterRequest } from 'services/auth/auth.serviceTypes';
 import { getUserRole, loadingSelector } from 'store/reducers/appSlice';
-import { registerUser } from 'store/reducers/authSlice';
-import { registerGoogle } from 'store/reducers/authSlice/thunks';
+import { registerUser, registerGoogle } from 'store/reducers/authSlice';
 import { Button, ButtonIcon, Input } from 'ui-kit';
 
 import style from './RegisterForm.module.scss';
@@ -54,7 +53,7 @@ export const RegisterForm = (): JSX.Element => {
     setFocus('email');
   };
 
-  const onGoogleSubmit = async (token: string): Promise<void> => {
+  const handleGoogleRegister = async (token: string): Promise<void> => {
     const actionResult = await dispatch(registerGoogle({ role: userRole, token }));
 
     if (registerGoogle.fulfilled.match(actionResult)) {
@@ -62,8 +61,8 @@ export const RegisterForm = (): JSX.Element => {
     }
   };
 
-  const handleGoogleRegister = useGoogleLogin({
-    onSuccess: tokenResponse => onGoogleSubmit(tokenResponse.access_token),
+  const handleGoogleAuth = useGoogleLogin({
+    onSuccess: tokenResponse => handleGoogleRegister(tokenResponse.access_token),
   });
 
   const onSubmit = async (data: IRegisterFormData): Promise<void> => {
@@ -137,7 +136,7 @@ export const RegisterForm = (): JSX.Element => {
         />
       </form>
       <div className={style.buttons_container_alternate_signup}>
-        <ButtonIcon onClick={() => handleGoogleRegister()}>
+        <ButtonIcon onClick={() => handleGoogleAuth()}>
           <GoogleButton />
         </ButtonIcon>
         <ButtonIcon disabled>
