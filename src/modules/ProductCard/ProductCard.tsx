@@ -35,14 +35,14 @@ export const ProductCard: FC<IProductCard> = ({
       className={cn(style.card, className)}
       {...restProps}
     >
-      <ProductImage
-        isHovered={isHovered}
-        imageUrl={image_url || ''}
-        name={name}
-        productId={id}
-        isFavorite={is_favorite}
-      />
       <Link tabIndex={-1} to={pathToProduct} className={style.link}>
+        <ProductImage
+          isHovered={isHovered}
+          imageUrl={image_url || ''}
+          name={name}
+          productId={id}
+          isFavorite={is_favorite}
+        />
         <div className={style.direction}>
           <h4 className={style.card_title}>{name}</h4>
           <p className={style.card_description}>{description}</p>
