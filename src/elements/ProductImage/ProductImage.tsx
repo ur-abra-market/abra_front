@@ -17,7 +17,7 @@ interface IProductCard
   imageUrl: string;
   productId?: number;
   isFavorite: boolean;
-  isHovered: boolean;
+  isHovered?: boolean;
 }
 
 const ProductImage: FC<IProductCard> = ({
