@@ -26,7 +26,6 @@ export const SellerCartPage = WithLayout((): JSX.Element => {
           limit: 100,
         }),
       );
-
       setIsFetchingData(false);
     };
 
@@ -48,16 +47,6 @@ export const SellerCartPage = WithLayout((): JSX.Element => {
         </div>
         <OrderDetails />
       </div>
-      {/* <Title as="h2" size="m" weight="bold" className={style.empty_cart}> */}
-      {/*  Unfortunaly, your shopping cart is empty. As soon as you place items in cart */}
-      {/*  it will appear here */}
-      {/* </Title> */}
-      {/* <ProductsPerPage onChange={() => {}} />
-      <Pagination
-        totalPages={totalPages}
-        currentPage={currentPage}
-        onPageChanged={setCurrentPage}
-      /> */}
     </div>
   );
 });
