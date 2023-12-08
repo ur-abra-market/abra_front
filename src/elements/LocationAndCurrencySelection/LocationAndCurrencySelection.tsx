@@ -55,7 +55,7 @@ export const LocationAndCurrencySelection: FC<ILocationAndCurrencySelection> = (
     <div ref={refObj} className={cn(style.wrapper, wrapperClassName)}>
       {isMobileView && (
         <div onClickCapture={handleToggleOpenOnMobile} className={style.mobile_header}>
-          <div>
+          <div className={style.currency}>
             {CURRENCY_DATA[0].label.text.substring(
               CURRENCY_DATA[0].label.text.length - 3,
             )}
