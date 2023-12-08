@@ -101,6 +101,7 @@ export interface IProductCompilation {
   total_orders: number;
   uuid: string;
   is_favorite: boolean;
+  reviews_count: number;
 }
 
 export interface IProductPrice {

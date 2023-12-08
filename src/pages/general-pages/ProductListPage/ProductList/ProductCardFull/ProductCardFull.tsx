@@ -22,6 +22,7 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
     supplier,
     category,
     is_favorite,
+    reviews_count,
   } = product;
 
   const categoryArr = category.name.split('&');
@@ -50,7 +51,7 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
           <div className={style.reviews_info}>
             <Stars reward={grade_average} />
             {/* TODO (fake data) */}
-            <span className={style.reviews}>/ 9 859 reviews</span>
+            <span className={style.reviews}>/ {reviews_count} reviews</span>
           </div>
         </div>
 
