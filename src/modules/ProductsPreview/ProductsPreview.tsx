@@ -1,6 +1,7 @@
 import React, {
   DetailedHTMLProps,
   FC,
+  KeyboardEvent,
   HTMLAttributes,
   useCallback,
   useEffect,
@@ -96,6 +97,15 @@ export const ProductsPreview: FC<IProductsPreview> = ({
     swiperEl.current = swiper;
   };
 
+  const handleScrollToCenter = (e: KeyboardEvent<HTMLButtonElement>): void => {
+    if (e.key === 'Tab') {
+      e.currentTarget.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
+  };
+
   return (
     <div ref={containerRef} className={cn(style.container, className)} {...restProps}>
       <div className={style.inner}>
@@ -108,7 +118,11 @@ export const ProductsPreview: FC<IProductsPreview> = ({
           )}
         </div>
         <div className={style.buttons}>
-          <ButtonIcon disabled={disableLeftArrow} onClick={handleTransitionToPrevSlide}>
+          <ButtonIcon
+            onKeyUp={handleScrollToCenter}
+            disabled={disableLeftArrow}
+            onClick={handleTransitionToPrevSlide}
+          >
             <ArrowIcon
               className={cn(style.icon_left, {
                 [style.disable_button]: disableLeftArrow,
@@ -116,7 +130,11 @@ export const ProductsPreview: FC<IProductsPreview> = ({
             />
           </ButtonIcon>
 
-          <ButtonIcon disabled={disableRightArrow} onClick={handleTransitionToNextSlide}>
+          <ButtonIcon
+            onKeyUp={handleScrollToCenter}
+            disabled={disableRightArrow}
+            onClick={handleTransitionToNextSlide}
+          >
             <ArrowIcon
               className={cn(style.icon_right, {
                 [style.disable_button]: swiperEl.current?.isEnd,

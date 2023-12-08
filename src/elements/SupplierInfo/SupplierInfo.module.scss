@@ -1,0 +1,37 @@
+.supplier_info_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 32px 0 55px;
+}
+
+.arrow {
+  cursor: pointer;
+  transform: rotate(270deg);
+
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.supplier_info {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.flex_column_container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.logo {
+  width: 64px;
+  height: 64px;
+}
+
+.grades {
+  padding-left: 0;
+}

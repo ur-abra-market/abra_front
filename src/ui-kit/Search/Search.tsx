@@ -4,14 +4,15 @@ import {
   InputHTMLAttributes,
   KeyboardEvent,
   ChangeEvent,
+  useEffect,
 } from 'react';
 
 import cn from 'classnames';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { PRODUCTS_LIST } from 'routes';
-import { setValue } from 'store/reducers/searchSlice';
+import { HOME, PRODUCTS_LIST } from 'routes';
+import { setSearchValue } from 'store/reducers/searchSlice';
 
 import styles from './Search.module.scss';
 
@@ -28,12 +29,12 @@ export const Search = forwardRef<HTMLInputElement, ISearch>((props, ref): JSX.El
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const value = useAppSelector(state => state.search.value);
   const role = useAppSelector(state => state.auth.userRole);
-
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>): void => {
-    dispatch(setValue(e.target.value));
+    dispatch(setSearchValue(e.target.value));
   };
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.code === 'Enter' && value.length !== 0) {
@@ -42,6 +43,12 @@ export const Search = forwardRef<HTMLInputElement, ISearch>((props, ref): JSX.El
       }
     }
   };
+
+  useEffect(() => {
+    if (pathname === HOME) {
+      dispatch(setSearchValue(''));
+    }
+  }, [pathname]);
 
   return (
     <div className={cn(styles.wrapper, className)}>

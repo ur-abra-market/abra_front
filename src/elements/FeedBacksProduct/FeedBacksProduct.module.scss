@@ -1,10 +1,53 @@
-.feedbacks_container {
-  height: 283px;
-  padding: 32px;
-  background: var(--color-white);
+@import "src/common/styles/mixins";
+
+@include seller_section()
+
+  .feedbacks_container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
   border-radius: 12px;
 }
 
-.title {
+.grade {
+  margin-bottom: 14px;
+  padding-left: 0;
+}
+
+.grade_indicators {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.indicator_wrapper {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  width: 100%;
+
+  span {
+    width: 11%;
+  }
+}
+
+.title_container {
+  display: flex;
+  gap: 6px;
+  align-items: center;
   margin-bottom: 23px;
+}
+
+.link {
+  transform: translateY(-3px);
+  align-self: flex-end;
+  color: var(--color-red);
+  text-decoration: underline;
+}
+
+@media (max-width: 426px) {
+  .grade {
+    column-gap: 0;
+    justify-content: space-between;
+  }
 }

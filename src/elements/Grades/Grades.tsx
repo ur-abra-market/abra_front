@@ -12,6 +12,7 @@ interface IGradeProps {
   fiveStar?: boolean;
   variant?: 'deals' | 'reviews';
   count: number | null;
+  className?: string;
 }
 
 export const Grades: FC<IGradeProps> = ({
@@ -19,6 +20,7 @@ export const Grades: FC<IGradeProps> = ({
   fiveStar = false,
   variant = 'reviews',
   count,
+  className,
 }): JSX.Element => {
   const containerMode = {
     [`${style.is_gap}`]: variant === 'reviews' && fiveStar,
@@ -28,7 +30,7 @@ export const Grades: FC<IGradeProps> = ({
   };
 
   return (
-    <div className={cn(style.container, containerMode)}>
+    <div className={cn(style.container, containerMode, className)}>
       {fiveStar ? (
         <Stars reward={+grade} sizes="24" />
       ) : (

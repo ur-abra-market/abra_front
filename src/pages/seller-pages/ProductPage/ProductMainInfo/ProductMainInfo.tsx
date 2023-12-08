@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { ProductDetails } from './ProductDetails/ProductDetails';
 
 import { useAppSelector } from 'common/hooks';
@@ -10,7 +12,7 @@ export const ProductMainInfo = (): JSX.Element => {
   const images = useAppSelector(productImagesSelector);
 
   return (
-    <div className={style.main_info_container}>
+    <div className={style.product_main_info_wrapper}>
       <ProductCarousel photoArray={images} />
       <ProductDetails />
     </div>
