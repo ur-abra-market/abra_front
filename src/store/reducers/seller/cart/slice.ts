@@ -1,85 +1,95 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { getSellerDataCart } from './thunks';
 import { IProductCardCart } from './types';
 
-import { LoadingStatusEnum } from 'common/types';
-import { getProductById, IProductCard } from 'store/reducers/productSlice';
-
 export interface IProductsInCart {
-  selectAllProducts: boolean;
-  productsList: IProductCard[];
-  productsListInCart: IProductCardCart[];
-  isLoading: LoadingStatusEnum;
-  totalAmount: number;
-  itemsInCart: number;
+  productsPerPage: number;
+  productsInCart: Array<IProductCardCart[]>;
+  totalProductForOrder: number;
 }
 
 const initialState: IProductsInCart = {
-  selectAllProducts: false,
-  productsList: [],
-  productsListInCart: [],
-  isLoading: LoadingStatusEnum.Idle,
-  totalAmount: 0,
-  itemsInCart: 0,
+  productsPerPage: 20,
+  productsInCart: [],
+  totalProductForOrder: 0,
 };
 
 const sellerProfileSlice = createSlice({
   name: 'seller/cart',
   initialState,
   reducers: {
-    getAmount: (
-      state,
-      action: PayloadAction<{
-        order_id: number;
-        amount: number;
-      }>,
-    ) => {
-      const item = state.productsList.find(item => item.id === action.payload.order_id);
-      const itemIndex = state.productsListInCart.findIndex(
-        cartItem => cartItem.id === item?.id,
-      );
+    setProductsInCartPerPage: (state, action: PayloadAction<number>) => {
+      state.productsPerPage = action.payload;
+    },
+    setSelectProduct: (state, action: PayloadAction<{ id: number | null }>) => {
+      const product = state.productsInCart
+        .flat()
+        .find(item => item.bundle_variation_pod.product.id === action.payload.id);
 
-      if (itemIndex === -1) {
-        const obj: any = {
-          ...item,
-          amount: action.payload.amount,
-        };
-
-        state.productsListInCart.push(obj);
-      } else {
-        state.productsListInCart[itemIndex].amount = action.payload.amount;
+      if (product) {
+        product.is_checked = !product.is_checked;
       }
     },
-    getTotalAmount: state => {
-      const totalAmount = state?.productsListInCart.reduce(
-        (prev: number, next: IProductCardCart) => {
-          return prev + +next.amount;
-        },
-        0,
-      );
+    setSelectAllProducts: (
+      state,
+      action: PayloadAction<{
+        is_checked: boolean;
+        name: string;
+      }>,
+    ) => {
+      state.productsInCart = state.productsInCart.map(item => {
+        const isCheckedAll = item.every(
+          product =>
+            product.bundle_variation_pod.product.supplier.company.name ===
+            action.payload.name,
+        );
 
-      state.totalAmount = +totalAmount;
-      state.isLoading = LoadingStatusEnum.Success;
-    },
-    getProductItemsInCart: state => {
-      state.itemsInCart = +state.productsListInCart.length;
+        if (isCheckedAll) {
+          return item.map(product => {
+            return { ...product, is_checked: action.payload.is_checked };
+          });
+        }
+
+        return item;
+      });
     },
   },
   extraReducers: builder => {
-    builder
-      .addCase(getProductById.pending, state => {
-        state.isLoading = LoadingStatusEnum.Loading;
-      })
-      .addCase(getProductById.fulfilled, (state, action: PayloadAction<IProductCard>) => {
-        state.productsList.push(action.payload);
-        state.isLoading = LoadingStatusEnum.Success;
-      })
-      .addCase(getProductById.rejected, state => {
-        state.isLoading = LoadingStatusEnum.Failed;
-      });
+    builder.addCase(getSellerDataCart.fulfilled, (state, action) => {
+      const product_cart: IProductCardCart[] = [];
+
+      action.payload.forEach(item => product_cart.push(...item.details));
+
+      const productsWithSupplier: Record<string, IProductCardCart[]> =
+        product_cart.reduce(
+          (
+            products_with_name: Record<string, IProductCardCart[]>,
+            products: IProductCardCart,
+          ) => {
+            const supplierName =
+              products.bundle_variation_pod.product.supplier.company.name;
+
+            return {
+              ...products_with_name,
+              [supplierName]: [
+                ...(products_with_name[supplierName] || []),
+                {
+                  ...products,
+                  is_checked: true,
+                },
+              ],
+            };
+          },
+          {},
+        );
+
+      state.productsInCart = Object.values(productsWithSupplier);
+    });
   },
 });
 
 export const cartActions = sellerProfileSlice.actions;
-export const { getAmount, getTotalAmount, getProductItemsInCart } = cartActions;
+export const { setProductsInCartPerPage, setSelectProduct, setSelectAllProducts } =
+  cartActions;
 export const sellerCartReducer = sellerProfileSlice.reducer;

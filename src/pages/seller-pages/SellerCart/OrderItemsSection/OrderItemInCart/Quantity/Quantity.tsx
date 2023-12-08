@@ -7,7 +7,11 @@ import { Paragraph } from 'ui-kit';
 
 import style from './Quantity.module.scss';
 
-export const Quantity: FC<any> = ({ item }): JSX.Element => {
+export interface IQuantity {
+  amount: number;
+}
+
+export const Quantity: FC<IQuantity> = ({ amount }): JSX.Element => {
   return (
     <div className={style.quantity}>
       <div className={style.bundle_quantity}>
@@ -23,7 +27,7 @@ export const Quantity: FC<any> = ({ item }): JSX.Element => {
           <QuestionDisabled />
         </button>
       </div>
-      <QuantityCounter item={item} />
+      <QuantityCounter amount={amount} />
     </div>
   );
 };

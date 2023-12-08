@@ -8,17 +8,17 @@ import { sellerService } from 'services/seller/seller.service';
 import { ISellersCartRequest } from 'services/seller/seller.serviceTypes';
 
 export const getSellerDataCart = createAsyncThunk<
-  ISellersCartResponse,
+  ISellersCartResponse[],
   ISellersCartRequest,
   IAsyncThunkConfig
->('seller/getDataCart', async (payload, { rejectWithValue }) => {
+>('seller/getSellerDataCart', async (payload, { rejectWithValue }) => {
   try {
     return await sellerService.getSellerCart(payload);
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError
         ? error.response?.data?.error || error.message
-        : '[getDataCart]: Error';
+        : '[getSellerDataCart]: Error';
 
     return rejectWithValue(errorMessage);
   }

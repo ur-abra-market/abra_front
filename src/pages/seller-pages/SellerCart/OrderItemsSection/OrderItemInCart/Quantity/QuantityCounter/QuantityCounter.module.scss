@@ -1,0 +1,41 @@
+.quantity_counter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.quantity_value {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 96px;
+  height: 32px;
+  margin: 0 4px;
+
+  line-height: 100%;
+  text-align: center;
+  letter-spacing: 0.16px;
+
+  background-color: transparent;
+  border: 1px solid var(--color-gray-medium);
+  border-radius: 10px;
+}
+
+.quantity_decrement,
+.quantity_increment {
+  cursor: pointer;
+
+  width: 32px;
+  height: 32px;
+
+  font-size: var(--fz-m);
+  font-weight: var(--regular);
+  line-height: 100%;
+  text-align: center;
+  letter-spacing: -0.24px;
+  vertical-align: center;
+
+  background-color: transparent;
+  border: 1px solid var(--color-gray-medium);
+  border-radius: 10px;
+}

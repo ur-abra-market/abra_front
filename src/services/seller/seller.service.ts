@@ -80,7 +80,7 @@ export const sellerService = {
 
   getSellerCart: async ({ offset, limit }: ISellersCartRequest) => {
     const params = { offset, limit };
-    const { data } = await baseConfigService.get<IBaseResponse<ISellersCartResponse>>(
+    const { data } = await baseConfigService.get<IBaseResponse<ISellersCartResponse[]>>(
       `sellers/cart`,
       {
         params,
