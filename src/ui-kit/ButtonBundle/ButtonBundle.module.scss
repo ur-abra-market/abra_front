@@ -1,0 +1,71 @@
+.button {
+  cursor: pointer;
+
+  position: relative;
+
+  display: inline-block;
+  justify-content: center;
+
+  box-sizing: border-box;
+  min-height: 32px;
+  padding: 8px 32px 7px;
+
+  font-family: var(--roboto);
+  font-size: var(--fz-s);
+  font-weight: var(--regular);
+
+  border-radius: 8px;
+  outline: none;
+
+  transition: all 0.5s;
+
+  &:focus-visible {
+    outline: 1px solid var(--color-gray-medium);
+    transition: none;
+  }
+}
+
+.default {
+  color: var(--color-gray-medium);
+  background: var(--color-white-ivory);
+}
+
+.default:hover {
+  color: var(--color-white);
+  background: var(--color-red-medium);
+}
+
+.active {
+  color: var(--color-white);
+  background: var(--color-red);
+}
+
+.default:hover,
+.active:hover {
+  background: var(--color-red-medium);
+}
+
+.default:active,
+.active:active {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    var(--color-red);
+}
+
+.active:disabled {
+  color: var(--color-gray-light);
+  background: var(--color-white);
+}
+
+.active:disabled {
+  background: rgba(252, 19, 61, 0.2);
+}
+
+.active:disabled:hover {
+  color: var(--color-black);
+  background: rgba(252, 19, 61, 0.4);
+}
+
+.active:disabled:active {
+  color: var(--color-white);
+  background: rgba(252, 19, 61, 0.8);
+}
