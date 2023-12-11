@@ -50,7 +50,6 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
         <div>
           <div className={style.reviews_info}>
             <Stars reward={grade_average} />
-            {/* TODO (fake data) */}
             <span className={style.reviews}>/ {reviews_count} reviews</span>
           </div>
         </div>
@@ -70,7 +69,6 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
                 <p className={style.supplier_name}>{supplier?.company.name}</p>
                 <ArrowIcon className={style.supplier_arrow} />
               </div>
-              {/* TODO (fake data) */}
               <p className={style.suppler_details}>
                 1 Years : 1 Deals : On-time delivery 1%
               </p>
