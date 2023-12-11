@@ -32,7 +32,7 @@
 
 .default:hover {
   color: var(--color-white);
-  background: var(--color-red-medium);
+  background: var(--color-red-dark);
 }
 
 .active {
@@ -47,25 +47,33 @@
 
 .default:active,
 .active:active {
-  background: linear-gradient(0deg, var(--color-gray), var(--color-gray)),
-    var(--color-red);
+  background: linear-gradient(0deg, var(--color-red-dark), var(--color-red-dark));
+}
+
+.default:disabled {
+  color: var(--color-white);
+  background: var(--color-gray-light);
+}
+
+.default:disabled:hover {
+  color: var(--color-white);
+  background: var(--color-gray-light);
+}
+
+.default:disabled:active {
+  color: var(--color-white);
+  background: var(--color-gray-light);
 }
 
 .active:disabled {
   color: var(--color-gray-light);
-  background: var(--color-white);
-}
-
-.active:disabled {
-  background: rgba(252, 19, 61, 0.2);
+  background: var(--color-red-dark);
 }
 
 .active:disabled:hover {
-  color: var(--color-black);
-  background: rgba(252, 19, 61, 0.4);
+  background: var(--color-red-dark);
 }
 
 .active:disabled:active {
-  color: var(--color-white);
-  background: rgba(252, 19, 61, 0.8);
+  background: var(--color-red-dark);
 }
