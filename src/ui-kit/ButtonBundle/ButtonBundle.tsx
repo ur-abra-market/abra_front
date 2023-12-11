@@ -30,7 +30,6 @@ export const ButtonBundle: FC<IButtonBundle> = (props): JSX.Element => {
       )}
       {...resProps}
     >
-      {' '}
       {children}
     </button>
   );
