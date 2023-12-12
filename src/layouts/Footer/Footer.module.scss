@@ -1,6 +1,8 @@
 @import 'src/common/styles/mixins';
 
 .footer_bottom_wrapper {
+  display: flex;
+  justify-content: center;
   height: 48px;
   font-size: var(--fz-s);
 }
@@ -77,7 +79,7 @@
 }
 
 @media (max-width: 425px) {
-  .footer_bottom_black  .footer_bottom {
+  .footer_bottom_black .footer_bottom {
     grid-template-columns: 1fr repeat(2, auto) 1fr;
   }
 }

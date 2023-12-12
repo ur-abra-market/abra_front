@@ -14,6 +14,7 @@ export {
   changeEmail,
   confirmEmail,
   createAccountPersonalInfo,
+  registerGoogle,
 } from './thunks';
 
 export type { IAuthSliceInitialState } from './types';
