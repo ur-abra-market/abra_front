@@ -22,8 +22,7 @@ export const ProductCard: FC<IProductCard> = ({
   ...restProps
 }): JSX.Element => {
   const { id, name, prices, description, images, grade_average, is_favorite } = product;
-  // const { min_quantity } = prices[0];
-  const min_quantity = 10; // TODO
+  const { min_quantity } = prices[0];
   const image_url = images[0]?.image_url;
   const pathToProduct = `${PRODUCT_DETAILS}/${id}`;
   const [isHovered, setIsHovered] = useState(false);
