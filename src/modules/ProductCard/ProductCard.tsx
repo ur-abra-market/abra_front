@@ -4,7 +4,6 @@ import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
 import ProductImage from 'elements/ProductImage/ProductImage';
-import { getPriceOneItem } from 'pages/seller-pages/ProductPage/helpers/getPriceOneItem';
 import { PRODUCT_DETAILS } from 'routes';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { Stars } from 'ui-kit';
@@ -22,7 +21,7 @@ export const ProductCard: FC<IProductCard> = ({
   ...restProps
 }): JSX.Element => {
   const { id, name, prices, description, images, grade_average, is_favorite } = product;
-  const { min_quantity } = prices[0];
+  const { min_quantity, value } = prices[0];
   const image_url = images[0]?.image_url;
   const pathToProduct = `${PRODUCT_DETAILS}/${id}`;
   const [isHovered, setIsHovered] = useState(false);
@@ -47,7 +46,7 @@ export const ProductCard: FC<IProductCard> = ({
           <p className={style.card_description}>{description}</p>
         </div>
         <div className={style.price}>
-          <p className={style.amount}>{getPriceOneItem(prices)}/pc</p>
+          <p className={style.amount}>{value}/pc</p>
           <span className={style.rating}>{`/from ${min_quantity} pcs`}</span>
         </div>
         <Stars reward={grade_average || 0} />
