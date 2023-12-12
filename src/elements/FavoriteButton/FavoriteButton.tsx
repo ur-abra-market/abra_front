@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, MouseEvent } from 'react';
 
 import cn from 'classnames';
 
@@ -20,7 +20,8 @@ export const FavoriteButton: FC<IFavoriteButton> = ({
   className,
   variant = 'productCard',
 }): JSX.Element => {
-  const handleChangeFavorite = (): void => {
+  const handleChangeFavorite = (event: MouseEvent<HTMLButtonElement>): void => {
+    event.preventDefault();
     onChange(!isFavorite);
   };
 
