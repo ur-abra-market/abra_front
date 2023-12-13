@@ -42,3 +42,8 @@ export interface IPersonalInfoRequest {
   country_id: number;
   phone_number: string;
 }
+
+export interface IRegisterGoogleRequest {
+  role: string;
+  token: string;
+}

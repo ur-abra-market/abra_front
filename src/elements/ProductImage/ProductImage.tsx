@@ -17,6 +17,7 @@ interface IProductCard
   imageUrl: string;
   productId?: number;
   isFavorite: boolean;
+  isHovered?: boolean;
 }
 
 const ProductImage: FC<IProductCard> = ({
@@ -24,6 +25,7 @@ const ProductImage: FC<IProductCard> = ({
   name,
   imageUrl,
   productId,
+  isHovered,
   isFavorite,
   ...restProps
 }): JSX.Element => {
@@ -39,7 +41,12 @@ const ProductImage: FC<IProductCard> = ({
   };
 
   return (
-    <div className={cn(style.image_wrapper, className)} {...restProps}>
+    <div
+      className={cn(style.image_wrapper, className, {
+        [style.hover_visible]: isHovered,
+      })}
+      {...restProps}
+    >
       {userRole && (
         <FavoriteButton
           isFavorite={isFavorite}
@@ -56,7 +63,7 @@ const ProductImage: FC<IProductCard> = ({
       <div className={style.hover}>
         <div className={style.hover_text}>
           <MagnifierLightGreyIcon />
-          <span>Quick View</span>
+          <span>View more</span>
         </div>
       </div>
     </div>
