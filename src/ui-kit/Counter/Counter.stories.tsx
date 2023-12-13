@@ -15,7 +15,7 @@ type Story = StoryObj<typeof meta>;
 
 export const BigCounter: Story = {
   args: {
-    variant: 'big',
+    variant: 'large',
     amount: 200,
     onIncrementHandler: () => {},
     onDecrementHandler: () => {},
@@ -40,7 +40,7 @@ export const CounterWithState = (): JSX.Element => {
   return (
     <Counter
       amount={value}
-      variant="big"
+      variant="large"
       onDecrementHandler={value => setValue(value + 1)}
       onIncrementHandler={value => setValue(value - 1)}
     />

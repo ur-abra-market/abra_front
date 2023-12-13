@@ -14,22 +14,23 @@ export interface IButtonBundle
   color?: 'default' | 'active';
 }
 
-export const ButtonBundle: FC<IButtonBundle> = (props): JSX.Element => {
-  const { className, color = 'default', children, ...resProps } = props;
+export const ButtonBundle: FC<IButtonBundle> = ({
+  className,
+  color = 'default',
+  children,
+  ...resProps
+}): JSX.Element => {
+  const buttonBundleClasses = cn(
+    styles.button,
+    {
+      [styles.default]: color === 'default',
+      [styles.active]: color === 'active',
+    },
+    className,
+  );
 
   return (
-    <button
-      type="button"
-      className={cn(
-        styles.button,
-        {
-          [styles.default]: color === 'default',
-          [styles.active]: color === 'active',
-        },
-        className,
-      )}
-      {...resProps}
-    >
+    <button type="button" className={buttonBundleClasses} {...resProps}>
       {children}
     </button>
   );
