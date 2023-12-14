@@ -9,7 +9,6 @@ import {
   ORDER_HISTORY,
   ORDER_HISTORY_DETAILS,
   PERSONAL_ACCOUNT,
-  PRODUCT_DETAILS,
 } from '.';
 
 import {
@@ -19,18 +18,8 @@ import {
   SellerFavoritesList,
   CheckoutSuccessPage,
 } from 'pages/seller-pages';
-import { ProductPage } from 'pages/seller-pages/ProductPage/ProductPage';
 
 export const sellerRoutes: RouteObject[] = [
-  {
-    path: PRODUCT_DETAILS,
-    children: [
-      {
-        path: ':productId',
-        element: <ProductPage />,
-      },
-    ],
-  },
   {
     path: PERSONAL_ACCOUNT,
     element: <SellerProfilePage />,

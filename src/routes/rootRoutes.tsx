@@ -24,6 +24,7 @@ import {
   sellerRoutes,
   supplierRoutes,
   convertCombinedPrivateRoutes,
+  PRODUCT_DETAILS,
 } from '.';
 
 import { UserRoleType } from 'common/types';
@@ -48,6 +49,7 @@ import {
   MainPage,
   ErrorPage,
 } from 'pages/general-pages';
+import { ProductPage } from 'pages/seller-pages/ProductPage/ProductPage';
 
 type Routes = ReturnType<typeof createBrowserRouter>;
 
@@ -72,6 +74,16 @@ export function createRoutes(userRole: UserRoleType): Routes {
           path: HOME,
           element: <MainPage />,
         },
+        {
+          path: PRODUCT_DETAILS,
+          children: [
+            {
+              path: ':productId',
+              element: <ProductPage />,
+            },
+          ],
+        },
+
         {
           path: REGISTER,
           element: <RegisterPage />,
