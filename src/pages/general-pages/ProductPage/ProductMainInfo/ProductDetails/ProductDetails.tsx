@@ -10,8 +10,7 @@ import {
   SupplierInfo,
   Tags,
 } from 'elements';
-import { LatestSearches } from 'elements/LatestSearches/LatestSearches';
-import { Bundles } from 'pages/seller-pages/ProductPage/Bundles/Bundles';
+import { Bundles } from 'pages/general-pages/ProductPage/Bundles/Bundles';
 import {
   productDescriptionSelector,
   productNameSelector,
