@@ -11,20 +11,20 @@ export interface IButtonBundle
   > {
   className?: string;
   children: string;
-  color?: 'default' | 'active';
+  isSelected?: boolean;
 }
 
 export const ButtonBundle: FC<IButtonBundle> = ({
   className,
-  color = 'default',
+  isSelected = false,
   children,
   ...resProps
 }): JSX.Element => {
   const buttonBundleClasses = cn(
     styles.button,
     {
-      [styles.default]: color === 'default',
-      [styles.active]: color === 'active',
+      [styles.default]: !isSelected,
+      [styles.selected]: isSelected,
     },
     className,
   );

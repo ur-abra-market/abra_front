@@ -22,26 +22,26 @@ export const DefaultButton: Story = {
 export const DefaultActiveButton: Story = {
   args: {
     children: 'Bundle',
-    color: 'active',
+    isSelected: true,
   },
 };
 
 export const ButtonListStory = (): JSX.Element => {
   const [state, setState] = useState<stateType[]>([
-    { id: 1, title: 'Bundle 1', status: 'active' },
-    { id: 2, title: 'Bundle 2', status: 'default' },
-    { id: 3, title: 'Bundle 3', status: 'default' },
+    { id: 1, title: 'Bundle 1', isSelected: true },
+    { id: 2, title: 'Bundle 2', isSelected: false },
+    { id: 3, title: 'Bundle 3', isSelected: false },
   ]);
   const handler = (id: number): void => {
     const updatedState: stateType[] = state.map(item =>
       item.id === id
         ? {
             ...item,
-            status: 'active',
+            isSelected: true,
           }
         : {
             ...item,
-            status: 'default',
+            isSelected: false,
           },
     );
 
@@ -55,7 +55,7 @@ export const ButtonListStory = (): JSX.Element => {
           <ButtonBundle
             key={item.id}
             onClick={() => handler(item.id)}
-            color={item.status}
+            isSelected={item.isSelected}
             style={{ marginRight: '5px' }}
           >
             {item.title}
@@ -69,5 +69,5 @@ export const ButtonListStory = (): JSX.Element => {
 type stateType = {
   id: number;
   title: string;
-  status: 'active' | 'default';
+  isSelected: boolean;
 };
