@@ -4,8 +4,7 @@
   aspect-ratio: 1/1;
   width: 100%;
 
-  &:hover .hover,
-  &:focus-visible .hover {
+  &.hover_visible .hover {
     opacity: 1;
   }
 }

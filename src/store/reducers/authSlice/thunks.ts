@@ -15,6 +15,7 @@ import {
   IConfirmEmailRequest,
   ILoginRequest,
   IPersonalInfoRequest,
+  IRegisterGoogleRequest,
   IRegisterRequest,
   IResetPasswordRequest,
 } from 'services/auth/auth.serviceTypes';
@@ -234,3 +235,28 @@ export const changeEmail = createAsyncThunk<void, IChangeEmailRequest, IAsyncThu
     }
   },
 );
+
+export const registerGoogle = createAsyncThunk<
+  void,
+  IRegisterGoogleRequest,
+  IAsyncThunkConfig
+>('auth/registerGoogle', async (params, { rejectWithValue, dispatch }) => {
+  dispatch(setLoading(LoadingStatusEnum.Loading));
+
+  try {
+    await authService.googleRegister(params);
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      dispatch(
+        setResponseNotice({
+          noticeType: 'error',
+          message: error.response?.data?.error || error.message,
+        }),
+      );
+    }
+
+    return rejectWithValue('[registerGoogle]: Error');
+  } finally {
+    dispatch(setLoading(LoadingStatusEnum.Idle));
+  }
+});

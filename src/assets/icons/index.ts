@@ -1,4 +1,5 @@
 export { ReactComponent as ApplePayIcon } from './files/apple-pay.svg';
+export { ReactComponent as AppleButton } from './files/apple-button.svg';
 export { ReactComponent as BreadcrumbsArrowIcon } from './files/breadcrumbs-arrow.svg';
 export { ReactComponent as CheckMarkWhiteIcon } from './files/check-mark-white.svg';
 export { ReactComponent as ContactUsQuestionMarkIcon } from './files/contact-us-question-mark.svg';
@@ -13,6 +14,7 @@ export { ReactComponent as EyeVisibleIcon } from './files/eye-visible.svg';
 export { ReactComponent as FavoriteIcon } from './files/favourites-add-to.svg';
 export { ReactComponent as GooglePayIcon } from './files/google-pay.svg';
 export { ReactComponent as GoogleIcon } from './files/google.svg';
+export { ReactComponent as GoogleButton } from './files/google-button.svg';
 export { ReactComponent as HeaderCartIcon } from './files/header-cart.svg';
 export { ReactComponent as HeaderFavouritesIcon } from './files/header-favourites.svg';
 export { ReactComponent as HeaderNotificationsIcon } from './files/header-notifications.svg';
