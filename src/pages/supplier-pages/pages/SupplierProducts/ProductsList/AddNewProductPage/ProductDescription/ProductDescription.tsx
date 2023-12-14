@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 
 import { ArrowIcon } from 'assets/icons';
-import { MainProductInfo } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/MainProductInfo/MainProductInfo';
+import { ProductCategory } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ProductCategory/ProductCategory';
 import { Paragraph } from 'ui-kit';
 
 import style from './ProductDescription.module.scss';
@@ -56,7 +56,7 @@ export const ProductDescription: FC = (): JSX.Element => {
               <div className={style.additionalInfo}>
                 {/* контент для доп.инфо */}
                 <p>
-                  <MainProductInfo />
+                  <ProductCategory />
                 </p>
               </div>
             )}
