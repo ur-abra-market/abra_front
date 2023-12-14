@@ -48,8 +48,8 @@ import {
   RegisterPage,
   MainPage,
   ErrorPage,
+  ProductPage,
 } from 'pages/general-pages';
-import { ProductPage } from 'pages/seller-pages/ProductPage/ProductPage';
 
 type Routes = ReturnType<typeof createBrowserRouter>;
 
