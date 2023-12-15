@@ -120,7 +120,7 @@ export function createRoutes(userRole: UserRoleType): Routes {
           path: PRODUCTS_LIST,
           children: [
             {
-              path: ':id',
+              path: ':id?',
               element:
                 userRole === 'seller' || userRole === null ? (
                   <ProductListPage />

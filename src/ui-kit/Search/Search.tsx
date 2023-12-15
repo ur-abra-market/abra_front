@@ -1,18 +1,22 @@
 import {
-  forwardRef,
+  ChangeEvent,
   DetailedHTMLProps,
+  forwardRef,
   InputHTMLAttributes,
   KeyboardEvent,
-  ChangeEvent,
-  useEffect,
+  useState,
 } from 'react';
 
 import cn from 'classnames';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {
+  createSearchParams,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { HOME, PRODUCTS_LIST } from 'routes';
-import { setSearchValue } from 'store/reducers/searchSlice';
+import { useAppSelector } from 'common/hooks';
+import { PRODUCTS_LIST } from 'routes';
 
 import styles from './Search.module.scss';
 
@@ -22,40 +26,51 @@ export interface ISearch
     'type'
   > {
   isPhotoSearch?: boolean;
+  mainSearchField?: boolean;
 }
 
 export const Search = forwardRef<HTMLInputElement, ISearch>((props, ref): JSX.Element => {
-  const { className, isPhotoSearch = false, ...restProps } = props;
+  const {
+    className,
+    isPhotoSearch = false,
+    mainSearchField = false,
+    ...restProps
+  } = props;
 
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { id } = useParams();
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('query');
 
-  const value = useAppSelector(state => state.search.value);
+  const [searchValue, setSearchValue] = useState(mainSearchField ? query || '' : '');
+
   const role = useAppSelector(state => state.auth.userRole);
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>): void => {
-    dispatch(setSearchValue(e.target.value));
+    setSearchValue(e.target.value);
   };
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
-    if (e.code === 'Enter' && value.length !== 0) {
-      if (role === 'seller' || !role) {
-        navigate(`${PRODUCTS_LIST}/${value}`);
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
+    const isSearchFieldValid = mainSearchField && searchValue;
+    const isEnterKey = event.code === 'Enter';
+    const isSearchValueValid = searchValue.trim().length !== 0;
+    const isSellerRole = role === 'seller' || !role;
+
+    if (isSearchFieldValid) {
+      const path = `${PRODUCTS_LIST}/${id || ''}?${createSearchParams({
+        query: searchValue,
+      }).toString()}`;
+
+      if (isEnterKey && isSearchValueValid && isSellerRole) {
+        navigate(path);
       }
     }
   };
-
-  useEffect(() => {
-    if (pathname === HOME) {
-      dispatch(setSearchValue(''));
-    }
-  }, [pathname]);
 
   return (
     <div className={cn(styles.wrapper, className)}>
       <input
         className={cn(styles.input, className)}
         ref={ref}
-        value={value}
+        value={searchValue}
         onChange={handleChangeValue}
         onKeyDown={handleKeyDown}
         type="text"
