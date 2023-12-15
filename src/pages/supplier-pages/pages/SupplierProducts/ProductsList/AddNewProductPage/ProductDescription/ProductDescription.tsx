@@ -1,10 +1,38 @@
 import React, { FC, useState } from 'react';
 
 import { ArrowIcon } from 'assets/icons';
+import { Bundles } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Bundles/Bundles';
+import { MainProductInfo } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/MainProductInfo/MainProductInfo';
+import { Pricing } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Pricing/Pricing';
 import { ProductCategory } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ProductCategory/ProductCategory';
+import { Properties } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Properties/Properties';
+import { Variation } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Variation/Variation';
 import { Paragraph } from 'ui-kit';
 
 import style from './ProductDescription.module.scss';
+
+interface DynamicComponentProps {
+  item: string;
+}
+
+const DynamicComponent: FC<DynamicComponentProps> = ({ item }) => {
+  switch (item) {
+    case 'Main Product Info':
+      return <MainProductInfo />;
+    case 'Product category':
+      return <ProductCategory />;
+    case 'Properties':
+      return <Properties />;
+    case 'Variations':
+      return <Variation />;
+    case 'Bundles':
+      return <Bundles />;
+    case 'Pricing':
+      return <Pricing />;
+    default:
+      return <p>{item}</p>;
+  }
+};
 
 export const ProductDescription: FC = (): JSX.Element => {
   const items: string[] = [
@@ -54,10 +82,7 @@ export const ProductDescription: FC = (): JSX.Element => {
             </div>
             {activeItem === index && (
               <div className={style.additionalInfo}>
-                {/* контент для доп.инфо */}
-                <p>
-                  <ProductCategory />
-                </p>
+                <DynamicComponent item={item} />
               </div>
             )}
           </li>

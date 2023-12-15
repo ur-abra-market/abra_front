@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-export const Bundles: FC = (): JSX.Element => {
+export const Pricing: FC = (): JSX.Element => {
   return (
     <div>
       <p>Coming soon..</p>

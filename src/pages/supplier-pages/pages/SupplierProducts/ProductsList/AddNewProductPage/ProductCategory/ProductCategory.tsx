@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-// import { ArrowIcon } from 'assets/icons';
+import { ArrowIcon } from 'assets/icons';
 
 import style from './ProductCategory.module.scss';
 
@@ -16,12 +16,12 @@ interface CategoryDropdownProps {
 }
 
 const CategoryDropdown: FC<CategoryDropdownProps> = ({ category, depth }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const categoryDepthValue = 20;
   const subcategoryDepthValue = 15;
 
   const toggleDropdown = (): void => {
-    setIsExpanded(!isExpanded);
+    setIsOpen(!isOpen);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
@@ -32,22 +32,28 @@ const CategoryDropdown: FC<CategoryDropdownProps> = ({ category, depth }) => {
 
   return (
     <div style={{ paddingLeft: `${categoryDepthValue * depth}px` }}>
-      <div role="button" tabIndex={0} onClick={toggleDropdown} onKeyDown={handleKeyDown}>
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={toggleDropdown}
+        onKeyDown={handleKeyDown}
+        className={style.category_container}
+      >
+        <ArrowIcon className={`${style.product_icon} ${isOpen ? style.icon_open : ''}`} />
         <h3 className={style.category}>{category.name}</h3>
       </div>
-      {isExpanded && category.subcategories && (
+      {isOpen && category.subcategories && (
         <ul>
           {category.subcategories.map(subcategory => (
-            <li key={subcategory.id}>
+            <li
+              key={subcategory.id}
+              className={style.subcategory}
+              style={{ paddingLeft: `${subcategoryDepthValue * depth}px` }}
+            >
               {subcategory.subcategories ? (
                 <CategoryDropdown category={subcategory} depth={depth + 1} />
               ) : (
-                <span
-                  className={style.subcategory}
-                  style={{ paddingLeft: `${subcategoryDepthValue * depth}px` }}
-                >
-                  {subcategory.name}
-                </span>
+                <span>{subcategory.name}</span>
               )}
             </li>
           ))}
@@ -85,7 +91,7 @@ export const ProductCategory: React.FC = () => {
             },
             {
               id: 13,
-              name: 'Children',
+              name: 'Kids',
               subcategories: [
                 { id: 131, name: 'Boys' },
                 { id: 132, name: 'Girls' },
@@ -104,7 +110,7 @@ export const ProductCategory: React.FC = () => {
         },
         {
           id: 3,
-          name: 'Cosmetics',
+          name: 'Cosmetics and self care',
           subcategories: [
             { id: 31, name: 'Item1' },
             { id: 32, name: 'Item2' },

@@ -4,3 +4,21 @@
   font-weight: 400;
   font-style: normal; 
 }
+
+.category_container {
+  display: flex;
+  gap: 8px;
+}
+
+.product_icon {
+  margin-top: 3px;
+}
+
+.product_icon {
+  margin-top: 3px;
+  transition: transform 0s;
+}
+
+.icon_open {
+  transform: rotate(180deg);
+}
