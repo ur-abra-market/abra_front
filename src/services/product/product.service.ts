@@ -12,8 +12,8 @@ import { baseConfigService } from 'services/baseConfig.service';
 import { IProductCard } from 'store/reducers/productSlice';
 import { IProductsListResponse } from 'store/reducers/supplier/product';
 import {
-  IProductSorting,
   IProductFilterParams,
+  IProductSorting,
 } from 'store/reducers/supplier/product/types';
 
 export const productService = {
@@ -32,6 +32,17 @@ export const productService = {
     return data.result;
   },
 
+  getSearchProducts: async (data: string) => {
+    const res = await baseConfigService.post<IBaseResponse<IProductsCompilationResponse>>(
+      `products`,
+      {
+        query: data,
+      },
+    );
+
+    return res;
+  },
+
   getProductById: async ({ product_id }: IProductRequest) => {
     const { data } = await baseConfigService.get<IBaseResponse<IProductCard>>(
       `products/${product_id}`,
@@ -42,9 +53,11 @@ export const productService = {
 
   addFavorite: async (params: IProductRequest) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
-      `products/addFavorite`,
-      {},
-      { params },
+      `sellers/favorites/add`,
+      { product_id: params.product_id },
+      {
+        params,
+      },
     );
 
     return data.result;

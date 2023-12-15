@@ -1,12 +1,13 @@
-import { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react';
+import { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
 import { MagnifierLightGreyIcon } from 'assets/icons';
-import { useAppSelector } from 'common/hooks';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { FavoriteButton } from 'elements/FavoriteButton/FavoriteButton';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { userRoleSelector } from 'store/reducers/authSlice';
+import { addFavoriteProduct, removeFavoriteProduct } from 'store/reducers/productSlice';
 
 import style from './ProductImage.module.scss';
 
@@ -15,27 +16,40 @@ interface IProductCard
   name: string;
   imageUrl: string;
   productId?: number;
+  isFavorite: boolean;
+  isHovered?: boolean;
 }
 
 const ProductImage: FC<IProductCard> = ({
   className,
   name,
   imageUrl,
+  productId,
+  isHovered,
+  isFavorite,
   ...restProps
 }): JSX.Element => {
+  const dispatch = useAppDispatch();
   const userRole = useAppSelector(userRoleSelector);
-  // TODO add request to favorite (fake Data)
-  const [fakeIsFavorite, setIsFakeFavorite] = useState(false);
 
   const handleChangeFavorite = (isFavorite: boolean): void => {
-    setIsFakeFavorite(isFavorite);
+    if (isFavorite) {
+      dispatch(addFavoriteProduct({ product_id: Number(productId) }));
+    } else {
+      dispatch(removeFavoriteProduct({ product_id: Number(productId) }));
+    }
   };
 
   return (
-    <div className={cn(style.image_wrapper, className)} {...restProps}>
+    <div
+      className={cn(style.image_wrapper, className, {
+        [style.hover_visible]: isHovered,
+      })}
+      {...restProps}
+    >
       {userRole && (
         <FavoriteButton
-          isFavorite={fakeIsFavorite}
+          isFavorite={isFavorite}
           onChange={handleChangeFavorite}
           className={style.flag}
         />
@@ -49,7 +63,7 @@ const ProductImage: FC<IProductCard> = ({
       <div className={style.hover}>
         <div className={style.hover_text}>
           <MagnifierLightGreyIcon />
-          <span>Quick View</span>
+          <span>View more</span>
         </div>
       </div>
     </div>

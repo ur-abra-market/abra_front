@@ -1,6 +1,9 @@
 .items {
   display: flex;
+  flex-basis: 50%;
   column-gap: 24px;
+  align-items: center;
+
   color: var(--color-black);
 }
 
@@ -10,6 +13,18 @@
 }
 
 .item_link {
-  font: var(--semi-bold) var(--fz-m) / 16px var(--roboto);
+  font-size: var(--fz-m);
+  font-weight: var(--semi-bold);
   color: inherit;
+}
+
+@media (max-width: 373px) {
+  .items {
+    column-gap: 10px;
+  }
+
+  .item {
+    display: flex;
+    column-gap: 10px;
+  }
 }

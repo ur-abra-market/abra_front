@@ -1,4 +1,4 @@
-@import "src/common/styles/mixins";
+@import 'src/common/styles/mixins';
 
 @include auth_pages_form;
 
@@ -13,9 +13,15 @@
   width: 50%;
 }
 
-
 .input_wrapper {
   input {
     padding-right: 46px;
   }
+}
+
+.buttons_container_alternate_signup {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  margin-bottom: 24px;
 }

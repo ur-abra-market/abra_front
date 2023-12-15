@@ -1,9 +1,0 @@
-@import "src/common/styles/mixins";
-
-.product_container {
-  @include content_container;
-
-  padding-top: 38px;
-  padding-bottom: 100px;
-  background: var(--color-white-snow);
-}

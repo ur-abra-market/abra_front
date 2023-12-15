@@ -1,5 +1,3 @@
-import { productActions } from './slice';
-
 export {
   favoriteProductSelector,
   productCategorySelector,
@@ -17,6 +15,8 @@ export {
   productsListSelector,
   totalProductsCountSelector,
   sortFieldSelector,
+  priseSelector,
+  supplierNameSelector,
 } from './selectors';
 
 export {

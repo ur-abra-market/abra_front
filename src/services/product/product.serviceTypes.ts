@@ -33,9 +33,9 @@ export interface IProductUser {
 }
 
 export interface IPopularProductRequest {
-  product_id: number;
-  page_num: number;
-  page_size: number;
+  category_id: number;
+  offset: number;
+  limit: number;
 }
 
 export interface ICategoryRequest {
@@ -100,6 +100,8 @@ export interface IProductCompilation {
   supplier?: IProductSupplier;
   total_orders: number;
   uuid: string;
+  is_favorite: boolean;
+  reviews_count: number;
 }
 
 export interface IProductPrice {
