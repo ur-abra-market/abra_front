@@ -1,12 +1,14 @@
 import React, { FC, useState } from 'react';
 
 import { ArrowIcon } from 'assets/icons';
+import { Checkbox } from 'ui-kit';
 
 import style from './ProductCategory.module.scss';
 
 interface Category {
   id: number;
   name: string;
+  isChecked?: boolean;
   subcategories?: Category[];
 }
 
@@ -17,7 +19,7 @@ interface CategoryDropdownProps {
 
 const CategoryDropdown: FC<CategoryDropdownProps> = ({ category, depth }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const categoryDepthValue = 20;
+  const categoryDepthValue = 10;
   const subcategoryDepthValue = 15;
 
   const toggleDropdown = (): void => {
@@ -53,7 +55,13 @@ const CategoryDropdown: FC<CategoryDropdownProps> = ({ category, depth }) => {
               {subcategory.subcategories ? (
                 <CategoryDropdown category={subcategory} depth={depth + 1} />
               ) : (
-                <span>{subcategory.name}</span>
+                <span className={style.checkbox_container}>
+                  <Checkbox
+                    checked={subcategory.isChecked || false}
+                    className={style.checkbox}
+                  />
+                  {subcategory.name}
+                </span>
               )}
             </li>
           ))}
@@ -121,7 +129,7 @@ export const ProductCategory: React.FC = () => {
   ];
 
   return (
-    <div>
+    <div className={style.container}>
       {categories.map(category => (
         <CategoryDropdown key={category.id} category={category} depth={0} />
       ))}

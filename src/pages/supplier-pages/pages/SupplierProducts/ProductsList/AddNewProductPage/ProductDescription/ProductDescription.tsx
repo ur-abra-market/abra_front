@@ -19,7 +19,7 @@ const DynamicComponent: FC<DynamicComponentProps> = ({ item }) => {
   switch (item) {
     case 'Main Product Info':
       return <MainProductInfo />;
-    case 'Product category':
+    case 'Product Category':
       return <ProductCategory />;
     case 'Properties':
       return <Properties />;
@@ -37,7 +37,7 @@ const DynamicComponent: FC<DynamicComponentProps> = ({ item }) => {
 export const ProductDescription: FC = (): JSX.Element => {
   const items: string[] = [
     'Main Product Info',
-    'Product category',
+    'Product Category',
     'Properties',
     'Variations',
     'Bundles',
@@ -81,7 +81,7 @@ export const ProductDescription: FC = (): JSX.Element => {
               />
             </div>
             {activeItem === index && (
-              <div className={style.additionalInfo}>
+              <div className={style.additional_info}>
                 <DynamicComponent item={item} />
               </div>
             )}
