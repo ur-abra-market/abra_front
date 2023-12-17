@@ -18,6 +18,12 @@
   color: inherit;
 }
 
+@media (max-width: 800px) {
+  .items {
+    flex-basis: unset;
+  }
+}
+
 @media (max-width: 373px) {
   .items {
     column-gap: 10px;

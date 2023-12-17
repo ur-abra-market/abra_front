@@ -1,6 +1,9 @@
 .product_price_container {
   display: flex;
-  gap: 24px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+
   margin-bottom: 33px;
 }
 
