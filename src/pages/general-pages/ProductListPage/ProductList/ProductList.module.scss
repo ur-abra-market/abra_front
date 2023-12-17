@@ -2,15 +2,14 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-
-  width: calc(100% - 464px);
-  padding-right: 118px;
+  width: calc(100% - 450px);
 }
 
 .control_panel {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding-right: 118px;
 }
 
 .view_switchers {

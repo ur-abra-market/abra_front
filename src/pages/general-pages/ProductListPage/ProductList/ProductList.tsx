@@ -5,6 +5,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 
 import { ProductCardFull } from './ProductCardFull/ProductCardFull';
 
+import { Filter } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum, SelectedViewEnum } from 'common/types';
 import { PageViewSwitcher, ProductsPerPage, SkeletonProductCard } from 'elements';
@@ -100,6 +101,7 @@ export const ProductList: FC<IProductList> = ({
             setSelectedView={setSelectedView}
           />
           <div className={style.branch_crumbs}>{`bread > crumb > plug`}</div>
+          <Filter />
           {/* TODO (fake data) */}
         </div>
         {paginationComponent}
