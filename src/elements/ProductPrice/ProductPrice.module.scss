@@ -22,3 +22,15 @@
 .total_price {
   color: var(--color-gray);
 }
+
+@media (max-width: 1040px) {
+  .product_price_container {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 628px) {
+  .wrapper {
+    width: 100%;
+  }
+}

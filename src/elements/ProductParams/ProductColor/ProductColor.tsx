@@ -63,9 +63,12 @@ export const ProductColor: FC<IProductColorProps> = ({ colors }): JSX.Element =>
             <li
               onClick={() => setActive(el.id)}
               key={el.id}
-              className={cn(style.item, { [style.active]: el.id === active })}
+              className={cn(style.item, style.without_color, {
+                [style.active]: el.id === active,
+              })}
             >
-              <WithoutColor />
+              {/* <WithoutColor /> */}
+              <div />
             </li>
           ),
         )}
