@@ -6,7 +6,7 @@ export const Brand = (): JSX.Element => {
   return (
     <div className={style.brand}>
       <p className={style.title}>Brand</p>
-      <Search placeholder="Search" />
+      {/* <Search placeholder="Search" /> */}
     </div>
   );
 };

@@ -6,7 +6,7 @@ export const Material = (): JSX.Element => {
   return (
     <div className={style.material}>
       <p className={style.title}>Material</p>
-      <Search placeholder="Search" />
+      {/* <Search placeholder="Search" /> */}
     </div>
   );
 };
