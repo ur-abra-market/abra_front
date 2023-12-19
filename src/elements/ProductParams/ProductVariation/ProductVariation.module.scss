@@ -1,11 +1,17 @@
+
 .container {
   display: flex;
   align-items: center;
 
-  height: 48px;
-  padding: 4px 8px;
+  height: 33px;
+  padding: 8px 12px;
 
+  border: 1px solid #D4D4D4;
   border-radius: 8px;
+
+  &:hover {
+    background-color: var(--color);
+  }
 }
 
 .box {
@@ -14,9 +20,10 @@
   align-items: center;
   justify-content: center;
 
-  width: 17px;
-  height: 17px;
+  width: 20px;
+  height: 16px;
   margin-right: 8px;
 
   border-radius: 4px;
 }
+

@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
 
-import { Paragraph } from 'ui-kit';
-
 import style from './ProductVariation.module.scss';
 
 interface ProductVariationProps {
@@ -13,10 +11,9 @@ export const ProductVariation: FC<ProductVariationProps> = ({
   color,
 }): JSX.Element => {
   return (
-    <div className={style.container}>
+    <div className={style.container} style={{ '--color': color } as React.CSSProperties}>
       <div className={style.box} style={{ backgroundColor: color }} />
-      <Paragraph>Var.</Paragraph>
-      {optionNumber}
+      <div>Var. {optionNumber}</div>
     </div>
   );
 };

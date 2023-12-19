@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 
 import { ProductVariation } from './ProductVariation';
 
@@ -14,9 +14,19 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const ProductVariationStory: Story = {
+export const Deffault: Story = {
   args: {
     color: '#BE58E1',
     optionNumber: 1,
   },
+};
+export const Deffault2: StoryFn = () => {
+  return (
+    <div style={{ display: 'flex', gap: '4px', alignItems: 'flex-start' }}>
+      <ProductVariation color="#BE58E1" optionNumber={2} />
+      <ProductVariation color="#BE58E1" optionNumber={2} />
+      <ProductVariation color="#BE58E1" optionNumber={2} />
+      <ProductVariation color="#BE58E1" optionNumber={2} />
+    </div>
+  );
 };
