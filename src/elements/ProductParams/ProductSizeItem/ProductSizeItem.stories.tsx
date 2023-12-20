@@ -36,10 +36,10 @@ const ProductSizeSelectorWithHooks = (): JSX.Element => {
   );
 };
 
-export const ProductSizeSelectorToggle = {
+export const ProductSizeItemToggle = {
   render: () => <ProductSizeSelectorWithHooks />,
 };
-export const MultipleProductSizeSelectors = (): JSX.Element => {
+export const MultipleProductSizeItem = (): JSX.Element => {
   const [active1, setActive1] = useState<boolean>(false);
   const [active2, setActive2] = useState<boolean>(false);
   const [active3, setActive3] = useState<boolean>(false);
