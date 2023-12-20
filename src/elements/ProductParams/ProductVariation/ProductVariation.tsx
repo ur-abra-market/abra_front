@@ -11,7 +11,10 @@ export const ProductVariation: FC<ProductVariationProps> = ({
   color,
 }): JSX.Element => {
   return (
-    <div className={style.container} style={{ '--color': color } as React.CSSProperties}>
+    <div
+      className={style.container}
+      style={{ '--backgroundColor': color } as React.CSSProperties}
+    >
       <div className={style.box} style={{ backgroundColor: color }} />
       <div>Var. {optionNumber}</div>
     </div>
