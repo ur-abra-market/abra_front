@@ -57,12 +57,12 @@ const sellerProfileSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(getSellerDataCart.fulfilled, (state, action) => {
-      const product_cart: IProductCardCart[] = [];
+      const productCartItems: IProductCardCart[] = [];
 
-      action.payload.forEach(item => product_cart.push(...item.details));
+      action.payload.forEach(item => productCartItems.push(...item.details));
 
       const productsWithSupplier: Record<string, IProductCardCart[]> =
-        product_cart.reduce(
+        productCartItems.reduce(
           (
             products_with_name: Record<string, IProductCardCart[]>,
             products: IProductCardCart,
@@ -84,7 +84,10 @@ const sellerProfileSlice = createSlice({
           {},
         );
 
-      state.productsInCart = Object.values(productsWithSupplier);
+      const sortedCartItemsByName: Record<string, IProductCardCart[]> =
+        Object.fromEntries(Object.entries(productsWithSupplier).sort());
+
+      state.productsInCart = Object.values(sortedCartItemsByName);
     });
   },
 });

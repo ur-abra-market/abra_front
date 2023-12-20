@@ -1,0 +1,123 @@
+
+.item_description {
+  display: flex;
+  gap: 26px;
+  width: 100%;
+}
+
+.image {
+  width: 120px;
+  height: 120px;
+  border-radius: 8px;
+}
+
+.item_information {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+
+  .item_title {
+    margin-bottom: 12px;
+    font-size: var(--fz-m);
+    font-weight: var(--medium);
+  }
+}
+
+.item_details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+
+  margin-bottom: 25px;
+
+  .item_color {
+    margin-right: 12px;
+
+    font-size: var(--fz-m);
+    font-weight: var(--regular);
+    font-style: normal;
+    line-height: 20px;
+    letter-spacing: 0.16px;
+  }
+
+  .item_pieces {
+    font-size: var(--fz-m);
+    font-weight: var(--regular);
+    font-style: normal;
+    line-height: 20px;
+    letter-spacing: 0.16px;
+  }
+}
+
+.order_details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  .item_price {
+    display: flex;
+    flex-direction: column;
+
+    .total_price {
+      width: auto;
+      margin-bottom: 4px;
+
+      font-size: var(--fz-l-2);
+      line-height: 20px;
+      letter-spacing: 0.38px;
+    }
+
+    .item_price_details {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.value_bundles {
+  margin-right: 4px;
+  font-size: var(--fz-m);
+  line-height: 20px;
+  letter-spacing: 0.38px;
+}
+
+.line {
+  transform: translateY(-5px);
+
+  flex: 1 1 auto;
+  align-self: flex-end;
+
+  width: 24px;
+  height: 1px;
+  margin-right: 4px;
+
+  background: var(--color-black);
+}
+
+.item_prices {
+  display: flex;
+  align-items: center;
+
+  .old_price {
+    margin-right: 4px;
+
+    font-size: var(--fz-m);
+    line-height: 20px;
+    color: var(--color-black);
+    text-decoration: line-through;
+    text-decoration-color: var(--color-red);
+    letter-spacing: 0.38px;
+  }
+
+  .new_price {
+    font-size: var(--fz-m);
+    line-height: 20px; /* 133.333% */
+    color: var(--color-red);
+    letter-spacing: 0.38px;
+  }
+}

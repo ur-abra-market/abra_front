@@ -20,6 +20,7 @@ export const SupplierInformation: FC<ISupplierInformation> = ({
   const supplierGradeAverage = products[0].bundle_variation_pod.product.supplier
     .grade_average as number;
   const supplierName = products[0].bundle_variation_pod.product.supplier.company.name;
+
   const dispatch = useAppDispatch();
 
   const isSelectAllProducts = products.every(product => product.is_checked);
