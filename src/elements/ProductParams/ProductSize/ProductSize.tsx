@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
 
-import cn from 'classnames';
-
+import { SizeEnum } from 'common/types';
+import { ProductSizeItem } from 'elements/ProductParams/ProductSizeItem/ProductSizeItem';
 import { Paragraph } from 'ui-kit';
 
 import style from './ProductSize.module.scss';
 
 export const ProductSize = (): JSX.Element => {
-  const [active, setActive] = useState<null | number>(null);
+  const [active, setActive] = useState<null | SizeEnum>(null);
 
   const temp = [
-    { id: 1, size: 'XS' },
-    { id: 2, size: 'S' },
-    { id: 3, size: 'M' },
-    { id: 4, size: 'L' },
-    { id: 5, size: 'XL' },
-    { id: 6, size: 'XXL' },
-    { id: 7, size: 'XXXL' },
-    { id: 8, size: 'XXXXL' },
+    { id: 1, size: SizeEnum.XS, quantity: 4 },
+    { id: 2, size: SizeEnum.S, quantity: 5 },
+    { id: 3, size: SizeEnum.M, quantity: 6 },
+    { id: 4, size: SizeEnum.L, quantity: 7 },
+    { id: 5, size: SizeEnum.XL, quantity: 8 },
+    { id: 6, size: SizeEnum.XXL, quantity: 9 },
+    { id: 7, size: SizeEnum.XXXL, quantity: 10 },
+    { id: 8, size: SizeEnum.XXXXL, quantity: 11 },
   ];
 
   return (
@@ -27,13 +27,13 @@ export const ProductSize = (): JSX.Element => {
       </Paragraph>
       <ul className={style.items}>
         {temp.map(el => (
-          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
-          <li onClick={() => setActive(el.id)} key={el.id}>
-            <span className={cn(style.item, { [style.active]: el.id === active })}>
-              {el.size}
-            </span>
-            <span className={style.remains}>4</span>
-          </li>
+          <ProductSizeItem
+            key={el.id}
+            size={el.size}
+            quantity={el.quantity}
+            active={el.size === active}
+            onClick={() => setActive(el.size)}
+          />
         ))}
       </ul>
     </div>
