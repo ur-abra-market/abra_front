@@ -2,12 +2,12 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import { SizeEnums } from 'common/types';
+import { SizeEnum } from 'common/types';
 
 import style from './ProductSizeSelector.module.scss';
 
 interface ProductSizeSelectorProps {
-  size: SizeEnums;
+  size: SizeEnum;
   quantity: number;
   active: boolean;
   onClick: () => void;
