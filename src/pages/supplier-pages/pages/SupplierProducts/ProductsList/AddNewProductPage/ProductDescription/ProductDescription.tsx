@@ -7,7 +7,6 @@ import { Pricing } from 'pages/supplier-pages/pages/SupplierProducts/ProductsLis
 import { ProductCategory } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ProductCategory/ProductCategory';
 import { Properties } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Properties/Properties';
 import { Variation } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Variation/Variation';
-import { MainProductInfo } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/MainProductInfo/MainProductInfo';
 import { Paragraph } from 'ui-kit';
 
 import style from './ProductDescription.module.scss';
@@ -84,11 +83,6 @@ export const ProductDescription: FC = (): JSX.Element => {
             {activeItem === index && (
               <div className={style.additional_info}>
                 <DynamicComponent item={item} />
-              <div className={style.additionalInfo}>
-                {/* контент для доп.инфо */}
-                <p>
-                  <MainProductInfo />
-                </p>
               </div>
             )}
           </li>
