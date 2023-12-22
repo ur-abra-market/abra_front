@@ -12,7 +12,6 @@ import {
   productTagsSelector,
   similarProductsSelector,
 } from 'store/reducers/productSlice';
-import { ITag } from 'store/reducers/productSlice/types';
 
 import style from './ProductRecommendations.module.scss';
 
