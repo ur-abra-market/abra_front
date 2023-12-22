@@ -16,9 +16,11 @@ type Story = StoryObj<typeof meta>;
 export const BigCounter: Story = {
   args: {
     variant: 'large',
-    amount: 200,
-    onIncrementHandler: () => {},
-    onDecrementHandler: () => {},
+    amount: 134,
+    min_amount: 2,
+    max_amount: 1000,
+    label: 'Bundle',
+    bundles_amount: '/from 100 bundles',
   },
 };
 
@@ -26,23 +28,28 @@ export const SmallCounter: Story = {
   args: {
     variant: 'small',
     amount: 134,
-    onIncrementHandler: () => {},
-    onDecrementHandler: () => {},
+    min_amount: 2,
+    max_amount: 1000,
+    label: 'Bundle',
+    bundles_amount: '/from 100 bundles',
   },
 };
 export const CounterWithState = (): JSX.Element => {
-  const [value, setValue] = useState<number>(10);
+  const [value, setValue] = useState(5);
 
-  if (value < 1) {
-    setValue(1);
-  }
+  const handleInputChange = (amount: number | string): void => {
+    setValue(amount as number);
+  };
 
   return (
     <Counter
       amount={value}
+      min_amount={2}
+      max_amount={1000}
       variant="large"
-      onDecrementHandler={value => setValue(value + 1)}
-      onIncrementHandler={value => setValue(value - 1)}
+      label="Bundle"
+      onChange={handleInputChange}
+      bundles_amount="/from 100 bundles"
     />
   );
 };

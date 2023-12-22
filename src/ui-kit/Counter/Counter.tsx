@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { ChangeEvent, FC, forwardRef, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -7,51 +7,126 @@ import { Paragraph } from 'ui-kit/Paragraph/Paragraph';
 import style from './Counter.module.scss';
 
 export interface ICounter {
-  className?: string;
   variant?: 'small' | 'large';
+  label?: string;
+  bundles_amount?: string;
   amount: number;
-  onIncrementHandler: (value: number) => void;
-  onDecrementHandler: (value: number) => void;
+  max_amount: number;
+  min_amount?: number;
+  onChange: (amount: number | string) => void;
+  className?: string;
 }
 
-export const Counter: FC<ICounter> = ({
-  className,
-  variant = 'small',
-  amount,
-  onIncrementHandler,
-  onDecrementHandler,
-}): JSX.Element => {
-  const incrementClasses = cn(style.increment, {
-    [style.increment_large]: variant === 'large',
-  });
+export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
+  (
+    {
+      variant = 'small',
+      label = 'Bundle',
+      bundles_amount = 100,
+      amount,
+      min_amount = 1,
+      max_amount,
+      onChange,
+      className,
+      ...restProps
+    },
+    ref,
+  ): JSX.Element => {
+    const isDisableDecrement = Number(amount) === min_amount;
+    const isDisabledIncrement = Number(amount) === max_amount;
 
-  const decrementClasses = cn(style.decrement, {
-    [style.decrement_large]: variant === 'large',
-  });
+    const [initAmount, setInitAmount] = useState<string | number>(amount);
 
-  const valueClasses = cn(style.value, {
-    [style.value_large]: variant === 'large',
-  });
+    const valueClasses = cn(style.value, {
+      [style.value_large]: variant === 'large',
+    });
 
-  return (
-    <div className={cn(style.counter, className)}>
-      <button
-        type="button"
-        className={decrementClasses}
-        onClick={() => onIncrementHandler(amount)}
-      >
-        -
-      </button>
-      <Paragraph size="s2" className={valueClasses}>
-        {amount >= 1 ? amount : 1}
-      </Paragraph>
-      <button
-        type="button"
-        className={incrementClasses}
-        onClick={() => onDecrementHandler(amount)}
-      >
-        +
-      </button>
-    </div>
-  );
-};
+    const buttonClasses = cn(style.button, {
+      [style.button_large]: variant === 'large',
+    });
+
+    const handleClickIncrement = (amount: number): void => {
+      setInitAmount(Number(amount) + 1);
+      onChange(Number(amount) + 1);
+    };
+
+    const handleClickDecrement = (amount: number): void => {
+      setInitAmount(Number(amount) - 1);
+      onChange(Number(amount) - 1);
+    };
+
+    const handleInputChangeAmount = (event: ChangeEvent<HTMLInputElement>): void => {
+      const inputValue = parseInt(event.currentTarget.value.trim(), 10);
+      const value = String(event.currentTarget.value).replace(/^[.+-]+/g, '');
+
+      if (inputValue <= min_amount) {
+        onChange(min_amount);
+      } else if (inputValue > max_amount) {
+        onChange(max_amount);
+      } else {
+        onChange(value);
+      }
+    };
+
+    const handleBlurAmount = (): void => {
+      if (amount) {
+        const parsedAmount = Math.floor(Number(String(amount)));
+        const validationAmount = String(parsedAmount).replace(/^[0+-]+|[+-]+/g, '');
+
+        if (Number.isNaN(parsedAmount)) {
+          onChange(initAmount);
+        } else if (parsedAmount < min_amount) {
+          onChange(min_amount);
+        } else if (parsedAmount > max_amount) {
+          onChange(max_amount);
+        } else {
+          setInitAmount(validationAmount);
+          onChange(validationAmount);
+        }
+      } else {
+        onChange(initAmount);
+      }
+    };
+
+    return (
+      <div className={cn(style.wrapper, className)}>
+        <div className={style.label}>
+          <Paragraph className={style.label_title}>
+            {label}
+            <span className={style.label_bundles}>{bundles_amount}</span>
+          </Paragraph>
+        </div>
+        <div className={style.counter}>
+          <button
+            type="button"
+            className={buttonClasses}
+            onClick={() => handleClickDecrement(amount)}
+            disabled={isDisableDecrement}
+          >
+            -
+          </button>
+          <input
+            type="number"
+            pattern="[0-9]*"
+            value={amount}
+            ref={ref}
+            onBlur={handleBlurAmount}
+            className={valueClasses}
+            onChange={handleInputChangeAmount}
+            min={min_amount}
+            max={max_amount}
+            {...restProps}
+          />
+          <button
+            type="button"
+            className={buttonClasses}
+            onClick={() => handleClickIncrement(amount)}
+            disabled={isDisabledIncrement}
+          >
+            +
+          </button>
+        </div>
+      </div>
+    );
+  },
+);
