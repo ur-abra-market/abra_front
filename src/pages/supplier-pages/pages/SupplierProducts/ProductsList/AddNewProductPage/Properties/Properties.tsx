@@ -8,11 +8,13 @@ import { Label, Input, Select } from 'ui-kit';
 import style from './Properties.module.scss';
 
 export const Properties: FC = (): JSX.Element => {
-  const { control } = useForm();
+  const { control, watch } = useForm();
   const categories = useAppSelector(state => state.common.categories);
   const nameData = categories ? categories.filter(c => c.level === 1) : [];
 
   const [showAdditional, setShowAdditional] = useState(false);
+
+  const selectedMaterial = watch('material');
 
   return (
     <form>
@@ -144,6 +146,7 @@ export const Properties: FC = (): JSX.Element => {
           type="button"
           className={style.button}
           onClick={() => setShowAdditional(!showAdditional)}
+          disabled={!selectedMaterial}
         >
           + Add material
         </button>
