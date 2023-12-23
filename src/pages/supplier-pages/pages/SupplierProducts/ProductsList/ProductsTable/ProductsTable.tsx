@@ -7,9 +7,11 @@ import style from './ProductsTable.module.scss';
 
 export const ProductsTable = (): JSX.Element => {
   return (
-    <table className={style.table}>
-      <TableHeader />
-      <TableList />
-    </table>
+    <div className={style.table_wrapper}>
+      <table className={style.table}>
+        <TableHeader />
+        <TableList />
+      </table>
+    </div>
   );
 };

@@ -1,5 +1,11 @@
 .table {
   width: 100%;
+  min-width: 1280px;
   margin-top: 36px;
 }
 
+.table_wrapper {
+  scroll-behavior: smooth;
+  position: relative;
+  overflow-x: auto;
+}

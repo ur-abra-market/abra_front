@@ -70,7 +70,7 @@ export const TableHeader = (): JSX.Element => {
   return (
     <thead className={style.thead}>
       <tr className={style.table_row}>
-        <th className={style.table_head}>
+        <th className={style.table_head} data-column="Checkbox">
           <Checkbox
             disabled={isLoading}
             variant="default"
@@ -79,7 +79,7 @@ export const TableHeader = (): JSX.Element => {
           />
         </th>
         {tableSortData.map(column => (
-          <th key={column.id} className={style.table_head}>
+          <th key={column.id} className={style.table_head} data-column={column.name}>
             {column.name}
             {column.arrow && (
               <ButtonIcon

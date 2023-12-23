@@ -1,27 +1,71 @@
 .table_row {
-  display: grid;
-  grid-template-columns: 4.50% 8.48% 6.83% 29% 11.12% 7.33% 6.60% 11.72% calc(66px + 2%) 6%;
-  grid-template-rows: 1fr;
+  display: table-row;
+  width: 100%;
 }
 
 
 .table_head {
-  display: flex;
-  column-gap: 1px;
-  align-items: center;
-
   width: 100%;
-  min-height: 20px;
+  padding: 10px;
 
   font-size: var(--fz-m);
   font-weight: var(--medium);
   color: var(--color-black);
   text-align: left;
-  word-break: break-word;
 
   background-color: var(--color-white);
-}
 
-.icon_filter {
-  margin-right: 12px;
+  &[data-column="Checkbox"] {
+    position: sticky;
+    left: 3px;
+    width: 4%;
+    outline: 3px solid var(--color-white);
+  }
+  
+  &[data-column="SKU"] {
+    position: sticky;
+    left: 60px;
+
+    width: 7%;
+
+    text-align: right;
+
+    outline: 3px solid var(--color-white);
+  }
+  
+  &[data-column="Picture"] {
+    width: 6%;
+  }
+  
+  &[data-column="Name"] {
+    width: 29%;
+  }
+  
+  &[data-column="Creation Date"] {
+    width: 12%;
+  }
+
+  &[data-column="Status"] {
+    width: 7%;
+  }
+  
+  &[data-column="Price"] {
+    width: 6%;
+    text-align: right;
+  }
+  
+  &[data-column="Units"] {
+    width: 7%;
+    text-align: right;
+  }
+  
+  &[data-column="Rating"] {
+    width: 8%;
+    text-align: center;
+  }
+  
+  &[data-column="Visibility"] {
+    width: 7%;
+    text-align: center;
+  }
 }

@@ -35,6 +35,8 @@ export const productService = {
       IBaseResponse<IProductsCompilationResponse>
     >(`products`, { category_ids: categoryIds, query }, { params });
 
+    console.log(data);
+
     return data.result;
   },
 

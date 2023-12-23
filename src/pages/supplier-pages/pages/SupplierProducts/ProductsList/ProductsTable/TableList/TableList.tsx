@@ -5,6 +5,7 @@ import cn from 'classnames';
 import defaultImg from 'assets/images/files/default-product-image.png';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { formatDate } from 'common/utils/formatDateProductsList';
+import { tableSortData } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/tableData';
 import {
   activeProductSelector,
   deactivatedProductSelector,
@@ -51,7 +52,7 @@ export const TableList = (): JSX.Element => {
 
         return (
           <tr className={deactivatedClasses} key={el.id}>
-            <td className={style.table_td}>
+            <td className={style.table_td} data-column="Checkbox">
               <Checkbox
                 disabled={isLoading}
                 checked={checked}
@@ -59,12 +60,16 @@ export const TableList = (): JSX.Element => {
                 onChange={event => onChangeChecked(event, el.id, el.is_active)}
               />
             </td>
-            <td className={style.table_td}>{el.id}</td>
-            <td className={style.table_td}>
+            <td className={style.table_td} data-column={tableSortData[0].name}>
+              {el.id}
+            </td>
+            <td className={style.table_td} data-column={tableSortData[1].name}>
               <img className={style.image} src={defaultImg} alt="product" />
             </td>
-            <td className={style.table_td}>{el.name}</td>
-            <td className={style.table_td}>
+            <td className={style.table_td} data-column={tableSortData[2].name}>
+              {el.name}
+            </td>
+            <td className={style.table_td} data-column={tableSortData[3].name}>
               {el.created_at && (
                 <div className={style.datetime_container}>
                   <span>{formattedDate}</span>
@@ -75,17 +80,24 @@ export const TableList = (): JSX.Element => {
 
             {el.prices.map(item => (
               <React.Fragment key={item.id}>
-                <td className={style.table_td}>
+                <td className={style.table_td} data-column={tableSortData[4].name}>
                   {item.discount ? 'On Sale' : 'Off Sale'}
                 </td>
-                <td className={style.table_td}>{`$${item.value}`}</td>
-                <td className={style.table_td}>empty</td>
+                <td
+                  className={style.table_td}
+                  data-column={tableSortData[5].name}
+                >{`$${item.value}`}</td>
+                <td className={style.table_td} data-column={tableSortData[6].name}>
+                  empty
+                </td>
               </React.Fragment>
             ))}
-            <td className={style.table_td}>
+            <td className={style.table_td} data-column={tableSortData[7].name}>
               <Stars sizes="10" reward={el.grade_average} />
             </td>
-            <td className={style.table_td}>{el.is_active ? 'Visible' : 'Hidden'}</td>
+            <td className={style.table_td} data-column={tableSortData[8].name}>
+              {el.is_active ? 'Visible' : 'Hidden'}
+            </td>
           </tr>
         );
       })}
