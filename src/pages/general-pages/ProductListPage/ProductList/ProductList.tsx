@@ -101,7 +101,9 @@ export const ProductList: FC<IProductList> = ({
             setSelectedView={setSelectedView}
           />
           <div className={style.branch_crumbs}>{`bread > crumb > plug`}</div>
-          <Filter />
+          <div className={style.filter}>
+            <Filter />
+          </div>
           {/* TODO (fake data) */}
         </div>
         {paginationComponent}

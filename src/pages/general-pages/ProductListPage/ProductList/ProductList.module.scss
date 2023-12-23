@@ -2,14 +2,15 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+
   width: calc(100% - 450px);
+  padding-right: 118px;
 }
 
 .control_panel {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding-right: 118px;
 }
 
 .view_switchers {
@@ -36,6 +37,8 @@
 }
 
 .grid_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
   row-gap: 32px;
   column-gap: 12px;
 }
@@ -61,3 +64,14 @@
   width: 100%;
   padding-top: 80px;
 }
+
+.filter {
+  display: none;
+}
+
+@media only screen and (max-width: 1140px) {
+  .filter {
+    display: block;
+  }
+}
+
