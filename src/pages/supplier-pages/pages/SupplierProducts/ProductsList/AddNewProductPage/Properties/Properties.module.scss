@@ -46,3 +46,9 @@
 .percentage {
   font-size: 12px;
 }
+
+.additional {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
