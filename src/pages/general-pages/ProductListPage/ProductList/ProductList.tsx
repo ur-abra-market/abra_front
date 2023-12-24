@@ -28,11 +28,13 @@ import style from './ProductList.module.scss';
 interface IProductList {
   currentSortField: ISortField;
   currentSortBy: ISortBy;
+  closeModal: (value: boolean) => void;
 }
 
 export const ProductList: FC<IProductList> = ({
   currentSortField,
   currentSortBy,
+  closeModal,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const [currentPage, setCurrentPage] = useState(1);
@@ -101,7 +103,13 @@ export const ProductList: FC<IProductList> = ({
             setSelectedView={setSelectedView}
           />
           <div className={style.branch_crumbs}>{`bread > crumb > plug`}</div>
-          <div className={style.filter}>
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => closeModal(true)}
+            onKeyDown={() => closeModal(true)}
+            className={style.filter}
+          >
             <Filter />
           </div>
           {/* TODO (fake data) */}

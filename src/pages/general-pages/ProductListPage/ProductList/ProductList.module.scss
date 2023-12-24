@@ -4,7 +4,7 @@
   flex-grow: 1;
 
   width: calc(100% - 450px);
-  padding-right: 118px;
+  padding-right: 64px;
 }
 
 .control_panel {
@@ -38,9 +38,9 @@
 
 .grid_container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
   row-gap: 32px;
-  column-gap: 12px;
+  column-gap: 10px;
 }
 
 .info_button {
@@ -70,8 +70,31 @@
 }
 
 @media only screen and (max-width: 1140px) {
+  .wrapper {
+    padding-right: 30px;
+  }
+
   .filter {
     display: block;
   }
+
+  .grid_container {
+    grid-template-columns: repeat(auto-fill, minmax(152px, 1fr));
+  }
 }
 
+@media only screen and (max-width: 768px) {
+  .grid_container {
+    row-gap: 20px;
+    column-gap: 6px;
+    justify-items: center;
+  }
+
+  .wrapper {
+    padding-right: 0;
+  }
+
+  .branch_crumbs {
+    display: none;
+  }
+}
