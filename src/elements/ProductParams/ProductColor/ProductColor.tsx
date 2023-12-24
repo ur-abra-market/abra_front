@@ -67,7 +67,6 @@ export const ProductColor: FC<IProductColorProps> = ({ colors }): JSX.Element =>
                 [style.active]: el.id === active,
               })}
             >
-              {/* <WithoutColor /> */}
               <div />
             </li>
           ),
