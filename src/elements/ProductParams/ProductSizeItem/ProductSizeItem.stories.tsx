@@ -30,7 +30,7 @@ const ProductSizeSelectorWithHooks = (): JSX.Element => {
     <ProductSizeItem
       size={SizeEnum.M}
       quantity={3}
-      active={active}
+      selected={active}
       onClick={() => setActive(prev => !prev)}
     />
   );
@@ -49,19 +49,19 @@ export const MultipleProductSizeItem = (): JSX.Element => {
       <ProductSizeItem
         size={SizeEnum.M}
         quantity={3}
-        active={active1}
+        selected={active1}
         onClick={() => setActive1(prev => !prev)}
       />
       <ProductSizeItem
         size={SizeEnum.L}
         quantity={66}
-        active={active2}
+        selected={active2}
         onClick={() => setActive2(prev => !prev)}
       />
       <ProductSizeItem
         size={SizeEnum.XXXXL}
         quantity={999999}
-        active={active3}
+        selected={active3}
         onClick={() => setActive3(prev => !prev)}
       />
     </div>
@@ -71,6 +71,6 @@ export const Deffailt: Story = {
   args: {
     size: SizeEnum.L,
     quantity: 99,
-    active: true,
+    selected: true,
   },
 };

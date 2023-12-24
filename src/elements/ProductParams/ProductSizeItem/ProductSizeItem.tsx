@@ -9,20 +9,19 @@ import style from './ProductSizeItem.module.scss';
 interface ProductSizeItemProps {
   size: SizeEnum;
   quantity: number;
-  active: boolean;
+  selected: boolean;
   onClick: () => void;
 }
 export const ProductSizeItem: FC<ProductSizeItemProps> = ({
   size,
   quantity,
-  active,
+  selected,
   onClick,
 }): JSX.Element => {
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
-    <li onClick={onClick}>
-      <span className={cn(style.item, { [style.active]: active })}>{size}</span>
-      <span className={style.remains}>{quantity}</span>
-    </li>
+    <button type="button" onClick={onClick}>
+      <div className={cn(style.item, { [style.active]: selected })}>{size}</div>
+      <div className={style.remains}>{quantity}</div>
+    </button>
   );
 };

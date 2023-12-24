@@ -25,17 +25,17 @@ export const ProductSize = (): JSX.Element => {
       <Paragraph size="m" className={style.text}>
         Size and quantity
       </Paragraph>
-      <ul className={style.items}>
+      <div className={style.items}>
         {temp.map(el => (
           <ProductSizeItem
             key={el.id}
             size={el.size}
             quantity={el.quantity}
-            active={el.size === active}
+            selected={el.size === active}
             onClick={() => setActive(el.size)}
           />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
