@@ -22,15 +22,15 @@
 
   &[data-column="Checkbox"] {
     position: sticky;
-    left: 3px;
-    outline: 3px solid var(--color-white);
+    left: 2px;
+    outline: 2px solid var(--color-white);
   }
 
   &[data-column="SKU"] {
     position: sticky;
     left: 60px;
     text-align: right;
-    outline: 3px solid var(--color-white);
+    outline: 2px solid var(--color-white);
   }
   
   &[data-column="Price"] {
