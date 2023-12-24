@@ -120,25 +120,6 @@ export const getProductsCompilation = createAsyncThunk<any, ICategoryRequest>(
   },
 );
 
-export const getProductsBySearch = createAsyncThunk<any, string>(
-  'products/getProductsBySearch',
-  async (productData, { rejectWithValue }) => {
-    try {
-      const { data } = await productService.getSearchProducts(productData);
-
-      return {
-        data: data.result,
-      };
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.message);
-      }
-
-      return rejectWithValue('[getProductsBySearch]: ERROR');
-    }
-  },
-);
-
 export const getProductsListCompilation = createAsyncThunk<any, ICategoryRequest>(
   'product/getProductsListCompilation',
   async (productData, { rejectWithValue }) => {
