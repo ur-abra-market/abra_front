@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import { SizeEnum } from 'common/types';
-import { ProductSizeItem } from 'elements/ProductParams/ProductSizeItem/ProductSizeItem';
-import { Paragraph } from 'ui-kit';
+import { Paragraph } from 'ui-kit/index';
+import { ProductSizeItem } from 'ui-kit/Product-Params/ProductSizeItem/ProductSizeItem';
 
 import style from './ProductSize.module.scss';
 
