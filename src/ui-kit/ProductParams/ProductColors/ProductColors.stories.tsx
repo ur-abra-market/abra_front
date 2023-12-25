@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import cn from 'classnames';
 
-import { CellColor } from './CellColor';
-
-import style from './CellColor.module.scss';
+import { ProductColors } from './ProductColors';
 
 const meta = {
-  component: CellColor,
+  component: ProductColors,
   tags: ['autodocs'],
-  title: 'Components/CellColor',
-} satisfies Meta<typeof CellColor>;
+  title: 'Components/ProductColors',
+} satisfies Meta<typeof ProductColors>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -19,7 +16,13 @@ type Story = StoryObj<typeof meta>;
 export const ListColors = (): JSX.Element => {
   const [active, setActive] = useState<string | null>(null);
 
-  return <CellColor activeId={active} onClick={setActive} image_data={tempData} />;
+  return (
+    <ProductColors
+      selectedColorId={active}
+      selectColor={setActive}
+      colorImages={tempData}
+    />
+  );
 };
 
 const tempData = [
