@@ -5,39 +5,52 @@ import cn from 'classnames';
 import style from './CellColor.module.scss';
 
 interface ICellColor {
-  id: string;
-  image_url: string;
-  className?: string;
+  activeId: string | null;
+  image_data: ImageDataType[];
   onClick: (id: string) => void;
+  className?: string;
 }
 
-export const CellColor: FC<ICellColor> = (props): JSX.Element => {
-  const { id, image_url, className, onClick } = props;
+type ImageDataType = {
+  id: string;
+  image_url: string;
+};
 
-  const handlerClick = (): void => {
+export const CellColor: FC<ICellColor> = (props): JSX.Element => {
+  const { activeId, image_data, className, onClick } = props;
+
+  const handlerClick = (id: string): void => {
     onClick(id);
   };
 
-  if (image_url.length > 0) {
-    return (
-      // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-      <li
-        role="menuitem"
-        onClick={handlerClick}
-        style={{ backgroundImage: `url(${image_url})` }}
-        className={cn(style.list_item, className)}
-      />
-    );
-  }
-
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <li
-      role="menuitem"
-      onClick={handlerClick}
-      className={cn(style.list_item, style.without_color)}
-    >
-      <div />
-    </li>
+    <ul className={style.list_items}>
+      {image_data.map(el =>
+        el.image_url.length > 0 ? (
+          <li
+            role="menuitem"
+            key={el.id}
+            onClick={() => handlerClick(el.id)}
+            onKeyDown={() => handlerClick(el.id)}
+            style={{ backgroundImage: `url(${el.image_url})` }}
+            className={cn(style.list_item, className, {
+              [style.active]: el.id === activeId,
+            })}
+          />
+        ) : (
+          <li
+            role="menuitem"
+            key={el.id}
+            onClick={() => handlerClick(el.id)}
+            onKeyDown={() => handlerClick(el.id)}
+            className={cn(style.list_item, style.without_color, className, {
+              [style.active]: el.id === activeId,
+            })}
+          >
+            <div />
+          </li>
+        ),
+      )}
+    </ul>
   );
 };
