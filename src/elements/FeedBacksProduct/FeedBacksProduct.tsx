@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { useAppSelector } from 'common/hooks';
 import { Grades } from 'elements/Grades/Grades';
-import { ReviewsIndicator } from 'pages/seller-pages/ProductPage/ReviewsIndicator/ReviewsIndicator';
+import { ReviewsIndicator } from 'pages/general-pages/ProductPage/ReviewsIndicator/ReviewsIndicator';
 import {
   productGradeSelector,
   productTotalOrdersSelector,

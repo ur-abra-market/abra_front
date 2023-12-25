@@ -12,7 +12,6 @@ import {
   productTagsSelector,
   similarProductsSelector,
 } from 'store/reducers/productSlice';
-import { ITag } from 'store/reducers/productSlice/types';
 
 import style from './ProductRecommendations.module.scss';
 
@@ -40,9 +39,10 @@ export const ProductRecommendations = (): JSX.Element => {
           <ViewMoreProductsLink />
         </ProductsPreview>
       </div>
-      <div className={style.section}>
-        <LatestSearches tags={tags} />
-      </div>
+      {/* //todo ждет данные с бека */}
+      {/* <div className={style.section}> */}
+      {/* <LatestSearches tags={tags} /> */}
+      {/* </div> */}
     </>
   );
 };

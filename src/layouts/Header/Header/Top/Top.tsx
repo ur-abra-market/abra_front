@@ -10,7 +10,7 @@ export const Top = (): JSX.Element => {
     <div className={style.wrapper}>
       <div className={style.container}>
         <MainLogo />
-        <Search placeholder="Search" />
+        <Search mainSearchField placeholder="Search" />
         <HeaderActions />
       </div>
     </div>

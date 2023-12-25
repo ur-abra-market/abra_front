@@ -15,7 +15,7 @@ export const MobileHeader: FC<IHtmlProps> = ({ className }): JSX.Element => {
     <div className={cn(style.wrapper, className)}>
       <div className={style.top_container}>
         <MainLogo />
-        <Search placeholder="Search" className={style.search} />
+        <Search mainSearchField placeholder="Search" className={style.search} />
         <LocationAndCurrencySelection isMobileView />
       </div>
       <div className={style.center_wrapper}>

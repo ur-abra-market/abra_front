@@ -10,7 +10,11 @@
 
 .items {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 13px;
   justify-content: space-between;
+
   min-width: 268px;
 }
 
@@ -21,10 +25,11 @@
   z-index: 5;
 
   display: flex;
+  flex-grow: 10;
   align-items: center;
   justify-content: center;
 
-  width: 64px;
+  min-width: 64px;
   height: 25px;
 
   font-size: var(--fz-s);
@@ -82,4 +87,16 @@
 .active {
   color: var(--color-red);
   border: 2px solid var(--color-red);
+}
+
+@media (max-width: 1365px) {
+  .item_container {
+    width: 20%;
+  }
+}
+
+@media (max-width: 352px) {
+  .item {
+    min-width: unset;
+  }
 }
