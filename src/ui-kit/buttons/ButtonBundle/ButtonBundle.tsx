@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
+import { DetailedHTMLProps, FC, HTMLAttributes, KeyboardEvent } from 'react';
 
 import cn from 'classnames';
 
@@ -9,12 +9,14 @@ export interface IButtonBundle
   className?: string;
   children: string;
   isSelected?: boolean;
+  onClick: () => void;
 }
 
 export const ButtonBundle: FC<IButtonBundle> = ({
   className,
   isSelected = false,
   children,
+  onClick,
   ...resProps
 }): JSX.Element => {
   const buttonBundleClasses = cn(
@@ -26,8 +28,21 @@ export const ButtonBundle: FC<IButtonBundle> = ({
     className,
   );
 
+  const onHandlerKeyDown = (event: KeyboardEvent): void => {
+    if (event.key === ' ' || event.key === 'Enter' || event.key === 'Spacebar') {
+      onClick();
+    }
+  };
+
   return (
-    <div className={buttonBundleClasses} {...resProps}>
+    <div
+      className={buttonBundleClasses}
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={onHandlerKeyDown}
+      {...resProps}
+    >
       {children}
     </div>
   );
