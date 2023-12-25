@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 import { SizeEnum } from 'common/types';
-import { Paragraph } from 'ui-kit/index';
-import { ProductSizeItem } from 'ui-kit/Product-Params/ProductSizeItem/ProductSizeItem';
+import { Paragraph } from 'ui-kit';
+import { ProductSize } from 'ui-kit/ProductParams/ProductSize/ProductSize';
 
-import style from './ProductSize.module.scss';
+import style from './ProductSizeList.module.scss';
 
-export const ProductSize = (): JSX.Element => {
+export const ProductSizeList = (): JSX.Element => {
   const [active, setActive] = useState<null | SizeEnum>(null);
 
   const temp = [
@@ -27,7 +27,7 @@ export const ProductSize = (): JSX.Element => {
       </Paragraph>
       <div className={style.items}>
         {temp.map(el => (
-          <ProductSizeItem
+          <ProductSize
             key={el.id}
             size={el.size}
             quantity={el.quantity}

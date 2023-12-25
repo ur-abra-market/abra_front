@@ -1,12 +1,12 @@
 import { ProductColor } from './ProductColor/ProductColor';
-import { ProductSize } from './ProductSize/ProductSize';
+import { ProductSizeList } from './ProductSizeList/ProductSizeList';
 
 import style from './ProductParams.module.scss';
 
 export const ProductParams = (): JSX.Element => {
   return (
     <div className={style.params_container}>
-      <ProductSize />
+      <ProductSizeList />
       <ProductColor colors={[]} />
     </div>
   );
