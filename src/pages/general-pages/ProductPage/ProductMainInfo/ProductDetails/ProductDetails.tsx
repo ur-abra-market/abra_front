@@ -5,6 +5,7 @@ import {
   AboutProduct,
   DescriptionProduct,
   FeedBacksProduct,
+  ProductParams,
   ProductPrice,
   SupplierInfo,
   Tags,
@@ -15,7 +16,7 @@ import {
   productNameSelector,
   productTagsSelector,
 } from 'store/reducers/productSlice';
-import { Button, ProductParams, Title } from 'ui-kit';
+import { Button, Title } from 'ui-kit';
 
 import style from './ProductDetails.module.scss';
 

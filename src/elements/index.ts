@@ -18,5 +18,6 @@ export { ProductsPerPage } from './ProductsPerPage/ProductsPerPage';
 export { PageViewSwitcher } from './PageViewSwitcher/PageViewSwitcher';
 export { ViewMoreProductsLink } from './ViewMoreProductsLink/ViewMoreProductsLink';
 export { ProductPrice } from './ProductPrice/ProductPrice';
+export { ProductParams } from './ProductParams/ProductParams';
 export { SupplierInfo } from './SupplierInfo/SupplierInfo';
 export { SkeletonProductCard } from './SkeletonProductCard/SkeletonProductCard';
