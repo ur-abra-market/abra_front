@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 
@@ -11,18 +11,37 @@ export const Variation: FC = (): JSX.Element => {
   const { control } = useForm();
   const categories = useAppSelector(state => state.common.categories);
   const nameData = categories ? categories.filter(c => c.level === 1) : [];
+  const [activeVar, setActiveVar] = useState<string | null>(null);
+
+  const buttonClickHandler = (varType: string): void => {
+    // eslint-disable-next-line no-console
+    console.log(`Button ${varType} clicked`);
+    setActiveVar(activeVar === varType ? null : varType);
+  };
 
   return (
     <form>
       <div className={style.container}>
         <div className={style.button_container}>
-          <button type="button" className={style.button}>
+          <button
+            type="button"
+            className={`${style.button} ${activeVar === 'Var 1' ? style.active : ''}`}
+            onClick={() => buttonClickHandler('Var 1')}
+          >
             Var 1
           </button>
-          <button type="button" className={style.button}>
+          <button
+            type="button"
+            className={`${style.button} ${activeVar === 'Var 2' ? style.active : ''}`}
+            onClick={() => buttonClickHandler('Var 2')}
+          >
             Var 2
           </button>
-          <button type="button" className={style.plus_button}>
+          <button
+            type="button"
+            className={`${style.plus_button} ${activeVar === 'Plus' ? style.active : ''}`}
+            onClick={() => buttonClickHandler('Plus')}
+          >
             +
           </button>
         </div>

@@ -18,12 +18,23 @@
 }
 
 .button {
+  cursor: pointer;
+
   width: 72px;
   height: 30px;
+
+  background: var(--Light-grey, #F4F4F4);
   border-radius: 8px;
 }
 
+.active {
+  color: #F00;
+  background-color: #FFF;
+  border: 1px solid var(--Accent-Color, #FC133D);
+}
+
 .plus_button {
+  cursor: pointer;
   width: 30px;
   border-radius: 8px;
 }
