@@ -26,9 +26,7 @@ export const ProductColors: FC<IProductColors> = ({
     <ul className={style.list_items}>
       {colorImages.map(el => {
         const isActive = el.id === selectedColorId;
-        const classNames = cn(className, style.list_item, {
-          [style.active]: isActive,
-        });
+        const classNames = cn(className, style.list_item, { [style.active]: isActive });
 
         return el.image_url.length > 0 ? (
           <li
