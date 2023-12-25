@@ -69,8 +69,11 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
     };
 
     const handleBlurAmount = (): void => {
-      if (!amount) return onChange(initAmount);
+      if (!amount) {
+        onChange(initAmount);
 
+        return;
+      }
       const parsedAmount = Math.floor(Number(String(amount)));
       const validationAmount = String(parsedAmount).replace(/^[0+-]+|[+-]+/g, '');
 
