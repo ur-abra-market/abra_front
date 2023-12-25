@@ -28,7 +28,11 @@ export const ProductSize = (): JSX.Element => {
       <ul className={style.items}>
         {temp.map(el => (
           // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
-          <li onClick={() => setActive(el.id)} key={el.id}>
+          <li
+            className={style.item_container}
+            onClick={() => setActive(el.id)}
+            key={el.id}
+          >
             <span className={cn(style.item, { [style.active]: el.id === active })}>
               {el.size}
             </span>

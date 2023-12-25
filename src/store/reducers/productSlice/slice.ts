@@ -4,7 +4,6 @@ import {
   addFavoriteProduct,
   getPopularProducts,
   getProductById,
-  getProductsBySearch,
   getProductsCompilation,
   getProductsListCompilation,
   getSimilarProducts,
@@ -181,17 +180,6 @@ const productSlice = createSlice({
         state.loading = LoadingStatusEnum.Failed;
       })
       .addCase(getProductsListCompilation.fulfilled, (state, action) => {
-        state.productsList = action.payload.data.products;
-        state.totalProductsCount = action.payload.data.total_count;
-        state.loading = LoadingStatusEnum.Success;
-      })
-      .addCase(getProductsBySearch.pending, state => {
-        state.loading = LoadingStatusEnum.Loading;
-      })
-      .addCase(getProductsBySearch.rejected, state => {
-        state.loading = LoadingStatusEnum.Failed;
-      })
-      .addCase(getProductsBySearch.fulfilled, (state, action) => {
         state.productsList = action.payload.data.products;
         state.totalProductsCount = action.payload.data.total_count;
         state.loading = LoadingStatusEnum.Success;
