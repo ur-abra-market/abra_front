@@ -1,0 +1,51 @@
+.button {
+  cursor: pointer;
+
+  display: inline-block;
+  justify-content: center;
+
+  box-sizing: border-box;
+  min-height: 32px;
+  padding: 8px 32px 7px;
+
+  font-family: var(--roboto);
+  font-size: var(--fz-s);
+  font-weight: var(--regular);
+
+  border-radius: 8px;
+  outline: none;
+
+  transition: all 0.5s;
+
+  &:focus-visible {
+    outline: 1px solid var(--color-gray-medium);
+    transition: none;
+  }
+}
+
+.default {
+  color: var(--color-gray-medium);
+  background: var(--color-white-ivory);
+
+  &:hover {
+    color: var(--color-white);
+    background: var(--color-red-dark);
+  }
+
+  &:active {
+    background: linear-gradient(0deg, var(--color-red-dark), var(--color-red-dark));
+  }
+}
+
+.selected {
+  color: var(--color-white);
+  background: var(--color-red);
+
+  &:hover {
+    background: var(--color-red-medium);
+  }
+
+  &:active {
+    background: linear-gradient(0deg, var(--color-red-dark), var(--color-red-dark));
+  }
+}
