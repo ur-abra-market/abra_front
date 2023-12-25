@@ -40,7 +40,8 @@ export const ProductRecommendations = (): JSX.Element => {
         </ProductsPreview>
       </div>
       <div className={style.section}>
-        <LatestSearches tags={tags} />
+        {/* //todo ждет данные с бека */}
+        {/* <LatestSearches tags={tags} /> */}
       </div>
     </>
   );
