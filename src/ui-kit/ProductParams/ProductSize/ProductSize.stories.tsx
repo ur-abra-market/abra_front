@@ -2,14 +2,14 @@ import { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ProductSizeItem } from './ProductSizeItem';
+import { ProductSize } from './ProductSize';
 
 import { SizeEnum } from 'common/types';
 
 const meta = {
-  component: ProductSizeItem,
+  component: ProductSize,
   tags: ['autodocs'],
-  title: 'Components/ProductSizeItem',
+  title: 'Components/ProductSize',
   parameters: {
     layout: 'centered',
   },
@@ -18,7 +18,7 @@ const meta = {
       action: 'clicked',
     },
   },
-} satisfies Meta<typeof ProductSizeItem>;
+} satisfies Meta<typeof ProductSize>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -27,7 +27,7 @@ const ProductSizeSelectorWithHooks = (): JSX.Element => {
   const [active, setActive] = useState<boolean>(false);
 
   return (
-    <ProductSizeItem
+    <ProductSize
       size={SizeEnum.M}
       quantity={3}
       selected={active}
@@ -46,19 +46,19 @@ export const MultipleProductSizeItem = (): JSX.Element => {
 
   return (
     <div style={{ display: 'flex', gap: '19px' }}>
-      <ProductSizeItem
+      <ProductSize
         size={SizeEnum.M}
         quantity={3}
         selected={active1}
         onClick={() => setActive1(prev => !prev)}
       />
-      <ProductSizeItem
+      <ProductSize
         size={SizeEnum.L}
         quantity={66}
         selected={active2}
         onClick={() => setActive2(prev => !prev)}
       />
-      <ProductSizeItem
+      <ProductSize
         size={SizeEnum.XXXXL}
         quantity={999999}
         selected={active3}
