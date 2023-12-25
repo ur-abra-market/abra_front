@@ -45,17 +45,17 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
       [style.button_large]: variant === 'large',
     });
 
-    const handleClickIncrement = (amount: number): void => {
+    const handleIncrementAmount = (amount: number): void => {
       setInitAmount(Number(amount) + 1);
       onChange(Number(amount) + 1);
     };
 
-    const handleClickDecrement = (amount: number): void => {
+    const handleDecrementAmount = (amount: number): void => {
       setInitAmount(Number(amount) - 1);
       onChange(Number(amount) - 1);
     };
 
-    const handleInputChangeAmount = (event: ChangeEvent<HTMLInputElement>): void => {
+    const handleChangeAmount = (event: ChangeEvent<HTMLInputElement>): void => {
       const inputValue = parseInt(event.currentTarget.value.trim(), 10);
       const value = String(event.currentTarget.value).replace(/^[.+-]+/g, '');
 
@@ -69,22 +69,20 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
     };
 
     const handleBlurAmount = (): void => {
-      if (amount) {
-        const parsedAmount = Math.floor(Number(String(amount)));
-        const validationAmount = String(parsedAmount).replace(/^[0+-]+|[+-]+/g, '');
+      if (!amount) return onChange(initAmount);
 
-        if (Number.isNaN(parsedAmount)) {
-          onChange(initAmount);
-        } else if (parsedAmount < min_amount) {
-          onChange(min_amount);
-        } else if (parsedAmount > max_amount) {
-          onChange(max_amount);
-        } else {
-          setInitAmount(validationAmount);
-          onChange(validationAmount);
-        }
-      } else {
+      const parsedAmount = Math.floor(Number(String(amount)));
+      const validationAmount = String(parsedAmount).replace(/^[0+-]+|[+-]+/g, '');
+
+      if (Number.isNaN(parsedAmount)) {
         onChange(initAmount);
+      } else if (parsedAmount < min_amount) {
+        onChange(min_amount);
+      } else if (parsedAmount > max_amount) {
+        onChange(max_amount);
+      } else {
+        setInitAmount(validationAmount);
+        onChange(validationAmount);
       }
     };
 
@@ -100,7 +98,7 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
           <button
             type="button"
             className={buttonClasses}
-            onClick={() => handleClickDecrement(amount)}
+            onClick={() => handleDecrementAmount(amount)}
             disabled={isDisableDecrement}
           >
             -
@@ -112,7 +110,7 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
             ref={ref}
             onBlur={handleBlurAmount}
             className={valueClasses}
-            onChange={handleInputChangeAmount}
+            onChange={handleChangeAmount}
             min={min_amount}
             max={max_amount}
             {...restProps}
@@ -120,7 +118,7 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
           <button
             type="button"
             className={buttonClasses}
-            onClick={() => handleClickIncrement(amount)}
+            onClick={() => handleIncrementAmount(amount)}
             disabled={isDisabledIncrement}
           >
             +
