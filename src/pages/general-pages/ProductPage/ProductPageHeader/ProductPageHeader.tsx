@@ -32,9 +32,14 @@ export const ProductPageHeader = (): JSX.Element => {
 
   return (
     <div className={style.product_page_wrapper}>
-      <BreadCrumbs categoryName={name} parentId={parent_id} />
-      <Grades grade={grade} count={totalOrders} />
+      <BreadCrumbs
+        className={style.bread_crumbs}
+        categoryName={name}
+        parentId={parent_id}
+      />
+      <Grades className={style.grade} grade={grade} count={totalOrders} />
       <FavoriteButton
+        className={style.favorite}
         isFavorite={isFavorite}
         onChange={handleChangeFavorite}
         variant="product"
