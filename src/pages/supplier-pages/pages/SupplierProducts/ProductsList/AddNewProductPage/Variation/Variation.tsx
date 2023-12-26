@@ -3,7 +3,7 @@ import React, { FC, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import { useAppSelector } from 'common/hooks';
-import { Label, Select } from 'ui-kit';
+import { Label, Select, ButtonIcon } from 'ui-kit';
 
 import style from './Variation.module.scss';
 
@@ -23,27 +23,27 @@ export const Variation: FC = (): JSX.Element => {
     <form>
       <div className={style.container}>
         <div className={style.button_container}>
-          <button
+          <ButtonIcon
             type="button"
             className={`${style.button} ${activeVar === 'Var 1' ? style.active : ''}`}
             onClick={() => buttonClickHandler('Var 1')}
           >
             Var 1
-          </button>
-          <button
+          </ButtonIcon>
+          <ButtonIcon
             type="button"
             className={`${style.button} ${activeVar === 'Var 2' ? style.active : ''}`}
             onClick={() => buttonClickHandler('Var 2')}
           >
             Var 2
-          </button>
-          <button
+          </ButtonIcon>
+          <ButtonIcon
             type="button"
             className={`${style.plus_button} ${activeVar === 'Plus' ? style.active : ''}`}
             onClick={() => buttonClickHandler('Plus')}
           >
             +
-          </button>
+          </ButtonIcon>
         </div>
         <Label label="Variation type" htmlFor="variation" className={style.label}>
           <Controller

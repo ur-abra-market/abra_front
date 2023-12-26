@@ -18,23 +18,30 @@
 }
 
 .button {
-  cursor: pointer;
-
   width: 72px;
   height: 30px;
 
+  color: var(--Medium-grey, #828282);
+
   background: var(--Light-grey, #F4F4F4);
   border-radius: 8px;
-}
 
-.active {
-  color: #F00;
-  background-color: #FFF;
-  border: 1px solid var(--Accent-Color, #FC133D);
+  &.active {
+    color: var(--Accent-Color, #FC133D);
+    background-color: var(--color-white, #FFF);
+    border: 1px solid var(--Accent-Color, #FC133D);
+  }
 }
 
 .plus_button {
-  cursor: pointer;
   width: 30px;
+  color: var(--Medium-grey, #828282);
+  background: var(--Light-grey, #F4F4F4);
   border-radius: 8px;
+
+  &.active {
+    color: var(--Accent-Color, #FC133D);
+    background-color: var(--color-white, #FFF);
+    border: 1px solid var(--Accent-Color, #FC133D);
+  }
 }
