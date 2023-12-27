@@ -13,6 +13,12 @@
   margin-top: 24px;
 }
 
+@media only screen and (max-width: 1140px) {
+  .product_filter {
+    width: 256px;
+  }
+}
+
 @media only screen and (max-width: 940px) {
   .product_filter {
     width: 242px;

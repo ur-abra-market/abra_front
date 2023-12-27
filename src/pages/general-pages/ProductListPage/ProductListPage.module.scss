@@ -14,3 +14,9 @@
     gap: 54px;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .product_list_page {
+    padding: 18px 16px 56px;
+  }
+}

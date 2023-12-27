@@ -26,13 +26,13 @@
 }
 
 .list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   margin-top: 24px;
   margin-bottom: 68px;
 }
 
 .list_container {
+  grid-template-columns: minmax(120px, 1fr);
   row-gap: 16px;
 }
 
@@ -71,11 +71,11 @@
 
 @media only screen and (max-width: 1140px) {
   .wrapper {
-    padding-right: 30px;
+    padding-right: 20px;
   }
 
-  .filter {
-    display: block;
+  .branch_crumbs {
+    display: none;
   }
 
   .grid_container {
@@ -88,6 +88,10 @@
     row-gap: 20px;
     column-gap: 6px;
     justify-items: center;
+  }
+
+  .filter {
+    display: block;
   }
 
   .wrapper {

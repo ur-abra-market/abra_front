@@ -71,6 +71,7 @@ export const ProductListPage = WithLayout((): JSX.Element => {
       )}
 
       <ProductList
+        windowWidth={windowWidth}
         closeModal={setModalOpen}
         currentSortField={currentSortField as ISortField}
         currentSortBy={currentSortBy as ISortBy}

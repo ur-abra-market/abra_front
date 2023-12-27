@@ -29,11 +29,13 @@ interface IProductList {
   currentSortField: ISortField;
   currentSortBy: ISortBy;
   closeModal: (value: boolean) => void;
+  windowWidth: number;
 }
 
 export const ProductList: FC<IProductList> = ({
   currentSortField,
   currentSortBy,
+  windowWidth,
   closeModal,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -67,7 +69,7 @@ export const ProductList: FC<IProductList> = ({
   };
 
   const modsProductsContainer = {
-    [style.grid_container]: selectedView === SelectedViewEnum.GRID,
+    [style.grid_container]: selectedView === SelectedViewEnum.GRID || windowWidth <= 430,
     [style.list_container]: selectedView === SelectedViewEnum.LIST,
   };
 
@@ -87,11 +89,15 @@ export const ProductList: FC<IProductList> = ({
   ));
 
   const productsView = products?.map(product => {
-    return selectedView === SelectedViewEnum.LIST ? (
-      <ProductCardFull key={product.id} product={product} />
-    ) : (
-      <ProductCard key={product.id} product={product} />
-    );
+    if (selectedView === SelectedViewEnum.LIST) {
+      if (windowWidth >= 430) {
+        return <ProductCardFull key={product.id} product={product} />;
+      }
+
+      return <ProductCard key={product.id} product={product} />;
+    }
+
+    return <ProductCard key={product.id} product={product} />;
   });
 
   return (
