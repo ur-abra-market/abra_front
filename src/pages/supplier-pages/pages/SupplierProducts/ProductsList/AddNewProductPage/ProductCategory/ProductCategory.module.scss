@@ -5,6 +5,10 @@
   font-style: normal; 
 }
 
+.subcategory {
+  padding-left: 15px;
+}
+
 .subcategory:first-child {
   margin-top: 16px;
 }
@@ -12,6 +16,10 @@
 .category_container {
   display: flex;
   gap: 8px;
+}
+
+.category_depth {
+  padding-left: 10px;
 }
 
 .product_icon {
