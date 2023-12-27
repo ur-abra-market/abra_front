@@ -25,19 +25,15 @@ const CategoryDropdown: FC<{ category: Category }> = ({ category }) => {
     }
   };
 
-  const renderSubcategories = (subcategories?: Category[]): JSX.Element | null => {
-    if (!subcategories) {
-      return null;
-    }
-
-    return (
+  const renderSubcategoryList = (subcategories?: Category[]): JSX.Element | null => {
+    return subcategories ? (
       <ul>
         {subcategories.map(subcategory => (
           <li key={subcategory.id} className={style.subcategory}>
             {subcategory.subcategories ? (
               <CategoryDropdown category={subcategory} />
             ) : (
-              <span className={style.checkbox_container}>
+              <span className={style.checkboxContainer}>
                 <Checkbox
                   checked={subcategory.isChecked || false}
                   className={style.checkbox}
@@ -48,7 +44,7 @@ const CategoryDropdown: FC<{ category: Category }> = ({ category }) => {
           </li>
         ))}
       </ul>
-    );
+    ) : null;
   };
 
   return (
@@ -63,7 +59,7 @@ const CategoryDropdown: FC<{ category: Category }> = ({ category }) => {
         <ArrowIcon className={`${style.product_icon} ${isOpen ? style.icon_open : ''}`} />
         <h3 className={style.category}>{category.name}</h3>
       </div>
-      {isOpen && renderSubcategories(category.subcategories)}
+      {isOpen && renderSubcategoryList(category.subcategories)}
     </div>
   );
 };
