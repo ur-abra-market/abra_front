@@ -1,22 +1,20 @@
-import { DetailedHTMLProps, FC, HTMLAttributes, KeyboardEvent } from 'react';
+import { DetailedHTMLProps, FC, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
 import styles from './ButtonBundle.module.scss';
 
 export interface IButtonBundle
-  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+  extends DetailedHTMLProps<HTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   className?: string;
   children: string;
   isSelected?: boolean;
-  onClick: () => void;
 }
 
 export const ButtonBundle: FC<IButtonBundle> = ({
   className,
   isSelected = false,
   children,
-  onClick,
   ...resProps
 }): JSX.Element => {
   const buttonBundleClasses = cn(
@@ -28,22 +26,9 @@ export const ButtonBundle: FC<IButtonBundle> = ({
     className,
   );
 
-  const onHandlerKeyDown = (event: KeyboardEvent): void => {
-    if (event.key === ' ' || event.key === 'Enter' || event.key === 'Spacebar') {
-      onClick();
-    }
-  };
-
   return (
-    <div
-      className={buttonBundleClasses}
-      role="button"
-      tabIndex={0}
-      onClick={onClick}
-      onKeyDown={onHandlerKeyDown}
-      {...resProps}
-    >
+    <button type="button" className={buttonBundleClasses} {...resProps}>
       {children}
-    </div>
+    </button>
   );
 };
