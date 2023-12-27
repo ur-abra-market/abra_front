@@ -1,0 +1,30 @@
+@import 'src/ui-kit/ProductParams/styles/mixins';
+
+@include items();
+
+.item {
+  @include item;
+
+  cursor: no-drop;
+}
+
+.color_image {
+  min-width: 64px;
+  height: 32px;
+  border: 2px solid var(--color-gray-light);
+  border-radius: 8px;
+}
+
+.remains {
+  @include remains_info(--color-gray-light);
+}
+
+.remains::before {
+  @include remains_decorator_left(--color-gray-light);
+}
+
+.remains::after {
+  @include remains_decorator_right(--color-gray-light);
+}
+
+
