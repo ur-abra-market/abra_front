@@ -9,10 +9,10 @@
 }
 
 .color_image {
-  min-width: 64px;
-  height: 32px;
+  @include color_image();
+
   border: 2px solid var(--color-gray-light);
-  border-radius: 8px;
+
 }
 
 .remains {

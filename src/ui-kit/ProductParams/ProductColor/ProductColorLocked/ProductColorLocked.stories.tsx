@@ -19,7 +19,7 @@ export const ListColorsInfo = (): JSX.Element => {
   return (
     <div className={style.list_items}>
       {tempData.map(el => (
-        <ProductColorLocked key={el.id} image_url={el.image_url} value={el.value} />
+        <ProductColorLocked key={el.id} imageUrl={el.image_url} value={el.value} />
       ))}
     </div>
   );

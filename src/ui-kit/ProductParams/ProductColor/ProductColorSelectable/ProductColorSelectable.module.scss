@@ -3,15 +3,13 @@
 @include items();
 
 .item {
-  @include item;
+  @include item();
 
   cursor: pointer;
 }
 
 .color_image {
-  min-width: 64px;
-  height: 32px;
-  border-radius: 8px;
+  @include color_image();
 }
 
 .active::before {
