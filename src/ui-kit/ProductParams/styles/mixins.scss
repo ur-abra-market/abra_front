@@ -1,5 +1,5 @@
-@mixin item {
-  position: relative;
+@mixin item($position: unset) {
+  position: $position;
   min-width: 64px;
   height: 32px;
   border-radius: 8px;
@@ -58,10 +58,4 @@
     flex-wrap: wrap;
     gap: 12px;
   }
-}
-
-@mixin color_image {
-  min-width: 64px;
-  height: 32px;
-  border-radius: 8px;
 }

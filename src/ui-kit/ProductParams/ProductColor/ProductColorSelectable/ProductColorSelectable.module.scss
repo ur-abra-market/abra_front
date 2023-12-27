@@ -3,13 +3,13 @@
 @include items();
 
 .item {
-  @include item();
+  @include item(relative);
 
   cursor: pointer;
 }
 
 .color_image {
-  @include color_image();
+  @include item();
 }
 
 .active::before {

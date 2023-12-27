@@ -3,16 +3,15 @@
 @include items();
 
 .item {
-  @include item;
+  @include item(relative);
 
   cursor: no-drop;
 }
 
 .color_image {
-  @include color_image();
+  @include item();
 
   border: 2px solid var(--color-gray-light);
-
 }
 
 .remains {
