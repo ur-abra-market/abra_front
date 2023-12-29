@@ -39,9 +39,10 @@ export const ProductRecommendations = (): JSX.Element => {
           <ViewMoreProductsLink />
         </ProductsPreview>
       </div>
-      <div className={style.section}>
-        <LatestSearches tags={tags} />
-      </div>
+      {/* //todo ждет данные с бека */}
+      {/* <div className={style.section}> */}
+      {/* <LatestSearches tags={tags} /> */}
+      {/* </div> */}
     </>
   );
 };

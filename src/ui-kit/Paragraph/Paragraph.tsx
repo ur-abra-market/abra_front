@@ -16,7 +16,7 @@ export const Paragraph: FC<ParagraphType> = ({
   className = '',
   ...rest
 }): JSX.Element => {
-  const classNames = cn(style.default, style[size], style[weight], className);
+  const paragraphClasses = cn(style.default, style[size], style[weight], className);
 
-  return <p {...rest} className={classNames} />;
+  return <p {...rest} className={paragraphClasses} />;
 };
