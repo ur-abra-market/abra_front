@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { useAppSelector } from 'common/hooks';
-import { IProductCardCart, productsInCart } from 'store/reducers/seller/cart';
+import { IProductCardCart } from 'store/reducers/seller/cart';
+import { productsInCart } from 'store/reducers/seller/cart/selectors';
 import { Button, Paragraph, Title } from 'ui-kit';
 
 import style from './OrderDetails.module.scss';
@@ -20,6 +21,10 @@ export const OrderDetails = (): JSX.Element => {
     0,
   );
 
+  const totalPriceBundles = selectedProducts.reduce((previousValue, item) => {
+    return previousValue + item.bundle_variation_pod.prices[0].value * item.amount;
+  }, 0);
+
   return (
     <div className={style.order_item}>
       <div className={style.total_count}>
@@ -34,20 +39,17 @@ export const OrderDetails = (): JSX.Element => {
       <div className={style.total_price}>
         <Paragraph size="s2" className={style.total_cost_text}>
           Goods Cost
-          <span className={style.line} />${1560}
+          <span className={style.line} />${totalPriceBundles}
         </Paragraph>
         <Paragraph size="s2" className={style.total_shipping_text}>
           Shipping~
           <span className={style.line} />${560}
         </Paragraph>
-        <Paragraph size="xs" className={style.total_price_description}>
-          * The final cost will be calculated after you add an address
-        </Paragraph>
       </div>
 
       <div className={style.line_separate} />
       <Title size="xs" weight="semi_bold" className={style.total_order_price}>
-        Total <span>${2000}</span>
+        Total <span>${totalPriceBundles}</span>
       </Title>
 
       <Button className={style.button_checkout}>Сheckout</Button>
