@@ -32,7 +32,7 @@ export const tableSortData: IColumns[] = [
   { id: 6, name: 'Price', arrow: false, sortValue: QUERY_PARAMS_VALUE.PRICE },
   {
     id: 7,
-    name: 'Balance, units',
+    name: 'Units',
     arrow: true,
     sortValue: QUERY_PARAMS_VALUE.TOTAL_ORDERS,
   },

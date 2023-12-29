@@ -1,10 +1,24 @@
 .table_row {
-  display: grid;
-  grid-template-columns: 4.50% 8.48% 6.83% 29% 11.12% 7.33% 6.60% 11.72% calc(66px + 2%) 6%;
-  grid-template-rows: 1fr;
-  align-items: center;
+  position: relative;
+  display: table-row;
+  width: 100%;
 
-  margin-top: 43px;
+  &::before {
+    content: '';
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background-color: var(--color-white-ivory);
+  }
+}
+
+.fixed::before {
+  width: 115%;
 }
 
 .table_deactivated {
@@ -14,17 +28,37 @@
 }
 
 .table_td {
-  height: 48px;
   max-height: 48px;
+  padding: 10px;
 
   font-size: var(--fz-m);
   font-weight: var(--regular);
   color: var(--color-black);
-  word-break: break-word;
 
   background-color: var(--color-white);
-}
 
+  &[data-column="SKU"] {
+    text-align: right;
+  }
+  
+  &[data-column="Price"] {
+    text-align: right;
+  }
+  
+  &[data-column="Units"] {
+    text-align: right;
+  }
+  
+  &[data-column="Rating"] {
+    display: flex;
+    justify-content: center;
+    padding: 25px 0;
+  }
+  
+  &[data-column="Visibility"] {
+    text-align: center;
+  }
+}
 
 .image {
   width: 48px;

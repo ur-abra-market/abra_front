@@ -1,16 +1,16 @@
-import React, { ChangeEvent, useCallback } from 'react';
+import React, { ChangeEvent, FC, useCallback } from 'react';
 
 import { useSelector } from 'react-redux';
 
 import { ArrowSort } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/hoocks/useUpdateSearchParams';
+import { IColumns } from 'pages/supplier-pages/pages/SupplierProducts/common/types/types';
 import {
   DEFAULT_QUERY_PARAMS_FOR_URL,
   QUERY_PARAMS_KEY,
   QUERY_PARAMS_VALUE,
 } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParamsConstants';
-import { tableSortData } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/tableData';
 import {
   selectAllProductsSelector,
   isLoadingSelector,
@@ -24,7 +24,19 @@ import { ButtonIcon, Checkbox } from 'ui-kit';
 
 import style from './TableHeader.module.scss';
 
-export const TableHeader = (): JSX.Element => {
+interface TableHeaderProps {
+  tableSortData: IColumns[];
+  displayedColumns?: string[];
+  nonDisplayedColumns?: string[];
+  isFixed?: boolean;
+}
+
+export const TableHeader: FC<TableHeaderProps> = ({
+  tableSortData,
+  displayedColumns,
+  nonDisplayedColumns,
+  isFixed = false,
+}) => {
   const dispatch = useAppDispatch();
   const { updateUrlQueryParams, searchParams } = useUpdateSearchParams();
   const activeProduct = useAppSelector(activeProductSelector);
@@ -67,19 +79,29 @@ export const TableHeader = (): JSX.Element => {
     }
   };
 
+  const totalDisplayedColumns = (): IColumns[] => {
+    if (displayedColumns) {
+      return tableSortData.filter(({ name }) => displayedColumns.includes(name));
+    }
+
+    return tableSortData.filter(({ name }) => !nonDisplayedColumns!.includes(name));
+  };
+
   return (
     <thead className={style.thead}>
-      <tr className={style.table_row}>
-        <th className={style.table_head}>
-          <Checkbox
-            disabled={isLoading}
-            variant="default"
-            checked={checked}
-            onChange={setAllCheckboxesState}
-          />
-        </th>
-        {tableSortData.map(column => (
-          <th key={column.id} className={style.table_head}>
+      <tr className={`${style.table_row} ${isFixed ? style.fixed : ''}`}>
+        {!nonDisplayedColumns?.includes('Checkbox') && (
+          <th className={style.table_head} data-column="Checkbox">
+            <Checkbox
+              disabled={isLoading}
+              variant="default"
+              checked={checked}
+              onChange={setAllCheckboxesState}
+            />
+          </th>
+        )}
+        {totalDisplayedColumns().map(column => (
+          <th key={column.id} className={style.table_head} data-column={column.name}>
             {column.name}
             {column.arrow && (
               <ButtonIcon
