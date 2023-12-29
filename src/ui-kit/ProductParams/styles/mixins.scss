@@ -5,6 +5,20 @@
   border-radius: 8px;
 }
 
+@mixin product_size_item($color) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 64px;
+  height: 25px;
+
+  font-size: var(--fz-s);
+
+  border: 2px solid var($color);
+  border-radius: 8px;
+}
+
 @mixin remains_info($color) {
   position: relative;
 
@@ -48,6 +62,30 @@
   height: 8px;
 
   background-color: var($color);
+}
+
+@mixin remains_pseudo_elements($color) {
+  &::before,
+  &::after {
+    content: '';
+
+    position: absolute;
+    z-index: 1;
+    top: -8px;
+
+    width: 2px;
+    height: 8px;
+
+    background-color: var($color);
+  }
+
+  &::before {
+    left: -2px;
+  }
+
+  &::after {
+    right: -2px;
+  }
 }
 
 

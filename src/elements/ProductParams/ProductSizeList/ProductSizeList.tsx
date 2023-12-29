@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { SizeEnum } from 'common/types';
 import { Paragraph } from 'ui-kit';
-import { ProductSize } from 'ui-kit/ProductParams/ProductSize/ProductSize';
+import { ProductSizeSelectable } from 'ui-kit/ProductParams/ProductSizeSelectable/ProductSizeSelectable';
 
 import style from './ProductSizeList.module.scss';
 
@@ -27,10 +27,9 @@ export const ProductSizeList = (): JSX.Element => {
       </Paragraph>
       <div className={style.items}>
         {temp.map(el => (
-          <ProductSize
+          <ProductSizeSelectable
             key={el.id}
             size={el.size}
-            quantity={el.quantity}
             selected={el.size === active}
             onClick={() => setActive(el.size)}
           />

@@ -4,17 +4,15 @@ import cn from 'classnames';
 
 import { SizeEnum } from 'common/types';
 
-import style from './ProductSize.module.scss';
+import style from './ProductSizeSelectable.module.scss';
 
 interface ProductSizeItemProps {
   size: SizeEnum;
-  quantity: number;
   selected: boolean;
   onClick: () => void;
 }
-export const ProductSize: FC<ProductSizeItemProps> = ({
+export const ProductSizeSelectable: FC<ProductSizeItemProps> = ({
   size,
-  quantity,
   selected,
   onClick,
 }): JSX.Element => {
@@ -23,7 +21,6 @@ export const ProductSize: FC<ProductSizeItemProps> = ({
   return (
     <button type="button" onClick={onClick}>
       <div className={itemStyles}>{size}</div>
-      <div className={style.remains}>{quantity}</div>
     </button>
   );
 };
