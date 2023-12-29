@@ -25,6 +25,8 @@ export const OrderItemsSection: FC<IOrderItemsSection> = ({ products }): JSX.Ele
           return (
             <OrderItemInCart
               product={item.bundle_variation_pod.product}
+              prices={item.bundle_variation_pod.prices}
+              bundle_variation={item.bundle_variation_pod.bundle_variations[0]}
               amount={item.amount}
               is_checked={item.is_checked}
               key={index}

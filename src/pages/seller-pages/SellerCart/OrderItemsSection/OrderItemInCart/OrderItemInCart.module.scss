@@ -13,3 +13,39 @@
   width: 100%;
   padding-left: 34px;
 }
+
+.counter {
+  width: 168px;
+}
+
+.counter_wrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+}
+
+.button_question {
+  cursor: pointer;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(160px, -2px);
+
+  background-color: transparent;
+}
+
+@media only screen and (max-width: 768px) {
+  .product_info {
+    flex-wrap: wrap;
+  }
+
+  .counter_wrapper {
+    width: 100%;
+    padding-top: 6px;
+  }
+
+  .counter {
+    width: 100%;
+  }
+}
