@@ -20,14 +20,14 @@ export const SimpleLink: FC<ISimpleLink> = ({
   disabled,
   ...restProps
 }) => {
-  const linkClasses = cn(className, styles.link, {
+  const simpleLinkClasses = cn(className, styles.link, {
     [styles.default]: color === 'default',
     [styles.accent]: color === 'accent',
     [styles.disabled]: disabled,
   });
 
   return (
-    <Link to={to} className={linkClasses} {...restProps}>
+    <Link to={to} className={simpleLinkClasses} {...restProps}>
       {children}
     </Link>
   );
