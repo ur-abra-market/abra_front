@@ -19,7 +19,7 @@ export const DefaultButton: Story = {
   },
 };
 
-export const DefaultActiveButton: Story = {
+export const DefaultSelectedButton: Story = {
   args: {
     children: 'Bundle',
     isSelected: true,
