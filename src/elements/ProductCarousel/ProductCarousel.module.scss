@@ -71,14 +71,16 @@
   transform: rotate(180deg);
 }
 
-
-@media (max-width: 1200px) {
+@media only screen and (max-width: 1040px) {
   .sliders_container {
+    all: unset;
+    display: flex;
+    gap: 20px;
     justify-content: center;
   }
 }
 
-@media (max-width: 801px) {
+@media (max-width: 800px) {
   .sliders_container {
     flex-direction: column;
     row-gap: 16px;
@@ -88,9 +90,6 @@
     flex-direction: row;
     gap: 8px;
     order: 2;
-
-    //width: 106px;
-    //height: 100%;
   }
 
   .swiper_second {

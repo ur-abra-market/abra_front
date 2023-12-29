@@ -41,3 +41,9 @@
   font-size: var(--fz-s);
   color: var(--color-gray);
 }
+
+@media (max-width: 350px) {
+  .statistic {
+    width: 300px;
+  }
+}

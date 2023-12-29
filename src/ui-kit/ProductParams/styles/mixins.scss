@@ -1,0 +1,61 @@
+@mixin item($position: unset) {
+  position: $position;
+  min-width: 64px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+@mixin remains_info($color) {
+  position: relative;
+
+  display: block;
+
+  padding: 4px;
+
+  color: var($color);
+  text-align: center;
+
+  border-right: 2px solid var($color);
+  border-bottom: 2px solid var($color);
+  border-left: 2px solid var($color);
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+@mixin remains_decorator_left($color) {
+  content: '';
+
+  position: absolute;
+  z-index: 1;
+  top: -8px;
+  left: -2px;
+
+  width: 2px;
+  height: 8px;
+
+  background-color: var($color);
+}
+
+@mixin remains_decorator_right($color) {
+  content: '';
+
+  position: absolute;
+  z-index: 1;
+  top: -8px;
+  right: -2px;
+
+  width: 2px;
+  height: 8px;
+
+  background-color: var($color);
+}
+
+
+@mixin items {
+  .list_items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}

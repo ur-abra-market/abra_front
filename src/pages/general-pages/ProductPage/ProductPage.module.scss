@@ -16,3 +16,9 @@
   padding-top: 38px;
   padding-bottom: 100px;
 }
+
+@media (max-width: 330px) {
+  .wrapper {
+    padding: 0 8px;
+  }
+}
