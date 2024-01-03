@@ -1,25 +1,21 @@
 import React, { FC } from 'react';
 
+import { Paragraph } from 'ui-kit/Paragraph/Paragraph';
+
 import style from './ProductVariation.module.scss';
 
 interface ProductVariationProps {
   color: string;
-  backgroundColor: string;
   optionNumber: number;
 }
 export const ProductVariation: FC<ProductVariationProps> = ({
   optionNumber,
   color,
-  backgroundColor,
 }): JSX.Element => {
   return (
-    <button
-      type="button"
-      className={style.container}
-      style={{ '--backgroundColor': backgroundColor } as React.CSSProperties}
-    >
+    <button type="button" className={style.container}>
       <div className={style.box} style={{ backgroundColor: color }} />
-      <div>Var. {optionNumber}</div>
+      <Paragraph weight="medium">Var. {optionNumber}</Paragraph>
     </button>
   );
 };
