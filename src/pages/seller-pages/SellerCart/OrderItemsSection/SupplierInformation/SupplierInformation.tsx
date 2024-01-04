@@ -17,45 +17,50 @@ type ISupplierInformation = {
 export const SupplierInformation: FC<ISupplierInformation> = ({
   products,
 }): JSX.Element => {
-  const supplierGradeAverage = products[0].bundle_variation_pod.product.supplier
-    .grade_average as number;
-  const supplierName = products[0].bundle_variation_pod.product.supplier.company.name;
-
   const dispatch = useAppDispatch();
 
-  const isSelectAllProducts = products.every(product => product.is_checked);
+  const supplierAverage = products[0].bundle_variation_pod.product.supplier
+    .grade_average as number;
+  const supplierName = products[0].bundle_variation_pod.product.supplier.company.name;
+  const averagePercent = supplierAverage * 10;
+
+  const isSelectedAllProducts = products.every(product => product.is_checked);
 
   const selectAllProducts = (): void => {
     dispatch(
       setSelectAllProducts({
-        is_checked: !isSelectAllProducts,
+        is_checked: !isSelectedAllProducts,
         name: supplierName,
       }),
     );
   };
 
   return (
-    <div className={style.supplier_information}>
+    <div className={style.supplier_container}>
       <Checkbox
         variant="default"
         className={style.checkbox_header}
-        checked={isSelectAllProducts}
+        checked={isSelectedAllProducts}
         onChange={selectAllProducts}
       />
 
-      <Star percent={`${supplierGradeAverage * 10}%`} sizes="16" />
+      <div className={style.supplier_information}>
+        <div className={style.star}>
+          <Star percent={`${averagePercent}%`} sizes="16" />
+        </div>
 
-      <Paragraph size="s2" className={style.supplier_rating}>
-        {supplierGradeAverage}
-      </Paragraph>
-
-      <NavLink to="/cart" className={style.supplier_link}>
-        <Paragraph size="s2" className={style.supplier_name}>
-          {supplierName}
+        <Paragraph size="s2" className={style.supplier_rating}>
+          {supplierAverage}
         </Paragraph>
 
-        <ArrowRight className={style.arrow} />
-      </NavLink>
+        <NavLink to="/cart" className={style.supplier_link}>
+          <Paragraph size="s2" className={style.supplier_name}>
+            {supplierName}
+          </Paragraph>
+
+          <ArrowRight className={style.arrow} />
+        </NavLink>
+      </div>
     </div>
   );
 };

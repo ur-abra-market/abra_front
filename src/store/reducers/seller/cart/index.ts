@@ -1,4 +1,4 @@
-export { productsInCart } from './selectors';
+export { productsInCart, totalItems } from './selectors';
 
 export { getSellerDataCart } from './thunks';
 

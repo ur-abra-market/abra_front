@@ -2,30 +2,47 @@
   margin-right: 34px;
 }
 
+.supplier_container {
+  display: flex;
+  align-items: center;
+}
+
 .supplier_information {
   display: flex;
   align-items: center;
+  justify-content: center;
+}
 
-  .supplier_rating {
-    align-self: center;
-    margin-left: 4px;
-    font-style: normal;
-  }
+.star {
+  transform: rotate(180deg);
+  display: flex;
+  justify-content: center;
+}
+
+.supplier_rating {
+  align-self: center;
+  margin-left: 4px;
 }
 
 .supplier_link {
   display: flex;
   align-items: center;
   align-self: center;
+}
 
-  .supplier_name {
-    align-self: center;
-    margin-left: 8px;
-  }
+.supplier_name {
+  align-self: center;
+  margin-left: 8px;
+}
 
-  .arrow {
-    width: 16px;
-    height: 16px;
-    margin-left: 8px;
+.arrow {
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+}
+
+@media (max-width: 628px) {
+  .checkbox_header {
+    margin-right: 16px;
   }
 }

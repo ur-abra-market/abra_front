@@ -8,7 +8,7 @@ export interface IProductsInCart {
   productsInCart: Array<IProductCardCart[]>;
   totalProductForOrder: number;
   totalAmountBundles: number;
-  // productCartItems: IProductCardCart | any;
+  totalItems: number;
 }
 
 const initialState: IProductsInCart = {
@@ -16,105 +16,7 @@ const initialState: IProductsInCart = {
   productsInCart: [],
   totalProductForOrder: 0,
   totalAmountBundles: 0,
-  // productCartItems: [
-  //   {
-  //     amount: 0,
-  //     bundle_variation_pod: {
-  //       bundle_variations: [
-  //         {
-  //           bundle: {
-  //             created_at: '',
-  //             id: null,
-  //             updated_at: '',
-  //             variation_values: [
-  //               {
-  //                 amount: 0,
-  //                 bundle_id: null,
-  //                 created_at: '',
-  //                 id: null,
-  //                 updated_at: '',
-  //                 variation_value_to_product_id: null,
-  //               },
-  //             ],
-  //           },
-  //           bundle_id: null,
-  //           bundle_variation_pod_id: null,
-  //           created_at: '',
-  //           id: null,
-  //           updated_at: '',
-  //           variation_value_to_product_id: null,
-  //           product_variation: {
-  //             created_at: '',
-  //             id: null,
-  //             prices: [
-  //               {
-  //                 bundle_variation_pod_id: null,
-  //                 created_at: '',
-  //                 end_date: '',
-  //                 id: null,
-  //                 start_date: '',
-  //                 updated_at: '',
-  //                 value: null,
-  //               },
-  //             ],
-  //             product_id: null,
-  //             updated_at: '',
-  //             variation: {
-  //               created_at: '',
-  //               id: null,
-  //               image_url: '',
-  //               type: {
-  //                 id: null,
-  //                 created_at: '',
-  //                 updated_at: '',
-  //                 name: '',
-  //               },
-  //               updated_at: '',
-  //               value: '',
-  //               variation_type_id: null,
-  //             },
-  //             variation_value_id: null,
-  //           },
-  //         },
-  //       ],
-  //       created_at: '',
-  //       id: null,
-  //       prices: [
-  //         {
-  //           bundle_variation_pod_id: null,
-  //           created_at: '',
-  //           end_date: '',
-  //           id: null,
-  //           start_date: '',
-  //           updated_at: '',
-  //           value: null,
-  //         },
-  //       ],
-  //       product: {
-  //         supplier: {
-  //           company: {
-  //             id: null,
-  //             created_at: '',
-  //             updated_at: '',
-  //             business_email: '',
-  //             name: '',
-  //             is_manufacturer: true,
-  //             year_established: null,
-  //             employees_number_id: null,
-  //             description: '',
-  //             address: '',
-  //             logo_url: '',
-  //           },
-  //         },
-  //       },
-  //     },
-  //     bundle_variation_pod_id: null,
-  //     created_at: '',
-  //     id: null,
-  //     order_id: null,
-  //     updated_at: '',
-  //   },
-  // ],
+  totalItems: 0,
 };
 const sellerProfileSlice = createSlice({
   name: 'seller/cart',
@@ -191,6 +93,7 @@ const sellerProfileSlice = createSlice({
         Object.fromEntries(Object.entries(productsWithSupplier).sort());
 
       state.productsInCart = Object.values(sortedCartItemsByName);
+      state.totalItems = state.productsInCart.flat(2).length;
     });
   },
 });

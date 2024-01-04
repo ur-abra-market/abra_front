@@ -1,7 +1,7 @@
 .order_list_item {
   display: flex;
   flex-grow: 1;
-  align-items: center;
+  align-items: flex-end;
 
   width: 100%;
   margin-bottom: 32px;
@@ -9,19 +9,17 @@
 
 .product_info {
   display: flex;
-  align-items: flex-end;
   width: 100%;
-  padding-left: 34px;
-}
-
-.counter {
-  width: 168px;
 }
 
 .counter_wrapper {
   position: relative;
   display: flex;
   align-items: flex-start;
+}
+
+.counter {
+  width: 168px;
 }
 
 .button_question {
@@ -35,9 +33,13 @@
   background-color: transparent;
 }
 
-@media only screen and (max-width: 768px) {
-  .product_info {
+@media (max-width: 1040px) {
+  .order_list_item {
     flex-wrap: wrap;
+  }
+
+  .product_info {
+    margin-bottom: 16px;
   }
 
   .counter_wrapper {
@@ -47,5 +49,11 @@
 
   .counter {
     width: 100%;
+  }
+}
+
+@media (max-width: 425px) {
+  .button_question {
+    display: none;
   }
 }

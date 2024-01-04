@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { PayloadAction } from '@reduxjs/toolkit';
 
@@ -25,6 +25,8 @@ interface IOrderItemInCart {
   is_checked: boolean;
 }
 
+const widthChangedVariantCounter = 861;
+
 export const OrderItemInCart: FC<IOrderItemInCart> = ({
   product,
   bundle_variation,
@@ -32,51 +34,73 @@ export const OrderItemInCart: FC<IOrderItemInCart> = ({
   prices,
   is_checked,
 }): JSX.Element => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = (): void => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const dispatch = useAppDispatch();
 
-  const onCheckedProductHandler = (
-    id: number | null,
-  ): PayloadAction<{
-    id: number | null;
-  }> => dispatch(setSelectProduct({ id }));
-
   const variationValues = bundle_variation.bundle.variation_values;
+  const bundleVariationValue = bundle_variation.product_variation.variation;
+
+  const counterVariant = windowWidth >= widthChangedVariantCounter ? 'small' : 'large';
 
   const commonPiecesBundles =
     variationValues.reduce((item: number, variationValues: IVariationValues) => {
       return item + variationValues.amount;
     }, 0) * amount;
 
+  const handleCheckedProduct = (
+    id: number,
+  ): PayloadAction<{
+    id: number | null;
+  }> => dispatch(setSelectProduct({ id }));
+
   return (
     <li className={style.order_list_item}>
-      <Checkbox
-        variant="default"
-        checked={is_checked}
-        onChange={() => onCheckedProductHandler(product.id)}
-      />
-
       <div className={style.product_info}>
+        <Checkbox
+          variant="default"
+          checked={is_checked}
+          onChange={() => handleCheckedProduct(product.id as number)}
+        />
+
         <ItemDescription
           product={product}
           amount={amount}
           pieces={commonPiecesBundles}
           price={prices}
-          bundle_variation_value={bundle_variation.product_variation.variation}
+          bundle_variation_value={bundleVariationValue}
+        />
+      </div>
+
+      <div className={style.counter_wrapper}>
+        <Counter
+          variant={counterVariant}
+          bundles_amount={`/ from ${amount} bundles`}
+          className={style.counter}
+          amount={amount}
+          max_amount={1000}
+          onChange={() => {}}
         />
 
-        <div className={style.counter_wrapper}>
-          <Counter
-            bundles_amount={`/ from ${amount} bundles`}
-            className={style.counter}
-            amount={amount}
-            max_amount={1000}
-            onChange={() => {}}
-          />
-          <button type="button" className={style.button_question}>
-            {' '}
-            <QuestionDisabled />
-          </button>
-        </div>
+        <button
+          type="button"
+          aria-label="button-question"
+          className={style.button_question}
+        >
+          <QuestionDisabled />
+        </button>
       </div>
     </li>
   );

@@ -25,14 +25,18 @@ export const ItemDescription: FC<IItemDescription> = ({
   price,
   bundle_variation_value,
 }): JSX.Element => {
-  const image_url = product.images[0]?.image_url;
+  const imageUrl = product.images[0]?.image_url;
   const priceValue = price[0].value;
+  const variationBundleType = bundle_variation_value.type.name;
+  const colorValue = bundle_variation_value.value;
+  const sizeValue = bundle_variation_value.value;
   const totalPriceBundle = priceValue * amount;
+  const isColorVariation = variationBundleType === 'Color';
 
   return (
     <div className={style.item_description}>
       <NavLink to={`${PRODUCT_DETAILS}/${product.id}`}>
-        <LazyImage src={image_url} className={style.image} type="default_image" />
+        <LazyImage src={imageUrl} className={style.image} type="default_image" />
       </NavLink>
 
       <div className={style.item_information}>
@@ -41,19 +45,13 @@ export const ItemDescription: FC<IItemDescription> = ({
         </NavLink>
 
         <div className={style.item_details}>
-          {bundle_variation_value.type.name === 'Color' ? (
+          {isColorVariation ? (
             <Paragraph className={style.item_color}>
-              Color:{' '}
-              <span className={style.item_color_property}>
-                {bundle_variation_value.value}
-              </span>
+              Color: <span className={style.item_color_property}>{colorValue}</span>
             </Paragraph>
           ) : (
-            <Paragraph className={style.item_color}>
-              Size:{' '}
-              <span className={style.item_size_property}>
-                {bundle_variation_value.value}
-              </span>
+            <Paragraph className={style.item_size}>
+              Size: <span className={style.item_size_property}>{sizeValue}</span>
             </Paragraph>
           )}
 
@@ -74,7 +72,7 @@ export const ItemDescription: FC<IItemDescription> = ({
               <span className={style.line} />
               <div className={style.item_prices}>
                 <Paragraph weight="medium" className={style.old_price}>
-                  ${priceValue}/{1}bnd
+                  ${priceValue}/{1} bnd
                 </Paragraph>
                 {/* <Paragraph weight="medium" className={style.new_price}> */}
                 {/*  ${4.0}/{1}bnd */}
