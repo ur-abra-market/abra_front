@@ -10,5 +10,7 @@
 
 .tags_wrapper {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 56px;
 }

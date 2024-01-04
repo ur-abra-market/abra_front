@@ -19,7 +19,7 @@
   background: none;
   border: 1px solid var(--color-black);
   border-radius: 10px;
-  
+
   transition: all .1s ease-in-out;
 
   &:hover {
@@ -54,5 +54,12 @@
 @media (max-width: 710px) {
   .counter {
     flex-grow: 1;
+  }
+}
+
+@media (max-width: 628px) {
+  .counter {
+    width: 100%;
+    max-width: unset;
   }
 }
