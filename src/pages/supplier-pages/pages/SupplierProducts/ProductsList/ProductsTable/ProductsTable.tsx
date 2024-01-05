@@ -12,22 +12,25 @@ export const ProductsTable = (): JSX.Element => {
 
   return (
     <div className={style.table_wrapper}>
-      <table className={style.fixed_table}>
+      <table className={style.table_fixed}>
         <TableHeader
           tableSortData={tableSortData}
-          displayedColumns={['Checkbox', 'SKU']}
-          isFixed
+          visibleColumns={['Checkbox', 'SKU']}
+          className={style.fixed}
         />
-        <TableList products={products} displayedColumns={['Checkbox', 'SKU']} isFixed />
+
+        <TableList
+          products={products}
+          visibleColumns={['Checkbox', 'SKU']}
+          className={style.fixed}
+        />
       </table>
-      <div className={style.shadow} />
-      <div className={style.cover} />
-      <table className={style.scrollable_table}>
-        <TableHeader
-          tableSortData={tableSortData}
-          nonDisplayedColumns={['Checkbox', 'SKU']}
-        />
-        <TableList products={products} nonDisplayedColumns={['Checkbox', 'SKU']} />
+      <div className={style.table_column_shadow} />
+      <div className={style.table_column_shadow_cover} />
+      <table className={style.table_scrollable}>
+        <TableHeader tableSortData={tableSortData} hiddenColumns={['Checkbox', 'SKU']} />
+
+        <TableList products={products} hiddenColumns={['Checkbox', 'SKU']} />
       </table>
     </div>
   );

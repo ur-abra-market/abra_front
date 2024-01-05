@@ -17,10 +17,6 @@
   }
 }
 
-.fixed::before {
-  width: 115%;
-}
-
 .table_deactivated {
   .table_td:not(:first-child) {
     opacity: .4;

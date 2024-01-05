@@ -1,11 +1,10 @@
-import React, { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC } from 'react';
 
 import cn from 'classnames';
 
 import defaultImg from 'assets/images/files/default-product-image.png';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { formatDate } from 'common/utils/formatDateProductsList';
-import { tableSortData } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/tableData';
 import {
   IProduct,
   activeProductSelector,
@@ -18,18 +17,18 @@ import { Checkbox, Stars } from 'ui-kit';
 
 import style from './TableList.module.scss';
 
-interface TableListProps {
+interface ITableList {
   products: IProduct[];
-  displayedColumns?: string[];
-  nonDisplayedColumns?: string[];
-  isFixed?: boolean;
+  visibleColumns?: string[];
+  hiddenColumns?: string[];
+  className?: string;
 }
 
-export const TableList: FC<TableListProps> = ({
+export const TableList: FC<ITableList> = ({
   products,
-  displayedColumns,
-  nonDisplayedColumns,
-  isFixed = false,
+  visibleColumns,
+  hiddenColumns,
+  className = '',
 }) => {
   const activeProduct = useAppSelector(activeProductSelector);
   const deactivatedProduct = useAppSelector(deactivatedProductSelector);
@@ -49,11 +48,11 @@ export const TableList: FC<TableListProps> = ({
   };
 
   const isColumnDisplayed = (name: string): boolean => {
-    if (displayedColumns) {
-      return displayedColumns.some(item => item === name);
+    if (visibleColumns) {
+      return visibleColumns.some(item => item === name);
     }
 
-    return !nonDisplayedColumns!.some(item => item === name);
+    return !hiddenColumns!.some(item => item === name);
   };
 
   return (
@@ -70,14 +69,9 @@ export const TableList: FC<TableListProps> = ({
           formattedDateTime.split(' ');
 
         return (
-          <tr
-            className={`${deactivatedClasses} ${style.table_row} ${
-              isFixed ? style.fixed : ''
-            }`}
-            key={el.id}
-          >
+          <tr className={cn(deactivatedClasses, style.table_row, className)} key={el.id}>
             {isColumnDisplayed('Checkbox') && (
-              <td className={style.table_td} data-column="Checkbox">
+              <td aria-label="Checkbox" className={style.table_td} data-column="Checkbox">
                 <Checkbox
                   disabled={isLoading}
                   checked={checked}
@@ -86,23 +80,23 @@ export const TableList: FC<TableListProps> = ({
                 />
               </td>
             )}
-            {isColumnDisplayed(tableSortData[0].name) && (
-              <td className={style.table_td} data-column={tableSortData[0].name}>
+            {isColumnDisplayed('SKU') && (
+              <td className={style.table_td} data-column="SKU">
                 {el.id}
               </td>
             )}
-            {isColumnDisplayed(tableSortData[1].name) && (
-              <td className={style.table_td} data-column={tableSortData[1].name}>
+            {isColumnDisplayed('Picture') && (
+              <td className={style.table_td} data-column="Picture">
                 <img className={style.image} src={defaultImg} alt="product" />
               </td>
             )}
-            {isColumnDisplayed(tableSortData[2].name) && (
-              <td className={style.table_td} data-column={tableSortData[2].name}>
+            {isColumnDisplayed('Name') && (
+              <td className={style.table_td} data-column="Name">
                 {el.name}
               </td>
             )}
-            {isColumnDisplayed(tableSortData[3].name) && (
-              <td className={style.table_td} data-column={tableSortData[3].name}>
+            {isColumnDisplayed('Creation Date') && (
+              <td className={style.table_td} data-column="Creation Date">
                 {el.created_at && (
                   <div className={style.datetime_container}>
                     <span>{formattedDate}</span>
@@ -113,32 +107,32 @@ export const TableList: FC<TableListProps> = ({
             )}
 
             {el.prices.map(item => (
-              <React.Fragment key={item.id}>
-                {isColumnDisplayed(tableSortData[4].name) && (
-                  <td className={style.table_td} data-column={tableSortData[4].name}>
+              <>
+                {isColumnDisplayed('Status') && (
+                  <td className={style.table_td} data-column="Status">
                     {item.discount ? 'On Sale' : 'Off Sale'}
                   </td>
                 )}
-                {isColumnDisplayed(tableSortData[5].name) && (
+                {isColumnDisplayed('Price') && (
                   <td
                     className={style.table_td}
-                    data-column={tableSortData[5].name}
+                    data-column="Price"
                   >{`$${item.value}`}</td>
                 )}
-                {isColumnDisplayed(tableSortData[6].name) && (
-                  <td className={style.table_td} data-column={tableSortData[6].name}>
+                {isColumnDisplayed('Units') && (
+                  <td className={style.table_td} data-column="Units">
                     empty
                   </td>
                 )}
-              </React.Fragment>
+              </>
             ))}
-            {isColumnDisplayed(tableSortData[7].name) && (
-              <td className={style.table_td} data-column={tableSortData[7].name}>
+            {isColumnDisplayed('Rating') && (
+              <td aria-label="Stars" className={style.table_td} data-column="Rating">
                 <Stars sizes="10" reward={el.grade_average} />
               </td>
             )}
-            {isColumnDisplayed(tableSortData[8].name) && (
-              <td className={style.table_td} data-column={tableSortData[8].name}>
+            {isColumnDisplayed('Visibility') && (
+              <td className={style.table_td} data-column="Visibility">
                 {el.is_active ? 'Visible' : 'Hidden'}
               </td>
             )}

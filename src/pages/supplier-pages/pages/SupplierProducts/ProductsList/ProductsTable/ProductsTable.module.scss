@@ -5,7 +5,7 @@
   display: flex;
 }
 
-.fixed_table {
+.table_fixed {
   position: sticky;
   z-index: 3;
   left: 0;
@@ -18,14 +18,14 @@
   background-color: var(--color-white);
 }
 
-.scrollable_table {
+.table_scrollable {
   border-collapse: collapse;
   width: 100%;
   min-width: 1100px;
   margin-top: 36px;
 }
 
-.shadow {
+.table_column_shadow {
   position: sticky;
   z-index: 1;
   left: 140px;
@@ -37,9 +37,13 @@
   box-shadow: 0 5px 4px 4px var(--color-white-ivory);
 }
 
-.cover {
+.table_column_shadow_cover {
   z-index: 2;
   min-width: 10px;
   margin-top: 36px;
   background-color: var(--color-white);
+}
+
+.fixed::before {
+  width: 115%;
 }

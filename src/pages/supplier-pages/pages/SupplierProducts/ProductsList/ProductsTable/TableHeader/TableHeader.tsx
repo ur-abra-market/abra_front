@@ -1,5 +1,6 @@
-import React, { ChangeEvent, FC, useCallback } from 'react';
+import { ChangeEvent, FC, useCallback } from 'react';
 
+import cn from 'classnames';
 import { useSelector } from 'react-redux';
 
 import { ArrowSort } from 'assets/icons';
@@ -24,18 +25,18 @@ import { ButtonIcon, Checkbox } from 'ui-kit';
 
 import style from './TableHeader.module.scss';
 
-interface TableHeaderProps {
+interface ITableHeader {
   tableSortData: IColumns[];
-  displayedColumns?: string[];
-  nonDisplayedColumns?: string[];
-  isFixed?: boolean;
+  visibleColumns?: string[];
+  hiddenColumns?: string[];
+  className?: string;
 }
 
-export const TableHeader: FC<TableHeaderProps> = ({
+export const TableHeader: FC<ITableHeader> = ({
   tableSortData,
-  displayedColumns,
-  nonDisplayedColumns,
-  isFixed = false,
+  visibleColumns,
+  hiddenColumns,
+  className = '',
 }) => {
   const dispatch = useAppDispatch();
   const { updateUrlQueryParams, searchParams } = useUpdateSearchParams();
@@ -80,18 +81,18 @@ export const TableHeader: FC<TableHeaderProps> = ({
   };
 
   const totalDisplayedColumns = (): IColumns[] => {
-    if (displayedColumns) {
-      return tableSortData.filter(({ name }) => displayedColumns.includes(name));
+    if (visibleColumns) {
+      return tableSortData.filter(({ name }) => visibleColumns.includes(name));
     }
 
-    return tableSortData.filter(({ name }) => !nonDisplayedColumns!.includes(name));
+    return tableSortData.filter(({ name }) => !hiddenColumns!.includes(name));
   };
 
   return (
     <thead className={style.thead}>
-      <tr className={`${style.table_row} ${isFixed ? style.fixed : ''}`}>
-        {!nonDisplayedColumns?.includes('Checkbox') && (
-          <th className={style.table_head} data-column="Checkbox">
+      <tr className={cn(style.table_row, className)}>
+        {!hiddenColumns?.includes('Checkbox') && (
+          <th aria-label="Checkbox" className={style.table_head} data-column="Checkbox">
             <Checkbox
               disabled={isLoading}
               variant="default"
