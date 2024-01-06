@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
@@ -25,7 +23,6 @@ export const ProductPageHeader = (): JSX.Element => {
   const breadCrumbs = useAppSelector(productBreadCrumbsSelector);
   const { productId } = useParams<string>();
   const reverseBread = [...breadCrumbs].reverse();
-  const product = useAppSelector(state => state.product.productCard);
   const handleChangeFavorite = (isFavorite: boolean): void => {
     if (isFavorite) {
       dispatch(addFavoriteProductPage({ product_id: Number(productId) }));
@@ -33,8 +30,6 @@ export const ProductPageHeader = (): JSX.Element => {
       dispatch(removeFavoriteProductPage({ product_id: Number(productId) }));
     }
   };
-
-  console.log(product);
 
   return (
     <div className={style.product_page_wrapper}>
