@@ -9,18 +9,18 @@ import style from './ProductSizeSelectable.module.scss';
 interface ProductSizeItemProps {
   size: SizeEnum;
   selected: boolean;
-  onClick: () => void;
+  handleSizeSelect: () => void;
 }
 export const ProductSizeSelectable: FC<ProductSizeItemProps> = ({
   size,
   selected,
-  onClick,
+  handleSizeSelect,
 }): JSX.Element => {
-  const itemStyles = cn(style.item, { [style.active]: selected });
+  const sizeClasses = cn(style.size, { [style.selected]: selected });
 
   return (
-    <button type="button" onClick={onClick}>
-      <div className={itemStyles}>{size}</div>
+    <button type="button" onClick={handleSizeSelect}>
+      <div className={sizeClasses}>{size}</div>
     </button>
   );
 };

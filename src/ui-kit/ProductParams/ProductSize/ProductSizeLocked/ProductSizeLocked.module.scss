@@ -1,12 +1,12 @@
 @import 'src/ui-kit/ProductParams/styles/mixins';
 
-.item {
+.size {
   @include product_size_item(--color-black);
 
   cursor: no-drop;
 }
 
-.remains {
+.quantity {
   @include remains_info(--color-black);
   @include remains_pseudo_elements(--color-black);
 

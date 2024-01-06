@@ -1,12 +1,12 @@
 @import 'src/ui-kit/ProductParams/styles/mixins';
 
-.item {
+.size {
   @include product_size_item(--color-black);
 
   cursor: pointer;
 }
 
-.active {
+.selected {
   color: var(--color-red);
   border: 2px solid var(--color-red);
 }

@@ -2,7 +2,8 @@ import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
 
-import { WithoutColor } from 'assets/icons';
+import { ReactComponent as WithoutColor } from './assets/icons/withoutColor.svg';
+
 import { Paragraph } from 'ui-kit';
 
 import style from './ProductColor.module.scss';

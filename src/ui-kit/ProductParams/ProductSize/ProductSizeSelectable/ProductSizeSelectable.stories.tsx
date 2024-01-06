@@ -14,7 +14,7 @@ const meta = {
     layout: 'centered',
   },
   argTypes: {
-    onClick: {
+    handleSizeSelect: {
       action: 'clicked',
     },
   },
@@ -24,13 +24,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const ProductSizeSelectorWithHooks = (): JSX.Element => {
-  const [active, setActive] = useState<boolean>(false);
+  const [selected, setSelected] = useState<boolean>(false);
 
   return (
     <ProductSizeSelectable
       size={SizeEnum.M}
-      selected={active}
-      onClick={() => setActive(prev => !prev)}
+      selected={selected}
+      handleSizeSelect={() => setSelected(prev => !prev)}
     />
   );
 };
@@ -39,26 +39,26 @@ export const ProductSizeItemToggle = {
   render: () => <ProductSizeSelectorWithHooks />,
 };
 export const MultipleProductSizeItem = (): JSX.Element => {
-  const [active1, setActive1] = useState<boolean>(false);
-  const [active2, setActive2] = useState<boolean>(false);
-  const [active3, setActive3] = useState<boolean>(false);
+  const [selected1, setSelected1] = useState<boolean>(false);
+  const [selected2, setSelected2] = useState<boolean>(false);
+  const [selected3, setSelected3] = useState<boolean>(false);
 
   return (
     <div style={{ display: 'flex', gap: '19px' }}>
       <ProductSizeSelectable
         size={SizeEnum.M}
-        selected={active1}
-        onClick={() => setActive1(prev => !prev)}
+        selected={selected1}
+        handleSizeSelect={() => setSelected1(prev => !prev)}
       />
       <ProductSizeSelectable
         size={SizeEnum.L}
-        selected={active2}
-        onClick={() => setActive2(prev => !prev)}
+        selected={selected2}
+        handleSizeSelect={() => setSelected2(prev => !prev)}
       />
       <ProductSizeSelectable
         size={SizeEnum.XXXXL}
-        selected={active3}
-        onClick={() => setActive3(prev => !prev)}
+        selected={selected3}
+        handleSizeSelect={() => setSelected3(prev => !prev)}
       />
     </div>
   );

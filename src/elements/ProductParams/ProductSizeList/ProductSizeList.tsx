@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 
 import { SizeEnum } from 'common/types';
 import { Paragraph } from 'ui-kit';
-import { ProductSizeSelectable } from 'ui-kit/ProductParams/ProductSizeSelectable/ProductSizeSelectable';
+import { ProductSizeSelectable } from 'ui-kit/ProductParams/ProductSize/ProductSizeSelectable/ProductSizeSelectable';
 
 import style from './ProductSizeList.module.scss';
 
 export const ProductSizeList = (): JSX.Element => {
-  const [active, setActive] = useState<null | SizeEnum>(null);
+  const [selected, setSelected] = useState<null | SizeEnum>(null);
 
   const temp = [
     { id: 1, size: SizeEnum.XS, quantity: 4 },
@@ -20,21 +20,22 @@ export const ProductSizeList = (): JSX.Element => {
     { id: 8, size: SizeEnum.XXXXL, quantity: 11 },
   ];
 
+  const productSizeSelectableList = temp.map(el => (
+    <ProductSizeSelectable
+      key={el.id}
+      size={el.size}
+      selected={el.size === selected}
+      handleSizeSelect={() => setSelected(el.size)}
+    />
+  ));
+
   return (
     <div className={style.product_size_container}>
       <Paragraph size="m" className={style.text}>
         Size and quantity
       </Paragraph>
-      <div className={style.items}>
-        {temp.map(el => (
-          <ProductSizeSelectable
-            key={el.id}
-            size={el.size}
-            selected={el.size === active}
-            onClick={() => setActive(el.size)}
-          />
-        ))}
-      </div>
+
+      <div className={style.items}>{productSizeSelectableList}</div>
     </div>
   );
 };

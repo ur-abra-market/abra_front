@@ -14,8 +14,8 @@ export const ProductSizeLocked: FC<ProductSizeLockedProps> = ({
 }): JSX.Element => {
   return (
     <button type="button" disabled>
-      <div className={style.item}>{size}</div>
-      <div className={style.remains}>{quantity}</div>
+      <div className={style.size}>{size}</div>
+      <div className={style.quantity}>{quantity}</div>
     </button>
   );
 };
