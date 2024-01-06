@@ -3,6 +3,7 @@ import { IProductCompilation } from 'services/product/product.serviceTypes';
 
 export interface IProductSliceInitialState {
   productCard: IProductCard;
+  feedbacks: IFeedbacks;
   similarProducts: IProductCompilation[];
   popularProducts: IProductCompilation[];
   productsCompilation: { [key: number]: IProductCompilation[] };
@@ -32,6 +33,15 @@ export interface IProductCard {
   images: IImage[];
   tags: ITag[];
   bundle_variation_pods: IBundleVariationPod[];
+}
+
+export interface IFeedbacks {
+  [key: number]: number;
+}
+
+export interface IResponseGetProductCardId {
+  product: IProductCard;
+  feedbacks: IFeedbacks;
 }
 
 export interface ICategory {

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IProductCard } from './productSlice';
+import { IResponseGetProductCardId } from './productSlice/types';
 
 import { IImageProduct, LoadingStatusEnum } from 'common/types';
 import { productService } from 'services/product/product.service';
@@ -11,20 +11,20 @@ import {
   IGradeProductResponse,
 } from 'services/product/product.serviceTypes';
 
-export const getProductById = createAsyncThunk<IProductCard, IProductRequest>(
-  'targetProduct/getProductById',
-  async (payload, { rejectWithValue }) => {
-    try {
-      return productService.getProductById(payload);
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.response?.data);
-      }
-
-      return rejectWithValue('[Error]: getProductById');
+export const getProductById = createAsyncThunk<
+  IResponseGetProductCardId,
+  IProductRequest
+>('targetProduct/getProductById', async (payload, { rejectWithValue }) => {
+  try {
+    return productService.getProductById(payload);
+  } catch (error: unknown) {
+    if (error instanceof AxiosError) {
+      return rejectWithValue(error.response?.data);
     }
-  },
-);
+
+    return rejectWithValue('[Error]: getProductById');
+  }
+});
 
 export const getGradesByProductId = createAsyncThunk<
   IGradeProductResponse,
