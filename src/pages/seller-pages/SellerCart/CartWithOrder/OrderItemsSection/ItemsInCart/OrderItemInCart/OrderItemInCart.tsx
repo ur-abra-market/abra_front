@@ -4,7 +4,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 
 import { ItemDescription } from './ItemDescription';
 
-import { Question } from 'assets/icons';
+import { QuestionIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
 import { useResizeWindow } from 'common/hooks/useResizeWindow';
 import { IProductInCart, setSelectProduct } from 'store/reducers/seller/cart';
@@ -86,7 +86,7 @@ export const OrderItemInCart: FC<IOrderItemInCart> = ({
           aria-label="button-question"
           className={style.button_question}
         >
-          <Question />
+          <QuestionIcon />
         </button>
       </div>
     </li>

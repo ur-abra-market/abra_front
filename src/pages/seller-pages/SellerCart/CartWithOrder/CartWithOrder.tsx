@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { OrderDetails } from './OrderDetails';
+import { OrderItemsSection } from './OrderItemsSection';
 
 import { useAppSelector } from 'common/hooks';
-import { OrderItemsSection } from 'pages/seller-pages/SellerCart/CartWithOrder/OrderItemsSection';
 import { productsInCart, totalItems } from 'store/reducers/seller/cart';
 import { Title } from 'ui-kit';
 
-import style from './CartWihtOrder.module.scss';
+import style from './CartWithOrder.module.scss';
 
 export const CartWithOrder = (): JSX.Element => {
   const productsCart = useAppSelector(productsInCart);
