@@ -13,8 +13,8 @@ import {
 } from './thunks';
 import {
   IFavorite,
-  IProductCard,
   IProductSliceInitialState,
+  IResponseGetProductCardId,
   ISortBy,
   ISortField,
 } from './types';
@@ -74,6 +74,7 @@ const initialState: IProductSliceInitialState = {
     tags: [],
     bundle_variation_pods: [],
   },
+  feedbacks: {},
   popularProducts: [],
   similarProducts: [],
   productsCompilation: {},
@@ -104,9 +105,13 @@ const productSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(getProductById.fulfilled, (state, action: PayloadAction<IProductCard>) => {
-        state.productCard = action.payload;
-      })
+      .addCase(
+        getProductById.fulfilled,
+        (state, action: PayloadAction<IResponseGetProductCardId>) => {
+          state.productCard = action.payload.product;
+          state.feedbacks = action.payload.feedbacks;
+        },
+      )
       .addCase(
         addFavoriteProduct.fulfilled,
         (state, action: PayloadAction<IFavorite>) => {
