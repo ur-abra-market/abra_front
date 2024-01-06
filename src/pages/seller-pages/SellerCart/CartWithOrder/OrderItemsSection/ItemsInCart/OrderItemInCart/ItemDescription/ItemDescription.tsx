@@ -2,6 +2,10 @@ import React, { FC } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
+import { BundleColorVariation } from './BundleColorVariation';
+import { BundlePrice } from './BundlePrice';
+import { BundleSizeVariation } from './BundleSizeVariation';
+
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import { PRODUCT_DETAILS } from 'routes';
 import { IProductInCart } from 'store/reducers/seller/cart';
@@ -46,13 +50,9 @@ export const ItemDescription: FC<IItemDescription> = ({
 
         <div className={style.item_details}>
           {isColorVariation ? (
-            <Paragraph className={style.item_color}>
-              Color: <span className={style.item_color_property}>{colorValue}</span>
-            </Paragraph>
+            <BundleColorVariation color={colorValue} />
           ) : (
-            <Paragraph className={style.item_size}>
-              Size: <span className={style.item_size_property}>{sizeValue}</span>
-            </Paragraph>
+            <BundleSizeVariation size={sizeValue} />
           )}
 
           <Paragraph className={style.item_pieces}>
@@ -61,25 +61,7 @@ export const ItemDescription: FC<IItemDescription> = ({
         </div>
 
         <div className={style.order_details}>
-          <div className={style.item_price}>
-            <Paragraph weight="semi_bold" className={style.total_price}>
-              $ {totalPriceBundle}
-            </Paragraph>
-            <div className={style.item_price_details}>
-              <Paragraph weight="medium" className={style.value_bundles}>
-                {100} bundles
-              </Paragraph>
-              <span className={style.line} />
-              <div className={style.item_prices}>
-                <Paragraph weight="medium" className={style.old_price}>
-                  ${priceValue}/{1} bnd
-                </Paragraph>
-                {/* <Paragraph weight="medium" className={style.new_price}> */}
-                {/*  ${4.0}/{1}bnd */}
-                {/* </Paragraph> */}
-              </div>
-            </div>
-          </div>
+          <BundlePrice totalPriceBundle={totalPriceBundle} priceValue={priceValue} />
         </div>
       </div>
     </div>

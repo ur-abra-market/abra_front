@@ -1,6 +1,6 @@
 export { productsInCart, totalItems } from './selectors';
 
-export { getSellerDataCart } from './thunks';
+export { getSellerCartData } from './thunks';
 
 export {
   setProductsInCartPerPage,
@@ -8,4 +8,4 @@ export {
   setSelectAllProducts,
 } from './slice';
 
-export type { IProductCardCart, IProductInCart } from './types';
+export type { IProductCardInCart, IProductInCart } from './types';

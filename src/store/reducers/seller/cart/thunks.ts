@@ -7,7 +7,7 @@ import { IAsyncThunkConfig } from 'common/types';
 import { sellerService } from 'services/seller/seller.service';
 import { ISellersCartRequest } from 'services/seller/seller.serviceTypes';
 
-export const getSellerDataCart = createAsyncThunk<
+export const getSellerCartData = createAsyncThunk<
   ISellersCartResponse[],
   ISellersCartRequest,
   IAsyncThunkConfig

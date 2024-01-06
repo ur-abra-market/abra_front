@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useAppSelector } from 'common/hooks';
-import { IProductCardCart } from 'store/reducers/seller/cart';
+import { IProductCardInCart } from 'store/reducers/seller/cart';
 import { productsInCart } from 'store/reducers/seller/cart/selectors';
 import { Button, Paragraph, Title } from 'ui-kit';
 
@@ -12,10 +12,10 @@ export const OrderDetails = (): JSX.Element => {
 
   const selectedProducts = products
     .flat()
-    .filter((item: IProductCardCart) => item.is_checked);
+    .filter((item: IProductCardInCart) => item.is_checked);
 
   const totalValueItemsInOrder = selectedProducts.reduce(
-    (item: number, product: IProductCardCart) => {
+    (item: number, product: IProductCardInCart) => {
       return item + product.amount;
     },
     0,
@@ -44,6 +44,7 @@ export const OrderDetails = (): JSX.Element => {
         <Paragraph size="s2" className={style.total_shipping_text}>
           Shipping~
           <span className={style.line} />${560}
+          {/* todo */}
         </Paragraph>
       </div>
 

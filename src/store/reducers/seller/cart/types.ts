@@ -1,6 +1,6 @@
 import { IProductCard, ISupplier } from 'store/reducers/productSlice';
 
-export interface IProductCardCart {
+export interface IProductCardInCart {
   amount: number;
   bundle_variation_pod: IBundleVariationPod;
   bundle_variation_pod_id: number | null;
@@ -8,7 +8,7 @@ export interface IProductCardCart {
   id: number | null;
   order_id: number | null;
   updated_at: string;
-  is_checked: boolean; /// / не приходит с бэка
+  is_checked: boolean; /// todo не приходит с бэка
 }
 
 export interface IBundleVariationPod {

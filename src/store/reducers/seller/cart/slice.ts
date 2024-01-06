@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { getSellerDataCart } from './thunks';
-import { IProductCardCart } from './types';
+import { getSellerCartData } from './thunks';
+import { IProductCardInCart } from './types';
 
 export interface IProductsInCart {
   productsPerPage: number;
-  productsInCart: Array<IProductCardCart[]>;
+  productsInCart: Array<IProductCardInCart[]>;
   totalProductForOrder: number;
   totalAmountBundles: number;
   totalItems: number;
@@ -59,18 +59,18 @@ const sellerProfileSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(getSellerDataCart.fulfilled, (state, action) => {
-      const productCartItems: IProductCardCart[] = [];
+    builder.addCase(getSellerCartData.fulfilled, (state, action) => {
+      const productCartItems: IProductCardInCart[] = [];
 
       action.payload.forEach(item => {
         productCartItems.push(...item.details);
       });
 
-      const productsWithSupplier: Record<string, IProductCardCart[]> =
+      const productsWithSupplier: Record<string, IProductCardInCart[]> =
         productCartItems.reduce(
           (
-            products_with_name: Record<string, IProductCardCart[]>,
-            products: IProductCardCart,
+            products_with_name: Record<string, IProductCardInCart[]>,
+            products: IProductCardInCart,
           ) => {
             const supplierName =
               products.bundle_variation_pod.product.supplier.company.name;
@@ -89,7 +89,7 @@ const sellerProfileSlice = createSlice({
           {},
         );
 
-      const sortedCartItemsByName: Record<string, IProductCardCart[]> =
+      const sortedCartItemsByName: Record<string, IProductCardInCart[]> =
         Object.fromEntries(Object.entries(productsWithSupplier).sort());
 
       state.productsInCart = Object.values(sortedCartItemsByName);

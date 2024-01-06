@@ -1,11 +1,12 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import { ItemDescription } from './ItemDescription';
 
-import { QuestionDisabled } from 'assets/icons';
+import { Question } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
+import { useResizeWindow } from 'common/hooks/useResizeWindow';
 import { IProductInCart, setSelectProduct } from 'store/reducers/seller/cart';
 import {
   IBundleVariations,
@@ -34,25 +35,11 @@ export const OrderItemInCart: FC<IOrderItemInCart> = ({
   prices,
   is_checked,
 }): JSX.Element => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = (): void => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
   const dispatch = useAppDispatch();
 
   const variationValues = bundle_variation.bundle.variation_values;
   const bundleVariationValue = bundle_variation.product_variation.variation;
-
+  const windowWidth = useResizeWindow();
   const counterVariant = windowWidth >= widthChangedVariantCounter ? 'small' : 'large';
 
   const commonPiecesBundles =
@@ -99,7 +86,7 @@ export const OrderItemInCart: FC<IOrderItemInCart> = ({
           aria-label="button-question"
           className={style.button_question}
         >
-          <QuestionDisabled />
+          <Question />
         </button>
       </div>
     </li>

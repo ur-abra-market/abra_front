@@ -4,14 +4,14 @@ import { NavLink } from 'react-router-dom';
 
 import { ArrowRight } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
-import { IProductCardCart, setSelectAllProducts } from 'store/reducers/seller/cart';
+import { IProductCardInCart, setSelectAllProducts } from 'store/reducers/seller/cart';
 import { Checkbox, Paragraph } from 'ui-kit';
 import { Star } from 'ui-kit/Stars/Star/Star';
 
 import style from './SupplierInformation.module.scss';
 
 type ISupplierInformation = {
-  products: IProductCardCart[];
+  products: IProductCardInCart[];
 };
 
 export const SupplierInformation: FC<ISupplierInformation> = ({
@@ -36,30 +36,32 @@ export const SupplierInformation: FC<ISupplierInformation> = ({
   };
 
   return (
-    <div className={style.supplier_container}>
-      <Checkbox
-        variant="default"
-        className={style.checkbox_header}
-        checked={isSelectedAllProducts}
-        onChange={selectAllProducts}
-      />
+    <div className={style.header_item}>
+      <div className={style.supplier_container}>
+        <Checkbox
+          variant="default"
+          className={style.checkbox_header}
+          checked={isSelectedAllProducts}
+          onChange={selectAllProducts}
+        />
 
-      <div className={style.supplier_information}>
-        <div className={style.star}>
-          <Star percent={`${averagePercent}%`} sizes="16" />
-        </div>
+        <div className={style.supplier_information}>
+          <div className={style.star}>
+            <Star percent={`${averagePercent}%`} sizes="16" />
+          </div>
 
-        <Paragraph size="s2" className={style.supplier_rating}>
-          {supplierAverage}
-        </Paragraph>
-
-        <NavLink to="/cart" className={style.supplier_link}>
-          <Paragraph size="s2" className={style.supplier_name}>
-            {supplierName}
+          <Paragraph size="s2" className={style.supplier_rating}>
+            {supplierAverage}
           </Paragraph>
 
-          <ArrowRight className={style.arrow} />
-        </NavLink>
+          <NavLink to="/cart" className={style.supplier_link}>
+            <Paragraph size="s2" className={style.supplier_name}>
+              {supplierName}
+            </Paragraph>
+
+            <ArrowRight className={style.arrow} />
+          </NavLink>
+        </div>
       </div>
     </div>
   );
