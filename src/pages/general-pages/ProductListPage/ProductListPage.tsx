@@ -6,7 +6,7 @@ import { ProductFilter } from './ProductFilter/ProductFilter';
 import { ProductList } from './ProductList/ProductList';
 
 import { WithLayout } from 'common/hocs/WithLayout';
-import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { useAppDispatch, useAppSelector, useMediaQuery } from 'common/hooks';
 import Modal from 'elements/Modal';
 import { setResetAllFilters, setSortBy, setSortField } from 'store/reducers/productSlice';
 import { sortBySelector, sortFieldSelector } from 'store/reducers/productSlice/selectors';
@@ -22,19 +22,7 @@ export const ProductListPage = WithLayout((): JSX.Element => {
   const currentSortField = searchParams.get('sortField') || 'rating';
   const currentSortBy = searchParams.get('sortBy') || 'desc';
   const [isModalOpen, setModalOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = (): void => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  const { isDevice } = useMediaQuery();
 
   useEffect(() => {
     dispatch(setSortField(currentSortField as ISortField));
@@ -56,7 +44,7 @@ export const ProductListPage = WithLayout((): JSX.Element => {
 
   return (
     <div className={style.product_list_page}>
-      {windowWidth >= 769 ? (
+      {!isDevice ? (
         <ProductFilter
           onSaveQueryParams={handleSaveQueryParams}
           onResetAllFilters={handleResetAllFilters}
@@ -71,8 +59,8 @@ export const ProductListPage = WithLayout((): JSX.Element => {
       )}
 
       <ProductList
-        windowWidth={windowWidth}
         closeModal={setModalOpen}
+        showModal={isModalOpen}
         currentSortField={currentSortField as ISortField}
         currentSortBy={currentSortBy as ISortBy}
       />

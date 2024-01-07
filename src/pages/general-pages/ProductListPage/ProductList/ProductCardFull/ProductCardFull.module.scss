@@ -199,6 +199,12 @@
     align-items: flex-start;
   }
 
+  .supplier_wrapper {
+    grid-template-areas:
+      "logo name"
+      "details details";
+  }
+
   .orders {
     padding: 0;
   }

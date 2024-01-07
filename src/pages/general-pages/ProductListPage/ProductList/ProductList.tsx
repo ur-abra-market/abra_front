@@ -6,7 +6,7 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import { ProductCardFull } from './ProductCardFull/ProductCardFull';
 
 import { Filter } from 'assets/icons';
-import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { useAppDispatch, useAppSelector, useMediaQuery } from 'common/hooks';
 import { LoadingStatusEnum, SelectedViewEnum } from 'common/types';
 import { PageViewSwitcher, ProductsPerPage, SkeletonProductCard } from 'elements';
 import { ProductCard } from 'modules';
@@ -29,13 +29,15 @@ interface IProductList {
   currentSortField: ISortField;
   currentSortBy: ISortBy;
   closeModal: (value: boolean) => void;
-  windowWidth: number;
+  showModal: boolean;
 }
+
+const DESIRED_BREAKPOINT = 430;
 
 export const ProductList: FC<IProductList> = ({
   currentSortField,
   currentSortBy,
-  windowWidth,
+  showModal,
   closeModal,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -51,6 +53,7 @@ export const ProductList: FC<IProductList> = ({
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query');
   const totalPages = Math.ceil(totalCount / productsPerPage);
+  const { isDevice } = useMediaQuery(DESIRED_BREAKPOINT);
 
   useEffect(() => {
     const param = {
@@ -69,7 +72,7 @@ export const ProductList: FC<IProductList> = ({
   };
 
   const modsProductsContainer = {
-    [style.grid_container]: selectedView === SelectedViewEnum.GRID || windowWidth <= 430,
+    [style.grid_container]: selectedView === SelectedViewEnum.GRID || isDevice,
     [style.list_container]: selectedView === SelectedViewEnum.LIST,
   };
 
@@ -90,7 +93,7 @@ export const ProductList: FC<IProductList> = ({
 
   const productsView = products?.map(product => {
     if (selectedView === SelectedViewEnum.LIST) {
-      if (windowWidth >= 430) {
+      if (!isDevice) {
         return <ProductCardFull key={product.id} product={product} />;
       }
 
@@ -116,7 +119,7 @@ export const ProductList: FC<IProductList> = ({
             onKeyDown={() => closeModal(true)}
             className={style.filter}
           >
-            <Filter />
+            <Filter className={showModal ? style.filter_icon : undefined} />
           </div>
           {/* TODO (fake data) */}
         </div>
