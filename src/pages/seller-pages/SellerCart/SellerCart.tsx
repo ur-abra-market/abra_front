@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { CartWithOrder } from './CartWithOrder/CartWithOrder';
+import { CartWithOrder } from './CartWithOrder';
 import { EmptyCart } from './EmptyCart';
 
 import { WithLayout } from 'common/hocs/WithLayout';
