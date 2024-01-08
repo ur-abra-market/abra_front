@@ -138,3 +138,33 @@ export const getProductsListCompilation = createAsyncThunk<any, ICategoryRequest
     }
   },
 );
+
+export const addFavoriteProductPage = createAsyncThunk<any, IProductRequest>(
+  'favorite/addFavoriteProductPage',
+  async (payload, { rejectWithValue }) => {
+    try {
+      return await productService.addFavorite(payload);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.response?.data);
+      }
+
+      return rejectWithValue('[Error]: addFavoriteProduct');
+    }
+  },
+);
+
+export const removeFavoriteProductPage = createAsyncThunk<any, IProductRequest>(
+  'favorite/removeFavoriteProductPage',
+  async (payload, { rejectWithValue }) => {
+    try {
+      return !(await productService.removeFavorite(payload));
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.response?.data);
+      }
+
+      return rejectWithValue('[Error]: removeFavoriteProduct');
+    }
+  },
+);

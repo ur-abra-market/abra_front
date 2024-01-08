@@ -8,7 +8,7 @@ export const productCategorySelector = (state: RootStateType): ICategory =>
   state.product.productCard.category ?? {};
 
 export const favoriteProductSelector = (state: RootStateType): boolean =>
-  state.product.isFavorite || false;
+  state.product.productCard.is_favorite;
 
 export const productGradeSelector = (state: RootStateType): number | string =>
   state.product.productCard.grade_average;
@@ -62,3 +62,6 @@ export const priseSelector = (state: RootStateType): number =>
 
 export const supplierNameSelector = (state: RootStateType): string =>
   state.product.productCard.supplier.company.name;
+
+export const productBreadCrumbsSelector = (state: RootStateType): ICategory[] =>
+  state.product.productCard.breadcrumbs;

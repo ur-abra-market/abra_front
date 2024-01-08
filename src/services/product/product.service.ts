@@ -9,7 +9,6 @@ import {
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
-import { IProductCard } from 'store/reducers/productSlice';
 import { IResponseGetProductCardId } from 'store/reducers/productSlice/types';
 import { IProductsListResponse } from 'store/reducers/supplier/product';
 import {
