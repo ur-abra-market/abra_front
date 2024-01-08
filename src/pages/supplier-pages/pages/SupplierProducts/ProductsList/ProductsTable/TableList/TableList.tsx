@@ -27,7 +27,7 @@ export const TableList: FC<ITableList> = ({
   hiddenColumns,
   className = '',
 }) => {
-  const totalDisplayedColumns = (): IColumns[] => {
+  const totalVisibleColumns = (): IColumns[] => {
     if (visibleColumns) {
       return tableSortData.filter(({ name }) => visibleColumns.includes(name));
     }
@@ -47,14 +47,12 @@ export const TableList: FC<ITableList> = ({
             const [price] = prices;
 
             const columnsContent: { [key: string]: ReactNode | string } = {
-              // data
               SKU: id,
               Name: name,
               Status: price.discount ? 'On Sale' : 'Off Sale',
               Price: `$${price.value}`,
               Units: 'empty',
               Visibility: is_active ? 'Visible' : 'Hidden',
-              // ReactNodes
               Checkbox: <CheckboxListCell id={id} status={is_active} />,
               Picture: <img className={style.image} src={defaultImg} alt="product" />,
               'Creation Date': (
@@ -71,7 +69,7 @@ export const TableList: FC<ITableList> = ({
 
           return (
             <tr className={cn(deactivatedClasses, style.table_row, className)} key={id}>
-              {totalDisplayedColumns().map(({ id, name }: IColumns) => {
+              {totalVisibleColumns().map(({ id, name }: IColumns) => {
                 return (
                   <TableListCell
                     key={id}

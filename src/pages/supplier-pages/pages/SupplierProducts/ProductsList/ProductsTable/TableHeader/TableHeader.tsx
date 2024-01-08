@@ -21,7 +21,7 @@ export const TableHeader: FC<ITableHeader> = ({
   hiddenColumns,
   className = '',
 }) => {
-  const totalDisplayedColumns = (): IColumns[] => {
+  const totalVisibleColumns = (): IColumns[] => {
     if (visibleColumns) {
       return tableSortData.filter(({ name }) => visibleColumns.includes(name));
     }
@@ -32,7 +32,7 @@ export const TableHeader: FC<ITableHeader> = ({
   return (
     <thead className={style.thead}>
       <tr className={cn(style.table_row, className)}>
-        {totalDisplayedColumns().map(column => (
+        {totalVisibleColumns().map(column => (
           <TableHeaderCell key={column.id} column={column} className={style.table_head} />
         ))}
       </tr>

@@ -17,7 +17,7 @@ interface ICheckboxCell {
   className: string;
 }
 
-export const CheckboxHeaderCell: FC<ICheckboxCell> = ({ className }) => {
+export const CheckboxCell: FC<ICheckboxCell> = ({ className }) => {
   const dispatch = useAppDispatch();
   const activeProduct = useAppSelector(activeProductSelector);
   const isLoading = useAppSelector(isLoadingSelector);
