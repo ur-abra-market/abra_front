@@ -20,6 +20,7 @@ export type ISortField = 'rating' | 'price' | 'date' | 'total_orders';
 export type ISortBy = 'asc' | 'desc';
 
 export interface IProductCard {
+  breadcrumbs: ICategory[];
   id: number | null;
   created_at: string;
   updated_at: string;
@@ -28,6 +29,7 @@ export interface IProductCard {
   grade_average: number | string;
   total_orders: number | null;
   is_active: boolean;
+  is_favorite: boolean;
   category: ICategory;
   supplier: ISupplier;
   images: IImage[];

@@ -1,31 +1,19 @@
 import React, { FC } from 'react';
 
-import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
+
+import { ICategory } from 'common/types';
 
 import style from './BreadCrumbs.module.scss';
 
-interface IBreadCrumbsProps {
-  parentId: number | null;
-  categoryName: string;
-  className?: string;
+interface IBreadCrumbs {
+  breadCrumbs: ICategory[];
 }
 
-export const BreadCrumbs: FC<IBreadCrumbsProps> = ({
-  categoryName,
-  parentId,
-  className,
-}): JSX.Element => {
-  // todo пока так, не получаем всех значений
-  const itemList = [
-    { id: 1, name: 'Clothing' },
-    { id: 2, name: 'For women' },
-    { id: 3, name: categoryName },
-  ];
-
+export const BreadCrumbs: FC<IBreadCrumbs> = ({ breadCrumbs }): JSX.Element => {
   return (
-    <ul className={cn(style.list, className)}>
-      {itemList.map((el, i, arr) =>
+    <ul className={style.list}>
+      {breadCrumbs.map((el, i, arr) =>
         i < arr.length - 1 ? (
           <li key={el.id} className={style.list_items}>
             <NavLink className={style.item_link} to="#">
