@@ -19,6 +19,7 @@ export const productEditorData: IActionData[] = [
 ];
 
 export const tableSortData: IColumns[] = [
+  { id: 0, name: 'Checkbox' },
   { id: 1, name: 'SKU' },
   { id: 2, name: 'Picture' },
   { id: 3, name: 'Name' },

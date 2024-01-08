@@ -25,8 +25,10 @@ export const ProductsTable = (): JSX.Element => {
           className={style.fixed}
         />
       </table>
+
       <div className={style.table_column_shadow} />
       <div className={style.table_column_shadow_cover} />
+
       <table className={style.table_scrollable}>
         <TableHeader tableSortData={tableSortData} hiddenColumns={['Checkbox', 'SKU']} />
 

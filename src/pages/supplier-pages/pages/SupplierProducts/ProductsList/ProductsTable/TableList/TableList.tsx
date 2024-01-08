@@ -1,19 +1,16 @@
-import { ChangeEvent, FC } from 'react';
+import { FC, ReactNode } from 'react';
 
 import cn from 'classnames';
 
+import { CheckboxListCell } from './TableListComponents/CheckboxListCell';
+import { DateTimeContainer } from './TableListComponents/DateTimeContainer';
+import { TableListCell } from './TableListComponents/TableListCell';
+
 import defaultImg from 'assets/images/files/default-product-image.png';
-import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { formatDate } from 'common/utils/formatDateProductsList';
-import {
-  IProduct,
-  activeProductSelector,
-  deactivatedProductSelector,
-  isLoadingSelector,
-  selectActiveProduct,
-  selectDeactivatedProduct,
-} from 'store/reducers/supplier/product';
-import { Checkbox, Stars } from 'ui-kit';
+import { IColumns } from 'pages/supplier-pages/pages/SupplierProducts/common/types/types';
+import { tableSortData } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/tableData';
+import { IProduct } from 'store/reducers/supplier/product';
+import { Stars } from 'ui-kit';
 
 import style from './TableList.module.scss';
 
@@ -30,115 +27,64 @@ export const TableList: FC<ITableList> = ({
   hiddenColumns,
   className = '',
 }) => {
-  const activeProduct = useAppSelector(activeProductSelector);
-  const deactivatedProduct = useAppSelector(deactivatedProductSelector);
-  const dispatch = useAppDispatch();
-  const isLoading = useAppSelector(isLoadingSelector);
-
-  const onChangeChecked = (
-    e: ChangeEvent<HTMLInputElement>,
-    id: number,
-    status: boolean,
-  ): void => {
-    if (status) {
-      dispatch(selectActiveProduct(id));
-    } else {
-      dispatch(selectDeactivatedProduct(id));
-    }
-  };
-
-  const isColumnDisplayed = (name: string): boolean => {
+  const totalDisplayedColumns = (): IColumns[] => {
     if (visibleColumns) {
-      return visibleColumns.some(item => item === name);
+      return tableSortData.filter(({ name }) => visibleColumns.includes(name));
     }
 
-    return !hiddenColumns!.some(item => item === name);
+    return tableSortData.filter(({ name }) => !hiddenColumns!.includes(name));
   };
 
   return (
     <tbody>
-      {products?.map(el => {
-        const checked =
-          activeProduct.includes(el.id) || deactivatedProduct.includes(el.id);
-        const deactivatedClasses = cn(style.table_row, {
-          [style.table_deactivated]: !el.is_active,
-        });
+      {products?.map(
+        ({ id, name, created_at, prices, grade_average, is_active }: IProduct) => {
+          const deactivatedClasses = cn(style.table_row, {
+            [style.table_deactivated]: !is_active,
+          });
 
-        const formattedDateTime = formatDate(el.created_at);
-        const [formattedDate, formattedTime, formattedTimeAMPM] =
-          formattedDateTime.split(' ');
+          const content = (columnName: string): ReactNode | string => {
+            const [price] = prices;
 
-        return (
-          <tr className={cn(deactivatedClasses, style.table_row, className)} key={el.id}>
-            {isColumnDisplayed('Checkbox') && (
-              <td aria-label="Checkbox" className={style.table_td} data-column="Checkbox">
-                <Checkbox
-                  disabled={isLoading}
-                  checked={checked}
-                  variant="default"
-                  onChange={event => onChangeChecked(event, el.id, el.is_active)}
+            const columnsContent: { [key: string]: ReactNode | string } = {
+              // data
+              SKU: id,
+              Name: name,
+              Status: price.discount ? 'On Sale' : 'Off Sale',
+              Price: `$${price.value}`,
+              Units: 'empty',
+              Visibility: is_active ? 'Visible' : 'Hidden',
+              // ReactNodes
+              Checkbox: <CheckboxListCell id={id} status={is_active} />,
+              Picture: <img className={style.image} src={defaultImg} alt="product" />,
+              'Creation Date': (
+                <DateTimeContainer
+                  className={style.datetime_container}
+                  created_at={created_at}
                 />
-              </td>
-            )}
-            {isColumnDisplayed('SKU') && (
-              <td className={style.table_td} data-column="SKU">
-                {el.id}
-              </td>
-            )}
-            {isColumnDisplayed('Picture') && (
-              <td className={style.table_td} data-column="Picture">
-                <img className={style.image} src={defaultImg} alt="product" />
-              </td>
-            )}
-            {isColumnDisplayed('Name') && (
-              <td className={style.table_td} data-column="Name">
-                {el.name}
-              </td>
-            )}
-            {isColumnDisplayed('Creation Date') && (
-              <td className={style.table_td} data-column="Creation Date">
-                {el.created_at && (
-                  <div className={style.datetime_container}>
-                    <span>{formattedDate}</span>
-                    <span>{`${formattedTime} ${formattedTimeAMPM.toLowerCase()}`}</span>
-                  </div>
-                )}
-              </td>
-            )}
+              ),
+              Rating: <Stars sizes="10" reward={grade_average} />,
+            };
 
-            {el.prices.map(item => (
-              <>
-                {isColumnDisplayed('Status') && (
-                  <td className={style.table_td} data-column="Status">
-                    {item.discount ? 'On Sale' : 'Off Sale'}
-                  </td>
-                )}
-                {isColumnDisplayed('Price') && (
-                  <td
+            return columnsContent[columnName] ?? 'Not found';
+          };
+
+          return (
+            <tr className={cn(deactivatedClasses, style.table_row, className)} key={id}>
+              {totalDisplayedColumns().map(({ id, name }: IColumns) => {
+                return (
+                  <TableListCell
+                    key={id}
+                    columnName={name}
+                    data={content(name)}
                     className={style.table_td}
-                    data-column="Price"
-                  >{`$${item.value}`}</td>
-                )}
-                {isColumnDisplayed('Units') && (
-                  <td className={style.table_td} data-column="Units">
-                    empty
-                  </td>
-                )}
-              </>
-            ))}
-            {isColumnDisplayed('Rating') && (
-              <td aria-label="Stars" className={style.table_td} data-column="Rating">
-                <Stars sizes="10" reward={el.grade_average} />
-              </td>
-            )}
-            {isColumnDisplayed('Visibility') && (
-              <td className={style.table_td} data-column="Visibility">
-                {el.is_active ? 'Visible' : 'Hidden'}
-              </td>
-            )}
-          </tr>
-        );
-      })}
+                  />
+                );
+              })}
+            </tr>
+          );
+        },
+      )}
     </tbody>
   );
 };
