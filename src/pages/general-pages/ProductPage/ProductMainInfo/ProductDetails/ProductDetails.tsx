@@ -3,8 +3,8 @@ import React from 'react';
 import { useAppSelector } from 'common/hooks';
 import {
   AboutProduct,
-  DescriptionProduct,
-  FeedbackProduct,
+  ProductDescription,
+  ProductFeedback,
   ProductParams,
   ProductPrice,
   SupplierInfo,
@@ -35,8 +35,8 @@ export const ProductDetails = (): JSX.Element => {
       <Button className={style.button}>Add to Cart</Button>
       <SupplierInfo />
       <AboutProduct />
-      <FeedbackProduct />
-      <DescriptionProduct description={description} />
+      <ProductFeedback />
+      <ProductDescription description={description} />
     </div>
   );
 };

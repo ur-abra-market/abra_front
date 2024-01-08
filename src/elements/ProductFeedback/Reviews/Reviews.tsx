@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 
 import { useAppSelector } from 'common/hooks';
+import { Grades } from 'elements/Grades/Grades';
 import {
   calculatePercentRatings,
   calculationsRatings,
   countRatings,
-} from 'elements/FeedbackProduct/utils/calculationsRatings';
-import { Grades } from 'elements/Grades/Grades';
+} from 'elements/ProductFeedback/utils/calculationsRatings';
 import { ReviewsIndicator } from 'pages/general-pages/ProductPage/ReviewsIndicator/ReviewsIndicator';
 import { IFeedbacks } from 'store/reducers/productSlice/types';
 import { Paragraph } from 'ui-kit';

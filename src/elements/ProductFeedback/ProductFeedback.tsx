@@ -9,12 +9,12 @@ import { useAppSelector } from 'common/hooks';
 import { HOME } from 'routes';
 import { Title } from 'ui-kit';
 
-import style from './FeedbackProduct.module.scss';
+import style from './ProductFeedback.module.scss';
 
-export const FeedbackProduct = (): JSX.Element => {
-  const feedbackProduct = useAppSelector(state => state.product.feedbacks);
+export const ProductFeedback = (): JSX.Element => {
+  const productFeedback = useAppSelector(state => state.product.feedbacks);
 
-  const hasFeedback = Object.keys(feedbackProduct).length !== 0;
+  const hasFeedback = Object.keys(productFeedback).length !== 0;
 
   return (
     <div className={cn(style.feedbacks_container, style.section)}>
@@ -29,7 +29,7 @@ export const FeedbackProduct = (): JSX.Element => {
         )}
       </div>
 
-      <Reviews hasFeedback={hasFeedback} feedback={feedbackProduct} />
+      <Reviews hasFeedback={hasFeedback} feedback={productFeedback} />
     </div>
   );
 };
