@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const DEFAULT_BREAKPOINT = 768;
+const DEFAULT_BREAKPOINT = 769;
 
 export const useMediaQuery = (breakpoint = DEFAULT_BREAKPOINT): { isDevice: boolean } => {
   const [isDevice, setIsDevice] = useState(window.innerWidth < breakpoint);
