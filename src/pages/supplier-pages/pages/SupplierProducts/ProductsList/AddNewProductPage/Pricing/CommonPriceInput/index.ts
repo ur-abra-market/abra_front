@@ -1,0 +1,1 @@
+export { CommonInputPrice } from './CommonInputPrice';

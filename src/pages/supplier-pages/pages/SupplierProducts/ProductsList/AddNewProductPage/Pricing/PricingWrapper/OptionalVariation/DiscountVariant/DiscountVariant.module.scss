@@ -1,0 +1,21 @@
+.optional_wrapper {
+  display: flex;
+  gap: 16px;
+}
+
+.select_container {
+  margin-bottom: 16px;
+}
+
+.main_select {
+  color: var(--Medium-grey);
+  background: var(--color-white-ivory);
+  border-radius: 12px;
+}
+
+@media only screen and (max-width: 425px) {
+  .optional_wrapper {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}
