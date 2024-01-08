@@ -3,7 +3,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 
-  width: 634px;
+  width: 100%;
   height: auto;
   margin-top: 24px;
   margin-bottom: 20px;
@@ -14,10 +14,9 @@
 
   padding: 0;
 
-  font-size: 15px;
-  font-weight: 400;
+  font-size: var(--fz-m);
+  font-weight: var(--regular);
   font-style: normal;
-  line-height: 20px;
   color: var(--color-red);
   text-align: left;
   text-decoration: underline;
@@ -37,7 +36,7 @@
 }
 
 .percentage {
-  font-size: 12px;
+  font-size: var(--fz-xs);
 }
 
 .additional {
@@ -47,14 +46,6 @@
 }
 
 @media (max-width: 768px) {
-  .container, 
-  .additional {
-    grid-template-columns: 1fr;
-    width: 100%;
-  }
-}
-
-@media (max-width: 320px) {
   .container, 
   .additional {
     grid-template-columns: 1fr;

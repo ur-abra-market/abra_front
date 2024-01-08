@@ -11,11 +11,11 @@ import { Paragraph } from 'ui-kit';
 
 import style from './ProductDescription.module.scss';
 
-interface DynamicComponentProps {
+interface IDynamicComponent {
   item: string;
 }
 
-const DynamicComponent: FC<DynamicComponentProps> = ({ item }) => {
+const DynamicComponent: FC<IDynamicComponent> = ({ item }) => {
   switch (item) {
     case 'Main Product Info':
       return <MainProductInfo />;

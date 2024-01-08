@@ -7,13 +7,13 @@ import { Label, Select } from 'ui-kit';
 
 import style from './Select.module.scss';
 
-interface SelectFieldProps {
+interface ISelectField {
   name: string;
   label: string;
   placeholder?: string;
 }
 
-export const SelectField: FC<SelectFieldProps> = ({ name, label, placeholder }) => {
+export const SelectField: FC<ISelectField> = ({ name, label, placeholder }) => {
   const { control } = useForm();
   const categories = useAppSelector(state => state.common.categories);
   const nameData = categories ? categories.filter(c => c.level === 1) : [];

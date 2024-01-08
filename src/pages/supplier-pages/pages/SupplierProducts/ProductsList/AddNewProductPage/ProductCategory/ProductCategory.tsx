@@ -5,19 +5,19 @@ import { Checkbox } from 'ui-kit';
 
 import style from './ProductCategory.module.scss';
 
-interface Category {
+interface ICategory {
   id: number;
   name: string;
   isChecked?: boolean;
-  subcategories?: Category[];
+  subcategories?: ICategory[];
 }
 
-interface CategoryDropdownProps {
-  category: Category;
+interface ICategoryDropdown {
+  category: ICategory;
   depth: number;
 }
 
-const CategoryDropdown: FC<CategoryDropdownProps> = ({ category, depth }) => {
+const CategoryDropdown: FC<ICategoryDropdown> = ({ category, depth }) => {
   const [isOpen, setIsOpen] = useState(false);
   const categoryDepthValue = 10;
   const subcategoryDepthValue = 15;
@@ -72,7 +72,7 @@ const CategoryDropdown: FC<CategoryDropdownProps> = ({ category, depth }) => {
 };
 
 export const ProductCategory: React.FC = () => {
-  const categories: Category[] = [
+  const categories: ICategory[] = [
     {
       id: 0,
       name: 'All categories',

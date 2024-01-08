@@ -11,12 +11,10 @@ export const Variation: FC = (): JSX.Element => {
   const { control } = useForm();
   const categories = useAppSelector(state => state.common.categories);
   const nameData = categories ? categories.filter(c => c.level === 1) : [];
-  const [activeVar, setActiveVar] = useState<string | null>(null);
+  const [selectedVariation, setSelectedVariation] = useState<string | null>(null);
 
-  const buttonClickHandler = (varType: string): void => {
-    // eslint-disable-next-line no-console
-    console.log(`Button ${varType} clicked`);
-    setActiveVar(activeVar === varType ? null : varType);
+  const handleSelectVariation = (variationType: string): void => {
+    setSelectedVariation(selectedVariation === variationType ? null : variationType);
   };
 
   return (
@@ -25,22 +23,28 @@ export const Variation: FC = (): JSX.Element => {
         <div className={style.button_container}>
           <ButtonIcon
             type="button"
-            className={`${style.button} ${activeVar === 'Var 1' ? style.active : ''}`}
-            onClick={() => buttonClickHandler('Var 1')}
+            className={`${style.button} ${
+              selectedVariation === 'Var 1' ? style.active : ''
+            }`}
+            onClick={() => handleSelectVariation('Var 1')}
           >
             Var 1
           </ButtonIcon>
           <ButtonIcon
             type="button"
-            className={`${style.button} ${activeVar === 'Var 2' ? style.active : ''}`}
-            onClick={() => buttonClickHandler('Var 2')}
+            className={`${style.button} ${
+              selectedVariation === 'Var 2' ? style.active : ''
+            }`}
+            onClick={() => handleSelectVariation('Var 2')}
           >
             Var 2
           </ButtonIcon>
           <ButtonIcon
             type="button"
-            className={`${style.plus_button} ${activeVar === 'Plus' ? style.active : ''}`}
-            onClick={() => buttonClickHandler('Plus')}
+            className={`${style.plus_button} ${
+              selectedVariation === 'Plus' ? style.active : ''
+            }`}
+            onClick={() => handleSelectVariation('Plus')}
           >
             +
           </ButtonIcon>
