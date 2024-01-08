@@ -1,11 +1,7 @@
 import React from 'react';
 
-import cn from 'classnames';
-
 import { useAppSelector } from 'common/hooks';
-import { ViewMoreProductsLink } from 'elements';
-import { ProductCard, ProductsPreview } from 'modules';
-import { IProductCompilation } from 'services/product/product.serviceTypes';
+import { Advise } from 'pages/general-pages/ProductPage/Advise/Advise';
 import {
   popularProductsSelector,
   productTagsSelector,
@@ -22,25 +18,21 @@ export const ProductRecommendations = (): JSX.Element => {
   return (
     <>
       {similarProducts.length > 0 && (
-        <div className={cn(style.similar_product, style.section)}>
-          <ProductsPreview title="Similar products">
-            {similarProducts.map((product: IProductCompilation): JSX.Element => {
-              return <ProductCard key={product.id} product={product} />;
-            })}
-            <ViewMoreProductsLink />
-          </ProductsPreview>
-        </div>
+        <Advise
+          products={similarProducts}
+          title="Similar products"
+          className={style.similar_product}
+        />
       )}
+
       {popularProducts.length > 0 && (
-        <div className={cn(style.popular_product, style.section)}>
-          <ProductsPreview title="Popular products in this category">
-            {popularProducts.map((product: IProductCompilation): JSX.Element => {
-              return <ProductCard key={product.id} product={product} />;
-            })}
-            <ViewMoreProductsLink />
-          </ProductsPreview>
-        </div>
+        <Advise
+          products={popularProducts}
+          title="Popular products in this category"
+          className={style.popular_product}
+        />
       )}
+
       {/* //todo ждет данные с бека */}
       {/* <div className={style.section}> */}
       {/* <LatestSearches tags={tags} /> */}

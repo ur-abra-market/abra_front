@@ -1,3 +1,9 @@
+.grade_indicators {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .indicator_wrapper {
   display: flex;
   gap: 15px;

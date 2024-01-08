@@ -9,17 +9,6 @@
   margin-bottom: 16px;
 }
 
-.grade {
-  margin-bottom: 14px;
-  padding-left: 0;
-}
-
-.grade_indicators {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
 .without_reviews {
   padding-top: 10px;
 }
@@ -38,9 +27,3 @@
   text-decoration: underline;
 }
 
-@media (max-width: 426px) {
-  .grade {
-    column-gap: 0;
-    justify-content: space-between;
-  }
-}

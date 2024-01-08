@@ -4,7 +4,7 @@ import { useAppSelector } from 'common/hooks';
 import {
   AboutProduct,
   DescriptionProduct,
-  FeedBacksProduct,
+  FeedbackProduct,
   ProductParams,
   ProductPrice,
   SupplierInfo,
@@ -35,7 +35,7 @@ export const ProductDetails = (): JSX.Element => {
       <Button className={style.button}>Add to Cart</Button>
       <SupplierInfo />
       <AboutProduct />
-      <FeedBacksProduct />
+      <FeedbackProduct />
       <DescriptionProduct description={description} />
     </div>
   );

@@ -6,11 +6,11 @@ import { ICategory } from 'common/types';
 
 import style from './BreadCrumbs.module.scss';
 
-interface IBreadCrumbsProps {
+interface IBreadCrumbs {
   breadCrumbs: ICategory[];
 }
 
-export const BreadCrumbs: FC<IBreadCrumbsProps> = ({ breadCrumbs }): JSX.Element => {
+export const BreadCrumbs: FC<IBreadCrumbs> = ({ breadCrumbs }): JSX.Element => {
   return (
     <ul className={style.list}>
       {breadCrumbs.map((el, i, arr) =>
