@@ -9,6 +9,7 @@ import {
   ORDER_HISTORY,
   ORDER_HISTORY_DETAILS,
   PERSONAL_ACCOUNT,
+  CART,
 } from '.';
 
 import {
@@ -17,6 +18,7 @@ import {
   SellerProfilePage,
   SellerFavoritesList,
   CheckoutSuccessPage,
+  SellerCartPage,
 } from 'pages/seller-pages';
 
 export const sellerRoutes: RouteObject[] = [
@@ -39,6 +41,10 @@ export const sellerRoutes: RouteObject[] = [
   {
     path: FAVORITES,
     element: <SellerFavoritesList />,
+  },
+  {
+    path: CART,
+    element: <SellerCartPage />,
   },
   {
     path: HELP,

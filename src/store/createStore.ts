@@ -9,6 +9,7 @@ import filterReducer from './reducers/filterSlice';
 import { popularProductsReducer } from './reducers/popularProducts';
 import { productReducer } from './reducers/productSlice';
 import { productOldReducer } from './reducers/productSliceOld';
+import { sellerCartReducer } from './reducers/seller/cart/slice';
 import { sellerProfileReducer } from './reducers/seller/profile/slice';
 import { similarProductsReducer } from './reducers/similarProducts';
 import { supplierOtherReducer } from './reducers/supplier/other/slice';
@@ -36,6 +37,7 @@ export const store = configureStore({
     category: categoryReducer,
     similarProducts: similarProductsReducer,
     popularProducts: popularProductsReducer,
+    sellerCart: sellerCartReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

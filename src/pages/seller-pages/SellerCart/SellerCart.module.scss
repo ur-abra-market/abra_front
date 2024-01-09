@@ -1,0 +1,7 @@
+@import 'src/common/styles/mixins';
+
+.wrapper {
+  @include content_container;
+
+  padding-top: 48px;
+}

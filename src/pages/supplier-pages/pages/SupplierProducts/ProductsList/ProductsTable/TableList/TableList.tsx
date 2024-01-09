@@ -1,94 +1,88 @@
-import React, { ChangeEvent } from 'react';
+import { FC, ReactNode } from 'react';
 
 import cn from 'classnames';
 
+import { CheckboxListCell } from './TableListComponents/CheckboxListCell';
+import { DateTimeContainer } from './TableListComponents/DateTimeContainer';
+import { TableListCell } from './TableListComponents/TableListCell';
+
 import defaultImg from 'assets/images/files/default-product-image.png';
-import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { formatDate } from 'common/utils/formatDateProductsList';
-import {
-  activeProductSelector,
-  deactivatedProductSelector,
-  isLoadingSelector,
-  selectActiveProduct,
-  selectDeactivatedProduct,
-  sortedProductSelector,
-} from 'store/reducers/supplier/product';
-import { Checkbox, Stars } from 'ui-kit';
+import { IColumns } from 'pages/supplier-pages/pages/SupplierProducts/common/types/types';
+import { tableSortData } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/tableData';
+import { IProduct } from 'store/reducers/supplier/product';
+import { Stars } from 'ui-kit';
 
 import style from './TableList.module.scss';
 
-export const TableList = (): JSX.Element => {
-  const products = useAppSelector(sortedProductSelector);
-  const activeProduct = useAppSelector(activeProductSelector);
-  const deactivatedProduct = useAppSelector(deactivatedProductSelector);
-  const dispatch = useAppDispatch();
-  const isLoading = useAppSelector(isLoadingSelector);
+interface ITableList {
+  products: IProduct[];
+  visibleColumns?: string[];
+  hiddenColumns?: string[];
+  className?: string;
+}
 
-  const onChangeChecked = (
-    e: ChangeEvent<HTMLInputElement>,
-    id: number,
-    status: boolean,
-  ): void => {
-    if (status) {
-      dispatch(selectActiveProduct(id));
-    } else {
-      dispatch(selectDeactivatedProduct(id));
+export const TableList: FC<ITableList> = ({
+  products,
+  visibleColumns,
+  hiddenColumns,
+  className = '',
+}) => {
+  const totalVisibleColumns = (): IColumns[] => {
+    if (visibleColumns) {
+      return tableSortData.filter(({ name }) => visibleColumns.includes(name));
     }
+
+    return tableSortData.filter(({ name }) => !hiddenColumns!.includes(name));
   };
 
   return (
     <tbody>
-      {products?.map(el => {
-        const checked =
-          activeProduct.includes(el.id) || deactivatedProduct.includes(el.id);
-        const deactivatedClasses = cn(style.table_row, {
-          [style.table_deactivated]: !el.is_active,
-        });
+      {products?.map(
+        ({ id, name, created_at, prices, grade_average, is_active }: IProduct) => {
+          const deactivatedClasses = cn(style.table_row, {
+            [style.table_deactivated]: !is_active,
+          });
 
-        const formattedDateTime = formatDate(el.created_at);
-        const [formattedDate, formattedTime, formattedTimeAMPM] =
-          formattedDateTime.split(' ');
+          const content = (columnName: string): ReactNode | string => {
+            const [price] = prices;
 
-        return (
-          <tr className={deactivatedClasses} key={el.id}>
-            <td className={style.table_td}>
-              <Checkbox
-                disabled={isLoading}
-                checked={checked}
-                variant="default"
-                onChange={event => onChangeChecked(event, el.id, el.is_active)}
-              />
-            </td>
-            <td className={style.table_td}>{el.id}</td>
-            <td className={style.table_td}>
-              <img className={style.image} src={defaultImg} alt="product" />
-            </td>
-            <td className={style.table_td}>{el.name}</td>
-            <td className={style.table_td}>
-              {el.created_at && (
-                <div className={style.datetime_container}>
-                  <span>{formattedDate}</span>
-                  <span>{`${formattedTime} ${formattedTimeAMPM.toLowerCase()}`}</span>
-                </div>
-              )}
-            </td>
+            const columnsContent: { [key: string]: ReactNode | string } = {
+              SKU: id,
+              Name: name,
+              Status: price.discount ? 'On Sale' : 'Off Sale',
+              Price: `$${price.value}`,
+              Units: 'empty',
+              Visibility: is_active ? 'Visible' : 'Hidden',
+              Checkbox: <CheckboxListCell id={id} status={is_active} />,
+              Picture: <img className={style.image} src={defaultImg} alt="product" />,
+              'Creation Date': (
+                <DateTimeContainer
+                  className={style.datetime_container}
+                  created_at={created_at}
+                />
+              ),
+              Rating: <Stars sizes="10" reward={grade_average} />,
+            };
 
-            {el.prices.map(item => (
-              <React.Fragment key={item.id}>
-                <td className={style.table_td}>
-                  {item.discount ? 'On Sale' : 'Off Sale'}
-                </td>
-                <td className={style.table_td}>{`$${item.value}`}</td>
-                <td className={style.table_td}>empty</td>
-              </React.Fragment>
-            ))}
-            <td className={style.table_td}>
-              <Stars sizes="10" reward={el.grade_average} />
-            </td>
-            <td className={style.table_td}>{el.is_active ? 'Visible' : 'Hidden'}</td>
-          </tr>
-        );
-      })}
+            return columnsContent[columnName] ?? 'Not found';
+          };
+
+          return (
+            <tr className={cn(deactivatedClasses, style.table_row, className)} key={id}>
+              {totalVisibleColumns().map(({ id, name }: IColumns) => {
+                return (
+                  <TableListCell
+                    key={id}
+                    columnName={name}
+                    data={content(name)}
+                    className={style.table_td}
+                  />
+                );
+              })}
+            </tr>
+          );
+        },
+      )}
     </tbody>
   );
 };

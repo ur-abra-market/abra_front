@@ -1,0 +1,78 @@
+@import 'src/pages/seller-pages/SellerCart/style/mixin';
+
+@include line(-2px, auto);
+
+.order_item {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 336px;
+  height: 100%;
+  padding: 24px;
+
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-light);
+  border-radius: 12px;
+}
+
+.total_count {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.value_total_count,
+.title_total_count {
+  font-style: normal;
+  color: var(--color-black);
+}
+
+.total_price_container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.total_shipping_text,
+.total_cost_text {
+  display: flex;
+  width: 100%;
+
+  &:first-child {
+    margin-bottom: 12px;
+  }
+
+  &:nth-child(2) {
+    margin-bottom: 8px;
+  }
+}
+
+.line_separate {
+  width: 100%;
+  height: 1px;
+  margin: 24px 0;
+  background: var(--color-gray-light);
+}
+
+.total_order_price {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  margin-bottom: 24px;
+
+  font-style: normal;
+}
+
+.button_checkout {
+  margin-bottom: 16px;
+  font-size: var(--fz-m);
+  font-weight: var(--medium);
+  color: var(--color-white);
+}
+
+.order_description {
+  color: var(--color-gray-medium);
+}

@@ -1,0 +1,14 @@
+@mixin line($translate, $width) {
+  .line {
+    transform: translateY($translate);
+
+    flex: 1 1 auto;
+    align-self: flex-end;
+
+    width: $width;
+    height: 1px;
+    margin-right: 4px;
+
+    background: var(--color-black);
+  }
+}
