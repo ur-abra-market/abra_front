@@ -6,7 +6,7 @@ import { ItemDescription } from './ItemDescription';
 
 import { QuestionIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
-import { useResponsiveWidth } from 'common/hooks/useResponsiveWidth';
+import { useGetResponsiveWidth } from 'common/hooks/useGetResponsiveWidth';
 import { IProductInCart, setSelectProduct } from 'store/reducers/seller/cart';
 import {
   IBundleVariations,
@@ -36,7 +36,7 @@ export const OrderItemInCart: FC<IOrderItemInCart> = ({
   isChecked,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
-  const windowWidth = useResponsiveWidth();
+  const windowWidth = useGetResponsiveWidth();
 
   const variationValues = bundleVariation.bundle.variation_values;
   const bundleVariationValue = bundleVariation.product_variation.variation;

@@ -18,7 +18,7 @@ const initialState: IProductsInCart = {
   totalAmountBundles: 0,
   totalItems: 0,
 };
-const sellerProfileSlice = createSlice({
+const sellerCartSlice = createSlice({
   name: 'seller/cart',
   initialState,
   reducers: {
@@ -102,7 +102,7 @@ const sellerProfileSlice = createSlice({
   },
 });
 
-export const cartActions = sellerProfileSlice.actions;
+export const cartActions = sellerCartSlice.actions;
 export const { setProductsInCartPerPage, setSelectProduct, setSelectAllProducts } =
   cartActions;
-export const sellerCartReducer = sellerProfileSlice.reducer;
+export const sellerCartReducer = sellerCartSlice.reducer;
