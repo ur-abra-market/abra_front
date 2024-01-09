@@ -10,9 +10,38 @@ import style from './Properties.module.scss';
 
 export const Properties: FC = (): JSX.Element => {
   const { control, watch } = useForm();
-  const [showAdditional, setShowAdditional] = useState(false);
+  const [showAdditional, setShowAdditional] = useState(0);
 
   const selectedMaterial = watch('material');
+
+  const generateAdditionalMaterials = (): JSX.Element[] => {
+    return Array.from({ length: showAdditional }, (_, index) => (
+      <div key={index} className={style.additional}>
+        <SelectField
+          name={`[showAdditional[${index}].material`}
+          label={`Add material ${index + 1}`}
+          placeholder="Enter the material name"
+        />
+        <Label
+          label="% (optional)"
+          htmlFor={`[showAdditional[${index}].percentage`}
+          className={style.label}
+        >
+          <Controller
+            name={`[showAdditional[${index}].percentage`}
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter percentage of material"
+                className={style.percentage}
+              />
+            )}
+          />
+        </Label>
+      </div>
+    ));
+  };
 
   return (
     <form>
@@ -42,34 +71,13 @@ export const Properties: FC = (): JSX.Element => {
         <button
           type="button"
           className={style.button}
-          onClick={() => setShowAdditional(!showAdditional)}
-          disabled={!selectedMaterial}
+          onClick={() => setShowAdditional(prev => Math.min(prev + 1, 10))}
+          disabled={!selectedMaterial || showAdditional === 10}
         >
           + Add material
         </button>
       </div>
-      {showAdditional && (
-        <div className={style.additional}>
-          <SelectField
-            name="addMaterial"
-            label="Add material"
-            placeholder="Enter the material name"
-          />
-          <Label label="% (optional)" htmlFor="percentage" className={style.label}>
-            <Controller
-              name="percentage"
-              control={control}
-              render={({ field }) => (
-                <Input
-                  {...field}
-                  placeholder="Enter percentage of material"
-                  className={style.percentage}
-                />
-              )}
-            />
-          </Label>
-        </div>
-      )}
+      {generateAdditionalMaterials()}
     </form>
   );
 };
