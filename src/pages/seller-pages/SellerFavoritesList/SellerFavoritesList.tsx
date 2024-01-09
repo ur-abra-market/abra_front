@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { WithLayout } from 'common/hocs/WithLayout';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import {
+  favoriteProductsSelector,
+  getFavoritesProductsService,
+} from 'store/reducers/userSlice';
 import { ButtonQuestion, Search, Title } from 'ui-kit';
 
 import style from './SellerFavoritesList.module.scss';
 
 export const SellerFavoritesList = WithLayout((): JSX.Element => {
   const arr = [];
+  const dispatch = useAppDispatch();
+  const products = useAppSelector(favoriteProductsSelector);
 
   // const product: IShortCardProduct = {
   //   id: +new Date(),
@@ -29,6 +36,17 @@ export const SellerFavoritesList = WithLayout((): JSX.Element => {
   for (let i = 0; i < exampleCount; i += 1) {
     arr.push('item');
   }
+
+  useEffect(() => {
+    dispatch(
+      getFavoritesProductsService({
+        offset: 0,
+        limit: 23,
+      }),
+    );
+  }, []);
+
+  console.log(products);
 
   return (
     <div className={style.favorites_page}>

@@ -22,9 +22,15 @@ export const userService = {
     return data.result;
   },
 
-  getFavoritesProducts: async () => {
-    const { data } = await baseConfigService.get(`sellers/favorites`);
+  getFavoritesProducts: async ({ offset, limit }: IFavoriteRequest) => {
+    const params = { offset, limit };
+    const { data } = await baseConfigService.get(`sellers/favorites`, { params });
 
-    return data;
+    return data.result;
   },
 };
+
+interface IFavoriteRequest {
+  offset: number;
+  limit: number;
+}

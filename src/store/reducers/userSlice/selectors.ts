@@ -6,3 +6,6 @@ export const userPersonalInfoSelector = (state: RootStateType): IUserPersonalInf
   state.user.personalInfo;
 
 export const userLoadingSelector = (state: RootStateType): ILoading => state.user.loading;
+
+export const favoriteProductsSelector = (state: RootStateType): any[] =>
+  state.user.favoritesProducts;

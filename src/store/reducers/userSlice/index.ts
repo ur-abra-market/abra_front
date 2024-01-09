@@ -3,5 +3,9 @@ export {
   getFavoritesProductsService,
   updatePersonalInfo,
 } from './thunks';
-export { userPersonalInfoSelector, userLoadingSelector } from './selectors';
+export {
+  userPersonalInfoSelector,
+  userLoadingSelector,
+  favoriteProductsSelector,
+} from './selectors';
 export type { ILoading, IUserSliceInitialState, IUserPersonalInfo } from './types';

@@ -40,11 +40,11 @@ export const updatePersonalInfo = createAsyncThunk<any, any>(
   },
 );
 
-export const getFavoritesProductsService = createAsyncThunk<any, void>(
+export const getFavoritesProductsService = createAsyncThunk<[], IFavoriteRequest>(
   'user/getFavoritesProductsService',
-  async (_, { rejectWithValue }) => {
+  async (payload, { rejectWithValue }) => {
     try {
-      const data = await userService.getFavoritesProducts();
+      const data = await userService.getFavoritesProducts(payload);
 
       return data.result;
     } catch (error: unknown) {
@@ -56,3 +56,7 @@ export const getFavoritesProductsService = createAsyncThunk<any, void>(
     }
   },
 );
+interface IFavoriteRequest {
+  offset: number;
+  limit: number;
+}
