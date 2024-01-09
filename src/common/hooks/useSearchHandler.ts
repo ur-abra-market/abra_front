@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { PRODUCTS_LIST } from 'routes';
+import { PRODUCTS, PRODUCTS_LIST } from 'routes';
 
 interface ISearchHandlerReturnType {
   searchValue: string;
@@ -30,18 +30,27 @@ export const useSearchHandler = (
     setSearchValue(e.target.value);
   };
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
-    const isSearchFieldValid = mainSearchField && searchValue;
-    const isEnterKey = event.code === 'Enter';
-    const isSearchValueValid = searchValue.trim().length !== 0;
-    const isRole = role === 'seller' || !role;
+  const roleURL = (role: string | null): string => {
+    switch (role) {
+      case 'seller':
+        return `${PRODUCTS_LIST}/${id || ''}`;
+      case 'supplier':
+        return `${PRODUCTS}/`;
+      default:
+        return '';
+    }
+  };
 
-    if (isSearchFieldValid) {
-      const path = `${PRODUCTS_LIST}/${id || ''}?${createSearchParams({
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
+    const isEnterKey = event.code === 'Enter';
+    const isSearchValue = searchValue.trim().length !== 0;
+
+    if (isSearchValue) {
+      const path = `${roleURL(role)}?${createSearchParams({
         query: searchValue,
       }).toString()}`;
 
-      if (isEnterKey && isSearchValueValid && isRole) {
+      if (isEnterKey) {
         navigate(path);
       }
     }

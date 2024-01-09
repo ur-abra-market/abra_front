@@ -21,7 +21,7 @@ export const SupplierProducts = WithLayout((): JSX.Element => {
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query');
   const hasChanged = useAppSelector(hasChangedSelector);
-  const searchValue = query && useDebounce(query);
+  const searchValue = useDebounce(query!);
   const offset = (page - 1) * limit;
 
   useEffect(() => {
