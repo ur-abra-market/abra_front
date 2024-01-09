@@ -4,11 +4,11 @@ import { Paragraph } from 'ui-kit/Paragraph/Paragraph';
 
 import style from './ProductVariation.module.scss';
 
-interface ProductVariationProps {
+interface IProductVariation {
   color: string;
   optionNumber: number;
 }
-export const ProductVariation: FC<ProductVariationProps> = ({
+export const ProductVariation: FC<IProductVariation> = ({
   optionNumber,
   color,
 }): JSX.Element => {

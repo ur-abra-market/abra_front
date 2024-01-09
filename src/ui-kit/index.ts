@@ -16,4 +16,4 @@ export { WhatsappPhoneNumber } from './WhatsappPhoneNumber/WhatsappPhoneNumber';
 export { SocialNetworks } from './SocialNetworks/SocialNetworks';
 export { Title } from './Title/Title';
 export { Paragraph } from './Paragraph/Paragraph';
-export { ProductParams } from './ProductParams/ProductParams';
+export { ProductVariation } from './ProductParams/ProductVariation/ProductVariation';
