@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { ArrowRight } from 'assets/icons';
+import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
 import { IProductCardInCart, setSelectAllProducts } from 'store/reducers/seller/cart';
 import { Checkbox, Paragraph } from 'ui-kit';
@@ -60,7 +60,7 @@ export const SupplierInformation: FC<ISupplierInformation> = ({
               {supplierName}
             </Paragraph>
 
-            <ArrowRight className={style.arrow} />
+            <ArrowIcon className={style.arrow} />
           </NavLink>
         </div>
       </div>
