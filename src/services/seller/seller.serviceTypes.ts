@@ -61,3 +61,8 @@ export interface ISellerAvatarResponse {
   source_url: string;
   thumbnail_url: string;
 }
+
+export interface ISellersCartRequest {
+  offset: number;
+  limit: number;
+}
