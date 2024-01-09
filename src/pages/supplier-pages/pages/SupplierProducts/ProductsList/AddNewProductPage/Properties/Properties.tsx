@@ -9,7 +9,7 @@ import { Label, Input } from 'ui-kit';
 import style from './Properties.module.scss';
 
 export const Properties: FC = (): JSX.Element => {
-  const { control, watch } = useForm();
+  const { register, watch } = useForm();
   const [showAdditional, setShowAdditional] = useState(0);
 
   const selectedMaterial = watch('material');
@@ -27,16 +27,10 @@ export const Properties: FC = (): JSX.Element => {
           htmlFor={`[showAdditional[${index}].percentage`}
           className={style.label}
         >
-          <Controller
-            name={`[showAdditional[${index}].percentage`}
-            control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                placeholder="Enter percentage of material"
-                className={style.percentage}
-              />
-            )}
+          <Input
+            {...register('percentage')}
+            placeholder="Enter percentage of material"
+            className={style.percentage}
           />
         </Label>
       </div>
@@ -56,16 +50,10 @@ export const Properties: FC = (): JSX.Element => {
           placeholder="Enter the material name"
         />
         <Label label="% (optional)" htmlFor="percentage" className={style.label}>
-          <Controller
-            name="percentage"
-            control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                placeholder="Enter percentage of material"
-                className={style.percentage}
-              />
-            )}
+          <Input
+            {...register('percentage')}
+            placeholder="Enter percentage of material"
+            className={style.percentage}
           />
         </Label>
         <button

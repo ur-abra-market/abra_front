@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 
+import cn from 'classnames';
 import { Controller, useForm } from 'react-hook-form';
 
 import { useAppSelector } from 'common/hooks';
@@ -23,27 +24,27 @@ export const Variation: FC = (): JSX.Element => {
         <div className={style.button_container}>
           <ButtonIcon
             type="button"
-            className={`${style.button} ${
-              selectedVariation === 'Var 1' ? style.active : ''
-            }`}
+            className={cn(style.button, {
+              [style.active]: selectedVariation === 'Var 1',
+            })}
             onClick={() => handleSelectVariation('Var 1')}
           >
             Var 1
           </ButtonIcon>
           <ButtonIcon
             type="button"
-            className={`${style.button} ${
-              selectedVariation === 'Var 2' ? style.active : ''
-            }`}
+            className={cn(style.button, {
+              [style.active]: selectedVariation === 'Var 2',
+            })}
             onClick={() => handleSelectVariation('Var 2')}
           >
             Var 2
           </ButtonIcon>
           <ButtonIcon
             type="button"
-            className={`${style.plus_button} ${
-              selectedVariation === 'Plus' ? style.active : ''
-            }`}
+            className={cn(style.plus_button, {
+              [style.active]: selectedVariation === 'Plus',
+            })}
             onClick={() => handleSelectVariation('Plus')}
           >
             +
