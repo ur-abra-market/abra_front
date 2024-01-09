@@ -4,11 +4,11 @@ import { SizeEnum } from 'common/types';
 
 import style from './ProductSizeLocked.module.scss';
 
-interface ProductSizeLockedProps {
+interface IProductSizeLocked {
   size: SizeEnum;
   quantity: number;
 }
-export const ProductSizeLocked: FC<ProductSizeLockedProps> = ({
+export const ProductSizeLocked: FC<IProductSizeLocked> = ({
   size,
   quantity,
 }): JSX.Element => {

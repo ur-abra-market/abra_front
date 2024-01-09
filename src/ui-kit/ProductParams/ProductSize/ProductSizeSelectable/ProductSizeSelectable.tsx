@@ -6,12 +6,12 @@ import { SizeEnum } from 'common/types';
 
 import style from './ProductSizeSelectable.module.scss';
 
-interface ProductSizeItemProps {
+interface IProductSizeItem {
   size: SizeEnum;
   selected: boolean;
   handleSizeSelect: () => void;
 }
-export const ProductSizeSelectable: FC<ProductSizeItemProps> = ({
+export const ProductSizeSelectable: FC<IProductSizeItem> = ({
   size,
   selected,
   handleSizeSelect,
