@@ -8,7 +8,7 @@ export interface IProductCardInCart {
   id: number | null;
   order_id: number | null;
   updated_at: string;
-  is_checked: boolean; /// todo не приходит с бэка
+  isChecked: boolean;
 }
 
 export interface IBundleVariationPod {

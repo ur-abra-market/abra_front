@@ -19,10 +19,12 @@ export const CartWithOrder = (): JSX.Element => {
         <Title as="h1" weight="bold" className={style.title}>
           My Cart ({totalAmountItems} Items)
         </Title>
+
         {productsCart.map((products, index) => {
           return <OrderItemsSection products={products} key={index} />;
         })}
       </div>
+
       <OrderDetails />
     </div>
   );

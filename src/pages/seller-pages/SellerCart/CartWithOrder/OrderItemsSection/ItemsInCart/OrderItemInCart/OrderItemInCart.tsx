@@ -6,7 +6,7 @@ import { ItemDescription } from './ItemDescription';
 
 import { QuestionIcon } from 'assets/icons';
 import { useAppDispatch } from 'common/hooks';
-import { useResizeWindow } from 'common/hooks/useResizeWindow';
+import { useResponsiveWidth } from 'common/hooks/useResponsiveWidth';
 import { IProductInCart, setSelectProduct } from 'store/reducers/seller/cart';
 import {
   IBundleVariations,
@@ -20,26 +20,27 @@ import style from './OrderItemInCart.module.scss';
 
 interface IOrderItemInCart {
   product: IProductInCart;
-  bundle_variation: IBundleVariations;
+  bundleVariation: IBundleVariations;
   prices: IPriceBundle[];
   amount: number;
-  is_checked: boolean;
+  isChecked: boolean;
 }
 
 const widthChangedVariantCounter = 861;
 
 export const OrderItemInCart: FC<IOrderItemInCart> = ({
   product,
-  bundle_variation,
+  bundleVariation,
   amount,
   prices,
-  is_checked,
+  isChecked,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
+  const windowWidth = useResponsiveWidth();
 
-  const variationValues = bundle_variation.bundle.variation_values;
-  const bundleVariationValue = bundle_variation.product_variation.variation;
-  const windowWidth = useResizeWindow();
+  const variationValues = bundleVariation.bundle.variation_values;
+  const bundleVariationValue = bundleVariation.product_variation.variation;
+  const variationValueProductId = bundleVariation.variation_value_to_product_id;
   const counterVariant = windowWidth >= widthChangedVariantCounter ? 'small' : 'large';
 
   const commonPiecesBundles =
@@ -58,8 +59,8 @@ export const OrderItemInCart: FC<IOrderItemInCart> = ({
       <div className={style.product_info}>
         <Checkbox
           variant="default"
-          checked={is_checked}
-          onChange={() => handleCheckedProduct(product.id as number)}
+          checked={isChecked}
+          onChange={() => handleCheckedProduct(variationValueProductId as number)}
         />
 
         <ItemDescription
@@ -67,7 +68,7 @@ export const OrderItemInCart: FC<IOrderItemInCart> = ({
           amount={amount}
           pieces={commonPiecesBundles}
           price={prices}
-          bundle_variation_value={bundleVariationValue}
+          bundleVariationValue={bundleVariationValue}
         />
       </div>
 

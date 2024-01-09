@@ -1,3 +1,7 @@
+@import 'src/pages/seller-pages/SellerCart/style/mixin';
+
+@include line(-2px, 24px);
+
 .item_price {
   display: flex;
   flex-direction: column;
@@ -25,7 +29,6 @@
   flex: 1 1 auto;
   align-self: flex-end;
 
-  width: 24px;
   height: 1px;
   margin-right: 4px;
 
@@ -37,7 +40,7 @@
   align-items: center;
 }
 
-.old_price {
+.price {
   margin-right: 4px;
   font-size: var(--fz-m);
   color: var(--color-black);
@@ -45,7 +48,7 @@
   //text-decoration-color: var(--color-red);
 }
 
-.new_price {
+.price_with_discount {
   font-size: var(--fz-m);
   color: var(--color-red);
 }

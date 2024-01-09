@@ -12,7 +12,7 @@ export const OrderDetails = (): JSX.Element => {
 
   const selectedProducts = products
     .flat()
-    .filter((item: IProductCardInCart) => item.is_checked);
+    .filter((item: IProductCardInCart) => item.isChecked);
 
   const totalValueItemsInOrder = selectedProducts.reduce(
     (item: number, product: IProductCardInCart) => {
@@ -22,8 +22,12 @@ export const OrderDetails = (): JSX.Element => {
   );
 
   const totalPriceBundles = selectedProducts.reduce((previousValue, item) => {
-    return previousValue + item.bundle_variation_pod.prices[0].value * item.amount;
+    return (
+      Number(previousValue.toFixed(2)) +
+      Number((item.bundle_variation_pod.prices[0].value * item.amount).toFixed(2))
+    );
   }, 0);
+  const totalPriceBundlesToFixed = Number(totalPriceBundles.toFixed(2));
 
   return (
     <div className={style.order_item}>
@@ -36,21 +40,21 @@ export const OrderDetails = (): JSX.Element => {
         </Paragraph>
       </div>
 
-      <div className={style.total_price}>
+      <div className={style.total_price_container}>
         <Paragraph size="s2" className={style.total_cost_text}>
           Goods Cost
-          <span className={style.line} />${totalPriceBundles}
+          <span className={style.line} />${totalPriceBundlesToFixed}
         </Paragraph>
         <Paragraph size="s2" className={style.total_shipping_text}>
           Shipping~
           <span className={style.line} />${560}
-          {/* todo */}
+          {/* todo shipping price */}
         </Paragraph>
       </div>
 
       <div className={style.line_separate} />
       <Title size="xs" weight="semi_bold" className={style.total_order_price}>
-        Total <span>${totalPriceBundles}</span>
+        Total <span>${totalPriceBundlesToFixed}</span>
       </Title>
 
       <Button className={style.button_checkout}>Сheckout</Button>

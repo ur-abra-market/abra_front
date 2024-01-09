@@ -19,7 +19,7 @@ export interface IItemDescription {
   amount: number;
   pieces: number;
   price: IPriceBundle[];
-  bundle_variation_value: IVariation;
+  bundleVariationValue: IVariation;
 }
 
 export const ItemDescription: FC<IItemDescription> = ({
@@ -27,14 +27,14 @@ export const ItemDescription: FC<IItemDescription> = ({
   amount,
   pieces,
   price,
-  bundle_variation_value,
+  bundleVariationValue,
 }): JSX.Element => {
   const imageUrl = product.images[0]?.image_url;
   const priceValue = price[0].value;
-  const variationBundleType = bundle_variation_value.type.name;
-  const colorValue = bundle_variation_value.value;
-  const sizeValue = bundle_variation_value.value;
-  const totalPriceBundle = priceValue * amount;
+  const variationBundleType = bundleVariationValue.type.name;
+  const colorValue = bundleVariationValue.value;
+  const sizeValue = bundleVariationValue.value;
+  const totalPriceBundle = Number((priceValue * amount).toFixed(2));
   const isColorVariation = variationBundleType === 'Color';
 
   return (

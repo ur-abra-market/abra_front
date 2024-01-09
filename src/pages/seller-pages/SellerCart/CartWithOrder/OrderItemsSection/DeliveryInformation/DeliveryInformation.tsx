@@ -12,7 +12,7 @@ export const DeliveryInformation = (): JSX.Element => {
         <Paragraph size="s2">
           Estimated delivery:
           <span> 27.07.2022</span>
-          {/* todo */}
+          {/* todo add delivery data  */}
         </Paragraph>
       </div>
       <DotIcon />
@@ -20,7 +20,7 @@ export const DeliveryInformation = (): JSX.Element => {
         <Paragraph size="s2">
           Delivery method:
           <span> Abra Shipment</span>
-          {/* todo */}
+          {/* todo add delivery method  */}
         </Paragraph>
       </div>
     </div>

@@ -28,16 +28,20 @@ const sellerProfileSlice = createSlice({
     setSelectProduct: (state, action: PayloadAction<{ id: number | null }>) => {
       const product = state.productsInCart
         .flat()
-        .find(item => item.bundle_variation_pod.product.id === action.payload.id);
+        .find(
+          item =>
+            item.bundle_variation_pod.bundle_variations[0]
+              .variation_value_to_product_id === action.payload.id,
+        );
 
       if (product) {
-        product.is_checked = !product.is_checked;
+        product.isChecked = !product.isChecked;
       }
     },
     setSelectAllProducts: (
       state,
       action: PayloadAction<{
-        is_checked: boolean;
+        isChecked: boolean;
         name: string;
       }>,
     ) => {
@@ -50,7 +54,7 @@ const sellerProfileSlice = createSlice({
 
         if (isCheckedAll) {
           return item.map(product => {
-            return { ...product, is_checked: action.payload.is_checked };
+            return { ...product, isChecked: action.payload.isChecked };
           });
         }
 
@@ -81,7 +85,7 @@ const sellerProfileSlice = createSlice({
                 ...(products_with_name[supplierName] || []),
                 {
                   ...products,
-                  is_checked: true,
+                  isChecked: true,
                 },
               ],
             };

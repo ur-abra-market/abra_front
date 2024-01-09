@@ -24,12 +24,12 @@ export const SupplierInformation: FC<ISupplierInformation> = ({
   const supplierName = products[0].bundle_variation_pod.product.supplier.company.name;
   const averagePercent = supplierAverage * 10;
 
-  const isSelectedAllProducts = products.every(product => product.is_checked);
+  const isSelectedAllProducts = products.every(product => product.isChecked);
 
   const selectAllProducts = (): void => {
     dispatch(
       setSelectAllProducts({
-        is_checked: !isSelectedAllProducts,
+        isChecked: !isSelectedAllProducts,
         name: supplierName,
       }),
     );
@@ -46,7 +46,7 @@ export const SupplierInformation: FC<ISupplierInformation> = ({
         />
 
         <div className={style.supplier_information}>
-          <div className={style.star}>
+          <div className={style.rating}>
             <Star percent={`${averagePercent}%`} sizes="16" />
           </div>
 
@@ -55,6 +55,7 @@ export const SupplierInformation: FC<ISupplierInformation> = ({
           </Paragraph>
 
           <NavLink to="/cart" className={style.supplier_link}>
+            {/* todo link supplier in NavLink */}
             <Paragraph size="s2" className={style.supplier_name}>
               {supplierName}
             </Paragraph>

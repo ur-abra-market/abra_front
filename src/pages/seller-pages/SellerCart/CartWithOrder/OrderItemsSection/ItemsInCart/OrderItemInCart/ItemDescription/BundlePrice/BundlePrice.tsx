@@ -21,16 +21,18 @@ export const BundlePrice: FC<IBundlePrice> = ({
       <div className={style.item_price_details}>
         <Paragraph weight="medium" className={style.value_bundles}>
           {100} bundles
-          {/* todo */}
+          {/* todo add amount bundle and how will be count this bundle */}
         </Paragraph>
         <span className={style.line} />
         <div className={style.item_prices}>
-          <Paragraph weight="medium" className={style.old_price}>
+          <Paragraph weight="medium" className={style.price}>
             ${priceValue}/{1} bnd
-            {/* todo */}
+            {/* todo add amount bundle with discount price depending on
+             amount all bundle
+              */}
           </Paragraph>
-          {/* todo */}
-          {/* <Paragraph weight="medium" className={style.new_price}> */}
+          {/* todo discount information  */}
+          {/* <Paragraph weight="medium" className={style.price_with_discount}> */}
           {/*  ${4.0}/{1}bnd */}
           {/* </Paragraph> */}
         </div>
