@@ -19,7 +19,7 @@
   border-radius: 8px;
 }
 
-@mixin remains_info($color) {
+@mixin amount_info($color) {
   position: relative;
 
   display: block;
@@ -36,35 +36,7 @@
   border-bottom-left-radius: 8px;
 }
 
-@mixin remains_decorator_left($color) {
-  content: '';
-
-  position: absolute;
-  z-index: 1;
-  top: -8px;
-  left: -2px;
-
-  width: 2px;
-  height: 8px;
-
-  background-color: var($color);
-}
-
-@mixin remains_decorator_right($color) {
-  content: '';
-
-  position: absolute;
-  z-index: 1;
-  top: -8px;
-  right: -2px;
-
-  width: 2px;
-  height: 8px;
-
-  background-color: var($color);
-}
-
-@mixin remains_pseudo_elements($color) {
+@mixin amount_elements_size_between_quantity ($color) {
   &::before,
   &::after {
     content: '';

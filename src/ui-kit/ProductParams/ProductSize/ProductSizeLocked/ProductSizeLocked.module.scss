@@ -7,8 +7,8 @@
 }
 
 .quantity {
-  @include remains_info(--color-black);
-  @include remains_pseudo_elements(--color-black);
+  @include amount_info(--color-black);
+  @include amount_elements_size_between_quantity(--color-black);
 
   cursor: no-drop;
 }

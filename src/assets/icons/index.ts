@@ -57,4 +57,3 @@ export { ReactComponent as ArrowSort } from './files/arrow-sort.svg';
 export { ReactComponent as Copy } from './files/copy.svg';
 export { ReactComponent as DefaultImageIcon } from './files/arrow-sort.svg';
 export { ReactComponent as Stats } from './files/stats.svg';
-export { ReactComponent as WithoutColor } from './files/without-color.svg';
