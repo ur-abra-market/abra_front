@@ -2,7 +2,6 @@ import { FC } from 'react';
 
 import cn from 'classnames';
 
-import { Stats as Statistics } from 'assets/icons';
 import { Paragraph } from 'ui-kit';
 
 import style from './Stats.module.scss';
@@ -34,15 +33,14 @@ export const Stats: FC<IStats> = ({ price, className }): JSX.Element => {
         </div>
       </div>
 
-      <div className={style.price_changes_wrapper}>
-        <div className={style.flex_row}>
-          <Paragraph size="m">Price changes</Paragraph>
-          <span className={style.price_changes_text}>
-            {`from ${(price - price * 0.1).toFixed(2)} up to ${price}`}
-          </span>
-        </div>
-        <Statistics className={style.statistic} />
-      </div>
+      {/* <div className={style.price_changes_wrapper}> */}
+      {/*  <div className={style.flex_row}> */}
+      {/*    <Paragraph size="m">Price changes</Paragraph> */}
+      {/*    <span className={style.price_changes_text}> */}
+      {/*      {`from ${(price - price * 0.1).toFixed(2)} up to ${price}`} */}
+      {/*    </span> */}
+      {/*  </div> */}
+      {/* </div> */}
     </div>
   );
 };

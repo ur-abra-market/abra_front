@@ -23,8 +23,8 @@ export const ProductPrice = (): JSX.Element => {
         <Quantity count={count} setCount={onChangeCount} />
         <Discount price={price} />
       </div>
-
-      <Stats price={price} />
+      {/* todo вернуть когда будем делать графики */}
+      {/* <Stats price={price} /> */}
     </div>
   );
 };
