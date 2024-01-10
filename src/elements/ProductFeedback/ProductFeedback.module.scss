@@ -5,30 +5,12 @@
   .feedbacks_container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
-  border-radius: 12px;
-}
-
-.grade {
-  margin-bottom: 14px;
-  padding-left: 0;
-}
-
-.grade_indicators {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.indicator_wrapper {
-  display: flex;
-  gap: 15px;
-  align-items: center;
   width: 100%;
+  margin-bottom: 16px;
+}
 
-  span {
-    width: 11%;
-  }
+.without_reviews {
+  padding-top: 10px;
 }
 
 .title_container {
@@ -45,9 +27,3 @@
   text-decoration: underline;
 }
 
-@media (max-width: 426px) {
-  .grade {
-    column-gap: 0;
-    justify-content: space-between;
-  }
-}

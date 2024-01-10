@@ -4,13 +4,13 @@ import cn from 'classnames';
 
 import { Paragraph, Title } from 'ui-kit';
 
-import style from './DescriptionProduct.module.scss';
+import style from './ProductDescription.module.scss';
 
 interface DescriptionProductProps {
   description: string;
 }
 
-export const DescriptionProduct: FC<DescriptionProductProps> = ({
+export const ProductDescription: FC<DescriptionProductProps> = ({
   description,
 }): JSX.Element => {
   return (

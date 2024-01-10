@@ -18,7 +18,7 @@ export const ProductHeader = (): JSX.Element => {
       <div className={style.inner_wrapper}>
         <Search
           disabled={isLoading}
-          placeholder="Search by Name or SKU"
+          placeholder="Search by Name"
           className={style.search}
         />
         <FilterSwitcher restFilters={restFilters} setRestFilters={setRestFilters} />
