@@ -16,3 +16,5 @@ export { WhatsappPhoneNumber } from './WhatsappPhoneNumber/WhatsappPhoneNumber';
 export { SocialNetworks } from './SocialNetworks/SocialNetworks';
 export { Title } from './Title/Title';
 export { Paragraph } from './Paragraph/Paragraph';
+export { ProductSizeLocked } from './ProductParams/ProductSize/ProductSizeLocked/ProductSizeLocked';
+export { ProductSizeSelectable } from './ProductParams/ProductSize/ProductSizeSelectable/ProductSizeSelectable';

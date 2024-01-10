@@ -5,7 +5,21 @@
   border-radius: 8px;
 }
 
-@mixin remains_info($color) {
+@mixin product_size_item($color) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 64px;
+  height: 26px;
+
+  font-size: var(--fz-s);
+
+  border: 2px solid var($color);
+  border-radius: 8px;
+}
+
+@mixin amount_info($color) {
   position: relative;
 
   display: block;
@@ -22,32 +36,28 @@
   border-bottom-left-radius: 8px;
 }
 
-@mixin remains_decorator_left($color) {
-  content: '';
+@mixin amount_elements_size_between_quantity ($color) {
+  &::before,
+  &::after {
+    content: '';
 
-  position: absolute;
-  z-index: 1;
-  top: -8px;
-  left: -2px;
+    position: absolute;
+    z-index: 1;
+    top: -8px;
 
-  width: 2px;
-  height: 8px;
+    width: 2px;
+    height: 8px;
 
-  background-color: var($color);
-}
+    background-color: var($color);
+  }
 
-@mixin remains_decorator_right($color) {
-  content: '';
+  &::before {
+    left: -2px;
+  }
 
-  position: absolute;
-  z-index: 1;
-  top: -8px;
-  right: -2px;
-
-  width: 2px;
-  height: 8px;
-
-  background-color: var($color);
+  &::after {
+    right: -2px;
+  }
 }
 
 
