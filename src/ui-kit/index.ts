@@ -18,3 +18,4 @@ export { Title } from './Title/Title';
 export { Paragraph } from './Paragraph/Paragraph';
 export { ProductSizeLocked } from './ProductParams/ProductSize/ProductSizeLocked/ProductSizeLocked';
 export { ProductSizeSelectable } from './ProductParams/ProductSize/ProductSizeSelectable/ProductSizeSelectable';
+export { ProductVariation } from './ProductParams/ProductVariation/ProductVariation';

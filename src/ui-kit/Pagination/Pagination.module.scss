@@ -75,3 +75,16 @@
 .arrow_right {
   rotate: -90deg;
 }
+
+@media only screen and (max-width: 768px) {
+  .button {
+    min-width: 20px;
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .button {
+    min-width: 16px;
+  }
+}

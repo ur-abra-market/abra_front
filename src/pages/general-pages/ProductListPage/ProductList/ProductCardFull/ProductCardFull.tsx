@@ -23,9 +23,11 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
     category,
     is_favorite,
     reviews_count,
+    prices,
   } = product;
 
   const categoryArr = category.name.split('&');
+  const { min_quantity, value } = prices[0];
 
   return (
     <div className={style.card_full}>
@@ -46,6 +48,10 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
             </p>
           ))}
         </div>
+        <div className={style.price}>
+          <p className={style.amount}>{value}/pc</p>
+          <span className={style.rating}>{`/from ${min_quantity} pcs`}</span>
+        </div>
 
         <div>
           <div className={style.reviews_info}>
@@ -64,15 +70,13 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
               />
             </div>
 
-            <div className={style.supplier_info}>
-              <div className={style.suppler_name_container}>
-                <p className={style.supplier_name}>{supplier?.company.name}</p>
-                <ArrowIcon className={style.supplier_arrow} />
-              </div>
-              <p className={style.suppler_details}>
-                1 Years : 1 Deals : On-time delivery 1%
-              </p>
+            <div className={style.suppler_name_container}>
+              <p className={style.supplier_name}>{supplier?.company.name}</p>
+              <ArrowIcon className={style.supplier_arrow} />
             </div>
+            <p className={style.suppler_details}>
+              1 Years : 1 Deals : On-time delivery 1%
+            </p>
           </div>
 
           <div className={style.orders}>{total_orders} Orders</div>
