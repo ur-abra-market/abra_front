@@ -19,6 +19,7 @@ export const productEditorData: IActionData[] = [
 ];
 
 export const tableSortData: IColumns[] = [
+  { id: 0, name: 'Checkbox' },
   { id: 1, name: 'SKU' },
   { id: 2, name: 'Picture' },
   { id: 3, name: 'Name' },
@@ -32,7 +33,7 @@ export const tableSortData: IColumns[] = [
   { id: 6, name: 'Price', arrow: false, sortValue: QUERY_PARAMS_VALUE.PRICE },
   {
     id: 7,
-    name: 'Balance, units',
+    name: 'Units',
     arrow: true,
     sortValue: QUERY_PARAMS_VALUE.TOTAL_ORDERS,
   },

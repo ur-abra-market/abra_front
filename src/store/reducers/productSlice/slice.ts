@@ -2,17 +2,19 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
   addFavoriteProduct,
+  addFavoriteProductPage,
   getPopularProducts,
   getProductById,
   getProductsCompilation,
   getProductsListCompilation,
   getSimilarProducts,
   removeFavoriteProduct,
+  removeFavoriteProductPage,
 } from './thunks';
 import {
   IFavorite,
-  IProductCard,
   IProductSliceInitialState,
+  IResponseGetProductCardId,
   ISortBy,
   ISortField,
 } from './types';
@@ -24,6 +26,7 @@ const initialState: IProductSliceInitialState = {
   isFavorite: false,
   productsPerPage: 20,
   productCard: {
+    breadcrumbs: [],
     id: null,
     created_at: '',
     updated_at: '',
@@ -32,6 +35,7 @@ const initialState: IProductSliceInitialState = {
     grade_average: '',
     total_orders: null,
     is_active: false,
+    is_favorite: false,
     category: {
       id: null,
       created_at: '',
@@ -70,6 +74,7 @@ const initialState: IProductSliceInitialState = {
     tags: [],
     bundle_variation_pods: [],
   },
+  feedbacks: {},
   popularProducts: [],
   similarProducts: [],
   productsCompilation: {},
@@ -100,9 +105,13 @@ const productSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(getProductById.fulfilled, (state, action: PayloadAction<IProductCard>) => {
-        state.productCard = action.payload;
-      })
+      .addCase(
+        getProductById.fulfilled,
+        (state, action: PayloadAction<IResponseGetProductCardId>) => {
+          state.productCard = action.payload.product;
+          state.feedbacks = action.payload.feedbacks;
+        },
+      )
       .addCase(
         addFavoriteProduct.fulfilled,
         (state, action: PayloadAction<IFavorite>) => {
@@ -183,6 +192,12 @@ const productSlice = createSlice({
         state.productsList = action.payload.data.products;
         state.totalProductsCount = action.payload.data.total_count;
         state.loading = LoadingStatusEnum.Success;
+      })
+      .addCase(addFavoriteProductPage.fulfilled, (state, action) => {
+        state.productCard.is_favorite = action.payload;
+      })
+      .addCase(removeFavoriteProductPage.fulfilled, (state, action) => {
+        state.productCard.is_favorite = action.payload;
       });
   },
 });

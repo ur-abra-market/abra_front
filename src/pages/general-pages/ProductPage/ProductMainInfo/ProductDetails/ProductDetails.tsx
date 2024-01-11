@@ -3,8 +3,9 @@ import React from 'react';
 import { useAppSelector } from 'common/hooks';
 import {
   AboutProduct,
-  DescriptionProduct,
-  FeedBacksProduct,
+  ProductDescription,
+  ProductFeedback,
+  ProductParams,
   ProductPrice,
   SupplierInfo,
   Tags,
@@ -15,7 +16,7 @@ import {
   productNameSelector,
   productTagsSelector,
 } from 'store/reducers/productSlice';
-import { Button, ProductParams, Title } from 'ui-kit';
+import { Button, Title } from 'ui-kit';
 
 import style from './ProductDetails.module.scss';
 
@@ -34,8 +35,8 @@ export const ProductDetails = (): JSX.Element => {
       <Button className={style.button}>Add to Cart</Button>
       <SupplierInfo />
       <AboutProduct />
-      <FeedBacksProduct />
-      <DescriptionProduct description={description} />
+      <ProductFeedback />
+      <ProductDescription description={description} />
     </div>
   );
 };
