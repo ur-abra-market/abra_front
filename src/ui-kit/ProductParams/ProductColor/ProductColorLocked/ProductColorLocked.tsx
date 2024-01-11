@@ -18,7 +18,7 @@ export const ProductColorLocked: FC<IProductColorLocked> = ({
   return (
     <button type="button" className={cn(style.item, className)} disabled>
       <img className={style.color_image} src={imageUrl} alt="color" />
-      <span className={style.remains}>{value}</span>
+      <span className={style.amount}>{value}</span>
     </button>
   );
 };
