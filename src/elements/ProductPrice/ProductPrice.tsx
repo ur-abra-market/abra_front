@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react';
 
 import { Discount } from './Discount/Discount';
 import { Quantity } from './Quantity/Quantity';
-import { Stats } from './Stats/Stats';
 
 import { useAppSelector } from 'common/hooks';
 import { priseSelector } from 'store/reducers/productSlice';
@@ -23,8 +22,6 @@ export const ProductPrice = (): JSX.Element => {
         <Quantity count={count} setCount={onChangeCount} />
         <Discount price={price} />
       </div>
-      {/* todo вернуть когда будем делать графики */}
-      {/* <Stats price={price} /> */}
     </div>
   );
 };
