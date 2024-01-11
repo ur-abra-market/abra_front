@@ -69,15 +69,11 @@
 
 @media only screen and (max-width: 768px) {
   .card {
-    max-width: 180px;
+    max-width: 200px;
   }
 }
 
 @media only screen and (max-width: 425px) {
-  .card {
-    max-width: 152px;
-  }
-
   .direction {
     margin: 8px 0 0;
   }

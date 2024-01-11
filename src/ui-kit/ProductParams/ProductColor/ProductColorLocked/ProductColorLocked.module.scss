@@ -14,16 +14,9 @@
   border: 2px solid var(--color-gray-light);
 }
 
-.remains {
-  @include remains_info(--color-gray-light);
-}
-
-.remains::before {
-  @include remains_decorator_left(--color-gray-light);
-}
-
-.remains::after {
-  @include remains_decorator_right(--color-gray-light);
+.amount {
+  @include amount_info(--color-gray-light);
+  @include amount_elements_size_between_quantity(--color-gray-light)
 }
 
 
