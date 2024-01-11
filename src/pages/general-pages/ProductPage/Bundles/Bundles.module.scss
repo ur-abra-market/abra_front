@@ -1,3 +1,7 @@
+@import "src/common/styles/mixins";
+
+@include seller_section();
+
 .bundle_wrapper {
   display: flex;
   align-items: center;
