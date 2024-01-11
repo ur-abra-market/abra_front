@@ -2,51 +2,32 @@ import React, { useEffect } from 'react';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { ProductCard } from 'modules';
+import { ICategoryRequest } from 'services/product/product.serviceTypes';
 import {
-  favoriteProductsSelector,
-  getFavoritesProductsService,
-} from 'store/reducers/userSlice';
+  getProductsListCompilation,
+  productsListSelector,
+} from 'store/reducers/productSlice';
 import { ButtonQuestion, Search, Title } from 'ui-kit';
 
 import style from './SellerFavoritesList.module.scss';
 
 export const SellerFavoritesList = WithLayout((): JSX.Element => {
-  const arr = [];
   const dispatch = useAppDispatch();
-  const products = useAppSelector(favoriteProductsSelector);
-
-  // const product: IShortCardProduct = {
-  //   id: +new Date(),
-  //   name: 'trousers',
-  //   description: 'trousers description',
-  //   total_orders: 44,
-  //   grade_average: '4.5',
-  //   date_added: '2021-04-11T10:20:30Z',
-  //   with_discount: 2,
-  //   price_include_discount: '50',
-  //   min_quantity: 5,
-  //   value_price: '100',
-  //   is_favorite: 1,
-  //   image_url:
-  //     'https://images.asos-media.com/products/asos-design-cargo-tapered-trousers-in-black-with-toggles/202796442-1-black?$n_750w$&wid=750&hei=750&fit=crop',
-  // };
-
-  const exampleCount = 24;
-
-  for (let i = 0; i < exampleCount; i += 1) {
-    arr.push('item');
-  }
+  // const products = useAppSelector(favoriteProductsSelector);
+  const products = useAppSelector(productsListSelector);
 
   useEffect(() => {
-    dispatch(
-      getFavoritesProductsService({
-        offset: 0,
-        limit: 23,
-      }),
-    );
-  }, []);
+    const param = {
+      offset: 0,
+      limit: 20,
+      category_id: 1,
+      sort: 'rating',
+      ascending: false,
+    } as unknown as ICategoryRequest;
 
-  console.log(products);
+    dispatch(getProductsListCompilation(param));
+  }, []);
 
   return (
     <div className={style.favorites_page}>
@@ -56,10 +37,8 @@ export const SellerFavoritesList = WithLayout((): JSX.Element => {
           <Search className={style.search} placeholder="Search within my favorites" />
         </div>
         <div className={style.main}>
-          {arr.map((item, index) => (
-            <div className={style.product_card} key={index}>
-              {item}
-            </div>
+          {products.map(product => (
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
         <div className={style.bottom}>
