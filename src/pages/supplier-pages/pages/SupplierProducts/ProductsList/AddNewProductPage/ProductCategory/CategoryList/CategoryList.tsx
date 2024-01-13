@@ -4,16 +4,19 @@ import cn from 'classnames';
 
 import { ArrowIcon } from 'assets/icons';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
-import { Checkbox } from 'ui-kit';
+import { Checkbox, Title } from 'ui-kit';
 
 import style from './CategoryList.module.scss';
 
 export const CategoryList: FC<{ category: ICategoryResponse }> = ({ category }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const toggleDropdown = (): void => {
     setIsOpen(!isOpen);
   };
-
+  const toggleCheckbox = (): void | null => {
+    setIsChecked(!isChecked);
+  };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
     if (event.key === 'Enter' || event.key === ' ') {
       toggleDropdown();
@@ -36,9 +39,19 @@ export const CategoryList: FC<{ category: ICategoryResponse }> = ({ category }) 
             })}
           />
         ) : (
-          <Checkbox className={style.checkbox} />
+          <Checkbox
+            onChange={toggleCheckbox}
+            checked={isChecked}
+            className={style.checkbox}
+          />
         )}
-        <h3 className={style.title}>{category.name}</h3>
+        <Title
+          as="h3"
+          onClick={!category.children ? toggleCheckbox : undefined}
+          className={style.title}
+        >
+          {category.name}
+        </Title>
       </div>
       {isOpen &&
         category.children &&
