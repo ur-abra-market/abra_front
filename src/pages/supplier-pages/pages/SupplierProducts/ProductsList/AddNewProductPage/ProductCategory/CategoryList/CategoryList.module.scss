@@ -1,18 +1,23 @@
-.category_wrapper {
-  padding-top: 33px;
+.category_list_wrapper {
+  padding-top: 12px;
+  padding-left: 22px;
 }
 
 .category_list_item {
   display: flex;
   gap: 8px;
   padding-bottom: 4px;
+
+  > * {
+    cursor: pointer;
+  }
 }
 
 .title {
   cursor: pointer;
   font-size: 15px;
   font-weight: 400;
-  font-style: normal;
+  font-style: normal; 
 }
 
 .arrow {
@@ -23,5 +28,4 @@
 .arrow_up {
   transform: rotate(180deg);
 }
-
 
