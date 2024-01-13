@@ -1,5 +1,7 @@
 import React, { FC, useState } from 'react';
 
+import cn from 'classnames';
+
 import { ArrowIcon } from 'assets/icons';
 import { Bundles } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Bundles/Bundles';
 import { MainProductInfo } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/MainProductInfo/MainProductInfo';
@@ -7,43 +9,20 @@ import { Pricing } from 'pages/supplier-pages/pages/SupplierProducts/ProductsLis
 import { ProductCategory } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ProductCategory/ProductCategory';
 import { Properties } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Properties/Properties';
 import { Variation } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Variation/Variation';
-import { Paragraph } from 'ui-kit';
+import { Paragraph, Title } from 'ui-kit';
 
 import style from './ProductDescription.module.scss';
 
-interface DynamicComponentProps {
-  item: string;
-}
-
-const DynamicComponent: FC<DynamicComponentProps> = ({ item }) => {
-  switch (item) {
-    case 'Main Product Info':
-      return <MainProductInfo />;
-    case 'Product Category':
-      return <ProductCategory />;
-    case 'Properties':
-      return <Properties />;
-    case 'Variations':
-      return <Variation />;
-    case 'Bundles':
-      return <Bundles />;
-    case 'Pricing':
-      return <Pricing />;
-    default:
-      return <p>{item}</p>;
-  }
-};
+const PRODUCT_DESCRIPTION: { label: string; component: FC }[] = [
+  { label: 'Main Product Info', component: MainProductInfo },
+  { label: 'Product Category', component: ProductCategory },
+  { label: 'Properties', component: Properties },
+  { label: 'Variations', component: Variation },
+  { label: 'Bundles', component: Bundles },
+  { label: 'Pricing', component: Pricing },
+];
 
 export const ProductDescription: FC = (): JSX.Element => {
-  const items: string[] = [
-    'Main Product Info',
-    'Product Category',
-    'Properties',
-    'Variations',
-    'Bundles',
-    'Pricing',
-  ];
-
   const [activeItem, setActiveItem] = useState<number | null>(null);
 
   const handleClick = (index: number): void => {
@@ -57,34 +36,31 @@ export const ProductDescription: FC = (): JSX.Element => {
   };
 
   return (
-    <div className={style.container}>
-      <h1 className={style.title}>Product Description</h1>
+    <div className={style.description_wrapper}>
+      <Title as="h1" className={style.title}>
+        Product Description
+      </Title>
       <Paragraph size="s" className={style.paragraph}>
         Enter the information about your first product
       </Paragraph>
-      <ul>
-        {items.map((item, index) => (
+      <ul className={style.description_list}>
+        {PRODUCT_DESCRIPTION.map((item, index) => (
           <li key={index}>
             <div
-              className={style.list_item}
+              className={style.description_item}
               onClick={() => handleClick(index)}
               onKeyDown={event => handleKeyDown(index, event)}
               role="button"
               tabIndex={0}
             >
-              {item}
+              {item.label}
               <ArrowIcon
-                className={`${style.arrow_icon} ${
-                  activeItem === index ? style.active : ''
-                }`}
-                style={{ transform: activeItem === index ? 'rotate(180deg)' : '' }}
+                className={cn(style.arrow, {
+                  [style.arrow_up]: activeItem === index,
+                })}
               />
             </div>
-            {activeItem === index && (
-              <div className={style.additional_info}>
-                <DynamicComponent item={item} />
-              </div>
-            )}
+            {activeItem === index && <item.component />}
           </li>
         ))}
       </ul>
