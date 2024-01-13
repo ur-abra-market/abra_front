@@ -1,12 +1,15 @@
 import React, { FC, useState } from 'react';
 
-import cn from 'classnames';
 import { Controller, useForm } from 'react-hook-form';
+
+import { VariationButton } from './VariationButton/VariationButton';
 
 import { useAppSelector } from 'common/hooks';
 import { Label, Select, ButtonIcon } from 'ui-kit';
 
 import style from './Variation.module.scss';
+
+const variationsData = ['Var 1', 'Var 2'];
 
 export const Variation: FC = (): JSX.Element => {
   const { control } = useForm();
@@ -22,29 +25,19 @@ export const Variation: FC = (): JSX.Element => {
     <form>
       <div className={style.container}>
         <div className={style.button_container}>
+          {variationsData.map(variationType => (
+            <VariationButton
+              key={variationType}
+              variationType={variationType}
+              selected={selectedVariation === variationType}
+              onClick={() => handleSelectVariation(variationType)}
+            />
+          ))}
           <ButtonIcon
             type="button"
-            className={cn(style.button, {
-              [style.active]: selectedVariation === 'Var 1',
-            })}
-            onClick={() => handleSelectVariation('Var 1')}
-          >
-            Var 1
-          </ButtonIcon>
-          <ButtonIcon
-            type="button"
-            className={cn(style.button, {
-              [style.active]: selectedVariation === 'Var 2',
-            })}
-            onClick={() => handleSelectVariation('Var 2')}
-          >
-            Var 2
-          </ButtonIcon>
-          <ButtonIcon
-            type="button"
-            className={cn(style.plus_button, {
-              [style.active]: selectedVariation === 'Plus',
-            })}
+            className={`${style.plus_button} ${
+              selectedVariation === 'Plus' ? style.active : ''
+            }`}
             onClick={() => handleSelectVariation('Plus')}
           >
             +
