@@ -1,3 +1,5 @@
+import cn from 'classnames';
+
 import { ArrowIcon } from 'assets/icons';
 import hanger from 'assets/images/files/hanger.png';
 import { useAppSelector } from 'common/hooks';
@@ -17,7 +19,7 @@ export const SupplierInfo = (): JSX.Element => {
   const totalOrders = useAppSelector(productTotalOrdersSelector);
 
   return (
-    <div className={style.supplier_info_container}>
+    <div className={cn(style.supplier_info_container, style.section)}>
       <div className={style.supplier_info}>
         <img className={style.logo} src={hanger} alt="supplier logo" />
         <div className={style.flex_column_container}>

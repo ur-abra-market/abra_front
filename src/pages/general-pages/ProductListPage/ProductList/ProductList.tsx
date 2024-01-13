@@ -1,11 +1,12 @@
 import { FC, useEffect, useState } from 'react';
 
 import cn from 'classnames';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 import { ProductCardFull } from './ProductCardFull/ProductCardFull';
 
-import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { Filter } from 'assets/icons';
+import { useAppDispatch, useAppSelector, useMediaQuery } from 'common/hooks';
 import { LoadingStatusEnum, SelectedViewEnum } from 'common/types';
 import { PageViewSwitcher, ProductsPerPage, SkeletonProductCard } from 'elements';
 import { ProductCard } from 'modules';
@@ -18,7 +19,6 @@ import {
   totalProductsCountSelector,
 } from 'store/reducers/productSlice';
 import { loadingProductsSelector } from 'store/reducers/productSlice/selectors';
-import { getProductsBySearch } from 'store/reducers/productSlice/thunks';
 import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
 import { ButtonQuestion } from 'ui-kit';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
@@ -28,11 +28,17 @@ import style from './ProductList.module.scss';
 interface IProductList {
   currentSortField: ISortField;
   currentSortBy: ISortBy;
+  closeModal: (value: boolean) => void;
+  showModal: boolean;
 }
+
+const DESIRED_BREAKPOINT = 430;
 
 export const ProductList: FC<IProductList> = ({
   currentSortField,
   currentSortBy,
+  showModal,
+  closeModal,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,37 +50,29 @@ export const ProductList: FC<IProductList> = ({
   const totalCount = useAppSelector(totalProductsCountSelector);
   const products = useAppSelector(productsListSelector);
   const { id } = useParams();
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('query');
   const totalPages = Math.ceil(totalCount / productsPerPage);
+  const { isDevice } = useMediaQuery(DESIRED_BREAKPOINT);
 
   useEffect(() => {
-    if (id) {
-      const param = {
-        offset: (currentPage - 1) * productsPerPage,
-        limit: productsPerPage,
-        category_id: id,
-        sort: currentSortField,
-        ascending: currentSortBy === 'asc',
-      } as ICategoryRequest;
+    const param = {
+      offset: (currentPage - 1) * productsPerPage,
+      limit: productsPerPage,
+      category_id: !id ? 1 : id,
+      sort: currentSortField,
+      ascending: currentSortBy === 'asc',
+      query: query || undefined,
+    } as ICategoryRequest;
 
-      /*
-       * все id категорий цифровые,
-       * если при приведении типов NaN,
-       * значит мы пришли по запросу из поиска MainPage
-       * */
-      if (Number(id)) {
-        dispatch(getProductsListCompilation(param));
-      } else {
-        dispatch(getProductsBySearch(id));
-      }
-    }
-  }, [productsPerPage, currentPage, id, currentSortField, currentSortBy]);
-
+    dispatch(getProductsListCompilation(param));
+  }, [productsPerPage, currentPage, id, currentSortField, currentSortBy, query]);
   const handleChangeSelect = (value: number): void => {
     dispatch(setProductsPerPage(value));
   };
 
   const modsProductsContainer = {
-    [style.grid_container]: selectedView === SelectedViewEnum.GRID,
+    [style.grid_container]: selectedView === SelectedViewEnum.GRID || isDevice,
     [style.list_container]: selectedView === SelectedViewEnum.LIST,
   };
 
@@ -94,11 +92,15 @@ export const ProductList: FC<IProductList> = ({
   ));
 
   const productsView = products?.map(product => {
-    return selectedView === SelectedViewEnum.LIST ? (
-      <ProductCardFull key={product.id} product={product} />
-    ) : (
-      <ProductCard key={product.id} product={product} />
-    );
+    if (selectedView === SelectedViewEnum.LIST) {
+      if (!isDevice) {
+        return <ProductCardFull key={product.id} product={product} />;
+      }
+
+      return <ProductCard key={product.id} product={product} />;
+    }
+
+    return <ProductCard key={product.id} product={product} />;
   });
 
   return (
@@ -110,6 +112,15 @@ export const ProductList: FC<IProductList> = ({
             setSelectedView={setSelectedView}
           />
           <div className={style.branch_crumbs}>{`bread > crumb > plug`}</div>
+          <div
+            role="button"
+            tabIndex={0}
+            onClick={() => closeModal(true)}
+            onKeyDown={() => closeModal(true)}
+            className={style.filter}
+          >
+            <Filter className={showModal ? style.filter_icon : undefined} />
+          </div>
           {/* TODO (fake data) */}
         </div>
         {paginationComponent}

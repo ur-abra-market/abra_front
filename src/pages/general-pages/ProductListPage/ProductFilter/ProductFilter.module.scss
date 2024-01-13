@@ -12,3 +12,27 @@
   width: 100%;
   margin-top: 24px;
 }
+
+@media only screen and (max-width: 1140px) {
+  .product_filter {
+    width: 256px;
+  }
+}
+
+@media only screen and (max-width: 940px) {
+  .product_filter {
+    width: 242px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .product_filter {
+    width: 272px;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  .product_filter {
+    width: 242px;
+  }
+}

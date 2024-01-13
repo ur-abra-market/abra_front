@@ -1,20 +1,33 @@
+@import "src/common/styles/mixins";
+
+@include seller_section();
+
 .product_details_container {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  row-gap: 8px;
 
-  width: 45%;
   min-width: 288px;
   max-width: calc(100vw - 64px);
 }
 
-.product_title {
+.section {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  width: 100%;
   margin-bottom: 16px;
 }
 
-.button {
-  margin-bottom: 32px;
+.product_title {
+  margin-bottom: 34px;
+}
+
+.favorite_button {
+  top: 14px;
 }
 
 @media (max-width: 1200px) {
@@ -23,8 +36,38 @@
   }
 }
 
+@media (max-width: 783px) {
+  .favorite_button {
+    top: 14px;
+  }
+}
+
 @media (max-width: 769px) {
   .product_details_container {
     max-width: calc(100vw - 32px);
+  }
+
+  .section {
+    padding: 18px;
+  }
+
+  .favorite_button {
+    top: 6px;
+  }
+}
+
+@media (max-width: 501px) {
+  .favorite_button {
+    top: -10px;
+  }
+}
+
+@media (max-width: 330px) {
+  .product_details_container {
+    max-width: calc(100vw - 32px);
+  }
+
+  .section {
+    padding: 16px 6px;
   }
 }

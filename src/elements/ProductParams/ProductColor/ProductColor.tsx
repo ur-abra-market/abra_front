@@ -2,8 +2,6 @@ import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
 
-import { ReactComponent as WithoutColor } from './assets/icons/withoutColor.svg';
-
 import { Paragraph } from 'ui-kit';
 
 import style from './ProductColor.module.scss';
@@ -63,9 +61,11 @@ export const ProductColor: FC<IProductColorProps> = ({ colors }): JSX.Element =>
             <li
               onClick={() => setActive(el.id)}
               key={el.id}
-              className={cn(style.item, { [style.active]: el.id === active })}
+              className={cn(style.item, style.without_color, {
+                [style.active]: el.id === active,
+              })}
             >
-              <WithoutColor />
+              <div />
             </li>
           ),
         )}

@@ -1,0 +1,71 @@
+@mixin item($position: unset) {
+  position: $position;
+  min-width: 64px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+@mixin product_size_item($color) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 64px;
+  height: 26px;
+
+  font-size: var(--fz-s);
+
+  border: 2px solid var($color);
+  border-radius: 8px;
+}
+
+@mixin amount_info($color) {
+  position: relative;
+
+  display: block;
+
+  padding: 4px;
+
+  color: var($color);
+  text-align: center;
+
+  border-right: 2px solid var($color);
+  border-bottom: 2px solid var($color);
+  border-left: 2px solid var($color);
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+@mixin amount_elements_size_between_quantity ($color) {
+  &::before,
+  &::after {
+    content: '';
+
+    position: absolute;
+    z-index: 1;
+    top: -8px;
+
+    width: 2px;
+    height: 8px;
+
+    background-color: var($color);
+  }
+
+  &::before {
+    left: -2px;
+  }
+
+  &::after {
+    right: -2px;
+  }
+}
+
+
+@mixin items {
+  .list_items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}

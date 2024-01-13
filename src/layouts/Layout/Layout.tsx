@@ -1,5 +1,6 @@
-import { FC, ReactNode, useLayoutEffect, useState } from 'react';
+import { FC, ReactNode } from 'react';
 
+import { useMediaQuery } from 'common/hooks';
 import { Footer } from 'layouts/Footer/Footer';
 import { Header, SupplierHeader } from 'layouts/Header';
 import { MobileHeader } from 'layouts/Header/MobileHeader/MobileHeader';
@@ -16,37 +17,19 @@ export const Layout: FC<ILayout> = ({
   children,
   headerVariant = 'default',
 }): JSX.Element => {
-  const [isMobileView, setIsMobileView] = useState(false);
-
-  useLayoutEffect(() => {
-    const mediaQuery = window.matchMedia('(max-width: 768px)');
-    const handleChangeMediaQuery = (e: MediaQueryListEvent | MediaQueryList): void => {
-      if (e.matches) {
-        setIsMobileView(true);
-      } else {
-        setIsMobileView(false);
-      }
-    };
-
-    mediaQuery.addEventListener('change', handleChangeMediaQuery);
-    handleChangeMediaQuery(mediaQuery);
-
-    return () => {
-      mediaQuery.removeEventListener('change', handleChangeMediaQuery);
-    };
-  }, []);
+  const { isDevice } = useMediaQuery();
 
   return (
     <div className={styles.wrapper}>
       {headerVariant === 'default' &&
-        (isMobileView ? (
+        (isDevice ? (
           <MobileHeader className={styles.header} />
         ) : (
           <Header className={styles.header} />
         ))}
 
       {headerVariant === 'supplier' &&
-        (isMobileView ? (
+        (isDevice ? (
           <MobileSupplierHeader className={styles.header} />
         ) : (
           <SupplierHeader className={styles.header} />

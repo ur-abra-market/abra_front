@@ -1,6 +1,11 @@
+@import "src/common/styles/mixins";
+
+@include seller_section();
+
 .bundle_wrapper {
   display: flex;
   align-items: center;
+  width: 100%;
   margin-bottom: 28px;
 }
 
@@ -8,9 +13,6 @@
   overflow: hidden;
   display: flex;
   gap: 20px;
-
-  max-width: 600px;
-
   text-align: center;
 }
 
@@ -36,8 +38,8 @@
 
   position: relative;
 
-  width: 18px;
-  height: 18px;
+  width: 26px;
+  height: 26px;
 
   background-color: transparent;
 }
@@ -54,7 +56,7 @@
 }
 
 .right_arrow::after {
-  content: ',,,,';
+  content: '';
 
   position: absolute;
   top: 0;

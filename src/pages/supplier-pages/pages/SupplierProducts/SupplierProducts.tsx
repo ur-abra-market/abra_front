@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 
+import { useSearchParams } from 'react-router-dom';
+
 import { useGetSearchParams } from './common/hoocks/useGetSearchParams';
 import { PaginationControl } from './PaginationControl/PaginationControl';
 import { ProductHeader } from './ProductHeader/ProductHeader';
@@ -16,9 +18,10 @@ export const SupplierProducts = WithLayout((): JSX.Element => {
   const { status, sale, categoryIds, limit, page, sortField, sortBy } =
     useGetSearchParams();
   const dispatch = useAppDispatch();
-  const searchQuery = useAppSelector(state => state.search.value);
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('query');
   const hasChanged = useAppSelector(hasChangedSelector);
-  const searchValue = useDebounce(searchQuery);
+  const searchValue = useDebounce(query!);
   const offset = (page - 1) * limit;
 
   useEffect(() => {
@@ -28,7 +31,7 @@ export const SupplierProducts = WithLayout((): JSX.Element => {
         limit,
         ascending: sortBy,
         category_ids: categoryIds,
-        query: searchValue.length === 0 ? undefined : searchQuery,
+        query: searchValue?.length === 0 ? undefined : query || undefined,
         sort: sortField,
         on_sale: sale,
         is_active: status,

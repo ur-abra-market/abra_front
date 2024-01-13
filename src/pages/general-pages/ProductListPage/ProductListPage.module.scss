@@ -6,5 +6,17 @@
 
   max-width: var(--main-content-width);
   margin: 0 auto;
-  padding: 48px 0 96px 32px;
+  padding: 48px 30px 96px;
+}
+
+@media only screen and (max-width: 1140px) {
+  .product_list_page {
+    gap: 54px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .product_list_page {
+    padding: 18px 16px 56px;
+  }
 }

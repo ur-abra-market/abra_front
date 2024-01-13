@@ -1,44 +1,17 @@
-import { useParams } from 'react-router-dom';
-
-import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { Grades, BreadCrumbs, FavoriteButton } from 'elements';
-import {
-  productCategorySelector,
-  favoriteProductSelector,
-  productGradeSelector,
-  productTotalOrdersSelector,
-  removeFavoriteProduct,
-  addFavoriteProduct,
-} from 'store/reducers/productSlice';
+import { useAppSelector } from 'common/hooks';
+import { BreadCrumbs } from 'elements';
+import { productBreadCrumbsSelector } from 'store/reducers/productSlice/selectors';
 
 import style from './ProductPageHeader.module.scss';
 
 export const ProductPageHeader = (): JSX.Element => {
-  const { productId } = useParams<string>();
-  const { name, parent_id } = useAppSelector(productCategorySelector);
-  const isFavorite = useAppSelector(favoriteProductSelector);
-  const dispatch = useAppDispatch();
+  const breadCrumbs = useAppSelector(productBreadCrumbsSelector);
 
-  const grade = useAppSelector(productGradeSelector);
-  const totalOrders = useAppSelector(productTotalOrdersSelector);
-
-  const handleChangeFavorite = (isFavorite: boolean): void => {
-    if (isFavorite) {
-      dispatch(addFavoriteProduct({ product_id: Number(productId) }));
-    } else {
-      dispatch(removeFavoriteProduct({ product_id: Number(productId) }));
-    }
-  };
+  const reverseBread = [...breadCrumbs].reverse();
 
   return (
     <div className={style.product_page_wrapper}>
-      <BreadCrumbs categoryName={name} parentId={parent_id} />
-      <Grades grade={grade} count={totalOrders} />
-      <FavoriteButton
-        isFavorite={isFavorite}
-        onChange={handleChangeFavorite}
-        variant="product"
-      />
+      <BreadCrumbs breadCrumbs={reverseBread} />
     </div>
   );
 };

@@ -9,7 +9,7 @@ import filterReducer from './reducers/filterSlice';
 import { popularProductsReducer } from './reducers/popularProducts';
 import { productReducer } from './reducers/productSlice';
 import { productOldReducer } from './reducers/productSliceOld';
-import { searchReducer } from './reducers/searchSlice';
+import { sellerCartReducer } from './reducers/seller/cart/slice';
 import { sellerProfileReducer } from './reducers/seller/profile/slice';
 import { similarProductsReducer } from './reducers/similarProducts';
 import { supplierOtherReducer } from './reducers/supplier/other/slice';
@@ -32,12 +32,12 @@ export const store = configureStore({
 
     productListOld: productOldReducer,
     targetProduct: targetProductReducer,
-    search: searchReducer,
     basket: basketReducer,
     filter: filterReducer,
     category: categoryReducer,
     similarProducts: similarProductsReducer,
     popularProducts: popularProductsReducer,
+    sellerCart: sellerCartReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

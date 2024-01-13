@@ -1,14 +1,20 @@
 .product_price_container {
   display: flex;
-  gap: 24px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+
   margin-bottom: 33px;
 }
 
 .wrapper {
   display: flex;
-  flex-direction: column;
-  row-gap: 39px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 38px;
+  justify-content: space-between;
 
+  width: 100%;
 }
 
 .title {
@@ -18,4 +24,16 @@
 
 .total_price {
   color: var(--color-gray);
+}
+
+@media (max-width: 1040px) {
+  .product_price_container {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 628px) {
+  .wrapper {
+    width: 100%;
+  }
 }

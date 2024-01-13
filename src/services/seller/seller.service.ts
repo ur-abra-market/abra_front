@@ -1,12 +1,14 @@
 import {
-  ISellerNotifications,
   ISellerAddressData,
   ISellerAddressRequest,
   ISellerAvatarResponse,
+  ISellerNotifications,
+  ISellersCartRequest,
 } from './seller.serviceTypes';
 
 import { IBaseResponse } from 'common/types';
 import { baseConfigService } from 'services/baseConfig.service';
+import { ISellersCartResponse } from 'store/reducers/seller/cart/types';
 import { ISellerAddress } from 'store/reducers/seller/profile';
 
 export const sellerService = {
@@ -74,5 +76,17 @@ export const sellerService = {
       `sellers/avatar/update`,
       formData,
     );
+  },
+
+  getSellerCart: async ({ offset, limit }: ISellersCartRequest) => {
+    const params = { offset, limit };
+    const { data } = await baseConfigService.get<IBaseResponse<ISellersCartResponse[]>>(
+      `sellers/cart`,
+      {
+        params,
+      },
+    );
+
+    return data.result;
   },
 };
