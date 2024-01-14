@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 import { SelectField } from './SelectField/SelectField';
 
@@ -8,11 +8,29 @@ import { Label, Input } from 'ui-kit';
 
 import style from './Properties.module.scss';
 
+interface ISelectField {
+  name: string;
+  label: string;
+  placeholder?: string;
+}
+
 export const Properties: FC = (): JSX.Element => {
   const { register, watch } = useForm();
   const [showAdditional, setShowAdditional] = useState(0);
 
   const selectedMaterial = watch('material');
+
+  const selectFields: ISelectField[] = [
+    { name: 'ocassion', label: 'Ocassion', placeholder: 'Select' },
+    { name: 'season', label: 'Season', placeholder: 'Select' },
+    { name: 'sizesGrid', label: 'Sizes grid type', placeholder: 'Select' },
+    { name: 'gender', label: 'Gender', placeholder: 'Select' },
+    {
+      name: 'material',
+      label: 'Material (optional)',
+      placeholder: 'Enter the material name',
+    },
+  ];
 
   const generateAdditionalMaterials = (): JSX.Element[] => {
     return Array.from({ length: showAdditional }, (_, index) => (
@@ -40,15 +58,14 @@ export const Properties: FC = (): JSX.Element => {
   return (
     <form>
       <div className={style.container}>
-        <SelectField name="ocassion" label="Ocassion" />
-        <SelectField name="season" label="Season" />
-        <SelectField name="sizesGrid" label="Sizes grid type" />
-        <SelectField name="gender" label="Gender" />
-        <SelectField
-          name="material"
-          label="Material (optional)"
-          placeholder="Enter the material name"
-        />
+        {selectFields.map(field => (
+          <SelectField
+            key={field.name}
+            name={field.name}
+            label={field.label}
+            placeholder={field.placeholder}
+          />
+        ))}
         <Label label="% (optional)" htmlFor="percentage" className={style.label}>
           <Input
             {...register('percentage')}
