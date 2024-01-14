@@ -13,13 +13,22 @@ import { Paragraph, Title } from 'ui-kit';
 
 import style from './ProductDescription.module.scss';
 
-const PRODUCT_DESCRIPTION: { label: string; component: FC }[] = [
-  { label: 'Main Product Info', component: MainProductInfo },
-  { label: 'Product Category', component: ProductCategory },
-  { label: 'Properties', component: Properties },
-  { label: 'Variations', component: Variation },
-  { label: 'Bundles', component: Bundles },
-  { label: 'Pricing', component: Pricing },
+enum DescriptionLabel {
+  MainProductInfo = 'Main Product Info',
+  ProductCategory = 'Product Category',
+  Properties = 'Properties',
+  Variations = 'Variations',
+  Bundles = 'Bundles',
+  Pricing = 'Pricing',
+}
+
+const PRODUCT_DESCRIPTION: { label: DescriptionLabel; component: FC }[] = [
+  { label: DescriptionLabel.MainProductInfo, component: MainProductInfo },
+  { label: DescriptionLabel.ProductCategory, component: ProductCategory },
+  { label: DescriptionLabel.Properties, component: Properties },
+  { label: DescriptionLabel.Variations, component: Variation },
+  { label: DescriptionLabel.Bundles, component: Bundles },
+  { label: DescriptionLabel.Pricing, component: Pricing },
 ];
 
 export const ProductDescription: FC = (): JSX.Element => {
