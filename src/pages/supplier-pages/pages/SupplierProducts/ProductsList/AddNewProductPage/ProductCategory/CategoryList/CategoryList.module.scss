@@ -15,9 +15,13 @@
 
 .title {
   cursor: pointer;
-  font-size: 15px;
-  font-weight: 400;
-  font-style: normal; 
+
+  display: flex;
+  align-items: center;
+
+  font-size: var(--fz-m);
+  font-weight: var(--regular);
+  font-style: normal;
 }
 
 .arrow {

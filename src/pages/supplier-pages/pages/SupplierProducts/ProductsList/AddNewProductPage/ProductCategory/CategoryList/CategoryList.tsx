@@ -8,14 +8,28 @@ import { Checkbox, Title } from 'ui-kit';
 
 import style from './CategoryList.module.scss';
 
-export const CategoryList: FC<{ category: ICategoryResponse }> = ({ category }) => {
+interface ICategoryList {
+  category: ICategoryResponse;
+  selectedCategory: number | null;
+  handleCheckboxChange: (id: number | null) => void;
+}
+
+export const CategoryList: FC<ICategoryList> = ({
+  category,
+  selectedCategory,
+  handleCheckboxChange,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
+  const isChecked = selectedCategory === category.id;
   const toggleDropdown = (): void => {
     setIsOpen(!isOpen);
   };
   const toggleCheckbox = (): void | null => {
-    setIsChecked(!isChecked);
+    if (isChecked) {
+      handleCheckboxChange(null);
+    } else {
+      handleCheckboxChange(category.id);
+    }
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
     if (event.key === 'Enter' || event.key === ' ') {
@@ -43,6 +57,7 @@ export const CategoryList: FC<{ category: ICategoryResponse }> = ({ category }) 
             onChange={toggleCheckbox}
             checked={isChecked}
             className={style.checkbox}
+            variant="default"
           />
         )}
         <Title
@@ -55,7 +70,14 @@ export const CategoryList: FC<{ category: ICategoryResponse }> = ({ category }) 
       </div>
       {isOpen &&
         category.children &&
-        category.children.map(item => <CategoryList key={item.id} category={item} />)}
+        category.children.map(item => (
+          <CategoryList
+            key={item.id}
+            selectedCategory={selectedCategory}
+            handleCheckboxChange={handleCheckboxChange}
+            category={item}
+          />
+        ))}
     </div>
   );
 };

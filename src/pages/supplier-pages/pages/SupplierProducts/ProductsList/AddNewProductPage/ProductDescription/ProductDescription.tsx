@@ -32,15 +32,19 @@ const PRODUCT_DESCRIPTION: { label: DescriptionLabel; component: FC }[] = [
 ];
 
 export const ProductDescription: FC = (): JSX.Element => {
-  const [activeItem, setActiveItem] = useState<number | null>(null);
+  const [activeLabel, setActiveLabel] = useState<DescriptionLabel[]>([]);
 
-  const handleClick = (index: number): void => {
-    setActiveItem(activeItem === index ? null : index);
+  const handleItemClick = (label: DescriptionLabel): void => {
+    setActiveLabel(prevActiveLabels =>
+      prevActiveLabels.includes(label)
+        ? prevActiveLabels.filter(item => item !== label)
+        : [...prevActiveLabels, label],
+    );
   };
 
-  const handleKeyDown = (index: number, event: React.KeyboardEvent): void => {
+  const handleKeyDown = (label: DescriptionLabel, event: React.KeyboardEvent): void => {
     if (event.key === 'Enter') {
-      handleClick(index);
+      handleItemClick(label);
     }
   };
 
@@ -57,19 +61,19 @@ export const ProductDescription: FC = (): JSX.Element => {
           <li key={index}>
             <div
               className={style.description_item}
-              onClick={() => handleClick(index)}
-              onKeyDown={event => handleKeyDown(index, event)}
+              onClick={() => handleItemClick(item.label)}
+              onKeyDown={event => handleKeyDown(item.label, event)}
               role="button"
               tabIndex={0}
             >
               {item.label}
               <ArrowIcon
                 className={cn(style.arrow, {
-                  [style.arrow_up]: activeItem === index,
+                  [style.arrow_up]: activeLabel.includes(item.label),
                 })}
               />
             </div>
-            {activeItem === index && <item.component />}
+            {activeLabel.includes(item.label) && <item.component />}
           </li>
         ))}
       </ul>

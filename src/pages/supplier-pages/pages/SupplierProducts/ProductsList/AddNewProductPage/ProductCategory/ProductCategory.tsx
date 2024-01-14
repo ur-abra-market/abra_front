@@ -11,9 +11,14 @@ import { getAllCategories } from 'store/reducers/commonSlice';
 import style from './ProductCategory.module.scss';
 
 export const ProductCategory: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useAppDispatch();
   const categories = useAppSelector(state => state.common.categories);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+
+  const handleCheckboxChange = (id: number | null): void => {
+    setSelectedCategory(id);
+  };
   const toggleDropdown = (): void => {
     setIsOpen(!isOpen);
   };
@@ -46,7 +51,12 @@ export const ProductCategory: React.FC = () => {
       </div>
       {isOpen &&
         categories.map(category => (
-          <CategoryList key={category.id} category={category} />
+          <CategoryList
+            selectedCategory={selectedCategory}
+            handleCheckboxChange={handleCheckboxChange}
+            key={category.id}
+            category={category}
+          />
         ))}
     </div>
   );
