@@ -3,15 +3,15 @@ import React, { FC, useState } from 'react';
 import cn from 'classnames';
 
 import { ArrowIcon } from 'assets/icons';
-import { Bundles } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Bundles/Bundles';
-import { MainProductInfo } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/MainProductInfo/MainProductInfo';
-import { Pricing } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Pricing/Pricing';
-import { ProductCategory } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ProductCategory/ProductCategory';
-import { Properties } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Properties/Properties';
-import { Variation } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Variation/Variation';
+import { Bundles } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/NewProductForm/Bundles/Bundles';
+import { MainProductInfo } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/NewProductForm/MainProductInfo/MainProductInfo';
+import { Pricing } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/NewProductForm/Pricing/Pricing';
+import { ProductCategory } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/NewProductForm/ProductCategory/ProductCategory';
+import { Properties } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/NewProductForm/Properties/Properties';
+import { Variation } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/NewProductForm/Variation/Variation';
 import { Paragraph, Title } from 'ui-kit';
 
-import style from './ProductDescription.module.scss';
+import style from './NewProductForm.module.scss';
 
 enum DescriptionLabel {
   MainProductInfo = 'Main Product Info',
@@ -31,7 +31,7 @@ const PRODUCT_DESCRIPTION: { label: DescriptionLabel; component: FC }[] = [
   { label: DescriptionLabel.Pricing, component: Pricing },
 ];
 
-export const ProductDescription: FC = (): JSX.Element => {
+export const NewProductForm: FC = (): JSX.Element => {
   const [activeLabel, setActiveLabel] = useState<DescriptionLabel[]>([]);
 
   const handleItemClick = (label: DescriptionLabel): void => {
