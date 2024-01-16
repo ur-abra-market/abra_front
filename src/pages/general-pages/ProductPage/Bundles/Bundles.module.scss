@@ -12,7 +12,9 @@
 .bundle_container {
   overflow: hidden;
   display: flex;
+  flex-basis: 100%;
   gap: 20px;
+
   text-align: center;
 }
 
@@ -38,21 +40,23 @@
 
   position: relative;
 
-  width: 26px;
+  width: 28px;
   height: 26px;
 
   background-color: transparent;
 }
 
 .left_arrow {
+  z-index: 1;
   transform: rotate(90deg);
   margin-right: 14px;
+  box-shadow: 0 -10px 15px 20px var(--color-white);
 }
 
 .right_arrow {
+  z-index: 1;
   transform: rotate(-90deg);
-  box-shadow: 0 -20px 20px 20px var(--color-white-ivory);
-  fill: none;
+  box-shadow: 0 -10px 15px 20px var(--color-white);
 }
 
 .right_arrow::after {

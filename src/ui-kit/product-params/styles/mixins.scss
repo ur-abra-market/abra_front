@@ -10,8 +10,7 @@
   align-items: center;
   justify-content: center;
 
-  width: 64px;
-  height: 26px;
+  height: 32px;
 
   font-size: var(--fz-s);
 
@@ -26,7 +25,7 @@
 
   padding: 4px;
 
-  color: var($color);
+  color: var(--color-black);
   text-align: center;
 
   border-right: 2px solid var($color);
@@ -36,7 +35,7 @@
   border-bottom-left-radius: 8px;
 }
 
-@mixin amount_elements_size_between_quantity ($color) {
+@mixin amount_elements_size_between_quantity($color) {
   &::before,
   &::after {
     content: '';

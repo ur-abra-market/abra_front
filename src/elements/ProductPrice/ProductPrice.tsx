@@ -1,26 +1,35 @@
 import { useCallback, useState } from 'react';
 
 import { Discount } from './Discount/Discount';
-import { Quantity } from './Quantity/Quantity';
 
 import { useAppSelector } from 'common/hooks';
 import { priseSelector } from 'store/reducers/productSlice';
+import { Counter } from 'ui-kit/Counter/Counter';
 
 import style from './ProductPrice.module.scss';
 
 export const ProductPrice = (): JSX.Element => {
-  const [count, setCount] = useState(0);
-  const price = useAppSelector(priseSelector);
+  const [count, setCount] = useState<string | number>(0);
+  const prices = useAppSelector(priseSelector);
 
-  const onChangeCount = useCallback((value: number): void => {
+  const onChangeCount = useCallback((value: number | string): void => {
     setCount(value);
   }, []);
 
   return (
     <div className={style.product_price_container}>
       <div className={style.wrapper}>
-        <Quantity count={count} setCount={onChangeCount} />
-        <Discount price={price} />
+        <Counter
+          amount={count as number}
+          max_amount={1000}
+          onChange={onChangeCount}
+          min_amount={0}
+          label="Quantity"
+          bundles_amount="/from 100 bundles"
+          variant="large"
+          className={style.counter}
+        />
+        <Discount />
       </div>
     </div>
   );

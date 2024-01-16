@@ -1,0 +1,15 @@
+@import 'src/ui-kit/product-params/styles/mixins';
+
+.size {
+  @include product_size_item(--color-gray-light);
+
+  cursor: no-drop;
+}
+
+.quantity {
+  @include amount_info(--color-gray-light);
+  @include amount_elements_size_between_quantity(--color-gray-light);
+
+  cursor: no-drop;
+}
+

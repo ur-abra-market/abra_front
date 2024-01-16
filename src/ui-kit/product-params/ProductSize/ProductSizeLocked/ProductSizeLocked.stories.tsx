@@ -2,8 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { ProductSizeLocked } from './ProductSizeLocked';
 
-import { SizeEnum } from 'common/types';
-
 const meta = {
   component: ProductSizeLocked,
   tags: ['autodocs'],
@@ -18,7 +16,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Deffailt: Story = {
   args: {
-    size: SizeEnum.L,
+    size: 'L',
     quantity: 99,
   },
 };
@@ -26,9 +24,9 @@ export const Deffailt: Story = {
 export const MultipleProductSizeItem = (): JSX.Element => {
   return (
     <div style={{ display: 'flex', gap: '19px' }}>
-      <ProductSizeLocked size={SizeEnum.M} quantity={3} />
-      <ProductSizeLocked size={SizeEnum.L} quantity={66} />
-      <ProductSizeLocked size={SizeEnum.XXXXL} quantity={999999} />
+      <ProductSizeLocked size="M" quantity={3} />
+      <ProductSizeLocked size="L" quantity={66} />
+      <ProductSizeLocked size="XXXXL" quantity={999999} />
     </div>
   );
 };

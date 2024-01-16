@@ -4,16 +4,12 @@
   row-gap: 8px;
 }
 
-.text {
-  color: var(--color-black);
-}
-
 .items {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 8px;
-  justify-content: space-between;
+  gap: 16px;
 
   min-width: 268px;
+
 }

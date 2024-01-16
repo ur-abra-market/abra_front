@@ -12,14 +12,12 @@ import {
   ProductParams,
   ProductPrice,
   SupplierInfo,
-  Tags,
 } from 'elements';
 import { Bundles } from 'pages/general-pages/ProductPage/Bundles/Bundles';
 import {
   favoriteProductSelector,
   productDescriptionSelector,
   productNameSelector,
-  productTagsSelector,
 } from 'store/reducers/productSlice';
 import {
   addFavoriteProductPage,

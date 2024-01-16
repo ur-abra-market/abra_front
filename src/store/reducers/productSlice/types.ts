@@ -14,6 +14,7 @@ export interface IProductSliceInitialState {
   productsList: IProductCompilation[];
   sortField: ISortField;
   sortBy: ISortBy;
+  activeBundle: IActiveBundle;
 }
 
 export type ISortField = 'rating' | 'price' | 'date' | 'total_orders';
@@ -35,6 +36,125 @@ export interface IProductCard {
   images: IImage[];
   tags: ITag[];
   bundle_variation_pods: IBundleVariationPod[];
+  bundles: IProductBundle[];
+}
+
+export interface IProductBundle {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  prices: IPricesBundle[];
+  product: string;
+  variation_values: IVariationValue[];
+  pickable_variations: IPickableVariation[];
+}
+
+export interface IPricesBundle {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  bundle_id: number;
+  price: number;
+  discount: number;
+  start_date: string;
+  end_date: string;
+  min_quantity: number;
+  bundle: string;
+}
+
+export interface IVariationValue {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  variation_value_to_product_id: number;
+  bundle_id: number;
+  amount: number;
+  bundle: string;
+  product_variation: IProductVariation;
+}
+
+export interface IPickableVariation {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  variation_value_id: number;
+  product_id: number;
+  variation: IBundlePickableVariation;
+  product: string;
+  prices: IPickableVariationPrice[];
+}
+
+export interface IBundlePickableVariation {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  value: string;
+  variation_type_id: number;
+  image_url?: string;
+  type: IBundleType;
+  variation: number;
+}
+
+export interface IProductVariation {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  variation_value_id: number;
+  product_id: number;
+  variation: IVariation;
+  product: string;
+  prices: IProductVariationPrice[];
+}
+
+export interface IVariation {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  type: IBundleType;
+  value: string;
+  variation_type_id: number;
+  image_url?: string;
+  variation?: number;
+}
+
+export interface IProductVariationPrice {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  variation_value_to_product_id: number;
+  value: number;
+  multiplier: number;
+  discount: number;
+  start_date: string;
+  end_date: string;
+  min_quantity: number;
+  product_variation_value: string;
+}
+
+export interface IBundleType {
+  created_at: string;
+  id: number;
+  name: 'Color' | 'Size-Women-Universal' | 'Size-Men-Universal' | 'Size-Kids-Universal';
+  updated_at: string;
+}
+
+export interface IPickableVariationPrice {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  variation_value_to_product_id: number;
+  value: number;
+  multiplier: number;
+  discount: number;
+  start_date: string;
+  end_date: string;
+  min_quantity: number;
+  product_variation_value: string;
+}
+
+export interface IActiveBundle {
+  type: 'color' | 'size';
+  bundle: IProductBundle;
 }
 
 export interface IFeedbacks {
