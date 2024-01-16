@@ -5,6 +5,7 @@ interface UseEqualWidthProps {
 }
 
 const DEFAULT_WIDTH = 64;
+const EXTRA_PADDING = 2;
 
 export const useEqualWidth = ({ refs }: UseEqualWidthProps): void => {
   useLayoutEffect(() => {
@@ -23,7 +24,9 @@ export const useEqualWidth = ({ refs }: UseEqualWidthProps): void => {
 
       // Calculate the maximum width value
       const maxWidth =
-        Math.max(...widths) > DEFAULT_WIDTH ? Math.max(...widths) : DEFAULT_WIDTH;
+        Math.max(...widths) > DEFAULT_WIDTH
+          ? Math.max(...widths) + EXTRA_PADDING
+          : DEFAULT_WIDTH;
 
       // Apply the maximum value to all ref
       refs.forEach(ref => {
