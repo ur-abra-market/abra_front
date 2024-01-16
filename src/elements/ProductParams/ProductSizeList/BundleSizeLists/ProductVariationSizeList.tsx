@@ -1,6 +1,6 @@
 import { createRef, FC, RefObject } from 'react';
 
-import { useEqualWidth } from 'common/hooks';
+import { useSetMaxWidthElementsInList } from 'common/hooks';
 import { IProductBundle } from 'store/reducers/productSlice/types';
 import { ProductSizeLocked } from 'ui-kit';
 
@@ -8,7 +8,7 @@ interface IProductSizeLockedList {
   bundle: IProductBundle;
 }
 
-export const ProductSizeLockedList: FC<IProductSizeLockedList> = ({
+export const ProductVariationSizeList: FC<IProductSizeLockedList> = ({
   bundle,
 }): JSX.Element => {
   const buttonRefs: RefObject<HTMLButtonElement>[] = Array.from(
@@ -16,7 +16,7 @@ export const ProductSizeLockedList: FC<IProductSizeLockedList> = ({
     () => createRef<HTMLButtonElement>(),
   );
 
-  useEqualWidth({ refs: buttonRefs });
+  useSetMaxWidthElementsInList({ refs: buttonRefs });
 
   return (
     <>

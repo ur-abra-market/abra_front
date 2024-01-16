@@ -1,6 +1,6 @@
 import React, { createRef, FC, RefObject } from 'react';
 
-import { useEqualWidth } from 'common/hooks';
+import { useSetMaxWidthElementsInList } from 'common/hooks';
 import { IProductBundle } from 'store/reducers/productSlice/types';
 import { ProductSizeSelectable } from 'ui-kit';
 
@@ -10,7 +10,7 @@ interface IProductSizeSelectableList {
   handleSelectSize: (id: number) => void;
 }
 
-export const ProductSizeSelectableList: FC<IProductSizeSelectableList> = ({
+export const PickableVariationSizeList: FC<IProductSizeSelectableList> = ({
   bundle,
   selectedSizeId,
   handleSelectSize,
@@ -20,7 +20,7 @@ export const ProductSizeSelectableList: FC<IProductSizeSelectableList> = ({
     () => createRef<HTMLButtonElement>(),
   );
 
-  useEqualWidth({ refs: buttonRefs });
+  useSetMaxWidthElementsInList({ refs: buttonRefs });
 
   return (
     <>

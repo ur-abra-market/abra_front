@@ -1,6 +1,6 @@
 import React, { createRef, FC, RefObject } from 'react';
 
-import { useEqualWidth } from 'common/hooks';
+import { useSetMaxWidthElementsInList } from 'common/hooks';
 import { IProductBundle } from 'store/reducers/productSlice/types';
 import { ProductColorLocked } from 'ui-kit';
 
@@ -8,7 +8,7 @@ interface IBundleLockedColorList {
   bundle: IProductBundle;
 }
 
-export const BundleLockedColorList: FC<IBundleLockedColorList> = ({
+export const ProductVariationColorList: FC<IBundleLockedColorList> = ({
   bundle,
 }): JSX.Element => {
   const buttonRefs: RefObject<HTMLButtonElement>[] = Array.from(
@@ -16,7 +16,7 @@ export const BundleLockedColorList: FC<IBundleLockedColorList> = ({
     () => createRef<HTMLButtonElement>(),
   );
 
-  useEqualWidth({ refs: buttonRefs });
+  useSetMaxWidthElementsInList({ refs: buttonRefs });
 
   return (
     <>

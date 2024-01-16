@@ -9,7 +9,7 @@ interface IBundleSelectableColorList {
   selectColor: (id: number) => void;
 }
 
-export const BundleSelectableColorList: FC<IBundleSelectableColorList> = ({
+export const PickableVariationColorList: FC<IBundleSelectableColorList> = ({
   bundle,
   selectedColorId,
   selectColor,

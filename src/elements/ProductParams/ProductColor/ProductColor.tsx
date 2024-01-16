@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 
-import { BundleLockedColorList } from './BundleColorLists/BundleLockedColorList';
-import { BundleSelectableColorList } from './BundleColorLists/BundleSelectableColorList';
+import { PickableVariationColorList } from './BundleColorLists/PickableVariationColorList';
+import { ProductVariationColorList } from './BundleColorLists/ProductVariationColorList';
 
 import { IProductBundle } from 'store/reducers/productSlice/types';
 import { Paragraph } from 'ui-kit';
@@ -24,9 +24,9 @@ export const ProductColor: FC<IProductColor> = ({ bundleType, bundle }): JSX.Ele
       </Paragraph>
       <div className={style.items}>
         {hasSizeBundle ? (
-          <BundleLockedColorList bundle={bundle} />
+          <ProductVariationColorList bundle={bundle} />
         ) : (
-          <BundleSelectableColorList
+          <PickableVariationColorList
             bundle={bundle}
             selectColor={setActive}
             selectedColorId={active}
