@@ -40,7 +40,7 @@ export const Bundles = (): JSX.Element => {
         />
       )}
       <div ref={scrollWidthContainerRef} className={style.bundle_container}>
-        <div style={{ display: 'flex', gap: '15px' }}>
+        <div className={style.bundles}>
           {productBundles &&
             productBundles.map((el, i) => (
               <ButtonBundle

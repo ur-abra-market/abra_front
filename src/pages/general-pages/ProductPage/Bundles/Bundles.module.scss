@@ -18,6 +18,11 @@
   text-align: center;
 }
 
+.bundles {
+  display: flex;
+  gap: 15px;
+}
+
 .item {
   cursor: pointer;
 
