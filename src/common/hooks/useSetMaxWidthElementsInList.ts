@@ -1,13 +1,15 @@
 import { useLayoutEffect, RefObject, useState } from 'react';
 
-interface UseEqualWidthProps {
+interface IUseSetMaxWidthElementsInList {
   refs: RefObject<HTMLElement>[];
 }
 
 const DEFAULT_WIDTH = 64;
 const EXTRA_PADDING = 12;
 
-export const useSetMaxWidthElementsInList = ({ refs }: UseEqualWidthProps): void => {
+export const useSetMaxWidthElementsInList = ({
+  refs,
+}: IUseSetMaxWidthElementsInList): void => {
   const [maxWidthElement, setMaxWidthElement] = useState<number>(DEFAULT_WIDTH);
 
   useLayoutEffect(() => {

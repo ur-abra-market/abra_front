@@ -4,11 +4,11 @@ import { useSetMaxWidthElementsInList } from 'common/hooks';
 import { IProductBundle } from 'store/reducers/productSlice/types';
 import { ProductColorLocked } from 'ui-kit';
 
-interface IBundleLockedColorList {
+interface IProductVariationColorList {
   bundle: IProductBundle;
 }
 
-export const ProductVariationColorList: FC<IBundleLockedColorList> = ({
+export const ProductVariationColorList: FC<IProductVariationColorList> = ({
   bundle,
 }): JSX.Element => {
   const buttonRefs: RefObject<HTMLButtonElement>[] = Array.from(
