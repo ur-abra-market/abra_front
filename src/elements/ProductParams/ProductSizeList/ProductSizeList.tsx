@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 
-import { ProductSizeLockedList } from './BundleSizeLists/ProductSizeLockedList';
-import { ProductSizeSelectableList } from './BundleSizeLists/ProductSizeSelectableList';
+import { BundleSizeList } from './BundleSizeLists/BundleSizeList';
+import { BundleSizePickableList } from './BundleSizeLists/BundleSizePickableList';
 
 import { IProductBundle } from 'store/reducers/productSlice/types';
 import { Paragraph } from 'ui-kit';
@@ -28,13 +28,13 @@ export const ProductSizeList: FC<IProductSize> = ({
 
       <div className={style.items}>
         {hasSizeBundle ? (
-          <ProductSizeSelectableList
+          <BundleSizePickableList
             bundle={bundle}
             selectedSizeId={active}
             handleSelectSize={setActive}
           />
         ) : (
-          <ProductSizeLockedList bundle={bundle} />
+          <BundleSizeList bundle={bundle} />
         )}
       </div>
     </div>

@@ -4,13 +4,13 @@ import { useSetMaxWidthElementsInList } from 'common/hooks';
 import { IProductBundle } from 'store/reducers/productSlice/types';
 import { ProductSizePickable } from 'ui-kit';
 
-interface IProductSizeSelectableList {
+interface IBundleSizePickableList {
   bundle: IProductBundle;
   selectedSizeId: number | null;
   handleSelectSize: (id: number) => void;
 }
 
-export const ProductSizeSelectableList: FC<IProductSizeSelectableList> = ({
+export const BundleSizePickableList: FC<IBundleSizePickableList> = ({
   bundle,
   selectedSizeId,
   handleSelectSize,

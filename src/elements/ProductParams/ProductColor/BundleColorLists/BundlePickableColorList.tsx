@@ -3,13 +3,13 @@ import React, { FC } from 'react';
 import { IProductBundle } from 'store/reducers/productSlice/types';
 import { ProductColorPickable } from 'ui-kit';
 
-interface IBundleSelectableColorList {
+interface IBundlePickableColorList {
   bundle: IProductBundle;
   selectedColorId: number | null;
   selectColor: (id: number) => void;
 }
 
-export const BundleSelectableColorList: FC<IBundleSelectableColorList> = ({
+export const BundlePickableColorList: FC<IBundlePickableColorList> = ({
   bundle,
   selectedColorId,
   selectColor,

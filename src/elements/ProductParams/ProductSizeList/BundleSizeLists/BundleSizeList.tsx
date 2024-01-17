@@ -4,13 +4,11 @@ import { useSetMaxWidthElementsInList } from 'common/hooks';
 import { IProductBundle } from 'store/reducers/productSlice/types';
 import { ProductSize } from 'ui-kit';
 
-interface IProductSizeLockedList {
+interface IBundleSizeList {
   bundle: IProductBundle;
 }
 
-export const ProductSizeLockedList: FC<IProductSizeLockedList> = ({
-  bundle,
-}): JSX.Element => {
+export const BundleSizeList: FC<IBundleSizeList> = ({ bundle }): JSX.Element => {
   const buttonRefs: RefObject<HTMLButtonElement>[] = Array.from(
     { length: bundle.variation_values.length },
     () => createRef<HTMLButtonElement>(),
