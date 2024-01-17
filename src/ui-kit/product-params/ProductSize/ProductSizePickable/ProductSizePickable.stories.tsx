@@ -2,16 +2,16 @@ import { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ProductSizeSelectable } from './ProductSizeSelectable';
+import { ProductSizePickable } from './ProductSizePickable';
 
 const meta = {
-  component: ProductSizeSelectable,
+  component: ProductSizePickable,
   tags: ['autodocs'],
-  title: 'Components/ProductSizeSelectable',
+  title: 'Components/ProductSizePickable',
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof ProductSizeSelectable>;
+} satisfies Meta<typeof ProductSizePickable>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -20,7 +20,7 @@ const ProductSizeSelectorWithHooks = (): JSX.Element => {
   const [selected, setSelected] = useState<number | null>(null);
 
   return (
-    <ProductSizeSelectable
+    <ProductSizePickable
       size="M"
       handleSelectSize={setSelected}
       selectedSizeId={selected}
@@ -37,19 +37,19 @@ export const MultipleProductSizeItem = (): JSX.Element => {
 
   return (
     <div style={{ display: 'flex', gap: '19px' }}>
-      <ProductSizeSelectable
+      <ProductSizePickable
         size="M"
         handleSelectSize={() => setSelected(1)}
         selectedSizeId={selected}
         id="1"
       />
-      <ProductSizeSelectable
+      <ProductSizePickable
         size="L"
         handleSelectSize={() => setSelected(1)}
         selectedSizeId={selected}
         id="2"
       />
-      <ProductSizeSelectable
+      <ProductSizePickable
         size="XXXXL"
         handleSelectSize={() => setSelected(1)}
         selectedSizeId={selected}

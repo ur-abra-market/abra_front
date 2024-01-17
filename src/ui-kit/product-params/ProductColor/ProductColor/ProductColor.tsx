@@ -2,15 +2,15 @@ import React, { forwardRef, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import style from './ProductColorLocked.module.scss';
+import style from './ProductColor.module.scss';
 
-interface IProductColorLocked extends HTMLAttributes<HTMLButtonElement> {
+interface IProductColor extends HTMLAttributes<HTMLButtonElement> {
   value: number;
   imageUrl: string;
   className?: string;
 }
 
-export const ProductColorLocked = forwardRef<HTMLButtonElement, IProductColorLocked>(
+export const ProductColor = forwardRef<HTMLButtonElement, IProductColor>(
   ({ imageUrl, value, className }, ref): JSX.Element => {
     return (
       <button type="button" className={cn(style.item, className)} ref={ref} disabled>

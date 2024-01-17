@@ -2,13 +2,13 @@ import { createRef, FC, RefObject } from 'react';
 
 import { useSetMaxWidthElementsInList } from 'common/hooks';
 import { IProductBundle } from 'store/reducers/productSlice/types';
-import { ProductSizeLocked } from 'ui-kit';
+import { ProductSize } from 'ui-kit';
 
 interface IProductSizeLockedList {
   bundle: IProductBundle;
 }
 
-export const ProductVariationSizeList: FC<IProductSizeLockedList> = ({
+export const ProductSizeLockedList: FC<IProductSizeLockedList> = ({
   bundle,
 }): JSX.Element => {
   const buttonRefs: RefObject<HTMLButtonElement>[] = Array.from(
@@ -21,7 +21,7 @@ export const ProductVariationSizeList: FC<IProductSizeLockedList> = ({
   return (
     <>
       {bundle.variation_values.map((el, index) => (
-        <ProductSizeLocked
+        <ProductSize
           key={el.id}
           size={el.product_variation.variation.value}
           quantity={el.amount}

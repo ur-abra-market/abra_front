@@ -2,9 +2,9 @@ import React, { forwardRef, HTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
-import style from './ProductSizeSelectable.module.scss';
+import style from './ProductSizePickable.module.scss';
 
-interface IProductSizeItem extends HTMLAttributes<HTMLButtonElement> {
+interface IProductSizePickable extends HTMLAttributes<HTMLButtonElement> {
   size: string;
   selectedSizeId: number | null;
   id: string;
@@ -12,7 +12,7 @@ interface IProductSizeItem extends HTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-export const ProductSizeSelectable = forwardRef<HTMLButtonElement, IProductSizeItem>(
+export const ProductSizePickable = forwardRef<HTMLButtonElement, IProductSizePickable>(
   ({ size, id, selectedSizeId, handleSelectSize, className }, ref): JSX.Element => {
     const isSelected = +id === selectedSizeId;
     const sizeClasses = cn(className, style.item, style.size, {

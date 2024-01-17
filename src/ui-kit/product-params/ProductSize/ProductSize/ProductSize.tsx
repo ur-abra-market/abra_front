@@ -1,13 +1,13 @@
 import React, { forwardRef, HTMLAttributes } from 'react';
 
-import style from './ProductSizeLocked.module.scss';
+import style from './ProductSize.module.scss';
 
-interface IProductSizeLocked extends HTMLAttributes<HTMLButtonElement> {
+interface IProductSize extends HTMLAttributes<HTMLButtonElement> {
   size: string;
   quantity: number;
 }
 
-export const ProductSizeLocked = forwardRef<HTMLButtonElement, IProductSizeLocked>(
+export const ProductSize = forwardRef<HTMLButtonElement, IProductSize>(
   ({ size, quantity }, ref) => {
     return (
       <button type="button" disabled ref={ref}>

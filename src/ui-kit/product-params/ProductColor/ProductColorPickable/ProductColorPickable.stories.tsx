@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ProductColorSelectable } from './ProductColorSelectable';
+import { ProductColorPickable } from './ProductColorPickable';
 
-import style from './ProductColorSelectable.module.scss';
+import style from './ProductColorPickable.module.scss';
 
 const meta = {
-  component: ProductColorSelectable,
+  component: ProductColorPickable,
   tags: ['autodocs'],
-  title: 'Components/ProductColorSelectable',
-} satisfies Meta<typeof ProductColorSelectable>;
+  title: 'Components/ProductColorPickable',
+} satisfies Meta<typeof ProductColorPickable>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -21,7 +21,7 @@ export const ListColors = (): JSX.Element => {
   return (
     <div className={style.list_items}>
       {tempData.map(el => (
-        <ProductColorSelectable
+        <ProductColorPickable
           key={el.id}
           selectedColorId={active}
           id={el.id}

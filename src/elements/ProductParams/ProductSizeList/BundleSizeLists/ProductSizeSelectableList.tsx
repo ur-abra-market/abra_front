@@ -2,7 +2,7 @@ import React, { createRef, FC, RefObject } from 'react';
 
 import { useSetMaxWidthElementsInList } from 'common/hooks';
 import { IProductBundle } from 'store/reducers/productSlice/types';
-import { ProductSizeSelectable } from 'ui-kit';
+import { ProductSizePickable } from 'ui-kit';
 
 interface IProductSizeSelectableList {
   bundle: IProductBundle;
@@ -10,7 +10,7 @@ interface IProductSizeSelectableList {
   handleSelectSize: (id: number) => void;
 }
 
-export const PickableVariationSizeList: FC<IProductSizeSelectableList> = ({
+export const ProductSizeSelectableList: FC<IProductSizeSelectableList> = ({
   bundle,
   selectedSizeId,
   handleSelectSize,
@@ -25,7 +25,7 @@ export const PickableVariationSizeList: FC<IProductSizeSelectableList> = ({
   return (
     <>
       {bundle.pickable_variations.map((el, i) => (
-        <ProductSizeSelectable
+        <ProductSizePickable
           key={el.id}
           size={el.variation.value}
           selectedSizeId={selectedSizeId}

@@ -2,13 +2,13 @@ import React, { createRef, FC, RefObject } from 'react';
 
 import { useSetMaxWidthElementsInList } from 'common/hooks';
 import { IProductBundle } from 'store/reducers/productSlice/types';
-import { ProductColorLocked } from 'ui-kit';
+import { ProductColor } from 'ui-kit';
 
-interface IProductVariationColorList {
+interface IBundleLockedColorList {
   bundle: IProductBundle;
 }
 
-export const ProductVariationColorList: FC<IProductVariationColorList> = ({
+export const BundleLockedColorList: FC<IBundleLockedColorList> = ({
   bundle,
 }): JSX.Element => {
   const buttonRefs: RefObject<HTMLButtonElement>[] = Array.from(
@@ -21,7 +21,7 @@ export const ProductVariationColorList: FC<IProductVariationColorList> = ({
   return (
     <>
       {bundle.variation_values.map((el, i) => (
-        <ProductColorLocked
+        <ProductColor
           key={el.id}
           value={el.amount}
           imageUrl={el.product_variation.variation.image_url || ''}

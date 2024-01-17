@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ProductSizeLocked } from './ProductSizeLocked';
+import { ProductSize } from './ProductSize';
 
 const meta = {
-  component: ProductSizeLocked,
+  component: ProductSize,
   tags: ['autodocs'],
-  title: 'Components/ProductSizeLocked',
+  title: 'Components/ProductSize',
   parameters: {
     layout: 'centered',
   },
-} satisfies Meta<typeof ProductSizeLocked>;
+} satisfies Meta<typeof ProductSize>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -24,9 +24,9 @@ export const Deffailt: Story = {
 export const MultipleProductSizeItem = (): JSX.Element => {
   return (
     <div style={{ display: 'flex', gap: '19px' }}>
-      <ProductSizeLocked size="M" quantity={3} />
-      <ProductSizeLocked size="L" quantity={66} />
-      <ProductSizeLocked size="XXXXL" quantity={999999} />
+      <ProductSize size="M" quantity={3} />
+      <ProductSize size="L" quantity={66} />
+      <ProductSize size="XXXXL" quantity={999999} />
     </div>
   );
 };

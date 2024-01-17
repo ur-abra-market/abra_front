@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import style from './ProductColorSelectable.module.scss';
+import style from './ProductColorPickable.module.scss';
 
-interface IProductColorSelectable {
+interface IProductColorPickable {
   selectedColorId: number | null;
   id: number;
   imageUrl: string;
@@ -12,7 +12,7 @@ interface IProductColorSelectable {
   className?: string;
 }
 
-export const ProductColorSelectable: FC<IProductColorSelectable> = ({
+export const ProductColorPickable: FC<IProductColorPickable> = ({
   selectedColorId,
   id,
   imageUrl,
