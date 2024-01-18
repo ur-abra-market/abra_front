@@ -10,18 +10,16 @@ interface IVariationButton {
   variationType: string;
   selected: boolean;
   onClick: () => void;
-  additionalStyles?: string;
 }
 
 export const VariationButton: FC<IVariationButton> = ({
   variationType,
   selected,
   onClick,
-  additionalStyles,
 }) => (
   <ButtonIcon
     type="button"
-    className={cn(style.button, additionalStyles, {
+    className={cn(style.button, {
       [style.active]: selected,
     })}
     onClick={onClick}

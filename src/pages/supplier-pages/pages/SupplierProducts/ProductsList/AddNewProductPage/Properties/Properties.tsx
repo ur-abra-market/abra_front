@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 
@@ -8,27 +8,48 @@ import { Label, Input } from 'ui-kit';
 
 import style from './Properties.module.scss';
 
+interface IMaterial {
+  id: number;
+  name: string;
+}
+
 interface ISelectField {
   name: string;
   label: string;
   placeholder?: string;
+  options: IMaterial[];
 }
 
 export const Properties: FC = (): JSX.Element => {
   const { register, watch } = useForm();
   const [showAdditional, setShowAdditional] = useState(0);
+  const [additionalMaterials, setAdditionalMaterials] = useState<IMaterial[]>([]);
+  const [selectedMaterial, setSelectedMaterial] = useState<IMaterial | null>(null);
 
-  const selectedMaterial = watch('material');
+  // const selectedMaterial = watch('material');
+
+  const materialData: IMaterial[] = [
+    { id: 1, name: 'Cotton' },
+    { id: 2, name: 'Polyester' },
+    { id: 3, name: 'Silk' },
+    { id: 4, name: 'Wool' },
+  ];
 
   const selectFields: ISelectField[] = [
-    { name: 'ocassion', label: 'Ocassion', placeholder: 'Select' },
-    { name: 'season', label: 'Season', placeholder: 'Select' },
-    { name: 'sizesGrid', label: 'Sizes grid type', placeholder: 'Select' },
-    { name: 'gender', label: 'Gender', placeholder: 'Select' },
+    { name: 'ocassion', label: 'Ocassion', placeholder: 'Select', options: materialData },
+    { name: 'season', label: 'Season', placeholder: 'Select', options: materialData },
+    {
+      name: 'sizesGrid',
+      label: 'Sizes grid type',
+      placeholder: 'Select',
+      options: materialData,
+    },
+    { name: 'gender', label: 'Gender', placeholder: 'Select', options: materialData },
     {
       name: 'material',
       label: 'Material (optional)',
       placeholder: 'Enter the material name',
+      options: materialData,
     },
   ];
 
@@ -36,17 +57,18 @@ export const Properties: FC = (): JSX.Element => {
     return Array.from({ length: showAdditional }, (_, index) => (
       <div key={index} className={style.additional}>
         <SelectField
-          name={`[showAdditional[${index}].material`}
           label={`Add material ${index + 1}`}
           placeholder="Enter the material name"
+          options={additionalMaterials}
+          {...register(`showAdditional[${index}].material`)}
         />
         <Label
           label="% (optional)"
-          htmlFor={`[showAdditional[${index}].percentage`}
+          htmlFor={`showAdditional[${index}].percentage`}
           className={style.label}
         >
           <Input
-            {...register('percentage')}
+            {...register(`showAdditional[${index}].percentage`)}
             placeholder="Enter percentage of material"
             className={style.percentage}
           />
@@ -55,15 +77,30 @@ export const Properties: FC = (): JSX.Element => {
     ));
   };
 
+  useEffect(() => {
+    // Update additional materials when the selected material changes
+    if (selectedMaterial) {
+      const newAdditionalMaterials = materialData.filter(
+        material => material.id !== selectedMaterial.id,
+      );
+
+      setAdditionalMaterials(newAdditionalMaterials);
+    } else {
+      setAdditionalMaterials([]);
+    }
+  }, [selectedMaterial]);
+
   return (
     <form>
       <div className={style.container}>
         {selectFields.map(field => (
           <SelectField
             key={field.name}
-            name={field.name}
             label={field.label}
             placeholder={field.placeholder}
+            options={field.name === 'material' ? materialData : []}
+            onChange={(selectedValue: IMaterial) => setSelectedMaterial(selectedValue)}
+            {...register(field.name)}
           />
         ))}
         <Label label="% (optional)" htmlFor="percentage" className={style.label}>
