@@ -9,26 +9,30 @@ import { Checkbox, Title } from 'ui-kit';
 import style from './CategoryList.module.scss';
 
 interface ICategoryList {
-  category: ICategoryResponse;
-  selectedCategory: number | null;
-  handleCheckboxChange: (id: number | null) => void;
+  categories: ICategoryResponse;
+  selectedCategoryId: number | null;
+  handleCategoryChange: (id: number | null, path: ICategoryResponse[]) => void;
+  pathCategories?: ICategoryResponse[];
 }
 
 export const CategoryList: FC<ICategoryList> = ({
-  category,
-  selectedCategory,
-  handleCheckboxChange,
+  categories,
+  selectedCategoryId,
+  handleCategoryChange,
+  pathCategories = [],
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const isChecked = selectedCategory === category.id;
+  const isChecked = selectedCategoryId === categories.id;
+  const isLastCategory = !categories.children || categories.children.length === 0;
+
   const toggleDropdown = (): void => {
     setIsOpen(!isOpen);
   };
   const toggleCheckbox = (): void | null => {
     if (isChecked) {
-      handleCheckboxChange(null);
+      handleCategoryChange(null, []);
     } else {
-      handleCheckboxChange(category.id);
+      handleCategoryChange(categories.id, [...pathCategories, categories]);
     }
   };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>): void => {
@@ -46,36 +50,37 @@ export const CategoryList: FC<ICategoryList> = ({
         onKeyDown={handleKeyDown}
         className={style.category_list_item}
       >
-        {category.children ? (
-          <ArrowIcon
-            className={cn(style.arrow, {
-              [style.arrow_up]: isOpen,
-            })}
-          />
-        ) : (
+        {isLastCategory ? (
           <Checkbox
             onChange={toggleCheckbox}
             checked={isChecked}
             className={style.checkbox}
             variant="default"
           />
+        ) : (
+          <ArrowIcon
+            className={cn(style.arrow, {
+              [style.arrow_up]: isOpen,
+            })}
+          />
         )}
         <Title
           as="h3"
-          onClick={!category.children ? toggleCheckbox : undefined}
+          onClick={isLastCategory ? toggleCheckbox : undefined}
           className={style.title}
         >
-          {category.name}
+          {categories.name}
         </Title>
       </div>
       {isOpen &&
-        category.children &&
-        category.children.map(item => (
+        categories.children &&
+        categories.children.map(category => (
           <CategoryList
-            key={item.id}
-            selectedCategory={selectedCategory}
-            handleCheckboxChange={handleCheckboxChange}
-            category={item}
+            key={category.id}
+            selectedCategoryId={selectedCategoryId}
+            handleCategoryChange={handleCategoryChange}
+            categories={category}
+            pathCategories={[...pathCategories, categories]}
           />
         ))}
     </div>

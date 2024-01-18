@@ -28,4 +28,12 @@
   transform: rotate(180deg);
 }
 
+.bread_crumbs {
+  margin-bottom: 22px;
+  color: var(--color-red);
+
+  a {
+    font-weight: var(--regular);
+  }
+}
 

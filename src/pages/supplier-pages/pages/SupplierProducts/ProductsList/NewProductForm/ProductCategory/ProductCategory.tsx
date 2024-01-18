@@ -6,6 +6,8 @@ import { CategoryList } from './CategoryList/CategoryList';
 
 import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { BreadCrumbs } from 'elements';
+import { ICategoryResponse } from 'services/common/common.serviceTypes';
 import { getAllCategories } from 'store/reducers/commonSlice';
 
 import style from './ProductCategory.module.scss';
@@ -14,10 +16,12 @@ export const ProductCategory: React.FC = () => {
   const dispatch = useAppDispatch();
   const categories = useAppSelector(state => state.common.categories);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
+  const [pathCategories, setPathCategories] = useState<ICategoryResponse[]>([]);
 
-  const handleCheckboxChange = (id: number | null): void => {
-    setSelectedCategory(id);
+  const handleCategoryChange = (id: number | null, path: ICategoryResponse[]): void => {
+    setSelectedCategoryId(id);
+    setPathCategories(path);
   };
   const toggleDropdown = (): void => {
     setIsOpen(!isOpen);
@@ -35,6 +39,9 @@ export const ProductCategory: React.FC = () => {
 
   return (
     <div className={style.category_wrapper}>
+      {pathCategories.find(el => !el.children && el.id === selectedCategoryId) ? (
+        <BreadCrumbs className={style.bread_crumbs} breadCrumbs={pathCategories} />
+      ) : null}
       <div
         role="button"
         tabIndex={0}
@@ -52,10 +59,10 @@ export const ProductCategory: React.FC = () => {
       {isOpen &&
         categories.map(category => (
           <CategoryList
-            selectedCategory={selectedCategory}
-            handleCheckboxChange={handleCheckboxChange}
             key={category.id}
-            category={category}
+            categories={category}
+            selectedCategoryId={selectedCategoryId}
+            handleCategoryChange={handleCategoryChange}
           />
         ))}
     </div>
