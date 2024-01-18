@@ -17,8 +17,8 @@ export const ProductSizeList: FC<IProductSize> = ({
   bundleType,
   bundle,
 }): JSX.Element => {
-  const [active, setActive] = useState<number | null>(null);
-  const hasSizeBundle = bundleType === 'size';
+  const [selectedSize, setSelectedSize] = useState<number | null>(null);
+  const isBundleBasedOnSize = bundleType === 'size';
 
   return (
     <div className={style.product_size_container}>
@@ -27,11 +27,11 @@ export const ProductSizeList: FC<IProductSize> = ({
       </Paragraph>
 
       <div className={style.items}>
-        {hasSizeBundle ? (
+        {isBundleBasedOnSize ? (
           <BundleSizePickableList
             bundle={bundle}
-            selectedSizeId={active}
-            handleSelectSize={setActive}
+            selectedSizeId={selectedSize}
+            handleSelectSize={setSelectedSize}
           />
         ) : (
           <BundleSizeList bundle={bundle} />

@@ -14,7 +14,7 @@ export interface IProductSliceInitialState {
   productsList: IProductCompilation[];
   sortField: ISortField;
   sortBy: ISortBy;
-  activeBundle: IActiveBundle;
+  selectedBundle: ISelectedBundle;
 }
 
 export type ISortField = 'rating' | 'price' | 'date' | 'total_orders';
@@ -152,7 +152,7 @@ export interface IPickableVariationPrice {
   product_variation_value: string;
 }
 
-export interface IActiveBundle {
+export interface ISelectedBundle {
   type: 'color' | 'size';
   bundle: IProductBundle;
 }

@@ -65,7 +65,7 @@ export const sortFieldSelector = (state: RootStateType): ISortField =>
 export const sortBySelector = (state: RootStateType): ISortBy => state.product.sortBy;
 
 export const priseSelector = (state: RootStateType): IPricesBundle[] =>
-  state.product.activeBundle.bundle.prices;
+  state.product.selectedBundle.bundle.prices;
 
 export const supplierNameSelector = (state: RootStateType): string =>
   state.product.productCard.supplier.company.name;

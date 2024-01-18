@@ -14,8 +14,8 @@ interface IProductColor {
 }
 
 export const ProductColor: FC<IProductColor> = ({ bundleType, bundle }): JSX.Element => {
-  const [active, setActive] = useState<number | null>(null);
-  const hasSizeBundle = bundleType === 'size';
+  const [selectedColor, setSelectedColor] = useState<number | null>(null);
+  const isBundleBasedOnSize = bundleType === 'size';
 
   return (
     <div className={style.product_color_container}>
@@ -23,13 +23,13 @@ export const ProductColor: FC<IProductColor> = ({ bundleType, bundle }): JSX.Ele
         Select color
       </Paragraph>
       <div className={style.items}>
-        {hasSizeBundle ? (
+        {isBundleBasedOnSize ? (
           <BundleColorList bundle={bundle} />
         ) : (
           <BundlePickableColorList
             bundle={bundle}
-            selectColor={setActive}
-            selectedColorId={active}
+            selectColor={setSelectedColor}
+            selectedColorId={selectedColor}
           />
         )}
       </div>

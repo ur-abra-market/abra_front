@@ -12,21 +12,16 @@ import {
   removeFavoriteProductPage,
 } from './thunks';
 import {
-  IActiveBundle,
+  ISelectedBundle,
   IFavorite,
-  IPickableVariation,
-  IPricesBundle,
-  IProductBundle,
   IProductSliceInitialState,
   IResponseGetProductCardId,
   ISortBy,
   ISortField,
-  IVariationValue,
 } from './types';
 
 import { LoadingStatusEnum } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
-import { IBundle } from 'store/reducers/seller/cart/types';
 
 const initialState: IProductSliceInitialState = {
   isFavorite: false,
@@ -90,7 +85,7 @@ const initialState: IProductSliceInitialState = {
   sortField: 'rating',
   sortBy: 'desc',
   totalProductsCount: 0,
-  activeBundle: {
+  selectedBundle: {
     type: 'size',
     bundle: {
       id: 0,
@@ -134,8 +129,8 @@ const productSlice = createSlice({
       state.sortField = 'rating';
       state.sortBy = 'desc';
     },
-    setActiveBundle: (state, action: PayloadAction<IActiveBundle>) => {
-      state.activeBundle = action.payload;
+    setActiveBundle: (state, action: PayloadAction<ISelectedBundle>) => {
+      state.selectedBundle = action.payload;
     },
   },
   extraReducers: builder => {

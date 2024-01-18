@@ -6,19 +6,25 @@ import { useAppSelector } from 'common/hooks';
 import style from './ProductParams.module.scss';
 
 export const ProductParams = (): JSX.Element => {
-  const activeBundle = useAppSelector(state => state.product.activeBundle);
+  const selectedBundle = useAppSelector(state => state.product.selectedBundle);
 
   return (
     <div className={style.params_container}>
-      {activeBundle.type === 'size' ? (
+      {selectedBundle.type === 'size' ? (
         <>
-          <ProductColor bundleType={activeBundle.type} bundle={activeBundle.bundle} />
-          <ProductSizeList bundleType={activeBundle.type} bundle={activeBundle.bundle} />
+          <ProductColor bundleType={selectedBundle.type} bundle={selectedBundle.bundle} />
+          <ProductSizeList
+            bundleType={selectedBundle.type}
+            bundle={selectedBundle.bundle}
+          />
         </>
       ) : (
         <>
-          <ProductSizeList bundleType={activeBundle.type} bundle={activeBundle.bundle} />
-          <ProductColor bundleType={activeBundle.type} bundle={activeBundle.bundle} />
+          <ProductSizeList
+            bundleType={selectedBundle.type}
+            bundle={selectedBundle.bundle}
+          />
+          <ProductColor bundleType={selectedBundle.type} bundle={selectedBundle.bundle} />
         </>
       )}
     </div>

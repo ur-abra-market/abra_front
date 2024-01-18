@@ -1,4 +1,4 @@
-import { IActiveBundle, IProductBundle } from 'store/reducers/productSlice/types';
+import { ISelectedBundle, IProductBundle } from 'store/reducers/productSlice/types';
 
 export const VARIATION_COLOR = ['Color'];
 
@@ -8,7 +8,7 @@ export const VARIATION_SIZE = [
   'Size-Kids-Universal',
 ];
 
-export const pickableVariationType = (bundle: IProductBundle): IActiveBundle => {
+export const pickableVariationType = (bundle: IProductBundle): ISelectedBundle => {
   const { name } = bundle.pickable_variations[0].variation.type;
 
   if (VARIATION_COLOR.includes(name)) {
