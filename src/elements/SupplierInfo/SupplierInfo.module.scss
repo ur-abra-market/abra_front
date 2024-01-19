@@ -1,8 +1,15 @@
+@import "src/common/styles/mixins";
+
+@include seller_section();
+
 .supplier_info_container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 32px 0 55px;
+}
+
+.section {
+  margin-bottom: 16px;
 }
 
 .arrow {
