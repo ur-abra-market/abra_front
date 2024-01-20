@@ -17,39 +17,36 @@ interface ISelectField {
   name: string;
   label: string;
   placeholder?: string;
-  options: IMaterial[];
+  materials?: IMaterial[];
 }
 
+const materialData: IMaterial[] = [
+  { id: 1, name: 'Cotton' },
+  { id: 2, name: 'Polyester' },
+  { id: 3, name: 'Silk' },
+  { id: 4, name: 'Wool' },
+];
+
 export const Properties: FC = (): JSX.Element => {
-  const { register, watch } = useForm();
+  const { register } = useForm();
   const [showAdditional, setShowAdditional] = useState(0);
   const [additionalMaterials, setAdditionalMaterials] = useState<IMaterial[]>([]);
   const [selectedMaterial, setSelectedMaterial] = useState<IMaterial | null>(null);
 
-  // const selectedMaterial = watch('material');
-
-  const materialData: IMaterial[] = [
-    { id: 1, name: 'Cotton' },
-    { id: 2, name: 'Polyester' },
-    { id: 3, name: 'Silk' },
-    { id: 4, name: 'Wool' },
-  ];
-
   const selectFields: ISelectField[] = [
-    { name: 'ocassion', label: 'Ocassion', placeholder: 'Select', options: materialData },
-    { name: 'season', label: 'Season', placeholder: 'Select', options: materialData },
+    { name: 'ocassion', label: 'Ocassion', placeholder: 'Select' },
+    { name: 'season', label: 'Season', placeholder: 'Select' },
     {
       name: 'sizesGrid',
       label: 'Sizes grid type',
       placeholder: 'Select',
-      options: materialData,
     },
-    { name: 'gender', label: 'Gender', placeholder: 'Select', options: materialData },
+    { name: 'gender', label: 'Gender', placeholder: 'Select' },
     {
       name: 'material',
       label: 'Material (optional)',
       placeholder: 'Enter the material name',
-      options: materialData,
+      materials: materialData,
     },
   ];
 
@@ -59,7 +56,6 @@ export const Properties: FC = (): JSX.Element => {
         <SelectField
           label={`Add material ${index + 1}`}
           placeholder="Enter the material name"
-          options={additionalMaterials}
           {...register(`showAdditional[${index}].material`)}
         />
         <Label
@@ -78,7 +74,6 @@ export const Properties: FC = (): JSX.Element => {
   };
 
   useEffect(() => {
-    // Update additional materials when the selected material changes
     if (selectedMaterial) {
       const newAdditionalMaterials = materialData.filter(
         material => material.id !== selectedMaterial.id,
@@ -96,11 +91,9 @@ export const Properties: FC = (): JSX.Element => {
         {selectFields.map(field => (
           <SelectField
             key={field.name}
+            name={field.name}
             label={field.label}
             placeholder={field.placeholder}
-            options={field.name === 'material' ? materialData : []}
-            onChange={(selectedValue: IMaterial) => setSelectedMaterial(selectedValue)}
-            {...register(field.name)}
           />
         ))}
         <Label label="% (optional)" htmlFor="percentage" className={style.label}>
