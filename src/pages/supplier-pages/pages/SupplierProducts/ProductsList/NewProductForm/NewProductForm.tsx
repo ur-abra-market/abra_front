@@ -13,38 +13,38 @@ import { Paragraph, Title } from 'ui-kit';
 
 import style from './NewProductForm.module.scss';
 
-enum DescriptionLabel {
-  MainProductInfo = 'Main Product Info',
-  ProductCategory = 'Product Category',
-  Properties = 'Properties',
-  Variations = 'Variations',
-  Bundles = 'Bundles',
-  Pricing = 'Pricing',
+const enum SectionLabel {
+  INFO = 'Main Product Info',
+  CATEGORY = 'Product Category',
+  PROPERTIES = 'Properties',
+  VARIATIONS = 'Variations',
+  BUNDLES = 'Bundles',
+  PRICING = 'Pricing',
 }
 
-const PRODUCT_DESCRIPTION: { label: DescriptionLabel; component: FC }[] = [
-  { label: DescriptionLabel.MainProductInfo, component: MainProductInfo },
-  { label: DescriptionLabel.ProductCategory, component: ProductCategory },
-  { label: DescriptionLabel.Properties, component: Properties },
-  { label: DescriptionLabel.Variations, component: Variation },
-  { label: DescriptionLabel.Bundles, component: Bundles },
-  { label: DescriptionLabel.Pricing, component: Pricing },
+const ADD_PRODUCT_FORM_SECTION: { label: SectionLabel; component: FC }[] = [
+  { label: SectionLabel.INFO, component: MainProductInfo },
+  { label: SectionLabel.CATEGORY, component: ProductCategory },
+  { label: SectionLabel.PROPERTIES, component: Properties },
+  { label: SectionLabel.VARIATIONS, component: Variation },
+  { label: SectionLabel.BUNDLES, component: Bundles },
+  { label: SectionLabel.PRICING, component: Pricing },
 ];
 
 export const NewProductForm: FC = (): JSX.Element => {
-  const [activeLabel, setActiveLabel] = useState<DescriptionLabel[]>([]);
+  const [openedFormSections, setOpenedFormSections] = useState<SectionLabel[]>([]);
 
-  const handleItemClick = (label: DescriptionLabel): void => {
-    setActiveLabel(prevActiveLabels =>
+  const handleSectionToggle = (label: SectionLabel): void => {
+    setOpenedFormSections(prevActiveLabels =>
       prevActiveLabels.includes(label)
         ? prevActiveLabels.filter(item => item !== label)
         : [...prevActiveLabels, label],
     );
   };
 
-  const handleKeyDown = (label: DescriptionLabel, event: React.KeyboardEvent): void => {
+  const handleKeyDown = (label: SectionLabel, event: React.KeyboardEvent): void => {
     if (event.key === 'Enter') {
-      handleItemClick(label);
+      handleSectionToggle(label);
     }
   };
 
@@ -53,15 +53,17 @@ export const NewProductForm: FC = (): JSX.Element => {
       <Title as="h1" className={style.title}>
         Product Description
       </Title>
+
       <Paragraph size="s" className={style.paragraph}>
         Enter the information about your first product
       </Paragraph>
+
       <ul className={style.description_list}>
-        {PRODUCT_DESCRIPTION.map((item, index) => (
+        {ADD_PRODUCT_FORM_SECTION.map((item, index) => (
           <li key={index}>
             <div
               className={style.description_item}
-              onClick={() => handleItemClick(item.label)}
+              onClick={() => handleSectionToggle(item.label)}
               onKeyDown={event => handleKeyDown(item.label, event)}
               role="button"
               tabIndex={0}
@@ -69,11 +71,11 @@ export const NewProductForm: FC = (): JSX.Element => {
               {item.label}
               <ArrowIcon
                 className={cn(style.arrow, {
-                  [style.arrow_up]: activeLabel.includes(item.label),
+                  [style.arrow_up]: openedFormSections.includes(item.label),
                 })}
               />
             </div>
-            {activeLabel.includes(item.label) && <item.component />}
+            {openedFormSections.includes(item.label) && <item.component />}
           </li>
         ))}
       </ul>

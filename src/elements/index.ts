@@ -8,7 +8,6 @@ export { PhoneNumberInput } from './PhoneNumberInput/PhoneNumberInput';
 export { AdditionalHeaderBlock } from './AdditionalHeaderBlock/AdditionalHeaderBlock';
 export { Grades } from './Grades/Grades';
 export { AboutProduct } from './AboutProduct/AboutProduct';
-export { BreadCrumbs } from './BreadCrumbs/BreadCrumbs';
 export { Tags } from './Tags/Tags';
 export { ProductFeedback } from './ProductFeedback/ProductFeedback';
 export { ProductDescription } from './ProductDescription/ProductDescription';

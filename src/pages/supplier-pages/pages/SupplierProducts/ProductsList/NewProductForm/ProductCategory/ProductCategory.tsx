@@ -6,9 +6,9 @@ import { CategoryList } from './CategoryList/CategoryList';
 
 import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { BreadCrumbs } from 'elements';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
 import { getAllCategories } from 'store/reducers/commonSlice';
+import { BreadCrumbs } from 'ui-kit';
 
 import style from './ProductCategory.module.scss';
 
