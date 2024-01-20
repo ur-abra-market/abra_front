@@ -4,7 +4,7 @@ import cn from 'classnames';
 
 import { scrollBundleContainer } from './helper/scrollBundleContainer';
 
-import { ArrowIcon } from 'assets/icons/index';
+import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { pickableVariationType } from 'pages/general-pages/ProductPage/helpers/pickableVariationType';
 import { setActiveBundle } from 'store/reducers/productSlice/slice';

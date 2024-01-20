@@ -13,7 +13,7 @@ import {
   ProductPrice,
   SupplierInfo,
 } from 'elements';
-import { Bundles } from 'pages/general-pages/ProductPage/Bundles/Bundles';
+import { Bundles } from 'pages/general-pages/ProductPage/components/Bundles/Bundles';
 import {
   favoriteProductSelector,
   productDescriptionSelector,

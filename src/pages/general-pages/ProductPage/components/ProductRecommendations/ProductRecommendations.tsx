@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useAppSelector } from 'common/hooks';
-import { Advise } from 'pages/general-pages/ProductPage/Advise/Advise';
+import { Advise } from 'pages/general-pages/ProductPage/components/Advise/Advise';
 import {
   popularProductsSelector,
   productTagsSelector,

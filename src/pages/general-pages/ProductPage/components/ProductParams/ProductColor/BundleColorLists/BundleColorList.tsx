@@ -9,9 +9,9 @@ interface IBundleColorList {
 }
 
 export const BundleColorList: FC<IBundleColorList> = ({ bundle }): JSX.Element => {
-  const buttonRefs: RefObject<HTMLButtonElement>[] = Array.from(
+  const buttonRefs: RefObject<HTMLDivElement>[] = Array.from(
     { length: bundle.variation_values.length },
-    () => createRef<HTMLButtonElement>(),
+    () => createRef<HTMLDivElement>(),
   );
 
   useSetMaxWidthElementsInList({ refs: buttonRefs });

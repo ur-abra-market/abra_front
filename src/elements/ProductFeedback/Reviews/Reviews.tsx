@@ -7,7 +7,7 @@ import {
   calculationsRatings,
   countRatings,
 } from 'elements/ProductFeedback/utils/calculationsRatings';
-import { ReviewsIndicator } from 'pages/general-pages/ProductPage/ReviewsIndicator/ReviewsIndicator';
+import { ReviewsIndicator } from 'pages/general-pages/ProductPage/components/ReviewsIndicator/ReviewsIndicator';
 import { IFeedbacks } from 'store/reducers/productSlice/types';
 import { Paragraph } from 'ui-kit';
 

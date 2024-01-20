@@ -12,17 +12,13 @@ export const ProductPrice = (): JSX.Element => {
   const [count, setCount] = useState<string | number>(0);
   const prices = useAppSelector(priseSelector);
 
-  const onChangeCount = useCallback((value: number | string): void => {
-    setCount(value);
-  }, []);
-
   return (
     <div className={style.product_price_container}>
       <div className={style.wrapper}>
         <Counter
           amount={count as number}
           max_amount={1000}
-          onChange={onChangeCount}
+          onChange={count => setCount(count)}
           min_amount={0}
           label="Quantity"
           bundles_amount="/from 100 bundles"
