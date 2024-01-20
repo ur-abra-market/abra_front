@@ -1,0 +1,21 @@
+@import '../styles/mixins';
+
+@include items();
+
+.item {
+  @include item(relative);
+
+  cursor: pointer;
+  background-color: var(--color-white);
+}
+
+.size {
+  @include product_size_item(--color-gray-light);
+
+  cursor: pointer;
+}
+
+.selected {
+  color: var(--color-red);
+  border: 2px solid var(--color-red);
+}

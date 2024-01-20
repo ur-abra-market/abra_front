@@ -1,0 +1,22 @@
+@import '../styles/mixins';
+
+@include items();
+
+.item {
+  @include item(relative);
+
+  cursor: no-drop;
+}
+
+.color_image {
+  @include item();
+
+  border: 2px solid var(--color-gray-light);
+}
+
+.amount {
+  @include amount_info(--color-gray-light);
+  @include amount_elements_size_between_quantity(--color-gray-light)
+}
+
+

@@ -12,6 +12,7 @@ import {
   removeFavoriteProductPage,
 } from './thunks';
 import {
+  ISelectedBundle,
   IFavorite,
   IProductSliceInitialState,
   IResponseGetProductCardId,
@@ -73,6 +74,7 @@ const initialState: IProductSliceInitialState = {
     images: [],
     tags: [],
     bundle_variation_pods: [],
+    bundles: [],
   },
   feedbacks: {},
   popularProducts: [],
@@ -83,6 +85,31 @@ const initialState: IProductSliceInitialState = {
   sortField: 'rating',
   sortBy: 'desc',
   totalProductsCount: 0,
+  selectedBundle: {
+    type: 'size',
+    bundle: {
+      id: 0,
+      created_at: '',
+      updated_at: '',
+      product: '',
+      prices: [
+        {
+          id: 0,
+          created_at: '',
+          updated_at: '',
+          bundle_id: 0,
+          price: 0,
+          discount: 0,
+          start_date: '',
+          end_date: '',
+          min_quantity: 100,
+          bundle: '',
+        },
+      ],
+      pickable_variations: [],
+      variation_values: [],
+    },
+  },
 };
 
 const productSlice = createSlice({
@@ -101,6 +128,9 @@ const productSlice = createSlice({
     setResetAllFilters: state => {
       state.sortField = 'rating';
       state.sortBy = 'desc';
+    },
+    setActiveBundle: (state, action: PayloadAction<ISelectedBundle>) => {
+      state.selectedBundle = action.payload;
     },
   },
   extraReducers: builder => {
@@ -204,5 +234,10 @@ const productSlice = createSlice({
 
 export const productReducer = productSlice.reducer;
 export const productActions = productSlice.actions;
-export const { setProductsPerPage, setSortField, setSortBy, setResetAllFilters } =
-  productActions;
+export const {
+  setProductsPerPage,
+  setSortField,
+  setSortBy,
+  setResetAllFilters,
+  setActiveBundle,
+} = productActions;

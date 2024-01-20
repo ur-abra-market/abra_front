@@ -64,6 +64,7 @@ export const CategoryList: FC<ICategoryList> = ({
             })}
           />
         )}
+
         <Title
           as="h3"
           onClick={isLastCategory ? toggleCheckbox : undefined}

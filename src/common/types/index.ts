@@ -3,7 +3,6 @@ export { LoadingStatusEnum } from './enums/LoadingStatusEnum';
 export { CountriesEnum } from './enums/CountriesEnum';
 export { UserRoleEnum } from './enums/UserRoleEnum';
 export { SelectedViewEnum } from './enums/SelectedViewEnum';
-export { SizeEnum } from './enums/SizeEnum';
 
 // -----------------------Types-----------------------
 export type { UserRoleType, ResponseUserRoleType } from './types/UserRoleTypes';
