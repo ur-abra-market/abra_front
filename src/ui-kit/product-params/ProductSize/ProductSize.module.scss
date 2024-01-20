@@ -1,4 +1,4 @@
-@import 'src/ui-kit/product-params/styles/mixins';
+@import '../styles/mixins';
 
 .size {
   @include product_size_item(--color-gray-light);
