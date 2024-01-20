@@ -1,8 +1,7 @@
 import React, { FC, useState } from 'react';
 
-import { BundleColorList } from './BundleColorLists/BundleColorList';
-import { BundlePickableColorList } from './BundleColorLists/BundlePickableColorList';
-
+import { BundleColorList } from 'pages/general-pages/ProductPage/components/ProductParams/BundleColorLists/BundleColorList';
+import { BundlePickableColorList } from 'pages/general-pages/ProductPage/components/ProductParams/BundleColorLists/BundlePickableColorList';
 import { IProductBundle } from 'store/reducers/productSlice/types';
 import { Paragraph } from 'ui-kit';
 

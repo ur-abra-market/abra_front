@@ -10,7 +10,7 @@ export { Grades } from './Grades/Grades';
 export { AboutProduct } from './AboutProduct/AboutProduct';
 export { BreadCrumbs } from './BreadCrumbs/BreadCrumbs';
 export { Tags } from './Tags/Tags';
-export { ProductFeedback } from './ProductFeedback/ProductFeedback';
+export { ProductFeedback } from '../pages/general-pages/ProductPage/components/ProductFeedback/ProductFeedback';
 export { ProductDescription } from './ProductDescription/ProductDescription';
 export { FavoriteButton } from './FavoriteButton/FavoriteButton';
 export { ButtonLogout } from './ButtonLogout/ButtonLogout';

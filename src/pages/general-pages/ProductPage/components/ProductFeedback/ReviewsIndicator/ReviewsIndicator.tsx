@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { IRating } from 'elements/ProductFeedback/utils/calculationsRatings';
+import { IRating } from 'pages/general-pages/ProductPage/components/ProductFeedback/utils/calculationsRatings';
 
 import style from './ReviewsIndicator.module.scss';
 

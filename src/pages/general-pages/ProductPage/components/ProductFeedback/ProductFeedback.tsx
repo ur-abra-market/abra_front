@@ -3,9 +3,8 @@ import React from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { Reviews } from './Reviews/Reviews';
-
 import { useAppSelector } from 'common/hooks';
+import { Reviews } from 'pages/general-pages/ProductPage/components/ProductFeedback/Reviews/Reviews';
 import { HOME } from 'routes';
 import { Title } from 'ui-kit';
 
