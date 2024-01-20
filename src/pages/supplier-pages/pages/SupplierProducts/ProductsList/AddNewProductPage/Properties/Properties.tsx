@@ -17,7 +17,7 @@ interface ISelectField {
   name: string;
   label: string;
   placeholder?: string;
-  materials?: IMaterial[];
+  options?: IMaterial[];
 }
 
 const materialData: IMaterial[] = [
@@ -46,7 +46,7 @@ export const Properties: FC = (): JSX.Element => {
       name: 'material',
       label: 'Material (optional)',
       placeholder: 'Enter the material name',
-      materials: materialData,
+      options: materialData,
     },
   ];
 
@@ -56,6 +56,7 @@ export const Properties: FC = (): JSX.Element => {
         <SelectField
           label={`Add material ${index + 1}`}
           placeholder="Enter the material name"
+          materials={additionalMaterials}
           {...register(`showAdditional[${index}].material`)}
         />
         <Label
@@ -94,6 +95,8 @@ export const Properties: FC = (): JSX.Element => {
             name={field.name}
             label={field.label}
             placeholder={field.placeholder}
+            materials={field.name === 'material' ? materialData : []}
+            onChange={(selectedValue: IMaterial) => setSelectedMaterial(selectedValue)}
           />
         ))}
         <Label label="% (optional)" htmlFor="percentage" className={style.label}>
