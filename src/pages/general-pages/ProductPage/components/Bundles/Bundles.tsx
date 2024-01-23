@@ -8,6 +8,7 @@ import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { pickableVariationType } from 'pages/general-pages/ProductPage/helpers/pickableVariationType';
 import { setActiveBundle } from 'store/reducers/productSlice/slice';
+import { Paragraph } from 'ui-kit';
 import { ButtonBundle } from 'ui-kit/buttons/ButtonBundle/ButtonBundle';
 
 import style from './Bundles.module.scss';
@@ -17,16 +18,17 @@ export const Bundles = (): JSX.Element => {
   const scrollWidthContainerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<number>(0);
   const productBundles = useAppSelector(state => state.product.productCard.bundles);
+  const isBundle = productBundles[active].variation_values.length > 0;
 
   const handleChangeActiveBundle = (index: number): void => {
     setActive(index);
-    if (pickableVariationType(productBundles[active])) {
+    if (isBundle) {
       dispatch(setActiveBundle(pickableVariationType(productBundles[active])));
     }
   };
 
   useEffect(() => {
-    if (pickableVariationType(productBundles[active])) {
+    if (isBundle) {
       dispatch(setActiveBundle(pickableVariationType(productBundles[active])));
     }
   }, []);
@@ -41,7 +43,7 @@ export const Bundles = (): JSX.Element => {
       )}
       <div ref={scrollWidthContainerRef} className={style.bundle_container}>
         <div className={style.bundles}>
-          {productBundles &&
+          {isBundle ? (
             productBundles.map((el, i) => (
               <ButtonBundle
                 key={i}
@@ -51,7 +53,12 @@ export const Bundles = (): JSX.Element => {
                 {/* todo исправить когда бек начнет присылать имя бандла */}
                 Bundle
               </ButtonBundle>
-            ))}
+            ))
+          ) : (
+            <Paragraph size="m" weight="medium">
+              Bundles not found
+            </Paragraph>
+          )}
         </div>
       </div>
       {productBundles.length > 4 && (

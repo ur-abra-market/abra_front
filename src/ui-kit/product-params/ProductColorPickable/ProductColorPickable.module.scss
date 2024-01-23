@@ -10,6 +10,8 @@
 
 .color_image {
   @include item(relative);
+
+  min-height: 32px;
 }
 
 .item::before {
