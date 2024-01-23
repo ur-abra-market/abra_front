@@ -22,7 +22,7 @@ const enum SectionLabel {
   PRICING = 'Pricing',
 }
 
-const ADD_PRODUCT_FORM_SECTION: { label: SectionLabel; component: FC }[] = [
+const ADD_PRODUCT_FORM_SECTIONS: { label: SectionLabel; component: FC }[] = [
   { label: SectionLabel.INFO, component: MainProductInfo },
   { label: SectionLabel.CATEGORY, component: ProductCategory },
   { label: SectionLabel.PROPERTIES, component: Properties },
@@ -35,10 +35,10 @@ export const NewProductForm: FC = (): JSX.Element => {
   const [openedFormSections, setOpenedFormSections] = useState<SectionLabel[]>([]);
 
   const handleSectionToggle = (label: SectionLabel): void => {
-    setOpenedFormSections(prevActiveLabels =>
-      prevActiveLabels.includes(label)
-        ? prevActiveLabels.filter(item => item !== label)
-        : [...prevActiveLabels, label],
+    setOpenedFormSections(prevOpenSections =>
+      prevOpenSections.includes(label)
+        ? prevOpenSections.filter(item => item !== label)
+        : [...prevOpenSections, label],
     );
   };
 
@@ -59,7 +59,7 @@ export const NewProductForm: FC = (): JSX.Element => {
       </Paragraph>
 
       <ul className={style.description_list}>
-        {ADD_PRODUCT_FORM_SECTION.map((item, index) => (
+        {ADD_PRODUCT_FORM_SECTIONS.map((item, index) => (
           <li key={index}>
             <div
               className={style.description_item}
