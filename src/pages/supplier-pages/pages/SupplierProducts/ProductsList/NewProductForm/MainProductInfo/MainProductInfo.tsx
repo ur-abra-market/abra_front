@@ -2,7 +2,6 @@ import { FC, useState, useEffect, ChangeEvent } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 
-// import { CrossRedIcon } from 'assets/icons';
 import { useAppSelector } from 'common/hooks';
 import { UploadImage } from 'elements';
 import { Label, Input, Select } from 'ui-kit';

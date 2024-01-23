@@ -1,6 +1,6 @@
 import { useAppSelector } from 'common/hooks';
-import { BreadCrumbs } from 'elements';
 import { productBreadCrumbsSelector } from 'store/reducers/productSlice/selectors';
+import { BreadCrumbs } from 'ui-kit';
 
 import style from './ProductPageHeader.module.scss';
 

@@ -21,3 +21,4 @@ export { ProductSizePickable } from './product-params/ProductSizePickable/Produc
 export { ProductVariation } from './product-params/ProductVariation/ProductVariation';
 export { ProductColor } from './product-params/ProductColor/ProductColor';
 export { ProductColorPickable } from './product-params/ProductColorPickable/ProductColorPickable';
+export { BreadCrumbs } from './BreadCrumbs/BreadCrumbs';
