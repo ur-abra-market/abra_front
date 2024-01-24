@@ -22,7 +22,7 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
     {
       variant = 'small',
       label = 'Bundle',
-      bundles_amount = 100,
+      bundles_amount,
       amount,
       min_amount = 1,
       max_amount,
