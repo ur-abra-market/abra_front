@@ -11,6 +11,7 @@
 .color_image {
   @include item();
 
+  min-height: 32px;
   border: 2px solid var(--color-gray-light);
 }
 

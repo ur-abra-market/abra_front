@@ -31,6 +31,8 @@ export const ProductDetails = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const title = useAppSelector(productNameSelector);
   const description = useAppSelector(productDescriptionSelector);
+  const selectedBundle = useAppSelector(state => state.product.selectedBundle);
+  const isBundle = selectedBundle.bundle.pickable_variations.length > 0;
   const { productId } = useParams<string>();
   const isFavorite = useAppSelector(favoriteProductSelector);
   const handleChangeFavorite = (isFavorite: boolean): void => {
@@ -52,9 +54,13 @@ export const ProductDetails = (): JSX.Element => {
           className={style.favorite_button}
         />
         <Bundles />
-        <ProductParams />
-        <ProductPrice />
-        <Button className={style.button}>Add to Cart</Button>
+        {isBundle && (
+          <>
+            <ProductParams />
+            <ProductPrice />
+            <Button className={style.button}>Add to Cart</Button>
+          </>
+        )}
       </div>
       <SupplierInfo />
       <AboutProduct />
