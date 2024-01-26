@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 
 import { IMaterial, SelectField } from './SelectField/SelectField';
 
-import { Label, Input, Select } from 'ui-kit';
+import { Label, Input } from 'ui-kit';
 
 import style from './Properties.module.scss';
 
@@ -67,12 +67,13 @@ export const Properties: FC = (): JSX.Element => {
     },
   ];
 
-  const onChangeHandler = (value: any): void => {
-    console.log(value, typeof value);
+  const onChangeHandler = (value: IMaterial): void => {
+    setSelectedMaterial(value);
+    setAdditionalMaterials(prevMaterials => [...prevMaterials, value]);
   };
 
   const generateAdditionalMaterials = (): JSX.Element[] => {
-    return Array.from({ length: showAdditional }, (_, index) => (
+    return additionalMaterials.map((_, index) => (
       <div key={index} className={style.additional}>
         <SelectField
           label={`Add material ${index + 1}`}
@@ -130,7 +131,7 @@ export const Properties: FC = (): JSX.Element => {
           type="button"
           className={style.button}
           onClick={() => setShowAdditional(prev => Math.min(prev + 1, 10))}
-          disabled={showAdditional === 10}
+          disabled={!selectedMaterial || showAdditional === 10}
         >
           + Add material
         </button>
