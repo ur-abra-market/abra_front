@@ -1,0 +1,38 @@
+@import '/src/pages/supplier-pages/pages/SupplierProducts/ProductsList/NewProductForm/Pricing/style/mixin';
+
+@include item();
+
+.pricing_container {
+  display: flex;
+  flex-direction: column;
+
+  width: 634px;
+  height: 452px;
+  margin-top: 24px;
+  margin-bottom: 40px;
+}
+
+.total_price {
+  display: flex;
+  gap: 16px;
+}
+
+.discount_total_wrapper {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .pricing_container {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .pricing_container {
+    width: 100%;
+    height: 100%;
+  }
+}

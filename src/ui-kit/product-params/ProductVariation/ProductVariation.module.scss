@@ -1,29 +1,41 @@
-.container {
+.list_items {
   display: flex;
-  gap: 4px;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
-  height: 33px;
-  padding: 8px 12px;
+.button {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 86px;
+  height: 32px;
+  padding: 6px;
 
   background-color: transparent;
   border: 1px solid var(--color-gray-light);
   border-radius: 8px;
+  outline: none;
 
-  &:hover {
-    border: 1px solid var(--color-red);
+  &:focus-visible {
+    outline: 1px solid var(--color-gray-medium);
+    transition: none;
   }
 }
 
-.box {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-
-  width: 20px;
+.color_image {
+  min-width: 20px;
   height: 16px;
-
+  margin-right: 4px;
   border-radius: 4px;
 }
 
+.active {
+  background-color: var(--color-gray-light);
+  border: 1px solid var(--color-white-ivory);
+  outline: none;
+}

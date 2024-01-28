@@ -1,0 +1,1 @@
+export { DiscountVariant } from './DiscountVariant';

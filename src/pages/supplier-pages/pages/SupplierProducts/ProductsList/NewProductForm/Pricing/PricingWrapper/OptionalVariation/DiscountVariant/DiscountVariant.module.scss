@@ -1,0 +1,25 @@
+@import '/src/pages/supplier-pages/pages/SupplierProducts/ProductsList/NewProductForm/Pricing/style/mixin';
+
+@include item();
+
+.optional_wrapper {
+  display: flex;
+  gap: 16px;
+}
+
+.input_variation {
+  margin-bottom: 16px;
+}
+
+.main_select {
+  color: var(--Medium-grey);
+  background: var(--color-white-ivory);
+  border-radius: 12px;
+}
+
+@media only screen and (max-width: 425px) {
+  .optional_wrapper {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}
