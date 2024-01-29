@@ -6,11 +6,11 @@ import { IProductProperty } from 'store/reducers/productSlice/types';
 
 import style from './AboutProduct.module.scss';
 
-interface IAboutProductProps {
+interface IAboutProduct {
   propertyInfo: IProductProperty[];
 }
 
-export const AboutProduct: FC<IAboutProductProps> = ({ propertyInfo }): JSX.Element => {
+export const AboutProduct: FC<IAboutProduct> = ({ propertyInfo }): JSX.Element => {
   return (
     <div className={style.section}>
       <table className={style.table}>
