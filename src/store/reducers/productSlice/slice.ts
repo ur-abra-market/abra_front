@@ -75,6 +75,7 @@ const initialState: IProductSliceInitialState = {
     tags: [],
     bundle_variation_pods: [],
     bundles: [],
+    property_types: [],
   },
   feedbacks: {},
   popularProducts: [],
