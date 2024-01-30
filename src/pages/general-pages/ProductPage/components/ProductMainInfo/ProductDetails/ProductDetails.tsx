@@ -32,6 +32,7 @@ export const ProductDetails = (): JSX.Element => {
   const title = useAppSelector(productNameSelector);
   const description = useAppSelector(productDescriptionSelector);
   const selectedBundle = useAppSelector(state => state.product.selectedBundle);
+  const propertyInfo = useAppSelector(state => state.product.productCard);
   const isBundle = selectedBundle.bundle.pickable_variations.length > 0;
   const { productId } = useParams<string>();
   const isFavorite = useAppSelector(favoriteProductSelector);
@@ -63,7 +64,7 @@ export const ProductDetails = (): JSX.Element => {
         )}
       </div>
       <SupplierInfo />
-      <AboutProduct />
+      <AboutProduct propertyInfo={propertyInfo.property_types} />
       <ProductFeedback />
       <ProductDescription description={description} />
     </div>
