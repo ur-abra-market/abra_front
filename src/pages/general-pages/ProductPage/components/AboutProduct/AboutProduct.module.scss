@@ -1,4 +1,4 @@
-@import "src/common/styles/mixins";
+@import "common/styles/mixins";
 
 @include seller_section()
 
@@ -27,13 +27,13 @@
 }
 
 .th {
-  width: 50%;
+  width: 40%;
   font: inherit;
   text-align: start;
 }
 
 .td {
-  width: 50%;
+  width: 60%;
   font: inherit;
   text-align: end;
 }

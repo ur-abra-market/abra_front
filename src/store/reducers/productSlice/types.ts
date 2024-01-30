@@ -37,6 +37,23 @@ export interface IProductCard {
   tags: ITag[];
   bundle_variation_pods: IBundleVariationPod[];
   bundles: IProductBundle[];
+  property_types: IProductProperty[];
+}
+
+export interface IProductProperty {
+  created_at: string;
+  updated_at: string;
+  name: string;
+  has_optional_value: boolean;
+  id: number;
+  values: IPropertyValue[];
+}
+
+export interface IPropertyValue {
+  id: number;
+  value: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface IProductBundle {

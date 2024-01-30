@@ -7,7 +7,7 @@ export { ContentMessage } from './ContentMessage/ContentMessage';
 export { PhoneNumberInput } from './PhoneNumberInput/PhoneNumberInput';
 export { AdditionalHeaderBlock } from './AdditionalHeaderBlock/AdditionalHeaderBlock';
 export { Grades } from './Grades/Grades';
-export { AboutProduct } from './AboutProduct/AboutProduct';
+export { AboutProduct } from '../pages/general-pages/ProductPage/components/AboutProduct/AboutProduct';
 export { Tags } from './Tags/Tags';
 export { ProductFeedback } from '../pages/general-pages/ProductPage/components/ProductFeedback/ProductFeedback';
 export { ProductDescription } from './ProductDescription/ProductDescription';
