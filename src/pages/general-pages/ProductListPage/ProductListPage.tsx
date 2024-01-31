@@ -11,6 +11,7 @@ import Modal from 'elements/Modal';
 import { setResetAllFilters, setSortBy, setSortField } from 'store/reducers/productSlice';
 import { sortBySelector, sortFieldSelector } from 'store/reducers/productSlice/selectors';
 import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
+import { clearSearchValue } from 'store/reducers/searchSlice';
 
 import style from './ProductListPage.module.scss';
 
@@ -33,6 +34,7 @@ export const ProductListPage = WithLayout((): JSX.Element => {
     const params = `sortField=rating&sortBy=desc`;
 
     dispatch(setResetAllFilters());
+    dispatch(clearSearchValue());
     setSearchParams(params);
   };
 
