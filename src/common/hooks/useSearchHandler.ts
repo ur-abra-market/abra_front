@@ -21,13 +21,13 @@ interface ISearchHandlerReturnType {
 export const useSearchHandler = (
   mainSearchField: boolean = false,
 ): ISearchHandlerReturnType => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query');
   const role = useAppSelector(state => state.auth.userRole);
   const searchValue = useAppSelector(state => state.search.searchValue);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(setSearchValue(mainSearchField ? query || '' : ''));
