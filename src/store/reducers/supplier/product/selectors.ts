@@ -7,14 +7,14 @@ import { RootStateType } from 'store/createStore';
 export const selectAllProductsSelector = (state: RootStateType): boolean =>
   state.supplierProduct.selectAllProducts;
 
-export const deactivatedProductSelector = (state: RootStateType): number[] =>
-  state.supplierProduct.deactivatedProductIds;
+export const unselectedProductSelector = (state: RootStateType): number[] =>
+  state.supplierProduct.unselectedProductIds;
 
 export const productsSelector = (state: RootStateType): IProduct[] =>
   state.supplierProduct.products;
 
-export const activeProductSelector = (state: RootStateType): number[] =>
-  state.supplierProduct.activeProductIds;
+export const selectedProductSelector = (state: RootStateType): number[] =>
+  state.supplierProduct.selectedProductIds;
 
 export const sortedProductSelector = createSelector([productsSelector], products => {
   const copyOfData = [...products];

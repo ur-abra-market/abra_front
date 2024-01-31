@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { activateProducts, deActivateProducts, getSupplierProducts } from './thunks';
+import { selectedProducts, unselectedProducts, getSupplierProducts } from './thunks';
 import { IProductsListResponse, ISupplierProductSliceInitialState } from './types';
 
 const initialState: ISupplierProductSliceInitialState = {
   products: [],
   totalCount: 0,
   isLoading: false,
-  deactivatedProductIds: [],
-  activeProductIds: [],
+  unselectedProductIds: [],
+  selectedProductIds: [],
   selectAllProducts: false,
   hasChanged: false,
 };
@@ -20,31 +20,33 @@ const supplierProductSlice = createSlice({
     hasPageChanged: state => {
       state.selectAllProducts = false;
     },
-    selectActiveProduct: (state, action: PayloadAction<number>) => {
-      const existingIndex = state.activeProductIds.findIndex(el => el === action.payload);
-
-      if (existingIndex !== -1) {
-        // If an item with this number already exists, remove it
-        state.activeProductIds.splice(existingIndex, 1);
-      } else {
-        // If there is no item with this number, add it
-        state.activeProductIds.push(action.payload);
-      }
-
-      state.selectAllProducts = false;
-    },
-
-    selectDeactivatedProduct: (state, action: PayloadAction<number>) => {
-      const existingIndex = state.deactivatedProductIds.findIndex(
+    selectSelectedProduct: (state, action: PayloadAction<number>) => {
+      const existingIndex = state.selectedProductIds.findIndex(
         el => el === action.payload,
       );
 
       if (existingIndex !== -1) {
         // If an item with this number already exists, remove it
-        state.deactivatedProductIds.splice(existingIndex, 1);
+        state.selectedProductIds.splice(existingIndex, 1);
       } else {
         // If there is no item with this number, add it
-        state.deactivatedProductIds.push(action.payload);
+        state.selectedProductIds.push(action.payload);
+      }
+
+      state.selectAllProducts = false;
+    },
+
+    selectUnselectedProduct: (state, action: PayloadAction<number>) => {
+      const existingIndex = state.unselectedProductIds.findIndex(
+        el => el === action.payload,
+      );
+
+      if (existingIndex !== -1) {
+        // If an item with this number already exists, remove it
+        state.unselectedProductIds.splice(existingIndex, 1);
+      } else {
+        // If there is no item with this number, add it
+        state.unselectedProductIds.push(action.payload);
       }
 
       state.selectAllProducts = false;
@@ -52,33 +54,35 @@ const supplierProductSlice = createSlice({
 
     selectAllProducts(state, action: PayloadAction<boolean>) {
       if (action.payload) {
-        // Find identifiers of active and deactivated products that are not yet in state.activeProductIds and state.deactivatedProductIds
+        // Find identifiers of active and deactivated products that are not yet in state.selectedProductIds and state.unselectedProductIds
         const newActiveIds = state.products
-          .filter(el => el.id && !state.activeProductIds.includes(el.id) && el.is_active)
+          .filter(
+            el => el.id && !state.selectedProductIds.includes(el.id) && el.is_active,
+          )
           .map(el => el.id);
 
         const newDeactivatedIds = state.products
           .filter(
-            el => el.id && !state.deactivatedProductIds.includes(el.id) && !el.is_active,
+            el => el.id && !state.unselectedProductIds.includes(el.id) && !el.is_active,
           )
           .map(el => el.id);
 
-        // Add new identifiers to the existing state.activeProductIds and state.deactivatedProductIds
-        state.activeProductIds = [...state.activeProductIds, ...newActiveIds];
-        state.deactivatedProductIds = [
-          ...state.deactivatedProductIds,
+        // Add new identifiers to the existing state.selectedProductIds and state.unselectedProductIds
+        state.selectedProductIds = [...state.selectedProductIds, ...newActiveIds];
+        state.unselectedProductIds = [
+          ...state.unselectedProductIds,
           ...newDeactivatedIds,
         ];
       } else {
         // If action.payload is false (deselect all products)
 
-        // Filter state.activeProductIds, leaving only identifiers not present in state.products
-        state.activeProductIds = state.activeProductIds.filter(
+        // Filter state.selectedProductIds, leaving only identifiers not present in state.products
+        state.selectedProductIds = state.selectedProductIds.filter(
           id => !state.products.some(product => product.id === id),
         );
 
-        // Filter state.deactivatedProductIds, leaving only identifiers not present in state.products
-        state.deactivatedProductIds = state.deactivatedProductIds.filter(
+        // Filter state.unselectedProductIds, leaving only identifiers not present in state.products
+        state.unselectedProductIds = state.unselectedProductIds.filter(
           id => !state.products.some(product => product.id === id),
         );
       }
@@ -87,8 +91,8 @@ const supplierProductSlice = createSlice({
       state.selectAllProducts = action.payload;
     },
     resetProductStatusSelection: state => {
-      state.activeProductIds = [];
-      state.deactivatedProductIds = [];
+      state.selectedProductIds = [];
+      state.unselectedProductIds = [];
       state.selectAllProducts = false;
     },
   },
@@ -108,13 +112,13 @@ const supplierProductSlice = createSlice({
       .addCase(getSupplierProducts.rejected, state => {
         state.isLoading = false;
       })
-      .addCase(activateProducts.fulfilled, state => {
-        state.deactivatedProductIds = [];
+      .addCase(selectedProducts.fulfilled, state => {
+        state.unselectedProductIds = [];
         state.hasChanged = !state.hasChanged;
         state.selectAllProducts = false;
       })
-      .addCase(deActivateProducts.fulfilled, state => {
-        state.activeProductIds = [];
+      .addCase(unselectedProducts.fulfilled, state => {
+        state.selectedProductIds = [];
         state.hasChanged = !state.hasChanged;
         state.selectAllProducts = false;
       });
@@ -125,7 +129,7 @@ export const supplierProductReducer = supplierProductSlice.reducer;
 export const {
   hasPageChanged,
   selectAllProducts,
-  selectActiveProduct,
-  selectDeactivatedProduct,
+  selectSelectedProduct,
+  selectUnselectedProduct,
   resetProductStatusSelection,
 } = supplierProductSlice.actions;
