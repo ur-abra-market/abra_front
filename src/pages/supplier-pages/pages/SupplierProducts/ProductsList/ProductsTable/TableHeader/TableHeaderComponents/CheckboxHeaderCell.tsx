@@ -7,8 +7,8 @@ import {
   selectAllProductsSelector,
   isLoadingSelector,
   selectAllProducts,
-  activeProductSelector,
-  deactivatedProductSelector,
+  selectedProductSelector,
+  unselectedProductSelector,
   productsSelector,
 } from 'store/reducers/supplier/product';
 import { Checkbox } from 'ui-kit';
@@ -19,14 +19,14 @@ interface ICheckboxCell {
 
 export const CheckboxHeaderCell: FC<ICheckboxCell> = ({ className }) => {
   const dispatch = useAppDispatch();
-  const activeProduct = useAppSelector(activeProductSelector);
+  const selectedProduct = useAppSelector(selectedProductSelector);
   const isLoading = useAppSelector(isLoadingSelector);
-  const deactivatedProduct = useAppSelector(deactivatedProductSelector);
+  const unselectedProduct = useAppSelector(unselectedProductSelector);
   const products = useAppSelector(productsSelector);
 
   const allProductsAreHandled = products.length
     ? products.every(
-        pr => activeProduct.includes(pr.id) || deactivatedProduct.includes(pr.id),
+        pr => selectedProduct.includes(pr.id) || unselectedProduct.includes(pr.id),
       )
     : false;
 
