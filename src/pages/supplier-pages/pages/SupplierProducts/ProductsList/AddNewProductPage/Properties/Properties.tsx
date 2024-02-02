@@ -8,6 +8,8 @@ import { Label, Input } from 'ui-kit';
 
 import style from './Properties.module.scss';
 
+// todo temporary data
+
 const materialData: IMaterial[] = [
   { id: 1, name: 'Cotton', label: 'Ocassion 1', placeholder: 'Select' },
   { id: 2, name: 'Polyester', label: 'Ocassion 1', placeholder: 'Select' },
@@ -15,57 +17,56 @@ const materialData: IMaterial[] = [
   { id: 4, name: 'Wool', label: 'Ocassion 1', placeholder: 'Select' },
 ];
 
+const tempData = [
+  { id: 1, name: 'item 1', label: 'Ocassion 1', placeholder: 'Select' },
+  { id: 2, name: 'item 2', label: 'Season 1', placeholder: 'Select' },
+  {
+    id: 3,
+    name: 'item 3',
+    label: 'Sizes grid type 1',
+    placeholder: 'Select',
+  },
+  { id: 4, name: 'item 4', label: 'Gender 1', placeholder: 'Select' },
+  {
+    id: 5,
+    name: 'material',
+    label: 'Material (optional) 1',
+    placeholder: 'Enter the material name',
+    options: materialData,
+  },
+];
+
+const selectFields = [
+  {
+    id: 1,
+    name: 'ocassion',
+    label: 'Ocassion',
+    placeholder: 'Select',
+    options: tempData,
+  },
+  { id: 2, name: 'season', label: 'Season', placeholder: 'Select', options: tempData },
+  {
+    id: 3,
+    name: 'sizesGrid',
+    label: 'Sizes grid type',
+    placeholder: 'Select',
+    options: tempData,
+  },
+  { id: 4, name: 'gender', label: 'Gender', placeholder: 'Select', options: tempData },
+  {
+    id: 5,
+    name: 'material',
+    label: 'Material (optional)',
+    placeholder: 'Enter the material name',
+    options: materialData,
+  },
+];
+
 export const Properties: FC = (): JSX.Element => {
   const { register } = useForm();
   const [showAdditional, setShowAdditional] = useState(0);
   const [additionalMaterials, setAdditionalMaterials] = useState<IMaterial[]>([]);
   const [selectedMaterial, setSelectedMaterial] = useState<IMaterial | null>(null);
-
-  // todo temporary data
-  const tempData = [
-    { id: 1, name: 'item 1', label: 'Ocassion 1', placeholder: 'Select' },
-    { id: 2, name: 'item 2', label: 'Season 1', placeholder: 'Select' },
-    {
-      id: 3,
-      name: 'item 3',
-      label: 'Sizes grid type 1',
-      placeholder: 'Select',
-    },
-    { id: 4, name: 'item 4', label: 'Gender 1', placeholder: 'Select' },
-    {
-      id: 5,
-      name: 'material',
-      label: 'Material (optional) 1',
-      placeholder: 'Enter the material name',
-      options: materialData,
-    },
-  ];
-
-  const selectFields = [
-    {
-      id: 1,
-      name: 'ocassion',
-      label: 'Ocassion',
-      placeholder: 'Select',
-      options: tempData,
-    },
-    { id: 2, name: 'season', label: 'Season', placeholder: 'Select', options: tempData },
-    {
-      id: 3,
-      name: 'sizesGrid',
-      label: 'Sizes grid type',
-      placeholder: 'Select',
-      options: tempData,
-    },
-    { id: 4, name: 'gender', label: 'Gender', placeholder: 'Select', options: tempData },
-    {
-      id: 5,
-      name: 'material',
-      label: 'Material (optional)',
-      placeholder: 'Enter the material name',
-      options: materialData,
-    },
-  ];
 
   const onChangeHandler = (value: IMaterial): void => {
     setSelectedMaterial(value);
