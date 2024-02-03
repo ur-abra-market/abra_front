@@ -12,7 +12,7 @@ import {
   isLoadingSelector,
   resetProductStatusSelection,
 } from 'store/reducers/supplier/product';
-import { ISelectOption, Select } from 'ui-kit';
+import { ISelectOption, Select, Title } from 'ui-kit';
 
 import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
 
@@ -42,7 +42,7 @@ export const SaleFilter = (): JSX.Element => {
 
   return (
     <div className={style.filter}>
-      <div className={style.filter_name}>Sale</div>
+      <Title className={style.filter_name}>Sale</Title>
       <Select
         controlledValue={controlledValue}
         onChange={onChangeSaleStatusFilter}
