@@ -43,13 +43,17 @@ export const CategoryFilter = (): JSX.Element => {
     [updateUrlQueryParams, dispatch],
   );
 
-  const controlledValue: ISelectOption | undefined = [
+  const categorySelect = [
     { label: { text: 'All' }, value: 0 },
     ...categories.map(el => ({
       label: { text: el.name },
       value: el.id,
     })),
-  ].find(item => String(item.value) === categoryIds);
+  ];
+
+  const controlledValue: ISelectOption | undefined = categorySelect.find(
+    item => String(item.value) === categoryIds,
+  );
 
   return (
     <div className={style.filter}>
@@ -58,13 +62,7 @@ export const CategoryFilter = (): JSX.Element => {
         disabled={isLoading}
         controlledValue={controlledValue}
         onChange={onChangeCategory}
-        options={[
-          { label: { text: 'All' }, value: 0 },
-          ...categories.map(el => ({
-            label: { text: el.name },
-            value: el.id,
-          })),
-        ]}
+        options={categorySelect}
         className={style.select}
       />
     </div>
