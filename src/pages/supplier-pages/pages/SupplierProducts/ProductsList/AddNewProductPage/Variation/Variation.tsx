@@ -17,7 +17,9 @@ export const Variation: FC = (): JSX.Element => {
   const categories = useAppSelector(state => state.common.categories);
   const nameData = categories ? categories.filter(c => c.level === 1) : [];
   const [selectedVariation, setSelectedVariation] = useState<string | null>(null);
-
+  const classNames = {
+    [style.active]: selectedVariation === 'Plus',
+  };
   const handleSelectVariation = (variationType: string): void => {
     setSelectedVariation(selectedVariation === variationType ? null : variationType);
   };
@@ -36,9 +38,7 @@ export const Variation: FC = (): JSX.Element => {
           ))}
           <ButtonIcon
             type="button"
-            className={cn(style.plus_button, {
-              [style.active]: selectedVariation === 'Plus',
-            })}
+            className={cn(style.plus_button, classNames)}
             onClick={() => handleSelectVariation('Plus')}
           >
             +

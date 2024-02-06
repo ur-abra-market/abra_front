@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 
@@ -8,8 +8,7 @@ import { Label, Input } from 'ui-kit';
 
 import style from './Properties.module.scss';
 
-// todo temporary data
-
+// todo temp data
 const materialData: IMaterial[] = [
   { id: 1, name: 'Cotton', label: 'Ocassion 1', placeholder: 'Select' },
   { id: 2, name: 'Polyester', label: 'Ocassion 1', placeholder: 'Select' },
@@ -17,6 +16,7 @@ const materialData: IMaterial[] = [
   { id: 4, name: 'Wool', label: 'Ocassion 1', placeholder: 'Select' },
 ];
 
+// todo temp data
 const tempData = [
   { id: 1, name: 'item 1', label: 'Ocassion 1', placeholder: 'Select' },
   { id: 2, name: 'item 2', label: 'Season 1', placeholder: 'Select' },
@@ -36,6 +36,7 @@ const tempData = [
   },
 ];
 
+// todo temp data
 const selectFields = [
   {
     id: 1,
@@ -62,7 +63,7 @@ const selectFields = [
   },
 ];
 
-export const Properties: FC = (): JSX.Element => {
+export const Properties = (): JSX.Element => {
   const { register } = useForm();
   const [showAdditional, setShowAdditional] = useState(0);
   const [additionalMaterials, setAdditionalMaterials] = useState<IMaterial[]>([]);
@@ -90,6 +91,7 @@ export const Properties: FC = (): JSX.Element => {
           <Input
             {...register(`showAdditional[${index}].percentage`)}
             placeholder="Enter percentage of material"
+            type="number"
             className={style.percentage}
           />
         </Label>
@@ -124,6 +126,7 @@ export const Properties: FC = (): JSX.Element => {
         <Label label="% (optional)" htmlFor="percentage" className={style.label}>
           <Input
             {...register('percentage')}
+            type="number"
             placeholder="Enter percentage of material"
             className={style.percentage}
           />
