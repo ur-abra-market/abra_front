@@ -10,8 +10,8 @@ import {
 
 import { productService } from 'services/product/product.service';
 
-export const activateProducts = createAsyncThunk<boolean, number[]>(
-  'product/activateProducts',
+export const selectedProducts = createAsyncThunk<boolean, number[]>(
+  'product/selectedProduct',
   async (productsIds: number[], { rejectWithValue }) => {
     try {
       return await productService.restoreList(productsIds);
@@ -24,7 +24,7 @@ export const activateProducts = createAsyncThunk<boolean, number[]>(
     }
   },
 );
-export const deActivateProducts = createAsyncThunk<boolean, number[]>(
+export const unselectedProducts = createAsyncThunk<boolean, number[]>(
   'product/deleteProducts',
   async (selectedProductIds: number[], { rejectWithValue }) => {
     try {

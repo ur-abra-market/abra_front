@@ -11,7 +11,6 @@ interface ICommonInputPrice {
   control: Control<any>;
   placeholder: string;
   disabled?: boolean;
-
   nameInput: string;
   valueVariation: string;
 }

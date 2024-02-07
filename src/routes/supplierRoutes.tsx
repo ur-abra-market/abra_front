@@ -26,7 +26,7 @@ import {
   SupplierMainPage,
   SupplierProfilePage,
 } from 'pages/supplier-pages';
-import { NewProductForm } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/NewProductForm/NewProductForm';
+import { NewProductForm } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/NewProductForm';
 import { SupplierProducts } from 'pages/supplier-pages/pages/SupplierProducts/SupplierProducts';
 
 export const supplierRoutes: RouteObject[] = [

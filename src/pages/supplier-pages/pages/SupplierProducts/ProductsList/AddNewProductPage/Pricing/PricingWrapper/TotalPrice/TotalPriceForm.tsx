@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import cn from 'classnames';
 import { Control, Controller } from 'react-hook-form';
 
-import { DiscountInputPrice } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/NewProductForm/Pricing/helper/utils/CommonInputPrice';
+import { DiscountInputPrice } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Pricing/helper/utils/CommonInputPrice';
 import { Input, Label } from 'ui-kit';
 
 import style from './TotalPrice.module.scss';

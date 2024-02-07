@@ -9,6 +9,7 @@ import filterReducer from './reducers/filterSlice';
 import { popularProductsReducer } from './reducers/popularProducts';
 import { productReducer } from './reducers/productSlice';
 import { productOldReducer } from './reducers/productSliceOld';
+import searchReducer from './reducers/searchSlice';
 import { sellerCartReducer } from './reducers/seller/cart/slice';
 import { sellerProfileReducer } from './reducers/seller/profile/slice';
 import { similarProductsReducer } from './reducers/similarProducts';
@@ -34,6 +35,7 @@ export const store = configureStore({
     targetProduct: targetProductReducer,
     basket: basketReducer,
     filter: filterReducer,
+    search: searchReducer,
     category: categoryReducer,
     similarProducts: similarProductsReducer,
     popularProducts: popularProductsReducer,

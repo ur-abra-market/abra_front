@@ -29,8 +29,8 @@ export interface ISupplierProductSliceInitialState {
   totalCount: number;
   isLoading: boolean;
   products: IProduct[];
-  deactivatedProductIds: number[];
-  activeProductIds: number[];
+  unselectedProductIds: number[];
+  selectedProductIds: number[];
   selectAllProducts: boolean;
   hasChanged: boolean;
 }
