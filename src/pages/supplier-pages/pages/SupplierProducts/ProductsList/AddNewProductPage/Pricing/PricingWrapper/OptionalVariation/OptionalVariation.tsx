@@ -4,7 +4,7 @@ import { Control } from 'react-hook-form';
 
 import { ColorVariant } from './ColorVariant';
 
-import { TotalPriceForm } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Pricing/PricingWrapper/TotalPrice';
+import { TotalPriceForm } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Pricing/helper/utils/TotalPrice';
 
 import style from './OptionalVariation.module.scss';
 

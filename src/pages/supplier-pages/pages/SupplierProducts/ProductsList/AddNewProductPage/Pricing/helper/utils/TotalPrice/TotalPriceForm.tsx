@@ -67,7 +67,7 @@ export const TotalPriceForm: FC<ITotalPrice> = ({
           />
         </Label>
 
-        <Label label="Total">
+        <Label label="Total" htmlFor="totalPrice">
           <div className={style.price_item}>
             <Controller
               control={control}
