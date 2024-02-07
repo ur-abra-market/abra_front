@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IProductCard } from './types';
+import { IResponseGetProductCardId } from './types';
 
 import { productService } from 'services/product/product.service';
 import {
@@ -11,20 +11,20 @@ import {
   IProductRequest,
 } from 'services/product/product.serviceTypes';
 
-export const getProductById = createAsyncThunk<IProductCard, IProductRequest>(
-  'targetProduct/getProductById',
-  async (payload, { rejectWithValue }) => {
-    try {
-      return productService.getProductById(payload);
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.response?.data);
-      }
-
-      return rejectWithValue('[Error]: getProductById');
+export const getProductById = createAsyncThunk<
+  IResponseGetProductCardId,
+  IProductRequest
+>('targetProduct/getProductById', async (payload, { rejectWithValue }) => {
+  try {
+    return productService.getProductById(payload);
+  } catch (error: unknown) {
+    if (error instanceof AxiosError) {
+      return rejectWithValue(error.response?.data);
     }
-  },
-);
+
+    return rejectWithValue('[Error]: getProductById');
+  }
+});
 
 export const addFavoriteProduct = createAsyncThunk<any, IProductRequest>(
   'favorite/addFavoriteProduct',
@@ -120,25 +120,6 @@ export const getProductsCompilation = createAsyncThunk<any, ICategoryRequest>(
   },
 );
 
-export const getProductsBySearch = createAsyncThunk<any, string>(
-  'products/getProductsBySearch',
-  async (productData, { rejectWithValue }) => {
-    try {
-      const { data } = await productService.getSearchProducts(productData);
-
-      return {
-        data: data.result,
-      };
-    } catch (error: unknown) {
-      if (error instanceof AxiosError) {
-        return rejectWithValue(error.message);
-      }
-
-      return rejectWithValue('[getProductsBySearch]: ERROR');
-    }
-  },
-);
-
 export const getProductsListCompilation = createAsyncThunk<any, ICategoryRequest>(
   'product/getProductsListCompilation',
   async (productData, { rejectWithValue }) => {
@@ -154,6 +135,36 @@ export const getProductsListCompilation = createAsyncThunk<any, ICategoryRequest
       }
 
       return rejectWithValue('[getProductsCompilation]: ERROR');
+    }
+  },
+);
+
+export const addFavoriteProductPage = createAsyncThunk<any, IProductRequest>(
+  'favorite/addFavoriteProductPage',
+  async (payload, { rejectWithValue }) => {
+    try {
+      return await productService.addFavorite(payload);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.response?.data);
+      }
+
+      return rejectWithValue('[Error]: addFavoriteProduct');
+    }
+  },
+);
+
+export const removeFavoriteProductPage = createAsyncThunk<any, IProductRequest>(
+  'favorite/removeFavoriteProductPage',
+  async (payload, { rejectWithValue }) => {
+    try {
+      return !(await productService.removeFavorite(payload));
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.response?.data);
+      }
+
+      return rejectWithValue('[Error]: removeFavoriteProduct');
     }
   },
 );

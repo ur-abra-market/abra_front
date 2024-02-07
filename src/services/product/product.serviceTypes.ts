@@ -44,6 +44,7 @@ export interface ICategoryRequest {
   category_id: string;
   ascending: boolean;
   sort?: 'total_orders' | 'date' | 'price' | 'rating';
+  query?: string;
 }
 
 export interface IProductRequest {

@@ -1,25 +1,25 @@
 export const shouldShowInActiveEdit = (
-  activeProduct: number[],
-  deactivatedProduct: number[],
+  selectedProduct: number[],
+  unselectedProduct: number[],
   label: string,
 ): boolean => {
-  const isActiveProductEmpty = activeProduct.length === 0;
-  const isDeactivatedProductEmpty = deactivatedProduct.length === 0;
+  const isSelectedProductEmpty = selectedProduct.length === 0;
+  const isUnselectedProductEmpty = unselectedProduct.length === 0;
 
   if (label === 'Edit') {
     const hasSingleElementInArray =
-      (activeProduct.length === 1 && deactivatedProduct.length === 0) ||
-      (activeProduct.length === 0 && deactivatedProduct.length === 1);
+      (selectedProduct.length === 1 && unselectedProduct.length === 0) ||
+      (selectedProduct.length === 0 && unselectedProduct.length === 1);
 
     return !hasSingleElementInArray;
   }
 
   if (label === 'Activated product') {
-    return !(isActiveProductEmpty && !isDeactivatedProductEmpty);
+    return !(isSelectedProductEmpty && !isUnselectedProductEmpty);
   }
 
   if (label === 'Deactivated product') {
-    return !(isDeactivatedProductEmpty && !isActiveProductEmpty);
+    return !(isUnselectedProductEmpty && !isSelectedProductEmpty);
   }
 
   return false;

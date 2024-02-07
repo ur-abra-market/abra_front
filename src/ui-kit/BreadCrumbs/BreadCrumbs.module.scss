@@ -1,0 +1,36 @@
+.list {
+  display: flex;
+  flex-basis: 50%;
+  column-gap: 24px;
+  align-items: center;
+
+  color: var(--color-black);
+}
+
+.list_items {
+  display: flex;
+  column-gap: 24px;
+}
+
+.item_link {
+  font-size: var(--fz-m);
+  font-weight: var(--semi-bold);
+  color: inherit;
+}
+
+@media (max-width: 800px) {
+  .list {
+    flex-basis: unset;
+  }
+}
+
+@media (max-width: 373px) {
+  .list {
+    column-gap: 10px;
+  }
+
+  .list_items {
+    display: flex;
+    column-gap: 10px;
+  }
+}

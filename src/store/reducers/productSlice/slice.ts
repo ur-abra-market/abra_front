@@ -2,18 +2,20 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
   addFavoriteProduct,
+  addFavoriteProductPage,
   getPopularProducts,
   getProductById,
-  getProductsBySearch,
   getProductsCompilation,
   getProductsListCompilation,
   getSimilarProducts,
   removeFavoriteProduct,
+  removeFavoriteProductPage,
 } from './thunks';
 import {
+  ISelectedBundle,
   IFavorite,
-  IProductCard,
   IProductSliceInitialState,
+  IResponseGetProductCardId,
   ISortBy,
   ISortField,
 } from './types';
@@ -25,6 +27,7 @@ const initialState: IProductSliceInitialState = {
   isFavorite: false,
   productsPerPage: 20,
   productCard: {
+    breadcrumbs: [],
     id: null,
     created_at: '',
     updated_at: '',
@@ -33,6 +36,7 @@ const initialState: IProductSliceInitialState = {
     grade_average: '',
     total_orders: null,
     is_active: false,
+    is_favorite: false,
     category: {
       id: null,
       created_at: '',
@@ -70,7 +74,10 @@ const initialState: IProductSliceInitialState = {
     images: [],
     tags: [],
     bundle_variation_pods: [],
+    bundles: [],
+    property_types: [],
   },
+  feedbacks: {},
   popularProducts: [],
   similarProducts: [],
   productsCompilation: {},
@@ -79,6 +86,31 @@ const initialState: IProductSliceInitialState = {
   sortField: 'rating',
   sortBy: 'desc',
   totalProductsCount: 0,
+  selectedBundle: {
+    type: 'size',
+    bundle: {
+      id: 0,
+      created_at: '',
+      updated_at: '',
+      product: '',
+      prices: [
+        {
+          id: 0,
+          created_at: '',
+          updated_at: '',
+          bundle_id: 0,
+          price: 0,
+          discount: 0,
+          start_date: '',
+          end_date: '',
+          min_quantity: 100,
+          bundle: '',
+        },
+      ],
+      pickable_variations: [],
+      variation_values: [],
+    },
+  },
 };
 
 const productSlice = createSlice({
@@ -98,12 +130,19 @@ const productSlice = createSlice({
       state.sortField = 'rating';
       state.sortBy = 'desc';
     },
+    setActiveBundle: (state, action: PayloadAction<ISelectedBundle>) => {
+      state.selectedBundle = action.payload;
+    },
   },
   extraReducers: builder => {
     builder
-      .addCase(getProductById.fulfilled, (state, action: PayloadAction<IProductCard>) => {
-        state.productCard = action.payload;
-      })
+      .addCase(
+        getProductById.fulfilled,
+        (state, action: PayloadAction<IResponseGetProductCardId>) => {
+          state.productCard = action.payload.product;
+          state.feedbacks = action.payload.feedbacks;
+        },
+      )
       .addCase(
         addFavoriteProduct.fulfilled,
         (state, action: PayloadAction<IFavorite>) => {
@@ -185,21 +224,21 @@ const productSlice = createSlice({
         state.totalProductsCount = action.payload.data.total_count;
         state.loading = LoadingStatusEnum.Success;
       })
-      .addCase(getProductsBySearch.pending, state => {
-        state.loading = LoadingStatusEnum.Loading;
+      .addCase(addFavoriteProductPage.fulfilled, (state, action) => {
+        state.productCard.is_favorite = action.payload;
       })
-      .addCase(getProductsBySearch.rejected, state => {
-        state.loading = LoadingStatusEnum.Failed;
-      })
-      .addCase(getProductsBySearch.fulfilled, (state, action) => {
-        state.productsList = action.payload.data.products;
-        state.totalProductsCount = action.payload.data.total_count;
-        state.loading = LoadingStatusEnum.Success;
+      .addCase(removeFavoriteProductPage.fulfilled, (state, action) => {
+        state.productCard.is_favorite = action.payload;
       });
   },
 });
 
 export const productReducer = productSlice.reducer;
 export const productActions = productSlice.actions;
-export const { setProductsPerPage, setSortField, setSortBy, setResetAllFilters } =
-  productActions;
+export const {
+  setProductsPerPage,
+  setSortField,
+  setSortBy,
+  setResetAllFilters,
+  setActiveBundle,
+} = productActions;

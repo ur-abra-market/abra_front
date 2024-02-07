@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
 
@@ -6,10 +6,12 @@ import { ProductFilter } from './ProductFilter/ProductFilter';
 import { ProductList } from './ProductList/ProductList';
 
 import { WithLayout } from 'common/hocs/WithLayout';
-import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { useAppDispatch, useAppSelector, useMediaQuery } from 'common/hooks';
+import Modal from 'elements/Modal';
 import { setResetAllFilters, setSortBy, setSortField } from 'store/reducers/productSlice';
 import { sortBySelector, sortFieldSelector } from 'store/reducers/productSlice/selectors';
 import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
+import { clearSearchValue } from 'store/reducers/searchSlice';
 
 import style from './ProductListPage.module.scss';
 
@@ -20,6 +22,8 @@ export const ProductListPage = WithLayout((): JSX.Element => {
   const sortBy = useAppSelector(sortBySelector);
   const currentSortField = searchParams.get('sortField') || 'rating';
   const currentSortBy = searchParams.get('sortBy') || 'desc';
+  const [isModalOpen, setModalOpen] = useState(false);
+  const { isDevice } = useMediaQuery();
 
   useEffect(() => {
     dispatch(setSortField(currentSortField as ISortField));
@@ -30,6 +34,7 @@ export const ProductListPage = WithLayout((): JSX.Element => {
     const params = `sortField=rating&sortBy=desc`;
 
     dispatch(setResetAllFilters());
+    dispatch(clearSearchValue());
     setSearchParams(params);
   };
 
@@ -41,11 +46,23 @@ export const ProductListPage = WithLayout((): JSX.Element => {
 
   return (
     <div className={style.product_list_page}>
-      <ProductFilter
-        onSaveQueryParams={handleSaveQueryParams}
-        onResetAllFilters={handleResetAllFilters}
-      />
+      {!isDevice ? (
+        <ProductFilter
+          onSaveQueryParams={handleSaveQueryParams}
+          onResetAllFilters={handleResetAllFilters}
+        />
+      ) : (
+        <Modal showModal={isModalOpen} closeModal={setModalOpen}>
+          <ProductFilter
+            onSaveQueryParams={handleSaveQueryParams}
+            onResetAllFilters={handleResetAllFilters}
+          />
+        </Modal>
+      )}
+
       <ProductList
+        closeModal={setModalOpen}
+        showModal={isModalOpen}
         currentSortField={currentSortField as ISortField}
         currentSortBy={currentSortBy as ISortBy}
       />

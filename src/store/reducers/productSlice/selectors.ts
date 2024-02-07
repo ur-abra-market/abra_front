@@ -1,4 +1,11 @@
-import { IBundleVariationPod, IImage, ISortBy, ISortField, ITag } from './types';
+import {
+  IBundleVariationPod,
+  IImage,
+  IPricesBundle,
+  ISortBy,
+  ISortField,
+  ITag,
+} from './types';
 
 import { ICategory, LoadingStatusEnum } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
@@ -8,7 +15,7 @@ export const productCategorySelector = (state: RootStateType): ICategory =>
   state.product.productCard.category ?? {};
 
 export const favoriteProductSelector = (state: RootStateType): boolean =>
-  state.product.isFavorite || false;
+  state.product.productCard.is_favorite;
 
 export const productGradeSelector = (state: RootStateType): number | string =>
   state.product.productCard.grade_average;
@@ -57,8 +64,11 @@ export const sortFieldSelector = (state: RootStateType): ISortField =>
 
 export const sortBySelector = (state: RootStateType): ISortBy => state.product.sortBy;
 
-export const priseSelector = (state: RootStateType): number =>
-  state.product.productCard.bundle_variation_pods[0]?.prices[0]?.value || 4.5; // imitation
+export const priseSelector = (state: RootStateType): IPricesBundle[] =>
+  state.product.selectedBundle.bundle.prices;
 
 export const supplierNameSelector = (state: RootStateType): string =>
   state.product.productCard.supplier.company.name;
+
+export const productBreadCrumbsSelector = (state: RootStateType): ICategory[] =>
+  state.product.productCard.breadcrumbs;

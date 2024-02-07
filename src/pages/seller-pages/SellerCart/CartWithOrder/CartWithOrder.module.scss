@@ -1,0 +1,31 @@
+.title {
+  margin-bottom: 42px;
+  font-size: var(--fz-xxl);
+  text-align: left;
+}
+
+.content {
+  display: flex;
+  column-gap: 32px;
+  justify-content: space-between;
+}
+
+.order_items {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-start;
+}
+
+@media (max-width: 860px) {
+  .content {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 628px) {
+  .title {
+    margin-bottom: 20px;
+  }
+}

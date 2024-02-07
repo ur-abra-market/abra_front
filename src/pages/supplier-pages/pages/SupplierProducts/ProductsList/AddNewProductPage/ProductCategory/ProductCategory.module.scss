@@ -1,0 +1,41 @@
+.category, .subcategory {
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal; 
+}
+
+.subcategory:first-child {
+  margin-top: 16px;
+}
+
+.category_container {
+  display: flex;
+  gap: 8px;
+}
+
+.product_icon {
+  margin-top: 3px;
+}
+
+.product_icon {
+  margin-top: 3px;
+  transition: transform 0s;
+}
+
+.icon_open {
+  transform: rotate(180deg);
+}
+
+.checkbox_container {
+  display: flex;
+  align-items: center; 
+}
+
+.checkbox {
+  margin-right: 8px;
+}
+
+.container {
+  margin-top: 33px;
+}

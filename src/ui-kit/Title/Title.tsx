@@ -21,8 +21,8 @@ export const Title = <T extends TitleType = 'h2'>({
   weight = 'bold',
   ...restProps
 }: TextProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof TextProps<T>>): JSX.Element => {
-  const classNames = cn(style.default, style[size], style[weight], className);
+  const titleClasses = cn(style.default, style[size], style[weight], className);
   const Component: TitleType = as || 'h2';
 
-  return <Component className={classNames} {...restProps} />;
+  return <Component className={titleClasses} {...restProps} />;
 };

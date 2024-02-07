@@ -1,0 +1,32 @@
+.grade_indicators {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.indicator_wrapper {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  width: 100%;
+
+  span {
+    width: 11%;
+  }
+}
+
+.reviews_container {
+  display: flex;
+
+  width: 80%;
+  height: 3px;
+
+  background-color: var(--color-gray-light);
+  border-radius: 15px;
+}
+
+.red_line {
+  height: 3px;
+  background-color: var(--color-red);
+  border-radius: 15px;
+}

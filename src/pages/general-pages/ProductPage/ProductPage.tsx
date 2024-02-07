@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { ProductMainInfo } from './ProductMainInfo/ProductMainInfo';
-import { ProductPageHeader } from './ProductPageHeader/ProductPageHeader';
-import { ProductRecommendations } from './ProductRecommendations/ProductRecommendations';
+import { ProductMainInfo } from './components/ProductMainInfo/ProductMainInfo';
+import { ProductPageHeader } from './components/ProductPageHeader/ProductPageHeader';
+import { ProductRecommendations } from './components/ProductRecommendations/ProductRecommendations';
 
 import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch } from 'common/hooks';

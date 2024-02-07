@@ -9,7 +9,7 @@ import {
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
-import { IProductCard } from 'store/reducers/productSlice';
+import { IResponseGetProductCardId } from 'store/reducers/productSlice/types';
 import { IProductsListResponse } from 'store/reducers/supplier/product';
 import {
   IProductFilterParams,
@@ -17,36 +17,31 @@ import {
 } from 'store/reducers/supplier/product/types';
 
 export const productService = {
-  getList: async ({ ascending, category_id, limit, offset, sort }: ICategoryRequest) => {
+  getList: async ({
+    ascending,
+    category_id,
+    limit,
+    offset,
+    sort,
+    query,
+  }: ICategoryRequest) => {
     const params = { offset, limit, sort, ascending };
     const categoryIds = [];
 
     if (category_id !== 'all') {
       categoryIds.push(+category_id);
     }
-
     const { data } = await baseConfigService.post<
       IBaseResponse<IProductsCompilationResponse>
-    >(`products`, { category_ids: categoryIds }, { params });
+    >(`products`, { category_ids: categoryIds, query }, { params });
 
     return data.result;
   },
 
-  getSearchProducts: async (data: string) => {
-    const res = await baseConfigService.post<IBaseResponse<IProductsCompilationResponse>>(
-      `products`,
-      {
-        query: data,
-      },
-    );
-
-    return res;
-  },
-
   getProductById: async ({ product_id }: IProductRequest) => {
-    const { data } = await baseConfigService.get<IBaseResponse<IProductCard>>(
-      `products/${product_id}`,
-    );
+    const { data } = await baseConfigService.get<
+      IBaseResponse<IResponseGetProductCardId>
+    >(`products/${product_id}`);
 
     return data.result;
   },

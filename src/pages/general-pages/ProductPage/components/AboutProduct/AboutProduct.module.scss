@@ -1,0 +1,39 @@
+@import "common/styles/mixins";
+
+@include seller_section()
+
+  .table {
+  width: 100%;
+  font-size: var(--fz-s);
+}
+
+.section {
+  margin-bottom: 16px;
+}
+
+.caption {
+  margin-bottom: 28px;
+  font-size: var(--fz-xxl);
+  text-align: start;
+}
+
+.tr {
+  height: 40px;
+  vertical-align: top;
+
+  &:last-child {
+    height: 20px;
+  }
+}
+
+.th {
+  width: 40%;
+  font: inherit;
+  text-align: start;
+}
+
+.td {
+  width: 60%;
+  font: inherit;
+  text-align: end;
+}
