@@ -22,6 +22,7 @@ export const ProductVariation: FC<IProductVariation> = ({
   selectColor,
   className,
   children,
+  ...rest
 }): JSX.Element => {
   const productColorClasses = cn(className, style.button, {
     [style.active]: productId === selectedColorId,
@@ -32,6 +33,7 @@ export const ProductVariation: FC<IProductVariation> = ({
       type="button"
       onClick={() => selectColor(productId)}
       className={productColorClasses}
+      {...rest}
     >
       <img className={style.color_image} src={imageUrl} alt="color" />
       <Paragraph weight="medium">{children}</Paragraph>

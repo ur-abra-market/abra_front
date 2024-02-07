@@ -1,1 +1,1 @@
-export { TotalPrice } from './TotalPrice';
+export { TotalPriceForm } from './TotalPriceForm';

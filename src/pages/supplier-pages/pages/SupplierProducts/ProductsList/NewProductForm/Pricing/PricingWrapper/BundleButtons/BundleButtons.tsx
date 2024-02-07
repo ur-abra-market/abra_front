@@ -11,38 +11,25 @@ interface IStateType {
   isSelected: boolean;
 }
 
+/* todo data will request from backend  */
+const tempData: IStateType[] = [
+  { id: 1, title: 'Bundle 1', isSelected: true },
+  { id: 2, title: 'Bundle 2', isSelected: false },
+  { id: 3, title: 'Bundle 3', isSelected: false },
+];
+
 export const BundleButtons: FC = (): JSX.Element => {
-  const [state, setState] = useState<IStateType[]>([
-    { id: 1, title: 'Bundle 1', isSelected: true },
-    { id: 2, title: 'Bundle 2', isSelected: false },
-    { id: 3, title: 'Bundle 3', isSelected: false },
-  ]); /* todo data will request from backend  */
-
-  const handlerSelectBundle = (id: number): void => {
-    const updatedState: IStateType[] = state.map(item =>
-      item.id === id
-        ? {
-            ...item,
-            isSelected: true,
-          }
-        : {
-            ...item,
-            isSelected: false,
-          },
-    );
-
-    setState(updatedState);
-  };
+  const [activeBundle, setActiveBundle] = useState<number | null>();
 
   return (
     <Label label="Bundles" htmlFor="Bundles">
       <div className={style.bundle_button_wrapper}>
-        {state.map(item => {
+        {tempData.map(item => {
           return (
             <ButtonBundle
               key={item.id}
-              onClick={() => handlerSelectBundle(item.id)}
-              isSelected={item.isSelected}
+              onClick={() => setActiveBundle(item.id)}
+              isSelected={item.id === activeBundle}
               className={style.bundle_button}
             >
               {item.title}

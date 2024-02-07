@@ -9,25 +9,17 @@
 
   .price_input {
     width: 100%;
-    margin-bottom: 16px;
     padding-right: 35px;
   }
 
   .currency_value {
     position: absolute;
-    z-index: 10;
     top: 16px;
     right: 12px;
-
     color: var(--color-gray);
   }
 
   .currency_value_active {
-    position: absolute;
-    z-index: 10;
-    top: 16px;
-    right: 12px;
-
     color: var(--color-black);
   }
 }

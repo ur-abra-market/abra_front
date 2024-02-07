@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { ProductVariation } from 'ui-kit';
 
@@ -42,8 +42,18 @@ const tempData = [
   },
 ]; /* todo color временно пока не приходят цвета */
 
-export const ColorVariant: FC = (): JSX.Element => {
+interface IColorVariant {
+  price?: number;
+}
+
+export const ColorVariant: FC<IColorVariant> = ({ price }): JSX.Element => {
   const [active, setActive] = useState<number | null>(null); /* todo color */
+
+  useEffect(() => {
+    if (price) {
+      setActive(null);
+    }
+  }, [price]);
 
   return (
     <>
@@ -58,7 +68,7 @@ export const ColorVariant: FC = (): JSX.Element => {
             productId={el.id}
             imageUrl={el.image_url}
             selectColor={setActive}
-            disabled
+            disabled={!price}
           >
             {el.title}
           </ProductVariation>

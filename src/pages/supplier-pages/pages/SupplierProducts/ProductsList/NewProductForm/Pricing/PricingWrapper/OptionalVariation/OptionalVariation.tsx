@@ -3,33 +3,35 @@ import React, { FC } from 'react';
 import { Control } from 'react-hook-form';
 
 import { ColorVariant } from './ColorVariant';
-import { DiscountVariant } from './DiscountVariant';
+
+import { TotalPriceForm } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/NewProductForm/Pricing/PricingWrapper/TotalPrice';
+
+import style from './OptionalVariation.module.scss';
 
 interface IOptionalVariation {
-  control: Control;
-  discountPrice: number;
-  productVariationPrice: number;
-  setDiscountPrice: (value: number) => void;
-  setInputVariationPrice: (value: number) => void;
+  control: Control<any>;
+  totalPrice: number;
+  price?: number;
 }
 
 export const OptionalVariation: FC<IOptionalVariation> = ({
   control,
-  discountPrice,
-  productVariationPrice,
-  setDiscountPrice,
-  setInputVariationPrice,
+  price,
+  totalPrice,
 }): JSX.Element => {
   return (
     <>
-      <ColorVariant />
+      <ColorVariant price={price} />
 
-      <DiscountVariant
+      <TotalPriceForm
         control={control}
-        discountPrice={discountPrice}
-        productVariationPrice={productVariationPrice}
-        setInputVariationPrice={setInputVariationPrice}
-        setDiscountPrice={setDiscountPrice}
+        totalPrice={totalPrice}
+        label="Variations for markup"
+        disabled={false}
+        priceName="variationPrice"
+        discountName="discountVariationPrice"
+        totalName="totalVariationPrice"
+        className={style.input_wrapper}
       />
     </>
   );

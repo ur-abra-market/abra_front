@@ -1,1 +1,0 @@
-export { CommonInputPrice } from './CommonInputPrice';
