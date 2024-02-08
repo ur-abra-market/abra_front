@@ -1,24 +1,19 @@
-import { FC, useState, useEffect, ChangeEvent } from 'react';
+import { FC, useState, ChangeEvent } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 
+import { ImageContainer } from './components/ImageContainer/ImageContainer';
+
 import { useAppSelector } from 'common/hooks';
-import { UploadImage } from 'elements';
 import { Label, Input, Select } from 'ui-kit';
 
 import style from './MainProductInfo.module.scss';
 
-const imagePaths = [
-  'blackcrop.jpg',
-  'blackdress.jpg',
-  'flowerscrop.jpg',
-  'whitesweat.jpg',
-  'shorts.jpg',
-];
+const imagePaths = ['', '', '', '', ''];
 
 export const MainProductInfo: FC = (): JSX.Element => {
   const { control } = useForm();
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<string[]>(imagePaths);
   const categories = useAppSelector(state => state.common.categories);
   const brandNameData = categories ? categories.filter(c => c.level === 1) : [];
   const [textareaValue, setTextareaValue] = useState<string>('');
@@ -27,26 +22,56 @@ export const MainProductInfo: FC = (): JSX.Element => {
     setTextareaValue(event.target.value);
   };
 
-  useEffect(() => {
-    const fetchImages = async (): Promise<void> => {
-      try {
-        const loadedImages = await Promise.all(
-          imagePaths.map(async path => {
-            const module = await import(`assets/images/files/${path}`);
+  function encodeImageFileAsURL(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
 
-            return module.default;
-          }),
-        );
+      reader.onloadend = function () {
+        resolve(reader.result as string);
+      };
 
-        setImages(loadedImages);
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error('Error loading images:', error);
-      }
-    };
+      reader.onerror = function () {
+        reject(reader.error);
+      };
 
-    fetchImages();
-  }, []);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // useEffect(() => {
+  //   const fetchImages = async (): Promise<void> => {
+  //     try {
+  //       const loadedImages = await Promise.all(
+  //         imagePaths.map(async path => {
+  //           const module = await import(`assets/images/files/${path}`);
+  //
+  //           return module.default;
+  //         }),
+  //       );
+  //
+  //       console.log(loadedImages);
+  //       setImages(loadedImages);
+  //     } catch (error) {
+  //       // eslint-disable-next-line no-console
+  //       console.error('Error loading images:', error);
+  //     }
+  //   };
+  //
+  //   fetchImages();
+  // }, []);
+
+  const uploadImageHandler = async (image: File): Promise<void> => {
+    const imageBase64 = await encodeImageFileAsURL(image);
+
+    setImages(prev => [...prev, imageBase64]);
+  };
+
+  const deleteImageHandler = (id: number): void => {
+    console.log('delete', id);
+    const newImages = images.filter(image => image !== images[id]);
+
+    setImages(newImages);
+  };
 
   return (
     <form>
@@ -75,6 +100,7 @@ export const MainProductInfo: FC = (): JSX.Element => {
             cols={10}
           />
         </Label>
+
         <Label label="Brand name" htmlFor="brandName">
           <Controller
             name="brandName"
@@ -97,18 +123,18 @@ export const MainProductInfo: FC = (): JSX.Element => {
             )}
           />
         </Label>
+
         <Label label="General photos of the product" htmlFor="photos" />
         <div className={style.container}>
-          {images.map(index => (
-            <div key={index} className={style.image_container}>
-              <UploadImage
-                key={index}
-                className={style.image}
-                type="product_image_supplier"
-                label="General photos of the product"
-                description="Product image"
-              />
-            </div>
+          {images.map((image, index) => (
+            <ImageContainer
+              key={index}
+              id={index}
+              image={image}
+              lastImage={images.length - 1 === index}
+              uploadImage={uploadImageHandler}
+              deleteImage={deleteImageHandler}
+            />
           ))}
         </div>
       </div>
