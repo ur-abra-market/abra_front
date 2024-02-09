@@ -11,11 +11,9 @@ import style from './TotalPrice.module.scss';
 export interface ITotalPrice {
   totalPrice: number;
   control: Control<any>;
-
   label: string;
   className?: string;
   disabled: boolean;
-
   priceName: string;
   discountName: string;
   totalName: string;
@@ -30,7 +28,7 @@ export const TotalPriceForm: FC<ITotalPrice> = ({
   priceName,
   discountName,
   totalName,
-  ...res
+  ...rest
 }): JSX.Element => {
   return (
     <div className={cn(style.total_price, className)}>
@@ -43,12 +41,13 @@ export const TotalPriceForm: FC<ITotalPrice> = ({
               return (
                 <Input
                   {...field}
-                  {...res}
+                  {...rest}
                   value={field.value || ''}
                   classNameWrapper={style.price_wrapper}
                   className={style.price_input}
                   disabled={disabled}
                   placeholder="0"
+                  type="number"
                 />
               );
             }}

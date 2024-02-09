@@ -18,7 +18,6 @@ interface ICommonInputPrice {
 export const DiscountInputPrice: FC<ICommonInputPrice> = ({
   control,
   placeholder,
-
   nameInput,
   disabled,
   valueVariation,
