@@ -1,14 +1,16 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
 import { ArrowIcon } from 'assets/icons';
+import { useAppDispatch } from 'common/hooks';
 import { Bundles } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Bundles/Bundles';
 import { MainProductInfo } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/MainProductInfo/MainProductInfo';
 import { Pricing } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Pricing/Pricing';
 import { ProductCategory } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ProductCategory/ProductCategory';
 import { Properties } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Properties/Properties';
 import { Variation } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Variation/Variation';
+import { getAllCategories } from 'store/reducers/commonSlice';
 import { Paragraph, Title } from 'ui-kit';
 
 import style from './NewProductForm.module.scss';
@@ -32,6 +34,7 @@ const ADD_PRODUCT_FORM_SECTIONS: { label: SectionLabel; component: FC }[] = [
 ];
 
 export const NewProductForm: FC = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const [openedFormSections, setOpenedFormSections] = useState<SectionLabel[]>([]);
 
   const handleSectionToggle = (label: SectionLabel): void => {
@@ -47,6 +50,10 @@ export const NewProductForm: FC = (): JSX.Element => {
       handleSectionToggle(label);
     }
   };
+
+  useEffect(() => {
+    dispatch(getAllCategories());
+  }, []);
 
   return (
     <div className={style.description_wrapper}>

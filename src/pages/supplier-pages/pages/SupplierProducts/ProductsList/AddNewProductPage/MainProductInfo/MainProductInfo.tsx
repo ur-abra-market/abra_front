@@ -1,141 +1,179 @@
-import { FC, useState, ChangeEvent } from 'react';
+import { FC, useState, useEffect, ChangeEvent } from 'react';
 
-import { Controller, useForm } from 'react-hook-form';
+import { IDBPDatabase } from 'idb';
+import { useForm } from 'react-hook-form';
 
 import { ImageContainer } from './components/ImageContainer/ImageContainer';
+import { convertImageToBase64 } from './helper/convertImageToBase64';
 
 import { useAppSelector } from 'common/hooks';
+import { ConfirmModalWindow } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ConfirmModalWindow/ConfirmModalWindow';
+import {
+  initDatabase,
+  TBaseFields,
+  updateFieldInDataBase,
+  UserDB,
+} from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/utils/indexedDB';
 import { Label, Input, Select } from 'ui-kit';
 
 import style from './MainProductInfo.module.scss';
 
-const imagePaths = ['', '', '', '', ''];
+interface IImages {
+  id: string;
+  image: string;
+}
 
 export const MainProductInfo: FC = (): JSX.Element => {
-  const { control } = useForm();
-  const [images, setImages] = useState<string[]>(imagePaths);
+  const { register, setValue } = useForm();
+
+  const [db, setDb] = useState<IDBPDatabase<UserDB> | null>(null);
+
   const categories = useAppSelector(state => state.common.categories);
   const brandNameData = categories ? categories.filter(c => c.level === 1) : [];
-  const [textareaValue, setTextareaValue] = useState<string>('');
 
-  const handleTextareaChange = (event: ChangeEvent<HTMLTextAreaElement>): void => {
-    setTextareaValue(event.target.value);
+  const [storeImages, setStoreImages] = useState<IImages[]>([]);
+  const [defaultValueSelect, setDefaultValueSelect] = useState('');
+  const [deleteImageId, setDeleteImageId] = useState<string>();
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const onChangeFormHandler = async (
+    event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | string | number,
+    formName: TBaseFields,
+  ): Promise<void> => {
+    if (db && typeof event !== 'string' && typeof event !== 'number') {
+      await updateFieldInDataBase(db, formName, event.target.value);
+    } else if (db) {
+      await updateFieldInDataBase(db, formName, String(event));
+    }
   };
 
-  function encodeImageFileAsURL(file: File): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
+  const uploadImageHandler = async (imageId: string, image: File): Promise<void> => {
+    const imageBase64 = await convertImageToBase64(image);
+    const images = storeImages.map(el =>
+      el.id === imageId ? { ...el, image: imageBase64 } : el,
+    );
 
-      reader.onloadend = function () {
-        resolve(reader.result as string);
-      };
+    setStoreImages(images);
 
-      reader.onerror = function () {
-        reject(reader.error);
-      };
-
-      reader.readAsDataURL(file);
-    });
-  }
-
-  // useEffect(() => {
-  //   const fetchImages = async (): Promise<void> => {
-  //     try {
-  //       const loadedImages = await Promise.all(
-  //         imagePaths.map(async path => {
-  //           const module = await import(`assets/images/files/${path}`);
-  //
-  //           return module.default;
-  //         }),
-  //       );
-  //
-  //       console.log(loadedImages);
-  //       setImages(loadedImages);
-  //     } catch (error) {
-  //       // eslint-disable-next-line no-console
-  //       console.error('Error loading images:', error);
-  //     }
-  //   };
-  //
-  //   fetchImages();
-  // }, []);
-
-  const uploadImageHandler = async (image: File): Promise<void> => {
-    const imageBase64 = await encodeImageFileAsURL(image);
-
-    setImages(prev => [...prev, imageBase64]);
+    if (db) {
+      await updateFieldInDataBase(db, 'images', images);
+    }
   };
 
-  const deleteImageHandler = (id: number): void => {
-    console.log('delete', id);
-    const newImages = images.filter(image => image !== images[id]);
+  const deleteImage = async (): Promise<void> => {
+    const newImages = storeImages.map(el =>
+      el.id === deleteImageId ? { ...el, image: '' } : el,
+    );
 
-    setImages(newImages);
+    setStoreImages(newImages);
+
+    if (db) {
+      await updateFieldInDataBase(db, 'images', newImages);
+    }
+    setModalOpen(false);
   };
+
+  const deleteImageHandler = (imageId: string): void => {
+    setModalOpen(true);
+    setDeleteImageId(imageId);
+  };
+
+  useEffect(() => {
+    const fetchDB = async (): Promise<void> => {
+      const database = await initDatabase();
+
+      const requestToDataBase = database.get('productDescription', 1);
+
+      try {
+        const result = await requestToDataBase;
+
+        if (result?.mainProductInfo) {
+          setStoreImages(result.mainProductInfo.images);
+          setValue('productName', result.mainProductInfo.productName);
+          setValue('description', result.mainProductInfo.description);
+          setDefaultValueSelect(result.mainProductInfo.brandName);
+        }
+      } catch {
+        return;
+      }
+
+      setDb(database);
+    };
+
+    fetchDB();
+  }, []);
 
   return (
     <form>
+      <ConfirmModalWindow
+        title="Are you sure delete image?"
+        isModalOpen={isModalOpen}
+        closeModalHandle={setModalOpen}
+        confirmModalHandle={deleteImage}
+      />
+
       <div className={style.main_info}>
         <Label label="Product name" htmlFor="productName">
-          <Controller
-            name="productName"
-            control={control}
-            render={({ field }) => (
-              <Input
-                {...field}
-                placeholder="Enter the product name"
-                className={style.main_product}
-              />
-            )}
+          <Input
+            {...register('productName')}
+            onChange={event => onChangeFormHandler(event, 'productName')}
+            placeholder="Enter the product name"
+            className={style.main_product}
           />
         </Label>
+
         <Label label="Description" htmlFor="description">
           <textarea
             className={style.description}
-            id="myTextarea"
-            value={textareaValue}
+            {...register('description')}
+            onChange={event => onChangeFormHandler(event, 'description')}
             placeholder="Enter description"
-            onChange={handleTextareaChange}
             rows={10}
             cols={10}
           />
         </Label>
 
         <Label label="Brand name" htmlFor="brandName">
-          <Controller
-            name="brandName"
-            control={control}
-            render={({ field }) => (
-              <div className={style.select_container}>
-                <Select
-                  {...field}
-                  placeholder="Select or enter brand name"
-                  className={style.main_select}
-                  options={brandNameData.map(el => ({
-                    value: el.id,
-                    label: { text: el.name },
-                  }))}
-                  onChange={value => {
-                    field.onChange(String(value.value));
-                  }}
-                />
-              </div>
-            )}
-          />
+          <div className={style.select_container}>
+            <Select
+              {...register('brandName')}
+              placeholder="Select or enter brand name"
+              className={style.main_select}
+              defaultValue={defaultValueSelect}
+              options={brandNameData.map(el => ({
+                value: el.name,
+                label: { text: el.name },
+              }))}
+              onChange={value => onChangeFormHandler(value.value, 'brandName')}
+            />
+          </div>
         </Label>
 
         <Label label="General photos of the product" htmlFor="photos" />
         <div className={style.container}>
-          {images.map((image, index) => (
-            <ImageContainer
-              key={index}
-              id={index}
-              image={image}
-              lastImage={images.length - 1 === index}
-              uploadImage={uploadImageHandler}
-              deleteImage={deleteImageHandler}
-            />
-          ))}
+          {storeImages
+            .filter(el => el.image.length > 0)
+            .map(el => (
+              <ImageContainer
+                key={el.id}
+                id={el.id}
+                image={el.image}
+                uploadImage={uploadImageHandler}
+                deleteImage={deleteImageHandler}
+              />
+            ))}
+
+          {storeImages
+            .filter(el => el.image.length === 0)
+            .map(el => (
+              <ImageContainer
+                key={el.id}
+                id={el.id}
+                image={el.image}
+                uploadImage={uploadImageHandler}
+                deleteImage={deleteImageHandler}
+              />
+            ))}
         </div>
       </div>
     </form>
