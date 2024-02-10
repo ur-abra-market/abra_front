@@ -4,9 +4,9 @@ import { IDBPDatabase } from 'idb';
 import { useForm } from 'react-hook-form';
 
 import { ImageContainer } from './components/ImageContainer/ImageContainer';
-import { convertImageToBase64 } from './helper/convertImageToBase64';
 
 import { useAppSelector } from 'common/hooks';
+import { convertImageToBase64 } from 'common/utils';
 import { ConfirmModalWindow } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ConfirmModalWindow/ConfirmModalWindow';
 import {
   initDatabase,
