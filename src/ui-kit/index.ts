@@ -22,3 +22,4 @@ export { ProductVariation } from './product-params/ProductVariation/ProductVaria
 export { ProductColor } from './product-params/ProductColor/ProductColor';
 export { ProductColorPickable } from './product-params/ProductColorPickable/ProductColorPickable';
 export { BreadCrumbs } from './BreadCrumbs/BreadCrumbs';
+export { CategoryDropdown } from './CategoryDropdown/CategoryDropdown';
