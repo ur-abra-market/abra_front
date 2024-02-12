@@ -1,5 +1,12 @@
 import { DBSchema, IDBPDatabase, openDB } from 'idb';
 
+export enum EBaseFields {
+  ProductName = 'productName',
+  Description = 'description',
+  BrandName = 'brandName',
+  Images = 'images',
+}
+
 export type TBaseFields = 'productName' | 'description' | 'brandName' | 'images';
 
 export interface IImages {
@@ -58,7 +65,7 @@ export const initDatabase = async (): Promise<IDBPDatabase<UserDB>> => {
 
 export const updateFieldInDataBase = async (
   db: IDBPDatabase<UserDB>,
-  fieldToUpdate: keyof IMainProductInfo,
+  fieldToUpdate: EBaseFields,
   newValue: string | IImages[],
 ): Promise<void> => {
   const tx = db.transaction('productDescription', 'readwrite');

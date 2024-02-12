@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, ChangeEvent } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import { IDBPDatabase } from 'idb';
 import { useForm } from 'react-hook-form';
@@ -9,12 +9,12 @@ import { useAppSelector } from 'common/hooks';
 import { convertImageToBase64 } from 'common/utils';
 import { ConfirmModalWindow } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ConfirmModalWindow/ConfirmModalWindow';
 import {
+  EBaseFields,
   initDatabase,
-  TBaseFields,
   updateFieldInDataBase,
   UserDB,
 } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/utils/indexedDB';
-import { Label, Input, Select } from 'ui-kit';
+import { Input, Label, Select } from 'ui-kit';
 
 import style from './MainProductInfo.module.scss';
 
@@ -38,7 +38,7 @@ export const MainProductInfo: FC = (): JSX.Element => {
 
   const onChangeFormHandler = async (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | string | number,
-    formName: TBaseFields,
+    formName: EBaseFields,
   ): Promise<void> => {
     if (db && typeof event !== 'string' && typeof event !== 'number') {
       await updateFieldInDataBase(db, formName, event.target.value);
@@ -56,7 +56,7 @@ export const MainProductInfo: FC = (): JSX.Element => {
     setStoreImages(images);
 
     if (db) {
-      await updateFieldInDataBase(db, 'images', images);
+      await updateFieldInDataBase(db, EBaseFields.Images, images);
     }
   };
 
@@ -68,7 +68,7 @@ export const MainProductInfo: FC = (): JSX.Element => {
     setStoreImages(newImages);
 
     if (db) {
-      await updateFieldInDataBase(db, 'images', newImages);
+      await updateFieldInDataBase(db, EBaseFields.Images, newImages);
     }
     setModalOpen(false);
   };
@@ -116,7 +116,7 @@ export const MainProductInfo: FC = (): JSX.Element => {
         <Label label="Product name" htmlFor="productName">
           <Input
             {...register('productName')}
-            onChange={event => onChangeFormHandler(event, 'productName')}
+            onChange={event => onChangeFormHandler(event, EBaseFields.ProductName)}
             placeholder="Enter the product name"
             className={style.main_product}
           />
@@ -126,7 +126,7 @@ export const MainProductInfo: FC = (): JSX.Element => {
           <textarea
             className={style.description}
             {...register('description')}
-            onChange={event => onChangeFormHandler(event, 'description')}
+            onChange={event => onChangeFormHandler(event, EBaseFields.Description)}
             placeholder="Enter description"
             rows={10}
             cols={10}
@@ -144,7 +144,7 @@ export const MainProductInfo: FC = (): JSX.Element => {
                 value: el.name,
                 label: { text: el.name },
               }))}
-              onChange={value => onChangeFormHandler(value.value, 'brandName')}
+              onChange={value => onChangeFormHandler(value.value, EBaseFields.BrandName)}
             />
           </div>
         </Label>
