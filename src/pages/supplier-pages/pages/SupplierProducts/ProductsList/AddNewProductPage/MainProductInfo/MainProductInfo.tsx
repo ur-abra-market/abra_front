@@ -106,7 +106,7 @@ export const MainProductInfo: FC = (): JSX.Element => {
   return (
     <form>
       <ConfirmModalWindow
-        title="Are you sure delete image?"
+        title="Do you sure you want to delete this photo?"
         isModalOpen={isModalOpen}
         closeModalHandle={setModalOpen}
         confirmModalHandle={deleteImage}

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { CrossRedIcon } from 'assets/icons';
 import Modal from 'elements/Modal';
-import { Button, Title } from 'ui-kit';
+import { Button, Paragraph } from 'ui-kit';
 
 import style from './ConfirmModalWindow.module.scss';
 
@@ -21,19 +21,30 @@ export const ConfirmModalWindow: FC<IConfirmWindow> = ({
 }): JSX.Element => {
   return (
     <Modal showModal={isModalOpen} closeModal={closeModalHandle}>
-      <div className={style.modal_confirm}>
-        <Title>{title}</Title>
-        <div className={style.button_wrapper}>
-          <Button onClick={confirmModalHandle}>Yes</Button>
-          <Button onClick={() => closeModalHandle(false)}>No</Button>
+      <div className={style.modal_confirm_wrapper}>
+        <div className={style.header_confirm}>
+          <Paragraph size="m" weight="regular">
+            {title}
+          </Paragraph>
+
+          <button
+            type="button"
+            className={style.cross}
+            onClick={() => closeModalHandle(false)}
+          >
+            <CrossRedIcon />
+          </button>
         </div>
-        <button
-          type="button"
-          className={style.cross}
-          onClick={() => closeModalHandle(false)}
-        >
-          <CrossRedIcon />
-        </button>
+
+        <div className={style.button_wrapper}>
+          <Button className={style.button_cancel} onClick={() => closeModalHandle(false)}>
+            Cancel
+          </Button>
+
+          <Button className={style.button_delete} onClick={confirmModalHandle}>
+            Delete
+          </Button>
+        </div>
       </div>
     </Modal>
   );
