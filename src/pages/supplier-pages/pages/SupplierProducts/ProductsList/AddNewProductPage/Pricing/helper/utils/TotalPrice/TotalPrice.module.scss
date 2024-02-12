@@ -1,0 +1,20 @@
+@import '/src/pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Pricing/helper/style/mixin';
+
+@include item();
+
+.total_price {
+  display: flex;
+  gap: 16px;
+}
+
+.discount_total_wrapper {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .total_price {
+    flex-wrap: wrap;
+  }
+}

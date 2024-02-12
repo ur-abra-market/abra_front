@@ -1,0 +1,1 @@
+export { TotalPriceForm } from './TotalPriceForm';
