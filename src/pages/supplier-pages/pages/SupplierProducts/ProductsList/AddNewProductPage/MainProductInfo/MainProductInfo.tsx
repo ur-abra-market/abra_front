@@ -9,7 +9,8 @@ import { useAppSelector } from 'common/hooks';
 import { convertImageToBase64 } from 'common/utils';
 import { ConfirmModalWindow } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ConfirmModalWindow/ConfirmModalWindow';
 import {
-  EBaseFields,
+  FIELDS_NEW_PRODUCT_INFO,
+  IImages,
   initDatabase,
   updateFieldInDataBase,
   UserDB,
@@ -17,11 +18,6 @@ import {
 import { Input, Label, Select } from 'ui-kit';
 
 import style from './MainProductInfo.module.scss';
-
-interface IImages {
-  id: string;
-  image: string;
-}
 
 export const MainProductInfo: FC = (): JSX.Element => {
   const { register, setValue } = useForm();
@@ -33,12 +29,12 @@ export const MainProductInfo: FC = (): JSX.Element => {
 
   const [storeImages, setStoreImages] = useState<IImages[]>([]);
   const [defaultValueSelect, setDefaultValueSelect] = useState('');
-  const [deleteImageId, setDeleteImageId] = useState<string>();
+  const [deleteImageByID, setDeleteImageByID] = useState<string>();
   const [isModalOpen, setModalOpen] = useState(false);
 
   const onChangeFormHandler = async (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | string | number,
-    formName: EBaseFields,
+    formName: FIELDS_NEW_PRODUCT_INFO,
   ): Promise<void> => {
     if (db && typeof event !== 'string' && typeof event !== 'number') {
       await updateFieldInDataBase(db, formName, event.target.value);
@@ -56,26 +52,26 @@ export const MainProductInfo: FC = (): JSX.Element => {
     setStoreImages(images);
 
     if (db) {
-      await updateFieldInDataBase(db, EBaseFields.Images, images);
+      await updateFieldInDataBase(db, FIELDS_NEW_PRODUCT_INFO.Images, images);
     }
   };
 
   const deleteImage = async (): Promise<void> => {
     const newImages = storeImages.map(el =>
-      el.id === deleteImageId ? { ...el, image: '' } : el,
+      el.id === deleteImageByID ? { ...el, image: '' } : el,
     );
 
     setStoreImages(newImages);
 
     if (db) {
-      await updateFieldInDataBase(db, EBaseFields.Images, newImages);
+      await updateFieldInDataBase(db, FIELDS_NEW_PRODUCT_INFO.Images, newImages);
     }
     setModalOpen(false);
   };
 
   const deleteImageHandler = (imageId: string): void => {
     setModalOpen(true);
-    setDeleteImageId(imageId);
+    setDeleteImageByID(imageId);
   };
 
   useEffect(() => {
@@ -116,7 +112,9 @@ export const MainProductInfo: FC = (): JSX.Element => {
         <Label label="Product name" htmlFor="productName">
           <Input
             {...register('productName')}
-            onChange={event => onChangeFormHandler(event, EBaseFields.ProductName)}
+            onChange={event =>
+              onChangeFormHandler(event, FIELDS_NEW_PRODUCT_INFO.ProductName)
+            }
             placeholder="Enter the product name"
             className={style.main_product}
           />
@@ -126,7 +124,9 @@ export const MainProductInfo: FC = (): JSX.Element => {
           <textarea
             className={style.description}
             {...register('description')}
-            onChange={event => onChangeFormHandler(event, EBaseFields.Description)}
+            onChange={event =>
+              onChangeFormHandler(event, FIELDS_NEW_PRODUCT_INFO.Description)
+            }
             placeholder="Enter description"
             rows={10}
             cols={10}
@@ -144,7 +144,9 @@ export const MainProductInfo: FC = (): JSX.Element => {
                 value: el.name,
                 label: { text: el.name },
               }))}
-              onChange={value => onChangeFormHandler(value.value, EBaseFields.BrandName)}
+              onChange={value =>
+                onChangeFormHandler(value.value, FIELDS_NEW_PRODUCT_INFO.BrandName)
+              }
             />
           </div>
         </Label>
