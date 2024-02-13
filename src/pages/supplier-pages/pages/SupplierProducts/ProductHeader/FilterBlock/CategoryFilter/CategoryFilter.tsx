@@ -50,7 +50,7 @@ export const CategoryFilter = (): JSX.Element => {
   return (
     <div className={style.filter}>
       <Title className={style.filter_name}>Choose categories</Title>
-      <CategoryDropdown category={categories} />
+      <CategoryDropdown />
     </div>
   );
 };

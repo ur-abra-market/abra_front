@@ -3,28 +3,31 @@ import React, { FC, JSX, useState } from 'react';
 import cn from 'classnames';
 
 import { ArrowIcon } from 'assets/icons';
-import { useOnClickOutside } from 'common/hooks';
+import { useAppSelector, useOnClickOutside } from 'common/hooks';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
 import { Button, Checkbox } from 'ui-kit';
 
 import style from './CategoryDropdown.module.scss';
 
-interface ICategoryDropDown {
-  category: ICategoryResponse[];
-}
-
-export const CategoryDropdown: FC<ICategoryDropDown> = ({ category }): JSX.Element => {
+export const CategoryDropdown: FC = (): JSX.Element => {
+  const categories = useAppSelector(state => state.common.categories);
   const [isActive, setIsActive] = useState(false);
   const [selected, setIsSelected] = useState<
-    { id: number | null; name: string; parent?: boolean }[]
+    { id: number | null; name: string; parentId?: number | null }[]
   >([]);
   const refObj = useOnClickOutside(setIsActive, isActive);
-  const handleCategory = (id: number | null, name: string): void => {
-    const category = selected.find(el => el.id === id);
+  const handleCategory = (
+    id: number | null,
+    name: string,
+    parentId: number | null,
+  ): void => {
+    const categories = selected.find(el => el.id === id);
 
-    if (category && selected.includes(category)) {
+    if (name === '') {
+      setIsSelected(selected.filter(el => el.parentId !== parentId));
+    } else if (categories && selected.includes(categories)) {
       setIsSelected(selected.filter(el => el.id !== id));
-    } else setIsSelected([...selected, { id, name }]);
+    } else setIsSelected([...selected, { id, name, parentId }]);
   };
 
   return (
@@ -58,7 +61,7 @@ export const CategoryDropdown: FC<ICategoryDropDown> = ({ category }): JSX.Eleme
         className={style.dropdown_content}
         style={{ display: isActive ? 'block' : 'none' }}
       >
-        {category.map(el => (
+        {categories.map(el => (
           <List handleSelectedCategory={handleCategory} key={el.id} category={el} />
         ))}
       </div>
@@ -67,18 +70,25 @@ export const CategoryDropdown: FC<ICategoryDropDown> = ({ category }): JSX.Eleme
 };
 interface IList {
   category: ICategoryResponse;
-  handleSelectedCategory: (id: number | null, name: string) => void;
+  handleSelectedCategory: (
+    id: number | null,
+    name: string,
+    parentId: number | null,
+  ) => void;
 }
 const List: FC<IList> = ({ category, handleSelectedCategory }): JSX.Element => {
   const [isChecked, setIsChecked] = useState(false);
   const isLastCategory = !category.children || category.children.length === 0;
 
   const handleCateg = (): void => {
-    if (isLastCategory) handleSelectedCategory(category.id, category.name);
+    if (category.children && category.parent_id && isChecked) {
+      handleSelectedCategory(null, '', category.id);
+    }
+    if (isLastCategory) {
+      handleSelectedCategory(category.id, category.name, category.parent_id!);
+    }
     setIsChecked(!isChecked);
   };
-
-  console.log(isLastCategory);
 
   return (
     <div className={style.item}>
@@ -86,17 +96,18 @@ const List: FC<IList> = ({ category, handleSelectedCategory }): JSX.Element => {
         style={{ paddingLeft: category.parent_id ? '32px' : '0' }}
         className={style.sss}
       >
-        {!isLastCategory && (
+        {!isLastCategory ? (
           <ArrowIcon className={cn({ [style.arrow_up]: isChecked })} width="14" />
+        ) : (
+          <Checkbox
+            className={cn(style.checkbox, {
+              [style.last_checkbox]: isLastCategory,
+            })}
+            variant="default"
+            checked={isChecked}
+            onChange={handleCateg}
+          />
         )}
-        <Checkbox
-          className={cn(style.checkbox, {
-            [style.last_checkbox]: isLastCategory,
-          })}
-          variant="default"
-          checked={isChecked}
-          onChange={handleCateg}
-        />
         <div
           className={style.titles}
           role="button"
