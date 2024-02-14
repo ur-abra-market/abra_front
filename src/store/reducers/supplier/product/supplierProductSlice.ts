@@ -1,7 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { selectedProducts, unselectedProducts, getSupplierProducts } from './thunks';
-import { IProductsListResponse, ISupplierProductSliceInitialState } from './types';
+import {
+  selectedProducts,
+  unselectedProducts,
+  getSupplierProducts,
+  getBrandsInfo,
+} from './thunks';
+import {
+  IBrandsInfo,
+  IProductsListResponse,
+  ISupplierProductSliceInitialState,
+} from './types';
 
 const initialState: ISupplierProductSliceInitialState = {
   products: [],
@@ -9,6 +18,7 @@ const initialState: ISupplierProductSliceInitialState = {
   isLoading: false,
   unselectedProductIds: [],
   selectedProductIds: [],
+  brandsInfo: [],
   selectAllProducts: false,
   hasChanged: false,
 };
@@ -121,6 +131,9 @@ const supplierProductSlice = createSlice({
         state.selectedProductIds = [];
         state.hasChanged = !state.hasChanged;
         state.selectAllProducts = false;
+      })
+      .addCase(getBrandsInfo.fulfilled, (state, action: PayloadAction<IBrandsInfo[]>) => {
+        state.brandsInfo = action.payload;
       });
   },
 });

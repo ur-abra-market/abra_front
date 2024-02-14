@@ -6,8 +6,10 @@ import {
   IProductsListResponse,
   IProductFilterParams,
   IProductRequestParams,
+  IBrandsInfo,
 } from './types';
 
+import { IAsyncThunkConfig } from 'common/types';
 import { productService } from 'services/product/product.service';
 
 export const selectedProducts = createAsyncThunk<boolean, number[]>(
@@ -74,6 +76,21 @@ export const getSupplierProducts = createAsyncThunk<
       }
 
       return rejectWithValue('[manageProductsService]: ERROR');
+    }
+  },
+);
+
+export const getBrandsInfo = createAsyncThunk<any, IBrandsInfo[]>(
+  'product/getBrandsInfo',
+  async (_, { rejectWithValue }) => {
+    try {
+      return await productService.getBrandsInfo();
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[getBrandsInfo]: Error');
     }
   },
 );

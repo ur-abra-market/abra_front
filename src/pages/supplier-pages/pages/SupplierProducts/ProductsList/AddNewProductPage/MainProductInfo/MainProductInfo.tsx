@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { ImageContainer } from './components/ImageContainer/ImageContainer';
 
-import { useAppSelector } from 'common/hooks';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { convertImageToBase64 } from 'common/utils';
 import { ConfirmModalWindow } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ConfirmModalWindow/ConfirmModalWindow';
 import {
@@ -15,18 +15,16 @@ import {
   updateFieldInDataBase,
   UserDB,
 } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/utils/indexedDB';
+import { getBrandsInfo } from 'store/reducers/supplier/product/thunks';
 import { Input, Label, Select } from 'ui-kit';
 
 import style from './MainProductInfo.module.scss';
 
 export const MainProductInfo: FC = (): JSX.Element => {
+  const dispatch = useAppDispatch();
   const { register, setValue } = useForm();
-
   const [db, setDb] = useState<IDBPDatabase<UserDB> | null>(null);
-
-  const categories = useAppSelector(state => state.common.categories);
-  const brandNameData = categories ? categories.filter(c => c.level === 1) : [];
-
+  const brandsNames = useAppSelector(state => state.supplierProduct.brandsInfo);
   const [storeImages, setStoreImages] = useState<IImages[]>([]);
   const [defaultValueSelect, setDefaultValueSelect] = useState('');
   const [deleteImageByID, setDeleteImageByID] = useState<string>();
@@ -75,6 +73,8 @@ export const MainProductInfo: FC = (): JSX.Element => {
   };
 
   useEffect(() => {
+    dispatch(getBrandsInfo([]));
+
     const fetchDB = async (): Promise<void> => {
       const database = await initDatabase();
 
@@ -137,10 +137,10 @@ export const MainProductInfo: FC = (): JSX.Element => {
           <div className={style.select_container}>
             <Select
               {...register('brandName')}
-              placeholder="Select or enter brand name"
+              placeholder="Select brand name"
               className={style.main_select}
               defaultValue={defaultValueSelect}
-              options={brandNameData.map(el => ({
+              options={brandsNames.map(el => ({
                 value: el.name,
                 label: { text: el.name },
               }))}

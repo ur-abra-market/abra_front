@@ -34,7 +34,6 @@ const ADD_PRODUCT_FORM_SECTIONS: { label: SectionLabel; component: FC }[] = [
 ];
 
 export const NewProductForm: FC = (): JSX.Element => {
-  const dispatch = useAppDispatch();
   const [openedFormSections, setOpenedFormSections] = useState<SectionLabel[]>([]);
 
   const handleSectionToggle = (label: SectionLabel): void => {
@@ -50,10 +49,6 @@ export const NewProductForm: FC = (): JSX.Element => {
       handleSectionToggle(label);
     }
   };
-
-  useEffect(() => {
-    dispatch(getAllCategories());
-  }, []);
 
   return (
     <div className={style.description_wrapper}>
