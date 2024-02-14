@@ -4,7 +4,7 @@ import { CrossRedIcon } from 'assets/icons';
 import Modal from 'elements/Modal';
 import { Button, Paragraph } from 'ui-kit';
 
-import style from './ConfirmModalWindow.module.scss';
+import style from './ConfirmModal.module.scss';
 
 interface IConfirmWindow {
   title: string;
@@ -13,7 +13,7 @@ interface IConfirmWindow {
   confirmModalHandle: () => void;
 }
 
-export const ConfirmModalWindow: FC<IConfirmWindow> = ({
+export const ConfirmModal: FC<IConfirmWindow> = ({
   title,
   isModalOpen,
   closeModalHandle,

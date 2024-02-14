@@ -7,14 +7,15 @@ import { ImageContainer } from './components/ImageContainer/ImageContainer';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { convertImageToBase64 } from 'common/utils';
-import { ConfirmModalWindow } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ConfirmModalWindow/ConfirmModalWindow';
+import { ConfirmModal } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ConfirmModal/ConfirmModal';
 import {
   FIELDS_NEW_PRODUCT_INFO,
   IImages,
-  initDatabase,
+  initDataBase,
   updateFieldInDataBase,
   UserDB,
 } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/utils/indexedDB';
+import { brandsInfoSelector } from 'store/reducers/supplier/product';
 import { getBrandsInfo } from 'store/reducers/supplier/product/thunks';
 import { Input, Label, Select } from 'ui-kit';
 
@@ -24,7 +25,7 @@ export const MainProductInfo: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { register, setValue } = useForm();
   const [db, setDb] = useState<IDBPDatabase<UserDB> | null>(null);
-  const brandsNames = useAppSelector(state => state.supplierProduct.brandsInfo);
+  const brandsNames = useAppSelector(brandsInfoSelector);
   const [storeImages, setStoreImages] = useState<IImages[]>([]);
   const [defaultValueSelect, setDefaultValueSelect] = useState('');
   const [deleteImageByID, setDeleteImageByID] = useState<string>();
@@ -75,10 +76,10 @@ export const MainProductInfo: FC = (): JSX.Element => {
   useEffect(() => {
     dispatch(getBrandsInfo([]));
 
-    const fetchDB = async (): Promise<void> => {
-      const database = await initDatabase();
+    const fetchDataBase = async (): Promise<void> => {
+      const dataBase = await initDataBase();
 
-      const requestToDataBase = database.get('productDescription', 1);
+      const requestToDataBase = dataBase.get('productDescription', 1);
 
       try {
         const result = await requestToDataBase;
@@ -93,15 +94,15 @@ export const MainProductInfo: FC = (): JSX.Element => {
         return;
       }
 
-      setDb(database);
+      setDb(dataBase);
     };
 
-    fetchDB();
+    fetchDataBase();
   }, []);
 
   return (
     <form>
-      <ConfirmModalWindow
+      <ConfirmModal
         title="Do you sure you want to delete this photo?"
         isModalOpen={isModalOpen}
         closeModalHandle={setModalOpen}

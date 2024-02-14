@@ -28,7 +28,7 @@ export interface UserDB extends DBSchema {
   };
 }
 
-export const initDatabase = async (): Promise<IDBPDatabase<UserDB>> => {
+export const initDataBase = async (): Promise<IDBPDatabase<UserDB>> => {
   const db = await openDB<UserDB>('productDescriptionDataBase', 1, {
     upgrade(db) {
       db.createObjectStore('productDescription', {
@@ -69,8 +69,9 @@ export const updateFieldInDataBase = async (
   const tx = db.transaction('productDescription', 'readwrite');
   const store = tx.objectStore('productDescription');
 
+  // Get the product object from the database
   try {
-    const request = await store.get(1); // Get the product object from the database
+    const request = await store.get(1);
 
     if (!request) {
       return;
@@ -84,8 +85,8 @@ export const updateFieldInDataBase = async (
     } else {
       product[fieldToUpdate] = newValue as string;
     }
-
-    await store.put({ mainProductInfo: product }, 1); // Update the product object in the store
+    // Update the product object in the store
+    await store.put({ mainProductInfo: product }, 1);
   } catch (error) {
     return;
   }
