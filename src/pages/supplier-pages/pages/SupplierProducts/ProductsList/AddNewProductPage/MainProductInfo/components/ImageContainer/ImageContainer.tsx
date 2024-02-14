@@ -4,14 +4,14 @@ import { UploadImage } from 'elements';
 
 import style from './ImageContainer.module.scss';
 
-interface IImage {
+interface IImageContainer {
   id?: string;
   image?: string;
   uploadImage: (id: string, image: File) => void;
   deleteImage?: (id: string) => void;
 }
 
-export const ImageContainer: FC<IImage> = ({
+export const ImageContainer: FC<IImageContainer> = ({
   id,
   image,
   uploadImage,
