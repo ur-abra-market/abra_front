@@ -4,6 +4,7 @@ import cn from 'classnames';
 
 import { ArrowIcon } from 'assets/icons';
 import { useAppSelector, useOnClickOutside } from 'common/hooks';
+import { CategoryList } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ProductCategory/CategoryList/CategoryList';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
 import { Button, Checkbox } from 'ui-kit';
 
@@ -11,23 +12,29 @@ import style from './CategoryDropdown.module.scss';
 
 export const CategoryDropdown: FC = (): JSX.Element => {
   const categories = useAppSelector(state => state.common.categories);
-  const [isActive, setIsActive] = useState(false);
-  const [selected, setIsSelected] = useState<
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedCategories, setIsSelectedCategories] = useState<
     { id: number | null; name: string; parentId?: number | null }[]
   >([]);
-  const refObj = useOnClickOutside(setIsActive, isActive);
-  const handleCategory = (
+  const emptyCategory = selectedCategories.length === 0;
+  const categoriesName = selectedCategories.map(el => el.name);
+  const refDropdown = useOnClickOutside(setIsOpen);
+  const handleChangeCategory = (
     id: number | null,
     name: string,
     parentId: number | null,
   ): void => {
-    const categories = selected.find(el => el.id === id);
+    const existingCategory = selectedCategories.find(category => category.id === id);
 
-    if (name === '') {
-      setIsSelected(selected.filter(el => el.parentId !== parentId));
-    } else if (categories && selected.includes(categories)) {
-      setIsSelected(selected.filter(el => el.id !== id));
-    } else setIsSelected([...selected, { id, name, parentId }]);
+    if (id === null && name === '') {
+      setIsSelectedCategories(
+        selectedCategories.filter(category => category.parentId !== parentId),
+      );
+    } else if (existingCategory && selectedCategories.includes(existingCategory)) {
+      setIsSelectedCategories(selectedCategories.filter(category => category.id !== id));
+    } else {
+      setIsSelectedCategories([...selectedCategories, { id, name, parentId }]);
+    }
   };
 
   return (
@@ -36,33 +43,29 @@ export const CategoryDropdown: FC = (): JSX.Element => {
         color="white"
         className={style.dropdown_btn}
         onClick={e => {
-          setIsActive(!isActive);
+          setIsOpen(!isOpen);
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
-          <span className={style.filter_name}>{`${
-            selected.length === 0 ? 'All' : selected.map(el => el.name)
-          }${selected.length - 1 === selected.length ? ', ' : ''} `}</span>
-          <ArrowIcon
-            style={{ minWidth: '14px' }}
-            className={cn({ [style.arrow_up]: isActive })}
-            width="14"
-          />
-        </div>
+        <span className={style.filter_name}>{`${emptyCategory ? 'All' : categoriesName}${
+          selectedCategories.length - 1 === selectedCategories.length ? ', ' : ''
+        } `}</span>
+        <ArrowIcon
+          style={{ minWidth: '14px' }}
+          className={cn({ [style.arrow_up]: isOpen })}
+          width="14"
+        />
       </Button>
       <div
-        ref={refObj}
+        ref={refDropdown}
         className={style.dropdown_content}
-        style={{ display: isActive ? 'block' : 'none' }}
+        style={{ display: isOpen ? 'block' : 'none' }}
       >
-        {categories.map(el => (
-          <List handleSelectedCategory={handleCategory} key={el.id} category={el} />
+        {categories.map(category => (
+          <List
+            handleSelectedCategory={handleChangeCategory}
+            key={category.id}
+            category={category}
+          />
         ))}
       </div>
     </div>
@@ -79,9 +82,10 @@ interface IList {
 const List: FC<IList> = ({ category, handleSelectedCategory }): JSX.Element => {
   const [isChecked, setIsChecked] = useState(false);
   const isLastCategory = !category.children || category.children.length === 0;
+  const isParentCategory = category.children && category.parent_id;
 
-  const handleCateg = (): void => {
-    if (category.children && category.parent_id && isChecked) {
+  const handleCategory = (): void => {
+    if (isParentCategory && isChecked) {
       handleSelectedCategory(null, '', category.id);
     }
     if (isLastCategory) {
@@ -91,9 +95,9 @@ const List: FC<IList> = ({ category, handleSelectedCategory }): JSX.Element => {
   };
 
   return (
-    <div className={style.item}>
+    <>
       <div
-        style={{ paddingLeft: category.parent_id ? '32px' : '0' }}
+        style={{ paddingLeft: category.parent_id ? '22px' : '0' }}
         className={style.sss}
       >
         {!isLastCategory ? (
@@ -105,7 +109,7 @@ const List: FC<IList> = ({ category, handleSelectedCategory }): JSX.Element => {
             })}
             variant="default"
             checked={isChecked}
-            onChange={handleCateg}
+            onChange={handleCategory}
           />
         )}
         <div
@@ -113,7 +117,7 @@ const List: FC<IList> = ({ category, handleSelectedCategory }): JSX.Element => {
           role="button"
           tabIndex={0}
           onKeyDown={() => {}}
-          onClick={handleCateg}
+          onClick={handleCategory}
         >
           {category.name}
         </div>
@@ -128,6 +132,6 @@ const List: FC<IList> = ({ category, handleSelectedCategory }): JSX.Element => {
             category={el}
           />
         ))}
-    </div>
+    </>
   );
 };
