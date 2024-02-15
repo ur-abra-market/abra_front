@@ -40,13 +40,13 @@ export const updatePersonalInfo = createAsyncThunk<any, any>(
   },
 );
 
-export const getFavoritesProductsService = createAsyncThunk<[], IFavoriteRequest>(
+export const getFavoritesProductsService = createAsyncThunk<any, IFavoriteRequest>(
   'user/getFavoritesProductsService',
   async (payload, { rejectWithValue }) => {
     try {
       const data = await userService.getFavoritesProducts(payload);
 
-      return data.result;
+      return data;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
