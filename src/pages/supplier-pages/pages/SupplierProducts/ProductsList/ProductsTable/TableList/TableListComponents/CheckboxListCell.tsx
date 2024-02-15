@@ -2,11 +2,11 @@ import { ChangeEvent, FC } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import {
-  activeProductSelector,
-  deactivatedProductSelector,
+  selectedProductSelector,
+  unselectedProductSelector,
   isLoadingSelector,
-  selectActiveProduct,
-  selectDeactivatedProduct,
+  selectSelectedProduct,
+  selectUnselectedProduct,
 } from 'store/reducers/supplier/product';
 import { Checkbox } from 'ui-kit';
 
@@ -16,8 +16,8 @@ interface ICheckboxCell {
 }
 
 export const CheckboxListCell: FC<ICheckboxCell> = ({ id, status }) => {
-  const activeProduct = useAppSelector(activeProductSelector);
-  const deactivatedProduct = useAppSelector(deactivatedProductSelector);
+  const selectedProduct = useAppSelector(selectedProductSelector);
+  const unselectedProduct = useAppSelector(unselectedProductSelector);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(isLoadingSelector);
 
@@ -27,12 +27,12 @@ export const CheckboxListCell: FC<ICheckboxCell> = ({ id, status }) => {
     status: boolean,
   ): void => {
     if (status) {
-      dispatch(selectActiveProduct(id));
+      dispatch(selectSelectedProduct(id));
     } else {
-      dispatch(selectDeactivatedProduct(id));
+      dispatch(selectUnselectedProduct(id));
     }
   };
-  const checked = activeProduct.includes(id) || deactivatedProduct.includes(id);
+  const checked = selectedProduct.includes(id) || unselectedProduct.includes(id);
 
   return (
     <Checkbox

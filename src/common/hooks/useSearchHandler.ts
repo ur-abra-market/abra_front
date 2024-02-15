@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, KeyboardEvent } from 'react';
+import { ChangeEvent, useState, KeyboardEvent, useEffect } from 'react';
 
 import {
   createSearchParams,
@@ -7,8 +7,11 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 
+import { useAppDispatch } from './useAppDispatch';
+
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { PRODUCTS, PRODUCTS_LIST } from 'routes';
+import { setSearchValue } from 'store/reducers/searchSlice';
 
 interface ISearchHandlerReturnType {
   searchValue: string;
@@ -18,16 +21,20 @@ interface ISearchHandlerReturnType {
 export const useSearchHandler = (
   mainSearchField: boolean = false,
 ): ISearchHandlerReturnType => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query');
   const role = useAppSelector(state => state.auth.userRole);
+  const searchValue = useAppSelector(state => state.search.searchValue);
 
-  const [searchValue, setSearchValue] = useState(mainSearchField ? query || '' : '');
+  useEffect(() => {
+    dispatch(setSearchValue(mainSearchField ? query || '' : ''));
+  }, []);
 
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>): void => {
-    setSearchValue(e.target.value);
+    dispatch(setSearchValue(e.target.value));
   };
 
   const roleURL = (role: string | null): string => {

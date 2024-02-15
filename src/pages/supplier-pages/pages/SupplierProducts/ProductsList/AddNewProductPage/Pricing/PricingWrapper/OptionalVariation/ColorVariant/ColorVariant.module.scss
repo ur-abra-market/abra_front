@@ -1,0 +1,14 @@
+.list_items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+
+  margin-bottom: 24px;
+}
+
+.label_text {
+  padding-bottom: 8px;
+  font-size: var(--fz-xs-2);
+  color: var(--color-gray-medium);
+}

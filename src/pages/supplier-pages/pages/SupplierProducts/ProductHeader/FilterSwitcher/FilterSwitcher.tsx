@@ -6,6 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { deleteUrlSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/deleteUrlSearchParams';
+import { clearSearchValue } from 'store/reducers/searchSlice';
 import {
   isLoadingSelector,
   resetProductStatusSelection,
@@ -35,6 +36,7 @@ export const FilterSwitcher: FC<IHeaderSearch> = ({
   const onResetFiltersHandler = (): void => {
     deleteUrlSearchParams(searchParams, setSearchParams);
     dispatch(resetProductStatusSelection());
+    dispatch(clearSearchValue());
   };
 
   const iconClasses = cn({

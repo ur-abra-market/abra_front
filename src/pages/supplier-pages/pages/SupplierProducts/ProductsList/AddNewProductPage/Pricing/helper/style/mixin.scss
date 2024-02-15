@@ -1,0 +1,25 @@
+@mixin item {
+  .price_item {
+    position: relative;
+  }
+
+  .price_wrapper {
+    width: 100%;
+  }
+
+  .price_input {
+    width: 100%;
+    padding-right: 35px;
+  }
+
+  .currency_value {
+    position: absolute;
+    top: 16px;
+    right: 12px;
+    color: var(--color-gray);
+  }
+
+  .currency_value_active {
+    color: var(--color-black);
+  }
+}

@@ -1,15 +1,15 @@
 export {
-  deactivatedProductSelector,
+  unselectedProductSelector,
   selectAllProductsSelector,
   sortedProductSelector,
   productsSelector,
   hasChangedSelector,
   isLoadingSelector,
   totalCountSelector,
-  activeProductSelector,
+  selectedProductSelector,
 } from './selectors';
 
-export { activateProducts, deActivateProducts, getSupplierProducts } from './thunks';
+export { selectedProducts, unselectedProducts, getSupplierProducts } from './thunks';
 
 export type {
   IProductsListResponse,
@@ -26,7 +26,7 @@ export {
   selectAllProducts,
   hasPageChanged,
   supplierProductReducer,
-  selectActiveProduct,
-  selectDeactivatedProduct,
+  selectSelectedProduct,
+  selectUnselectedProduct,
   resetProductStatusSelection,
 } from './supplierProductSlice';

@@ -8,10 +8,10 @@ import { shouldShowInActiveEdit } from 'pages/supplier-pages/pages/SupplierProdu
 import { productEditorData } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/tableData';
 import { ADD_PRODUCT } from 'routes';
 import {
-  activateProducts,
-  activeProductSelector,
-  deactivatedProductSelector,
-  deActivateProducts,
+  selectedProducts,
+  selectedProductSelector,
+  unselectedProductSelector,
+  unselectedProducts,
 } from 'store/reducers/supplier/product';
 import { ButtonIcon } from 'ui-kit';
 
@@ -19,18 +19,18 @@ import style from './ProductTableEditor.module.scss';
 
 export const ProductTableEditor = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const activeProduct = useAppSelector(activeProductSelector);
-  const deactivatedProduct = useAppSelector(deactivatedProductSelector);
+  const selectedProductComponent = useAppSelector(selectedProductSelector);
+  const unselectedProductComponent = useAppSelector(unselectedProductSelector);
 
   const navigate = useNavigate();
 
   const onHandleProductAction = (label: string): void => {
     switch (label) {
       case 'Deactivated product':
-        dispatch(deActivateProducts(activeProduct));
+        dispatch(unselectedProducts(selectedProductComponent));
         break;
       case 'Activated product':
-        dispatch(activateProducts(deactivatedProduct));
+        dispatch(selectedProducts(unselectedProductComponent));
         break;
       default:
     }
@@ -42,8 +42,8 @@ export const ProductTableEditor = (): JSX.Element => {
       <div className={`${style.wrapper} ${style.gap}`}>
         {productEditorData.map(({ id, label, Icon }) => {
           const isEditorDisabled = shouldShowInActiveEdit(
-            activeProduct,
-            deactivatedProduct,
+            selectedProductComponent,
+            unselectedProductComponent,
             label,
           );
 
