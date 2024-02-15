@@ -1,16 +1,15 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
 
+import { MainProductInfoContainer } from './MainProductInfo';
+
 import { ArrowIcon } from 'assets/icons';
-import { useAppDispatch } from 'common/hooks';
 import { Bundles } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Bundles/Bundles';
-import { MainProductInfo } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/MainProductInfo/MainProductInfo';
 import { Pricing } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Pricing/Pricing';
 import { ProductCategory } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ProductCategory/ProductCategory';
 import { Properties } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Properties/Properties';
 import { Variation } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Variation/Variation';
-import { getAllCategories } from 'store/reducers/commonSlice';
 import { Paragraph, Title } from 'ui-kit';
 
 import style from './NewProductForm.module.scss';
@@ -25,7 +24,7 @@ const enum SectionLabel {
 }
 
 const ADD_PRODUCT_FORM_SECTIONS: { label: SectionLabel; component: FC }[] = [
-  { label: SectionLabel.INFO, component: MainProductInfo },
+  { label: SectionLabel.INFO, component: MainProductInfoContainer },
   { label: SectionLabel.CATEGORY, component: ProductCategory },
   { label: SectionLabel.PROPERTIES, component: Properties },
   { label: SectionLabel.VARIATIONS, component: Variation },
