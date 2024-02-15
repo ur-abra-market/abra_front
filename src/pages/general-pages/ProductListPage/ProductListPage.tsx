@@ -31,11 +31,10 @@ export const ProductListPage = WithLayout((): JSX.Element => {
   }, []);
 
   const handleResetAllFilters = (): void => {
-    const params = `sortField=rating&sortBy=desc`;
-
     dispatch(setResetAllFilters());
     dispatch(clearSearchValue());
-    setSearchParams(params);
+
+    setSearchParams('');
   };
 
   const handleSaveQueryParams = (): void => {
