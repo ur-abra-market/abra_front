@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { IProduct } from './types';
+import { IBrandsInfo, IProduct } from './types';
 
 import { RootStateType } from 'store/createStore';
 
@@ -39,3 +39,6 @@ export const isLoadingSelector = (state: RootStateType): boolean =>
 
 export const totalCountSelector = (state: RootStateType): number =>
   state.supplierProduct.totalCount;
+
+export const brandsInfoSelector = (state: RootStateType): IBrandsInfo[] =>
+  state.supplierProduct.brandsInfo;

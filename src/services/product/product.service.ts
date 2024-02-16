@@ -12,6 +12,7 @@ import { baseConfigService } from 'services/baseConfig.service';
 import { IResponseGetProductCardId } from 'store/reducers/productSlice/types';
 import { IProductsListResponse } from 'store/reducers/supplier/product';
 import {
+  IBrandsInfo,
   IProductFilterParams,
   IProductSorting,
 } from 'store/reducers/supplier/product/types';
@@ -127,6 +128,12 @@ export const productService = {
       body,
       { params },
     );
+
+    return data.result;
+  },
+
+  getBrandsInfo: async () => {
+    const { data } = await baseConfigService.get<IBaseResponse<IBrandsInfo[]>>(`brands`);
 
     return data.result;
   },

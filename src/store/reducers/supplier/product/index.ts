@@ -7,6 +7,7 @@ export {
   isLoadingSelector,
   totalCountSelector,
   selectedProductSelector,
+  brandsInfoSelector,
 } from './selectors';
 
 export { selectedProducts, unselectedProducts, getSupplierProducts } from './thunks';
