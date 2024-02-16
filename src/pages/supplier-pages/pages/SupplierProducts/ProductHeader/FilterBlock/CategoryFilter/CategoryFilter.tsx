@@ -23,11 +23,8 @@ export const CategoryFilter = (): JSX.Element => {
   useEffect(() => {
     dispatch(getAllCategories());
   }, []);
-
   const onChangeCategory = useCallback(
-    (selectOption: ISelectOption) => {
-      const { value } = selectOption;
-
+    (value: (number | null)[]) => {
       updateUrlQueryParams([
         [QUERY_PARAMS_KEY.CATEGORY_IDS, value],
         [QUERY_PARAMS_KEY.PAGE, DEFAULT_QUERY_PARAMS_FOR_URL.page],
@@ -50,7 +47,7 @@ export const CategoryFilter = (): JSX.Element => {
   return (
     <div className={style.filter}>
       <Title className={style.filter_name}>Choose categories</Title>
-      <CategoryDropdown />
+      <CategoryDropdown onChangeCategoryB={onChangeCategory} />
     </div>
   );
 };

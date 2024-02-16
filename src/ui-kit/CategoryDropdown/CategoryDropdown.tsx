@@ -4,13 +4,18 @@ import cn from 'classnames';
 
 import { ArrowIcon } from 'assets/icons';
 import { useAppSelector, useOnClickOutside } from 'common/hooks';
-import { CategoryList } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ProductCategory/CategoryList/CategoryList';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
 import { Button, Checkbox } from 'ui-kit';
 
 import style from './CategoryDropdown.module.scss';
 
-export const CategoryDropdown: FC = (): JSX.Element => {
+interface ICategoryDropDown {
+  onChangeCategoryB: (value: (number | null)[]) => void;
+}
+
+export const CategoryDropdown: FC<ICategoryDropDown> = ({
+  onChangeCategoryB,
+}): JSX.Element => {
   const categories = useAppSelector(state => state.common.categories);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCategories, setIsSelectedCategories] = useState<
@@ -19,6 +24,7 @@ export const CategoryDropdown: FC = (): JSX.Element => {
   const emptyCategory = selectedCategories.length === 0;
   const categoriesName = selectedCategories.map(el => el.name);
   const refDropdown = useOnClickOutside(setIsOpen);
+
   const handleChangeCategory = (
     id: number | null,
     name: string,
@@ -35,14 +41,15 @@ export const CategoryDropdown: FC = (): JSX.Element => {
     } else {
       setIsSelectedCategories([...selectedCategories, { id, name, parentId }]);
     }
+    onChangeCategoryB(selectedCategories.map(el => el.id));
   };
 
   return (
-    <div className={style.dropdown}>
+    <div ref={refDropdown} className={style.dropdown}>
       <Button
         color="white"
         className={style.dropdown_btn}
-        onClick={e => {
+        onClick={() => {
           setIsOpen(!isOpen);
         }}
       >
@@ -56,7 +63,6 @@ export const CategoryDropdown: FC = (): JSX.Element => {
         />
       </Button>
       <div
-        ref={refDropdown}
         className={style.dropdown_content}
         style={{ display: isOpen ? 'block' : 'none' }}
       >
@@ -83,7 +89,6 @@ const List: FC<IList> = ({ category, handleSelectedCategory }): JSX.Element => {
   const [isChecked, setIsChecked] = useState(false);
   const isLastCategory = !category.children || category.children.length === 0;
   const isParentCategory = category.children && category.parent_id;
-
   const handleCategory = (): void => {
     if (isParentCategory && isChecked) {
       handleSelectedCategory(null, '', category.id);
@@ -91,7 +96,7 @@ const List: FC<IList> = ({ category, handleSelectedCategory }): JSX.Element => {
     if (isLastCategory) {
       handleSelectedCategory(category.id, category.name, category.parent_id!);
     }
-    setIsChecked(!isChecked);
+    setIsChecked(prevState => !prevState);
   };
 
   return (
