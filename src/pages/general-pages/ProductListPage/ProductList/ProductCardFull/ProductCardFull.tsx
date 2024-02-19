@@ -3,6 +3,7 @@ import { FC } from 'react';
 import { ArrowIcon } from 'assets/icons';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import ProductImage from 'elements/ProductImage/ProductImage';
+import { amountRange } from 'modules/ProductCard/helper/amountRange';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { Stars } from 'ui-kit';
 
@@ -24,10 +25,12 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
     is_favorite,
     reviews_count,
     prices,
+    min_price,
+    max_price,
   } = product;
 
   const categoryArr = category.name.split('&');
-  const { min_quantity, value } = prices[0];
+  const { min_quantity } = prices[0];
 
   return (
     <div className={style.card_full}>
@@ -49,7 +52,9 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
           ))}
         </div>
         <div className={style.price}>
-          <p className={style.amount}>{value}/pc</p>
+          <p className={style.amount}>
+            {amountRange(min_price.value, max_price.value)}/pc
+          </p>
           <span className={style.rating}>{`/from ${min_quantity} pcs`}</span>
         </div>
 

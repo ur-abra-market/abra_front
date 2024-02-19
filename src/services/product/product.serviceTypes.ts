@@ -103,6 +103,20 @@ export interface IProductCompilation {
   uuid: string;
   is_favorite: boolean;
   reviews_count: number;
+  min_price: IProductPriceMinMaxValue;
+  max_price: IProductPriceMinMaxValue;
+}
+
+export interface IProductPriceMinMaxValue {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  start_date: string;
+  end_date: string;
+  discount: number;
+  min_quantity: number;
+  product_id: number;
+  value: number;
 }
 
 export interface IProductPrice {
