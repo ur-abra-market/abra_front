@@ -1,10 +1,9 @@
 .card {
   display: flex;
   flex-direction: column;
-
   width: 100%;
   max-width: 220px;
-  max-height: 325px;
+  //max-height: 325px;
 }
 
 .link {
@@ -53,7 +52,7 @@
     display: block;
     align-self: flex-end;
 
-    font-size: var(--fz-m);
+    font-size: var(--fz-xxs);
     font-weight: var(--medium);
     color: var(--color-gray-medium);
   }
@@ -61,7 +60,7 @@
 
 .amount {
   font-family: "SF Pro Display Bold", sans-serif;
-  font-size: var(--fz-s);
+  font-size: var(--fz-m);
   font-weight: var(--semi-bold);
   line-height: 100%;
   letter-spacing: 0.38px;

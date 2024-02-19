@@ -3,6 +3,8 @@ import { DetailedHTMLProps, FC, HTMLAttributes, useState } from 'react';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
+import { amountRange } from './helper/amountRange';
+
 import ProductImage from 'elements/ProductImage/ProductImage';
 import { PRODUCT_DETAILS } from 'routes';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
@@ -20,8 +22,18 @@ export const ProductCard: FC<IProductCard> = ({
   className,
   ...restProps
 }): JSX.Element => {
-  const { id, name, prices, description, images, grade_average, is_favorite } = product;
-  const { min_quantity, value } = prices[0];
+  const {
+    id,
+    name,
+    prices,
+    description,
+    images,
+    grade_average,
+    is_favorite,
+    max_price,
+    min_price,
+  } = product;
+  const { min_quantity } = prices[0];
   const image_url = images[0]?.image_url;
   const pathToProduct = `${PRODUCT_DETAILS}/${id}`;
   const [isHovered, setIsHovered] = useState(false);
@@ -46,7 +58,9 @@ export const ProductCard: FC<IProductCard> = ({
           <p className={style.card_description}>{description}</p>
         </div>
         <div className={style.price}>
-          <p className={style.amount}>{value}/pc</p>
+          <span className={style.amount}>
+            {amountRange(min_price.value, max_price.value)}/pc
+          </span>
           <span className={style.rating}>{`/from ${min_quantity} pcs`}</span>
         </div>
         <Stars reward={grade_average || 0} />
