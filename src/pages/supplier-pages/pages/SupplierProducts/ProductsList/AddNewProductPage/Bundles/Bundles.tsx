@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import { Controller, useForm } from 'react-hook-form';
 
@@ -8,20 +8,28 @@ import { Label, Input, Select } from 'ui-kit';
 import style from './Bundles.module.scss';
 
 export const Bundles: FC = (): JSX.Element => {
-  const { register, control } = useForm();
+  const { register, control, watch } = useForm();
   const categories = useAppSelector(state => state.common.categories);
   const nameData = categories ? categories.filter(c => c.level === 1) : [];
+  const [bundles, setBundles] = useState<string[]>([]);
+
+  const bundleName = watch('bundle');
 
   return (
     <form>
       <div className={style.container}>
         <Label label="Bundle name *" htmlFor="bundle" className={style.label}>
           <Input
-            {...register('percentage')}
+            {...register('bundle')}
             placeholder="Enter the name"
             className={style.bundle_name}
           />
         </Label>
+        {bundleName && (
+          <button className={style.plus_button} type="submit">
+            +
+          </button>
+        )}
         <Label label="Variation type *" htmlFor="variation" className={style.label}>
           <Controller
             name="variation"
@@ -44,6 +52,11 @@ export const Bundles: FC = (): JSX.Element => {
             )}
           />
         </Label>
+      </div>
+      <div>
+        {bundles.map((bundle, index) => (
+          <div key={index}>{bundle}</div>
+        ))}
       </div>
     </form>
   );
