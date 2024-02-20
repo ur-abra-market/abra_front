@@ -63,7 +63,10 @@ const selectFields = [
 ];
 
 export const Properties: FC = (): JSX.Element => {
-  const { register } = useForm();
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
   const [showAdditional, setShowAdditional] = useState(0);
   const [additionalMaterials, setAdditionalMaterials] = useState<IMaterial[]>([]);
   const [selectedMaterial, setSelectedMaterial] = useState<IMaterial | null>(null);
@@ -123,10 +126,19 @@ export const Properties: FC = (): JSX.Element => {
         ))}
         <Label label="% (optional)" htmlFor="percentage" className={style.label}>
           <Input
-            {...register('percentage')}
+            {...register('percentage', {
+              pattern: {
+                value: /^[0-9]+$/,
+                message: 'Please enter only digits for percentage',
+              },
+            })}
+            inputMode="numeric"
             placeholder="Enter percentage of material"
             className={style.percentage}
           />
+          {errors.percentage && (
+            <span className={style.error}>{(errors.percentage as any).message}</span>
+          )}
         </Label>
         <button
           type="button"
