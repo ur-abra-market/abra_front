@@ -1,3 +1,12 @@
+.bundles_container {
+  display: flex;
+  justify-content: space-between;
+
+  width: 160px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
 .container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -24,11 +33,10 @@
   cursor: pointer;
 
   position: absolute;
-  top: 392px;
-  left: 600px;
+  right: 920px;
+  bottom: 480px;
 
   padding: 5px;
-
 
   background: var(--color-white);
   border-radius: 10px;
