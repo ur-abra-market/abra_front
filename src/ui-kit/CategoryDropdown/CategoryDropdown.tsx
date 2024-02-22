@@ -1,48 +1,65 @@
-import React, { FC, JSX, useState } from 'react';
+import React, { FC, JSX, useEffect, useState } from 'react';
 
 import cn from 'classnames';
 
 import { ArrowIcon } from 'assets/icons';
 import { useAppSelector, useOnClickOutside } from 'common/hooks';
+import { useGetSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/hoocks/useGetSearchParams';
+import { CategoryList } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ProductCategory/CategoryList/CategoryList';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
 import { Button, Checkbox } from 'ui-kit';
 
 import style from './CategoryDropdown.module.scss';
 
 interface ICategoryDropDown {
-  onChangeCategoryB: (value: (number | null)[]) => void;
+  handleCategoryURLUpdate: (array: ILastSelectedCategory[]) => void;
+}
+
+export interface ILastSelectedCategory {
+  id: number | null;
+  name: string;
+  parentId?: number | null;
 }
 
 export const CategoryDropdown: FC<ICategoryDropDown> = ({
-  onChangeCategoryB,
+  handleCategoryURLUpdate,
 }): JSX.Element => {
   const categories = useAppSelector(state => state.common.categories);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCategories, setIsSelectedCategories] = useState<
-    { id: number | null; name: string; parentId?: number | null }[]
-  >([]);
-  const emptyCategory = selectedCategories.length === 0;
-  const categoriesName = selectedCategories.map(el => el.name);
   const refDropdown = useOnClickOutside(setIsOpen);
+  const [selectedCategories, setIsSelectedCategories] = useState<ILastSelectedCategory[]>(
+    [],
+  );
+  const selectedCategoryId = categories.map(category => category.id);
 
-  const handleChangeCategory = (
-    id: number | null,
-    name: string,
-    parentId: number | null,
-  ): void => {
-    const existingCategory = selectedCategories.find(category => category.id === id);
+  const selectedNameCategories = selectedCategories.map(el => el.name);
+  const { categoryIds } = useGetSearchParams();
+  const emptyCategory = selectedCategories.length === 0 && categoryIds.length === 0;
 
-    if (id === null && name === '') {
+  function extractAllObjects(categories: ICategoryResponse[]): ICategoryResponse[] {
+    return categories.reduce<ICategoryResponse[]>((acc, obj) => {
+      return acc.concat(obj, obj.children ? extractAllObjects(obj.children) : []);
+    }, []);
+  }
+
+  console.log(extractAllObjects(categories));
+  const handleChangeCategory = (category: ILastSelectedCategory): void => {
+    const existingCategory = selectedCategories.find(c => c.id === category.id);
+
+    if (category.id === null && category.name === '') {
       setIsSelectedCategories(
-        selectedCategories.filter(category => category.parentId !== parentId),
+        selectedCategories.filter(c => c.parentId !== category.parentId),
       );
     } else if (existingCategory && selectedCategories.includes(existingCategory)) {
-      setIsSelectedCategories(selectedCategories.filter(category => category.id !== id));
+      setIsSelectedCategories(selectedCategories.filter(c => c.id !== category.id));
     } else {
-      setIsSelectedCategories([...selectedCategories, { id, name, parentId }]);
+      setIsSelectedCategories([...selectedCategories, category]);
     }
-    onChangeCategoryB(selectedCategories.map(el => el.id));
   };
+
+  useEffect(() => {
+    if (!isOpen) handleCategoryURLUpdate(selectedCategories);
+  }, [selectedCategories, isOpen]);
 
   return (
     <div ref={refDropdown} className={style.dropdown}>
@@ -53,7 +70,9 @@ export const CategoryDropdown: FC<ICategoryDropDown> = ({
           setIsOpen(!isOpen);
         }}
       >
-        <span className={style.filter_name}>{`${emptyCategory ? 'All' : categoriesName}${
+        <span className={style.filter_name}>{`${
+          emptyCategory ? 'All' : selectedNameCategories
+        }${
           selectedCategories.length - 1 === selectedCategories.length ? ', ' : ''
         } `}</span>
         <ArrowIcon
@@ -79,24 +98,34 @@ export const CategoryDropdown: FC<ICategoryDropDown> = ({
 };
 interface IList {
   category: ICategoryResponse;
-  handleSelectedCategory: (
-    id: number | null,
-    name: string,
-    parentId: number | null,
-  ) => void;
+  handleSelectedCategory?: (category: ILastSelectedCategory) => void;
 }
 const List: FC<IList> = ({ category, handleSelectedCategory }): JSX.Element => {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const isLastCategory = !category.children || category.children.length === 0;
   const isParentCategory = category.children && category.parent_id;
+  const { categoryIds } = useGetSearchParams();
+  const [isChecked, setIsChecked] = useState(categoryIds.includes(category.id));
+
   const handleCategory = (): void => {
-    if (isParentCategory && isChecked) {
-      handleSelectedCategory(null, '', category.id);
+    if (handleSelectedCategory) {
+      if (isParentCategory && isOpen) {
+        handleSelectedCategory({
+          id: null,
+          name: '',
+          parentId: category.id,
+        });
+      }
+      if (isLastCategory) {
+        handleSelectedCategory({
+          id: category.id,
+          name: category.name,
+          parentId: category.parent_id!,
+        });
+        setIsChecked(!isChecked);
+      }
     }
-    if (isLastCategory) {
-      handleSelectedCategory(category.id, category.name, category.parent_id!);
-    }
-    setIsChecked(prevState => !prevState);
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -106,7 +135,7 @@ const List: FC<IList> = ({ category, handleSelectedCategory }): JSX.Element => {
         className={style.sss}
       >
         {!isLastCategory ? (
-          <ArrowIcon className={cn({ [style.arrow_up]: isChecked })} width="14" />
+          <ArrowIcon className={cn({ [style.arrow_up]: isOpen })} width="14" />
         ) : (
           <Checkbox
             className={cn(style.checkbox, {
@@ -129,7 +158,7 @@ const List: FC<IList> = ({ category, handleSelectedCategory }): JSX.Element => {
       </div>
 
       {!isLastCategory &&
-        isChecked &&
+        isOpen &&
         category.children?.map(el => (
           <List
             handleSelectedCategory={handleSelectedCategory}
