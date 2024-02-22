@@ -40,6 +40,17 @@
   justify-content: flex-end;
 }
 
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.control_panel {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 @media only screen and (max-width: 1100px) {
   .main {
     grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
@@ -76,15 +87,4 @@
   .search {
     max-width: 260px;
   }
-}
-
-.pagination {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.control_panel {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
 }

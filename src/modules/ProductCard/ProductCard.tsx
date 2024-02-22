@@ -53,7 +53,7 @@ export const ProductCard: FC<IProductCard> = ({
           imageUrl={image_url || ''}
           name={name}
           productId={id}
-          isFavorite={is_favorite}
+          isFavorite={isFavorite || is_favorite}
         />
         <div className={style.direction}>
           <h4 className={style.card_title}>{name}</h4>

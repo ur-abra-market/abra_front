@@ -1,4 +1,4 @@
-import { IAccountPersonalInfoResponse } from './user.serviceTypes';
+import { IAccountPersonalInfoResponse, IFavoriteRequest } from './user.serviceTypes';
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
@@ -29,8 +29,3 @@ export const userService = {
     return data.result;
   },
 };
-
-interface IFavoriteRequest {
-  offset: number;
-  limit: number;
-}

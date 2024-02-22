@@ -2,7 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { userService } from 'services';
-import { IAccountPersonalInfoResponse } from 'services/user/user.serviceTypes';
+import {
+  IAccountPersonalInfoResponse,
+  IFavoriteRequest,
+} from 'services/user/user.serviceTypes';
 
 export const getPersonalInfo = createAsyncThunk<IAccountPersonalInfoResponse, void>(
   'user/getPersonalInfo',
@@ -56,7 +59,3 @@ export const getFavoritesProductsService = createAsyncThunk<any, IFavoriteReques
     }
   },
 );
-interface IFavoriteRequest {
-  offset: number;
-  limit: number;
-}
