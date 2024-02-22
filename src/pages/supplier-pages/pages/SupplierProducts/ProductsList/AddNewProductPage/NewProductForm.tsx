@@ -2,9 +2,10 @@ import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
 
+import { MainProductInfoContainer } from './MainProductInfo';
+
 import { ArrowIcon } from 'assets/icons';
 import { Bundles } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Bundles/Bundles';
-import { MainProductInfo } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/MainProductInfo/MainProductInfo';
 import { Pricing } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Pricing/Pricing';
 import { ProductCategory } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/ProductCategory/ProductCategory';
 import { Properties } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Properties/Properties';
@@ -23,7 +24,7 @@ const enum SectionLabel {
 }
 
 const ADD_PRODUCT_FORM_SECTIONS: { label: SectionLabel; component: FC }[] = [
-  { label: SectionLabel.INFO, component: MainProductInfo },
+  { label: SectionLabel.INFO, component: MainProductInfoContainer },
   { label: SectionLabel.CATEGORY, component: ProductCategory },
   { label: SectionLabel.PROPERTIES, component: Properties },
   { label: SectionLabel.VARIATIONS, component: Variation },
