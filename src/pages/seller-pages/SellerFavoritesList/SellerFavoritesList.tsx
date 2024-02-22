@@ -5,11 +5,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { LoadingStatusEnum, SelectedViewEnum } from 'common/types';
 import { ProductsPerPage, SkeletonProductCard } from 'elements';
 import { ProductCard } from 'modules';
-import {
-  productsPerPageSelector,
-  setProductsPerPage,
-  totalProductsCountSelector,
-} from 'store/reducers/productSlice';
+import { productsPerPageSelector, setProductsPerPage } from 'store/reducers/productSlice';
 import {
   favoriteProductsSelector,
   getFavoritesProductsService,
@@ -20,21 +16,19 @@ import { Pagination } from 'ui-kit/Pagination/Pagination';
 
 import style from './SellerFavoritesList.module.scss';
 
+const MIN_PRODUCT_PER_PAGE = 20;
+
 export const SellerFavoritesList = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();
-  const products = useAppSelector(favoriteProductsSelector);
+  const favoriteProducts = useAppSelector(favoriteProductsSelector);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = useAppSelector(productsPerPageSelector);
-  const totalCount = useAppSelector(totalProductsCountSelector);
-  const totalPages = Math.ceil(totalCount / productsPerPage);
+  const totalPages = Math.ceil(MIN_PRODUCT_PER_PAGE / productsPerPage);
   const isLoading =
     useAppSelector(userLoadingSelector).favoritesProductsLoading ===
     LoadingStatusEnum.Loading;
+  const isMoreThanProductPerPage = favoriteProducts.length >= MIN_PRODUCT_PER_PAGE;
 
-  // TODO waiting correct data for products
-  // const productsView = products.map(product => (
-  //   <ProductCard key={product.id} product={product} />
-  // ));
   const handleChangeSelect = (value: number): void => {
     dispatch(setProductsPerPage(value));
   };
@@ -50,6 +44,10 @@ export const SellerFavoritesList = WithLayout((): JSX.Element => {
 
   const productSkeleton = Array.from({ length: productsPerPage }).map((el, i) => (
     <SkeletonProductCard key={i} selectedView={SelectedViewEnum.GRID} />
+  ));
+
+  const favoriteProductsView = favoriteProducts.map(product => (
+    <ProductCard product={product} key={product.id} isFavorite />
   ));
 
   const paginationComponent = (
@@ -68,11 +66,17 @@ export const SellerFavoritesList = WithLayout((): JSX.Element => {
           <Title as="h3">Favorites list</Title>
           <Search className={style.search} placeholder="Search within my favorites" />
         </div>
-        <div className={style.pagination}>{paginationComponent}</div>
-        <div className={style.main}>{isLoading ? productSkeleton : 'productsView'}</div>
+        {isMoreThanProductPerPage && (
+          <div className={style.pagination}>{paginationComponent}</div>
+        )}
+        <div className={style.main}>
+          {isLoading ? productSkeleton : favoriteProductsView}
+        </div>
         <div className={style.control_panel}>
-          <ProductsPerPage disabled={isLoading} onChange={handleChangeSelect} />
-          {paginationComponent}
+          {isMoreThanProductPerPage && (
+            <ProductsPerPage disabled={isLoading} onChange={handleChangeSelect} />
+          )}
+          {isMoreThanProductPerPage && paginationComponent}
         </div>
         <div className={style.bottom}>
           <ButtonQuestion />
