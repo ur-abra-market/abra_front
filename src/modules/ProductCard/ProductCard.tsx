@@ -17,7 +17,6 @@ interface IProductCard
   product: IProductCompilation;
   isFavorite?: boolean;
 }
-// TODO isFavorite is mock data. Wait correct data
 export const ProductCard: FC<IProductCard> = ({
   product,
   isFavorite,
