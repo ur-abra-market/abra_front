@@ -2,7 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import { userService } from 'services';
-import { IAccountPersonalInfoResponse } from 'services/user/user.serviceTypes';
+import {
+  IAccountPersonalInfoResponse,
+  IFavoriteRequest,
+} from 'services/user/user.serviceTypes';
 
 export const getPersonalInfo = createAsyncThunk<IAccountPersonalInfoResponse, void>(
   'user/getPersonalInfo',
@@ -40,13 +43,13 @@ export const updatePersonalInfo = createAsyncThunk<any, any>(
   },
 );
 
-export const getFavoritesProductsService = createAsyncThunk<any, void>(
+export const getFavoritesProductsService = createAsyncThunk<any, IFavoriteRequest>(
   'user/getFavoritesProductsService',
-  async (_, { rejectWithValue }) => {
+  async (payload, { rejectWithValue }) => {
     try {
-      const data = await userService.getFavoritesProducts();
+      const data = await userService.getFavoritesProducts(payload);
 
-      return data.result;
+      return data;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

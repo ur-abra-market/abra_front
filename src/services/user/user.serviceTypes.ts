@@ -14,3 +14,8 @@ export interface IAccountPersonalInfoResponse {
   is_deleted: boolean;
   is_supplier: boolean;
 }
+
+export interface IFavoriteRequest {
+  offset: number;
+  limit: number;
+}

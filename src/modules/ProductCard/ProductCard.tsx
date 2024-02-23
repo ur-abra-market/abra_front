@@ -15,10 +15,11 @@ import style from './ProductCard.module.scss';
 interface IProductCard
   extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   product: IProductCompilation;
+  isFavorite?: boolean;
 }
-
 export const ProductCard: FC<IProductCard> = ({
   product,
+  isFavorite,
   className,
   ...restProps
 }): JSX.Element => {
@@ -34,7 +35,7 @@ export const ProductCard: FC<IProductCard> = ({
     min_price,
   } = product;
   const { min_quantity } = prices[0];
-  const image_url = images[0]?.image_url;
+  const image_url = images && images[0] && images[0].image_url ? images[0].image_url : '';
   const pathToProduct = `${PRODUCT_DETAILS}/${id}`;
   const [isHovered, setIsHovered] = useState(false);
 
@@ -51,7 +52,7 @@ export const ProductCard: FC<IProductCard> = ({
           imageUrl={image_url || ''}
           name={name}
           productId={id}
-          isFavorite={is_favorite}
+          isFavorite={isFavorite || is_favorite}
         />
         <div className={style.direction}>
           <h4 className={style.card_title}>{name}</h4>
