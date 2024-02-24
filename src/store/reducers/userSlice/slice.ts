@@ -13,6 +13,7 @@ import { logoutUser } from 'store/reducers/authSlice';
 const initialState: IUserSliceInitialState = {
   loading: {
     personalInfoLoading: LoadingStatusEnum.Idle,
+    favoritesProductsLoading: LoadingStatusEnum.Idle,
   },
   personalInfo: {
     firstName: '',
@@ -67,8 +68,24 @@ const userSlice = createSlice({
         };
       })
 
+      .addCase(getFavoritesProductsService.pending, state => {
+        state.loading = {
+          ...state.loading,
+          favoritesProductsLoading: LoadingStatusEnum.Loading,
+        };
+      })
       .addCase(getFavoritesProductsService.fulfilled, (state, action) => {
         state.favoritesProducts = action.payload;
+        state.loading = {
+          ...state.loading,
+          favoritesProductsLoading: LoadingStatusEnum.Success,
+        };
+      })
+      .addCase(getFavoritesProductsService.rejected, state => {
+        state.loading = {
+          ...state.loading,
+          favoritesProductsLoading: LoadingStatusEnum.Failed,
+        };
       })
 
       .addCase(logoutUser.fulfilled, state => {

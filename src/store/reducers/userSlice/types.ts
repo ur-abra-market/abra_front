@@ -9,6 +9,7 @@ export interface IUserPersonalInfo {
 
 export interface ILoading {
   personalInfoLoading: LoadingStatusEnum;
+  favoritesProductsLoading: LoadingStatusEnum;
 }
 
 export interface IUserSliceInitialState {

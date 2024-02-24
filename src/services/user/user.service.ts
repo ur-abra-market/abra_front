@@ -1,4 +1,4 @@
-import { IAccountPersonalInfoResponse } from './user.serviceTypes';
+import { IAccountPersonalInfoResponse, IFavoriteRequest } from './user.serviceTypes';
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
@@ -22,9 +22,10 @@ export const userService = {
     return data.result;
   },
 
-  getFavoritesProducts: async () => {
-    const { data } = await baseConfigService.get(`sellers/favorites`);
+  getFavoritesProducts: async ({ offset, limit }: IFavoriteRequest) => {
+    const params = { offset, limit };
+    const { data } = await baseConfigService.get(`sellers/favorites`, { params });
 
-    return data;
+    return data.result;
   },
 };
