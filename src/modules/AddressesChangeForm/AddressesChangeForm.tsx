@@ -83,7 +83,7 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
                   className={style.checkbox}
                   variant="default"
                   label="Main Address"
-                  onChange={event => field.onChange()}
+                  onChange={event => field.onChange(event.currentTarget.checked)}
                 />
               )}
             />
@@ -141,7 +141,7 @@ export const AddressesChangeForm: FC<IAddressesChangeForm> = ({
                     error={errors.country?.message}
                     defaultValue={watch('country')}
                     onChange={value => {
-                      field.onChange();
+                      field.onChange(Number(value.value));
                     }}
                     disabled={isLoading}
                   />

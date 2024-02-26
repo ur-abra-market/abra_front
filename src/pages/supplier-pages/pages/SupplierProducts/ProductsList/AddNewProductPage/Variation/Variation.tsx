@@ -58,7 +58,7 @@ export const Variation: FC = (): JSX.Element => {
                     label: { text: el.name },
                   }))}
                   onChange={value => {
-                    field.onChange();
+                    field.onChange(String(value.value));
                   }}
                 />
               </div>
