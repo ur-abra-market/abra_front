@@ -85,7 +85,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   placeholder="Select"
                   defaultValue={watch('businessSector')}
                   onChange={value => {
-                    field.onChange(String(value.value));
+                    field.onChange();
                   }}
                 />
               </Label>
@@ -102,7 +102,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
               className={style.checkbox}
               variant="default"
               label="I am a manufacturer"
-              onChange={event => field.onChange(event.currentTarget.checked)}
+              onChange={event => field.onChange()}
             />
           )}
         />
@@ -154,7 +154,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   defaultValue={typeof field.value === 'number' ? field.value : undefined}
                   placeholder="Select"
                   onChange={value => {
-                    field.onChange(Number(value.value));
+                    field.onChange();
                   }}
                 />
               </Label>
@@ -179,7 +179,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                 className={style.select}
                 placeholder="Select"
                 onChange={value => {
-                  field.onChange(Number(value.value));
+                  field.onChange();
                 }}
               />
             </Label>
