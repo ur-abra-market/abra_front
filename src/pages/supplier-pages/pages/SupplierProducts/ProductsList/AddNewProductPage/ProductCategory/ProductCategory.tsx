@@ -6,23 +6,45 @@ import { CategoryList } from './CategoryList/CategoryList';
 
 import { ArrowIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { useDatabase } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/hooks/useDatabase';
+import {
+  FIELDS_NEW_PRODUCT_INFO,
+  updateFieldInDataBase,
+} from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/utils/indexedDB';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
 import { getAllCategories } from 'store/reducers/commonSlice';
+import { getVariationsService } from 'store/reducers/supplier/other';
 import { BreadCrumbs } from 'ui-kit';
 
 import style from './ProductCategory.module.scss';
 
 export const ProductCategory: React.FC = () => {
+  const {
+    db,
+    selectedCategoryIdOfDatabase,
+    setSelectedCategoryIdOfDatabase,
+    pathCategoriesOfDatabase,
+    setPathCategoriesOfDatabase,
+  } = useDatabase();
   const dispatch = useAppDispatch();
   const categories = useAppSelector(state => state.common.categories);
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
-  const [pathCategories, setPathCategories] = useState<ICategoryResponse[]>([]);
 
-  const handleCategoryChange = (id: number | null, path: ICategoryResponse[]): void => {
-    setSelectedCategoryId(id);
-    setPathCategories(path);
+  const handleCategoryChange = async (
+    id: number | null,
+    path: ICategoryResponse[],
+  ): Promise<void> => {
+    setSelectedCategoryIdOfDatabase(id);
+    setPathCategoriesOfDatabase(path);
+
+    if (db) {
+      await updateFieldInDataBase(db, FIELDS_NEW_PRODUCT_INFO.ProductInfo, {
+        selectedCategory: id,
+        categoryPath: path,
+      });
+    }
   };
+
   const toggleDropdown = (): void => {
     setIsOpen(!isOpen);
   };
@@ -35,12 +57,18 @@ export const ProductCategory: React.FC = () => {
 
   useEffect(() => {
     dispatch(getAllCategories());
-  }, []);
+  }, [db]);
 
   return (
     <div className={style.category_wrapper}>
-      {pathCategories.find(el => !el.children && el.id === selectedCategoryId) ? (
-        <BreadCrumbs className={style.bread_crumbs} breadCrumbs={pathCategories} />
+      {pathCategoriesOfDatabase &&
+      pathCategoriesOfDatabase.find(
+        el => !el.children && el.id === selectedCategoryIdOfDatabase,
+      ) ? (
+        <BreadCrumbs
+          className={style.bread_crumbs}
+          breadCrumbs={pathCategoriesOfDatabase}
+        />
       ) : null}
       <div
         role="button"
@@ -61,7 +89,7 @@ export const ProductCategory: React.FC = () => {
           <CategoryList
             key={category.id}
             categories={category}
-            selectedCategoryId={selectedCategoryId}
+            selectedCategoryId={selectedCategoryIdOfDatabase}
             handleCategoryChange={handleCategoryChange}
           />
         ))}

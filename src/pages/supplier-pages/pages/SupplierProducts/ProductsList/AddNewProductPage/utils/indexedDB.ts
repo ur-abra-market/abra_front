@@ -1,10 +1,14 @@
 import { DBSchema, IDBPDatabase, openDB } from 'idb';
 
+import { ICategoryResponse } from 'services/common/common.serviceTypes';
+
 export enum FIELDS_NEW_PRODUCT_INFO {
   ProductName = 'productName',
   Description = 'description',
   BrandName = 'brandName',
   Images = 'images',
+  ProductInfo = 'productInfo',
+  ProductProperties = 'productProperties',
 }
 
 export interface IImages {
@@ -12,11 +16,26 @@ export interface IImages {
   image: string;
 }
 
+export interface IProductInfo {
+  selectedCategory: number | null;
+  categoryPath: ICategoryResponse[] | [];
+}
+
+export interface IProductProperties {
+  value: string;
+  property_type_id: number; // material, season and etc
+  id: number; // id of material, season. For example material > polyester
+  optionalValue?: number;
+  categoryId?: number;
+}
+
 export interface IMainProductInfo {
   productName: string;
   description: string;
   brandName: string;
   images: IImages[];
+  productInfo: IProductInfo;
+  productProperties: IProductProperties[];
 }
 
 export interface UserDB extends DBSchema {
@@ -54,6 +73,11 @@ export const initDataBase = async (): Promise<IDBPDatabase<UserDB>> => {
           { id: '4', image: '' },
           { id: '5', image: '' },
         ],
+        productInfo: {
+          selectedCategory: 0,
+          categoryPath: [],
+        },
+        productProperties: [],
       },
     });
   }
@@ -64,7 +88,7 @@ export const initDataBase = async (): Promise<IDBPDatabase<UserDB>> => {
 export const updateFieldInDataBase = async (
   db: IDBPDatabase<UserDB>,
   fieldToUpdate: FIELDS_NEW_PRODUCT_INFO,
-  newValue: string | IImages[],
+  newValue: string | IImages[] | IProductInfo | IProductProperties[],
 ): Promise<void> => {
   const tx = db.transaction('productDescription', 'readwrite');
   const store = tx.objectStore('productDescription');
@@ -80,10 +104,27 @@ export const updateFieldInDataBase = async (
     const product: IMainProductInfo = request.mainProductInfo;
 
     // Update the selected field
-    if (fieldToUpdate === 'images') {
-      product[fieldToUpdate] = newValue as IImages[];
-    } else {
-      product[fieldToUpdate] = newValue as string;
+    switch (fieldToUpdate) {
+      case FIELDS_NEW_PRODUCT_INFO.Images: {
+        product[fieldToUpdate] = newValue as IImages[];
+        break;
+      }
+
+      case FIELDS_NEW_PRODUCT_INFO.ProductInfo: {
+        product[fieldToUpdate] = newValue as IProductInfo;
+
+        break;
+      }
+
+      case FIELDS_NEW_PRODUCT_INFO.ProductProperties: {
+        product[fieldToUpdate] = newValue as IProductProperties[];
+
+        break;
+      }
+      default: {
+        product[fieldToUpdate] = newValue as string;
+        break;
+      }
     }
     // Update the product object in the store
     await store.put({ mainProductInfo: product }, 1);

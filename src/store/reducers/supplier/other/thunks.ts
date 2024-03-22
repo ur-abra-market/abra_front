@@ -1,15 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
+import { IProductProperties } from './types';
+
 import { supplierService } from 'services';
 
-export const getPropertiesService = createAsyncThunk<any, any>(
+export const getPropertiesService = createAsyncThunk<IProductProperties[], number>(
   'supplier/getPropertiesService',
-  async ({ id }, { rejectWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
-      const data = await supplierService.getProductProperties(id);
+      const { result } = await supplierService.getProductProperties(id);
 
-      return data.result;
+      return result;
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);
@@ -24,6 +26,7 @@ export const getVariationsService = createAsyncThunk<any, any>(
   'supplier/getVariationsService',
   async ({ id }, { rejectWithValue }) => {
     try {
+      console.log(id);
       const data = await supplierService.getProductVariations(id);
 
       return data.result;
