@@ -1,32 +1,29 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 
-import { IDBPDatabase } from 'idb';
-import { useForm } from 'react-hook-form';
-
 import { MainProductInfo } from './MainProductInfo';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { convertImageToBase64 } from 'common/utils';
+import { useDatabase } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/hooks/useDatabase';
 import {
   FIELDS_NEW_PRODUCT_INFO,
-  IImages,
-  initDataBase,
   updateFieldInDataBase,
-  UserDB,
 } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/utils/indexedDB';
 import { brandsInfoSelector } from 'store/reducers/supplier/product';
 import { getBrandsInfo } from 'store/reducers/supplier/product/thunks';
 
 export const MainProductInfoContainer: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { register, setValue } = useForm();
-  const [db, setDb] = useState<IDBPDatabase<UserDB> | null>(null);
+  const {
+    db,
+    storeImagesOfDatabase,
+    setStoreImagesOfDatabase,
+    register,
+    defaultValueSelectOfDatabase,
+  } = useDatabase();
   const brandsNames = useAppSelector(brandsInfoSelector);
-  const [defaultValueSelect, setDefaultValueSelect] = useState('');
   const [isModalOpen, setModalOpen] = useState(false);
-  const [storeImages, setStoreImages] = useState<IImages[]>([]);
   const [deleteImageByID, setDeleteImageByID] = useState<string>();
-
   const onChangeFormHandler = async (
     event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement> | string | number,
     formName: FIELDS_NEW_PRODUCT_INFO,
@@ -39,28 +36,29 @@ export const MainProductInfoContainer: FC = (): JSX.Element => {
   };
 
   const uploadImageHandler = async (imageId: string, image: File): Promise<void> => {
+    if (!db) return;
+
     const imageBase64 = await convertImageToBase64(image);
-    const images = storeImages.map(el =>
+    const images = storeImagesOfDatabase.map(el =>
       el.id === imageId ? { ...el, image: imageBase64 } : el,
     );
 
-    setStoreImages(images);
+    setStoreImagesOfDatabase(images);
 
-    if (db) {
-      await updateFieldInDataBase(db, FIELDS_NEW_PRODUCT_INFO.Images, images);
-    }
+    await updateFieldInDataBase(db, FIELDS_NEW_PRODUCT_INFO.Images, images);
   };
 
   const deleteImage = async (): Promise<void> => {
-    const newImages = storeImages.map(el =>
+    if (!db) return;
+
+    const newImages = storeImagesOfDatabase.map(el =>
       el.id === deleteImageByID ? { ...el, image: '' } : el,
     );
 
-    setStoreImages(newImages);
+    setStoreImagesOfDatabase(newImages);
 
-    if (db) {
-      await updateFieldInDataBase(db, FIELDS_NEW_PRODUCT_INFO.Images, newImages);
-    }
+    await updateFieldInDataBase(db, FIELDS_NEW_PRODUCT_INFO.Images, newImages);
+
     setModalOpen(false);
   };
 
@@ -71,31 +69,7 @@ export const MainProductInfoContainer: FC = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(getBrandsInfo([]));
-
-    const fetchDataBase = async (): Promise<void> => {
-      const dataBase = await initDataBase();
-
-      const requestToDataBase = dataBase.get('productDescription', 1);
-
-      try {
-        const result = await requestToDataBase;
-
-        if (result?.mainProductInfo) {
-          setStoreImages(result.mainProductInfo.images);
-          setValue('productName', result.mainProductInfo.productName);
-          setValue('description', result.mainProductInfo.description);
-          setValue('brandName', result.mainProductInfo.brandName);
-          setDefaultValueSelect(result.mainProductInfo.brandName);
-        }
-      } catch {
-        return;
-      }
-
-      setDb(dataBase);
-    };
-
-    fetchDataBase();
-  }, []);
+  }, [db]);
 
   return (
     <MainProductInfo
@@ -104,8 +78,8 @@ export const MainProductInfoContainer: FC = (): JSX.Element => {
       deleteImageHandler={deleteImageHandler}
       register={register}
       uploadImageHandler={uploadImageHandler}
-      defaultValueSelect={defaultValueSelect}
-      storeImages={storeImages}
+      defaultValueSelect={defaultValueSelectOfDatabase}
+      storeImages={storeImagesOfDatabase}
       setModalOpen={setModalOpen}
       isModalOpen={isModalOpen}
       onChangeFormHandler={onChangeFormHandler}

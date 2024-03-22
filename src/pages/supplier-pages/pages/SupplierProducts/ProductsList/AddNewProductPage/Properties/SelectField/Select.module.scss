@@ -4,3 +4,9 @@
   background: var(--color-white-ivory);
   border-radius: 12px;
 }
+
+.select_field_container {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}

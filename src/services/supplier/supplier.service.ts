@@ -9,6 +9,7 @@ import {
 
 import { IBaseResponse } from 'common/types';
 import { baseConfigService } from 'services/baseConfig.service';
+import { IProductProperties } from 'store/reducers/supplier/other/types';
 
 export const supplierService = {
   hasBusinessInfo: async () => {
@@ -90,8 +91,10 @@ export const supplierService = {
     return data.result;
   },
 
-  getProductProperties: async (categoryId: any) => {
-    const { data } = await baseConfigService.get(`categories/${categoryId}/properties`);
+  getProductProperties: async (categoryId: number) => {
+    const { data } = await baseConfigService.get<IBaseResponse<IProductProperties[]>>(
+      `categories/${categoryId}/properties`,
+    );
 
     return data;
   },

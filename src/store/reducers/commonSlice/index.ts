@@ -2,7 +2,6 @@ export { getCountries, getCompanyNumberEmployees, getAllCategories } from './thu
 export {
   numberEmployeesSelector,
   countriesSelector,
-  categoriesSelector,
-  categoriesLoadingSelector,
+  selectedCategoryId,
 } from './selectors';
 export type { INumberEmployees, IInitialState } from './types';

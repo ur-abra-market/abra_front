@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
   getAllCategories,
@@ -14,6 +14,7 @@ const initialState: IInitialState = {
     categoriesLoading: LoadingStatusEnum.Idle,
   },
   categories: [],
+  selectedCategoryId: null,
   countries: [],
   numberEmployees: [],
 };
@@ -21,7 +22,11 @@ const initialState: IInitialState = {
 const commonSlice = createSlice({
   name: 'common',
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedCategoryId(state, action: PayloadAction<number | null>) {
+      state.selectedCategoryId = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getCountries.fulfilled, (state, action) => {
@@ -46,3 +51,4 @@ const commonSlice = createSlice({
 });
 
 export const commonReducer = commonSlice.reducer;
+export const { setSelectedCategoryId } = commonSlice.actions;

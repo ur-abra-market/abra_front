@@ -14,6 +14,7 @@ export interface IInitialState {
     categoriesLoading: LoadingStatusEnum;
   };
   categories: [] | ICategoryResponse[];
+  selectedCategoryId: number | null;
   countries: CountriesArrayType;
   numberEmployees: INumberEmployees[];
 }
