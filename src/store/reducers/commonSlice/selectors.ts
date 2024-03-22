@@ -1,6 +1,10 @@
 import { INumberEmployees } from '.';
 
-import { CountriesArrayType } from 'services/common/common.serviceTypes';
+import { LoadingStatusEnum } from 'common/types';
+import {
+  CountriesArrayType,
+  ICategoryResponse,
+} from 'services/common/common.serviceTypes';
 import { RootStateType } from 'store/createStore';
 
 export const numberEmployeesSelector = (state: RootStateType): INumberEmployees[] =>
@@ -10,3 +14,8 @@ export const countriesSelector = (state: RootStateType): CountriesArrayType =>
 
 export const selectedCategoryId = (state: RootStateType): number | null =>
   state.common.selectedCategoryId;
+
+export const categoriesSelector = (state: RootStateType): [] | ICategoryResponse[] =>
+  state.common.categories;
+export const categoriesLoadingSelector = (state: RootStateType): LoadingStatusEnum =>
+  state.common.loading.categoriesLoading;
