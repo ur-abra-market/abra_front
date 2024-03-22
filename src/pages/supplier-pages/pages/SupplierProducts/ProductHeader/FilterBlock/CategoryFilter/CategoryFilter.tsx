@@ -1,34 +1,36 @@
 import React, { useCallback } from 'react';
 
-import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { useAppDispatch } from 'common/hooks';
+import { CategoriesDropdown } from 'elements';
+import { ILastSelectedCategory } from 'elements/CategoriesDropdown/CategoriesDropdown';
+import { useGetSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/hoocks/useGetSearchParams';
 import { useUpdateSearchParams } from 'pages/supplier-pages/pages/SupplierProducts/common/hoocks/useUpdateSearchParams';
 import {
   DEFAULT_QUERY_PARAMS_FOR_URL,
   QUERY_PARAMS_KEY,
-  QUERY_PARAMS_VALUE,
 } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/queryParamsConstants';
-import { CATEGORY_SELECT } from 'pages/supplier-pages/pages/SupplierProducts/common/utils/selectOptions';
-import {
-  isLoadingSelector,
-  resetProductStatusSelection,
-} from 'store/reducers/supplier/product';
-import { ISelectOption, Select } from 'ui-kit';
+import { resetProductStatusSelection } from 'store/reducers/supplier/product';
+import { Title } from 'ui-kit';
 
 import style from 'pages/supplier-pages/pages/SupplierProducts/ProductHeader/FilterBlock/FilterBlock.module.scss';
 
 export const CategoryFilter = (): JSX.Element => {
-  const { updateUrlQueryParams, searchParams } = useUpdateSearchParams();
+  const { updateUrlQueryParams } = useUpdateSearchParams();
+  const { categoryIds } = useGetSearchParams();
   const dispatch = useAppDispatch();
-  const isLoading = useAppSelector(isLoadingSelector);
-  const categoryIdsQueryParam = searchParams.get(QUERY_PARAMS_KEY.CATEGORY_IDS);
-  const categoryIds = categoryIdsQueryParam || QUERY_PARAMS_VALUE.ALL;
 
-  const onChangeCategory = useCallback(
-    (selectOption: ISelectOption) => {
-      const { value } = selectOption;
+  const handleCategoryURLUpdate = useCallback(
+    (value: ILastSelectedCategory[]) => {
+      const valueIds = value.map(category => category.id);
+
+      if (valueIds.length === categoryIds.length) {
+        const isEqualValue = valueIds.every((el, i) => el === categoryIds[i]);
+
+        if (isEqualValue) return;
+      }
 
       updateUrlQueryParams([
-        [QUERY_PARAMS_KEY.CATEGORY_IDS, value],
+        [QUERY_PARAMS_KEY.CATEGORY_IDS, valueIds],
         [QUERY_PARAMS_KEY.PAGE, DEFAULT_QUERY_PARAMS_FOR_URL.page],
         [QUERY_PARAMS_KEY.LIMIT, DEFAULT_QUERY_PARAMS_FOR_URL.limit],
       ]);
@@ -38,18 +40,10 @@ export const CategoryFilter = (): JSX.Element => {
     [updateUrlQueryParams, dispatch],
   );
 
-  const controlledValue = CATEGORY_SELECT.find(el => String(el.value) === categoryIds);
-
   return (
     <div className={style.filter}>
-      <div className={style.filter_name}>Choose categories</div>
-      <Select
-        disabled={isLoading}
-        controlledValue={controlledValue}
-        onChange={onChangeCategory}
-        options={CATEGORY_SELECT}
-        className={style.select}
-      />
+      <Title className={style.filter_name}>Choose categories</Title>
+      <CategoriesDropdown handleCategoryURLUpdate={handleCategoryURLUpdate} />
     </div>
   );
 };

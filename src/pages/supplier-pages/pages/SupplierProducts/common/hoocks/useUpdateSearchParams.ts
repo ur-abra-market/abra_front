@@ -15,7 +15,17 @@ export const useUpdateSearchParams = (): IUpdateSearchParams => {
   const updateUrlQueryParams = useCallback(
     (updates: QueryParamUpdate[]) => {
       updates.forEach(([key, value]) => {
-        searchParams.set(key, String(value));
+        if (Array.isArray(value)) {
+          if (value.length > 0) {
+            const stringValue = value.join(',');
+
+            searchParams.set(key, String(stringValue));
+          } else if (value.length === 0) {
+            searchParams.delete(key);
+          }
+        } else {
+          searchParams.set(key, String(value));
+        }
       });
 
       setSearchParams(searchParams);

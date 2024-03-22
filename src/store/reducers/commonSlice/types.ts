@@ -1,3 +1,4 @@
+import { LoadingStatusEnum } from 'common/types';
 import {
   CountriesArrayType,
   ICategoryResponse,
@@ -9,6 +10,9 @@ export interface INumberEmployees {
 }
 
 export interface IInitialState {
+  loading: {
+    categoriesLoading: LoadingStatusEnum;
+  };
   categories: [] | ICategoryResponse[];
   selectedCategoryId: number | null;
   countries: CountriesArrayType;

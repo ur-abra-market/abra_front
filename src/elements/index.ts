@@ -20,3 +20,4 @@ export { ProductPrice } from '../pages/general-pages/ProductPage/components/Prod
 export { ProductParams } from '../pages/general-pages/ProductPage/components/ProductParams/ProductParams';
 export { SupplierInfo } from './SupplierInfo/SupplierInfo';
 export { SkeletonProductCard } from './SkeletonProductCard/SkeletonProductCard';
+export { CategoriesDropdown } from './CategoriesDropdown/CategoriesDropdown';

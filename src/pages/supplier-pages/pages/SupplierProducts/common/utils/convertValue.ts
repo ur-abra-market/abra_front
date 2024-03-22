@@ -11,7 +11,7 @@ export const convertValue = (key: string, value: string | null): any => {
       return +value;
 
     case QUERY_PARAMS_KEY.CATEGORY_IDS:
-      return value === QUERY_PARAMS_VALUE.ALL ? [] : value.split('_').map(el => +el);
+      return value === QUERY_PARAMS_VALUE.ALL ? [] : value.split(',').map(el => +el);
 
     case QUERY_PARAMS_KEY.ASCENDING:
       return value === QUERY_PARAMS_VALUE.ASCENDING;
