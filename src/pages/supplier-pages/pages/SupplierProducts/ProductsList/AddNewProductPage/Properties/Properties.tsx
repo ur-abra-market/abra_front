@@ -56,19 +56,20 @@ export const Properties = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (selectedCategoryIdOfDatabase) {
-      dispatch(getPropertiesService(selectedCategoryIdOfDatabase));
-    } else if (categoryId) {
-      dispatch(getPropertiesService(categoryId));
-    }
-  }, [selectedCategoryIdOfDatabase, categoryId]);
-
-  useEffect(() => {
-    if (categoryId !== selectedCategoryIdOfDatabase && db) {
-      setPropertiesOfDataBase([]);
-      updateFieldInDataBase(db, FIELDS_NEW_PRODUCT_INFO.ProductProperties, []);
+    if (categoryId) {
+      if (categoryId !== selectedCategoryIdOfDatabase && db) {
+        dispatch(getPropertiesService(categoryId));
+        setPropertiesOfDataBase([]);
+        updateFieldInDataBase(db, FIELDS_NEW_PRODUCT_INFO.ProductProperties, []);
+      }
     }
   }, [categoryId, db, selectedCategoryIdOfDatabase]);
+
+  useEffect(() => {
+    if (selectedCategoryIdOfDatabase) {
+      dispatch(getPropertiesService(selectedCategoryIdOfDatabase));
+    }
+  }, [selectedCategoryIdOfDatabase]);
 
   return (
     <form>
