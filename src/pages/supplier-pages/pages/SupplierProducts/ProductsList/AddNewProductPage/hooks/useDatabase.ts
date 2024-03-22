@@ -1,10 +1,9 @@
-import * as path from 'path';
-
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { IDBPDatabase } from 'idb';
 import { FieldValues, useForm, UseFormGetValues } from 'react-hook-form';
 
+import { useAppDispatch } from 'common/hooks';
 import {
   IImages,
   initDataBase,
@@ -12,6 +11,7 @@ import {
   UserDB,
 } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/utils/indexedDB';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
+import { setSelectedCategoryId } from 'store/reducers/commonSlice/slice';
 
 interface DatabaseHookResult {
   db: IDBPDatabase<UserDB> | null;
@@ -44,6 +44,7 @@ export const useDatabase = (): DatabaseHookResult => {
   const [propertiesOfDataBase, setPropertiesOfDataBase] = useState<IProductProperties[]>(
     [],
   );
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const fetchDataBase = async (): Promise<void> => {
@@ -65,6 +66,9 @@ export const useDatabase = (): DatabaseHookResult => {
           );
           setPathCategoriesOfDatabase(result.mainProductInfo.productInfo.categoryPath);
           setPropertiesOfDataBase(result.mainProductInfo.productProperties);
+          dispatch(
+            setSelectedCategoryId(result.mainProductInfo.productInfo.selectedCategory),
+          );
         }
       } catch {
         return;

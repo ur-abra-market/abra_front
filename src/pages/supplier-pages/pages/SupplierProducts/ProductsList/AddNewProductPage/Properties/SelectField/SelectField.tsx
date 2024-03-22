@@ -8,13 +8,16 @@ import {
   UseFormRegister,
 } from 'react-hook-form';
 
-import { FIELDS_NEW_PRODUCT_INFO } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/utils/indexedDB';
+import { useDatabase } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/hooks/useDatabase';
+import { IProductProperties } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/utils/indexedDB';
 import { IProductPropertiesValues } from 'store/reducers/supplier/other/types';
 import { Input, Label, Select } from 'ui-kit';
 
 import style from './Select.module.scss';
 
 export interface ISelectField {
+  defaultValue: string;
+  defaultOptionValue: string | number;
   register: UseFormRegister<FieldValues>;
   name: string;
   label: string;
@@ -22,21 +25,16 @@ export interface ISelectField {
   options: IProductPropertiesValues[];
   fieldId: number;
   hasOptional: boolean;
-  onChangeFormHandler: (
-    formName: FIELDS_NEW_PRODUCT_INFO,
-    fieldName: string,
-    idField: number,
-    idMaterial: number,
-    percentage?: number,
-  ) => Promise<void>;
+  onChangeFormHandler: (productProperties: IProductProperties) => Promise<void>;
   getValues: UseFormGetValues<FieldValues>;
 }
 
 export const SelectField: FC<ISelectField> = ({
+  defaultValue,
+  defaultOptionValue,
   register,
   name,
   label,
-  placeholder,
   options,
   fieldId,
   hasOptional,
@@ -44,22 +42,28 @@ export const SelectField: FC<ISelectField> = ({
   getValues,
 }) => {
   const { control } = useForm();
+  const { selectedCategoryIdOfDatabase } = useDatabase();
+  const optionValue =
+    typeof defaultOptionValue === 'number'
+      ? String(defaultOptionValue)
+      : 'Enter percentage of material';
 
-  const onChangeHandler = (value: string | number): void => {
-    const field = options.find(el => el.id === value);
-    const percentageValue =
-      Number(getValues(`percentage${fieldId}`)) > 100
-        ? 100
-        : Number(getValues(`percentage${fieldId}`));
+  const onChangeHandler = async (id: string | number): Promise<void> => {
+    const foundValue = options.find(el => el.id === id);
+    const percentageValue = Math.min(Number(getValues(`percentage${fieldId}`)), 100);
 
-    if (field) {
-      onChangeFormHandler(
-        FIELDS_NEW_PRODUCT_INFO.productProperties,
-        `${name}${fieldId}`,
-        field.id,
-        field.property_type_id,
-        percentageValue,
-      );
+    if (foundValue && selectedCategoryIdOfDatabase) {
+      const propertyData: IProductProperties = {
+        value: foundValue.value,
+        id: foundValue.id,
+        property_type_id: foundValue.property_type_id,
+        categoryId: selectedCategoryIdOfDatabase,
+      };
+
+      if (hasOptional) {
+        propertyData.optionalValue = percentageValue;
+      }
+      await onChangeFormHandler(propertyData);
     }
   };
 
@@ -73,7 +77,7 @@ export const SelectField: FC<ISelectField> = ({
             <Select
               {...register(`${name}${fieldId}`)}
               {...field}
-              placeholder={placeholder || 'Select'}
+              placeholder={defaultValue}
               className={style.select_input}
               options={
                 options &&
@@ -99,7 +103,7 @@ export const SelectField: FC<ISelectField> = ({
               },
             })}
             type="number"
-            placeholder="Enter percentage of material"
+            placeholder={optionValue}
             className={style.percentage}
           />
         </Label>

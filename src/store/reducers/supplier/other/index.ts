@@ -4,3 +4,5 @@ export {
   getVariationsService,
   uploadImageService,
 } from './thunks';
+
+export { productProperties } from './selectors';

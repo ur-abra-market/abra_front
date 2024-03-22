@@ -8,7 +8,7 @@ export enum FIELDS_NEW_PRODUCT_INFO {
   BrandName = 'brandName',
   Images = 'images',
   ProductInfo = 'productInfo',
-  productProperties = 'productProperties',
+  ProductProperties = 'productProperties',
 }
 
 export interface IImages {
@@ -22,10 +22,11 @@ export interface IProductInfo {
 }
 
 export interface IProductProperties {
-  name: string;
-  propertyTypeId: number; // material, season and etc
-  propertyValueId: number; // id of material, season. For example material > polyester
-  optionalValue: number;
+  value: string;
+  property_type_id: number; // material, season and etc
+  id: number; // id of material, season. For example material > polyester
+  optionalValue?: number;
+  categoryId?: number;
 }
 
 export interface IMainProductInfo {
@@ -87,7 +88,7 @@ export const initDataBase = async (): Promise<IDBPDatabase<UserDB>> => {
 export const updateFieldInDataBase = async (
   db: IDBPDatabase<UserDB>,
   fieldToUpdate: FIELDS_NEW_PRODUCT_INFO,
-  newValue: string | IImages[] | IProductInfo | IProductProperties,
+  newValue: string | IImages[] | IProductInfo | IProductProperties[],
 ): Promise<void> => {
   const tx = db.transaction('productDescription', 'readwrite');
   const store = tx.objectStore('productDescription');
@@ -111,27 +112,15 @@ export const updateFieldInDataBase = async (
 
       case FIELDS_NEW_PRODUCT_INFO.ProductInfo: {
         product[fieldToUpdate] = newValue as IProductInfo;
+
         break;
       }
 
-      case FIELDS_NEW_PRODUCT_INFO.productProperties: {
-        const newPropertyValue = newValue as IProductProperties;
+      case FIELDS_NEW_PRODUCT_INFO.ProductProperties: {
+        product[fieldToUpdate] = newValue as IProductProperties[];
 
-        const updatedProperties = product[fieldToUpdate].map(el => {
-          if (el.name === newPropertyValue.name) {
-            return newPropertyValue;
-          }
-
-          return el;
-        });
-
-        if (!updatedProperties.some(el => el.name === newPropertyValue.name)) {
-          updatedProperties.push(newPropertyValue);
-        }
-        product[fieldToUpdate] = updatedProperties;
         break;
       }
-
       default: {
         product[fieldToUpdate] = newValue as string;
         break;
