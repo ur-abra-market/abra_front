@@ -5,7 +5,13 @@ import { useAppSelector } from 'common/hooks';
 
 import style from './ProductParams.module.scss';
 
-export const ProductParams = (): JSX.Element => {
+interface IProductParams {
+  setBundleVariationPodId: (value: number | null) => void;
+}
+
+export const ProductParams = ({
+  setBundleVariationPodId,
+}: IProductParams): JSX.Element => {
   const selectedBundle = useAppSelector(state => state.product.selectedBundle);
 
   return (
@@ -16,6 +22,7 @@ export const ProductParams = (): JSX.Element => {
           <ProductSizeList
             bundleType={selectedBundle.type}
             bundle={selectedBundle.bundle}
+            setBundleVariationPodId={setBundleVariationPodId}
           />
         </>
       ) : (
@@ -24,7 +31,11 @@ export const ProductParams = (): JSX.Element => {
             bundleType={selectedBundle.type}
             bundle={selectedBundle.bundle}
           />
-          <ProductColor bundleType={selectedBundle.type} bundle={selectedBundle.bundle} />
+          <ProductColor
+            bundleType={selectedBundle.type}
+            bundle={selectedBundle.bundle}
+            setBundleVariationPodId={setBundleVariationPodId}
+          />
         </>
       )}
     </div>

@@ -1,5 +1,6 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
+import { useAppSelector } from 'common/hooks';
 import { BundleSizeList } from 'pages/general-pages/ProductPage/components/ProductParams/BundleSizeLists/BundleSizeList';
 import { BundleSizePickableList } from 'pages/general-pages/ProductPage/components/ProductParams/BundleSizeLists/BundleSizePickableList';
 import { IProductBundle } from 'store/reducers/productSlice/types';
@@ -10,14 +11,29 @@ import style from './ProductSizeList.module.scss';
 interface IProductSize {
   bundleType: 'color' | 'size';
   bundle: IProductBundle;
+  setBundleVariationPodId?: (value: number | null) => void;
 }
 
 export const ProductSizeList: FC<IProductSize> = ({
   bundleType,
   bundle,
+  setBundleVariationPodId,
 }): JSX.Element => {
+  const bundleVariationPods = useAppSelector(
+    state => state.product.productCard.bundle_variation_pods,
+  );
   const [selectedSize, setSelectedSize] = useState<number | null>(null);
   const isBundleBasedOnSize = bundleType === 'size';
+
+  useEffect(() => {
+    const bundle_variation_pod = bundleVariationPods.find(
+      el => el.bundle_variations[0].variation_value_to_product_id === selectedSize,
+    );
+
+    if (bundle_variation_pod) {
+      setBundleVariationPodId?.(bundle_variation_pod.id);
+    }
+  }, [bundleVariationPods, selectedSize, setBundleVariationPodId]);
 
   return (
     <div className={style.product_size_container}>

@@ -1,0 +1,86 @@
+.button {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  width: 100px;
+  padding: 11px;
+
+  font-family: var(--roboto);
+  font-size: var(--fz-s);
+  font-weight: var(--medium);
+
+  border: 1px solid transparent;
+  border-radius: 12px;
+  outline: none;
+
+  transition: all 0.5s;
+
+  &:focus-visible {
+    outline: 1px solid var(--color-black);
+    transition: none;
+  }
+}
+
+.default,
+.red {
+  color: var(--color-white);
+  background: var(--color-red);
+}
+
+.default:hover,
+.red:hover {
+  background: var(--color-red-medium);
+}
+
+.default:active,
+.red:active {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--color-red);
+}
+
+.default:disabled {
+  cursor: initial;
+  color: var(--color-gray-light);
+  background: var(--color-white);
+  border: 1px solid #E3E3E3;
+}
+
+.loader_indicator {
+  width: 22.5px;
+  height: 22.5px;
+
+  border: 2px solid var(--color-white);
+  border-top: 2px solid var(--color-gray-light);
+  border-radius: 50%;
+
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .button {
+    padding: 12px;
+  }
+}
