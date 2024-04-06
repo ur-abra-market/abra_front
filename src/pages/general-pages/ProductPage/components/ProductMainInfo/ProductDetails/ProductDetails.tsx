@@ -63,6 +63,11 @@ export const ProductDetails = (): JSX.Element => {
     );
     setIsLoading(false);
     setIsOpenModal(true);
+    setAmount(1);
+  };
+
+  const handleCloseModal = (): void => {
+    setIsOpenModal(false);
   };
 
   return (
@@ -98,7 +103,7 @@ export const ProductDetails = (): JSX.Element => {
       <ProductFeedback />
       <ProductDescription description={description} />
 
-      <Modal showModal={isOpenModal} closeModal={() => setIsOpenModal(false)}>
+      <Modal showModal={isOpenModal} closeModal={handleCloseModal}>
         <div className={style.modal_content}>
           <Paragraph size="m" weight="semi_bold">
             Product has been added to cart
@@ -107,7 +112,7 @@ export const ProductDetails = (): JSX.Element => {
             <SimpleLink color="default" to={CART} className={style.cart_link}>
               Go to Shopping cart
             </SimpleLink>
-            <Button color="light-red" onClick={() => setIsOpenModal(false)}>
+            <Button color="light-red" onClick={handleCloseModal}>
               Continue shopping
             </Button>
           </div>

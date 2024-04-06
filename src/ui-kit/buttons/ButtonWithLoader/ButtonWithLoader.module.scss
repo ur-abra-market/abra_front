@@ -7,7 +7,7 @@
 
   box-sizing: border-box;
   width: 100px;
-  padding: 11px;
+  padding: 10px;
 
   font-family: var(--roboto);
   font-size: var(--fz-s);
@@ -49,8 +49,8 @@
 }
 
 .loader_indicator {
-  width: 22.5px;
-  height: 22.5px;
+  width: 24.5px;
+  height: 24.5px;
 
   border: 2px solid var(--color-white);
   border-top: 2px solid var(--color-gray-light);
