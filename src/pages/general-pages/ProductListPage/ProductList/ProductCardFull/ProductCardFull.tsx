@@ -52,9 +52,7 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
           ))}
         </div>
         <div className={style.price}>
-          <p className={style.amount}>
-            {amountRange(min_price.value, max_price.value)}/pc
-          </p>
+          <p className={style.amount}>{amountRange(min_price, max_price)}/pc</p>
           <span className={style.rating}>{`/from ${min_quantity} pcs`}</span>
         </div>
 
