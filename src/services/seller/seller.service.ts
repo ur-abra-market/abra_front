@@ -102,4 +102,12 @@ export const sellerService = {
 
     return data.result;
   },
+
+  checkoutOrder: async (orderId: number) => {
+    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+      `/sellers/orders/${orderId}/create `,
+    );
+
+    return data.result;
+  },
 };

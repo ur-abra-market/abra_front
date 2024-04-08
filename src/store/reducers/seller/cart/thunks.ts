@@ -43,3 +43,19 @@ export const addToCart = createAsyncThunk<
     return rejectWithValue(errorMessage);
   }
 });
+
+export const checkoutOrder = createAsyncThunk<boolean, number, IAsyncThunkConfig>(
+  'seller/checkoutOrder',
+  async (orderId, { rejectWithValue }) => {
+    try {
+      return await sellerService.checkoutOrder(orderId);
+    } catch (error) {
+      const errorMessage =
+        error instanceof AxiosError
+          ? error.response?.data?.error || error.message
+          : '[checkoutOrder]: Error';
+
+      return rejectWithValue(errorMessage);
+    }
+  },
+);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { CartWithOrder } from './CartWithOrder';
 import { EmptyCart } from './EmptyCart';
@@ -13,29 +13,30 @@ import style from './SellerCart.module.scss';
 export const SellerCartPage = WithLayout((): JSX.Element => {
   const dispatch = useAppDispatch();
 
-  const [isFetchingData, setIsFetchingData] = useState(true);
+  const [isFetchingData, setIsFetchingData] = useState(false);
 
   const totalAmountItems = useAppSelector(totalItems);
 
-  useEffect(() => {
-    const fetchData = async (): Promise<void> => {
-      await dispatch(
-        getSellerCartData({
-          offset: 0,
-          limit: 100,
-        }),
-      );
-      setIsFetchingData(false);
-    };
-
-    fetchData();
+  const getCartData = useCallback(async (): Promise<void> => {
+    setIsFetchingData(true);
+    await dispatch(
+      getSellerCartData({
+        offset: 0,
+        limit: 100,
+      }),
+    );
+    setIsFetchingData(false);
   }, [dispatch]);
+
+  useEffect(() => {
+    getCartData();
+  }, [getCartData]);
 
   if (isFetchingData) return <LoaderLinear />;
 
   return (
     <div className={style.wrapper}>
-      {totalAmountItems ? <CartWithOrder /> : <EmptyCart />}
+      {totalAmountItems ? <CartWithOrder getCartData={getCartData} /> : <EmptyCart />}
     </div>
   );
 });
