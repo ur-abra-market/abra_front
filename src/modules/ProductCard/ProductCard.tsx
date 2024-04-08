@@ -59,9 +59,7 @@ export const ProductCard: FC<IProductCard> = ({
           <p className={style.card_description}>{description}</p>
         </div>
         <div className={style.price}>
-          <span className={style.amount}>
-            {amountRange(min_price.value, max_price.value)}/pc
-          </span>
+          <span className={style.amount}>{amountRange(min_price, max_price)}/pc</span>
           <span className={style.rating}>{`/from ${min_quantity} pcs`}</span>
         </div>
         <Stars reward={grade_average || 0} />
