@@ -1,6 +1,7 @@
 import {
   ISellerAddressData,
   ISellerAddressRequest,
+  ISellerAddToCartRequest,
   ISellerAvatarResponse,
   ISellerNotifications,
   ISellersCartRequest,
@@ -82,6 +83,18 @@ export const sellerService = {
     const params = { offset, limit };
     const { data } = await baseConfigService.get<IBaseResponse<ISellersCartResponse[]>>(
       `sellers/cart`,
+      {
+        params,
+      },
+    );
+
+    return data.result;
+  },
+
+  addToCart: async (params: ISellerAddToCartRequest) => {
+    const { data } = await baseConfigService.put<IBaseResponse<ISellersCartResponse[]>>(
+      `sellers/cart/addProduct`,
+      null,
       {
         params,
       },

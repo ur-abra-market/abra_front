@@ -66,3 +66,8 @@ export interface ISellersCartRequest {
   offset: number;
   limit: number;
 }
+
+export interface ISellerAddToCartRequest {
+  bundle_variation_pod_id: number;
+  amount: number;
+}
