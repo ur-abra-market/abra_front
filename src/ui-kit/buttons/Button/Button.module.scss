@@ -1,5 +1,6 @@
 .button {
   cursor: pointer;
+  user-select: none;
 
   box-sizing: border-box;
   padding: 14px;
@@ -24,75 +25,63 @@
 .red {
   color: var(--color-white);
   background: var(--color-red);
-}
 
-.default:hover,
-.red:hover {
-  background: var(--color-red-medium);
-}
+  &:hover {
+    background: var(--color-red-medium);
+  }
 
-.default:active,
-.red:active {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--color-red);
+  &:active {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--color-red);
+  }
 }
 
 .default:disabled {
+  cursor: initial;
   color: var(--color-gray-light);
   background: var(--color-white);
   border: 1px solid #E3E3E3;
 }
 
 .red:disabled {
+  cursor: initial;
   background: rgba(252, 19, 61, 0.2);
-}
-
-.red:disabled:hover {
-  color: var(--color-black);
-  background: rgba(252, 19, 61, 0.4);
-}
-
-.red:disabled:active {
-  color: var(--color-white);
-  background: rgba(252, 19, 61, 0.8);
 }
 
 .light_red {
   color: var(--color-black);
   background: rgba(252, 19, 61, 0.2);
-}
 
-.light_red:hover {
-  background: rgba(252, 19, 61, 0.4);
-}
+  &:hover:not(:disabled) {
+    background: rgba(252, 19, 61, 0.4);
+  }
 
-.light_red:active {
-  color: var(--color-white);
-  background: rgba(252, 19, 61, 0.8);
-}
+  &:active:not(:disabled) {
+    color: var(--color-white);
+    background: rgba(252, 19, 61, 0.8);
+  }
 
-.light_red:disabled {
-  color: var(--color-white);
-  background: var(--color-red);
-}
-
-.light_red:disabled:hover {
-  color: var(--color-white);
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), var(--color-red);
-}
-
-.light_red:disabled:active {
-  color: var(--color-white);
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--color-red);
+  &:disabled {
+    cursor: initial;
+    color: var(--color-gray);
+  }
 }
 
 .white {
   color: var(--color-black);
   background: var(--color-white);
+
+  &:disabled {
+    cursor: initial;
+  }
 }
 
 .black {
   color: var(--color-white);
   background: var(--color-black);
+
+  &:disabled {
+    cursor: initial;
+  }
 }
 
 @media only screen and (max-width: 768px) {
