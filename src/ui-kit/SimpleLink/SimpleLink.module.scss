@@ -38,3 +38,25 @@
   cursor: default;
   color: var(--color-gray);
 }
+
+.button {
+  padding: 14px;
+
+  font-size: var(--fz-s);
+  font-weight: var(--medium);
+  color: var(--color-white);
+
+  background: var(--color-red);
+  border: 1px solid transparent;
+  border-radius: 12px;
+
+  &:hover {
+    color: var(--color-white);
+    text-decoration: none;
+    background: var(--color-red-medium);
+  }
+
+  &:active {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--color-red);
+  }
+}

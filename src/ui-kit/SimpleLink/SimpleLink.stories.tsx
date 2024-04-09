@@ -6,17 +6,31 @@ const meta = {
   component: SimpleLink,
   tags: ['autodocs'],
   title: 'Components/SimpleLink',
+  args: {
+    to: '/',
+    color: 'accent',
+  },
 } satisfies Meta<typeof SimpleLink>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const DefaultSimpleLink: Story = {
+export const AccentColor: Story = {
   args: {
-    to: '/',
-    className: 'default',
-    color: 'accent',
     children: "I'm a SimpleLink",
-    disabled: false,
+  },
+};
+
+export const DefaultColor: Story = {
+  args: {
+    children: "I'm a SimpleLink",
+    color: 'default',
+  },
+};
+
+export const AsPrimaryButton: Story = {
+  args: {
+    variant: 'button',
+    children: 'Link as Button',
   },
 };
