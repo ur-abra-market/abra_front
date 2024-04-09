@@ -109,7 +109,7 @@ export const ProductDetails = (): JSX.Element => {
             Product has been added to cart
           </Paragraph>
           <div className={style.modal_buttons}>
-            <SimpleLink color="default" to={CART} className={style.cart_link}>
+            <SimpleLink color="default" to={CART} variant="button">
               Go to Shopping cart
             </SimpleLink>
             <Button color="light-red" onClick={handleCloseModal}>
