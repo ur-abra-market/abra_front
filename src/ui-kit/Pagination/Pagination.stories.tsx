@@ -7,25 +7,15 @@ import { Pagination } from './Pagination';
 const meta = {
   component: Pagination,
   tags: ['autodocs'],
-  title: 'Components/Pagination',
+  title: 'Ui-kit/Pagination',
 } satisfies Meta<typeof Pagination>;
 
 export default meta;
 
-export const DefaultButton = {
+export const Default = {
   render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [page, setPage] = useState(1);
-    const onPageChangedHandler = (pageNumber: number): void => {
-      setPage(pageNumber);
-    };
 
-    return (
-      <Pagination
-        currentPage={page}
-        onPageChanged={onPageChangedHandler}
-        totalPages={24}
-      />
-    );
+    return <Pagination currentPage={page} onPageChanged={setPage} totalPages={24} />;
   },
 };

@@ -5,19 +5,48 @@ import { Button } from './Button';
 const meta = {
   component: Button,
   tags: ['autodocs'],
-  title: 'Components/Button',
+  title: 'Ui-kit/Buttons/DefaultButton',
+  args: {
+    children: 'Default Button',
+    color: 'default',
+  },
+  argTypes: {
+    onClick: { action: 'clicked' },
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const DefaultButton: Story = {
+export const DefaultButton: Story = {};
+
+export const ButtonDisabled: Story = {
   args: {
-    children: 'Default Button',
-    disabled: false,
-    color: 'default',
+    disabled: true,
   },
-  argTypes: {
-    onClick: { action: 'clicked' },
+};
+
+export const LightRedColor: Story = {
+  args: {
+    color: 'light-red',
+  },
+};
+
+export const LightRedColorDisabled: Story = {
+  args: {
+    color: 'light-red',
+    disabled: true,
+  },
+};
+
+export const White: Story = {
+  args: {
+    color: 'white',
+  },
+};
+
+export const Black: Story = {
+  args: {
+    color: 'black',
   },
 };

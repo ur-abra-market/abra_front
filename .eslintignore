@@ -2,3 +2,5 @@
 *.scss
 *.json
 *.d.ts
+*.stories.ts
+*.stories.tsx

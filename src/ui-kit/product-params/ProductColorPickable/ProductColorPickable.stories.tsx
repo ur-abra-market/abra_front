@@ -9,7 +9,10 @@ import style from './ProductColorPickable.module.scss';
 const meta = {
   component: ProductColorPickable,
   tags: ['autodocs'],
-  title: 'Components/ProductColorPickable',
+  title: 'Ui-kit/ProductParams/ProductColorPickable',
+  parameters: {
+    layout: 'centered',
+  },
 } satisfies Meta<typeof ProductColorPickable>;
 
 export default meta;
@@ -38,16 +41,7 @@ const tempData = [
   { id: 3, image_url: 'https://lookcolor.ru/images/menu/menu-right/red.png' },
   { id: 4, image_url: 'https://lookcolor.ru/images/menu/menu-right/vinous.png' },
   { id: 5, image_url: 'https://lookcolor.ru/images/menu/menu-right/orange.png' },
-  {
-    id: 6,
-    image_url: 'https://lookcolor.ru/images/menu/menu-right/coral.png',
-  },
-  {
-    id: 7,
-    image_url: 'https://lookcolor.ru/images/menu/menu-right/gold.png',
-  },
-  {
-    id: 8,
-    image_url: 'https://lookcolor.ru/images/menu/menu-right/turquoise.png',
-  },
+  { id: 6, image_url: 'https://lookcolor.ru/images/menu/menu-right/coral.png' },
+  { id: 7, image_url: 'https://lookcolor.ru/images/menu/menu-right/gold.png' },
+  { id: 8, image_url: 'https://lookcolor.ru/images/menu/menu-right/turquoise.png' },
 ];

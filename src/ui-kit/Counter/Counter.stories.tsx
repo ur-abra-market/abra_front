@@ -7,7 +7,22 @@ import { Counter } from './Counter';
 const meta = {
   component: Counter,
   tags: ['autodocs'],
-  title: 'Components/Counter',
+  title: 'Ui-kit/Counter',
+  args: {
+    amount: 50,
+    min_amount: 0,
+    max_amount: 100,
+    label: 'Bundle',
+    bundles_amount: '/from 100 bundles',
+  },
+  argTypes: {
+    amount: {
+      control: {
+        type: 'range',
+        step: 1,
+      },
+    },
+  },
 } satisfies Meta<typeof Counter>;
 
 export default meta;
@@ -16,24 +31,15 @@ type Story = StoryObj<typeof meta>;
 export const BigCounter: Story = {
   args: {
     variant: 'large',
-    amount: 134,
-    min_amount: 2,
-    max_amount: 1000,
-    label: 'Bundle',
-    bundles_amount: '/from 100 bundles',
   },
 };
 
 export const SmallCounter: Story = {
   args: {
     variant: 'small',
-    amount: 134,
-    min_amount: 2,
-    max_amount: 1000,
-    label: 'Bundle',
-    bundles_amount: '/from 100 bundles',
   },
 };
+
 export const CounterWithState = (): JSX.Element => {
   const [value, setValue] = useState(5);
 

@@ -5,7 +5,7 @@ import { ProductSize } from './ProductSize';
 const meta = {
   component: ProductSize,
   tags: ['autodocs'],
-  title: 'Components/ProductSize',
+  title: 'Ui-kit/ProductParams/ProductSize',
   parameters: {
     layout: 'centered',
   },
@@ -23,10 +23,10 @@ export const Deffailt: Story = {
 
 export const MultipleProductSizeItem = (): JSX.Element => {
   return (
-    <div style={{ display: 'flex', gap: '19px' }}>
+    <div style={{ display: 'flex', gap: '20px' }}>
       <ProductSize size="M" quantity={3} />
       <ProductSize size="L" quantity={66} />
-      <ProductSize size="XXXXL" quantity={999999} />
+      <ProductSize size="XL" quantity={99} />
     </div>
   );
 };
