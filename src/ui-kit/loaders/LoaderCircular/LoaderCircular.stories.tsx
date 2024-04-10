@@ -5,7 +5,7 @@ import { LoaderCircular } from './LoaderCircular';
 const meta = {
   component: LoaderCircular,
   tags: ['autodocs'],
-  title: 'Components/LoaderCircular',
+  title: 'Ui-kit/Loaders/LoaderCircular',
 } satisfies Meta<typeof LoaderCircular>;
 
 export default meta;

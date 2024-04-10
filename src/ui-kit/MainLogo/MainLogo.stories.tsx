@@ -5,7 +5,7 @@ import { MainLogo } from './MainLogo';
 const meta = {
   component: MainLogo,
   tags: ['autodocs'],
-  title: 'Components/MainLogo',
+  title: 'Ui-kit/MainLogo',
 } satisfies Meta<typeof MainLogo>;
 
 export default meta;
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 
 export const PrimaryLogo: Story = {};
 
-export const SecondaryLogo: Story = {
+export const LogoSizeM: Story = {
   args: {
     variant: 'm',
   },

@@ -7,7 +7,7 @@ import { ProductSizePickable } from './ProductSizePickable';
 const meta = {
   component: ProductSizePickable,
   tags: ['autodocs'],
-  title: 'Components/ProductSizePickable',
+  title: 'Ui-kit/ProductParams/ProductSizePickable',
   parameters: {
     layout: 'centered',
   },
@@ -16,22 +16,21 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const ProductSizeSelectorWithHooks = (): JSX.Element => {
-  const [selected, setSelected] = useState<number | null>(null);
+export const ProductSizeItem = {
+  render: () => {
+    const [selected, setSelected] = useState<number | null>(null);
 
-  return (
-    <ProductSizePickable
-      size="M"
-      handleSelectSize={setSelected}
-      selectedSizeId={selected}
-      id="1"
-    />
-  );
+    return (
+      <ProductSizePickable
+        size="M"
+        handleSelectSize={setSelected}
+        selectedSizeId={selected}
+        id="1"
+      />
+    );
+  },
 };
 
-export const ProductSizeItemToggle = {
-  render: () => <ProductSizeSelectorWithHooks />,
-};
 export const MultipleProductSizeItem = (): JSX.Element => {
   const [selected, setSelected] = useState<number | null>(null);
 
@@ -39,19 +38,19 @@ export const MultipleProductSizeItem = (): JSX.Element => {
     <div style={{ display: 'flex', gap: '19px' }}>
       <ProductSizePickable
         size="M"
-        handleSelectSize={() => setSelected(1)}
+        handleSelectSize={setSelected}
         selectedSizeId={selected}
         id="1"
       />
       <ProductSizePickable
         size="L"
-        handleSelectSize={() => setSelected(1)}
+        handleSelectSize={setSelected}
         selectedSizeId={selected}
         id="2"
       />
       <ProductSizePickable
-        size="XXXXL"
-        handleSelectSize={() => setSelected(1)}
+        size="XL"
+        handleSelectSize={setSelected}
         selectedSizeId={selected}
         id="3"
       />

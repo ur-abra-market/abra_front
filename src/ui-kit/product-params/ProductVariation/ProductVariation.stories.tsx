@@ -9,7 +9,13 @@ import style from './ProductVariation.module.scss';
 const meta = {
   component: ProductVariation,
   tags: ['autodocs'],
-  title: 'Components/ProductVariation',
+  title: 'Ui-kit/ProductParams/ProductVariation',
+  argTypes: {
+    onClick: { action: 'clicked' },
+  },
+  parameters: {
+    layout: 'centered',
+  },
 } satisfies Meta<typeof ProductVariation>;
 
 export default meta;
@@ -20,6 +26,7 @@ export const Default: Story = {
     imageUrl: 'https://lookcolor.ru/images/menu/menu-right/pink.png',
     children: 'Var. 1',
     productId: 1,
+    selectColor: () => {},
   },
 };
 

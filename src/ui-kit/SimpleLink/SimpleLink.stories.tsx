@@ -5,7 +5,7 @@ import { SimpleLink } from './SimpleLink';
 const meta = {
   component: SimpleLink,
   tags: ['autodocs'],
-  title: 'Components/SimpleLink',
+  title: 'Ui-kit/SimpleLink',
   args: {
     to: '/',
     color: 'accent',
@@ -28,7 +28,7 @@ export const DefaultColor: Story = {
   },
 };
 
-export const AsPrimaryButton: Story = {
+export const AsButton: Story = {
   args: {
     variant: 'button',
     children: 'Link as Button',

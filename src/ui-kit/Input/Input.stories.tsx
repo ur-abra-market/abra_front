@@ -5,29 +5,36 @@ import { Input } from './Input';
 const meta = {
   component: Input,
   tags: ['autodocs'],
-  title: 'Components/Input',
+  title: 'Ui-kit/Input',
+  args: {
+    variant: 'primary',
+    defaultValue: 'Some text',
+  },
+  argTypes: {
+    onChange: { action: 'type' },
+  },
 } satisfies Meta<typeof Input>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Primary: Story = {};
+
+export const Password: Story = {
   args: {
-    variant: 'primary',
-    defaultValue: 'Some text',
+    type: 'password',
+    variant: 'password',
   },
 };
 
-export const Password = {
-  render: () => {
-    return <Input type="password" variant="password" placeholder="********" />;
-  },
-};
-
-export const Invalid: Story = {
+export const WithError: Story = {
   args: {
-    variant: 'primary',
-    defaultValue: 'Invalid text',
     error: 'Some error',
+  },
+};
+
+export const DateType: Story = {
+  args: {
+    type: 'date',
   },
 };

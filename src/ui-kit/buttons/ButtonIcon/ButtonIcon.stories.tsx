@@ -7,15 +7,16 @@ import { GoogleIcon } from 'assets/icons';
 const meta = {
   component: ButtonIcon,
   tags: ['autodocs'],
-  title: 'Components/ButtonIcon',
+  title: 'Ui-kit/Buttons/ButtonIcon',
+  args: {
+    children: <GoogleIcon />,
+  },
+  argTypes: {
+    onClick: { action: 'clicked' },
+  },
 } satisfies Meta<typeof ButtonIcon>;
 
 export default meta;
 type Story = StoryObj<typeof ButtonIcon>;
 
-export const ButtonWithIcon: Story = {
-  args: {
-    children: <GoogleIcon />,
-    disabled: false,
-  },
-};
+export const ButtonWithIcon: Story = {};
