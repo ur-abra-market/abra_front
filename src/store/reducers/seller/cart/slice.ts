@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { getSellerCartData } from './thunks';
+import { checkoutOrder, getSellerCartData } from './thunks';
 import { IProductCardInCart } from './types';
 
 export interface IProductsInCart {
@@ -9,6 +9,7 @@ export interface IProductsInCart {
   totalProductForOrder: number;
   totalAmountBundles: number;
   totalItems: number;
+  isLoading: boolean;
 }
 
 const initialState: IProductsInCart = {
@@ -17,6 +18,7 @@ const initialState: IProductsInCart = {
   totalProductForOrder: 0,
   totalAmountBundles: 0,
   totalItems: 0,
+  isLoading: false,
 };
 const sellerCartSlice = createSlice({
   name: 'seller/cart',
@@ -63,7 +65,11 @@ const sellerCartSlice = createSlice({
     },
   },
   extraReducers: builder => {
+    builder.addCase(getSellerCartData.pending, state => {
+      state.isLoading = true;
+    });
     builder.addCase(getSellerCartData.fulfilled, (state, action) => {
+      state.isLoading = false;
       const productCartItems: IProductCardInCart[] = [];
 
       action.payload.forEach(item => {
@@ -98,6 +104,18 @@ const sellerCartSlice = createSlice({
 
       state.productsInCart = Object.values(sortedCartItemsByName);
       state.totalItems = state.productsInCart.flat(2).length;
+    });
+    builder.addCase(getSellerCartData.rejected, state => {
+      state.isLoading = false;
+    });
+    builder.addCase(checkoutOrder.pending, state => {
+      state.isLoading = true;
+    });
+    builder.addCase(checkoutOrder.fulfilled, state => {
+      state.isLoading = false;
+    });
+    builder.addCase(checkoutOrder.rejected, state => {
+      state.isLoading = false;
     });
   },
 });

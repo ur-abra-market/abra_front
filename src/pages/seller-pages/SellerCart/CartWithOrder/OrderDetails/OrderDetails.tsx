@@ -1,13 +1,20 @@
 import React from 'react';
 
-import { useAppSelector } from 'common/hooks';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { IProductCardInCart } from 'store/reducers/seller/cart';
 import { productsInCart } from 'store/reducers/seller/cart/selectors';
+import { checkoutOrder } from 'store/reducers/seller/cart/thunks';
 import { Button, Paragraph, Title } from 'ui-kit';
 
 import style from './OrderDetails.module.scss';
 
-export const OrderDetails = (): JSX.Element => {
+interface IOrderDetails {
+  ordersId: number[];
+  getCartData: () => void;
+}
+
+export const OrderDetails = ({ ordersId, getCartData }: IOrderDetails): JSX.Element => {
+  const dispatch = useAppDispatch();
   const products = useAppSelector(productsInCart);
 
   const selectedProducts = products
@@ -27,7 +34,17 @@ export const OrderDetails = (): JSX.Element => {
       Number((item.bundle_variation_pod.prices[0].value * item.amount).toFixed(2))
     );
   }, 0);
+
   const totalPriceBundlesToFixed = Number(totalPriceBundles.toFixed(2));
+
+  const handleCheckout = async (): Promise<void> => {
+    // eslint-disable-next-line
+    for await (const id of ordersId) {
+      await dispatch(checkoutOrder(id));
+    }
+
+    getCartData();
+  };
 
   return (
     <div className={style.order_item}>
@@ -57,7 +74,9 @@ export const OrderDetails = (): JSX.Element => {
         Total <span>${totalPriceBundlesToFixed}</span>
       </Title>
 
-      <Button className={style.button_checkout}>Сheckout</Button>
+      <Button className={style.button_checkout} onClick={handleCheckout}>
+        Checkout
+      </Button>
 
       <Paragraph size="s2" className={style.order_description}>
         Make sure that the quantity of goods and the selected characteristics are correct.
