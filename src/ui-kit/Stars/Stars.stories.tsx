@@ -5,23 +5,19 @@ import { Stars } from './Stars';
 const meta = {
   component: Stars,
   tags: ['autodocs'],
-  title: 'Components/Stars',
+  title: 'Ui-kit/Stars',
+  args: {
+    reward: 5,
+    sizes: '20',
+  },
 } satisfies Meta<typeof Stars>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const DefaultStars: Story = {
-  args: {
-    reward: 5,
-    sizes: '20',
-  },
-};
+export const DefaultStars: Story = {};
+
 export const StarsExample: Story = {
-  args: {
-    reward: 5,
-    sizes: '20',
-  },
   render: () => {
     return (
       <>

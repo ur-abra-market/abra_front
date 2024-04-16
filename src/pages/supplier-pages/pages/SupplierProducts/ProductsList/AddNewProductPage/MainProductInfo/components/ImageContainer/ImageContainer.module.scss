@@ -1,0 +1,24 @@
+.image_container {
+  position: relative;
+  display: inline-block;
+  margin-top: 8px;
+
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.upload, .upload_more {
+  position: absolute;
+  bottom: 24px;
+  left: 38px;
+
+  font-size: var(--fz-s);
+  color: var(--color-gray-medium);
+}
+
+.upload_more {
+  bottom: 12px;
+}

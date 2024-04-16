@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { Discount } from './Discount/Discount';
 
 import { useAppSelector } from 'common/hooks';
@@ -7,8 +5,12 @@ import { Counter } from 'ui-kit/Counter/Counter';
 
 import style from './ProductPrice.module.scss';
 
-export const ProductPrice = (): JSX.Element => {
-  const [count, setCount] = useState<string | number>(0);
+export interface IProductPrice {
+  count: number | string;
+  setCount: (value: number | string) => void;
+}
+
+export const ProductPrice = ({ count, setCount }: IProductPrice): JSX.Element => {
   const { prices } = useAppSelector(state => state.product.selectedBundle.bundle);
 
   return (

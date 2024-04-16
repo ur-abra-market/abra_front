@@ -7,7 +7,7 @@ import { SelectedViewEnum } from 'common/types';
 const meta = {
   component: SkeletonProductCard,
   tags: ['autodocs'],
-  title: 'Components/SkeletonProductCard',
+  title: 'Elements/SkeletonProductCard',
 } satisfies Meta<typeof SkeletonProductCard>;
 
 export default meta;

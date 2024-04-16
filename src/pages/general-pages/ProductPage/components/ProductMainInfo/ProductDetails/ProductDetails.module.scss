@@ -30,6 +30,24 @@
   top: 14px;
 }
 
+.modal_content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.modal_buttons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader_button {
+  width: 100%;
+}
+
 @media (max-width: 1200px) {
   .product_details_container {
     padding: 0;

@@ -1,34 +1,63 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { WithLayout } from 'common/hocs/WithLayout';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
+import { LoadingStatusEnum, SelectedViewEnum } from 'common/types';
+import { ProductsPerPage, SkeletonProductCard } from 'elements';
+import { ProductCard } from 'modules';
+import { productsPerPageSelector, setProductsPerPage } from 'store/reducers/productSlice';
+import {
+  favoriteProductsSelector,
+  getFavoritesProductsService,
+  userLoadingSelector,
+} from 'store/reducers/userSlice';
 import { ButtonQuestion, Search, Title } from 'ui-kit';
+import { Pagination } from 'ui-kit/Pagination/Pagination';
 
 import style from './SellerFavoritesList.module.scss';
 
+const MIN_PRODUCT_PER_PAGE = 20;
+
 export const SellerFavoritesList = WithLayout((): JSX.Element => {
-  const arr = [];
+  const dispatch = useAppDispatch();
+  const favoriteProducts = useAppSelector(favoriteProductsSelector);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = useAppSelector(productsPerPageSelector);
+  const totalPages = Math.ceil(MIN_PRODUCT_PER_PAGE / productsPerPage);
+  const isLoading =
+    useAppSelector(userLoadingSelector).favoritesProductsLoading ===
+    LoadingStatusEnum.Loading;
+  const isMoreThanProductPerPage = favoriteProducts.length >= MIN_PRODUCT_PER_PAGE;
 
-  // const product: IShortCardProduct = {
-  //   id: +new Date(),
-  //   name: 'trousers',
-  //   description: 'trousers description',
-  //   total_orders: 44,
-  //   grade_average: '4.5',
-  //   date_added: '2021-04-11T10:20:30Z',
-  //   with_discount: 2,
-  //   price_include_discount: '50',
-  //   min_quantity: 5,
-  //   value_price: '100',
-  //   is_favorite: 1,
-  //   image_url:
-  //     'https://images.asos-media.com/products/asos-design-cargo-tapered-trousers-in-black-with-toggles/202796442-1-black?$n_750w$&wid=750&hei=750&fit=crop',
-  // };
+  const handleChangeSelect = (value: number): void => {
+    dispatch(setProductsPerPage(value));
+  };
 
-  const exampleCount = 24;
+  useEffect(() => {
+    const param = {
+      offset: (currentPage - 1) * productsPerPage,
+      limit: productsPerPage,
+    };
 
-  for (let i = 0; i < exampleCount; i += 1) {
-    arr.push('item');
-  }
+    dispatch(getFavoritesProductsService(param));
+  }, [productsPerPage, currentPage]);
+
+  const productSkeleton = Array.from({ length: productsPerPage }).map((el, i) => (
+    <SkeletonProductCard key={i} selectedView={SelectedViewEnum.GRID} />
+  ));
+
+  const favoriteProductsView = favoriteProducts.map(product => (
+    <ProductCard product={product} key={product.id} isFavorite />
+  ));
+
+  const paginationComponent = (
+    <Pagination
+      totalPages={totalPages}
+      currentPage={currentPage}
+      onPageChanged={setCurrentPage}
+      disabled={isLoading}
+    />
+  );
 
   return (
     <div className={style.favorites_page}>
@@ -37,12 +66,17 @@ export const SellerFavoritesList = WithLayout((): JSX.Element => {
           <Title as="h3">Favorites list</Title>
           <Search className={style.search} placeholder="Search within my favorites" />
         </div>
+        {isMoreThanProductPerPage && (
+          <div className={style.pagination}>{paginationComponent}</div>
+        )}
         <div className={style.main}>
-          {arr.map((item, index) => (
-            <div className={style.product_card} key={index}>
-              {item}
-            </div>
-          ))}
+          {isLoading ? productSkeleton : favoriteProductsView}
+        </div>
+        <div className={style.control_panel}>
+          {isMoreThanProductPerPage && (
+            <ProductsPerPage disabled={isLoading} onChange={handleChangeSelect} />
+          )}
+          {isMoreThanProductPerPage && paginationComponent}
         </div>
         <div className={style.bottom}>
           <ButtonQuestion />

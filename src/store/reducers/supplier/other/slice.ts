@@ -1,12 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { addProductService, getPropertiesService, getVariationsService } from './thunks';
+import { IProductProperties } from './types';
 
 import { LoadingStatusEnum } from 'common/types';
 
 const initialState = {
   productId: null as number | null,
-  productProperties: null,
+  productProperties: [] as IProductProperties[],
   productVariations: null,
   errMessage: '',
   loading: LoadingStatusEnum.Idle as LoadingStatusEnum,
@@ -36,18 +37,20 @@ const categorySlice = createSlice({
 
     builder
       .addCase(getPropertiesService.pending, state => {
-        state.productProperties = null;
+        state.productProperties = [];
         state.errMessage = '';
         state.loading = LoadingStatusEnum.Loading;
       })
-      .addCase(getPropertiesService.fulfilled, (state, action) => {
-        state.productProperties = action.payload;
-        state.errMessage = '';
-        state.loading = LoadingStatusEnum.Success;
-      })
+      .addCase(
+        getPropertiesService.fulfilled,
+        (state, action: PayloadAction<IProductProperties[]>) => {
+          state.productProperties = action.payload;
+          state.errMessage = '';
+          state.loading = LoadingStatusEnum.Success;
+        },
+      )
       .addCase(getPropertiesService.rejected, (state, action) => {
-        // @ts-ignore
-        state.productProperties = action.payload;
+        state.productProperties = [];
         state.errMessage = action.payload as string;
         state.loading = LoadingStatusEnum.Failed;
       });

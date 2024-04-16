@@ -1,0 +1,27 @@
+.dropdown_list {
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding-top: 14px;
+  padding-left: 0;
+}
+
+.child_dropdown_list {
+  padding-top: 12px;
+  padding-left: 22px;
+}
+
+.arrow_up {
+  transform: rotate(180deg);
+}
+
+.title {
+  padding-left: 8px;
+}
+
+.checkbox {
+  padding-left: 22px;
+}

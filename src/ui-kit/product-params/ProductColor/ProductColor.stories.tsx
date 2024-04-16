@@ -9,7 +9,10 @@ import style from './ProductColor.module.scss';
 const meta = {
   component: ProductColor,
   tags: ['autodocs'],
-  title: 'Components/ProductColor',
+  title: 'Ui-kit/ProductParams/ProductColor',
+  parameters: {
+    layout: 'centered',
+  },
 } satisfies Meta<typeof ProductColor>;
 
 export default meta;

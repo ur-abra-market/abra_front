@@ -9,9 +9,18 @@ import { Title } from 'ui-kit';
 
 import style from './CartWithOrder.module.scss';
 
-export const CartWithOrder = (): JSX.Element => {
+interface ICartWithOrder {
+  getCartData: () => void;
+}
+
+export const CartWithOrder = ({ getCartData }: ICartWithOrder): JSX.Element => {
   const productsCart = useAppSelector(productsInCart);
   const totalAmountItems = useAppSelector(totalItems);
+
+  const ordersId = productsCart
+    .flat()
+    .filter(el => el.isChecked)
+    .map(el => el.order_id);
 
   return (
     <div className={style.content}>
@@ -25,7 +34,7 @@ export const CartWithOrder = (): JSX.Element => {
         })}
       </div>
 
-      <OrderDetails />
+      <OrderDetails ordersId={ordersId as number[]} getCartData={getCartData} />
     </div>
   );
 };

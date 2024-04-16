@@ -1,6 +1,7 @@
 import {
   ISellerAddressData,
   ISellerAddressRequest,
+  ISellerAddToCartRequest,
   ISellerAvatarResponse,
   ISellerNotifications,
   ISellersCartRequest,
@@ -85,6 +86,26 @@ export const sellerService = {
       {
         params,
       },
+    );
+
+    return data.result;
+  },
+
+  addToCart: async (params: ISellerAddToCartRequest) => {
+    const { data } = await baseConfigService.put<IBaseResponse<ISellersCartResponse[]>>(
+      `sellers/cart/addProduct`,
+      null,
+      {
+        params,
+      },
+    );
+
+    return data.result;
+  },
+
+  checkoutOrder: async (orderId: number) => {
+    const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
+      `/sellers/orders/${orderId}/create `,
     );
 
     return data.result;

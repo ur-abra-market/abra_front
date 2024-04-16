@@ -243,6 +243,7 @@ export interface IBundleVariationPod {
   created_at: string;
   updated_at: string;
   prices: IPrice[];
+  bundle_variations: IBundleVariation[];
 }
 
 export interface IPrice {
@@ -257,4 +258,13 @@ export interface IPrice {
 
 export interface IFavorite {
   product_id: number;
+}
+
+export interface IBundleVariation {
+  bundle_id: number;
+  bundle_variation_pod_id: number;
+  created_at: string;
+  id: number;
+  updated_at: string;
+  variation_value_to_product_id: number;
 }

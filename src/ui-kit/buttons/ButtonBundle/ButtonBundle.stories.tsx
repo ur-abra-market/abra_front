@@ -7,21 +7,22 @@ import { ButtonBundle } from './ButtonBundle';
 const meta = {
   component: ButtonBundle,
   tags: ['autodocs'],
-  title: 'Components/ButtonBundle',
+  title: 'Ui-kit/Buttons/ButtonBundle',
+  args: {
+    children: 'Bundle',
+  },
+  argTypes: {
+    onClick: { action: 'clicked' },
+  },
 } satisfies Meta<typeof ButtonBundle>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const DefaultButton: Story = {
-  args: {
-    children: 'Bundle',
-  },
-};
+export const DefaultButton: Story = {};
 
 export const DefaultSelectedButton: Story = {
   args: {
-    children: 'Bundle',
     isSelected: true,
   },
 };

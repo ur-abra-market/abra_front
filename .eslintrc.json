@@ -110,7 +110,7 @@
       "error",
       {
         "props": true,
-        "ignorePropertyModificationsFor": ["state", "self"]
+        "ignorePropertyModificationsFor": ["state", "self", "event"]
       }
     ],
     "react/display-name": "off",

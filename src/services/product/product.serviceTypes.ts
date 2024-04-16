@@ -103,6 +103,8 @@ export interface IProductCompilation {
   uuid: string;
   is_favorite: boolean;
   reviews_count: number;
+  min_price: number;
+  max_price: number;
 }
 
 export interface IProductPrice {

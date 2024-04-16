@@ -31,6 +31,7 @@ export interface ISupplierProductSliceInitialState {
   products: IProduct[];
   unselectedProductIds: number[];
   selectedProductIds: number[];
+  brandsInfo: IBrandsInfo[];
   selectAllProducts: boolean;
   hasChanged: boolean;
 }
@@ -73,4 +74,11 @@ export interface IProductFilterParams {
   on_sale?: boolean;
   is_active?: boolean;
   query?: string;
+}
+
+export interface IBrandsInfo {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  name: string;
 }
