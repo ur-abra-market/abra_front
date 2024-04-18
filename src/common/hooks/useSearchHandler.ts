@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, KeyboardEvent, useEffect } from 'react';
+import { ChangeEvent, KeyboardEvent, useEffect } from 'react';
 
 import {
   createSearchParams,

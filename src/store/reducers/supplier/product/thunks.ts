@@ -2,14 +2,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import {
-  IProductSorting,
-  IProductsListResponse,
+  IBrandsInfo,
   IProductFilterParams,
   IProductRequestParams,
-  IBrandsInfo,
+  IProductsListResponse,
+  IProductSorting,
 } from './types';
 
-import { IAsyncThunkConfig } from 'common/types';
 import { productService } from 'services/product/product.service';
 
 export const selectedProducts = createAsyncThunk<boolean, number[]>(

@@ -26,7 +26,6 @@ export const getVariationsService = createAsyncThunk<any, any>(
   'supplier/getVariationsService',
   async ({ id }, { rejectWithValue }) => {
     try {
-      console.log(id);
       const data = await supplierService.getProductVariations(id);
 
       return data.result;
