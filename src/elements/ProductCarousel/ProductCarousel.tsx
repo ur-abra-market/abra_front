@@ -87,8 +87,6 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
     thumbsSwiper?.slideNext();
   };
 
-  console.log(slidesPerView * (heightSlide + rowGap));
-
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
     const newEvent = { ...event };
 
