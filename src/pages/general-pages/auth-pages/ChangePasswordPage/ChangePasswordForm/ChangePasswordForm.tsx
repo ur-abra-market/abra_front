@@ -70,7 +70,6 @@ export const ChangePasswordForm: FC<IChangePasswordForm> = ({ setOpenModal }) =>
         classNameWrapper={style.input_wrapper}
         placeholder="Current password"
         type="password"
-        variant="password"
         error={errors.old_password?.message}
         disabled={isLoading}
       />
@@ -80,7 +79,6 @@ export const ChangePasswordForm: FC<IChangePasswordForm> = ({ setOpenModal }) =>
         classNameWrapper={style.input_wrapper}
         placeholder="New password"
         type="password"
-        variant="password"
         error={errors.new_password?.message}
         disabled={isLoading}
       />
