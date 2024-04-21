@@ -2,7 +2,7 @@ import { forwardRef, useState, DetailedHTMLProps, InputHTMLAttributes } from 're
 
 import cn from 'classnames';
 
-import { EyeHiddenIcon } from 'assets/icons';
+import { EyeHiddenIcon, EyeVisibleIcon } from 'assets/icons';
 import { ButtonIcon } from 'ui-kit/buttons/ButtonIcon/ButtonIcon';
 
 import styles from './Input.module.scss';
@@ -12,18 +12,10 @@ export interface IInput
   classNameWrapper?: string;
   error?: string;
   type?: 'text' | 'textarea' | 'password' | 'date' | 'number';
-  variant?: 'primary' | 'password';
 }
 
 export const Input = forwardRef<HTMLInputElement, IInput>((props, ref): JSX.Element => {
-  const {
-    className,
-    classNameWrapper,
-    variant = 'primary',
-    type = 'text',
-    error,
-    ...restProps
-  } = props;
+  const { className, classNameWrapper, type = 'text', error, ...restProps } = props;
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleClickButton = (): void => setShowPassword(!showPassword);
@@ -43,9 +35,9 @@ export const Input = forwardRef<HTMLInputElement, IInput>((props, ref): JSX.Elem
         {...restProps}
       />
       {error && <span className={styles.error}>{error}</span>}
-      {variant === 'password' && (
+      {type === 'password' && (
         <ButtonIcon className={styles.button} onClick={handleClickButton}>
-          <EyeHiddenIcon />
+          {showPassword ? <EyeVisibleIcon /> : <EyeHiddenIcon />}
         </ButtonIcon>
       )}
     </div>

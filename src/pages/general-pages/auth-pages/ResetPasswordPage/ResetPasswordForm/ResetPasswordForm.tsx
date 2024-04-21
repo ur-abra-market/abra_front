@@ -85,7 +85,6 @@ export const ResetPasswordForm: FC<IResetPasswordForm> = ({
         classNameWrapper={style.input_wrapper}
         placeholder="New password"
         type="password"
-        variant="password"
         error={errors.new_password?.message}
         disabled={isLoading}
       />
@@ -94,7 +93,6 @@ export const ResetPasswordForm: FC<IResetPasswordForm> = ({
         classNameWrapper={style.input_wrapper}
         placeholder="Confirm password"
         type="password"
-        variant="password"
         error={errors.confirm_password?.message}
         disabled={isLoading}
       />

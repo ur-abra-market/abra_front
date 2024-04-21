@@ -7,8 +7,8 @@ const meta = {
   tags: ['autodocs'],
   title: 'Ui-kit/Input',
   args: {
-    variant: 'primary',
     defaultValue: 'Some text',
+    placeholder: 'Placeholder',
   },
   argTypes: {
     onChange: { action: 'type' },
@@ -23,7 +23,6 @@ export const Primary: Story = {};
 export const Password: Story = {
   args: {
     type: 'password',
-    variant: 'password',
   },
 };
 
