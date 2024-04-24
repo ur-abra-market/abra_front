@@ -1,0 +1,32 @@
+@import "src/common/styles/mixins";
+
+.container {
+  @include content_container(12px);
+}
+
+.main_content {
+  display: flex;
+  gap: 12px;
+}
+
+.left_column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order_info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-start;
+}
+
+.order_title {
+  margin-top: 29px;
+  margin-bottom: 24px;
+
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 120%;
+}

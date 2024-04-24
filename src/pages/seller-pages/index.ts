@@ -5,3 +5,5 @@ export { OrderDetailsPage } from './OrderDetailsPage/OrderDetailsPage';
 export { OrderHistoryPage } from './OrderHistoryPage/OrderHistoryPage';
 export { CheckoutSuccessPage } from './CheckoutSuccessPage/CheckoutSuccessPage';
 export { SellerCartPage } from './SellerCart/SellerCart';
+export { CheckoutPage } from './CheckoutPage/CheckoutPage';
+export { CheckoutErrorPage } from './CheckoutErrorPage/CheckoutErrorPage';
