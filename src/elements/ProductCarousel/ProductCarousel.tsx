@@ -167,7 +167,6 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
           mousewheel={arrLength !== minLength}
           thumbs={{ swiper: thumbsSwiper }}
           modules={[Thumbs, Mousewheel]}
-          loop
           onActiveIndexChange={s => {
             setActiveIndex(s.realIndex);
           }}
