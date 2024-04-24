@@ -2,8 +2,11 @@ import React from 'react';
 
 import { RouteObject } from 'react-router-dom';
 
+import { CHECKOUT_ERROR } from './path-constants/seller';
+
 import {
   CHECKOUT_SUCCESS,
+  CHECKOUT,
   FAVORITES,
   HELP,
   ORDER_HISTORY,
@@ -19,6 +22,8 @@ import {
   SellerFavoritesList,
   CheckoutSuccessPage,
   SellerCartPage,
+  CheckoutPage,
+  CheckoutErrorPage,
 } from 'pages/seller-pages';
 
 export const sellerRoutes: RouteObject[] = [
@@ -27,8 +32,16 @@ export const sellerRoutes: RouteObject[] = [
     element: <SellerProfilePage />,
   },
   {
+    path: CHECKOUT,
+    element: <CheckoutPage />,
+  },
+  {
     path: CHECKOUT_SUCCESS,
     element: <CheckoutSuccessPage />,
+  },
+  {
+    path: CHECKOUT_ERROR,
+    element: <CheckoutErrorPage />,
   },
   {
     path: ORDER_HISTORY,
