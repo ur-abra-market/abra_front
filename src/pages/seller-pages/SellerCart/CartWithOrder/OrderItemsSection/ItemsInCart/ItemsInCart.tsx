@@ -6,14 +6,19 @@ import { IProductCardInCart } from 'store/reducers/seller/cart';
 
 interface IItemsInCart {
   products: IProductCardInCart[];
+  isCheckoutPage?: boolean;
 }
 
-export const ItemsInCart: FC<IItemsInCart> = ({ products }): JSX.Element => {
+export const ItemsInCart: FC<IItemsInCart> = ({
+  products,
+  isCheckoutPage,
+}): JSX.Element => {
   return (
     <>
       {products.map((item, index) => {
         return (
           <OrderItemInCart
+            isCheckoutPage={isCheckoutPage}
             key={index}
             product={item.bundle_variation_pod.product}
             prices={item.bundle_variation_pod.prices}

@@ -17,6 +17,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &.is_checkout_page {
+    padding-left: 34px;
+  }
 }
 
 .rating {

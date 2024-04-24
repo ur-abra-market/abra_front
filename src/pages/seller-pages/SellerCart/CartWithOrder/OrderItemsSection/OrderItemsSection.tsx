@@ -10,15 +10,19 @@ import style from './OrderItemsSection.module.scss';
 
 interface IOrderItemsSection {
   products: IProductCardInCart[];
+  isCheckoutPage?: boolean;
 }
 
-export const OrderItemsSection: FC<IOrderItemsSection> = ({ products }): JSX.Element => {
+export const OrderItemsSection: FC<IOrderItemsSection> = ({
+  products,
+  isCheckoutPage,
+}): JSX.Element => {
   return (
     <div className={style.order_items_details}>
-      <SupplierInformation products={products} />
+      <SupplierInformation isCheckoutPage={isCheckoutPage} products={products} />
 
       <ul className={style.cart_list}>
-        <ItemsInCart products={products} />
+        <ItemsInCart isCheckoutPage={isCheckoutPage} products={products} />
       </ul>
 
       <DeliveryInformation />
