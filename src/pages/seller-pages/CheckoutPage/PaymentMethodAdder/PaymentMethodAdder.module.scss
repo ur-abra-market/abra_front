@@ -1,0 +1,91 @@
+.payment_adder_container {
+  width: 1029px;
+  padding: 32px;
+
+  color: var(--color-black);
+
+  background-color: var(--color-white);
+  border-radius: 12px;
+}
+
+.payment_title {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.payment_methods_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 17px;
+  margin-top: 32px;
+}
+
+.payment_methods_item {
+  display: flex;
+  flex-basis: 49%;
+  gap: 50px;
+  align-items: center;
+
+  height: 80px;
+  padding: 18px 16px 21px;
+
+  border: 1px solid var(--color-gray);
+  border-radius: 12px;
+}
+
+.payment_methods_item_text {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 133%;
+  letter-spacing: 0.03em;
+}
+
+.add_payment_button {
+  cursor: pointer;
+
+  display: flex;
+  flex-basis: 49%;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px 0;
+
+  font-size: 15px;
+  line-height: 130%;
+  color: var(--color-red);
+  text-decoration: underline;
+
+  background-color: inherit;
+  border: 1px solid var(--color-gray);
+  border-radius: 12px;
+}
+
+.add_payment_button.fullwidth {
+  flex-basis: 100%;
+  width: 100%;
+}
+
+.payment_methods {
+  display: flex;
+  gap: 32px;
+}
+
+.icon_offset {
+  margin-left: -16px;
+}
+
+.card_number {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+.edit_icon {
+  margin-left: -16px;
+}
