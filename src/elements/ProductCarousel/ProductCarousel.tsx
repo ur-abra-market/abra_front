@@ -82,9 +82,15 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
 
   const prevSlide = (): void => {
     thumbsSwiper?.slidePrev();
+    if (activeIndex > 0) {
+      setActiveIndex(activeIndex - 1);
+    }
   };
   const nextSlide = (): void => {
     thumbsSwiper?.slideNext();
+    if (activeIndex < arrLength - 1) {
+      setActiveIndex(activeIndex + 1);
+    }
   };
 
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
