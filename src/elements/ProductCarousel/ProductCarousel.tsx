@@ -115,7 +115,6 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
           slideToClickedSlide
           mousewheel={arrLength !== minLength}
           allowTouchMove={false}
-          loop
           onSwiper={setThumbsSwiper}
           watchSlidesProgress
           modules={[Thumbs, Mousewheel]}
