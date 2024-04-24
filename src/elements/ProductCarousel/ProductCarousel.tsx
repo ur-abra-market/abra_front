@@ -103,7 +103,11 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
     <div className={style.sliders_container}>
       <div className={style.swiper_second_wrapper}>
         {arrLength > maxLength && (
-          <ButtonIcon className={style.btn} onClick={prevSlide}>
+          <ButtonIcon
+            disabled={activeIndex === 0}
+            className={`${style.btn} ${activeIndex === 0 ? style.disabled : ''}`}
+            onClick={prevSlide}
+          >
             <ArrowIcon
               className={cn(style.arrow, style.arrow_up, {
                 [style.rotate_first]: !isVertical,
@@ -155,7 +159,13 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
         </Swiper>
 
         {arrLength > maxLength && (
-          <ButtonIcon className={cn(style.btn)} onClick={nextSlide}>
+          <ButtonIcon
+            disabled={activeIndex === arrLength - 1}
+            className={`${style.btn} ${
+              activeIndex === arrLength - 1 ? style.disabled : ''
+            }`}
+            onClick={nextSlide}
+          >
             <ArrowIcon
               className={cn(style.arrow, { [style.rotate_second]: !isVertical })}
             />
