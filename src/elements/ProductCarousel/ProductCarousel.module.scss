@@ -74,6 +74,10 @@
   transition: fill 0.1s ease-in-out;
 }
 
+.disabled > .arrow {
+  fill: var(--color-gray);
+}
+
 .arrow_up {
   transform: rotate(180deg);
 }
