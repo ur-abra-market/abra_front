@@ -190,7 +190,11 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
           {photoArray.map(el => {
             return (
               <SwiperSlide key={el.id}>
-                <img src={el.image_url} alt="" onError={handleImageError} />
+                <img
+                  src={photoArray[activeIndex].image_url}
+                  alt=""
+                  onError={handleImageError}
+                />
               </SwiperSlide>
             );
           })}
