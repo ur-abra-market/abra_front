@@ -1,9 +1,11 @@
 import React from 'react';
 
+import classNames from 'classnames';
+import { useNavigate } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { IProductCardInCart } from 'store/reducers/seller/cart';
 import { productsInCart } from 'store/reducers/seller/cart/selectors';
-import { checkoutOrder } from 'store/reducers/seller/cart/thunks';
 import { Button, Paragraph, Title } from 'ui-kit';
 
 import style from './OrderDetails.module.scss';
@@ -11,11 +13,19 @@ import style from './OrderDetails.module.scss';
 interface IOrderDetails {
   ordersId: number[];
   getCartData: () => void;
+  children?: React.ReactNode;
+  additionalClassName?: string;
 }
 
-export const OrderDetails = ({ ordersId, getCartData }: IOrderDetails): JSX.Element => {
+export const OrderDetails = ({
+  ordersId,
+  getCartData,
+  children,
+  additionalClassName,
+}: IOrderDetails): JSX.Element => {
   const dispatch = useAppDispatch();
   const products = useAppSelector(productsInCart);
+  const navigate = useNavigate();
 
   const selectedProducts = products
     .flat()
@@ -38,16 +48,18 @@ export const OrderDetails = ({ ordersId, getCartData }: IOrderDetails): JSX.Elem
   const totalPriceBundlesToFixed = Number(totalPriceBundles.toFixed(2));
 
   const handleCheckout = async (): Promise<void> => {
-    // eslint-disable-next-line
+    /* // eslint-disable-next-line
     for await (const id of ordersId) {
       await dispatch(checkoutOrder(id));
     }
 
-    getCartData();
+    getCartData(); */
+    navigate('/checkout');
   };
+  const combinedClass = classNames(style.order_item, additionalClassName);
 
   return (
-    <div className={style.order_item}>
+    <div className={combinedClass}>
       <div className={style.total_count}>
         <Paragraph size="s2" weight="medium" className={style.title_total_count}>
           Items to Order
@@ -81,6 +93,8 @@ export const OrderDetails = ({ ordersId, getCartData }: IOrderDetails): JSX.Elem
       <Paragraph size="s2" className={style.order_description}>
         Make sure that the quantity of goods and the selected characteristics are correct.
       </Paragraph>
+
+      {children}
     </div>
   );
 };
