@@ -1,5 +1,7 @@
 import React, { JSX, useState } from 'react';
 
+import cn from 'classnames';
+
 import { EditPencilIcon } from 'assets/icons';
 import { Checkbox } from 'ui-kit';
 
@@ -33,29 +35,31 @@ export const AddressAdder = (): JSX.Element => {
 
   const isEven = addresses.length % 2 === 0;
 
+  const buttonClass = cn(styles.button, {
+    [styles.fullwidth]: isEven,
+  });
+
   return (
-    <div className={styles.address_adder_container}>
-      <span className={styles.address_adder_title}>Delivery Address</span>
-      <div className={styles.address_list}>
+    <div className={styles.container}>
+      <p className={styles.title}>Delivery Address</p>
+      <div className={styles.list}>
         {addresses.map(address => (
           <div
             key={address.id}
-            className={`${styles.address_item} ${
-              address.selected ? styles.selected : ''
-            }`}
+            className={cn(styles.item, {
+              [styles.selected]: address.selected,
+            })}
           >
-            <div className={styles.address_item_title_container}>
-              <span className={styles.address_item_title}>
-                Olga Andreeva, +79158448547
-              </span>
-              <EditPencilIcon />
+            <div className={styles.title_container}>
+              <p className={styles.item_title}>Olga Andreeva, +79158448547</p>
+              <EditPencilIcon className={styles.edit_icon} />
             </div>
-            <span className={styles.address_item_text}>
+            <p className={styles.item_text}>
               Jaroslava Gasheka 6, building 2, apartment 904, Moscow, Russian Federation,
               589964
-            </span>
-            <div className={styles.address_item_add_info_container}>
-              <span className={styles.address_item_add_info}>Main Adress</span>
+            </p>
+            <div className={styles.info_container}>
+              <p className={styles.item_info}>Main Adress</p>
               <Checkbox
                 onChange={() => selectAddressHandler(address.id)}
                 variant="default"
@@ -64,11 +68,7 @@ export const AddressAdder = (): JSX.Element => {
           </div>
         ))}
 
-        <button
-          type="button"
-          className={`${styles.add_address_button} ${isEven ? styles.fullwidth : ''}`}
-          onClick={addAddressHandler}
-        >
+        <button type="button" className={buttonClass} onClick={addAddressHandler}>
           +Add an address
         </button>
       </div>
