@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import cn from 'classnames';
+
 import {
   ApplePayIcon,
   EditPencilIcon,
@@ -23,41 +25,40 @@ export const PaymentMethodAdder = (): JSX.Element => {
   };
 
   const isEven = paymentMethods.length % 2 === 0;
+  const buttonClass = cn(styles.button, {
+    [styles.fullwidth]: isEven,
+  });
 
   return (
-    <div className={styles.payment_adder_container}>
+    <div className={styles.container}>
       <div className={styles.header}>
-        <span className={styles.payment_title}>Payment Method</span>
+        <p className={styles.title}>Payment Method</p>
         <div className={styles.payment_methods}>
           <VisaIcon />
           <MastercardIcon className={styles.icon_offset} />
           <PaypalIcon />
           <GooglePayIcon />
           <ApplePayIcon />
-          <span className={styles.payment_title}>Online Transfer</span>
+          <p className={styles.payment_title}>Online Transfer</p>
         </div>
       </div>
 
-      <div className={styles.payment_methods_list}>
+      <div className={styles.list}>
         {paymentMethods.map(payment => (
           <div
             key={payment.id}
-            className={`${styles.payment_methods_item} ${
-              payment.selected ? styles.selected : ''
-            }`}
+            className={cn(styles.item, {
+              [styles.selected]: payment.selected,
+            })}
           >
             <MastercardIcon />
-            <span className={styles.payment_methods_item_text}>OLGA ANDREEVA</span>
-            <span className={styles.card_number}>•••• •••• •••• 5678</span>
+            <p className={styles.item_text}>OLGA ANDREEVA</p>
+            <p className={styles.card_number}>•••• •••• •••• 5678</p>
             <EditPencilIcon className={styles.edit_icon} />
           </div>
         ))}
 
-        <button
-          type="button"
-          className={`${styles.add_payment_button} ${isEven ? styles.fullwidth : ''}`}
-          onClick={addPaymentHandler}
-        >
+        <button type="button" className={buttonClass} onClick={addPaymentHandler}>
           + Add a credit or debit card
         </button>
       </div>
