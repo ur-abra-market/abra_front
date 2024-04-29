@@ -2,7 +2,9 @@ import { DetailedHTMLProps, forwardRef, InputHTMLAttributes } from 'react';
 
 import cn from 'classnames';
 
+import { CrossRedIcon } from 'assets/icons';
 import { useSearchHandler } from 'common/hooks';
+import { ButtonIcon } from 'ui-kit/buttons/ButtonIcon/ButtonIcon';
 
 import styles from './Search.module.scss';
 
@@ -23,7 +25,7 @@ export const Search = forwardRef<HTMLInputElement, ISearch>((props, ref): JSX.El
     ...restProps
   } = props;
 
-  const { searchValue, handleChangeValue, handleKeyDown } =
+  const { searchValue, handleChangeValue, handleRemoveValue, handleKeyDown } =
     useSearchHandler(mainSearchField);
 
   return (
@@ -42,6 +44,15 @@ export const Search = forwardRef<HTMLInputElement, ISearch>((props, ref): JSX.El
         <label className={styles.button}>
           <input className={styles.photo_search} type="file" />
         </label>
+      )}
+
+      {!!searchValue.length && (
+        <ButtonIcon
+          className={`${styles.button_cross} ${isPhotoSearch ? styles.add_margin : ''}`}
+          onClick={handleRemoveValue}
+        >
+          <CrossRedIcon className={styles.cross_icon} />
+        </ButtonIcon>
       )}
     </div>
   );

@@ -46,6 +46,17 @@
   background-image: url("../../assets/icons/files/header-search-bar-image.svg");
 }
 
+.button_cross {
+  cursor: pointer;
+  position: absolute;
+  top: 13px;
+  right: 19px;
+}
+
+.add_margin {
+  right: 45px;
+}
+
 .photo_search {
   display: none;
 }

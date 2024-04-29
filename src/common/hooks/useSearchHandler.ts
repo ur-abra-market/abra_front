@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, useEffect } from 'react';
+import { ChangeEvent, KeyboardEvent, MouseEventHandler, useEffect } from 'react';
 
 import {
   createSearchParams,
@@ -16,6 +16,7 @@ import { setSearchValue } from 'store/reducers/searchSlice';
 interface ISearchHandlerReturnType {
   searchValue: string;
   handleChangeValue: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleRemoveValue: MouseEventHandler<HTMLButtonElement>;
   handleKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
 }
 export const useSearchHandler = (
@@ -35,6 +36,9 @@ export const useSearchHandler = (
 
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>): void => {
     dispatch(setSearchValue(e.target.value));
+  };
+  const handleRemoveValue = (): void => {
+    dispatch(setSearchValue(''));
   };
 
   const roleURL = (role: string | null): string => {
@@ -63,5 +67,5 @@ export const useSearchHandler = (
     }
   };
 
-  return { searchValue, handleChangeValue, handleKeyDown };
+  return { searchValue, handleChangeValue, handleKeyDown, handleRemoveValue };
 };
