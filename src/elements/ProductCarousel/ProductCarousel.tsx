@@ -88,7 +88,6 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
   const nextSlide = (): void => {
     setActiveIndex(activeIndex + 1);
     thumbsSwiper?.slideTo(activeIndex);
-    thumbsSwiper?.slideNext();
   };
 
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
@@ -118,7 +117,7 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
           slidesPerView={
             arrLength >= minLength && arrLength < maxLength ? arrLength : baseLength
           }
-          spaceBetween={8}
+          spaceBetween={18}
           className={style.swiper_second}
           slideToClickedSlide
           mousewheel={arrLength !== minLength}
