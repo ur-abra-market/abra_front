@@ -23,15 +23,14 @@ export const Search = forwardRef<HTMLInputElement, ISearch>((props, ref): JSX.El
     ...restProps
   } = props;
 
-  const { searchValue, handleChangeValue, handleKeyDown } =
-    useSearchHandler(mainSearchField);
+  const { value, handleChangeValue, handleKeyDown } = useSearchHandler(mainSearchField);
 
   return (
     <div className={cn(styles.wrapper, className)}>
       <input
         className={cn(styles.input, className)}
         ref={ref}
-        value={searchValue}
+        value={value}
         onChange={handleChangeValue}
         onKeyDown={handleKeyDown}
         type="text"
