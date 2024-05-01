@@ -43,9 +43,9 @@ export const MenuItems: FC<IMenuItems> = ({
           });
 
           return (
-            <div className={selectChildren} key={i.id}>
-              {i.name}
-            </div>
+            <NavLink to={`${PRODUCTS_LIST}/${i.id}`} key={i.id}>
+              <div className={selectChildren}>{i.name}</div>
+            </NavLink>
           );
         })}
       </li>
