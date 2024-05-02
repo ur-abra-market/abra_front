@@ -33,7 +33,7 @@ export interface ISelect {
   header?: boolean; // to add header use --> header={true}
   disabled?: boolean;
   dropOnUp?: boolean;
-  countrySelect?: boolean;
+  isCountrySelect?: boolean;
 }
 
 export const Select = forwardRef(
@@ -51,7 +51,7 @@ export const Select = forwardRef(
       defaultValue,
       disabled,
       dropOnUp = false,
-      countrySelect,
+      isCountrySelect,
     }: ISelect,
     ref,
   ) => {
@@ -62,7 +62,7 @@ export const Select = forwardRef(
     const defaultSelectedValue = placeholderObj || options[0];
     let selectedLabel;
 
-    if (countrySelect) {
+    if (isCountrySelect) {
       const serializedValue = localStorage.getItem('selectedLabel');
 
       if (serializedValue) {

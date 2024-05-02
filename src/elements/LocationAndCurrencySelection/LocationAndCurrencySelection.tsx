@@ -55,7 +55,7 @@ export const LocationAndCurrencySelection: FC<ILocationAndCurrencySelection> = (
 
   const refObj = useOnClickOutside(setOpenOnMobile);
 
-  const selectHandler = (value: ISelectOption): void => {
+  const handleSelect = (value: ISelectOption): void => {
     dispatch(getCountries());
     localStorage.setItem('selectedLabel', JSON.stringify(value));
   };
@@ -90,13 +90,13 @@ export const LocationAndCurrencySelection: FC<ILocationAndCurrencySelection> = (
         <div className={style.select_box}>
           <span className={style.select_title}>Ship to</span>
           <Select
-            onChange={selectHandler}
+            onChange={handleSelect}
             dropOnUp={dropOnUp}
             options={COUNTRY_DATA}
             header
             width="150px"
             className={style.select}
-            countrySelect
+            isCountrySelect
           />
         </div>
       </div>
