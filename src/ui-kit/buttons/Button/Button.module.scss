@@ -84,6 +84,31 @@
   }
 }
 
+.outline {
+  display: flex;
+  flex-basis: 49%;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px 0;
+
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 130%;
+  color: var(--color-red);
+
+
+  background-color: inherit;
+  border: 1px solid var(--color-gray-light);
+  border-radius: 12px;
+
+  transition: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .button {
     padding: 12px;

@@ -89,34 +89,11 @@
   letter-spacing: 0.03em;
 }
 
-.button {
-  cursor: pointer;
-
-  display: flex;
-  flex-basis: 49%;
-  align-items: center;
-  justify-content: center;
-
-  padding: 30px 0;
-
-  font-size: 15px;
-  line-height: 130%;
-  color: var(--color-red);
-
-
-  background-color: inherit;
-  border: 1px solid var(--color-gray-light);
-  border-radius: 12px;
-
-  &.fullwidth {
-    flex-basis: 100%;
-    width: 100%;
-  }
-
-  &:hover {
-    text-decoration: underline;
-  }
+.fullwidth {
+  flex-basis: 100%;
+  width: 100%;
 }
+
 
 .edit_icon {
   color: var(--color-gray);

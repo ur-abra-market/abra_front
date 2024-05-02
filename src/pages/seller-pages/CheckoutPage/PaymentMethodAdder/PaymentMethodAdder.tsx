@@ -10,6 +10,7 @@ import {
   PaypalIcon,
   VisaIcon,
 } from 'assets/icons';
+import { Button } from 'ui-kit';
 
 import styles from './PaymentMethodAdder.module.scss';
 
@@ -17,6 +18,7 @@ interface IPayment {
   id: number;
   selected: boolean;
 }
+
 export const PaymentMethodAdder = (): JSX.Element => {
   const [paymentMethods, setPaymentMethods] = useState<IPayment[]>([]);
 
@@ -25,11 +27,12 @@ export const PaymentMethodAdder = (): JSX.Element => {
   };
 
   const isEven = paymentMethods.length % 2 === 0;
-  const buttonClass = cn(styles.button, {
+  const buttonClass = cn({
     [styles.fullwidth]: isEven,
   });
 
   return (
+    // TODO: use real data instead of mock
     <div className={styles.container}>
       <div className={styles.header}>
         <p className={styles.title}>Payment Method</p>
@@ -58,9 +61,14 @@ export const PaymentMethodAdder = (): JSX.Element => {
           </div>
         ))}
 
-        <button type="button" className={buttonClass} onClick={addPaymentHandler}>
-          + Add a credit or debit card
-        </button>
+        <Button
+          type="button"
+          color="outline"
+          className={buttonClass}
+          onClick={addPaymentHandler}
+        >
+          +Add an address
+        </Button>
       </div>
     </div>
   );

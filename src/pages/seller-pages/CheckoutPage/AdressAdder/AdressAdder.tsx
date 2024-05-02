@@ -3,7 +3,7 @@ import React, { JSX, useState } from 'react';
 import cn from 'classnames';
 
 import { EditPencilIcon } from 'assets/icons';
-import { Checkbox } from 'ui-kit';
+import { Button, Checkbox } from 'ui-kit';
 
 import styles from './AdressAdder.module.scss';
 
@@ -35,11 +35,12 @@ export const AddressAdder = (): JSX.Element => {
 
   const isEven = addresses.length % 2 === 0;
 
-  const buttonClass = cn(styles.button, {
+  const buttonClass = cn({
     [styles.fullwidth]: isEven,
   });
 
   return (
+    // TODO: use real data instead of mock
     <div className={styles.container}>
       <p className={styles.title}>Delivery Address</p>
       <div className={styles.list}>
@@ -59,7 +60,7 @@ export const AddressAdder = (): JSX.Element => {
               589964
             </p>
             <div className={styles.info_container}>
-              <p className={styles.item_info}>Main Adress</p>
+              <p className={styles.item_info}>Main Address</p>
               <Checkbox
                 onChange={() => selectAddressHandler(address.id)}
                 variant="default"
@@ -68,9 +69,14 @@ export const AddressAdder = (): JSX.Element => {
           </div>
         ))}
 
-        <button type="button" className={buttonClass} onClick={addAddressHandler}>
+        <Button
+          type="button"
+          color="outline"
+          className={buttonClass}
+          onClick={addAddressHandler}
+        >
           +Add an address
-        </button>
+        </Button>
       </div>
     </div>
   );
