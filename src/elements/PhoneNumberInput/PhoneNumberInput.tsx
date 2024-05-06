@@ -1,7 +1,7 @@
 import React, { FC, ChangeEvent } from 'react';
 
 import cn from 'classnames';
-import { CountryCode, isValidNumber } from 'libphonenumber-js';
+import { CountryCode, isValidNumber, NationalNumber } from 'libphonenumber-js';
 import { useFormContext } from 'react-hook-form';
 import PhoneInput, { CountryData } from 'react-phone-input-2';
 
@@ -42,7 +42,7 @@ export const PhoneNumberInput: FC<IPhoneNumberInput> = ({
     value: string,
     data: CountryData,
     event: ChangeEvent<HTMLInputElement>,
-    formattedValue: string,
+    formattedValue: NationalNumber,
   ): void => {
     const countryId = countries.find(el => el.country_short === data.countryCode)?.id;
 
