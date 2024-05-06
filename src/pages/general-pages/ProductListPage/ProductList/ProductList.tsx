@@ -49,8 +49,8 @@ export const ProductList: FC<IProductList> = ({
   const productsPerPage = useAppSelector(productsPerPageSelector);
   const totalCount = useAppSelector(totalProductsCountSelector);
   const products = useAppSelector(productsListSelector);
-  const { id } = useParams();
   const [searchParams] = useSearchParams();
+  const category_id = searchParams.get('category_id');
   const query = searchParams.get('query');
   const totalPages = Math.ceil(totalCount / productsPerPage);
   const { isDevice } = useMediaQuery(DESIRED_BREAKPOINT);
@@ -59,14 +59,14 @@ export const ProductList: FC<IProductList> = ({
     const param = {
       offset: (currentPage - 1) * productsPerPage,
       limit: productsPerPage,
-      category_id: !id ? 1 : id,
+      category_id: !category_id ? 1 : category_id,
       sort: currentSortField,
       ascending: currentSortBy === 'asc',
       query: query || undefined,
     } as ICategoryRequest;
 
     dispatch(getProductsListCompilation(param));
-  }, [productsPerPage, currentPage, id, currentSortField, currentSortBy, query]);
+  }, [productsPerPage, currentPage, category_id, currentSortField, currentSortBy, query]);
   const handleChangeSelect = (value: number): void => {
     dispatch(setProductsPerPage(value));
   };
