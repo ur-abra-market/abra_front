@@ -13,6 +13,7 @@ import {
   IChangeEmailRequest,
   IChangePasswordRequest,
   IConfirmEmailRequest,
+  ILoginGoogleRequest,
   ILoginRequest,
   IPersonalInfoRequest,
   IRegisterGoogleRequest,
@@ -260,3 +261,28 @@ export const registerGoogle = createAsyncThunk<
     dispatch(setLoading(LoadingStatusEnum.Idle));
   }
 });
+
+export const loginGoogle = createAsyncThunk<void, ILoginGoogleRequest, IAsyncThunkConfig>(
+  'auth/loginGoogle',
+  async (params, { rejectWithValue, dispatch }) => {
+    dispatch(setLoading(LoadingStatusEnum.Loading));
+
+    try {
+      await authService.googleLogin(params);
+      console.log(111111111111111);
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        dispatch(
+          setResponseNotice({
+            noticeType: 'error',
+            message: error.response?.data?.error || error.message,
+          }),
+        );
+      }
+
+      return rejectWithValue('[registerGoogle]: Error');
+    } finally {
+      dispatch(setLoading(LoadingStatusEnum.Idle));
+    }
+  },
+);
