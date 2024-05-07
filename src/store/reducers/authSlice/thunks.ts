@@ -269,7 +269,6 @@ export const loginGoogle = createAsyncThunk<void, ILoginGoogleRequest, IAsyncThu
 
     try {
       await authService.googleLogin(params);
-      console.log(111111111111111);
     } catch (error) {
       if (error instanceof AxiosError) {
         dispatch(
