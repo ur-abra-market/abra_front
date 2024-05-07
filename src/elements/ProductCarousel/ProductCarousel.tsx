@@ -96,10 +96,12 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
     newEvent.currentTarget.src = UserDefaultProductImage;
   };
 
+  const isArrowButtonsShown = arrLength > maxLength;
+
   return (
     <div className={style.sliders_container}>
       <div className={style.swiper_second_wrapper}>
-        {arrLength > maxLength && (
+        {isArrowButtonsShown && (
           <ButtonIcon
             disabled={activeIndex === 0}
             className={`${style.btn} ${activeIndex === 0 ? style.disabled : ''}`}
@@ -155,7 +157,7 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
           })}
         </Swiper>
 
-        {arrLength > maxLength && (
+        {isArrowButtonsShown && (
           <ButtonIcon
             disabled={activeIndex === arrLength - 1}
             className={`${style.btn} ${
