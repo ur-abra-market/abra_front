@@ -61,6 +61,7 @@ export const CheckoutPage = WithLayout((): JSX.Element => {
             ordersId={ordersId as number[]}
             getCartData={getCartData}
             additionalClassName={styles.order}
+            isCheckoutPage
           >
             <Paragraph size="s2" className={styles.order_security}>
               <LockIcon />

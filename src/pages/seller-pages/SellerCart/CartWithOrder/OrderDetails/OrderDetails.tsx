@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { IProductCardInCart } from 'store/reducers/seller/cart';
 import { productsInCart } from 'store/reducers/seller/cart/selectors';
+import { checkoutOrder } from 'store/reducers/seller/cart/thunks';
 import { Button, Paragraph, Title } from 'ui-kit';
 
 import style from './OrderDetails.module.scss';
@@ -15,6 +16,7 @@ interface IOrderDetails {
   getCartData: () => void;
   children?: React.ReactNode;
   additionalClassName?: string;
+  isCheckoutPage?: boolean;
 }
 
 export const OrderDetails = ({
@@ -22,6 +24,7 @@ export const OrderDetails = ({
   getCartData,
   children,
   additionalClassName,
+  isCheckoutPage,
 }: IOrderDetails): JSX.Element => {
   const dispatch = useAppDispatch();
   const products = useAppSelector(productsInCart);
@@ -47,14 +50,16 @@ export const OrderDetails = ({
 
   const totalPriceBundlesToFixed = Number(totalPriceBundles.toFixed(2));
 
-  const handleCheckout = async (): Promise<void> => {
-    /* // eslint-disable-next-line
+  const handleCheckout = (): void => {
+    navigate('/checkout');
+  };
+  const handlePlaceOrder = async (): Promise<void> => {
+    // eslint-disable-next-line no-restricted-syntax
     for await (const id of ordersId) {
       await dispatch(checkoutOrder(id));
     }
 
-    getCartData(); */
-    navigate('/checkout');
+    getCartData();
   };
   const combinedClass = classNames(style.order_item, additionalClassName);
 
@@ -86,8 +91,11 @@ export const OrderDetails = ({
         Total <span>${totalPriceBundlesToFixed}</span>
       </Title>
 
-      <Button className={style.button_checkout} onClick={handleCheckout}>
-        Checkout
+      <Button
+        className={style.button_checkout}
+        onClick={isCheckoutPage ? handlePlaceOrder : handleCheckout}
+      >
+        {isCheckoutPage ? 'Place Order' : 'Checkout'}
       </Button>
 
       <Paragraph size="s2" className={style.order_description}>
