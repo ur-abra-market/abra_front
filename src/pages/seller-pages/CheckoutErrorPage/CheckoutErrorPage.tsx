@@ -17,10 +17,11 @@ export const CheckoutErrorPage = WithLayout((): JSX.Element => {
         </p>
         <Button className={styles.button}>Retry</Button>
         <p className={styles.info}>
-          You can also pay for the order later in the{' '}
+          You can also pay for the order later in the{'\u00A0'}
           <Link className={styles.link} to="/order_history">
             Order History
-          </Link>{' '}
+          </Link>
+          {'\u00A0'}
           section
         </p>
         <ButtonQuestion />
