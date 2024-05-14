@@ -1,43 +1,44 @@
-import React, { JSX, useCallback, useEffect } from 'react';
+import React, { JSX } from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { AddressAdder } from './AdressAdder/AdressAdder';
 import { PaymentMethodAdder } from './PaymentMethodAdder/PaymentMethodAdder';
 
 import { LockIcon } from 'assets/icons';
-import { WithLayout } from 'common/hocs/WithLayout';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { OrderDetails } from 'pages/seller-pages/SellerCart/CartWithOrder/OrderDetails';
 import { OrderItemsSection } from 'pages/seller-pages/SellerCart/CartWithOrder/OrderItemsSection';
-import { getSellerCartData, productsInCart } from 'store/reducers/seller/cart';
+import { CHECKOUT_SUCCESS } from 'routes';
+import { productsInCart } from 'store/reducers/seller/cart';
 import { isLoading } from 'store/reducers/seller/cart/selectors';
+import { checkoutOrder } from 'store/reducers/seller/cart/thunks';
 import { ButtonQuestion, LoaderLinear, Paragraph } from 'ui-kit';
 
 import styles from './CheckoutPage.module.scss';
 
-export const CheckoutPage = WithLayout((): JSX.Element => {
+export const CheckoutPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const productsCart = useAppSelector(productsInCart);
   const cartIsLoading = useAppSelector(isLoading);
-
-  const getCartData = useCallback(async (): Promise<void> => {
-    await dispatch(
-      getSellerCartData({
-        offset: 0,
-        limit: 100,
-      }),
-    );
-  }, [dispatch]);
-
-  useEffect(() => {
-    getCartData();
-  }, [getCartData]);
+  const navigate = useNavigate();
 
   const ordersId = productsCart
     .flat()
     .filter(el => el.isChecked)
     .map(el => el.order_id);
+
+  const checkedProductsCart = productsCart
+    .map(products => products.filter(product => product.isChecked))
+    .filter(products => products.length > 0);
+
+  const handlePlaceOrder = async (): Promise<void> => {
+    // eslint-disable-next-line no-restricted-syntax
+    for await (const id of ordersId) {
+      if (id) await dispatch(checkoutOrder(id));
+    }
+    navigate(CHECKOUT_SUCCESS);
+  };
 
   if (cartIsLoading) return <LoaderLinear />;
 
@@ -51,15 +52,14 @@ export const CheckoutPage = WithLayout((): JSX.Element => {
           <div className={styles.order_info}>
             <span className={styles.order_title}>Items to Order</span>
 
-            {productsCart.map((products, index) => (
+            {checkedProductsCart.map((products, index) => (
               <OrderItemsSection isCheckoutPage products={products} key={index} />
             ))}
           </div>
         </div>
         <div className={styles.right_column}>
           <OrderDetails
-            ordersId={ordersId as number[]}
-            getCartData={getCartData}
+            handleButton={handlePlaceOrder}
             additionalClassName={styles.order}
             isCheckoutPage
           >
@@ -85,4 +85,4 @@ export const CheckoutPage = WithLayout((): JSX.Element => {
       <ButtonQuestion />
     </div>
   );
-}, 'additional');
+};
