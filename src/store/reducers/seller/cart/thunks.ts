@@ -16,7 +16,10 @@ export const getSellerCartData = createAsyncThunk<
   IAsyncThunkConfig
 >('seller/getSellerDataCart', async (payload, { rejectWithValue }) => {
   try {
-    return await sellerService.getSellerCart(payload);
+    const offset = payload.offset ?? 0;
+    const limit = payload.limit ?? 100;
+
+    return await sellerService.getSellerCart({ offset, limit });
   } catch (error) {
     const errorMessage =
       error instanceof AxiosError

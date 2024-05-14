@@ -5,9 +5,11 @@ import cn from 'classnames';
 import { ILocationAndCurrencySelection } from './LocationAndCurrencySelection.props';
 
 import { ArrowIcon } from 'assets/icons';
+import { useAppDispatch } from 'common/hooks';
 import { useOnClickOutside } from 'common/hooks/useOnClickOutside';
 import { CountriesEnum } from 'common/types';
 import { COUNTRY_FLAGS } from 'common/utils';
+import { getCountries } from 'store/reducers/commonSlice';
 import { ISelectOption, Select } from 'ui-kit';
 
 import style from './LocationAndCurrencySelection.module.scss';
@@ -38,6 +40,8 @@ export const LocationAndCurrencySelection: FC<ILocationAndCurrencySelection> = (
   isMobileView,
   wrapperClassName,
 }) => {
+  const dispatch = useAppDispatch();
+
   const [isOpenOnMobile, setOpenOnMobile] = useState(false);
 
   const containerClasses = cn(style.container, className, {
@@ -50,6 +54,11 @@ export const LocationAndCurrencySelection: FC<ILocationAndCurrencySelection> = (
   };
 
   const refObj = useOnClickOutside(setOpenOnMobile);
+
+  const handleSelect = (value: ISelectOption): void => {
+    dispatch(getCountries());
+    localStorage.setItem('selectedLabel', JSON.stringify(value));
+  };
 
   return (
     <div ref={refObj} className={cn(style.wrapper, wrapperClassName)}>
@@ -81,11 +90,13 @@ export const LocationAndCurrencySelection: FC<ILocationAndCurrencySelection> = (
         <div className={style.select_box}>
           <span className={style.select_title}>Ship to</span>
           <Select
+            onChange={handleSelect}
             dropOnUp={dropOnUp}
             options={COUNTRY_DATA}
             header
             width="150px"
             className={style.select}
+            isCountrySelect
           />
         </div>
       </div>

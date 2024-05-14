@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { IAsyncThunkConfig, IBaseResponse } from 'common/types';
+import { IAsyncThunkConfig } from 'common/types';
 import { supplierService } from 'services';
 import {
   IBusinessInfoRequest,

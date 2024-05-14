@@ -13,7 +13,6 @@ import {
 } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/utils/indexedDB';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
 import { getAllCategories } from 'store/reducers/commonSlice';
-import { getVariationsService } from 'store/reducers/supplier/other';
 import { BreadCrumbs } from 'ui-kit';
 
 import style from './ProductCategory.module.scss';

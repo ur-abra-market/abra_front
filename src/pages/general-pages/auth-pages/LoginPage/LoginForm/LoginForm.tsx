@@ -73,7 +73,6 @@ export const LoginForm = (): JSX.Element => {
       <Input
         {...register('password')}
         classNameWrapper={style.input_wrapper}
-        variant="password"
         type="password"
         placeholder="Password"
         error={errors.password?.message}
