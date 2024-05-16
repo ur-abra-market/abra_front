@@ -109,6 +109,12 @@
   }
 }
 
+@media (max-width: 975px) {
+  .outline {
+    flex-basis: 100%;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .button {
     padding: 12px;
