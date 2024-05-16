@@ -11,7 +11,7 @@ export interface ButtonProps
   > {
   type?: 'submit' | 'button';
   label?: string;
-  color?: 'default' | 'red' | 'light-red' | 'white' | 'black';
+  color?: 'default' | 'red' | 'light-red' | 'white' | 'black' | 'outline';
 }
 
 export const Button: FC<ButtonProps> = (props): JSX.Element => {
@@ -35,6 +35,7 @@ export const Button: FC<ButtonProps> = (props): JSX.Element => {
           [styles.light_red]: color === 'light-red',
           [styles.white]: color === 'white',
           [styles.black]: color === 'black',
+          [styles.outline]: color === 'outline',
         },
         className,
       )}

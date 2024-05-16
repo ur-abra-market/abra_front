@@ -43,3 +43,21 @@
 .container_info {
   padding-top: 80px;
 }
+
+@media (max-width: 520px) {
+  .container_button {
+    flex-direction: column;
+  }
+
+  .container_header {
+    align-items: stretch;
+  }
+
+  .button_red {
+    width: 100%;
+  }
+
+  .button_back {
+    width: 100%;
+  }
+}

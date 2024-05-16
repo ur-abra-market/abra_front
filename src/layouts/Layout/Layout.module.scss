@@ -16,6 +16,10 @@
 
 .body {
   grid-area: body;
+
+  &.additional {
+    background-color: var(--color-white-snow);
+  }
 }
 
 .footer {

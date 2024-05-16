@@ -4,7 +4,7 @@ import { Layout } from 'layouts';
 
 export const WithLayout = <T extends Record<string, unknown>>(
   Component: FunctionComponent<T>,
-  headerVariant?: 'default' | 'supplier',
+  headerVariant?: 'default' | 'supplier' | 'additional',
 ) => {
   return function withLayoutComponent({ ...props }: T): JSX.Element {
     return (
