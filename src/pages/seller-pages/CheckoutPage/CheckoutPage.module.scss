@@ -1,8 +1,6 @@
 @import "src/common/styles/mixins";
 
-.container {
-  @include content_container(12px);
-}
+
 
 .main_content {
   display: flex;
