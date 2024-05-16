@@ -10,7 +10,6 @@ import { UserDefaultProductImage } from 'assets/images';
 import { IImage } from 'store/reducers/productSlice';
 import { ButtonIcon } from 'ui-kit';
 
-// eslint-disable-next-line import/order
 import style from './ProductCarousel.module.scss';
 import 'swiper/swiper-bundle.min.css';
 
@@ -33,12 +32,16 @@ type ReturnType = {
 const useGetSecondSliderInfo = (arrLength: number): ReturnType => {
   const [isVertical, setIsVertical] = useState(true);
 
+  console.log(isVertical);
+
   useEffect(() => {
     const handleResize = (): void => {
-      if (window.innerWidth >= 801) {
+      if (window.innerWidth >= 1441) {
         setIsVertical(true); // Переключаем на горизонтальный режим
+      } else if (window.innerWidth >= 801 && window.innerWidth < 1040) {
+        setIsVertical(true); // Переключаем на вертикальный режим
       } else {
-        setIsVertical(false); // Переключаем на вертикальный режим
+        setIsVertical(false);
       }
     };
 
@@ -61,7 +64,6 @@ const useGetSecondSliderInfo = (arrLength: number): ReturnType => {
     : {
         height: arrLength < maxLength ? `${sizeSlidersContainerPx}px` : '106px',
         width: '240px',
-        // marginLeft: '0',
       };
 
   return {
@@ -128,11 +130,28 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
           watchSlidesProgress
           modules={[Thumbs, Mousewheel]}
           breakpoints={{
-            320: {
+            335: {
               direction: 'horizontal',
               slidesPerView: arrLength === 1 ? 1 : 2,
             },
-            801: {
+            460: {
+              direction: 'horizontal',
+              slidesPerView: arrLength === 1 ? 1 : 3,
+            },
+            620: {
+              direction: 'horizontal',
+              slidesPerView: arrLength === 1 ? 1 : 4,
+            },
+            800: {
+              direction: 'vertical',
+              // slidesPerView: arrLength === 1 ? 1 : 2,
+              slidesPerView,
+            },
+            1040: {
+              direction: 'horizontal',
+              slidesPerView,
+            },
+            1440: {
               direction: 'vertical',
               slidesPerView,
               height: slidesPerView * (heightSlide + rowGap),
