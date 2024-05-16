@@ -32,13 +32,11 @@ type ReturnType = {
 const useGetSecondSliderInfo = (arrLength: number): ReturnType => {
   const [isVertical, setIsVertical] = useState(true);
 
-  console.log(isVertical);
-
   useEffect(() => {
     const handleResize = (): void => {
       if (window.innerWidth >= 1441) {
         setIsVertical(true); // Переключаем на горизонтальный режим
-      } else if (window.innerWidth >= 801 && window.innerWidth < 1040) {
+      } else if (window.innerWidth >= 801 && window.innerWidth < 1041) {
         setIsVertical(true); // Переключаем на вертикальный режим
       } else {
         setIsVertical(false);
@@ -132,7 +130,7 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
           breakpoints={{
             335: {
               direction: 'horizontal',
-              slidesPerView: arrLength === 1 ? 1 : 2,
+              slidesPerView: arrLength === 1 ? 1 : 3,
             },
             460: {
               direction: 'horizontal',
