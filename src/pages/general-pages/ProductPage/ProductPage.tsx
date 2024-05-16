@@ -13,7 +13,6 @@ import {
   getProductById,
   getSimilarProducts,
 } from 'store/reducers/productSlice';
-import { getVariationsService } from 'store/reducers/supplier/other';
 import { LoaderLinear } from 'ui-kit';
 
 import style from './ProductPage.module.scss';

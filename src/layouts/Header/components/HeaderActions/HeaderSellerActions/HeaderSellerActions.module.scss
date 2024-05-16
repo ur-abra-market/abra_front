@@ -1,3 +1,33 @@
 .buttons_wrapper {
   position: relative;
 }
+
+.cart_button {
+  position: relative;
+}
+
+.cart_items {
+  position: absolute;
+  z-index: 10;
+  top: -10px;
+  right: -12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 20px;
+  height: 20px;
+  padding: 4px;
+
+  font-size: 14px;
+  color: var(--color-white);
+
+  background: var(--color-red);
+  border: 2px solid var(--color-white);
+  border-radius: 12px;
+}
+
+.big_order {
+  right: -20px;
+}

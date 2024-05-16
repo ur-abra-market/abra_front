@@ -118,7 +118,6 @@ export const RegisterForm = (): JSX.Element => {
           {...register('password')}
           classNameWrapper={style.input_wrapper}
           type="password"
-          variant="password"
           placeholder="Password"
           error={errors.password?.message}
           disabled={isLoading}

@@ -25,7 +25,7 @@ import {
   addFavoriteProductPage,
   removeFavoriteProductPage,
 } from 'store/reducers/productSlice/thunks';
-import { addToCart } from 'store/reducers/seller/cart/thunks';
+import { addToCart, getSellerCartData } from 'store/reducers/seller/cart/thunks';
 import { Button, Paragraph, SimpleLink, Title } from 'ui-kit';
 import { ButtonWithLoader } from 'ui-kit/buttons/ButtonWithLoader/ButtonWithLoader';
 
@@ -64,6 +64,7 @@ export const ProductDetails = (): JSX.Element => {
     setIsLoading(false);
     setIsOpenModal(true);
     setAmount(1);
+    dispatch(getSellerCartData({}));
   };
 
   const handleCloseModal = (): void => {

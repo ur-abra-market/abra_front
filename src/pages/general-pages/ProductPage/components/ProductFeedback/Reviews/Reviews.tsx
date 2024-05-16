@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 
-import { useAppSelector } from 'common/hooks';
 import { Grades } from 'elements/Grades/Grades';
 import { ReviewsIndicator } from 'pages/general-pages/ProductPage/components/ProductFeedback/ReviewsIndicator/ReviewsIndicator';
 import {

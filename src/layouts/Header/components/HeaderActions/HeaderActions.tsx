@@ -7,7 +7,7 @@ import { HeaderSellerActions, HeaderGuestUserActions } from '.';
 
 import { useAppSelector } from 'common/hooks';
 import { IHtmlProps } from 'common/types';
-import { LOGIN, REGISTER, HOME, CART } from 'routes';
+import { LOGIN, REGISTER, HOME, CART, FAVORITES } from 'routes';
 import { isAuthorizedSelector } from 'store/reducers/authSlice';
 
 import style from './HeaderActions.module.scss';
@@ -28,7 +28,7 @@ export const HeaderActions: FC<IHtmlProps> = ({
         case 'note':
           return navigate(HOME);
         case 'favorite':
-          return navigate(HOME);
+          return navigate(FAVORITES);
         case 'cart':
           return navigate(CART);
         default:
