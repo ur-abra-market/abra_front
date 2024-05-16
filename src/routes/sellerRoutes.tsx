@@ -5,35 +5,29 @@ import { RouteObject } from 'react-router-dom';
 import { CHECKOUT_ERROR } from './path-constants/seller';
 
 import {
+  CART,
   CHECKOUT_SUCCESS,
-  CHECKOUT,
   FAVORITES,
   HELP,
   ORDER_HISTORY,
   ORDER_HISTORY_DETAILS,
   PERSONAL_ACCOUNT,
-  CART,
 } from '.';
 
 import {
+  CheckoutErrorPage,
+  CheckoutSuccessPage,
   OrderDetailsPage,
   OrderHistoryPage,
-  SellerProfilePage,
-  SellerFavoritesList,
-  CheckoutSuccessPage,
   SellerCartPage,
-  CheckoutPage,
-  CheckoutErrorPage,
+  SellerFavoritesList,
+  SellerProfilePage,
 } from 'pages/seller-pages';
 
 export const sellerRoutes: RouteObject[] = [
   {
     path: PERSONAL_ACCOUNT,
     element: <SellerProfilePage />,
-  },
-  {
-    path: CHECKOUT,
-    element: <CheckoutPage />,
   },
   {
     path: CHECKOUT_SUCCESS,

@@ -1,8 +1,8 @@
 @import "src/common/styles/mixins";
 
 
-
 .main_content {
+  position: relative;
   display: flex;
   gap: 12px;
   justify-content: center;
@@ -91,4 +91,36 @@
   font-size: 15px;
   line-height: 133%;
   color: var(--color-green);
+}
+
+.back_button {
+  position: absolute;
+  top: -35px;
+  left: 2%;
+
+  width: auto;
+  margin-right: auto;
+
+  color: var(--color-black);
+
+  background-color: var(--color-white);
+}
+
+@media (max-width: 770px) {
+  .back_button {
+    top: -40px;
+    left: 25%;
+  }
+
+}
+
+@media (max-width: 380px) {
+  .back_button {
+    left: 35%;
+  }
+
+}
+
+.arrow {
+  transform: rotate(90deg);
 }

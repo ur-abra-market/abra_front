@@ -6,7 +6,11 @@ import { CartWithOrder } from 'pages/seller-pages/SellerCart/CartWithOrder/CartW
 const CheckoutAndCartWithOrder = (): JSX.Element => {
   const [toggle, setToggle] = useState(false);
 
-  return !toggle ? <CartWithOrder handleButton={setToggle} /> : <CheckoutPage />;
+  return !toggle ? (
+    <CartWithOrder handleButton={setToggle} />
+  ) : (
+    <CheckoutPage handleButton={setToggle} />
+  );
 };
 
 export default CheckoutAndCartWithOrder;

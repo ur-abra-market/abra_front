@@ -3,9 +3,8 @@ import React, { JSX } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { AddressAdder } from './AdressAdder/AdressAdder';
-import { PaymentMethodAdder } from './PaymentMethodAdder/PaymentMethodAdder';
 
-import { LockIcon } from 'assets/icons';
+import { ArrowIcon, LockIcon } from 'assets/icons';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { OrderDetails } from 'pages/seller-pages/SellerCart/CartWithOrder/OrderDetails';
 import { OrderItemsSection } from 'pages/seller-pages/SellerCart/CartWithOrder/OrderItemsSection';
@@ -13,11 +12,14 @@ import { CHECKOUT_SUCCESS } from 'routes';
 import { productsInCart } from 'store/reducers/seller/cart';
 import { isLoading } from 'store/reducers/seller/cart/selectors';
 import { checkoutOrder } from 'store/reducers/seller/cart/thunks';
-import { ButtonQuestion, LoaderLinear, Paragraph } from 'ui-kit';
+import { Button, ButtonQuestion, LoaderLinear, Paragraph } from 'ui-kit';
 
 import styles from './CheckoutPage.module.scss';
 
-export const CheckoutPage = (): JSX.Element => {
+interface ICheckoutPage {
+  handleButton: (value: boolean) => void;
+}
+export const CheckoutPage = ({ handleButton }: ICheckoutPage): JSX.Element => {
   const dispatch = useAppDispatch();
   const productsCart = useAppSelector(productsInCart);
   const cartIsLoading = useAppSelector(isLoading);
@@ -46,8 +48,10 @@ export const CheckoutPage = (): JSX.Element => {
     <div className={styles.container}>
       <div className={styles.main_content}>
         <div className={styles.left_column}>
+          <Button className={styles.back_button} onClick={() => handleButton(false)}>
+            <ArrowIcon className={styles.arrow} /> Back to cart
+          </Button>
           <AddressAdder />
-          <PaymentMethodAdder />
 
           <div className={styles.order_info}>
             <span className={styles.order_title}>Items to Order</span>
