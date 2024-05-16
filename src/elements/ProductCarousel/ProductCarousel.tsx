@@ -10,7 +10,6 @@ import { UserDefaultProductImage } from 'assets/images';
 import { IImage } from 'store/reducers/productSlice';
 import { ButtonIcon } from 'ui-kit';
 
-// eslint-disable-next-line import/order
 import style from './ProductCarousel.module.scss';
 import 'swiper/swiper-bundle.min.css';
 
@@ -35,10 +34,12 @@ const useGetSecondSliderInfo = (arrLength: number): ReturnType => {
 
   useEffect(() => {
     const handleResize = (): void => {
-      if (window.innerWidth >= 801) {
+      if (window.innerWidth >= 1441) {
         setIsVertical(true); // Переключаем на горизонтальный режим
+      } else if (window.innerWidth >= 801 && window.innerWidth < 1041) {
+        setIsVertical(true); // Переключаем на вертикальный режим
       } else {
-        setIsVertical(false); // Переключаем на вертикальный режим
+        setIsVertical(false);
       }
     };
 
@@ -61,7 +62,6 @@ const useGetSecondSliderInfo = (arrLength: number): ReturnType => {
     : {
         height: arrLength < maxLength ? `${sizeSlidersContainerPx}px` : '106px',
         width: '240px',
-        // marginLeft: '0',
       };
 
   return {
@@ -81,10 +81,13 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
   const { isVertical } = useGetSecondSliderInfo(arrLength);
 
   const prevSlide = (): void => {
+    setActiveIndex(activeIndex - 1);
+    thumbsSwiper?.slideTo(activeIndex);
     thumbsSwiper?.slidePrev();
   };
   const nextSlide = (): void => {
-    thumbsSwiper?.slideNext();
+    setActiveIndex(activeIndex + 1);
+    thumbsSwiper?.slideTo(activeIndex);
   };
 
   const handleImageError = (event: SyntheticEvent<HTMLImageElement>): void => {
@@ -93,11 +96,17 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
     newEvent.currentTarget.src = UserDefaultProductImage;
   };
 
+  const isArrowButtonsShown = arrLength > maxLength;
+
   return (
     <div className={style.sliders_container}>
       <div className={style.swiper_second_wrapper}>
-        {arrLength > minLength && (
-          <ButtonIcon className={style.btn} onClick={prevSlide}>
+        {isArrowButtonsShown && (
+          <ButtonIcon
+            disabled={activeIndex === 0}
+            className={`${style.btn} ${activeIndex === 0 ? style.disabled : ''}`}
+            onClick={prevSlide}
+          >
             <ArrowIcon
               className={cn(style.arrow, style.arrow_up, {
                 [style.rotate_first]: !isVertical,
@@ -110,21 +119,37 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
           slidesPerView={
             arrLength >= minLength && arrLength < maxLength ? arrLength : baseLength
           }
-          spaceBetween={8}
+          spaceBetween={18}
           className={style.swiper_second}
           slideToClickedSlide
           mousewheel={arrLength !== minLength}
           allowTouchMove={false}
-          loop
           onSwiper={setThumbsSwiper}
           watchSlidesProgress
           modules={[Thumbs, Mousewheel]}
           breakpoints={{
-            320: {
+            335: {
               direction: 'horizontal',
-              slidesPerView: arrLength === 1 ? 1 : 2,
+              slidesPerView: arrLength === 1 ? 1 : 3,
             },
-            801: {
+            460: {
+              direction: 'horizontal',
+              slidesPerView: arrLength === 1 ? 1 : 3,
+            },
+            620: {
+              direction: 'horizontal',
+              slidesPerView: arrLength === 1 ? 1 : 4,
+            },
+            800: {
+              direction: 'vertical',
+              // slidesPerView: arrLength === 1 ? 1 : 2,
+              slidesPerView,
+            },
+            1040: {
+              direction: 'horizontal',
+              slidesPerView,
+            },
+            1440: {
               direction: 'vertical',
               slidesPerView,
               height: slidesPerView * (heightSlide + rowGap),
@@ -149,8 +174,14 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
           })}
         </Swiper>
 
-        {arrLength > minLength && (
-          <ButtonIcon className={cn(style.btn)} onClick={nextSlide}>
+        {isArrowButtonsShown && (
+          <ButtonIcon
+            disabled={activeIndex === arrLength - 1}
+            className={`${style.btn} ${
+              activeIndex === arrLength - 1 ? style.disabled : ''
+            }`}
+            onClick={nextSlide}
+          >
             <ArrowIcon
               className={cn(style.arrow, { [style.rotate_second]: !isVertical })}
             />
@@ -168,7 +199,6 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
           mousewheel={arrLength !== minLength}
           thumbs={{ swiper: thumbsSwiper }}
           modules={[Thumbs, Mousewheel]}
-          loop
           onActiveIndexChange={s => {
             setActiveIndex(s.realIndex);
           }}
@@ -176,7 +206,11 @@ export const ProductCarousel: FC<Props> = ({ photoArray }) => {
           {photoArray.map(el => {
             return (
               <SwiperSlide key={el.id}>
-                <img src={el.image_url} alt="" onError={handleImageError} />
+                <img
+                  src={photoArray[activeIndex].image_url}
+                  alt=""
+                  onError={handleImageError}
+                />
               </SwiperSlide>
             );
           })}
