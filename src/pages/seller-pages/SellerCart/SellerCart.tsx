@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 
-import { CartWithOrder } from './CartWithOrder';
+import CheckoutAndCartWithOrder from './CheckoutAndCartWithOrder/CheckoutAndCartWithOrder';
 import { EmptyCart } from './EmptyCart';
 
 import { WithLayout } from 'common/hocs/WithLayout';
@@ -33,7 +33,7 @@ export const SellerCartPage = WithLayout((): JSX.Element => {
 
   return (
     <div className={style.wrapper}>
-      {totalAmountItems ? <CartWithOrder getCartData={getCartData} /> : <EmptyCart />}
+      {totalAmountItems ? <CheckoutAndCartWithOrder /> : <EmptyCart />}
     </div>
   );
 });

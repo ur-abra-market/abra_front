@@ -25,7 +25,7 @@ export const Search = forwardRef<HTMLInputElement, ISearch>((props, ref): JSX.El
     ...restProps
   } = props;
 
-  const { searchValue, handleChangeValue, handleRemoveValue, handleKeyDown } =
+  const { value, handleChangeValue, handleRemoveValue, handleKeyDown } =
     useSearchHandler(mainSearchField);
 
   return (
@@ -33,7 +33,7 @@ export const Search = forwardRef<HTMLInputElement, ISearch>((props, ref): JSX.El
       <input
         className={cn(styles.input, className)}
         ref={ref}
-        value={searchValue}
+        value={value}
         onChange={handleChangeValue}
         onKeyDown={handleKeyDown}
         type="text"
@@ -46,7 +46,7 @@ export const Search = forwardRef<HTMLInputElement, ISearch>((props, ref): JSX.El
         </label>
       )}
 
-      {!!searchValue.length && (
+      {!!value.length && (
         <ButtonIcon
           className={`${styles.button_cross} ${isPhotoSearch ? styles.add_margin : ''}`}
           onClick={handleRemoveValue}
