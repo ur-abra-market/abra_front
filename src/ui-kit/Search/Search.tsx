@@ -47,10 +47,7 @@ export const Search = forwardRef<HTMLInputElement, ISearch>((props, ref): JSX.El
       )}
 
       {!!value.length && (
-        <ButtonIcon
-          className={`${styles.button_cross} ${isPhotoSearch ? styles.add_margin : ''}`}
-          onClick={handleRemoveValue}
-        >
+        <ButtonIcon className={styles.button_cross} onClick={handleRemoveValue}>
           <CrossRedIcon className={styles.cross_icon} />
         </ButtonIcon>
       )}

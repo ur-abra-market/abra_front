@@ -1,22 +1,12 @@
 import { ChangeEvent, KeyboardEvent, MouseEventHandler, useEffect } from 'react';
 
-import {
-  createSearchParams,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch } from './useAppDispatch';
 
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { PRODUCTS, PRODUCTS_LIST } from 'routes';
-import {
-  clearMainSearchValue,
-  clearSearchValue,
-  setMainSearchValue,
-  setSearchValue,
-} from 'store/reducers/searchSlice';
+import { setMainSearchValue, setSearchValue } from 'store/reducers/searchSlice';
 
 interface ISearchHandlerReturnType {
   value: string;
@@ -74,5 +64,5 @@ export const useSearchHandler = (
     }
   };
 
-  return { value, handleChangeValue, handleKeyDown };
+  return { value, handleChangeValue, handleRemoveValue, handleKeyDown };
 };
