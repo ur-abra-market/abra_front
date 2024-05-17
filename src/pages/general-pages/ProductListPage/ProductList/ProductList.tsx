@@ -59,7 +59,7 @@ export const ProductList: FC<IProductList> = ({
     const param = {
       offset: (currentPage - 1) * productsPerPage,
       limit: productsPerPage,
-      category_id: !category_id ? 1 : category_id,
+      category_id: category_id || 1,
       sort: currentSortField,
       ascending: currentSortBy === 'asc',
       query: query || undefined,
