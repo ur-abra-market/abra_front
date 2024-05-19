@@ -12,10 +12,12 @@ import style from './SupplierInformation.module.scss';
 
 type ISupplierInformation = {
   products: IProductCardInCart[];
+  isCheckoutPage?: boolean;
 };
 
 export const SupplierInformation: FC<ISupplierInformation> = ({
   products,
+  isCheckoutPage,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
 
@@ -38,14 +40,20 @@ export const SupplierInformation: FC<ISupplierInformation> = ({
   return (
     <div className={style.header_item}>
       <div className={style.supplier_container}>
-        <Checkbox
-          variant="default"
-          className={style.checkbox_header}
-          checked={isSelectedAllProducts}
-          onChange={selectAllProducts}
-        />
+        {!isCheckoutPage && (
+          <Checkbox
+            variant="default"
+            className={style.checkbox_header}
+            checked={isSelectedAllProducts}
+            onChange={selectAllProducts}
+          />
+        )}
 
-        <div className={style.supplier_information}>
+        <div
+          className={`${style.supplier_information} ${
+            isCheckoutPage && style.is_checkout_page
+          }`}
+        >
           <div className={style.rating}>
             <Star percent={`${averagePercent}%`} sizes="16" />
           </div>

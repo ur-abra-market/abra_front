@@ -11,10 +11,15 @@ import { useAppDispatch } from './useAppDispatch';
 
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { PRODUCTS, PRODUCTS_LIST } from 'routes';
-import { setSearchValue } from 'store/reducers/searchSlice';
+import {
+  clearMainSearchValue,
+  clearSearchValue,
+  setMainSearchValue,
+  setSearchValue,
+} from 'store/reducers/searchSlice';
 
 interface ISearchHandlerReturnType {
-  searchValue: string;
+  value: string;
   handleChangeValue: (e: ChangeEvent<HTMLInputElement>) => void;
   handleKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
 }
@@ -27,14 +32,17 @@ export const useSearchHandler = (
   const [searchParams] = useSearchParams();
   const query = searchParams.get('query');
   const role = useAppSelector(state => state.auth.userRole);
-  const searchValue = useAppSelector(state => state.search.searchValue);
+  const mainSearchValue = useAppSelector(state => state.search.searchValues.mainSearch);
+  const searchValue = useAppSelector(state => state.search.searchValues.search);
+  const value = mainSearchField ? mainSearchValue : searchValue;
+  const setValue = mainSearchField ? setMainSearchValue : setSearchValue;
 
   useEffect(() => {
-    dispatch(setSearchValue(mainSearchField ? query || '' : ''));
+    dispatch(setValue(mainSearchField ? query || '' : ''));
   }, []);
 
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>): void => {
-    dispatch(setSearchValue(e.target.value));
+    dispatch(setValue(e.target.value));
   };
 
   const roleURL = (role: string | null): string => {
@@ -50,12 +58,10 @@ export const useSearchHandler = (
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
     const isEnterKey = event.code === 'Enter';
-    const isSearchValue = searchValue.trim().length !== 0;
+    const isSearchValue = value.trim().length !== 0;
 
     if (isSearchValue) {
-      const path = `${roleURL(role)}?${createSearchParams({
-        query: searchValue,
-      }).toString()}`;
+      const path = `${roleURL(role)}`;
 
       if (isEnterKey) {
         navigate(path);
@@ -63,5 +69,5 @@ export const useSearchHandler = (
     }
   };
 
-  return { searchValue, handleChangeValue, handleKeyDown };
+  return { value, handleChangeValue, handleKeyDown };
 };

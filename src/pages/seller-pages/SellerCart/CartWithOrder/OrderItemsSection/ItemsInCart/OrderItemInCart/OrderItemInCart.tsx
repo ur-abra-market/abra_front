@@ -24,6 +24,7 @@ interface IOrderItemInCart {
   prices: IPriceBundle[];
   amount: number;
   isChecked: boolean;
+  isCheckoutPage?: boolean;
 }
 
 const widthChangedVariantCounter = 861;
@@ -34,6 +35,7 @@ export const OrderItemInCart: FC<IOrderItemInCart> = ({
   amount,
   prices,
   isChecked,
+  isCheckoutPage,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const windowWidth = useGetResponsiveWidth();
@@ -57,11 +59,13 @@ export const OrderItemInCart: FC<IOrderItemInCart> = ({
   return (
     <li className={style.order_list_item}>
       <div className={style.product_info}>
-        <Checkbox
-          variant="default"
-          checked={isChecked}
-          onChange={() => handleCheckedProduct(variationValueProductId as number)}
-        />
+        {!isCheckoutPage && (
+          <Checkbox
+            variant="default"
+            checked={isChecked}
+            onChange={() => handleCheckedProduct(variationValueProductId as number)}
+          />
+        )}
 
         <ItemDescription
           product={product}

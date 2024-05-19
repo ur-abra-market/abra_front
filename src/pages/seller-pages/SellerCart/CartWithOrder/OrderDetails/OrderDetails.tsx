@@ -1,20 +1,27 @@
 import React from 'react';
 
-import { useAppDispatch, useAppSelector } from 'common/hooks';
+import classNames from 'classnames';
+
+import { useAppSelector } from 'common/hooks';
 import { IProductCardInCart } from 'store/reducers/seller/cart';
 import { productsInCart } from 'store/reducers/seller/cart/selectors';
-import { checkoutOrder } from 'store/reducers/seller/cart/thunks';
 import { Button, Paragraph, Title } from 'ui-kit';
 
 import style from './OrderDetails.module.scss';
 
 interface IOrderDetails {
-  ordersId: number[];
-  getCartData: () => void;
+  children?: React.ReactNode;
+  additionalClassName?: string;
+  isCheckoutPage?: boolean;
+  handleButton: (value: boolean) => void;
 }
 
-export const OrderDetails = ({ ordersId, getCartData }: IOrderDetails): JSX.Element => {
-  const dispatch = useAppDispatch();
+export const OrderDetails = ({
+  children,
+  additionalClassName,
+  isCheckoutPage,
+  handleButton,
+}: IOrderDetails): JSX.Element => {
   const products = useAppSelector(productsInCart);
 
   const selectedProducts = products
@@ -37,17 +44,10 @@ export const OrderDetails = ({ ordersId, getCartData }: IOrderDetails): JSX.Elem
 
   const totalPriceBundlesToFixed = Number(totalPriceBundles.toFixed(2));
 
-  const handleCheckout = async (): Promise<void> => {
-    // eslint-disable-next-line
-    for await (const id of ordersId) {
-      await dispatch(checkoutOrder(id));
-    }
-
-    getCartData();
-  };
+  const combinedClass = classNames(style.order_item, additionalClassName);
 
   return (
-    <div className={style.order_item}>
+    <div className={combinedClass}>
       <div className={style.total_count}>
         <Paragraph size="s2" weight="medium" className={style.title_total_count}>
           Items to Order
@@ -74,13 +74,15 @@ export const OrderDetails = ({ ordersId, getCartData }: IOrderDetails): JSX.Elem
         Total <span>${totalPriceBundlesToFixed}</span>
       </Title>
 
-      <Button className={style.button_checkout} onClick={handleCheckout}>
-        Checkout
+      <Button className={style.button_checkout} onClick={() => handleButton(true)}>
+        {isCheckoutPage ? 'Place Order' : 'Checkout'}
       </Button>
 
       <Paragraph size="s2" className={style.order_description}>
         Make sure that the quantity of goods and the selected characteristics are correct.
       </Paragraph>
+
+      {children}
     </div>
   );
 };

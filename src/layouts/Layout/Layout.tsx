@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react';
 
 import { useMediaQuery } from 'common/hooks';
+import { AdditionalHeaderBlock } from 'elements';
 import { Footer } from 'layouts/Footer/Footer';
 import { Header, SupplierHeader } from 'layouts/Header';
 import { MobileHeader } from 'layouts/Header/MobileHeader/MobileHeader';
@@ -10,7 +11,7 @@ import styles from './Layout.module.scss';
 
 interface ILayout {
   children: ReactNode;
-  headerVariant?: 'default' | 'supplier';
+  headerVariant?: 'default' | 'supplier' | 'additional';
 }
 
 export const Layout: FC<ILayout> = ({
@@ -18,6 +19,7 @@ export const Layout: FC<ILayout> = ({
   headerVariant = 'default',
 }): JSX.Element => {
   const { isDevice } = useMediaQuery();
+  const additional = headerVariant === 'additional';
 
   return (
     <div className={styles.wrapper}>
@@ -27,7 +29,7 @@ export const Layout: FC<ILayout> = ({
         ) : (
           <Header className={styles.header} />
         ))}
-
+      {additional && <AdditionalHeaderBlock />}
       {headerVariant === 'supplier' &&
         (isDevice ? (
           <MobileSupplierHeader className={styles.header} />
@@ -35,7 +37,10 @@ export const Layout: FC<ILayout> = ({
           <SupplierHeader className={styles.header} />
         ))}
 
-      <main className={styles.body} role="main">
+      <main
+        className={`${styles.body} ${additional ? styles.additional : ''}`}
+        role="main"
+      >
         {children}
       </main>
 
