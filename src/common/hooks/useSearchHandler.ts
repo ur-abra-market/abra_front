@@ -37,7 +37,7 @@ export const useSearchHandler = (
   };
 
   const handleRemoveValue = (): void => {
-    dispatch(setSearchValue(''));
+    dispatch(setValue(''));
   };
 
   const roleURL = (role: string | null): string => {
