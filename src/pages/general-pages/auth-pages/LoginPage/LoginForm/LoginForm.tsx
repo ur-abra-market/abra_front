@@ -77,31 +77,29 @@ export const LoginForm = (): JSX.Element => {
   });
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
-        <Input
-          {...register('email')}
-          placeholder="Email"
-          error={errors.email?.message}
-          disabled={isLoading}
-        />
+    <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
+      <Input
+        {...register('email')}
+        placeholder="Email"
+        error={errors.email?.message}
+        disabled={isLoading}
+      />
 
-        <Input
-          {...register('password')}
-          classNameWrapper={style.input_wrapper}
-          type="password"
-          placeholder="Password"
-          error={errors.password?.message}
-          disabled={isLoading}
-        />
+      <Input
+        {...register('password')}
+        classNameWrapper={style.input_wrapper}
+        type="password"
+        placeholder="Password"
+        error={errors.password?.message}
+        disabled={isLoading}
+      />
 
-        <Button
-          className={style.button_submit}
-          label="Log in"
-          type="submit"
-          disabled={!isValid || isLoading}
-        />
-      </form>
+      <Button
+        className={style.button_submit}
+        label="Log in"
+        type="submit"
+        disabled={!isValid || isLoading}
+      />
       <div className={style.buttons_container_alternate_signin}>
         <ButtonIcon onClick={() => handleGoogleAuth()}>
           <GoogleButton />
@@ -110,6 +108,6 @@ export const LoginForm = (): JSX.Element => {
           <AppleButton />
         </ButtonIcon>
       </div>
-    </>
+    </form>
   );
 };
