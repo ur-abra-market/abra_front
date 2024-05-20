@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import cn from 'classnames';
 
@@ -10,6 +10,7 @@ interface IProductColorPickable {
   imageUrl: string;
   selectColor: (id: number) => void;
   className?: string;
+  colorName: string;
 }
 
 export const ProductColorPickable: FC<IProductColorPickable> = ({
@@ -17,6 +18,7 @@ export const ProductColorPickable: FC<IProductColorPickable> = ({
   id,
   imageUrl,
   selectColor,
+  colorName,
   className,
 }): JSX.Element => {
   const isSelected = id === selectedColorId;
@@ -24,9 +26,20 @@ export const ProductColorPickable: FC<IProductColorPickable> = ({
     [style.active]: isSelected,
   });
 
+  const [isError, setIsError] = useState(false);
+
   return (
     <button type="button" onClick={() => selectColor(id)} className={productColorClasses}>
-      <img className={style.color_image} src={imageUrl} alt="color" />
+      {isError ? (
+        <div className={style.color_name}>{colorName}</div>
+      ) : (
+        <img
+          className={style.color_image}
+          onError={() => setIsError(true)}
+          src={imageUrl}
+          alt={colorName}
+        />
+      )}
     </button>
   );
 };
