@@ -46,11 +46,21 @@
 
 .button_cross {
   cursor: pointer;
+
   position: absolute;
   top: 13px;
   right: 19px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .photo_search {
   display: none;
+}
+
+.cross_icon {
+  width: 15px;
+  height: 15px;
 }
