@@ -20,16 +20,12 @@ export const Input = forwardRef<HTMLInputElement, IInput>((props, ref): JSX.Elem
 
   const handleClickButton = (): void => setShowPassword(!showPassword);
 
+  const inputClasses = cn(styles.input, { [styles.input_error]: error }, className);
+
   return (
     <div className={cn(styles.wrapper, classNameWrapper)}>
       <input
-        className={cn(
-          styles.input,
-          {
-            [styles.input_error]: error,
-          },
-          className,
-        )}
+        className={inputClasses}
         ref={ref}
         type={showPassword ? 'text' : type}
         {...restProps}
