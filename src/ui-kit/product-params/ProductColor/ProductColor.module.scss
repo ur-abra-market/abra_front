@@ -8,6 +8,19 @@
   cursor: no-drop;
 }
 
+.color_name {
+  @include item();
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 32px;
+
+  border: 2px solid var(--color-gray-light);
+}
+
 .color_image {
   @include item();
 
