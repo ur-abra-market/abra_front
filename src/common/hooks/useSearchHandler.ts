@@ -1,26 +1,17 @@
-import { ChangeEvent, KeyboardEvent, useEffect } from 'react';
+import { ChangeEvent, KeyboardEvent, MouseEventHandler, useEffect } from 'react';
 
-import {
-  createSearchParams,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 import { useAppDispatch } from './useAppDispatch';
 
 import { useAppSelector } from 'common/hooks/useAppSelector';
 import { PRODUCTS, PRODUCTS_LIST } from 'routes';
-import {
-  clearMainSearchValue,
-  clearSearchValue,
-  setMainSearchValue,
-  setSearchValue,
-} from 'store/reducers/searchSlice';
+import { setMainSearchValue, setSearchValue } from 'store/reducers/searchSlice';
 
 interface ISearchHandlerReturnType {
   value: string;
   handleChangeValue: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleRemoveValue: MouseEventHandler<HTMLButtonElement>;
   handleKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
 }
 export const useSearchHandler = (
@@ -43,6 +34,10 @@ export const useSearchHandler = (
 
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>): void => {
     dispatch(setValue(e.target.value));
+  };
+
+  const handleRemoveValue = (): void => {
+    dispatch(setValue(''));
   };
 
   const roleURL = (role: string | null): string => {
@@ -69,5 +64,5 @@ export const useSearchHandler = (
     }
   };
 
-  return { value, handleChangeValue, handleKeyDown };
+  return { value, handleChangeValue, handleRemoveValue, handleKeyDown };
 };
