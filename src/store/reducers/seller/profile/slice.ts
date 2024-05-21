@@ -91,7 +91,7 @@ const sellerProfileSlice = createSlice({
       })
 
       .addCase(getSellerAvatar.fulfilled, (state, action) => {
-        state.avatar = action.payload.source_url;
+        state.avatar = action.payload?.source_url;
       })
 
       .addCase(updateSellerAvatar.pending, state => {

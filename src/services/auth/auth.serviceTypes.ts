@@ -47,3 +47,7 @@ export interface IRegisterGoogleRequest {
   role: string;
   token: string;
 }
+
+export interface ILoginGoogleRequest {
+  token: string;
+}
