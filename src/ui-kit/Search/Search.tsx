@@ -28,8 +28,6 @@ export const Search = forwardRef<HTMLInputElement, ISearch>((props, ref): JSX.El
   const { value, handleChangeValue, handleRemoveValue, handleKeyDown } =
     useSearchHandler(mainSearchField);
 
-  console.log(1);
-
   return (
     <div className={cn(styles.wrapper, className)}>
       <input

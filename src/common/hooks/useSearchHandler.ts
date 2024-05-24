@@ -5,7 +5,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useAppDispatch } from './useAppDispatch';
 
 import { useAppSelector } from 'common/hooks/useAppSelector';
-import { PRODUCTS, PRODUCTS_LIST } from 'routes';
+import { FAVORITES, PRODUCTS, PRODUCTS_LIST } from 'routes';
 import { setMainSearchValue, setSearchValue } from 'store/reducers/searchSlice';
 
 interface ISearchHandlerReturnType {
@@ -43,9 +43,9 @@ export const useSearchHandler = (
   const roleURL = (role: string | null): string => {
     switch (role) {
       case 'seller':
-        return `${PRODUCTS_LIST}/${id || ''}`;
+        return `${mainSearchField ? `${PRODUCTS_LIST}/` : FAVORITES}${id || ''}`;
       case 'supplier':
-        return `${PRODUCTS}/`;
+        return `${mainSearchField ? `${PRODUCTS}/` : FAVORITES}`;
       default:
         return '';
     }
@@ -56,7 +56,7 @@ export const useSearchHandler = (
     const isSearchValue = value.trim().length !== 0;
 
     if (isSearchValue) {
-      const path = `${roleURL(role)}`;
+      const path = `${roleURL(role)}?query=${value}`;
 
       if (isEnterKey) {
         navigate(path);
