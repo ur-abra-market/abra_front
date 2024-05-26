@@ -3,7 +3,7 @@ export { useAppSelector } from './useAppSelector';
 export { useOnClickOutside } from './useOnClickOutside';
 export { useOnHoverOutside } from './useOnHoverOutside';
 export { useBodyOverflowHidden } from './useBodyOverflowHidden';
-export { useDebounce } from './useDebaunce';
+export { useDebounce } from './useDebounce';
 export { useSearchHandler } from './useSearchHandler';
 export { useMediaQuery } from './useMediaQuery';
 export { useSetMaxWidthElementsInList } from './useSetMaxWidthElementsInList';

@@ -8,8 +8,7 @@ import { ProductHeader } from './ProductHeader/ProductHeader';
 import { ProductsList } from './ProductsList/ProductsList';
 
 import { WithLayout } from 'common/hocs/WithLayout';
-import { useAppDispatch, useAppSelector } from 'common/hooks';
-import { useDebounce } from 'common/hooks/useDebaunce';
+import { useAppDispatch, useAppSelector, useDebounce } from 'common/hooks';
 import { getSupplierProducts, hasChangedSelector } from 'store/reducers/supplier/product';
 
 import style from './SupplierProducts.module.scss';
