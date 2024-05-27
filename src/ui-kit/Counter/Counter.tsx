@@ -1,7 +1,8 @@
-import { ChangeEvent, FC, forwardRef, useState } from 'react';
+import { ChangeEvent, FC, forwardRef, useState, KeyboardEvent } from 'react';
 
 import cn from 'classnames';
 
+import { KEYBOARD_KEYS } from 'common/constants';
 import { Button } from 'ui-kit/buttons/Button/Button';
 import { Input } from 'ui-kit/Input/Input';
 import { Paragraph } from 'ui-kit/Paragraph/Paragraph';
@@ -55,6 +56,15 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
     const handleDecrementAmount = (): void => {
       setInitAmount(Number(amount) - 1);
       onChange(Number(amount) - 1);
+    };
+
+    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
+      if (e.code === KEYBOARD_KEYS.ARROW_UP) {
+        handleIncrementAmount();
+      }
+      if (e.code === KEYBOARD_KEYS.ARROW_DOWN) {
+        handleDecrementAmount();
+      }
     };
 
     const handleChangeAmount = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -118,6 +128,7 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
             min={min_amount}
             max={max_amount}
             classNameWrapper={style.wrapper_input}
+            onKeyDown={handleKeyDown}
             {...restProps}
           />
           <Button
