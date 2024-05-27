@@ -3,6 +3,7 @@ import { ChangeEvent, FC, forwardRef, useState } from 'react';
 import cn from 'classnames';
 
 import { Button } from 'ui-kit/buttons/Button/Button';
+import { Input } from 'ui-kit/Input/Input';
 import { Paragraph } from 'ui-kit/Paragraph/Paragraph';
 
 import style from './Counter.module.scss';
@@ -106,7 +107,7 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
           >
             -
           </Button>
-          <input
+          <Input
             type="number"
             pattern="[0-9]*"
             value={amount}
@@ -116,6 +117,7 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
             onChange={handleChangeAmount}
             min={min_amount}
             max={max_amount}
+            classNameWrapper={style.wrapper_input}
             {...restProps}
           />
           <Button
