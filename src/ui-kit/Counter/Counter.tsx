@@ -2,6 +2,7 @@ import { ChangeEvent, FC, forwardRef, useState } from 'react';
 
 import cn from 'classnames';
 
+import { Button } from 'ui-kit/buttons/Button/Button';
 import { Paragraph } from 'ui-kit/Paragraph/Paragraph';
 
 import style from './Counter.module.scss';
@@ -45,12 +46,12 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
       [style.button_large]: variant === 'large',
     });
 
-    const handleIncrementAmount = (amount: number): void => {
+    const handleIncrementAmount = (): void => {
       setInitAmount(Number(amount) + 1);
       onChange(Number(amount) + 1);
     };
 
-    const handleDecrementAmount = (amount: number): void => {
+    const handleDecrementAmount = (): void => {
       setInitAmount(Number(amount) - 1);
       onChange(Number(amount) - 1);
     };
@@ -98,14 +99,13 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
           </Paragraph>
         </div>
         <div className={style.counter}>
-          <button
-            type="button"
-            className={buttonClasses}
-            onClick={() => handleDecrementAmount(amount)}
+          <Button
+            onClick={handleDecrementAmount}
             disabled={isDisableDecrement}
+            className={buttonClasses}
           >
             -
-          </button>
+          </Button>
           <input
             type="number"
             pattern="[0-9]*"
@@ -118,14 +118,13 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
             max={max_amount}
             {...restProps}
           />
-          <button
-            type="button"
-            className={buttonClasses}
-            onClick={() => handleIncrementAmount(amount)}
+          <Button
+            onClick={handleIncrementAmount}
             disabled={isDisabledIncrement}
+            className={buttonClasses}
           >
             +
-          </button>
+          </Button>
         </div>
       </div>
     );
