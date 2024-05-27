@@ -2,8 +2,10 @@ import { ChangeEvent, FC, forwardRef, useState, KeyboardEvent } from 'react';
 
 import cn from 'classnames';
 
+import { QuestionIcon } from 'assets/icons';
 import { KEYBOARD_KEYS } from 'common/constants';
 import { Button } from 'ui-kit/buttons/Button/Button';
+import { ButtonIcon } from 'ui-kit/buttons/ButtonIcon/ButtonIcon';
 import { Input } from 'ui-kit/Input/Input';
 import { Paragraph } from 'ui-kit/Paragraph/Paragraph';
 
@@ -18,6 +20,7 @@ export interface ICounter {
   min_amount?: number;
   onChange: (amount: number | string) => void;
   className?: string;
+  withQuestionIcon?: boolean;
 }
 
 export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
@@ -31,6 +34,7 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
       max_amount,
       onChange,
       className,
+      withQuestionIcon = false,
       ...restProps
     },
     ref,
@@ -108,6 +112,11 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
             {label}
             <span className={style.label_bundles}>{bundles_amount}</span>
           </Paragraph>
+          {withQuestionIcon && (
+            <ButtonIcon aria-label="button-question" className={style.button_question}>
+              <QuestionIcon />
+            </ButtonIcon>
+          )}
         </div>
         <div className={style.counter}>
           <Button

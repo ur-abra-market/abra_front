@@ -71,3 +71,10 @@ export interface ISellerAddToCartRequest {
   bundle_variation_pod_id: number;
   amount: number;
 }
+
+export interface ISellerSetAmountOfProductRequest {
+  orderId: number;
+  productId: number;
+  bundle_variation_pod_id: number;
+  amount: number;
+}

@@ -113,3 +113,8 @@ export interface ISupplierData extends ISupplier {
 export interface IProductInCart extends IProductCard {
   supplier: ISupplierData;
 }
+
+export interface ISellerSetAmountOfProduct
+  extends Omit<IProductCardInCart, 'bundle_variation_pod' | 'isChecked'> {
+  order: Omit<ISellersCartResponse, 'details'>;
+}

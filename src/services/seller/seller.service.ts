@@ -5,11 +5,15 @@ import {
   ISellerAvatarResponse,
   ISellerNotifications,
   ISellersCartRequest,
+  ISellerSetAmountOfProductRequest,
 } from './seller.serviceTypes';
 
 import { IBaseResponse } from 'common/types';
 import { baseConfigService } from 'services/baseConfig.service';
-import { ISellersCartResponse } from 'store/reducers/seller/cart/types';
+import {
+  ISellersCartResponse,
+  ISellerSetAmountOfProduct,
+} from 'store/reducers/seller/cart/types';
 import { ISellerAddress } from 'store/reducers/seller/profile';
 
 export const sellerService = {
@@ -106,6 +110,23 @@ export const sellerService = {
   checkoutOrder: async (orderId: number) => {
     const { data } = await baseConfigService.post<IBaseResponse<boolean>>(
       `/sellers/orders/${orderId}/create `,
+    );
+
+    return data.result;
+  },
+
+  setAmountOfProduct: async (params: ISellerSetAmountOfProductRequest) => {
+    const { data } = await baseConfigService.post<
+      IBaseResponse<ISellerSetAmountOfProduct>
+    >(
+      `sellers/cart/orders/${params.orderId}/products/${params.productId}/setAmount`,
+      null,
+      {
+        params: {
+          bundle_variation_pod_id: params.bundle_variation_pod_id,
+          amount: params.amount,
+        },
+      },
     );
 
     return data.result;

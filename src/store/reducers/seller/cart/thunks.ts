@@ -1,13 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import { ISellersCartResponse } from './types';
+import { ISellersCartResponse, ISellerSetAmountOfProduct } from './types';
 
 import { IAsyncThunkConfig } from 'common/types';
 import { sellerService } from 'services/seller/seller.service';
 import {
   ISellerAddToCartRequest,
   ISellersCartRequest,
+  ISellerSetAmountOfProductRequest,
 } from 'services/seller/seller.serviceTypes';
 
 export const getSellerCartData = createAsyncThunk<
@@ -62,3 +63,20 @@ export const checkoutOrder = createAsyncThunk<boolean, number, IAsyncThunkConfig
     }
   },
 );
+
+export const setAmountOfProduct = createAsyncThunk<
+  ISellerSetAmountOfProduct,
+  ISellerSetAmountOfProductRequest,
+  IAsyncThunkConfig
+>('seller/setAmountOfProduct', async (payload, { rejectWithValue }) => {
+  try {
+    return await sellerService.setAmountOfProduct(payload);
+  } catch (error) {
+    const errorMessage =
+      error instanceof AxiosError
+        ? error.response?.data?.error || error.message
+        : '[setAmountOfProduct]: Error';
+
+    return rejectWithValue(errorMessage);
+  }
+});
