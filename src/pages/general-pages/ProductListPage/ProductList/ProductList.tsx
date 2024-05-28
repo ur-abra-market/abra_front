@@ -51,6 +51,7 @@ export const ProductList: FC<IProductList> = ({
   const products = useAppSelector(productsListSelector);
   const [searchParams] = useSearchParams();
   const category_id = searchParams.get('category_id');
+  const searchValue = useAppSelector(state => state.search.searchValues.mainSearch);
   const query = searchParams.get('query');
   const totalPages = Math.ceil(totalCount / productsPerPage);
   const { isDevice } = useMediaQuery(DESIRED_BREAKPOINT);
@@ -62,7 +63,7 @@ export const ProductList: FC<IProductList> = ({
       category_id: category_id || 1,
       sort: currentSortField,
       ascending: currentSortBy === 'asc',
-      query: query || undefined,
+      query: query || searchValue,
     } as ICategoryRequest;
 
     dispatch(getProductsListCompilation(param));
