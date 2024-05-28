@@ -1,7 +1,12 @@
-import { ChangeEvent, FC, forwardRef, useState } from 'react';
+import { ChangeEvent, FC, forwardRef, useState, KeyboardEvent } from 'react';
 
 import cn from 'classnames';
 
+import { QuestionIcon } from 'assets/icons';
+import { KEYBOARD_KEYS } from 'common/constants';
+import { Button } from 'ui-kit/buttons/Button/Button';
+import { ButtonIcon } from 'ui-kit/buttons/ButtonIcon/ButtonIcon';
+import { Input } from 'ui-kit/Input/Input';
 import { Paragraph } from 'ui-kit/Paragraph/Paragraph';
 
 import style from './Counter.module.scss';
@@ -15,6 +20,7 @@ export interface ICounter {
   min_amount?: number;
   onChange: (amount: number | string) => void;
   className?: string;
+  withQuestionIcon?: boolean;
 }
 
 export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
@@ -28,6 +34,7 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
       max_amount,
       onChange,
       className,
+      withQuestionIcon = false,
       ...restProps
     },
     ref,
@@ -45,14 +52,23 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
       [style.button_large]: variant === 'large',
     });
 
-    const handleIncrementAmount = (amount: number): void => {
+    const handleIncrementAmount = (): void => {
       setInitAmount(Number(amount) + 1);
       onChange(Number(amount) + 1);
     };
 
-    const handleDecrementAmount = (amount: number): void => {
+    const handleDecrementAmount = (): void => {
       setInitAmount(Number(amount) - 1);
       onChange(Number(amount) - 1);
+    };
+
+    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
+      if (e.code === KEYBOARD_KEYS.ARROW_UP) {
+        handleIncrementAmount();
+      }
+      if (e.code === KEYBOARD_KEYS.ARROW_DOWN) {
+        handleDecrementAmount();
+      }
     };
 
     const handleChangeAmount = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -96,17 +112,21 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
             {label}
             <span className={style.label_bundles}>{bundles_amount}</span>
           </Paragraph>
+          {withQuestionIcon && (
+            <ButtonIcon aria-label="button-question" className={style.button_question}>
+              <QuestionIcon />
+            </ButtonIcon>
+          )}
         </div>
         <div className={style.counter}>
-          <button
-            type="button"
-            className={buttonClasses}
-            onClick={() => handleDecrementAmount(amount)}
+          <Button
+            onClick={handleDecrementAmount}
             disabled={isDisableDecrement}
+            className={buttonClasses}
           >
             -
-          </button>
-          <input
+          </Button>
+          <Input
             type="number"
             pattern="[0-9]*"
             value={amount}
@@ -116,16 +136,17 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
             onChange={handleChangeAmount}
             min={min_amount}
             max={max_amount}
+            classNameWrapper={style.wrapper_input}
+            onKeyDown={handleKeyDown}
             {...restProps}
           />
-          <button
-            type="button"
-            className={buttonClasses}
-            onClick={() => handleIncrementAmount(amount)}
+          <Button
+            onClick={handleIncrementAmount}
             disabled={isDisabledIncrement}
+            className={buttonClasses}
           >
             +
-          </button>
+          </Button>
         </div>
       </div>
     );

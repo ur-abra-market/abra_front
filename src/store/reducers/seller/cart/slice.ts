@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { checkoutOrder, getSellerCartData } from './thunks';
+import { checkoutOrder, getSellerCartData, setAmountOfProduct } from './thunks';
 import { IProductCardInCart } from './types';
 
 export interface IProductsInCart {
@@ -116,6 +116,15 @@ const sellerCartSlice = createSlice({
     });
     builder.addCase(checkoutOrder.rejected, state => {
       state.isLoading = false;
+    });
+    builder.addCase(setAmountOfProduct.pending, (state, action) => {
+      const element = state.productsInCart[0].find(
+        el => el.bundle_variation_pod_id === action.meta.arg.bundle_variation_pod_id,
+      );
+
+      if (element) {
+        element.amount = action.meta.arg.amount;
+      }
     });
   },
 });

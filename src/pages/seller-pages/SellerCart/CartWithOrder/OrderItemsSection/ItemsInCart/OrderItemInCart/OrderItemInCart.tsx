@@ -1,19 +1,23 @@
-import React, { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import { ItemDescription } from './ItemDescription';
 
-import { QuestionIcon } from 'assets/icons';
-import { useAppDispatch } from 'common/hooks';
+import { useAppDispatch, useAppSelector, useDebounce } from 'common/hooks';
 import { useGetResponsiveWidth } from 'common/hooks/useGetResponsiveWidth';
-import { IProductInCart, setSelectProduct } from 'store/reducers/seller/cart';
+import {
+  IProductInCart,
+  productsInCart,
+  setSelectProduct,
+} from 'store/reducers/seller/cart';
+import { setAmountOfProduct } from 'store/reducers/seller/cart/thunks';
 import {
   IBundleVariations,
   IPriceBundle,
   IVariationValues,
 } from 'store/reducers/seller/cart/types';
-import { Checkbox } from 'ui-kit';
+import { Checkbox, LoaderLinear } from 'ui-kit';
 import { Counter } from 'ui-kit/Counter/Counter';
 
 import style from './OrderItemInCart.module.scss';
@@ -39,6 +43,11 @@ export const OrderItemInCart: FC<IOrderItemInCart> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const windowWidth = useGetResponsiveWidth();
+  const productsCart = useAppSelector(productsInCart);
+  const [productAmount, setProductAmount] = useState<number>(amount);
+  const debouncedAmount = useDebounce(productAmount);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const variationValues = bundleVariation.bundle.variation_values;
   const bundleVariationValue = bundleVariation.product_variation.variation;
@@ -50,14 +59,45 @@ export const OrderItemInCart: FC<IOrderItemInCart> = ({
       return item + variationValues.amount;
     }, 0) * amount;
 
+  const orderId = productsCart
+    .flat()
+    .filter(
+      el => el.bundle_variation_pod_id === bundleVariation.bundle_variation_pod_id,
+    )[0].order_id;
+
   const handleCheckedProduct = (
     id: number,
   ): PayloadAction<{
     id: number | null;
   }> => dispatch(setSelectProduct({ id }));
 
+  const handleChangeAmount = (amount: number | string): void => {
+    setProductAmount(Number(amount));
+  };
+
+  const fetchAmount = async (): Promise<void> => {
+    setIsLoading(true);
+    await dispatch(
+      setAmountOfProduct({
+        orderId: orderId as number,
+        productId: product.id as number,
+        bundle_variation_pod_id: bundleVariation.bundle_variation_pod_id as number,
+        amount: debouncedAmount,
+      }),
+    );
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    if (isMounted) {
+      fetchAmount();
+    }
+    setIsMounted(true);
+  }, [debouncedAmount]);
+
   return (
     <li className={style.order_list_item}>
+      {isLoading && <LoaderLinear />}
       <div className={style.product_info}>
         {!isCheckoutPage && (
           <Checkbox
@@ -69,7 +109,7 @@ export const OrderItemInCart: FC<IOrderItemInCart> = ({
 
         <ItemDescription
           product={product}
-          amount={amount}
+          amount={debouncedAmount}
           pieces={commonPiecesBundles}
           price={prices}
           bundleVariationValue={bundleVariationValue}
@@ -81,18 +121,11 @@ export const OrderItemInCart: FC<IOrderItemInCart> = ({
           variant={counterVariant}
           bundles_amount={`/ from ${amount} bundles`}
           className={style.counter}
-          amount={amount}
+          amount={productAmount}
           max_amount={1000}
-          onChange={() => {}}
+          onChange={handleChangeAmount}
+          withQuestionIcon
         />
-
-        <button
-          type="button"
-          aria-label="button-question"
-          className={style.button_question}
-        >
-          <QuestionIcon />
-        </button>
       </div>
     </li>
   );
