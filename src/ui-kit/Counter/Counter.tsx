@@ -63,10 +63,10 @@ export const Counter: FC<ICounter> = forwardRef<HTMLInputElement, ICounter>(
     };
 
     const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>): void => {
-      if (e.code === KEYBOARD_KEYS.ARROW_UP) {
+      if (e.code === KEYBOARD_KEYS.ARROW_UP && !isDisabledIncrement) {
         handleIncrementAmount();
       }
-      if (e.code === KEYBOARD_KEYS.ARROW_DOWN) {
+      if (e.code === KEYBOARD_KEYS.ARROW_DOWN && !isDisableDecrement) {
         handleDecrementAmount();
       }
     };
