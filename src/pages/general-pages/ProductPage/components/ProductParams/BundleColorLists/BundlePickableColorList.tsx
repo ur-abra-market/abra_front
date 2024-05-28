@@ -20,6 +20,7 @@ export const BundlePickableColorList: FC<IBundlePickableColorList> = ({
         <ProductColorPickable
           key={el.id}
           selectedColorId={selectedColorId}
+          colorName={el.variation.value}
           id={el.id}
           imageUrl={el.variation.image_url || ''}
           selectColor={selectColor}

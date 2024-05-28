@@ -25,6 +25,7 @@ export const ListColors = (): JSX.Element => {
     <div className={style.list_items}>
       {tempData.map(el => (
         <ProductColorPickable
+          colorName={el.colorName}
           key={el.id}
           selectedColorId={active}
           id={el.id}
@@ -37,11 +38,39 @@ export const ListColors = (): JSX.Element => {
 };
 
 const tempData = [
-  { id: 2, image_url: 'https://lookcolor.ru/images/menu/menu-right/pink.png' },
-  { id: 3, image_url: 'https://lookcolor.ru/images/menu/menu-right/red.png' },
-  { id: 4, image_url: 'https://lookcolor.ru/images/menu/menu-right/vinous.png' },
-  { id: 5, image_url: 'https://lookcolor.ru/images/menu/menu-right/orange.png' },
-  { id: 6, image_url: 'https://lookcolor.ru/images/menu/menu-right/coral.png' },
-  { id: 7, image_url: 'https://lookcolor.ru/images/menu/menu-right/gold.png' },
-  { id: 8, image_url: 'https://lookcolor.ru/images/menu/menu-right/turquoise.png' },
+  {
+    id: 2,
+    colorName: 'pink',
+    image_url: 'https://lookcolor.ru/images/menu/menu-right/pink.png',
+  },
+  {
+    id: 3,
+    colorName: 'red',
+    image_url: 'https://lookcolor.ru/images/menu/menu-right/red.png',
+  },
+  {
+    id: 4,
+    colorName: 'vinous',
+    image_url: 'https://lookcolor.ru/images/menu/menu-right/vinous.png',
+  },
+  {
+    id: 5,
+    colorName: 'orange',
+    image_url: 'https://lookcolor.ru/images/menu/menu-right/orange.png',
+  },
+  {
+    id: 6,
+    colorName: 'coral',
+    image_url: 'https://lookcolor.ru/images/menu/menu-right/coral.png',
+  },
+  {
+    id: 7,
+    colorName: 'gold',
+    image_url: 'https://lookcolor.ru/images/menu/menu-right/gold.png',
+  },
+  {
+    id: 8,
+    colorName: 'turquoise',
+    image_url: 'https://lookcolor.ru/images/menu/menu-right/turquoise.png',
+  },
 ];
