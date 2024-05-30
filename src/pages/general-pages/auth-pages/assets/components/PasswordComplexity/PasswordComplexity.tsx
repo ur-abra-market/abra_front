@@ -23,7 +23,7 @@ export const PasswordComplexity: FC<IPasswordComplexity> = ({ password }) => {
   useEffect(() => {
     const digitRegExp = /\d/g;
     const capitalRegExp = /[A-Z]/g;
-    const specSymbolRegExp = /[!#+*]/g;
+    const specSymbolRegExp = /[!#+*$]/g;
     const lowerCaseRegExp = /[a-z]/g;
     const successPassword = password?.length >= MIN_PASSWORD_LENGTH;
 
@@ -47,7 +47,7 @@ export const PasswordComplexity: FC<IPasswordComplexity> = ({ password }) => {
         isValid={passwordValidity?.passwordLength}
       />
       <ReliabilityIndicator
-        text="!/#/+/*"
+        text="!/#/+/*/$"
         isValid={passwordValidity?.containsSpecSymbols}
       />
     </div>
