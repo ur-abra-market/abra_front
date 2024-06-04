@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 import { useForm } from 'react-hook-form';
 
@@ -10,18 +10,25 @@ import style from './Pricing.module.scss';
 const bundlePriceData = 100; /* mock data todo */
 
 export const Pricing: FC = (): JSX.Element => {
+  const defaultValues = {
+    productPrice: 0,
+    discountProductPrice: 0,
+    totalProductPrice: 0,
+    variationPrice: 0,
+    discountVariationPrice: 0,
+    totalVariationPrice: 0,
+    bundlePrice: bundlePriceData,
+    bundleDiscountPrice: 0,
+    totalBundlePrice: 0,
+  };
+
+  const [controlValues, setControlValues] = useState({
+    defaultValues,
+    wasVariationChange: false,
+  });
+
   const { control, watch, getValues } = useForm({
-    defaultValues: {
-      productPrice: 0,
-      discountProductPrice: 0,
-      totalProductPrice: 0,
-      variationPrice: 0,
-      discountVariationPrice: 0,
-      totalVariationPrice: 0,
-      bundlePrice: bundlePriceData,
-      bundleDiscountPrice: 0,
-      totalBundlePrice: 0,
-    },
+    defaultValues: controlValues.defaultValues,
   });
 
   const totalProductPrice = calculateTotalPrice(

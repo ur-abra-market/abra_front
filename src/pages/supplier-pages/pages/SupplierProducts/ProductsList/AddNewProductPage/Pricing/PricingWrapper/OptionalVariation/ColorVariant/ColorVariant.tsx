@@ -13,32 +13,32 @@ const tempData = [
   {
     id: 3,
     image_url: 'https://lookcolor.ru/images/menu/menu-right/red.png',
-    title: 'Bundle 2',
+    title: 'Var. 2',
   },
   {
     id: 4,
     image_url: 'https://lookcolor.ru/images/menu/menu-right/vinous.png',
-    title: 'Variant 5',
+    title: 'Var. 3',
   },
   {
     id: 5,
     image_url: 'https://lookcolor.ru/images/menu/menu-right/orange.png',
-    title: 'Bundle 2',
+    title: 'Var. 4',
   },
   {
     id: 6,
     image_url: 'https://lookcolor.ru/images/menu/menu-right/coral.png',
-    title: 'Bundle 2',
+    title: 'Var. 5',
   },
   {
     id: 7,
     image_url: 'https://lookcolor.ru/images/menu/menu-right/gold.png',
-    title: 'Bundle 5',
+    title: 'Var. 6',
   },
   {
     id: 8,
     image_url: 'https://lookcolor.ru/images/menu/menu-right/turquoise.png',
-    title: 'Bundle 3',
+    title: 'Var. 7',
   },
 ]; /* todo color временно пока не приходят цвета */
 
