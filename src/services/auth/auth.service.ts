@@ -8,6 +8,7 @@ import {
   IPersonalInfoRequest,
   IChangeEmailRequest,
   IRegisterGoogleRequest,
+  ILoginGoogleRequest,
 } from './auth.serviceTypes';
 
 import { IBaseResponse, ResponseUserRoleType } from 'common/types';
@@ -92,6 +93,12 @@ export const authService = {
   googleRegister: ({ role, token }: IRegisterGoogleRequest) => {
     return baseConfigService.post<IBaseResponse<boolean>>(
       `auth/sign-up/google/${role}?token=${token}`,
+    );
+  },
+
+  googleLogin: ({ token }: ILoginGoogleRequest) => {
+    return baseConfigService.post<IBaseResponse<boolean>>(
+      `/auth/sign-in/googleAuth/?token=${token}`,
     );
   },
 };

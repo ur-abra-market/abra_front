@@ -30,7 +30,10 @@ export const MenuItems: FC<IMenuItems> = ({
 
     return (
       <li key={item.id} className={style.list_item}>
-        <NavLink className={selectCategory} to={`${PRODUCTS_LIST}/${item.id}`}>
+        <NavLink
+          className={selectCategory}
+          to={`${PRODUCTS_LIST}?category_id=${item.id}`}
+        >
           {item.name}
         </NavLink>
 
@@ -43,9 +46,9 @@ export const MenuItems: FC<IMenuItems> = ({
           });
 
           return (
-            <div className={selectChildren} key={i.id}>
-              {i.name}
-            </div>
+            <NavLink to={`${PRODUCTS_LIST}?category_id=${i.id}`} key={i.id}>
+              <div className={selectChildren}>{i.name}</div>
+            </NavLink>
           );
         })}
       </li>

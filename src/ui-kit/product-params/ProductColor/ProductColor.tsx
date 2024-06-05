@@ -12,6 +12,7 @@ interface IProductColor extends HTMLAttributes<HTMLDivElement> {
   selectedId?: { id: number }[];
   isBundles?: boolean;
   colorId?: number;
+  colorName: string;
 }
 
 export const ProductColor = forwardRef<HTMLDivElement, IProductColor>(
@@ -24,11 +25,13 @@ export const ProductColor = forwardRef<HTMLDivElement, IProductColor>(
       handleSelectColorOrSize,
       selectedId,
       colorId,
+      colorName,
     },
     ref,
   ): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
     const [newQuantity, setNewQuantity] = useState(value);
+    const [isError, setIsError] = useState(false);
 
     const isSelected = selectedId?.some(selected => selected.id === colorId);
 
@@ -45,18 +48,27 @@ export const ProductColor = forwardRef<HTMLDivElement, IProductColor>(
     if (!isBundles) {
       return (
         <div className={cn(style.item, className)} ref={ref}>
-          <img className={style.color_image} src={imageUrl} alt="color" />
+          {isError ? (
+            <div className={style.color_name}>{colorName}</div>
+          ) : (
+            <img
+              className={style.color_image}
+              onError={() => setIsError(true)}
+              src={imageUrl}
+              alt={colorName}
+            />
+          )}
           <span className={style.amount}>{value}</span>
         </div>
       );
     }
 
     return (
-      // @ts-ignore
       // eslint-disable-next-line
       <div
         className={cn(style.item_bundles, className)}
         ref={ref}
+        // @ts-ignore
         onClick={() => handleSelectColorOrSize(colorId, newQuantity)}
       >
         <img className={color} src={imageUrl} alt="color" />

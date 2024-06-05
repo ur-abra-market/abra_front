@@ -7,3 +7,12 @@
     padding-right: 46px;
   }
 }
+
+.buttons_container_alternate_signin {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-self: center;
+
+  margin-bottom: 24px;
+}

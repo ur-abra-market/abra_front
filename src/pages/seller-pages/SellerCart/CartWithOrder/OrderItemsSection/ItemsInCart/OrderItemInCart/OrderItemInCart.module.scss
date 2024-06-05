@@ -22,17 +22,6 @@
   width: 168px;
 }
 
-.button_question {
-  cursor: pointer;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(160px, -2px);
-
-  background-color: transparent;
-}
-
 @media (max-width: 1040px) {
   .order_list_item {
     flex-wrap: wrap;
@@ -49,11 +38,5 @@
 
   .counter {
     width: 100%;
-  }
-}
-
-@media (max-width: 425px) {
-  .button_question {
-    display: none;
   }
 }

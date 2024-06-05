@@ -33,6 +33,7 @@ export const BundleColorList: FC<IBundleColorList> = ({
           selectedId={selectedId}
           key={el.id}
           value={el.amount}
+          colorName={el.product_variation.variation.value}
           imageUrl={el.product_variation.variation.image_url || ''}
           ref={buttonRefs[i]}
           colorId={el.id}
