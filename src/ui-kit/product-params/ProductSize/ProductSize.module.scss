@@ -1,5 +1,6 @@
 @import '../styles/mixins';
 
+
 .size {
   @include product_size_item(--color-gray-light);
 
@@ -11,5 +12,31 @@
   @include amount_elements_size_between_quantity(--color-gray-light);
 
   cursor: no-drop;
+}
+
+.size_bundles {
+  @include product_size_item(--color-gray-light);
+
+  cursor: pointer;
+
+  &.selected_size {
+    @include product_size_item(--color-red);}
+}
+
+.quantity_bundles {
+  @include amount_info(--color-gray-light);
+  @include amount_elements_size_between_quantity(--color-gray-light);
+
+  cursor: pointer;
+
+  &.selected_quantity {
+    @include amount_info(--color-red);
+    @include amount_elements_size_between_quantity(--color-red);
+  }
+}
+
+.input {
+  max-width: 50px;
+  font-size: 15px;
 }
 
