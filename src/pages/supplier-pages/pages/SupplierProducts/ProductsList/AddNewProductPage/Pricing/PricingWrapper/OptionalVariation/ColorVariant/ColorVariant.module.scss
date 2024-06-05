@@ -12,3 +12,38 @@
   font-size: var(--fz-xs-2);
   color: var(--color-gray-medium);
 }
+
+.button {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 86px;
+  height: 32px;
+  padding: 6px;
+
+  background-color: transparent;
+  border: 1px solid var(--color-gray-light);
+  border-radius: 8px;
+  outline: none;
+
+  &:focus-visible {
+    outline: 1px solid var(--color-gray-medium);
+    transition: none;
+  }
+}
+
+.color_image {
+  min-width: 20px;
+  height: 16px;
+  margin-right: 4px;
+  border-radius: 4px;
+}
+
+.active {
+  background-color: var(--color-gray-light);
+  border: 1px solid var(--color-white-ivory);
+  outline: none;
+}

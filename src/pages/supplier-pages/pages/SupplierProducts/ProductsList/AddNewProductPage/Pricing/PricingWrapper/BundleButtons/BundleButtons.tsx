@@ -11,16 +11,17 @@ interface IStateType {
   isSelected: boolean;
 }
 
-/* todo data will request from backend  */
-const tempData: IStateType[] = [
-  { id: 1, title: 'Bundle 1', isSelected: true },
-  { id: 2, title: 'Bundle 2', isSelected: false },
-  { id: 3, title: 'Bundle 3', isSelected: false },
-];
+interface IBundleButtons {
+  tempData: IStateType[];
+  selectedBundle: number;
+  changeActiveBundle: (id: number) => void;
+}
 
-export const BundleButtons: FC = (): JSX.Element => {
-  const [activeBundle, setActiveBundle] = useState<number | null>();
-
+export const BundleButtons: FC<IBundleButtons> = ({
+  tempData,
+  selectedBundle,
+  changeActiveBundle,
+}): JSX.Element => {
   return (
     <Label label="Bundles" htmlFor="Bundles">
       <div className={style.bundle_button_wrapper}>
@@ -28,8 +29,8 @@ export const BundleButtons: FC = (): JSX.Element => {
           return (
             <ButtonBundle
               key={item.id}
-              onClick={() => setActiveBundle(item.id)}
-              isSelected={item.id === activeBundle}
+              onClick={() => changeActiveBundle(item.id)}
+              isSelected={item.id === selectedBundle}
               className={style.bundle_button}
             >
               {item.title}

@@ -8,18 +8,18 @@ import { Input } from 'ui-kit';
 import style from './CommonInputPrice.module.scss';
 
 interface ICommonInputPrice {
-  control: Control<any>;
   placeholder: string;
   disabled?: boolean;
   nameInput: string;
   valueVariation: string;
+  value: number;
 }
 
 export const DiscountInputPrice: FC<ICommonInputPrice> = ({
-  control,
   placeholder,
   nameInput,
   disabled,
+  value,
   valueVariation,
 }): JSX.Element => {
   const valueClasses = (value: string): string => {
@@ -29,23 +29,16 @@ export const DiscountInputPrice: FC<ICommonInputPrice> = ({
   };
 
   return (
-    <Controller
-      name={nameInput}
-      control={control}
-      render={({ field }) => (
-        <div className={style.price_item}>
-          <Input
-            {...field}
-            classNameWrapper={style.price_wrapper}
-            className={style.price_input}
-            placeholder={placeholder}
-            type="number"
-            disabled={disabled}
-            value={(field.value > 100 ? 100 : field.value) || ''}
-          />
-          <span className={valueClasses(field.value)}>{valueVariation}</span>
-        </div>
-      )}
-    />
+    <div className={style.price_item}>
+      <Input
+        classNameWrapper={style.price_wrapper}
+        className={style.price_input}
+        placeholder={placeholder}
+        type="number"
+        disabled={disabled}
+        value={(value > 100 ? 100 : value) || ''}
+      />
+      <span className={valueClasses('field.value')}>{valueVariation}</span>
+    </div>
   );
 };

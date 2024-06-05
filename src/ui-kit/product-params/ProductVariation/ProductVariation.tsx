@@ -28,10 +28,15 @@ export const ProductVariation: FC<IProductVariation> = ({
     [style.active]: productId === selectedColorId,
   });
 
+  const onClickHandler = (): void => {
+    console.log(333);
+    selectColor(productId);
+  };
+
   return (
     <button
       type="button"
-      onClick={() => selectColor(productId)}
+      onClick={onClickHandler}
       className={productColorClasses}
       {...rest}
     >

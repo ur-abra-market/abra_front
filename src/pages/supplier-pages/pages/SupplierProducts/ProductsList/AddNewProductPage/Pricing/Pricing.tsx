@@ -7,49 +7,113 @@ import { BundleButtons, OptionalVariation, TotalPriceForm } from './PricingWrapp
 
 import style from './Pricing.module.scss';
 
-const bundlePriceData = 100; /* mock data todo */
-
 export const Pricing: FC = (): JSX.Element => {
-  const defaultValues = {
-    productPrice: 0,
-    discountProductPrice: 0,
-    totalProductPrice: 0,
-    variationPrice: 0,
-    discountVariationPrice: 0,
-    totalVariationPrice: 0,
-    bundlePrice: bundlePriceData,
-    bundleDiscountPrice: 0,
-    totalBundlePrice: 0,
-  };
-
-  const [controlValues, setControlValues] = useState({
-    defaultValues,
-    wasVariationChange: false,
+  const [pricingState, setPricingState] = useState({
+    product: {
+      price: 0,
+      discount: 0,
+    },
+    variation: {
+      touched: false,
+      selected: 1,
+      data: [
+        {
+          id: 1,
+          image_url: 'https://lookcolor.ru/images/menu/menu-right/pink.png',
+          title: 'Var. 1',
+          price: 10,
+          discount: 30,
+        },
+        {
+          id: 2,
+          image_url: 'https://lookcolor.ru/images/menu/menu-right/red.png',
+          title: 'Var. 2',
+          price: 40,
+          discount: 0,
+        },
+        {
+          id: 3,
+          image_url: 'https://lookcolor.ru/images/menu/menu-right/vinous.png',
+          title: 'Var. 3',
+          price: 1000,
+          discount: 50,
+        },
+        {
+          id: 4,
+          image_url: 'https://lookcolor.ru/images/menu/menu-right/orange.png',
+          title: 'Var. 4',
+          price: 30,
+          discount: 10,
+        },
+        {
+          id: 5,
+          image_url: 'https://lookcolor.ru/images/menu/menu-right/coral.png',
+          title: 'Var. 5',
+          price: 0,
+          discount: 0,
+        },
+        {
+          id: 6,
+          image_url: 'https://lookcolor.ru/images/menu/menu-right/gold.png',
+          title: 'Var. 6',
+          price: 0,
+          discount: 0,
+        },
+        {
+          id: 7,
+          image_url: 'https://lookcolor.ru/images/menu/menu-right/turquoise.png',
+          title: 'Var. 7',
+          price: 0,
+          discount: 0,
+        },
+      ],
+    },
+    bundle: {
+      selected: 1,
+      data: [
+        { id: 1, title: 'Bundle 1', isSelected: true, price: 100, discount: 0 },
+        { id: 2, title: 'Bundle 2', isSelected: false, price: 200, discount: 0 },
+        { id: 3, title: 'Bundle 3', isSelected: false, price: 300, discount: 0 },
+      ],
+    },
   });
 
-  const { control, watch, getValues } = useForm({
-    defaultValues: controlValues.defaultValues,
-  });
+  // const productPrice = pricingState.bundle.data[pricingState.bundle.selected - 1].price;
+  // const productDiscountPrice = pricingState.bundle.data[pricingState.bundle.selected - 1].discount;
 
   const totalProductPrice = calculateTotalPrice(
-    Number(watch('productPrice')),
-    watch('discountProductPrice'),
+    pricingState.product.price,
+    pricingState.product.discount,
   );
 
-  const totalVariationPrice = calculateTotalPrice(
-    Number(watch('variationPrice')),
-    watch('discountVariationPrice'),
-  );
+  const variationPrice =
+    pricingState.variation.data[pricingState.bundle.selected - 1].price;
+  const variationDiscount =
+    pricingState.variation.data[pricingState.bundle.selected - 1].discount;
+  const totalVariationPrice = calculateTotalPrice(variationPrice, variationDiscount);
 
-  const totalBundlePrice = calculateTotalPrice(
-    Number(bundlePriceData),
-    watch('bundleDiscountPrice'),
-  );
+  const bundlePrice = pricingState.bundle.data[pricingState.bundle.selected - 1].price;
+  const bundleDiscount =
+    pricingState.bundle.data[pricingState.bundle.selected - 1].discount;
+  const totalBundlePrice = calculateTotalPrice(bundlePrice, bundleDiscount);
+
+  const changeActiveBundle = (id: number): void => {
+    setPricingState({
+      ...pricingState,
+      bundle: { ...pricingState.bundle, selected: id },
+    });
+  };
+
+  const changeActiveVariation = (id: number): void => {
+    setPricingState({
+      ...pricingState,
+      variation: { ...pricingState.variation, selected: id },
+    });
+  };
 
   return (
     <form className={style.pricing_container}>
       <TotalPriceForm
-        control={control}
         label="Product price for 1 pcs"
         priceName="productPrice"
         totalName="totalProductPrice"
@@ -57,22 +121,32 @@ export const Pricing: FC = (): JSX.Element => {
         totalPrice={totalProductPrice}
         disabled={false}
         className={style.input_wrapper}
+        price={pricingState.product.price}
+        discount={pricingState.product.discount}
       />
 
       <OptionalVariation
-        price={getValues('variationPrice')}
         totalPrice={totalVariationPrice}
-        control={control}
+        tempData={pricingState.variation.data}
+        selectedVariation={pricingState.variation.selected}
+        price={variationPrice}
+        discount={variationDiscount}
+        changeActiveVariation={changeActiveVariation}
       />
 
-      <BundleButtons />
+      <BundleButtons
+        tempData={pricingState.bundle.data}
+        selectedBundle={pricingState.bundle.selected}
+        changeActiveBundle={changeActiveBundle}
+      />
 
       <TotalPriceForm
-        control={control}
         label="Bundle price"
         priceName="bundlePrice"
         totalName="totalBundlePrice"
         discountName="bundleDiscountPrice"
+        price={bundlePrice}
+        discount={bundleDiscount}
         totalPrice={totalBundlePrice}
         disabled
       />
