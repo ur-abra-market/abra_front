@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import cn from 'classnames';
+import { NavLink } from 'react-router-dom';
 
 import {
   HeaderCartIcon,
@@ -15,13 +16,7 @@ import { ButtonIcon } from 'ui-kit';
 
 import style from './HeaderSellerActions.module.scss';
 
-interface IHeaderSellerActions {
-  callBack: (target: string) => void;
-}
-
-export const HeaderSellerActions: FC<IHeaderSellerActions> = ({
-  callBack,
-}): JSX.Element => {
+export const HeaderSellerActions: FC<{}> = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const totalAmountItems = useAppSelector(totalItems);
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -53,20 +48,20 @@ export const HeaderSellerActions: FC<IHeaderSellerActions> = ({
         <HeaderMenu isMenuOpen={isMenuOpen} setMenuOpen={() => setMenuOpen(false)} />
       </div>
 
-      <ButtonIcon onClick={() => callBack('note')}>
+      <NavLink to="/">
         <HeaderNotificationsIcon />
-      </ButtonIcon>
+      </NavLink>
 
-      <ButtonIcon onClick={() => callBack('favorite')}>
+      <NavLink to="/favorites">
         <HeaderFavouritesIcon />
-      </ButtonIcon>
+      </NavLink>
 
-      <ButtonIcon onClick={() => callBack('cart')} className={style.cart_button}>
+      <NavLink to="/cart" className={style.cart_button}>
         <HeaderCartIcon />
         {!!totalAmountItems && (
           <div className={totalAmountClasses}>{amountItemsInCart}</div>
         )}
-      </ButtonIcon>
+      </NavLink>
     </>
   );
 };
