@@ -8,13 +8,15 @@ import { BundleButtons, OptionalVariation, TotalPriceForm } from './PricingWrapp
 import style from './Pricing.module.scss';
 
 export const Pricing: FC = (): JSX.Element => {
+  const productPrice = 125;
+  const productDiscount = 20;
+
   const [pricingState, setPricingState] = useState({
     product: {
-      price: 0,
-      discount: 0,
+      price: productPrice,
+      discount: productDiscount,
     },
     variation: {
-      touched: false,
       selected: 1,
       data: [
         {
@@ -23,13 +25,15 @@ export const Pricing: FC = (): JSX.Element => {
           title: 'Var. 1',
           price: 10,
           discount: 30,
+          touched: false,
         },
         {
           id: 2,
           image_url: 'https://lookcolor.ru/images/menu/menu-right/red.png',
           title: 'Var. 2',
           price: 40,
-          discount: 0,
+          discount: 10,
+          touched: false,
         },
         {
           id: 3,
@@ -37,34 +41,39 @@ export const Pricing: FC = (): JSX.Element => {
           title: 'Var. 3',
           price: 1000,
           discount: 50,
+          touched: false,
         },
         {
           id: 4,
           image_url: 'https://lookcolor.ru/images/menu/menu-right/orange.png',
           title: 'Var. 4',
-          price: 30,
+          price: 82,
           discount: 10,
+          touched: false,
         },
         {
           id: 5,
           image_url: 'https://lookcolor.ru/images/menu/menu-right/coral.png',
           title: 'Var. 5',
-          price: 0,
-          discount: 0,
+          price: 83,
+          discount: 40,
+          touched: false,
         },
         {
           id: 6,
           image_url: 'https://lookcolor.ru/images/menu/menu-right/gold.png',
           title: 'Var. 6',
-          price: 0,
+          price: 9000,
           discount: 0,
+          touched: false,
         },
         {
           id: 7,
           image_url: 'https://lookcolor.ru/images/menu/menu-right/turquoise.png',
           title: 'Var. 7',
-          price: 0,
-          discount: 0,
+          price: 2000,
+          discount: 50,
+          touched: false,
         },
       ],
     },
@@ -86,10 +95,16 @@ export const Pricing: FC = (): JSX.Element => {
     pricingState.product.discount,
   );
 
-  const variationPrice =
-    pricingState.variation.data[pricingState.bundle.selected - 1].price;
-  const variationDiscount =
-    pricingState.variation.data[pricingState.bundle.selected - 1].discount;
+  const variationPrice = pricingState.variation.data[pricingState.variation.selected - 1]
+    .touched
+    ? productPrice
+    : pricingState.variation.data[pricingState.variation.selected - 1].price;
+
+  const variationDiscount = pricingState.variation.data[
+    pricingState.variation.selected - 1
+  ].touched
+    ? productDiscount
+    : pricingState.variation.data[pricingState.variation.selected - 1].discount;
   const totalVariationPrice = calculateTotalPrice(variationPrice, variationDiscount);
 
   const bundlePrice = pricingState.bundle.data[pricingState.bundle.selected - 1].price;
