@@ -71,7 +71,7 @@ export const Pricing: FC = (): JSX.Element => {
     bundle: {
       selected: 1,
       data: [
-        { id: 1, title: 'Bundle 1', isSelected: true, price: 100, discount: 0 },
+        { id: 1, title: 'Bundle 1', isSelected: true, price: 100, discount: 30 },
         { id: 2, title: 'Bundle 2', isSelected: false, price: 200, discount: 0 },
         { id: 3, title: 'Bundle 3', isSelected: false, price: 300, discount: 0 },
       ],
