@@ -16,6 +16,8 @@ interface IOptionalVariation {
   tempData: IVariationStateType[];
   selectedVariation: number;
   changeActiveVariation: (id: number) => void;
+  onVariationPriceChange: (price: number) => void;
+  onVariationDiscountChange: (discount: number) => void;
 }
 
 export const OptionalVariation: FC<IOptionalVariation> = ({
@@ -25,6 +27,8 @@ export const OptionalVariation: FC<IOptionalVariation> = ({
   selectedVariation,
   changeActiveVariation,
   discount,
+  onVariationPriceChange,
+  onVariationDiscountChange,
 }): JSX.Element => {
   return (
     <>
@@ -45,6 +49,8 @@ export const OptionalVariation: FC<IOptionalVariation> = ({
         className={style.input_wrapper}
         price={price}
         discount={discount}
+        onProductPriceChange={onVariationPriceChange}
+        onProductDiscountChange={onVariationDiscountChange}
       />
     </>
   );

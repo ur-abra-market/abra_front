@@ -1,7 +1,6 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 
 import cn from 'classnames';
-import { Control, Controller } from 'react-hook-form';
 
 import { Input } from 'ui-kit';
 
@@ -13,6 +12,7 @@ interface ICommonInputPrice {
   nameInput: string;
   valueVariation: string;
   value: number;
+  onProductDiscountChange: (discount: number) => void;
 }
 
 export const DiscountInputPrice: FC<ICommonInputPrice> = ({
@@ -21,6 +21,7 @@ export const DiscountInputPrice: FC<ICommonInputPrice> = ({
   disabled,
   value,
   valueVariation,
+  onProductDiscountChange,
 }): JSX.Element => {
   const valueClasses = (value: string): string => {
     return cn(style.currency_value, {
@@ -37,6 +38,9 @@ export const DiscountInputPrice: FC<ICommonInputPrice> = ({
         type="number"
         disabled={disabled}
         value={(value > 100 ? 100 : value) || ''}
+        onChange={(event: ChangeEvent<HTMLInputElement>) => {
+          onProductDiscountChange(Number(event.currentTarget.value));
+        }}
       />
       <span className={valueClasses('field.value')}>{valueVariation}</span>
     </div>

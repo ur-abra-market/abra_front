@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, FC } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 
 import cn from 'classnames';
 
@@ -17,6 +17,8 @@ export interface ITotalPrice {
   totalName: string;
   price: number;
   discount: number;
+  onProductPriceChange: (price: number) => void;
+  onProductDiscountChange: (discount: number) => void;
 }
 
 export const TotalPriceForm: FC<ITotalPrice> = ({
@@ -29,6 +31,8 @@ export const TotalPriceForm: FC<ITotalPrice> = ({
   totalName,
   discount,
   price,
+  onProductPriceChange,
+  onProductDiscountChange,
   ...rest
 }): JSX.Element => {
   return (
@@ -43,9 +47,9 @@ export const TotalPriceForm: FC<ITotalPrice> = ({
             disabled={disabled}
             placeholder="0"
             type="number"
-            // onChange={(event: ChangeEventHandler<HTMLInputElement>) => {
-            //
-            // }}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => {
+              onProductPriceChange(Number(event.currentTarget.value));
+            }}
           />
           <span className={style.currency_value}>$</span>
         </div>
@@ -58,6 +62,7 @@ export const TotalPriceForm: FC<ITotalPrice> = ({
             placeholder="0"
             nameInput={discountName}
             valueVariation="%"
+            onProductDiscountChange={onProductDiscountChange}
           />
         </Label>
 

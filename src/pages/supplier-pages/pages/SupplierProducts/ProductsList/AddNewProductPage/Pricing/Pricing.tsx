@@ -1,15 +1,13 @@
 import React, { FC, useState } from 'react';
 
-import { useForm } from 'react-hook-form';
-
 import { calculateTotalPrice } from './helper/calculateTotalPrice';
 import { BundleButtons, OptionalVariation, TotalPriceForm } from './PricingWrapper';
 
 import style from './Pricing.module.scss';
 
 export const Pricing: FC = (): JSX.Element => {
-  const productPrice = 125;
-  const productDiscount = 20;
+  const productPrice = 0;
+  const productDiscount = 0;
 
   const [pricingState, setPricingState] = useState({
     product: {
@@ -23,57 +21,92 @@ export const Pricing: FC = (): JSX.Element => {
           id: 1,
           image_url: 'https://lookcolor.ru/images/menu/menu-right/pink.png',
           title: 'Var. 1',
-          price: 10,
-          discount: 30,
-          touched: false,
+          price: {
+            value: 0,
+            touched: false,
+          },
+          discount: {
+            value: 0,
+            touched: false,
+          },
         },
         {
           id: 2,
           image_url: 'https://lookcolor.ru/images/menu/menu-right/red.png',
           title: 'Var. 2',
-          price: 40,
-          discount: 10,
-          touched: false,
+          price: {
+            value: 0,
+            touched: false,
+          },
+          discount: {
+            value: 0,
+            touched: false,
+          },
         },
         {
           id: 3,
           image_url: 'https://lookcolor.ru/images/menu/menu-right/vinous.png',
           title: 'Var. 3',
-          price: 1000,
-          discount: 50,
-          touched: false,
+          price: {
+            value: 0,
+            touched: false,
+          },
+          discount: {
+            value: 0,
+            touched: false,
+          },
         },
         {
           id: 4,
           image_url: 'https://lookcolor.ru/images/menu/menu-right/orange.png',
           title: 'Var. 4',
-          price: 82,
-          discount: 10,
-          touched: false,
+          price: {
+            value: 0,
+            touched: false,
+          },
+          discount: {
+            value: 0,
+            touched: false,
+          },
         },
         {
           id: 5,
           image_url: 'https://lookcolor.ru/images/menu/menu-right/coral.png',
           title: 'Var. 5',
-          price: 83,
-          discount: 40,
-          touched: false,
+          price: {
+            value: 0,
+            touched: false,
+          },
+          discount: {
+            value: 0,
+            touched: false,
+          },
         },
         {
           id: 6,
           image_url: 'https://lookcolor.ru/images/menu/menu-right/gold.png',
           title: 'Var. 6',
-          price: 9000,
-          discount: 0,
-          touched: false,
+          price: {
+            value: 0,
+            touched: false,
+          },
+          discount: {
+            value: 0,
+            touched: false,
+          },
         },
         {
           id: 7,
           image_url: 'https://lookcolor.ru/images/menu/menu-right/turquoise.png',
           title: 'Var. 7',
-          price: 2000,
-          discount: 50,
-          touched: false,
+          price: {
+            value: 0,
+            touched: false,
+          },
+          discount: {
+            value: 0,
+            touched: false,
+          },
         },
       ],
     },
@@ -87,24 +120,20 @@ export const Pricing: FC = (): JSX.Element => {
     },
   });
 
-  // const productPrice = pricingState.bundle.data[pricingState.bundle.selected - 1].price;
-  // const productDiscountPrice = pricingState.bundle.data[pricingState.bundle.selected - 1].discount;
-
   const totalProductPrice = calculateTotalPrice(
     pricingState.product.price,
     pricingState.product.discount,
   );
 
   const variationPrice = pricingState.variation.data[pricingState.variation.selected - 1]
-    .touched
-    ? productPrice
-    : pricingState.variation.data[pricingState.variation.selected - 1].price;
-
+    .price.touched
+    ? pricingState.variation.data[pricingState.variation.selected - 1].price.value
+    : pricingState.product.price;
   const variationDiscount = pricingState.variation.data[
     pricingState.variation.selected - 1
-  ].touched
-    ? productDiscount
-    : pricingState.variation.data[pricingState.variation.selected - 1].discount;
+  ].discount.touched
+    ? pricingState.variation.data[pricingState.variation.selected - 1].discount.value
+    : pricingState.product.discount;
   const totalVariationPrice = calculateTotalPrice(variationPrice, variationDiscount);
 
   const bundlePrice = pricingState.bundle.data[pricingState.bundle.selected - 1].price;
@@ -126,6 +155,60 @@ export const Pricing: FC = (): JSX.Element => {
     });
   };
 
+  const onProductPriceChange = (price: number): void => {
+    setPricingState({
+      ...pricingState,
+      product: { ...pricingState.product, price },
+    });
+  };
+
+  const onProductDiscountChange = (discount: number): void => {
+    setPricingState({
+      ...pricingState,
+      product: { ...pricingState.product, discount },
+    });
+  };
+
+  const onVariationPriceChange = (price: number): void => {
+    setPricingState({
+      ...pricingState,
+      variation: {
+        ...pricingState.variation,
+        data: pricingState.variation.data.map(el =>
+          el.id === pricingState.variation.selected
+            ? { ...el, price: { value: price, touched: true } }
+            : el,
+        ),
+      },
+    });
+  };
+
+  const onVariationDiscountChange = (discount: number): void => {
+    setPricingState({
+      ...pricingState,
+      variation: {
+        ...pricingState.variation,
+        data: pricingState.variation.data.map(el =>
+          el.id === pricingState.variation.selected
+            ? { ...el, discount: { value: discount, touched: true } }
+            : el,
+        ),
+      },
+    });
+  };
+
+  const onBundleDiscountChange = (discount: number): void => {
+    setPricingState({
+      ...pricingState,
+      bundle: {
+        ...pricingState.bundle,
+        data: pricingState.bundle.data.map(el =>
+          el.id === pricingState.bundle.selected ? { ...el, discount } : el,
+        ),
+      },
+    });
+  };
+
   return (
     <form className={style.pricing_container}>
       <TotalPriceForm
@@ -138,6 +221,8 @@ export const Pricing: FC = (): JSX.Element => {
         className={style.input_wrapper}
         price={pricingState.product.price}
         discount={pricingState.product.discount}
+        onProductPriceChange={onProductPriceChange}
+        onProductDiscountChange={onProductDiscountChange}
       />
 
       <OptionalVariation
@@ -147,6 +232,8 @@ export const Pricing: FC = (): JSX.Element => {
         price={variationPrice}
         discount={variationDiscount}
         changeActiveVariation={changeActiveVariation}
+        onVariationPriceChange={onVariationPriceChange}
+        onVariationDiscountChange={onVariationDiscountChange}
       />
 
       <BundleButtons
@@ -164,6 +251,8 @@ export const Pricing: FC = (): JSX.Element => {
         discount={bundleDiscount}
         totalPrice={totalBundlePrice}
         disabled
+        onProductPriceChange={() => {}}
+        onProductDiscountChange={onBundleDiscountChange}
       />
     </form>
   );
