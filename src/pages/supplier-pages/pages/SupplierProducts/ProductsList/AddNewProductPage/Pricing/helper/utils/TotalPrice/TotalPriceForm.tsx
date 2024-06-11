@@ -41,7 +41,7 @@ export const TotalPriceForm: FC<ITotalPrice> = ({
         <div className={style.price_item}>
           <Input
             {...rest}
-            value={price}
+            value={price || ''}
             classNameWrapper={style.price_wrapper}
             className={style.price_input}
             disabled={disabled}

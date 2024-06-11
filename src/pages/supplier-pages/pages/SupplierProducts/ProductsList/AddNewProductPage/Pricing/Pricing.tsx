@@ -141,6 +141,18 @@ export const Pricing: FC = (): JSX.Element => {
     pricingState.bundle.data[pricingState.bundle.selected - 1].discount;
   const totalBundlePrice = calculateTotalPrice(bundlePrice, bundleDiscount);
 
+  const validateValue = (value: number, prevValue: number): number => {
+    if (!Number.isNaN(value) && value >= 0 && value <= 1000000000000) {
+      return value;
+    }
+
+    if (!Number.isNaN(prevValue)) {
+      return prevValue;
+    }
+
+    return 0;
+  };
+
   const changeActiveBundle = (id: number): void => {
     setPricingState({
       ...pricingState,
@@ -158,14 +170,20 @@ export const Pricing: FC = (): JSX.Element => {
   const onProductPriceChange = (price: number): void => {
     setPricingState({
       ...pricingState,
-      product: { ...pricingState.product, price },
+      product: {
+        ...pricingState.product,
+        price: validateValue(price, pricingState.product.price),
+      },
     });
   };
 
   const onProductDiscountChange = (discount: number): void => {
     setPricingState({
       ...pricingState,
-      product: { ...pricingState.product, discount },
+      product: {
+        ...pricingState.product,
+        discount: validateValue(discount, pricingState.product.discount),
+      },
     });
   };
 
@@ -176,7 +194,17 @@ export const Pricing: FC = (): JSX.Element => {
         ...pricingState.variation,
         data: pricingState.variation.data.map(el =>
           el.id === pricingState.variation.selected
-            ? { ...el, price: { value: price, touched: true } }
+            ? {
+                ...el,
+                price: {
+                  value: validateValue(
+                    price,
+                    pricingState.variation.data[pricingState.variation.selected - 1].price
+                      .value,
+                  ),
+                  touched: true,
+                },
+              }
             : el,
         ),
       },
@@ -190,7 +218,17 @@ export const Pricing: FC = (): JSX.Element => {
         ...pricingState.variation,
         data: pricingState.variation.data.map(el =>
           el.id === pricingState.variation.selected
-            ? { ...el, discount: { value: discount, touched: true } }
+            ? {
+                ...el,
+                discount: {
+                  value: validateValue(
+                    discount,
+                    pricingState.variation.data[pricingState.variation.selected - 1]
+                      .discount.value,
+                  ),
+                  touched: true,
+                },
+              }
             : el,
         ),
       },
@@ -203,7 +241,15 @@ export const Pricing: FC = (): JSX.Element => {
       bundle: {
         ...pricingState.bundle,
         data: pricingState.bundle.data.map(el =>
-          el.id === pricingState.bundle.selected ? { ...el, discount } : el,
+          el.id === pricingState.bundle.selected
+            ? {
+                ...el,
+                discount: validateValue(
+                  discount,
+                  pricingState.bundle.data[el.id - 1].discount,
+                ),
+              }
+            : el,
         ),
       },
     });
