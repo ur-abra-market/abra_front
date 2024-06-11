@@ -39,7 +39,7 @@ export const DiscountInputPrice: FC<ICommonInputPrice> = ({
         disabled={disabled}
         value={(value > 100 ? 100 : value) || ''}
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
-          onProductDiscountChange(Number(event.currentTarget.value));
+          onProductDiscountChange(Number(event.currentTarget.value.trim()));
         }}
       />
       <span className={valueClasses('field.value')}>{valueVariation}</span>

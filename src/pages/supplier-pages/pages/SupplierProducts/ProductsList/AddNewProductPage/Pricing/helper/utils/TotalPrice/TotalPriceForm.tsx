@@ -46,9 +46,8 @@ export const TotalPriceForm: FC<ITotalPrice> = ({
             className={style.price_input}
             disabled={disabled}
             placeholder="0"
-            type="number"
             onChange={(event: ChangeEvent<HTMLInputElement>) => {
-              onProductPriceChange(Number(event.currentTarget.value));
+              onProductPriceChange(Number(event.currentTarget.value.trim()));
             }}
           />
           <span className={style.currency_value}>$</span>
