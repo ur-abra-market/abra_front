@@ -1,14 +1,12 @@
 import { FC } from 'react';
 
-import { Link } from 'react-router-dom';
-
 import { ArrowIcon } from 'assets/icons';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import ProductImage from 'elements/ProductImage/ProductImage';
 import { amountRange } from 'modules/ProductCard/helper/amountRange';
 import { PRODUCT_DETAILS } from 'routes';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
-import { Stars } from 'ui-kit';
+import { SimpleLink, Stars } from 'ui-kit';
 
 import style from './ProductCardFull.module.scss';
 
@@ -38,7 +36,7 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
 
   return (
     <div className={style.card_full}>
-      <Link to={pathToProduct} tabIndex={-1}>
+      <SimpleLink to={pathToProduct} tabIndex={-1}>
         <ProductImage
           imageUrl={images[0].image_url || ''}
           name={name}
@@ -46,11 +44,11 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
           isFavorite={is_favorite}
           className={style.card_image}
         />
-      </Link>
+      </SimpleLink>
       <div className={style.card_info}>
-        <Link to={pathToProduct} className={style.name} tabIndex={-1}>
+        <SimpleLink to={pathToProduct} className={style.name} tabIndex={-1}>
           {name}
-        </Link>
+        </SimpleLink>
 
         <div className={style.categories}>
           {categoryArr.map(el => (
