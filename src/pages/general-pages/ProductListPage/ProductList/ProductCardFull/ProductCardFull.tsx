@@ -1,9 +1,12 @@
 import { FC } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { ArrowIcon } from 'assets/icons';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import ProductImage from 'elements/ProductImage/ProductImage';
 import { amountRange } from 'modules/ProductCard/helper/amountRange';
+import { PRODUCT_DETAILS } from 'routes';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { Stars } from 'ui-kit';
 
@@ -31,18 +34,23 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
 
   const categoryArr = category.name.split('&');
   const { min_quantity } = prices[0];
+  const pathToProduct = `${PRODUCT_DETAILS}/${id}`;
 
   return (
     <div className={style.card_full}>
-      <ProductImage
-        imageUrl={images[0].image_url || ''}
-        name={name}
-        productId={id}
-        isFavorite={is_favorite}
-        className={style.card_image}
-      />
+      <Link to={pathToProduct} tabIndex={-1}>
+        <ProductImage
+          imageUrl={images[0].image_url || ''}
+          name={name}
+          productId={id}
+          isFavorite={is_favorite}
+          className={style.card_image}
+        />
+      </Link>
       <div className={style.card_info}>
-        <p className={style.name}>{name}</p>
+        <Link to={pathToProduct} className={style.name} tabIndex={-1}>
+          {name}
+        </Link>
 
         <div className={style.categories}>
           {categoryArr.map(el => (

@@ -20,6 +20,7 @@
 
 .name {
   overflow: hidden;
+  align-self: flex-start;
 
   margin-bottom: 6px;
 
@@ -30,6 +31,12 @@
   text-overflow: ellipsis;
   letter-spacing: 0.16px;
   white-space: nowrap;
+
+  transition: 0.3s;
+
+  &:hover {
+    color: var(--color-red);
+  }
 }
 
 .categories {
