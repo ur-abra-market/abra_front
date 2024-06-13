@@ -1,0 +1,40 @@
+.select_input {
+  font-size: 12px;
+  color: var(--color-gray-medium);
+  background: var(--color-white-ivory);
+  border-radius: 12px;
+}
+
+.container {
+  margin-top: 24px;
+  margin-bottom: 20px;
+}
+
+.items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  min-width: 268px;
+}
+
+.button_container {
+  display: flex;
+  justify-content: space-between;
+  width: 195px;
+  margin-bottom: 24px;
+}
+
+.plus_button {
+  width: 30px;
+  color: var(--color-gray-medium);
+  background: var(--color-white-ivory);
+  border-radius: 8px;
+
+  &.active {
+    color: var(--color-red);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-red);
+  }
+}

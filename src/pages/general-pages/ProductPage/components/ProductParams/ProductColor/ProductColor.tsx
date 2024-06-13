@@ -12,12 +12,18 @@ interface IProductColor {
   bundleType: 'color' | 'size';
   bundle: IProductBundle;
   setBundleVariationPodId?: (value: number | null) => void;
+  handleSelectColorOrSize?: (id: number, quantity: number) => void;
+  selectedId?: { id: number }[];
+  isBundles?: boolean;
 }
 
 export const ProductColor: FC<IProductColor> = ({
   bundleType,
   bundle,
   setBundleVariationPodId,
+  isBundles,
+  selectedId,
+  handleSelectColorOrSize,
 }): JSX.Element => {
   const bundleVariationPods = useAppSelector(
     state => state.product.productCard.bundle_variation_pods,
@@ -42,7 +48,12 @@ export const ProductColor: FC<IProductColor> = ({
       </Paragraph>
       <div className={style.items}>
         {isBundleBasedOnSize ? (
-          <BundleColorList bundle={bundle} />
+          <BundleColorList
+            handleSelectColorOrSize={handleSelectColorOrSize}
+            isBundles={isBundles}
+            selectedId={selectedId}
+            bundle={bundle}
+          />
         ) : (
           <BundlePickableColorList
             bundle={bundle}

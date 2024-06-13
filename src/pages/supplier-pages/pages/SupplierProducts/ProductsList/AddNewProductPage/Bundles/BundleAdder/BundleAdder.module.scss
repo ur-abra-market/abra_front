@@ -1,0 +1,83 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0 20px;
+}
+
+.bundle {
+  all: unset;
+
+  cursor: pointer;
+
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  min-width: 86px;
+  padding: 7px 9px 5px;
+
+  font-size: 13px;
+  line-height: 138%;
+  color: var(--color-gray-medium);
+
+  background-color: var(--color-white-ivory);
+  border-radius: 8px;
+
+  &:hover {
+    color: var(--color-red);
+    box-shadow: 0 0 0 1px var(--color-red);
+  }
+
+  &:active {
+    color: var(--color-red-dark);
+    box-shadow: 0 0 0 1px var(--color-red-dark);
+  }
+}
+
+.selected {
+  color: var(--color-red);
+  box-shadow: 0 0 0 1px var(--color-red);
+}
+
+.cross {
+  cursor: pointer;
+  width: 12px;
+  height: 12px;
+}
+
+.button_plus {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 12px;
+
+  color: var(--color-gray-medium);
+
+  background-color: var(--color-white-ivory);
+  border-radius: 8px;
+
+  &:hover {
+    color: var(--color-red);
+    box-shadow: 0 0 0 1px var(--color-red);
+  }
+}
+
+.input {
+  max-width: 100px;
+  color: var(--color-red);
+  background-color: inherit;
+
+  &::selection {
+    background-color: var(--color-red-light);
+  }
+}
+
+.bundle_name {
+  cursor: pointer;
+}

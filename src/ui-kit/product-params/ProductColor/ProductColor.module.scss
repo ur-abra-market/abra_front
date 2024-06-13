@@ -8,6 +8,12 @@
   cursor: no-drop;
 }
 
+.item_bundles {
+  @include item(relative);
+
+  cursor: pointer;
+}
+
 .color_name {
   @include item();
 
@@ -26,11 +32,23 @@
 
   min-height: 32px;
   border: 2px solid var(--color-gray-light);
+
+  &.selected {
+    border: 2px solid var(--color-red);
+  }
 }
 
 .amount {
   @include amount_info(--color-gray-light);
-  @include amount_elements_size_between_quantity(--color-gray-light)
+  @include amount_elements_size_between_quantity(--color-gray-light);
+
+  &.selected_amount {
+    @include amount_info(--color-red);
+    @include amount_elements_size_between_quantity(--color-red);
+  }
 }
 
-
+.input {
+  max-width: 50px;
+  font-size: 15px;
+}
