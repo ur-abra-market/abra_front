@@ -11,53 +11,64 @@ interface IProductSize extends HTMLAttributes<HTMLDivElement> {
   isBundles?: boolean;
 }
 
-export const ProductSize = forwardRef<HTMLDivElement, IProductSize>(
-  ({ size, quantity, sizeId, handleSelectColorOrSize, selectedId, isBundles }, ref) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [newQuantity, setNewQuantity] = useState(quantity);
+export const ProductSize = forwardRef<HTMLDivElement, IProductSize>((props, ref) => {
+  const { size, quantity, sizeId, handleSelectColorOrSize, selectedId, isBundles } =
+    props;
 
-    const isSelected = selectedId?.some(selected => selected.id === sizeId);
+  const [isOpen, setIsOpen] = useState(false);
+  const [newQuantity, setNewQuantity] = useState(quantity);
 
-    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-      setNewQuantity(Number(event.target.value));
-    };
+  const isSelected = selectedId?.some(selected => selected.id === sizeId);
 
-    if (!isBundles) {
-      return (
-        <div ref={ref}>
-          <div className={style.size}>{size}</div>
-          <div className={style.quantity}>{quantity}</div>
-        </div>
-      );
-    }
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setNewQuantity(Number(event.target.value));
+  };
 
+  if (!isBundles) {
     return (
-      // @ts-ignore
-      // eslint-disable-next-line
-      <div ref={ref} onClick={() => handleSelectColorOrSize(sizeId, newQuantity)}>
-        <div className={`${style.size_bundles} ${isSelected && style.selected_size}`}>
-          {size}
-        </div>
-        {/* eslint-disable-next-line */}
-        <div
-          onClick={() => setIsOpen(true)}
-          className={`${style.quantity_bundles} ${isSelected && style.selected_quantity}`}
-        >
-          {isOpen ? (
-            <input
-              /* eslint-disable-next-line jsx-a11y/no-autofocus */
-              autoFocus
-              type="number"
-              onBlur={() => setIsOpen(false)}
-              onChange={handleOnChange}
-              className={style.input}
-              value={newQuantity}
-            />
-          ) : (
-            newQuantity
-          )}
-        </div>
+      <div ref={ref}>
+        <div className={style.size}>{size}</div>
+        <div className={style.quantity}>{quantity}</div>
       </div>
     );
-  },
-);
+  }
+  const handlerOnCLick = (): void => {
+    if (handleSelectColorOrSize && sizeId) {
+      handleSelectColorOrSize(sizeId, quantity);
+    }
+  };
+
+  return (
+    <div
+      role="button"
+      tabIndex={0}
+      ref={ref}
+      onKeyDown={e => e.key === 'Enter' && handlerOnCLick}
+      onClick={handlerOnCLick}
+    >
+      <div className={`${style.size_bundles} ${isSelected && style.selected_size}`}>
+        {size}
+      </div>
+      <div
+        role="button"
+        tabIndex={0}
+        onKeyDown={e => e.key === 'Enter' && handlerOnCLick}
+        onClick={() => setIsOpen(true)}
+        className={`${style.quantity_bundles} ${isSelected && style.selected_quantity}`}
+      >
+        {isOpen ? (
+          <input
+            autoFocus
+            type="number"
+            onBlur={() => setIsOpen(false)}
+            onChange={handleOnChange}
+            className={style.input}
+            value={newQuantity}
+          />
+        ) : (
+          newQuantity
+        )}
+      </div>
+    </div>
+  );
+});

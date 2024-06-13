@@ -62,21 +62,31 @@ export const ProductColor = forwardRef<HTMLDivElement, IProductColor>(
         </div>
       );
     }
+    const handlerOnCLick = (): void => {
+      if (handleSelectColorOrSize && colorId) {
+        handleSelectColorOrSize(colorId, newQuantity);
+      }
+    };
 
     return (
-      // eslint-disable-next-line
       <div
+        role="button"
+        tabIndex={0}
+        onKeyDown={e => e.key === 'Enter' && handlerOnCLick}
         className={cn(style.item_bundles, className)}
         ref={ref}
-        // @ts-ignore
-        onClick={() => handleSelectColorOrSize(colorId, newQuantity)}
+        onClick={handlerOnCLick}
       >
         <img className={color} src={imageUrl} alt="color" />
-        {/* eslint-disable-next-line */}
-        <span onClick={() => setIsOpen(true)} className={amount}>
+        <span
+          role="button"
+          tabIndex={0}
+          onKeyDown={e => e.key === 'Enter' && handlerOnCLick}
+          onClick={() => setIsOpen(true)}
+          className={amount}
+        >
           {isOpen ? (
             <input
-              /* eslint-disable-next-line jsx-a11y/no-autofocus */
               autoFocus
               type="number"
               onBlur={() => setIsOpen(false)}
