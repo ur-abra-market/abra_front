@@ -32,22 +32,22 @@
   background-color: var(--color-white);
   border-radius: 4px;
   outline: 1px solid var(--color-red);
-}
 
-.tooltip::before {
-  content: "";
+  &::before {
+    content: "";
 
-  position: absolute;
-  top: calc(100% - 4px);
-  left: 50%;
-  transform: translate(-50%) rotate(-90deg);
+    position: absolute;
+    top: calc(100% - 4px);
+    left: 50%;
+    transform: translate(-50%) rotate(-90deg);
 
-  display: block;
+    display: block;
 
-  width: 0;
-  height: 0;
+    width: 0;
+    height: 0;
 
-  border-top: 8px solid transparent;
-  border-right: 8px solid var(--color-red);
-  border-bottom: 8px solid transparent;
+    border-top: 8px solid transparent;
+    border-right: 8px solid var(--color-red);
+    border-bottom: 8px solid transparent;
+  }
 }
