@@ -7,7 +7,7 @@ import {
   ITag,
 } from './types';
 
-import { ICategory, LoadingStatusEnum } from 'common/types';
+import { ICategory, LoadingStatusEnum, SelectedViewEnum } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 import { RootStateType } from 'store/createStore';
 
@@ -72,3 +72,6 @@ export const supplierNameSelector = (state: RootStateType): string =>
 
 export const productBreadCrumbsSelector = (state: RootStateType): ICategory[] =>
   state.product.productCard.breadcrumbs;
+
+export const selectedView = (state: RootStateType): SelectedViewEnum =>
+  state.product.view;

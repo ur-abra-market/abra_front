@@ -4,8 +4,9 @@ import { ArrowIcon } from 'assets/icons';
 import { LazyImage } from 'elements/LazyImage/LazyImage';
 import ProductImage from 'elements/ProductImage/ProductImage';
 import { amountRange } from 'modules/ProductCard/helper/amountRange';
+import { PRODUCT_DETAILS } from 'routes';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
-import { Stars } from 'ui-kit';
+import { SimpleLink, Stars } from 'ui-kit';
 
 import style from './ProductCardFull.module.scss';
 
@@ -31,18 +32,23 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
 
   const categoryArr = category.name.split('&');
   const { min_quantity } = prices[0];
+  const pathToProduct = `${PRODUCT_DETAILS}/${id}`;
 
   return (
     <div className={style.card_full}>
-      <ProductImage
-        imageUrl={images[0].image_url || ''}
-        name={name}
-        productId={id}
-        isFavorite={is_favorite}
-        className={style.card_image}
-      />
+      <SimpleLink to={pathToProduct} tabIndex={-1}>
+        <ProductImage
+          imageUrl={images[0].image_url || ''}
+          name={name}
+          productId={id}
+          isFavorite={is_favorite}
+          className={style.card_image}
+        />
+      </SimpleLink>
       <div className={style.card_info}>
-        <p className={style.name}>{name}</p>
+        <SimpleLink to={pathToProduct} className={style.name} tabIndex={-1}>
+          {name}
+        </SimpleLink>
 
         <div className={style.categories}>
           {categoryArr.map(el => (
@@ -68,8 +74,8 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
             <div className={style.supplier_logo}>
               <LazyImage
                 className={style.supplier_logo}
-                type="logo"
-                src={supplier?.company.logo_url}
+                type="stub_logo"
+                src={supplier?.company.logo_url || ''}
               />
             </div>
 
