@@ -1,8 +1,9 @@
 import React from 'react';
 
+import cn from 'classnames';
+
 import { CrossWhiteIcon } from 'assets/icons';
 import { ButtonIcon } from 'ui-kit';
-import { ReadMore } from 'ui-kit/ReadMore/ReadMore';
 
 import s from './BundleAdder.module.scss';
 
@@ -63,7 +64,7 @@ export const BundleAdder = ({
   return (
     <div className={s.container}>
       {bundles.map(bundle => (
-        <div key={bundle.id} className={`${s.bundle} ${bundle.selected && s.selected}`}>
+        <div key={bundle.id} className={cn(s.bundle, { [s.selected]: bundle.selected })}>
           {editBundleId === bundle.id ? (
             <input
               className={s.input}
@@ -72,17 +73,16 @@ export const BundleAdder = ({
               onKeyDown={event => handleEnterPress(event, bundle.id)}
               onChange={handleInputChange}
               value={newName}
-              /* eslint-disable-next-line jsx-a11y/no-autofocus */
               autoFocus
             />
           ) : (
-            // eslint-disable-next-line
-            <span
+            <button
+              type="button"
               onClick={() => handleSelectBundle(bundle.id)}
               onDoubleClick={() => handleDoubleClick(bundle)}
             >
-              <ReadMore tooltip text={bundle.name} moreText="..." maxLength={10} />
-            </span>
+              <span className={s.bundle_name}>{bundle.name}</span>
+            </button>
           )}
           {editBundleId !== bundle.id && (
             <CrossWhiteIcon
