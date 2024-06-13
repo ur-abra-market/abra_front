@@ -43,6 +43,7 @@
     }
   ],
   "rules": {
+    "jsx-a11y/no-autofocus": "off",
     "prettier/prettier": [
       "error",
       {
