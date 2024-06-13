@@ -11,6 +11,7 @@ import {
 } from 'assets/icons';
 import { useAppDispatch, useAppSelector, useOnClickOutside } from 'common/hooks';
 import { HeaderMenu } from 'layouts/Header/components';
+import { CART, FAVORITES, HOME } from 'routes';
 import { getSellerCartData, totalItems } from 'store/reducers/seller/cart';
 import { ButtonIcon } from 'ui-kit';
 
@@ -48,15 +49,15 @@ export const HeaderSellerActions: FC<{}> = (): JSX.Element => {
         <HeaderMenu isMenuOpen={isMenuOpen} setMenuOpen={() => setMenuOpen(false)} />
       </div>
 
-      <NavLink to="/">
+      <NavLink to={HOME}>
         <HeaderNotificationsIcon />
       </NavLink>
 
-      <NavLink to="/favorites">
+      <NavLink to={FAVORITES}>
         <HeaderFavouritesIcon />
       </NavLink>
 
-      <NavLink to="/cart" className={style.cart_button}>
+      <NavLink to={CART} className={style.cart_button}>
         <HeaderCartIcon />
         {!!totalAmountItems && (
           <div className={totalAmountClasses}>{amountItemsInCart}</div>
