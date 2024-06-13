@@ -52,13 +52,16 @@ export const ReadMore: FC<ReadMoreProps> = ({
   lessText = 'Hide',
   tooltip = false,
 }) => {
+  const [isTrimmed, setIsTrimmed] = useState(true);
   const [opened, setOpened] = useState(false);
+
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
   const onClose = (): void => {
     setOpened(false);
     toggleReadMore();
   };
-  const [isTrimmed, setIsTrimmed] = useState(true);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+
   const toggleTooltip = (): void => {
     setOpened(!opened);
   };
