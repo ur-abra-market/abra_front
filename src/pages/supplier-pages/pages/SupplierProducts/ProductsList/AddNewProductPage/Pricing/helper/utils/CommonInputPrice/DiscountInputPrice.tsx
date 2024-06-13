@@ -35,7 +35,6 @@ export const DiscountInputPrice: FC<ICommonInputPrice> = ({
         classNameWrapper={style.price_wrapper}
         className={style.price_input}
         placeholder={placeholder}
-        type="number"
         disabled={disabled}
         value={(value > 100 ? 100 : value) || ''}
         onChange={(event: ChangeEvent<HTMLInputElement>) => {

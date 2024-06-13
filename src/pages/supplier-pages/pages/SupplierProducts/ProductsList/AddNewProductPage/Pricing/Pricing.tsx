@@ -9,7 +9,35 @@ export const Pricing: FC = (): JSX.Element => {
   const productPrice = 0;
   const productDiscount = 0;
 
-  const [pricingState, setPricingState] = useState({
+  interface IVariationDataItem {
+    id: number;
+    image_url: string;
+    title: string;
+    price: {
+      value: number;
+      touched: boolean;
+    };
+    discount: {
+      value: number;
+    };
+  }
+
+  interface IBundleDataItem {
+    id: number;
+    price: number;
+    title: string;
+    isSelected: boolean;
+    variationsPerBundle: number[];
+    discount: number;
+  }
+
+  interface IState {
+    product: { price: number; discount: number };
+    variation: { selected: number; data: IVariationDataItem[] };
+    bundle: { selected: number; data: IBundleDataItem[] };
+  }
+
+  const [pricingState, setPricingState] = useState<IState>({
     product: {
       price: productPrice,
       discount: productDiscount,
@@ -27,7 +55,6 @@ export const Pricing: FC = (): JSX.Element => {
           },
           discount: {
             value: 0,
-            touched: false,
           },
         },
         {
@@ -40,7 +67,6 @@ export const Pricing: FC = (): JSX.Element => {
           },
           discount: {
             value: 0,
-            touched: false,
           },
         },
         {
@@ -53,7 +79,6 @@ export const Pricing: FC = (): JSX.Element => {
           },
           discount: {
             value: 0,
-            touched: false,
           },
         },
         {
@@ -66,7 +91,6 @@ export const Pricing: FC = (): JSX.Element => {
           },
           discount: {
             value: 0,
-            touched: false,
           },
         },
         {
@@ -79,7 +103,6 @@ export const Pricing: FC = (): JSX.Element => {
           },
           discount: {
             value: 0,
-            touched: false,
           },
         },
         {
@@ -92,7 +115,6 @@ export const Pricing: FC = (): JSX.Element => {
           },
           discount: {
             value: 0,
-            touched: false,
           },
         },
         {
@@ -105,7 +127,6 @@ export const Pricing: FC = (): JSX.Element => {
           },
           discount: {
             value: 0,
-            touched: false,
           },
         },
       ],
@@ -113,9 +134,30 @@ export const Pricing: FC = (): JSX.Element => {
     bundle: {
       selected: 1,
       data: [
-        { id: 1, title: 'Bundle 1', isSelected: true, price: 100, discount: 30 },
-        { id: 2, title: 'Bundle 2', isSelected: false, price: 200, discount: 0 },
-        { id: 3, title: 'Bundle 3', isSelected: false, price: 300, discount: 0 },
+        {
+          id: 1,
+          title: 'Bundle 1',
+          price: 0,
+          isSelected: true,
+          variationsPerBundle: [1, 2, 3],
+          discount: 0,
+        },
+        {
+          id: 2,
+          title: 'Bundle 2',
+          price: 0,
+          isSelected: false,
+          variationsPerBundle: [4, 5, 6],
+          discount: 0,
+        },
+        {
+          id: 3,
+          title: 'Bundle 3',
+          price: 0,
+          isSelected: false,
+          variationsPerBundle: [7],
+          discount: 0,
+        },
       ],
     },
   });
@@ -129,20 +171,36 @@ export const Pricing: FC = (): JSX.Element => {
     .price.touched
     ? pricingState.variation.data[pricingState.variation.selected - 1].price.value
     : pricingState.product.price;
-  const variationDiscount = pricingState.variation.data[
-    pricingState.variation.selected - 1
-  ].discount.touched
-    ? pricingState.variation.data[pricingState.variation.selected - 1].discount.value
-    : pricingState.product.discount;
+  const variationDiscount =
+    pricingState.variation.data[pricingState.variation.selected - 1].discount.value;
   const totalVariationPrice = calculateTotalPrice(variationPrice, variationDiscount);
 
-  const bundlePrice = pricingState.bundle.data[pricingState.bundle.selected - 1].price;
+  const calculateBundlePrice = (
+    variationsPerBundle: number[],
+    variations: IVariationDataItem[],
+  ): number => {
+    let bundlePrice = 0;
+
+    for (let i = 0; i < variationsPerBundle.length; i += 1) {
+      bundlePrice += calculateTotalPrice(
+        variations[variations[variationsPerBundle[i] - 1].id - 1].price.value,
+        variations[variations[variationsPerBundle[i] - 1].id - 1].discount.value,
+      );
+    }
+
+    return bundlePrice;
+  };
+
+  const bundlePrice = calculateBundlePrice(
+    pricingState.bundle.data[pricingState.bundle.selected - 1].variationsPerBundle,
+    pricingState.variation.data,
+  );
   const bundleDiscount =
     pricingState.bundle.data[pricingState.bundle.selected - 1].discount;
   const totalBundlePrice = calculateTotalPrice(bundlePrice, bundleDiscount);
 
   const validateValue = (value: number, prevValue: number): number => {
-    if (!Number.isNaN(value) && value >= 0 && value <= 1000000000000) {
+    if (!Number.isNaN(value) && value >= 0 && value <= 1000000000) {
       return value;
     }
 
@@ -208,6 +266,18 @@ export const Pricing: FC = (): JSX.Element => {
             : el,
         ),
       },
+      bundle: {
+        ...pricingState.bundle,
+        data: pricingState.bundle.data.map((el: IBundleDataItem) => {
+          return {
+            ...el,
+            price: calculateBundlePrice(
+              el.variationsPerBundle,
+              pricingState.variation.data,
+            ),
+          };
+        }),
+      },
     });
   };
 
@@ -226,7 +296,6 @@ export const Pricing: FC = (): JSX.Element => {
                     pricingState.variation.data[pricingState.variation.selected - 1]
                       .discount.value,
                   ),
-                  touched: true,
                 },
               }
             : el,

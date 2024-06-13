@@ -40,16 +40,6 @@ export const ColorVariant: FC<IColorVariant> = ({
       </span>
       <div className={style.list_items}>
         {tempData.map((el, index) => (
-          // <ProductVariation
-          //   key={index}
-          //   selectedColorId={selectedVariation}
-          //   productId={el.id}
-          //   imageUrl={el.image_url}
-          //   selectColor={changeActiveVariation}
-          //   disabled={!price}
-          // >
-          //   {el.title}
-          // </ProductVariation>
           <button
             key={index}
             type="button"
