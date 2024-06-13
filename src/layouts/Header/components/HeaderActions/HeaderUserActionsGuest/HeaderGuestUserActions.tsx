@@ -1,25 +1,23 @@
 import React, { FC } from 'react';
 
+import { NavLink } from 'react-router-dom';
+
+import { LOGIN, REGISTER } from 'routes';
 import { Button } from 'ui-kit';
 
 import style from './HeaderGuestUserActions.module.scss';
 
-interface IHeaderGuestUserActions {
-  callBack: (target: string) => void;
-}
-
-export const HeaderGuestUserActions: FC<IHeaderGuestUserActions> = ({
-  callBack,
-}): JSX.Element => {
+export const HeaderGuestUserActions: FC<{}> = (): JSX.Element => {
   return (
     <div className={style.buttons_wrapper}>
       <Button
-        onClick={() => callBack('register')}
         color="light-red"
         className={style.button}
         label="Register"
+        as={NavLink}
+        to={REGISTER}
       />
-      <Button onClick={() => callBack('login')} className={style.button} label="Log in" />
+      <Button className={style.button} label="Log in" as={NavLink} to={LOGIN} />
     </div>
   );
 };
