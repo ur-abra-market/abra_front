@@ -20,7 +20,8 @@ import {
   ISortField,
 } from './types';
 
-import { LoadingStatusEnum } from 'common/types';
+import { LAYOUT_VIEW } from 'common/constants';
+import { LoadingStatusEnum, SelectedViewEnum } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 
 const initialState: IProductSliceInitialState = {
@@ -85,6 +86,7 @@ const initialState: IProductSliceInitialState = {
   productsList: [],
   sortField: 'rating',
   sortBy: 'desc',
+  view: SelectedViewEnum.GRID,
   totalProductsCount: 0,
   selectedBundle: {
     type: 'size',
@@ -132,6 +134,17 @@ const productSlice = createSlice({
     },
     setActiveBundle: (state, action: PayloadAction<ISelectedBundle>) => {
       state.selectedBundle = action.payload;
+    },
+    setSelectedView: (state, action: PayloadAction<SelectedViewEnum>) => {
+      state.view = action.payload;
+      localStorage.setItem(LAYOUT_VIEW, action.payload);
+    },
+    initView: state => {
+      const view = localStorage.getItem(LAYOUT_VIEW);
+
+      if (view) {
+        state.view = view as SelectedViewEnum;
+      }
     },
   },
   extraReducers: builder => {
@@ -241,4 +254,6 @@ export const {
   setSortBy,
   setResetAllFilters,
   setActiveBundle,
+  setSelectedView,
+  initView,
 } = productActions;

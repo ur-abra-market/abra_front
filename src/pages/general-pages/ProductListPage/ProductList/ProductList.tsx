@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 
 import cn from 'classnames';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import { ProductCardFull } from './ProductCardFull/ProductCardFull';
 
@@ -18,7 +18,11 @@ import {
   setProductsPerPage,
   totalProductsCountSelector,
 } from 'store/reducers/productSlice';
-import { loadingProductsSelector } from 'store/reducers/productSlice/selectors';
+import {
+  loadingProductsSelector,
+  selectedView as getSelectedView,
+} from 'store/reducers/productSlice/selectors';
+import { setSelectedView } from 'store/reducers/productSlice/slice';
 import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
 import { ButtonQuestion } from 'ui-kit';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
@@ -42,19 +46,21 @@ export const ProductList: FC<IProductList> = ({
 }): JSX.Element => {
   const dispatch = useAppDispatch();
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedView, setSelectedView] = useState<SelectedViewEnum>(
-    SelectedViewEnum.GRID,
-  );
   const loadingSlider = useAppSelector(loadingProductsSelector);
   const productsPerPage = useAppSelector(productsPerPageSelector);
   const totalCount = useAppSelector(totalProductsCountSelector);
   const products = useAppSelector(productsListSelector);
+  const selectedView = useAppSelector(getSelectedView);
   const [searchParams] = useSearchParams();
   const category_id = searchParams.get('category_id');
   const searchValue = useAppSelector(state => state.search.searchValues.mainSearch);
   const query = searchParams.get('query');
   const totalPages = Math.ceil(totalCount / productsPerPage);
   const { isDevice } = useMediaQuery(DESIRED_BREAKPOINT);
+
+  const changeView = (view: SelectedViewEnum): void => {
+    dispatch(setSelectedView(view));
+  };
 
   useEffect(() => {
     const param = {
@@ -108,10 +114,7 @@ export const ProductList: FC<IProductList> = ({
     <div className={style.wrapper}>
       <div className={style.control_panel}>
         <div className={style.view_switchers}>
-          <PageViewSwitcher
-            selectedView={selectedView}
-            setSelectedView={setSelectedView}
-          />
+          <PageViewSwitcher selectedView={selectedView} setSelectedView={changeView} />
           <div className={style.branch_crumbs}>{`bread > crumb > plug`}</div>
           <div
             role="button"

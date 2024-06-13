@@ -74,8 +74,8 @@ export const ProductCardFull: FC<IProductCardFull> = ({ product }): JSX.Element 
             <div className={style.supplier_logo}>
               <LazyImage
                 className={style.supplier_logo}
-                type="logo"
-                src={supplier?.company.logo_url}
+                type="stub_logo"
+                src={supplier?.company.logo_url || ''}
               />
             </div>
 

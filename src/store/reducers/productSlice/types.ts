@@ -1,4 +1,4 @@
-import { LoadingStatusEnum } from 'common/types';
+import { LoadingStatusEnum, SelectedViewEnum } from 'common/types';
 import { IProductCompilation } from 'services/product/product.serviceTypes';
 
 export interface IProductSliceInitialState {
@@ -15,6 +15,7 @@ export interface IProductSliceInitialState {
   sortField: ISortField;
   sortBy: ISortBy;
   selectedBundle: ISelectedBundle;
+  view: SelectedViewEnum;
 }
 
 export type ISortField = 'rating' | 'price' | 'date' | 'total_orders';

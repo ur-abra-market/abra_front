@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector, useMediaQuery } from 'common/hooks';
 import Modal from 'elements/Modal';
 import { setResetAllFilters, setSortBy, setSortField } from 'store/reducers/productSlice';
 import { sortBySelector, sortFieldSelector } from 'store/reducers/productSlice/selectors';
+import { initView } from 'store/reducers/productSlice/slice';
 import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
 import { clearSearchValue } from 'store/reducers/searchSlice';
 
@@ -28,6 +29,7 @@ export const ProductListPage = WithLayout((): JSX.Element => {
   useEffect(() => {
     dispatch(setSortField(currentSortField as ISortField));
     dispatch(setSortBy(currentSortBy as ISortBy));
+    dispatch(initView());
   }, []);
 
   const handleResetAllFilters = (): void => {

@@ -23,12 +23,14 @@ interface ILazyImage extends ImgHTMLAttributes<HTMLImageElement> {
     | 'avatar'
     | 'product_image_supplier'
     | 'product_image_user'
-    | 'default_image';
+    | 'default_image'
+    | 'stub_logo';
 }
 
 const defaultImages = {
   logo: defaultLogoImage,
   avatar: defaultLogoImage,
+  stub_logo: defaultSupplierItemImage,
   product_image_supplier: defaultSupplierItemImage,
   product_image_user: defaultUserItemImage,
   default_image: defaultImage,
