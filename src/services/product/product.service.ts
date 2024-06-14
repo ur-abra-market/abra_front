@@ -1,4 +1,5 @@
 import {
+  IBreadCrumbsRequest,
   ICategoryRequest,
   IGradeProductResponse,
   IPopularProductRequest,
@@ -9,7 +10,11 @@ import {
 
 import { IBaseResponse } from 'common/types/interfaces/IBaseResponse';
 import { baseConfigService } from 'services/baseConfig.service';
-import { IResponseGetProductCardId } from 'store/reducers/productSlice/types';
+import { getBreadCrumbs } from 'store/reducers/productSlice/thunks';
+import {
+  IResponseGetBreadCrumbs,
+  IResponseGetProductCardId,
+} from 'store/reducers/productSlice/types';
 import { IProductsListResponse } from 'store/reducers/supplier/product';
 import {
   IBrandsInfo,
@@ -35,6 +40,14 @@ export const productService = {
     const { data } = await baseConfigService.post<
       IBaseResponse<IProductsCompilationResponse>
     >(`products`, { category_ids: categoryIds, query }, { params });
+
+    return data.result;
+  },
+
+  getBreadCrumbs: async ({ category_id }: IBreadCrumbsRequest) => {
+    const { data } = await baseConfigService.get<
+      IBaseResponse<IResponseGetBreadCrumbs[]>
+    >(`categories/${category_id}/breadcrumbs`);
 
     return data.result;
   },

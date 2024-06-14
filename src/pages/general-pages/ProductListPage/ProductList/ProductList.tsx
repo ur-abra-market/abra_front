@@ -19,6 +19,7 @@ import {
   totalProductsCountSelector,
 } from 'store/reducers/productSlice';
 import { loadingProductsSelector } from 'store/reducers/productSlice/selectors';
+import { getBreadCrumbs } from 'store/reducers/productSlice/thunks';
 import { ISortBy, ISortField } from 'store/reducers/productSlice/types';
 import { ButtonQuestion } from 'ui-kit';
 import { Pagination } from 'ui-kit/Pagination/Pagination';
@@ -55,6 +56,7 @@ export const ProductList: FC<IProductList> = ({
   const query = searchParams.get('query');
   const totalPages = Math.ceil(totalCount / productsPerPage);
   const { isDevice } = useMediaQuery(DESIRED_BREAKPOINT);
+  const [breadCrumbs, setBreadCrumbs] = useState(`bread > crumb > plug`);
 
   useEffect(() => {
     const param = {
@@ -67,6 +69,11 @@ export const ProductList: FC<IProductList> = ({
     } as ICategoryRequest;
 
     dispatch(getProductsListCompilation(param));
+    dispatch(getBreadCrumbs({ category_id })).then(data => {
+      const result = data.payload.data.map((el: { name: string }) => el.name).join(' > ');
+
+      setBreadCrumbs(result);
+    });
   }, [productsPerPage, currentPage, category_id, currentSortField, currentSortBy, query]);
   const handleChangeSelect = (value: number): void => {
     dispatch(setProductsPerPage(value));
@@ -112,7 +119,7 @@ export const ProductList: FC<IProductList> = ({
             selectedView={selectedView}
             setSelectedView={setSelectedView}
           />
-          <div className={style.branch_crumbs}>{`bread > crumb > plug`}</div>
+          <div className={style.branch_crumbs}>{breadCrumbs}</div>
           <div
             role="button"
             tabIndex={0}
