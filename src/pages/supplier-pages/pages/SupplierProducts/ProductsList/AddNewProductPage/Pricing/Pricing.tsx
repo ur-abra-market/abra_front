@@ -170,7 +170,7 @@ export const Pricing: FC = (): JSX.Element => {
   const variationPrice = pricingState.variation.data[pricingState.variation.selected - 1]
     .price.touched
     ? pricingState.variation.data[pricingState.variation.selected - 1].price.value
-    : pricingState.product.price;
+    : totalProductPrice;
   const variationDiscount =
     pricingState.variation.data[pricingState.variation.selected - 1].discount.value;
   const totalVariationPrice = calculateTotalPrice(variationPrice, variationDiscount);
@@ -232,6 +232,20 @@ export const Pricing: FC = (): JSX.Element => {
         ...pricingState.product,
         price: validateValue(price, pricingState.product.price),
       },
+      variation: {
+        ...pricingState.variation,
+        data: pricingState.variation.data.map(el =>
+          el.price.touched
+            ? el
+            : {
+                ...el,
+                price: {
+                  ...el.price,
+                  value: calculateTotalPrice(price, pricingState.product.discount),
+                },
+              },
+        ),
+      },
     });
   };
 
@@ -241,6 +255,20 @@ export const Pricing: FC = (): JSX.Element => {
       product: {
         ...pricingState.product,
         discount: validateValue(discount, pricingState.product.discount),
+      },
+      variation: {
+        ...pricingState.variation,
+        data: pricingState.variation.data.map(el =>
+          el.price.touched
+            ? el
+            : {
+                ...el,
+                price: {
+                  ...el.price,
+                  value: calculateTotalPrice(pricingState.product.price, discount),
+                },
+              },
+        ),
       },
     });
   };
