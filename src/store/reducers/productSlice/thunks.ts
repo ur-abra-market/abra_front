@@ -154,7 +154,7 @@ export const getBreadCrumbs = createAsyncThunk<any, IBreadCrumbsRequest>(
         return rejectWithValue(error.message);
       }
 
-      return rejectWithValue('[getProductsCompilation]: ERROR');
+      return rejectWithValue('[getBreadCrumbs]: ERROR');
     }
   },
 );
