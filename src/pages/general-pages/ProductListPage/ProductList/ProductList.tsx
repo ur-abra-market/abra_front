@@ -56,7 +56,7 @@ export const ProductList: FC<IProductList> = ({
   const query = searchParams.get('query');
   const totalPages = Math.ceil(totalCount / productsPerPage);
   const { isDevice } = useMediaQuery(DESIRED_BREAKPOINT);
-  const [breadCrumbs, setBreadCrumbs] = useState(`bread > crumb > plug`);
+  const [breadCrumbs, setBreadCrumbs] = useState('');
 
   useEffect(() => {
     const param = {
