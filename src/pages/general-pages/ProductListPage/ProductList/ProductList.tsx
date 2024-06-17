@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 
 import cn from 'classnames';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { NavLink, useParams, useSearchParams } from 'react-router-dom';
 
 import { ProductCardFull } from './ProductCardFull/ProductCardFull';
 
@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector, useMediaQuery } from 'common/hooks';
 import { LoadingStatusEnum, SelectedViewEnum } from 'common/types';
 import { PageViewSwitcher, ProductsPerPage, SkeletonProductCard } from 'elements';
 import { ProductCard } from 'modules';
+import { PRODUCTS_LIST } from 'routes';
 import { ICategoryRequest } from 'services/product/product.serviceTypes';
 import {
   getProductsListCompilation,
@@ -56,7 +57,7 @@ export const ProductList: FC<IProductList> = ({
   const query = searchParams.get('query');
   const totalPages = Math.ceil(totalCount / productsPerPage);
   const { isDevice } = useMediaQuery(DESIRED_BREAKPOINT);
-  const [breadCrumbs, setBreadCrumbs] = useState('');
+  const [breadCrumbs, setBreadCrumbs] = useState<{ value: string; id: number }[]>([]);
 
   useEffect(() => {
     const param = {
@@ -70,9 +71,13 @@ export const ProductList: FC<IProductList> = ({
 
     dispatch(getProductsListCompilation(param));
     dispatch(getBreadCrumbs({ category_id })).then(data => {
-      const result = data.payload.data.map((el: { name: string }) => el.name).join(' > ');
+      const breadCrumbsData = data.payload.data.map(
+        (el: { name: string; id: number }) => {
+          return { value: el.name, id: el.id };
+        },
+      );
 
-      setBreadCrumbs(result);
+      setBreadCrumbs(breadCrumbsData);
     });
   }, [productsPerPage, currentPage, category_id, currentSortField, currentSortBy, query]);
   const handleChangeSelect = (value: number): void => {
@@ -119,7 +124,16 @@ export const ProductList: FC<IProductList> = ({
             selectedView={selectedView}
             setSelectedView={setSelectedView}
           />
-          <div className={style.branch_crumbs}>{breadCrumbs}</div>
+          <div className={style.branch_crumbs}>
+            {breadCrumbs.map((el, index) => {
+              return (
+                <NavLink to={`${PRODUCTS_LIST}?category_id=${el.id}`} key={index}>
+                  <span className={style.link}>{el.value}</span>
+                  {index < breadCrumbs.length - 1 && ' > '}
+                </NavLink>
+              );
+            })}
+          </div>
           <div
             role="button"
             tabIndex={0}
