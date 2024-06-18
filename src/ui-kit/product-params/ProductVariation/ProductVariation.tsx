@@ -7,41 +7,32 @@ import { Paragraph } from 'ui-kit/Paragraph/Paragraph';
 import style from './ProductVariation.module.scss';
 
 interface IProductVariation extends ComponentPropsWithoutRef<'button'> {
-  selectedColorId?: number | null;
-  productId: number;
+  variationId: number;
   imageUrl: string;
-  selectColor: (id: number) => void;
+  title: string;
   className?: string;
-  children: string;
+  selectedColorId: number;
+  changeActiveVariation: (id: number) => void;
 }
 
 export const ProductVariation: FC<IProductVariation> = ({
-  selectedColorId,
-  productId,
+  variationId,
   imageUrl,
-  selectColor,
   className,
-  children,
+  changeActiveVariation,
+  selectedColorId,
+  title,
   ...rest
 }): JSX.Element => {
-  const productColorClasses = cn(className, style.button, {
-    [style.active]: productId === selectedColorId,
-  });
-
-  const onClickHandler = (): void => {
-    console.log(333);
-    selectColor(productId);
-  };
-
   return (
     <button
       type="button"
-      onClick={onClickHandler}
-      className={productColorClasses}
+      onClick={() => changeActiveVariation(variationId)}
+      className={className}
       {...rest}
     >
       <img className={style.color_image} src={imageUrl} alt="color" />
-      <Paragraph weight="medium">{children}</Paragraph>
+      <Paragraph weight="medium">{title}</Paragraph>
     </button>
   );
 };

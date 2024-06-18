@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import cn from 'classnames';
 
-import { Paragraph } from 'ui-kit';
+import { Paragraph, ProductVariation } from 'ui-kit';
 
 import style from './ColorVariant.module.scss';
 
@@ -13,26 +13,16 @@ export interface IVariationStateType {
 }
 
 interface IColorVariant {
-  price?: number;
   tempData: IVariationStateType[];
   selectedVariation: number;
   changeActiveVariation: (id: number) => void;
 }
 
 export const ColorVariant: FC<IColorVariant> = ({
-  price,
   tempData,
   changeActiveVariation,
   selectedVariation,
 }): JSX.Element => {
-  const getButtonClassName = (id: number): string => {
-    const active = id === selectedVariation;
-
-    return cn(style.button, {
-      [style.active]: active,
-    });
-  };
-
   return (
     <>
       <span className={style.label_text}>
@@ -40,15 +30,17 @@ export const ColorVariant: FC<IColorVariant> = ({
       </span>
       <div className={style.list_items}>
         {tempData.map((el, index) => (
-          <button
+          <ProductVariation
+            className={cn(style.button, {
+              [style.active]: el.id === selectedVariation,
+            })}
             key={index}
-            type="button"
-            onClick={() => changeActiveVariation(el.id)}
-            className={getButtonClassName(el.id)}
-          >
-            <img className={style.color_image} src={el.image_url} alt="color" />
-            <Paragraph weight="medium">{el.title}</Paragraph>
-          </button>
+            changeActiveVariation={changeActiveVariation}
+            variationId={el.id}
+            imageUrl={el.image_url}
+            selectedColorId={selectedVariation}
+            title={el.title}
+          />
         ))}
       </div>
     </>

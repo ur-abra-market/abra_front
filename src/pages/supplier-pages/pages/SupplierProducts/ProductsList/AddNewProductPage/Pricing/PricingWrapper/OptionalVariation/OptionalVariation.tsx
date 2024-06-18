@@ -33,7 +33,6 @@ export const OptionalVariation: FC<IOptionalVariation> = ({
   return (
     <>
       <ColorVariant
-        price={price}
         tempData={tempData}
         selectedVariation={selectedVariation}
         changeActiveVariation={changeActiveVariation}

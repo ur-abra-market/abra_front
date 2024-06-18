@@ -5,6 +5,7 @@ import type { Meta, StoryFn, StoryObj } from '@storybook/react';
 import { ProductVariation } from './ProductVariation';
 
 import style from './ProductVariation.module.scss';
+import cn from 'classnames';
 
 const meta = {
   component: ProductVariation,
@@ -24,9 +25,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     imageUrl: 'https://lookcolor.ru/images/menu/menu-right/pink.png',
-    children: 'Var. 1',
-    productId: 1,
-    selectColor: () => {},
+    title: 'Var. 1',
+    selectedColorId: 1,
+    variationId: 1,
   },
 };
 
@@ -35,16 +36,15 @@ export const ListPricingColors: StoryFn = () => {
 
   return (
     <div className={style.list_items}>
-      {tempData.map(el => (
+      {tempData.map((el, index) => (
         <ProductVariation
-          key={el.id}
-          selectedColorId={active}
-          productId={el.id}
+          key={index}
+          changeActiveVariation={() => {}}
+          variationId={el.id}
           imageUrl={el.image_url}
-          selectColor={setActive}
-        >
-          {el.title}
-        </ProductVariation>
+          selectedColorId={1}
+          title={el.title}
+        />
       ))}
     </div>
   );

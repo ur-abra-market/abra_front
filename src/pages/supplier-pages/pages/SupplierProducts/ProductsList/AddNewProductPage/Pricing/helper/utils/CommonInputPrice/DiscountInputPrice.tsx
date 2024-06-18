@@ -9,7 +9,6 @@ import style from './CommonInputPrice.module.scss';
 interface ICommonInputPrice {
   placeholder: string;
   disabled?: boolean;
-  nameInput: string;
   valueVariation: string;
   value: number;
   onProductDiscountChange: (discount: number) => void;
@@ -17,7 +16,6 @@ interface ICommonInputPrice {
 
 export const DiscountInputPrice: FC<ICommonInputPrice> = ({
   placeholder,
-  nameInput,
   disabled,
   value,
   valueVariation,
@@ -29,6 +27,10 @@ export const DiscountInputPrice: FC<ICommonInputPrice> = ({
     });
   };
 
+  const onChangeHandler = (event: ChangeEvent<HTMLInputElement>): void => {
+    onProductDiscountChange(Number(event.currentTarget.value.trim()));
+  };
+
   return (
     <div className={style.price_item}>
       <Input
@@ -37,9 +39,7 @@ export const DiscountInputPrice: FC<ICommonInputPrice> = ({
         placeholder={placeholder}
         disabled={disabled}
         value={(value > 100 ? 100 : value) || ''}
-        onChange={(event: ChangeEvent<HTMLInputElement>) => {
-          onProductDiscountChange(Number(event.currentTarget.value.trim()));
-        }}
+        onChange={onChangeHandler}
       />
       <span className={valueClasses('field.value')}>{valueVariation}</span>
     </div>

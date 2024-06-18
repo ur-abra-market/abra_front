@@ -59,7 +59,6 @@ export const TotalPriceForm: FC<ITotalPrice> = ({
           <DiscountInputPrice
             value={discount}
             placeholder="0"
-            nameInput={discountName}
             valueVariation="%"
             onProductDiscountChange={onProductDiscountChange}
           />
