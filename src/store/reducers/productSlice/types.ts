@@ -183,6 +183,14 @@ export interface IResponseGetProductCardId {
   feedbacks: IFeedbacks;
 }
 
+export interface IResponseGetBreadCrumbs {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  name: string;
+  level: number;
+}
+
 export interface ICategory {
   id: number | null;
   created_at: string;
