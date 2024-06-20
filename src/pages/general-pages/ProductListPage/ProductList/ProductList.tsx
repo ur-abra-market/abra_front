@@ -70,14 +70,16 @@ export const ProductList: FC<IProductList> = ({
     } as ICategoryRequest;
 
     dispatch(getProductsListCompilation(param));
-    dispatch(getBreadCrumbs({ category_id })).then(data => {
-      const breadCrumbsData = data.payload.data.map(
-        (el: { name: string; id: number }) => {
-          return { value: el.name, id: el.id };
-        },
-      );
+    dispatch(getBreadCrumbs({ category_id: category_id || '1' })).then(data => {
+      if (data.payload.data) {
+        const breadCrumbsData = data.payload.data.map(
+          (el: { name: string; id: number }) => {
+            return { value: el.name, id: el.id };
+          },
+        );
 
-      setBreadCrumbs(breadCrumbsData);
+        setBreadCrumbs(breadCrumbsData);
+      }
     });
   }, [productsPerPage, currentPage, category_id, currentSortField, currentSortBy, query]);
   const handleChangeSelect = (value: number): void => {
@@ -125,6 +127,10 @@ export const ProductList: FC<IProductList> = ({
             setSelectedView={setSelectedView}
           />
           <div className={style.branch_crumbs}>
+            <NavLink to={`${PRODUCTS_LIST}`}>
+              <span className={style.link}>All categories</span>
+              {!!breadCrumbs.length && ' > '}
+            </NavLink>
             {breadCrumbs.map((el, index) => {
               return (
                 <NavLink to={`${PRODUCTS_LIST}?category_id=${el.id}`} key={index}>
