@@ -5,26 +5,40 @@ import { Control } from 'react-hook-form';
 import { ColorVariant } from './ColorVariant';
 
 import { TotalPriceForm } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Pricing/helper/utils/TotalPrice';
+import { IVariationStateType } from 'pages/supplier-pages/pages/SupplierProducts/ProductsList/AddNewProductPage/Pricing/PricingWrapper/OptionalVariation/ColorVariant/ColorVariant';
 
 import style from './OptionalVariation.module.scss';
 
 interface IOptionalVariation {
-  control: Control<any>;
   totalPrice: number;
-  price?: number;
+  price: number;
+  discount: number;
+  tempData: IVariationStateType[];
+  selectedVariation: number;
+  changeActiveVariation: (id: number) => void;
+  onVariationPriceChange: (price: number) => void;
+  onVariationDiscountChange: (discount: number) => void;
 }
 
 export const OptionalVariation: FC<IOptionalVariation> = ({
-  control,
   price,
   totalPrice,
+  tempData,
+  selectedVariation,
+  changeActiveVariation,
+  discount,
+  onVariationPriceChange,
+  onVariationDiscountChange,
 }): JSX.Element => {
   return (
     <>
-      <ColorVariant price={price} />
+      <ColorVariant
+        tempData={tempData}
+        selectedVariation={selectedVariation}
+        changeActiveVariation={changeActiveVariation}
+      />
 
       <TotalPriceForm
-        control={control}
         totalPrice={totalPrice}
         label="Variations for markup"
         disabled={false}
@@ -32,6 +46,10 @@ export const OptionalVariation: FC<IOptionalVariation> = ({
         discountName="discountVariationPrice"
         totalName="totalVariationPrice"
         className={style.input_wrapper}
+        price={price}
+        discount={discount}
+        onProductPriceChange={onVariationPriceChange}
+        onProductDiscountChange={onVariationDiscountChange}
       />
     </>
   );

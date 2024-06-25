@@ -1,60 +1,28 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 
-import { ProductVariation } from 'ui-kit';
+import cn from 'classnames';
+
+import { Paragraph, ProductVariation } from 'ui-kit';
 
 import style from './ColorVariant.module.scss';
 
-const tempData = [
-  {
-    id: 2,
-    image_url: 'https://lookcolor.ru/images/menu/menu-right/pink.png',
-    title: 'Var. 1',
-  },
-  {
-    id: 3,
-    image_url: 'https://lookcolor.ru/images/menu/menu-right/red.png',
-    title: 'Bundle 2',
-  },
-  {
-    id: 4,
-    image_url: 'https://lookcolor.ru/images/menu/menu-right/vinous.png',
-    title: 'Variant 5',
-  },
-  {
-    id: 5,
-    image_url: 'https://lookcolor.ru/images/menu/menu-right/orange.png',
-    title: 'Bundle 2',
-  },
-  {
-    id: 6,
-    image_url: 'https://lookcolor.ru/images/menu/menu-right/coral.png',
-    title: 'Bundle 2',
-  },
-  {
-    id: 7,
-    image_url: 'https://lookcolor.ru/images/menu/menu-right/gold.png',
-    title: 'Bundle 5',
-  },
-  {
-    id: 8,
-    image_url: 'https://lookcolor.ru/images/menu/menu-right/turquoise.png',
-    title: 'Bundle 3',
-  },
-]; /* todo color временно пока не приходят цвета */
-
-interface IColorVariant {
-  price?: number;
+export interface IVariationStateType {
+  id: number;
+  title: string;
+  image_url: string;
 }
 
-export const ColorVariant: FC<IColorVariant> = ({ price }): JSX.Element => {
-  const [active, setActive] = useState<number | null>(null); /* todo color */
+interface IColorVariant {
+  tempData: IVariationStateType[];
+  selectedVariation: number;
+  changeActiveVariation: (id: number) => void;
+}
 
-  useEffect(() => {
-    if (price) {
-      setActive(null);
-    }
-  }, [price]);
-
+export const ColorVariant: FC<IColorVariant> = ({
+  tempData,
+  changeActiveVariation,
+  selectedVariation,
+}): JSX.Element => {
   return (
     <>
       <span className={style.label_text}>
@@ -63,15 +31,16 @@ export const ColorVariant: FC<IColorVariant> = ({ price }): JSX.Element => {
       <div className={style.list_items}>
         {tempData.map((el, index) => (
           <ProductVariation
+            className={cn(style.button, {
+              [style.active]: el.id === selectedVariation,
+            })}
             key={index}
-            selectedColorId={active}
-            productId={el.id}
+            changeActiveVariation={changeActiveVariation}
+            variationId={el.id}
             imageUrl={el.image_url}
-            selectColor={setActive}
-            disabled={!price}
-          >
-            {el.title}
-          </ProductVariation>
+            selectedColorId={selectedVariation}
+            title={el.title}
+          />
         ))}
       </div>
     </>
