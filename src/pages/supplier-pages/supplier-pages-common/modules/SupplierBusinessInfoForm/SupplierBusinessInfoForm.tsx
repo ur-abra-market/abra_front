@@ -1,16 +1,21 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
 import { PhoneNumberInput } from 'elements';
+import { ICategoryResponse } from 'services/common/common.serviceTypes';
 import {
+  categoriesSelector,
   countriesSelector,
   getAllCategories,
   numberEmployeesSelector,
 } from 'store/reducers/commonSlice';
-import { supplierLoadingSelector } from 'store/reducers/supplier/profile';
+import {
+  supplierBusinessInfoSelector,
+  supplierLoadingSelector,
+} from 'store/reducers/supplier/profile';
 import { Button, Checkbox, Input, Label, Paragraph, Select, Title } from 'ui-kit';
 
 import style from './SupplierBusinessInfoForm.module.scss';
@@ -31,28 +36,33 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
   isDirty,
 }): JSX.Element => {
   const dispatch = useAppDispatch();
-  const categories = useAppSelector(state => state.common.categories);
-  const businessSectorData = categories ? categories.filter(c => c.level === 1) : [];
-
-  useEffect(() => {
-    if (!categories) {
-      dispatch(getAllCategories());
-    }
-  }, [dispatch, categories]);
-
+  const categories = useAppSelector(categoriesSelector);
+  const { businessSector } = useAppSelector(supplierBusinessInfoSelector);
   const numberEmployees = useAppSelector(numberEmployeesSelector);
   const countries = useAppSelector(countriesSelector);
   const isLoading =
     useAppSelector(supplierLoadingSelector).businessInfoLoading ===
     LoadingStatusEnum.Loading;
+  const isMounted = useRef(false);
+  const [defaultCategory, setDefaultCategory] = useState<any>(undefined);
 
   const {
     register,
     handleSubmit,
     control,
-    watch,
+    // watch,
     formState: { errors, isValid },
   } = useFormContext<ISupplierBusinessInfoFormData>();
+
+  const businessSectorData = categories ? categories.filter(c => c.level === 1) : [];
+
+  useEffect(() => {
+    if (!isMounted.current) {
+      dispatch(getAllCategories());
+    }
+    isMounted.current = true;
+    setDefaultCategory(categories.find(el => el.name === businessSector));
+  }, [dispatch, categories]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -83,9 +93,10 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                     label: { text: el.name },
                   }))}
                   placeholder="Select"
-                  defaultValue={watch('businessSector')}
+                  defaultValue={defaultCategory?.id}
                   onChange={value => {
                     field.onChange(String(value.value));
+                    setDefaultCategory(value);
                   }}
                 />
               </Label>
@@ -154,6 +165,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   defaultValue={typeof field.value === 'number' ? field.value : undefined}
                   placeholder="Select"
                   onChange={value => {
+                    console.log(field);
                     field.onChange(Number(value.value));
                   }}
                 />
@@ -179,6 +191,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                 className={style.select}
                 placeholder="Select"
                 onChange={value => {
+                  console.log(value);
                   field.onChange(Number(value.value));
                 }}
               />
