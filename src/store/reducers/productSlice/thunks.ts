@@ -144,11 +144,7 @@ export const getBreadCrumbs = createAsyncThunk<any, IBreadCrumbsRequest>(
   'product/getBreadCrumbs',
   async (productData, { rejectWithValue }) => {
     try {
-      const response = await productService.getBreadCrumbs(productData);
-
-      return {
-        data: response,
-      };
+      return await productService.getBreadCrumbs(productData);
     } catch (error: unknown) {
       if (error instanceof AxiosError) {
         return rejectWithValue(error.message);

@@ -7,17 +7,20 @@ import { ProductPageHeader } from './components/ProductPageHeader/ProductPageHea
 import { ProductRecommendations } from './components/ProductRecommendations/ProductRecommendations';
 
 import { WithLayout } from 'common/hocs/WithLayout';
-import { useAppDispatch } from 'common/hooks';
+import { useAppDispatch, useAppSelector } from 'common/hooks';
 import {
   getPopularProducts,
   getProductById,
   getSimilarProducts,
+  productCategorySelector,
 } from 'store/reducers/productSlice';
+import { getBreadCrumbs } from 'store/reducers/productSlice/thunks';
 import { LoaderLinear } from 'ui-kit';
 
 import style from './ProductPage.module.scss';
 
 export const ProductPage = WithLayout((): JSX.Element => {
+  const categoryId = useAppSelector(productCategorySelector);
   const [isFetchingData, setIsFetchingData] = useState(true);
   const { productId } = useParams<string>();
   const dispatch = useAppDispatch();
@@ -37,6 +40,16 @@ export const ProductPage = WithLayout((): JSX.Element => {
 
     fetchData();
   }, [dispatch, productId]);
+
+  useEffect(() => {
+    const fetchingBreadCrumbs = async (): Promise<void> => {
+      await dispatch(getBreadCrumbs({ category_id: String(categoryId.id) }));
+    };
+
+    if (categoryId?.id) {
+      fetchingBreadCrumbs();
+    }
+  }, [categoryId, dispatch]);
 
   if (isFetchingData) return <LoaderLinear />;
 

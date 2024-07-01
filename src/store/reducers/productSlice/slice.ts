@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   addFavoriteProduct,
   addFavoriteProductPage,
+  getBreadCrumbs,
   getPopularProducts,
   getProductById,
   getProductsCompilation,
@@ -229,6 +230,9 @@ const productSlice = createSlice({
       })
       .addCase(removeFavoriteProductPage.fulfilled, (state, action) => {
         state.productCard.is_favorite = action.payload;
+      })
+      .addCase(getBreadCrumbs.fulfilled, (state, action) => {
+        state.productCard.breadcrumbs = action.payload;
       });
   },
 });

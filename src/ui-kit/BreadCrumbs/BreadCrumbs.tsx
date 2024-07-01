@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 import { ICategory } from 'common/types';
+import { PRODUCTS_LIST } from 'routes';
 import { ICategoryResponse } from 'services/common/common.serviceTypes';
 
 import style from './BreadCrumbs.module.scss';
@@ -22,14 +23,20 @@ export const BreadCrumbs: FC<IBreadCrumbs> = ({
       {breadCrumbs.map((el, i, arr) =>
         i < arr.length - 1 ? (
           <li key={el.id} className={style.list_items}>
-            <NavLink className={style.item_link} to="#">
+            <NavLink
+              className={style.item_link}
+              to={`${PRODUCTS_LIST}?category_id=${el.id}`}
+            >
               {el.name}
             </NavLink>
             <span>&#62;</span>
           </li>
         ) : (
           <li key={el.id} className={style.list_items}>
-            <NavLink className={style.item_link} to="#">
+            <NavLink
+              className={style.item_link}
+              to={`${PRODUCTS_LIST}?category_id=${el.id}`}
+            >
               {el.name}
             </NavLink>
           </li>
