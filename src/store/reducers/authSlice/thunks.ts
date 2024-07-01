@@ -35,7 +35,7 @@ export const registerUser = createAsyncThunk<void, IRegisterRequest, IAsyncThunk
         dispatch(
           setResponseNotice({
             noticeType: 'error',
-            message: error.response?.data?.error || error.message,
+            message: error.response?.data?.detail || error.message,
           }),
         );
       }
@@ -96,7 +96,7 @@ export const loginUser = createAsyncThunk<
       dispatch(
         setResponseNotice({
           noticeType: 'error',
-          message: error.response?.data?.error || error.message,
+          message: error.response?.data?.detail || error.message,
         }),
       );
     }
