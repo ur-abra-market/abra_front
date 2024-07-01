@@ -5,6 +5,7 @@ import { IResponseGetProductCardId } from './types';
 
 import { productService } from 'services/product/product.service';
 import {
+  IBreadCrumbsRequest,
   ICategoryRequest,
   IPopularProductRequest,
   IProductCompilation,
@@ -135,6 +136,21 @@ export const getProductsListCompilation = createAsyncThunk<any, ICategoryRequest
       }
 
       return rejectWithValue('[getProductsCompilation]: ERROR');
+    }
+  },
+);
+
+export const getBreadCrumbs = createAsyncThunk<any, IBreadCrumbsRequest>(
+  'product/getBreadCrumbs',
+  async (productData, { rejectWithValue }) => {
+    try {
+      return await productService.getBreadCrumbs(productData);
+    } catch (error: unknown) {
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue('[getBreadCrumbs]: ERROR');
     }
   },
 );

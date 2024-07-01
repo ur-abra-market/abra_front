@@ -69,6 +69,17 @@
   display: none;
 }
 
+.link {
+  font-weight: var(--semi-bold);
+  color: var(--color-black);
+
+  &:hover {
+    font-weight: var(--bold);
+    color: var(--color-red);
+    transition: all 0.1s;
+  }
+}
+
 @media only screen and (max-width: 1140px) {
   .wrapper {
     padding-right: 20px;

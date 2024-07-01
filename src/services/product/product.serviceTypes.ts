@@ -47,6 +47,10 @@ export interface ICategoryRequest {
   query?: string;
 }
 
+export interface IBreadCrumbsRequest {
+  category_id: string | null;
+}
+
 export interface IProductRequest {
   product_id: number;
 }
