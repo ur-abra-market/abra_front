@@ -5,7 +5,6 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { useAppDispatch, useAppSelector } from 'common/hooks';
 import { ISupplierBusinessInfoFormData, LoadingStatusEnum } from 'common/types';
 import { PhoneNumberInput } from 'elements';
-import { ICategoryResponse } from 'services/common/common.serviceTypes';
 import {
   categoriesSelector,
   countriesSelector,
@@ -50,7 +49,6 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
     register,
     handleSubmit,
     control,
-    // watch,
     formState: { errors, isValid },
   } = useFormContext<ISupplierBusinessInfoFormData>();
 
@@ -62,7 +60,7 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
     }
     isMounted.current = true;
     setDefaultCategory(categories.find(el => el.name === businessSector));
-  }, [dispatch, categories]);
+  }, [dispatch, categories, businessSector]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -165,7 +163,6 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                   defaultValue={typeof field.value === 'number' ? field.value : undefined}
                   placeholder="Select"
                   onChange={value => {
-                    console.log(field);
                     field.onChange(Number(value.value));
                   }}
                 />
@@ -191,7 +188,6 @@ export const SupplierBusinessInfoForm: FC<IBusinessProfileForm> = ({
                 className={style.select}
                 placeholder="Select"
                 onChange={value => {
-                  console.log(value);
                   field.onChange(Number(value.value));
                 }}
               />
